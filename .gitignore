@@ -1,5 +1,11 @@
+# Swift Package Manager
+/.build/
+/.swiftpm/
+/Packages/
+
+# XCode Projects and Data
+/*.xcodeproj/
+/xcuserdata/
+
+# Folder Preferences on macOS
 .DS_Store
-/.build
-/Packages
-/*.xcodeproj
-xcuserdata/
