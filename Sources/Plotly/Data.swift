@@ -1,6 +1,6 @@
 
-public struct Scatter: Encodable {
-    enum Mode: String, Encodable {
+struct Scatter: Codable {
+    enum Mode: String, Codable {
       case lines
       case markers
       case linesMarkers

@@ -1,34 +1,37 @@
 import Foundation
 
 
-public struct Figure: Encodable {
-    public var data: [Scatter]
+/// Swift equivalent of _Plotly.js_ `Figure` object.
+struct Figure: Codable {
+    
+    /// Array of `Trace` objects that are displayed on the  same figure.
+    var data: [Scatter]
 
+    /// `Figure` output format specification.
     public enum Format {
         case HTML
         case JSON
     }
 
-    /// Exports the `Figure` into a temporary HTML file and displays it using the default browser available on your OS.
+    /// Shows  the `Figure` in the default browser available on your OS.
     func show() {
-        let htmlDocument = HTML.create(from: self)
-        
-        let tempDirectory = FileManager().temporaryDirectory
-        let tempHtmlFile = tempDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("html")
-        try! htmlDocument.write(to: tempHtmlFile, atomically: true, encoding: .utf8)
-
-        Browser.open(url: tempHtmlFile)
+        try! Browser.show(figure: self)
     }
      
-    /// Writes representation of the `Figure` object to a URL specified by url using the specified format.
-    func write(to url: URL, as format: Format = .HTML) throws {
+    /// Writes representation of the `Figure` object to a URL using the specified format.
+    /// - Parameter url: Destination where to save the `Figure` object.
+    /// - Parameter format: Output format (HTML, JSON, ...)
+    /// - Parameter javaScript: Bundling option (include, online, exclude, ...) for _MathJax_ and
+    /// _Plotly_ JavaScript libraries. Used only for HTML format.
+    func write(to url: URL, as format: Format = .HTML,
+               javaScript bundle: HTML.JavaScriptBundleOption = .included) {
         var output: String
         switch format {
         case .HTML:
-            output = HTML.create(from: self)
+            output = try! HTML.create(from: self, plotly: bundle, mathJax: bundle, document: true)
         case .JSON:
-            output = JSON.create(from: self.data)
+            output = try! JSON.create(from: self.data)
         }
-        try output.write(to: url, atomically: true, encoding: .utf8)
+        try! output.write(to: url, atomically: true, encoding: .utf8)
     }
 }
