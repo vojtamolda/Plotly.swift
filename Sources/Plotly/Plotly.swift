@@ -3,32 +3,32 @@ import Foundation
 
 public struct Figure: Encodable {
     public var data: [Scatter]
-    
+
+    public enum Format {
+        case HTML
+        case JSON
+    }
+
+    /// Exports the `Figure` into a temporary HTML file and displays it using the default browser available on your OS.
     func show() {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-
-        let encodedData = try! encoder.encode(data)
-        let jsonData = String(data: encodedData, encoding: .utf8)!
-        let html = """
-        <head>
-          <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        </head>
-        <body>
-          <div id="plot"><!-- Chart will be drawn here --></div>
-          <script>
-            var data = \(jsonData);
-            Plotly.newPlot('plot', data);
-          </script>
-        </body>
-        """
-
+        let htmlDocument = HTML.create(from: self)
+        
         let tempDirectory = FileManager().temporaryDirectory
         let tempHtmlFile = tempDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("html")
-        print(tempHtmlFile)
-        try! html.write(to: tempHtmlFile, atomically: true, encoding: .utf8)
-        
-        let env = URL(fileURLWithPath: "/usr/bin/env")
-        let _ = try! Process.run(env, arguments: ["open", tempHtmlFile.absoluteString])
+        try! htmlDocument.write(to: tempHtmlFile, atomically: true, encoding: .utf8)
+
+        Browser.open(url: tempHtmlFile)
+    }
+     
+    /// Writes representation of the `Figure` object to a URL specified by url using the specified format.
+    func write(to url: URL, as format: Format = .HTML) throws {
+        var output: String
+        switch format {
+        case .HTML:
+            output = HTML.create(from: self)
+        case .JSON:
+            output = JSON.create(from: self.data)
+        }
+        try output.write(to: url, atomically: true, encoding: .utf8)
     }
 }
