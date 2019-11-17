@@ -1,21 +1,29 @@
 import Foundation
 
 
-/// Functions for converting `Trace` objects to JavaScript Object Notation (JSON) compatible with _Plotly.js_ library.
+/// Functions for serializing `Figure` object to JavaScript Object Notation (JSON) compatible with _Plotly.js_ library.
 struct JSON {
 
-    /// Constructs JSON representation from provided data `Trace` objects.
-    static func create(from data: [Scatter], formatting: JSONEncoder.OutputFormatting = []) throws
-        -> String {
+    /// Constructs _Plotly.js_ JSON serialization from provided `Figure` object.
+    static func create(from figure: Figure, formatting: JSONEncoder.OutputFormatting = [])
+        throws -> (data: String, layout: String, config: String) {
+
         let encoder = JSONEncoder()
         encoder.outputFormatting = formatting
-
-        let encodedData = try encoder.encode(data)
-        let jsonData = String(data: encodedData, encoding: .utf8)!
-        return jsonData
+        
+        let dataEncoded = try encoder.encode(figure.data)
+        let dataJSON = String(data: dataEncoded, encoding: .utf8)!
+        
+        let layoutEncoded = try encoder.encode(figure.layout)
+        let layoutJSON = String(data: layoutEncoded, encoding: .utf8)!
+            
+        let configEncoded = try encoder.encode(figure.config)
+        let configJSON = String(data: configEncoded, encoding: .utf8)!
+            
+        return (data: dataJSON, layout: layoutJSON, config: configJSON)
     }
-    
-    /// Decodes `Figure` object from provided JSON representation.
+
+    /// Decodes `Figure` object from provided _Plotly.js_ JSON serialization.
     static func decode(from json: Data) throws -> Figure {
         let decoder = JSONDecoder()
         let figure = try decoder.decode(Figure.self, from: json)

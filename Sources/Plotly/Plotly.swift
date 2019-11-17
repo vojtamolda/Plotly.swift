@@ -6,6 +6,9 @@ struct Figure: Codable {
     
     /// Array of `Trace` objects that are displayed on the  same figure.
     var data: [Scatter]
+    
+    let layout = ""
+    let config = ""
 
     /// `Figure` output format specification.
     public enum Format {
@@ -19,19 +22,25 @@ struct Figure: Codable {
     }
      
     /// Writes representation of the `Figure` object to a URL using the specified format.
-    /// - Parameter url: Destination where to save the `Figure` object.
-    /// - Parameter format: Output format (HTML, JSON, ...)
+    /// - Parameter toFile: File where to save the `Figure` object.
+    /// - Parameter as: Output format (HTML, JSON, ...)
     /// - Parameter javaScript: Bundling option (include, online, exclude, ...) for _MathJax_ and
     /// _Plotly_ JavaScript libraries. Used only for HTML format.
-    func write(to url: URL, as format: Format = .HTML,
-               javaScript bundle: HTML.JavaScriptBundleOption = .included) {
-        var output: String
+    ///
+    /// - Warning: Calling may take a few seconds because the function needs internet access.
+    /// Current implementation of `.included` option downloads the library from the CDN
+    /// server and returns `<script>` tag with the file content.
+    func write<T>(toFile path: T, as format: Format = .HTML,
+                  javaScript bundle: HTML.JavaScriptBundleOption = .online)
+        where T : StringProtocol {
+
         switch format {
         case .HTML:
-            output = try! HTML.create(from: self, plotly: bundle, mathJax: bundle, document: true)
+            let html = try! HTML.create(from: self, plotly: bundle, mathJax: bundle, document: true)
+            try! html.write(toFile: path, atomically: true, encoding: .utf8)
         case .JSON:
-            output = try! JSON.create(from: self.data)
+            let json = try! JSON.create(from: self, formatting: [.prettyPrinted, .sortedKeys]).data
+            try! json.write(toFile: path, atomically: true, encoding: .utf8)
         }
-        try! output.write(to: url, atomically: true, encoding: .utf8)
     }
 }

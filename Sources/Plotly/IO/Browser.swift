@@ -11,9 +11,9 @@ struct Browser {
         browser.waitUntilExit()
     }
 
-    /// Exports the `Figure` into a temporary HTML file and displays it using the default browser available on your OS.
+    /// Exports the `Figure` to a temporary HTML file and displays it using the default browser available on your OS.
     static func show(figure: Figure) throws {
-        let htmlDocument = try HTML.create(from: figure)
+        let htmlDocument = try HTML.create(from: figure, document: true)
 
         let tempDirectory = FileManager().temporaryDirectory
         let tempHtmlFile = tempDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("html")

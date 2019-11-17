@@ -18,8 +18,9 @@ final class PlotlyTests: XCTestCase {
         let data = [Scatter(mode: .markers, x: x, y: y)]
         let figure = Figure(data: data)
         
-        let testHtmlFile = URL(fileURLWithPath: "test.html")
-        try! figure.write(to: testHtmlFile, as: .HTML)
+        figure.write(toFile: "excluded.html", as: .HTML, javaScript: .included)
+        figure.write(toFile: "online.html", as: .HTML, javaScript: .online)
+        figure.write(toFile: "directory.html", as: .HTML, javaScript: .directory)
     }
     
     func testExportJSON() {
@@ -28,8 +29,6 @@ final class PlotlyTests: XCTestCase {
         let data = [Scatter(mode: .markers, x: x, y: y)]
         let figure = Figure(data: data)
         
-        let testJsonFile = URL(fileURLWithPath: "export.json")
-        try! figure.write(to: testJsonFile, as: .JSON)
+        figure.write(toFile: "export.json", as: .JSON)
     }
-
 }
