@@ -54,8 +54,6 @@ struct HTML {
     /// incorporated in the HTML output.
     /// - Parameter document: Produce a string containing a complete HTML document starting with the
     /// `<html>`element  instead of a single `<div>` tag.
-    /// - Parameter width: Default width property of the figure `<div>` tag.
-    /// - Parameter height: Default height property of the figure `<div>` tag.
     static public func create(from figure: Figure,
                               plotly: JavaScriptBundleOption = .included,
                               mathJax: JavaScriptBundleOption = .included,
