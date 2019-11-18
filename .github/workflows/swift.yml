@@ -1,0 +1,21 @@
+name: Swift Package
+
+on: [push, pull_request]
+
+jobs:
+
+  build_test:
+
+    strategy:
+      matrix:
+        # FIXME: Install Swift on latest Ubuntu
+        os: [macOS-latest] # , ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build package
+      run: swift build
+    - name: Run tests
+      run: swift test
