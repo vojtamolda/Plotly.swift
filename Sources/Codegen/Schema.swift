@@ -1,3 +1,6 @@
+extension String: CodingKey {
+
+}
 
 /// Root level of _Plotly_ JSON schema hierarchy.
 struct Schema: Decodable {
@@ -85,6 +88,7 @@ struct Schema: Decodable {
     }
 
     struct Attribute: Decodable {
+        let object: Object?
         let description: String
         let valType: String?
         let values: [Primitive]?
@@ -95,6 +99,7 @@ struct Schema: Decodable {
             case valType
             case values
             case dflt
+            case role
         }
 
         init(from decoder: Decoder) throws {
@@ -108,6 +113,14 @@ struct Schema: Decodable {
             }
 
             if let container = try? decoder.container(keyedBy: CodingKeys.self) {
+                if container.contains(.role) {
+                    object = try? Object(from: decoder)
+                    valType = nil
+                    values = nil
+                    dflt = nil
+                    return
+                }
+
                 description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
                 valType = try container.decodeIfPresent(String.self, forKey: .valType)
                 values = try container.decodeIfPresent([Primitive].self, forKey: .values)
@@ -121,6 +134,34 @@ struct Schema: Decodable {
             }
         }
     }
+
+
+    struct Object: Decodable {
+        let attributes: [String: Attribute]
+        let meta: [String: String]
+        let description: String
+
+        private struct CodingKeys: CodingKey {
+            var stringValue: String
+            var intValue: Int?
+            init?(stringValue: String) { self.stringValue = stringValue }
+            init?(intValue: Int) {
+                self.intValue = intValue
+                stringValue = "\(intValue)"
+            }
+        }
+
+        init(from decoder: Decoder) throws {
+            if let container = try? decoder.container(keyedBy: CodingKeys) {
+                precondition(container.contains(CodingKeys(stringValue: "role")))
+
+                for key in container.allKeys {
+                    attributes[key.stringValue!] = try? Attribute(from: container.superDecoder(forKey: key))
+                }
+            }
+        }
+    }
+
     
     struct Trace: Decodable {
         let type: String
