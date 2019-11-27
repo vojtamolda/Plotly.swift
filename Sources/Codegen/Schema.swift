@@ -1,6 +1,3 @@
-extension String: CodingKey {
-
-}
 
 /// Root level of _Plotly_ JSON schema hierarchy.
 struct Schema: Decodable {
@@ -103,30 +100,24 @@ struct Schema: Decodable {
         }
 
         init(from decoder: Decoder) throws {
-            if decoder.codingPath.joined(separator: "/").starts(with: "traces/table") {
-                // TODO: Table needs special care.
-                description = "TODO: traces/table is not yet implemented"
-                valType = nil
-                values = nil
-                dflt = nil
-                return
-            }
-
             if let container = try? decoder.container(keyedBy: CodingKeys.self) {
-                if container.contains(.role) {
+                if try! container.decodeIfPresent(String.self, forKey: .role) == "object" {
                     object = try? Object(from: decoder)
+                    description = ""
                     valType = nil
                     values = nil
                     dflt = nil
                     return
                 }
 
+                object = nil
                 description = try container.decodeIfPresent(String.self, forKey: .description) ?? ""
                 valType = try container.decodeIfPresent(String.self, forKey: .valType)
                 values = try container.decodeIfPresent([Primitive].self, forKey: .values)
                 dflt = try container.decodeIfPresent(Primitive.self, forKey: .dflt)
             } else {
                 // Temporart fix for values like ["type": "scatter"] mixed in between attributes.
+                object = nil
                 description = ""
                 valType = nil
                 values = nil
@@ -137,11 +128,11 @@ struct Schema: Decodable {
 
 
     struct Object: Decodable {
-        let attributes: [String: Attribute]
+        var attributes: [String: Attribute]
         let meta: [String: String]
         let description: String
 
-        private struct CodingKeys: CodingKey {
+        private struct StringKey: CodingKey {
             var stringValue: String
             var intValue: Int?
             init?(stringValue: String) { self.stringValue = stringValue }
@@ -152,13 +143,16 @@ struct Schema: Decodable {
         }
 
         init(from decoder: Decoder) throws {
-            if let container = try? decoder.container(keyedBy: CodingKeys) {
-                precondition(container.contains(CodingKeys(stringValue: "role")))
+            let container = try decoder.container(keyedBy: StringKey.self)
+            precondition(container.contains(StringKey(stringValue: "role")!))
 
-                for key in container.allKeys {
-                    attributes[key.stringValue!] = try? Attribute(from: container.superDecoder(forKey: key))
-                }
+            attributes = [:]
+            for key in container.allKeys {
+                let attribute = try Attribute(from: container.superDecoder(forKey: key))
+                attributes[key.stringValue] = attribute
             }
+            meta = [:]
+            description = ""
         }
     }
 
