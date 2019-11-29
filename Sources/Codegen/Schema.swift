@@ -22,25 +22,16 @@ struct Schema: Decodable {
         let attributes: [String: Entry]
         let layoutAttributes: [String: Entry]?
 
-        enum CodingKeys: String, CodingKey {
-            case type
-            case animatable
-            case categories
-            case meta
-            case attributes
-            case layoutAttributes
-        }
-
         init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            type = try container.decode(String.self, forKey: .type)
-            animatable = try container.decode(Bool.self, forKey: .animatable)
-            attributes = try container.decode([String: Entry].self, forKey: .attributes)
+            let container = try decoder.container(keyedBy: Keys.self)
+            type = try container.decode(String.self, forKey: Keys("type"))
+            animatable = try container.decode(Bool.self, forKey: Keys("animatable"))
+            attributes = try container.decode([String: Entry].self, forKey: Keys("attributes"))
             layoutAttributes = try container.decodeIfPresent([String: Entry].self,
-                                                             forKey: .layoutAttributes)
+                                                             forKey: Keys("layoutAttributes"))
             // There are empty dicts in 'traces/area' instead of lists like everywhere else.
-            meta = (try? container.decode([String: String].self, forKey: .meta)) ?? [:]
-            categories = (try? container.decode([String].self, forKey: .categories)) ?? []
+            meta = (try? container.decode([String: String].self, forKey: Keys("meta"))) ?? [:]
+            categories = (try? container.decode([String].self, forKey: Keys("meta"))) ?? []
         }
     }
     let traces: [String: Trace]
@@ -84,22 +75,13 @@ struct Schema: Decodable {
 
         static let ignoredKeys: Set = ["_isSubplotObj", "_isLinkedToArray", "_arrayAttrRegexps"]
 
-        private struct CodingKeys: CodingKey {
-            var intValue: Int?
-            var stringValue: String
-            init?(intValue: Int) { self.intValue = intValue; self.stringValue = "\(intValue)" }
-            init?(stringValue: String) { self.stringValue = stringValue }
-        }
-
         init(from decoder: Decoder) throws {
-            let path = decoder.codingPath.joined(separator: "/")
-
             if let primitive = try? Primitive.init(from: decoder) {
                 self = .primitive(primitive)
             } else if let attribute = try? Attribute.init(from: decoder) {
                 self = .attribute(attribute)
             } else {
-                let container = try decoder.container(keyedBy: CodingKeys.self)
+                let container = try decoder.container(keyedBy: Keys.self)
                 var entries = [String: Entry]()
                 for key in container.allKeys {
                     if Self.ignoredKeys.contains(key.stringValue) { continue }
@@ -109,7 +91,6 @@ struct Schema: Decodable {
                 self = .entries(entries)
             }
         }
-
     }
 
     enum Primitive: Decodable {
@@ -237,14 +218,10 @@ struct Schema: Decodable {
             let dimensions: Primitive? = nil
         }
         case infoArray(_ infoArray: InfoArray)
-        
-        enum CodingKeys: String, CodingKey {
-            case valType
-        }
 
         init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            let valType = try container.decode(String.self, forKey: .valType)
+            let container = try decoder.container(keyedBy: Keys.self)
+            let valType = try container.decode(String.self, forKey: Keys("valType"))
 
             switch valType {
             case "data_array":
@@ -278,6 +255,24 @@ struct Schema: Decodable {
             default:
                 fatalError("Unsupported attribute kind: \(valType)")
             }
+        }
+    }
+
+    struct Keys: CodingKey {
+        var intValue: Int?
+        var stringValue: String
+
+        init(intValue: Int) {
+            self.intValue = intValue
+            self.stringValue = "\(intValue)"
+        }
+
+        init(stringValue: String) {
+            self.stringValue = stringValue
+        }
+
+        init(_ stringValue: String) {
+            self.stringValue = stringValue
         }
     }
 }

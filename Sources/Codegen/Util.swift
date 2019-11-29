@@ -1,7 +1,7 @@
 
-extension Collection where Iterator.Element == CodingKey {
-    func joined(separator: String) -> String {
-        let keys = self.map { $0.stringValue }
-        return keys.joined(separator: separator)
+extension KeyedDecodingContainer: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        let keys = codingPath.map { $0.stringValue }
+        return keys.joined(separator: "/")
     }
 }
