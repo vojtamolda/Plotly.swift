@@ -7,10 +7,11 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL) {
 
     let schema = try! decoder.decode(Schema.self, from: data)
 
-    //print(schema)
-    print(schema.traces["scatter"]!.attributes["marker"])
-//    let types = Swift.initializeTypes(schema.defs)
-//    let traces = Traces(schema.traces, types)
+
+    let traces = Traces.initialize(from: schema.traces)
+
+    print(traces["scatter"]!.definition().joined(separator: "\n"))
+
 //    let layout = Layout(schema.layout, types)
 //    let config = Config(shecma.layout, types)
 //

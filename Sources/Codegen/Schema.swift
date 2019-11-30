@@ -29,9 +29,9 @@ struct Schema: Decodable {
             attributes = try container.decode([String: Entry].self, forKey: Keys("attributes"))
             layoutAttributes = try container.decodeIfPresent([String: Entry].self,
                                                              forKey: Keys("layoutAttributes"))
-            // There are empty dicts in 'traces/area' instead of lists like everywhere else.
-            meta = (try? container.decode([String: String].self, forKey: Keys("meta"))) ?? [:]
-            categories = (try? container.decode([String].self, forKey: Keys("meta"))) ?? []
+            meta = try container.decode([String: String].self, forKey: Keys("meta"))
+            // There is an empty dict in 'traces/area' instead of a list like everywhere else.
+            categories = (try? container.decode([String].self, forKey: Keys("categories"))) ?? []
         }
     }
     let traces: [String: Trace]
@@ -116,14 +116,39 @@ struct Schema: Decodable {
                 self = .string(string)
             }
         }
+
+        func toString() -> String {
+            switch self {
+            case .none:
+                return "none"
+            case .bool(let bool):
+                return "\(bool)"
+            case .int(let int):
+                return "\(int)"
+            case .double(let double):
+                return "\(double)"
+            case .string(let string):
+                return string
+            }
+        }
     }
 
     enum Attribute: Decodable {
         class Common: Decodable {
-            let valType: String
-            let description: String = ""
-            let editType: String? = nil
-            let role: String? = nil
+            var valType: String
+            var description: String = ""
+            var editType: String? = nil
+            var role: String? = nil
+            var codingPath: [CodingKey]
+
+            required init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: Keys.self)
+                valType = try container.decode(String.self, forKey: Keys("valType"))
+                description = (try container.decodeIfPresent(String.self, forKey: Keys("description"))) ?? ""
+                editType = try container.decodeIfPresent(String.self, forKey: Keys("editType"))
+                role = try container.decodeIfPresent(String.self, forKey: Keys("role"))
+                codingPath = container.codingPath
+            }
         }
 
         class DataArray: Common {
@@ -272,7 +297,7 @@ struct Schema: Decodable {
         }
 
         init(_ stringValue: String) {
-            self.stringValue = stringValue
+            self.init(stringValue: stringValue)
         }
     }
 }
