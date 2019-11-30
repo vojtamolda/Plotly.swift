@@ -1,17 +1,20 @@
 
 struct Traces {
 
-    class Trace: Swift.Struct {
-        let schema: Schema.Trace?
+    struct Trace: SwiftDataType {
+        let type: String = ""
+        let identifier: String
+        let schema: SchemaDataType?
+        let attributes: Swift.Struct
 
         init(from trace: Schema.Trace) {
+            identifier = type
             schema = trace
-            super.init(withIdentifier: trace.type, from: trace.attributes)
+            attributes = Swift.Struct(identifier: identifier, entries: trace.attributes)
         }
 
-        required init(withIdentifier identifier: String, from entries: [String : Schema.Entry]) {
-            schema = nil
-            super.init(withIdentifier: identifier, from: entries)
+        func definition() -> [String] {
+            return attributes.definition()
         }
     }
 

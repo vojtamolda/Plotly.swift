@@ -2,20 +2,24 @@
 struct Schema: Decodable {
 
     struct Defs: Decodable {
-        struct Datatype: Decodable {
+        struct ValObject: Decodable {
             let description: String
             let requiredOpts: [String]
             let otherOpts: [String]
         }
-        let valObjects: [String: Datatype]
+        let valObjects: [String: ValObject]
         let editType: [String: Attribute]
         let metaKeys: [String]
         let impliedEdits: [String: Primitive]
     }
     let defs: Defs
 
-    struct Trace: Decodable {
-        let type: String
+    struct Trace: SchemaDataType {
+        let valType: String
+        var description: String?
+        var editType: String?
+        var role: String?
+
         let animatable: Bool
         let categories: [String]
         let meta: [String: String]
@@ -24,7 +28,7 @@ struct Schema: Decodable {
 
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: Keys.self)
-            type = try container.decode(String.self, forKey: Keys("type"))
+            valType = try container.decode(String.self, forKey: Keys("type"))
             animatable = try container.decode(Bool.self, forKey: Keys("animatable"))
             attributes = try container.decode([String: Entry].self, forKey: Keys("attributes"))
             layoutAttributes = try container.decodeIfPresent([String: Entry].self,
@@ -32,6 +36,10 @@ struct Schema: Decodable {
             meta = try container.decode([String: String].self, forKey: Keys("meta"))
             // There is an empty dict in 'traces/area' instead of a list like everywhere else.
             categories = (try? container.decode([String].self, forKey: Keys("categories"))) ?? []
+
+            description = meta["description"] ?? ""
+            editType = nil
+            role = nil
         }
     }
     let traces: [String: Trace]
@@ -134,109 +142,163 @@ struct Schema: Decodable {
     }
 
     enum Attribute: Decodable {
-        class Common: Decodable {
+
+        struct DataArray: SchemaDataType {
             var valType: String
-            var description: String = ""
-            var editType: String? = nil
-            var role: String? = nil
-            var codingPath: [CodingKey]
+            var description: String? = ""
+            var editType: String?
+            var role: String?
 
-            required init(from decoder: Decoder) throws {
-                let container = try decoder.container(keyedBy: Keys.self)
-                valType = try container.decode(String.self, forKey: Keys("valType"))
-                description = (try container.decodeIfPresent(String.self, forKey: Keys("description"))) ?? ""
-                editType = try container.decodeIfPresent(String.self, forKey: Keys("editType"))
-                role = try container.decodeIfPresent(String.self, forKey: Keys("role"))
-                codingPath = container.codingPath
-            }
-        }
-
-        class DataArray: Common {
-            let dflt: Primitive? = nil
+            let dflt: [Primitive]?
         }
         case dataArray(_ dataArray: DataArray)
 
-        class Enumerated: Common {
-            let values: [Primitive] = []
-            let coerceNumber: Bool? = nil
-            let dflt: [Primitive]? = nil
-            let arrayOk: Bool? = nil
+        struct Enumerated: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
+            let values: [Primitive]
+            var coerceNumber: Primitive?
+            var dflt: Primitive?
+            var arrayOk: Bool?
         }
         case enumerated(_ enumerated: Enumerated)
 
-        class Boolean: Common {
+        struct Boolean: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
             let dflt: Bool? = nil
         }
         case boolean(_ boolean: Boolean)
         
-        class Number: Common {
-            let dflt: Double? = nil
-            let min: Double? = nil
-            let max: Double? = nil
-            let arrayOk: Bool? = nil
+        struct Number: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
+            let dflt: Primitive?
+            let min: Double?
+            let max: Double?
+            let arrayOk: Bool?
         }
         case number(_ number: Number)
 
-        class Integer: Common {
-            let dflt: Int? = nil
-            let min: Int? = nil
-            let max: Int? = nil
-            let arrayOk: Bool? = nil
+        struct Integer: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
+            let dflt: Int?
+            let min: Int?
+            let max: Int?
+            let arrayOk: Bool?
         }
         case integer(_ integer: Integer)
 
-        class String_: Common {
-            let dflt: String? = nil
-            let noBlank: Bool? = nil
-            let strict: Bool? = nil
-            let values: [String]? = nil
-            let arrayOk: Bool? = nil
+        struct String_: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
+            let dflt: String?
+            let noBlank: Bool?
+            let strict: Bool?
+            let values: [String]?
+            let arrayOk: Bool?
         }
         case string(_ string: String_)
 
-        class Color: Common {
-            let dflt: String? = nil
-            let arrayOk: Bool? = nil
+        struct Color: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
+            let dflt: String?
+            let arrayOk: Bool?
         }
         case color(_ color: Color)
-        
-        class ColorList: Common {
-            let dflt: String? = nil
+
+        struct ColorList: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
+            let dflt: [String]?
         }
         case colorList(_ colorList: ColorList)
-        
-        class ColorScale: Common {
-            let dflt: String? = nil
+
+        struct ColorScale: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
+            let dflt: [[Primitive]]?
         }
         case colorScale(_ colorScale: ColorScale)
-        
-        class Angle: Common {
+
+        struct Angle: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
             let dflt: Double? = nil
         }
         case angle(_ angle: Angle)
-        
-        class SubplotID: Common {
+
+        struct SubplotID: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
             let dflt: String = ""
             let regex: String? = nil
         }
         case subplotID(_ subplotID: SubplotID)
 
-        class FlagList: Common {
-            let flags: [String] = []
+        struct FlagList: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
+            let flags: [String]
             let dflt: [String]? = nil
             let extras: [Primitive]? = nil
             let arrayOk: Bool? = nil
         }
         case flagList(_ flagList: FlagList)
 
-        class Any_: Common {
+        struct Any_: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
             let dflt: Primitive? = nil
             let values: [Primitive]? = nil
             let arrayOk: Bool? = nil
         }
         case any(_ any: Any_)
 
-        class InfoArray: Common {
+        struct InfoArray: SchemaDataType {
+            var valType: String
+            var description: String? = ""
+            var editType: String?
+            var role: String?
+
             let items: [Primitive] = []
             let dflt: [Primitive]? = nil
             let freeLength: Bool? = nil
@@ -300,4 +362,12 @@ struct Schema: Decodable {
             self.init(stringValue: stringValue)
         }
     }
+}
+
+
+protocol SchemaDataType: Decodable {
+    var valType: String { get }
+    var description: String? { get }
+    var editType: String? { get }
+    var role: String? { get }
 }
