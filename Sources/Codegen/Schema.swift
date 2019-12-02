@@ -14,12 +14,7 @@ struct Schema: Decodable {
     }
     let defs: Defs
 
-    struct Trace: SchemaDataType {
-        let valType: String
-        var description: String?
-        var editType: String?
-        var role: String?
-
+    struct Trace: Decodable {
         let animatable: Bool
         let categories: [String]
         let meta: [String: String]
@@ -28,7 +23,6 @@ struct Schema: Decodable {
 
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: Keys.self)
-            valType = try container.decode(String.self, forKey: Keys("type"))
             animatable = try container.decode(Bool.self, forKey: Keys("animatable"))
             attributes = try container.decode([String: Entry].self, forKey: Keys("attributes"))
             layoutAttributes = try container.decodeIfPresent([String: Entry].self,
@@ -36,16 +30,12 @@ struct Schema: Decodable {
             meta = try container.decode([String: String].self, forKey: Keys("meta"))
             // There is an empty dict in 'traces/area' instead of a list like everywhere else.
             categories = (try? container.decode([String].self, forKey: Keys("categories"))) ?? []
-
-            description = meta["description"] ?? ""
-            editType = nil
-            role = nil
         }
     }
     let traces: [String: Trace]
 
     struct Layout: Decodable {
-        let layoutAttributes: [String: Entry]?
+        let layoutAttributes: [String: Entry]
     }
     let layout: Layout
 
@@ -144,165 +134,235 @@ struct Schema: Decodable {
     enum Attribute: Decodable {
 
         struct DataArray: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: [Primitive]?
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt
+            }
         }
         case dataArray(_ dataArray: DataArray)
 
         struct Enumerated: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let values: [Primitive]
-            var coerceNumber: Primitive?
-            var dflt: Primitive?
-            var arrayOk: Bool?
+            let coerceNumber: Primitive?
+            let dflt: Primitive?
+            let arrayOk: Bool?
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, values, coerceNumber, dflt, arrayOk
+            }
         }
         case enumerated(_ enumerated: Enumerated)
 
         struct Boolean: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: Bool? = nil
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt
+            }
         }
         case boolean(_ boolean: Boolean)
         
         struct Number: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: Primitive?
             let min: Double?
             let max: Double?
             let arrayOk: Bool?
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt, min, max, arrayOk
+            }
         }
         case number(_ number: Number)
 
         struct Integer: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: Int?
             let min: Int?
             let max: Int?
             let arrayOk: Bool?
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt, min, max, arrayOk
+            }
         }
         case integer(_ integer: Integer)
 
         struct String_: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: String?
             let noBlank: Bool?
             let strict: Bool?
             let values: [String]?
             let arrayOk: Bool?
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt, noBlank, strict, values, arrayOk
+            }
         }
         case string(_ string: String_)
 
         struct Color: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: String?
             let arrayOk: Bool?
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt, arrayOk
+            }
         }
         case color(_ color: Color)
 
         struct ColorList: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: [String]?
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt
+            }
         }
         case colorList(_ colorList: ColorList)
 
         struct ColorScale: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: [[Primitive]]?
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt
+            }
         }
         case colorScale(_ colorScale: ColorScale)
 
         struct Angle: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: Double? = nil
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt
+            }
         }
         case angle(_ angle: Angle)
 
         struct SubplotID: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: String = ""
             let regex: String? = nil
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt, regex
+            }
         }
         case subplotID(_ subplotID: SubplotID)
 
         struct FlagList: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let flags: [String]
             let dflt: [String]? = nil
             let extras: [Primitive]? = nil
             let arrayOk: Bool? = nil
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, flags, dflt, extras, arrayOk
+            }
         }
         case flagList(_ flagList: FlagList)
 
         struct Any_: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let dflt: Primitive? = nil
             let values: [Primitive]? = nil
             let arrayOk: Bool? = nil
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, dflt, values, arrayOk
+            }
         }
         case any(_ any: Any_)
 
         struct InfoArray: SchemaDataType {
-            var valType: String
-            var description: String? = ""
-            var editType: String?
-            var role: String?
+            var codingPath: [CodingKey] = []
+            let valType: String
+            let description: String?
+            let editType: String?
+            let role: String?
 
             let items: [Primitive] = []
             let dflt: [Primitive]? = nil
             let freeLength: Bool? = nil
             let dimensions: Primitive? = nil
+
+            enum CodingKeys: String, CodingKey {
+                case valType, description, editType, role, items, dflt, freeLength, dimensions
+            }
         }
         case infoArray(_ infoArray: InfoArray)
 
@@ -312,33 +372,34 @@ struct Schema: Decodable {
 
             switch valType {
             case "data_array":
-                self = .dataArray(try! DataArray.init(from: decoder))
+                let dataArray = try! DataArray.init(parse: decoder)
+                self = .dataArray(dataArray)
             case "enumerated":
-                self = .enumerated(try! Enumerated.init(from: decoder))
+                self = .enumerated(try! Enumerated.init(parse: decoder))
             case "boolean":
-                self  = .boolean(try! Boolean.init(from: decoder))
+                self  = .boolean(try! Boolean.init(parse: decoder))
             case "number":
-                self = .number(try! Number.init(from: decoder))
+                self = .number(try! Number.init(parse: decoder))
             case "integer":
-                self = .integer(try! Integer.init(from: decoder))
+                self = .integer(try! Integer.init(parse: decoder))
             case "string":
-                self = .string(try! String_.init(from :decoder))
+                self = .string(try! String_.init(parse :decoder))
             case "color":
-                self = .color(try! Color.init(from: decoder))
+                self = .color(try! Color.init(parse: decoder))
             case "colorlist":
-                self = .colorList(try! ColorList.init(from: decoder))
+                self = .colorList(try! ColorList.init(parse: decoder))
             case "colorscale":
-                self = .colorScale(try! ColorScale.init(from: decoder))
+                self = .colorScale(try! ColorScale.init(parse: decoder))
             case "angle":
-                self = .angle(try! Angle.init(from: decoder))
+                self = .angle(try! Angle.init(parse: decoder))
             case "subplotid":
-                self = .subplotID(try! SubplotID.init(from: decoder))
+                self = .subplotID(try! SubplotID.init(parse: decoder))
             case "flaglist":
-                self = .flagList(try! FlagList.init(from: decoder))
+                self = .flagList(try! FlagList.init(parse: decoder))
             case "any":
-                self = .any(try! Any_.init(from: decoder))
+                self = .any(try! Any_.init(parse: decoder))
             case "info_array":
-                self = .infoArray(try! InfoArray.init(from: decoder))
+                self = .infoArray(try! InfoArray.init(parse: decoder))
             default:
                 fatalError("Unsupported attribute kind: \(valType)")
             }
@@ -366,8 +427,18 @@ struct Schema: Decodable {
 
 
 protocol SchemaDataType: Decodable {
+    var codingPath: [CodingKey] { get set }
     var valType: String { get }
     var description: String? { get }
     var editType: String? { get }
     var role: String? { get }
+}
+
+extension SchemaDataType {
+    init(parse decoder: Decoder) throws {
+        try self.init(from: decoder)
+        self.codingPath = decoder.codingPath
+    }
+
+    var path: String { codingPath.map { $0.stringValue }.joined(separator: "/") }
 }

@@ -11,19 +11,93 @@ struct Swift {
         let type: String
         let identifier: String
         let schema: SchemaDataType?
+        var associatedType = "String"
+        var values: [String]
 
         init(identifier: String, schema: Schema.Attribute.Enumerated) {
-            self.type = identifier.camelCased()
             self.identifier = identifier
             self.schema = schema
+            values = []
+
+            // Workaround for enum called Type that collides with Swift built-in Type
+            type = identifier != "type" ? identifier.camelCased() : "AxisType"
+
+            // Workaround for numerical values of Marker Symbols
+            if schema.path.hasSuffix("marker/symbol") && !schema.path.contains("scatter3d") {
+                associatedType = "Int"
+                let even = stride(from: 0, to: schema.values.endIndex, by: 2)
+                let pairs = even.map { (schema.values[$0], schema.values[$0.advanced(by: 1)]) }
+                values = pairs.map { (intPrimitive, stringPrimitive) -> String in
+                    guard case let Schema.Primitive.int(int) = intPrimitive else {
+                        fatalError("Unsupported Marker Symbol value in '\(schema.path)'")
+                    }
+                    guard case let Schema.Primitive.string(string) = stringPrimitive else {
+                        fatalError("Unsupported Marker Symbol string in '\(schema.path)'")
+                    }
+                    return "\(sanitize(string)) = \(int)"
+                }
+                return
+            }
+            // Workaround for numerical values of Geo Resolution
+            if schema.path.hasSuffix("geo/resolution") {
+                associatedType = "Int"
+                values = schema.values.map { primitive -> String in
+                    guard case let Schema.Primitive.int(int) = primitive else {
+                        fatalError("Unsupported Geo Resolution value in '\(schema.path)'")
+                    }
+                    return "oneOver\(int)M = \(int)"
+                }
+                return
+            }
+            // Workaround for meaningless numerical values of SurfaceAxis
+            if schema.path.hasSuffix("surfaceaxis") {
+                associatedType = "Int"
+                values = ["none = -1", "x = 0", "y = 1", "z = 2"]
+                return
+            }
+
+            values = schema.values.map { sanitize($0) }
+        }
+
+        func sanitize(_ primitive: Schema.Primitive) -> String {
+            switch primitive {
+            case .bool(let bool):
+                return bool ? "yes" : "no"
+            case .string(let string):
+                switch string {
+                case "":
+                    return "none"
+                case " ":
+                    return "none"
+                case "-":
+                    return "auto"
+                case "/^x([2-9]|[1-9][0-9]+)?$/":
+                    // FIXME: Figure out what to do with this mess.
+                    return "xxx"
+                case "/^y([2-9]|[1-9][0-9]+)?$/":
+                    // FIXME: Figure out what to do with this mess.
+                    return "yyy"
+                default:
+                    return sanitize(string)
+                }
+            default:
+                fatalError("Invalid enum case in '\(self.schema!.path)'")
+            }
+        }
+
+        func sanitize(_ string: String) -> String {
+            var retval = string.replacingOccurrences(of: "+", with: "")
+            retval = retval.replacingOccurrences(of: "-", with: "")
+            retval = retval.replacingOccurrences(of: " ", with: "")
+            return retval
         }
 
         func definition() -> [String] {
             var lines = [String]()
             lines += ["/// \(description)"]
-            lines += ["enum \(type) {"]
-            for value in (schema as! Schema.Attribute.Enumerated).values {
-                lines += ["case \(value.toString())"].indented()
+            lines += ["enum \(type): \(associatedType), Encodable {"]
+            for value in values {
+                lines += ["case \(value)"].indented()
             }
             lines += ["}"]
             return lines

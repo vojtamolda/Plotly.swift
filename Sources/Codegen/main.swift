@@ -7,13 +7,13 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL) {
 
     let schema = try! decoder.decode(Schema.self, from: data)
 
+    let traces = Trace.initialize(schema: schema.traces)
+    let layout = Layout(schema: schema.layout)
+    let config = Config(schema: schema.config)
 
-    let traces = Traces.initialize(from: schema.traces)
+    print(layout.definition().joined(separator: "\n"))
+    //print(traces["scatter"]!.definition().joined(separator: "\n"))
 
-    print(traces["scatter"]!.definition().joined(separator: "\n"))
-
-//    let layout = Layout(schema.layout, types)
-//    let config = Config(shecma.layout, types)
 //
 //    types.write(to: outputDirectory.appendingPathComponent("Types/"))
 //    traces.write(to: outputDirectory.appendingPathComponent("Traces/"))
