@@ -1,22 +1,20 @@
+import Foundation
+
 
 struct Trace {
-    let description: String
-    let attributes: Swift.Struct
+    var attributes: Swift.Struct
 
     init(identifier: String, schema: Schema.Trace) {
-        description = schema.meta["description"] ?? ""
         attributes = Swift.Struct(identifier: identifier, entries: schema.attributes)
+        attributes.description = schema.meta["description"] ?? ""
     }
 
     func definition() -> [String] {
         return attributes.definition()
     }
 
-    static func initialize(schema: [String: Schema.Trace]) -> [String: Trace] {
-        var retval: [String: Trace] = [:]
-        for (identifier, schema) in schema {
-            retval[identifier] = Trace(identifier: identifier, schema: schema)
-        }
-        return retval
+    func write(to url: URL)  {
+        let contents = self.definition().joined(separator: "\n")
+        try! contents.write(to: url, atomically: true, encoding: .utf8)
     }
 }

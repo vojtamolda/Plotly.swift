@@ -184,7 +184,7 @@ struct Swift {
             lines += ["func encode(to encoder: Encoder) throws {"].indented()
             lines += ["var options = [String]()"].indented(2)
             for (i, flag) in (schema as! Schema.Attribute.FlagList).flags.enumerated() {
-                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(flag)] }"].indented(2)
+                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\"\(flag)\"] }"].indented(2)
             }
             lines += ["var container = encoder.singleValueContainer()"].indented(2)
             lines += ["try container.encode(options.joined(separator: \"+\"))"].indented(2)
@@ -195,7 +195,7 @@ struct Swift {
     }
 
     struct Any_: SwiftDataType {
-        let type: String = "Any"
+        let type: String = "Anything"
         let identifier: String
         let schema: SchemaDataType?
     }
@@ -209,26 +209,19 @@ struct Swift {
     struct Struct: SwiftDataType {
         let type: String
         let identifier: String
+        var description: String = ""
         let schema: SchemaDataType? = nil
 
         let entries: [String: Schema.Entry]
         var members: [String: SwiftDataType]
         var primitives: [String: Schema.Primitive]
 
-        var description: String {
-            if entries["description"] == nil {
-                return ""
-            }
-            if case let Schema.Entry.primitive(primitive) = entries["description"]! {
-                return primitive.toString()
-            } else {
-                return ""
-            }
-        }
-
         init(identifier: String, entries: [String: Schema.Entry]) {
             self.type = identifier.camelCased()
             self.identifier = identifier
+            if let entry = entries["description"] {
+                if case let Schema.Entry.primitive(primitive) = entry { description = primitive.toString() }
+            }
 
             self.entries = entries
             self.primitives = [:]
@@ -251,7 +244,7 @@ struct Swift {
         func definition() -> [String] {
             var lines = [String]()
             lines += ["/// \(description)"]
-            lines += ["struct \(self.type) {"]
+            lines += ["struct \(self.type): Encodable {"]
             for (identifier, datatype) in members {
                 lines += datatype.definition().indented()
                 lines += datatype.instance(withIdentifier: identifier).indented()
@@ -319,7 +312,7 @@ extension SwiftDataType {
     func instance(withIdentifier identifier: String) -> [String] {
         var lines = [String]()
         lines += ["/// \(description)"]
-        lines += ["var \(argument(withIdentifier: identifier))"]
+        lines += ["var \(argument(withIdentifier: identifier))?"]
         return lines
     }
 

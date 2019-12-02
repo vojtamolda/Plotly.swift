@@ -1,3 +1,5 @@
+import Foundation
+
 
 struct Config {
     let attributes: Swift.Struct
@@ -8,5 +10,10 @@ struct Config {
 
     func definition() -> [String] {
         return attributes.definition()
+    }
+
+    func write(to url: URL)  {
+        let contents = self.definition().joined(separator: "\n")
+        try! contents.write(to: url, atomically: true, encoding: .utf8)
     }
 }

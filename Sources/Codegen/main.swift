@@ -3,22 +3,18 @@ import Foundation
 
 func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL) {
     let data = try! Data(contentsOf: schemaFile)
-    let decoder = JSONDecoder()
+    let schema = try! JSONDecoder().decode(Schema.self, from: data)
 
-    let schema = try! decoder.decode(Schema.self, from: data)
+    for (identifier, schema) in schema.traces {
+        let trace = Trace(identifier: identifier, schema: schema)
+        trace.write(to: outputDirectory.appendingPathComponent("Traces/\(identifier.camelCased()).swift"))
+    }
 
-    let traces = Trace.initialize(schema: schema.traces)
     let layout = Layout(schema: schema.layout)
+    layout.write(to: outputDirectory.appendingPathComponent("Layout.swift"))
+
     let config = Config(schema: schema.config)
-
-    print(layout.definition().joined(separator: "\n"))
-    //print(traces["scatter"]!.definition().joined(separator: "\n"))
-
-//
-//    types.write(to: outputDirectory.appendingPathComponent("Types/"))
-//    traces.write(to: outputDirectory.appendingPathComponent("Traces/"))
-//    layout.write(to: outputDirectory.appendingPathComponent("Layout.swift"))
-//    config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
+    config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
 }
 
 
@@ -33,7 +29,7 @@ if CommandLine.argc > 1 {
 if CommandLine.argc > 2 {
     outputDirectory = URL(fileURLWithPath: CommandLine.arguments[2], isDirectory: true)
 } else {
-    outputDirectory = URL(fileURLWithPath: "Sorces/Plotly/Schema/", isDirectory: true)
+    outputDirectory = URL(fileURLWithPath: "Sources/Plotly/Schema/", isDirectory: true)
 }
 
 generateSwiftCode(from: schemaFile, to: outputDirectory)
