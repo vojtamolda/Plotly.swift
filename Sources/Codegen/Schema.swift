@@ -1,6 +1,15 @@
 
+/// Container for Swift structs that map onto objects in Plotly JSON schema hierarchy.
+/// - SeeAlso: Decodable
 struct Schema: Decodable {
 
+    // MARK: - Schema Content
+
+    /// Representation of `/defs` key in the Plotly schema.
+    /// - Warning: The entire `/defs/*` subtree and especially the`ValObjects` data type
+    /// specifications are ignored. Type information stored here is implicitly coded into the way different
+    /// cases of the `Attribute` decoding. Any change, or a new data type require a manual change
+    /// of the decoding process.
     struct Defs: Decodable {
         struct ValObject: Decodable {
             let description: String
@@ -12,8 +21,10 @@ struct Schema: Decodable {
         let metaKeys: [String]
         let impliedEdits: [String: Primitive]
     }
+    /// Decoded keys and values located in the `/defs/*` Plotly schema subtree.
     let defs: Defs
 
+    /// Specification of the allowed `trace` attributes.
     struct Trace: Decodable {
         let animatable: Bool
         let categories: [String]
@@ -32,13 +43,18 @@ struct Schema: Decodable {
             categories = (try? container.decode([String].self, forKey: Keys("categories"))) ?? []
         }
     }
+    /// A dictionary of decoded  attributes of `trace` object for each supported chart type in the Plotly schema.
+    /// - Remark: Keys of the dictionary match  names from `traces/*/`.
     let traces: [String: Trace]
 
+    /// Specification of the allowed `layout` attributes.
     struct Layout: Decodable {
         let layoutAttributes: [String: Entry]
     }
+    /// Decoded `layout` object attributes.
     let layout: Layout
 
+    // FIXME: Transforms are currently not used.
     struct Transforms: Decodable {
         let aggregate: Transform
         let filter: Transform
@@ -51,6 +67,7 @@ struct Schema: Decodable {
     }
     let transforms: Transforms
 
+    // FIXME: Frames are currently not used.
     struct Frames: Decodable {
         struct Items: Decodable {
             let frames_entry: [String: Entry]
@@ -59,13 +76,15 @@ struct Schema: Decodable {
     }
     let frames: Frames
 
+    // FIXME: Animation is currently not used.
     let animation: [String: Entry]
 
+    /// Decoded `config` attributes allowed in the schema.
     let config: [String: Entry]
 
+    // MARK: - Schema Data Types
 
-    // MARK: - Data Types
-
+    /// Basic decoding block (i.e. primitive, typed attribute or nested sub-entries) of the Plotly JSON schema hierarchy.
     enum Entry: Decodable {
         case primitive(_ primitive: Primitive)
         case attribute(_ attribute: Attribute)
@@ -91,12 +110,28 @@ struct Schema: Decodable {
         }
     }
 
-    enum Primitive: Decodable {
+    /// Primitive data type (i.e. bool, int or string) that is generally found on the bottom level of the Plotly JSON schema hierarchy.
+    enum Primitive: Decodable, CustomStringConvertible {
         case none
         case bool(_ bool: Bool)
         case int(_ int: Int)
         case double(_ double: Double)
         case string(_ string: String)
+
+        var description: String {
+            switch self {
+            case .none:
+                return "none"
+            case .bool(let bool):
+                return "\(bool)"
+            case .int(let int):
+                return "\(int)"
+            case .double(let double):
+                return "\(double)"
+            case .string(let string):
+                return string
+            }
+        }
 
         init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
@@ -114,25 +149,13 @@ struct Schema: Decodable {
                 self = .string(string)
             }
         }
-
-        func toString() -> String {
-            switch self {
-            case .none:
-                return "none"
-            case .bool(let bool):
-                return "\(bool)"
-            case .int(let int):
-                return "\(int)"
-            case .double(let double):
-                return "\(double)"
-            case .string(let string):
-                return string
-            }
-        }
     }
 
+    /// Attribute data type from the Plotly JSON schema hierarchy with an associated data type.
     enum Attribute: Decodable {
 
+        /// Decoded Plotly schema attribute of type `data_array`.
+        /// - Remark: Fields originate from `defs/valObjects/data_array`.
         struct DataArray: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -148,6 +171,8 @@ struct Schema: Decodable {
         }
         case dataArray(_ dataArray: DataArray)
 
+        /// Decoded  Plotly schema attribute of type `enumerated`.
+        /// - Remark: Fields originate from `defs/valObjects/enumerated`.
         struct Enumerated: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -166,6 +191,8 @@ struct Schema: Decodable {
         }
         case enumerated(_ enumerated: Enumerated)
 
+        /// Decoded Plotly schema `boolean`.
+        /// - Remark: Fields originate from `defs/valObjects/boolean`.
         struct Boolean: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -180,7 +207,9 @@ struct Schema: Decodable {
             }
         }
         case boolean(_ boolean: Boolean)
-        
+
+        /// Decoded Plotly schema `number`.
+        /// - Remark: Fields originate from `defs/valObjects/number`.
         struct Number: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -199,6 +228,8 @@ struct Schema: Decodable {
         }
         case number(_ number: Number)
 
+        /// Decoded Plotly schema `integer`.
+        /// - Remark: Fields originate from `defs/valObjects/integer`.
         struct Integer: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -217,6 +248,9 @@ struct Schema: Decodable {
         }
         case integer(_ integer: Integer)
 
+        /// Decoded Plotly schema `string`.
+        /// - Note: Appended underscore prevents collision with the Swift built-in type.
+        /// - Remark: Fields originate from `defs/valObjects/string`.
         struct String_: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -236,6 +270,8 @@ struct Schema: Decodable {
         }
         case string(_ string: String_)
 
+        /// Decoded Plotly schema attribute of type `color`.
+        /// - Remark: Fields originate from `defs/valObjects/color`.
         struct Color: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -252,6 +288,8 @@ struct Schema: Decodable {
         }
         case color(_ color: Color)
 
+        /// Decoded Plotly schema attribute of type `colorlist`.
+        /// - Remark: Fields originate from `defs/valObjects/colorlist`.
         struct ColorList: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -267,6 +305,8 @@ struct Schema: Decodable {
         }
         case colorList(_ colorList: ColorList)
 
+        /// Decoded Plotly schema attribute of type `colorscale`.
+        /// - Remark: Fields originate from `defs/valObjects/colorscale`.
         struct ColorScale: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -282,6 +322,8 @@ struct Schema: Decodable {
         }
         case colorScale(_ colorScale: ColorScale)
 
+        /// Decoded Plotly schema attribute of type `angle`.
+        /// - Remark: Fields originate from `defs/valObjects/angle`.
         struct Angle: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -297,6 +339,8 @@ struct Schema: Decodable {
         }
         case angle(_ angle: Angle)
 
+        /// Decoded Plotly schema attribute of type `subplotid`.
+        /// - Remark: Fields originate from `defs/valObjects/subplotid`.
         struct SubplotID: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -313,6 +357,8 @@ struct Schema: Decodable {
         }
         case subplotID(_ subplotID: SubplotID)
 
+        /// Decoded Plotly schema attribute of type `flaglist`.
+        /// - Remark: Fields originate from `defs/valObjects/flaglist`.
         struct FlagList: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -331,6 +377,9 @@ struct Schema: Decodable {
         }
         case flagList(_ flagList: FlagList)
 
+        /// Decoded Plotly schema attribute of type `any`.
+        /// - Note: Appended underscore prevents collision with the Swift built-in type.
+        /// - Remark: Fields originate from `defs/valObjects/any`.
         struct Any_: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -348,6 +397,8 @@ struct Schema: Decodable {
         }
         case any(_ any: Any_)
 
+        /// Decoded Plotly schema attribute of type `info_array`.
+        /// - Remark: Fields originate from `defs/valObjects/info_array`.
         struct InfoArray: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
@@ -366,14 +417,14 @@ struct Schema: Decodable {
         }
         case infoArray(_ infoArray: InfoArray)
 
+        /// Creates a new attribute by pivoting on the `valType` value and decoding the correspoding Plotly schema data  type.
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: Keys.self)
             let valType = try container.decode(String.self, forKey: Keys("valType"))
 
             switch valType {
             case "data_array":
-                let dataArray = try! DataArray.init(parse: decoder)
-                self = .dataArray(dataArray)
+                self = .dataArray(try! DataArray.init(parse: decoder))
             case "enumerated":
                 self = .enumerated(try! Enumerated.init(parse: decoder))
             case "boolean":
@@ -401,11 +452,13 @@ struct Schema: Decodable {
             case "info_array":
                 self = .infoArray(try! InfoArray.init(parse: decoder))
             default:
-                fatalError("Unsupported attribute kind: \(valType)")
+                let path = String(reflecting: container)
+                fatalError("Unsupported attribute data type '\(valType)' in '\(path)'")
             }
         }
     }
 
+    /// Convenience type to allow ad-hoc  key construction from string literals.
     struct Keys: CodingKey {
         var intValue: Int?
         var stringValue: String
@@ -425,7 +478,9 @@ struct Schema: Decodable {
     }
 }
 
+// MARK: - Schema Data Type Protocol
 
+/// A data type decoded from Plotly JSON schema.
 protocol SchemaDataType: Decodable {
     var codingPath: [CodingKey] { get set }
     var valType: String { get }
@@ -434,11 +489,14 @@ protocol SchemaDataType: Decodable {
     var role: String? { get }
 }
 
+/// Extension with default implementations of commonly shared functionality.
 extension SchemaDataType {
+    /// Creates a new instance by decoding from the given decoder and stores the coding path of the container in a property.
     init(parse decoder: Decoder) throws {
         try self.init(from: decoder)
         self.codingPath = decoder.codingPath
     }
 
+    /// A human-readable sequence of coding path keys separated with slashes.
     var path: String { codingPath.map { $0.stringValue }.joined(separator: "/") }
 }

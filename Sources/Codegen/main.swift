@@ -1,13 +1,15 @@
 import Foundation
 
 
+/// Decodes  Plotly JSON schema from `schemaFile` and writes files with correspoding Swift structures to `outputDirectory`.
 func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL) {
     let data = try! Data(contentsOf: schemaFile)
     let schema = try! JSONDecoder().decode(Schema.self, from: data)
 
+    let tracesDirectory = outputDirectory.appendingPathComponent("Trace")
     for (identifier, schema) in schema.traces {
         let trace = Trace(identifier: identifier, schema: schema)
-        trace.write(to: outputDirectory.appendingPathComponent("Traces/\(identifier.camelCased()).swift"))
+        trace.write(to: tracesDirectory.appendingPathComponent("\(identifier.capitalized).swift"))
     }
 
     let layout = Layout(schema: schema.layout)
