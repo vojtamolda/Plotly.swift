@@ -1,5 +1,3 @@
-import Foundation
-
 
 /// Color expressed in RGB, HSV or HTML named format. Optionally with transparency.
 enum Color: Encodable {
@@ -91,7 +89,7 @@ enum ColorScale: Encodable {
 }
 
 /// Angle value between -180 and +180.
-/// - TODO: Implement min/max validation with `@properyWrapper`
+/// - FIXME: Implement min/max validation with `@PropertyWrapper`
 typealias Angle = Double
 
 /// Not yet implemented.

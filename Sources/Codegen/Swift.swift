@@ -17,15 +17,14 @@ struct Swift {
         let identifier: String
         let schema: SchemaDataType?
         var associatedType = "String"
-        var values: [String]
+        var values: [String] = []
 
         init(identifier: String, schema: Schema.Attribute.Enumerated) {
             self.identifier = identifier
             self.schema = schema
-            values = []
 
             // Workaround for enum called Type that collides with Swift built-in Type
-            type = identifier != "type" ? identifier.capitalized : "AxisType"
+            self.type = (identifier != "type") ? identifier.capitalized : "AxisType"
 
             // Workaround for numerical values of Marker Symbols
             if schema.path.hasSuffix("marker/symbol") && !schema.path.contains("scatter3d") {
@@ -52,6 +51,26 @@ struct Swift {
                     }
                     return "oneOver\(int)M = \(int)"
                 }
+                return
+            }
+            // Workaround for special symbols of Contour Operations
+            if schema.path.hasSuffix("contours/operation") {
+                values = ["equalTo = \"=\"",
+                          "lessThan = \"<\"", "lessEqualThan = \"<=\"",
+                          "greaterThan = \">\"", "greaterEqualThan = \">=\"",
+                          "insideInclusive = \"[]\"",  "insideExclusive = \"()\"",
+                          "insideInclusiveExclusive = \"[)\"",  "insideExclusiveInclusive = \"(]\"",
+                          "outsideInclusive = \"][\"",  "outsideExclusive = \")(\"",
+                          "outsideInclusiveExclusive = \"](\"", "outsideExclusiveInclusive = \")[\""
+                ]
+                return
+            }
+            // Workaround for Pathbar Edge Shapes of Treemap charts
+            if schema.path.hasSuffix("pathbar/edgeshape") {
+                values = ["bar = \"|\"",
+                          "rightCaret = \">\"", "leftCaret = \"<\"",
+                          "forwardSlash = \"/\"", "backwardSlash = \"\\\\\""
+                ]
                 return
             }
             // Workaround for meaningless numerical values of SurfaceAxis
@@ -141,18 +160,21 @@ struct Swift {
         let schema: SchemaDataType?
     }
 
+    /// Plotly `color` data type is manually re-implemented in Swift.
     struct Color: SwiftDataType {
         let type: String = "Color"
         let identifier: String
         let schema: SchemaDataType?
     }
 
+    /// Plotly `colorlist` data type is manually re-implemented in Swift.
     struct ColorList: SwiftDataType {
         let type: String = "ColorList"
         let identifier: String
         let schema: SchemaDataType?
     }
 
+    /// Plotly `colorscale` data type is manually re-implemented in Swift.
     struct ColorScale: SwiftDataType {
         let type: String = "ColorScale"
         let identifier: String
@@ -166,6 +188,7 @@ struct Swift {
         let schema: SchemaDataType?
     }
 
+    /// Plotly `subplotid` data type is manually re-implemented in Swift.
     struct SubplotID: SwiftDataType {
         let type: String = "SubplotID"
         let identifier: String
@@ -177,11 +200,27 @@ struct Swift {
         let type: String
         let identifier: String
         let schema: SchemaDataType?
+        var flags: [(String, String)] = []
 
         init(identifier: String, schema: Schema.Attribute.FlagList) {
             self.type = identifier.capitalized
             self.identifier = identifier
             self.schema = schema
+
+            // Workaround for empty Hover Info of Sankey charts
+            if schema.path.contains("sankey") && schema.path.hasSuffix("hoverinfo") {
+                precondition(schema.flags.count == 0)
+                flags = ["all", "none", "skip"].map { sanitize($0) }
+                return
+            }
+
+            flags = schema.flags.map { sanitize($0) }
+        }
+
+        /// Removes characters that are illegal in Swift identifiers.
+        func sanitize(_ string: String) -> (String, String) {
+            let sanitized = string.replacingOccurrences(of: " ", with: "")
+            return (sanitized, string)
         }
 
         /// Returns lines of Swift code that fully define the OptionSet struct.
@@ -191,7 +230,7 @@ struct Swift {
             lines += ["struct \(type): OptionSet, Encodable {"]
             lines += ["let rawValue: Int"].indented()
             lines += [""]
-            for (i, flag) in (schema as! Schema.Attribute.FlagList).flags.enumerated() {
+            for (i, (flag, _) ) in flags.enumerated() {
                 lines += ["static let \(flag) = \(type)(rawValue: 1 << \(i))"].indented()
             }
             lines += [""]
@@ -199,8 +238,8 @@ struct Swift {
             lines += [""]
             lines += ["func encode(to encoder: Encoder) throws {"].indented()
             lines += ["var options = [String]()"].indented(2)
-            for (i, flag) in (schema as! Schema.Attribute.FlagList).flags.enumerated() {
-                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\"\(flag)\"] }"].indented(2)
+            for (i, (_, orig)) in flags.enumerated() {
+                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\"\(orig)\"] }"].indented(2)
             }
             lines += ["var container = encoder.singleValueContainer()"].indented(2)
             lines += ["try container.encode(options.joined(separator: \"+\"))"].indented(2)
@@ -210,8 +249,7 @@ struct Swift {
         }
     }
 
-    /// - Note: Appended underscore prevents collision with the Swift built-in type.
-    struct Any_: SwiftDataType {
+    struct Anything: SwiftDataType {
         let type: String = "Anything"
         let identifier: String
         let schema: SchemaDataType?
@@ -303,13 +341,12 @@ struct Swift {
             return SubplotID(identifier: identifier, schema: subplotID)
         case .flagList(let flagList):
             return FlagList(identifier: identifier, schema: flagList)
-        case .any(let any):
-            return Any_(identifier: identifier, schema: any)
+        case .anything(let anything):
+            return Anything(identifier: identifier, schema: anything)
         case .infoArray(let infoArray):
             return InfoArray(identifier: identifier, schema: infoArray)
         }
     }
-
 }
 
 // MARK: - Swift Data Type Protocol

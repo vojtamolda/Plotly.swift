@@ -56,14 +56,13 @@ struct Schema: Decodable {
 
     // FIXME: Transforms are currently not used.
     struct Transforms: Decodable {
+        struct Transform: Decodable {
+            let attributes: Entry
+        }
         let aggregate: Transform
         let filter: Transform
         let groupby: Transform
         let sort: Transform
-
-        struct Transform: Decodable {
-            let attributes: [String: Entry]
-        }
     }
     let transforms: Transforms
 
@@ -378,9 +377,9 @@ struct Schema: Decodable {
         case flagList(_ flagList: FlagList)
 
         /// Decoded Plotly schema attribute of type `any`.
-        /// - Note: Appended underscore prevents collision with the Swift built-in type.
+        /// - Note: Name Anything prevents collision with the Swift built-in type Any.
         /// - Remark: Fields originate from `defs/valObjects/any`.
-        struct Any_: SchemaDataType {
+        struct Anything: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
             let description: String?
@@ -395,7 +394,7 @@ struct Schema: Decodable {
                 case valType, description, editType, role, dflt, values, arrayOk
             }
         }
-        case any(_ any: Any_)
+        case anything(_ anything: Anything)
 
         /// Decoded Plotly schema attribute of type `info_array`.
         /// - Remark: Fields originate from `defs/valObjects/info_array`.
@@ -448,7 +447,7 @@ struct Schema: Decodable {
             case "flaglist":
                 self = .flagList(try! FlagList.init(parse: decoder))
             case "any":
-                self = .any(try! Any_.init(parse: decoder))
+                self = .anything(try! Anything.init(parse: decoder))
             case "info_array":
                 self = .infoArray(try! InfoArray.init(parse: decoder))
             default:
