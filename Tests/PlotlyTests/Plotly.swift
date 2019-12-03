@@ -4,21 +4,36 @@ import XCTest
 
 final class PlotlyTests: XCTestCase {
 
-    func testShow() {
+    static var allTests = [
+        ("testBarShow", testBarShow),
+        ("testScatterShow", testScatterShow),
+        ("testExportHTML", testExportHTML),
+        ("testExportJSON", testExportJSON),
+    ]
+
+    func testBarShow() {
         let x = [1.0, 2.0, 3.0, 4.0]
         let y = [10.0, 15.0, 13.0, 17.0]
-        let data = [Scatter(mode: .lines, x: x, y: y)]
+        let data = [Bar(x: x, y: y)]
         let figure = Figure(data: data)
         figure.show()
     }
-    
+
+    func testScatterShow() {
+        let x = [1.0, 2.0, 3.0, 4.0]
+        let y = [10.0, 15.0, 13.0, 17.0]
+        let data = [Scatter(x: x, y: y)]
+        let figure = Figure(data: data)
+        figure.show()
+    }
+
     func testExportHTML() {
         let x = [1.0, 2.0, 3.0, 4.0]
         let y = [10.0, 15.0, 13.0, 17.0]
-        let data = [Scatter(mode: .linesMarkers, x: x, y: y)]
+        let data = [Scatter(x: x, y: y)]
         let figure = Figure(data: data)
-        
-        figure.write(toFile: "excluded.html", as: .HTML, javaScript: .included)
+
+        figure.write(toFile: "included.html", as: .HTML, javaScript: .included)
         figure.write(toFile: "online.html", as: .HTML, javaScript: .online)
         figure.write(toFile: "directory.html", as: .HTML, javaScript: .directory)
     }
@@ -26,9 +41,9 @@ final class PlotlyTests: XCTestCase {
     func testExportJSON() {
         let x = [1.0, 2.0, 3.0, 4.0]
         let y = [10.0, 15.0, 13.0, 17.0]
-        let data = [Scatter(mode: .lines, x: x, y: y)]
+        let data = [Scatter(x: x, y: y)]
         let figure = Figure(data: data)
-        
+
         figure.write(toFile: "export.json", as: .JSON)
     }
 }
