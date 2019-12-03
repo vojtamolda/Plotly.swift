@@ -8,17 +8,19 @@ Plotly maintains a description of chart types in a large hierarchical JSON schem
 
 ## Usage
 
-To generate fresh Swift code from a new schema located in the [`Plotly.json`](Plotly.json) file run the following command without any optional command line arguments:
+To generate fresh Swift code from a new schema located in the [`Assets/Plotly.json`](Assets/Plotly.json) file run the following commands without any optional command line arguments:
 
 ```shell script
-$> swift run codegen [PLOTLY_SCHEMA] [OUTPUT_DIR] 
+$> python order.py [PLOTLY_SCHEMA] [SWIFT_ORDER]
+$> swift run codegen [PLOTLY_SCHEMA] [SWIFT_ORDER] [OUTPUT_DIR]
 ```
 
-The two optional arguments can be used to customize location of the input and output:
- - `PLOTLY_SCHEMA` - Plotly JSON schema file (default: [`Sources/Codegen/Plotly.json`](Plotly.json))
- - `OUTPUT_DIR` - Output directory for generated Swift code (default: [`Sources/Plotly/Schema/`](../Plotly/Schema/)).
+The optional arguments can be used to customize location of inputs and outputs:
+ - `PLOTLY_SCHEMA` - Plotly schema file JSON (default: [`Assets/Plotly.json`](Assets/Plotly.json))
+ - `SWIFT_ORDER` - Swift member order JSON file (default: [`Assets/Order.json`](Assets/Order.json))
+ - `OUTPUT_DIR` - Output directory for generated Swift code (default: [`/Sources/Plotly/Schema/`](../Plotly/Schema/)).
 
-The defaults fit the structure of the repository directory structure and, Generally, they don't need to be changed when run from the root level.
+The defaults fit the structure of the repository directory structure. Generally, they don't need to be changed when the commands run from `Sources/Codegen` directory.
 
 
 ## Building
