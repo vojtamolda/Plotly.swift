@@ -12,8 +12,8 @@ struct Browser {
     }
 
     /// Exports the `Figure` to a temporary HTML file and displays it using the default browser available on your OS.
-    static func show(figure: Figure) throws {
-        let htmlDocument = try HTML.create(from: figure, document: true)
+    static func show(figure: Figure, javaScript bundle: HTML.JavaScriptBundleOption) throws {
+        let htmlDocument = try HTML.create(from: figure, plotly: bundle, mathJax: bundle, document: true)
 
         let tempDirectory = FileManager().temporaryDirectory
         let tempHtmlFile = tempDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("html")

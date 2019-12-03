@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+  import FoundationNetworking  // Required for `String(contentsOf: URL, ...)`
+#endif
 
 
 /// Functions for converting `Figure` object to HTML compatible with _Plotly.js_ library.
@@ -58,7 +61,6 @@ struct HTML {
                               plotly: JavaScriptBundleOption = .included,
                               mathJax: JavaScriptBundleOption = .included,
                               document: Bool = false) throws -> String {
-        let id = UUID().uuidString
 
         let plotlyScript = plotly.scriptTag(
             library: "plotly.min.js",
@@ -67,20 +69,17 @@ struct HTML {
             library: "MathJax.js",
             CDN: URL(string: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG")!)
 
-        let (dataJSON, layoutJSON, configJSON) = try JSON.create(
+        let figureJson = try JSON.create(
             from: figure, formatting: [.prettyPrinted, .sortedKeys])
 
         let div = """
             <div>
                 \(plotlyScript)
                 \(mathJaxScript)
-                <div id='\(id)' class='plotly-graph-div'></div>
+                <div id='figure' class='plotly-graph-div'></div>
                 <script type='text/javascript'>
-                    if (document.getElementById('\(id)')) {{
-                        Plotly.newPlot('\(id)',
-                        \(dataJSON),
-                        \(layoutJSON),
-                        \(configJSON))
+                    if (document.getElementById('figure')) {{
+                        Plotly.react('figure', \(figureJson))
                     }}
                 </script>
             </div>
