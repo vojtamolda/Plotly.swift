@@ -14,8 +14,18 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Build package
-      run: swift build
-    - name: Run tests
-      run: swift test
+      - uses: actions/checkout@v1
+
+      - name: Generate order
+        run: python3 order.py
+        working-directory: Sources/Codegen/
+
+      - name: Generate code
+        run: swift run codegen
+        working-directory: Sources/Codegen/
+
+      - name: Build package
+        run: swift build
+
+      - name: Execute tests
+        run: swift test

@@ -14,7 +14,7 @@ final class PlotlyTests: XCTestCase {
     func testBarShow() {
         let x = [1.0, 2.0, 3.0, 4.0]
         let y = [10.0, 15.0, 13.0, 17.0]
-        let data = [Bar(y: y, x: x)]
+        let data = [Bar(x: x, y: y)]
         let figure = Figure(data: data)
         figure.show()
     }
@@ -22,7 +22,7 @@ final class PlotlyTests: XCTestCase {
     func testScatterShow() {
         let x = [1.0, 2.0, 3.0, 4.0]
         let y = [10.0, 15.0, 13.0, 17.0]
-        let data = [Scatter(y: y, x: x)]
+        let data = [Scatter(x: x, y: y)]
         let figure = Figure(data: data)
         figure.show()
     }
@@ -30,7 +30,7 @@ final class PlotlyTests: XCTestCase {
     func testExportHTML() {
         let x = [1.0, 2.0, 3.0, 4.0]
         let y = [10.0, 15.0, 13.0, 17.0]
-        let data = [Scatter(y: y, x: x)]
+        let data = [Scatter(x: x, y: y)]
         let figure = Figure(data: data)
 
         figure.write(toFile: "included.html", as: .HTML, javaScript: .included)
@@ -41,7 +41,7 @@ final class PlotlyTests: XCTestCase {
     func testExportJSON() {
         let x = [1.0, 2.0, 3.0, 4.0]
         let y = [10.0, 15.0, 13.0, 17.0]
-        let data = [Scatter(y: y, x: x)]
+        let data = [Scatter(x: x, y: y)]
         let figure = Figure(data: data)
 
         figure.write(toFile: "export.json", as: .JSON)

@@ -3,6 +3,9 @@
 /// - SeeAlso: Decodable
 struct Schema: Decodable {
 
+    /// Workaround to sort `Entries` in the same order as the Plotly schema.
+    static var order: Order? = nil
+
     // MARK: - Schema Content
 
     /// Representation of `/defs` key in the Plotly schema.
@@ -29,15 +32,16 @@ struct Schema: Decodable {
         let animatable: Bool
         let categories: [String]
         let meta: [String: String]
-        let attributes: [String: Entry]
-        let layoutAttributes: [String: Entry]?
+        let attributes: Entries
+        let layoutAttributes: Entries?
 
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: Keys.self)
+
             animatable = try container.decode(Bool.self, forKey: Keys("animatable"))
-            attributes = try container.decode([String: Entry].self, forKey: Keys("attributes"))
-            layoutAttributes = try container.decodeIfPresent([String: Entry].self,
-                                                             forKey: Keys("layoutAttributes"))
+            attributes = try container.decode(Entries.self, forKey: Keys("attributes"))
+            layoutAttributes = try container.decodeIfPresent(Entries.self,
+                                                        forKey: Keys("layoutAttributes"))
             meta = try container.decode([String: String].self, forKey: Keys("meta"))
             // There is an empty dict in 'traces/area' instead of a list like everywhere else.
             categories = (try? container.decode([String].self, forKey: Keys("categories"))) ?? []
@@ -49,7 +53,7 @@ struct Schema: Decodable {
 
     /// Specification of the allowed `layout` attributes.
     struct Layout: Decodable {
-        let layoutAttributes: [String: Entry]
+        let layoutAttributes: Entries
     }
     /// Decoded `layout` object attributes.
     let layout: Layout
@@ -69,17 +73,17 @@ struct Schema: Decodable {
     // FIXME: Frames are currently not used.
     struct Frames: Decodable {
         struct Items: Decodable {
-            let frames_entry: [String: Entry]
+            let frames_entry: Entries
         }
         let items: Items
     }
     let frames: Frames
 
     // FIXME: Animation is currently not used.
-    let animation: [String: Entry]
+    let animation: Entries
 
     /// Decoded `config` attributes allowed in the schema.
-    let config: [String: Entry]
+    let config: Entries
 
     // MARK: - Schema Data Types
 
@@ -87,24 +91,18 @@ struct Schema: Decodable {
     enum Entry: Decodable {
         case primitive(_ primitive: Primitive)
         case attribute(_ attribute: Attribute)
-        case entries(_ entries: [String: Entry])
-
-        static let ignoredKeys: Set = ["_isSubplotObj", "_isLinkedToArray", "_arrayAttrRegexps"]
+        case entries(_ entries: Entries)
 
         init(from decoder: Decoder) throws {
             if let primitive = try? Primitive.init(from: decoder) {
                 self = .primitive(primitive)
             } else if let attribute = try? Attribute.init(from: decoder) {
                 self = .attribute(attribute)
-            } else {
-                let container = try decoder.container(keyedBy: Keys.self)
-                var entries = [String: Entry]()
-                for key in container.allKeys {
-                    if Self.ignoredKeys.contains(key.stringValue) { continue }
-                    let entry = try Entry(from: container.superDecoder(forKey: key))
-                    entries[key.stringValue] = entry
-                }
+            } else if let entries = try? Entries.init(from: decoder) {
                 self = .entries(entries)
+            } else {
+                let decodingPath = decoder.codingPath.map { $0.stringValue }.joined(separator: "/")
+                fatalError("Unsupported entry type in '\(decodingPath)'")
             }
         }
     }
@@ -134,7 +132,6 @@ struct Schema: Decodable {
 
         init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
-
             if container.decodeNil() {
                 self = .none
             } else if let bool = try? container.decode(Bool.self) {
@@ -190,7 +187,7 @@ struct Schema: Decodable {
         }
         case enumerated(_ enumerated: Enumerated)
 
-        /// Decoded Plotly schema `boolean`.
+        /// Decoded Plotly schema `boolean` type.
         /// - Remark: Fields originate from `defs/valObjects/boolean`.
         struct Boolean: SchemaDataType {
             var codingPath: [CodingKey] = []
@@ -207,7 +204,7 @@ struct Schema: Decodable {
         }
         case boolean(_ boolean: Boolean)
 
-        /// Decoded Plotly schema `number`.
+        /// Decoded Plotly schema `number` type.
         /// - Remark: Fields originate from `defs/valObjects/number`.
         struct Number: SchemaDataType {
             var codingPath: [CodingKey] = []
@@ -227,7 +224,7 @@ struct Schema: Decodable {
         }
         case number(_ number: Number)
 
-        /// Decoded Plotly schema `integer`.
+        /// Decoded Plotly schema `integer` type.
         /// - Remark: Fields originate from `defs/valObjects/integer`.
         struct Integer: SchemaDataType {
             var codingPath: [CodingKey] = []
@@ -247,7 +244,7 @@ struct Schema: Decodable {
         }
         case integer(_ integer: Integer)
 
-        /// Decoded Plotly schema `string`.
+        /// Decoded Plotly schema `string` type.
         /// - Note: Appended underscore prevents collision with the Swift built-in type.
         /// - Remark: Fields originate from `defs/valObjects/string`.
         struct String_: SchemaDataType {
@@ -457,6 +454,28 @@ struct Schema: Decodable {
         }
     }
 
+    /// Ordered, nested decoding container consisting of other decoded sub-entries.
+    /// - Note: Order of nested members is based on reading `Order.json` file because Swift's Dictionaries and
+    /// JSONParser don't maintain order.
+    struct Entries: CodingPathDecodable {
+        var codingPath: [CodingKey] = []
+        var entries: [(identifier: String, entry: Entry)] = []
+
+        static let ignoredKeys: Set = ["_isSubplotObj", "_isLinkedToArray", "_arrayAttrRegexps"]
+
+        init(from decoder: Decoder) throws {
+            codingPath = decoder.codingPath
+
+            let container = try decoder.container(keyedBy: Keys.self)
+            for key in container.allKeys {
+                if Self.ignoredKeys.contains(key.stringValue) { continue }
+                let entry = try Entry(from: container.superDecoder(forKey: key))
+                entries += [(identifier: key.stringValue, entry: entry)]
+            }
+            Schema.order?.sorted(entries: &entries, at: decoder.codingPath)
+        }
+    }
+
     /// Convenience type to allow ad-hoc  key construction from string literals.
     struct Keys: CodingKey {
         var intValue: Int?
@@ -466,36 +485,42 @@ struct Schema: Decodable {
             self.intValue = intValue
             self.stringValue = "\(intValue)"
         }
-
         init(stringValue: String) {
             self.stringValue = stringValue
         }
-
         init(_ stringValue: String) {
             self.init(stringValue: stringValue)
         }
     }
 }
 
-// MARK: - Schema Data Type Protocol
+// MARK: - Schema Data Type Protocols
 
-/// A data type decoded from Plotly JSON schema.
-protocol SchemaDataType: Decodable {
+/// An decodable object that remembers the coding path of the container it originates from.
+protocol CodingPathDecodable: Decodable {
+    /// Coding keys that form the path of the container where the object originates from.
     var codingPath: [CodingKey] { get set }
-    var valType: String { get }
-    var description: String? { get }
-    var editType: String? { get }
-    var role: String? { get }
+    /// Coding keys converted to String and separated with slashes.
+    var decodingPath: String { get }
+
+    /// Creates a new instance by decoding from the given decoder and stores the coding path of the decoder.
+    init(parse decoder: Decoder) throws
 }
 
-/// Extension with default implementations of commonly shared functionality.
-extension SchemaDataType {
-    /// Creates a new instance by decoding from the given decoder and stores the coding path of the container in a property.
+/// Extension with default implementations that work well for JSON schemas.
+extension CodingPathDecodable {
+    var decodingPath: String { codingPath.map { $0.stringValue }.joined(separator: "/") }
+
     init(parse decoder: Decoder) throws {
         try self.init(from: decoder)
         self.codingPath = decoder.codingPath
     }
+}
 
-    /// A human-readable sequence of coding path keys separated with slashes.
-    var path: String { codingPath.map { $0.stringValue }.joined(separator: "/") }
+/// A data type decoded from Plotly JSON schema.
+protocol SchemaDataType: CodingPathDecodable {
+    var valType: String { get }
+    var description: String? { get }
+    var editType: String? { get }
+    var role: String? { get }
 }

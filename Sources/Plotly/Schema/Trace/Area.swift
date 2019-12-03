@@ -1,49 +1,37 @@
 /// 
 struct Area: Encodable {
-    /// 
-    struct Transforms: Encodable {
-        /// 
-        struct Items: Encodable {
-            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            struct Transform: Encodable {
-            }
-            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            var transform: Transform?
-        
-        }
-        /// 
-        var items: Items?
-    
+    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    enum Visible: String, Encodable {
+        case yes
+        case no
+        case legendonly
     }
-    /// 
-    var transforms: Transforms?
+    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    var visible: Visible?
 
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    var customdata: [Double]?
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    var showlegend: Bool?
 
-    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    var uirevision: Anything?
-
-    /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    var meta: Anything?
-
-    /// Sets the source reference on plot.ly for  r .
-    var rsrc: String?
-
-    /// Sets the trace name. The trace name appear as the legend item and on hover.
-    var name: String?
-
-    /// Sets the source reference on plot.ly for  ids .
-    var idssrc: String?
-
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    var ids: [Double]?
+    /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+    var legendgroup: String?
 
     /// Sets the opacity of the trace.
     var opacity: Double?
 
-    /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-    var legendgroup: String?
+    /// Sets the trace name. The trace name appear as the legend item and on hover.
+    var name: String?
+
+    /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    var uid: String?
+
+    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    var ids: [Double]?
+
+    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    var customdata: [Double]?
+
+    /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    var meta: Anything?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     struct Hoverinfo: OptionSet, Encodable {
@@ -71,19 +59,112 @@ struct Area: Encodable {
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     var hoverinfo: Hoverinfo?
 
-    /// Sets the source reference on plot.ly for  meta .
-    var metasrc: String?
+    /// 
+    struct Hoverlabel: Encodable {
+        /// Sets the background color of the hover labels for this trace
+        var bgcolor: Color?
+    
+        /// Sets the border color of the hover labels for this trace.
+        var bordercolor: Color?
+    
+        /// Sets the font used in hover labels.
+        struct Font: Encodable {
+            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+            var family: String?
+        
+            /// 
+            var size: Double?
+        
+            /// 
+            var color: Color?
+        
+            /// Sets the source reference on plot.ly for  family .
+            var familysrc: String?
+        
+            /// Sets the source reference on plot.ly for  size .
+            var sizesrc: String?
+        
+            /// Sets the source reference on plot.ly for  color .
+            var colorsrc: String?
+        
+        }
+        /// Sets the font used in hover labels.
+        var font: Font?
+    
+        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+        enum Align: String, Encodable {
+            case left
+            case right
+            case auto
+        }
+        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+        var align: Align?
+    
+        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
+        var namelength: Int?
+    
+        /// Sets the source reference on plot.ly for  bgcolor .
+        var bgcolorsrc: String?
+    
+        /// Sets the source reference on plot.ly for  bordercolor .
+        var bordercolorsrc: String?
+    
+        /// Sets the source reference on plot.ly for  align .
+        var alignsrc: String?
+    
+        /// Sets the source reference on plot.ly for  namelength .
+        var namelengthsrc: String?
+    
+    }
+    /// 
+    var hoverlabel: Hoverlabel?
+
+    /// 
+    struct Stream: Encodable {
+        /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
+        var token: String?
+    
+        /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
+        var maxpoints: Double?
+    
+    }
+    /// 
+    var stream: Stream?
+
+    /// 
+    struct Transforms: Encodable {
+        /// 
+        struct Items: Encodable {
+            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            struct Transform: Encodable {
+            }
+            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            var transform: Transform?
+        
+        }
+        /// 
+        var items: Items?
+    
+    }
+    /// 
+    var transforms: Transforms?
+
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    var uirevision: Anything?
+
+    /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the radial coordinates for legacy polar chart only.
+    var r: [Double]?
+
+    /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the angular coordinates for legacy polar chart only.
+    var t: [Double]?
 
     /// 
     struct Marker: Encodable {
-        /// Sets the source reference on plot.ly for  opacity .
-        var opacitysrc: String?
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
+        var color: Color?
     
-        /// Sets the source reference on plot.ly for  color .
-        var colorsrc: String?
-    
-        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker opacity.
-        var opacity: Double?
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker size (in px).
+        var size: Double?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
         enum Symbol: Int, Encodable {
@@ -233,122 +314,41 @@ struct Area: Encodable {
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
         var symbol: Symbol?
     
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker opacity.
+        var opacity: Double?
+    
+        /// Sets the source reference on plot.ly for  color .
+        var colorsrc: String?
+    
         /// Sets the source reference on plot.ly for  size .
         var sizesrc: String?
-    
-        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker size (in px).
-        var size: Double?
     
         /// Sets the source reference on plot.ly for  symbol .
         var symbolsrc: String?
     
-        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
-        var color: Color?
+        /// Sets the source reference on plot.ly for  opacity .
+        var opacitysrc: String?
     
     }
     /// 
     var marker: Marker?
 
-    /// Sets the source reference on plot.ly for  t .
-    var tsrc: String?
-
-    /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the angular coordinates for legacy polar chart only.
-    var t: [Double]?
-
-    /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    var showlegend: Bool?
-
-    /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the radial coordinates for legacy polar chart only.
-    var r: [Double]?
-
-    /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
-    var uid: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    var hoverinfosrc: String?
-
-    /// 
-    struct Hoverlabel: Encodable {
-        /// Sets the source reference on plot.ly for  namelength .
-        var namelengthsrc: String?
-    
-        /// Sets the source reference on plot.ly for  align .
-        var alignsrc: String?
-    
-        /// Sets the source reference on plot.ly for  bgcolor .
-        var bgcolorsrc: String?
-    
-        /// Sets the font used in hover labels.
-        struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            var family: String?
-        
-            /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
-        
-            /// 
-            var size: Double?
-        
-            /// Sets the source reference on plot.ly for  size .
-            var sizesrc: String?
-        
-            /// 
-            var color: Color?
-        
-            /// Sets the source reference on plot.ly for  family .
-            var familysrc: String?
-        
-        }
-        /// Sets the font used in hover labels.
-        var font: Font?
-    
-        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
-        enum Align: String, Encodable {
-            case left
-            case right
-            case auto
-        }
-        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
-        var align: Align?
-    
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        var namelength: Int?
-    
-        /// Sets the source reference on plot.ly for  bordercolor .
-        var bordercolorsrc: String?
-    
-        /// Sets the border color of the hover labels for this trace.
-        var bordercolor: Color?
-    
-        /// Sets the background color of the hover labels for this trace
-        var bgcolor: Color?
-    
-    }
-    /// 
-    var hoverlabel: Hoverlabel?
-
-    /// 
-    struct Stream: Encodable {
-        /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
-        var token: String?
-    
-        /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        var maxpoints: Double?
-    
-    }
-    /// 
-    var stream: Stream?
+    /// Sets the source reference on plot.ly for  ids .
+    var idssrc: String?
 
     /// Sets the source reference on plot.ly for  customdata .
     var customdatasrc: String?
 
-    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-    enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
-    }
-    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-    var visible: Visible?
+    /// Sets the source reference on plot.ly for  meta .
+    var metasrc: String?
+
+    /// Sets the source reference on plot.ly for  hoverinfo .
+    var hoverinfosrc: String?
+
+    /// Sets the source reference on plot.ly for  r .
+    var rsrc: String?
+
+    /// Sets the source reference on plot.ly for  t .
+    var tsrc: String?
 
 }

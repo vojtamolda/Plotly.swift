@@ -5,7 +5,7 @@ import Foundation
 struct Config {
     let attributes: Swift.Struct
 
-    init(schema: [String: Schema.Entry]) {
+    init(schema: Schema.Entries) {
         attributes = Swift.Struct(identifier: "Config", entries: schema)
     }
 

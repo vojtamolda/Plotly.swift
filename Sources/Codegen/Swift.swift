@@ -27,34 +27,34 @@ struct Swift {
             self.type = (identifier != "type") ? identifier.capitalized : "AxisType"
 
             // Workaround for numerical values of Marker Symbols
-            if schema.path.hasSuffix("marker/symbol") && !schema.path.contains("scatter3d") {
+            if schema.decodingPath.hasSuffix("marker/symbol") && !schema.decodingPath.contains("scatter3d") {
                 associatedType = "Int"
                 let even = stride(from: 0, to: schema.values.endIndex, by: 2)
                 let pairs = even.map { (schema.values[$0], schema.values[$0.advanced(by: 1)]) }
                 values = pairs.map { (intPrimitive, stringPrimitive) -> String in
                     guard case let Schema.Primitive.int(int) = intPrimitive else {
-                        fatalError("Unsupported Marker Symbol value in '\(schema.path)'")
+                        fatalError("Unsupported Marker Symbol value in '\(schema.decodingPath)'")
                     }
                     guard case let Schema.Primitive.string(string) = stringPrimitive else {
-                        fatalError("Unsupported Marker Symbol string in '\(schema.path)'")
+                        fatalError("Unsupported Marker Symbol string in '\(schema.decodingPath)'")
                     }
                     return "\(sanitize(string)) = \(int)"
                 }
                 return
             }
             // Workaround for numerical values of Geo Resolution
-            if schema.path.hasSuffix("geo/resolution") {
+            if schema.decodingPath.hasSuffix("geo/resolution") {
                 associatedType = "Int"
                 values = schema.values.map { primitive -> String in
                     guard case let Schema.Primitive.int(int) = primitive else {
-                        fatalError("Unsupported Geo Resolution value in '\(schema.path)'")
+                        fatalError("Unsupported Geo Resolution value in '\(schema.decodingPath)'")
                     }
                     return "oneOver\(int)M = \(int)"
                 }
                 return
             }
             // Workaround for special symbols of Contour Operations
-            if schema.path.hasSuffix("contours/operation") {
+            if schema.decodingPath.hasSuffix("contours/operation") {
                 values = ["equalTo = \"=\"",
                           "lessThan = \"<\"", "lessEqualThan = \"<=\"",
                           "greaterThan = \">\"", "greaterEqualThan = \">=\"",
@@ -66,7 +66,7 @@ struct Swift {
                 return
             }
             // Workaround for Pathbar Edge Shapes of Treemap charts
-            if schema.path.hasSuffix("pathbar/edgeshape") {
+            if schema.decodingPath.hasSuffix("pathbar/edgeshape") {
                 values = ["bar = \"|\"",
                           "rightCaret = \">\"", "leftCaret = \"<\"",
                           "forwardSlash = \"/\"", "backwardSlash = \"\\\\\""
@@ -74,7 +74,7 @@ struct Swift {
                 return
             }
             // Workaround for meaningless numerical values of SurfaceAxis
-            if schema.path.hasSuffix("surfaceaxis") {
+            if schema.decodingPath.hasSuffix("surfaceaxis") {
                 associatedType = "Int"
                 values = ["none = -1", "x = 0", "y = 1", "z = 2"]
                 return
@@ -106,7 +106,7 @@ struct Swift {
                     return sanitize(string)
                 }
             default:
-                fatalError("Invalid enum case in '\(self.schema!.path)'")
+                fatalError("Invalid enum case in '\(self.schema!.decodingPath)'")
             }
         }
 
@@ -208,7 +208,7 @@ struct Swift {
             self.schema = schema
 
             // Workaround for empty Hover Info of Sankey charts
-            if schema.path.contains("sankey") && schema.path.hasSuffix("hoverinfo") {
+            if schema.decodingPath.contains("sankey") && schema.decodingPath.hasSuffix("hoverinfo") {
                 precondition(schema.flags.count == 0)
                 flags = ["all", "none", "skip"].map { sanitize($0) }
                 return
@@ -268,33 +268,32 @@ struct Swift {
         var description: String = ""
         let schema: SchemaDataType? = nil
 
-        let entries: [String: Schema.Entry]
-        var members: [String: SwiftDataType]
+        let entries: Schema.Entries
+        var members: [(identifier: String, datatype: SwiftDataType)]
         var primitives: [String: Schema.Primitive]
 
-        init(identifier: String, entries: [String: Schema.Entry]) {
+        init(identifier: String, entries: Schema.Entries) {
             self.type = identifier.capitalized
             self.identifier = identifier
-            if let entry = entries["description"] {
+            self.entries = entries
+            for (identifier, entry) in entries.entries where identifier == "description"{
                 if case let Schema.Entry.primitive(primitive) = entry {
                     description = String(describing: primitive)
                 }
             }
 
-            self.entries = entries
+            self.members = []
             self.primitives = [:]
-            self.members = [:]
-
-            for (identifier, entry) in entries {
+            for (identifier, entry) in entries.entries {
                 switch entry {
                 case .primitive(let primitive):
                     self.primitives[identifier] = primitive
                 case .attribute(let attribute):
                     let datatype = createDataType(identifier: identifier, from: attribute)
-                    members[identifier] = datatype
+                    members += [(identifier: identifier, datatype: datatype)]
                 case .entries(let entries):
                     let datatype = Self(identifier: identifier, entries: entries)
-                    members[identifier] = datatype
+                    members += [(identifier: identifier, datatype: datatype)]
                 }
             }
         }
