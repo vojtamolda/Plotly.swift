@@ -22,25 +22,10 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
 }
 
-
-var schemaFile: URL
-var orderFile: URL
-var outputDirectory: URL
-
-if CommandLine.argc > 1 {
-    schemaFile = URL(fileURLWithPath: CommandLine.arguments[1])
-} else {
-    schemaFile = URL(fileURLWithPath: "./Assets/Plotly.json")
-}
-if CommandLine.argc > 2 {
-    orderFile = URL(fileURLWithPath: CommandLine.arguments[2])
-} else {
-    orderFile = URL(fileURLWithPath: "./Assets/Order.json")
-}
-if CommandLine.argc > 3 {
-    outputDirectory = URL(fileURLWithPath: CommandLine.arguments[3], isDirectory: true)
-} else {
-    outputDirectory = URL(fileURLWithPath: "../Plotly/Schema/", isDirectory: true)
-}
+let (argc, args) = (CommandLine.argc, CommandLine.arguments)
+let schemaFile = URL(fileURLWithPath: (argc > 1) ? args[1] : "./Assets/Plotly.json")
+let orderFile = URL(fileURLWithPath: (argc > 2) ? args[2] : "./Assets/Order.json")
+let outputDirectory = URL(fileURLWithPath: (argc > 3) ? args[3] : "../Plotly/Schema/",
+        isDirectory: true)
 
 generateSwiftCode(from: schemaFile, to: outputDirectory, ordering: orderFile)
