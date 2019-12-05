@@ -1,5 +1,9 @@
 /// Parallel categories diagram for multidimensional categorical data.
 struct Parcats: Encodable {
+    let type: String = "parcats"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -18,7 +22,6 @@ struct Parcats: Encodable {
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     var meta: Anything?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -27,12 +30,9 @@ struct Parcats: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -41,17 +41,14 @@ struct Parcats: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     var uirevision: Anything?
 
-    /// 
     struct Domain: Encodable {
         /// Sets the horizontal domain of this parcats trace (in plot fraction).
         var x: InfoArray?
@@ -66,7 +63,6 @@ struct Parcats: Encodable {
         var column: Int?
     
     }
-    /// 
     var domain: Domain?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
@@ -126,10 +122,8 @@ struct Parcats: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
     }
@@ -141,19 +135,15 @@ struct Parcats: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
     }
     /// Sets the font for the `category` labels.
     var tickfont: Tickfont?
 
-    /// 
     struct Dimensions: Encodable {
-        /// 
         struct Items: Encodable {
             /// The dimensions (variables) of the parallel categories diagram.
             struct Dimension: Encodable {
@@ -199,14 +189,11 @@ struct Parcats: Encodable {
             var dimension: Dimension?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var dimensions: Dimensions?
 
-    /// 
     struct Line: Encodable {
         /// Sets thelinecolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if set.
         var color: Color?
@@ -235,7 +222,6 @@ struct Parcats: Encodable {
         /// Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `line.color`is set to a numerical array.
         var showscale: Bool?
     
-        /// 
         struct Colorbar: Encodable {
             /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
             enum Thicknessmode: String, Encodable {
@@ -354,10 +340,8 @@ struct Parcats: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -370,11 +354,8 @@ struct Parcats: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -392,15 +373,12 @@ struct Parcats: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets a tick label prefix.
@@ -454,7 +432,6 @@ struct Parcats: Encodable {
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             var showexponent: Showexponent?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -464,10 +441,8 @@ struct Parcats: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -484,10 +459,8 @@ struct Parcats: Encodable {
                 var side: Side?
             
             }
-            /// 
             var title: Title?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Deprecated in favor of color bar's `title.text`. Note that value of color bar's `title` is no longer a simple *string* but a set of sub-attributes.
                 var title: String?
@@ -497,10 +470,8 @@ struct Parcats: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -517,7 +488,6 @@ struct Parcats: Encodable {
                 var titleside: Titleside?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets the source reference on plot.ly for  tickvals .
@@ -527,7 +497,6 @@ struct Parcats: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var colorbar: Colorbar?
     
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
@@ -548,7 +517,6 @@ struct Parcats: Encodable {
         var colorsrc: String?
     
     }
-    /// 
     var line: Line?
 
     /// The number of observations represented by each state. Defaults to 1 so that each state represents one observation

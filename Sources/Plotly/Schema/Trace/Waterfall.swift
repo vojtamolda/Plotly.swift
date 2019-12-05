@@ -1,5 +1,9 @@
 /// Draws waterfall trace which is useful graph to displays the contribution of various elements (either positive or negative) in a bar chart. The data visualized by the span of the bars is set in `y` if `orientation` is set th *v* (the default) and the labels are set in `x`. By setting `orientation` to *h*, the roles are interchanged.
 struct Waterfall: Encodable {
+    let type: String = "waterfall"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -36,7 +40,6 @@ struct Waterfall: Encodable {
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     var selectedpoints: Anything?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -49,10 +52,8 @@ struct Waterfall: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -93,10 +94,8 @@ struct Waterfall: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -105,12 +104,9 @@ struct Waterfall: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -119,11 +115,9 @@ struct Waterfall: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -248,10 +242,8 @@ struct Waterfall: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
         /// Sets the source reference on plot.ly for  family .
@@ -272,10 +264,8 @@ struct Waterfall: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
         /// Sets the source reference on plot.ly for  family .
@@ -296,10 +286,8 @@ struct Waterfall: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
         /// Sets the source reference on plot.ly for  family .
@@ -342,14 +330,11 @@ struct Waterfall: Encodable {
     /// Sets the bar width (in position axis units).
     var width: Double?
 
-    /// 
     struct Increasing: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker color of all increasing values.
             var color: Color?
         
-            /// 
             struct Line: Encodable {
                 /// Sets the line color of all increasing values.
                 var color: Color?
@@ -358,25 +343,19 @@ struct Waterfall: Encodable {
                 var width: Double?
             
             }
-            /// 
             var line: Line?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var increasing: Increasing?
 
-    /// 
     struct Decreasing: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker color of all decreasing values.
             var color: Color?
         
-            /// 
             struct Line: Encodable {
                 /// Sets the line color of all decreasing values.
                 var color: Color?
@@ -385,25 +364,19 @@ struct Waterfall: Encodable {
                 var width: Double?
             
             }
-            /// 
             var line: Line?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var decreasing: Decreasing?
 
-    /// 
     struct Totals: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker color of all intermediate sums and total values.
             var color: Color?
         
-            /// 
             struct Line: Encodable {
                 /// Sets the line color of all intermediate sums and total values.
                 var color: Color?
@@ -412,20 +385,15 @@ struct Waterfall: Encodable {
                 var width: Double?
             
             }
-            /// 
             var line: Line?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var totals: Totals?
 
-    /// 
     struct Connector: Encodable {
-        /// 
         struct Line: Encodable {
             /// Sets the line color.
             var color: Color?
@@ -437,7 +405,6 @@ struct Waterfall: Encodable {
             var dash: String?
         
         }
-        /// 
         var line: Line?
     
         /// Sets the shape of connector lines.
@@ -452,7 +419,6 @@ struct Waterfall: Encodable {
         var visible: Bool?
     
     }
-    /// 
     var connector: Connector?
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.

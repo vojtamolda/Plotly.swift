@@ -1,5 +1,9 @@
 /// In vertical (horizontal) violin plots, statistics are computed using `y` (`x`) values. By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`) {array} is provided, a single violin is drawn. That violin position is then positioned with with `name` or with `x0` (`y0`) if provided.
 struct Violin: Encodable {
+    let type: String = "violin"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -59,7 +63,6 @@ struct Violin: Encodable {
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     var hoverinfo: Hoverinfo?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -72,10 +75,8 @@ struct Violin: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -116,10 +117,8 @@ struct Violin: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -128,12 +127,9 @@ struct Violin: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -142,11 +138,9 @@ struct Violin: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -201,7 +195,6 @@ struct Violin: Encodable {
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
     var span: InfoArray?
 
-    /// 
     struct Line: Encodable {
         /// Sets the color of line bounding the violin(s).
         var color: Color?
@@ -210,7 +203,6 @@ struct Violin: Encodable {
         var width: Double?
     
     }
-    /// 
     var line: Line?
 
     /// Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
@@ -235,7 +227,6 @@ struct Violin: Encodable {
     /// Sets the width of the violin in data coordinates. If *0* (default value) the width is automatically selected based on the positions of other violin traces in the same subplot.
     var width: Double?
 
-    /// 
     struct Marker: Encodable {
         /// Sets the color of the outlier sample points.
         var outliercolor: Color?
@@ -397,7 +388,6 @@ struct Violin: Encodable {
         /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
         var color: Color?
     
-        /// 
         struct Line: Encodable {
             /// Sets themarker.linecolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.
             var color: Color?
@@ -412,11 +402,9 @@ struct Violin: Encodable {
             var outlierwidth: Double?
         
         }
-        /// 
         var line: Line?
     
     }
-    /// 
     var marker: Marker?
 
     /// Sets the text elements associated with each sample value. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
@@ -428,7 +416,6 @@ struct Violin: Encodable {
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     var hovertemplate: String?
 
-    /// 
     struct Box: Encodable {
         /// Determines if an miniature box plot is drawn inside the violins. 
         var visible: Bool?
@@ -439,7 +426,6 @@ struct Violin: Encodable {
         /// Sets the inner box plot fill color.
         var fillcolor: Color?
     
-        /// 
         struct Line: Encodable {
             /// Sets the inner box plot bounding line color.
             var color: Color?
@@ -448,14 +434,11 @@ struct Violin: Encodable {
             var width: Double?
         
         }
-        /// 
         var line: Line?
     
     }
-    /// 
     var box: Box?
 
-    /// 
     struct Meanline: Encodable {
         /// Determines if a line corresponding to the sample's mean is shown inside the violins. If `box.visible` is turned on, the mean line is drawn inside the inner box. Otherwise, the mean line is drawn from one side of the violin to other.
         var visible: Bool?
@@ -467,7 +450,6 @@ struct Violin: Encodable {
         var width: Double?
     
     }
-    /// 
     var meanline: Meanline?
 
     /// Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under *overlay* mode, where one trace has `side` set to *positive* and the other to *negative*.
@@ -485,9 +467,7 @@ struct Violin: Encodable {
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
     var alignmentgroup: String?
 
-    /// 
     struct Selected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
             var opacity: Double?
@@ -499,16 +479,12 @@ struct Violin: Encodable {
             var size: Double?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var selected: Selected?
 
-    /// 
     struct Unselected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
             var opacity: Double?
@@ -520,11 +496,9 @@ struct Violin: Encodable {
             var size: Double?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var unselected: Unselected?
 
     /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?

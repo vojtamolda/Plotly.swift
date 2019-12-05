@@ -29,6 +29,7 @@ struct Schema: Decodable {
 
     /// Specification of the allowed `trace` attributes.
     struct Trace: Decodable {
+        let type: String
         let animatable: Bool
         let categories: [String]
         let meta: [String: String]
@@ -37,7 +38,7 @@ struct Schema: Decodable {
 
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: Keys.self)
-
+            type = try container.decode(String.self, forKey: Keys("type"))
             animatable = try container.decode(Bool.self, forKey: Keys("animatable"))
             attributes = try container.decode(Entries.self, forKey: Keys("attributes"))
             layoutAttributes = try container.decodeIfPresent(Entries.self,

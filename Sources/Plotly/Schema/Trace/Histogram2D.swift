@@ -1,5 +1,9 @@
 /// The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). The resulting distribution is visualized as a heatmap.
 struct Histogram2D: Encodable {
+    let type: String = "histogram2d"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -53,7 +57,6 @@ struct Histogram2D: Encodable {
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     var hoverinfo: Hoverinfo?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -66,10 +69,8 @@ struct Histogram2D: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -110,10 +111,8 @@ struct Histogram2D: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -122,12 +121,9 @@ struct Histogram2D: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -136,11 +132,9 @@ struct Histogram2D: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -155,7 +149,6 @@ struct Histogram2D: Encodable {
     /// Sets the aggregation data.
     var z: [Double]?
 
-    /// 
     struct Marker: Encodable {
         /// Sets the aggregation data.
         var color: [Double]?
@@ -164,7 +157,6 @@ struct Histogram2D: Encodable {
         var colorsrc: String?
     
     }
-    /// 
     var marker: Marker?
 
     /// Specifies the type of normalization used for this histogram trace. If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If *probability density*, the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).
@@ -192,7 +184,6 @@ struct Histogram2D: Encodable {
     /// Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
     var nbinsx: Int?
 
-    /// 
     struct Xbins: Encodable {
         /// Sets the starting value for the x axis bins. Defaults to the minimum data value, shifted down if necessary to make nice round values and to remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10) etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is based on the category serial numbers, and defaults to -0.5. 
         var start: Anything?
@@ -204,13 +195,11 @@ struct Histogram2D: Encodable {
         var size: Anything?
     
     }
-    /// 
     var xbins: Xbins?
 
     /// Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
     var nbinsy: Int?
 
-    /// 
     struct Ybins: Encodable {
         /// Sets the starting value for the y axis bins. Defaults to the minimum data value, shifted down if necessary to make nice round values and to remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10) etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is based on the category serial numbers, and defaults to -0.5. 
         var start: Anything?
@@ -222,7 +211,6 @@ struct Histogram2D: Encodable {
         var size: Anything?
     
     }
-    /// 
     var ybins: Ybins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. However, we accept `autobinx: true` or `false` and will update `xbins` accordingly before deleting `autobinx` from the trace.
@@ -285,7 +273,6 @@ struct Histogram2D: Encodable {
     /// Determines whether or not a colorbar is displayed for this trace.
     var showscale: Bool?
 
-    /// 
     struct Colorbar: Encodable {
         /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
         enum Thicknessmode: String, Encodable {
@@ -404,10 +391,8 @@ struct Histogram2D: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -420,11 +405,8 @@ struct Histogram2D: Encodable {
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         var tickformat: String?
     
-        /// 
         struct Tickformatstops: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Tickformatstop: Encodable {
                     /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                     var enabled: Bool?
@@ -442,15 +424,12 @@ struct Histogram2D: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var tickformatstop: Tickformatstop?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var tickformatstops: Tickformatstops?
     
         /// Sets a tick label prefix.
@@ -504,7 +483,6 @@ struct Histogram2D: Encodable {
         /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
         var showexponent: Showexponent?
     
-        /// 
         struct Title: Encodable {
             /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             var text: String?
@@ -514,10 +492,8 @@ struct Histogram2D: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -534,10 +510,8 @@ struct Histogram2D: Encodable {
             var side: Side?
         
         }
-        /// 
         var title: Title?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Deprecated in favor of color bar's `title.text`. Note that value of color bar's `title` is no longer a simple *string* but a set of sub-attributes.
             var title: String?
@@ -547,10 +521,8 @@ struct Histogram2D: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -567,7 +539,6 @@ struct Histogram2D: Encodable {
             var titleside: Titleside?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
         /// Sets the source reference on plot.ly for  tickvals .
@@ -577,7 +548,6 @@ struct Histogram2D: Encodable {
         var ticktextsrc: String?
     
     }
-    /// 
     var colorbar: Colorbar?
 
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.

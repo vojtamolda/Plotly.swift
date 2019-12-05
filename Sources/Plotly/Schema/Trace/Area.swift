@@ -1,5 +1,8 @@
-/// 
 struct Area: Encodable {
+    let type: String = "area"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -59,7 +62,6 @@ struct Area: Encodable {
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     var hoverinfo: Hoverinfo?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -72,10 +74,8 @@ struct Area: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -116,10 +116,8 @@ struct Area: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -128,12 +126,9 @@ struct Area: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -142,11 +137,9 @@ struct Area: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -158,7 +151,6 @@ struct Area: Encodable {
     /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the angular coordinates for legacy polar chart only.
     var t: [Double]?
 
-    /// 
     struct Marker: Encodable {
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
         var color: Color?
@@ -330,7 +322,6 @@ struct Area: Encodable {
         var opacitysrc: String?
     
     }
-    /// 
     var marker: Marker?
 
     /// Sets the source reference on plot.ly for  ids .

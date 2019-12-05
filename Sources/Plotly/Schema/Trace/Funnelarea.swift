@@ -1,5 +1,9 @@
 /// Visualize stages in a process using area-encoded trapezoids. This trace can be used to show data in a part-to-whole representation similar to a "pie" trace, wherein each item appears in a single stage. See also the "funnel" trace type for a different approach to visualizing funnel data.
 struct Funnelarea: Encodable {
+    let type: String = "funnelarea"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -33,7 +37,6 @@ struct Funnelarea: Encodable {
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     var meta: Anything?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -46,10 +49,8 @@ struct Funnelarea: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -90,10 +91,8 @@ struct Funnelarea: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -102,12 +101,9 @@ struct Funnelarea: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -116,11 +112,9 @@ struct Funnelarea: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -138,12 +132,10 @@ struct Funnelarea: Encodable {
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     var values: [Double]?
 
-    /// 
     struct Marker: Encodable {
         /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
         var colors: [Double]?
     
-        /// 
         struct Line: Encodable {
             /// Sets the color of the line enclosing each sector. Defaults to the `paper_bgcolor` value.
             var color: Color?
@@ -158,14 +150,12 @@ struct Funnelarea: Encodable {
             var widthsrc: String?
         
         }
-        /// 
         var line: Line?
     
         /// Sets the source reference on plot.ly for  colors .
         var colorssrc: String?
     
     }
-    /// 
     var marker: Marker?
 
     /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -246,10 +236,8 @@ struct Funnelarea: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
         /// Sets the source reference on plot.ly for  family .
@@ -270,10 +258,8 @@ struct Funnelarea: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
         /// Sets the source reference on plot.ly for  family .
@@ -289,7 +275,6 @@ struct Funnelarea: Encodable {
     /// Sets the font used for `textinfo` lying inside the sector.
     var insidetextfont: Insidetextfont?
 
-    /// 
     struct Title: Encodable {
         /// Sets the title of the chart. If it is empty, no title is displayed. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
         var text: String?
@@ -299,10 +284,8 @@ struct Funnelarea: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -328,10 +311,8 @@ struct Funnelarea: Encodable {
         var position: Position?
     
     }
-    /// 
     var title: Title?
 
-    /// 
     struct Domain: Encodable {
         /// Sets the horizontal domain of this funnelarea trace (in plot fraction).
         var x: InfoArray?
@@ -346,7 +327,6 @@ struct Funnelarea: Encodable {
         var column: Int?
     
     }
-    /// 
     var domain: Domain?
 
     /// Sets the ratio between height and width

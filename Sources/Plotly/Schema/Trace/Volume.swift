@@ -1,5 +1,9 @@
 /// Draws volume trace between iso-min and iso-max values with coordinates given by four 1-dimensional arrays containing the `value`, `x`, `y` and `z` of every vertex of a uniform or non-uniform 3-D grid. Horizontal or vertical slices, caps as well as spaceframe between iso-min and iso-max values could also be drawn using this trace.
 struct Volume: Encodable {
+    let type: String = "volume"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -24,7 +28,6 @@ struct Volume: Encodable {
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     var meta: Anything?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -37,10 +40,8 @@ struct Volume: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -81,10 +82,8 @@ struct Volume: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -93,7 +92,6 @@ struct Volume: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -117,7 +115,6 @@ struct Volume: Encodable {
     /// Sets the maximum boundary for iso-surface plot.
     var isomax: Double?
 
-    /// 
     struct Surface: Encodable {
         /// Hides/displays surfaces between minimum and maximum iso-values.
         var show: Bool?
@@ -155,10 +152,8 @@ struct Volume: Encodable {
         var pattern: Pattern?
     
     }
-    /// 
     var surface: Surface?
 
-    /// 
     struct Spaceframe: Encodable {
         /// Displays/hides tetrahedron shapes between minimum and maximum iso-values. Often useful when either caps or surfaces are disabled or filled with values less than 1.
         var show: Bool?
@@ -167,12 +162,9 @@ struct Volume: Encodable {
         var fill: Double?
     
     }
-    /// 
     var spaceframe: Spaceframe?
 
-    /// 
     struct Slices: Encodable {
-        /// 
         struct X: Encodable {
             /// Determines whether or not slice planes about the x dimension are drawn.
             var show: Bool?
@@ -187,10 +179,8 @@ struct Volume: Encodable {
             var locationssrc: String?
         
         }
-        /// 
         var x: X?
     
-        /// 
         struct Y: Encodable {
             /// Determines whether or not slice planes about the y dimension are drawn.
             var show: Bool?
@@ -205,10 +195,8 @@ struct Volume: Encodable {
             var locationssrc: String?
         
         }
-        /// 
         var y: Y?
     
-        /// 
         struct Z: Encodable {
             /// Determines whether or not slice planes about the z dimension are drawn.
             var show: Bool?
@@ -223,16 +211,12 @@ struct Volume: Encodable {
             var locationssrc: String?
         
         }
-        /// 
         var z: Z?
     
     }
-    /// 
     var slices: Slices?
 
-    /// 
     struct Caps: Encodable {
-        /// 
         struct X: Encodable {
             /// Sets the fill ratio of the `slices`. The default fill value of the x `slices` is 1 meaning that they are entirely shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the edges.
             var show: Bool?
@@ -241,10 +225,8 @@ struct Volume: Encodable {
             var fill: Double?
         
         }
-        /// 
         var x: X?
     
-        /// 
         struct Y: Encodable {
             /// Sets the fill ratio of the `slices`. The default fill value of the y `slices` is 1 meaning that they are entirely shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the edges.
             var show: Bool?
@@ -253,10 +235,8 @@ struct Volume: Encodable {
             var fill: Double?
         
         }
-        /// 
         var y: Y?
     
-        /// 
         struct Z: Encodable {
             /// Sets the fill ratio of the `slices`. The default fill value of the z `slices` is 1 meaning that they are entirely shaded. On the other hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the edges.
             var show: Bool?
@@ -265,11 +245,9 @@ struct Volume: Encodable {
             var fill: Double?
         
         }
-        /// 
         var z: Z?
     
     }
-    /// 
     var caps: Caps?
 
     /// Sets the text elements associated with the vertices. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
@@ -305,7 +283,6 @@ struct Volume: Encodable {
     /// Determines whether or not a colorbar is displayed for this trace.
     var showscale: Bool?
 
-    /// 
     struct Colorbar: Encodable {
         /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
         enum Thicknessmode: String, Encodable {
@@ -424,10 +401,8 @@ struct Volume: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -440,11 +415,8 @@ struct Volume: Encodable {
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         var tickformat: String?
     
-        /// 
         struct Tickformatstops: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Tickformatstop: Encodable {
                     /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                     var enabled: Bool?
@@ -462,15 +434,12 @@ struct Volume: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var tickformatstop: Tickformatstop?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var tickformatstops: Tickformatstops?
     
         /// Sets a tick label prefix.
@@ -524,7 +493,6 @@ struct Volume: Encodable {
         /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
         var showexponent: Showexponent?
     
-        /// 
         struct Title: Encodable {
             /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             var text: String?
@@ -534,10 +502,8 @@ struct Volume: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -554,10 +520,8 @@ struct Volume: Encodable {
             var side: Side?
         
         }
-        /// 
         var title: Title?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Deprecated in favor of color bar's `title.text`. Note that value of color bar's `title` is no longer a simple *string* but a set of sub-attributes.
             var title: String?
@@ -567,10 +531,8 @@ struct Volume: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -587,7 +549,6 @@ struct Volume: Encodable {
             var titleside: Titleside?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
         /// Sets the source reference on plot.ly for  tickvals .
@@ -597,7 +558,6 @@ struct Volume: Encodable {
         var ticktextsrc: String?
     
     }
-    /// 
     var colorbar: Colorbar?
 
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
@@ -609,7 +569,6 @@ struct Volume: Encodable {
     /// Sets the opacityscale. The opacityscale must be an array containing arrays mapping a normalized value to an opacity value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity values and those in the middle would be more transparent Alternatively, `opacityscale` may be a palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default is 'uniform'.
     var opacityscale: Anything?
 
-    /// 
     struct Lightposition: Encodable {
         /// Numeric vector, representing the X coordinate for each vertex.
         var x: Double?
@@ -621,10 +580,8 @@ struct Volume: Encodable {
         var z: Double?
     
     }
-    /// 
     var lightposition: Lightposition?
 
-    /// 
     struct Lighting: Encodable {
         /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
         var vertexnormalsepsilon: Double?
@@ -648,13 +605,11 @@ struct Volume: Encodable {
         var fresnel: Double?
     
     }
-    /// 
     var lighting: Lighting?
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     var flatshading: Bool?
 
-    /// 
     struct Contour: Encodable {
         /// Sets whether or not dynamic contours are shown on hover
         var show: Bool?
@@ -666,7 +621,6 @@ struct Volume: Encodable {
         var width: Double?
     
     }
-    /// 
     var contour: Contour?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.

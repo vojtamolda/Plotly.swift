@@ -1,5 +1,9 @@
 /// Sankey plots for network flow data analysis. The nodes are specified in `nodes` and the links between sources and targets in `links`. The colors are set in `nodes[i].color` and `links[i].color`, otherwise defaults are used.
 struct Sankey: Encodable {
+    let type: String = "sankey"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -27,7 +31,6 @@ struct Sankey: Encodable {
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     var selectedpoints: Anything?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -36,7 +39,6 @@ struct Sankey: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -64,7 +66,6 @@ struct Sankey: Encodable {
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired. Note that this attribute is superseded by `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
     var hoverinfo: Hoverinfo?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -77,10 +78,8 @@ struct Sankey: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -121,10 +120,8 @@ struct Sankey: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Domain: Encodable {
         /// Sets the horizontal domain of this sankey trace (in plot fraction).
         var x: InfoArray?
@@ -139,7 +136,6 @@ struct Sankey: Encodable {
         var column: Int?
     
     }
-    /// 
     var domain: Domain?
 
     /// Sets the orientation of the Sankey diagram.
@@ -171,10 +167,8 @@ struct Sankey: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
     }
@@ -198,7 +192,6 @@ struct Sankey: Encodable {
         /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
         var color: Color?
     
-        /// 
         struct Line: Encodable {
             /// Sets the color of the `line` around each `node`.
             var color: Color?
@@ -213,7 +206,6 @@ struct Sankey: Encodable {
             var widthsrc: String?
         
         }
-        /// 
         var line: Line?
     
         /// Sets the padding (in px) between the `nodes`.
@@ -231,7 +223,6 @@ struct Sankey: Encodable {
         /// Determines which trace information appear when hovering nodes. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
         var hoverinfo: Hoverinfo?
     
-        /// 
         struct Hoverlabel: Encodable {
             /// Sets the background color of the hover labels for this trace
             var bgcolor: Color?
@@ -244,10 +235,8 @@ struct Sankey: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
                 /// Sets the source reference on plot.ly for  family .
@@ -288,7 +277,6 @@ struct Sankey: Encodable {
             var namelengthsrc: String?
         
         }
-        /// 
         var hoverlabel: Hoverlabel?
     
         /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
@@ -321,7 +309,6 @@ struct Sankey: Encodable {
         /// Sets the `link` color. It can be a single value, or an array for specifying color for each `link`. If `link.color` is omitted, then by default, a translucent grey link will be used.
         var color: Color?
     
-        /// 
         struct Line: Encodable {
             /// Sets the color of the `line` around each `link`.
             var color: Color?
@@ -336,7 +323,6 @@ struct Sankey: Encodable {
             var widthsrc: String?
         
         }
-        /// 
         var line: Line?
     
         /// An integer number `[0..nodes.length - 1]` that represents the source node.
@@ -357,7 +343,6 @@ struct Sankey: Encodable {
         /// Determines which trace information appear when hovering links. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
         var hoverinfo: Hoverinfo?
     
-        /// 
         struct Hoverlabel: Encodable {
             /// Sets the background color of the hover labels for this trace
             var bgcolor: Color?
@@ -370,10 +355,8 @@ struct Sankey: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
                 /// Sets the source reference on plot.ly for  family .
@@ -414,17 +397,13 @@ struct Sankey: Encodable {
             var namelengthsrc: String?
         
         }
-        /// 
         var hoverlabel: Hoverlabel?
     
         /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
         var hovertemplate: String?
     
-        /// 
         struct Colorscales: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Concentrationscales: Encodable {
                     /// The label of the links to color based on their concentration within a flow.
                     var label: String?
@@ -445,15 +424,12 @@ struct Sankey: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var concentrationscales: Concentrationscales?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var colorscales: Colorscales?
     
         /// Sets the source reference on plot.ly for  label .

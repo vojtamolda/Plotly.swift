@@ -1,5 +1,9 @@
 /// Splom traces generate scatter plot matrix visualizations. Each splom `dimensions` items correspond to a generated axis. Values for each of those dimensions are set in `dimensions[i].values`. Splom traces support all `scattergl` marker style attributes. Specify `layout.grid` attributes and/or layout x-axis and y-axis attributes for more control over the axis positioning and style. 
 struct Splom: Encodable {
+    let type: String = "splom"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -59,7 +63,6 @@ struct Splom: Encodable {
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     var hoverinfo: Hoverinfo?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -72,10 +75,8 @@ struct Splom: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -116,10 +117,8 @@ struct Splom: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -128,12 +127,9 @@ struct Splom: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -142,21 +138,16 @@ struct Splom: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     var uirevision: Anything?
 
-    /// 
     struct Dimensions: Encodable {
-        /// 
         struct Items: Encodable {
-            /// 
             struct Dimension: Encodable {
                 /// Determines whether or not this dimension is shown on the graph. Note that even visible false dimension contribute to the default grid generate by this splom trace.
                 var visible: Bool?
@@ -167,7 +158,6 @@ struct Splom: Encodable {
                 /// Sets the dimension values to be plotted.
                 var values: [Double]?
             
-                /// 
                 struct Axis: Encodable {
                     /// Sets the axis type for this dimension's generated x and y axes. Note that the axis `type` values set in layout take precedence over this attribute.
                     enum AxisType: String, Encodable {
@@ -183,7 +173,6 @@ struct Splom: Encodable {
                     var matches: Bool?
                 
                 }
-                /// 
                 var axis: Axis?
             
                 /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
@@ -196,15 +185,12 @@ struct Splom: Encodable {
                 var valuessrc: String?
             
             }
-            /// 
             var dimension: Dimension?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var dimensions: Dimensions?
 
     /// Sets text elements associated with each (x,y) pair to appear on hover. If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (x,y) coordinates.
@@ -216,7 +202,6 @@ struct Splom: Encodable {
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     var hovertemplate: String?
 
-    /// 
     struct Marker: Encodable {
         /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
         var color: Color?
@@ -245,7 +230,6 @@ struct Splom: Encodable {
         /// Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color`is set to a numerical array.
         var showscale: Bool?
     
-        /// 
         struct Colorbar: Encodable {
             /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
             enum Thicknessmode: String, Encodable {
@@ -364,10 +348,8 @@ struct Splom: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -380,11 +362,8 @@ struct Splom: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -402,15 +381,12 @@ struct Splom: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets a tick label prefix.
@@ -464,7 +440,6 @@ struct Splom: Encodable {
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             var showexponent: Showexponent?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -474,10 +449,8 @@ struct Splom: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -494,10 +467,8 @@ struct Splom: Encodable {
                 var side: Side?
             
             }
-            /// 
             var title: Title?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Deprecated in favor of color bar's `title.text`. Note that value of color bar's `title` is no longer a simple *string* but a set of sub-attributes.
                 var title: String?
@@ -507,10 +478,8 @@ struct Splom: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -527,7 +496,6 @@ struct Splom: Encodable {
                 var titleside: Titleside?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets the source reference on plot.ly for  tickvals .
@@ -537,7 +505,6 @@ struct Splom: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var colorbar: Colorbar?
     
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
@@ -711,7 +678,6 @@ struct Splom: Encodable {
         /// Sets the marker opacity.
         var opacity: Double?
     
-        /// 
         struct Line: Encodable {
             /// Sets themarker.linecolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.
             var color: Color?
@@ -750,7 +716,6 @@ struct Splom: Encodable {
             var widthsrc: String?
         
         }
-        /// 
         var line: Line?
     
         /// Sets the source reference on plot.ly for  color .
@@ -766,7 +731,6 @@ struct Splom: Encodable {
         var opacitysrc: String?
     
     }
-    /// 
     var marker: Marker?
 
     /// Sets the list of x axes corresponding to dimensions of this splom trace. By default, a splom will match the first N xaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
@@ -775,13 +739,11 @@ struct Splom: Encodable {
     /// Sets the list of y axes corresponding to dimensions of this splom trace. By default, a splom will match the first N yaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis.
     var yaxes: InfoArray?
 
-    /// 
     struct Diagonal: Encodable {
         /// Determines whether or not subplots on the diagonal are displayed.
         var visible: Bool?
     
     }
-    /// 
     var diagonal: Diagonal?
 
     /// Determines whether or not subplots on the upper half from the diagonal are displayed.
@@ -790,9 +752,7 @@ struct Splom: Encodable {
     /// Determines whether or not subplots on the lower half from the diagonal are displayed.
     var showlowerhalf: Bool?
 
-    /// 
     struct Selected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
             var opacity: Double?
@@ -804,16 +764,12 @@ struct Splom: Encodable {
             var size: Double?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var selected: Selected?
 
-    /// 
     struct Unselected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
             var opacity: Double?
@@ -825,11 +781,9 @@ struct Splom: Encodable {
             var size: Double?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var unselected: Unselected?
 
     /// Sets the opacity of the trace.

@@ -1,5 +1,9 @@
 /// The sample data from which statistics are computed is set in `x` for vertically spanning histograms and in `y` for horizontally spanning histograms. Binning options are set `xbins` and `ybins` respectively if no aggregation data is provided.
 struct Histogram: Encodable {
+    let type: String = "histogram"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -62,7 +66,6 @@ struct Histogram: Encodable {
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     var hoverinfo: Hoverinfo?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -75,10 +78,8 @@ struct Histogram: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -119,10 +120,8 @@ struct Histogram: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -131,12 +130,9 @@ struct Histogram: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -145,11 +141,9 @@ struct Histogram: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -197,7 +191,6 @@ struct Histogram: Encodable {
     /// Specifies the type of normalization used for this histogram trace. If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If *probability density*, the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).
     var histnorm: Histnorm?
 
-    /// 
     struct Cumulative: Encodable {
         /// If true, display the cumulative distribution by summing the binned values. Use the `direction` and `centralbin` attributes to tune the accumulation method. Note: in this mode, the *density* `histnorm` settings behave the same as their equivalents without *density*: ** and *density* both rise to the number of data points, and *probability* and *probability density* both rise to the number of sample points.
         var enabled: Bool?
@@ -220,13 +213,11 @@ struct Histogram: Encodable {
         var currentbin: Currentbin?
     
     }
-    /// 
     var cumulative: Cumulative?
 
     /// Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
     var nbinsx: Int?
 
-    /// 
     struct Xbins: Encodable {
         /// Sets the starting value for the x axis bins. Defaults to the minimum data value, shifted down if necessary to make nice round values and to remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10) etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying histograms share a subplot, the first explicit `start` is used exactly and all others are shifted down (if necessary) to differ from that one by an integer number of bins.
         var start: Anything?
@@ -238,13 +229,11 @@ struct Histogram: Encodable {
         var size: Anything?
     
     }
-    /// 
     var xbins: Xbins?
 
     /// Specifies the maximum number of desired bins. This value will be used in an algorithm that will decide the optimal bin size such that the histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
     var nbinsy: Int?
 
-    /// 
     struct Ybins: Encodable {
         /// Sets the starting value for the y axis bins. Defaults to the minimum data value, shifted down if necessary to make nice round values and to remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10) etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying histograms share a subplot, the first explicit `start` is used exactly and all others are shifted down (if necessary) to differ from that one by an integer number of bins.
         var start: Anything?
@@ -256,7 +245,6 @@ struct Histogram: Encodable {
         var size: Anything?
     
     }
-    /// 
     var ybins: Ybins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. However, we accept `autobinx: true` or `false` and will update `xbins` accordingly before deleting `autobinx` from the trace.
@@ -271,9 +259,7 @@ struct Histogram: Encodable {
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     var hovertemplate: String?
 
-    /// 
     struct Marker: Encodable {
-        /// 
         struct Line: Encodable {
             /// Sets the width (in px) of the lines bounding the marker points.
             var width: Double?
@@ -312,7 +298,6 @@ struct Histogram: Encodable {
             var colorsrc: String?
         
         }
-        /// 
         var line: Line?
     
         /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
@@ -342,7 +327,6 @@ struct Histogram: Encodable {
         /// Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color`is set to a numerical array.
         var showscale: Bool?
     
-        /// 
         struct Colorbar: Encodable {
             /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
             enum Thicknessmode: String, Encodable {
@@ -461,10 +445,8 @@ struct Histogram: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -477,11 +459,8 @@ struct Histogram: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -499,15 +478,12 @@ struct Histogram: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets a tick label prefix.
@@ -561,7 +537,6 @@ struct Histogram: Encodable {
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             var showexponent: Showexponent?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -571,10 +546,8 @@ struct Histogram: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -591,10 +564,8 @@ struct Histogram: Encodable {
                 var side: Side?
             
             }
-            /// 
             var title: Title?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Deprecated in favor of color bar's `title.text`. Note that value of color bar's `title` is no longer a simple *string* but a set of sub-attributes.
                 var title: String?
@@ -604,10 +575,8 @@ struct Histogram: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -624,7 +593,6 @@ struct Histogram: Encodable {
                 var titleside: Titleside?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets the source reference on plot.ly for  tickvals .
@@ -634,7 +602,6 @@ struct Histogram: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var colorbar: Colorbar?
     
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
@@ -650,7 +617,6 @@ struct Histogram: Encodable {
         var opacitysrc: String?
     
     }
-    /// 
     var marker: Marker?
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
@@ -659,9 +625,7 @@ struct Histogram: Encodable {
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
     var alignmentgroup: String?
 
-    /// 
     struct Selected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
             var opacity: Double?
@@ -670,25 +634,19 @@ struct Histogram: Encodable {
             var color: Color?
         
         }
-        /// 
         var marker: Marker?
     
-        /// 
         struct Textfont: Encodable {
             /// Sets the text font color of selected points.
             var color: Color?
         
         }
-        /// 
         var textfont: Textfont?
     
     }
-    /// 
     var selected: Selected?
 
-    /// 
     struct Unselected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
             var opacity: Double?
@@ -697,23 +655,18 @@ struct Histogram: Encodable {
             var color: Color?
         
         }
-        /// 
         var marker: Marker?
     
-        /// 
         struct Textfont: Encodable {
             /// Sets the text font color of unselected points, applied only when a selection exists.
             var color: Color?
         
         }
-        /// 
         var textfont: Textfont?
     
     }
-    /// 
     var unselected: Unselected?
 
-    /// 
     struct _Deprecated: Encodable {
         /// Renamed to `orientation`.
         enum Bardir: String, Encodable {
@@ -724,10 +677,8 @@ struct Histogram: Encodable {
         var bardir: Bardir?
     
     }
-    /// 
     var _deprecated: _Deprecated?
 
-    /// 
     struct Error_X: Encodable {
         /// Determines whether or not this set of error bars is visible.
         var visible: Bool?
@@ -757,13 +708,10 @@ struct Histogram: Encodable {
         /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
         var valueminus: Double?
     
-        /// 
         var traceref: Int?
     
-        /// 
         var tracerefminus: Int?
     
-        /// 
         var copy_ystyle: Bool?
     
         /// Sets the stoke color of the error bars.
@@ -775,13 +723,11 @@ struct Histogram: Encodable {
         /// Sets the width (in px) of the cross-bar at both ends of the error bars.
         var width: Double?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Obsolete. Use the alpha channel in error bar `color` to set the opacity.
             var opacity: Double?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
         /// Sets the source reference on plot.ly for  array .
@@ -791,10 +737,8 @@ struct Histogram: Encodable {
         var arrayminussrc: String?
     
     }
-    /// 
     var error_x: Error_X?
 
-    /// 
     struct Error_Y: Encodable {
         /// Determines whether or not this set of error bars is visible.
         var visible: Bool?
@@ -824,10 +768,8 @@ struct Histogram: Encodable {
         /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
         var valueminus: Double?
     
-        /// 
         var traceref: Int?
     
-        /// 
         var tracerefminus: Int?
     
         /// Sets the stoke color of the error bars.
@@ -839,13 +781,11 @@ struct Histogram: Encodable {
         /// Sets the width (in px) of the cross-bar at both ends of the error bars.
         var width: Double?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Obsolete. Use the alpha channel in error bar `color` to set the opacity.
             var opacity: Double?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
         /// Sets the source reference on plot.ly for  array .
@@ -855,7 +795,6 @@ struct Histogram: Encodable {
         var arrayminussrc: String?
     
     }
-    /// 
     var error_y: Error_Y?
 
     /// Sets the calendar system to use with `x` date data.

@@ -1,5 +1,9 @@
 /// An indicator is used to visualize a single `value` along with some contextual information such as `steps` or a `threshold`, using a combination of three visual elements: a number, a delta, and/or a gauge. Deltas are taken with respect to a `reference`. Gauges can be either angular or bullet (aka linear) gauges.
 struct Indicator: Encodable {
+    let type: String = "indicator"
+
+    let animatable: Bool = true
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -24,7 +28,6 @@ struct Indicator: Encodable {
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     var meta: Anything?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -33,12 +36,9 @@ struct Indicator: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -47,11 +47,9 @@ struct Indicator: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -91,7 +89,6 @@ struct Indicator: Encodable {
     /// Sets the horizontal alignment of the `text` within the box. Note that this attribute has no effect if an angular gauge is displayed: in this case, it is always centered
     var align: Align?
 
-    /// 
     struct Domain: Encodable {
         /// Sets the horizontal domain of this indicator trace (in plot fraction).
         var x: InfoArray?
@@ -106,10 +103,8 @@ struct Indicator: Encodable {
         var column: Int?
     
     }
-    /// 
     var domain: Domain?
 
-    /// 
     struct Title: Encodable {
         /// Sets the title of this indicator.
         var text: String?
@@ -128,10 +123,8 @@ struct Indicator: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -139,10 +132,8 @@ struct Indicator: Encodable {
         var font: Font?
     
     }
-    /// 
     var title: Title?
 
-    /// 
     struct Number: Encodable {
         /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
         var valueformat: String?
@@ -152,10 +143,8 @@ struct Indicator: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -169,10 +158,8 @@ struct Indicator: Encodable {
         var suffix: String?
     
     }
-    /// 
     var number: Number?
 
-    /// 
     struct Delta: Encodable {
         /// Sets the reference value to compute the delta. By default, it is set to the current value.
         var reference: Double?
@@ -193,7 +180,6 @@ struct Indicator: Encodable {
         /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
         var valueformat: String?
     
-        /// 
         struct Increasing: Encodable {
             /// Sets the symbol to display for increasing value
             var symbol: String?
@@ -202,10 +188,8 @@ struct Indicator: Encodable {
             var color: Color?
         
         }
-        /// 
         var increasing: Increasing?
     
-        /// 
         struct Decreasing: Encodable {
             /// Sets the symbol to display for increasing value
             var symbol: String?
@@ -214,7 +198,6 @@ struct Indicator: Encodable {
             var color: Color?
         
         }
-        /// 
         var decreasing: Decreasing?
     
         /// Set the font used to display the delta
@@ -222,10 +205,8 @@ struct Indicator: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -233,7 +214,6 @@ struct Indicator: Encodable {
         var font: Font?
     
     }
-    /// 
     var delta: Delta?
 
     /// The gauge of the Indicator plot.
@@ -251,7 +231,6 @@ struct Indicator: Encodable {
             /// Sets the background color of the arc.
             var color: Color?
         
-            /// 
             struct Line: Encodable {
                 /// Sets the color of the line enclosing each sector.
                 var color: Color?
@@ -260,7 +239,6 @@ struct Indicator: Encodable {
                 var width: Double?
             
             }
-            /// 
             var line: Line?
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
@@ -279,7 +257,6 @@ struct Indicator: Encodable {
         /// Sets the width (in px) of the border enclosing the gauge.
         var borderwidth: Double?
     
-        /// 
         struct Axis: Encodable {
             /// Sets the range of this axis.
             var range: InfoArray?
@@ -337,10 +314,8 @@ struct Indicator: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -353,11 +328,8 @@ struct Indicator: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -375,15 +347,12 @@ struct Indicator: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets a tick label prefix.
@@ -444,19 +413,14 @@ struct Indicator: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var axis: Axis?
     
-        /// 
         struct Steps: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Step: Encodable {
                     /// Sets the background color of the arc.
                     var color: Color?
                 
-                    /// 
                     struct Line: Encodable {
                         /// Sets the color of the line enclosing each sector.
                         var color: Color?
@@ -465,7 +429,6 @@ struct Indicator: Encodable {
                         var width: Double?
                     
                     }
-                    /// 
                     var line: Line?
                 
                     /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
@@ -481,20 +444,15 @@ struct Indicator: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var step: Step?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var steps: Steps?
     
-        /// 
         struct Threshold: Encodable {
-            /// 
             struct Line: Encodable {
                 /// Sets the color of the threshold line.
                 var color: Color?
@@ -503,7 +461,6 @@ struct Indicator: Encodable {
                 var width: Double?
             
             }
-            /// 
             var line: Line?
         
             /// Sets the thickness of the threshold line as a fraction of the thickness of the gauge.
@@ -513,7 +470,6 @@ struct Indicator: Encodable {
             var value: Double?
         
         }
-        /// 
         var threshold: Threshold?
     
     }

@@ -1,5 +1,9 @@
 /// The data visualized as scatter point, lines or marker symbols on a Mapbox GL geographic map is provided by longitude/latitude pairs in `lon` and `lat`.
 struct Scattermapbox: Encodable {
+    let type: String = "scattermapbox"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -36,7 +40,6 @@ struct Scattermapbox: Encodable {
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
     var selectedpoints: Anything?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -49,10 +52,8 @@ struct Scattermapbox: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -93,10 +94,8 @@ struct Scattermapbox: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -105,12 +104,9 @@ struct Scattermapbox: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -119,11 +115,9 @@ struct Scattermapbox: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -166,7 +160,6 @@ struct Scattermapbox: Encodable {
     /// Sets hover text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates. To be seen, trace `hoverinfo` must contain a *text* flag.
     var hovertext: String?
 
-    /// 
     struct Line: Encodable {
         /// Sets the line color.
         var color: Color?
@@ -175,13 +168,11 @@ struct Scattermapbox: Encodable {
         var width: Double?
     
     }
-    /// 
     var line: Line?
 
     /// Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
     var connectgaps: Bool?
 
-    /// 
     struct Marker: Encodable {
         /// Sets the marker symbol. Full list: https://www.mapbox.com/maki-icons/ Note that the array `marker.color` and `marker.size` are only available for *circle* symbols.
         var symbol: String?
@@ -233,7 +224,6 @@ struct Scattermapbox: Encodable {
         /// Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color`is set to a numerical array.
         var showscale: Bool?
     
-        /// 
         struct Colorbar: Encodable {
             /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
             enum Thicknessmode: String, Encodable {
@@ -352,10 +342,8 @@ struct Scattermapbox: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -368,11 +356,8 @@ struct Scattermapbox: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -390,15 +375,12 @@ struct Scattermapbox: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets a tick label prefix.
@@ -452,7 +434,6 @@ struct Scattermapbox: Encodable {
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             var showexponent: Showexponent?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -462,10 +443,8 @@ struct Scattermapbox: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -482,10 +461,8 @@ struct Scattermapbox: Encodable {
                 var side: Side?
             
             }
-            /// 
             var title: Title?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Deprecated in favor of color bar's `title.text`. Note that value of color bar's `title` is no longer a simple *string* but a set of sub-attributes.
                 var title: String?
@@ -495,10 +472,8 @@ struct Scattermapbox: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -515,7 +490,6 @@ struct Scattermapbox: Encodable {
                 var titleside: Titleside?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets the source reference on plot.ly for  tickvals .
@@ -525,7 +499,6 @@ struct Scattermapbox: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var colorbar: Colorbar?
     
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
@@ -544,7 +517,6 @@ struct Scattermapbox: Encodable {
         var colorsrc: String?
     
     }
-    /// 
     var marker: Marker?
 
     /// Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape.
@@ -563,10 +535,8 @@ struct Scattermapbox: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
     }
@@ -591,9 +561,7 @@ struct Scattermapbox: Encodable {
     /// Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. By default, scattermapbox layers are inserted above all the base layers. To place the scattermapbox layers above every other layer, set `below` to *''*.
     var below: String?
 
-    /// 
     struct Selected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
             var opacity: Double?
@@ -605,16 +573,12 @@ struct Scattermapbox: Encodable {
             var size: Double?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var selected: Selected?
 
-    /// 
     struct Unselected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
             var opacity: Double?
@@ -626,11 +590,9 @@ struct Scattermapbox: Encodable {
             var size: Double?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var unselected: Unselected?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.

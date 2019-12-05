@@ -7,7 +7,15 @@ struct Trace {
 
     init(identifier: String, schema: Schema.Trace) {
         attributes = Swift.Struct(identifier: identifier, entries: schema.attributes)
-        attributes.description = schema.meta["description"] ?? ""
+        attributes.description = schema.meta["description"] ?? attributes.description
+
+        let typeConst = Swift.Instance(identifier: "type",  dataType: Swift.String_(schema: nil),
+                const: "\"\(schema.type)\"", optional: false)
+        attributes.members.insert(typeConst, at: 0)
+
+        let animatableConst = Swift.Instance(identifier: "animatable", dataType: Swift.Boolean(schema: nil),
+                const: String(schema.animatable), optional: false)
+        attributes.members.insert(animatableConst, at: 1)
     }
 
     /// Returns lines of Swift code that fully define the Trace struct and all of it's nested members.

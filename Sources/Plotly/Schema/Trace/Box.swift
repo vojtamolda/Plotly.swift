@@ -1,5 +1,9 @@
 /// In vertical (horizontal) box plots, statistics are computed using `y` (`x`) values. By supplying an `x` (`y`) array, one box per distinct x (y) value is drawn If no `x` (`y`) {array} is provided, a single box is drawn. That box position is then positioned with with `name` or with `x0` (`y0`) if provided. Each box spans from quartile 1 (Q1) to quartile 3 (Q3). The second quartile (Q2) is marked by a line inside the box. By default, the whiskers correspond to the box' edges +/- 1.5 times the interquartile range (IQR: Q3-Q1), see *boxpoints* for other options.
 struct Box: Encodable {
+    let type: String = "box"
+
+    let animatable: Bool = false
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -59,7 +63,6 @@ struct Box: Encodable {
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
     var hoverinfo: Hoverinfo?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         var bgcolor: Color?
@@ -72,10 +75,8 @@ struct Box: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
@@ -116,10 +117,8 @@ struct Box: Encodable {
         var namelengthsrc: String?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -128,12 +127,9 @@ struct Box: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
-    /// 
     struct Transforms: Encodable {
-        /// 
         struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
             struct Transform: Encodable {
@@ -142,11 +138,9 @@ struct Box: Encodable {
             var transform: Transform?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -221,7 +215,6 @@ struct Box: Encodable {
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically selected based on the positions of other box traces in the same subplot.
     var width: Double?
 
-    /// 
     struct Marker: Encodable {
         /// Sets the color of the outlier sample points.
         var outliercolor: Color?
@@ -383,7 +376,6 @@ struct Box: Encodable {
         /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
         var color: Color?
     
-        /// 
         struct Line: Encodable {
             /// Sets themarker.linecolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.
             var color: Color?
@@ -398,14 +390,11 @@ struct Box: Encodable {
             var outlierwidth: Double?
         
         }
-        /// 
         var line: Line?
     
     }
-    /// 
     var marker: Marker?
 
-    /// 
     struct Line: Encodable {
         /// Sets the color of line bounding the box(es).
         var color: Color?
@@ -414,7 +403,6 @@ struct Box: Encodable {
         var width: Double?
     
     }
-    /// 
     var line: Line?
 
     /// Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
@@ -426,9 +414,7 @@ struct Box: Encodable {
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
     var alignmentgroup: String?
 
-    /// 
     struct Selected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
             var opacity: Double?
@@ -440,16 +426,12 @@ struct Box: Encodable {
             var size: Double?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var selected: Selected?
 
-    /// 
     struct Unselected: Encodable {
-        /// 
         struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
             var opacity: Double?
@@ -461,11 +443,9 @@ struct Box: Encodable {
             var size: Double?
         
         }
-        /// 
         var marker: Marker?
     
     }
-    /// 
     var unselected: Unselected?
 
     /// Do the hover effects highlight individual boxes  or sample points or both?

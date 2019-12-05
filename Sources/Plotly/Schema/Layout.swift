@@ -1,21 +1,17 @@
-/// 
 struct Layout: Encodable {
     /// Sets the global font. Note that fonts used in traces and other layout components inherit from the global font.
     struct Font: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
     }
     /// Sets the global font. Note that fonts used in traces and other layout components inherit from the global font.
     var font: Font?
 
-    /// 
     struct Title: Encodable {
         /// Sets the plot's title. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
         var text: String?
@@ -25,10 +21,8 @@ struct Layout: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -96,7 +90,6 @@ struct Layout: Encodable {
         var pad: Pad?
     
     }
-    /// 
     var title: Title?
 
     /// Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. Note that, regardless of this attribute, an undefined layout width or height is always initialized on the first call to plot.
@@ -108,7 +101,6 @@ struct Layout: Encodable {
     /// Sets the plot's height (in px).
     var height: Double?
 
-    /// 
     struct Margin: Encodable {
         /// Sets the left margin (in px).
         var l: Double?
@@ -129,7 +121,6 @@ struct Layout: Encodable {
         var autoexpand: Bool?
     
     }
-    /// 
     var margin: Margin?
 
     /// Sets the color of paper where the graph is drawn.
@@ -165,7 +156,6 @@ struct Layout: Encodable {
     /// Default attributes to be applied to the plot. Templates can be created from existing plots using `Plotly.makeTemplate`, or created manually. They should be objects with format: `{layout: layoutTemplate, data: {[type]: [traceTemplate, ...]}, ...}` `layoutTemplate` and `traceTemplate` are objects matching the attribute structure of `layout` and a data trace.  Trace templates are applied cyclically to traces of each type. Container arrays (eg `annotations`) have special handling: An object ending in `defaults` (eg `annotationdefaults`) is applied to each array item. But if an item has a `templateitemname` key we look in the template array for an item with matching `name` and apply that instead. If no matching `name` is found we mark the item invisible. Any named template item not referenced is appended to the end of the array, so you can use this for a watermark annotation or a logo image, for example. To omit one of these items on the plot, make an item with matching `templateitemname` and `visible: false`.
     var template: Anything?
 
-    /// 
     struct Modebar: Encodable {
         /// Sets the orientation of the modebar.
         enum Orientation: String, Encodable {
@@ -188,7 +178,6 @@ struct Layout: Encodable {
         var uirevision: Anything?
     
     }
-    /// 
     var modebar: Modebar?
 
     /// Assigns extra meta information that can be used in various `text` attributes. Attributes such as the graph, axis and colorbar `title.text`, annotation `text` `trace.name` in legend items, `rangeselector`, `updatemenus` and `sliders` `label` text all support `meta`. One can access `meta` fields using template strings: `%{meta[i]}` where `i` is the index of the `meta` item in question. `meta` can also be an object for example `{key: value}` which can be accessed %{meta[key]}.
@@ -253,7 +242,6 @@ struct Layout: Encodable {
     /// Sets transition options used during Plotly.react updates.
     var transition: Transition?
 
-    /// 
     struct _Deprecated: Encodable {
         /// Value of `title` is no longer a simple *string* but a set of sub-attributes. To set the contents of the title, please use `title.text` now.
         var title: String?
@@ -263,10 +251,8 @@ struct Layout: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -274,7 +260,6 @@ struct Layout: Encodable {
         var titlefont: Titlefont?
     
     }
-    /// 
     var _deprecated: _Deprecated?
 
     /// Determines the mode of single click interactions. *event* is the default value and emits the `plotly_click` event. In addition this mode emits the `plotly_selected` event in drag modes *lasso* and *select*, but with no event data attached (kept for compatibility reasons). The *select* flag enables selecting single data points via click. This mode also supports persistent selections, meaning that pressing Shift while clicking, adds to / subtracts from an existing selection. *select* with `hovermode`: *x* can be confusing, consider explicitly setting `hovermode`: *closest* when using this feature. Selection events are sent accordingly as long as *event* flag is set as well. When the *event* flag is missing, `plotly_click` and `plotly_selected` events are not fired.
@@ -326,7 +311,6 @@ struct Layout: Encodable {
     /// Sets the default distance (in pixels) to look for data to draw spikelines to (-1 means no cutoff, 0 means no looking for data). As with hoverdistance, distance does not apply to area-like objects. In addition, some objects can be hovered on but will not generate spikelines, such as scatter fills.
     var spikedistance: Int?
 
-    /// 
     struct Hoverlabel: Encodable {
         /// Sets the background color of all hover labels on graph
         var bgcolor: Color?
@@ -339,10 +323,8 @@ struct Layout: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -362,7 +344,6 @@ struct Layout: Encodable {
         var namelength: Int?
     
     }
-    /// 
     var hoverlabel: Hoverlabel?
 
     /// When "dragmode" is set to "select", this limits the selection of the drag to horizontal, vertical or diagonal. "h" only allows horizontal selection, "v" only vertical, "d" only diagonal and "any" sets no limit.
@@ -375,7 +356,6 @@ struct Layout: Encodable {
     /// When "dragmode" is set to "select", this limits the selection of the drag to horizontal, vertical or diagonal. "h" only allows horizontal selection, "v" only vertical, "d" only diagonal and "any" sets no limit.
     var selectdirection: Selectdirection?
 
-    /// 
     struct Grid: Encodable {
         /// The number of rows in the grid. If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But it's also possible to have a different length, if you want to leave a row at the end for non-cartesian subplots.
         var rows: Int?
@@ -414,7 +394,6 @@ struct Layout: Encodable {
         /// Vertical space between grid cells, expressed as a fraction of the total height available to one cell. Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.
         var ygap: Double?
     
-        /// 
         struct Domain: Encodable {
             /// Sets the horizontal domain of this grid subplot (in plot fraction). The first and last cells end exactly at the domain edges, with no grout around the edges.
             var x: InfoArray?
@@ -423,7 +402,6 @@ struct Layout: Encodable {
             var y: InfoArray?
         
         }
-        /// 
         var domain: Domain?
     
         /// Sets where the x axis labels and titles go. *bottom* means the very bottom of the grid. *bottom plot* is the lowest plot that each x axis is used in. *top* and *top plot* are similar.
@@ -447,7 +425,6 @@ struct Layout: Encodable {
         var yside: Yside?
     
     }
-    /// 
     var grid: Grid?
 
     /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
@@ -472,7 +449,6 @@ struct Layout: Encodable {
     /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
     var calendar: Calendar?
 
-    /// 
     struct Xaxis: Encodable {
         /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
         var visible: Bool?
@@ -480,7 +456,6 @@ struct Layout: Encodable {
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
         var color: Color?
     
-        /// 
         struct Title: Encodable {
             /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             var text: String?
@@ -490,10 +465,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -504,7 +477,6 @@ struct Layout: Encodable {
             var standoff: Double?
         
         }
-        /// 
         var title: Title?
     
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
@@ -696,10 +668,8 @@ struct Layout: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -763,11 +733,8 @@ struct Layout: Encodable {
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         var tickformat: String?
     
-        /// 
         struct Tickformatstops: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Tickformatstop: Encodable {
                     /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                     var enabled: Bool?
@@ -785,15 +752,12 @@ struct Layout: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var tickformatstop: Tickformatstop?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var tickformatstops: Tickformatstops?
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -905,7 +869,6 @@ struct Layout: Encodable {
         /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in `editable: true` configuration. Defaults to `layout.uirevision`.
         var uirevision: Anything?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Obsolete. Set `tickmode` to *auto* for old `autotick` *true* behavior. Set `tickmode` to *linear* for `autotick` *false*.
             var autotick: Bool?
@@ -918,10 +881,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -929,10 +890,8 @@ struct Layout: Encodable {
             var titlefont: Titlefont?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
-        /// 
         struct Rangeslider: Encodable {
             /// Sets the background color of the range slider.
             var bgcolor: Color?
@@ -955,7 +914,6 @@ struct Layout: Encodable {
             /// Determines whether or not the range slider will be visible. If visible, perpendicular axes will be set to `fixedrange`
             var visible: Bool?
         
-            /// 
             struct Yaxis: Encodable {
                 /// Determines whether or not the range of this axis in the rangeslider use the same value than in the main plot when zooming in/out. If *auto*, the autorange will be used. If *fixed*, the `range` is used. If *match*, the current range of the corresponding y-axis on the main subplot is used.
                 enum Rangemode: String, Encodable {
@@ -970,21 +928,16 @@ struct Layout: Encodable {
                 var range: InfoArray?
             
             }
-            /// 
             var yaxis: Yaxis?
         
         }
-        /// 
         var rangeslider: Rangeslider?
     
-        /// 
         struct Rangeselector: Encodable {
             /// Determines whether or not this range selector is visible. Note that range selectors are only available for x axes of `type` set to or auto-typed to *date*.
             var visible: Bool?
         
-            /// 
             struct Buttons: Encodable {
-                /// 
                 struct Items: Encodable {
                     /// Sets the specifications for each buttons. By default, a range selector comes with no buttons.
                     struct Button: Encodable {
@@ -1029,11 +982,9 @@ struct Layout: Encodable {
                     var button: Button?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var buttons: Buttons?
         
             /// Sets the x position (in normalized coordinates) of the range selector.
@@ -1067,10 +1018,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -1090,7 +1039,6 @@ struct Layout: Encodable {
             var borderwidth: Double?
         
         }
-        /// 
         var rangeselector: Rangeselector?
     
         /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
@@ -1125,10 +1073,8 @@ struct Layout: Encodable {
         var categoryarraysrc: String?
     
     }
-    /// 
     var xaxis: Xaxis?
 
-    /// 
     struct Yaxis: Encodable {
         /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
         var visible: Bool?
@@ -1136,7 +1082,6 @@ struct Layout: Encodable {
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
         var color: Color?
     
-        /// 
         struct Title: Encodable {
             /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             var text: String?
@@ -1146,10 +1091,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -1160,7 +1103,6 @@ struct Layout: Encodable {
             var standoff: Double?
         
         }
-        /// 
         var title: Title?
     
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
@@ -1352,10 +1294,8 @@ struct Layout: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -1419,11 +1359,8 @@ struct Layout: Encodable {
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         var tickformat: String?
     
-        /// 
         struct Tickformatstops: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Tickformatstop: Encodable {
                     /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                     var enabled: Bool?
@@ -1441,15 +1378,12 @@ struct Layout: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var tickformatstop: Tickformatstop?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var tickformatstops: Tickformatstops?
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -1561,7 +1495,6 @@ struct Layout: Encodable {
         /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in `editable: true` configuration. Defaults to `layout.uirevision`.
         var uirevision: Anything?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Obsolete. Set `tickmode` to *auto* for old `autotick` *true* behavior. Set `tickmode` to *linear* for `autotick` *false*.
             var autotick: Bool?
@@ -1574,10 +1507,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -1585,7 +1516,6 @@ struct Layout: Encodable {
             var titlefont: Titlefont?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
         /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
@@ -1620,12 +1550,9 @@ struct Layout: Encodable {
         var categoryarraysrc: String?
     
     }
-    /// 
     var yaxis: Yaxis?
 
-    /// 
     struct Ternary: Encodable {
-        /// 
         struct Domain: Encodable {
             /// Sets the horizontal domain of this ternary subplot (in plot fraction).
             var x: InfoArray?
@@ -1640,7 +1567,6 @@ struct Layout: Encodable {
             var column: Int?
         
         }
-        /// 
         var domain: Domain?
     
         /// Set the background color of the subplot
@@ -1649,9 +1575,7 @@ struct Layout: Encodable {
         /// The number each triplet should sum to, and the maximum range of each axis
         var sum: Double?
     
-        /// 
         struct Aaxis: Encodable {
-            /// 
             struct Title: Encodable {
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -1661,10 +1585,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -1672,7 +1594,6 @@ struct Layout: Encodable {
                 var font: Font?
             
             }
-            /// 
             var title: Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
@@ -1779,10 +1700,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -1795,11 +1714,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -1817,15 +1733,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -1860,7 +1773,6 @@ struct Layout: Encodable {
             /// The minimum value visible on this axis. The maximum is determined by the sum minus the minimum values of the other two axes. The full view corresponds to all the minima set to zero.
             var min: Double?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. To set the axis' title, please use `title.text` now.
                 var title: String?
@@ -1870,10 +1782,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -1881,7 +1791,6 @@ struct Layout: Encodable {
                 var titlefont: Titlefont?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
@@ -1894,12 +1803,9 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var aaxis: Aaxis?
     
-        /// 
         struct Baxis: Encodable {
-            /// 
             struct Title: Encodable {
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -1909,10 +1815,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -1920,7 +1824,6 @@ struct Layout: Encodable {
                 var font: Font?
             
             }
-            /// 
             var title: Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
@@ -2027,10 +1930,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -2043,11 +1944,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -2065,15 +1963,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -2108,7 +2003,6 @@ struct Layout: Encodable {
             /// The minimum value visible on this axis. The maximum is determined by the sum minus the minimum values of the other two axes. The full view corresponds to all the minima set to zero.
             var min: Double?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. To set the axis' title, please use `title.text` now.
                 var title: String?
@@ -2118,10 +2012,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -2129,7 +2021,6 @@ struct Layout: Encodable {
                 var titlefont: Titlefont?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
@@ -2142,12 +2033,9 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var baxis: Baxis?
     
-        /// 
         struct Caxis: Encodable {
-            /// 
             struct Title: Encodable {
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -2157,10 +2045,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -2168,7 +2054,6 @@ struct Layout: Encodable {
                 var font: Font?
             
             }
-            /// 
             var title: Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
@@ -2275,10 +2160,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -2291,11 +2174,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -2313,15 +2193,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -2356,7 +2233,6 @@ struct Layout: Encodable {
             /// The minimum value visible on this axis. The maximum is determined by the sum minus the minimum values of the other two axes. The full view corresponds to all the minima set to zero.
             var min: Double?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. To set the axis' title, please use `title.text` now.
                 var title: String?
@@ -2366,10 +2242,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -2377,7 +2251,6 @@ struct Layout: Encodable {
                 var titlefont: Titlefont?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. Defaults to `ternary<N>.uirevision`.
@@ -2390,32 +2263,24 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var caxis: Caxis?
     
         /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the individual axes. Defaults to `layout.uirevision`.
         var uirevision: Anything?
     
     }
-    /// 
     var ternary: Ternary?
 
-    /// 
     struct Scene: Encodable {
-        /// 
         var bgcolor: Color?
     
-        /// 
         struct Camera: Encodable {
             /// Sets the (x,y,z) components of the 'up' camera vector. This vector determines the up direction of this scene with respect to the page. The default is *{x: 0, y: 0, z: 1}* which means that the z axis points up.
             struct Up: Encodable {
-                /// 
                 var x: Double?
             
-                /// 
                 var y: Double?
             
-                /// 
                 var z: Double?
             
             }
@@ -2424,13 +2289,10 @@ struct Layout: Encodable {
         
             /// Sets the (x,y,z) components of the 'center' camera vector This vector determines the translation (x,y,z) space about the center of this scene. By default, there is no such translation.
             struct Center: Encodable {
-                /// 
                 var x: Double?
             
-                /// 
                 var y: Double?
             
-                /// 
                 var z: Double?
             
             }
@@ -2439,20 +2301,16 @@ struct Layout: Encodable {
         
             /// Sets the (x,y,z) components of the 'eye' camera vector. This vector determines the view point about the origin of this scene.
             struct Eye: Encodable {
-                /// 
                 var x: Double?
             
-                /// 
                 var y: Double?
             
-                /// 
                 var z: Double?
             
             }
             /// Sets the (x,y,z) components of the 'eye' camera vector. This vector determines the view point about the origin of this scene.
             var eye: Eye?
         
-            /// 
             struct Projection: Encodable {
                 /// Sets the projection type. The projection type could be either *perspective* or *orthographic*. The default is *perspective*.
                 enum AxisType: String, Encodable {
@@ -2463,14 +2321,11 @@ struct Layout: Encodable {
                 var type: AxisType?
             
             }
-            /// 
             var projection: Projection?
         
         }
-        /// 
         var camera: Camera?
     
-        /// 
         struct Domain: Encodable {
             /// Sets the horizontal domain of this scene subplot (in plot fraction).
             var x: InfoArray?
@@ -2485,7 +2340,6 @@ struct Layout: Encodable {
             var column: Int?
         
         }
-        /// 
         var domain: Domain?
     
         /// If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges. If *data*, this scene's axes are drawn in proportion with the axes' ranges. If *manual*, this scene's axes are drawn in proportion with the input of *aspectratio* (the default behavior if *aspectratio* is provided). If *auto*, this scene's axes are drawn using the results of *data* except when one axis is more than four times the size of the two others, where in that case the results of *cube* are used.
@@ -2500,26 +2354,20 @@ struct Layout: Encodable {
     
         /// Sets this scene's axis aspectratio.
         struct Aspectratio: Encodable {
-            /// 
             var x: Double?
         
-            /// 
             var y: Double?
         
-            /// 
             var z: Double?
         
-            /// 
             struct Impliededits: Encodable {
             }
-            /// 
             var impliedEdits: Impliededits?
         
         }
         /// Sets this scene's axis aspectratio.
         var aspectratio: Aspectratio?
     
-        /// 
         struct Xaxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             var visible: Bool?
@@ -2573,7 +2421,6 @@ struct Layout: Encodable {
             /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
             var categoryarray: [Double]?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -2583,10 +2430,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -2594,7 +2439,6 @@ struct Layout: Encodable {
                 var font: Font?
             
             }
-            /// 
             var title: Title?
         
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
@@ -2690,10 +2534,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -2757,11 +2599,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -2779,15 +2618,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -2820,7 +2656,6 @@ struct Layout: Encodable {
             /// Sets the width (in px) of the zero line.
             var zerolinewidth: Double?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. To set the axis' title, please use `title.text` now.
                 var title: String?
@@ -2830,10 +2665,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -2841,7 +2674,6 @@ struct Layout: Encodable {
                 var titlefont: Titlefont?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
@@ -2876,10 +2708,8 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var xaxis: Xaxis?
     
-        /// 
         struct Yaxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             var visible: Bool?
@@ -2933,7 +2763,6 @@ struct Layout: Encodable {
             /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
             var categoryarray: [Double]?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -2943,10 +2772,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -2954,7 +2781,6 @@ struct Layout: Encodable {
                 var font: Font?
             
             }
-            /// 
             var title: Title?
         
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
@@ -3050,10 +2876,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -3117,11 +2941,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -3139,15 +2960,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -3180,7 +2998,6 @@ struct Layout: Encodable {
             /// Sets the width (in px) of the zero line.
             var zerolinewidth: Double?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. To set the axis' title, please use `title.text` now.
                 var title: String?
@@ -3190,10 +3007,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -3201,7 +3016,6 @@ struct Layout: Encodable {
                 var titlefont: Titlefont?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
@@ -3236,10 +3050,8 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var yaxis: Yaxis?
     
-        /// 
         struct Zaxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             var visible: Bool?
@@ -3293,7 +3105,6 @@ struct Layout: Encodable {
             /// Sets the order in which categories on this axis appear. Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
             var categoryarray: [Double]?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -3303,10 +3114,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -3314,7 +3123,6 @@ struct Layout: Encodable {
                 var font: Font?
             
             }
-            /// 
             var title: Title?
         
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
@@ -3410,10 +3218,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -3477,11 +3283,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -3499,15 +3302,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -3540,7 +3340,6 @@ struct Layout: Encodable {
             /// Sets the width (in px) of the zero line.
             var zerolinewidth: Double?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. To set the axis' title, please use `title.text` now.
                 var title: String?
@@ -3550,10 +3349,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -3561,7 +3358,6 @@ struct Layout: Encodable {
                 var titlefont: Titlefont?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. This does not set the calendar for interpreting data on this axis, that's specified in the trace or via the global `layout.calendar`
@@ -3596,7 +3392,6 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var zaxis: Zaxis?
     
         /// Determines the mode of drag interactions for this scene.
@@ -3621,20 +3416,15 @@ struct Layout: Encodable {
         /// Controls persistence of user-driven changes in camera attributes. Defaults to `layout.uirevision`.
         var uirevision: Anything?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Obsolete. Use `camera` instead.
             var cameraposition: InfoArray?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
-        /// 
         struct Annotations: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Annotation: Encodable {
                     /// Determines whether or not this annotation is visible.
                     var visible: Bool?
@@ -3691,10 +3481,8 @@ struct Layout: Encodable {
                         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                         var family: String?
                     
-                        /// 
                         var size: Double?
                     
-                        /// 
                         var color: Color?
                     
                     }
@@ -3790,7 +3578,6 @@ struct Layout: Encodable {
                     /// Sets text to appear when hovering over this annotation. If omitted or blank, no hover label will appear.
                     var hovertext: String?
                 
-                    /// 
                     struct Hoverlabel: Encodable {
                         /// Sets the background color of the hover label. By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
                         var bgcolor: Color?
@@ -3803,10 +3590,8 @@ struct Layout: Encodable {
                             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                             var family: String?
                         
-                            /// 
                             var size: Double?
                         
-                            /// 
                             var color: Color?
                         
                         }
@@ -3814,7 +3599,6 @@ struct Layout: Encodable {
                         var font: Font?
                     
                     }
-                    /// 
                     var hoverlabel: Hoverlabel?
                 
                     /// Determines whether the annotation text box captures mouse move and click events, or allows those events to pass through to data points in the plot that may be behind the annotation. By default `captureevents` is *false* unless `hovertext` is provided. If you use the event `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
@@ -3827,24 +3611,18 @@ struct Layout: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var annotation: Annotation?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var annotations: Annotations?
     
     }
-    /// 
     var scene: Scene?
 
-    /// 
     struct Geo: Encodable {
-        /// 
         struct Domain: Encodable {
             /// Sets the horizontal domain of this geo subplot (in plot fraction). Note that geo subplots are constrained by domain. In general, when `projection.scale` is set to 1. a map will fit either its x or y domain, but not both.
             var x: InfoArray?
@@ -3859,7 +3637,6 @@ struct Layout: Encodable {
             var column: Int?
         
         }
-        /// 
         var domain: Domain?
     
         /// Sets the resolution of the base layers. The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
@@ -3883,7 +3660,6 @@ struct Layout: Encodable {
         /// Set the scope of the map.
         var scope: Scope?
     
-        /// 
         struct Projection: Encodable {
             /// Sets the projection type.
             enum AxisType: String, Encodable {
@@ -3913,7 +3689,6 @@ struct Layout: Encodable {
             /// Sets the projection type.
             var type: AxisType?
         
-            /// 
             struct Rotation: Encodable {
                 /// Rotates the map along parallels (in degrees East). Defaults to the center of the `lonaxis.range` values.
                 var lon: Double?
@@ -3925,7 +3700,6 @@ struct Layout: Encodable {
                 var roll: Double?
             
             }
-            /// 
             var rotation: Rotation?
         
             /// For conic projection types only. Sets the parallels (tangent, secant) where the cone intersects the sphere.
@@ -3935,10 +3709,8 @@ struct Layout: Encodable {
             var scale: Double?
         
         }
-        /// 
         var projection: Projection?
     
-        /// 
         struct Center: Encodable {
             /// Sets the longitude of the map's center. By default, the map's longitude center lies at the middle of the longitude range for scoped projection and above `projection.rotation.lon` otherwise.
             var lon: Double?
@@ -3947,7 +3719,6 @@ struct Layout: Encodable {
             var lat: Double?
         
         }
-        /// 
         var center: Center?
     
         /// Sets whether or not the coastlines are drawn.
@@ -4016,7 +3787,6 @@ struct Layout: Encodable {
         /// Set the background color of the map
         var bgcolor: Color?
     
-        /// 
         struct Lonaxis: Encodable {
             /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
             var range: InfoArray?
@@ -4037,10 +3807,8 @@ struct Layout: Encodable {
             var gridwidth: Double?
         
         }
-        /// 
         var lonaxis: Lonaxis?
     
-        /// 
         struct Lataxis: Encodable {
             /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
             var range: InfoArray?
@@ -4061,19 +3829,15 @@ struct Layout: Encodable {
             var gridwidth: Double?
         
         }
-        /// 
         var lataxis: Lataxis?
     
         /// Controls persistence of user-driven changes in the view (projection and center). Defaults to `layout.uirevision`.
         var uirevision: Anything?
     
     }
-    /// 
     var geo: Geo?
 
-    /// 
     struct Mapbox: Encodable {
-        /// 
         struct Domain: Encodable {
             /// Sets the horizontal domain of this mapbox subplot (in plot fraction).
             var x: InfoArray?
@@ -4088,7 +3852,6 @@ struct Layout: Encodable {
             var column: Int?
         
         }
-        /// 
         var domain: Domain?
     
         /// Sets the mapbox access token to be used for this mapbox map. Alternatively, the mapbox access token can be set in the configuration options under `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values : basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer references the Mapbox server.
@@ -4097,7 +3860,6 @@ struct Layout: Encodable {
         /// Defines the map layers that are rendered by default below the trace layers defined in `data`, which are themselves by default rendered below the layers defined in `layout.mapbox.layers`.  These layers can be defined either explicitly as a Mapbox Style object which can contain multiple layer definitions that load data from any public or private Tile Map Service (TMS or XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use WMSes which do not require any access tokens, or by using a default Mapbox style or custom Mapbox style URL, both of which require a Mapbox access token  Note that Mapbox access token can be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option.  Mapbox Style objects are of the form described in the Mapbox GL JS documentation available at https://docs.mapbox.com/mapbox-gl-js/style-spec  The built-in plotly.js styles objects are: open-street-map, white-bg, carto-positron, carto-darkmatter, stamen-terrain, stamen-toner, stamen-watercolor  The built-in Mapbox styles are: basic, streets, outdoors, light, dark, satellite, satellite-streets  Mapbox style URLs are of the form: mapbox://mapbox.mapbox-<name>-<version>
         var style: Anything?
     
-        /// 
         struct Center: Encodable {
             /// Sets the longitude of the center of the map (in degrees East).
             var lon: Double?
@@ -4106,7 +3868,6 @@ struct Layout: Encodable {
             var lat: Double?
         
         }
-        /// 
         var center: Center?
     
         /// Sets the zoom level of the map (mapbox.zoom).
@@ -4118,11 +3879,8 @@ struct Layout: Encodable {
         /// Sets the pitch angle of the map (in degrees, where *0* means perpendicular to the surface of the map) (mapbox.pitch).
         var pitch: Double?
     
-        /// 
         struct Layers: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Layer: Encodable {
                     /// Determines whether this layer is displayed
                     var visible: Bool?
@@ -4175,16 +3933,13 @@ struct Layout: Encodable {
                     /// Sets the maximum zoom level (mapbox.layer.maxzoom). At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
                     var maxzoom: Double?
                 
-                    /// 
                     struct Circle: Encodable {
                         /// Sets the circle radius (mapbox.layer.paint.circle-radius). Has an effect only when `type` is set to *circle*.
                         var radius: Double?
                     
                     }
-                    /// 
                     var circle: Circle?
                 
-                    /// 
                     struct Line: Encodable {
                         /// Sets the line width (mapbox.layer.paint.line-width). Has an effect only when `type` is set to *line*.
                         var width: Double?
@@ -4196,19 +3951,15 @@ struct Layout: Encodable {
                         var dashsrc: String?
                     
                     }
-                    /// 
                     var line: Line?
                 
-                    /// 
                     struct Fill: Encodable {
                         /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color). Has an effect only when `type` is set to *fill*.
                         var outlinecolor: Color?
                     
                     }
-                    /// 
                     var fill: Fill?
                 
-                    /// 
                     struct Symbol: Encodable {
                         /// Sets the symbol icon image (mapbox.layer.layout.icon-image). Full list: https://www.mapbox.com/maki-icons/
                         var icon: String?
@@ -4233,10 +3984,8 @@ struct Layout: Encodable {
                             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                             var family: String?
                         
-                            /// 
                             var size: Double?
                         
-                            /// 
                             var color: Color?
                         
                         }
@@ -4259,7 +4008,6 @@ struct Layout: Encodable {
                         var textposition: Textposition?
                     
                     }
-                    /// 
                     var symbol: Symbol?
                 
                     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
@@ -4269,27 +4017,21 @@ struct Layout: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var layer: Layer?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var layers: Layers?
     
         /// Controls persistence of user-driven changes in the view: `center`, `zoom`, `bearing`, `pitch`. Defaults to `layout.uirevision`.
         var uirevision: Anything?
     
     }
-    /// 
     var mapbox: Mapbox?
 
-    /// 
     struct Polar: Encodable {
-        /// 
         struct Domain: Encodable {
             /// Sets the horizontal domain of this polar subplot (in plot fraction).
             var x: InfoArray?
@@ -4304,7 +4046,6 @@ struct Layout: Encodable {
             var column: Int?
         
         }
-        /// 
         var domain: Domain?
     
         /// Sets angular span of this polar subplot with two angles (in degrees). Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to rightmost limit of the polar subplot.
@@ -4316,7 +4057,6 @@ struct Layout: Encodable {
         /// Set the background color of the subplot
         var bgcolor: Color?
     
-        /// 
         struct Radialaxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             var visible: Bool?
@@ -4389,7 +4129,6 @@ struct Layout: Encodable {
             /// Determines on which side of radial axis line the tick and tick labels appear.
             var side: Side?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -4399,10 +4138,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -4410,7 +4147,6 @@ struct Layout: Encodable {
                 var font: Font?
             
             }
-            /// 
             var title: Title?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
@@ -4419,7 +4155,6 @@ struct Layout: Encodable {
             /// Controls persistence of user-driven changes in axis `range`, `autorange`, `angle`, and `title` if in `editable: true` configuration. Defaults to `polar<N>.uirevision`.
             var uirevision: Anything?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. To set the axis' title, please use `title.text` now.
                 var title: String?
@@ -4429,10 +4164,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -4440,7 +4173,6 @@ struct Layout: Encodable {
                 var titlefont: Titlefont?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
@@ -4565,10 +4297,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -4581,11 +4311,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -4603,15 +4330,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
@@ -4654,10 +4378,8 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var radialaxis: Radialaxis?
     
-        /// 
         struct Angularaxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
             var visible: Bool?
@@ -4846,10 +4568,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -4862,11 +4582,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -4884,15 +4601,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
@@ -4913,7 +4627,6 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var angularaxis: Angularaxis?
     
         /// Determines if the radial axis grid lines and angular axis line are drawn as *circular* sectors or as *linear* (polygon) sectors. Has an effect only when the angular axis has `type` *category*. Note that `radialaxis.angle` is snapped to the angle of the closest vertex when `gridshape` is *circular* (so that radial axis scale is the same as the data scale).
@@ -4928,10 +4641,8 @@ struct Layout: Encodable {
         var uirevision: Anything?
     
     }
-    /// 
     var polar: Polar?
 
-    /// 
     struct Radialaxis: Encodable {
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Defines the start and end point of this radial axis.
         var range: InfoArray?
@@ -4972,10 +4683,8 @@ struct Layout: Encodable {
         var visible: Bool?
     
     }
-    /// 
     var radialaxis: Radialaxis?
 
-    /// 
     struct Angularaxis: Encodable {
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Defines the start and end point of this angular axis.
         var range: InfoArray?
@@ -5013,7 +4722,6 @@ struct Layout: Encodable {
         var visible: Bool?
     
     }
-    /// 
     var angularaxis: Angularaxis?
 
     /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Sets the direction corresponding to positive angles in legacy polar charts.
@@ -5027,7 +4735,6 @@ struct Layout: Encodable {
     /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Rotates the entire polar by the given angle in legacy polar charts.
     var orientation: Angle?
 
-    /// 
     struct Legend: Encodable {
         /// Sets the legend background color.
         var bgcolor: Color?
@@ -5043,10 +4750,8 @@ struct Layout: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -5149,14 +4854,10 @@ struct Layout: Encodable {
         var valign: Valign?
     
     }
-    /// 
     var legend: Legend?
 
-    /// 
     struct Annotations: Encodable {
-        /// 
         struct Items: Encodable {
-            /// 
             struct Annotation: Encodable {
                 /// Determines whether or not this annotation is visible.
                 var visible: Bool?
@@ -5172,10 +4873,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -5356,7 +5055,6 @@ struct Layout: Encodable {
                 /// Sets text to appear when hovering over this annotation. If omitted or blank, no hover label will appear.
                 var hovertext: String?
             
-                /// 
                 struct Hoverlabel: Encodable {
                     /// Sets the background color of the hover label. By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
                     var bgcolor: Color?
@@ -5369,10 +5067,8 @@ struct Layout: Encodable {
                         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                         var family: String?
                     
-                        /// 
                         var size: Double?
                     
-                        /// 
                         var color: Color?
                     
                     }
@@ -5380,19 +5076,16 @@ struct Layout: Encodable {
                     var font: Font?
                 
                 }
-                /// 
                 var hoverlabel: Hoverlabel?
             
                 /// Determines whether the annotation text box captures mouse move and click events, or allows those events to pass through to data points in the plot that may be behind the annotation. By default `captureevents` is *false* unless `hovertext` is provided. If you use the event `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
                 var captureevents: Bool?
             
-                /// 
                 struct _Deprecated: Encodable {
                     /// Obsolete. Set `xref` and `yref` separately instead.
                     var ref: String?
                 
                 }
-                /// 
                 var _deprecated: _Deprecated?
             
                 /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
@@ -5402,22 +5095,16 @@ struct Layout: Encodable {
                 var templateitemname: String?
             
             }
-            /// 
             var annotation: Annotation?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var annotations: Annotations?
 
-    /// 
     struct Shapes: Encodable {
-        /// 
         struct Items: Encodable {
-            /// 
             struct Shape: Encodable {
                 /// Determines whether or not this shape is visible.
                 var visible: Bool?
@@ -5496,7 +5183,6 @@ struct Layout: Encodable {
                 /// Sets the opacity of the shape.
                 var opacity: Double?
             
-                /// 
                 struct Line: Encodable {
                     /// Sets the line color.
                     var color: Color?
@@ -5508,7 +5194,6 @@ struct Layout: Encodable {
                     var dash: String?
                 
                 }
-                /// 
                 var line: Line?
             
                 /// Sets the color filling the shape's interior.
@@ -5521,22 +5206,16 @@ struct Layout: Encodable {
                 var templateitemname: String?
             
             }
-            /// 
             var shape: Shape?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var shapes: Shapes?
 
-    /// 
     struct Images: Encodable {
-        /// 
         struct Items: Encodable {
-            /// 
             struct Image: Encodable {
                 /// Determines whether or not this image is visible.
                 var visible: Bool?
@@ -5617,22 +5296,16 @@ struct Layout: Encodable {
                 var templateitemname: String?
             
             }
-            /// 
             var image: Image?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var images: Images?
 
-    /// 
     struct Updatemenus: Encodable {
-        /// 
         struct Items: Encodable {
-            /// 
             struct Updatemenu: Encodable {
                 /// Determines whether or not the update menu is visible.
                 var visible: Bool?
@@ -5661,11 +5334,8 @@ struct Layout: Encodable {
                 /// Highlights active dropdown item or active button if true.
                 var showactive: Bool?
             
-                /// 
                 struct Buttons: Encodable {
-                    /// 
                     struct Items: Encodable {
-                        /// 
                         struct Button: Encodable {
                             /// Determines whether or not this button is visible.
                             var visible: Bool?
@@ -5700,15 +5370,12 @@ struct Layout: Encodable {
                             var templateitemname: String?
                         
                         }
-                        /// 
                         var button: Button?
                     
                     }
-                    /// 
                     var items: Items?
                 
                 }
-                /// 
                 var buttons: Buttons?
             
                 /// Sets the x position (in normalized coordinates) of the update menu.
@@ -5760,10 +5427,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -5786,22 +5451,16 @@ struct Layout: Encodable {
                 var templateitemname: String?
             
             }
-            /// 
             var updatemenu: Updatemenu?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var updatemenus: Updatemenus?
 
-    /// 
     struct Sliders: Encodable {
-        /// 
         struct Items: Encodable {
-            /// 
             struct Slider: Encodable {
                 /// Determines whether or not the slider is visible.
                 var visible: Bool?
@@ -5809,11 +5468,8 @@ struct Layout: Encodable {
                 /// Determines which button (by index starting from 0) is considered active.
                 var active: Double?
             
-                /// 
                 struct Steps: Encodable {
-                    /// 
                     struct Items: Encodable {
-                        /// 
                         struct Step: Encodable {
                             /// Determines whether or not this step is included in the slider.
                             var visible: Bool?
@@ -5848,15 +5504,12 @@ struct Layout: Encodable {
                             var templateitemname: String?
                         
                         }
-                        /// 
                         var step: Step?
                     
                     }
-                    /// 
                     var items: Items?
                 
                 }
-                /// 
                 var steps: Steps?
             
                 /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. Use `len` to set the value.
@@ -5914,7 +5567,6 @@ struct Layout: Encodable {
                 /// Sets the slider's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
                 var yanchor: Yanchor?
             
-                /// 
                 struct Transition: Encodable {
                     /// Sets the duration of the slider transition
                     var duration: Double?
@@ -5962,10 +5614,8 @@ struct Layout: Encodable {
                     var easing: Easing?
                 
                 }
-                /// 
                 var transition: Transition?
             
-                /// 
                 struct Currentvalue: Encodable {
                     /// Shows the currently-selected value above the slider.
                     var visible: Bool?
@@ -5993,10 +5643,8 @@ struct Layout: Encodable {
                         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                         var family: String?
                     
-                        /// 
                         var size: Double?
                     
-                        /// 
                         var color: Color?
                     
                     }
@@ -6004,7 +5652,6 @@ struct Layout: Encodable {
                     var font: Font?
                 
                 }
-                /// 
                 var currentvalue: Currentvalue?
             
                 /// Sets the font of the slider step labels.
@@ -6012,10 +5659,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -6053,18 +5698,14 @@ struct Layout: Encodable {
                 var templateitemname: String?
             
             }
-            /// 
             var slider: Slider?
         
         }
-        /// 
         var items: Items?
     
     }
-    /// 
     var sliders: Sliders?
 
-    /// 
     struct Colorscale: Encodable {
         /// Sets the default sequential colorscale for positive values. Note that `autocolorscale` must be true for this attribute to work.
         var sequential: ColorScale?
@@ -6076,10 +5717,8 @@ struct Layout: Encodable {
         var diverging: ColorScale?
     
     }
-    /// 
     var colorscale: Colorscale?
 
-    /// 
     struct Coloraxis: Encodable {
         /// Determines whether or not the color domain is computed with respect to the input data (here corresponding trace color array(s)) or the bounds set in `cmin` and `cmax`  Defaults to `false` when `cmin` and `cmax` are set by the user.
         var cauto: Bool?
@@ -6105,7 +5744,6 @@ struct Layout: Encodable {
         /// Determines whether or not a colorbar is displayed for this trace.
         var showscale: Bool?
     
-        /// 
         struct Colorbar: Encodable {
             /// Determines whether this color bar's thickness (i.e. the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*. Use `thickness` to set the value.
             enum Thicknessmode: String, Encodable {
@@ -6224,10 +5862,8 @@ struct Layout: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -6240,11 +5876,8 @@ struct Layout: Encodable {
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             var tickformat: String?
         
-            /// 
             struct Tickformatstops: Encodable {
-                /// 
                 struct Items: Encodable {
-                    /// 
                     struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                         var enabled: Bool?
@@ -6262,15 +5895,12 @@ struct Layout: Encodable {
                         var templateitemname: String?
                     
                     }
-                    /// 
                     var tickformatstop: Tickformatstop?
                 
                 }
-                /// 
                 var items: Items?
             
             }
-            /// 
             var tickformatstops: Tickformatstops?
         
             /// Sets a tick label prefix.
@@ -6324,7 +5954,6 @@ struct Layout: Encodable {
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
             var showexponent: Showexponent?
         
-            /// 
             struct Title: Encodable {
                 /// Sets the title of the color bar. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
                 var text: String?
@@ -6334,10 +5963,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -6354,10 +5981,8 @@ struct Layout: Encodable {
                 var side: Side?
             
             }
-            /// 
             var title: Title?
         
-            /// 
             struct _Deprecated: Encodable {
                 /// Deprecated in favor of color bar's `title.text`. Note that value of color bar's `title` is no longer a simple *string* but a set of sub-attributes.
                 var title: String?
@@ -6367,10 +5992,8 @@ struct Layout: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                     var family: String?
                 
-                    /// 
                     var size: Double?
                 
-                    /// 
                     var color: Color?
                 
                 }
@@ -6387,7 +6010,6 @@ struct Layout: Encodable {
                 var titleside: Titleside?
             
             }
-            /// 
             var _deprecated: _Deprecated?
         
             /// Sets the source reference on plot.ly for  tickvals .
@@ -6397,11 +6019,9 @@ struct Layout: Encodable {
             var ticktextsrc: String?
         
         }
-        /// 
         var colorbar: Colorbar?
     
     }
-    /// 
     var coloraxis: Coloraxis?
 
     /// Sets the source reference on plot.ly for  meta .

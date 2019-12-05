@@ -1,5 +1,9 @@
 /// The data describing carpet axis layout is set in `y` and (optionally) also `x`. If only `y` is present, `x` the plot is interpreted as a cheater plot and is filled in using the `y` values. `x` and `y` may either be 2D arrays matching with each dimension matching that of `a` and `b`, or they may be 1D arrays with total length equal to that of `a` and `b`.
 struct Carpet: Encodable {
+    let type: String = "carpet"
+
+    let animatable: Bool = true
+
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     enum Visible: String, Encodable {
         case yes
@@ -27,7 +31,6 @@ struct Carpet: Encodable {
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     var meta: Anything?
 
-    /// 
     struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         var token: String?
@@ -36,7 +39,6 @@ struct Carpet: Encodable {
         var maxpoints: Double?
     
     }
-    /// 
     var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
@@ -72,15 +74,12 @@ struct Carpet: Encodable {
     /// The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been ommitted.
     var cheaterslope: Double?
 
-    /// 
     struct Aaxis: Encodable {
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
         var color: Color?
     
-        /// 
         var smoothing: Double?
     
-        /// 
         struct Title: Encodable {
             /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             var text: String?
@@ -90,10 +89,8 @@ struct Carpet: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -104,7 +101,6 @@ struct Carpet: Encodable {
             var offset: Double?
         
         }
-        /// 
         var title: Title?
     
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
@@ -146,7 +142,6 @@ struct Carpet: Encodable {
             case index
             case value
         }
-        /// 
         var cheatertype: Cheatertype?
     
         /// 
@@ -154,7 +149,6 @@ struct Carpet: Encodable {
             case linear
             case array
         }
-        /// 
         var tickmode: Tickmode?
     
         /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
@@ -181,10 +175,8 @@ struct Carpet: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -248,11 +240,8 @@ struct Carpet: Encodable {
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see:  We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         var tickformat: String?
     
-        /// 
         struct Tickformatstops: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Tickformatstop: Encodable {
                     /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                     var enabled: Bool?
@@ -270,15 +259,12 @@ struct Carpet: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var tickformatstop: Tickformatstop?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var tickformatstops: Tickformatstops?
     
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`.
@@ -360,7 +346,6 @@ struct Carpet: Encodable {
         /// The stride between grid lines along the axis
         var arraydtick: Int?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Deprecated in favor of `title.text`. Note that value of `title` is no longer a simple *string* but a set of sub-attributes.
             var title: String?
@@ -370,10 +355,8 @@ struct Carpet: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -384,7 +367,6 @@ struct Carpet: Encodable {
             var titleoffset: Double?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
         /// Sets the source reference on plot.ly for  tickvals .
@@ -397,18 +379,14 @@ struct Carpet: Encodable {
         var categoryarraysrc: String?
     
     }
-    /// 
     var aaxis: Aaxis?
 
-    /// 
     struct Baxis: Encodable {
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. Grid color is lightened by blending this with the plot background Individual pieces can override this.
         var color: Color?
     
-        /// 
         var smoothing: Double?
     
-        /// 
         struct Title: Encodable {
             /// Sets the title of this axis. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
             var text: String?
@@ -418,10 +396,8 @@ struct Carpet: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -432,7 +408,6 @@ struct Carpet: Encodable {
             var offset: Double?
         
         }
-        /// 
         var title: Title?
     
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
@@ -474,7 +449,6 @@ struct Carpet: Encodable {
             case index
             case value
         }
-        /// 
         var cheatertype: Cheatertype?
     
         /// 
@@ -482,7 +456,6 @@ struct Carpet: Encodable {
             case linear
             case array
         }
-        /// 
         var tickmode: Tickmode?
     
         /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
@@ -509,10 +482,8 @@ struct Carpet: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             var family: String?
         
-            /// 
             var size: Double?
         
-            /// 
             var color: Color?
         
         }
@@ -576,11 +547,8 @@ struct Carpet: Encodable {
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see:  We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         var tickformat: String?
     
-        /// 
         struct Tickformatstops: Encodable {
-            /// 
             struct Items: Encodable {
-                /// 
                 struct Tickformatstop: Encodable {
                     /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
                     var enabled: Bool?
@@ -598,15 +566,12 @@ struct Carpet: Encodable {
                     var templateitemname: String?
                 
                 }
-                /// 
                 var tickformatstop: Tickformatstop?
             
             }
-            /// 
             var items: Items?
         
         }
-        /// 
         var tickformatstops: Tickformatstops?
     
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`.
@@ -688,7 +653,6 @@ struct Carpet: Encodable {
         /// The stride between grid lines along the axis
         var arraydtick: Int?
     
-        /// 
         struct _Deprecated: Encodable {
             /// Deprecated in favor of `title.text`. Note that value of `title` is no longer a simple *string* but a set of sub-attributes.
             var title: String?
@@ -698,10 +662,8 @@ struct Carpet: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
                 var family: String?
             
-                /// 
                 var size: Double?
             
-                /// 
                 var color: Color?
             
             }
@@ -712,7 +674,6 @@ struct Carpet: Encodable {
             var titleoffset: Double?
         
         }
-        /// 
         var _deprecated: _Deprecated?
     
         /// Sets the source reference on plot.ly for  tickvals .
@@ -725,7 +686,6 @@ struct Carpet: Encodable {
         var categoryarraysrc: String?
     
     }
-    /// 
     var baxis: Baxis?
 
     /// The default font used for axis & tick labels on this carpet
@@ -733,10 +693,8 @@ struct Carpet: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         var family: String?
     
-        /// 
         var size: Double?
     
-        /// 
         var color: Color?
     
     }

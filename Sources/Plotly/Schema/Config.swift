@@ -1,4 +1,3 @@
-/// 
 struct Config: Encodable {
     /// Determines whether the graphs are interactive or not. If *false*, no interactivity, for export or image generation.
     var staticPlot: Bool?
@@ -9,7 +8,6 @@ struct Config: Encodable {
     /// Determines whether the graph is editable or not. Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.
     var editable: Bool?
 
-    /// 
     struct Edits: Encodable {
         /// Determines if the main anchor of the annotation is editable. The main anchor corresponds to the text (if no arrow) or the arrow (which drags the whole thing leaving the arrow length & direction unchanged).
         var annotationPosition: Bool?
@@ -42,7 +40,6 @@ struct Config: Encodable {
         var titleText: Bool?
     
     }
-    /// 
     var edits: Edits?
 
     /// Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size.
