@@ -1,5 +1,5 @@
 /// Provides similar functionality to the *scatter* type but on a ternary phase diagram. The data is provided by at least two arrays out of `a`, `b`, `c` triplets.
-struct Scatterternary: Encodable {
+struct Scatterternary: Trace {
     let type: String = "scatterternary"
 
     let animatable: Bool = false

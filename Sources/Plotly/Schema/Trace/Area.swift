@@ -1,4 +1,4 @@
-struct Area: Encodable {
+struct Area: Trace {
     let type: String = "area"
 
     let animatable: Bool = false

@@ -1,5 +1,5 @@
 /// Visualize stages in a process using length-encoded bars. This trace can be used to show data in either a part-to-whole representation wherein each item appears in a single stage, or in a "drop-off" representation wherein each item appears in each stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing funnel data.
-struct Funnel: Encodable {
+struct Funnel: Trace {
     let type: String = "funnel"
 
     let animatable: Bool = false

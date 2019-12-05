@@ -1,5 +1,5 @@
 /// Splom traces generate scatter plot matrix visualizations. Each splom `dimensions` items correspond to a generated axis. Values for each of those dimensions are set in `dimensions[i].values`. Splom traces support all `scattergl` marker style attributes. Specify `layout.grid` attributes and/or layout x-axis and y-axis attributes for more control over the axis positioning and style. 
-struct Splom: Encodable {
+struct Splom: Trace {
     let type: String = "splom"
 
     let animatable: Bool = false

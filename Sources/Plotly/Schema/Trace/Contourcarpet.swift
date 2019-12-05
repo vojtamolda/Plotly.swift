@@ -1,5 +1,5 @@
 /// Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. Data `z` is interpreted as matching that of the corresponding carpet axis.
-struct Contourcarpet: Encodable {
+struct Contourcarpet: Trace {
     let type: String = "contourcarpet"
 
     let animatable: Bool = false

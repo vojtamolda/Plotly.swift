@@ -1,5 +1,5 @@
 /// The data visualized as scatter point or lines in 3D dimension is set in `x`, `y`, `z`. Text (appearing either on the chart or on hover only) is via `text`. Bubble charts are achieved by setting `marker.size` and/or `marker.color` Projections are achieved via `projection`. Surface fills are achieved via `surfaceaxis`.
-struct Scatter3D: Encodable {
+struct Scatter3D: Trace {
     let type: String = "scatter3d"
 
     let animatable: Bool = false

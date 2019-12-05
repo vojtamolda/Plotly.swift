@@ -1,5 +1,5 @@
 /// Visualize stages in a process using area-encoded trapezoids. This trace can be used to show data in a part-to-whole representation similar to a "pie" trace, wherein each item appears in a single stage. See also the "funnel" trace type for a different approach to visualizing funnel data.
-struct Funnelarea: Encodable {
+struct Funnelarea: Trace {
     let type: String = "funnelarea"
 
     let animatable: Bool = false

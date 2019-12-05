@@ -1,5 +1,5 @@
 /// The sample data from which statistics are computed is set in `x` for vertically spanning histograms and in `y` for horizontally spanning histograms. Binning options are set `xbins` and `ybins` respectively if no aggregation data is provided.
-struct Histogram: Encodable {
+struct Histogram: Trace {
     let type: String = "histogram"
 
     let animatable: Bool = false

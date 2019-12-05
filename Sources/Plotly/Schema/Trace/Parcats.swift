@@ -1,5 +1,5 @@
 /// Parallel categories diagram for multidimensional categorical data.
-struct Parcats: Encodable {
+struct Parcats: Trace {
     let type: String = "parcats"
 
     let animatable: Bool = false

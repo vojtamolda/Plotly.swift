@@ -1,5 +1,5 @@
 /// Visualize hierarchal data from leaves (and/or outer branches) towards root with rectangles. The treemap sectors are determined by the entries in *labels* or *ids* and in *parents*.
-struct Treemap: Encodable {
+struct Treemap: Trace {
     let type: String = "treemap"
 
     let animatable: Bool = true

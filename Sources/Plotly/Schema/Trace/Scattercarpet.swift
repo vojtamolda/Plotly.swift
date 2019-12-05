@@ -1,5 +1,5 @@
 /// Plots a scatter trace on either the first carpet axis or the carpet axis with a matching `carpet` attribute.
-struct Scattercarpet: Encodable {
+struct Scattercarpet: Trace {
     let type: String = "scattercarpet"
 
     let animatable: Bool = false

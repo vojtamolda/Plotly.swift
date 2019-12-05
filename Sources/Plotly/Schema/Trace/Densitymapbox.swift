@@ -1,5 +1,5 @@
 /// Draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
-struct Densitymapbox: Encodable {
+struct Densitymapbox: Trace {
     let type: String = "densitymapbox"
 
     let animatable: Bool = false

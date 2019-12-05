@@ -1,5 +1,5 @@
 /// Display an image, i.e. data on a 2D regular raster. By default, when an image is displayed in a subplot, its y axis will be reversed (ie. `autorange: 'reversed'`), constrained to the domain (ie. `constrain: 'domain'`) and it will have the same scale as its x axis (ie. `scaleanchor: 'x,`) in order for pixels to be rendered as squares.
-struct Image: Encodable {
+struct Image: Trace {
     let type: String = "image"
 
     let animatable: Bool = false

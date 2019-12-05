@@ -1,5 +1,5 @@
 /// Draws waterfall trace which is useful graph to displays the contribution of various elements (either positive or negative) in a bar chart. The data visualized by the span of the bars is set in `y` if `orientation` is set th *v* (the default) and the labels are set in `x`. By setting `orientation` to *h*, the roles are interchanged.
-struct Waterfall: Encodable {
+struct Waterfall: Trace {
     let type: String = "waterfall"
 
     let animatable: Bool = false

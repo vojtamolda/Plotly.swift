@@ -1,5 +1,5 @@
 /// The scatterpolar trace type encompasses line charts, scatter charts, text charts, and bubble charts in polar coordinates. The data visualized as scatter point or lines is set in `r` (radial) and `theta` (angular) coordinates Text (appearing either on the chart or on hover only) is via `text`. Bubble charts are achieved by setting `marker.size` and/or `marker.color` to numerical arrays.
-struct Scatterpolar: Encodable {
+struct Scatterpolar: Trace {
     let type: String = "scatterpolar"
 
     let animatable: Bool = false

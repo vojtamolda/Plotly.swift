@@ -1,5 +1,5 @@
 /// Use cone traces to visualize vector fields.  Specify a vector field using 6 1D arrays, 3 position arrays `x`, `y` and `z` and 3 vector component arrays `u`, `v`, `w`. The cones are drawn exactly at the positions given by `x`, `y` and `z`.
-struct Cone: Encodable {
+struct Cone: Trace {
     let type: String = "cone"
 
     let animatable: Bool = false

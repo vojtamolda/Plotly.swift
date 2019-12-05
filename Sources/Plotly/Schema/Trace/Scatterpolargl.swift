@@ -1,5 +1,5 @@
 /// The scatterpolargl trace type encompasses line charts, scatter charts, and bubble charts in polar coordinates using the WebGL plotting engine. The data visualized as scatter point or lines is set in `r` (radial) and `theta` (angular) coordinates Bubble charts are achieved by setting `marker.size` and/or `marker.color` to numerical arrays.
-struct Scatterpolargl: Encodable {
+struct Scatterpolargl: Trace {
     let type: String = "scatterpolargl"
 
     let animatable: Bool = false

@@ -1,5 +1,5 @@
 /// The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
-struct Pointcloud: Encodable {
+struct Pointcloud: Trace {
     let type: String = "pointcloud"
 
     let animatable: Bool = false

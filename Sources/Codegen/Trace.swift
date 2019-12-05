@@ -8,6 +8,7 @@ struct Trace {
     init(identifier: String, schema: Schema.Trace) {
         attributes = Swift.Struct(identifier: identifier, entries: schema.attributes)
         attributes.description = schema.meta["description"] ?? attributes.description
+        attributes.protocols = ["Trace"]
 
         let typeConst = Swift.Instance(identifier: "type",  dataType: Swift.String_(schema: nil),
                 const: "\"\(schema.type)\"", optional: false)

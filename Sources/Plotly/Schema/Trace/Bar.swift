@@ -1,5 +1,5 @@
 /// The data visualized by the span of the bars is set in `y` if `orientation` is set th *v* (the default) and the labels are set in `x`. By setting `orientation` to *h*, the roles are interchanged.
-struct Bar: Encodable {
+struct Bar: Trace {
     let type: String = "bar"
 
     let animatable: Bool = true

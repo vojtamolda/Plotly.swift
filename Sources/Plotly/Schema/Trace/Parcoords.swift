@@ -1,5 +1,5 @@
 /// Parallel coordinates for multidimensional exploratory data analysis. The samples are specified in `dimensions`. The colors are set in `line.color`.
-struct Parcoords: Encodable {
+struct Parcoords: Trace {
     let type: String = "parcoords"
 
     let animatable: Bool = false

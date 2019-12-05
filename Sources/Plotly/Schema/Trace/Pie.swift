@@ -1,5 +1,5 @@
 /// A data visualized by the sectors of the pie is set in `values`. The sector labels are set in `labels`. The sector colors are set in `marker.colors`
-struct Pie: Encodable {
+struct Pie: Trace {
     let type: String = "pie"
 
     let animatable: Bool = false

@@ -1,5 +1,5 @@
 /// Visualize hierarchal data spanning outward radially from root to leaves. The sunburst sectors are determined by the entries in *labels* or *ids* and in *parents*.
-struct Sunburst: Encodable {
+struct Sunburst: Trace {
     let type: String = "sunburst"
 
     let animatable: Bool = true

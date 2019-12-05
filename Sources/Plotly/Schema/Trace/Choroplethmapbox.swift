@@ -1,5 +1,5 @@
 /// GeoJSON features to be filled are set in `geojson` The data that describes the choropleth value-to-color mapping is set in `locations` and `z`.
-struct Choroplethmapbox: Encodable {
+struct Choroplethmapbox: Trace {
     let type: String = "choroplethmapbox"
 
     let animatable: Bool = false

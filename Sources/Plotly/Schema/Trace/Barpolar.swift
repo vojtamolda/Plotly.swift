@@ -1,5 +1,5 @@
 /// The data visualized by the radial span of the bars is set in `r`
-struct Barpolar: Encodable {
+struct Barpolar: Trace {
     let type: String = "barpolar"
 
     let animatable: Bool = false

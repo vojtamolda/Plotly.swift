@@ -1,5 +1,5 @@
 /// WebGL version of the heatmap trace type.
-struct Heatmapgl: Encodable {
+struct Heatmapgl: Trace {
     let type: String = "heatmapgl"
 
     let animatable: Bool = false

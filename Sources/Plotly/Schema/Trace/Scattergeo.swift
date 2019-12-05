@@ -1,5 +1,5 @@
 /// The data visualized as scatter point or lines on a geographic map is provided either by longitude/latitude pairs in `lon` and `lat` respectively or by geographic location IDs or names in `locations`.
-struct Scattergeo: Encodable {
+struct Scattergeo: Trace {
     let type: String = "scattergeo"
 
     let animatable: Bool = false

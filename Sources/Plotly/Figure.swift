@@ -47,7 +47,7 @@ protocol Trace: Encodable {
 /// ```
 struct Figure {
     /// Collection of `Scatter`, `Bar`, `Heatmap` ... objects that are displayed in the figure.
-    var data: [Any]
+    var data: [Trace]
 
     /// Structure containing layout of the figure.
     var layout: Layout?
@@ -101,10 +101,8 @@ extension Figure: Encodable {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         var dataContainer = container.nestedUnkeyedContainer(forKey: .data)
-        for item in data {
-            if let trace = item as? Encodable {
-                try trace.encode(to: dataContainer.superEncoder())
-            }
+        for trace in data {
+            try trace.encode(to: dataContainer.superEncoder())
         }
         try container.encode(layout, forKey: .layout)
         try container.encode(config, forKey: .config)

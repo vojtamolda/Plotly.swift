@@ -289,6 +289,7 @@ struct Swift {
 
         var members: [Instance]
         var primitives: [String: Schema.Primitive]
+        var protocols: [String] = ["Encodable"]
 
         init(identifier: String, entries: Schema.Entries) {
             self.type = identifier.capitalized
@@ -319,7 +320,8 @@ struct Swift {
             if description != "" {
                 lines += ["/// \(description)"]
             }
-            lines += ["struct \(type): Encodable {"]
+            let derived = protocols.joined(separator: ", ") + " "
+            lines += ["struct \(type): \(derived){"]
             for instance in members {
                 lines += instance.dataType.definition().indented()
                 lines += instance.definition().indented()

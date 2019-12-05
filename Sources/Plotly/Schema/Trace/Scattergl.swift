@@ -1,5 +1,5 @@
 /// The data visualized as scatter point or lines is set in `x` and `y` using the WebGL plotting engine. Bubble charts are achieved by setting `marker.size` and/or `marker.color` to a numerical arrays.
-struct Scattergl: Encodable {
+struct Scattergl: Trace {
     let type: String = "scattergl"
 
     let animatable: Bool = false

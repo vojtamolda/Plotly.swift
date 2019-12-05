@@ -1,5 +1,5 @@
 /// The data visualized as scatter point, lines or marker symbols on a Mapbox GL geographic map is provided by longitude/latitude pairs in `lon` and `lat`.
-struct Scattermapbox: Encodable {
+struct Scattermapbox: Trace {
     let type: String = "scattermapbox"
 
     let animatable: Bool = false
