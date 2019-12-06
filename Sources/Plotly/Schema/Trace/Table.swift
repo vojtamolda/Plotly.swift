@@ -1,46 +1,46 @@
 /// Table view for detailed data viewing. The data are arranged in a grid of rows and columns. Most styling can be specified for columns, rows or individual cells. Table is using a column-major order, ie. the grid is represented as a vector of column vectors.
-struct Table: Trace {
-    let type: String = "table"
+public struct Table: Trace {
+    public let type: String = "table"
 
-    let animatable: Bool = false
+    public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-    enum Visible: String, Encodable {
+    public enum Visible: String, Encodable {
         case yes
         case no
         case legendonly
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-    var visible: Visible?
+    public var visible: Visible?
 
     /// Sets the trace name. The trace name appear as the legend item and on hover.
-    var name: String?
+    public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
-    var uid: String?
+    public var uid: String?
 
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    var ids: [Double]?
+    public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    var customdata: [Double]?
+    public var customdata: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    var meta: Anything?
+    public var meta: Anything?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    struct Hoverinfo: OptionSet, Encodable {
-        let rawValue: Int
+    public struct Hoverinfo: OptionSet, Encodable {
+        public let rawValue: Int
     
-        static let x = Hoverinfo(rawValue: 1 << 0)
-        static let y = Hoverinfo(rawValue: 1 << 1)
-        static let z = Hoverinfo(rawValue: 1 << 2)
-        static let text = Hoverinfo(rawValue: 1 << 3)
-        static let name = Hoverinfo(rawValue: 1 << 4)
+        public static let x = Hoverinfo(rawValue: 1 << 0)
+        public static let y = Hoverinfo(rawValue: 1 << 1)
+        public static let z = Hoverinfo(rawValue: 1 << 2)
+        public static let text = Hoverinfo(rawValue: 1 << 3)
+        public static let name = Hoverinfo(rawValue: 1 << 4)
     
-        init(rawValue: Int) { self.rawValue = rawValue }
+        public init(rawValue: Int) { self.rawValue = rawValue }
     
-        func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
             if (self.rawValue & 1 << 1) != 0 { options += ["y"] }
@@ -52,289 +52,409 @@ struct Table: Trace {
         }
     }
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    var hoverinfo: Hoverinfo?
+    public var hoverinfo: Hoverinfo?
 
-    struct Hoverlabel: Encodable {
+    public struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        var bgcolor: Color?
+        public var bgcolor: Color?
     
         /// Sets the border color of the hover labels for this trace.
-        var bordercolor: Color?
+        public var bordercolor: Color?
     
         /// Sets the font used in hover labels.
-        struct Font: Encodable {
+        public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            var family: String?
+            public var family: String?
         
-            var size: Double?
+            public var size: Double?
         
-            var color: Color?
+            public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            var familysrc: String?
+            public var familysrc: String?
         
             /// Sets the source reference on plot.ly for  size .
-            var sizesrc: String?
+            public var sizesrc: String?
         
             /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
+            public var colorsrc: String?
         
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+                self.family = family
+                self.size = size
+                self.color = color
+                self.familysrc = familysrc
+                self.sizesrc = sizesrc
+                self.colorsrc = colorsrc
+            }
         }
         /// Sets the font used in hover labels.
-        var font: Font?
+        public var font: Font?
     
         /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
-        enum Align: String, Encodable {
+        public enum Align: String, Encodable {
             case left
             case right
             case auto
         }
         /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
-        var align: Align?
+        public var align: Align?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        var namelength: Int?
+        public var namelength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
-        var bgcolorsrc: String?
+        public var bgcolorsrc: String?
     
         /// Sets the source reference on plot.ly for  bordercolor .
-        var bordercolorsrc: String?
+        public var bordercolorsrc: String?
     
         /// Sets the source reference on plot.ly for  align .
-        var alignsrc: String?
+        public var alignsrc: String?
     
         /// Sets the source reference on plot.ly for  namelength .
-        var namelengthsrc: String?
+        public var namelengthsrc: String?
     
+        public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
+            self.bgcolor = bgcolor
+            self.bordercolor = bordercolor
+            self.font = font
+            self.align = align
+            self.namelength = namelength
+            self.bgcolorsrc = bgcolorsrc
+            self.bordercolorsrc = bordercolorsrc
+            self.alignsrc = alignsrc
+            self.namelengthsrc = namelengthsrc
+        }
     }
-    var hoverlabel: Hoverlabel?
+    public var hoverlabel: Hoverlabel?
 
-    struct Stream: Encodable {
+    public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
-        var token: String?
+        public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        var maxpoints: Double?
+        public var maxpoints: Double?
     
+        public init(token: String? = nil, maxpoints: Double? = nil) {
+            self.token = token
+            self.maxpoints = maxpoints
+        }
     }
-    var stream: Stream?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    var uirevision: Anything?
+    public var uirevision: Anything?
 
-    struct Domain: Encodable {
+    public struct Domain: Encodable {
         /// Sets the horizontal domain of this table trace (in plot fraction).
-        var x: InfoArray?
+        public var x: InfoArray?
     
         /// Sets the vertical domain of this table trace (in plot fraction).
-        var y: InfoArray?
+        public var y: InfoArray?
     
         /// If there is a layout grid, use the domain for this row in the grid for this table trace .
-        var row: Int?
+        public var row: Int?
     
         /// If there is a layout grid, use the domain for this column in the grid for this table trace .
-        var column: Int?
+        public var column: Int?
     
+        public init(x: InfoArray? = nil, y: InfoArray? = nil, row: Int? = nil, column: Int? = nil) {
+            self.x = x
+            self.y = y
+            self.row = row
+            self.column = column
+        }
     }
-    var domain: Domain?
+    public var domain: Domain?
 
     /// The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.
-    var columnwidth: Double?
+    public var columnwidth: Double?
 
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
-    var columnorder: [Double]?
+    public var columnorder: [Double]?
 
-    struct Header: Encodable {
+    public struct Header: Encodable {
         /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-        var values: [Double]?
+        public var values: [Double]?
     
         /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        var format: [Double]?
+        public var format: [Double]?
     
         /// Prefix for cell values.
-        var prefix: String?
+        public var prefix: String?
     
         /// Suffix for cell values.
-        var suffix: String?
+        public var suffix: String?
     
         /// The height of cells.
-        var height: Double?
+        public var height: Double?
     
         /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
-        enum Align: String, Encodable {
+        public enum Align: String, Encodable {
             case left
             case center
             case right
         }
         /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
-        var align: Align?
+        public var align: Align?
     
-        struct Line: Encodable {
-            var width: Double?
+        public struct Line: Encodable {
+            public var width: Double?
         
-            var color: Color?
+            public var color: Color?
         
             /// Sets the source reference on plot.ly for  width .
-            var widthsrc: String?
+            public var widthsrc: String?
         
             /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
+            public var colorsrc: String?
         
+            public init(width: Double? = nil, color: Color? = nil, widthsrc: String? = nil, colorsrc: String? = nil) {
+                self.width = width
+                self.color = color
+                self.widthsrc = widthsrc
+                self.colorsrc = colorsrc
+            }
         }
-        var line: Line?
+        public var line: Line?
     
-        struct Fill: Encodable {
+        public struct Fill: Encodable {
             /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
-            var color: Color?
+            public var color: Color?
         
             /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
+            public var colorsrc: String?
         
+            public init(color: Color? = nil, colorsrc: String? = nil) {
+                self.color = color
+                self.colorsrc = colorsrc
+            }
         }
-        var fill: Fill?
+        public var fill: Fill?
     
-        struct Font: Encodable {
+        public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            var family: String?
+            public var family: String?
         
-            var size: Double?
+            public var size: Double?
         
-            var color: Color?
+            public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            var familysrc: String?
+            public var familysrc: String?
         
             /// Sets the source reference on plot.ly for  size .
-            var sizesrc: String?
+            public var sizesrc: String?
         
             /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
+            public var colorsrc: String?
         
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+                self.family = family
+                self.size = size
+                self.color = color
+                self.familysrc = familysrc
+                self.sizesrc = sizesrc
+                self.colorsrc = colorsrc
+            }
         }
-        var font: Font?
+        public var font: Font?
     
         /// Sets the source reference on plot.ly for  values .
-        var valuessrc: String?
+        public var valuessrc: String?
     
         /// Sets the source reference on plot.ly for  format .
-        var formatsrc: String?
+        public var formatsrc: String?
     
         /// Sets the source reference on plot.ly for  prefix .
-        var prefixsrc: String?
+        public var prefixsrc: String?
     
         /// Sets the source reference on plot.ly for  suffix .
-        var suffixsrc: String?
+        public var suffixsrc: String?
     
         /// Sets the source reference on plot.ly for  align .
-        var alignsrc: String?
+        public var alignsrc: String?
     
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Align? = nil, line: Line? = nil, fill: Fill? = nil, font: Font? = nil, valuessrc: String? = nil, formatsrc: String? = nil, prefixsrc: String? = nil, suffixsrc: String? = nil, alignsrc: String? = nil) {
+            self.values = values
+            self.format = format
+            self.prefix = prefix
+            self.suffix = suffix
+            self.height = height
+            self.align = align
+            self.line = line
+            self.fill = fill
+            self.font = font
+            self.valuessrc = valuessrc
+            self.formatsrc = formatsrc
+            self.prefixsrc = prefixsrc
+            self.suffixsrc = suffixsrc
+            self.alignsrc = alignsrc
+        }
     }
-    var header: Header?
+    public var header: Header?
 
-    struct Cells: Encodable {
+    public struct Cells: Encodable {
         /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
-        var values: [Double]?
+        public var values: [Double]?
     
         /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        var format: [Double]?
+        public var format: [Double]?
     
         /// Prefix for cell values.
-        var prefix: String?
+        public var prefix: String?
     
         /// Suffix for cell values.
-        var suffix: String?
+        public var suffix: String?
     
         /// The height of cells.
-        var height: Double?
+        public var height: Double?
     
         /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
-        enum Align: String, Encodable {
+        public enum Align: String, Encodable {
             case left
             case center
             case right
         }
         /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
-        var align: Align?
+        public var align: Align?
     
-        struct Line: Encodable {
-            var width: Double?
+        public struct Line: Encodable {
+            public var width: Double?
         
-            var color: Color?
+            public var color: Color?
         
             /// Sets the source reference on plot.ly for  width .
-            var widthsrc: String?
+            public var widthsrc: String?
         
             /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
+            public var colorsrc: String?
         
+            public init(width: Double? = nil, color: Color? = nil, widthsrc: String? = nil, colorsrc: String? = nil) {
+                self.width = width
+                self.color = color
+                self.widthsrc = widthsrc
+                self.colorsrc = colorsrc
+            }
         }
-        var line: Line?
+        public var line: Line?
     
-        struct Fill: Encodable {
+        public struct Fill: Encodable {
             /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
-            var color: Color?
+            public var color: Color?
         
             /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
+            public var colorsrc: String?
         
+            public init(color: Color? = nil, colorsrc: String? = nil) {
+                self.color = color
+                self.colorsrc = colorsrc
+            }
         }
-        var fill: Fill?
+        public var fill: Fill?
     
-        struct Font: Encodable {
+        public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            var family: String?
+            public var family: String?
         
-            var size: Double?
+            public var size: Double?
         
-            var color: Color?
+            public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            var familysrc: String?
+            public var familysrc: String?
         
             /// Sets the source reference on plot.ly for  size .
-            var sizesrc: String?
+            public var sizesrc: String?
         
             /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
+            public var colorsrc: String?
         
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+                self.family = family
+                self.size = size
+                self.color = color
+                self.familysrc = familysrc
+                self.sizesrc = sizesrc
+                self.colorsrc = colorsrc
+            }
         }
-        var font: Font?
+        public var font: Font?
     
         /// Sets the source reference on plot.ly for  values .
-        var valuessrc: String?
+        public var valuessrc: String?
     
         /// Sets the source reference on plot.ly for  format .
-        var formatsrc: String?
+        public var formatsrc: String?
     
         /// Sets the source reference on plot.ly for  prefix .
-        var prefixsrc: String?
+        public var prefixsrc: String?
     
         /// Sets the source reference on plot.ly for  suffix .
-        var suffixsrc: String?
+        public var suffixsrc: String?
     
         /// Sets the source reference on plot.ly for  align .
-        var alignsrc: String?
+        public var alignsrc: String?
     
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Align? = nil, line: Line? = nil, fill: Fill? = nil, font: Font? = nil, valuessrc: String? = nil, formatsrc: String? = nil, prefixsrc: String? = nil, suffixsrc: String? = nil, alignsrc: String? = nil) {
+            self.values = values
+            self.format = format
+            self.prefix = prefix
+            self.suffix = suffix
+            self.height = height
+            self.align = align
+            self.line = line
+            self.fill = fill
+            self.font = font
+            self.valuessrc = valuessrc
+            self.formatsrc = formatsrc
+            self.prefixsrc = prefixsrc
+            self.suffixsrc = suffixsrc
+            self.alignsrc = alignsrc
+        }
     }
-    var cells: Cells?
+    public var cells: Cells?
 
     /// Sets the source reference on plot.ly for  ids .
-    var idssrc: String?
+    public var idssrc: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    var customdatasrc: String?
+    public var customdatasrc: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    var metasrc: String?
+    public var metasrc: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
-    var hoverinfosrc: String?
+    public var hoverinfosrc: String?
 
     /// Sets the source reference on plot.ly for  columnwidth .
-    var columnwidthsrc: String?
+    public var columnwidthsrc: String?
 
     /// Sets the source reference on plot.ly for  columnorder .
-    var columnordersrc: String?
+    public var columnordersrc: String?
 
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, hoverinfo: Hoverinfo? = nil, hoverlabel: Hoverlabel? = nil, stream: Stream? = nil, uirevision: Anything? = nil, domain: Domain? = nil, columnwidth: Double? = nil, columnorder: [Double]? = nil, header: Header? = nil, cells: Cells? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil, hoverinfosrc: String? = nil, columnwidthsrc: String? = nil, columnordersrc: String? = nil) {
+        self.visible = visible
+        self.name = name
+        self.uid = uid
+        self.ids = ids
+        self.customdata = customdata
+        self.meta = meta
+        self.hoverinfo = hoverinfo
+        self.hoverlabel = hoverlabel
+        self.stream = stream
+        self.uirevision = uirevision
+        self.domain = domain
+        self.columnwidth = columnwidth
+        self.columnorder = columnorder
+        self.header = header
+        self.cells = cells
+        self.idssrc = idssrc
+        self.customdatasrc = customdatasrc
+        self.metasrc = metasrc
+        self.hoverinfosrc = hoverinfosrc
+        self.columnwidthsrc = columnwidthsrc
+        self.columnordersrc = columnordersrc
+    }
 }

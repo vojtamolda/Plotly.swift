@@ -1,54 +1,54 @@
-struct Area: Trace {
-    let type: String = "area"
+public struct Area: Trace {
+    public let type: String = "area"
 
-    let animatable: Bool = false
+    public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-    enum Visible: String, Encodable {
+    public enum Visible: String, Encodable {
         case yes
         case no
         case legendonly
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-    var visible: Visible?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    var showlegend: Bool?
+    public var showlegend: Bool?
 
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-    var legendgroup: String?
+    public var legendgroup: String?
 
     /// Sets the opacity of the trace.
-    var opacity: Double?
+    public var opacity: Double?
 
     /// Sets the trace name. The trace name appear as the legend item and on hover.
-    var name: String?
+    public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
-    var uid: String?
+    public var uid: String?
 
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    var ids: [Double]?
+    public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    var customdata: [Double]?
+    public var customdata: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    var meta: Anything?
+    public var meta: Anything?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    struct Hoverinfo: OptionSet, Encodable {
-        let rawValue: Int
+    public struct Hoverinfo: OptionSet, Encodable {
+        public let rawValue: Int
     
-        static let x = Hoverinfo(rawValue: 1 << 0)
-        static let y = Hoverinfo(rawValue: 1 << 1)
-        static let z = Hoverinfo(rawValue: 1 << 2)
-        static let text = Hoverinfo(rawValue: 1 << 3)
-        static let name = Hoverinfo(rawValue: 1 << 4)
+        public static let x = Hoverinfo(rawValue: 1 << 0)
+        public static let y = Hoverinfo(rawValue: 1 << 1)
+        public static let z = Hoverinfo(rawValue: 1 << 2)
+        public static let text = Hoverinfo(rawValue: 1 << 3)
+        public static let name = Hoverinfo(rawValue: 1 << 4)
     
-        init(rawValue: Int) { self.rawValue = rawValue }
+        public init(rawValue: Int) { self.rawValue = rawValue }
     
-        func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
             if (self.rawValue & 1 << 1) != 0 { options += ["y"] }
@@ -60,106 +60,137 @@ struct Area: Trace {
         }
     }
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    var hoverinfo: Hoverinfo?
+    public var hoverinfo: Hoverinfo?
 
-    struct Hoverlabel: Encodable {
+    public struct Hoverlabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        var bgcolor: Color?
+        public var bgcolor: Color?
     
         /// Sets the border color of the hover labels for this trace.
-        var bordercolor: Color?
+        public var bordercolor: Color?
     
         /// Sets the font used in hover labels.
-        struct Font: Encodable {
+        public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            var family: String?
+            public var family: String?
         
-            var size: Double?
+            public var size: Double?
         
-            var color: Color?
+            public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            var familysrc: String?
+            public var familysrc: String?
         
             /// Sets the source reference on plot.ly for  size .
-            var sizesrc: String?
+            public var sizesrc: String?
         
             /// Sets the source reference on plot.ly for  color .
-            var colorsrc: String?
+            public var colorsrc: String?
         
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+                self.family = family
+                self.size = size
+                self.color = color
+                self.familysrc = familysrc
+                self.sizesrc = sizesrc
+                self.colorsrc = colorsrc
+            }
         }
         /// Sets the font used in hover labels.
-        var font: Font?
+        public var font: Font?
     
         /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
-        enum Align: String, Encodable {
+        public enum Align: String, Encodable {
             case left
             case right
             case auto
         }
         /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
-        var align: Align?
+        public var align: Align?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        var namelength: Int?
+        public var namelength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
-        var bgcolorsrc: String?
+        public var bgcolorsrc: String?
     
         /// Sets the source reference on plot.ly for  bordercolor .
-        var bordercolorsrc: String?
+        public var bordercolorsrc: String?
     
         /// Sets the source reference on plot.ly for  align .
-        var alignsrc: String?
+        public var alignsrc: String?
     
         /// Sets the source reference on plot.ly for  namelength .
-        var namelengthsrc: String?
+        public var namelengthsrc: String?
     
+        public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
+            self.bgcolor = bgcolor
+            self.bordercolor = bordercolor
+            self.font = font
+            self.align = align
+            self.namelength = namelength
+            self.bgcolorsrc = bgcolorsrc
+            self.bordercolorsrc = bordercolorsrc
+            self.alignsrc = alignsrc
+            self.namelengthsrc = namelengthsrc
+        }
     }
-    var hoverlabel: Hoverlabel?
+    public var hoverlabel: Hoverlabel?
 
-    struct Stream: Encodable {
+    public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
-        var token: String?
+        public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        var maxpoints: Double?
+        public var maxpoints: Double?
     
+        public init(token: String? = nil, maxpoints: Double? = nil) {
+            self.token = token
+            self.maxpoints = maxpoints
+        }
     }
-    var stream: Stream?
+    public var stream: Stream?
 
-    struct Transforms: Encodable {
-        struct Items: Encodable {
+    public struct Transforms: Encodable {
+        public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            struct Transform: Encodable {
+            public struct Transform: Encodable {
+                public init() {
+                }
             }
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            var transform: Transform?
+            public var transform: Transform?
         
+            public init(transform: Transform? = nil) {
+                self.transform = transform
+            }
         }
-        var items: Items?
+        public var items: Items?
     
+        public init(items: Items? = nil) {
+            self.items = items
+        }
     }
-    var transforms: Transforms?
+    public var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    var uirevision: Anything?
+    public var uirevision: Anything?
 
     /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the radial coordinates for legacy polar chart only.
-    var r: [Double]?
+    public var r: [Double]?
 
     /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the angular coordinates for legacy polar chart only.
-    var t: [Double]?
+    public var t: [Double]?
 
-    struct Marker: Encodable {
+    public struct Marker: Encodable {
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
-        var color: Color?
+        public var color: Color?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker size (in px).
-        var size: Double?
+        public var size: Double?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
-        enum Symbol: Int, Encodable {
+        public enum Symbol: Int, Encodable {
             case circle = 0
             case circleopen = 100
             case circledot = 200
@@ -304,42 +335,77 @@ struct Area: Trace {
             case linenwopen = 144
         }
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
-        var symbol: Symbol?
+        public var symbol: Symbol?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker opacity.
-        var opacity: Double?
+        public var opacity: Double?
     
         /// Sets the source reference on plot.ly for  color .
-        var colorsrc: String?
+        public var colorsrc: String?
     
         /// Sets the source reference on plot.ly for  size .
-        var sizesrc: String?
+        public var sizesrc: String?
     
         /// Sets the source reference on plot.ly for  symbol .
-        var symbolsrc: String?
+        public var symbolsrc: String?
     
         /// Sets the source reference on plot.ly for  opacity .
-        var opacitysrc: String?
+        public var opacitysrc: String?
     
+        public init(color: Color? = nil, size: Double? = nil, symbol: Symbol? = nil, opacity: Double? = nil, colorsrc: String? = nil, sizesrc: String? = nil, symbolsrc: String? = nil, opacitysrc: String? = nil) {
+            self.color = color
+            self.size = size
+            self.symbol = symbol
+            self.opacity = opacity
+            self.colorsrc = colorsrc
+            self.sizesrc = sizesrc
+            self.symbolsrc = symbolsrc
+            self.opacitysrc = opacitysrc
+        }
     }
-    var marker: Marker?
+    public var marker: Marker?
 
     /// Sets the source reference on plot.ly for  ids .
-    var idssrc: String?
+    public var idssrc: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    var customdatasrc: String?
+    public var customdatasrc: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    var metasrc: String?
+    public var metasrc: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
-    var hoverinfosrc: String?
+    public var hoverinfosrc: String?
 
     /// Sets the source reference on plot.ly for  r .
-    var rsrc: String?
+    public var rsrc: String?
 
     /// Sets the source reference on plot.ly for  t .
-    var tsrc: String?
+    public var tsrc: String?
 
+    public init(visible: Visible? = nil, showlegend: Bool? = nil, legendgroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, hoverinfo: Hoverinfo? = nil, hoverlabel: Hoverlabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uirevision: Anything? = nil, r: [Double]? = nil, t: [Double]? = nil, marker: Marker? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil, hoverinfosrc: String? = nil, rsrc: String? = nil, tsrc: String? = nil) {
+        self.visible = visible
+        self.showlegend = showlegend
+        self.legendgroup = legendgroup
+        self.opacity = opacity
+        self.name = name
+        self.uid = uid
+        self.ids = ids
+        self.customdata = customdata
+        self.meta = meta
+        self.hoverinfo = hoverinfo
+        self.hoverlabel = hoverlabel
+        self.stream = stream
+        self.transforms = transforms
+        self.uirevision = uirevision
+        self.r = r
+        self.t = t
+        self.marker = marker
+        self.idssrc = idssrc
+        self.customdatasrc = customdatasrc
+        self.metasrc = metasrc
+        self.hoverinfosrc = hoverinfosrc
+        self.rsrc = rsrc
+        self.tsrc = tsrc
+    }
 }

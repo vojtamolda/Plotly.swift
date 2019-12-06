@@ -1,71 +1,83 @@
 /// An indicator is used to visualize a single `value` along with some contextual information such as `steps` or a `threshold`, using a combination of three visual elements: a number, a delta, and/or a gauge. Deltas are taken with respect to a `reference`. Gauges can be either angular or bullet (aka linear) gauges.
-struct Indicator: Trace {
-    let type: String = "indicator"
+public struct Indicator: Trace {
+    public let type: String = "indicator"
 
-    let animatable: Bool = true
+    public let animatable: Bool = true
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-    enum Visible: String, Encodable {
+    public enum Visible: String, Encodable {
         case yes
         case no
         case legendonly
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
-    var visible: Visible?
+    public var visible: Visible?
 
     /// Sets the trace name. The trace name appear as the legend item and on hover.
-    var name: String?
+    public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
-    var uid: String?
+    public var uid: String?
 
     /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
-    var ids: [Double]?
+    public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    var customdata: [Double]?
+    public var customdata: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    var meta: Anything?
+    public var meta: Anything?
 
-    struct Stream: Encodable {
+    public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
-        var token: String?
+        public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        var maxpoints: Double?
+        public var maxpoints: Double?
     
+        public init(token: String? = nil, maxpoints: Double? = nil) {
+            self.token = token
+            self.maxpoints = maxpoints
+        }
     }
-    var stream: Stream?
+    public var stream: Stream?
 
-    struct Transforms: Encodable {
-        struct Items: Encodable {
+    public struct Transforms: Encodable {
+        public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            struct Transform: Encodable {
+            public struct Transform: Encodable {
+                public init() {
+                }
             }
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            var transform: Transform?
+            public var transform: Transform?
         
+            public init(transform: Transform? = nil) {
+                self.transform = transform
+            }
         }
-        var items: Items?
+        public var items: Items?
     
+        public init(items: Items? = nil) {
+            self.items = items
+        }
     }
-    var transforms: Transforms?
+    public var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    var uirevision: Anything?
+    public var uirevision: Anything?
 
     /// Determines how the value is displayed on the graph. `number` displays the value numerically in text. `delta` displays the difference to a reference value in text. Finally, `gauge` displays the value graphically on an axis.
-    struct Mode: OptionSet, Encodable {
-        let rawValue: Int
+    public struct Mode: OptionSet, Encodable {
+        public let rawValue: Int
     
-        static let number = Mode(rawValue: 1 << 0)
-        static let delta = Mode(rawValue: 1 << 1)
-        static let gauge = Mode(rawValue: 1 << 2)
+        public static let number = Mode(rawValue: 1 << 0)
+        public static let delta = Mode(rawValue: 1 << 1)
+        public static let gauge = Mode(rawValue: 1 << 2)
     
-        init(rawValue: Int) { self.rawValue = rawValue }
+        public init(rawValue: Int) { self.rawValue = rawValue }
     
-        func encode(to encoder: Encoder) throws {
+        public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["number"] }
             if (self.rawValue & 1 << 1) != 0 { options += ["delta"] }
@@ -75,317 +87,393 @@ struct Indicator: Trace {
         }
     }
     /// Determines how the value is displayed on the graph. `number` displays the value numerically in text. `delta` displays the difference to a reference value in text. Finally, `gauge` displays the value graphically on an axis.
-    var mode: Mode?
+    public var mode: Mode?
 
     /// Sets the number to be displayed.
-    var value: Double?
+    public var value: Double?
 
     /// Sets the horizontal alignment of the `text` within the box. Note that this attribute has no effect if an angular gauge is displayed: in this case, it is always centered
-    enum Align: String, Encodable {
+    public enum Align: String, Encodable {
         case left
         case center
         case right
     }
     /// Sets the horizontal alignment of the `text` within the box. Note that this attribute has no effect if an angular gauge is displayed: in this case, it is always centered
-    var align: Align?
+    public var align: Align?
 
-    struct Domain: Encodable {
+    public struct Domain: Encodable {
         /// Sets the horizontal domain of this indicator trace (in plot fraction).
-        var x: InfoArray?
+        public var x: InfoArray?
     
         /// Sets the vertical domain of this indicator trace (in plot fraction).
-        var y: InfoArray?
+        public var y: InfoArray?
     
         /// If there is a layout grid, use the domain for this row in the grid for this indicator trace .
-        var row: Int?
+        public var row: Int?
     
         /// If there is a layout grid, use the domain for this column in the grid for this indicator trace .
-        var column: Int?
+        public var column: Int?
     
+        public init(x: InfoArray? = nil, y: InfoArray? = nil, row: Int? = nil, column: Int? = nil) {
+            self.x = x
+            self.y = y
+            self.row = row
+            self.column = column
+        }
     }
-    var domain: Domain?
+    public var domain: Domain?
 
-    struct Title: Encodable {
+    public struct Title: Encodable {
         /// Sets the title of this indicator.
-        var text: String?
+        public var text: String?
     
         /// Sets the horizontal alignment of the title. It defaults to `center` except for bullet charts for which it defaults to right.
-        enum Align: String, Encodable {
+        public enum Align: String, Encodable {
             case left
             case center
             case right
         }
         /// Sets the horizontal alignment of the title. It defaults to `center` except for bullet charts for which it defaults to right.
-        var align: Align?
+        public var align: Align?
     
         /// Set the font used to display the title
-        struct Font: Encodable {
+        public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            var family: String?
+            public var family: String?
         
-            var size: Double?
+            public var size: Double?
         
-            var color: Color?
+            public var color: Color?
         
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil) {
+                self.family = family
+                self.size = size
+                self.color = color
+            }
         }
         /// Set the font used to display the title
-        var font: Font?
+        public var font: Font?
     
+        public init(text: String? = nil, align: Align? = nil, font: Font? = nil) {
+            self.text = text
+            self.align = align
+            self.font = font
+        }
     }
-    var title: Title?
+    public var title: Title?
 
-    struct Number: Encodable {
+    public struct Number: Encodable {
         /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        var valueformat: String?
+        public var valueformat: String?
     
         /// Set the font used to display main number
-        struct Font: Encodable {
+        public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            var family: String?
+            public var family: String?
         
-            var size: Double?
+            public var size: Double?
         
-            var color: Color?
+            public var color: Color?
         
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil) {
+                self.family = family
+                self.size = size
+                self.color = color
+            }
         }
         /// Set the font used to display main number
-        var font: Font?
+        public var font: Font?
     
         /// Sets a prefix appearing before the number.
-        var prefix: String?
+        public var prefix: String?
     
         /// Sets a suffix appearing next to the number.
-        var suffix: String?
+        public var suffix: String?
     
+        public init(valueformat: String? = nil, font: Font? = nil, prefix: String? = nil, suffix: String? = nil) {
+            self.valueformat = valueformat
+            self.font = font
+            self.prefix = prefix
+            self.suffix = suffix
+        }
     }
-    var number: Number?
+    public var number: Number?
 
-    struct Delta: Encodable {
+    public struct Delta: Encodable {
         /// Sets the reference value to compute the delta. By default, it is set to the current value.
-        var reference: Double?
+        public var reference: Double?
     
         /// Sets the position of delta with respect to the number.
-        enum Position: String, Encodable {
+        public enum Position: String, Encodable {
             case top
             case bottom
             case left
             case right
         }
         /// Sets the position of delta with respect to the number.
-        var position: Position?
+        public var position: Position?
     
         /// Show relative change
-        var relative: Bool?
+        public var relative: Bool?
     
         /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        var valueformat: String?
+        public var valueformat: String?
     
-        struct Increasing: Encodable {
+        public struct Increasing: Encodable {
             /// Sets the symbol to display for increasing value
-            var symbol: String?
+            public var symbol: String?
         
             /// Sets the color for increasing value.
-            var color: Color?
+            public var color: Color?
         
+            public init(symbol: String? = nil, color: Color? = nil) {
+                self.symbol = symbol
+                self.color = color
+            }
         }
-        var increasing: Increasing?
+        public var increasing: Increasing?
     
-        struct Decreasing: Encodable {
+        public struct Decreasing: Encodable {
             /// Sets the symbol to display for increasing value
-            var symbol: String?
+            public var symbol: String?
         
             /// Sets the color for increasing value.
-            var color: Color?
+            public var color: Color?
         
+            public init(symbol: String? = nil, color: Color? = nil) {
+                self.symbol = symbol
+                self.color = color
+            }
         }
-        var decreasing: Decreasing?
+        public var decreasing: Decreasing?
     
         /// Set the font used to display the delta
-        struct Font: Encodable {
+        public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            var family: String?
+            public var family: String?
         
-            var size: Double?
+            public var size: Double?
         
-            var color: Color?
+            public var color: Color?
         
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil) {
+                self.family = family
+                self.size = size
+                self.color = color
+            }
         }
         /// Set the font used to display the delta
-        var font: Font?
+        public var font: Font?
     
+        public init(reference: Double? = nil, position: Position? = nil, relative: Bool? = nil, valueformat: String? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, font: Font? = nil) {
+            self.reference = reference
+            self.position = position
+            self.relative = relative
+            self.valueformat = valueformat
+            self.increasing = increasing
+            self.decreasing = decreasing
+            self.font = font
+        }
     }
-    var delta: Delta?
+    public var delta: Delta?
 
     /// The gauge of the Indicator plot.
-    struct Gauge: Encodable {
+    public struct Gauge: Encodable {
         /// Set the shape of the gauge
-        enum Shape: String, Encodable {
+        public enum Shape: String, Encodable {
             case angular
             case bullet
         }
         /// Set the shape of the gauge
-        var shape: Shape?
+        public var shape: Shape?
     
         /// Set the appearance of the gauge's value
-        struct Bar: Encodable {
+        public struct Bar: Encodable {
             /// Sets the background color of the arc.
-            var color: Color?
+            public var color: Color?
         
-            struct Line: Encodable {
+            public struct Line: Encodable {
                 /// Sets the color of the line enclosing each sector.
-                var color: Color?
+                public var color: Color?
             
                 /// Sets the width (in px) of the line enclosing each sector.
-                var width: Double?
+                public var width: Double?
             
+                public init(color: Color? = nil, width: Double? = nil) {
+                    self.color = color
+                    self.width = width
+                }
             }
-            var line: Line?
+            public var line: Line?
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
-            var thickness: Double?
+            public var thickness: Double?
         
+            public init(color: Color? = nil, line: Line? = nil, thickness: Double? = nil) {
+                self.color = color
+                self.line = line
+                self.thickness = thickness
+            }
         }
         /// Set the appearance of the gauge's value
-        var bar: Bar?
+        public var bar: Bar?
     
         /// Sets the gauge background color.
-        var bgcolor: Color?
+        public var bgcolor: Color?
     
         /// Sets the color of the border enclosing the gauge.
-        var bordercolor: Color?
+        public var bordercolor: Color?
     
         /// Sets the width (in px) of the border enclosing the gauge.
-        var borderwidth: Double?
+        public var borderwidth: Double?
     
-        struct Axis: Encodable {
+        public struct Axis: Encodable {
             /// Sets the range of this axis.
-            var range: InfoArray?
+            public var range: InfoArray?
         
             /// A single toggle to hide the axis while preserving interaction like dragging. Default is true when a cheater plot is present on the axis, otherwise false
-            var visible: Bool?
+            public var visible: Bool?
         
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
-            enum Tickmode: String, Encodable {
+            public enum Tickmode: String, Encodable {
                 case auto
                 case linear
                 case array
             }
             /// Sets the tick mode for this axis. If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is provided).
-            var tickmode: Tickmode?
+            public var tickmode: Tickmode?
         
             /// Specifies the maximum number of ticks for the particular axis. The actual number of ticks will be chosen automatically to be less than or equal to `nticks`. Has an effect only if `tickmode` is set to *auto*.
-            var nticks: Int?
+            public var nticks: Int?
         
             /// Sets the placement of the first tick on this axis. Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date data. If the axis `type` is *category*, it should be a number, using the scale where each category is assigned a serial number from zero in the order it appears.
-            var tick0: Anything?
+            public var tick0: Anything?
         
             /// Sets the step in-between ticks on this axis. Use with `tick0`. Must be a positive number, or special strings available to *log* and *date* axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ... set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is a positive number, gives ticks linearly spaced in value (but not position). For example `tick0` = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1* and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick` to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            var dtick: Anything?
+            public var dtick: Anything?
         
             /// Sets the values at which ticks on this axis appear. Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            var tickvals: [Double]?
+            public var tickvals: [Double]?
         
             /// Sets the text displayed at the ticks position via `tickvals`. Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            var ticktext: [Double]?
+            public var ticktext: [Double]?
         
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
-            enum Ticks: String, Encodable {
+            public enum Ticks: String, Encodable {
                 case outside
                 case inside
                 case none
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
-            var ticks: Ticks?
+            public var ticks: Ticks?
         
             /// Sets the tick length (in px).
-            var ticklen: Double?
+            public var ticklen: Double?
         
             /// Sets the tick width (in px).
-            var tickwidth: Double?
+            public var tickwidth: Double?
         
             /// Sets the tick color.
-            var tickcolor: Color?
+            public var tickcolor: Color?
         
             /// Determines whether or not the tick labels are drawn.
-            var showticklabels: Bool?
+            public var showticklabels: Bool?
         
             /// Sets the color bar's tick label font
-            struct Tickfont: Encodable {
+            public struct Tickfont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-                var family: String?
+                public var family: String?
             
-                var size: Double?
+                public var size: Double?
             
-                var color: Color?
+                public var color: Color?
             
+                public init(family: String? = nil, size: Double? = nil, color: Color? = nil) {
+                    self.family = family
+                    self.size = size
+                    self.color = color
+                }
             }
             /// Sets the color bar's tick label font
-            var tickfont: Tickfont?
+            public var tickfont: Tickfont?
         
             /// Sets the angle of the tick labels with respect to the horizontal. For example, a `tickangle` of -90 draws the tick labels vertically.
-            var tickangle: Angle?
+            public var tickangle: Angle?
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format And for dates see: https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            var tickformat: String?
+            public var tickformat: String?
         
-            struct Tickformatstops: Encodable {
-                struct Items: Encodable {
-                    struct Tickformatstop: Encodable {
+            public struct Tickformatstops: Encodable {
+                public struct Items: Encodable {
+                    public struct Tickformatstop: Encodable {
                         /// Determines whether or not this stop is used. If `false`, this stop is ignored even within its `dtickrange`.
-                        var enabled: Bool?
+                        public var enabled: Bool?
                     
                         /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is possible to omit *min* or *max* value by passing *null*
-                        var dtickrange: InfoArray?
+                        public var dtickrange: InfoArray?
                     
                         /// string - dtickformat for described zoom level, the same as *tickformat*
-                        var value: String?
+                        public var value: String?
                     
                         /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
-                        var name: String?
+                        public var name: String?
                     
                         /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
-                        var templateitemname: String?
+                        public var templateitemname: String?
                     
+                        public init(enabled: Bool? = nil, dtickrange: InfoArray? = nil, value: String? = nil, name: String? = nil, templateitemname: String? = nil) {
+                            self.enabled = enabled
+                            self.dtickrange = dtickrange
+                            self.value = value
+                            self.name = name
+                            self.templateitemname = templateitemname
+                        }
                     }
-                    var tickformatstop: Tickformatstop?
+                    public var tickformatstop: Tickformatstop?
                 
+                    public init(tickformatstop: Tickformatstop? = nil) {
+                        self.tickformatstop = tickformatstop
+                    }
                 }
-                var items: Items?
+                public var items: Items?
             
+                public init(items: Items? = nil) {
+                    self.items = items
+                }
             }
-            var tickformatstops: Tickformatstops?
+            public var tickformatstops: Tickformatstops?
         
             /// Sets a tick label prefix.
-            var tickprefix: String?
+            public var tickprefix: String?
         
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
-            enum Showtickprefix: String, Encodable {
+            public enum Showtickprefix: String, Encodable {
                 case all
                 case first
                 case last
                 case none
             }
             /// If *all*, all tick labels are displayed with a prefix. If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is displayed with a suffix. If *none*, tick prefixes are hidden.
-            var showtickprefix: Showtickprefix?
+            public var showtickprefix: Showtickprefix?
         
             /// Sets a tick label suffix.
-            var ticksuffix: String?
+            public var ticksuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            enum Showticksuffix: String, Encodable {
+            public enum Showticksuffix: String, Encodable {
                 case all
                 case first
                 case last
                 case none
             }
             /// Same as `showtickprefix` but for tick suffixes.
-            var showticksuffix: Showticksuffix?
+            public var showticksuffix: Showticksuffix?
         
             /// If "true", even 4-digit integers are separated
-            var separatethousands: Bool?
+            public var separatethousands: Bool?
         
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            enum Exponentformat: String, Encodable {
+            public enum Exponentformat: String, Encodable {
                 case none
                 case e
                 case E
@@ -394,95 +482,182 @@ struct Indicator: Trace {
                 case B
             }
             /// Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            var exponentformat: Exponentformat?
+            public var exponentformat: Exponentformat?
         
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
-            enum Showexponent: String, Encodable {
+            public enum Showexponent: String, Encodable {
                 case all
                 case first
                 case last
                 case none
             }
             /// If *all*, all exponents are shown besides their significands. If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the last tick is shown. If *none*, no exponents appear.
-            var showexponent: Showexponent?
+            public var showexponent: Showexponent?
         
             /// Sets the source reference on plot.ly for  tickvals .
-            var tickvalssrc: String?
+            public var tickvalssrc: String?
         
             /// Sets the source reference on plot.ly for  ticktext .
-            var ticktextsrc: String?
+            public var ticktextsrc: String?
         
+            public init(range: InfoArray? = nil, visible: Bool? = nil, tickmode: Tickmode? = nil, nticks: Int? = nil, tick0: Anything? = nil, dtick: Anything? = nil, tickvals: [Double]? = nil, ticktext: [Double]? = nil, ticks: Ticks? = nil, ticklen: Double? = nil, tickwidth: Double? = nil, tickcolor: Color? = nil, showticklabels: Bool? = nil, tickfont: Tickfont? = nil, tickangle: Angle? = nil, tickformat: String? = nil, tickformatstops: Tickformatstops? = nil, tickprefix: String? = nil, showtickprefix: Showtickprefix? = nil, ticksuffix: String? = nil, showticksuffix: Showticksuffix? = nil, separatethousands: Bool? = nil, exponentformat: Exponentformat? = nil, showexponent: Showexponent? = nil, tickvalssrc: String? = nil, ticktextsrc: String? = nil) {
+                self.range = range
+                self.visible = visible
+                self.tickmode = tickmode
+                self.nticks = nticks
+                self.tick0 = tick0
+                self.dtick = dtick
+                self.tickvals = tickvals
+                self.ticktext = ticktext
+                self.ticks = ticks
+                self.ticklen = ticklen
+                self.tickwidth = tickwidth
+                self.tickcolor = tickcolor
+                self.showticklabels = showticklabels
+                self.tickfont = tickfont
+                self.tickangle = tickangle
+                self.tickformat = tickformat
+                self.tickformatstops = tickformatstops
+                self.tickprefix = tickprefix
+                self.showtickprefix = showtickprefix
+                self.ticksuffix = ticksuffix
+                self.showticksuffix = showticksuffix
+                self.separatethousands = separatethousands
+                self.exponentformat = exponentformat
+                self.showexponent = showexponent
+                self.tickvalssrc = tickvalssrc
+                self.ticktextsrc = ticktextsrc
+            }
         }
-        var axis: Axis?
+        public var axis: Axis?
     
-        struct Steps: Encodable {
-            struct Items: Encodable {
-                struct Step: Encodable {
+        public struct Steps: Encodable {
+            public struct Items: Encodable {
+                public struct Step: Encodable {
                     /// Sets the background color of the arc.
-                    var color: Color?
+                    public var color: Color?
                 
-                    struct Line: Encodable {
+                    public struct Line: Encodable {
                         /// Sets the color of the line enclosing each sector.
-                        var color: Color?
+                        public var color: Color?
                     
                         /// Sets the width (in px) of the line enclosing each sector.
-                        var width: Double?
+                        public var width: Double?
                     
+                        public init(color: Color? = nil, width: Double? = nil) {
+                            self.color = color
+                            self.width = width
+                        }
                     }
-                    var line: Line?
+                    public var line: Line?
                 
                     /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
-                    var thickness: Double?
+                    public var thickness: Double?
                 
                     /// Sets the range of this axis.
-                    var range: InfoArray?
+                    public var range: InfoArray?
                 
                     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
-                    var name: String?
+                    public var name: String?
                 
                     /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
-                    var templateitemname: String?
+                    public var templateitemname: String?
                 
+                    public init(color: Color? = nil, line: Line? = nil, thickness: Double? = nil, range: InfoArray? = nil, name: String? = nil, templateitemname: String? = nil) {
+                        self.color = color
+                        self.line = line
+                        self.thickness = thickness
+                        self.range = range
+                        self.name = name
+                        self.templateitemname = templateitemname
+                    }
                 }
-                var step: Step?
+                public var step: Step?
             
+                public init(step: Step? = nil) {
+                    self.step = step
+                }
             }
-            var items: Items?
+            public var items: Items?
         
+            public init(items: Items? = nil) {
+                self.items = items
+            }
         }
-        var steps: Steps?
+        public var steps: Steps?
     
-        struct Threshold: Encodable {
-            struct Line: Encodable {
+        public struct Threshold: Encodable {
+            public struct Line: Encodable {
                 /// Sets the color of the threshold line.
-                var color: Color?
+                public var color: Color?
             
                 /// Sets the width (in px) of the threshold line.
-                var width: Double?
+                public var width: Double?
             
+                public init(color: Color? = nil, width: Double? = nil) {
+                    self.color = color
+                    self.width = width
+                }
             }
-            var line: Line?
+            public var line: Line?
         
             /// Sets the thickness of the threshold line as a fraction of the thickness of the gauge.
-            var thickness: Double?
+            public var thickness: Double?
         
             /// Sets a treshold value drawn as a line.
-            var value: Double?
+            public var value: Double?
         
+            public init(line: Line? = nil, thickness: Double? = nil, value: Double? = nil) {
+                self.line = line
+                self.thickness = thickness
+                self.value = value
+            }
         }
-        var threshold: Threshold?
+        public var threshold: Threshold?
     
+        public init(shape: Shape? = nil, bar: Bar? = nil, bgcolor: Color? = nil, bordercolor: Color? = nil, borderwidth: Double? = nil, axis: Axis? = nil, steps: Steps? = nil, threshold: Threshold? = nil) {
+            self.shape = shape
+            self.bar = bar
+            self.bgcolor = bgcolor
+            self.bordercolor = bordercolor
+            self.borderwidth = borderwidth
+            self.axis = axis
+            self.steps = steps
+            self.threshold = threshold
+        }
     }
     /// The gauge of the Indicator plot.
-    var gauge: Gauge?
+    public var gauge: Gauge?
 
     /// Sets the source reference on plot.ly for  ids .
-    var idssrc: String?
+    public var idssrc: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    var customdatasrc: String?
+    public var customdatasrc: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    var metasrc: String?
+    public var metasrc: String?
 
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uirevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Align? = nil, domain: Domain? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil) {
+        self.visible = visible
+        self.name = name
+        self.uid = uid
+        self.ids = ids
+        self.customdata = customdata
+        self.meta = meta
+        self.stream = stream
+        self.transforms = transforms
+        self.uirevision = uirevision
+        self.mode = mode
+        self.value = value
+        self.align = align
+        self.domain = domain
+        self.title = title
+        self.number = number
+        self.delta = delta
+        self.gauge = gauge
+        self.idssrc = idssrc
+        self.customdatasrc = customdatasrc
+        self.metasrc = metasrc
+    }
 }

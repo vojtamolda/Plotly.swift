@@ -1,5 +1,5 @@
 import XCTest
-@testable import Plotly
+import Plotly
 
 
 final class PlotlyTests: XCTestCase {

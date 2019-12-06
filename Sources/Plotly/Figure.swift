@@ -1,14 +1,8 @@
 import Foundation
 
 
-/// Requirements for a plot or, sub-plot or a line in a _Plotly_ `Figure`.
-protocol Trace: Encodable {
-    /// Trace type (i.e. scatter, bar, heatmap, ...)
-    var type: String { get }
-
-    /// Indication whether the trace can be animated.
-    var animatable: Bool { get }
-}
+/// Protocol shared by all chart types that can appear in a _Plotly_ `Figure`.
+public protocol Trace: Encodable { }
 
 
 /// Swift representation of a _Plotly.js_ chart.
@@ -45,24 +39,31 @@ protocol Trace: Encodable {
 ///    }
 /// ];
 /// ```
-struct Figure {
+public struct Figure {
     /// Collection of `Scatter`, `Bar`, `Heatmap` ... objects that are displayed in the figure.
-    var data: [Trace]
+    public var data: [Trace]
 
     /// Structure containing layout of the figure.
-    var layout: Layout?
+    public var layout: Layout?
 
     /// Structure containing Plotly configuration.
-    var config: Config?
+    public var config: Config?
     
     /// `Figure` output format specification.
-    enum Format {
+    public enum Format {
         case HTML
         case JSON
     }
 
-    /// Shows  the `Figure` in the default browser available on your OS.
-    func show(javaScript bundle: HTML.JavaScriptBundleOption = .online) {
+    /// Creates a `Figure` displaying the `data` traces with styling and configuration specified by `layout` and `config`.
+    public init(data: [Trace], layout: Layout? = nil, config: Config? = nil) {
+        self.data = data
+        self.layout = layout
+        self.config = config
+    }
+
+    /// Shows the `Figure` in the default browser available on your OS.
+    public func show(javaScript bundle: HTML.JavaScriptBundleOption = .online) {
         try! Browser.show(figure: self, javaScript: bundle)
     }
 
@@ -75,7 +76,7 @@ struct Figure {
     /// - Warning: Calling may take a few seconds because the function needs internet access.
     /// Current implementation of `.included` option downloads the library from the CDN
     /// server and returns `<script>` tag with the file content.
-    func write<T>(toFile path: T, as format: Format = .HTML,
+    public func write<T>(toFile path: T, as format: Format = .HTML,
                   javaScript bundle: HTML.JavaScriptBundleOption = .online)
         where T : StringProtocol {
 
@@ -97,7 +98,7 @@ extension Figure: Encodable {
         case config
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         var dataContainer = container.nestedUnkeyedContainer(forKey: .data)

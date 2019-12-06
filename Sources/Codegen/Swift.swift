@@ -9,6 +9,7 @@ struct Swift {
         let const: String?
         let optional: Bool
         var description: String { dataType.description }
+        var access: String? = "public"
 
         /// Creates instance of the specified data type accessible by identifier.
         init(identifier: String, dataType: SwiftDataType, const: String? = nil, optional: Bool = true) {
@@ -29,10 +30,11 @@ struct Swift {
             if description != "" {
                 lines += ["/// \(description)"]
             }
+            let access = (self.access != nil) ? (self.access! + " ") : ""
             if let const = self.const {
-                lines += ["let \(argument()) = \(const)"]
+                lines += ["\(access)let \(argument()) = \(const)"]
             } else {
-                lines += ["var \(argument())"]
+                lines += ["\(access)var \(argument())"]
             }
             return lines
         }
@@ -51,7 +53,10 @@ struct Swift {
     struct Enumerated: SwiftDataType {
         let type: String
         let schema: SchemaDataType?
-        var associatedType = "String"
+
+        var access: String? = "public"
+        var protocols: [String] = ["String", "Encodable"]
+
         var values: [String] = []
 
         init(type: String, schema: Schema.Attribute.Enumerated) {
@@ -61,7 +66,7 @@ struct Swift {
 
             // Workaround for numerical values of Marker Symbols
             if schema.decodingPath.hasSuffix("marker/symbol") && !schema.decodingPath.contains("scatter3d") {
-                associatedType = "Int"
+                protocols[0] = "Int"
                 let even = stride(from: 0, to: schema.values.endIndex, by: 2)
                 let pairs = even.map { (schema.values[$0], schema.values[$0.advanced(by: 1)]) }
                 values = pairs.map { (intPrimitive, stringPrimitive) -> String in
@@ -77,7 +82,7 @@ struct Swift {
             }
             // Workaround for numerical values of Geo Resolution
             if schema.decodingPath.hasSuffix("geo/resolution") {
-                associatedType = "Int"
+                protocols[0] = "Int"
                 values = schema.values.map { primitive -> String in
                     guard case let Schema.Primitive.int(int) = primitive else {
                         fatalError("Unsupported Geo Resolution value in '\(schema.decodingPath)'")
@@ -108,7 +113,7 @@ struct Swift {
             }
             // Workaround for meaningless numerical values of SurfaceAxis
             if schema.decodingPath.hasSuffix("surfaceaxis") {
-                associatedType = "Int"
+                protocols[0] = "Int"
                 values = ["none = -1", "x = 0", "y = 1", "z = 2"]
                 return
             }
@@ -154,8 +159,10 @@ struct Swift {
         /// Returns lines of Swift code that fully define the enum.
         func definition() -> [String] {
             var lines = [String]()
+            let access = (self.access != nil) ? (self.access! + " ") : ""
+            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += ["/// \(description)"]
-            lines += ["enum \(type): \(associatedType), Encodable {"]
+            lines += ["\(access)enum \(type)\(protocols) {"]
             for value in values {
                 lines += ["case \(value)"].indented()
             }
@@ -223,6 +230,8 @@ struct Swift {
     struct FlagList: SwiftDataType {
         let type: String
         let schema: SchemaDataType?
+
+        var access: String? = "public"
         var flags: [(String, String)] = []
 
         init(type: String, schema: Schema.Attribute.FlagList) {
@@ -247,18 +256,19 @@ struct Swift {
 
         /// Returns lines of Swift code that fully define the OptionSet struct.
         func definition() -> [String] {
+            let access = (self.access != nil) ? (self.access! + " ") : ""
             var lines = [String]()
             lines += ["/// \(description)"]
-            lines += ["struct \(type): OptionSet, Encodable {"]
-            lines += ["let rawValue: Int"].indented()
+            lines += ["\(access)struct \(type): OptionSet, Encodable {"]
+            lines += ["\(access)let rawValue: Int"].indented()
             lines += [""]
             for (i, (flag, _) ) in flags.enumerated() {
-                lines += ["static let \(flag) = \(type)(rawValue: 1 << \(i))"].indented()
+                lines += ["\(access)static let \(flag) = \(type)(rawValue: 1 << \(i))"].indented()
             }
             lines += [""]
-            lines += ["init(rawValue: Int) { self.rawValue = rawValue }"].indented()
+            lines += ["\(access)init(rawValue: Int) { self.rawValue = rawValue }"].indented()
             lines += [""]
-            lines += ["func encode(to encoder: Encoder) throws {"].indented()
+            lines += ["\(access)func encode(to encoder: Encoder) throws {"].indented()
             lines += ["var options = [String]()"].indented(2)
             for (i, (_, orig)) in flags.enumerated() {
                 lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\"\(orig)\"] }"].indented(2)
@@ -287,9 +297,11 @@ struct Swift {
         var description: String = ""
         let schema: SchemaDataType? = nil
 
+        var access: String? = "public"
+        var protocols: [String] = ["Encodable"]
+
         var members: [Instance]
         var primitives: [String: Schema.Primitive]
-        var protocols: [String] = ["Encodable"]
 
         init(identifier: String, entries: Schema.Entries) {
             self.type = identifier.capitalized
@@ -320,13 +332,19 @@ struct Swift {
             if description != "" {
                 lines += ["/// \(description)"]
             }
-            let derived = protocols.joined(separator: ", ") + " "
-            lines += ["struct \(type): \(derived){"]
+            let access = (self.access != nil) ? (self.access! + " ") : ""
+            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
+            lines += ["\(access)struct \(type)\(protocols) {"]
             for instance in members {
                 lines += instance.dataType.definition().indented()
                 lines += instance.definition().indented()
                 lines += [""]
             }
+            let variables = members.filter { $0.const == nil}
+            let arguments = variables.map { $0.argument() + " = nil" }.joined(separator: ", ")
+            lines += ["\(access)init(\(arguments)) {"].indented()
+            lines += variables.map { "self.\($0.identifier) = \($0.identifier)" }.indented(2)
+            lines += ["}"].indented()
             lines += ["}"]
             return lines
         }

@@ -5,7 +5,7 @@ import Foundation
 
 
 /// Functions for converting `Figure` object to HTML compatible with _Plotly.js_ library.
-struct HTML {
+public struct HTML {
 
     /// Specifies how a JavaScript library is incorporated in the generated HTML.
     public enum JavaScriptBundleOption {

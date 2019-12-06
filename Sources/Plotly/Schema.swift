@@ -1,11 +1,11 @@
 
 /// Color expressed in RGB, HSV or HTML named format. Optionally with transparency.
-enum Color: Encodable {
+public enum Color: Encodable {
     case RGB(_ red: UInt8, _ green: UInt8, _ blue: UInt8, _ alpha: Double = 1.0)
     case HSL(_ hue: Double, _ saturation: Double, _ lighness: Double, _ alpha: Double = 1.0)
     case named(_ name: String)
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .RGB(let red, let  green, let blue, let alpha):
@@ -19,10 +19,10 @@ enum Color: Encodable {
 }
 
 /// List of `Color` objects.
-typealias ColorList = [Color]
+public typealias ColorList = [Color]
 
 /// Color scale definition.
-enum ColorScale: Encodable {
+public enum ColorScale: Encodable {
     case greys
     case yellowGreenBlue
     case greens
@@ -43,7 +43,7 @@ enum ColorScale: Encodable {
     case cividis
     case custom(colorMap: [Double: Color])
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .greys:
@@ -90,13 +90,13 @@ enum ColorScale: Encodable {
 
 /// Angle value between -180 and +180.
 /// - FIXME: Implement min/max validation with `@PropertyWrapper`
-typealias Angle = Double
+public typealias Angle = Double
 
 /// Not yet implemented.
-typealias SubplotID = String
+public typealias SubplotID = String
 
 /// Not yet implemented.
-struct Anything: Encodable { }
+public struct Anything: Encodable { }
 
 /// Not yet implemented.
-struct InfoArray: Encodable { }
+public struct InfoArray: Encodable { }
