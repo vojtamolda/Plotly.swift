@@ -2,13 +2,13 @@
 /// Color expressed in RGB, HSV or HTML named format. Optionally with transparency.
 public enum Color: Encodable {
     case RGB(_ red: UInt8, _ green: UInt8, _ blue: UInt8, _ alpha: Double = 1.0)
-    case HSL(_ hue: Double, _ saturation: Double, _ lighness: Double, _ alpha: Double = 1.0)
+    case HSL(_ hue: Float, _ saturation: Float, _ lightness: Float, _ alpha: Float = 1.0)
     case named(_ name: String)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .RGB(let red, let  green, let blue, let alpha):
+        case .RGB(let red, let green, let blue, let alpha):
             try container.encode("rgba(\(red), \(green), \(blue), \(alpha))")
         case .HSL(let hue, let saturation, let lightness, let alpha):
             try container.encode("hsla(\(hue), \(saturation), \(lightness), \(alpha))")
