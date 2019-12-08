@@ -9,7 +9,7 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     let schemaData = try! Data(contentsOf: schemaFile)
     let schema = try! JSONDecoder().decode(Schema.self, from: schemaData)
 
-    let tracesDirectory = outputDirectory.appendingPathComponent("Trace")
+    let tracesDirectory = outputDirectory.appendingPathComponent("Traces")
     for (identifier, schema) in schema.traces {
         let trace = Trace(identifier: identifier, schema: schema)
         trace.write(to: tracesDirectory.appendingPathComponent("\(identifier.capitalized).swift"))
