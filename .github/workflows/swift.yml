@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
 
-  build_test:
+  codegen_build_test:
 
     strategy:
       matrix:
@@ -17,15 +17,29 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Generate order
-        run: python3 order.py
+        # Parse Plotly schema and generate ordering of Swift struct members
         working-directory: Sources/Codegen/
+        run: python3 order.py
+
+      - name: Generate names
+        # Parse Plotly schema and generate names of Swift objects
+        working-directory: Sources/Codegen/
+        run: python3 name.py
 
       - name: Generate code
-        run: swift run codegen
+        # Parse Plotly schema and generate code for equivalent Swift objects
         working-directory: Sources/Codegen/
+        run: swift run codegen
+
+      - name: Check for changes
+        # Check whether all generated code changes are committed to git
+        continue-on-error: true
+        run: git diff --quiet || git diff
 
       - name: Build package
+        # Build package for Swift Package Manager
         run: swift build
 
       - name: Execute tests
+        # Run unit tests
         run: swift test
