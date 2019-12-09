@@ -1,10 +1,5 @@
 
 extension String {
-    /// Returns a copy of the string with all words camelCased together.
-    func camelCased() -> String {
-        return prefix(1).capitalized + dropFirst()
-    }
-
     /// Prepends the string with `indentation` repeated `count`-times.
     func indented(_ count: Int = 1, indentation: String = "    ") -> String {
         let prefix = String(repeating: indentation, count: count)

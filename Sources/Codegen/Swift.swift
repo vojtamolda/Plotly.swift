@@ -2,6 +2,9 @@
 /// Container for Swift data types that map to corresponding values in the Plotly JSON schema hierarchy.
 struct Swift {
 
+    /// Storage of Plotly mangledtogethernames translated to Swift camelCaseNames for each identifier in the schema.
+    static var name: Name? = nil
+
     /// Instantioation of a Swift variable with an associated data type.
     struct Instance {
         let identifier: String
@@ -13,7 +16,7 @@ struct Swift {
 
         /// Creates instance of the specified data type accessible by identifier.
         init(identifier: String, dataType: SwiftDataType, const: String? = nil, optional: Bool = true) {
-            self.identifier = identifier
+            self.identifier = Swift.name!.camelCased(identifier)
             self.dataType = dataType
             self.const = const
             self.optional = optional
@@ -62,7 +65,7 @@ struct Swift {
         init(type: String, schema: Schema.Attribute.Enumerated) {
             self.schema = schema
             // Workaround for enum called Type that collides with Swift built-in Type
-            self.type = (type != "type") ? type.capitalized : "AxisType"
+            self.type = Swift.name!.pascalCased(type)
 
             // Workaround for numerical values of Marker Symbols
             if schema.decodingPath.hasSuffix("marker/symbol") && !schema.decodingPath.contains("scatter3d") {
@@ -209,6 +212,7 @@ struct Swift {
     }
 
     /// Plotly `colorscale` data type is manually re-implemented in Swift.
+    /// - Note: `Layout.ColorScale` is renamed to `Layout.ColorMap` to prevent conflicts.
     struct ColorScale: SwiftDataType {
         let type: String = "ColorScale"
         let schema: SchemaDataType?
@@ -235,7 +239,7 @@ struct Swift {
         var flags: [(String, String)] = []
 
         init(type: String, schema: Schema.Attribute.FlagList) {
-            self.type = type.capitalized
+            self.type = Swift.name!.pascalCased(type)
             self.schema = schema
 
             // Workaround for empty Hover Info of Sankey charts
@@ -304,7 +308,7 @@ struct Swift {
         var primitives: [String: Schema.Primitive]
 
         init(identifier: String, entries: Schema.Entries) {
-            self.type = identifier.capitalized
+            self.type = Swift.name!.pascalCased(identifier)
 
             members = []
             primitives = [:]

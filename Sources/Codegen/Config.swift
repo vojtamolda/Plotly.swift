@@ -6,7 +6,7 @@ struct Config {
     let attributes: Swift.Struct
 
     init(schema: Schema.Entries) {
-        attributes = Swift.Struct(identifier: "Config", entries: schema)
+        attributes = Swift.Struct(identifier: "config", entries: schema)
     }
 
     /// Returns lines of Swift code that fully define the Config struct and all of it's nested members.

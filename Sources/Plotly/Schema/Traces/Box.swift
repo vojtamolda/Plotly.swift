@@ -14,10 +14,10 @@ public struct Box: Trace {
     public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showlegend: Bool?
+    public var showLegend: Bool?
 
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendgroup: String?
+    public var legendGroup: String?
 
     /// Sets the opacity of the trace.
     public var opacity: Double?
@@ -29,23 +29,23 @@ public struct Box: Trace {
     public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    public var customdata: [Double]?
+    public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedpoints: Anything?
+    public var selectedPoints: Anything?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public struct Hoverinfo: OptionSet, Encodable {
+    public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let x = Hoverinfo(rawValue: 1 << 0)
-        public static let y = Hoverinfo(rawValue: 1 << 1)
-        public static let z = Hoverinfo(rawValue: 1 << 2)
-        public static let text = Hoverinfo(rawValue: 1 << 3)
-        public static let name = Hoverinfo(rawValue: 1 << 4)
+        public static let x = HoverInfo(rawValue: 1 << 0)
+        public static let y = HoverInfo(rawValue: 1 << 1)
+        public static let z = HoverInfo(rawValue: 1 << 2)
+        public static let text = HoverInfo(rawValue: 1 << 3)
+        public static let name = HoverInfo(rawValue: 1 << 4)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -61,14 +61,14 @@ public struct Box: Trace {
         }
     }
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public var hoverinfo: Hoverinfo?
+    public var hoverInfo: HoverInfo?
 
-    public struct Hoverlabel: Encodable {
+    public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        public var bgcolor: Color?
+        public var backgroundColor: Color?
     
         /// Sets the border color of the hover labels for this trace.
-        public var bordercolor: Color?
+        public var borderColor: Color?
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
@@ -80,21 +80,21 @@ public struct Box: Trace {
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            public var familysrc: String?
+            public var familySource: String?
         
             /// Sets the source reference on plot.ly for  size .
-            public var sizesrc: String?
+            public var sizeSource: String?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                 self.family = family
                 self.size = size
                 self.color = color
-                self.familysrc = familysrc
-                self.sizesrc = sizesrc
-                self.colorsrc = colorsrc
+                self.familySource = familySource
+                self.sizeSource = sizeSource
+                self.colorSource = colorSource
             }
         }
         /// Sets the font used in hover labels.
@@ -110,44 +110,44 @@ public struct Box: Trace {
         public var align: Align?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        public var namelength: Int?
+        public var nameLength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
-        public var bgcolorsrc: String?
+        public var backgroundColorSource: String?
     
         /// Sets the source reference on plot.ly for  bordercolor .
-        public var bordercolorsrc: String?
+        public var borderColorSource: String?
     
         /// Sets the source reference on plot.ly for  align .
-        public var alignsrc: String?
+        public var alignSource: String?
     
         /// Sets the source reference on plot.ly for  namelength .
-        public var namelengthsrc: String?
+        public var nameLengthSource: String?
     
-        public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
-            self.bgcolor = bgcolor
-            self.bordercolor = bordercolor
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
             self.font = font
             self.align = align
-            self.namelength = namelength
-            self.bgcolorsrc = bgcolorsrc
-            self.bordercolorsrc = bordercolorsrc
-            self.alignsrc = alignsrc
-            self.namelengthsrc = namelengthsrc
+            self.nameLength = nameLength
+            self.backgroundColorSource = backgroundColorSource
+            self.borderColorSource = borderColorSource
+            self.alignSource = alignSource
+            self.nameLengthSource = nameLengthSource
         }
     }
-    public var hoverlabel: Hoverlabel?
+    public var hoverLabel: HoverLabel?
 
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxpoints: Double?
+        public var maxPoints: Double?
     
-        public init(token: String? = nil, maxpoints: Double? = nil) {
+        public init(token: String? = nil, maxPoints: Double? = nil) {
             self.token = token
-            self.maxpoints = maxpoints
+            self.maxPoints = maxPoints
         }
     }
     public var stream: Stream?
@@ -175,7 +175,7 @@ public struct Box: Trace {
     public var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    public var uirevision: Anything?
+    public var uiRevision: Anything?
 
     /// Sets the y sample data or coordinates. See overview for more info.
     public var y: [Double]?
@@ -196,44 +196,44 @@ public struct Box: Trace {
     public var text: String?
 
     /// Same as `text`.
-    public var hovertext: String?
+    public var hoverText: String?
 
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    public var hovertemplate: String?
+    public var hoverTemplate: String?
 
     /// Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
-    public var whiskerwidth: Double?
+    public var whiskerWidth: Double?
 
     /// Determines whether or not notches should be drawn.
     public var notched: Bool?
 
     /// Sets the width of the notches relative to the box' width. For example, with 0, the notches are as wide as the box(es).
-    public var notchwidth: Double?
+    public var notchWidth: Double?
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
-    public enum Boxpoints: String, Encodable {
+    public enum BoxPoints: String, Encodable {
         case all
         case outliers
         case suspectedoutliers
         case no
     }
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
-    public var boxpoints: Boxpoints?
+    public var boxPoints: BoxPoints?
 
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.
-    public enum Boxmean: String, Encodable {
+    public enum BoxMean: String, Encodable {
         case yes
         case sd
         case no
     }
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.
-    public var boxmean: Boxmean?
+    public var boxMean: BoxMean?
 
     /// Sets the amount of jitter in the sample points drawn. If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn in a random jitter of width equal to the width of the box(es).
     public var jitter: Double?
 
     /// Sets the position of the sample points in relation to the box(es). If *0*, the sample points are places over the center of the box(es). Positive (negative) values correspond to positions to the right (left) for vertical boxes and above (below) for horizontal boxes
-    public var pointpos: Double?
+    public var pointPosition: Double?
 
     /// Sets the orientation of the box(es). If *v* (*h*), the distribution is visualized along the vertical (horizontal).
     public enum Orientation: String, Encodable {
@@ -248,7 +248,7 @@ public struct Box: Trace {
 
     public struct Marker: Encodable {
         /// Sets the color of the outlier sample points.
-        public var outliercolor: Color?
+        public var outlierColor: Color?
     
         /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
         public enum Symbol: Int, Encodable {
@@ -415,22 +415,22 @@ public struct Box: Trace {
             public var width: Double?
         
             /// Sets the border line color of the outlier sample points. Defaults to marker.color
-            public var outliercolor: Color?
+            public var outlierColor: Color?
         
             /// Sets the border line width (in px) of the outlier sample points.
-            public var outlierwidth: Double?
+            public var outlierWidth: Double?
         
-            public init(color: Color? = nil, width: Double? = nil, outliercolor: Color? = nil, outlierwidth: Double? = nil) {
+            public init(color: Color? = nil, width: Double? = nil, outlierColor: Color? = nil, outlierWidth: Double? = nil) {
                 self.color = color
                 self.width = width
-                self.outliercolor = outliercolor
-                self.outlierwidth = outlierwidth
+                self.outlierColor = outlierColor
+                self.outlierWidth = outlierWidth
             }
         }
         public var line: Line?
     
-        public init(outliercolor: Color? = nil, symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
-            self.outliercolor = outliercolor
+        public init(outlierColor: Color? = nil, symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
+            self.outlierColor = outlierColor
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -455,13 +455,13 @@ public struct Box: Trace {
     public var line: Line?
 
     /// Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-    public var fillcolor: Color?
+    public var fillColor: Color?
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
-    public var offsetgroup: String?
+    public var offsetGroup: String?
 
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
-    public var alignmentgroup: String?
+    public var alignmentGroup: String?
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
@@ -514,11 +514,11 @@ public struct Box: Trace {
     public var unselected: Unselected?
 
     /// Do the hover effects highlight individual boxes  or sample points or both?
-    public struct Hoveron: OptionSet, Encodable {
+    public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let boxes = Hoveron(rawValue: 1 << 0)
-        public static let points = Hoveron(rawValue: 1 << 1)
+        public static let boxes = HoverOn(rawValue: 1 << 0)
+        public static let points = HoverOn(rawValue: 1 << 1)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -531,10 +531,10 @@ public struct Box: Trace {
         }
     }
     /// Do the hover effects highlight individual boxes  or sample points or both?
-    public var hoveron: Hoveron?
+    public var hoverOn: HoverOn?
 
     /// Sets the calendar system to use with `x` date data.
-    public enum Xcalendar: String, Encodable {
+    public enum XCalendar: String, Encodable {
         case gregorian
         case chinese
         case coptic
@@ -553,10 +553,10 @@ public struct Box: Trace {
         case ummalqura
     }
     /// Sets the calendar system to use with `x` date data.
-    public var xcalendar: Xcalendar?
+    public var xCalendar: XCalendar?
 
     /// Sets the calendar system to use with `y` date data.
-    public enum Ycalendar: String, Encodable {
+    public enum YCalendar: String, Encodable {
         case gregorian
         case chinese
         case coptic
@@ -575,93 +575,93 @@ public struct Box: Trace {
         case ummalqura
     }
     /// Sets the calendar system to use with `y` date data.
-    public var ycalendar: Ycalendar?
+    public var yCalendar: YCalendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    public var xaxis: SubplotID?
+    public var xAxis: SubplotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    public var yaxis: SubplotID?
+    public var yAxis: SubplotID?
 
     /// Sets the source reference on plot.ly for  ids .
-    public var idssrc: String?
+    public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    public var customdatasrc: String?
+    public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    public var metasrc: String?
+    public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
-    public var hoverinfosrc: String?
+    public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  y .
-    public var ysrc: String?
+    public var ySource: String?
 
     /// Sets the source reference on plot.ly for  x .
-    public var xsrc: String?
+    public var xSource: String?
 
     /// Sets the source reference on plot.ly for  text .
-    public var textsrc: String?
+    public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
-    public var hovertextsrc: String?
+    public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
-    public var hovertemplatesrc: String?
+    public var hoverTemplateSource: String?
 
-    public init(visible: Visible? = nil, showlegend: Bool? = nil, legendgroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, selectedpoints: Anything? = nil, hoverinfo: Hoverinfo? = nil, hoverlabel: Hoverlabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uirevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hovertext: String? = nil, hovertemplate: String? = nil, whiskerwidth: Double? = nil, notched: Bool? = nil, notchwidth: Double? = nil, boxpoints: Boxpoints? = nil, boxmean: Boxmean? = nil, jitter: Double? = nil, pointpos: Double? = nil, orientation: Orientation? = nil, width: Double? = nil, marker: Marker? = nil, line: Line? = nil, fillcolor: Color? = nil, offsetgroup: String? = nil, alignmentgroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoveron: Hoveron? = nil, xcalendar: Xcalendar? = nil, ycalendar: Ycalendar? = nil, xaxis: SubplotID? = nil, yaxis: SubplotID? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil, hoverinfosrc: String? = nil, ysrc: String? = nil, xsrc: String? = nil, textsrc: String? = nil, hovertextsrc: String? = nil, hovertemplatesrc: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Orientation? = nil, width: Double? = nil, marker: Marker? = nil, line: Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: XCalendar? = nil, yCalendar: YCalendar? = nil, xAxis: SubplotID? = nil, yAxis: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
-        self.showlegend = showlegend
-        self.legendgroup = legendgroup
+        self.showLegend = showLegend
+        self.legendGroup = legendGroup
         self.opacity = opacity
         self.uid = uid
         self.ids = ids
-        self.customdata = customdata
+        self.customData = customData
         self.meta = meta
-        self.selectedpoints = selectedpoints
-        self.hoverinfo = hoverinfo
-        self.hoverlabel = hoverlabel
+        self.selectedPoints = selectedPoints
+        self.hoverInfo = hoverInfo
+        self.hoverLabel = hoverLabel
         self.stream = stream
         self.transforms = transforms
-        self.uirevision = uirevision
+        self.uiRevision = uiRevision
         self.y = y
         self.x = x
         self.x0 = x0
         self.y0 = y0
         self.name = name
         self.text = text
-        self.hovertext = hovertext
-        self.hovertemplate = hovertemplate
-        self.whiskerwidth = whiskerwidth
+        self.hoverText = hoverText
+        self.hoverTemplate = hoverTemplate
+        self.whiskerWidth = whiskerWidth
         self.notched = notched
-        self.notchwidth = notchwidth
-        self.boxpoints = boxpoints
-        self.boxmean = boxmean
+        self.notchWidth = notchWidth
+        self.boxPoints = boxPoints
+        self.boxMean = boxMean
         self.jitter = jitter
-        self.pointpos = pointpos
+        self.pointPosition = pointPosition
         self.orientation = orientation
         self.width = width
         self.marker = marker
         self.line = line
-        self.fillcolor = fillcolor
-        self.offsetgroup = offsetgroup
-        self.alignmentgroup = alignmentgroup
+        self.fillColor = fillColor
+        self.offsetGroup = offsetGroup
+        self.alignmentGroup = alignmentGroup
         self.selected = selected
         self.unselected = unselected
-        self.hoveron = hoveron
-        self.xcalendar = xcalendar
-        self.ycalendar = ycalendar
-        self.xaxis = xaxis
-        self.yaxis = yaxis
-        self.idssrc = idssrc
-        self.customdatasrc = customdatasrc
-        self.metasrc = metasrc
-        self.hoverinfosrc = hoverinfosrc
-        self.ysrc = ysrc
-        self.xsrc = xsrc
-        self.textsrc = textsrc
-        self.hovertextsrc = hovertextsrc
-        self.hovertemplatesrc = hovertemplatesrc
+        self.hoverOn = hoverOn
+        self.xCalendar = xCalendar
+        self.yCalendar = yCalendar
+        self.xAxis = xAxis
+        self.yAxis = yAxis
+        self.idsSource = idsSource
+        self.customDataSource = customDataSource
+        self.metaSource = metaSource
+        self.hoverInfoSource = hoverInfoSource
+        self.ySource = ySource
+        self.xSource = xSource
+        self.textSource = textSource
+        self.hoverTextSource = hoverTextSource
+        self.hoverTemplateSource = hoverTemplateSource
     }
 }

@@ -12,14 +12,14 @@ To generate fresh Swift code from a new schema located in the [`Assets/Plotly.js
 
 ```shell script
 $> python order.py [PLOTLY_SCHEMA] [SWIFT_ORDER]
-$> python names.py [PLOTLY_SCHEMA] [SWIFT_NAMES]
-$> swift run codegen [PLOTLY_SCHEMA] [SWIFT_ORDER] [SWIFT_NAMES] [OUTPUT_DIR]
+$> python names.py [PLOTLY_SCHEMA] [SWIFT_NAME]
+$> swift run codegen [PLOTLY_SCHEMA] [SWIFT_ORDER] [SWIFT_NAME] [OUTPUT_DIR]
 ```
 
 The optional arguments can be used to customize location of inputs and outputs:
  - `PLOTLY_SCHEMA` - Plotly schema file JSON (default: [`Assets/Plotly.json`](Assets/Plotly.json))
  - `SWIFT_ORDER` - Swift member order JSON file (default: [`Assets/Order.json`](Assets/Order.json))
- - `SWIFT_NAMES` - Swift translated names JSON file (default: [`Assets/Names.json`](Assets/Names.json))
+ - `SWIFT_NAME` - Swift translated names JSON file (default: [`Assets/Name.json`](Assets/Name.json))
  - `OUTPUT_DIR` - Output directory for generated Swift code (default: [`/Sources/Plotly/Schema/`](../Plotly/Schema/)).
 
 The defaults fit the structure of the repository directory structure. Generally, they don't need to be changed when the commands run from `Sources/Codegen` directory.

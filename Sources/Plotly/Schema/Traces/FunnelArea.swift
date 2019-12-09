@@ -1,5 +1,5 @@
 /// Visualize stages in a process using area-encoded trapezoids. This trace can be used to show data in a part-to-whole representation similar to a "pie" trace, wherein each item appears in a single stage. See also the "funnel" trace type for a different approach to visualizing funnel data.
-public struct Funnelarea: Trace {
+public struct FunnelArea: Trace {
     public let type: String = "funnelarea"
 
     public let animatable: Bool = false
@@ -14,10 +14,10 @@ public struct Funnelarea: Trace {
     public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showlegend: Bool?
+    public var showLegend: Bool?
 
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendgroup: String?
+    public var legendGroup: String?
 
     /// Sets the opacity of the trace.
     public var opacity: Double?
@@ -32,17 +32,17 @@ public struct Funnelarea: Trace {
     public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    public var customdata: [Double]?
+    public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public struct Hoverlabel: Encodable {
+    public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        public var bgcolor: Color?
+        public var backgroundColor: Color?
     
         /// Sets the border color of the hover labels for this trace.
-        public var bordercolor: Color?
+        public var borderColor: Color?
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
@@ -54,21 +54,21 @@ public struct Funnelarea: Trace {
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            public var familysrc: String?
+            public var familySource: String?
         
             /// Sets the source reference on plot.ly for  size .
-            public var sizesrc: String?
+            public var sizeSource: String?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                 self.family = family
                 self.size = size
                 self.color = color
-                self.familysrc = familysrc
-                self.sizesrc = sizesrc
-                self.colorsrc = colorsrc
+                self.familySource = familySource
+                self.sizeSource = sizeSource
+                self.colorSource = colorSource
             }
         }
         /// Sets the font used in hover labels.
@@ -84,44 +84,44 @@ public struct Funnelarea: Trace {
         public var align: Align?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        public var namelength: Int?
+        public var nameLength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
-        public var bgcolorsrc: String?
+        public var backgroundColorSource: String?
     
         /// Sets the source reference on plot.ly for  bordercolor .
-        public var bordercolorsrc: String?
+        public var borderColorSource: String?
     
         /// Sets the source reference on plot.ly for  align .
-        public var alignsrc: String?
+        public var alignSource: String?
     
         /// Sets the source reference on plot.ly for  namelength .
-        public var namelengthsrc: String?
+        public var nameLengthSource: String?
     
-        public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
-            self.bgcolor = bgcolor
-            self.bordercolor = bordercolor
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
             self.font = font
             self.align = align
-            self.namelength = namelength
-            self.bgcolorsrc = bgcolorsrc
-            self.bordercolorsrc = bordercolorsrc
-            self.alignsrc = alignsrc
-            self.namelengthsrc = namelengthsrc
+            self.nameLength = nameLength
+            self.backgroundColorSource = backgroundColorSource
+            self.borderColorSource = borderColorSource
+            self.alignSource = alignSource
+            self.nameLengthSource = nameLengthSource
         }
     }
-    public var hoverlabel: Hoverlabel?
+    public var hoverLabel: HoverLabel?
 
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxpoints: Double?
+        public var maxPoints: Double?
     
-        public init(token: String? = nil, maxpoints: Double? = nil) {
+        public init(token: String? = nil, maxPoints: Double? = nil) {
             self.token = token
-            self.maxpoints = maxpoints
+            self.maxPoints = maxPoints
         }
     }
     public var stream: Stream?
@@ -149,7 +149,7 @@ public struct Funnelarea: Trace {
     public var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    public var uirevision: Anything?
+    public var uiRevision: Anything?
 
     /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
     public var labels: [Double]?
@@ -158,7 +158,7 @@ public struct Funnelarea: Trace {
     public var label0: Double?
 
     /// Sets the label step. See `label0` for more info.
-    public var dlabel: Double?
+    public var dLabel: Double?
 
     /// Sets the values of the sectors. If omitted, we count occurrences of each label.
     public var values: [Double]?
@@ -175,27 +175,27 @@ public struct Funnelarea: Trace {
             public var width: Double?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
             /// Sets the source reference on plot.ly for  width .
-            public var widthsrc: String?
+            public var widthSource: String?
         
-            public init(color: Color? = nil, width: Double? = nil, colorsrc: String? = nil, widthsrc: String? = nil) {
+            public init(color: Color? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
                 self.color = color
                 self.width = width
-                self.colorsrc = colorsrc
-                self.widthsrc = widthsrc
+                self.colorSource = colorSource
+                self.widthSource = widthSource
             }
         }
         public var line: Line?
     
         /// Sets the source reference on plot.ly for  colors .
-        public var colorssrc: String?
+        public var colorsSource: String?
     
-        public init(colors: [Double]? = nil, line: Line? = nil, colorssrc: String? = nil) {
+        public init(colors: [Double]? = nil, line: Line? = nil, colorsSource: String? = nil) {
             self.colors = colors
             self.line = line
-            self.colorssrc = colorssrc
+            self.colorsSource = colorsSource
         }
     }
     public var marker: Marker?
@@ -204,19 +204,19 @@ public struct Funnelarea: Trace {
     public var text: [Double]?
 
     /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.
-    public var hovertext: String?
+    public var hoverText: String?
 
     /// If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
-    public var scalegroup: String?
+    public var scaleGroup: String?
 
     /// Determines which trace information appear on the graph.
-    public struct Textinfo: OptionSet, Encodable {
+    public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let label = Textinfo(rawValue: 1 << 0)
-        public static let text = Textinfo(rawValue: 1 << 1)
-        public static let value = Textinfo(rawValue: 1 << 2)
-        public static let percent = Textinfo(rawValue: 1 << 3)
+        public static let label = TextInfo(rawValue: 1 << 0)
+        public static let text = TextInfo(rawValue: 1 << 1)
+        public static let value = TextInfo(rawValue: 1 << 2)
+        public static let percent = TextInfo(rawValue: 1 << 3)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -231,20 +231,20 @@ public struct Funnelarea: Trace {
         }
     }
     /// Determines which trace information appear on the graph.
-    public var textinfo: Textinfo?
+    public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`.
-    public var texttemplate: String?
+    public var textTemplate: String?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public struct Hoverinfo: OptionSet, Encodable {
+    public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let label = Hoverinfo(rawValue: 1 << 0)
-        public static let text = Hoverinfo(rawValue: 1 << 1)
-        public static let value = Hoverinfo(rawValue: 1 << 2)
-        public static let percent = Hoverinfo(rawValue: 1 << 3)
-        public static let name = Hoverinfo(rawValue: 1 << 4)
+        public static let label = HoverInfo(rawValue: 1 << 0)
+        public static let text = HoverInfo(rawValue: 1 << 1)
+        public static let value = HoverInfo(rawValue: 1 << 2)
+        public static let percent = HoverInfo(rawValue: 1 << 3)
+        public static let name = HoverInfo(rawValue: 1 << 4)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -260,21 +260,21 @@ public struct Funnelarea: Trace {
         }
     }
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public var hoverinfo: Hoverinfo?
+    public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    public var hovertemplate: String?
+    public var hoverTemplate: String?
 
     /// Specifies the location of the `textinfo`.
-    public enum Textposition: String, Encodable {
+    public enum TextPosition: String, Encodable {
         case inside
         case none
     }
     /// Specifies the location of the `textinfo`.
-    public var textposition: Textposition?
+    public var textPosition: TextPosition?
 
     /// Sets the font used for `textinfo`.
-    public struct Textfont: Encodable {
+    public struct TextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: String?
     
@@ -283,28 +283,28 @@ public struct Funnelarea: Trace {
         public var color: Color?
     
         /// Sets the source reference on plot.ly for  family .
-        public var familysrc: String?
+        public var familySource: String?
     
         /// Sets the source reference on plot.ly for  size .
-        public var sizesrc: String?
+        public var sizeSource: String?
     
         /// Sets the source reference on plot.ly for  color .
-        public var colorsrc: String?
+        public var colorSource: String?
     
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
             self.family = family
             self.size = size
             self.color = color
-            self.familysrc = familysrc
-            self.sizesrc = sizesrc
-            self.colorsrc = colorsrc
+            self.familySource = familySource
+            self.sizeSource = sizeSource
+            self.colorSource = colorSource
         }
     }
     /// Sets the font used for `textinfo`.
-    public var textfont: Textfont?
+    public var textFont: TextFont?
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public struct Insidetextfont: Encodable {
+    public struct InsideTextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: String?
     
@@ -313,25 +313,25 @@ public struct Funnelarea: Trace {
         public var color: Color?
     
         /// Sets the source reference on plot.ly for  family .
-        public var familysrc: String?
+        public var familySource: String?
     
         /// Sets the source reference on plot.ly for  size .
-        public var sizesrc: String?
+        public var sizeSource: String?
     
         /// Sets the source reference on plot.ly for  color .
-        public var colorsrc: String?
+        public var colorSource: String?
     
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
             self.family = family
             self.size = size
             self.color = color
-            self.familysrc = familysrc
-            self.sizesrc = sizesrc
-            self.colorsrc = colorsrc
+            self.familySource = familySource
+            self.sizeSource = sizeSource
+            self.colorSource = colorSource
         }
     }
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insidetextfont: Insidetextfont?
+    public var insideTextFont: InsideTextFont?
 
     public struct Title: Encodable {
         /// Sets the title of the chart. If it is empty, no title is displayed. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
@@ -347,21 +347,21 @@ public struct Funnelarea: Trace {
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            public var familysrc: String?
+            public var familySource: String?
         
             /// Sets the source reference on plot.ly for  size .
-            public var sizesrc: String?
+            public var sizeSource: String?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                 self.family = family
                 self.size = size
                 self.color = color
-                self.familysrc = familysrc
-                self.sizesrc = sizesrc
-                self.colorsrc = colorsrc
+                self.familySource = familySource
+                self.sizeSource = sizeSource
+                self.colorSource = colorSource
             }
         }
         /// Sets the font used for `title`. Note that the title's font used to be set by the now deprecated `titlefont` attribute.
@@ -407,87 +407,87 @@ public struct Funnelarea: Trace {
     public var domain: Domain?
 
     /// Sets the ratio between height and width
-    public var aspectratio: Double?
+    public var aspectRatio: Double?
 
     /// Sets the ratio between bottom length and maximum top length.
-    public var baseratio: Double?
+    public var baseRatio: Double?
 
     /// Sets the source reference on plot.ly for  ids .
-    public var idssrc: String?
+    public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    public var customdatasrc: String?
+    public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    public var metasrc: String?
+    public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  labels .
-    public var labelssrc: String?
+    public var labelsSource: String?
 
     /// Sets the source reference on plot.ly for  values .
-    public var valuessrc: String?
+    public var valuesSource: String?
 
     /// Sets the source reference on plot.ly for  text .
-    public var textsrc: String?
+    public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
-    public var hovertextsrc: String?
+    public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  texttemplate .
-    public var texttemplatesrc: String?
+    public var textTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
-    public var hoverinfosrc: String?
+    public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
-    public var hovertemplatesrc: String?
+    public var hoverTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  textposition .
-    public var textpositionsrc: String?
+    public var textPositionSource: String?
 
-    public init(visible: Visible? = nil, showlegend: Bool? = nil, legendgroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, hoverlabel: Hoverlabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uirevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dlabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hovertext: String? = nil, scalegroup: String? = nil, textinfo: Textinfo? = nil, texttemplate: String? = nil, hoverinfo: Hoverinfo? = nil, hovertemplate: String? = nil, textposition: Textposition? = nil, textfont: Textfont? = nil, insidetextfont: Insidetextfont? = nil, title: Title? = nil, domain: Domain? = nil, aspectratio: Double? = nil, baseratio: Double? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil, labelssrc: String? = nil, valuessrc: String? = nil, textsrc: String? = nil, hovertextsrc: String? = nil, texttemplatesrc: String? = nil, hoverinfosrc: String? = nil, hovertemplatesrc: String? = nil, textpositionsrc: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: TextFont? = nil, insideTextFont: InsideTextFont? = nil, title: Title? = nil, domain: Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textTemplateSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil) {
         self.visible = visible
-        self.showlegend = showlegend
-        self.legendgroup = legendgroup
+        self.showLegend = showLegend
+        self.legendGroup = legendGroup
         self.opacity = opacity
         self.name = name
         self.uid = uid
         self.ids = ids
-        self.customdata = customdata
+        self.customData = customData
         self.meta = meta
-        self.hoverlabel = hoverlabel
+        self.hoverLabel = hoverLabel
         self.stream = stream
         self.transforms = transforms
-        self.uirevision = uirevision
+        self.uiRevision = uiRevision
         self.labels = labels
         self.label0 = label0
-        self.dlabel = dlabel
+        self.dLabel = dLabel
         self.values = values
         self.marker = marker
         self.text = text
-        self.hovertext = hovertext
-        self.scalegroup = scalegroup
-        self.textinfo = textinfo
-        self.texttemplate = texttemplate
-        self.hoverinfo = hoverinfo
-        self.hovertemplate = hovertemplate
-        self.textposition = textposition
-        self.textfont = textfont
-        self.insidetextfont = insidetextfont
+        self.hoverText = hoverText
+        self.scaleGroup = scaleGroup
+        self.textInfo = textInfo
+        self.textTemplate = textTemplate
+        self.hoverInfo = hoverInfo
+        self.hoverTemplate = hoverTemplate
+        self.textPosition = textPosition
+        self.textFont = textFont
+        self.insideTextFont = insideTextFont
         self.title = title
         self.domain = domain
-        self.aspectratio = aspectratio
-        self.baseratio = baseratio
-        self.idssrc = idssrc
-        self.customdatasrc = customdatasrc
-        self.metasrc = metasrc
-        self.labelssrc = labelssrc
-        self.valuessrc = valuessrc
-        self.textsrc = textsrc
-        self.hovertextsrc = hovertextsrc
-        self.texttemplatesrc = texttemplatesrc
-        self.hoverinfosrc = hoverinfosrc
-        self.hovertemplatesrc = hovertemplatesrc
-        self.textpositionsrc = textpositionsrc
+        self.aspectRatio = aspectRatio
+        self.baseRatio = baseRatio
+        self.idsSource = idsSource
+        self.customDataSource = customDataSource
+        self.metaSource = metaSource
+        self.labelsSource = labelsSource
+        self.valuesSource = valuesSource
+        self.textSource = textSource
+        self.hoverTextSource = hoverTextSource
+        self.textTemplateSource = textTemplateSource
+        self.hoverInfoSource = hoverInfoSource
+        self.hoverTemplateSource = hoverTemplateSource
+        self.textPositionSource = textPositionSource
     }
 }

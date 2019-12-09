@@ -22,10 +22,10 @@ public struct Config: Encodable {
         public var axisTitleText: Bool?
     
         /// Enables moving colorbars.
-        public var colorbarPosition: Bool?
+        public var colorBarPosition: Bool?
     
         /// Enables editing colorbar title text.
-        public var colorbarTitleText: Bool?
+        public var colorBarTitleText: Bool?
     
         /// Enables moving the legend.
         public var legendPosition: Bool?
@@ -39,13 +39,13 @@ public struct Config: Encodable {
         /// Enables editing the global layout title.
         public var titleText: Bool?
     
-        public init(annotationPosition: Bool? = nil, annotationTail: Bool? = nil, annotationText: Bool? = nil, axisTitleText: Bool? = nil, colorbarPosition: Bool? = nil, colorbarTitleText: Bool? = nil, legendPosition: Bool? = nil, legendText: Bool? = nil, shapePosition: Bool? = nil, titleText: Bool? = nil) {
+        public init(annotationPosition: Bool? = nil, annotationTail: Bool? = nil, annotationText: Bool? = nil, axisTitleText: Bool? = nil, colorBarPosition: Bool? = nil, colorBarTitleText: Bool? = nil, legendPosition: Bool? = nil, legendText: Bool? = nil, shapePosition: Bool? = nil, titleText: Bool? = nil) {
             self.annotationPosition = annotationPosition
             self.annotationTail = annotationTail
             self.annotationText = annotationText
             self.axisTitleText = axisTitleText
-            self.colorbarPosition = colorbarPosition
-            self.colorbarTitleText = colorbarTitleText
+            self.colorBarPosition = colorBarPosition
+            self.colorBarTitleText = colorBarTitleText
             self.legendPosition = legendPosition
             self.legendText = legendText
             self.shapePosition = shapePosition
@@ -67,13 +67,13 @@ public struct Config: Encodable {
     public var frameMargins: Double?
 
     /// Determines whether mouse wheel or two-finger scroll zooms is enable. Turned on by default for gl3d, geo and mapbox subplots (as these subplot types do not have zoombox via pan), but turned off by default for cartesian subplots. Set `scrollZoom` to *false* to disable scrolling for all subplots.
-    public struct Scrollzoom: OptionSet, Encodable {
+    public struct ScrollZoom: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let cartesian = Scrollzoom(rawValue: 1 << 0)
-        public static let gl3d = Scrollzoom(rawValue: 1 << 1)
-        public static let geo = Scrollzoom(rawValue: 1 << 2)
-        public static let mapbox = Scrollzoom(rawValue: 1 << 3)
+        public static let cartesian = ScrollZoom(rawValue: 1 << 0)
+        public static let gl3d = ScrollZoom(rawValue: 1 << 1)
+        public static let geo = ScrollZoom(rawValue: 1 << 2)
+        public static let mapbox = ScrollZoom(rawValue: 1 << 3)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -88,17 +88,17 @@ public struct Config: Encodable {
         }
     }
     /// Determines whether mouse wheel or two-finger scroll zooms is enable. Turned on by default for gl3d, geo and mapbox subplots (as these subplot types do not have zoombox via pan), but turned off by default for cartesian subplots. Set `scrollZoom` to *false* to disable scrolling for all subplots.
-    public var scrollZoom: Scrollzoom?
+    public var scrollZoom: ScrollZoom?
 
     /// Sets the double click interaction mode. Has an effect only in cartesian plots. If *false*, double click is disable. If *reset*, double click resets the axis ranges to their initial values. If *autosize*, double click set the axis ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis ranges to their initial values and even double clicks set the axis ranges to their autorange values.
-    public enum Doubleclick: String, Encodable {
+    public enum DoubleClick: String, Encodable {
         case no
         case reset
         case autosize
         case resetautosize
     }
     /// Sets the double click interaction mode. Has an effect only in cartesian plots. If *false*, double click is disable. If *reset*, double click resets the axis ranges to their initial values. If *autosize*, double click set the axis ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis ranges to their initial values and even double clicks set the axis ranges to their autorange values.
-    public var doubleClick: Doubleclick?
+    public var doubleClick: DoubleClick?
 
     /// Sets the delay for registering a double-click in ms. This is the time interval (in ms) between first mousedown and 2nd mouseup to constitute a double-click. This setting propagates to all on-subplot double clicks (except for geo and mapbox) and on-legend double clicks.
     public var doubleClickDelay: Double?
@@ -125,13 +125,13 @@ public struct Config: Encodable {
     public var showSources: Anything?
 
     /// Determines the mode bar display mode. If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If *hover*, the mode bar is visible while the mouse cursor is on the graph container.
-    public enum Displaymodebar: String, Encodable {
+    public enum DisplayModeBar: String, Encodable {
         case hover
         case yes
         case no
     }
     /// Determines the mode bar display mode. If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If *hover*, the mode bar is visible while the mouse cursor is on the graph container.
-    public var displayModeBar: Displaymodebar?
+    public var displayModeBar: DisplayModeBar?
 
     /// Should we include a ModeBar button, labeled "Edit in Chart Studio", that sends this chart to plot.ly or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0 this button was included by default, now it is opt-in using this flag. Note that this button can (depending on `plotlyServerURL`) send your data to an external server. However that server does not persist your data until you arrive at the Chart Studio and explicitly click "Save".
     public var showSendToCloud: Bool?
@@ -152,7 +152,7 @@ public struct Config: Encodable {
     public var toImageButtonOptions: Anything?
 
     /// Determines whether or not the plotly logo is displayed on the end of the mode bar.
-    public var displaylogo: Bool?
+    public var displayLogo: Bool?
 
     /// watermark the images with the company's logo
     public var watermark: Bool?
@@ -164,7 +164,7 @@ public struct Config: Encodable {
     public var setBackground: Anything?
 
     /// Set the URL to topojson used in geo charts. By default, the topojson files are fetched from cdn.plot.ly. For example, set this option to: <path-to-plotly.js>/dist/topojson/ to render geographical feature using the topojson files that ship with the plotly.js module.
-    public var topojsonURL: String?
+    public var topoJsonURL: String?
 
     /// Mapbox access token (required to plot mapbox trace types) If using an Mapbox Atlas server, set this option to '' so that plotly.js won't attempt to authenticate to the public Mapbox server.
     public var mapboxAccessToken: String?
@@ -184,7 +184,7 @@ public struct Config: Encodable {
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally by registering them as modules. Should be an object of objects {locale: {dictionary: {...}, format: {...}}} {   da: {       dictionary: {'Reset axes': 'Nulstil aksler', ...},       format: {months: [...], shortMonths: [...]}   },   ... } All parts are optional. When looking for translation or format fields, we look first for an exact match in a config locale, then in a registered module. If those fail, we strip off any regionalization ('en-US' -> 'en') and try each (config, registry) again. The final fallback for translation is untranslated (which is US English) and for formats is the base English (the only consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY). Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be used in custom formats.
     public var locales: Anything?
 
-    public init(staticPlot: Bool? = nil, plotlyServerURL: String? = nil, editable: Bool? = nil, edits: Edits? = nil, autosizable: Bool? = nil, responsive: Bool? = nil, fillFrame: Bool? = nil, frameMargins: Double? = nil, scrollZoom: Scrollzoom? = nil, doubleClick: Doubleclick? = nil, doubleClickDelay: Double? = nil, showAxisDragHandles: Bool? = nil, showAxisRangeEntryBoxes: Bool? = nil, showTips: Bool? = nil, showLink: Bool? = nil, linkText: String? = nil, sendData: Bool? = nil, showSources: Anything? = nil, displayModeBar: Displaymodebar? = nil, showSendToCloud: Bool? = nil, showEditInChartStudio: Bool? = nil, modeBarButtonsToRemove: Anything? = nil, modeBarButtonsToAdd: Anything? = nil, modeBarButtons: Anything? = nil, toImageButtonOptions: Anything? = nil, displaylogo: Bool? = nil, watermark: Bool? = nil, plotGlPixelRatio: Double? = nil, setBackground: Anything? = nil, topojsonURL: String? = nil, mapboxAccessToken: String? = nil, logging: Bool? = nil, queueLength: Int? = nil, globalTransforms: Anything? = nil, locale: String? = nil, locales: Anything? = nil) {
+    public init(staticPlot: Bool? = nil, plotlyServerURL: String? = nil, editable: Bool? = nil, edits: Edits? = nil, autosizable: Bool? = nil, responsive: Bool? = nil, fillFrame: Bool? = nil, frameMargins: Double? = nil, scrollZoom: ScrollZoom? = nil, doubleClick: DoubleClick? = nil, doubleClickDelay: Double? = nil, showAxisDragHandles: Bool? = nil, showAxisRangeEntryBoxes: Bool? = nil, showTips: Bool? = nil, showLink: Bool? = nil, linkText: String? = nil, sendData: Bool? = nil, showSources: Anything? = nil, displayModeBar: DisplayModeBar? = nil, showSendToCloud: Bool? = nil, showEditInChartStudio: Bool? = nil, modeBarButtonsToRemove: Anything? = nil, modeBarButtonsToAdd: Anything? = nil, modeBarButtons: Anything? = nil, toImageButtonOptions: Anything? = nil, displayLogo: Bool? = nil, watermark: Bool? = nil, plotGlPixelRatio: Double? = nil, setBackground: Anything? = nil, topoJsonURL: String? = nil, mapboxAccessToken: String? = nil, logging: Bool? = nil, queueLength: Int? = nil, globalTransforms: Anything? = nil, locale: String? = nil, locales: Anything? = nil) {
         self.staticPlot = staticPlot
         self.plotlyServerURL = plotlyServerURL
         self.editable = editable
@@ -210,11 +210,11 @@ public struct Config: Encodable {
         self.modeBarButtonsToAdd = modeBarButtonsToAdd
         self.modeBarButtons = modeBarButtons
         self.toImageButtonOptions = toImageButtonOptions
-        self.displaylogo = displaylogo
+        self.displayLogo = displayLogo
         self.watermark = watermark
         self.plotGlPixelRatio = plotGlPixelRatio
         self.setBackground = setBackground
-        self.topojsonURL = topojsonURL
+        self.topoJsonURL = topoJsonURL
         self.mapboxAccessToken = mapboxAccessToken
         self.logging = logging
         self.queueLength = queueLength

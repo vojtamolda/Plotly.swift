@@ -14,10 +14,10 @@ public struct Candlestick: Trace {
     public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showlegend: Bool?
+    public var showLegend: Bool?
 
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendgroup: String?
+    public var legendGroup: String?
 
     /// Sets the opacity of the trace.
     public var opacity: Double?
@@ -32,23 +32,23 @@ public struct Candlestick: Trace {
     public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    public var customdata: [Double]?
+    public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedpoints: Anything?
+    public var selectedPoints: Anything?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public struct Hoverinfo: OptionSet, Encodable {
+    public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let x = Hoverinfo(rawValue: 1 << 0)
-        public static let y = Hoverinfo(rawValue: 1 << 1)
-        public static let z = Hoverinfo(rawValue: 1 << 2)
-        public static let text = Hoverinfo(rawValue: 1 << 3)
-        public static let name = Hoverinfo(rawValue: 1 << 4)
+        public static let x = HoverInfo(rawValue: 1 << 0)
+        public static let y = HoverInfo(rawValue: 1 << 1)
+        public static let z = HoverInfo(rawValue: 1 << 2)
+        public static let text = HoverInfo(rawValue: 1 << 3)
+        public static let name = HoverInfo(rawValue: 1 << 4)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -64,18 +64,18 @@ public struct Candlestick: Trace {
         }
     }
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public var hoverinfo: Hoverinfo?
+    public var hoverInfo: HoverInfo?
 
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxpoints: Double?
+        public var maxPoints: Double?
     
-        public init(token: String? = nil, maxpoints: Double? = nil) {
+        public init(token: String? = nil, maxPoints: Double? = nil) {
             self.token = token
-            self.maxpoints = maxpoints
+            self.maxPoints = maxPoints
         }
     }
     public var stream: Stream?
@@ -103,7 +103,7 @@ public struct Candlestick: Trace {
     public var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    public var uirevision: Anything?
+    public var uiRevision: Anything?
 
     /// Sets the x coordinates. If absent, linear coordinate will be generated.
     public var x: [Double]?
@@ -146,11 +146,11 @@ public struct Candlestick: Trace {
         public var line: Line?
     
         /// Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-        public var fillcolor: Color?
+        public var fillColor: Color?
     
-        public init(line: Line? = nil, fillcolor: Color? = nil) {
+        public init(line: Line? = nil, fillColor: Color? = nil) {
             self.line = line
-            self.fillcolor = fillcolor
+            self.fillColor = fillColor
         }
     }
     public var increasing: Increasing?
@@ -171,11 +171,11 @@ public struct Candlestick: Trace {
         public var line: Line?
     
         /// Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-        public var fillcolor: Color?
+        public var fillColor: Color?
     
-        public init(line: Line? = nil, fillcolor: Color? = nil) {
+        public init(line: Line? = nil, fillColor: Color? = nil) {
             self.line = line
-            self.fillcolor = fillcolor
+            self.fillColor = fillColor
         }
     }
     public var decreasing: Decreasing?
@@ -184,17 +184,17 @@ public struct Candlestick: Trace {
     public var text: String?
 
     /// Same as `text`.
-    public var hovertext: String?
+    public var hoverText: String?
 
     /// Sets the width of the whiskers relative to the box' width. For example, with 1, the whiskers are as wide as the box(es).
-    public var whiskerwidth: Double?
+    public var whiskerWidth: Double?
 
-    public struct Hoverlabel: Encodable {
+    public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        public var bgcolor: Color?
+        public var backgroundColor: Color?
     
         /// Sets the border color of the hover labels for this trace.
-        public var bordercolor: Color?
+        public var borderColor: Color?
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
@@ -206,21 +206,21 @@ public struct Candlestick: Trace {
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            public var familysrc: String?
+            public var familySource: String?
         
             /// Sets the source reference on plot.ly for  size .
-            public var sizesrc: String?
+            public var sizeSource: String?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                 self.family = family
                 self.size = size
                 self.color = color
-                self.familysrc = familysrc
-                self.sizesrc = sizesrc
-                self.colorsrc = colorsrc
+                self.familySource = familySource
+                self.sizeSource = sizeSource
+                self.colorSource = colorSource
             }
         }
         /// Sets the font used in hover labels.
@@ -236,40 +236,40 @@ public struct Candlestick: Trace {
         public var align: Align?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        public var namelength: Int?
+        public var nameLength: Int?
     
         /// Show hover information (open, close, high, low) in separate labels.
         public var split: Bool?
     
         /// Sets the source reference on plot.ly for  bgcolor .
-        public var bgcolorsrc: String?
+        public var backgroundColorSource: String?
     
         /// Sets the source reference on plot.ly for  bordercolor .
-        public var bordercolorsrc: String?
+        public var borderColorSource: String?
     
         /// Sets the source reference on plot.ly for  align .
-        public var alignsrc: String?
+        public var alignSource: String?
     
         /// Sets the source reference on plot.ly for  namelength .
-        public var namelengthsrc: String?
+        public var nameLengthSource: String?
     
-        public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, split: Bool? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
-            self.bgcolor = bgcolor
-            self.bordercolor = bordercolor
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, split: Bool? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
             self.font = font
             self.align = align
-            self.namelength = namelength
+            self.nameLength = nameLength
             self.split = split
-            self.bgcolorsrc = bgcolorsrc
-            self.bordercolorsrc = bordercolorsrc
-            self.alignsrc = alignsrc
-            self.namelengthsrc = namelengthsrc
+            self.backgroundColorSource = backgroundColorSource
+            self.borderColorSource = borderColorSource
+            self.alignSource = alignSource
+            self.nameLengthSource = nameLengthSource
         }
     }
-    public var hoverlabel: Hoverlabel?
+    public var hoverLabel: HoverLabel?
 
     /// Sets the calendar system to use with `x` date data.
-    public enum Xcalendar: String, Encodable {
+    public enum XCalendar: String, Encodable {
         case gregorian
         case chinese
         case coptic
@@ -288,62 +288,62 @@ public struct Candlestick: Trace {
         case ummalqura
     }
     /// Sets the calendar system to use with `x` date data.
-    public var xcalendar: Xcalendar?
+    public var xCalendar: XCalendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    public var xaxis: SubplotID?
+    public var xAxis: SubplotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    public var yaxis: SubplotID?
+    public var yAxis: SubplotID?
 
     /// Sets the source reference on plot.ly for  ids .
-    public var idssrc: String?
+    public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    public var customdatasrc: String?
+    public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    public var metasrc: String?
+    public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
-    public var hoverinfosrc: String?
+    public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  x .
-    public var xsrc: String?
+    public var xSource: String?
 
     /// Sets the source reference on plot.ly for  open .
-    public var opensrc: String?
+    public var openSource: String?
 
     /// Sets the source reference on plot.ly for  high .
-    public var highsrc: String?
+    public var highSource: String?
 
     /// Sets the source reference on plot.ly for  low .
-    public var lowsrc: String?
+    public var lowSource: String?
 
     /// Sets the source reference on plot.ly for  close .
-    public var closesrc: String?
+    public var closeSource: String?
 
     /// Sets the source reference on plot.ly for  text .
-    public var textsrc: String?
+    public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
-    public var hovertextsrc: String?
+    public var hoverTextSource: String?
 
-    public init(visible: Visible? = nil, showlegend: Bool? = nil, legendgroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, selectedpoints: Anything? = nil, hoverinfo: Hoverinfo? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uirevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hovertext: String? = nil, whiskerwidth: Double? = nil, hoverlabel: Hoverlabel? = nil, xcalendar: Xcalendar? = nil, xaxis: SubplotID? = nil, yaxis: SubplotID? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil, hoverinfosrc: String? = nil, xsrc: String? = nil, opensrc: String? = nil, highsrc: String? = nil, lowsrc: String? = nil, closesrc: String? = nil, textsrc: String? = nil, hovertextsrc: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: XCalendar? = nil, xAxis: SubplotID? = nil, yAxis: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, openSource: String? = nil, highSource: String? = nil, lowSource: String? = nil, closeSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
         self.visible = visible
-        self.showlegend = showlegend
-        self.legendgroup = legendgroup
+        self.showLegend = showLegend
+        self.legendGroup = legendGroup
         self.opacity = opacity
         self.name = name
         self.uid = uid
         self.ids = ids
-        self.customdata = customdata
+        self.customData = customData
         self.meta = meta
-        self.selectedpoints = selectedpoints
-        self.hoverinfo = hoverinfo
+        self.selectedPoints = selectedPoints
+        self.hoverInfo = hoverInfo
         self.stream = stream
         self.transforms = transforms
-        self.uirevision = uirevision
+        self.uiRevision = uiRevision
         self.x = x
         self.open = open
         self.high = high
@@ -353,22 +353,22 @@ public struct Candlestick: Trace {
         self.increasing = increasing
         self.decreasing = decreasing
         self.text = text
-        self.hovertext = hovertext
-        self.whiskerwidth = whiskerwidth
-        self.hoverlabel = hoverlabel
-        self.xcalendar = xcalendar
-        self.xaxis = xaxis
-        self.yaxis = yaxis
-        self.idssrc = idssrc
-        self.customdatasrc = customdatasrc
-        self.metasrc = metasrc
-        self.hoverinfosrc = hoverinfosrc
-        self.xsrc = xsrc
-        self.opensrc = opensrc
-        self.highsrc = highsrc
-        self.lowsrc = lowsrc
-        self.closesrc = closesrc
-        self.textsrc = textsrc
-        self.hovertextsrc = hovertextsrc
+        self.hoverText = hoverText
+        self.whiskerWidth = whiskerWidth
+        self.hoverLabel = hoverLabel
+        self.xCalendar = xCalendar
+        self.xAxis = xAxis
+        self.yAxis = yAxis
+        self.idsSource = idsSource
+        self.customDataSource = customDataSource
+        self.metaSource = metaSource
+        self.hoverInfoSource = hoverInfoSource
+        self.xSource = xSource
+        self.openSource = openSource
+        self.highSource = highSource
+        self.lowSource = lowSource
+        self.closeSource = closeSource
+        self.textSource = textSource
+        self.hoverTextSource = hoverTextSource
     }
 }

@@ -1,6 +1,6 @@
-/// The data from which contour lines are computed is set in `z`. Data in `z` must be a {2D array} of numbers. Say that `z` has N rows and M columns, then by default, these N rows correspond to N y coordinates (set in `y` or auto-generated) and the M columns correspond to M x coordinates (set in `x` or auto-generated). By setting `transpose` to *true*, the above behavior is flipped.
-public struct Contour: Trace {
-    public let type: String = "contour"
+/// Use a streamtube trace to visualize flow in a vector field.  Specify a vector field using 6 1D arrays of equal length, 3 position arrays `x`, `y` and `z` and 3 vector component arrays `u`, `v`, and `w`.  By default, the tubes' starting positions will be cut from the vector field's x-z plane at its minimum y value. To specify your own starting position, use attributes `starts.x`, `starts.y` and `starts.z`. The color is encoded by the norm of (u, v, w), and the local radius by the divergence of (u, v, w).
+public struct StreamTube: Trace {
+    public let type: String = "streamtube"
 
     public let animatable: Bool = false
 
@@ -12,15 +12,6 @@ public struct Contour: Trace {
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
-
-    /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
-
-    /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
-
-    /// Sets the opacity of the trace.
-    public var opacity: Double?
 
     /// Sets the trace name. The trace name appear as the legend item and on hover.
     public var name: String?
@@ -36,32 +27,6 @@ public struct Contour: Trace {
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
-
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public struct HoverInfo: OptionSet, Encodable {
-        public let rawValue: Int
-    
-        public static let x = HoverInfo(rawValue: 1 << 0)
-        public static let y = HoverInfo(rawValue: 1 << 1)
-        public static let z = HoverInfo(rawValue: 1 << 2)
-        public static let text = HoverInfo(rawValue: 1 << 3)
-        public static let name = HoverInfo(rawValue: 1 << 4)
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["y"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["z"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["name"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
 
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
@@ -152,239 +117,91 @@ public struct Contour: Trace {
     }
     public var stream: Stream?
 
-    public struct Transforms: Encodable {
-        public struct Items: Encodable {
-            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            public struct Transform: Encodable {
-                public init() {
-                }
-            }
-            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            public var transform: Transform?
-        
-            public init(transform: Transform? = nil) {
-                self.transform = transform
-            }
-        }
-        public var items: Items?
-    
-        public init(items: Items? = nil) {
-            self.items = items
-        }
-    }
-    public var transforms: Transforms?
-
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     public var uiRevision: Anything?
 
-    /// Sets the z data.
-    public var z: [Double]?
-
-    /// Sets the x coordinates.
+    /// Sets the x coordinates of the vector field.
     public var x: [Double]?
 
-    /// Alternate to `x`. Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and `dx` the step.
-    public var x0: Anything?
-
-    /// Sets the x coordinate step. See `x0` for more info.
-    public var dx: Double?
-
-    /// Sets the y coordinates.
+    /// Sets the y coordinates of the vector field.
     public var y: [Double]?
 
-    /// Alternate to `y`. Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and `dy` the step.
-    public var y0: Anything?
+    /// Sets the z coordinates of the vector field.
+    public var z: [Double]?
 
-    /// Sets the y coordinate step. See `y0` for more info.
-    public var dy: Double?
+    /// Sets the x components of the vector field.
+    public var u: [Double]?
 
-    /// Sets the text elements associated with each z value.
-    public var text: [Double]?
+    /// Sets the y components of the vector field.
+    public var v: [Double]?
+
+    /// Sets the z components of the vector field.
+    public var w: [Double]?
+
+    public struct Starts: Encodable {
+        /// Sets the x components of the starting position of the streamtubes
+        public var x: [Double]?
+    
+        /// Sets the y components of the starting position of the streamtubes
+        public var y: [Double]?
+    
+        /// Sets the z components of the starting position of the streamtubes
+        public var z: [Double]?
+    
+        /// Sets the source reference on plot.ly for  x .
+        public var xSource: String?
+    
+        /// Sets the source reference on plot.ly for  y .
+        public var ySource: String?
+    
+        /// Sets the source reference on plot.ly for  z .
+        public var zSource: String?
+    
+        public init(x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil) {
+            self.x = x
+            self.y = y
+            self.z = z
+            self.xSource = xSource
+            self.ySource = ySource
+            self.zSource = zSource
+        }
+    }
+    public var starts: Starts?
+
+    /// The maximum number of displayed segments in a streamtube.
+    public var maxDisplayed: Int?
+
+    /// The scaling factor for the streamtubes. The default is 1, which avoids two max divergence tubes from touching at adjacent starting positions.
+    public var sizeReference: Double?
+
+    /// Sets a text element associated with this trace. If trace `hoverinfo` contains a *text* flag, this text element will be seen in all hover labels. Note that streamtube traces do not support array `text` values.
+    public var text: String?
 
     /// Same as `text`.
-    public var hoverText: [Double]?
+    public var hoverText: String?
 
-    /// Transposes the z data.
-    public var transpose: Bool?
-
-    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
-    public enum XType: String, Encodable {
-        case array
-        case scaled
-    }
-    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when `x` is not provided).
-    public var xType: XType?
-
-    /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
-    public enum YType: String, Encodable {
-        case array
-        case scaled
-    }
-    /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
-    public var yType: YType?
-
-    /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    public var zHoverFormat: String?
-
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `tubex`, `tubey`, `tubez`, `tubeu`, `tubev`, `tubew`, `norm` and `divergence`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
     public var hoverTemplate: String?
 
-    /// Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data have hover labels associated with them.
-    public var hoverOnGaps: Bool?
+    /// Determines whether or not the color domain is computed with respect to the input data (here u/v/w norm) or the bounds set in `cmin` and `cmax`  Defaults to `false` when `cmin` and `cmax` are set by the user.
+    public var cAuto: Bool?
 
-    /// Determines whether or not gaps (i.e. {nan} or missing values) in the `z` data are filled in. It is defaulted to true if `z` is a one dimensional array otherwise it is defaulted to false.
-    public var connectGaps: Bool?
+    /// Sets the lower bound of the color domain. Value should have the same units as u/v/w norm and if set, `cmax` must be set as well.
+    public var cMin: Double?
 
-    /// Sets the fill color if `contours.type` is *constraint*. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-    public var fillColor: Color?
+    /// Sets the upper bound of the color domain. Value should have the same units as u/v/w norm and if set, `cmin` must be set as well.
+    public var cMax: Double?
 
-    /// Determines whether or not the contour level attributes are picked by an algorithm. If *true*, the number of contour levels can be set in `ncontours`. If *false*, set the contour level attributes in `contours`.
-    public var autoContour: Bool?
+    /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this point. Value should have the same units as u/v/w norm. Has no effect when `cauto` is `false`.
+    public var cMiddle: Double?
 
-    /// Sets the maximum number of contour levels. The actual number of contours will be chosen automatically to be less than or equal to the value of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
-    public var nContours: Int?
-
-    public struct Contours: Encodable {
-        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.
-        public enum Rule: String, Encodable {
-            case levels
-            case constraint
-        }
-        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. If `constraint`, the data is represented as constraints with the invalid region shaded as specified by the `operation` and `value` parameters.
-        public var type: Rule?
-    
-        /// Sets the starting contour level value. Must be less than `contours.end`
-        public var start: Double?
-    
-        /// Sets the end contour level value. Must be more than `contours.start`
-        public var end: Double?
-    
-        /// Sets the step between each contour level. Must be positive.
-        public var size: Double?
-    
-        /// Determines the coloring method showing the contour values. If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient coloring is applied between each contour level. If *lines*, coloring is done on the contour lines. If *none*, no coloring is applied on this trace.
-        public enum Coloring: String, Encodable {
-            case fill
-            case heatmap
-            case lines
-            case none
-        }
-        /// Determines the coloring method showing the contour values. If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient coloring is applied between each contour level. If *lines*, coloring is done on the contour lines. If *none*, no coloring is applied on this trace.
-        public var coloring: Coloring?
-    
-        /// Determines whether or not the contour lines are drawn. Has an effect only if `contours.coloring` is set to *fill*.
-        public var showLines: Bool?
-    
-        /// Determines whether to label the contour lines with their values.
-        public var showLabels: Bool?
-    
-        /// Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.
-        public struct LabelFont: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            public var family: String?
-        
-            public var size: Double?
-        
-            public var color: Color?
-        
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil) {
-                self.family = family
-                self.size = size
-                self.color = color
-            }
-        }
-        /// Sets the font used for labeling the contour levels. The default color comes from the lines, if shown. The default family and size come from `layout.font`.
-        public var labelFont: LabelFont?
-    
-        /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var labelFormat: String?
-    
-        /// Sets the constraint operation. *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.
-        public enum Operation: String, Encodable {
-            case equalTo = "="
-            case lessThan = "<"
-            case lessEqualThan = "<="
-            case greaterThan = ">"
-            case greaterEqualThan = ">="
-            case insideInclusive = "[]"
-            case insideExclusive = "()"
-            case insideInclusiveExclusive = "[)"
-            case insideExclusiveInclusive = "(]"
-            case outsideInclusive = "]["
-            case outsideExclusive = ")("
-            case outsideInclusiveExclusive = "]("
-            case outsideExclusiveInclusive = ")["
-        }
-        /// Sets the constraint operation. *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed intervals make no difference to constraint display, but all versions are allowed for consistency with filter transforms.
-        public var operation: Operation?
-    
-        /// Sets the value or values of the constraint boundary. When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[) *value* is expected to be an array of two numbers where the first is the lower bound and the second is the upper bound.
-        public var value: Anything?
-    
-        public struct ImpliedEdits: Encodable {
-            public init() {
-            }
-        }
-        public var impliedEdits: ImpliedEdits?
-    
-        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: LabelFont? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: ImpliedEdits? = nil) {
-            self.type = type
-            self.start = start
-            self.end = end
-            self.size = size
-            self.coloring = coloring
-            self.showLines = showLines
-            self.showLabels = showLabels
-            self.labelFont = labelFont
-            self.labelFormat = labelFormat
-            self.operation = operation
-            self.value = value
-            self.impliedEdits = impliedEdits
-        }
-    }
-    public var contours: Contours?
-
-    public struct Line: Encodable {
-        /// Sets the color of the contour level. Has no effect if `contours.coloring` is set to *lines*.
-        public var color: Color?
-    
-        /// Sets the contour line width in (in px) Defaults to *0.5* when `contours.type` is *levels*. Defaults to *2* when `contour.type` is *constraint*.
-        public var width: Double?
-    
-        /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
-    
-        /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
-        public var smoothing: Double?
-    
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, smoothing: Double? = nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
-            self.smoothing = smoothing
-        }
-    }
-    public var line: Line?
-
-    /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
-    public var zAuto: Bool?
-
-    /// Sets the lower bound of the color domain. Value should have the same units as in `z` and if set, `zmax` must be set as well.
-    public var zMin: Double?
-
-    /// Sets the upper bound of the color domain. Value should have the same units as in `z` and if set, `zmin` must be set as well.
-    public var zMax: Double?
-
-    /// Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. Value should have the same units as in `z`. Has no effect when `zauto` is `false`.
-    public var zMiddle: Double?
-
-    /// Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    /// Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
     public var colorScale: ColorScale?
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
     public var autoColorScale: Bool?
 
-    /// Reverses the color mapping if true. If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the first color.
+    /// Reverses the color mapping if true. If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the first color.
     public var reverseScale: Bool?
 
     /// Determines whether or not a colorbar is displayed for this trace.
@@ -751,55 +568,99 @@ public struct Contour: Trace {
     /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     public var colorAxis: SubplotID?
 
-    /// Sets the calendar system to use with `x` date data.
-    public enum XCalendar: String, Encodable {
-        case gregorian
-        case chinese
-        case coptic
-        case discworld
-        case ethiopian
-        case hebrew
-        case islamic
-        case julian
-        case mayan
-        case nanakshahi
-        case nepali
-        case persian
-        case jalali
-        case taiwan
-        case thai
-        case ummalqura
+    /// Sets the opacity of the surface. Please note that in the case of using high `opacity` values for example a value greater than or equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in the near future and is subject to change.
+    public var opacity: Double?
+
+    public struct LightPosition: Encodable {
+        /// Numeric vector, representing the X coordinate for each vertex.
+        public var x: Double?
+    
+        /// Numeric vector, representing the Y coordinate for each vertex.
+        public var y: Double?
+    
+        /// Numeric vector, representing the Z coordinate for each vertex.
+        public var z: Double?
+    
+        public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
+            self.x = x
+            self.y = y
+            self.z = z
+        }
     }
-    /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: XCalendar?
+    public var lightPosition: LightPosition?
 
-    /// Sets the calendar system to use with `y` date data.
-    public enum YCalendar: String, Encodable {
-        case gregorian
-        case chinese
-        case coptic
-        case discworld
-        case ethiopian
-        case hebrew
-        case islamic
-        case julian
-        case mayan
-        case nanakshahi
-        case nepali
-        case persian
-        case jalali
-        case taiwan
-        case thai
-        case ummalqura
+    public struct Lighting: Encodable {
+        /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
+        public var vertexNormalsEpsilon: Double?
+    
+        /// Epsilon for face normals calculation avoids math issues arising from degenerate geometry.
+        public var faceNormalsEpsilon: Double?
+    
+        /// Ambient light increases overall color visibility but can wash out the image.
+        public var ambient: Double?
+    
+        /// Represents the extent that incident rays are reflected in a range of angles.
+        public var diffuse: Double?
+    
+        /// Represents the level that incident rays are reflected in a single direction, causing shine.
+        public var specular: Double?
+    
+        /// Alters specular reflection; the rougher the surface, the wider and less contrasty the shine.
+        public var roughness: Double?
+    
+        /// Represents the reflectance as a dependency of the viewing angle; e.g. paper is reflective when viewing it from the edge of the paper (almost 90 degrees), causing shine.
+        public var fresnel: Double?
+    
+        public init(vertexNormalsEpsilon: Double? = nil, faceNormalsEpsilon: Double? = nil, ambient: Double? = nil, diffuse: Double? = nil, specular: Double? = nil, roughness: Double? = nil, fresnel: Double? = nil) {
+            self.vertexNormalsEpsilon = vertexNormalsEpsilon
+            self.faceNormalsEpsilon = faceNormalsEpsilon
+            self.ambient = ambient
+            self.diffuse = diffuse
+            self.specular = specular
+            self.roughness = roughness
+            self.fresnel = fresnel
+        }
     }
-    /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: YCalendar?
+    public var lighting: Lighting?
 
-    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubplotID?
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    public struct HoverInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let x = HoverInfo(rawValue: 1 << 0)
+        public static let y = HoverInfo(rawValue: 1 << 1)
+        public static let z = HoverInfo(rawValue: 1 << 2)
+        public static let u = HoverInfo(rawValue: 1 << 3)
+        public static let v = HoverInfo(rawValue: 1 << 4)
+        public static let w = HoverInfo(rawValue: 1 << 5)
+        public static let norm = HoverInfo(rawValue: 1 << 6)
+        public static let divergence = HoverInfo(rawValue: 1 << 7)
+        public static let text = HoverInfo(rawValue: 1 << 8)
+        public static let name = HoverInfo(rawValue: 1 << 9)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["y"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["z"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["u"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["v"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["w"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["norm"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["divergence"] }
+            if (self.rawValue & 1 << 8) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 9) != 0 { options += ["name"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    public var hoverInfo: HoverInfo?
 
-    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubplotID?
+    /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
+    public var scene: SubplotID?
 
     /// Sets the source reference on plot.ly for  ids .
     public var idsSource: String?
@@ -810,86 +671,77 @@ public struct Contour: Trace {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    public var zSource: String?
-
     /// Sets the source reference on plot.ly for  x .
     public var xSource: String?
 
     /// Sets the source reference on plot.ly for  y .
     public var ySource: String?
 
-    /// Sets the source reference on plot.ly for  text .
-    public var textSource: String?
+    /// Sets the source reference on plot.ly for  z .
+    public var zSource: String?
 
-    /// Sets the source reference on plot.ly for  hovertext .
-    public var hoverTextSource: String?
+    /// Sets the source reference on plot.ly for  u .
+    public var uSource: String?
+
+    /// Sets the source reference on plot.ly for  v .
+    public var vSource: String?
+
+    /// Sets the source reference on plot.ly for  w .
+    public var wSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: XType? = nil, yType: YType? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubplotID? = nil, xCalendar: XCalendar? = nil, yCalendar: YCalendar? = nil, xAxis: SubplotID? = nil, yAxis: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    /// Sets the source reference on plot.ly for  hoverinfo .
+    public var hoverInfoSource: String?
+
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubplotID? = nil, opacity: Double? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, uSource: String? = nil, vSource: String? = nil, wSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
-        self.showLegend = showLegend
-        self.legendGroup = legendGroup
-        self.opacity = opacity
         self.name = name
         self.uid = uid
         self.ids = ids
         self.customData = customData
         self.meta = meta
-        self.hoverInfo = hoverInfo
         self.hoverLabel = hoverLabel
         self.stream = stream
-        self.transforms = transforms
         self.uiRevision = uiRevision
-        self.z = z
         self.x = x
-        self.x0 = x0
-        self.dx = dx
         self.y = y
-        self.y0 = y0
-        self.dy = dy
+        self.z = z
+        self.u = u
+        self.v = v
+        self.w = w
+        self.starts = starts
+        self.maxDisplayed = maxDisplayed
+        self.sizeReference = sizeReference
         self.text = text
         self.hoverText = hoverText
-        self.transpose = transpose
-        self.xType = xType
-        self.yType = yType
-        self.zHoverFormat = zHoverFormat
         self.hoverTemplate = hoverTemplate
-        self.hoverOnGaps = hoverOnGaps
-        self.connectGaps = connectGaps
-        self.fillColor = fillColor
-        self.autoContour = autoContour
-        self.nContours = nContours
-        self.contours = contours
-        self.line = line
-        self.zAuto = zAuto
-        self.zMin = zMin
-        self.zMax = zMax
-        self.zMiddle = zMiddle
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
         self.colorScale = colorScale
         self.autoColorScale = autoColorScale
         self.reverseScale = reverseScale
         self.showScale = showScale
         self.colorBar = colorBar
         self.colorAxis = colorAxis
-        self.xCalendar = xCalendar
-        self.yCalendar = yCalendar
-        self.xAxis = xAxis
-        self.yAxis = yAxis
+        self.opacity = opacity
+        self.lightPosition = lightPosition
+        self.lighting = lighting
+        self.hoverInfo = hoverInfo
+        self.scene = scene
         self.idsSource = idsSource
         self.customDataSource = customDataSource
         self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.zSource = zSource
         self.xSource = xSource
         self.ySource = ySource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
+        self.zSource = zSource
+        self.uSource = uSource
+        self.vSource = vSource
+        self.wSource = wSource
         self.hoverTemplateSource = hoverTemplateSource
+        self.hoverInfoSource = hoverInfoSource
     }
 }

@@ -14,10 +14,10 @@ public struct Violin: Trace {
     public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showlegend: Bool?
+    public var showLegend: Bool?
 
     /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendgroup: String?
+    public var legendGroup: String?
 
     /// Sets the opacity of the trace.
     public var opacity: Double?
@@ -29,23 +29,23 @@ public struct Violin: Trace {
     public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    public var customdata: [Double]?
+    public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedpoints: Anything?
+    public var selectedPoints: Anything?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public struct Hoverinfo: OptionSet, Encodable {
+    public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let x = Hoverinfo(rawValue: 1 << 0)
-        public static let y = Hoverinfo(rawValue: 1 << 1)
-        public static let z = Hoverinfo(rawValue: 1 << 2)
-        public static let text = Hoverinfo(rawValue: 1 << 3)
-        public static let name = Hoverinfo(rawValue: 1 << 4)
+        public static let x = HoverInfo(rawValue: 1 << 0)
+        public static let y = HoverInfo(rawValue: 1 << 1)
+        public static let z = HoverInfo(rawValue: 1 << 2)
+        public static let text = HoverInfo(rawValue: 1 << 3)
+        public static let name = HoverInfo(rawValue: 1 << 4)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -61,14 +61,14 @@ public struct Violin: Trace {
         }
     }
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public var hoverinfo: Hoverinfo?
+    public var hoverInfo: HoverInfo?
 
-    public struct Hoverlabel: Encodable {
+    public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        public var bgcolor: Color?
+        public var backgroundColor: Color?
     
         /// Sets the border color of the hover labels for this trace.
-        public var bordercolor: Color?
+        public var borderColor: Color?
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
@@ -80,21 +80,21 @@ public struct Violin: Trace {
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            public var familysrc: String?
+            public var familySource: String?
         
             /// Sets the source reference on plot.ly for  size .
-            public var sizesrc: String?
+            public var sizeSource: String?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                 self.family = family
                 self.size = size
                 self.color = color
-                self.familysrc = familysrc
-                self.sizesrc = sizesrc
-                self.colorsrc = colorsrc
+                self.familySource = familySource
+                self.sizeSource = sizeSource
+                self.colorSource = colorSource
             }
         }
         /// Sets the font used in hover labels.
@@ -110,44 +110,44 @@ public struct Violin: Trace {
         public var align: Align?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        public var namelength: Int?
+        public var nameLength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
-        public var bgcolorsrc: String?
+        public var backgroundColorSource: String?
     
         /// Sets the source reference on plot.ly for  bordercolor .
-        public var bordercolorsrc: String?
+        public var borderColorSource: String?
     
         /// Sets the source reference on plot.ly for  align .
-        public var alignsrc: String?
+        public var alignSource: String?
     
         /// Sets the source reference on plot.ly for  namelength .
-        public var namelengthsrc: String?
+        public var nameLengthSource: String?
     
-        public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
-            self.bgcolor = bgcolor
-            self.bordercolor = bordercolor
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
             self.font = font
             self.align = align
-            self.namelength = namelength
-            self.bgcolorsrc = bgcolorsrc
-            self.bordercolorsrc = bordercolorsrc
-            self.alignsrc = alignsrc
-            self.namelengthsrc = namelengthsrc
+            self.nameLength = nameLength
+            self.backgroundColorSource = backgroundColorSource
+            self.borderColorSource = borderColorSource
+            self.alignSource = alignSource
+            self.nameLengthSource = nameLengthSource
         }
     }
-    public var hoverlabel: Hoverlabel?
+    public var hoverLabel: HoverLabel?
 
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxpoints: Double?
+        public var maxPoints: Double?
     
-        public init(token: String? = nil, maxpoints: Double? = nil) {
+        public init(token: String? = nil, maxPoints: Double? = nil) {
             self.token = token
-            self.maxpoints = maxpoints
+            self.maxPoints = maxPoints
         }
     }
     public var stream: Stream?
@@ -175,7 +175,7 @@ public struct Violin: Trace {
     public var transforms: Transforms?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    public var uirevision: Anything?
+    public var uiRevision: Anything?
 
     /// Sets the y sample data or coordinates. See overview for more info.
     public var y: [Double]?
@@ -204,24 +204,24 @@ public struct Violin: Trace {
     public var bandwidth: Double?
 
     /// If there are multiple violins that should be sized according to to some metric (see `scalemode`), link them by providing a non-empty group id here shared by every trace in the same group. If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case, violins with the same names will be linked together
-    public var scalegroup: String?
+    public var scaleGroup: String?
 
     /// Sets the metric by which the width of each violin is determined.*width* means each violin has the same (max) width*count* means the violins are scaled by the number of sample points makingup each violin.
-    public enum Scalemode: String, Encodable {
+    public enum ScaleMode: String, Encodable {
         case width
         case count
     }
     /// Sets the metric by which the width of each violin is determined.*width* means each violin has the same (max) width*count* means the violins are scaled by the number of sample points makingup each violin.
-    public var scalemode: Scalemode?
+    public var scaleMode: ScaleMode?
 
     /// Sets the method by which the span in data space where the density function will be computed. *soft* means the span goes from the sample's minimum value minus two bandwidths to the sample's maximum value plus two bandwidths. *hard* means the span goes from the sample's minimum to its maximum value. For custom span settings, use mode *manual* and fill in the `span` attribute.
-    public enum Spanmode: String, Encodable {
+    public enum SpanMode: String, Encodable {
         case soft
         case hard
         case manual
     }
     /// Sets the method by which the span in data space where the density function will be computed. *soft* means the span goes from the sample's minimum value minus two bandwidths to the sample's maximum value plus two bandwidths. *hard* means the span goes from the sample's minimum to its maximum value. For custom span settings, use mode *manual* and fill in the `span` attribute.
-    public var spanmode: Spanmode?
+    public var spanMode: SpanMode?
 
     /// Sets the span in data space for which the density function will be computed. Has an effect only when `spanmode` is set to *manual*.
     public var span: InfoArray?
@@ -241,7 +241,7 @@ public struct Violin: Trace {
     public var line: Line?
 
     /// Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
-    public var fillcolor: Color?
+    public var fillColor: Color?
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points
     public enum Points: String, Encodable {
@@ -257,14 +257,14 @@ public struct Violin: Trace {
     public var jitter: Double?
 
     /// Sets the position of the sample points in relation to the violins. If *0*, the sample points are places over the center of the violins. Positive (negative) values correspond to positions to the right (left) for vertical violins and above (below) for horizontal violins.
-    public var pointpos: Double?
+    public var pointPosition: Double?
 
     /// Sets the width of the violin in data coordinates. If *0* (default value) the width is automatically selected based on the positions of other violin traces in the same subplot.
     public var width: Double?
 
     public struct Marker: Encodable {
         /// Sets the color of the outlier sample points.
-        public var outliercolor: Color?
+        public var outlierColor: Color?
     
         /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
         public enum Symbol: Int, Encodable {
@@ -431,22 +431,22 @@ public struct Violin: Trace {
             public var width: Double?
         
             /// Sets the border line color of the outlier sample points. Defaults to marker.color
-            public var outliercolor: Color?
+            public var outlierColor: Color?
         
             /// Sets the border line width (in px) of the outlier sample points.
-            public var outlierwidth: Double?
+            public var outlierWidth: Double?
         
-            public init(color: Color? = nil, width: Double? = nil, outliercolor: Color? = nil, outlierwidth: Double? = nil) {
+            public init(color: Color? = nil, width: Double? = nil, outlierColor: Color? = nil, outlierWidth: Double? = nil) {
                 self.color = color
                 self.width = width
-                self.outliercolor = outliercolor
-                self.outlierwidth = outlierwidth
+                self.outlierColor = outlierColor
+                self.outlierWidth = outlierWidth
             }
         }
         public var line: Line?
     
-        public init(outliercolor: Color? = nil, symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
-            self.outliercolor = outliercolor
+        public init(outlierColor: Color? = nil, symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
+            self.outlierColor = outlierColor
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -460,10 +460,10 @@ public struct Violin: Trace {
     public var text: String?
 
     /// Same as `text`.
-    public var hovertext: String?
+    public var hoverText: String?
 
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    public var hovertemplate: String?
+    public var hoverTemplate: String?
 
     public struct Box: Encodable {
         /// Determines if an miniature box plot is drawn inside the violins. 
@@ -473,7 +473,7 @@ public struct Violin: Trace {
         public var width: Double?
     
         /// Sets the inner box plot fill color.
-        public var fillcolor: Color?
+        public var fillColor: Color?
     
         public struct Line: Encodable {
             /// Sets the inner box plot bounding line color.
@@ -489,16 +489,16 @@ public struct Violin: Trace {
         }
         public var line: Line?
     
-        public init(visible: Bool? = nil, width: Double? = nil, fillcolor: Color? = nil, line: Line? = nil) {
+        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line: Line? = nil) {
             self.visible = visible
             self.width = width
-            self.fillcolor = fillcolor
+            self.fillColor = fillColor
             self.line = line
         }
     }
     public var box: Box?
 
-    public struct Meanline: Encodable {
+    public struct MeanLine: Encodable {
         /// Determines if a line corresponding to the sample's mean is shown inside the violins. If `box.visible` is turned on, the mean line is drawn inside the inner box. Otherwise, the mean line is drawn from one side of the violin to other.
         public var visible: Bool?
     
@@ -514,7 +514,7 @@ public struct Violin: Trace {
             self.width = width
         }
     }
-    public var meanline: Meanline?
+    public var meanLine: MeanLine?
 
     /// Determines on which side of the position value the density function making up one half of a violin is plotted. Useful when comparing two violin traces under *overlay* mode, where one trace has `side` set to *positive* and the other to *negative*.
     public enum Side: String, Encodable {
@@ -526,10 +526,10 @@ public struct Violin: Trace {
     public var side: Side?
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
-    public var offsetgroup: String?
+    public var offsetGroup: String?
 
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup. This controls whether bars compute their positional range dependently or independently.
-    public var alignmentgroup: String?
+    public var alignmentGroup: String?
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
@@ -582,12 +582,12 @@ public struct Violin: Trace {
     public var unselected: Unselected?
 
     /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?
-    public struct Hoveron: OptionSet, Encodable {
+    public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let violins = Hoveron(rawValue: 1 << 0)
-        public static let points = Hoveron(rawValue: 1 << 1)
-        public static let kde = Hoveron(rawValue: 1 << 2)
+        public static let violins = HoverOn(rawValue: 1 << 0)
+        public static let points = HoverOn(rawValue: 1 << 1)
+        public static let kde = HoverOn(rawValue: 1 << 2)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -601,56 +601,56 @@ public struct Violin: Trace {
         }
     }
     /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?
-    public var hoveron: Hoveron?
+    public var hoverOn: HoverOn?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    public var xaxis: SubplotID?
+    public var xAxis: SubplotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    public var yaxis: SubplotID?
+    public var yAxis: SubplotID?
 
     /// Sets the source reference on plot.ly for  ids .
-    public var idssrc: String?
+    public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    public var customdatasrc: String?
+    public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    public var metasrc: String?
+    public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
-    public var hoverinfosrc: String?
+    public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  y .
-    public var ysrc: String?
+    public var ySource: String?
 
     /// Sets the source reference on plot.ly for  x .
-    public var xsrc: String?
+    public var xSource: String?
 
     /// Sets the source reference on plot.ly for  text .
-    public var textsrc: String?
+    public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
-    public var hovertextsrc: String?
+    public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
-    public var hovertemplatesrc: String?
+    public var hoverTemplateSource: String?
 
-    public init(visible: Visible? = nil, showlegend: Bool? = nil, legendgroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, selectedpoints: Anything? = nil, hoverinfo: Hoverinfo? = nil, hoverlabel: Hoverlabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uirevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Orientation? = nil, bandwidth: Double? = nil, scalegroup: String? = nil, scalemode: Scalemode? = nil, spanmode: Spanmode? = nil, span: InfoArray? = nil, line: Line? = nil, fillcolor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointpos: Double? = nil, width: Double? = nil, marker: Marker? = nil, text: String? = nil, hovertext: String? = nil, hovertemplate: String? = nil, box: Box? = nil, meanline: Meanline? = nil, side: Side? = nil, offsetgroup: String? = nil, alignmentgroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoveron: Hoveron? = nil, xaxis: SubplotID? = nil, yaxis: SubplotID? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil, hoverinfosrc: String? = nil, ysrc: String? = nil, xsrc: String? = nil, textsrc: String? = nil, hovertextsrc: String? = nil, hovertemplatesrc: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Orientation? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Line? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: Marker? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: SubplotID? = nil, yAxis: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
-        self.showlegend = showlegend
-        self.legendgroup = legendgroup
+        self.showLegend = showLegend
+        self.legendGroup = legendGroup
         self.opacity = opacity
         self.uid = uid
         self.ids = ids
-        self.customdata = customdata
+        self.customData = customData
         self.meta = meta
-        self.selectedpoints = selectedpoints
-        self.hoverinfo = hoverinfo
-        self.hoverlabel = hoverlabel
+        self.selectedPoints = selectedPoints
+        self.hoverInfo = hoverInfo
+        self.hoverLabel = hoverLabel
         self.stream = stream
         self.transforms = transforms
-        self.uirevision = uirevision
+        self.uiRevision = uiRevision
         self.y = y
         self.x = x
         self.x0 = x0
@@ -658,38 +658,38 @@ public struct Violin: Trace {
         self.name = name
         self.orientation = orientation
         self.bandwidth = bandwidth
-        self.scalegroup = scalegroup
-        self.scalemode = scalemode
-        self.spanmode = spanmode
+        self.scaleGroup = scaleGroup
+        self.scaleMode = scaleMode
+        self.spanMode = spanMode
         self.span = span
         self.line = line
-        self.fillcolor = fillcolor
+        self.fillColor = fillColor
         self.points = points
         self.jitter = jitter
-        self.pointpos = pointpos
+        self.pointPosition = pointPosition
         self.width = width
         self.marker = marker
         self.text = text
-        self.hovertext = hovertext
-        self.hovertemplate = hovertemplate
+        self.hoverText = hoverText
+        self.hoverTemplate = hoverTemplate
         self.box = box
-        self.meanline = meanline
+        self.meanLine = meanLine
         self.side = side
-        self.offsetgroup = offsetgroup
-        self.alignmentgroup = alignmentgroup
+        self.offsetGroup = offsetGroup
+        self.alignmentGroup = alignmentGroup
         self.selected = selected
         self.unselected = unselected
-        self.hoveron = hoveron
-        self.xaxis = xaxis
-        self.yaxis = yaxis
-        self.idssrc = idssrc
-        self.customdatasrc = customdatasrc
-        self.metasrc = metasrc
-        self.hoverinfosrc = hoverinfosrc
-        self.ysrc = ysrc
-        self.xsrc = xsrc
-        self.textsrc = textsrc
-        self.hovertextsrc = hovertextsrc
-        self.hovertemplatesrc = hovertemplatesrc
+        self.hoverOn = hoverOn
+        self.xAxis = xAxis
+        self.yAxis = yAxis
+        self.idsSource = idsSource
+        self.customDataSource = customDataSource
+        self.metaSource = metaSource
+        self.hoverInfoSource = hoverInfoSource
+        self.ySource = ySource
+        self.xSource = xSource
+        self.textSource = textSource
+        self.hoverTextSource = hoverTextSource
+        self.hoverTemplateSource = hoverTemplateSource
     }
 }

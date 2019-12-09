@@ -26,17 +26,17 @@ public struct Image: Trace {
     public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    public var customdata: [Double]?
+    public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public struct Hoverlabel: Encodable {
+    public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        public var bgcolor: Color?
+        public var backgroundColor: Color?
     
         /// Sets the border color of the hover labels for this trace.
-        public var bordercolor: Color?
+        public var borderColor: Color?
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
@@ -48,21 +48,21 @@ public struct Image: Trace {
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            public var familysrc: String?
+            public var familySource: String?
         
             /// Sets the source reference on plot.ly for  size .
-            public var sizesrc: String?
+            public var sizeSource: String?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                 self.family = family
                 self.size = size
                 self.color = color
-                self.familysrc = familysrc
-                self.sizesrc = sizesrc
-                self.colorsrc = colorsrc
+                self.familySource = familySource
+                self.sizeSource = sizeSource
+                self.colorSource = colorSource
             }
         }
         /// Sets the font used in hover labels.
@@ -78,69 +78,69 @@ public struct Image: Trace {
         public var align: Align?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        public var namelength: Int?
+        public var nameLength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
-        public var bgcolorsrc: String?
+        public var backgroundColorSource: String?
     
         /// Sets the source reference on plot.ly for  bordercolor .
-        public var bordercolorsrc: String?
+        public var borderColorSource: String?
     
         /// Sets the source reference on plot.ly for  align .
-        public var alignsrc: String?
+        public var alignSource: String?
     
         /// Sets the source reference on plot.ly for  namelength .
-        public var namelengthsrc: String?
+        public var nameLengthSource: String?
     
-        public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
-            self.bgcolor = bgcolor
-            self.bordercolor = bordercolor
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
             self.font = font
             self.align = align
-            self.namelength = namelength
-            self.bgcolorsrc = bgcolorsrc
-            self.bordercolorsrc = bordercolorsrc
-            self.alignsrc = alignsrc
-            self.namelengthsrc = namelengthsrc
+            self.nameLength = nameLength
+            self.backgroundColorSource = backgroundColorSource
+            self.borderColorSource = borderColorSource
+            self.alignSource = alignSource
+            self.nameLengthSource = nameLengthSource
         }
     }
-    public var hoverlabel: Hoverlabel?
+    public var hoverLabel: HoverLabel?
 
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxpoints: Double?
+        public var maxPoints: Double?
     
-        public init(token: String? = nil, maxpoints: Double? = nil) {
+        public init(token: String? = nil, maxPoints: Double? = nil) {
             self.token = token
-            self.maxpoints = maxpoints
+            self.maxPoints = maxPoints
         }
     }
     public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    public var uirevision: Anything?
+    public var uiRevision: Anything?
 
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     public var z: [Double]?
 
     /// Color model used to map the numerical color components described in `z` into colors.
-    public enum Colormodel: String, Encodable {
+    public enum ColorModel: String, Encodable {
         case rgb
         case rgba
         case hsl
         case hsla
     }
     /// Color model used to map the numerical color components described in `z` into colors.
-    public var colormodel: Colormodel?
+    public var colorModel: ColorModel?
 
     /// Array defining the lower bound for each color component. Note that the default value will depend on the colormodel. For the `rgb` colormodel, it is [0, 0, 0]. For the `rgba` colormodel, it is [0, 0, 0, 0]. For the `hsl` colormodel, it is [0, 0, 0]. For the `hsla` colormodel, it is [0, 0, 0, 0].
-    public var zmin: InfoArray?
+    public var zMin: InfoArray?
 
     /// Array defining the higher bound for each color component. Note that the default value will depend on the colormodel. For the `rgb` colormodel, it is [255, 255, 255]. For the `rgba` colormodel, it is [255, 255, 255, 1]. For the `hsl` colormodel, it is [360, 100, 100]. For the `hsla` colormodel, it is [360, 100, 100, 1].
-    public var zmax: InfoArray?
+    public var zMax: InfoArray?
 
     /// Set the image's x position.
     public var x0: Anything?
@@ -158,18 +158,18 @@ public struct Image: Trace {
     public var text: [Double]?
 
     /// Same as `text`.
-    public var hovertext: [Double]?
+    public var hoverText: [Double]?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public struct Hoverinfo: OptionSet, Encodable {
+    public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let x = Hoverinfo(rawValue: 1 << 0)
-        public static let y = Hoverinfo(rawValue: 1 << 1)
-        public static let z = Hoverinfo(rawValue: 1 << 2)
-        public static let color = Hoverinfo(rawValue: 1 << 3)
-        public static let name = Hoverinfo(rawValue: 1 << 4)
-        public static let text = Hoverinfo(rawValue: 1 << 5)
+        public static let x = HoverInfo(rawValue: 1 << 0)
+        public static let y = HoverInfo(rawValue: 1 << 1)
+        public static let z = HoverInfo(rawValue: 1 << 2)
+        public static let color = HoverInfo(rawValue: 1 << 3)
+        public static let name = HoverInfo(rawValue: 1 << 4)
+        public static let text = HoverInfo(rawValue: 1 << 5)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -186,73 +186,73 @@ public struct Image: Trace {
         }
     }
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public var hoverinfo: Hoverinfo?
+    public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `z`, `color` and `colormodel`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    public var hovertemplate: String?
+    public var hoverTemplate: String?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    public var xaxis: SubplotID?
+    public var xAxis: SubplotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    public var yaxis: SubplotID?
+    public var yAxis: SubplotID?
 
     /// Sets the source reference on plot.ly for  ids .
-    public var idssrc: String?
+    public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    public var customdatasrc: String?
+    public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    public var metasrc: String?
+    public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  z .
-    public var zsrc: String?
+    public var zSource: String?
 
     /// Sets the source reference on plot.ly for  text .
-    public var textsrc: String?
+    public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
-    public var hovertextsrc: String?
+    public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
-    public var hoverinfosrc: String?
+    public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
-    public var hovertemplatesrc: String?
+    public var hoverTemplateSource: String?
 
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, hoverlabel: Hoverlabel? = nil, stream: Stream? = nil, uirevision: Anything? = nil, z: [Double]? = nil, colormodel: Colormodel? = nil, zmin: InfoArray? = nil, zmax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hovertext: [Double]? = nil, hoverinfo: Hoverinfo? = nil, hovertemplate: String? = nil, xaxis: SubplotID? = nil, yaxis: SubplotID? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil, zsrc: String? = nil, textsrc: String? = nil, hovertextsrc: String? = nil, hoverinfosrc: String? = nil, hovertemplatesrc: String? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, xAxis: SubplotID? = nil, yAxis: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
         self.uid = uid
         self.ids = ids
-        self.customdata = customdata
+        self.customData = customData
         self.meta = meta
-        self.hoverlabel = hoverlabel
+        self.hoverLabel = hoverLabel
         self.stream = stream
-        self.uirevision = uirevision
+        self.uiRevision = uiRevision
         self.z = z
-        self.colormodel = colormodel
-        self.zmin = zmin
-        self.zmax = zmax
+        self.colorModel = colorModel
+        self.zMin = zMin
+        self.zMax = zMax
         self.x0 = x0
         self.y0 = y0
         self.dx = dx
         self.dy = dy
         self.text = text
-        self.hovertext = hovertext
-        self.hoverinfo = hoverinfo
-        self.hovertemplate = hovertemplate
-        self.xaxis = xaxis
-        self.yaxis = yaxis
-        self.idssrc = idssrc
-        self.customdatasrc = customdatasrc
-        self.metasrc = metasrc
-        self.zsrc = zsrc
-        self.textsrc = textsrc
-        self.hovertextsrc = hovertextsrc
-        self.hoverinfosrc = hoverinfosrc
-        self.hovertemplatesrc = hovertemplatesrc
+        self.hoverText = hoverText
+        self.hoverInfo = hoverInfo
+        self.hoverTemplate = hoverTemplate
+        self.xAxis = xAxis
+        self.yAxis = yAxis
+        self.idsSource = idsSource
+        self.customDataSource = customDataSource
+        self.metaSource = metaSource
+        self.zSource = zSource
+        self.textSource = textSource
+        self.hoverTextSource = hoverTextSource
+        self.hoverInfoSource = hoverInfoSource
+        self.hoverTemplateSource = hoverTemplateSource
     }
 }

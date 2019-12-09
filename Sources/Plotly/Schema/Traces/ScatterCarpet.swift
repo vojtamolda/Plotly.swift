@@ -1,8 +1,8 @@
-/// Visualize hierarchal data from leaves (and/or outer branches) towards root with rectangles. The treemap sectors are determined by the entries in *labels* or *ids* and in *parents*.
-public struct Treemap: Trace {
-    public let type: String = "treemap"
+/// Plots a scatter trace on either the first carpet axis or the carpet axis with a matching `carpet` attribute.
+public struct ScatterCarpet: Trace {
+    public let type: String = "scattercarpet"
 
-    public let animatable: Bool = true
+    public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
@@ -12,6 +12,12 @@ public struct Treemap: Trace {
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
+
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool?
+
+    /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String?
 
     /// Sets the opacity of the trace.
     public var opacity: Double?
@@ -30,6 +36,9 @@ public struct Treemap: Trace {
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
+
+    /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
+    public var selectedPoints: Anything?
 
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
@@ -145,176 +154,372 @@ public struct Treemap: Trace {
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
     public var uiRevision: Anything?
 
-    /// Sets the labels of each of the sectors.
-    public var labels: [Double]?
+    /// An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie
+    public var carpet: String?
 
-    /// Sets the parent sectors for each of the sectors. Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly attempts to find matching items in `labels`, but beware they must be unique.
-    public var parents: [Double]?
+    /// Sets the a-axis coordinates.
+    public var a: [Double]?
 
-    /// Sets the values associated with each of the sectors. Use with `branchvalues` to determine how the values are summed.
-    public var values: [Double]?
+    /// Sets the b-axis coordinates.
+    public var b: [Double]?
 
-    /// Determines how the items in `values` are summed. When set to *total*, items in `values` are taken to be value of all its descendants. When set to *remainder*, items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
-    public enum BranchValues: String, Encodable {
-        case remainder
-        case total
-    }
-    /// Determines how the items in `values` are summed. When set to *total*, items in `values` are taken to be value of all its descendants. When set to *remainder*, items in `values` corresponding to the root and the branches sectors are taken to be the extra part not part of the sum of the values at their leaves.
-    public var branchValues: BranchValues?
-
-    /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
-    public struct Count: OptionSet, Encodable {
+    /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let branches = Count(rawValue: 1 << 0)
-        public static let leaves = Count(rawValue: 1 << 1)
+        public static let lines = Mode(rawValue: 1 << 0)
+        public static let markers = Mode(rawValue: 1 << 1)
+        public static let text = Mode(rawValue: 1 << 2)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["branches"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["leaves"] }
+            if (self.rawValue & 1 << 0) != 0 { options += ["lines"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["markers"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
-    public var count: Count?
+    /// Determines the drawing mode for this scatter trace. If the provided `mode` includes *text* then the `text` elements appear at the coordinates. Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    public var mode: Mode?
 
-    /// Sets the level from which this trace hierarchy is rendered. Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is filled in, otherwise plotly attempts to find a matching item in `labels`.
-    public var level: Anything?
+    /// Sets text elements associated with each (a,b) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b). If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    public var text: String?
 
-    /// Sets the number of rendered sectors from any given `level`. Set `maxdepth` to *-1* to render all the levels in the hierarchy.
-    public var maxDepth: Int?
+    /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `a`, `b` and `text`.
+    public var textTemplate: String?
 
-    public struct Tiling: Encodable {
-        /// Determines d3 treemap solver. For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
-        public enum Packing: String, Encodable {
-            case squarify
-            case binary
-            case dice
-            case slice
-            case slicedice
-            case diceslice
+    /// Sets hover text elements associated with each (a,b) point. If a single string, the same string appears over all the data points. If an array of strings, the items are mapped in order to the the data points in (a,b). To be seen, trace `hoverinfo` must contain a *text* flag.
+    public var hoverText: String?
+
+    public struct Line: Encodable {
+        /// Sets the line color.
+        public var color: Color?
+    
+        /// Sets the line width (in px).
+        public var width: Double?
+    
+        /// Sets the dash style of lines. Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a dash length list in px (eg *5px,10px,2px,2px*).
+        public var dash: String?
+    
+        /// Determines the line shape. With *spline* the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.
+        public enum Shape: String, Encodable {
+            case linear
+            case spline
         }
-        /// Determines d3 treemap solver. For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
-        public var packing: Packing?
+        /// Determines the line shape. With *spline* the lines are drawn using spline interpolation. The other available values correspond to step-wise line shapes.
+        public var shape: Shape?
     
-        /// When using *squarify* `packing` algorithm, according to https://github.com/d3/d3-hierarchy/blob/master/README.md#squarify_ratio this option specifies the desired aspect ratio of the generated rectangles. The ratio must be specified as a number greater than or equal to one. Note that the orientation of the generated rectangles (tall or wide) is not implied by the ratio; for example, a ratio of two will attempt to produce a mixture of rectangles whose width:height ratio is either 2:1 or 1:2. When using *squarify*, unlike d3 which uses the Golden Ratio i.e. 1.618034, Plotly applies 1 to increase squares in treemap layouts.
-        public var squarifyRatio: Double?
+        /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. *0* corresponds to no smoothing (equivalent to a *linear* shape).
+        public var smoothing: Double?
     
-        /// Determines if the positions obtained from solver are flipped on each axis.
-        public struct Flip: OptionSet, Encodable {
-            public let rawValue: Int
-        
-            public static let x = Flip(rawValue: 1 << 0)
-            public static let y = Flip(rawValue: 1 << 1)
-        
-            public init(rawValue: Int) { self.rawValue = rawValue }
-        
-            public func encode(to encoder: Encoder) throws {
-                var options = [String]()
-                if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
-                if (self.rawValue & 1 << 1) != 0 { options += ["y"] }
-                var container = encoder.singleValueContainer()
-                try container.encode(options.joined(separator: "+"))
-            }
-        }
-        /// Determines if the positions obtained from solver are flipped on each axis.
-        public var flip: Flip?
-    
-        /// Sets the inner padding (in px).
-        public var padding: Double?
-    
-        public init(packing: Packing? = nil, squarifyRatio: Double? = nil, flip: Flip? = nil, padding: Double? = nil) {
-            self.packing = packing
-            self.squarifyRatio = squarifyRatio
-            self.flip = flip
-            self.padding = padding
+        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, shape: Shape? = nil, smoothing: Double? = nil) {
+            self.color = color
+            self.width = width
+            self.dash = dash
+            self.shape = shape
+            self.smoothing = smoothing
         }
     }
-    public var tiling: Tiling?
+    public var line: Line?
+
+    /// Determines whether or not gaps (i.e. {nan} or missing values) in the provided data arrays are connected.
+    public var connectGaps: Bool?
+
+    /// Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
+    public enum Fill: String, Encodable {
+        case none
+        case toself
+        case tonext
+    }
+    /// Sets the area to fill with a solid color. Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other.
+    public var fill: Fill?
+
+    /// Sets the fill color. Defaults to a half-transparent variant of the line color, marker color, or marker line color, whichever is available.
+    public var fillColor: Color?
 
     public struct Marker: Encodable {
-        public struct Padding: Encodable {
-            /// Sets the padding form the top (in px).
-            public var t: Double?
-        
-            /// Sets the padding form the left (in px).
-            public var l: Double?
-        
-            /// Sets the padding form the right (in px).
-            public var r: Double?
-        
-            /// Sets the padding form the bottom (in px).
-            public var b: Double?
-        
-            public init(t: Double? = nil, l: Double? = nil, r: Double? = nil, b: Double? = nil) {
-                self.t = t
-                self.l = l
-                self.r = r
-                self.b = b
-            }
+        /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
+        public enum Symbol: Int, Encodable {
+            case circle = 0
+            case circleopen = 100
+            case circledot = 200
+            case circleopendot = 300
+            case square = 1
+            case squareopen = 101
+            case squaredot = 201
+            case squareopendot = 301
+            case diamond = 2
+            case diamondopen = 102
+            case diamonddot = 202
+            case diamondopendot = 302
+            case cross = 3
+            case crossopen = 103
+            case crossdot = 203
+            case crossopendot = 303
+            case x = 4
+            case xopen = 104
+            case xdot = 204
+            case xopendot = 304
+            case triangleup = 5
+            case triangleupopen = 105
+            case triangleupdot = 205
+            case triangleupopendot = 305
+            case triangledown = 6
+            case triangledownopen = 106
+            case triangledowndot = 206
+            case triangledownopendot = 306
+            case triangleleft = 7
+            case triangleleftopen = 107
+            case triangleleftdot = 207
+            case triangleleftopendot = 307
+            case triangleright = 8
+            case trianglerightopen = 108
+            case trianglerightdot = 208
+            case trianglerightopendot = 308
+            case trianglene = 9
+            case triangleneopen = 109
+            case trianglenedot = 209
+            case triangleneopendot = 309
+            case trianglese = 10
+            case triangleseopen = 110
+            case trianglesedot = 210
+            case triangleseopendot = 310
+            case trianglesw = 11
+            case triangleswopen = 111
+            case triangleswdot = 211
+            case triangleswopendot = 311
+            case trianglenw = 12
+            case trianglenwopen = 112
+            case trianglenwdot = 212
+            case trianglenwopendot = 312
+            case pentagon = 13
+            case pentagonopen = 113
+            case pentagondot = 213
+            case pentagonopendot = 313
+            case hexagon = 14
+            case hexagonopen = 114
+            case hexagondot = 214
+            case hexagonopendot = 314
+            case hexagon2 = 15
+            case hexagon2open = 115
+            case hexagon2dot = 215
+            case hexagon2opendot = 315
+            case octagon = 16
+            case octagonopen = 116
+            case octagondot = 216
+            case octagonopendot = 316
+            case star = 17
+            case staropen = 117
+            case stardot = 217
+            case staropendot = 317
+            case hexagram = 18
+            case hexagramopen = 118
+            case hexagramdot = 218
+            case hexagramopendot = 318
+            case startriangleup = 19
+            case startriangleupopen = 119
+            case startriangleupdot = 219
+            case startriangleupopendot = 319
+            case startriangledown = 20
+            case startriangledownopen = 120
+            case startriangledowndot = 220
+            case startriangledownopendot = 320
+            case starsquare = 21
+            case starsquareopen = 121
+            case starsquaredot = 221
+            case starsquareopendot = 321
+            case stardiamond = 22
+            case stardiamondopen = 122
+            case stardiamonddot = 222
+            case stardiamondopendot = 322
+            case diamondtall = 23
+            case diamondtallopen = 123
+            case diamondtalldot = 223
+            case diamondtallopendot = 323
+            case diamondwide = 24
+            case diamondwideopen = 124
+            case diamondwidedot = 224
+            case diamondwideopendot = 324
+            case hourglass = 25
+            case hourglassopen = 125
+            case bowtie = 26
+            case bowtieopen = 126
+            case circlecross = 27
+            case circlecrossopen = 127
+            case circlex = 28
+            case circlexopen = 128
+            case squarecross = 29
+            case squarecrossopen = 129
+            case squarex = 30
+            case squarexopen = 130
+            case diamondcross = 31
+            case diamondcrossopen = 131
+            case diamondx = 32
+            case diamondxopen = 132
+            case crossthin = 33
+            case crossthinopen = 133
+            case xthin = 34
+            case xthinopen = 134
+            case asterisk = 35
+            case asteriskopen = 135
+            case hash = 36
+            case hashopen = 136
+            case hashdot = 236
+            case hashopendot = 336
+            case yup = 37
+            case yupopen = 137
+            case ydown = 38
+            case ydownopen = 138
+            case yleft = 39
+            case yleftopen = 139
+            case yright = 40
+            case yrightopen = 140
+            case lineew = 41
+            case lineewopen = 141
+            case linens = 42
+            case linensopen = 142
+            case linene = 43
+            case lineneopen = 143
+            case linenw = 44
+            case linenwopen = 144
         }
-        public var padding: Padding?
+        /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
+        public var symbol: Symbol?
     
-        /// Sets the color of each sector of this trace. If not specified, the default trace color set is used to pick the sector colors.
-        public var colors: [Double]?
+        /// Sets the marker opacity.
+        public var opacity: Double?
     
-        /// Determines if the sector colors are faded towards the background from the leaves up to the headers. This option is unavailable when a `colorscale` is present, defaults to false when `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading direction is inverted, that is the top elements within hierarchy are drawn with fully saturated colors while the leaves are faded towards the background color.
-        public enum DepthFade: String, Encodable {
-            case yes
-            case no
-            case reversed
+        /// Sets a maximum number of points to be drawn on the graph. *0* corresponds to no limit.
+        public var maxDisplayed: Double?
+    
+        /// Sets the marker size (in px).
+        public var size: Double?
+    
+        /// Has an effect only if `marker.size` is set to a numerical array. Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin` and `sizemode`.
+        public var sizeReference: Double?
+    
+        /// Has an effect only if `marker.size` is set to a numerical array. Sets the minimum size (in px) of the rendered marker points.
+        public var sizeMin: Double?
+    
+        /// Has an effect only if `marker.size` is set to a numerical array. Sets the rule for which the data in `size` is converted to pixels.
+        public enum SizeMode: String, Encodable {
+            case diameter
+            case area
         }
-        /// Determines if the sector colors are faded towards the background from the leaves up to the headers. This option is unavailable when a `colorscale` is present, defaults to false when `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading direction is inverted, that is the top elements within hierarchy are drawn with fully saturated colors while the leaves are faded towards the background color.
-        public var depthFade: DepthFade?
+        /// Has an effect only if `marker.size` is set to a numerical array. Sets the rule for which the data in `size` is converted to pixels.
+        public var sizeMode: SizeMode?
     
         public struct Line: Encodable {
-            /// Sets the color of the line enclosing each sector. Defaults to the `paper_bgcolor` value.
-            public var color: Color?
-        
-            /// Sets the width (in px) of the line enclosing each sector.
+            /// Sets the width (in px) of the lines bounding the marker points.
             public var width: Double?
         
-            /// Sets the source reference on plot.ly for  color .
-            public var colorSource: String?
+            /// Sets themarker.linecolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.line.cmin` and `marker.line.cmax` if set.
+            public var color: Color?
+        
+            /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax`  Has an effect only if in `marker.line.color`is set to a numerical array. Defaults to `false` when `marker.line.cmin` and `marker.line.cmax` are set by the user.
+            public var cAuto: Bool?
+        
+            /// Sets the lower bound of the color domain. Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as well.
+            public var cMin: Double?
+        
+            /// Sets the upper bound of the color domain. Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as well.
+            public var cMax: Double?
+        
+            /// Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax` to be equidistant to this point. Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
+            public var cMiddle: Double?
+        
+            /// Sets the colorscale. Has an effect only if in `marker.line.color`is set to a numerical array. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`marker.line.cmin` and `marker.line.cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+            public var colorScale: ColorScale?
+        
+            /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.line.colorscale`. Has an effect only if in `marker.line.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
+            public var autoColorScale: Bool?
+        
+            /// Reverses the color mapping if true. Has an effect only if in `marker.line.color`is set to a numerical array. If true, `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will correspond to the first color.
+            public var reverseScale: Bool?
+        
+            /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+            public var colorAxis: SubplotID?
         
             /// Sets the source reference on plot.ly for  width .
             public var widthSource: String?
         
-            public init(color: Color? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
-                self.color = color
+            /// Sets the source reference on plot.ly for  color .
+            public var colorSource: String?
+        
+            public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubplotID? = nil, widthSource: String? = nil, colorSource: String? = nil) {
                 self.width = width
-                self.colorSource = colorSource
+                self.color = color
+                self.cAuto = cAuto
+                self.cMin = cMin
+                self.cMax = cMax
+                self.cMiddle = cMiddle
+                self.colorScale = colorScale
+                self.autoColorScale = autoColorScale
+                self.reverseScale = reverseScale
+                self.colorAxis = colorAxis
                 self.widthSource = widthSource
+                self.colorSource = colorSource
             }
         }
         public var line: Line?
     
-        /// Determines whether or not the color domain is computed with respect to the input data (here colors) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if colorsis set to a numerical array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+        public struct Gradient: Encodable {
+            /// Sets the type of gradient used to fill the markers
+            public enum Rule: String, Encodable {
+                case radial
+                case horizontal
+                case vertical
+                case none
+            }
+            /// Sets the type of gradient used to fill the markers
+            public var type: Rule?
+        
+            /// Sets the final color of the gradient fill: the center color for radial, the right for horizontal, or the bottom for vertical.
+            public var color: Color?
+        
+            /// Sets the source reference on plot.ly for  type .
+            public var typeSource: String?
+        
+            /// Sets the source reference on plot.ly for  color .
+            public var colorSource: String?
+        
+            public init(type: Rule? = nil, color: Color? = nil, typeSource: String? = nil, colorSource: String? = nil) {
+                self.type = type
+                self.color = color
+                self.typeSource = typeSource
+                self.colorSource = colorSource
+            }
+        }
+        public var gradient: Gradient?
+    
+        /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
+        public var color: Color?
+    
+        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
         public var cAuto: Bool?
     
-        /// Sets the lower bound of the color domain. Has an effect only if colorsis set to a numerical array. Value should have the same units as colors and if set, `marker.cmax` must be set as well.
+        /// Sets the lower bound of the color domain. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color` and if set, `marker.cmax` must be set as well.
         public var cMin: Double?
     
-        /// Sets the upper bound of the color domain. Has an effect only if colorsis set to a numerical array. Value should have the same units as colors and if set, `marker.cmin` must be set as well.
+        /// Sets the upper bound of the color domain. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color` and if set, `marker.cmin` must be set as well.
         public var cMax: Double?
     
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. Has an effect only if colorsis set to a numerical array. Value should have the same units as colors. Has no effect when `marker.cauto` is `false`.
+        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. Has an effect only if in `marker.color`is set to a numerical array. Value should have the same units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
         public var cMiddle: Double?
     
-        /// Sets the colorscale. Has an effect only if colorsis set to a numerical array. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+        /// Sets the colorscale. Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
         public var colorScale: ColorScale?
     
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if colorsis set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
+        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is unspecified or `autocolorscale` is true, the default  palette will be chosen according to whether numbers in the `color` array are all positive, all negative or mixed.
         public var autoColorScale: Bool?
     
-        /// Reverses the color mapping if true. Has an effect only if colorsis set to a numerical array. If true, `marker.cmin` will correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+        /// Reverses the color mapping if true. Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will correspond to the last color in the array and `marker.cmax` will correspond to the first color.
         public var reverseScale: Bool?
     
-        /// Determines whether or not a colorbar is displayed for this trace. Has an effect only if colorsis set to a numerical array.
+        /// Determines whether or not a colorbar is displayed for this trace. Has an effect only if in `marker.color`is set to a numerical array.
         public var showScale: Bool?
     
         public struct ColorBar: Encodable {
@@ -678,14 +883,29 @@ public struct Treemap: Trace {
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
         public var colorAxis: SubplotID?
     
-        /// Sets the source reference on plot.ly for  colors .
-        public var colorsSource: String?
+        /// Sets the source reference on plot.ly for  symbol .
+        public var symbolSource: String?
     
-        public init(padding: Padding? = nil, colors: [Double]? = nil, depthFade: DepthFade? = nil, line: Line? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubplotID? = nil, colorsSource: String? = nil) {
-            self.padding = padding
-            self.colors = colors
-            self.depthFade = depthFade
+        /// Sets the source reference on plot.ly for  opacity .
+        public var opacitySource: String?
+    
+        /// Sets the source reference on plot.ly for  size .
+        public var sizeSource: String?
+    
+        /// Sets the source reference on plot.ly for  color .
+        public var colorSource: String?
+    
+        public init(symbol: Symbol? = nil, opacity: Double? = nil, maxDisplayed: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, line: Line? = nil, gradient: Gradient? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubplotID? = nil, symbolSource: String? = nil, opacitySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
+            self.symbol = symbol
+            self.opacity = opacity
+            self.maxDisplayed = maxDisplayed
+            self.size = size
+            self.sizeReference = sizeReference
+            self.sizeMin = sizeMin
+            self.sizeMode = sizeMode
             self.line = line
+            self.gradient = gradient
+            self.color = color
             self.cAuto = cAuto
             self.cMin = cMin
             self.cMax = cMax
@@ -696,152 +916,15 @@ public struct Treemap: Trace {
             self.showScale = showScale
             self.colorBar = colorBar
             self.colorAxis = colorAxis
-            self.colorsSource = colorsSource
+            self.symbolSource = symbolSource
+            self.opacitySource = opacitySource
+            self.sizeSource = sizeSource
+            self.colorSource = colorSource
         }
     }
     public var marker: Marker?
 
-    public struct PathBar: Encodable {
-        /// Determines if the path bar is drawn i.e. outside the trace `domain` and with one pixel gap.
-        public var visible: Bool?
-    
-        /// Determines on which side of the the treemap the `pathbar` should be presented.
-        public enum Side: String, Encodable {
-            case top
-            case bottom
-        }
-        /// Determines on which side of the the treemap the `pathbar` should be presented.
-        public var side: Side?
-    
-        /// Determines which shape is used for edges between `barpath` labels.
-        public enum EdgeShape: String, Encodable {
-            case bar = "|"
-            case rightCaret = ">"
-            case leftCaret = "<"
-            case forwardSlash = "/"
-            case backwardSlash = "\\"
-        }
-        /// Determines which shape is used for edges between `barpath` labels.
-        public var edgeShape: EdgeShape?
-    
-        /// Sets the thickness of `pathbar` (in px). If not specified the `pathbar.textfont.size` is used with 3 pixles extra padding on each side.
-        public var thickness: Double?
-    
-        /// Sets the font used inside `pathbar`.
-        public struct TextFont: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            public var family: String?
-        
-            public var size: Double?
-        
-            public var color: Color?
-        
-            /// Sets the source reference on plot.ly for  family .
-            public var familySource: String?
-        
-            /// Sets the source reference on plot.ly for  size .
-            public var sizeSource: String?
-        
-            /// Sets the source reference on plot.ly for  color .
-            public var colorSource: String?
-        
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-                self.family = family
-                self.size = size
-                self.color = color
-                self.familySource = familySource
-                self.sizeSource = sizeSource
-                self.colorSource = colorSource
-            }
-        }
-        /// Sets the font used inside `pathbar`.
-        public var textFont: TextFont?
-    
-        public init(visible: Bool? = nil, side: Side? = nil, edgeShape: EdgeShape? = nil, thickness: Double? = nil, textFont: TextFont? = nil) {
-            self.visible = visible
-            self.side = side
-            self.edgeShape = edgeShape
-            self.thickness = thickness
-            self.textFont = textFont
-        }
-    }
-    public var pathBar: PathBar?
-
-    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: [Double]?
-
-    /// Determines which trace information appear on the graph.
-    public struct TextInfo: OptionSet, Encodable {
-        public let rawValue: Int
-    
-        public static let label = TextInfo(rawValue: 1 << 0)
-        public static let text = TextInfo(rawValue: 1 << 1)
-        public static let value = TextInfo(rawValue: 1 << 2)
-        public static let currentpath = TextInfo(rawValue: 1 << 3)
-        public static let percentroot = TextInfo(rawValue: 1 << 4)
-        public static let percententry = TextInfo(rawValue: 1 << 5)
-        public static let percentparent = TextInfo(rawValue: 1 << 6)
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["current path"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["percent root"] }
-            if (self.rawValue & 1 << 5) != 0 { options += ["percent entry"] }
-            if (self.rawValue & 1 << 6) != 0 { options += ["percent parent"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-    /// Determines which trace information appear on the graph.
-    public var textInfo: TextInfo?
-
-    /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry`, `percentParent`, `label` and `value`.
-    public var textTemplate: String?
-
-    /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.
-    public var hoverText: String?
-
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public struct HoverInfo: OptionSet, Encodable {
-        public let rawValue: Int
-    
-        public static let label = HoverInfo(rawValue: 1 << 0)
-        public static let text = HoverInfo(rawValue: 1 << 1)
-        public static let value = HoverInfo(rawValue: 1 << 2)
-        public static let name = HoverInfo(rawValue: 1 << 3)
-        public static let currentpath = HoverInfo(rawValue: 1 << 4)
-        public static let percentroot = HoverInfo(rawValue: 1 << 5)
-        public static let percententry = HoverInfo(rawValue: 1 << 6)
-        public static let percentparent = HoverInfo(rawValue: 1 << 7)
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["current path"] }
-            if (self.rawValue & 1 << 5) != 0 { options += ["percent root"] }
-            if (self.rawValue & 1 << 6) != 0 { options += ["percent entry"] }
-            if (self.rawValue & 1 << 7) != 0 { options += ["percent parent"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
-
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: String?
-
-    /// Sets the font used for `textinfo`.
+    /// Sets the text font.
     public struct TextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: String?
@@ -868,70 +951,10 @@ public struct Treemap: Trace {
             self.colorSource = colorSource
         }
     }
-    /// Sets the font used for `textinfo`.
+    /// Sets the text font.
     public var textFont: TextFont?
 
-    /// Sets the font used for `textinfo` lying inside the sector.
-    public struct InsideTextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
-    
-        public var size: Double?
-    
-        public var color: Color?
-    
-        /// Sets the source reference on plot.ly for  family .
-        public var familySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        public var colorSource: String?
-    
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.family = family
-            self.size = size
-            self.color = color
-            self.familySource = familySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
-    /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: InsideTextFont?
-
-    /// Sets the font used for `textinfo` lying outside the sector.
-    public struct OutSideTextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
-    
-        public var size: Double?
-    
-        public var color: Color?
-    
-        /// Sets the source reference on plot.ly for  family .
-        public var familySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        public var colorSource: String?
-    
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.family = family
-            self.size = size
-            self.color = color
-            self.familySource = familySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
-    /// Sets the font used for `textinfo` lying outside the sector.
-    public var outSideTextFont: OutSideTextFont?
-
-    /// Sets the positions of the `text` elements.
+    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public enum TextPosition: String, Encodable {
         case topleft
         case topcenter
@@ -943,30 +966,133 @@ public struct Treemap: Trace {
         case bottomcenter
         case bottomright
     }
-    /// Sets the positions of the `text` elements.
+    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: TextPosition?
 
-    public struct Domain: Encodable {
-        /// Sets the horizontal domain of this treemap trace (in plot fraction).
-        public var x: InfoArray?
+    public struct Selected: Encodable {
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            public var opacity: Double?
+        
+            /// Sets the marker color of selected points.
+            public var color: Color?
+        
+            /// Sets the marker size of selected points.
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        public var marker: Marker?
     
-        /// Sets the vertical domain of this treemap trace (in plot fraction).
-        public var y: InfoArray?
+        public struct TextFont: Encodable {
+            /// Sets the text font color of selected points.
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        public var textFont: TextFont?
     
-        /// If there is a layout grid, use the domain for this row in the grid for this treemap trace .
-        public var row: Int?
-    
-        /// If there is a layout grid, use the domain for this column in the grid for this treemap trace .
-        public var column: Int?
-    
-        public init(x: InfoArray? = nil, y: InfoArray? = nil, row: Int? = nil, column: Int? = nil) {
-            self.x = x
-            self.y = y
-            self.row = row
-            self.column = column
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
         }
     }
-    public var domain: Domain?
+    public var selected: Selected?
+
+    public struct Unselected: Encodable {
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            public var opacity: Double?
+        
+            /// Sets the marker color of unselected points, applied only when a selection exists.
+            public var color: Color?
+        
+            /// Sets the marker size of unselected points, applied only when a selection exists.
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        public var marker: Marker?
+    
+        public struct TextFont: Encodable {
+            /// Sets the text font color of unselected points, applied only when a selection exists.
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        public var textFont: TextFont?
+    
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
+    public var unselected: Unselected?
+
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    public struct HoverInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let a = HoverInfo(rawValue: 1 << 0)
+        public static let b = HoverInfo(rawValue: 1 << 1)
+        public static let text = HoverInfo(rawValue: 1 << 2)
+        public static let name = HoverInfo(rawValue: 1 << 3)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["a"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["b"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    public var hoverInfo: HoverInfo?
+
+    /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
+    public struct HoverOn: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let points = HoverOn(rawValue: 1 << 0)
+        public static let fills = HoverOn(rawValue: 1 << 1)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["points"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["fills"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
+    public var hoverOn: HoverOn?
+
+    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available.  Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    public var hoverTemplate: String?
+
+    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
+    public var xAxis: SubplotID?
+
+    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
+    public var yAxis: SubplotID?
 
     /// Sets the source reference on plot.ly for  ids .
     public var idsSource: String?
@@ -977,14 +1103,11 @@ public struct Treemap: Trace {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
-    /// Sets the source reference on plot.ly for  labels .
-    public var labelsSource: String?
+    /// Sets the source reference on plot.ly for  a .
+    public var aSource: String?
 
-    /// Sets the source reference on plot.ly for  parents .
-    public var parentsSource: String?
-
-    /// Sets the source reference on plot.ly for  values .
-    public var valuesSource: String?
+    /// Sets the source reference on plot.ly for  b .
+    public var bSource: String?
 
     /// Sets the source reference on plot.ly for  text .
     public var textSource: String?
@@ -995,54 +1118,60 @@ public struct Treemap: Trace {
     /// Sets the source reference on plot.ly for  hovertext .
     public var hoverTextSource: String?
 
+    /// Sets the source reference on plot.ly for  textposition .
+    public var textPositionSource: String?
+
     /// Sets the source reference on plot.ly for  hoverinfo .
     public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: TextFont? = nil, insideTextFont: InsideTextFont? = nil, outSideTextFont: OutSideTextFont? = nil, textPosition: TextPosition? = nil, domain: Domain? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, carpet: String? = nil, a: [Double]? = nil, b: [Double]? = nil, mode: Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line? = nil, connectGaps: Bool? = nil, fill: Fill? = nil, fillColor: Color? = nil, marker: Marker? = nil, textFont: TextFont? = nil, textPosition: TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, xAxis: SubplotID? = nil, yAxis: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, aSource: String? = nil, bSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
+        self.showLegend = showLegend
+        self.legendGroup = legendGroup
         self.opacity = opacity
         self.name = name
         self.uid = uid
         self.ids = ids
         self.customData = customData
         self.meta = meta
+        self.selectedPoints = selectedPoints
         self.hoverLabel = hoverLabel
         self.stream = stream
         self.transforms = transforms
         self.uiRevision = uiRevision
-        self.labels = labels
-        self.parents = parents
-        self.values = values
-        self.branchValues = branchValues
-        self.count = count
-        self.level = level
-        self.maxDepth = maxDepth
-        self.tiling = tiling
-        self.marker = marker
-        self.pathBar = pathBar
+        self.carpet = carpet
+        self.a = a
+        self.b = b
+        self.mode = mode
         self.text = text
-        self.textInfo = textInfo
         self.textTemplate = textTemplate
         self.hoverText = hoverText
-        self.hoverInfo = hoverInfo
-        self.hoverTemplate = hoverTemplate
+        self.line = line
+        self.connectGaps = connectGaps
+        self.fill = fill
+        self.fillColor = fillColor
+        self.marker = marker
         self.textFont = textFont
-        self.insideTextFont = insideTextFont
-        self.outSideTextFont = outSideTextFont
         self.textPosition = textPosition
-        self.domain = domain
+        self.selected = selected
+        self.unselected = unselected
+        self.hoverInfo = hoverInfo
+        self.hoverOn = hoverOn
+        self.hoverTemplate = hoverTemplate
+        self.xAxis = xAxis
+        self.yAxis = yAxis
         self.idsSource = idsSource
         self.customDataSource = customDataSource
         self.metaSource = metaSource
-        self.labelsSource = labelsSource
-        self.parentsSource = parentsSource
-        self.valuesSource = valuesSource
+        self.aSource = aSource
+        self.bSource = bSource
         self.textSource = textSource
         self.textTemplateSource = textTemplateSource
         self.hoverTextSource = hoverTextSource
+        self.textPositionSource = textPositionSource
         self.hoverInfoSource = hoverInfoSource
         self.hoverTemplateSource = hoverTemplateSource
     }

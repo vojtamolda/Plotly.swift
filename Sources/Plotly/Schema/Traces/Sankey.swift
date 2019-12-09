@@ -23,38 +23,38 @@ public struct Sankey: Trace {
     public var ids: [Double]?
 
     /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
-    public var customdata: [Double]?
+    public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
     /// Array containing integer indices of selected points. Has an effect only for traces that support selections. Note that an empty array means an empty selection where the `unselected` are turned on for all points, whereas, any other non-array values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedpoints: Anything?
+    public var selectedPoints: Anything?
 
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
         public var token: String?
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxpoints: Double?
+        public var maxPoints: Double?
     
-        public init(token: String? = nil, maxpoints: Double? = nil) {
+        public init(token: String? = nil, maxPoints: Double? = nil) {
             self.token = token
-            self.maxpoints = maxpoints
+            self.maxPoints = maxPoints
         }
     }
     public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
-    public var uirevision: Anything?
+    public var uiRevision: Anything?
 
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired. Note that this attribute is superseded by `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
-    public struct Hoverinfo: OptionSet, Encodable {
+    public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let all = Hoverinfo(rawValue: 1 << 0)
-        public static let none = Hoverinfo(rawValue: 1 << 1)
-        public static let skip = Hoverinfo(rawValue: 1 << 2)
+        public static let all = HoverInfo(rawValue: 1 << 0)
+        public static let none = HoverInfo(rawValue: 1 << 1)
+        public static let skip = HoverInfo(rawValue: 1 << 2)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -68,14 +68,14 @@ public struct Sankey: Trace {
         }
     }
     /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired. Note that this attribute is superseded by `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
-    public var hoverinfo: Hoverinfo?
+    public var hoverInfo: HoverInfo?
 
-    public struct Hoverlabel: Encodable {
+    public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        public var bgcolor: Color?
+        public var backgroundColor: Color?
     
         /// Sets the border color of the hover labels for this trace.
-        public var bordercolor: Color?
+        public var borderColor: Color?
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
@@ -87,21 +87,21 @@ public struct Sankey: Trace {
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  family .
-            public var familysrc: String?
+            public var familySource: String?
         
             /// Sets the source reference on plot.ly for  size .
-            public var sizesrc: String?
+            public var sizeSource: String?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                 self.family = family
                 self.size = size
                 self.color = color
-                self.familysrc = familysrc
-                self.sizesrc = sizesrc
-                self.colorsrc = colorsrc
+                self.familySource = familySource
+                self.sizeSource = sizeSource
+                self.colorSource = colorSource
             }
         }
         /// Sets the font used in hover labels.
@@ -117,33 +117,33 @@ public struct Sankey: Trace {
         public var align: Align?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-        public var namelength: Int?
+        public var nameLength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
-        public var bgcolorsrc: String?
+        public var backgroundColorSource: String?
     
         /// Sets the source reference on plot.ly for  bordercolor .
-        public var bordercolorsrc: String?
+        public var borderColorSource: String?
     
         /// Sets the source reference on plot.ly for  align .
-        public var alignsrc: String?
+        public var alignSource: String?
     
         /// Sets the source reference on plot.ly for  namelength .
-        public var namelengthsrc: String?
+        public var nameLengthSource: String?
     
-        public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
-            self.bgcolor = bgcolor
-            self.bordercolor = bordercolor
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
             self.font = font
             self.align = align
-            self.namelength = namelength
-            self.bgcolorsrc = bgcolorsrc
-            self.bordercolorsrc = bordercolorsrc
-            self.alignsrc = alignsrc
-            self.namelengthsrc = namelengthsrc
+            self.nameLength = nameLength
+            self.backgroundColorSource = backgroundColorSource
+            self.borderColorSource = borderColorSource
+            self.alignSource = alignSource
+            self.nameLengthSource = nameLengthSource
         }
     }
-    public var hoverlabel: Hoverlabel?
+    public var hoverLabel: HoverLabel?
 
     public struct Domain: Encodable {
         /// Sets the horizontal domain of this sankey trace (in plot fraction).
@@ -176,10 +176,10 @@ public struct Sankey: Trace {
     public var orientation: Orientation?
 
     /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    public var valueformat: String?
+    public var valueFormat: String?
 
     /// Adds a unit to follow the value in the hover tooltip. Add a space if a separation is necessary from the value.
-    public var valuesuffix: String?
+    public var valueSuffix: String?
 
     /// If value is `snap` (the default), the node arrangement is assisted by automatic snapping of elements to preserve space between nodes specified via `nodepad`. If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are stationary.
     public enum Arrangement: String, Encodable {
@@ -192,7 +192,7 @@ public struct Sankey: Trace {
     public var arrangement: Arrangement?
 
     /// Sets the font for node labels
-    public struct Textfont: Encodable {
+    public struct TextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: String?
     
@@ -207,7 +207,7 @@ public struct Sankey: Trace {
         }
     }
     /// Sets the font for node labels
-    public var textfont: Textfont?
+    public var textFont: TextFont?
 
     /// The nodes of the Sankey plot.
     public struct Node: Encodable {
@@ -234,41 +234,41 @@ public struct Sankey: Trace {
             public var width: Double?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
             /// Sets the source reference on plot.ly for  width .
-            public var widthsrc: String?
+            public var widthSource: String?
         
-            public init(color: Color? = nil, width: Double? = nil, colorsrc: String? = nil, widthsrc: String? = nil) {
+            public init(color: Color? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
                 self.color = color
                 self.width = width
-                self.colorsrc = colorsrc
-                self.widthsrc = widthsrc
+                self.colorSource = colorSource
+                self.widthSource = widthSource
             }
         }
         public var line: Line?
     
         /// Sets the padding (in px) between the `nodes`.
-        public var pad: Double?
+        public var padding: Double?
     
         /// Sets the thickness (in px) of the `nodes`.
         public var thickness: Double?
     
         /// Determines which trace information appear when hovering nodes. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-        public enum Hoverinfo: String, Encodable {
+        public enum HoverInfo: String, Encodable {
             case all
             case none
             case skip
         }
         /// Determines which trace information appear when hovering nodes. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-        public var hoverinfo: Hoverinfo?
+        public var hoverInfo: HoverInfo?
     
-        public struct Hoverlabel: Encodable {
+        public struct HoverLabel: Encodable {
             /// Sets the background color of the hover labels for this trace
-            public var bgcolor: Color?
+            public var backgroundColor: Color?
         
             /// Sets the border color of the hover labels for this trace.
-            public var bordercolor: Color?
+            public var borderColor: Color?
         
             /// Sets the font used in hover labels.
             public struct Font: Encodable {
@@ -280,21 +280,21 @@ public struct Sankey: Trace {
                 public var color: Color?
             
                 /// Sets the source reference on plot.ly for  family .
-                public var familysrc: String?
+                public var familySource: String?
             
                 /// Sets the source reference on plot.ly for  size .
-                public var sizesrc: String?
+                public var sizeSource: String?
             
                 /// Sets the source reference on plot.ly for  color .
-                public var colorsrc: String?
+                public var colorSource: String?
             
-                public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+                public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                     self.family = family
                     self.size = size
                     self.color = color
-                    self.familysrc = familysrc
-                    self.sizesrc = sizesrc
-                    self.colorsrc = colorsrc
+                    self.familySource = familySource
+                    self.sizeSource = sizeSource
+                    self.colorSource = colorSource
                 }
             }
             /// Sets the font used in hover labels.
@@ -310,69 +310,69 @@ public struct Sankey: Trace {
             public var align: Align?
         
             /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-            public var namelength: Int?
+            public var nameLength: Int?
         
             /// Sets the source reference on plot.ly for  bgcolor .
-            public var bgcolorsrc: String?
+            public var backgroundColorSource: String?
         
             /// Sets the source reference on plot.ly for  bordercolor .
-            public var bordercolorsrc: String?
+            public var borderColorSource: String?
         
             /// Sets the source reference on plot.ly for  align .
-            public var alignsrc: String?
+            public var alignSource: String?
         
             /// Sets the source reference on plot.ly for  namelength .
-            public var namelengthsrc: String?
+            public var nameLengthSource: String?
         
-            public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
-                self.bgcolor = bgcolor
-                self.bordercolor = bordercolor
+            public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
+                self.backgroundColor = backgroundColor
+                self.borderColor = borderColor
                 self.font = font
                 self.align = align
-                self.namelength = namelength
-                self.bgcolorsrc = bgcolorsrc
-                self.bordercolorsrc = bordercolorsrc
-                self.alignsrc = alignsrc
-                self.namelengthsrc = namelengthsrc
+                self.nameLength = nameLength
+                self.backgroundColorSource = backgroundColorSource
+                self.borderColorSource = borderColorSource
+                self.alignSource = alignSource
+                self.nameLengthSource = nameLengthSource
             }
         }
-        public var hoverlabel: Hoverlabel?
+        public var hoverLabel: HoverLabel?
     
         /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-        public var hovertemplate: String?
+        public var hoverTemplate: String?
     
         /// Sets the source reference on plot.ly for  label .
-        public var labelsrc: String?
+        public var labelSource: String?
     
         /// Sets the source reference on plot.ly for  x .
-        public var xsrc: String?
+        public var xSource: String?
     
         /// Sets the source reference on plot.ly for  y .
-        public var ysrc: String?
+        public var ySource: String?
     
         /// Sets the source reference on plot.ly for  color .
-        public var colorsrc: String?
+        public var colorSource: String?
     
         /// Sets the source reference on plot.ly for  hovertemplate .
-        public var hovertemplatesrc: String?
+        public var hoverTemplateSource: String?
     
-        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Line? = nil, pad: Double? = nil, thickness: Double? = nil, hoverinfo: Hoverinfo? = nil, hoverlabel: Hoverlabel? = nil, hovertemplate: String? = nil, labelsrc: String? = nil, xsrc: String? = nil, ysrc: String? = nil, colorsrc: String? = nil, hovertemplatesrc: String? = nil) {
+        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Line? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, hoverTemplate: String? = nil, labelSource: String? = nil, xSource: String? = nil, ySource: String? = nil, colorSource: String? = nil, hoverTemplateSource: String? = nil) {
             self.label = label
             self.groups = groups
             self.x = x
             self.y = y
             self.color = color
             self.line = line
-            self.pad = pad
+            self.padding = padding
             self.thickness = thickness
-            self.hoverinfo = hoverinfo
-            self.hoverlabel = hoverlabel
-            self.hovertemplate = hovertemplate
-            self.labelsrc = labelsrc
-            self.xsrc = xsrc
-            self.ysrc = ysrc
-            self.colorsrc = colorsrc
-            self.hovertemplatesrc = hovertemplatesrc
+            self.hoverInfo = hoverInfo
+            self.hoverLabel = hoverLabel
+            self.hoverTemplate = hoverTemplate
+            self.labelSource = labelSource
+            self.xSource = xSource
+            self.ySource = ySource
+            self.colorSource = colorSource
+            self.hoverTemplateSource = hoverTemplateSource
         }
     }
     /// The nodes of the Sankey plot.
@@ -394,16 +394,16 @@ public struct Sankey: Trace {
             public var width: Double?
         
             /// Sets the source reference on plot.ly for  color .
-            public var colorsrc: String?
+            public var colorSource: String?
         
             /// Sets the source reference on plot.ly for  width .
-            public var widthsrc: String?
+            public var widthSource: String?
         
-            public init(color: Color? = nil, width: Double? = nil, colorsrc: String? = nil, widthsrc: String? = nil) {
+            public init(color: Color? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
                 self.color = color
                 self.width = width
-                self.colorsrc = colorsrc
-                self.widthsrc = widthsrc
+                self.colorSource = colorSource
+                self.widthSource = widthSource
             }
         }
         public var line: Line?
@@ -418,20 +418,20 @@ public struct Sankey: Trace {
         public var value: [Double]?
     
         /// Determines which trace information appear when hovering links. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-        public enum Hoverinfo: String, Encodable {
+        public enum HoverInfo: String, Encodable {
             case all
             case none
             case skip
         }
         /// Determines which trace information appear when hovering links. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
-        public var hoverinfo: Hoverinfo?
+        public var hoverInfo: HoverInfo?
     
-        public struct Hoverlabel: Encodable {
+        public struct HoverLabel: Encodable {
             /// Sets the background color of the hover labels for this trace
-            public var bgcolor: Color?
+            public var backgroundColor: Color?
         
             /// Sets the border color of the hover labels for this trace.
-            public var bordercolor: Color?
+            public var borderColor: Color?
         
             /// Sets the font used in hover labels.
             public struct Font: Encodable {
@@ -443,21 +443,21 @@ public struct Sankey: Trace {
                 public var color: Color?
             
                 /// Sets the source reference on plot.ly for  family .
-                public var familysrc: String?
+                public var familySource: String?
             
                 /// Sets the source reference on plot.ly for  size .
-                public var sizesrc: String?
+                public var sizeSource: String?
             
                 /// Sets the source reference on plot.ly for  color .
-                public var colorsrc: String?
+                public var colorSource: String?
             
-                public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familysrc: String? = nil, sizesrc: String? = nil, colorsrc: String? = nil) {
+                public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
                     self.family = family
                     self.size = size
                     self.color = color
-                    self.familysrc = familysrc
-                    self.sizesrc = sizesrc
-                    self.colorsrc = colorsrc
+                    self.familySource = familySource
+                    self.sizeSource = sizeSource
+                    self.colorSource = colorSource
                 }
             }
             /// Sets the font used in hover labels.
@@ -473,71 +473,71 @@ public struct Sankey: Trace {
             public var align: Align?
         
             /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
-            public var namelength: Int?
+            public var nameLength: Int?
         
             /// Sets the source reference on plot.ly for  bgcolor .
-            public var bgcolorsrc: String?
+            public var backgroundColorSource: String?
         
             /// Sets the source reference on plot.ly for  bordercolor .
-            public var bordercolorsrc: String?
+            public var borderColorSource: String?
         
             /// Sets the source reference on plot.ly for  align .
-            public var alignsrc: String?
+            public var alignSource: String?
         
             /// Sets the source reference on plot.ly for  namelength .
-            public var namelengthsrc: String?
+            public var nameLengthSource: String?
         
-            public init(bgcolor: Color? = nil, bordercolor: Color? = nil, font: Font? = nil, align: Align? = nil, namelength: Int? = nil, bgcolorsrc: String? = nil, bordercolorsrc: String? = nil, alignsrc: String? = nil, namelengthsrc: String? = nil) {
-                self.bgcolor = bgcolor
-                self.bordercolor = bordercolor
+            public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
+                self.backgroundColor = backgroundColor
+                self.borderColor = borderColor
                 self.font = font
                 self.align = align
-                self.namelength = namelength
-                self.bgcolorsrc = bgcolorsrc
-                self.bordercolorsrc = bordercolorsrc
-                self.alignsrc = alignsrc
-                self.namelengthsrc = namelengthsrc
+                self.nameLength = nameLength
+                self.backgroundColorSource = backgroundColorSource
+                self.borderColorSource = borderColorSource
+                self.alignSource = alignSource
+                self.nameLengthSource = nameLengthSource
             }
         }
-        public var hoverlabel: Hoverlabel?
+        public var hoverLabel: HoverLabel?
     
         /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
-        public var hovertemplate: String?
+        public var hoverTemplate: String?
     
-        public struct Colorscales: Encodable {
+        public struct ColorScales: Encodable {
             public struct Items: Encodable {
-                public struct Concentrationscales: Encodable {
+                public struct ConcentrationScales: Encodable {
                     /// The label of the links to color based on their concentration within a flow.
                     public var label: String?
                 
                     /// Sets the upper bound of the color domain.
-                    public var cmax: Double?
+                    public var cMax: Double?
                 
                     /// Sets the lower bound of the color domain.
-                    public var cmin: Double?
+                    public var cMin: Double?
                 
                     /// Sets the colorscale. The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may be a palette name string of the following list: Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-                    public var colorscale: ColorScale?
+                    public var colorScale: ColorScale?
                 
                     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. You can modify these items in the output figure by making your own item with `templateitemname` matching this `name` alongside your modifications (including `visible: false` or `enabled: false` to hide it). Has no effect outside of a template.
                     public var name: String?
                 
                     /// Used to refer to a named item in this array in the template. Named items from the template will be created even without a matching item in the input figure, but you can modify one by making an item with `templateitemname` matching its `name`, alongside your modifications (including `visible: false` or `enabled: false` to hide it). If there is no template or no matching item, this item will be hidden unless you explicitly show it with `visible: true`.
-                    public var templateitemname: String?
+                    public var templateItemName: String?
                 
-                    public init(label: String? = nil, cmax: Double? = nil, cmin: Double? = nil, colorscale: ColorScale? = nil, name: String? = nil, templateitemname: String? = nil) {
+                    public init(label: String? = nil, cMax: Double? = nil, cMin: Double? = nil, colorScale: ColorScale? = nil, name: String? = nil, templateItemName: String? = nil) {
                         self.label = label
-                        self.cmax = cmax
-                        self.cmin = cmin
-                        self.colorscale = colorscale
+                        self.cMax = cMax
+                        self.cMin = cMin
+                        self.colorScale = colorScale
                         self.name = name
-                        self.templateitemname = templateitemname
+                        self.templateItemName = templateItemName
                     }
                 }
-                public var concentrationscales: Concentrationscales?
+                public var concentrationScales: ConcentrationScales?
             
-                public init(concentrationscales: Concentrationscales? = nil) {
-                    self.concentrationscales = concentrationscales
+                public init(concentrationScales: ConcentrationScales? = nil) {
+                    self.concentrationScales = concentrationScales
                 }
             }
             public var items: Items?
@@ -546,79 +546,79 @@ public struct Sankey: Trace {
                 self.items = items
             }
         }
-        public var colorscales: Colorscales?
+        public var colorScales: ColorScales?
     
         /// Sets the source reference on plot.ly for  label .
-        public var labelsrc: String?
+        public var labelSource: String?
     
         /// Sets the source reference on plot.ly for  color .
-        public var colorsrc: String?
+        public var colorSource: String?
     
         /// Sets the source reference on plot.ly for  source .
-        public var sourcesrc: String?
+        public var sourceSource: String?
     
         /// Sets the source reference on plot.ly for  target .
-        public var targetsrc: String?
+        public var targetSource: String?
     
         /// Sets the source reference on plot.ly for  value .
-        public var valuesrc: String?
+        public var valueSource: String?
     
         /// Sets the source reference on plot.ly for  hovertemplate .
-        public var hovertemplatesrc: String?
+        public var hoverTemplateSource: String?
     
-        public init(label: [Double]? = nil, color: Color? = nil, line: Line? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverinfo: Hoverinfo? = nil, hoverlabel: Hoverlabel? = nil, hovertemplate: String? = nil, colorscales: Colorscales? = nil, labelsrc: String? = nil, colorsrc: String? = nil, sourcesrc: String? = nil, targetsrc: String? = nil, valuesrc: String? = nil, hovertemplatesrc: String? = nil) {
+        public init(label: [Double]? = nil, color: Color? = nil, line: Line? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, hoverTemplate: String? = nil, colorScales: ColorScales? = nil, labelSource: String? = nil, colorSource: String? = nil, sourceSource: String? = nil, targetSource: String? = nil, valueSource: String? = nil, hoverTemplateSource: String? = nil) {
             self.label = label
             self.color = color
             self.line = line
             self.source = source
             self.target = target
             self.value = value
-            self.hoverinfo = hoverinfo
-            self.hoverlabel = hoverlabel
-            self.hovertemplate = hovertemplate
-            self.colorscales = colorscales
-            self.labelsrc = labelsrc
-            self.colorsrc = colorsrc
-            self.sourcesrc = sourcesrc
-            self.targetsrc = targetsrc
-            self.valuesrc = valuesrc
-            self.hovertemplatesrc = hovertemplatesrc
+            self.hoverInfo = hoverInfo
+            self.hoverLabel = hoverLabel
+            self.hoverTemplate = hoverTemplate
+            self.colorScales = colorScales
+            self.labelSource = labelSource
+            self.colorSource = colorSource
+            self.sourceSource = sourceSource
+            self.targetSource = targetSource
+            self.valueSource = valueSource
+            self.hoverTemplateSource = hoverTemplateSource
         }
     }
     /// The links of the Sankey plot.
     public var link: Link?
 
     /// Sets the source reference on plot.ly for  ids .
-    public var idssrc: String?
+    public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
-    public var customdatasrc: String?
+    public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
-    public var metasrc: String?
+    public var metaSource: String?
 
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customdata: [Double]? = nil, meta: Anything? = nil, selectedpoints: Anything? = nil, stream: Stream? = nil, uirevision: Anything? = nil, hoverinfo: Hoverinfo? = nil, hoverlabel: Hoverlabel? = nil, domain: Domain? = nil, orientation: Orientation? = nil, valueformat: String? = nil, valuesuffix: String? = nil, arrangement: Arrangement? = nil, textfont: Textfont? = nil, node: Node? = nil, link: Link? = nil, idssrc: String? = nil, customdatasrc: String? = nil, metasrc: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, domain: Domain? = nil, orientation: Orientation? = nil, valueFormat: String? = nil, valueSuffix: String? = nil, arrangement: Arrangement? = nil, textFont: TextFont? = nil, node: Node? = nil, link: Link? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
         self.ids = ids
-        self.customdata = customdata
+        self.customData = customData
         self.meta = meta
-        self.selectedpoints = selectedpoints
+        self.selectedPoints = selectedPoints
         self.stream = stream
-        self.uirevision = uirevision
-        self.hoverinfo = hoverinfo
-        self.hoverlabel = hoverlabel
+        self.uiRevision = uiRevision
+        self.hoverInfo = hoverInfo
+        self.hoverLabel = hoverLabel
         self.domain = domain
         self.orientation = orientation
-        self.valueformat = valueformat
-        self.valuesuffix = valuesuffix
+        self.valueFormat = valueFormat
+        self.valueSuffix = valueSuffix
         self.arrangement = arrangement
-        self.textfont = textfont
+        self.textFont = textFont
         self.node = node
         self.link = link
-        self.idssrc = idssrc
-        self.customdatasrc = customdatasrc
-        self.metasrc = metasrc
+        self.idsSource = idsSource
+        self.customDataSource = customDataSource
+        self.metaSource = metaSource
     }
 }

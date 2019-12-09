@@ -6,7 +6,7 @@ struct Layout {
     let layoutAttributes: Swift.Struct
 
     init(schema: Schema.Layout) {
-        layoutAttributes = Swift.Struct(identifier: "Layout", entries: schema.layoutAttributes)
+        layoutAttributes = Swift.Struct(identifier: "layout", entries: schema.layoutAttributes)
     }
 
     /// Returns lines of Swift code that fully define the Layout struct and all of it's nested members.
