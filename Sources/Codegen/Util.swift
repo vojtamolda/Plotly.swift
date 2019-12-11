@@ -5,6 +5,12 @@ extension String {
         let prefix = String(repeating: indentation, count: count)
         return prefix + self
     }
+
+    /// Places the string in double qoutes and escapes the `\` character.
+    func escaped() -> String {
+        let escaped = self.replacingOccurrences(of: "\\", with: "\\\\")
+        return "\"\(escaped)\""
+    }
 }
 
 

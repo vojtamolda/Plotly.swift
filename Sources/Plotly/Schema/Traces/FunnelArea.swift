@@ -6,9 +6,9 @@ public struct FunnelArea: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
@@ -369,9 +369,9 @@ public struct FunnelArea: Trace {
     
         /// Specifies the location of the `title`. Note that the title's position used to be set by the now deprecated `titleposition` attribute.
         public enum Position: String, Encodable {
-            case topleft
-            case topcenter
-            case topright
+            case topLeft = "top left"
+            case topCenter = "top center"
+            case topRight = "top right"
         }
         /// Specifies the location of the `title`. Note that the title's position used to be set by the now deprecated `titleposition` attribute.
         public var position: Position?

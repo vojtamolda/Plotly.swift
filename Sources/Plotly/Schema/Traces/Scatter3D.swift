@@ -6,9 +6,9 @@ public struct Scatter3D: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
@@ -282,9 +282,9 @@ public struct Scatter3D: Trace {
             case solid
             case dot
             case dash
-            case longdash
-            case dashdot
-            case longdashdot
+            case longDash = "longdash"
+            case dashDot = "dashdot"
+            case longDashDot = "longdashdot"
         }
         /// Sets the dash style of the lines.
         public var dash: Dash?
@@ -412,7 +412,7 @@ public struct Scatter3D: Trace {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -703,11 +703,11 @@ public struct Scatter3D: Trace {
         /// Sets the marker symbol type.
         public enum Symbol: String, Encodable {
             case circle
-            case circleopen
+            case circleOpen = "circle-open"
             case square
-            case squareopen
+            case squareOpen = "square-open"
             case diamond
-            case diamondopen
+            case diamondOpen = "diamond-open"
             case cross
             case x
         }
@@ -830,7 +830,7 @@ public struct Scatter3D: Trace {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -1209,15 +1209,15 @@ public struct Scatter3D: Trace {
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public enum TextPosition: String, Encodable {
-        case topleft
-        case topcenter
-        case topright
-        case middleleft
-        case middlecenter
-        case middleright
-        case bottomleft
-        case bottomcenter
-        case bottomright
+        case topLeft = "top left"
+        case topCenter = "top center"
+        case topRight = "top right"
+        case middleLeft = "middle left"
+        case middleCenter = "middle center"
+        case middleRight = "middle right"
+        case bottomLeft = "bottom left"
+        case bottomCenter = "bottom center"
+        case bottomRight = "bottom right"
     }
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: TextPosition?

@@ -92,10 +92,10 @@ public struct Config: Encodable {
 
     /// Sets the double click interaction mode. Has an effect only in cartesian plots. If *false*, double click is disable. If *reset*, double click resets the axis ranges to their initial values. If *autosize*, double click set the axis ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis ranges to their initial values and even double clicks set the axis ranges to their autorange values.
     public enum DoubleClick: String, Encodable {
-        case no
+        case no = "false"
         case reset
-        case autosize
-        case resetautosize
+        case autoSize = "autosize"
+        case resetAndAutoSize = "reset+autosize"
     }
     /// Sets the double click interaction mode. Has an effect only in cartesian plots. If *false*, double click is disable. If *reset*, double click resets the axis ranges to their initial values. If *autosize*, double click set the axis ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis ranges to their initial values and even double clicks set the axis ranges to their autorange values.
     public var doubleClick: DoubleClick?
@@ -127,8 +127,8 @@ public struct Config: Encodable {
     /// Determines the mode bar display mode. If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If *hover*, the mode bar is visible while the mouse cursor is on the graph container.
     public enum DisplayModeBar: String, Encodable {
         case hover
-        case yes
-        case no
+        case yes = "true"
+        case no = "false"
     }
     /// Determines the mode bar display mode. If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If *hover*, the mode bar is visible while the mouse cursor is on the graph container.
     public var displayModeBar: DisplayModeBar?

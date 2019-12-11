@@ -6,9 +6,9 @@ public struct OHLC: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?

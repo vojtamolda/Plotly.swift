@@ -241,41 +241,41 @@ public struct Layout: Encodable {
             case elastic
             case back
             case bounce
-            case linearin
-            case quadin
-            case cubicin
-            case sinin
-            case expin
-            case circlein
-            case elasticin
-            case backin
-            case bouncein
-            case linearout
-            case quadout
-            case cubicout
-            case sinout
-            case expout
-            case circleout
-            case elasticout
-            case backout
-            case bounceout
-            case linearinout
-            case quadinout
-            case cubicinout
-            case sininout
-            case expinout
-            case circleinout
-            case elasticinout
-            case backinout
-            case bounceinout
+            case linearIn = "linear-in"
+            case quadIn = "quad-in"
+            case cubicIn = "cubic-in"
+            case sinIn = "sin-in"
+            case expIn = "exp-in"
+            case circleIn = "circle-in"
+            case elasticIn = "elastic-in"
+            case backIn = "back-in"
+            case bounceIn = "bounce-in"
+            case linearOut = "linear-out"
+            case quadOut = "quad-out"
+            case cubicOut = "cubic-out"
+            case sinOut = "sin-out"
+            case expOut = "exp-out"
+            case circleOut = "circle-out"
+            case elasticOut = "elastic-out"
+            case backOut = "back-out"
+            case bounceOut = "bounce-out"
+            case linearInOut = "linear-in-out"
+            case quadInOut = "quad-in-out"
+            case cubicInOut = "cubic-in-out"
+            case sinInOut = "sin-in-out"
+            case expInOut = "exp-in-out"
+            case circleInOut = "circle-in-out"
+            case elasticInOut = "elastic-in-out"
+            case backInOut = "back-in-out"
+            case bounceInOut = "bounce-in-out"
         }
         /// The easing function used for the transition
         public var easing: Easing?
     
         /// Determines whether the figure's layout or traces smoothly transitions during updates that make both traces and layout change.
         public enum Ordering: String, Encodable {
-            case layoutfirst
-            case tracesfirst
+            case layoutFirst = "layout first"
+            case tracesFirst = "traces first"
         }
         /// Determines whether the figure's layout or traces smoothly transitions during updates that make both traces and layout change.
         public var ordering: Ordering?
@@ -346,7 +346,7 @@ public struct Layout: Encodable {
         case lasso
         case orbit
         case turntable
-        case no
+        case no = "false"
     }
     /// Determines the mode of drag interactions. *select* and *lasso* apply only to scatter traces with markers or text. *orbit* and *turntable* apply only to 3D scenes.
     public var dragMode: DragMode?
@@ -356,7 +356,7 @@ public struct Layout: Encodable {
         case x
         case y
         case closest
-        case no
+        case no = "false"
     }
     /// Determines the mode of hover interactions. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation` value) for plots based on cartesian coordinates. For anything else the default value is *closest*.
     public var hoverMode: HoverMode?
@@ -430,8 +430,8 @@ public struct Layout: Encodable {
     
         /// Is the first row the top or the bottom? Note that columns are always enumerated from left to right.
         public enum RowOrder: String, Encodable {
-            case toptobottom
-            case bottomtotop
+            case topToBottom = "top to bottom"
+            case bottomToTop = "bottom to top"
         }
         /// Is the first row the top or the bottom? Note that columns are always enumerated from left to right.
         public var rowOrder: RowOrder?
@@ -479,8 +479,8 @@ public struct Layout: Encodable {
         /// Sets where the x axis labels and titles go. *bottom* means the very bottom of the grid. *bottom plot* is the lowest plot that each x axis is used in. *top* and *top plot* are similar.
         public enum XSide: String, Encodable {
             case bottom
-            case bottomplot
-            case topplot
+            case bottomPlot = "bottom plot"
+            case topPlot = "top plot"
             case top
         }
         /// Sets where the x axis labels and titles go. *bottom* means the very bottom of the grid. *bottom plot* is the lowest plot that each x axis is used in. *top* and *top plot* are similar.
@@ -489,8 +489,8 @@ public struct Layout: Encodable {
         /// Sets where the y axis labels and titles go. *left* means the very left edge of the grid. *left plot* is the leftmost plot that each y axis is used in. *right* and *right plot* are similar.
         public enum YSide: String, Encodable {
             case left
-            case leftplot
-            case rightplot
+            case leftPlot = "left plot"
+            case rightPlot = "right plot"
             case right
         }
         /// Sets where the y axis labels and titles go. *left* means the very left edge of the grid. *left plot* is the leftmost plot that each y axis is used in. *right* and *right plot* are similar.
@@ -577,20 +577,20 @@ public struct Layout: Encodable {
     
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
         public enum Rule: String, Encodable {
-            case auto
+            case auto = "-"
             case linear
             case log
             case date
             case category
-            case multicategory
+            case multiCategory = "multicategory"
         }
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
         public var type: Rule?
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
         public enum AutoRange: String, Encodable {
-            case yes
-            case no
+            case yes = "true"
+            case no = "false"
             case reversed
         }
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -599,8 +599,8 @@ public struct Layout: Encodable {
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
         public enum RangeMode: String, Encodable {
             case normal
-            case tozero
-            case nonnegative
+            case toZero = "tozero"
+            case nonNegative = "nonnegative"
         }
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
         public var rangeMode: RangeMode?
@@ -613,8 +613,8 @@ public struct Layout: Encodable {
     
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
         public enum ScaleAnchor: String, Encodable {
-            case xxx
-            case yyy
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
         public var scaleAnchor: ScaleAnchor?
@@ -644,8 +644,8 @@ public struct Layout: Encodable {
     
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis will match the range of the corresponding axis in data-coordinates space. Moreover, matching axes share auto-range values, category lists and histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden. Moreover, note that matching axes must have the same `type`.
         public enum Matches: String, Encodable {
-            case xxx
-            case yyy
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis will match the range of the corresponding axis in data-coordinates space. Moreover, matching axes share auto-range values, category lists and histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden. Moreover, note that matching axes must have the same `type`.
         public var matches: Matches?
@@ -678,7 +678,7 @@ public struct Layout: Encodable {
         public enum Ticks: String, Encodable {
             case outside
             case inside
-            case none
+            case none = ""
         }
         /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
         public var ticks: Ticks?
@@ -693,11 +693,11 @@ public struct Layout: Encodable {
     
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
         public enum Mirror: String, Encodable {
-            case yes
+            case yes = "true"
             case ticks
-            case no
+            case no = "false"
             case all
-            case allticks
+            case allTicks = "allticks"
         }
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
         public var mirror: Mirror?
@@ -916,8 +916,8 @@ public struct Layout: Encodable {
         /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
         public enum Anchor: String, Encodable {
             case free
-            case xxx
-            case yyy
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
         public var anchor: Anchor?
@@ -935,16 +935,16 @@ public struct Layout: Encodable {
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
         public enum Overlaying: String, Encodable {
             case free
-            case xxx
-            case yyy
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
         public var overlaying: Overlaying?
     
         /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
         public enum Layer: String, Encodable {
-            case abovetraces
-            case belowtraces
+            case aboveTraces = "above traces"
+            case belowTraces = "below traces"
         }
         /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
         public var layer: Layer?
@@ -958,21 +958,21 @@ public struct Layout: Encodable {
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
         public enum CategoryOrder: String, Encodable {
             case trace
-            case categoryascending
-            case categorydescending
+            case categoryAscending = "category ascending"
+            case categoryDescending = "category descending"
             case array
-            case totalascending
-            case totaldescending
-            case minascending
-            case mindescending
-            case maxascending
-            case maxdescending
-            case sumascending
-            case sumdescending
-            case meanascending
-            case meandescending
-            case medianascending
-            case mediandescending
+            case totalAscending = "total ascending"
+            case totalDescending = "total descending"
+            case minAscending = "min ascending"
+            case minDescending = "min descending"
+            case maxAscending = "max ascending"
+            case maxDescending = "max descending"
+            case sumAscending = "sum ascending"
+            case sumDescending = "sum descending"
+            case meanAscending = "mean ascending"
+            case meanDescending = "mean descending"
+            case medianAscending = "median ascending"
+            case medianDescending = "median descending"
         }
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
         public var categoryOrder: CategoryOrder?
@@ -1363,20 +1363,20 @@ public struct Layout: Encodable {
     
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
         public enum Rule: String, Encodable {
-            case auto
+            case auto = "-"
             case linear
             case log
             case date
             case category
-            case multicategory
+            case multiCategory = "multicategory"
         }
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
         public var type: Rule?
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
         public enum AutoRange: String, Encodable {
-            case yes
-            case no
+            case yes = "true"
+            case no = "false"
             case reversed
         }
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -1385,8 +1385,8 @@ public struct Layout: Encodable {
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
         public enum RangeMode: String, Encodable {
             case normal
-            case tozero
-            case nonnegative
+            case toZero = "tozero"
+            case nonNegative = "nonnegative"
         }
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
         public var rangeMode: RangeMode?
@@ -1399,8 +1399,8 @@ public struct Layout: Encodable {
     
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
         public enum ScaleAnchor: String, Encodable {
-            case xxx
-            case yyy
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
         public var scaleAnchor: ScaleAnchor?
@@ -1430,8 +1430,8 @@ public struct Layout: Encodable {
     
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis will match the range of the corresponding axis in data-coordinates space. Moreover, matching axes share auto-range values, category lists and histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden. Moreover, note that matching axes must have the same `type`.
         public enum Matches: String, Encodable {
-            case xxx
-            case yyy
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis will match the range of the corresponding axis in data-coordinates space. Moreover, matching axes share auto-range values, category lists and histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden. Moreover, note that matching axes must have the same `type`.
         public var matches: Matches?
@@ -1464,7 +1464,7 @@ public struct Layout: Encodable {
         public enum Ticks: String, Encodable {
             case outside
             case inside
-            case none
+            case none = ""
         }
         /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
         public var ticks: Ticks?
@@ -1479,11 +1479,11 @@ public struct Layout: Encodable {
     
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
         public enum Mirror: String, Encodable {
-            case yes
+            case yes = "true"
             case ticks
-            case no
+            case no = "false"
             case all
-            case allticks
+            case allTicks = "allticks"
         }
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
         public var mirror: Mirror?
@@ -1702,8 +1702,8 @@ public struct Layout: Encodable {
         /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
         public enum Anchor: String, Encodable {
             case free
-            case xxx
-            case yyy
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
         public var anchor: Anchor?
@@ -1721,16 +1721,16 @@ public struct Layout: Encodable {
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
         public enum Overlaying: String, Encodable {
             case free
-            case xxx
-            case yyy
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
         public var overlaying: Overlaying?
     
         /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
         public enum Layer: String, Encodable {
-            case abovetraces
-            case belowtraces
+            case aboveTraces = "above traces"
+            case belowTraces = "below traces"
         }
         /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
         public var layer: Layer?
@@ -1744,21 +1744,21 @@ public struct Layout: Encodable {
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
         public enum CategoryOrder: String, Encodable {
             case trace
-            case categoryascending
-            case categorydescending
+            case categoryAscending = "category ascending"
+            case categoryDescending = "category descending"
             case array
-            case totalascending
-            case totaldescending
-            case minascending
-            case mindescending
-            case maxascending
-            case maxdescending
-            case sumascending
-            case sumdescending
-            case meanascending
-            case meandescending
-            case medianascending
-            case mediandescending
+            case totalAscending = "total ascending"
+            case totalDescending = "total descending"
+            case minAscending = "min ascending"
+            case minDescending = "min descending"
+            case maxAscending = "max ascending"
+            case maxDescending = "max descending"
+            case sumAscending = "sum ascending"
+            case sumDescending = "sum descending"
+            case meanAscending = "mean ascending"
+            case meanDescending = "mean descending"
+            case medianAscending = "median ascending"
+            case medianDescending = "median descending"
         }
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
         public var categoryOrder: CategoryOrder?
@@ -1999,7 +1999,7 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -2154,8 +2154,8 @@ public struct Layout: Encodable {
         
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public enum Layer: String, Encodable {
-                case abovetraces
-                case belowtraces
+                case aboveTraces = "above traces"
+                case belowTraces = "below traces"
             }
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public var layer: Layer?
@@ -2304,7 +2304,7 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -2459,8 +2459,8 @@ public struct Layout: Encodable {
         
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public enum Layer: String, Encodable {
-                case abovetraces
-                case belowtraces
+                case aboveTraces = "above traces"
+                case belowTraces = "below traces"
             }
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public var layer: Layer?
@@ -2609,7 +2609,7 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -2764,8 +2764,8 @@ public struct Layout: Encodable {
         
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public enum Layer: String, Encodable {
-                case abovetraces
-                case belowtraces
+                case aboveTraces = "above traces"
+                case belowTraces = "below traces"
             }
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public var layer: Layer?
@@ -3034,21 +3034,21 @@ public struct Layout: Encodable {
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public enum CategoryOrder: String, Encodable {
                 case trace
-                case categoryascending
-                case categorydescending
+                case categoryAscending = "category ascending"
+                case categoryDescending = "category descending"
                 case array
-                case totalascending
-                case totaldescending
-                case minascending
-                case mindescending
-                case maxascending
-                case maxdescending
-                case sumascending
-                case sumdescending
-                case meanascending
-                case meandescending
-                case medianascending
-                case mediandescending
+                case totalAscending = "total ascending"
+                case totalDescending = "total descending"
+                case minAscending = "min ascending"
+                case minDescending = "min descending"
+                case maxAscending = "max ascending"
+                case maxDescending = "max descending"
+                case sumAscending = "sum ascending"
+                case sumDescending = "sum descending"
+                case meanAscending = "mean ascending"
+                case meanDescending = "mean descending"
+                case medianAscending = "median ascending"
+                case medianDescending = "median descending"
             }
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public var categoryOrder: CategoryOrder?
@@ -3087,7 +3087,7 @@ public struct Layout: Encodable {
         
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             public enum Rule: String, Encodable {
-                case auto
+                case auto = "-"
                 case linear
                 case log
                 case date
@@ -3098,8 +3098,8 @@ public struct Layout: Encodable {
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             public enum AutoRange: String, Encodable {
-                case yes
-                case no
+                case yes = "true"
+                case no = "false"
                 case reversed
             }
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -3108,8 +3108,8 @@ public struct Layout: Encodable {
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             public enum RangeMode: String, Encodable {
                 case normal
-                case tozero
-                case nonnegative
+                case toZero = "tozero"
+                case nonNegative = "nonnegative"
             }
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             public var rangeMode: RangeMode?
@@ -3145,18 +3145,18 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public enum Mirror: String, Encodable {
-                case yes
+                case yes = "true"
                 case ticks
-                case no
+                case no = "false"
                 case all
-                case allticks
+                case allTicks = "allticks"
             }
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public var mirror: Mirror?
@@ -3468,21 +3468,21 @@ public struct Layout: Encodable {
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public enum CategoryOrder: String, Encodable {
                 case trace
-                case categoryascending
-                case categorydescending
+                case categoryAscending = "category ascending"
+                case categoryDescending = "category descending"
                 case array
-                case totalascending
-                case totaldescending
-                case minascending
-                case mindescending
-                case maxascending
-                case maxdescending
-                case sumascending
-                case sumdescending
-                case meanascending
-                case meandescending
-                case medianascending
-                case mediandescending
+                case totalAscending = "total ascending"
+                case totalDescending = "total descending"
+                case minAscending = "min ascending"
+                case minDescending = "min descending"
+                case maxAscending = "max ascending"
+                case maxDescending = "max descending"
+                case sumAscending = "sum ascending"
+                case sumDescending = "sum descending"
+                case meanAscending = "mean ascending"
+                case meanDescending = "mean descending"
+                case medianAscending = "median ascending"
+                case medianDescending = "median descending"
             }
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public var categoryOrder: CategoryOrder?
@@ -3521,7 +3521,7 @@ public struct Layout: Encodable {
         
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             public enum Rule: String, Encodable {
-                case auto
+                case auto = "-"
                 case linear
                 case log
                 case date
@@ -3532,8 +3532,8 @@ public struct Layout: Encodable {
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             public enum AutoRange: String, Encodable {
-                case yes
-                case no
+                case yes = "true"
+                case no = "false"
                 case reversed
             }
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -3542,8 +3542,8 @@ public struct Layout: Encodable {
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             public enum RangeMode: String, Encodable {
                 case normal
-                case tozero
-                case nonnegative
+                case toZero = "tozero"
+                case nonNegative = "nonnegative"
             }
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             public var rangeMode: RangeMode?
@@ -3579,18 +3579,18 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public enum Mirror: String, Encodable {
-                case yes
+                case yes = "true"
                 case ticks
-                case no
+                case no = "false"
                 case all
-                case allticks
+                case allTicks = "allticks"
             }
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public var mirror: Mirror?
@@ -3902,21 +3902,21 @@ public struct Layout: Encodable {
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public enum CategoryOrder: String, Encodable {
                 case trace
-                case categoryascending
-                case categorydescending
+                case categoryAscending = "category ascending"
+                case categoryDescending = "category descending"
                 case array
-                case totalascending
-                case totaldescending
-                case minascending
-                case mindescending
-                case maxascending
-                case maxdescending
-                case sumascending
-                case sumdescending
-                case meanascending
-                case meandescending
-                case medianascending
-                case mediandescending
+                case totalAscending = "total ascending"
+                case totalDescending = "total descending"
+                case minAscending = "min ascending"
+                case minDescending = "min descending"
+                case maxAscending = "max ascending"
+                case maxDescending = "max descending"
+                case sumAscending = "sum ascending"
+                case sumDescending = "sum descending"
+                case meanAscending = "mean ascending"
+                case meanDescending = "mean descending"
+                case medianAscending = "median ascending"
+                case medianDescending = "median descending"
             }
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public var categoryOrder: CategoryOrder?
@@ -3955,7 +3955,7 @@ public struct Layout: Encodable {
         
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             public enum Rule: String, Encodable {
-                case auto
+                case auto = "-"
                 case linear
                 case log
                 case date
@@ -3966,8 +3966,8 @@ public struct Layout: Encodable {
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             public enum AutoRange: String, Encodable {
-                case yes
-                case no
+                case yes = "true"
+                case no = "false"
                 case reversed
             }
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -3976,8 +3976,8 @@ public struct Layout: Encodable {
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             public enum RangeMode: String, Encodable {
                 case normal
-                case tozero
-                case nonnegative
+                case toZero = "tozero"
+                case nonNegative = "nonnegative"
             }
             /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. Applies only to linear axes.
             public var rangeMode: RangeMode?
@@ -4013,18 +4013,18 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public enum Mirror: String, Encodable {
-                case yes
+                case yes = "true"
                 case ticks
-                case no
+                case no = "false"
                 case all
-                case allticks
+                case allTicks = "allticks"
             }
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public var mirror: Mirror?
@@ -4311,7 +4311,7 @@ public struct Layout: Encodable {
             case turntable
             case zoom
             case pan
-            case no
+            case no = "false"
         }
         /// Determines the mode of drag interactions for this scene.
         public var dragMode: DragMode?
@@ -4319,7 +4319,7 @@ public struct Layout: Encodable {
         /// Determines the mode of hover interactions for this scene.
         public enum HoverMode: String, Encodable {
             case closest
-            case no
+            case no = "false"
         }
         /// Determines the mode of hover interactions for this scene.
         public var hoverMode: HoverMode?
@@ -4649,8 +4649,8 @@ public struct Layout: Encodable {
             case europe
             case asia
             case africa
-            case northamerica
-            case southamerica
+            case northAmerica = "north america"
+            case southAmerica = "south america"
         }
         /// Set the scope of the map.
         public var scope: Scope?
@@ -4661,23 +4661,23 @@ public struct Layout: Encodable {
                 case equirectangular
                 case mercator
                 case orthographic
-                case naturalearth
+                case naturalEarth = "natural earth"
                 case kavrayskiy7
                 case miller
                 case robinson
                 case eckert4
-                case azimuthalequalarea
-                case azimuthalequidistant
-                case conicequalarea
-                case conicconformal
-                case conicequidistant
+                case azimuthalEqualArea = "azimuthal equal area"
+                case azimuthalEquidistant = "azimuthal equidistant"
+                case conicEqualArea = "conic equal area"
+                case conicConformal = "conic conformal"
+                case conicEquidistant = "conic equidistant"
                 case gnomonic
                 case stereographic
                 case mollweide
                 case hammer
-                case transversemercator
-                case albersusa
-                case winkeltripel
+                case transverseMercator = "transverse mercator"
+                case albersUSA = "albers usa"
+                case winkelTripel = "winkel tripel"
                 case aitoff
                 case sinusoidal
             }
@@ -4955,7 +4955,7 @@ public struct Layout: Encodable {
                 
                     /// Sets the source type for this layer, that is the type of the layer data.
                     public enum SourceType: String, Encodable {
-                        case geojson
+                        case geoJson = "geojson"
                         case vector
                         case raster
                         case image
@@ -5053,7 +5053,7 @@ public struct Layout: Encodable {
                         public enum Placement: String, Encodable {
                             case point
                             case line
-                            case linecenter
+                            case lineCenter = "line-center"
                         }
                         /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement). If `placement` is *point*, the label is placed where the geometry is located If `placement` is *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the label is placed on the center of the geometry
                         public var placement: Placement?
@@ -5078,15 +5078,15 @@ public struct Layout: Encodable {
                     
                         /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
                         public enum TextPosition: String, Encodable {
-                            case topleft
-                            case topcenter
-                            case topright
-                            case middleleft
-                            case middlecenter
-                            case middleright
-                            case bottomleft
-                            case bottomcenter
-                            case bottomright
+                            case topLeft = "top left"
+                            case topCenter = "top center"
+                            case topRight = "top right"
+                            case middleLeft = "middle left"
+                            case middleCenter = "middle center"
+                            case middleRight = "middle right"
+                            case bottomLeft = "bottom left"
+                            case bottomCenter = "bottom center"
+                            case bottomRight = "bottom right"
                         }
                         /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
                         public var textPosition: TextPosition?
@@ -5198,7 +5198,7 @@ public struct Layout: Encodable {
         
             /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
             public enum Rule: String, Encodable {
-                case auto
+                case auto = "-"
                 case linear
                 case log
                 case date
@@ -5209,8 +5209,8 @@ public struct Layout: Encodable {
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             public enum AutoRange: String, Encodable {
-                case yes
-                case no
+                case yes = "true"
+                case no = "false"
                 case reversed
             }
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -5218,8 +5218,8 @@ public struct Layout: Encodable {
         
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. If *normal*, the range is computed in relation to the extrema of the input data (same behavior as for cartesian axes).
             public enum RangeMode: String, Encodable {
-                case tozero
-                case nonnegative
+                case toZero = "tozero"
+                case nonNegative = "nonnegative"
                 case normal
             }
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. If *normal*, the range is computed in relation to the extrema of the input data (same behavior as for cartesian axes).
@@ -5231,21 +5231,21 @@ public struct Layout: Encodable {
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public enum CategoryOrder: String, Encodable {
                 case trace
-                case categoryascending
-                case categorydescending
+                case categoryAscending = "category ascending"
+                case categoryDescending = "category descending"
                 case array
-                case totalascending
-                case totaldescending
-                case minascending
-                case mindescending
-                case maxascending
-                case maxdescending
-                case sumascending
-                case sumdescending
-                case meanascending
-                case meandescending
-                case medianascending
-                case mediandescending
+                case totalAscending = "total ascending"
+                case totalDescending = "total descending"
+                case minAscending = "min ascending"
+                case minDescending = "min descending"
+                case maxAscending = "max ascending"
+                case maxDescending = "max descending"
+                case sumAscending = "sum ascending"
+                case sumDescending = "sum descending"
+                case meanAscending = "mean ascending"
+                case meanDescending = "mean descending"
+                case medianAscending = "median ascending"
+                case medianDescending = "median descending"
             }
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public var categoryOrder: CategoryOrder?
@@ -5259,7 +5259,7 @@ public struct Layout: Encodable {
             /// Determines on which side of radial axis line the tick and tick labels appear.
             public enum Side: String, Encodable {
                 case clockwise
-                case counterclockwise
+                case counterClockwise = "counterclockwise"
             }
             /// Determines on which side of radial axis line the tick and tick labels appear.
             public var side: Side?
@@ -5377,7 +5377,7 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -5511,8 +5511,8 @@ public struct Layout: Encodable {
         
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public enum Layer: String, Encodable {
-                case abovetraces
-                case belowtraces
+                case aboveTraces = "above traces"
+                case belowTraces = "below traces"
             }
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public var layer: Layer?
@@ -5606,7 +5606,7 @@ public struct Layout: Encodable {
         
             /// Sets the angular axis type. If *linear*, set `thetaunit` to determine the unit in which axis value are shown. If *category, use `period` to set the number of integer coordinates around polar axis.
             public enum Rule: String, Encodable {
-                case auto
+                case auto = "-"
                 case linear
                 case category
             }
@@ -5616,21 +5616,21 @@ public struct Layout: Encodable {
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public enum CategoryOrder: String, Encodable {
                 case trace
-                case categoryascending
-                case categorydescending
+                case categoryAscending = "category ascending"
+                case categoryDescending = "category descending"
                 case array
-                case totalascending
-                case totaldescending
-                case minascending
-                case mindescending
-                case maxascending
-                case maxdescending
-                case sumascending
-                case sumdescending
-                case meanascending
-                case meandescending
-                case medianascending
-                case mediandescending
+                case totalAscending = "total ascending"
+                case totalDescending = "total descending"
+                case minAscending = "min ascending"
+                case minDescending = "min descending"
+                case maxAscending = "max ascending"
+                case maxDescending = "max descending"
+                case sumAscending = "sum ascending"
+                case sumDescending = "sum descending"
+                case meanAscending = "mean ascending"
+                case meanDescending = "mean descending"
+                case medianAscending = "median ascending"
+                case medianDescending = "median descending"
             }
             /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`. Set `categoryorder` to *total ascending* or *total descending* if order should be determined by the numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean or median of all the values.
             public var categoryOrder: CategoryOrder?
@@ -5651,7 +5651,7 @@ public struct Layout: Encodable {
         
             /// Sets the direction corresponding to positive angles.
             public enum Direction: String, Encodable {
-                case counterclockwise
+                case counterClockwise = "counterclockwise"
                 case clockwise
             }
             /// Sets the direction corresponding to positive angles.
@@ -5715,7 +5715,7 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -5849,8 +5849,8 @@ public struct Layout: Encodable {
         
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public enum Layer: String, Encodable {
-                case abovetraces
-                case belowtraces
+                case aboveTraces = "above traces"
+                case belowTraces = "below traces"
             }
             /// Sets the layer on which this axis is displayed. If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this axis is displayed below all the subplot's traces, but above the grid lines. Useful when used together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text nodes above this axis.
             public var layer: Layer?
@@ -6045,7 +6045,7 @@ public struct Layout: Encodable {
     /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Sets the direction corresponding to positive angles in legacy polar charts.
     public enum Direction: String, Encodable {
         case clockwise
-        case counterclockwise
+        case counterClockwise = "counterclockwise"
     }
     /// Legacy polar charts are deprecated! Please switch to *polar* subplots. Sets the direction corresponding to positive angles in legacy polar charts.
     public var direction: Direction?
@@ -6123,8 +6123,8 @@ public struct Layout: Encodable {
         /// Determines the behavior on legend item click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item click interactions.
         public enum ItemClick: String, Encodable {
             case toggle
-            case toggleothers
-            case no
+            case toggleOthers = "toggleothers"
+            case no = "false"
         }
         /// Determines the behavior on legend item click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item click interactions.
         public var itemClick: ItemClick?
@@ -6132,8 +6132,8 @@ public struct Layout: Encodable {
         /// Determines the behavior on legend item double-click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item double-click interactions.
         public enum ItemDoubleClick: String, Encodable {
             case toggle
-            case toggleothers
-            case no
+            case toggleOthers = "toggleothers"
+            case no = "false"
         }
         /// Determines the behavior on legend item double-click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item double-click interactions.
         public var itemDoubleClick: ItemDoubleClick?
@@ -6322,7 +6322,7 @@ public struct Layout: Encodable {
                 /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ax` is a relative offset in pixels  from `x`. If set to an x axis id (e.g. *x* or *x2*), `ax` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
                 public enum AxReference: String, Encodable {
                     case pixel
-                    case xxx
+                    case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ax` is a relative offset in pixels  from `x`. If set to an x axis id (e.g. *x* or *x2*), `ax` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
                 public var axReference: AxReference?
@@ -6330,7 +6330,7 @@ public struct Layout: Encodable {
                 /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ay` is a relative offset in pixels  from `y`. If set to a y axis id (e.g. *y* or *y2*), `ay` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
                 public enum AyReference: String, Encodable {
                     case pixel
-                    case yyy
+                    case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ay` is a relative offset in pixels  from `y`. If set to a y axis id (e.g. *y* or *y2*), `ay` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
                 public var ayReference: AyReference?
@@ -6338,7 +6338,7 @@ public struct Layout: Encodable {
                 /// Sets the annotation's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side.
                 public enum XReference: String, Encodable {
                     case paper
-                    case xxx
+                    case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Sets the annotation's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side.
                 public var xReference: XReference?
@@ -6362,7 +6362,7 @@ public struct Layout: Encodable {
                 /// Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where 0 (1) corresponds to the bottom (top).
                 public enum YReference: String, Encodable {
                     case paper
-                    case yyy
+                    case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where 0 (1) corresponds to the bottom (top).
                 public var yReference: YReference?
@@ -6385,9 +6385,9 @@ public struct Layout: Encodable {
             
                 /// Makes this annotation respond to clicks on the plot. If you click a data point that exactly matches the `x` and `y` values of this annotation, and it is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again to make it disappear, so if you click multiple points, you can show multiple annotations. In *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this annotation. If you need to show/hide this annotation in response to different `x` or `y` values, you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To label markers though, `standoff` is preferred over `xclick` and `yclick`.
                 public enum ClickToShow: String, Encodable {
-                    case no
-                    case onoff
-                    case onout
+                    case no = "false"
+                    case onOff = "onoff"
+                    case onOut = "onout"
                 }
                 /// Makes this annotation respond to clicks on the plot. If you click a data point that exactly matches the `x` and `y` values of this annotation, and it is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again to make it disappear, so if you click multiple points, you can show multiple annotations. In *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this annotation. If you need to show/hide this annotation in response to different `x` or `y` values, you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To label markers though, `standoff` is preferred over `xclick` and `yclick`.
                 public var clickToShow: ClickToShow?
@@ -6541,7 +6541,7 @@ public struct Layout: Encodable {
                 /// Sets the shape's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then you must convert the date to unix time in milliseconds.
                 public enum XReference: String, Encodable {
                     case paper
-                    case xxx
+                    case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Sets the shape's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then you must convert the date to unix time in milliseconds.
                 public var xReference: XReference?
@@ -6566,7 +6566,7 @@ public struct Layout: Encodable {
                 /// Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
                 public enum YReference: String, Encodable {
                     case paper
-                    case yyy
+                    case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
                 public var yReference: YReference?
@@ -6719,7 +6719,7 @@ public struct Layout: Encodable {
                 /// Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set to *paper*, the `x` position refers to the distance from the left of plot in normalized coordinates where *0* (*1*) corresponds to the left (right).
                 public enum XReference: String, Encodable {
                     case paper
-                    case xxx
+                    case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set to *paper*, the `x` position refers to the distance from the left of plot in normalized coordinates where *0* (*1*) corresponds to the left (right).
                 public var xReference: XReference?
@@ -6727,7 +6727,7 @@ public struct Layout: Encodable {
                 /// Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
                 public enum YReference: String, Encodable {
                     case paper
-                    case yyy
+                    case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
                 public var yReference: YReference?
@@ -6778,7 +6778,7 @@ public struct Layout: Encodable {
             
                 /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally or vertically
                 public enum Rule: String, Encodable {
-                    case dropdown
+                    case dropDown = "dropdown"
                     case buttons
                 }
                 /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally or vertically
@@ -7122,33 +7122,33 @@ public struct Layout: Encodable {
                         case elastic
                         case back
                         case bounce
-                        case linearin
-                        case quadin
-                        case cubicin
-                        case sinin
-                        case expin
-                        case circlein
-                        case elasticin
-                        case backin
-                        case bouncein
-                        case linearout
-                        case quadout
-                        case cubicout
-                        case sinout
-                        case expout
-                        case circleout
-                        case elasticout
-                        case backout
-                        case bounceout
-                        case linearinout
-                        case quadinout
-                        case cubicinout
-                        case sininout
-                        case expinout
-                        case circleinout
-                        case elasticinout
-                        case backinout
-                        case bounceinout
+                        case linearIn = "linear-in"
+                        case quadIn = "quad-in"
+                        case cubicIn = "cubic-in"
+                        case sinIn = "sin-in"
+                        case expIn = "exp-in"
+                        case circleIn = "circle-in"
+                        case elasticIn = "elastic-in"
+                        case backIn = "back-in"
+                        case bounceIn = "bounce-in"
+                        case linearOut = "linear-out"
+                        case quadOut = "quad-out"
+                        case cubicOut = "cubic-out"
+                        case sinOut = "sin-out"
+                        case expOut = "exp-out"
+                        case circleOut = "circle-out"
+                        case elasticOut = "elastic-out"
+                        case backOut = "back-out"
+                        case bounceOut = "bounce-out"
+                        case linearInOut = "linear-in-out"
+                        case quadInOut = "quad-in-out"
+                        case cubicInOut = "cubic-in-out"
+                        case sinInOut = "sin-in-out"
+                        case expInOut = "exp-in-out"
+                        case circleInOut = "circle-in-out"
+                        case elasticInOut = "elastic-in-out"
+                        case backInOut = "back-in-out"
+                        case bounceInOut = "bounce-in-out"
                     }
                     /// Sets the easing function of the slider transition
                     public var easing: Easing?
@@ -7438,7 +7438,7 @@ public struct Layout: Encodable {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?

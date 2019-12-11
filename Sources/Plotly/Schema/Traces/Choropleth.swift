@@ -6,9 +6,9 @@ public struct Choropleth: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
@@ -150,9 +150,9 @@ public struct Choropleth: Trace {
 
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
     public enum LocationMode: String, Encodable {
-        case ISO3
-        case USAstates
-        case countrynames
+        case ISO3 = "ISO-3"
+        case statesOfUSA = "USA-states"
+        case countryNames = "country names"
     }
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
     public var locationMode: LocationMode?
@@ -384,7 +384,7 @@ public struct Choropleth: Trace {
         public enum Ticks: String, Encodable {
             case outside
             case inside
-            case none
+            case none = ""
         }
         /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
         public var ticks: Ticks?

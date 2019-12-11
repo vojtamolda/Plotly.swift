@@ -6,9 +6,9 @@ public struct Carpet: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
@@ -119,7 +119,7 @@ public struct Carpet: Trace {
     
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
         public enum Rule: String, Encodable {
-            case auto
+            case auto = "-"
             case linear
             case date
             case category
@@ -129,8 +129,8 @@ public struct Carpet: Trace {
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
         public enum AutoRange: String, Encodable {
-            case yes
-            case no
+            case yes = "true"
+            case no = "false"
             case reversed
         }
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -139,8 +139,8 @@ public struct Carpet: Trace {
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data.
         public enum RangeMode: String, Encodable {
             case normal
-            case tozero
-            case nonnegative
+            case toZero = "tozero"
+            case nonNegative = "nonnegative"
         }
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data.
         public var rangeMode: RangeMode?
@@ -302,8 +302,8 @@ public struct Carpet: Trace {
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`.
         public enum CategoryOrder: String, Encodable {
             case trace
-            case categoryascending
-            case categorydescending
+            case categoryAscending = "category ascending"
+            case categoryDescending = "category descending"
             case array
         }
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`.
@@ -519,7 +519,7 @@ public struct Carpet: Trace {
     
         /// Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question.
         public enum Rule: String, Encodable {
-            case auto
+            case auto = "-"
             case linear
             case date
             case category
@@ -529,8 +529,8 @@ public struct Carpet: Trace {
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
         public enum AutoRange: String, Encodable {
-            case yes
-            case no
+            case yes = "true"
+            case no = "false"
             case reversed
         }
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -539,8 +539,8 @@ public struct Carpet: Trace {
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data.
         public enum RangeMode: String, Encodable {
             case normal
-            case tozero
-            case nonnegative
+            case toZero = "tozero"
+            case nonNegative = "nonnegative"
         }
         /// If *normal*, the range is computed in relation to the extrema of the input data. If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data.
         public var rangeMode: RangeMode?
@@ -702,8 +702,8 @@ public struct Carpet: Trace {
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`.
         public enum CategoryOrder: String, Encodable {
             case trace
-            case categoryascending
-            case categorydescending
+            case categoryAscending = "category ascending"
+            case categoryDescending = "category descending"
             case array
         }
         /// Specifies the ordering logic for the case of categorical variables. By default, plotly uses *trace*, which specifies the order that is present in the data supplied. Set `categoryorder` to *category ascending* or *category descending* if order should be determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to derive the ordering from the attribute `categoryarray`. If a category is not found in the `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace* mode. The unspecified categories will follow the categories in `categoryarray`.

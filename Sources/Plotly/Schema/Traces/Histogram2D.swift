@@ -6,9 +6,9 @@ public struct Histogram2D: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
@@ -196,11 +196,11 @@ public struct Histogram2D: Trace {
 
     /// Specifies the type of normalization used for this histogram trace. If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If *probability density*, the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).
     public enum Normalization: String, Encodable {
-        case none
+        case none = ""
         case percent
         case probability
         case density
-        case probabilitydensity
+        case probabilityDensity = "probability density"
     }
     /// Specifies the type of normalization used for this histogram trace. If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to the percentage / fraction of occurrences with respect to the total number of sample points (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar corresponds to the number of occurrences in a bin divided by the size of the bin interval (here, the sum of all bin AREAS equals the total number of sample points). If *probability density*, the area of each bar corresponds to the probability that an event will fall into the corresponding bin (here, the sum of all bin AREAS equals 1).
     public var normalization: Normalization?
@@ -283,7 +283,7 @@ public struct Histogram2D: Trace {
     public enum ZSmooth: String, Encodable {
         case fast
         case best
-        case no
+        case no = "false"
     }
     /// Picks a smoothing algorithm use to smooth `z` data.
     public var zSmooth: ZSmooth?
@@ -414,7 +414,7 @@ public struct Histogram2D: Trace {
         public enum Ticks: String, Encodable {
             case outside
             case inside
-            case none
+            case none = ""
         }
         /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
         public var ticks: Ticks?

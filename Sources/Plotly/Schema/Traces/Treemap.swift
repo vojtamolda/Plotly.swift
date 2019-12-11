@@ -6,9 +6,9 @@ public struct Treemap: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
@@ -195,8 +195,8 @@ public struct Treemap: Trace {
             case binary
             case dice
             case slice
-            case slicedice
-            case diceslice
+            case sliceDice = "slice-dice"
+            case diceSlice = "dice-slice"
         }
         /// Determines d3 treemap solver. For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
         public var packing: Packing?
@@ -264,8 +264,8 @@ public struct Treemap: Trace {
     
         /// Determines if the sector colors are faded towards the background from the leaves up to the headers. This option is unavailable when a `colorscale` is present, defaults to false when `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading direction is inverted, that is the top elements within hierarchy are drawn with fully saturated colors while the leaves are faded towards the background color.
         public enum DepthFade: String, Encodable {
-            case yes
-            case no
+            case yes = "true"
+            case no = "false"
             case reversed
         }
         /// Determines if the sector colors are faded towards the background from the leaves up to the headers. This option is unavailable when a `colorscale` is present, defaults to false when `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading direction is inverted, that is the top elements within hierarchy are drawn with fully saturated colors while the leaves are faded towards the background color.
@@ -413,7 +413,7 @@ public struct Treemap: Trace {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -715,9 +715,9 @@ public struct Treemap: Trace {
     
         /// Determines which shape is used for edges between `barpath` labels.
         public enum EdgeShape: String, Encodable {
+            case greaterThan = ">"
+            case lessThan = "<"
             case bar = "|"
-            case rightCaret = ">"
-            case leftCaret = "<"
             case forwardSlash = "/"
             case backwardSlash = "\\"
         }
@@ -933,15 +933,15 @@ public struct Treemap: Trace {
 
     /// Sets the positions of the `text` elements.
     public enum TextPosition: String, Encodable {
-        case topleft
-        case topcenter
-        case topright
-        case middleleft
-        case middlecenter
-        case middleright
-        case bottomleft
-        case bottomcenter
-        case bottomright
+        case topLeft = "top left"
+        case topCenter = "top center"
+        case topRight = "top right"
+        case middleLeft = "middle left"
+        case middleCenter = "middle center"
+        case middleRight = "middle right"
+        case bottomLeft = "bottom left"
+        case bottomCenter = "bottom center"
+        case bottomRight = "bottom right"
     }
     /// Sets the positions of the `text` elements.
     public var textPosition: TextPosition?

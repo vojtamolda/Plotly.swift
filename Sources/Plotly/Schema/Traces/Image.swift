@@ -6,9 +6,9 @@ public struct Image: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
@@ -128,10 +128,10 @@ public struct Image: Trace {
 
     /// Color model used to map the numerical color components described in `z` into colors.
     public enum ColorModel: String, Encodable {
-        case rgb
-        case rgba
-        case hsl
-        case hsla
+        case RGB = "rgb"
+        case RGBA = "rgba"
+        case HSL = "hsl"
+        case HSLA = "hsla"
     }
     /// Color model used to map the numerical color components described in `z` into colors.
     public var colorModel: ColorModel?

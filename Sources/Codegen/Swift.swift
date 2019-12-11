@@ -60,7 +60,7 @@ struct Swift {
         var access: String? = "public"
         var protocols: [String] = ["String", "Encodable"]
 
-        var values: [String] = []
+        var values: [(String, String?)] = []
 
         init(type: String, schema: Schema.Attribute.Enumerated) {
             self.schema = schema
@@ -68,95 +68,47 @@ struct Swift {
             self.type = Swift.name!.pascalCased(type)
 
             // Workaround for numerical values of Marker Symbols
-            if schema.decodingPath.hasSuffix("marker/symbol") && !schema.decodingPath.contains("scatter3d") {
-                protocols[0] = "Int"
-                let even = stride(from: 0, to: schema.values.endIndex, by: 2)
-                let pairs = even.map { (schema.values[$0], schema.values[$0.advanced(by: 1)]) }
-                values = pairs.map { (intPrimitive, stringPrimitive) -> String in
-                    guard case let Schema.Primitive.int(int) = intPrimitive else {
-                        fatalError("Unsupported Marker Symbol value in '\(schema.decodingPath)'")
-                    }
-                    guard case let Schema.Primitive.string(string) = stringPrimitive else {
-                        fatalError("Unsupported Marker Symbol string in '\(schema.decodingPath)'")
-                    }
-                    return "\(sanitize(string)) = \(int)"
+            if schema.decodingPath.hasSuffix("marker/symbol") {
+                let onlyStrings = schema.values.filter {
+                    if case Schema.Primitive.string = $0 { return true } else { return false }
                 }
+                values = onlyStrings.map { sanitize($0) }
                 return
             }
             // Workaround for numerical values of Geo Resolution
             if schema.decodingPath.hasSuffix("geo/resolution") {
                 protocols[0] = "Int"
-                values = schema.values.map { primitive -> String in
+                values = schema.values.map { primitive -> (String, String?) in
                     guard case let Schema.Primitive.int(int) = primitive else {
                         fatalError("Unsupported Geo Resolution value in '\(schema.decodingPath)'")
                     }
-                    return "oneOver\(int)M = \(int)"
+                    return ("oneOver\(int)M", "\(int)")
                 }
-                return
-            }
-            // Workaround for special symbols of Contour Operations
-            if schema.decodingPath.hasSuffix("contours/operation") {
-                values = ["equalTo = \"=\"",
-                          "lessThan = \"<\"", "lessEqualThan = \"<=\"",
-                          "greaterThan = \">\"", "greaterEqualThan = \">=\"",
-                          "insideInclusive = \"[]\"",  "insideExclusive = \"()\"",
-                          "insideInclusiveExclusive = \"[)\"",  "insideExclusiveInclusive = \"(]\"",
-                          "outsideInclusive = \"][\"",  "outsideExclusive = \")(\"",
-                          "outsideInclusiveExclusive = \"](\"", "outsideExclusiveInclusive = \")[\""
-                ]
-                return
-            }
-            // Workaround for Pathbar Edge Shapes of Treemap charts
-            if schema.decodingPath.hasSuffix("pathbar/edgeshape") {
-                values = ["bar = \"|\"",
-                          "rightCaret = \">\"", "leftCaret = \"<\"",
-                          "forwardSlash = \"/\"", "backwardSlash = \"\\\\\""
-                ]
                 return
             }
             // Workaround for meaningless numerical values of SurfaceAxis
             if schema.decodingPath.hasSuffix("surfaceaxis") {
                 protocols[0] = "Int"
-                values = ["none = -1", "x = 0", "y = 1", "z = 2"]
+                values = [("none", "-1"), ("x", "0"), ("y", "1"), ("z", "2")]
                 return
             }
 
             values = schema.values.map { sanitize($0) }
         }
 
-        /// Transforms Plotly schema primitives to valid Swift case labels.
-        func sanitize(_ primitive: Schema.Primitive) -> String {
+        /// Transforms Plotly schema primitives to valid Swift case labels and raw values.
+        func sanitize(_ primitive: Schema.Primitive) -> (String, String?) {
             switch primitive {
             case .bool(let bool):
-                return bool ? "yes" : "no"
+                let string = "\(bool)"
+                let sanitized = Swift.name!.enumerated[string]!
+                return (sanitized, string.escaped())
             case .string(let string):
-                switch string {
-                case "":
-                    return "none"
-                case " ":
-                    return "none"
-                case "-":
-                    return "auto"
-                case "/^x([2-9]|[1-9][0-9]+)?$/":
-                    // FIXME: Figure out what to do with this mess.
-                    return "xxx"
-                case "/^y([2-9]|[1-9][0-9]+)?$/":
-                    // FIXME: Figure out what to do with this mess.
-                    return "yyy"
-                default:
-                    return sanitize(string)
-                }
+                let sanitized = Swift.name!.enumerated[string]!
+                return (sanitized == string) ? (sanitized, nil) : (sanitized, string.escaped())
             default:
                 fatalError("Invalid enum case in '\(self.schema!.decodingPath)'")
             }
-        }
-
-        /// Removes characters that are illegal in Swift case labels.
-        func sanitize(_ string: String) -> String {
-            var retval = string.replacingOccurrences(of: "+", with: "")
-            retval = retval.replacingOccurrences(of: "-", with: "")
-            retval = retval.replacingOccurrences(of: " ", with: "")
-            return retval
         }
 
         /// Returns lines of Swift code that fully define the enum.
@@ -166,8 +118,9 @@ struct Swift {
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += ["/// \(description)"]
             lines += ["\(access)enum \(type)\(protocols) {"]
-            for value in values {
-                lines += ["case \(value)"].indented()
+            for (sanitized, dirty) in values {
+                let rawValue = (dirty != nil) ? " = \(dirty!)" : ""
+                lines += ["case \(sanitized)\(rawValue)"].indented()
             }
             lines += ["}"]
             return lines
@@ -275,7 +228,8 @@ struct Swift {
             lines += ["\(access)func encode(to encoder: Encoder) throws {"].indented()
             lines += ["var options = [String]()"].indented(2)
             for (i, (_, orig)) in flags.enumerated() {
-                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\"\(orig)\"] }"].indented(2)
+                let orig = orig.escaped()
+                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(orig)] }"].indented(2)
             }
             lines += ["var container = encoder.singleValueContainer()"].indented(2)
             lines += ["try container.encode(options.joined(separator: \"+\"))"].indented(2)

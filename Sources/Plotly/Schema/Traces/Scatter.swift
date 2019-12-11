@@ -6,9 +6,9 @@ public struct Scatter: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes
-        case no
-        case legendonly
+        case yes = "true"
+        case no = "false"
+        case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public var visible: Visible?
@@ -211,7 +211,7 @@ public struct Scatter: Trace {
 
     /// Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`. Sets the normalization for the sum of this `stackgroup`. With *fraction*, the value of each trace at each location is divided by the sum of all trace values at that location. *percent* is the same but multiplied by 100 to show percentages. If there are multiple subplots, or multiple `stackgroup`s on one subplot, each will be normalized within its own set.
     public enum GroupNormalization: String, Encodable {
-        case none
+        case none = ""
         case fraction
         case percent
     }
@@ -220,7 +220,7 @@ public struct Scatter: Trace {
 
     /// Only relevant when `stackgroup` is used, and only the first `stackgaps` found in the `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`. Determines how we handle locations at which other traces in this group have data but this one does not. With *infer zero* we insert a zero at these locations. With *interpolate* we linearly interpolate between existing values, and extrapolate a constant beyond the existing values.
     public enum StackGaps: String, Encodable {
-        case inferzero
+        case inferZero = "infer zero"
         case interpolate
     }
     /// Only relevant when `stackgroup` is used, and only the first `stackgaps` found in the `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`. Determines how we handle locations at which other traces in this group have data but this one does not. With *infer zero* we insert a zero at these locations. With *interpolate* we linearly interpolate between existing values, and extrapolate a constant beyond the existing values.
@@ -328,12 +328,12 @@ public struct Scatter: Trace {
     /// Sets the area to fill with a solid color. Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.
     public enum Fill: String, Encodable {
         case none
-        case tozeroy
-        case tozerox
-        case tonexty
-        case tonextx
-        case toself
-        case tonext
+        case toZeroY = "tozeroy"
+        case toZeroX = "tozerox"
+        case toNextY = "tonexty"
+        case toNextX = "tonextx"
+        case toSelf = "toself"
+        case toNext = "tonext"
     }
     /// Sets the area to fill with a solid color. Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and the endpoints of the trace before it, connecting those endpoints with straight lines (to make a stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*. *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into a closed shape. *tonext* fills the space between two traces if one completely encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no trace before it. *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already consecutive, the later ones will be pushed down in the drawing order.
     public var fill: Fill?
@@ -343,149 +343,149 @@ public struct Scatter: Trace {
 
     public struct Marker: Encodable {
         /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
-        public enum Symbol: Int, Encodable {
-            case circle = 0
-            case circleopen = 100
-            case circledot = 200
-            case circleopendot = 300
-            case square = 1
-            case squareopen = 101
-            case squaredot = 201
-            case squareopendot = 301
-            case diamond = 2
-            case diamondopen = 102
-            case diamonddot = 202
-            case diamondopendot = 302
-            case cross = 3
-            case crossopen = 103
-            case crossdot = 203
-            case crossopendot = 303
-            case x = 4
-            case xopen = 104
-            case xdot = 204
-            case xopendot = 304
-            case triangleup = 5
-            case triangleupopen = 105
-            case triangleupdot = 205
-            case triangleupopendot = 305
-            case triangledown = 6
-            case triangledownopen = 106
-            case triangledowndot = 206
-            case triangledownopendot = 306
-            case triangleleft = 7
-            case triangleleftopen = 107
-            case triangleleftdot = 207
-            case triangleleftopendot = 307
-            case triangleright = 8
-            case trianglerightopen = 108
-            case trianglerightdot = 208
-            case trianglerightopendot = 308
-            case trianglene = 9
-            case triangleneopen = 109
-            case trianglenedot = 209
-            case triangleneopendot = 309
-            case trianglese = 10
-            case triangleseopen = 110
-            case trianglesedot = 210
-            case triangleseopendot = 310
-            case trianglesw = 11
-            case triangleswopen = 111
-            case triangleswdot = 211
-            case triangleswopendot = 311
-            case trianglenw = 12
-            case trianglenwopen = 112
-            case trianglenwdot = 212
-            case trianglenwopendot = 312
-            case pentagon = 13
-            case pentagonopen = 113
-            case pentagondot = 213
-            case pentagonopendot = 313
-            case hexagon = 14
-            case hexagonopen = 114
-            case hexagondot = 214
-            case hexagonopendot = 314
-            case hexagon2 = 15
-            case hexagon2open = 115
-            case hexagon2dot = 215
-            case hexagon2opendot = 315
-            case octagon = 16
-            case octagonopen = 116
-            case octagondot = 216
-            case octagonopendot = 316
-            case star = 17
-            case staropen = 117
-            case stardot = 217
-            case staropendot = 317
-            case hexagram = 18
-            case hexagramopen = 118
-            case hexagramdot = 218
-            case hexagramopendot = 318
-            case startriangleup = 19
-            case startriangleupopen = 119
-            case startriangleupdot = 219
-            case startriangleupopendot = 319
-            case startriangledown = 20
-            case startriangledownopen = 120
-            case startriangledowndot = 220
-            case startriangledownopendot = 320
-            case starsquare = 21
-            case starsquareopen = 121
-            case starsquaredot = 221
-            case starsquareopendot = 321
-            case stardiamond = 22
-            case stardiamondopen = 122
-            case stardiamonddot = 222
-            case stardiamondopendot = 322
-            case diamondtall = 23
-            case diamondtallopen = 123
-            case diamondtalldot = 223
-            case diamondtallopendot = 323
-            case diamondwide = 24
-            case diamondwideopen = 124
-            case diamondwidedot = 224
-            case diamondwideopendot = 324
-            case hourglass = 25
-            case hourglassopen = 125
-            case bowtie = 26
-            case bowtieopen = 126
-            case circlecross = 27
-            case circlecrossopen = 127
-            case circlex = 28
-            case circlexopen = 128
-            case squarecross = 29
-            case squarecrossopen = 129
-            case squarex = 30
-            case squarexopen = 130
-            case diamondcross = 31
-            case diamondcrossopen = 131
-            case diamondx = 32
-            case diamondxopen = 132
-            case crossthin = 33
-            case crossthinopen = 133
-            case xthin = 34
-            case xthinopen = 134
-            case asterisk = 35
-            case asteriskopen = 135
-            case hash = 36
-            case hashopen = 136
-            case hashdot = 236
-            case hashopendot = 336
-            case yup = 37
-            case yupopen = 137
-            case ydown = 38
-            case ydownopen = 138
-            case yleft = 39
-            case yleftopen = 139
-            case yright = 40
-            case yrightopen = 140
-            case lineew = 41
-            case lineewopen = 141
-            case linens = 42
-            case linensopen = 142
-            case linene = 43
-            case lineneopen = 143
-            case linenw = 44
-            case linenwopen = 144
+        public enum Symbol: String, Encodable {
+            case circle
+            case circleOpen = "circle-open"
+            case circleDot = "circle-dot"
+            case circleOpenDot = "circle-open-dot"
+            case square
+            case squareOpen = "square-open"
+            case squareDot = "square-dot"
+            case squareOpenDot = "square-open-dot"
+            case diamond
+            case diamondOpen = "diamond-open"
+            case diamondDot = "diamond-dot"
+            case diamondOpenDot = "diamond-open-dot"
+            case cross
+            case crossOpen = "cross-open"
+            case crossDot = "cross-dot"
+            case crossOpenDot = "cross-open-dot"
+            case x
+            case xOpen = "x-open"
+            case xDot = "x-dot"
+            case xOpenDot = "x-open-dot"
+            case triangleUp = "triangle-up"
+            case triangleUpOpen = "triangle-up-open"
+            case triangleUpDot = "triangle-up-dot"
+            case triangleUpOpenDot = "triangle-up-open-dot"
+            case triangleDown = "triangle-down"
+            case triangleDownOpen = "triangle-down-open"
+            case triangleDownDot = "triangle-down-dot"
+            case triangleDownOpenDot = "triangle-down-open-dot"
+            case triangleLeft = "triangle-left"
+            case triangleLeftOpen = "triangle-left-open"
+            case triangleLeftDot = "triangle-left-dot"
+            case triangleLeftOpenDot = "triangle-left-open-dot"
+            case triangleRight = "triangle-right"
+            case triangleRightOpen = "triangle-right-open"
+            case triangleRightDot = "triangle-right-dot"
+            case triangleRightOpenDot = "triangle-right-open-dot"
+            case triangleNE = "triangle-ne"
+            case triangleNEOpen = "triangle-ne-open"
+            case triangleNEDot = "triangle-ne-dot"
+            case triangleNEOpenDot = "triangle-ne-open-dot"
+            case triangleSE = "triangle-se"
+            case triangleSEOpen = "triangle-se-open"
+            case triangleSEDot = "triangle-se-dot"
+            case triangleSEOpenDot = "triangle-se-open-dot"
+            case triangleSW = "triangle-sw"
+            case triangleSWOpen = "triangle-sw-open"
+            case triangleSWDot = "triangle-sw-dot"
+            case triangleSWOpenDot = "triangle-sw-open-dot"
+            case triangleNW = "triangle-nw"
+            case triangleNWOpen = "triangle-nw-open"
+            case triangleNWDot = "triangle-nw-dot"
+            case triangleNWOpenDot = "triangle-nw-open-dot"
+            case pentagon
+            case pentagonOpen = "pentagon-open"
+            case pentagonDot = "pentagon-dot"
+            case pentagonOpenDot = "pentagon-open-dot"
+            case hexagon
+            case hexagonOpen = "hexagon-open"
+            case hexagonDot = "hexagon-dot"
+            case hexagonOpenDot = "hexagon-open-dot"
+            case hexagon2
+            case hexagon2Open = "hexagon2-open"
+            case hexagon2Dot = "hexagon2-dot"
+            case hexagon2OpenDot = "hexagon2-open-dot"
+            case octagon
+            case octagonOpen = "octagon-open"
+            case octagonDot = "octagon-dot"
+            case octagonOpenDot = "octagon-open-dot"
+            case star
+            case starOpen = "star-open"
+            case starDot = "star-dot"
+            case starOpenDot = "star-open-dot"
+            case hexagram
+            case hexagramOpen = "hexagram-open"
+            case hexagramDot = "hexagram-dot"
+            case hexagramOpenDot = "hexagram-open-dot"
+            case starTriangleUp = "star-triangle-up"
+            case starTriangleUpOpen = "star-triangle-up-open"
+            case starTriangleUpDot = "star-triangle-up-dot"
+            case starTriangleUpOpenDot = "star-triangle-up-open-dot"
+            case starTriangleDown = "star-triangle-down"
+            case starTriangleDownOpen = "star-triangle-down-open"
+            case starTriangleDownDot = "star-triangle-down-dot"
+            case starTriangleDownOpenDot = "star-triangle-down-open-dot"
+            case starSquare = "star-square"
+            case starSquareOpen = "star-square-open"
+            case starSquareDot = "star-square-dot"
+            case starSquareOpenDot = "star-square-open-dot"
+            case starDiamond = "star-diamond"
+            case starDiamondOpen = "star-diamond-open"
+            case starDiamondDot = "star-diamond-dot"
+            case starDiamondOpenDot = "star-diamond-open-dot"
+            case diamondTall = "diamond-tall"
+            case diamondTallOpen = "diamond-tall-open"
+            case diamondTallDot = "diamond-tall-dot"
+            case diamondTallOpenDot = "diamond-tall-open-dot"
+            case diamondWide = "diamond-wide"
+            case diamondWideOpen = "diamond-wide-open"
+            case diamondWideDot = "diamond-wide-dot"
+            case diamondWideOpenDot = "diamond-wide-open-dot"
+            case hourglass
+            case hourglassOpen = "hourglass-open"
+            case bowTie = "bowtie"
+            case bowTieOpen = "bowtie-open"
+            case circleCross = "circle-cross"
+            case circleCrossOpen = "circle-cross-open"
+            case circleX = "circle-x"
+            case circleXOpen = "circle-x-open"
+            case squareCross = "square-cross"
+            case squareCrossOpen = "square-cross-open"
+            case squareX = "square-x"
+            case squareXOpen = "square-x-open"
+            case diamondCross = "diamond-cross"
+            case diamondCrossOpen = "diamond-cross-open"
+            case diamondX = "diamond-x"
+            case diamondXOpen = "diamond-x-open"
+            case crossThin = "cross-thin"
+            case crossThinOpen = "cross-thin-open"
+            case xThin = "x-thin"
+            case xThinOpen = "x-thin-open"
+            case asterisk
+            case asteriskOpen = "asterisk-open"
+            case hash
+            case hashOpen = "hash-open"
+            case hashDot = "hash-dot"
+            case hashOpenDot = "hash-open-dot"
+            case yUp = "y-up"
+            case yUpOpen = "y-up-open"
+            case yDown = "y-down"
+            case yDownOpen = "y-down-open"
+            case yLeft = "y-left"
+            case yLeftOpen = "y-left-open"
+            case yRight = "y-right"
+            case yRightOpen = "y-right-open"
+            case lineEw = "line-ew"
+            case lineEwOpen = "line-ew-open"
+            case lineNS = "line-ns"
+            case lineNSOpen = "line-ns-open"
+            case lineNE = "line-ne"
+            case lineNEOpen = "line-ne-open"
+            case lineNW = "line-nw"
+            case lineNWOpen = "line-nw-open"
         }
         /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
         public var symbol: Symbol?
@@ -719,7 +719,7 @@ public struct Scatter: Trace {
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
-                case none
+                case none = ""
             }
             /// Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.
             public var ticks: Ticks?
@@ -1099,15 +1099,15 @@ public struct Scatter: Trace {
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public enum TextPosition: String, Encodable {
-        case topleft
-        case topcenter
-        case topright
-        case middleleft
-        case middlecenter
-        case middleright
-        case bottomleft
-        case bottomcenter
-        case bottomright
+        case topLeft = "top left"
+        case topCenter = "top center"
+        case topRight = "top right"
+        case middleLeft = "middle left"
+        case middleCenter = "middle center"
+        case middleRight = "middle right"
+        case bottomLeft = "bottom left"
+        case bottomCenter = "bottom center"
+        case bottomRight = "bottom right"
     }
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: TextPosition?
