@@ -348,7 +348,7 @@ public struct Layout: Encodable {
         case lasso
         case orbit
         case turntable
-        case no = "false"
+        case `false` = "false"
     }
     /// Determines the mode of drag interactions. *select* and *lasso* apply only to scatter traces with markers or text. *orbit* and *turntable* apply only to 3D scenes.
     public var dragMode: DragMode?
@@ -358,7 +358,7 @@ public struct Layout: Encodable {
         case x
         case y
         case closest
-        case no = "false"
+        case `false` = "false"
     }
     /// Determines the mode of hover interactions. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation` value) for plots based on cartesian coordinates. For anything else the default value is *closest*.
     public var hoverMode: HoverMode?
@@ -591,8 +591,8 @@ public struct Layout: Encodable {
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
         public enum AutoRange: String, Encodable {
-            case yes = "true"
-            case no = "false"
+            case `true` = "true"
+            case `false` = "false"
             case reversed
         }
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -695,9 +695,9 @@ public struct Layout: Encodable {
     
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
         public enum Mirror: String, Encodable {
-            case yes = "true"
+            case `true` = "true"
             case ticks
-            case no = "false"
+            case `false` = "false"
             case all
             case allTicks = "allticks"
         }
@@ -1377,8 +1377,8 @@ public struct Layout: Encodable {
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
         public enum AutoRange: String, Encodable {
-            case yes = "true"
-            case no = "false"
+            case `true` = "true"
+            case `false` = "false"
             case reversed
         }
         /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -1481,9 +1481,9 @@ public struct Layout: Encodable {
     
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
         public enum Mirror: String, Encodable {
-            case yes = "true"
+            case `true` = "true"
             case ticks
-            case no = "false"
+            case `false` = "false"
             case all
             case allTicks = "allticks"
         }
@@ -3100,8 +3100,8 @@ public struct Layout: Encodable {
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             public enum AutoRange: String, Encodable {
-                case yes = "true"
-                case no = "false"
+                case `true` = "true"
+                case `false` = "false"
                 case reversed
             }
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -3154,9 +3154,9 @@ public struct Layout: Encodable {
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public enum Mirror: String, Encodable {
-                case yes = "true"
+                case `true` = "true"
                 case ticks
-                case no = "false"
+                case `false` = "false"
                 case all
                 case allTicks = "allticks"
             }
@@ -3534,8 +3534,8 @@ public struct Layout: Encodable {
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             public enum AutoRange: String, Encodable {
-                case yes = "true"
-                case no = "false"
+                case `true` = "true"
+                case `false` = "false"
                 case reversed
             }
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -3588,9 +3588,9 @@ public struct Layout: Encodable {
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public enum Mirror: String, Encodable {
-                case yes = "true"
+                case `true` = "true"
                 case ticks
-                case no = "false"
+                case `false` = "false"
                 case all
                 case allTicks = "allticks"
             }
@@ -3968,8 +3968,8 @@ public struct Layout: Encodable {
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             public enum AutoRange: String, Encodable {
-                case yes = "true"
-                case no = "false"
+                case `true` = "true"
+                case `false` = "false"
                 case reversed
             }
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -4022,9 +4022,9 @@ public struct Layout: Encodable {
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
             public enum Mirror: String, Encodable {
-                case yes = "true"
+                case `true` = "true"
                 case ticks
-                case no = "false"
+                case `false` = "false"
                 case all
                 case allTicks = "allticks"
             }
@@ -4313,7 +4313,7 @@ public struct Layout: Encodable {
             case turntable
             case zoom
             case pan
-            case no = "false"
+            case `false` = "false"
         }
         /// Determines the mode of drag interactions for this scene.
         public var dragMode: DragMode?
@@ -4321,7 +4321,7 @@ public struct Layout: Encodable {
         /// Determines the mode of hover interactions for this scene.
         public enum HoverMode: String, Encodable {
             case closest
-            case no = "false"
+            case `false` = "false"
         }
         /// Determines the mode of hover interactions for this scene.
         public var hoverMode: HoverMode?
@@ -5213,8 +5213,8 @@ public struct Layout: Encodable {
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
             public enum AutoRange: String, Encodable {
-                case yes = "true"
-                case no = "false"
+                case `true` = "true"
+                case `false` = "false"
                 case reversed
             }
             /// Determines whether or not the range of this axis is computed in relation to the input data. See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -6130,7 +6130,7 @@ public struct Layout: Encodable {
         public enum ItemClick: String, Encodable {
             case toggle
             case toggleOthers = "toggleothers"
-            case no = "false"
+            case `false` = "false"
         }
         /// Determines the behavior on legend item click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item click interactions.
         public var itemClick: ItemClick?
@@ -6139,7 +6139,7 @@ public struct Layout: Encodable {
         public enum ItemDoubleClick: String, Encodable {
             case toggle
             case toggleOthers = "toggleothers"
-            case no = "false"
+            case `false` = "false"
         }
         /// Determines the behavior on legend item double-click. *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the clicked item the sole visible item on the graph. *false* disable legend item double-click interactions.
         public var itemDoubleClick: ItemDoubleClick?
@@ -6393,7 +6393,7 @@ public struct Layout: Encodable {
             
                 /// Makes this annotation respond to clicks on the plot. If you click a data point that exactly matches the `x` and `y` values of this annotation, and it is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again to make it disappear, so if you click multiple points, you can show multiple annotations. In *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this annotation. If you need to show/hide this annotation in response to different `x` or `y` values, you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To label markers though, `standoff` is preferred over `xclick` and `yclick`.
                 public enum ClickToShow: String, Encodable {
-                    case no = "false"
+                    case `false` = "false"
                     case onOff = "onoff"
                     case onOut = "onout"
                 }

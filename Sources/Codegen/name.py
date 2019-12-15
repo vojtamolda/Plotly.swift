@@ -198,7 +198,7 @@ class Enumerated(CamelCased):
         "bottom to top": "bottomToTop",
         "bowtie": "bowTie",
         "bowtie-open": "bowTieOpen",
-        "false": "no",
+        "false": "`false`",
         "hsl": "HSL",
         "hsla": "HSLA",
         "onoff": "onOff",
@@ -213,7 +213,7 @@ class Enumerated(CamelCased):
         "toself": "toSelf",
         "tozerox": "toZeroX",
         "tozeroy": "toZeroY",
-        "true": "yes",
+        "true": "`true`",
         # Contour Operations (*/contours/operation)
         "=": "equalTo", "!=": "notEqualTo",
         "<": "lessThan", "<=": "lessEqualThan",
@@ -275,11 +275,11 @@ class FlagList(CamelCased):
     container = {}
 
     override = {
-        "false": "no",
+        "false": "`false`",
         "gl3d": "GL3D",
         "lat": "latitude",
         "lon": "longitude",
-        "true": "yes"
+        "true": "`true`"
     }
     capitalize = {
         "axis", "bar", "bars", "color", "current", "draw", "entry", "initial", "layout", "path",

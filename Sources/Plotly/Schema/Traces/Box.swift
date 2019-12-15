@@ -6,8 +6,8 @@ public struct Box: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes = "true"
-        case no = "false"
+        case `true` = "true"
+        case `false` = "false"
         case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
@@ -221,16 +221,16 @@ public struct Box: Trace {
         case all
         case outliers
         case suspectedOutliers = "suspectedoutliers"
-        case no = "false"
+        case `false` = "false"
     }
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
     public var boxPoints: BoxPoints?
 
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.
     public enum BoxMean: String, Encodable {
-        case yes = "true"
+        case `true` = "true"
         case sd
-        case no = "false"
+        case `false` = "false"
     }
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). If *sd* the standard deviation is also drawn.
     public var boxMean: BoxMean?

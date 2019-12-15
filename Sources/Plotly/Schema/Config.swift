@@ -74,8 +74,8 @@ public struct Config: Encodable {
         public static let GL3D = ScrollZoom(rawValue: 1 << 1)
         public static let geo = ScrollZoom(rawValue: 1 << 2)
         public static let mapbox = ScrollZoom(rawValue: 1 << 3)
-        public static let yes = ScrollZoom(rawValue: 1 << 4)
-        public static let no = ScrollZoom(rawValue: 1 << 5)
+        public static let `true` = ScrollZoom(rawValue: 1 << 4)
+        public static let `false` = ScrollZoom(rawValue: 1 << 5)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -96,7 +96,7 @@ public struct Config: Encodable {
 
     /// Sets the double click interaction mode. Has an effect only in cartesian plots. If *false*, double click is disable. If *reset*, double click resets the axis ranges to their initial values. If *autosize*, double click set the axis ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis ranges to their initial values and even double clicks set the axis ranges to their autorange values.
     public enum DoubleClick: String, Encodable {
-        case no = "false"
+        case `false` = "false"
         case reset
         case autoSize = "autosize"
         case resetAndAutoSize = "reset+autosize"
@@ -131,8 +131,8 @@ public struct Config: Encodable {
     /// Determines the mode bar display mode. If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If *hover*, the mode bar is visible while the mouse cursor is on the graph container.
     public enum DisplayModeBar: String, Encodable {
         case hover
-        case yes = "true"
-        case no = "false"
+        case `true` = "true"
+        case `false` = "false"
     }
     /// Determines the mode bar display mode. If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If *hover*, the mode bar is visible while the mouse cursor is on the graph container.
     public var displayModeBar: DisplayModeBar?

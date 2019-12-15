@@ -6,8 +6,8 @@ public struct Histogram2D: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes = "true"
-        case no = "false"
+        case `true` = "true"
+        case `false` = "false"
         case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
@@ -289,7 +289,7 @@ public struct Histogram2D: Trace {
     public enum ZSmooth: String, Encodable {
         case fast
         case best
-        case no = "false"
+        case `false` = "false"
     }
     /// Picks a smoothing algorithm use to smooth `z` data.
     public var zSmooth: ZSmooth?

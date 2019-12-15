@@ -6,8 +6,8 @@ public struct Violin: Trace {
 
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
     public enum Visible: String, Encodable {
-        case yes = "true"
-        case no = "false"
+        case `true` = "true"
+        case `false` = "false"
         case legendOnly = "legendonly"
     }
     /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
@@ -254,7 +254,7 @@ public struct Violin: Trace {
         case all
         case outliers
         case suspectedOutliers = "suspectedoutliers"
-        case no = "false"
+        case `false` = "false"
     }
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points
     public var points: Points?
