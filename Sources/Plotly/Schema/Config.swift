@@ -71,9 +71,11 @@ public struct Config: Encodable {
         public let rawValue: Int
     
         public static let cartesian = ScrollZoom(rawValue: 1 << 0)
-        public static let gl3d = ScrollZoom(rawValue: 1 << 1)
+        public static let GL3D = ScrollZoom(rawValue: 1 << 1)
         public static let geo = ScrollZoom(rawValue: 1 << 2)
         public static let mapbox = ScrollZoom(rawValue: 1 << 3)
+        public static let yes = ScrollZoom(rawValue: 1 << 4)
+        public static let no = ScrollZoom(rawValue: 1 << 5)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -83,6 +85,8 @@ public struct Config: Encodable {
             if (self.rawValue & 1 << 1) != 0 { options += ["gl3d"] }
             if (self.rawValue & 1 << 2) != 0 { options += ["geo"] }
             if (self.rawValue & 1 << 3) != 0 { options += ["mapbox"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["true"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["false"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

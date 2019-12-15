@@ -328,7 +328,7 @@ struct Schema: Decodable {
             let editType: String?
             let role: String?
 
-            let dflt: Double? = nil
+            let dflt: Primitive?
 
             enum CodingKeys: String, CodingKey {
                 case valType, description, editType, role, dflt
@@ -364,9 +364,9 @@ struct Schema: Decodable {
             let role: String?
 
             let flags: [String]
-            let dflt: [String]? = nil
-            let extras: [Primitive]? = nil
-            let arrayOk: Bool? = nil
+            let dflt: String?
+            let extras: [Primitive]?
+            let arrayOk: Bool?
 
             enum CodingKeys: String, CodingKey {
                 case valType, description, editType, role, flags, dflt, extras, arrayOk
@@ -384,9 +384,9 @@ struct Schema: Decodable {
             let editType: String?
             let role: String?
 
-            let dflt: Primitive? = nil
-            let values: [Primitive]? = nil
-            let arrayOk: Bool? = nil
+            let dflt: Primitive? = nil  // FIXME: Dictionary in some cases
+            let values: [Primitive]?
+            let arrayOk: Bool?
 
             enum CodingKeys: String, CodingKey {
                 case valType, description, editType, role, dflt, values, arrayOk
@@ -403,10 +403,10 @@ struct Schema: Decodable {
             let editType: String?
             let role: String?
 
-            let items: [Primitive] = []
-            let dflt: [Primitive]? = nil
-            let freeLength: Bool? = nil
-            let dimensions: Primitive? = nil
+            let items: [Primitive] = []  // FIXME: Dictionary in some cases
+            let dflt: [Primitive]?
+            let freeLength: Bool?
+            let dimensions: Primitive?
 
             enum CodingKeys: String, CodingKey {
                 case valType, description, editType, role, items, dflt, freeLength, dimensions

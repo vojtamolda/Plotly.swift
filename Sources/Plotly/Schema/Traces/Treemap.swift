@@ -777,10 +777,11 @@ public struct Treemap: Trace {
         public static let label = TextInfo(rawValue: 1 << 0)
         public static let text = TextInfo(rawValue: 1 << 1)
         public static let value = TextInfo(rawValue: 1 << 2)
-        public static let currentpath = TextInfo(rawValue: 1 << 3)
-        public static let percentroot = TextInfo(rawValue: 1 << 4)
-        public static let percententry = TextInfo(rawValue: 1 << 5)
-        public static let percentparent = TextInfo(rawValue: 1 << 6)
+        public static let currentPath = TextInfo(rawValue: 1 << 3)
+        public static let percentRoot = TextInfo(rawValue: 1 << 4)
+        public static let percentEntry = TextInfo(rawValue: 1 << 5)
+        public static let percentParent = TextInfo(rawValue: 1 << 6)
+        public static let none = TextInfo(rawValue: 1 << 7)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -793,6 +794,7 @@ public struct Treemap: Trace {
             if (self.rawValue & 1 << 4) != 0 { options += ["percent root"] }
             if (self.rawValue & 1 << 5) != 0 { options += ["percent entry"] }
             if (self.rawValue & 1 << 6) != 0 { options += ["percent parent"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["none"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }
@@ -814,10 +816,13 @@ public struct Treemap: Trace {
         public static let text = HoverInfo(rawValue: 1 << 1)
         public static let value = HoverInfo(rawValue: 1 << 2)
         public static let name = HoverInfo(rawValue: 1 << 3)
-        public static let currentpath = HoverInfo(rawValue: 1 << 4)
-        public static let percentroot = HoverInfo(rawValue: 1 << 5)
-        public static let percententry = HoverInfo(rawValue: 1 << 6)
-        public static let percentparent = HoverInfo(rawValue: 1 << 7)
+        public static let currentPath = HoverInfo(rawValue: 1 << 4)
+        public static let percentRoot = HoverInfo(rawValue: 1 << 5)
+        public static let percentEntry = HoverInfo(rawValue: 1 << 6)
+        public static let percentParent = HoverInfo(rawValue: 1 << 7)
+        public static let all = HoverInfo(rawValue: 1 << 8)
+        public static let none = HoverInfo(rawValue: 1 << 9)
+        public static let skip = HoverInfo(rawValue: 1 << 10)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -831,6 +836,9 @@ public struct Treemap: Trace {
             if (self.rawValue & 1 << 5) != 0 { options += ["percent root"] }
             if (self.rawValue & 1 << 6) != 0 { options += ["percent entry"] }
             if (self.rawValue & 1 << 7) != 0 { options += ["percent parent"] }
+            if (self.rawValue & 1 << 8) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 9) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 10) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

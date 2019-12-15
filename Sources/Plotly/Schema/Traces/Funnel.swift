@@ -186,9 +186,12 @@ public struct Funnel: Trace {
         public static let x = HoverInfo(rawValue: 1 << 1)
         public static let y = HoverInfo(rawValue: 1 << 2)
         public static let text = HoverInfo(rawValue: 1 << 3)
-        public static let percentinitial = HoverInfo(rawValue: 1 << 4)
-        public static let percentprevious = HoverInfo(rawValue: 1 << 5)
-        public static let percenttotal = HoverInfo(rawValue: 1 << 6)
+        public static let percentInitial = HoverInfo(rawValue: 1 << 4)
+        public static let percentPrevious = HoverInfo(rawValue: 1 << 5)
+        public static let percentTotal = HoverInfo(rawValue: 1 << 6)
+        public static let all = HoverInfo(rawValue: 1 << 7)
+        public static let none = HoverInfo(rawValue: 1 << 8)
+        public static let skip = HoverInfo(rawValue: 1 << 9)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -201,6 +204,9 @@ public struct Funnel: Trace {
             if (self.rawValue & 1 << 4) != 0 { options += ["percent initial"] }
             if (self.rawValue & 1 << 5) != 0 { options += ["percent previous"] }
             if (self.rawValue & 1 << 6) != 0 { options += ["percent total"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 8) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 9) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }
@@ -214,10 +220,11 @@ public struct Funnel: Trace {
     
         public static let label = TextInfo(rawValue: 1 << 0)
         public static let text = TextInfo(rawValue: 1 << 1)
-        public static let percentinitial = TextInfo(rawValue: 1 << 2)
-        public static let percentprevious = TextInfo(rawValue: 1 << 3)
-        public static let percenttotal = TextInfo(rawValue: 1 << 4)
+        public static let percentInitial = TextInfo(rawValue: 1 << 2)
+        public static let percentPrevious = TextInfo(rawValue: 1 << 3)
+        public static let percentTotal = TextInfo(rawValue: 1 << 4)
         public static let value = TextInfo(rawValue: 1 << 5)
+        public static let none = TextInfo(rawValue: 1 << 6)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -229,6 +236,7 @@ public struct Funnel: Trace {
             if (self.rawValue & 1 << 3) != 0 { options += ["percent previous"] }
             if (self.rawValue & 1 << 4) != 0 { options += ["percent total"] }
             if (self.rawValue & 1 << 5) != 0 { options += ["value"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["none"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

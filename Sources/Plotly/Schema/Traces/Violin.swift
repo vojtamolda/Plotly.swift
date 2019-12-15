@@ -46,6 +46,9 @@ public struct Violin: Trace {
         public static let z = HoverInfo(rawValue: 1 << 2)
         public static let text = HoverInfo(rawValue: 1 << 3)
         public static let name = HoverInfo(rawValue: 1 << 4)
+        public static let all = HoverInfo(rawValue: 1 << 5)
+        public static let none = HoverInfo(rawValue: 1 << 6)
+        public static let skip = HoverInfo(rawValue: 1 << 7)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -56,6 +59,9 @@ public struct Violin: Trace {
             if (self.rawValue & 1 << 2) != 0 { options += ["z"] }
             if (self.rawValue & 1 << 3) != 0 { options += ["text"] }
             if (self.rawValue & 1 << 4) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }
@@ -588,6 +594,7 @@ public struct Violin: Trace {
         public static let violins = HoverOn(rawValue: 1 << 0)
         public static let points = HoverOn(rawValue: 1 << 1)
         public static let kde = HoverOn(rawValue: 1 << 2)
+        public static let all = HoverOn(rawValue: 1 << 3)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -596,6 +603,7 @@ public struct Violin: Trace {
             if (self.rawValue & 1 << 0) != 0 { options += ["violins"] }
             if (self.rawValue & 1 << 1) != 0 { options += ["points"] }
             if (self.rawValue & 1 << 2) != 0 { options += ["kde"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["all"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

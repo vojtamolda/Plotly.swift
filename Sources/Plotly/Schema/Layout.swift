@@ -324,6 +324,7 @@ public struct Layout: Encodable {
     
         public static let event = ClickMode(rawValue: 1 << 0)
         public static let select = ClickMode(rawValue: 1 << 1)
+        public static let none = ClickMode(rawValue: 1 << 2)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -331,6 +332,7 @@ public struct Layout: Encodable {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["event"] }
             if (self.rawValue & 1 << 1) != 0 { options += ["select"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["none"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }
@@ -613,8 +615,8 @@ public struct Layout: Encodable {
     
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
         public enum ScaleAnchor: String, Encodable {
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis changes together with the range of the corresponding axis such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain` and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis: {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`. The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}` or longer) are redundant and the last constraint encountered will be ignored to avoid possible inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden.
         public var scaleAnchor: ScaleAnchor?
@@ -644,8 +646,8 @@ public struct Layout: Encodable {
     
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis will match the range of the corresponding axis in data-coordinates space. Moreover, matching axes share auto-range values, category lists and histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden. Moreover, note that matching axes must have the same `type`.
         public enum Matches: String, Encodable {
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g. `x2`, `y`), the range of this axis will match the range of the corresponding axis in data-coordinates space. Moreover, matching axes share auto-range values, category lists and histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a `matches` constraint is currently forbidden. Moreover, note that matching axes must have the same `type`.
         public var matches: Matches?
@@ -733,7 +735,7 @@ public struct Layout: Encodable {
         public struct SpikeMode: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let toaxis = SpikeMode(rawValue: 1 << 0)
+            public static let toAxis = SpikeMode(rawValue: 1 << 0)
             public static let across = SpikeMode(rawValue: 1 << 1)
             public static let marker = SpikeMode(rawValue: 1 << 2)
         
@@ -916,8 +918,8 @@ public struct Layout: Encodable {
         /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
         public enum Anchor: String, Encodable {
             case free
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to an opposite-letter axis id (e.g. `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this axis' position is determined by `position`.
         public var anchor: Anchor?
@@ -935,8 +937,8 @@ public struct Layout: Encodable {
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
         public enum Overlaying: String, Encodable {
             case free
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter axis, with traces and axes visible for both axes. If *false*, this axis does not overlay any same-letter axes. In this case, for axes with overlapping domains only the highest-numbered axis will be visible.
         public var overlaying: Overlaying?
@@ -1519,7 +1521,7 @@ public struct Layout: Encodable {
         public struct SpikeMode: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let toaxis = SpikeMode(rawValue: 1 << 0)
+            public static let toAxis = SpikeMode(rawValue: 1 << 0)
             public static let across = SpikeMode(rawValue: 1 << 1)
             public static let marker = SpikeMode(rawValue: 1 << 2)
         
@@ -4465,6 +4467,7 @@ public struct Layout: Encodable {
                     
                         public static let end = ArrowSide(rawValue: 1 << 0)
                         public static let start = ArrowSide(rawValue: 1 << 1)
+                        public static let none = ArrowSide(rawValue: 1 << 2)
                     
                         public init(rawValue: Int) { self.rawValue = rawValue }
                     
@@ -4472,6 +4475,7 @@ public struct Layout: Encodable {
                             var options = [String]()
                             if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
                             if (self.rawValue & 1 << 1) != 0 { options += ["start"] }
+                            if (self.rawValue & 1 << 2) != 0 { options += ["none"] }
                             var container = encoder.singleValueContainer()
                             try container.encode(options.joined(separator: "+"))
                         }
@@ -6095,6 +6099,7 @@ public struct Layout: Encodable {
         
             public static let reversed = TraceOrder(rawValue: 1 << 0)
             public static let grouped = TraceOrder(rawValue: 1 << 1)
+            public static let normal = TraceOrder(rawValue: 1 << 2)
         
             public init(rawValue: Int) { self.rawValue = rawValue }
         
@@ -6102,6 +6107,7 @@ public struct Layout: Encodable {
                 var options = [String]()
                 if (self.rawValue & 1 << 0) != 0 { options += ["reversed"] }
                 if (self.rawValue & 1 << 1) != 0 { options += ["grouped"] }
+                if (self.rawValue & 1 << 2) != 0 { options += ["normal"] }
                 var container = encoder.singleValueContainer()
                 try container.encode(options.joined(separator: "+"))
             }
@@ -6284,6 +6290,7 @@ public struct Layout: Encodable {
                 
                     public static let end = ArrowSide(rawValue: 1 << 0)
                     public static let start = ArrowSide(rawValue: 1 << 1)
+                    public static let none = ArrowSide(rawValue: 1 << 2)
                 
                     public init(rawValue: Int) { self.rawValue = rawValue }
                 
@@ -6291,6 +6298,7 @@ public struct Layout: Encodable {
                         var options = [String]()
                         if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
                         if (self.rawValue & 1 << 1) != 0 { options += ["start"] }
+                        if (self.rawValue & 1 << 2) != 0 { options += ["none"] }
                         var container = encoder.singleValueContainer()
                         try container.encode(options.joined(separator: "+"))
                     }
@@ -6322,7 +6330,7 @@ public struct Layout: Encodable {
                 /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ax` is a relative offset in pixels  from `x`. If set to an x axis id (e.g. *x* or *x2*), `ax` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
                 public enum AxReference: String, Encodable {
                     case pixel
-                    case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+                    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ax` is a relative offset in pixels  from `x`. If set to an x axis id (e.g. *x* or *x2*), `ax` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
                 public var axReference: AxReference?
@@ -6330,7 +6338,7 @@ public struct Layout: Encodable {
                 /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ay` is a relative offset in pixels  from `y`. If set to a y axis id (e.g. *y* or *y2*), `ay` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
                 public enum AyReference: String, Encodable {
                     case pixel
-                    case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+                    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ay` is a relative offset in pixels  from `y`. If set to a y axis id (e.g. *y* or *y2*), `ay` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed.
                 public var ayReference: AyReference?
@@ -6338,7 +6346,7 @@ public struct Layout: Encodable {
                 /// Sets the annotation's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side.
                 public enum XReference: String, Encodable {
                     case paper
-                    case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+                    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Sets the annotation's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side.
                 public var xReference: XReference?
@@ -6727,7 +6735,7 @@ public struct Layout: Encodable {
                 /// Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
                 public enum YReference: String, Encodable {
                     case paper
-                    case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+                    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
                 }
                 /// Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top).
                 public var yReference: YReference?

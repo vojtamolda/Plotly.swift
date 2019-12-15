@@ -637,6 +637,9 @@ public struct StreamTube: Trace {
         public static let divergence = HoverInfo(rawValue: 1 << 7)
         public static let text = HoverInfo(rawValue: 1 << 8)
         public static let name = HoverInfo(rawValue: 1 << 9)
+        public static let all = HoverInfo(rawValue: 1 << 10)
+        public static let none = HoverInfo(rawValue: 1 << 11)
+        public static let skip = HoverInfo(rawValue: 1 << 12)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -652,6 +655,9 @@ public struct StreamTube: Trace {
             if (self.rawValue & 1 << 7) != 0 { options += ["divergence"] }
             if (self.rawValue & 1 << 8) != 0 { options += ["text"] }
             if (self.rawValue & 1 << 9) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 10) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 11) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 12) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

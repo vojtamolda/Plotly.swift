@@ -217,6 +217,7 @@ public struct FunnelArea: Trace {
         public static let text = TextInfo(rawValue: 1 << 1)
         public static let value = TextInfo(rawValue: 1 << 2)
         public static let percent = TextInfo(rawValue: 1 << 3)
+        public static let none = TextInfo(rawValue: 1 << 4)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -226,6 +227,7 @@ public struct FunnelArea: Trace {
             if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
             if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
             if (self.rawValue & 1 << 3) != 0 { options += ["percent"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["none"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }
@@ -245,6 +247,9 @@ public struct FunnelArea: Trace {
         public static let value = HoverInfo(rawValue: 1 << 2)
         public static let percent = HoverInfo(rawValue: 1 << 3)
         public static let name = HoverInfo(rawValue: 1 << 4)
+        public static let all = HoverInfo(rawValue: 1 << 5)
+        public static let none = HoverInfo(rawValue: 1 << 6)
+        public static let skip = HoverInfo(rawValue: 1 << 7)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -255,6 +260,9 @@ public struct FunnelArea: Trace {
             if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
             if (self.rawValue & 1 << 3) != 0 { options += ["percent"] }
             if (self.rawValue & 1 << 4) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

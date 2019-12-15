@@ -89,6 +89,9 @@ public struct ParallelCategories: Trace {
     
         public static let count = HoverInfo(rawValue: 1 << 0)
         public static let probability = HoverInfo(rawValue: 1 << 1)
+        public static let all = HoverInfo(rawValue: 1 << 2)
+        public static let none = HoverInfo(rawValue: 1 << 3)
+        public static let skip = HoverInfo(rawValue: 1 << 4)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -96,6 +99,9 @@ public struct ParallelCategories: Trace {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["count"] }
             if (self.rawValue & 1 << 1) != 0 { options += ["probability"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

@@ -72,7 +72,7 @@ struct Swift {
                 let onlyStrings = schema.values.filter {
                     if case Schema.Primitive.string = $0 { return true } else { return false }
                 }
-                values = onlyStrings.map { sanitize($0) }
+                values = onlyStrings.map { sanitized($0) }
                 return
             }
             // Workaround for numerical values of Geo Resolution
@@ -93,11 +93,11 @@ struct Swift {
                 return
             }
 
-            values = schema.values.map { sanitize($0) }
+            values = schema.values.map { sanitized($0) }
         }
 
         /// Transforms Plotly schema primitives to valid Swift case labels and raw values.
-        func sanitize(_ primitive: Schema.Primitive) -> (String, String?) {
+        func sanitized(_ primitive: Schema.Primitive) -> (String, String?) {
             switch primitive {
             case .bool(let bool):
                 let string = "\(bool)"
@@ -195,19 +195,15 @@ struct Swift {
             self.type = Swift.name!.pascalCased(type)
             self.schema = schema
 
-            // Workaround for empty Hover Info of Sankey charts
-            if schema.decodingPath.contains("sankey") && schema.decodingPath.hasSuffix("hoverinfo") {
-                precondition(schema.flags.count == 0)
-                flags = ["all", "none", "skip"].map { sanitize($0) }
-                return
+            flags = schema.flags.map { sanitized($0) }
+            if let extras = schema.extras {
+                flags += extras.map { sanitized(String(describing: $0)) }
             }
-
-            flags = schema.flags.map { sanitize($0) }
         }
 
-        /// Removes characters that are illegal in Swift identifiers.
-        func sanitize(_ string: String) -> (String, String) {
-            let sanitized = string.replacingOccurrences(of: " ", with: "")
+        /// Transforms Plotly schema flag values to valid Swift identifiers and corresponding raw values.
+        func sanitized(_ string: String) -> (String, String) {
+            let sanitized = Swift.name!.flaglist[string]!
             return (sanitized, string)
         }
 
@@ -219,17 +215,17 @@ struct Swift {
             lines += ["\(access)struct \(type): OptionSet, Encodable {"]
             lines += ["\(access)let rawValue: Int"].indented()
             lines += [""]
-            for (i, (flag, _) ) in flags.enumerated() {
-                lines += ["\(access)static let \(flag) = \(type)(rawValue: 1 << \(i))"].indented()
+            for (i, (san, _) ) in flags.enumerated() {
+                lines += ["\(access)static let \(san) = \(type)(rawValue: 1 << \(i))"].indented()
             }
             lines += [""]
             lines += ["\(access)init(rawValue: Int) { self.rawValue = rawValue }"].indented()
             lines += [""]
             lines += ["\(access)func encode(to encoder: Encoder) throws {"].indented()
             lines += ["var options = [String]()"].indented(2)
-            for (i, (_, orig)) in flags.enumerated() {
-                let orig = orig.escaped()
-                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(orig)] }"].indented(2)
+            for (i, (_, str)) in flags.enumerated() {
+                let str = str.escaped()
+                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(str)] }"].indented(2)
             }
             lines += ["var container = encoder.singleValueContainer()"].indented(2)
             lines += ["try container.encode(options.joined(separator: \"+\"))"].indented(2)
@@ -331,8 +327,8 @@ struct Swift {
             return ColorScale(schema: colorScale)
         case .angle(let angle):
             return Angle(schema: angle)
-        case .subplotID(let subplotID):
-            return SubplotID(schema: subplotID)
+        case .subPlotID(let subPlotID):
+            return SubPlotID(schema: subPlotID)
         case .flagList(let flagList):
             return FlagList(type: identifier, schema: flagList)
         case .anything(let anything):

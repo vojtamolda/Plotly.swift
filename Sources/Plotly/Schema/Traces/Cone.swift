@@ -621,6 +621,9 @@ public struct Cone: Trace {
         public static let norm = HoverInfo(rawValue: 1 << 6)
         public static let text = HoverInfo(rawValue: 1 << 7)
         public static let name = HoverInfo(rawValue: 1 << 8)
+        public static let all = HoverInfo(rawValue: 1 << 9)
+        public static let none = HoverInfo(rawValue: 1 << 10)
+        public static let skip = HoverInfo(rawValue: 1 << 11)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -635,6 +638,9 @@ public struct Cone: Trace {
             if (self.rawValue & 1 << 6) != 0 { options += ["norm"] }
             if (self.rawValue & 1 << 7) != 0 { options += ["text"] }
             if (self.rawValue & 1 << 8) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 9) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 10) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 11) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

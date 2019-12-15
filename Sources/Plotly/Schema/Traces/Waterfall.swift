@@ -195,6 +195,9 @@ public struct Waterfall: Trace {
         public static let initial = HoverInfo(rawValue: 1 << 4)
         public static let delta = HoverInfo(rawValue: 1 << 5)
         public static let final = HoverInfo(rawValue: 1 << 6)
+        public static let all = HoverInfo(rawValue: 1 << 7)
+        public static let none = HoverInfo(rawValue: 1 << 8)
+        public static let skip = HoverInfo(rawValue: 1 << 9)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -207,6 +210,9 @@ public struct Waterfall: Trace {
             if (self.rawValue & 1 << 4) != 0 { options += ["initial"] }
             if (self.rawValue & 1 << 5) != 0 { options += ["delta"] }
             if (self.rawValue & 1 << 6) != 0 { options += ["final"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 8) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 9) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }
@@ -223,6 +229,7 @@ public struct Waterfall: Trace {
         public static let initial = TextInfo(rawValue: 1 << 2)
         public static let delta = TextInfo(rawValue: 1 << 3)
         public static let final = TextInfo(rawValue: 1 << 4)
+        public static let none = TextInfo(rawValue: 1 << 5)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -233,6 +240,7 @@ public struct Waterfall: Trace {
             if (self.rawValue & 1 << 2) != 0 { options += ["initial"] }
             if (self.rawValue & 1 << 3) != 0 { options += ["delta"] }
             if (self.rawValue & 1 << 4) != 0 { options += ["final"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["none"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }

@@ -152,11 +152,14 @@ public struct Volume: Trace {
         public struct Pattern: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let A = Pattern(rawValue: 1 << 0)
-            public static let B = Pattern(rawValue: 1 << 1)
-            public static let C = Pattern(rawValue: 1 << 2)
-            public static let D = Pattern(rawValue: 1 << 3)
-            public static let E = Pattern(rawValue: 1 << 4)
+            public static let a = Pattern(rawValue: 1 << 0)
+            public static let b = Pattern(rawValue: 1 << 1)
+            public static let c = Pattern(rawValue: 1 << 2)
+            public static let d = Pattern(rawValue: 1 << 3)
+            public static let e = Pattern(rawValue: 1 << 4)
+            public static let all = Pattern(rawValue: 1 << 5)
+            public static let odd = Pattern(rawValue: 1 << 6)
+            public static let even = Pattern(rawValue: 1 << 7)
         
             public init(rawValue: Int) { self.rawValue = rawValue }
         
@@ -167,6 +170,9 @@ public struct Volume: Trace {
                 if (self.rawValue & 1 << 2) != 0 { options += ["C"] }
                 if (self.rawValue & 1 << 3) != 0 { options += ["D"] }
                 if (self.rawValue & 1 << 4) != 0 { options += ["E"] }
+                if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
+                if (self.rawValue & 1 << 6) != 0 { options += ["odd"] }
+                if (self.rawValue & 1 << 7) != 0 { options += ["even"] }
                 var container = encoder.singleValueContainer()
                 try container.encode(options.joined(separator: "+"))
             }
@@ -805,6 +811,9 @@ public struct Volume: Trace {
         public static let z = HoverInfo(rawValue: 1 << 2)
         public static let text = HoverInfo(rawValue: 1 << 3)
         public static let name = HoverInfo(rawValue: 1 << 4)
+        public static let all = HoverInfo(rawValue: 1 << 5)
+        public static let none = HoverInfo(rawValue: 1 << 6)
+        public static let skip = HoverInfo(rawValue: 1 << 7)
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -815,6 +824,9 @@ public struct Volume: Trace {
             if (self.rawValue & 1 << 2) != 0 { options += ["z"] }
             if (self.rawValue & 1 << 3) != 0 { options += ["text"] }
             if (self.rawValue & 1 << 4) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["skip"] }
             var container = encoder.singleValueContainer()
             try container.encode(options.joined(separator: "+"))
         }
