@@ -178,8 +178,8 @@ struct Swift {
     }
 
     /// Plotly `subplotid` data type is manually re-implemented in Swift.
-    struct SubplotID: SwiftDataType {
-        let type: String = "SubplotID"
+    struct SubPlotID: SwiftDataType {
+        let type: String = "SubPlotID"
         let schema: SchemaDataType?
     }
 

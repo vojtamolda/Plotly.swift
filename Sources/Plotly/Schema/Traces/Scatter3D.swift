@@ -677,12 +677,12 @@ public struct Scatter3D: Trace {
         public var colorBar: ColorBar?
     
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubplotID?
+        public var colorAxis: SubPlotID?
     
         /// Sets the source reference on plot.ly for  color .
         public var colorSource: String?
     
-        public init(width: Double? = nil, dash: Dash? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubplotID? = nil, colorSource: String? = nil) {
+        public init(width: Double? = nil, dash: Dash? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, colorSource: String? = nil) {
             self.width = width
             self.dash = dash
             self.color = color
@@ -1123,12 +1123,12 @@ public struct Scatter3D: Trace {
             public var reverseScale: Bool?
         
             /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-            public var colorAxis: SubplotID?
+            public var colorAxis: SubPlotID?
         
             /// Sets the source reference on plot.ly for  color .
             public var colorSource: String?
         
-            public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubplotID? = nil, colorSource: String? = nil) {
+            public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil, colorSource: String? = nil) {
                 self.width = width
                 self.color = color
                 self.cAuto = cAuto
@@ -1172,7 +1172,7 @@ public struct Scatter3D: Trace {
         public var showScale: Bool?
     
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubplotID?
+        public var colorAxis: SubPlotID?
     
         /// Sets the source reference on plot.ly for  symbol .
         public var symbolSource: String?
@@ -1183,7 +1183,7 @@ public struct Scatter3D: Trace {
         /// Sets the source reference on plot.ly for  color .
         public var colorSource: String?
     
-        public init(symbol: Symbol? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, opacity: Double? = nil, colorBar: ColorBar? = nil, line: Line? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubplotID? = nil, symbolSource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
+        public init(symbol: Symbol? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, opacity: Double? = nil, colorBar: ColorBar? = nil, line: Line? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
             self.symbol = symbol
             self.size = size
             self.sizeReference = sizeReference
@@ -1587,7 +1587,7 @@ public struct Scatter3D: Trace {
     public var zCalendar: ZCalendar?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*, the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: SubplotID?
+    public var scene: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
     public var idsSource: String?
@@ -1625,7 +1625,7 @@ public struct Scatter3D: Trace {
     /// Sets the source reference on plot.ly for  hoverinfo .
     public var hoverInfoSource: String?
 
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Projection? = nil, connectGaps: Bool? = nil, line: Line? = nil, marker: Marker? = nil, textPosition: TextPosition? = nil, textFont: TextFont? = nil, hoverInfo: HoverInfo? = nil, xError: XError? = nil, yError: YError? = nil, zError: ZError? = nil, xCalendar: XCalendar? = nil, yCalendar: YCalendar? = nil, zCalendar: ZCalendar? = nil, scene: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Projection? = nil, connectGaps: Bool? = nil, line: Line? = nil, marker: Marker? = nil, textPosition: TextPosition? = nil, textFont: TextFont? = nil, hoverInfo: HoverInfo? = nil, xError: XError? = nil, yError: YError? = nil, zError: ZError? = nil, xCalendar: XCalendar? = nil, yCalendar: YCalendar? = nil, zCalendar: ZCalendar? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

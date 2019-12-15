@@ -633,7 +633,7 @@ public struct ParallelCategories: Trace {
         public var colorBar: ColorBar?
     
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubplotID?
+        public var colorAxis: SubPlotID?
     
         /// Sets the shape of the paths. If `linear`, paths are composed of straight lines. If `hspline`, paths are composed of horizontal curved splines
         public enum Shape: String, Encodable {
@@ -649,7 +649,7 @@ public struct ParallelCategories: Trace {
         /// Sets the source reference on plot.ly for  color .
         public var colorSource: String?
     
-        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubplotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil, colorSource: String? = nil) {
+        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil, colorSource: String? = nil) {
             self.color = color
             self.cAuto = cAuto
             self.cMin = cMin

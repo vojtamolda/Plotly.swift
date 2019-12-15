@@ -827,7 +827,7 @@ public struct ScatterGeo: Trace {
             public var reverseScale: Bool?
         
             /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-            public var colorAxis: SubplotID?
+            public var colorAxis: SubPlotID?
         
             /// Sets the source reference on plot.ly for  width .
             public var widthSource: String?
@@ -835,7 +835,7 @@ public struct ScatterGeo: Trace {
             /// Sets the source reference on plot.ly for  color .
             public var colorSource: String?
         
-            public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubplotID? = nil, widthSource: String? = nil, colorSource: String? = nil) {
+            public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil, widthSource: String? = nil, colorSource: String? = nil) {
                 self.width = width
                 self.color = color
                 self.cAuto = cAuto
@@ -909,7 +909,7 @@ public struct ScatterGeo: Trace {
         public var showScale: Bool?
     
         /// Sets a reference to a shared color axis. References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings for these shared color axes are set in the layout, under `layout.coloraxis`, `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubplotID?
+        public var colorAxis: SubPlotID?
     
         /// Sets the source reference on plot.ly for  symbol .
         public var symbolSource: String?
@@ -923,7 +923,7 @@ public struct ScatterGeo: Trace {
         /// Sets the source reference on plot.ly for  color .
         public var colorSource: String?
     
-        public init(symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, colorBar: ColorBar? = nil, line: Line? = nil, gradient: Gradient? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubplotID? = nil, symbolSource: String? = nil, opacitySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
+        public init(symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, colorBar: ColorBar? = nil, line: Line? = nil, gradient: Gradient? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, opacitySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -1070,7 +1070,7 @@ public struct ScatterGeo: Trace {
     public var hoverTemplate: String?
 
     /// Sets a reference between this trace's geospatial coordinates and a geographic map. If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the geospatial coordinates refer to `layout.geo2`, and so on.
-    public var geo: SubplotID?
+    public var geo: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
     public var idsSource: String?
@@ -1108,7 +1108,7 @@ public struct ScatterGeo: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, mode: Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, textFont: TextFont? = nil, textPosition: TextPosition? = nil, line: Line? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, geo: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, locationsSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, mode: Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, textFont: TextFont? = nil, textPosition: TextPosition? = nil, line: Line? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, geo: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, locationsSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

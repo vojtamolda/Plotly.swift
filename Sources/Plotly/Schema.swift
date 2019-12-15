@@ -93,7 +93,7 @@ public enum ColorScale: Encodable {
 public typealias Angle = Double
 
 /// Not yet implemented.
-public typealias SubplotID = String
+public typealias SubPlotID = String
 
 /// Not yet implemented.
 public struct Anything: Encodable { }

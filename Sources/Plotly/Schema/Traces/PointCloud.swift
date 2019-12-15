@@ -224,10 +224,10 @@ public struct PointCloud: Trace {
     public var marker: Marker?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubplotID?
+    public var xAxis: SubPlotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubplotID?
+    public var yAxis: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
     public var idsSource: String?
@@ -262,7 +262,7 @@ public struct PointCloud: Trace {
     /// Sets the source reference on plot.ly for  text .
     public var textSource: String?
 
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: String? = nil, marker: Marker? = nil, xAxis: SubplotID? = nil, yAxis: SubplotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, xySource: String? = nil, indicesSource: String? = nil, xBoundsSource: String? = nil, yBoundsSource: String? = nil, textSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: String? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, xySource: String? = nil, indicesSource: String? = nil, xBoundsSource: String? = nil, yBoundsSource: String? = nil, textSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

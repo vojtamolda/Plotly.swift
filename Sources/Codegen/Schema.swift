@@ -338,21 +338,21 @@ struct Schema: Decodable {
 
         /// Decoded Plotly schema attribute of type `subplotid`.
         /// - Remark: Fields originate from `defs/valObjects/subplotid`.
-        struct SubplotID: SchemaDataType {
+        struct SubPlotID: SchemaDataType {
             var codingPath: [CodingKey] = []
             let valType: String
             let description: String?
             let editType: String?
             let role: String?
 
-            let dflt: String = ""
-            let regex: String? = nil
+            let dflt: String?
+            let regex: String?
 
             enum CodingKeys: String, CodingKey {
                 case valType, description, editType, role, dflt, regex
             }
         }
-        case subplotID(_ subplotID: SubplotID)
+        case subPlotID(_ subPlotID: SubPlotID)
 
         /// Decoded Plotly schema attribute of type `flaglist`.
         /// - Remark: Fields originate from `defs/valObjects/flaglist`.
@@ -441,7 +441,7 @@ struct Schema: Decodable {
             case "angle":
                 self = .angle(try! Angle.init(parse: decoder))
             case "subplotid":
-                self = .subplotID(try! SubplotID.init(parse: decoder))
+                self = .subPlotID(try! SubPlotID.init(parse: decoder))
             case "flaglist":
                 self = .flagList(try! FlagList.init(parse: decoder))
             case "any":
