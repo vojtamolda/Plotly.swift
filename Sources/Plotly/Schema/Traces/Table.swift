@@ -1,34 +1,61 @@
-/// Table view for detailed data viewing. The data are arranged in a grid of rows and columns. Most styling can be specified for columns, rows or individual cells. Table is using a column-major order, ie. the grid is represented as a vector of column vectors.
+/// Table view for detailed data viewing. 
+///
+/// The data are arranged in a grid of rows and columns. Most styling can be specified for columns,
+/// rows or individual cells. Table is using a column-major order, ie. the grid is represented as a
+/// vector of column vectors.
 public struct Table: Trace {
     public let type: String = "table"
 
     public let animatable: Bool = false
 
-    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
         case legendOnly = "legendonly"
     }
-    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible?
 
-    /// Sets the trace name. The trace name appear as the legend item and on hover.
+    /// Sets the trace name. 
+    ///
+    /// The trace name appear as the legend item and on hover.
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     public var uid: String?
 
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    /// Assigns id labels to each datum. 
+    ///
+    /// These ids for object constancy of data points during animation. Should be an array of strings,
+    /// not numbers or any other type.
     public var ids: [Double]?
 
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    /// Assigns extra data each datum. 
+    ///
+    /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
+    /// traces also appends customdata items in the markers DOM elements
     public var customData: [Double]?
 
-    /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
+    ///
+    /// Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text`
+    /// `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the
+    /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
+    /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
+    /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -57,7 +84,10 @@ public struct Table: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
     public struct HoverLabel: Encodable {
@@ -69,7 +99,15 @@ public struct Table: Trace {
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+            /// HTML font family - the typeface that will be applied by the web browser. 
+            ///
+            /// The web browser will only be able to apply a font if it is available on the system which it
+            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+            /// which to apply fonts if they aren't available on the system. The plotly service (at
+            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             public var family: String?
         
             public var size: Double?
@@ -97,16 +135,24 @@ public struct Table: Trace {
         /// Sets the font used in hover labels.
         public var font: Font?
     
-        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+        /// Sets the horizontal alignment of the text content within hover label box. 
+        ///
+        /// Has an effect only if the hover label text spans more two or more lines
         public enum Align: String, Encodable {
             case left
             case right
             case auto
         }
-        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+        /// Sets the horizontal alignment of the text content within hover label box. 
+        ///
+        /// Has an effect only if the hover label text spans more two or more lines
         public var align: Align?
     
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
+        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
+        ///
+        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
+        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
+        /// truncate to `namelength - 3` characters and add an ellipsis.
         public var nameLength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
@@ -136,10 +182,14 @@ public struct Table: Trace {
     public var hoverLabel: HoverLabel?
 
     public struct Stream: Encodable {
-        /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
+        /// The stream id number links a data trace on a plot with a stream. 
+        ///
+        /// See https://plot.ly/settings for more details.
         public var token: String?
     
-        /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
+        /// Sets the maximum number of points to keep on the plots from an incoming stream. 
+        ///
+        /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
         public var maxPoints: Double?
     
         public init(token: String? = nil, maxPoints: Double? = nil) {
@@ -149,7 +199,16 @@ public struct Table: Trace {
     }
     public var stream: Stream?
 
-    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
+    ///
+    /// Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are
+    /// controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`,
+    /// `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible
+    /// with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are
+    /// tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app
+    /// can add/remove traces before the end of the `data` array, such that the same trace has a
+    /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
+    /// stays with it as it moves.
     public var uiRevision: Anything?
 
     public struct Domain: Encodable {
@@ -174,17 +233,25 @@ public struct Table: Trace {
     }
     public var domain: Domain?
 
-    /// The width of columns expressed as a ratio. Columns fill the available width in proportion of their specified column widths.
+    /// The width of columns expressed as a ratio. 
+    ///
+    /// Columns fill the available width in proportion of their specified column widths.
     public var columnWidth: Double?
 
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     public var columnOrder: [Double]?
 
     public struct Header: Encodable {
-        /// Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+        /// Header cell values. 
+        ///
+        /// `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]`
+        /// vector length for all columns must be the same (longer vectors will be truncated). Each value
+        /// must be a finite number or a string.
         public var values: [Double]?
     
-        /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. 
+        ///
+        /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
         public var format: [Double]?
     
         /// Prefix for cell values.
@@ -196,13 +263,19 @@ public struct Table: Trace {
         /// The height of cells.
         public var height: Double?
     
-        /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
+        /// Sets the horizontal alignment of the `text` within the box. 
+        ///
+        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+        /// HTML tags) or if an explicit width is set to override the text width.
         public enum Align: String, Encodable {
             case left
             case center
             case right
         }
-        /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
+        /// Sets the horizontal alignment of the `text` within the box. 
+        ///
+        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+        /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Align?
     
         public struct Line: Encodable {
@@ -226,7 +299,9 @@ public struct Table: Trace {
         public var line: Line?
     
         public struct Fill: Encodable {
-            /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
+            /// Sets the cell fill color. 
+            ///
+            /// It accepts either a specific color or an array of colors or a 2D array of colors.
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  color .
@@ -240,7 +315,15 @@ public struct Table: Trace {
         public var fill: Fill?
     
         public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+            /// HTML font family - the typeface that will be applied by the web browser. 
+            ///
+            /// The web browser will only be able to apply a font if it is available on the system which it
+            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+            /// which to apply fonts if they aren't available on the system. The plotly service (at
+            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             public var family: String?
         
             public var size: Double?
@@ -302,10 +385,16 @@ public struct Table: Trace {
     public var header: Header?
 
     public struct Cells: Encodable {
-        /// Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a string.
+        /// Cell values. 
+        ///
+        /// `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]`
+        /// vector length for all columns must be the same (longer vectors will be truncated). Each value
+        /// must be a finite number or a string.
         public var values: [Double]?
     
-        /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those of Python. 
+        ///
+        /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
         public var format: [Double]?
     
         /// Prefix for cell values.
@@ -317,13 +406,19 @@ public struct Table: Trace {
         /// The height of cells.
         public var height: Double?
     
-        /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
+        /// Sets the horizontal alignment of the `text` within the box. 
+        ///
+        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+        /// HTML tags) or if an explicit width is set to override the text width.
         public enum Align: String, Encodable {
             case left
             case center
             case right
         }
-        /// Sets the horizontal alignment of the `text` within the box. Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br> HTML tags) or if an explicit width is set to override the text width.
+        /// Sets the horizontal alignment of the `text` within the box. 
+        ///
+        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+        /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Align?
     
         public struct Line: Encodable {
@@ -347,7 +442,9 @@ public struct Table: Trace {
         public var line: Line?
     
         public struct Fill: Encodable {
-            /// Sets the cell fill color. It accepts either a specific color or an array of colors or a 2D array of colors.
+            /// Sets the cell fill color. 
+            ///
+            /// It accepts either a specific color or an array of colors or a 2D array of colors.
             public var color: Color?
         
             /// Sets the source reference on plot.ly for  color .
@@ -361,7 +458,15 @@ public struct Table: Trace {
         public var fill: Fill?
     
         public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+            /// HTML font family - the typeface that will be applied by the web browser. 
+            ///
+            /// The web browser will only be able to apply a font if it is available on the system which it
+            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+            /// which to apply fonts if they aren't available on the system. The plotly service (at
+            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             public var family: String?
         
             public var size: Double?

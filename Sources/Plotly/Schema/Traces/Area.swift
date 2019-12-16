@@ -3,40 +3,65 @@ public struct Area: Trace {
 
     public let animatable: Bool = false
 
-    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
         case legendOnly = "legendonly"
     }
-    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool?
 
-    /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+    /// Sets the legend group for this trace. 
+    ///
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
     public var legendGroup: String?
 
     /// Sets the opacity of the trace.
     public var opacity: Double?
 
-    /// Sets the trace name. The trace name appear as the legend item and on hover.
+    /// Sets the trace name. 
+    ///
+    /// The trace name appear as the legend item and on hover.
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     public var uid: String?
 
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    /// Assigns id labels to each datum. 
+    ///
+    /// These ids for object constancy of data points during animation. Should be an array of strings,
+    /// not numbers or any other type.
     public var ids: [Double]?
 
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    /// Assigns extra data each datum. 
+    ///
+    /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
+    /// traces also appends customdata items in the markers DOM elements
     public var customData: [Double]?
 
-    /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
+    ///
+    /// Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text`
+    /// `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the
+    /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
+    /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
+    /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -65,7 +90,10 @@ public struct Area: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
     public struct HoverLabel: Encodable {
@@ -77,7 +105,15 @@ public struct Area: Trace {
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+            /// HTML font family - the typeface that will be applied by the web browser. 
+            ///
+            /// The web browser will only be able to apply a font if it is available on the system which it
+            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+            /// which to apply fonts if they aren't available on the system. The plotly service (at
+            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             public var family: String?
         
             public var size: Double?
@@ -105,16 +141,24 @@ public struct Area: Trace {
         /// Sets the font used in hover labels.
         public var font: Font?
     
-        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+        /// Sets the horizontal alignment of the text content within hover label box. 
+        ///
+        /// Has an effect only if the hover label text spans more two or more lines
         public enum Align: String, Encodable {
             case left
             case right
             case auto
         }
-        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+        /// Sets the horizontal alignment of the text content within hover label box. 
+        ///
+        /// Has an effect only if the hover label text spans more two or more lines
         public var align: Align?
     
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
+        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
+        ///
+        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
+        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
+        /// truncate to `namelength - 3` characters and add an ellipsis.
         public var nameLength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
@@ -144,10 +188,14 @@ public struct Area: Trace {
     public var hoverLabel: HoverLabel?
 
     public struct Stream: Encodable {
-        /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
+        /// The stream id number links a data trace on a plot with a stream. 
+        ///
+        /// See https://plot.ly/settings for more details.
         public var token: String?
     
-        /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
+        /// Sets the maximum number of points to keep on the plots from an incoming stream. 
+        ///
+        /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
         public var maxPoints: Double?
     
         public init(token: String? = nil, maxPoints: Double? = nil) {
@@ -179,23 +227,46 @@ public struct Area: Trace {
     }
     public var transforms: Transforms?
 
-    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
+    ///
+    /// Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are
+    /// controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`,
+    /// `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible
+    /// with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are
+    /// tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app
+    /// can add/remove traces before the end of the `data` array, such that the same trace has a
+    /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
+    /// stays with it as it moves.
     public var uiRevision: Anything?
 
-    /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the radial coordinates for legacy polar chart only.
+    /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
+    ///
+    /// Sets the radial coordinates for legacy polar chart only.
     public var r: [Double]?
 
-    /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the angular coordinates for legacy polar chart only.
+    /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
+    ///
+    /// Sets the angular coordinates for legacy polar chart only.
     public var t: [Double]?
 
     public struct Marker: Encodable {
-        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax` if set.
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
+        ///
+        /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped
+        /// to the colorscale relative to the max and min values of the array or relative to `marker.cmin`
+        /// and `marker.cmax` if set.
         public var color: Color?
     
-        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker size (in px).
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
+        ///
+        /// Sets the marker size (in px).
         public var size: Double?
     
-        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
+        ///
+        /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name.
+        /// Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to
+        /// appending *-open-dot* or *dot-open* to a symbol name.
         public enum Symbol: String, Encodable {
             case circle
             case circleOpen = "circle-open"
@@ -340,10 +411,16 @@ public struct Area: Trace {
             case lineNW = "line-nw"
             case lineNWOpen = "line-nw-open"
         }
-        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or *dot-open* to a symbol name.
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
+        ///
+        /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name.
+        /// Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to
+        /// appending *-open-dot* or *dot-open* to a symbol name.
         public var symbol: Symbol?
     
-        /// Area traces are deprecated! Please switch to the *barpolar* trace type. Sets the marker opacity.
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
+        ///
+        /// Sets the marker opacity.
         public var opacity: Double?
     
         /// Sets the source reference on plot.ly for  color .

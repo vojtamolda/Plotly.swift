@@ -11,7 +11,7 @@ struct Swift {
         let dataType: SwiftDataType
         let const: String?
         let optional: Bool
-        var description: String { dataType.description }
+        var description: [String] { dataType.documentation }
         var access: String? = "public"
 
         /// Creates instance of the specified data type accessible by identifier.
@@ -30,9 +30,7 @@ struct Swift {
         /// Returns lines of Swift code that define the instance.
         func definition() -> [String] {
             var lines = [String]()
-            if description != "" {
-                lines += ["/// \(description)"]
-            }
+            lines += description
             let access = (self.access != nil) ? (self.access! + " ") : ""
             if let const = self.const {
                 lines += ["\(access)let \(argument()) = \(const)"]
@@ -116,7 +114,7 @@ struct Swift {
             var lines = [String]()
             let access = (self.access != nil) ? (self.access! + " ") : ""
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += ["/// \(description)"]
+            lines += documentation
             lines += ["\(access)enum \(type)\(protocols) {"]
             for (sanitized, dirty) in values {
                 let rawValue = (dirty != nil) ? " = \(dirty!)" : ""
@@ -211,7 +209,7 @@ struct Swift {
         func definition() -> [String] {
             let access = (self.access != nil) ? (self.access! + " ") : ""
             var lines = [String]()
-            lines += ["/// \(description)"]
+            lines += documentation
             lines += ["\(access)struct \(type): OptionSet, Encodable {"]
             lines += ["\(access)let rawValue: Int"].indented()
             lines += [""]
@@ -248,7 +246,7 @@ struct Swift {
     /// Data type that maps hierarchical Plotly `object` to Swift `struct`.
     struct Struct: SwiftDataType {
         let type: String
-        var description: String = ""
+        var documentation: [String] = []
         let schema: SchemaDataType? = nil
 
         var access: String? = "public"
@@ -275,17 +273,16 @@ struct Swift {
                 }
             }
 
-            if let description = primitives["description"] {
-                self.description = String(describing: description)
+            if let description = primitives["description"],
+                case Schema.Primitive.string(let descriptionString) = description {
+                documentation = descriptionString.documentation()
             }
         }
 
         /// Returns lines of Swift code that fully define the struct and all of it's nested members.
         func definition() -> [String] {
             var lines = [String]()
-            if description != "" {
-                lines += ["/// \(description)"]
-            }
+            lines += documentation
             let access = (self.access != nil) ? (self.access! + " ") : ""
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += ["\(access)struct \(type)\(protocols) {"]
@@ -345,7 +342,7 @@ struct Swift {
 protocol SwiftDataType {
     var type: String { get }
     var schema: SchemaDataType? { get }
-    var description: String { get }
+    var documentation: [String] { get }
 
     /// Returns lines of Swift code that fully define the data type including the nested members.
     func definition() -> [String]
@@ -354,7 +351,9 @@ protocol SwiftDataType {
 /// Extension with default implementations of commonly shared functionality.
 extension SwiftDataType {
     /// Documentation of the data type extracted from Plotly schema.
-    var description: String { schema?.description ?? "" }
+    var documentation: [String] {
+        (schema?.description != nil) ? schema!.description!.documentation() : [String]()
+    }
 
     /// Returns empty lines which is useful for Swift built-in types like Int, String or [Double].
     func definition() -> [String] {

@@ -7,11 +7,13 @@ struct Trace {
 
     init(identifier: String, schema: Schema.Trace) {
         attributes = Swift.Struct(identifier: identifier, entries: schema.attributes)
-        attributes.description = schema.meta["description"] ?? attributes.description
+        if let description = schema.meta["description"] {
+            attributes.documentation = description.documentation()
+        }
         attributes.protocols = ["Trace"]
 
-        let typeConst = Swift.Instance(identifier: "type",  dataType: Swift.String_(schema: nil),
-                const: "\"\(schema.type)\"", optional: false)
+        let typeConst = Swift.Instance(identifier: "type", dataType: Swift.String_(schema: nil),
+                const: schema.type.escaped(), optional: false)
         attributes.members.insert(typeConst, at: 0)
 
         let animatableConst = Swift.Instance(identifier: "animatable", dataType: Swift.Boolean(schema: nil),

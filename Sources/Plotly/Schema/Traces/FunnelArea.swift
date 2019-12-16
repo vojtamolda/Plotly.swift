@@ -1,40 +1,66 @@
-/// Visualize stages in a process using area-encoded trapezoids. This trace can be used to show data in a part-to-whole representation similar to a "pie" trace, wherein each item appears in a single stage. See also the "funnel" trace type for a different approach to visualizing funnel data.
+/// Visualize stages in a process using area-encoded trapezoids. 
+///
+/// This trace can be used to show data in a part-to-whole representation similar to a "pie" trace,
+/// wherein each item appears in a single stage. See also the "funnel" trace type for a different
+/// approach to visualizing funnel data.
 public struct FunnelArea: Trace {
     public let type: String = "funnelarea"
 
     public let animatable: Bool = false
 
-    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
         case legendOnly = "legendonly"
     }
-    /// Determines whether or not this trace is visible. If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the legend itself is visible).
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool?
 
-    /// Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling legend items.
+    /// Sets the legend group for this trace. 
+    ///
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
     public var legendGroup: String?
 
     /// Sets the opacity of the trace.
     public var opacity: Double?
 
-    /// Sets the trace name. The trace name appear as the legend item and on hover.
+    /// Sets the trace name. 
+    ///
+    /// The trace name appear as the legend item and on hover.
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     public var uid: String?
 
-    /// Assigns id labels to each datum. These ids for object constancy of data points during animation. Should be an array of strings, not numbers or any other type.
+    /// Assigns id labels to each datum. 
+    ///
+    /// These ids for object constancy of data points during animation. Should be an array of strings,
+    /// not numbers or any other type.
     public var ids: [Double]?
 
-    /// Assigns extra data each datum. This may be useful when listening to hover, click and selection events. Note that, *scatter* traces also appends customdata items in the markers DOM elements
+    /// Assigns extra data each datum. 
+    ///
+    /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
+    /// traces also appends customdata items in the markers DOM elements
     public var customData: [Double]?
 
-    /// Assigns extra meta information associated with this trace that can be used in various text attributes. Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text` `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the index or key of the `meta` item in question. To access trace `meta` in layout attributes, use `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
+    ///
+    /// Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text`
+    /// `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the
+    /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
+    /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
+    /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
     public struct HoverLabel: Encodable {
@@ -46,7 +72,15 @@ public struct FunnelArea: Trace {
     
         /// Sets the font used in hover labels.
         public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+            /// HTML font family - the typeface that will be applied by the web browser. 
+            ///
+            /// The web browser will only be able to apply a font if it is available on the system which it
+            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+            /// which to apply fonts if they aren't available on the system. The plotly service (at
+            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             public var family: String?
         
             public var size: Double?
@@ -74,16 +108,24 @@ public struct FunnelArea: Trace {
         /// Sets the font used in hover labels.
         public var font: Font?
     
-        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+        /// Sets the horizontal alignment of the text content within hover label box. 
+        ///
+        /// Has an effect only if the hover label text spans more two or more lines
         public enum Align: String, Encodable {
             case left
             case right
             case auto
         }
-        /// Sets the horizontal alignment of the text content within hover label box. Has an effect only if the hover label text spans more two or more lines
+        /// Sets the horizontal alignment of the text content within hover label box. 
+        ///
+        /// Has an effect only if the hover label text spans more two or more lines
         public var align: Align?
     
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer >3 will show the whole name if it is less than that many characters, but if it is longer, will truncate to `namelength - 3` characters and add an ellipsis.
+        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
+        ///
+        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
+        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
+        /// truncate to `namelength - 3` characters and add an ellipsis.
         public var nameLength: Int?
     
         /// Sets the source reference on plot.ly for  bgcolor .
@@ -113,10 +155,14 @@ public struct FunnelArea: Trace {
     public var hoverLabel: HoverLabel?
 
     public struct Stream: Encodable {
-        /// The stream id number links a data trace on a plot with a stream. See https://plot.ly/settings for more details.
+        /// The stream id number links a data trace on a plot with a stream. 
+        ///
+        /// See https://plot.ly/settings for more details.
         public var token: String?
     
-        /// Sets the maximum number of points to keep on the plots from an incoming stream. If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
+        /// Sets the maximum number of points to keep on the plots from an incoming stream. 
+        ///
+        /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
         public var maxPoints: Double?
     
         public init(token: String? = nil, maxPoints: Double? = nil) {
@@ -148,27 +194,51 @@ public struct FunnelArea: Trace {
     }
     public var transforms: Transforms?
 
-    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves.
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
+    ///
+    /// Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are
+    /// controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`,
+    /// `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible
+    /// with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are
+    /// tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app
+    /// can add/remove traces before the end of the `data` array, such that the same trace has a
+    /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
+    /// stays with it as it moves.
     public var uiRevision: Anything?
 
-    /// Sets the sector labels. If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if `values` is not provided. For other array attributes (including color) we use the first non-empty entry among all occurrences of the label.
+    /// Sets the sector labels. 
+    ///
+    /// If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if
+    /// `values` is not provided. For other array attributes (including color) we use the first
+    /// non-empty entry among all occurrences of the label.
     public var labels: [Double]?
 
-    /// Alternate to `labels`. Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and `dlabel` the step.
+    /// Alternate to `labels`. 
+    ///
+    /// Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and
+    /// `dlabel` the step.
     public var label0: Double?
 
-    /// Sets the label step. See `label0` for more info.
+    /// Sets the label step. 
+    ///
+    /// See `label0` for more info.
     public var dLabel: Double?
 
-    /// Sets the values of the sectors. If omitted, we count occurrences of each label.
+    /// Sets the values of the sectors. 
+    ///
+    /// If omitted, we count occurrences of each label.
     public var values: [Double]?
 
     public struct Marker: Encodable {
-        /// Sets the color of each sector. If not specified, the default trace color set is used to pick the sector colors.
+        /// Sets the color of each sector. 
+        ///
+        /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
         public struct Line: Encodable {
-            /// Sets the color of the line enclosing each sector. Defaults to the `paper_bgcolor` value.
+            /// Sets the color of the line enclosing each sector. 
+            ///
+            /// Defaults to the `paper_bgcolor` value.
             public var color: Color?
         
             /// Sets the width (in px) of the line enclosing each sector.
@@ -200,10 +270,18 @@ public struct FunnelArea: Trace {
     }
     public var marker: Marker?
 
-    /// Sets text elements associated with each sector. If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    /// Sets text elements associated with each sector. 
+    ///
+    /// If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace
+    /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
+    /// the hover labels.
     public var text: [Double]?
 
-    /// Sets hover text elements associated with each sector. If a single string, the same string appears for all data points. If an array of string, the items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a *text* flag.
+    /// Sets hover text elements associated with each sector. 
+    ///
+    /// If a single string, the same string appears for all data points. If an array of string, the
+    /// items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a
+    /// *text* flag.
     public var hoverText: String?
 
     /// If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
@@ -235,10 +313,23 @@ public struct FunnelArea: Trace {
     /// Determines which trace information appear on the graph.
     public var textInfo: TextInfo?
 
-    /// Template string used for rendering the information text that appear on points. Note that this will override `textinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`.
+    /// Template string used for rendering the information text that appear on points. 
+    ///
+    /// Note that this will override `textinfo`. Variables are inserted using %{variable}, for example
+    /// "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example
+    /// "Price: %{y:$.2f}".
+    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
+    /// the formatting syntax. Dates are formatted using d3-time-format's syntax
+    /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
+    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
+    /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
+    /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`.
     public var textTemplate: String?
 
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -267,10 +358,28 @@ public struct FunnelArea: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines which trace information appear on hover. If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set, click and hover events are still fired.
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
-    /// Template string used for rendering the information that appear on hover box. Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example "Price: %{y:$.2f}". https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on the formatting syntax. Dates are formatted using d3-time-format's syntax %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}". https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data. Additionally, every attributes that can be specified per-point (the ones that are `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`. Anything contained in tag `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// Template string used for rendering the information that appear on hover box. 
+    ///
+    /// Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example
+    /// "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example
+    /// "Price: %{y:$.2f}".
+    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
+    /// the formatting syntax. Dates are formatted using d3-time-format's syntax
+    /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
+    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
+    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
+    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
+    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
+    /// true`) are available. variables `label`, `color`, `value`, `text` and `percent`. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// `<extra></extra>`.
     public var hoverTemplate: String?
 
     /// Specifies the location of the `textinfo`.
@@ -283,7 +392,15 @@ public struct FunnelArea: Trace {
 
     /// Sets the font used for `textinfo`.
     public struct TextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+        /// HTML font family - the typeface that will be applied by the web browser. 
+        ///
+        /// The web browser will only be able to apply a font if it is available on the system which it
+        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+        /// which to apply fonts if they aren't available on the system. The plotly service (at
+        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: String?
     
         public var size: Double?
@@ -313,7 +430,15 @@ public struct FunnelArea: Trace {
 
     /// Sets the font used for `textinfo` lying inside the sector.
     public struct InsideTextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+        /// HTML font family - the typeface that will be applied by the web browser. 
+        ///
+        /// The web browser will only be able to apply a font if it is available on the system which it
+        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+        /// which to apply fonts if they aren't available on the system. The plotly service (at
+        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: String?
     
         public var size: Double?
@@ -342,12 +467,26 @@ public struct FunnelArea: Trace {
     public var insideTextFont: InsideTextFont?
 
     public struct Title: Encodable {
-        /// Sets the title of the chart. If it is empty, no title is displayed. Note that before the existence of `title.text`, the title's contents used to be defined as the `title` attribute itself. This behavior has been deprecated.
+        /// Sets the title of the chart. 
+        ///
+        /// If it is empty, no title is displayed. Note that before the existence of `title.text`, the
+        /// title's contents used to be defined as the `title` attribute itself. This behavior has been
+        /// deprecated.
         public var text: String?
     
-        /// Sets the font used for `title`. Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+        /// Sets the font used for `title`. 
+        ///
+        /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
         public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. The web browser will only be able to apply a font if it is available on the system which it operates. Provide multiple font families, separated by commas, to indicate the preference in which to apply fonts if they aren't available on the system. The plotly service (at https://plot.ly or on-premise) generates images on a server, where only a select number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+            /// HTML font family - the typeface that will be applied by the web browser. 
+            ///
+            /// The web browser will only be able to apply a font if it is available on the system which it
+            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+            /// which to apply fonts if they aren't available on the system. The plotly service (at
+            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
             public var family: String?
         
             public var size: Double?
@@ -372,16 +511,22 @@ public struct FunnelArea: Trace {
                 self.colorSource = colorSource
             }
         }
-        /// Sets the font used for `title`. Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+        /// Sets the font used for `title`. 
+        ///
+        /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
         public var font: Font?
     
-        /// Specifies the location of the `title`. Note that the title's position used to be set by the now deprecated `titleposition` attribute.
+        /// Specifies the location of the `title`. 
+        ///
+        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
         public enum Position: String, Encodable {
             case topLeft = "top left"
             case topCenter = "top center"
             case topRight = "top right"
         }
-        /// Specifies the location of the `title`. Note that the title's position used to be set by the now deprecated `titleposition` attribute.
+        /// Specifies the location of the `title`. 
+        ///
+        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
         public var position: Position?
     
         public init(text: String? = nil, font: Font? = nil, position: Position? = nil) {
