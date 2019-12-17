@@ -12,17 +12,18 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     let schemaData = try! Data(contentsOf: schemaFile)
     let schema = try! JSONDecoder().decode(Schema.self, from: schemaData)
 
+    let config = Config(schema: schema.config)
+    config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
+
+    var layout = Layout(schema: schema.layout)
+
     let tracesDirectory = outputDirectory.appendingPathComponent("Traces")
     for (identifier, schema) in schema.traces {
-        let trace = Trace(identifier: identifier, schema: schema)
+        let trace = Trace(identifier: identifier, schema: schema, layout: &layout)
         trace.write(to: tracesDirectory.appendingPathComponent("\(trace.attributes.type).swift"))
     }
 
-    let layout = Layout(schema: schema.layout)
     layout.write(to: outputDirectory.appendingPathComponent("Layout.swift"))
-
-    let config = Config(schema: schema.config)
-    config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
 }
 
 

@@ -1,45 +1,8 @@
 
 /// Container for Swift data types that map to corresponding values in the Plotly JSON schema hierarchy.
 struct Swift {
-
     /// Storage of Plotly mangledtogethernames translated to Swift camelCaseNames for each identifier in the schema.
     static var name: Name? = nil
-
-    /// Instantioation of a Swift variable with an associated data type.
-    struct Instance {
-        let identifier: String
-        let dataType: SwiftDataType
-        let const: String?
-        let optional: Bool
-        var description: [String] { dataType.documentation }
-        var access: String? = "public"
-
-        /// Creates instance of the specified data type accessible by identifier.
-        init(identifier: String, dataType: SwiftDataType, const: String? = nil, optional: Bool = true) {
-            self.identifier = Swift.name!.camelCased(identifier)
-            self.dataType = dataType
-            self.const = const
-            self.optional = optional
-        }
-
-        /// Returns a chunk of Swift code that use the instance as a function argument.
-        func argument() -> String {
-            return "\(identifier): \(dataType.type)\(optional ? "?" : "")"
-        }
-
-        /// Returns lines of Swift code that define the instance.
-        func definition() -> [String] {
-            var lines = [String]()
-            lines += description
-            let access = (self.access != nil) ? (self.access! + " ") : ""
-            if let const = self.const {
-                lines += ["\(access)let \(argument()) = \(const)"]
-            } else {
-                lines += ["\(access)var \(argument())"]
-            }
-            return lines
-        }
-    }
 
     // MARK: - Swift Data Types
 
@@ -252,7 +215,7 @@ struct Swift {
         var access: String? = "public"
         var protocols: [String] = ["Encodable"]
 
-        var members: [Instance]
+        var members: [Definable]
         var primitives: [String: Schema.Primitive]
 
         init(identifier: String, entries: Schema.Entries) {
@@ -283,19 +246,22 @@ struct Swift {
         func definition() -> [String] {
             var lines = [String]()
             lines += documentation
+
             let access = (self.access != nil) ? (self.access! + " ") : ""
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += ["\(access)struct \(type)\(protocols) {"]
-            for instance in members {
-                lines += instance.dataType.definition().indented()
-                lines += instance.definition().indented()
+
+            for member in members {
+                lines += member.definition().indented()
                 lines += [""]
             }
-            let variables = members.filter { $0.const == nil}
+
+            let variables = members.compactMap { $0 as? Instance }.filter { $0.const == nil }
             let arguments = variables.map { $0.argument() + " = nil" }.joined(separator: ", ")
             lines += ["\(access)init(\(arguments)) {"].indented()
             lines += variables.map { "self.\($0.identifier) = \($0.identifier)" }.indented(2)
             lines += ["}"].indented()
+
             lines += ["}"]
             return lines
         }
@@ -338,14 +304,18 @@ struct Swift {
 
 // MARK: - Swift Data Type Protocol
 
+
+/// A data type that can return lines of Swift code with it's own definition.
+protocol Definable {
+    /// Returns lines of Swift code that fully define the data type including the nested members.
+    func definition() -> [String]
+}
+
 /// A data type that can be used as an argument when generating Swift code from Plotly schema.
-protocol SwiftDataType {
+protocol SwiftDataType: Definable {
     var type: String { get }
     var schema: SchemaDataType? { get }
     var documentation: [String] { get }
-
-    /// Returns lines of Swift code that fully define the data type including the nested members.
-    func definition() -> [String]
 }
 
 /// Extension with default implementations of commonly shared functionality.

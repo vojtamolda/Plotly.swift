@@ -3,10 +3,13 @@ import Foundation
 
 /// Swift struct corresponding to Plotly `layout`.
 struct Layout {
-    let layoutAttributes: Swift.Struct
+    var layoutAttributes: Swift.Struct
 
     init(schema: Schema.Layout) {
         layoutAttributes = Swift.Struct(identifier: "layout", entries: schema.layoutAttributes)
+
+        let sectionMark = Mark(label: "General")
+        layoutAttributes.members.insert(sectionMark, at: 0)
     }
 
     /// Returns lines of Swift code that fully define the Layout struct and all of it's nested members.
