@@ -82,6 +82,7 @@ public struct Config: Encodable {
     /// Turned on by default for gl3d, geo and mapbox subplots (as these subplot types do not have
     /// zoombox via pan), but turned off by default for cartesian subplots. Set `scrollZoom` to *false*
     /// to disable scrolling for all subplots.
+    /// - config/scrollZoom
     public struct ScrollZoom: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -120,6 +121,7 @@ public struct Config: Encodable {
     /// ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis
     /// ranges to their initial values and even double clicks set the axis ranges to their autorange
     /// values.
+    /// - config/doubleClick
     public enum DoubleClick: String, Encodable {
         case `false` = "false"
         case reset
@@ -169,6 +171,7 @@ public struct Config: Encodable {
     ///
     /// If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If
     /// *hover*, the mode bar is visible while the mouse cursor is on the graph container.
+    /// - config/displayModeBar
     public enum DisplayModeBar: String, Encodable {
         case hover
         case `true` = "true"

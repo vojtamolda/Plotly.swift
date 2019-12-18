@@ -10,6 +10,31 @@ public struct Pie: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/candlestick/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/barpolar/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/image/attributes/visible
+    /// - traces/pie/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -109,6 +134,29 @@ public struct Pie: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/candlestick/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/barpolar/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -284,6 +332,8 @@ public struct Pie: Trace {
     public var scaleGroup: String?
 
     /// Determines which trace information appear on the graph.
+    /// - traces/funnelarea/attributes/textinfo
+    /// - traces/pie/attributes/textinfo
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -313,6 +363,8 @@ public struct Pie: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/funnelarea/attributes/hoverinfo
+    /// - traces/pie/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -378,14 +430,28 @@ public struct Pie: Trace {
     /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`.
     public var textTemplate: String?
 
-    /// Specifies the location of the `textinfo`.
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
+    /// - traces/waterfall/attributes/textposition
+    /// - traces/pie/attributes/textposition
     public enum TextPosition: String, Encodable {
         case inside
         case outside
         case auto
         case none
     }
-    /// Specifies the location of the `textinfo`.
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
     public var textPosition: TextPosition?
 
     /// Sets the font used for `textinfo`.
@@ -558,6 +624,7 @@ public struct Pie: Trace {
         /// Specifies the location of the `title`. 
         ///
         /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
+        /// - traces/pie/attributes/title/position
         public enum Position: String, Encodable {
             case topLeft = "top left"
             case topCenter = "top center"
@@ -610,12 +677,18 @@ public struct Pie: Trace {
     /// Determines whether or not the sectors are reordered from largest to smallest.
     public var sort: Bool?
 
-    /// Specifies the direction at which succeeding sectors follow one another.
+    /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
+    ///
+    /// Sets the direction corresponding to positive angles in legacy polar charts.
+    /// - layout/layoutAttributes/direction
+    /// - traces/pie/attributes/direction
     public enum Direction: String, Encodable {
         case clockwise
         case counterClockwise = "counterclockwise"
     }
-    /// Specifies the direction at which succeeding sectors follow one another.
+    /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
+    ///
+    /// Sets the direction corresponding to positive angles in legacy polar charts.
     public var direction: Direction?
 
     /// Instead of the first slice starting at 12 o'clock, rotate to some other angle.
@@ -660,6 +733,7 @@ public struct Pie: Trace {
         public var titleFont: TitleFont?
     
         /// Deprecated in favor of `title.position`.
+        /// - traces/pie/attributes/_deprecated/titleposition
         public enum TitlePosition: String, Encodable {
             case topLeft = "top left"
             case topCenter = "top center"

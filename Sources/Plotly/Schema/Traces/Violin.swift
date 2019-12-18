@@ -12,6 +12,34 @@ public struct Violin: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/candlestick/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/barpolar/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/image/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/cone/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/violin/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -69,6 +97,19 @@ public struct Violin: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/heatmapgl/attributes/hoverinfo
+    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/ohlc/attributes/hoverinfo
+    /// - traces/scattergl/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
+    /// - traces/area/attributes/hoverinfo
+    /// - traces/pointcloud/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
+    /// - traces/surface/attributes/hoverinfo
+    /// - traces/candlestick/attributes/hoverinfo
+    /// - traces/heatmap/attributes/hoverinfo
+    /// - traces/violin/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -151,6 +192,32 @@ public struct Violin: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/candlestick/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/barpolar/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/cone/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -274,16 +341,16 @@ public struct Violin: Trace {
     /// attribute `scalegroup` (please see its description for details).
     public var name: String?
 
-    /// Sets the orientation of the violin(s). 
-    ///
-    /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
+    /// Sets the orientation of the modebar.
+    /// - layout/layoutAttributes/modebar/orientation
+    /// - layout/layoutAttributes/legend/orientation
+    /// - traces/waterfall/attributes/orientation
+    /// - traces/violin/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
     }
-    /// Sets the orientation of the violin(s). 
-    ///
-    /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
+    /// Sets the orientation of the modebar.
     public var orientation: Orientation?
 
     /// Sets the bandwidth used to compute the kernel density estimate. 
@@ -298,6 +365,7 @@ public struct Violin: Trace {
     public var scaleGroup: String?
 
     /// Sets the metric by which the width of each violin is determined.*width* means each violin has the same (max) width*count* means the violins are scaled by the number of sample points makingup each violin.
+    /// - traces/violin/attributes/scalemode
     public enum ScaleMode: String, Encodable {
         case width
         case count
@@ -310,6 +378,7 @@ public struct Violin: Trace {
     /// *soft* means the span goes from the sample's minimum value minus two bandwidths to the sample's
     /// maximum value plus two bandwidths. *hard* means the span goes from the sample's minimum to its
     /// maximum value. For custom span settings, use mode *manual* and fill in the `span` attribute.
+    /// - traces/violin/attributes/spanmode
     public enum SpanMode: String, Encodable {
         case soft
         case hard
@@ -348,6 +417,7 @@ public struct Violin: Trace {
     public var fillColor: Color?
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points
+    /// - traces/violin/attributes/points
     public enum Points: String, Encodable {
         case all
         case outliers
@@ -385,6 +455,11 @@ public struct Violin: Trace {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
+        /// - traces/scattergl/attributes/marker/symbol
+        /// - traces/scatterternary/attributes/marker/symbol
+        /// - traces/splom/attributes/marker/symbol
+        /// - traces/area/attributes/marker/symbol
+        /// - traces/violin/attributes/marker/symbol
         public enum Symbol: String, Encodable {
             case circle
             case circleOpen = "circle-open"
@@ -675,6 +750,7 @@ public struct Violin: Trace {
     ///
     /// Useful when comparing two violin traces under *overlay* mode, where one trace has `side` set to
     /// *positive* and the other to *negative*.
+    /// - traces/violin/attributes/side
     public enum Side: String, Encodable {
         case both
         case positive
@@ -745,6 +821,7 @@ public struct Violin: Trace {
     public var unselected: Unselected?
 
     /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?
+    /// - traces/violin/attributes/hoveron
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     

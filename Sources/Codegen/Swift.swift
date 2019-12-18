@@ -14,16 +14,23 @@ struct Swift {
     }
 
     /// Data type that maps Plotly `enumerated` to Swift `enum`.
-    struct Enumerated: SwiftDataType {
+    struct Enumerated: SwiftComplexDataType {
         let type: String
         let schema: SchemaDataType?
 
-        var access: String? = "public"
+        let access: String = "public"
         var protocols: [String] = ["String", "Encodable"]
+        var references: [String] = []
+        static var existing: [Enumerated] = []
 
-        var values: [(String, String?)] = []
+        struct Case: Equatable {
+            let label: String
+            let rawValue: String?
+        }
+        var cases: [Case] = []
 
-        init(type: String, schema: Schema.Attribute.Enumerated) {
+        init(type: String, schema: SchemaDataType) {
+            let schema = schema as! Schema.Attribute.Enumerated
             self.schema = schema
             // Workaround for enum called Type that collides with Swift built-in Type
             self.type = Swift.name!.pascalCased(type)
@@ -33,40 +40,42 @@ struct Swift {
                 let onlyStrings = schema.values.filter {
                     if case Schema.Primitive.string = $0 { return true } else { return false }
                 }
-                values = onlyStrings.map { sanitized($0) }
+                cases = onlyStrings.map { sanitized($0) }
                 return
             }
             // Workaround for numerical values of Geo Resolution
             if schema.decodingPath.hasSuffix("geo/resolution") {
                 protocols[0] = "Int"
-                values = schema.values.map { primitive -> (String, String?) in
+                cases = schema.values.map { primitive -> Case in
                     guard case let Schema.Primitive.int(int) = primitive else {
                         fatalError("Unsupported Geo Resolution value in '\(schema.decodingPath)'")
                     }
-                    return ("oneOver\(int)M", "\(int)")
+                    return Case(label: "oneOver\(int)M", rawValue: "\(int)")
                 }
                 return
             }
-            // Workaround for meaningless numerical values of SurfaceAxis
+            // Improvement of meaningless numerical values of SurfaceAxis
             if schema.decodingPath.hasSuffix("surfaceaxis") {
                 protocols[0] = "Int"
-                values = [("none", "-1"), ("x", "0"), ("y", "1"), ("z", "2")]
+                cases = [Case(label: "none", rawValue: "-1"), Case(label: "x", rawValue: "0"),
+                         Case(label: "y", rawValue: "1"), Case(label: "z", rawValue: "2")]
                 return
             }
 
-            values = schema.values.map { sanitized($0) }
+            cases = schema.values.map { sanitized($0) }
         }
 
-        /// Transforms Plotly schema primitives to valid Swift case labels and raw values.
-        func sanitized(_ primitive: Schema.Primitive) -> (String, String?) {
+        /// Transforms Plotly schema primitives to valid Swift cases.
+        func sanitized(_ primitive: Schema.Primitive) -> Case {
             switch primitive {
             case .bool(let bool):
                 let string = "\(bool)"
                 let sanitized = Swift.name!.enumerated[string]!
-                return (sanitized, string.escaped())
+                return Case(label: sanitized, rawValue: string.escaped())
             case .string(let string):
                 let sanitized = Swift.name!.enumerated[string]!
-                return (sanitized == string) ? (sanitized, nil) : (sanitized, string.escaped())
+                let rawValue = (sanitized == string) ? nil : string.escaped()
+                return Case(label: sanitized, rawValue: rawValue)
             default:
                 fatalError("Invalid enum case in '\(self.schema!.decodingPath)'")
             }
@@ -75,16 +84,26 @@ struct Swift {
         /// Returns lines of Swift code that fully define the enum.
         func definition() -> [String] {
             var lines = [String]()
-            let access = (self.access != nil) ? (self.access! + " ") : ""
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += documentation
-            lines += ["\(access)enum \(type)\(protocols) {"]
-            for (sanitized, dirty) in values {
-                let rawValue = (dirty != nil) ? " = \(dirty!)" : ""
-                lines += ["case \(sanitized)\(rawValue)"].indented()
+            for reference in references {
+                lines += ["/// - \(reference)"]
+            }
+
+            lines += ["\(access) enum \(type)\(protocols) {"]
+            for cas in cases {
+                let rawValue = (cas.rawValue != nil) ? " = \(cas.rawValue!)" : ""
+                lines += ["case \(cas.label)\(rawValue)"].indented()
             }
             lines += ["}"]
             return lines
+        }
+
+        /// Checks for equality by comparing types and cases of the two `Enumerated` types.
+        static func == (lhs: Enumerated, rhs: Enumerated) -> Bool {
+            let typeEqual = lhs.type == rhs.type
+            let casesEqual = lhs.cases == rhs.cases
+            return typeEqual && casesEqual
         }
     }
 
@@ -145,54 +164,74 @@ struct Swift {
     }
 
     /// Data type that maps Plotly `flaglist` to `OptionSet` from the Swift standard library.
-    struct FlagList: SwiftDataType {
+    struct FlagList: SwiftComplexDataType {
         let type: String
         let schema: SchemaDataType?
 
-        var access: String? = "public"
-        var flags: [(String, String)] = []
+        let access: String = "public"
+        var references: [String] = []
+        let protocols: [String] = []
+        static var existing: [FlagList] = []
 
-        init(type: String, schema: Schema.Attribute.FlagList) {
+        struct Option: Equatable {
+            let label: String
+            let rawValue: String
+        }
+        var options: [Option] = []
+
+        init(type: String, schema: SchemaDataType) {
+            let schema = schema as! Schema.Attribute.FlagList
             self.type = Swift.name!.pascalCased(type)
             self.schema = schema
 
-            flags = schema.flags.map { sanitized($0) }
+            options = schema.flags.map { sanitized($0) }
             if let extras = schema.extras {
-                flags += extras.map { sanitized(String(describing: $0)) }
+                options += extras.map { sanitized(String(describing: $0)) }
             }
         }
 
-        /// Transforms Plotly schema flag values to valid Swift identifiers and corresponding raw values.
-        func sanitized(_ string: String) -> (String, String) {
+        /// Transforms Plotly schema flag values to valid Swift options.
+        func sanitized(_ string: String) -> Option {
             let sanitized = Swift.name!.flaglist[string]!
-            return (sanitized, string)
+            return Option(label: sanitized, rawValue: string.escaped())
         }
 
         /// Returns lines of Swift code that fully define the OptionSet struct.
         func definition() -> [String] {
-            let access = (self.access != nil) ? (self.access! + " ") : ""
             var lines = [String]()
             lines += documentation
-            lines += ["\(access)struct \(type): OptionSet, Encodable {"]
-            lines += ["\(access)let rawValue: Int"].indented()
+            for reference in references {
+                lines += ["/// - \(reference)"]
+            }
+
+            lines += ["\(access) struct \(type): OptionSet, Encodable {"]
+            lines += ["\(access) let rawValue: Int"].indented()
             lines += [""]
-            for (i, (san, _) ) in flags.enumerated() {
-                lines += ["\(access)static let \(san) = \(type)(rawValue: 1 << \(i))"].indented()
+            for (i, option) in options.enumerated() {
+                let label = option.label
+                lines += ["\(access) static let \(label) = \(type)(rawValue: 1 << \(i))"].indented()
             }
             lines += [""]
-            lines += ["\(access)init(rawValue: Int) { self.rawValue = rawValue }"].indented()
+            lines += ["\(access) init(rawValue: Int) { self.rawValue = rawValue }"].indented()
             lines += [""]
-            lines += ["\(access)func encode(to encoder: Encoder) throws {"].indented()
+            lines += ["\(access) func encode(to encoder: Encoder) throws {"].indented()
             lines += ["var options = [String]()"].indented(2)
-            for (i, (_, str)) in flags.enumerated() {
-                let str = str.escaped()
-                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(str)] }"].indented(2)
+            for (i, option) in options.enumerated() {
+                let rawValue = option.rawValue
+                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(rawValue)] }"].indented(2)
             }
             lines += ["var container = encoder.singleValueContainer()"].indented(2)
             lines += ["try container.encode(options.joined(separator: \"+\"))"].indented(2)
             lines += ["}"].indented()
             lines += ["}"]
             return lines
+        }
+
+        /// Checks for equality by comparing types and options of the two `FlagList` types.
+        static func == (lhs: FlagList, rhs: FlagList) -> Bool {
+            let typeEqual = lhs.type == rhs.type
+            let optionsEqual = lhs.options == rhs.options
+            return typeEqual && optionsEqual
         }
     }
 
@@ -212,7 +251,7 @@ struct Swift {
         var documentation: [String] = []
         let schema: SchemaDataType? = nil
 
-        var access: String? = "public"
+        var access: String = "public"
         var protocols: [String] = ["Encodable"]
 
         var members: [Definable]
@@ -247,9 +286,8 @@ struct Swift {
             var lines = [String]()
             lines += documentation
 
-            let access = (self.access != nil) ? (self.access! + " ") : ""
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += ["\(access)struct \(type)\(protocols) {"]
+            lines += ["\(access) struct \(type)\(protocols) {"]
 
             for member in members {
                 lines += member.definition().indented()
@@ -258,7 +296,7 @@ struct Swift {
 
             let variables = members.compactMap { $0 as? Instance }.filter { $0.const == nil }
             let arguments = variables.map { $0.argument() + " = nil" }.joined(separator: ", ")
-            lines += ["\(access)init(\(arguments)) {"].indented()
+            lines += ["\(access) init(\(arguments)) {"].indented()
             lines += variables.map { "self.\($0.identifier) = \($0.identifier)" }.indented(2)
             lines += ["}"].indented()
 
@@ -273,7 +311,7 @@ struct Swift {
         case .dataArray(let dataArray):
             return DataArray(schema: dataArray)
         case .enumerated(let enumerated):
-            return Enumerated(type: identifier, schema: enumerated)
+            return Enumerated.create(type: identifier, schema: enumerated)
         case .boolean(let boolean):
             return Boolean(schema: boolean)
         case .number(let number):
@@ -293,7 +331,7 @@ struct Swift {
         case .subPlotID(let subPlotID):
             return SubPlotID(schema: subPlotID)
         case .flagList(let flagList):
-            return FlagList(type: identifier, schema: flagList)
+            return FlagList.create(type: identifier, schema: flagList)
         case .anything(let anything):
             return Anything(schema: anything)
         case .infoArray(let infoArray):
@@ -310,6 +348,13 @@ protocol Definable {
     /// Returns lines of Swift code that fully define the data type including the nested members.
     func definition() -> [String]
 }
+// TODO: Documentation
+extension Definable {
+    /// Returns empty lines which is useful for Swift built-in types like Int, String or [Double].
+    func definition() -> [String] {
+        return []
+    }
+}
 
 /// A data type that can be used as an argument when generating Swift code from Plotly schema.
 protocol SwiftDataType: Definable {
@@ -317,16 +362,36 @@ protocol SwiftDataType: Definable {
     var schema: SchemaDataType? { get }
     var documentation: [String] { get }
 }
-
 /// Extension with default implementations of commonly shared functionality.
 extension SwiftDataType {
     /// Documentation of the data type extracted from Plotly schema.
     var documentation: [String] {
         (schema?.description != nil) ? schema!.description!.documentation() : [String]()
     }
+}
 
-    /// Returns empty lines which is useful for Swift built-in types like Int, String or [Double].
-    func definition() -> [String] {
-        return []
+/// TODO: Documentation
+protocol SwiftComplexDataType: SwiftDataType, Equatable {
+    var access: String { get }
+    var protocols: [String] { get }
+    var references: [String] { get set }
+    static var existing: [Self] { get set }
+
+    init(type: String, schema: SchemaDataType)
+    static func create(type: String, schema: SchemaDataType) -> Self
+}
+/// TODO: Documentation
+extension SwiftComplexDataType {
+    /// TODO: Documentation
+    static func create(type: String, schema: SchemaDataType) -> Self {
+        var new = Self.init(type: type, schema: schema)
+        if let index = Self.existing.firstIndex(where: { $0 == new }) {
+            Self.existing[index].references.append(schema.decodingPath)
+            return Self.existing[index]
+        } else {
+            new.references.append(schema.decodingPath)
+            Self.existing.append(new)
+            return new
+        }
     }
 }

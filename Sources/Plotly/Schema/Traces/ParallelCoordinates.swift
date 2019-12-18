@@ -10,6 +10,12 @@ public struct ParallelCoordinates: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -135,6 +141,7 @@ public struct ParallelCoordinates: Trace {
     /// *top* positions labels above, next to the title *bottom* positions labels below the graph Tilted
     /// labels with *labelangle* may be positioned better inside margins when `labelposition` is set to
     /// *bottom*.
+    /// - traces/parcoords/attributes/labelside
     public enum LabelSide: String, Encodable {
         case top
         case bottom
@@ -399,6 +406,11 @@ public struct ParallelCoordinates: Trace {
             ///
             /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
             /// Use `thickness` to set the value.
+            /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
+            /// - traces/heatmapgl/attributes/colorbar/thicknessmode
+            /// - traces/mesh3d/attributes/colorbar/thicknessmode
+            /// - traces/scattergl/attributes/marker/colorbar/thicknessmode
+            /// - traces/parcoords/attributes/line/colorbar/thicknessmode
             public enum ThicknessMode: String, Encodable {
                 case fraction
                 case pixels
@@ -412,17 +424,21 @@ public struct ParallelCoordinates: Trace {
             /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
             public var thickness: Double?
         
-            /// Determines whether this color bar's length (i.e. 
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
-            /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
             /// Use `len` to set the value.
+            /// - layout/layoutAttributes/sliders/items/slider/lenmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
+            /// - traces/heatmapgl/attributes/colorbar/lenmode
+            /// - traces/mesh3d/attributes/colorbar/lenmode
+            /// - traces/scattergl/attributes/marker/colorbar/lenmode
+            /// - traces/parcoords/attributes/line/colorbar/lenmode
             public enum LengthMode: String, Encodable {
                 case fraction
                 case pixels
             }
-            /// Determines whether this color bar's length (i.e. 
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
-            /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
             /// Use `len` to set the value.
             public var lengthMode: LengthMode?
         
@@ -434,17 +450,20 @@ public struct ParallelCoordinates: Trace {
             /// Sets the x position of the color bar (in plot fraction).
             public var x: Double?
         
-            /// Sets this color bar's horizontal position anchor. 
-            ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+            /// Sets the anchor for the x position
+            /// - layout/layoutAttributes/images/items/image/xanchor
+            /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
+            /// - traces/heatmapgl/attributes/colorbar/xanchor
+            /// - traces/mesh3d/attributes/colorbar/xanchor
+            /// - traces/scattergl/attributes/marker/colorbar/xanchor
+            /// - traces/parcoords/attributes/line/colorbar/xanchor
             public enum XAnchor: String, Encodable {
                 case left
                 case center
                 case right
             }
-            /// Sets this color bar's horizontal position anchor. 
-            ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+            /// Sets the anchor for the x position
             public var xAnchor: XAnchor?
         
             /// Sets the amount of padding (in px) along the x direction.
@@ -453,13 +472,19 @@ public struct ParallelCoordinates: Trace {
             /// Sets the y position of the color bar (in plot fraction).
             public var y: Double?
         
-            /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+            /// Sets the anchor for the y position.
+            /// - layout/layoutAttributes/images/items/image/yanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
+            /// - traces/heatmapgl/attributes/colorbar/yanchor
+            /// - traces/mesh3d/attributes/colorbar/yanchor
+            /// - traces/scattergl/attributes/marker/colorbar/yanchor
+            /// - traces/parcoords/attributes/line/colorbar/yanchor
             public enum YAnchor: String, Encodable {
                 case top
                 case middle
                 case bottom
             }
-            /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+            /// Sets the anchor for the y position.
             public var yAnchor: YAnchor?
         
             /// Sets the amount of padding (in px) along the y direction.
@@ -487,6 +512,21 @@ public struct ParallelCoordinates: Trace {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+            /// - traces/heatmapgl/attributes/colorbar/tickmode
+            /// - traces/mesh3d/attributes/colorbar/tickmode
+            /// - traces/scattergl/attributes/marker/colorbar/tickmode
+            /// - traces/parcoords/attributes/line/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -547,6 +587,21 @@ public struct ParallelCoordinates: Trace {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+            /// - traces/heatmapgl/attributes/colorbar/ticks
+            /// - traces/mesh3d/attributes/colorbar/ticks
+            /// - traces/scattergl/attributes/marker/colorbar/ticks
+            /// - traces/parcoords/attributes/line/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -669,6 +724,21 @@ public struct ParallelCoordinates: Trace {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+            /// - traces/heatmapgl/attributes/colorbar/showtickprefix
+            /// - traces/mesh3d/attributes/colorbar/showtickprefix
+            /// - traces/scattergl/attributes/marker/colorbar/showtickprefix
+            /// - traces/parcoords/attributes/line/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -685,6 +755,21 @@ public struct ParallelCoordinates: Trace {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+            /// - traces/heatmapgl/attributes/colorbar/showticksuffix
+            /// - traces/mesh3d/attributes/colorbar/showticksuffix
+            /// - traces/scattergl/attributes/marker/colorbar/showticksuffix
+            /// - traces/parcoords/attributes/line/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -701,6 +786,21 @@ public struct ParallelCoordinates: Trace {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+            /// - traces/heatmapgl/attributes/colorbar/exponentformat
+            /// - traces/mesh3d/attributes/colorbar/exponentformat
+            /// - traces/scattergl/attributes/marker/colorbar/exponentformat
+            /// - traces/parcoords/attributes/line/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -719,6 +819,21 @@ public struct ParallelCoordinates: Trace {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+            /// - traces/heatmapgl/attributes/colorbar/showexponent
+            /// - traces/mesh3d/attributes/colorbar/showexponent
+            /// - traces/scattergl/attributes/marker/colorbar/showexponent
+            /// - traces/parcoords/attributes/line/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -771,6 +886,11 @@ public struct ParallelCoordinates: Trace {
                 /// Determines the location of color bar's title with respect to the color bar. 
                 ///
                 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+                /// - layout/layoutAttributes/coloraxis/colorbar/title/side
+                /// - traces/heatmapgl/attributes/colorbar/title/side
+                /// - traces/mesh3d/attributes/colorbar/title/side
+                /// - traces/scattergl/attributes/marker/colorbar/title/side
+                /// - traces/parcoords/attributes/line/colorbar/title/side
                 public enum Side: String, Encodable {
                     case right
                     case top
@@ -823,6 +943,11 @@ public struct ParallelCoordinates: Trace {
                 public var titleFont: TitleFont?
             
                 /// Deprecated in favor of color bar's `title.side`.
+                /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
+                /// - traces/heatmapgl/attributes/colorbar/_deprecated/titleside
+                /// - traces/mesh3d/attributes/colorbar/_deprecated/titleside
+                /// - traces/scattergl/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
                 public enum TitleSide: String, Encodable {
                     case right
                     case top

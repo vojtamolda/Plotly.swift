@@ -8,6 +8,19 @@ public struct PointCloud: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/pointcloud/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -63,6 +76,14 @@ public struct PointCloud: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/heatmapgl/attributes/hoverinfo
+    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/ohlc/attributes/hoverinfo
+    /// - traces/scattergl/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
+    /// - traces/area/attributes/hoverinfo
+    /// - traces/pointcloud/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -145,6 +166,17 @@ public struct PointCloud: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right

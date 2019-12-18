@@ -1,5 +1,126 @@
 public struct Layout: Encodable {
     
+    // MARK: - Funnel Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next
+    /// to one another centered around the shared location. With *overlay*, the bars are plotted over
+    /// one another, you might need to an *opacity* to see multiple bars.
+    /// - traces/funnel/layoutAttributes/funnelmode
+    public enum FunnelMode: String, Encodable {
+        case stack
+        case group
+        case overlay
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next
+    /// to one another centered around the shared location. With *overlay*, the bars are plotted over
+    /// one another, you might need to an *opacity* to see multiple bars.
+    public var funnelMode: FunnelMode?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    public var funnelGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    public var funnelGroupGap: Double?
+
+    
+    // MARK: - Histogram Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    /// - traces/bar/layoutAttributes/barmode
+    /// - traces/histogram/layoutAttributes/barmode
+    public enum BarMode: String, Encodable {
+        case stack
+        case group
+        case overlay
+        case relative
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    public var barMode: BarMode?
+
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    /// - traces/bar/layoutAttributes/barnorm
+    /// - traces/histogram/layoutAttributes/barnorm
+    public enum Barnorm: String, Encodable {
+        case none = ""
+        case fraction
+        case percent
+    }
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    public var barnorm: Barnorm?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    public var barGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    public var barGroupGap: Double?
+
+    
+    // MARK: - Bar Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    /// - traces/bar/layoutAttributes/barmode
+    public enum BarMode: String, Encodable {
+        case stack
+        case group
+        case overlay
+        case relative
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    public var barMode: BarMode?
+
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    /// - traces/bar/layoutAttributes/barnorm
+    public enum Barnorm: String, Encodable {
+        case none = ""
+        case fraction
+        case percent
+    }
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    public var barnorm: Barnorm?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    public var barGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    public var barGroupGap: Double?
+
+    
     // MARK: - Box Trace
 
     /// Determines how boxes at the same location coordinate are displayed on the graph. 
@@ -7,6 +128,130 @@ public struct Layout: Encodable {
     /// If *group*, the boxes are plotted next to one another centered around the shared location. If
     /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
     /// multiple boxes. Has no effect on traces that have *width* set.
+    /// - traces/candlestick/layoutAttributes/boxmode
+    /// - traces/box/layoutAttributes/boxmode
+    public enum BoxMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how boxes at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
+    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
+    /// multiple boxes. Has no effect on traces that have *width* set.
+    public var boxMode: BoxMode?
+
+    /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var boxGap: Double?
+
+    /// Sets the gap (in plot fraction) between boxes of the same location coordinate. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var boxGroupGap: Double?
+
+    
+    // MARK: - Violin Trace
+
+    /// Determines how violins at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the violins are plotted next to one another centered around the shared location. If
+    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
+    /// multiple violins. Has no effect on traces that have *width* set.
+    /// - traces/violin/layoutAttributes/violinmode
+    public enum ViolinMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how violins at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the violins are plotted next to one another centered around the shared location. If
+    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
+    /// multiple violins. Has no effect on traces that have *width* set.
+    public var violinMode: ViolinMode?
+
+    /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var violinGap: Double?
+
+    /// Sets the gap (in plot fraction) between violins of the same location coordinate. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var violinGroupGap: Double?
+
+    
+    // MARK: - Sunburst Trace
+
+    /// Sets the default sunburst slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendsunburstcolors`.
+    public var sunburstColorWay: ColorList?
+
+    /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    public var extendSunburstColors: Bool?
+
+    
+    // MARK: - Pie Trace
+
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    public var hiddenLabels: [Double]?
+
+    /// Sets the default pie slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendpiecolors`.
+    public var pieColorWay: ColorList?
+
+    /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    public var extendPieColors: Bool?
+
+    /// Sets the source reference on plot.ly for  hiddenlabels .
+    public var hiddenLabelsSource: String?
+
+    
+    // MARK: - BarPolar Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted
+    /// over one another, you might need to an *opacity* to see multiple bars.
+    /// - traces/barpolar/layoutAttributes/barmode
+    public enum BarMode: String, Encodable {
+        case stack
+        case overlay
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted
+    /// over one another, you might need to an *opacity* to see multiple bars.
+    public var barMode: BarMode?
+
+    /// Sets the gap between bars of adjacent location coordinates. 
+    ///
+    /// Values are unitless, they represent fractions of the minimum difference in bar positions in the
+    /// data.
+    public var barGap: Double?
+
+    
+    // MARK: - Candlestick Trace
+
+    /// Determines how boxes at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
+    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
+    /// multiple boxes. Has no effect on traces that have *width* set.
+    /// - traces/candlestick/layoutAttributes/boxmode
     public enum BoxMode: String, Encodable {
         case group
         case overlay
@@ -51,44 +296,6 @@ public struct Layout: Encodable {
     public var hiddenLabelsSource: String?
 
     
-    // MARK: - Pie Trace
-
-    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    public var hiddenLabels: [Double]?
-
-    /// Sets the default pie slice colors. 
-    ///
-    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
-    /// still be extended with lighter and darker colors, see `extendpiecolors`.
-    public var pieColorWay: ColorList?
-
-    /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
-    ///
-    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
-    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
-    /// never extended.
-    public var extendPieColors: Bool?
-
-    /// Sets the source reference on plot.ly for  hiddenlabels .
-    public var hiddenLabelsSource: String?
-
-    
-    // MARK: - Sunburst Trace
-
-    /// Sets the default sunburst slice colors. 
-    ///
-    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
-    /// still be extended with lighter and darker colors, see `extendsunburstcolors`.
-    public var sunburstColorWay: ColorList?
-
-    /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
-    ///
-    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
-    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
-    /// never extended.
-    public var extendSunburstColors: Bool?
-
-    
     // MARK: - Treemap Trace
 
     /// Sets the default treemap slice colors. 
@@ -105,35 +312,6 @@ public struct Layout: Encodable {
     public var extendTreemapColors: Bool?
 
     
-    // MARK: - Violin Trace
-
-    /// Determines how violins at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the violins are plotted next to one another centered around the shared location. If
-    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
-    /// multiple violins. Has no effect on traces that have *width* set.
-    public enum ViolinMode: String, Encodable {
-        case group
-        case overlay
-    }
-    /// Determines how violins at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the violins are plotted next to one another centered around the shared location. If
-    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
-    /// multiple violins. Has no effect on traces that have *width* set.
-    public var violinMode: ViolinMode?
-
-    /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var violinGap: Double?
-
-    /// Sets the gap (in plot fraction) between violins of the same location coordinate. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var violinGroupGap: Double?
-
-    
     // MARK: - Waterfall Trace
 
     /// Determines how bars at the same location coordinate are displayed on the graph. 
@@ -141,6 +319,7 @@ public struct Layout: Encodable {
     /// With *group*, the bars are plotted next to one another centered around the shared location. With
     /// *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple
     /// bars.
+    /// - traces/waterfall/layoutAttributes/waterfallmode
     public enum WaterfallMode: String, Encodable {
         case group
         case overlay
@@ -157,172 +336,6 @@ public struct Layout: Encodable {
 
     /// Sets the gap (in plot fraction) between bars of the same location coordinate.
     public var waterfallGroupGap: Double?
-
-    
-    // MARK: - Funnel Trace
-
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next
-    /// to one another centered around the shared location. With *overlay*, the bars are plotted over
-    /// one another, you might need to an *opacity* to see multiple bars.
-    public enum FunnelMode: String, Encodable {
-        case stack
-        case group
-        case overlay
-    }
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next
-    /// to one another centered around the shared location. With *overlay*, the bars are plotted over
-    /// one another, you might need to an *opacity* to see multiple bars.
-    public var funnelMode: FunnelMode?
-
-    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var funnelGap: Double?
-
-    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var funnelGroupGap: Double?
-
-    
-    // MARK: - Candlestick Trace
-
-    /// Determines how boxes at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
-    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
-    /// multiple boxes. Has no effect on traces that have *width* set.
-    public enum BoxMode: String, Encodable {
-        case group
-        case overlay
-    }
-    /// Determines how boxes at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
-    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
-    /// multiple boxes. Has no effect on traces that have *width* set.
-    public var boxMode: BoxMode?
-
-    /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var boxGap: Double?
-
-    /// Sets the gap (in plot fraction) between boxes of the same location coordinate. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var boxGroupGap: Double?
-
-    
-    // MARK: - Histogram Trace
-
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    public enum BarMode: String, Encodable {
-        case stack
-        case group
-        case overlay
-        case relative
-    }
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    public var barMode: BarMode?
-
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    public enum Barnorm: String, Encodable {
-        case none = ""
-        case fraction
-        case percent
-    }
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    public var barnorm: Barnorm?
-
-    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var barGap: Double?
-
-    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var barGroupGap: Double?
-
-    
-    // MARK: - BarPolar Trace
-
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted
-    /// over one another, you might need to an *opacity* to see multiple bars.
-    public enum BarMode: String, Encodable {
-        case stack
-        case overlay
-    }
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted
-    /// over one another, you might need to an *opacity* to see multiple bars.
-    public var barMode: BarMode?
-
-    /// Sets the gap between bars of adjacent location coordinates. 
-    ///
-    /// Values are unitless, they represent fractions of the minimum difference in bar positions in the
-    /// data.
-    public var barGap: Double?
-
-    
-    // MARK: - Bar Trace
-
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    public enum BarMode: String, Encodable {
-        case stack
-        case group
-        case overlay
-        case relative
-    }
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    public var barMode: BarMode?
-
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    public enum Barnorm: String, Encodable {
-        case none = ""
-        case fraction
-        case percent
-    }
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    public var barnorm: Barnorm?
-
-    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var barGap: Double?
-
-    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var barGroupGap: Double?
 
     
     // MARK: - General
@@ -398,6 +411,7 @@ public struct Layout: Encodable {
         ///
         /// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
         /// area only.
+        /// - layout/layoutAttributes/title/xref
         public enum XReference: String, Encodable {
             case container
             case paper
@@ -412,6 +426,7 @@ public struct Layout: Encodable {
         ///
         /// *container* spans the entire `height` of the plot. *paper* refers to the height of the plotting
         /// area only.
+        /// - layout/layoutAttributes/title/yref
         public enum YReference: String, Encodable {
             case container
             case paper
@@ -435,6 +450,7 @@ public struct Layout: Encodable {
         /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
         /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
         /// `xanchor` value automatically based on the value of `x`.
+        /// - layout/layoutAttributes/title/xanchor
         public enum XAnchor: String, Encodable {
             case auto
             case left
@@ -453,6 +469,7 @@ public struct Layout: Encodable {
         /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
         /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
         /// calculates the `yanchor` value automatically based on the value of `y`.
+        /// - layout/layoutAttributes/title/yanchor
         public enum YAnchor: String, Encodable {
             case auto
             case top
@@ -633,6 +650,7 @@ public struct Layout: Encodable {
 
     public struct ModeBar: Encodable {
         /// Sets the orientation of the modebar.
+        /// - layout/layoutAttributes/modebar/orientation
         public enum Orientation: String, Encodable {
             case v
             case h
@@ -681,6 +699,7 @@ public struct Layout: Encodable {
         public var duration: Double?
     
         /// The easing function used for the transition
+        /// - layout/layoutAttributes/transition/easing
         public enum Easing: String, Encodable {
             case linear
             case quad
@@ -723,6 +742,7 @@ public struct Layout: Encodable {
         public var easing: Easing?
     
         /// Determines whether the figure's layout or traces smoothly transitions during updates that make both traces and layout change.
+        /// - layout/layoutAttributes/transition/ordering
         public enum Ordering: String, Encodable {
             case layoutFirst = "layout first"
             case tracesFirst = "traces first"
@@ -792,6 +812,7 @@ public struct Layout: Encodable {
     /// confusing, consider explicitly setting `hovermode`: *closest* when using this feature. Selection
     /// events are sent accordingly as long as *event* flag is set as well. When the *event* flag is
     /// missing, `plotly_click` and `plotly_selected` events are not fired.
+    /// - layout/layoutAttributes/clickmode
     public struct ClickMode: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -826,6 +847,7 @@ public struct Layout: Encodable {
     ///
     /// *select* and *lasso* apply only to scatter traces with markers or text. *orbit* and *turntable*
     /// apply only to 3D scenes.
+    /// - layout/layoutAttributes/dragmode
     public enum DragMode: String, Encodable {
         case zoom
         case pan
@@ -847,6 +869,7 @@ public struct Layout: Encodable {
     /// lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation`
     /// value) for plots based on cartesian coordinates. For anything else the default value is
     /// *closest*.
+    /// - layout/layoutAttributes/hovermode
     public enum HoverMode: String, Encodable {
         case x
         case y
@@ -910,6 +933,7 @@ public struct Layout: Encodable {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -941,6 +965,7 @@ public struct Layout: Encodable {
     ///
     /// "h" only allows horizontal selection, "v" only vertical, "d" only diagonal and "any" sets no
     /// limit.
+    /// - layout/layoutAttributes/selectdirection
     public enum SelectDirection: String, Encodable {
         case h
         case v
@@ -962,6 +987,7 @@ public struct Layout: Encodable {
         public var rows: Int?
     
         /// Is the first row the top or the bottom? Note that columns are always enumerated from left to right.
+        /// - layout/layoutAttributes/grid/roworder
         public enum RowOrder: String, Encodable {
             case topToBottom = "top to bottom"
             case bottomToTop = "bottom to top"
@@ -1002,6 +1028,7 @@ public struct Layout: Encodable {
         ///
         /// *independent* uses a new xy pair for each cell, left-to-right across each row then iterating
         /// rows according to `roworder`.
+        /// - layout/layoutAttributes/grid/pattern
         public enum Pattern: String, Encodable {
             case independent
             case coupled
@@ -1044,6 +1071,7 @@ public struct Layout: Encodable {
         ///
         /// *bottom* means the very bottom of the grid. *bottom plot* is the lowest plot that each x axis is
         /// used in. *top* and *top plot* are similar.
+        /// - layout/layoutAttributes/grid/xside
         public enum XSide: String, Encodable {
             case bottom
             case bottomPlot = "bottom plot"
@@ -1060,6 +1088,7 @@ public struct Layout: Encodable {
         ///
         /// *left* means the very left edge of the grid. *left plot* is the leftmost plot that each y axis
         /// is used in. *right* and *right plot* are similar.
+        /// - layout/layoutAttributes/grid/yside
         public enum YSide: String, Encodable {
             case left
             case leftPlot = "left plot"
@@ -1090,6 +1119,7 @@ public struct Layout: Encodable {
     public var grid: Grid?
 
     /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
+    /// - layout/layoutAttributes/calendar
     public enum Calendar: String, Encodable {
         case gregorian
         case chinese
@@ -1180,6 +1210,7 @@ public struct Layout: Encodable {
         ///
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
+        /// - layout/layoutAttributes/xaxis/type
         public enum Rule: String, Encodable {
             case auto = "-"
             case linear
@@ -1197,6 +1228,7 @@ public struct Layout: Encodable {
         /// Determines whether or not the range of this axis is computed in relation to the input data. 
         ///
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+        /// - layout/layoutAttributes/xaxis/autorange
         public enum AutoRange: String, Encodable {
             case `true` = "true"
             case `false` = "false"
@@ -1211,6 +1243,7 @@ public struct Layout: Encodable {
         ///
         /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
         /// is non-negative, regardless of the input data. Applies only to linear axes.
+        /// - layout/layoutAttributes/xaxis/rangemode
         public enum RangeMode: String, Encodable {
             case normal
             case toZero = "tozero"
@@ -1248,6 +1281,7 @@ public struct Layout: Encodable {
         /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
         /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
         /// `scaleanchor` and a `matches` constraint is currently forbidden.
+        /// - layout/layoutAttributes/xaxis/scaleanchor
         public enum ScaleAnchor: String, Encodable {
             case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
             case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -1274,6 +1308,7 @@ public struct Layout: Encodable {
         public var scaleRatio: Double?
     
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*.
+        /// - layout/layoutAttributes/xaxis/constrain
         public enum Constrain: String, Encodable {
             case range
             case domain
@@ -1285,6 +1320,7 @@ public struct Layout: Encodable {
         ///
         /// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
         /// and *bottom* for y axes.
+        /// - layout/layoutAttributes/xaxis/constraintoward
         public enum ConstrainToward: String, Encodable {
             case left
             case center
@@ -1306,6 +1342,7 @@ public struct Layout: Encodable {
         /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
         /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
         /// same `type`.
+        /// - layout/layoutAttributes/xaxis/matches
         public enum Matches: String, Encodable {
             case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
             case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -1326,6 +1363,7 @@ public struct Layout: Encodable {
         /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
         /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
         /// provided).
+        /// - layout/layoutAttributes/xaxis/tickmode
         public enum TickMode: String, Encodable {
             case auto
             case linear
@@ -1386,6 +1424,7 @@ public struct Layout: Encodable {
         ///
         /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
         /// (inside) the axis lines.
+        /// - layout/layoutAttributes/xaxis/ticks
         public enum Ticks: String, Encodable {
             case outside
             case inside
@@ -1401,6 +1440,7 @@ public struct Layout: Encodable {
         ///
         /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
         /// ticks and grid lines are drawn half a category to the left/bottom of labels.
+        /// - layout/layoutAttributes/xaxis/tickson
         public enum TicksOn: String, Encodable {
             case labels
             case boundaries
@@ -1416,6 +1456,7 @@ public struct Layout: Encodable {
         /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
         /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
         /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+        /// - layout/layoutAttributes/xaxis/mirror
         public enum Mirror: String, Encodable {
             case `true` = "true"
             case ticks
@@ -1468,6 +1509,7 @@ public struct Layout: Encodable {
         ///
         /// If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If
         /// *marker*, then a marker dot is drawn on the axis the series is plotted on
+        /// - layout/layoutAttributes/xaxis/spikemode
         public struct SpikeMode: OptionSet, Encodable {
             public let rawValue: Int
         
@@ -1493,6 +1535,7 @@ public struct Layout: Encodable {
         public var spikeMode: SpikeMode?
     
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+        /// - layout/layoutAttributes/xaxis/spikesnap
         public enum SpikeSnap: String, Encodable {
             case data
             case cursor
@@ -1538,6 +1581,7 @@ public struct Layout: Encodable {
         ///
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        /// - layout/layoutAttributes/xaxis/showtickprefix
         public enum ShowTickPrefix: String, Encodable {
             case all
             case first
@@ -1554,6 +1598,7 @@ public struct Layout: Encodable {
         public var tickSuffix: String?
     
         /// Same as `showtickprefix` but for tick suffixes.
+        /// - layout/layoutAttributes/xaxis/showticksuffix
         public enum ShowTickSuffix: String, Encodable {
             case all
             case first
@@ -1567,6 +1612,7 @@ public struct Layout: Encodable {
         ///
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
+        /// - layout/layoutAttributes/xaxis/showexponent
         public enum ShowExponent: String, Encodable {
             case all
             case first
@@ -1583,6 +1629,7 @@ public struct Layout: Encodable {
         ///
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        /// - layout/layoutAttributes/xaxis/exponentformat
         public enum ExponentFormat: String, Encodable {
             case none
             case e
@@ -1716,6 +1763,7 @@ public struct Layout: Encodable {
         ///
         /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
         /// axis' position is determined by `position`.
+        /// - layout/layoutAttributes/xaxis/anchor
         public enum Anchor: String, Encodable {
             case free
             case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
@@ -1728,6 +1776,7 @@ public struct Layout: Encodable {
         public var anchor: Anchor?
     
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
+        /// - layout/layoutAttributes/xaxis/side
         public enum Side: String, Encodable {
             case top
             case bottom
@@ -1741,6 +1790,7 @@ public struct Layout: Encodable {
         ///
         /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
         /// overlapping domains only the highest-numbered axis will be visible.
+        /// - layout/layoutAttributes/xaxis/overlaying
         public enum Overlaying: String, Encodable {
             case free
             case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
@@ -1758,6 +1808,7 @@ public struct Layout: Encodable {
         /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
         /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
         /// nodes above this axis.
+        /// - layout/layoutAttributes/xaxis/layer
         public enum Layer: String, Encodable {
             case aboveTraces = "above traces"
             case belowTraces = "below traces"
@@ -1789,6 +1840,7 @@ public struct Layout: Encodable {
         /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
         /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
         /// or median of all the values.
+        /// - layout/layoutAttributes/xaxis/categoryorder
         public enum CategoryOrder: String, Encodable {
             case trace
             case categoryAscending = "category ascending"
@@ -1917,6 +1969,7 @@ public struct Layout: Encodable {
                 ///
                 /// If *auto*, the autorange will be used. If *fixed*, the `range` is used. If *match*, the current
                 /// range of the corresponding y-axis on the main subplot is used.
+                /// - layout/layoutAttributes/xaxis/rangeslider/yaxis/rangemode
                 public enum RangeMode: String, Encodable {
                     case auto
                     case fixed
@@ -1968,6 +2021,7 @@ public struct Layout: Encodable {
                         public var visible: Bool?
                     
                         /// The unit of measurement that the `count` value will set the range by.
+                        /// - layout/layoutAttributes/xaxis/rangeselector/buttons/items/button/step
                         public enum Step: String, Encodable {
                             case month
                             case year
@@ -1988,6 +2042,7 @@ public struct Layout: Encodable {
                         /// and `count` set to *1* the range update shifts the start of the range back to January 01 of the
                         /// current year. Month and year *todate* are currently available only for the built-in (Gregorian)
                         /// calendar.
+                        /// - layout/layoutAttributes/xaxis/rangeselector/buttons/items/button/stepmode
                         public enum StepMode: String, Encodable {
                             case backward
                             case todate
@@ -2056,31 +2111,47 @@ public struct Layout: Encodable {
             /// Sets the x position (in normalized coordinates) of the range selector.
             public var x: Double?
         
-            /// Sets the range selector's horizontal position anchor. 
+            /// Sets the title's horizontal alignment with respect to its x position. 
             ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+            /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+            /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+            /// `xanchor` value automatically based on the value of `x`.
+            /// - layout/layoutAttributes/title/xanchor
+            /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
             public enum XAnchor: String, Encodable {
                 case auto
                 case left
                 case center
                 case right
             }
-            /// Sets the range selector's horizontal position anchor. 
+            /// Sets the title's horizontal alignment with respect to its x position. 
             ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+            /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+            /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+            /// `xanchor` value automatically based on the value of `x`.
             public var xAnchor: XAnchor?
         
             /// Sets the y position (in normalized coordinates) of the range selector.
             public var y: Double?
         
-            /// Sets the range selector's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+            /// Sets the title's vertical alignment with respect to its y position. 
+            ///
+            /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+            /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+            /// calculates the `yanchor` value automatically based on the value of `y`.
+            /// - layout/layoutAttributes/title/yanchor
+            /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
             public enum YAnchor: String, Encodable {
                 case auto
                 case top
                 case middle
                 case bottom
             }
-            /// Sets the range selector's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+            /// Sets the title's vertical alignment with respect to its y position. 
+            ///
+            /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+            /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+            /// calculates the `yanchor` value automatically based on the value of `y`.
             public var yAnchor: YAnchor?
         
             /// Sets the font of the range selector button text.
@@ -2137,10 +2208,9 @@ public struct Layout: Encodable {
         }
         public var rangeSelector: RangeSelector?
     
-        /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-        ///
-        /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-        /// or via the global `layout.calendar`
+        /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
+        /// - layout/layoutAttributes/calendar
+        /// - layout/layoutAttributes/xaxis/calendar
         public enum Calendar: String, Encodable {
             case gregorian
             case chinese
@@ -2159,10 +2229,7 @@ public struct Layout: Encodable {
             case thai
             case ummalqura
         }
-        /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-        ///
-        /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-        /// or via the global `layout.calendar`
+        /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
         public var calendar: Calendar?
     
         /// Sets the source reference on plot.ly for  tickvals .
@@ -2321,6 +2388,8 @@ public struct Layout: Encodable {
         ///
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
+        /// - layout/layoutAttributes/xaxis/type
+        /// - layout/layoutAttributes/yaxis/type
         public enum Rule: String, Encodable {
             case auto = "-"
             case linear
@@ -2338,6 +2407,8 @@ public struct Layout: Encodable {
         /// Determines whether or not the range of this axis is computed in relation to the input data. 
         ///
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+        /// - layout/layoutAttributes/xaxis/autorange
+        /// - layout/layoutAttributes/yaxis/autorange
         public enum AutoRange: String, Encodable {
             case `true` = "true"
             case `false` = "false"
@@ -2352,6 +2423,8 @@ public struct Layout: Encodable {
         ///
         /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
         /// is non-negative, regardless of the input data. Applies only to linear axes.
+        /// - layout/layoutAttributes/xaxis/rangemode
+        /// - layout/layoutAttributes/yaxis/rangemode
         public enum RangeMode: String, Encodable {
             case normal
             case toZero = "tozero"
@@ -2389,6 +2462,8 @@ public struct Layout: Encodable {
         /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
         /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
         /// `scaleanchor` and a `matches` constraint is currently forbidden.
+        /// - layout/layoutAttributes/xaxis/scaleanchor
+        /// - layout/layoutAttributes/yaxis/scaleanchor
         public enum ScaleAnchor: String, Encodable {
             case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
             case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -2415,6 +2490,8 @@ public struct Layout: Encodable {
         public var scaleRatio: Double?
     
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*.
+        /// - layout/layoutAttributes/xaxis/constrain
+        /// - layout/layoutAttributes/yaxis/constrain
         public enum Constrain: String, Encodable {
             case range
             case domain
@@ -2426,6 +2503,8 @@ public struct Layout: Encodable {
         ///
         /// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
         /// and *bottom* for y axes.
+        /// - layout/layoutAttributes/xaxis/constraintoward
+        /// - layout/layoutAttributes/yaxis/constraintoward
         public enum ConstrainToward: String, Encodable {
             case left
             case center
@@ -2447,6 +2526,8 @@ public struct Layout: Encodable {
         /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
         /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
         /// same `type`.
+        /// - layout/layoutAttributes/xaxis/matches
+        /// - layout/layoutAttributes/yaxis/matches
         public enum Matches: String, Encodable {
             case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
             case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -2467,6 +2548,8 @@ public struct Layout: Encodable {
         /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
         /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
         /// provided).
+        /// - layout/layoutAttributes/xaxis/tickmode
+        /// - layout/layoutAttributes/yaxis/tickmode
         public enum TickMode: String, Encodable {
             case auto
             case linear
@@ -2527,6 +2610,8 @@ public struct Layout: Encodable {
         ///
         /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
         /// (inside) the axis lines.
+        /// - layout/layoutAttributes/xaxis/ticks
+        /// - layout/layoutAttributes/yaxis/ticks
         public enum Ticks: String, Encodable {
             case outside
             case inside
@@ -2542,6 +2627,8 @@ public struct Layout: Encodable {
         ///
         /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
         /// ticks and grid lines are drawn half a category to the left/bottom of labels.
+        /// - layout/layoutAttributes/xaxis/tickson
+        /// - layout/layoutAttributes/yaxis/tickson
         public enum TicksOn: String, Encodable {
             case labels
             case boundaries
@@ -2557,6 +2644,8 @@ public struct Layout: Encodable {
         /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
         /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
         /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+        /// - layout/layoutAttributes/xaxis/mirror
+        /// - layout/layoutAttributes/yaxis/mirror
         public enum Mirror: String, Encodable {
             case `true` = "true"
             case ticks
@@ -2609,6 +2698,8 @@ public struct Layout: Encodable {
         ///
         /// If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If
         /// *marker*, then a marker dot is drawn on the axis the series is plotted on
+        /// - layout/layoutAttributes/xaxis/spikemode
+        /// - layout/layoutAttributes/yaxis/spikemode
         public struct SpikeMode: OptionSet, Encodable {
             public let rawValue: Int
         
@@ -2634,6 +2725,8 @@ public struct Layout: Encodable {
         public var spikeMode: SpikeMode?
     
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+        /// - layout/layoutAttributes/xaxis/spikesnap
+        /// - layout/layoutAttributes/yaxis/spikesnap
         public enum SpikeSnap: String, Encodable {
             case data
             case cursor
@@ -2679,6 +2772,8 @@ public struct Layout: Encodable {
         ///
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        /// - layout/layoutAttributes/xaxis/showtickprefix
+        /// - layout/layoutAttributes/yaxis/showtickprefix
         public enum ShowTickPrefix: String, Encodable {
             case all
             case first
@@ -2695,6 +2790,8 @@ public struct Layout: Encodable {
         public var tickSuffix: String?
     
         /// Same as `showtickprefix` but for tick suffixes.
+        /// - layout/layoutAttributes/xaxis/showticksuffix
+        /// - layout/layoutAttributes/yaxis/showticksuffix
         public enum ShowTickSuffix: String, Encodable {
             case all
             case first
@@ -2708,6 +2805,8 @@ public struct Layout: Encodable {
         ///
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
+        /// - layout/layoutAttributes/xaxis/showexponent
+        /// - layout/layoutAttributes/yaxis/showexponent
         public enum ShowExponent: String, Encodable {
             case all
             case first
@@ -2724,6 +2823,8 @@ public struct Layout: Encodable {
         ///
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        /// - layout/layoutAttributes/xaxis/exponentformat
+        /// - layout/layoutAttributes/yaxis/exponentformat
         public enum ExponentFormat: String, Encodable {
             case none
             case e
@@ -2857,6 +2958,8 @@ public struct Layout: Encodable {
         ///
         /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
         /// axis' position is determined by `position`.
+        /// - layout/layoutAttributes/xaxis/anchor
+        /// - layout/layoutAttributes/yaxis/anchor
         public enum Anchor: String, Encodable {
             case free
             case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
@@ -2869,6 +2972,8 @@ public struct Layout: Encodable {
         public var anchor: Anchor?
     
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
+        /// - layout/layoutAttributes/xaxis/side
+        /// - layout/layoutAttributes/yaxis/side
         public enum Side: String, Encodable {
             case top
             case bottom
@@ -2882,6 +2987,8 @@ public struct Layout: Encodable {
         ///
         /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
         /// overlapping domains only the highest-numbered axis will be visible.
+        /// - layout/layoutAttributes/xaxis/overlaying
+        /// - layout/layoutAttributes/yaxis/overlaying
         public enum Overlaying: String, Encodable {
             case free
             case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
@@ -2899,6 +3006,8 @@ public struct Layout: Encodable {
         /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
         /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
         /// nodes above this axis.
+        /// - layout/layoutAttributes/xaxis/layer
+        /// - layout/layoutAttributes/yaxis/layer
         public enum Layer: String, Encodable {
             case aboveTraces = "above traces"
             case belowTraces = "below traces"
@@ -2930,6 +3039,8 @@ public struct Layout: Encodable {
         /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
         /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
         /// or median of all the values.
+        /// - layout/layoutAttributes/xaxis/categoryorder
+        /// - layout/layoutAttributes/yaxis/categoryorder
         public enum CategoryOrder: String, Encodable {
             case trace
             case categoryAscending = "category ascending"
@@ -3021,10 +3132,10 @@ public struct Layout: Encodable {
         }
         public var deprecated: Deprecated?
     
-        /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-        ///
-        /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-        /// or via the global `layout.calendar`
+        /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
+        /// - layout/layoutAttributes/calendar
+        /// - layout/layoutAttributes/xaxis/calendar
+        /// - layout/layoutAttributes/yaxis/calendar
         public enum Calendar: String, Encodable {
             case gregorian
             case chinese
@@ -3043,10 +3154,7 @@ public struct Layout: Encodable {
             case thai
             case ummalqura
         }
-        /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-        ///
-        /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-        /// or via the global `layout.calendar`
+        /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
         public var calendar: Calendar?
     
         /// Sets the source reference on plot.ly for  tickvals .
@@ -3221,6 +3329,9 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -3281,6 +3392,9 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -3308,6 +3422,9 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -3324,6 +3441,9 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -3340,6 +3460,9 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -3356,6 +3479,9 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -3500,6 +3626,9 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
+            /// - layout/layoutAttributes/ternary/aaxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -3672,6 +3801,10 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -3732,6 +3865,10 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -3759,6 +3896,10 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -3775,6 +3916,10 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -3791,6 +3936,10 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -3807,6 +3956,10 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -3951,6 +4104,10 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
+            /// - layout/layoutAttributes/ternary/aaxis/layer
+            /// - layout/layoutAttributes/ternary/baxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -4123,6 +4280,11 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -4183,6 +4345,11 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -4210,6 +4377,11 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -4226,6 +4398,11 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -4242,6 +4419,11 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -4258,6 +4440,11 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -4402,6 +4589,11 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
+            /// - layout/layoutAttributes/ternary/aaxis/layer
+            /// - layout/layoutAttributes/ternary/baxis/layer
+            /// - layout/layoutAttributes/ternary/caxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -4607,6 +4799,7 @@ public struct Layout: Encodable {
                 ///
                 /// The projection type could be either *perspective* or *orthographic*. The default is
                 /// *perspective*.
+                /// - layout/layoutAttributes/scene/camera/projection/type
                 public enum Rule: String, Encodable {
                     case perspective
                     case orthographic
@@ -4661,6 +4854,7 @@ public struct Layout: Encodable {
         /// *aspectratio* is provided). If *auto*, this scene's axes are drawn using the results of *data*
         /// except when one axis is more than four times the size of the two others, where in that case the
         /// results of *cube* are used.
+        /// - layout/layoutAttributes/scene/aspectmode
         public enum AspectMode: String, Encodable {
             case auto
             case cube
@@ -4744,6 +4938,9 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
+            /// - layout/layoutAttributes/scene/xaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -4828,6 +5025,7 @@ public struct Layout: Encodable {
             ///
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
+            /// - layout/layoutAttributes/scene/xaxis/type
             public enum Rule: String, Encodable {
                 case auto = "-"
                 case linear
@@ -4844,6 +5042,9 @@ public struct Layout: Encodable {
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+            /// - layout/layoutAttributes/xaxis/autorange
+            /// - layout/layoutAttributes/yaxis/autorange
+            /// - layout/layoutAttributes/scene/xaxis/autorange
             public enum AutoRange: String, Encodable {
                 case `true` = "true"
                 case `false` = "false"
@@ -4858,6 +5059,9 @@ public struct Layout: Encodable {
             ///
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
+            /// - layout/layoutAttributes/xaxis/rangemode
+            /// - layout/layoutAttributes/yaxis/rangemode
+            /// - layout/layoutAttributes/scene/xaxis/rangemode
             public enum RangeMode: String, Encodable {
                 case normal
                 case toZero = "tozero"
@@ -4885,6 +5089,12 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -4945,6 +5155,12 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -4961,6 +5177,9 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+            /// - layout/layoutAttributes/xaxis/mirror
+            /// - layout/layoutAttributes/yaxis/mirror
+            /// - layout/layoutAttributes/scene/xaxis/mirror
             public enum Mirror: String, Encodable {
                 case `true` = "true"
                 case ticks
@@ -5025,6 +5244,12 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -5041,6 +5266,12 @@ public struct Layout: Encodable {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -5054,6 +5285,12 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -5070,6 +5307,12 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -5231,10 +5474,11 @@ public struct Layout: Encodable {
             }
             public var deprecated: Deprecated?
         
-            /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-            ///
-            /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-            /// or via the global `layout.calendar`
+            /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
+            /// - layout/layoutAttributes/calendar
+            /// - layout/layoutAttributes/xaxis/calendar
+            /// - layout/layoutAttributes/yaxis/calendar
+            /// - layout/layoutAttributes/scene/xaxis/calendar
             public enum Calendar: String, Encodable {
                 case gregorian
                 case chinese
@@ -5253,10 +5497,7 @@ public struct Layout: Encodable {
                 case thai
                 case ummalqura
             }
-            /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-            ///
-            /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-            /// or via the global `layout.calendar`
+            /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
             public var calendar: Calendar?
         
             /// Sets the source reference on plot.ly for  categoryarray .
@@ -5371,6 +5612,10 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
+            /// - layout/layoutAttributes/scene/xaxis/categoryorder
+            /// - layout/layoutAttributes/scene/yaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -5455,6 +5700,8 @@ public struct Layout: Encodable {
             ///
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
+            /// - layout/layoutAttributes/scene/xaxis/type
+            /// - layout/layoutAttributes/scene/yaxis/type
             public enum Rule: String, Encodable {
                 case auto = "-"
                 case linear
@@ -5471,6 +5718,10 @@ public struct Layout: Encodable {
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+            /// - layout/layoutAttributes/xaxis/autorange
+            /// - layout/layoutAttributes/yaxis/autorange
+            /// - layout/layoutAttributes/scene/xaxis/autorange
+            /// - layout/layoutAttributes/scene/yaxis/autorange
             public enum AutoRange: String, Encodable {
                 case `true` = "true"
                 case `false` = "false"
@@ -5485,6 +5736,10 @@ public struct Layout: Encodable {
             ///
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
+            /// - layout/layoutAttributes/xaxis/rangemode
+            /// - layout/layoutAttributes/yaxis/rangemode
+            /// - layout/layoutAttributes/scene/xaxis/rangemode
+            /// - layout/layoutAttributes/scene/yaxis/rangemode
             public enum RangeMode: String, Encodable {
                 case normal
                 case toZero = "tozero"
@@ -5512,6 +5767,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -5572,6 +5834,13 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -5588,6 +5857,10 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+            /// - layout/layoutAttributes/xaxis/mirror
+            /// - layout/layoutAttributes/yaxis/mirror
+            /// - layout/layoutAttributes/scene/xaxis/mirror
+            /// - layout/layoutAttributes/scene/yaxis/mirror
             public enum Mirror: String, Encodable {
                 case `true` = "true"
                 case ticks
@@ -5652,6 +5925,13 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -5668,6 +5948,13 @@ public struct Layout: Encodable {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -5681,6 +5968,13 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -5697,6 +5991,13 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -5858,10 +6159,12 @@ public struct Layout: Encodable {
             }
             public var deprecated: Deprecated?
         
-            /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-            ///
-            /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-            /// or via the global `layout.calendar`
+            /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
+            /// - layout/layoutAttributes/calendar
+            /// - layout/layoutAttributes/xaxis/calendar
+            /// - layout/layoutAttributes/yaxis/calendar
+            /// - layout/layoutAttributes/scene/xaxis/calendar
+            /// - layout/layoutAttributes/scene/yaxis/calendar
             public enum Calendar: String, Encodable {
                 case gregorian
                 case chinese
@@ -5880,10 +6183,7 @@ public struct Layout: Encodable {
                 case thai
                 case ummalqura
             }
-            /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-            ///
-            /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-            /// or via the global `layout.calendar`
+            /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
             public var calendar: Calendar?
         
             /// Sets the source reference on plot.ly for  categoryarray .
@@ -5998,6 +6298,11 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
+            /// - layout/layoutAttributes/scene/xaxis/categoryorder
+            /// - layout/layoutAttributes/scene/yaxis/categoryorder
+            /// - layout/layoutAttributes/scene/zaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -6082,6 +6387,9 @@ public struct Layout: Encodable {
             ///
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
+            /// - layout/layoutAttributes/scene/xaxis/type
+            /// - layout/layoutAttributes/scene/yaxis/type
+            /// - layout/layoutAttributes/scene/zaxis/type
             public enum Rule: String, Encodable {
                 case auto = "-"
                 case linear
@@ -6098,6 +6406,11 @@ public struct Layout: Encodable {
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+            /// - layout/layoutAttributes/xaxis/autorange
+            /// - layout/layoutAttributes/yaxis/autorange
+            /// - layout/layoutAttributes/scene/xaxis/autorange
+            /// - layout/layoutAttributes/scene/yaxis/autorange
+            /// - layout/layoutAttributes/scene/zaxis/autorange
             public enum AutoRange: String, Encodable {
                 case `true` = "true"
                 case `false` = "false"
@@ -6112,6 +6425,11 @@ public struct Layout: Encodable {
             ///
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
+            /// - layout/layoutAttributes/xaxis/rangemode
+            /// - layout/layoutAttributes/yaxis/rangemode
+            /// - layout/layoutAttributes/scene/xaxis/rangemode
+            /// - layout/layoutAttributes/scene/yaxis/rangemode
+            /// - layout/layoutAttributes/scene/zaxis/rangemode
             public enum RangeMode: String, Encodable {
                 case normal
                 case toZero = "tozero"
@@ -6139,6 +6457,14 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -6199,6 +6525,14 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -6215,6 +6549,11 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+            /// - layout/layoutAttributes/xaxis/mirror
+            /// - layout/layoutAttributes/yaxis/mirror
+            /// - layout/layoutAttributes/scene/xaxis/mirror
+            /// - layout/layoutAttributes/scene/yaxis/mirror
+            /// - layout/layoutAttributes/scene/zaxis/mirror
             public enum Mirror: String, Encodable {
                 case `true` = "true"
                 case ticks
@@ -6279,6 +6618,14 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -6295,6 +6642,14 @@ public struct Layout: Encodable {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -6308,6 +6663,14 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -6324,6 +6687,14 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -6485,10 +6856,13 @@ public struct Layout: Encodable {
             }
             public var deprecated: Deprecated?
         
-            /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-            ///
-            /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-            /// or via the global `layout.calendar`
+            /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
+            /// - layout/layoutAttributes/calendar
+            /// - layout/layoutAttributes/xaxis/calendar
+            /// - layout/layoutAttributes/yaxis/calendar
+            /// - layout/layoutAttributes/scene/xaxis/calendar
+            /// - layout/layoutAttributes/scene/yaxis/calendar
+            /// - layout/layoutAttributes/scene/zaxis/calendar
             public enum Calendar: String, Encodable {
                 case gregorian
                 case chinese
@@ -6507,10 +6881,7 @@ public struct Layout: Encodable {
                 case thai
                 case ummalqura
             }
-            /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-            ///
-            /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-            /// or via the global `layout.calendar`
+            /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
             public var calendar: Calendar?
         
             /// Sets the source reference on plot.ly for  categoryarray .
@@ -6582,6 +6953,7 @@ public struct Layout: Encodable {
         public var zAxis: ZAxis?
     
         /// Determines the mode of drag interactions for this scene.
+        /// - layout/layoutAttributes/scene/dragmode
         public enum DragMode: String, Encodable {
             case orbit
             case turntable
@@ -6593,6 +6965,7 @@ public struct Layout: Encodable {
         public var dragMode: DragMode?
     
         /// Determines the mode of hover interactions for this scene.
+        /// - layout/layoutAttributes/scene/hovermode
         public enum HoverMode: String, Encodable {
             case closest
             case `false` = "false"
@@ -6638,47 +7011,49 @@ public struct Layout: Encodable {
                     /// Sets the y component of the arrow tail about the arrow head (in pixels).
                     public var ay: Double?
                 
-                    /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. 
+                    /// Sets the title's horizontal alignment with respect to its x position. 
                     ///
-                    /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
-                    /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
-                    /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
-                    /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                    /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+                    /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+                    /// `xanchor` value automatically based on the value of `x`.
+                    /// - layout/layoutAttributes/title/xanchor
+                    /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
                     public enum XAnchor: String, Encodable {
                         case auto
                         case left
                         case center
                         case right
                     }
-                    /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. 
+                    /// Sets the title's horizontal alignment with respect to its x position. 
                     ///
-                    /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
-                    /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
-                    /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
-                    /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                    /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+                    /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+                    /// `xanchor` value automatically based on the value of `x`.
                     public var xAnchor: XAnchor?
                 
                     /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
                     public var xShift: Double?
                 
-                    /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. 
+                    /// Sets the title's vertical alignment with respect to its y position. 
                     ///
-                    /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
-                    /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
-                    /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
-                    /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                    /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+                    /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+                    /// calculates the `yanchor` value automatically based on the value of `y`.
+                    /// - layout/layoutAttributes/title/yanchor
+                    /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
                     public enum YAnchor: String, Encodable {
                         case auto
                         case top
                         case middle
                         case bottom
                     }
-                    /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. 
+                    /// Sets the title's vertical alignment with respect to its y position. 
                     ///
-                    /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
-                    /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
-                    /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
-                    /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                    /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+                    /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+                    /// calculates the `yanchor` value automatically based on the value of `y`.
                     public var yAnchor: YAnchor?
                 
                     /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
@@ -6737,6 +7112,7 @@ public struct Layout: Encodable {
                     ///
                     /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
                     /// HTML tags) or if an explicit width is set to override the text width.
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/align
                     public enum Align: String, Encodable {
                         case left
                         case center
@@ -6751,6 +7127,7 @@ public struct Layout: Encodable {
                     /// Sets the vertical alignment of the `text` within the box. 
                     ///
                     /// Has an effect only if an explicit height is set to override the text height.
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/valign
                     public enum VerticalAlign: String, Encodable {
                         case top
                         case middle
@@ -6789,6 +7166,7 @@ public struct Layout: Encodable {
                     public var startArrowHead: Int?
                 
                     /// Sets the annotation arrow head position.
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/arrowside
                     public struct ArrowSide: OptionSet, Encodable {
                         public let rawValue: Int
                     
@@ -7021,6 +7399,7 @@ public struct Layout: Encodable {
         /// Sets the resolution of the base layers. 
         ///
         /// The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
+        /// - layout/layoutAttributes/geo/resolution
         public enum Resolution: Int, Encodable {
             case oneOver110M = 110
             case oneOver50M = 50
@@ -7031,6 +7410,7 @@ public struct Layout: Encodable {
         public var resolution: Resolution?
     
         /// Set the scope of the map.
+        /// - layout/layoutAttributes/geo/scope
         public enum Scope: String, Encodable {
             case world
             case usa
@@ -7045,6 +7425,7 @@ public struct Layout: Encodable {
     
         public struct Projection: Encodable {
             /// Sets the projection type.
+            /// - layout/layoutAttributes/geo/projection/type
             public enum Rule: String, Encodable {
                 case equirectangular
                 case mercator
@@ -7376,6 +7757,7 @@ public struct Layout: Encodable {
                     public var visible: Bool?
                 
                     /// Sets the source type for this layer, that is the type of the layer data.
+                    /// - layout/layoutAttributes/mapbox/layers/items/layer/sourcetype
                     public enum SourceType: String, Encodable {
                         case geoJson = "geojson"
                         case vector
@@ -7405,6 +7787,7 @@ public struct Layout: Encodable {
                     /// but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With
                     /// `sourcetype` set to *vector*, the following values are allowed: *circle*, *line*, *fill* and
                     /// *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
+                    /// - layout/layoutAttributes/mapbox/layers/items/layer/type
                     public enum Rule: String, Encodable {
                         case circle
                         case line
@@ -7521,6 +7904,7 @@ public struct Layout: Encodable {
                         /// If `placement` is *point*, the label is placed where the geometry is located If `placement` is
                         /// *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the
                         /// label is placed on the center of the geometry
+                        /// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/placement
                         public enum Placement: String, Encodable {
                             case point
                             case line
@@ -7564,6 +7948,7 @@ public struct Layout: Encodable {
                         public var textFont: TextFont?
                     
                         /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+                        /// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/textposition
                         public enum TextPosition: String, Encodable {
                             case topLeft = "top left"
                             case topCenter = "top center"
@@ -7704,6 +8089,10 @@ public struct Layout: Encodable {
             ///
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
+            /// - layout/layoutAttributes/scene/xaxis/type
+            /// - layout/layoutAttributes/scene/yaxis/type
+            /// - layout/layoutAttributes/scene/zaxis/type
+            /// - layout/layoutAttributes/polar/radialaxis/type
             public enum Rule: String, Encodable {
                 case auto = "-"
                 case linear
@@ -7720,6 +8109,12 @@ public struct Layout: Encodable {
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+            /// - layout/layoutAttributes/xaxis/autorange
+            /// - layout/layoutAttributes/yaxis/autorange
+            /// - layout/layoutAttributes/scene/xaxis/autorange
+            /// - layout/layoutAttributes/scene/yaxis/autorange
+            /// - layout/layoutAttributes/scene/zaxis/autorange
+            /// - layout/layoutAttributes/polar/radialaxis/autorange
             public enum AutoRange: String, Encodable {
                 case `true` = "true"
                 case `false` = "false"
@@ -7734,6 +8129,7 @@ public struct Layout: Encodable {
             ///
             /// If *normal*, the range is computed in relation to the extrema of the input data (same behavior
             /// as for cartesian axes).
+            /// - layout/layoutAttributes/polar/radialaxis/rangemode
             public enum RangeMode: String, Encodable {
                 case toZero = "tozero"
                 case nonNegative = "nonnegative"
@@ -7765,6 +8161,12 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
+            /// - layout/layoutAttributes/scene/xaxis/categoryorder
+            /// - layout/layoutAttributes/scene/yaxis/categoryorder
+            /// - layout/layoutAttributes/scene/zaxis/categoryorder
+            /// - layout/layoutAttributes/polar/radialaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -7808,6 +8210,7 @@ public struct Layout: Encodable {
             public var angle: Angle?
         
             /// Determines on which side of radial axis line the tick and tick labels appear.
+            /// - layout/layoutAttributes/polar/radialaxis/side
             public enum Side: String, Encodable {
                 case clockwise
                 case counterClockwise = "counterclockwise"
@@ -7949,6 +8352,15 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -8009,6 +8421,15 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -8036,6 +8457,15 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -8052,6 +8482,15 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -8068,6 +8507,15 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -8084,6 +8532,15 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -8199,6 +8656,12 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
+            /// - layout/layoutAttributes/ternary/aaxis/layer
+            /// - layout/layoutAttributes/ternary/baxis/layer
+            /// - layout/layoutAttributes/ternary/caxis/layer
+            /// - layout/layoutAttributes/polar/radialaxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -8211,10 +8674,14 @@ public struct Layout: Encodable {
             /// nodes above this axis.
             public var layer: Layer?
         
-            /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-            ///
-            /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-            /// or via the global `layout.calendar`
+            /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
+            /// - layout/layoutAttributes/calendar
+            /// - layout/layoutAttributes/xaxis/calendar
+            /// - layout/layoutAttributes/yaxis/calendar
+            /// - layout/layoutAttributes/scene/xaxis/calendar
+            /// - layout/layoutAttributes/scene/yaxis/calendar
+            /// - layout/layoutAttributes/scene/zaxis/calendar
+            /// - layout/layoutAttributes/polar/radialaxis/calendar
             public enum Calendar: String, Encodable {
                 case gregorian
                 case chinese
@@ -8233,10 +8700,7 @@ public struct Layout: Encodable {
                 case thai
                 case ummalqura
             }
-            /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
-            ///
-            /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
-            /// or via the global `layout.calendar`
+            /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
             public var calendar: Calendar?
         
             /// Sets the source reference on plot.ly for  categoryarray .
@@ -8310,6 +8774,7 @@ public struct Layout: Encodable {
             ///
             /// If *linear*, set `thetaunit` to determine the unit in which axis value are shown. If *category,
             /// use `period` to set the number of integer coordinates around polar axis.
+            /// - layout/layoutAttributes/polar/angularaxis/type
             public enum Rule: String, Encodable {
                 case auto = "-"
                 case linear
@@ -8332,6 +8797,13 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
+            /// - layout/layoutAttributes/scene/xaxis/categoryorder
+            /// - layout/layoutAttributes/scene/yaxis/categoryorder
+            /// - layout/layoutAttributes/scene/zaxis/categoryorder
+            /// - layout/layoutAttributes/polar/radialaxis/categoryorder
+            /// - layout/layoutAttributes/polar/angularaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -8371,6 +8843,7 @@ public struct Layout: Encodable {
             /// Sets the format unit of the formatted *theta* values. 
             ///
             /// Has an effect only when `angularaxis.type` is *linear*.
+            /// - layout/layoutAttributes/polar/angularaxis/thetaunit
             public enum ThetaUnit: String, Encodable {
                 case radians
                 case degrees
@@ -8386,6 +8859,7 @@ public struct Layout: Encodable {
             public var period: Double?
         
             /// Sets the direction corresponding to positive angles.
+            /// - layout/layoutAttributes/polar/angularaxis/direction
             public enum Direction: String, Encodable {
                 case counterClockwise = "counterclockwise"
                 case clockwise
@@ -8446,6 +8920,16 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -8506,6 +8990,16 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -8533,6 +9027,16 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -8549,6 +9053,16 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -8565,6 +9079,16 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -8581,6 +9105,16 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -8696,6 +9230,13 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
+            /// - layout/layoutAttributes/ternary/aaxis/layer
+            /// - layout/layoutAttributes/ternary/baxis/layer
+            /// - layout/layoutAttributes/ternary/caxis/layer
+            /// - layout/layoutAttributes/polar/radialaxis/layer
+            /// - layout/layoutAttributes/polar/angularaxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -8770,6 +9311,7 @@ public struct Layout: Encodable {
         /// Has an effect only when the angular axis has `type` *category*. Note that `radialaxis.angle` is
         /// snapped to the angle of the closest vertex when `gridshape` is *circular* (so that radial axis
         /// scale is the same as the data scale).
+        /// - layout/layoutAttributes/polar/gridshape
         public enum GridShape: String, Encodable {
             case circular
             case linear
@@ -8828,6 +9370,7 @@ public struct Layout: Encodable {
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
         ///
         /// Sets the orientation (from the paper perspective) of the radial axis tick labels.
+        /// - layout/layoutAttributes/radialaxis/tickorientation
         public enum TickOrientation: String, Encodable {
             case horizontal
             case vertical
@@ -8899,14 +9442,16 @@ public struct Layout: Encodable {
     
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
         ///
-        /// Sets the orientation (from the paper perspective) of the angular axis tick labels.
+        /// Sets the orientation (from the paper perspective) of the radial axis tick labels.
+        /// - layout/layoutAttributes/radialaxis/tickorientation
+        /// - layout/layoutAttributes/angularaxis/tickorientation
         public enum TickOrientation: String, Encodable {
             case horizontal
             case vertical
         }
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
         ///
-        /// Sets the orientation (from the paper perspective) of the angular axis tick labels.
+        /// Sets the orientation (from the paper perspective) of the radial axis tick labels.
         public var tickOrientation: TickOrientation?
     
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
@@ -8950,6 +9495,7 @@ public struct Layout: Encodable {
     /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
     ///
     /// Sets the direction corresponding to positive angles in legacy polar charts.
+    /// - layout/layoutAttributes/direction
     public enum Direction: String, Encodable {
         case clockwise
         case counterClockwise = "counterclockwise"
@@ -9000,12 +9546,14 @@ public struct Layout: Encodable {
         /// Sets the font used to text the legend items.
         public var font: Font?
     
-        /// Sets the orientation of the legend.
+        /// Sets the orientation of the modebar.
+        /// - layout/layoutAttributes/modebar/orientation
+        /// - layout/layoutAttributes/legend/orientation
         public enum Orientation: String, Encodable {
             case v
             case h
         }
-        /// Sets the orientation of the legend.
+        /// Sets the orientation of the modebar.
         public var orientation: Orientation?
     
         /// Determines the order at which the legend items are displayed. 
@@ -9014,6 +9562,7 @@ public struct Layout: Encodable {
         /// *reversed*, the items are displayed in the opposite order as *normal*. If *grouped*, the items
         /// are displayed in groups (when a trace `legendgroup` is provided). if *grouped+reversed*, the
         /// items are displayed in the opposite order as *grouped*.
+        /// - layout/layoutAttributes/legend/traceorder
         public struct TraceOrder: OptionSet, Encodable {
             public let rawValue: Int
         
@@ -9044,6 +9593,7 @@ public struct Layout: Encodable {
         public var traceGroupGap: Double?
     
         /// Determines if the legend items symbols scale with their corresponding *trace* attributes or remain *constant* independent of the symbol size on the graph.
+        /// - layout/layoutAttributes/legend/itemsizing
         public enum ItemSizing: String, Encodable {
             case trace
             case constant
@@ -9055,6 +9605,7 @@ public struct Layout: Encodable {
         ///
         /// *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the
         /// clicked item the sole visible item on the graph. *false* disable legend item click interactions.
+        /// - layout/layoutAttributes/legend/itemclick
         public enum ItemClick: String, Encodable {
             case toggle
             case toggleOthers = "toggleothers"
@@ -9071,6 +9622,7 @@ public struct Layout: Encodable {
         /// *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the
         /// clicked item the sole visible item on the graph. *false* disable legend item double-click
         /// interactions.
+        /// - layout/layoutAttributes/legend/itemdoubleclick
         public enum ItemDoubleClick: String, Encodable {
             case toggle
             case toggleOthers = "toggleothers"
@@ -9088,24 +9640,26 @@ public struct Layout: Encodable {
         /// Defaults to *1.02* for vertical legends and defaults to *0* for horizontal legends.
         public var x: Double?
     
-        /// Sets the legend's horizontal position anchor. 
+        /// Sets the title's horizontal alignment with respect to its x position. 
         ///
-        /// This anchor binds the `x` position to the *left*, *center* or *right* of the legend. Value
-        /// *auto* anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends
-        /// to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their
-        /// center otherwise.
+        /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+        /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+        /// `xanchor` value automatically based on the value of `x`.
+        /// - layout/layoutAttributes/title/xanchor
+        /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
+        /// - layout/layoutAttributes/legend/xanchor
         public enum XAnchor: String, Encodable {
             case auto
-            case le
+            case left
             case center
             case right
         }
-        /// Sets the legend's horizontal position anchor. 
+        /// Sets the title's horizontal alignment with respect to its x position. 
         ///
-        /// This anchor binds the `x` position to the *left*, *center* or *right* of the legend. Value
-        /// *auto* anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends
-        /// to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their
-        /// center otherwise.
+        /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+        /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+        /// `xanchor` value automatically based on the value of `x`.
         public var xAnchor: XAnchor?
     
         /// Sets the y position (in normalized coordinates) of the legend. 
@@ -9115,22 +9669,26 @@ public struct Layout: Encodable {
         /// sliders.
         public var y: Double?
     
-        /// Sets the legend's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the legend. 
+        /// Sets the title's vertical alignment with respect to its y position. 
         ///
-        /// Value *auto* anchors legends at their bottom for `y` values less than or equal to 1/3, anchors
-        /// legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with
-        /// respect to their middle otherwise.
+        /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+        /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+        /// calculates the `yanchor` value automatically based on the value of `y`.
+        /// - layout/layoutAttributes/title/yanchor
+        /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
+        /// - layout/layoutAttributes/legend/yanchor
         public enum YAnchor: String, Encodable {
             case auto
             case top
             case middle
             case bottom
         }
-        /// Sets the legend's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the legend. 
+        /// Sets the title's vertical alignment with respect to its y position. 
         ///
-        /// Value *auto* anchors legends at their bottom for `y` values less than or equal to 1/3, anchors
-        /// legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with
-        /// respect to their middle otherwise.
+        /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+        /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+        /// calculates the `yanchor` value automatically based on the value of `y`.
         public var yAnchor: YAnchor?
     
         /// Controls persistence of legend-driven changes in trace and pie label visibility. 
@@ -9138,13 +9696,19 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
-        /// Sets the vertical alignment of the symbols with respect to their associated text.
+        /// Sets the vertical alignment of the `text` within the box. 
+        ///
+        /// Has an effect only if an explicit height is set to override the text height.
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/valign
+        /// - layout/layoutAttributes/legend/valign
         public enum VerticalAlign: String, Encodable {
             case top
             case middle
             case bottom
         }
-        /// Sets the vertical alignment of the symbols with respect to their associated text.
+        /// Sets the vertical alignment of the `text` within the box. 
+        ///
+        /// Has an effect only if an explicit height is set to override the text height.
         public var verticalAlign: VerticalAlign?
     
         public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, font: Font? = nil, orientation: Orientation? = nil, traceOrder: TraceOrder? = nil, traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemClick: ItemClick? = nil, itemDoubleClick: ItemDoubleClick? = nil, x: Double? = nil, xAnchor: XAnchor? = nil, y: Double? = nil, yAnchor: YAnchor? = nil, uiRevision: Anything? = nil, verticalAlign: VerticalAlign? = nil) {
@@ -9227,6 +9791,8 @@ public struct Layout: Encodable {
                 ///
                 /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
                 /// HTML tags) or if an explicit width is set to override the text width.
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/align
+                /// - layout/layoutAttributes/annotations/items/annotation/align
                 public enum Align: String, Encodable {
                     case left
                     case center
@@ -9241,6 +9807,9 @@ public struct Layout: Encodable {
                 /// Sets the vertical alignment of the `text` within the box. 
                 ///
                 /// Has an effect only if an explicit height is set to override the text height.
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/valign
+                /// - layout/layoutAttributes/legend/valign
+                /// - layout/layoutAttributes/annotations/items/annotation/valign
                 public enum VerticalAlign: String, Encodable {
                     case top
                     case middle
@@ -9279,6 +9848,8 @@ public struct Layout: Encodable {
                 public var startArrowHead: Int?
             
                 /// Sets the annotation arrow head position.
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/arrowside
+                /// - layout/layoutAttributes/annotations/items/annotation/arrowside
                 public struct ArrowSide: OptionSet, Encodable {
                     public let rawValue: Int
                 
@@ -9344,6 +9915,7 @@ public struct Layout: Encodable {
                 /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
                 /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
                 /// annotations which should continue to indicate the correct trend when zoomed.
+                /// - layout/layoutAttributes/annotations/items/annotation/axref
                 public enum AxReference: String, Encodable {
                     case pixel
                     case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
@@ -9360,6 +9932,7 @@ public struct Layout: Encodable {
                 /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
                 /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
                 /// annotations which should continue to indicate the correct trend when zoomed.
+                /// - layout/layoutAttributes/annotations/items/annotation/ayref
                 public enum AyReference: String, Encodable {
                     case pixel
                     case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -9376,6 +9949,7 @@ public struct Layout: Encodable {
                 /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
                 /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
                 /// normalized coordinates where 0 (1) corresponds to the left (right) side.
+                /// - layout/layoutAttributes/annotations/items/annotation/xref
                 public enum XReference: String, Encodable {
                     case paper
                     case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
@@ -9396,24 +9970,27 @@ public struct Layout: Encodable {
                 /// the order it appears.
                 public var x: Anything?
             
-                /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. 
+                /// Sets the title's horizontal alignment with respect to its x position. 
                 ///
-                /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
-                /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
-                /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
-                /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+                /// `xanchor` value automatically based on the value of `x`.
+                /// - layout/layoutAttributes/title/xanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
+                /// - layout/layoutAttributes/legend/xanchor
+                /// - layout/layoutAttributes/annotations/items/annotation/xanchor
                 public enum XAnchor: String, Encodable {
                     case auto
                     case left
                     case center
                     case right
                 }
-                /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. 
+                /// Sets the title's horizontal alignment with respect to its x position. 
                 ///
-                /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
-                /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
-                /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
-                /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+                /// `xanchor` value automatically based on the value of `x`.
                 public var xAnchor: XAnchor?
             
                 /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
@@ -9424,6 +10001,7 @@ public struct Layout: Encodable {
                 /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
                 /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
                 /// normalized coordinates where 0 (1) corresponds to the bottom (top).
+                /// - layout/layoutAttributes/annotations/items/annotation/yref
                 public enum YReference: String, Encodable {
                     case paper
                     case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -9444,24 +10022,27 @@ public struct Layout: Encodable {
                 /// the order it appears.
                 public var y: Anything?
             
-                /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. 
+                /// Sets the title's vertical alignment with respect to its y position. 
                 ///
-                /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
-                /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
-                /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
-                /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+                /// calculates the `yanchor` value automatically based on the value of `y`.
+                /// - layout/layoutAttributes/title/yanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
+                /// - layout/layoutAttributes/legend/yanchor
+                /// - layout/layoutAttributes/annotations/items/annotation/yanchor
                 public enum YAnchor: String, Encodable {
                     case auto
                     case top
                     case middle
                     case bottom
                 }
-                /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. 
+                /// Sets the title's vertical alignment with respect to its y position. 
                 ///
-                /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
-                /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
-                /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
-                /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+                /// calculates the `yanchor` value automatically based on the value of `y`.
                 public var yAnchor: YAnchor?
             
                 /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
@@ -9476,6 +10057,7 @@ public struct Layout: Encodable {
                 /// annotation. If you need to show/hide this annotation in response to different `x` or `y` values,
                 /// you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To
                 /// label markers though, `standoff` is preferred over `xclick` and `yclick`.
+                /// - layout/layoutAttributes/annotations/items/annotation/clicktoshow
                 public enum ClickToShow: String, Encodable {
                     case `false` = "false"
                     case onOff = "onoff"
@@ -9661,6 +10243,7 @@ public struct Layout: Encodable {
                 /// *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`),
                 /// (`x0`,`y0`) with respect to the axes' sizing mode. If *path*, draw a custom SVG path using
                 /// `path`. with respect to the axes' sizing mode.
+                /// - layout/layoutAttributes/shapes/items/shape/type
                 public enum Rule: String, Encodable {
                     case circle
                     case rect
@@ -9678,6 +10261,7 @@ public struct Layout: Encodable {
                 public var type: Rule?
             
                 /// Specifies whether shapes are drawn below or above traces.
+                /// - layout/layoutAttributes/shapes/items/shape/layer
                 public enum Layer: String, Encodable {
                     case below
                     case above
@@ -9685,24 +10269,22 @@ public struct Layout: Encodable {
                 /// Specifies whether shapes are drawn below or above traces.
                 public var layer: Layer?
             
-                /// Sets the shape's x coordinate axis. 
+                /// Sets the annotation's x coordinate axis. 
                 ///
-                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to
+                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
                 /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-                /// normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type`
-                /// is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then
-                /// you must convert the date to unix time in milliseconds.
+                /// normalized coordinates where 0 (1) corresponds to the left (right) side.
+                /// - layout/layoutAttributes/annotations/items/annotation/xref
+                /// - layout/layoutAttributes/shapes/items/shape/xref
                 public enum XReference: String, Encodable {
                     case paper
                     case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
                 }
-                /// Sets the shape's x coordinate axis. 
+                /// Sets the annotation's x coordinate axis. 
                 ///
-                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to
+                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
                 /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-                /// normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type`
-                /// is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then
-                /// you must convert the date to unix time in milliseconds.
+                /// normalized coordinates where 0 (1) corresponds to the left (right) side.
                 public var xReference: XReference?
             
                 /// Sets the shapes's sizing mode along the x axis. 
@@ -9712,6 +10294,7 @@ public struct Layout: Encodable {
                 /// `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x
                 /// coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed
                 /// width while maintaining a position relative to data or plot fraction.
+                /// - layout/layoutAttributes/shapes/items/shape/xsizemode
                 public enum XSizeMode: String, Encodable {
                     case scaled
                     case pixel
@@ -9746,7 +10329,9 @@ public struct Layout: Encodable {
                 ///
                 /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
                 /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-                /// normalized coordinates where *0* (*1*) corresponds to the bottom (top).
+                /// normalized coordinates where 0 (1) corresponds to the bottom (top).
+                /// - layout/layoutAttributes/annotations/items/annotation/yref
+                /// - layout/layoutAttributes/shapes/items/shape/yref
                 public enum YReference: String, Encodable {
                     case paper
                     case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -9755,7 +10340,7 @@ public struct Layout: Encodable {
                 ///
                 /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
                 /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-                /// normalized coordinates where *0* (*1*) corresponds to the bottom (top).
+                /// normalized coordinates where 0 (1) corresponds to the bottom (top).
                 public var yReference: YReference?
             
                 /// Sets the shapes's sizing mode along the y axis. 
@@ -9765,6 +10350,7 @@ public struct Layout: Encodable {
                 /// `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y
                 /// coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed
                 /// height while maintaining a position relative to data or plot fraction.
+                /// - layout/layoutAttributes/shapes/items/shape/ysizemode
                 public enum YSizeMode: String, Encodable {
                     case scaled
                     case pixel
@@ -9900,16 +10486,14 @@ public struct Layout: Encodable {
                 /// relative or absolute.
                 public var source: String?
             
-                /// Specifies whether images are drawn below or above traces. 
-                ///
-                /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
+                /// Specifies whether shapes are drawn below or above traces.
+                /// - layout/layoutAttributes/shapes/items/shape/layer
+                /// - layout/layoutAttributes/images/items/image/layer
                 public enum Layer: String, Encodable {
                     case below
                     case above
                 }
-                /// Specifies whether images are drawn below or above traces. 
-                ///
-                /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
+                /// Specifies whether shapes are drawn below or above traces.
                 public var layer: Layer?
             
                 /// Sets the image container size horizontally. 
@@ -9925,6 +10509,7 @@ public struct Layout: Encodable {
                 public var ySize: Double?
             
                 /// Specifies which dimension of the image to constrain.
+                /// - layout/layoutAttributes/images/items/image/sizing
                 public enum Sizing: String, Encodable {
                     case fill
                     case contain
@@ -9949,6 +10534,7 @@ public struct Layout: Encodable {
                 public var y: Anything?
             
                 /// Sets the anchor for the x position
+                /// - layout/layoutAttributes/images/items/image/xanchor
                 public enum XAnchor: String, Encodable {
                     case left
                     case center
@@ -9958,6 +10544,7 @@ public struct Layout: Encodable {
                 public var xAnchor: XAnchor?
             
                 /// Sets the anchor for the y position.
+                /// - layout/layoutAttributes/images/items/image/yanchor
                 public enum YAnchor: String, Encodable {
                     case top
                     case middle
@@ -9966,36 +10553,42 @@ public struct Layout: Encodable {
                 /// Sets the anchor for the y position.
                 public var yAnchor: YAnchor?
             
-                /// Sets the images's x coordinate axis. 
+                /// Sets the annotation's x coordinate axis. 
                 ///
-                /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set
-                /// to *paper*, the `x` position refers to the distance from the left of plot in normalized
-                /// coordinates where *0* (*1*) corresponds to the left (right).
+                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
+                /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
+                /// normalized coordinates where 0 (1) corresponds to the left (right) side.
+                /// - layout/layoutAttributes/annotations/items/annotation/xref
+                /// - layout/layoutAttributes/shapes/items/shape/xref
+                /// - layout/layoutAttributes/images/items/image/xref
                 public enum XReference: String, Encodable {
                     case paper
                     case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
                 }
-                /// Sets the images's x coordinate axis. 
+                /// Sets the annotation's x coordinate axis. 
                 ///
-                /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set
-                /// to *paper*, the `x` position refers to the distance from the left of plot in normalized
-                /// coordinates where *0* (*1*) corresponds to the left (right).
+                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
+                /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
+                /// normalized coordinates where 0 (1) corresponds to the left (right) side.
                 public var xReference: XReference?
             
-                /// Sets the images's y coordinate axis. 
+                /// Sets the annotation's y coordinate axis. 
                 ///
-                /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set
-                /// to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized
-                /// coordinates where *0* (*1*) corresponds to the bottom (top).
+                /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+                /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
+                /// normalized coordinates where 0 (1) corresponds to the bottom (top).
+                /// - layout/layoutAttributes/annotations/items/annotation/yref
+                /// - layout/layoutAttributes/shapes/items/shape/yref
+                /// - layout/layoutAttributes/images/items/image/yref
                 public enum YReference: String, Encodable {
                     case paper
                     case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
                 }
-                /// Sets the images's y coordinate axis. 
+                /// Sets the annotation's y coordinate axis. 
                 ///
-                /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set
-                /// to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized
-                /// coordinates where *0* (*1*) corresponds to the bottom (top).
+                /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+                /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
+                /// normalized coordinates where 0 (1) corresponds to the bottom (top).
                 public var yReference: YReference?
             
                 /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
@@ -10053,6 +10646,7 @@ public struct Layout: Encodable {
                 public var visible: Bool?
             
                 /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally or vertically
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/type
                 public enum Rule: String, Encodable {
                     case dropDown = "dropdown"
                     case buttons
@@ -10064,6 +10658,7 @@ public struct Layout: Encodable {
                 ///
                 /// For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order
                 /// respectively.
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/direction
                 public enum Direction: String, Encodable {
                     case left
                     case right
@@ -10093,6 +10688,7 @@ public struct Layout: Encodable {
                             /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
                             /// calls and will not bind automatically to state updates. This may be used to create a component
                             /// interface and attach to updatemenu events manually via JavaScript.
+                            /// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons/items/button/method
                             public enum Method: String, Encodable {
                                 case restyle
                                 case relayout
@@ -10170,31 +10766,55 @@ public struct Layout: Encodable {
                 /// Sets the x position (in normalized coordinates) of the update menu.
                 public var x: Double?
             
-                /// Sets the update menu's horizontal position anchor. 
+                /// Sets the title's horizontal alignment with respect to its x position. 
                 ///
-                /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+                /// `xanchor` value automatically based on the value of `x`.
+                /// - layout/layoutAttributes/title/xanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
+                /// - layout/layoutAttributes/legend/xanchor
+                /// - layout/layoutAttributes/annotations/items/annotation/xanchor
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/xanchor
                 public enum XAnchor: String, Encodable {
                     case auto
                     case left
                     case center
                     case right
                 }
-                /// Sets the update menu's horizontal position anchor. 
+                /// Sets the title's horizontal alignment with respect to its x position. 
                 ///
-                /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+                /// `xanchor` value automatically based on the value of `x`.
                 public var xAnchor: XAnchor?
             
                 /// Sets the y position (in normalized coordinates) of the update menu.
                 public var y: Double?
             
-                /// Sets the update menu's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+                /// Sets the title's vertical alignment with respect to its y position. 
+                ///
+                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+                /// calculates the `yanchor` value automatically based on the value of `y`.
+                /// - layout/layoutAttributes/title/yanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
+                /// - layout/layoutAttributes/legend/yanchor
+                /// - layout/layoutAttributes/annotations/items/annotation/yanchor
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/yanchor
                 public enum YAnchor: String, Encodable {
                     case auto
                     case top
                     case middle
                     case bottom
                 }
-                /// Sets the update menu's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+                /// Sets the title's vertical alignment with respect to its y position. 
+                ///
+                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+                /// calculates the `yanchor` value automatically based on the value of `y`.
                 public var yAnchor: YAnchor?
             
                 /// Sets the padding around the buttons or dropdown menu.
@@ -10321,11 +10941,13 @@ public struct Layout: Encodable {
                             /// Determines whether or not this step is included in the slider.
                             public var visible: Bool?
                         
-                            /// Sets the Plotly method to be called when the slider value is changed. 
+                            /// Sets the Plotly method to be called on click. 
                             ///
-                            /// If the `skip` method is used, the API slider will function as normal but will perform no API
+                            /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
                             /// calls and will not bind automatically to state updates. This may be used to create a component
-                            /// interface and attach to slider events manually via JavaScript.
+                            /// interface and attach to updatemenu events manually via JavaScript.
+                            /// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons/items/button/method
+                            /// - layout/layoutAttributes/sliders/items/slider/steps/items/step/method
                             public enum Method: String, Encodable {
                                 case restyle
                                 case relayout
@@ -10333,11 +10955,11 @@ public struct Layout: Encodable {
                                 case update
                                 case skip
                             }
-                            /// Sets the Plotly method to be called when the slider value is changed. 
+                            /// Sets the Plotly method to be called on click. 
                             ///
-                            /// If the `skip` method is used, the API slider will function as normal but will perform no API
+                            /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
                             /// calls and will not bind automatically to state updates. This may be used to create a component
-                            /// interface and attach to slider events manually via JavaScript.
+                            /// interface and attach to updatemenu events manually via JavaScript.
                             public var method: Method?
                         
                             /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
@@ -10403,6 +11025,7 @@ public struct Layout: Encodable {
                 /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
                 ///
                 /// Use `len` to set the value.
+                /// - layout/layoutAttributes/sliders/items/slider/lenmode
                 public enum LengthMode: String, Encodable {
                     case fraction
                     case pixels
@@ -10444,38 +11067,66 @@ public struct Layout: Encodable {
                 /// Set the padding of the slider component along each side.
                 public var padding: Padding?
             
-                /// Sets the slider's horizontal position anchor. 
+                /// Sets the title's horizontal alignment with respect to its x position. 
                 ///
-                /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+                /// `xanchor` value automatically based on the value of `x`.
+                /// - layout/layoutAttributes/title/xanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
+                /// - layout/layoutAttributes/legend/xanchor
+                /// - layout/layoutAttributes/annotations/items/annotation/xanchor
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/xanchor
+                /// - layout/layoutAttributes/sliders/items/slider/xanchor
                 public enum XAnchor: String, Encodable {
                     case auto
                     case left
                     case center
                     case right
                 }
-                /// Sets the slider's horizontal position anchor. 
+                /// Sets the title's horizontal alignment with respect to its x position. 
                 ///
-                /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+                /// `xanchor` value automatically based on the value of `x`.
                 public var xAnchor: XAnchor?
             
                 /// Sets the y position (in normalized coordinates) of the slider.
                 public var y: Double?
             
-                /// Sets the slider's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+                /// Sets the title's vertical alignment with respect to its y position. 
+                ///
+                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+                /// calculates the `yanchor` value automatically based on the value of `y`.
+                /// - layout/layoutAttributes/title/yanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
+                /// - layout/layoutAttributes/legend/yanchor
+                /// - layout/layoutAttributes/annotations/items/annotation/yanchor
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/yanchor
+                /// - layout/layoutAttributes/sliders/items/slider/yanchor
                 public enum YAnchor: String, Encodable {
                     case auto
                     case top
                     case middle
                     case bottom
                 }
-                /// Sets the slider's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+                /// Sets the title's vertical alignment with respect to its y position. 
+                ///
+                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+                /// calculates the `yanchor` value automatically based on the value of `y`.
                 public var yAnchor: YAnchor?
             
                 public struct Transition: Encodable {
                     /// Sets the duration of the slider transition
                     public var duration: Double?
                 
-                    /// Sets the easing function of the slider transition
+                    /// The easing function used for the transition
+                    /// - layout/layoutAttributes/transition/easing
+                    /// - layout/layoutAttributes/sliders/items/slider/transition/easing
                     public enum Easing: String, Encodable {
                         case linear
                         case quad
@@ -10514,7 +11165,7 @@ public struct Layout: Encodable {
                         case backInOut = "back-in-out"
                         case bounceInOut = "bounce-in-out"
                     }
-                    /// Sets the easing function of the slider transition
+                    /// The easing function used for the transition
                     public var easing: Easing?
                 
                     public init(duration: Double? = nil, easing: Easing? = nil) {
@@ -10528,13 +11179,15 @@ public struct Layout: Encodable {
                     /// Shows the currently-selected value above the slider.
                     public var visible: Bool?
                 
-                    /// The alignment of the value readout relative to the length of the slider.
+                    /// Sets the anchor for the x position
+                    /// - layout/layoutAttributes/images/items/image/xanchor
+                    /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
                     public enum XAnchor: String, Encodable {
                         case left
                         case center
                         case right
                     }
-                    /// The alignment of the value readout relative to the length of the slider.
+                    /// Sets the anchor for the x position
                     public var xAnchor: XAnchor?
                 
                     /// The amount of space, in pixels, between the current value label and the slider.
@@ -10766,6 +11419,7 @@ public struct Layout: Encodable {
             ///
             /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
             /// Use `thickness` to set the value.
+            /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
             public enum ThicknessMode: String, Encodable {
                 case fraction
                 case pixels
@@ -10779,17 +11433,17 @@ public struct Layout: Encodable {
             /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
             public var thickness: Double?
         
-            /// Determines whether this color bar's length (i.e. 
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
-            /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
             /// Use `len` to set the value.
+            /// - layout/layoutAttributes/sliders/items/slider/lenmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
             public enum LengthMode: String, Encodable {
                 case fraction
                 case pixels
             }
-            /// Determines whether this color bar's length (i.e. 
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
-            /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
             /// Use `len` to set the value.
             public var lengthMode: LengthMode?
         
@@ -10801,17 +11455,16 @@ public struct Layout: Encodable {
             /// Sets the x position of the color bar (in plot fraction).
             public var x: Double?
         
-            /// Sets this color bar's horizontal position anchor. 
-            ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+            /// Sets the anchor for the x position
+            /// - layout/layoutAttributes/images/items/image/xanchor
+            /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
             public enum XAnchor: String, Encodable {
                 case left
                 case center
                 case right
             }
-            /// Sets this color bar's horizontal position anchor. 
-            ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+            /// Sets the anchor for the x position
             public var xAnchor: XAnchor?
         
             /// Sets the amount of padding (in px) along the x direction.
@@ -10820,13 +11473,15 @@ public struct Layout: Encodable {
             /// Sets the y position of the color bar (in plot fraction).
             public var y: Double?
         
-            /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+            /// Sets the anchor for the y position.
+            /// - layout/layoutAttributes/images/items/image/yanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
             public enum YAnchor: String, Encodable {
                 case top
                 case middle
                 case bottom
             }
-            /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+            /// Sets the anchor for the y position.
             public var yAnchor: YAnchor?
         
             /// Sets the amount of padding (in px) along the y direction.
@@ -10854,6 +11509,17 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -10914,6 +11580,17 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -11036,6 +11713,17 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -11052,6 +11740,17 @@ public struct Layout: Encodable {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -11068,6 +11767,17 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -11086,6 +11796,17 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -11138,6 +11859,7 @@ public struct Layout: Encodable {
                 /// Determines the location of color bar's title with respect to the color bar. 
                 ///
                 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+                /// - layout/layoutAttributes/coloraxis/colorbar/title/side
                 public enum Side: String, Encodable {
                     case right
                     case top
@@ -11190,6 +11912,7 @@ public struct Layout: Encodable {
                 public var titleFont: TitleFont?
             
                 /// Deprecated in favor of color bar's `title.side`.
+                /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
                 public enum TitleSide: String, Encodable {
                     case right
                     case top
@@ -11275,7 +11998,32 @@ public struct Layout: Encodable {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
-    public init(boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, hiddenLabels: [Double]? = nil, funnelAreaColorWay: ColorList? = nil, extendFunnelAreaColors: Bool? = nil, hiddenLabelsSource: String? = nil, hiddenLabels: [Double]? = nil, pieColorWay: ColorList? = nil, extendPieColors: Bool? = nil, hiddenLabelsSource: String? = nil, sunburstColorWay: ColorList? = nil, extendSunburstColors: Bool? = nil, treemapColorWay: ColorList? = nil, extendTreemapColors: Bool? = nil, violinMode: ViolinMode? = nil, violinGap: Double? = nil, violinGroupGap: Double? = nil, waterfallMode: WaterfallMode? = nil, waterfallGap: Double? = nil, waterfallGroupGap: Double? = nil, funnelMode: FunnelMode? = nil, funnelGap: Double? = nil, funnelGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, barMode: BarMode? = nil, barGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, font: Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, deprecated: Deprecated? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: Annotations? = nil, shapes: Shapes? = nil, images: Images? = nil, updateMenus: UpdateMenus? = nil, sliders: Sliders? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
+    public init(funnelMode: FunnelMode? = nil, funnelGap: Double? = nil, funnelGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, violinMode: ViolinMode? = nil, violinGap: Double? = nil, violinGroupGap: Double? = nil, sunburstColorWay: ColorList? = nil, extendSunburstColors: Bool? = nil, hiddenLabels: [Double]? = nil, pieColorWay: ColorList? = nil, extendPieColors: Bool? = nil, hiddenLabelsSource: String? = nil, barMode: BarMode? = nil, barGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, hiddenLabels: [Double]? = nil, funnelAreaColorWay: ColorList? = nil, extendFunnelAreaColors: Bool? = nil, hiddenLabelsSource: String? = nil, treemapColorWay: ColorList? = nil, extendTreemapColors: Bool? = nil, waterfallMode: WaterfallMode? = nil, waterfallGap: Double? = nil, waterfallGroupGap: Double? = nil, font: Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, deprecated: Deprecated? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: Annotations? = nil, shapes: Shapes? = nil, images: Images? = nil, updateMenus: UpdateMenus? = nil, sliders: Sliders? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
+        self.funnelMode = funnelMode
+        self.funnelGap = funnelGap
+        self.funnelGroupGap = funnelGroupGap
+        self.barMode = barMode
+        self.barnorm = barnorm
+        self.barGap = barGap
+        self.barGroupGap = barGroupGap
+        self.barMode = barMode
+        self.barnorm = barnorm
+        self.barGap = barGap
+        self.barGroupGap = barGroupGap
+        self.boxMode = boxMode
+        self.boxGap = boxGap
+        self.boxGroupGap = boxGroupGap
+        self.violinMode = violinMode
+        self.violinGap = violinGap
+        self.violinGroupGap = violinGroupGap
+        self.sunburstColorWay = sunburstColorWay
+        self.extendSunburstColors = extendSunburstColors
+        self.hiddenLabels = hiddenLabels
+        self.pieColorWay = pieColorWay
+        self.extendPieColors = extendPieColors
+        self.hiddenLabelsSource = hiddenLabelsSource
+        self.barMode = barMode
+        self.barGap = barGap
         self.boxMode = boxMode
         self.boxGap = boxGap
         self.boxGroupGap = boxGroupGap
@@ -11283,36 +12031,11 @@ public struct Layout: Encodable {
         self.funnelAreaColorWay = funnelAreaColorWay
         self.extendFunnelAreaColors = extendFunnelAreaColors
         self.hiddenLabelsSource = hiddenLabelsSource
-        self.hiddenLabels = hiddenLabels
-        self.pieColorWay = pieColorWay
-        self.extendPieColors = extendPieColors
-        self.hiddenLabelsSource = hiddenLabelsSource
-        self.sunburstColorWay = sunburstColorWay
-        self.extendSunburstColors = extendSunburstColors
         self.treemapColorWay = treemapColorWay
         self.extendTreemapColors = extendTreemapColors
-        self.violinMode = violinMode
-        self.violinGap = violinGap
-        self.violinGroupGap = violinGroupGap
         self.waterfallMode = waterfallMode
         self.waterfallGap = waterfallGap
         self.waterfallGroupGap = waterfallGroupGap
-        self.funnelMode = funnelMode
-        self.funnelGap = funnelGap
-        self.funnelGroupGap = funnelGroupGap
-        self.boxMode = boxMode
-        self.boxGap = boxGap
-        self.boxGroupGap = boxGroupGap
-        self.barMode = barMode
-        self.barnorm = barnorm
-        self.barGap = barGap
-        self.barGroupGap = barGroupGap
-        self.barMode = barMode
-        self.barGap = barGap
-        self.barMode = barMode
-        self.barnorm = barnorm
-        self.barGap = barGap
-        self.barGroupGap = barGroupGap
         self.font = font
         self.title = title
         self.autoSize = autoSize

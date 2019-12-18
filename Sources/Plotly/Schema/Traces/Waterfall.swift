@@ -12,6 +12,10 @@ public struct Waterfall: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -118,6 +122,11 @@ public struct Waterfall: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -279,6 +288,7 @@ public struct Waterfall: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/waterfall/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -320,6 +330,7 @@ public struct Waterfall: Trace {
     /// Determines which trace information appear on the graph. 
     ///
     /// In the case of having multiple waterfalls, totals are computed separately (per trace).
+    /// - traces/waterfall/attributes/textinfo
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -376,6 +387,7 @@ public struct Waterfall: Trace {
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
+    /// - traces/waterfall/attributes/textposition
     public enum TextPosition: String, Encodable {
         case inside
         case outside
@@ -392,6 +404,7 @@ public struct Waterfall: Trace {
     public var textPosition: TextPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
+    /// - traces/waterfall/attributes/insidetextanchor
     public enum InsideTextAnchor: String, Encodable {
         case end
         case middle
@@ -521,6 +534,7 @@ public struct Waterfall: Trace {
     public var outSideTextFont: OutSideTextFont?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
+    /// - traces/waterfall/attributes/constraintext
     public enum ConstrainText: String, Encodable {
         case inside
         case outside
@@ -536,16 +550,15 @@ public struct Waterfall: Trace {
     /// `yaxis.layer` to *below traces*.
     public var clipOnAxis: Bool?
 
-    /// Sets the orientation of the bars. 
-    ///
-    /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
+    /// Sets the orientation of the modebar.
+    /// - layout/layoutAttributes/modebar/orientation
+    /// - layout/layoutAttributes/legend/orientation
+    /// - traces/waterfall/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
     }
-    /// Sets the orientation of the bars. 
-    ///
-    /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
+    /// Sets the orientation of the modebar.
     public var orientation: Orientation?
 
     /// Shifts the position where the bar is drawn (in position axis units). 
@@ -676,6 +689,7 @@ public struct Waterfall: Trace {
         public var line: Line?
     
         /// Sets the shape of connector lines.
+        /// - traces/waterfall/attributes/connector/mode
         public enum Mode: String, Encodable {
             case spanning
             case between

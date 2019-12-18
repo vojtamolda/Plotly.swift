@@ -11,6 +11,48 @@ public struct Sankey: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/candlestick/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/barpolar/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/image/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/cone/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/indicator/attributes/visible
+    /// - traces/scattergeo/attributes/visible
+    /// - traces/box/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/scatter/attributes/visible
+    /// - traces/bar/attributes/visible
+    /// - traces/streamtube/attributes/visible
+    /// - traces/histogram/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/scatterpolargl/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/scatterpolar/attributes/visible
+    /// - traces/sankey/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -93,6 +135,7 @@ public struct Sankey: Trace {
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired. Note that this attribute is superseded by
     /// `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
+    /// - traces/sankey/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -166,6 +209,45 @@ public struct Sankey: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/candlestick/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/barpolar/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/cone/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/scattergeo/attributes/hoverlabel/align
+        /// - traces/box/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
+        /// - traces/bar/attributes/hoverlabel/align
+        /// - traces/streamtube/attributes/hoverlabel/align
+        /// - traces/histogram/attributes/hoverlabel/align
+        /// - traces/funnel/attributes/hoverlabel/align
+        /// - traces/scatterpolargl/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/scatterpolar/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -231,12 +313,22 @@ public struct Sankey: Trace {
     }
     public var domain: Domain?
 
-    /// Sets the orientation of the Sankey diagram.
+    /// Sets the orientation of the modebar.
+    /// - layout/layoutAttributes/modebar/orientation
+    /// - layout/layoutAttributes/legend/orientation
+    /// - traces/waterfall/attributes/orientation
+    /// - traces/violin/attributes/orientation
+    /// - traces/box/attributes/orientation
+    /// - traces/scatter/attributes/orientation
+    /// - traces/bar/attributes/orientation
+    /// - traces/histogram/attributes/orientation
+    /// - traces/funnel/attributes/orientation
+    /// - traces/sankey/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
     }
-    /// Sets the orientation of the Sankey diagram.
+    /// Sets the orientation of the modebar.
     public var orientation: Orientation?
 
     /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. 
@@ -254,6 +346,7 @@ public struct Sankey: Trace {
     /// If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If
     /// value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are
     /// stationary.
+    /// - traces/sankey/attributes/arrangement
     public enum Arrangement: String, Encodable {
         case snap
         case perpendicular
@@ -350,6 +443,7 @@ public struct Sankey: Trace {
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
+        /// - traces/sankey/attributes/node/hoverinfo
         public enum HoverInfo: String, Encodable {
             case all
             case none
@@ -409,6 +503,46 @@ public struct Sankey: Trace {
             /// Sets the horizontal alignment of the text content within hover label box. 
             ///
             /// Has an effect only if the hover label text spans more two or more lines
+            /// - layout/layoutAttributes/hoverlabel/align
+            /// - traces/heatmapgl/attributes/hoverlabel/align
+            /// - traces/mesh3d/attributes/hoverlabel/align
+            /// - traces/ohlc/attributes/hoverlabel/align
+            /// - traces/waterfall/attributes/hoverlabel/align
+            /// - traces/scattergl/attributes/hoverlabel/align
+            /// - traces/scatterternary/attributes/hoverlabel/align
+            /// - traces/contour/attributes/hoverlabel/align
+            /// - traces/splom/attributes/hoverlabel/align
+            /// - traces/area/attributes/hoverlabel/align
+            /// - traces/pointcloud/attributes/hoverlabel/align
+            /// - traces/choropleth/attributes/hoverlabel/align
+            /// - traces/treemap/attributes/hoverlabel/align
+            /// - traces/volume/attributes/hoverlabel/align
+            /// - traces/surface/attributes/hoverlabel/align
+            /// - traces/funnelarea/attributes/hoverlabel/align
+            /// - traces/scattermapbox/attributes/hoverlabel/align
+            /// - traces/candlestick/attributes/hoverlabel/align
+            /// - traces/heatmap/attributes/hoverlabel/align
+            /// - traces/barpolar/attributes/hoverlabel/align
+            /// - traces/densitymapbox/attributes/hoverlabel/align
+            /// - traces/image/attributes/hoverlabel/align
+            /// - traces/pie/attributes/hoverlabel/align
+            /// - traces/cone/attributes/hoverlabel/align
+            /// - traces/sunburst/attributes/hoverlabel/align
+            /// - traces/violin/attributes/hoverlabel/align
+            /// - traces/scattergeo/attributes/hoverlabel/align
+            /// - traces/box/attributes/hoverlabel/align
+            /// - traces/histogram2dcontour/attributes/hoverlabel/align
+            /// - traces/scatter3d/attributes/hoverlabel/align
+            /// - traces/scatter/attributes/hoverlabel/align
+            /// - traces/bar/attributes/hoverlabel/align
+            /// - traces/streamtube/attributes/hoverlabel/align
+            /// - traces/histogram/attributes/hoverlabel/align
+            /// - traces/funnel/attributes/hoverlabel/align
+            /// - traces/scatterpolargl/attributes/hoverlabel/align
+            /// - traces/histogram2d/attributes/hoverlabel/align
+            /// - traces/scatterpolar/attributes/hoverlabel/align
+            /// - traces/sankey/attributes/hoverlabel/align
+            /// - traces/sankey/attributes/node/hoverlabel/align
             public enum Align: String, Encodable {
                 case left
                 case right
@@ -548,16 +682,18 @@ public struct Sankey: Trace {
         /// A numeric value representing the flow volume value.
         public var value: [Double]?
     
-        /// Determines which trace information appear when hovering links. 
+        /// Determines which trace information appear when hovering nodes. 
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
+        /// - traces/sankey/attributes/node/hoverinfo
+        /// - traces/sankey/attributes/link/hoverinfo
         public enum HoverInfo: String, Encodable {
             case all
             case none
             case skip
         }
-        /// Determines which trace information appear when hovering links. 
+        /// Determines which trace information appear when hovering nodes. 
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
@@ -611,6 +747,47 @@ public struct Sankey: Trace {
             /// Sets the horizontal alignment of the text content within hover label box. 
             ///
             /// Has an effect only if the hover label text spans more two or more lines
+            /// - layout/layoutAttributes/hoverlabel/align
+            /// - traces/heatmapgl/attributes/hoverlabel/align
+            /// - traces/mesh3d/attributes/hoverlabel/align
+            /// - traces/ohlc/attributes/hoverlabel/align
+            /// - traces/waterfall/attributes/hoverlabel/align
+            /// - traces/scattergl/attributes/hoverlabel/align
+            /// - traces/scatterternary/attributes/hoverlabel/align
+            /// - traces/contour/attributes/hoverlabel/align
+            /// - traces/splom/attributes/hoverlabel/align
+            /// - traces/area/attributes/hoverlabel/align
+            /// - traces/pointcloud/attributes/hoverlabel/align
+            /// - traces/choropleth/attributes/hoverlabel/align
+            /// - traces/treemap/attributes/hoverlabel/align
+            /// - traces/volume/attributes/hoverlabel/align
+            /// - traces/surface/attributes/hoverlabel/align
+            /// - traces/funnelarea/attributes/hoverlabel/align
+            /// - traces/scattermapbox/attributes/hoverlabel/align
+            /// - traces/candlestick/attributes/hoverlabel/align
+            /// - traces/heatmap/attributes/hoverlabel/align
+            /// - traces/barpolar/attributes/hoverlabel/align
+            /// - traces/densitymapbox/attributes/hoverlabel/align
+            /// - traces/image/attributes/hoverlabel/align
+            /// - traces/pie/attributes/hoverlabel/align
+            /// - traces/cone/attributes/hoverlabel/align
+            /// - traces/sunburst/attributes/hoverlabel/align
+            /// - traces/violin/attributes/hoverlabel/align
+            /// - traces/scattergeo/attributes/hoverlabel/align
+            /// - traces/box/attributes/hoverlabel/align
+            /// - traces/histogram2dcontour/attributes/hoverlabel/align
+            /// - traces/scatter3d/attributes/hoverlabel/align
+            /// - traces/scatter/attributes/hoverlabel/align
+            /// - traces/bar/attributes/hoverlabel/align
+            /// - traces/streamtube/attributes/hoverlabel/align
+            /// - traces/histogram/attributes/hoverlabel/align
+            /// - traces/funnel/attributes/hoverlabel/align
+            /// - traces/scatterpolargl/attributes/hoverlabel/align
+            /// - traces/histogram2d/attributes/hoverlabel/align
+            /// - traces/scatterpolar/attributes/hoverlabel/align
+            /// - traces/sankey/attributes/hoverlabel/align
+            /// - traces/sankey/attributes/node/hoverlabel/align
+            /// - traces/sankey/attributes/link/hoverlabel/align
             public enum Align: String, Encodable {
                 case left
                 case right

@@ -11,6 +11,35 @@ public struct Indicator: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/candlestick/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/barpolar/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/image/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/cone/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/indicator/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -107,6 +136,7 @@ public struct Indicator: Trace {
     ///
     /// `number` displays the value numerically in text. `delta` displays the difference to a reference
     /// value in text. Finally, `gauge` displays the value graphically on an axis.
+    /// - traces/indicator/attributes/mode
     public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -136,8 +166,11 @@ public struct Indicator: Trace {
 
     /// Sets the horizontal alignment of the `text` within the box. 
     ///
-    /// Note that this attribute has no effect if an angular gauge is displayed: in this case, it is
-    /// always centered
+    /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+    /// HTML tags) or if an explicit width is set to override the text width.
+    /// - layout/layoutAttributes/scene/annotations/items/annotation/align
+    /// - layout/layoutAttributes/annotations/items/annotation/align
+    /// - traces/indicator/attributes/align
     public enum Align: String, Encodable {
         case left
         case center
@@ -145,8 +178,8 @@ public struct Indicator: Trace {
     }
     /// Sets the horizontal alignment of the `text` within the box. 
     ///
-    /// Note that this attribute has no effect if an angular gauge is displayed: in this case, it is
-    /// always centered
+    /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+    /// HTML tags) or if an explicit width is set to override the text width.
     public var align: Align?
 
     public struct Domain: Encodable {
@@ -175,17 +208,23 @@ public struct Indicator: Trace {
         /// Sets the title of this indicator.
         public var text: String?
     
-        /// Sets the horizontal alignment of the title. 
+        /// Sets the horizontal alignment of the `text` within the box. 
         ///
-        /// It defaults to `center` except for bullet charts for which it defaults to right.
+        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+        /// HTML tags) or if an explicit width is set to override the text width.
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/align
+        /// - layout/layoutAttributes/annotations/items/annotation/align
+        /// - traces/indicator/attributes/align
+        /// - traces/indicator/attributes/title/align
         public enum Align: String, Encodable {
             case left
             case center
             case right
         }
-        /// Sets the horizontal alignment of the title. 
+        /// Sets the horizontal alignment of the `text` within the box. 
         ///
-        /// It defaults to `center` except for bullet charts for which it defaults to right.
+        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+        /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Align?
     
         /// Set the font used to display the title
@@ -276,6 +315,7 @@ public struct Indicator: Trace {
         public var reference: Double?
     
         /// Sets the position of delta with respect to the number.
+        /// - traces/indicator/attributes/delta/position
         public enum Position: String, Encodable {
             case top
             case bottom
@@ -362,6 +402,7 @@ public struct Indicator: Trace {
     /// The gauge of the Indicator plot.
     public struct Gauge: Encodable {
         /// Set the shape of the gauge
+        /// - traces/indicator/attributes/gauge/shape
         public enum Shape: String, Encodable {
             case angular
             case bullet
@@ -425,6 +466,37 @@ public struct Indicator: Trace {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+            /// - traces/heatmapgl/attributes/colorbar/tickmode
+            /// - traces/mesh3d/attributes/colorbar/tickmode
+            /// - traces/scattergl/attributes/marker/colorbar/tickmode
+            /// - traces/parcoords/attributes/line/colorbar/tickmode
+            /// - traces/scatterternary/attributes/marker/colorbar/tickmode
+            /// - traces/contour/attributes/colorbar/tickmode
+            /// - traces/contourcarpet/attributes/colorbar/tickmode
+            /// - traces/parcats/attributes/line/colorbar/tickmode
+            /// - traces/splom/attributes/marker/colorbar/tickmode
+            /// - traces/choropleth/attributes/colorbar/tickmode
+            /// - traces/treemap/attributes/marker/colorbar/tickmode
+            /// - traces/volume/attributes/colorbar/tickmode
+            /// - traces/surface/attributes/colorbar/tickmode
+            /// - traces/scattermapbox/attributes/marker/colorbar/tickmode
+            /// - traces/heatmap/attributes/colorbar/tickmode
+            /// - traces/barpolar/attributes/marker/colorbar/tickmode
+            /// - traces/densitymapbox/attributes/colorbar/tickmode
+            /// - traces/cone/attributes/colorbar/tickmode
+            /// - traces/sunburst/attributes/marker/colorbar/tickmode
+            /// - traces/indicator/attributes/gauge/axis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -485,6 +557,37 @@ public struct Indicator: Trace {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+            /// - traces/heatmapgl/attributes/colorbar/ticks
+            /// - traces/mesh3d/attributes/colorbar/ticks
+            /// - traces/scattergl/attributes/marker/colorbar/ticks
+            /// - traces/parcoords/attributes/line/colorbar/ticks
+            /// - traces/scatterternary/attributes/marker/colorbar/ticks
+            /// - traces/contour/attributes/colorbar/ticks
+            /// - traces/contourcarpet/attributes/colorbar/ticks
+            /// - traces/parcats/attributes/line/colorbar/ticks
+            /// - traces/splom/attributes/marker/colorbar/ticks
+            /// - traces/choropleth/attributes/colorbar/ticks
+            /// - traces/treemap/attributes/marker/colorbar/ticks
+            /// - traces/volume/attributes/colorbar/ticks
+            /// - traces/surface/attributes/colorbar/ticks
+            /// - traces/scattermapbox/attributes/marker/colorbar/ticks
+            /// - traces/heatmap/attributes/colorbar/ticks
+            /// - traces/barpolar/attributes/marker/colorbar/ticks
+            /// - traces/densitymapbox/attributes/colorbar/ticks
+            /// - traces/cone/attributes/colorbar/ticks
+            /// - traces/sunburst/attributes/marker/colorbar/ticks
+            /// - traces/indicator/attributes/gauge/axis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -607,6 +710,37 @@ public struct Indicator: Trace {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+            /// - traces/heatmapgl/attributes/colorbar/showtickprefix
+            /// - traces/mesh3d/attributes/colorbar/showtickprefix
+            /// - traces/scattergl/attributes/marker/colorbar/showtickprefix
+            /// - traces/parcoords/attributes/line/colorbar/showtickprefix
+            /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
+            /// - traces/contour/attributes/colorbar/showtickprefix
+            /// - traces/contourcarpet/attributes/colorbar/showtickprefix
+            /// - traces/parcats/attributes/line/colorbar/showtickprefix
+            /// - traces/splom/attributes/marker/colorbar/showtickprefix
+            /// - traces/choropleth/attributes/colorbar/showtickprefix
+            /// - traces/treemap/attributes/marker/colorbar/showtickprefix
+            /// - traces/volume/attributes/colorbar/showtickprefix
+            /// - traces/surface/attributes/colorbar/showtickprefix
+            /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
+            /// - traces/heatmap/attributes/colorbar/showtickprefix
+            /// - traces/barpolar/attributes/marker/colorbar/showtickprefix
+            /// - traces/densitymapbox/attributes/colorbar/showtickprefix
+            /// - traces/cone/attributes/colorbar/showtickprefix
+            /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
+            /// - traces/indicator/attributes/gauge/axis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -623,6 +757,37 @@ public struct Indicator: Trace {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+            /// - traces/heatmapgl/attributes/colorbar/showticksuffix
+            /// - traces/mesh3d/attributes/colorbar/showticksuffix
+            /// - traces/scattergl/attributes/marker/colorbar/showticksuffix
+            /// - traces/parcoords/attributes/line/colorbar/showticksuffix
+            /// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
+            /// - traces/contour/attributes/colorbar/showticksuffix
+            /// - traces/contourcarpet/attributes/colorbar/showticksuffix
+            /// - traces/parcats/attributes/line/colorbar/showticksuffix
+            /// - traces/splom/attributes/marker/colorbar/showticksuffix
+            /// - traces/choropleth/attributes/colorbar/showticksuffix
+            /// - traces/treemap/attributes/marker/colorbar/showticksuffix
+            /// - traces/volume/attributes/colorbar/showticksuffix
+            /// - traces/surface/attributes/colorbar/showticksuffix
+            /// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
+            /// - traces/heatmap/attributes/colorbar/showticksuffix
+            /// - traces/barpolar/attributes/marker/colorbar/showticksuffix
+            /// - traces/densitymapbox/attributes/colorbar/showticksuffix
+            /// - traces/cone/attributes/colorbar/showticksuffix
+            /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+            /// - traces/indicator/attributes/gauge/axis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -639,6 +804,37 @@ public struct Indicator: Trace {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+            /// - traces/heatmapgl/attributes/colorbar/exponentformat
+            /// - traces/mesh3d/attributes/colorbar/exponentformat
+            /// - traces/scattergl/attributes/marker/colorbar/exponentformat
+            /// - traces/parcoords/attributes/line/colorbar/exponentformat
+            /// - traces/scatterternary/attributes/marker/colorbar/exponentformat
+            /// - traces/contour/attributes/colorbar/exponentformat
+            /// - traces/contourcarpet/attributes/colorbar/exponentformat
+            /// - traces/parcats/attributes/line/colorbar/exponentformat
+            /// - traces/splom/attributes/marker/colorbar/exponentformat
+            /// - traces/choropleth/attributes/colorbar/exponentformat
+            /// - traces/treemap/attributes/marker/colorbar/exponentformat
+            /// - traces/volume/attributes/colorbar/exponentformat
+            /// - traces/surface/attributes/colorbar/exponentformat
+            /// - traces/scattermapbox/attributes/marker/colorbar/exponentformat
+            /// - traces/heatmap/attributes/colorbar/exponentformat
+            /// - traces/barpolar/attributes/marker/colorbar/exponentformat
+            /// - traces/densitymapbox/attributes/colorbar/exponentformat
+            /// - traces/cone/attributes/colorbar/exponentformat
+            /// - traces/sunburst/attributes/marker/colorbar/exponentformat
+            /// - traces/indicator/attributes/gauge/axis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -657,6 +853,37 @@ public struct Indicator: Trace {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+            /// - traces/heatmapgl/attributes/colorbar/showexponent
+            /// - traces/mesh3d/attributes/colorbar/showexponent
+            /// - traces/scattergl/attributes/marker/colorbar/showexponent
+            /// - traces/parcoords/attributes/line/colorbar/showexponent
+            /// - traces/scatterternary/attributes/marker/colorbar/showexponent
+            /// - traces/contour/attributes/colorbar/showexponent
+            /// - traces/contourcarpet/attributes/colorbar/showexponent
+            /// - traces/parcats/attributes/line/colorbar/showexponent
+            /// - traces/splom/attributes/marker/colorbar/showexponent
+            /// - traces/choropleth/attributes/colorbar/showexponent
+            /// - traces/treemap/attributes/marker/colorbar/showexponent
+            /// - traces/volume/attributes/colorbar/showexponent
+            /// - traces/surface/attributes/colorbar/showexponent
+            /// - traces/scattermapbox/attributes/marker/colorbar/showexponent
+            /// - traces/heatmap/attributes/colorbar/showexponent
+            /// - traces/barpolar/attributes/marker/colorbar/showexponent
+            /// - traces/densitymapbox/attributes/colorbar/showexponent
+            /// - traces/cone/attributes/colorbar/showexponent
+            /// - traces/sunburst/attributes/marker/colorbar/showexponent
+            /// - traces/indicator/attributes/gauge/axis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first

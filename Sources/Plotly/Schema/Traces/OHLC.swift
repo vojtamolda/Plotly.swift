@@ -13,6 +13,9 @@ public struct OHLC: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -75,6 +78,9 @@ public struct OHLC: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/heatmapgl/attributes/hoverinfo
+    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/ohlc/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -312,6 +318,10 @@ public struct OHLC: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -360,6 +370,8 @@ public struct OHLC: Trace {
     public var hoverLabel: HoverLabel?
 
     /// Sets the calendar system to use with `x` date data.
+    /// - traces/mesh3d/attributes/xcalendar
+    /// - traces/ohlc/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
         case chinese

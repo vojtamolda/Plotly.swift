@@ -10,6 +10,11 @@ public struct ScatterGL: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -69,6 +74,10 @@ public struct ScatterGL: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/heatmapgl/attributes/hoverinfo
+    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/ohlc/attributes/hoverinfo
+    /// - traces/scattergl/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -151,6 +160,12 @@ public struct ScatterGL: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -289,6 +304,8 @@ public struct ScatterGL: Trace {
     public var hoverText: String?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    /// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/textposition
+    /// - traces/scattergl/attributes/textposition
     public enum TextPosition: String, Encodable {
         case topLeft = "top left"
         case topCenter = "top center"
@@ -342,6 +359,7 @@ public struct ScatterGL: Trace {
     public var textFont: TextFont?
 
     /// Determines the drawing mode for this scatter trace.
+    /// - traces/scattergl/attributes/mode
     public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -375,6 +393,7 @@ public struct ScatterGL: Trace {
         /// Determines the line shape. 
         ///
         /// The values correspond to step-wise line shapes.
+        /// - traces/scattergl/attributes/line/shape
         public enum Shape: String, Encodable {
             case linear
             case hv
@@ -388,6 +407,7 @@ public struct ScatterGL: Trace {
         public var shape: Shape?
     
         /// Sets the style of the lines.
+        /// - traces/scattergl/attributes/line/dash
         public enum Dash: String, Encodable {
             case solid
             case dot
@@ -473,6 +493,10 @@ public struct ScatterGL: Trace {
             ///
             /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
             /// Use `thickness` to set the value.
+            /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
+            /// - traces/heatmapgl/attributes/colorbar/thicknessmode
+            /// - traces/mesh3d/attributes/colorbar/thicknessmode
+            /// - traces/scattergl/attributes/marker/colorbar/thicknessmode
             public enum ThicknessMode: String, Encodable {
                 case fraction
                 case pixels
@@ -486,17 +510,20 @@ public struct ScatterGL: Trace {
             /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
             public var thickness: Double?
         
-            /// Determines whether this color bar's length (i.e. 
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
-            /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
             /// Use `len` to set the value.
+            /// - layout/layoutAttributes/sliders/items/slider/lenmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
+            /// - traces/heatmapgl/attributes/colorbar/lenmode
+            /// - traces/mesh3d/attributes/colorbar/lenmode
+            /// - traces/scattergl/attributes/marker/colorbar/lenmode
             public enum LengthMode: String, Encodable {
                 case fraction
                 case pixels
             }
-            /// Determines whether this color bar's length (i.e. 
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
-            /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
             /// Use `len` to set the value.
             public var lengthMode: LengthMode?
         
@@ -508,17 +535,19 @@ public struct ScatterGL: Trace {
             /// Sets the x position of the color bar (in plot fraction).
             public var x: Double?
         
-            /// Sets this color bar's horizontal position anchor. 
-            ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+            /// Sets the anchor for the x position
+            /// - layout/layoutAttributes/images/items/image/xanchor
+            /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
+            /// - traces/heatmapgl/attributes/colorbar/xanchor
+            /// - traces/mesh3d/attributes/colorbar/xanchor
+            /// - traces/scattergl/attributes/marker/colorbar/xanchor
             public enum XAnchor: String, Encodable {
                 case left
                 case center
                 case right
             }
-            /// Sets this color bar's horizontal position anchor. 
-            ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+            /// Sets the anchor for the x position
             public var xAnchor: XAnchor?
         
             /// Sets the amount of padding (in px) along the x direction.
@@ -527,13 +556,18 @@ public struct ScatterGL: Trace {
             /// Sets the y position of the color bar (in plot fraction).
             public var y: Double?
         
-            /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+            /// Sets the anchor for the y position.
+            /// - layout/layoutAttributes/images/items/image/yanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
+            /// - traces/heatmapgl/attributes/colorbar/yanchor
+            /// - traces/mesh3d/attributes/colorbar/yanchor
+            /// - traces/scattergl/attributes/marker/colorbar/yanchor
             public enum YAnchor: String, Encodable {
                 case top
                 case middle
                 case bottom
             }
-            /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+            /// Sets the anchor for the y position.
             public var yAnchor: YAnchor?
         
             /// Sets the amount of padding (in px) along the y direction.
@@ -561,6 +595,20 @@ public struct ScatterGL: Trace {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+            /// - traces/heatmapgl/attributes/colorbar/tickmode
+            /// - traces/mesh3d/attributes/colorbar/tickmode
+            /// - traces/scattergl/attributes/marker/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -621,6 +669,20 @@ public struct ScatterGL: Trace {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+            /// - traces/heatmapgl/attributes/colorbar/ticks
+            /// - traces/mesh3d/attributes/colorbar/ticks
+            /// - traces/scattergl/attributes/marker/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -743,6 +805,20 @@ public struct ScatterGL: Trace {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+            /// - traces/heatmapgl/attributes/colorbar/showtickprefix
+            /// - traces/mesh3d/attributes/colorbar/showtickprefix
+            /// - traces/scattergl/attributes/marker/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -759,6 +835,20 @@ public struct ScatterGL: Trace {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+            /// - traces/heatmapgl/attributes/colorbar/showticksuffix
+            /// - traces/mesh3d/attributes/colorbar/showticksuffix
+            /// - traces/scattergl/attributes/marker/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -775,6 +865,20 @@ public struct ScatterGL: Trace {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+            /// - traces/heatmapgl/attributes/colorbar/exponentformat
+            /// - traces/mesh3d/attributes/colorbar/exponentformat
+            /// - traces/scattergl/attributes/marker/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -793,6 +897,20 @@ public struct ScatterGL: Trace {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+            /// - traces/heatmapgl/attributes/colorbar/showexponent
+            /// - traces/mesh3d/attributes/colorbar/showexponent
+            /// - traces/scattergl/attributes/marker/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -845,6 +963,10 @@ public struct ScatterGL: Trace {
                 /// Determines the location of color bar's title with respect to the color bar. 
                 ///
                 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+                /// - layout/layoutAttributes/coloraxis/colorbar/title/side
+                /// - traces/heatmapgl/attributes/colorbar/title/side
+                /// - traces/mesh3d/attributes/colorbar/title/side
+                /// - traces/scattergl/attributes/marker/colorbar/title/side
                 public enum Side: String, Encodable {
                     case right
                     case top
@@ -897,6 +1019,10 @@ public struct ScatterGL: Trace {
                 public var titleFont: TitleFont?
             
                 /// Deprecated in favor of color bar's `title.side`.
+                /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
+                /// - traces/heatmapgl/attributes/colorbar/_deprecated/titleside
+                /// - traces/mesh3d/attributes/colorbar/_deprecated/titleside
+                /// - traces/scattergl/attributes/marker/colorbar/_deprecated/titleside
                 public enum TitleSide: String, Encodable {
                     case right
                     case top
@@ -977,6 +1103,7 @@ public struct ScatterGL: Trace {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
+        /// - traces/scattergl/attributes/marker/symbol
         public enum Symbol: String, Encodable {
             case circle
             case circleOpen = "circle-open"
@@ -1145,6 +1272,7 @@ public struct ScatterGL: Trace {
         /// Has an effect only if `marker.size` is set to a numerical array. 
         ///
         /// Sets the rule for which the data in `size` is converted to pixels.
+        /// - traces/scattergl/attributes/marker/sizemode
         public enum SizeMode: String, Encodable {
             case diameter
             case area
@@ -1304,6 +1432,7 @@ public struct ScatterGL: Trace {
     /// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
     /// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
     /// later ones will be pushed down in the drawing order.
+    /// - traces/scattergl/attributes/fill
     public enum Fill: String, Encodable {
         case none
         case toZeroY = "tozeroy"
@@ -1450,6 +1579,7 @@ public struct ScatterGL: Trace {
         /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
         /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
         /// the bar lengths are set with data set `array`.
+        /// - traces/scattergl/attributes/error_x/type
         public enum Rule: String, Encodable {
             case percent
             case constant
@@ -1545,6 +1675,8 @@ public struct ScatterGL: Trace {
         /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
         /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
         /// the bar lengths are set with data set `array`.
+        /// - traces/scattergl/attributes/error_x/type
+        /// - traces/scattergl/attributes/error_y/type
         public enum Rule: String, Encodable {
             case percent
             case constant
@@ -1628,6 +1760,9 @@ public struct ScatterGL: Trace {
     public var yError: YError?
 
     /// Sets the calendar system to use with `x` date data.
+    /// - traces/mesh3d/attributes/xcalendar
+    /// - traces/ohlc/attributes/xcalendar
+    /// - traces/scattergl/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
         case chinese
@@ -1650,6 +1785,8 @@ public struct ScatterGL: Trace {
     public var xCalendar: XCalendar?
 
     /// Sets the calendar system to use with `y` date data.
+    /// - traces/mesh3d/attributes/ycalendar
+    /// - traces/scattergl/attributes/ycalendar
     public enum YCalendar: String, Encodable {
         case gregorian
         case chinese

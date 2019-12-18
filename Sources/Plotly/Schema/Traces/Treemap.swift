@@ -10,6 +10,21 @@ public struct Treemap: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/treemap/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -101,6 +116,19 @@ public struct Treemap: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -216,6 +244,7 @@ public struct Treemap: Trace {
     /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
     /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
     /// be the extra part not part of the sum of the values at their leaves.
+    /// - traces/treemap/attributes/branchvalues
     public enum BranchValues: String, Encodable {
         case remainder
         case total
@@ -228,6 +257,7 @@ public struct Treemap: Trace {
     public var branchValues: BranchValues?
 
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
+    /// - traces/treemap/attributes/count
     public struct Count: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -262,6 +292,7 @@ public struct Treemap: Trace {
         /// Determines d3 treemap solver. 
         ///
         /// For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
+        /// - traces/treemap/attributes/tiling/packing
         public enum Packing: String, Encodable {
             case squarify
             case binary
@@ -285,6 +316,7 @@ public struct Treemap: Trace {
         public var squarifyRatio: Double?
     
         /// Determines if the positions obtained from solver are flipped on each axis.
+        /// - traces/treemap/attributes/tiling/flip
         public struct Flip: OptionSet, Encodable {
             public let rawValue: Int
         
@@ -350,6 +382,7 @@ public struct Treemap: Trace {
         /// `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading
         /// direction is inverted, that is the top elements within hierarchy are drawn with fully saturated
         /// colors while the leaves are faded towards the background color.
+        /// - traces/treemap/attributes/marker/depthfade
         public enum DepthFade: String, Encodable {
             case `true` = "true"
             case `false` = "false"
@@ -444,6 +477,18 @@ public struct Treemap: Trace {
             ///
             /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
             /// Use `thickness` to set the value.
+            /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
+            /// - traces/heatmapgl/attributes/colorbar/thicknessmode
+            /// - traces/mesh3d/attributes/colorbar/thicknessmode
+            /// - traces/scattergl/attributes/marker/colorbar/thicknessmode
+            /// - traces/parcoords/attributes/line/colorbar/thicknessmode
+            /// - traces/scatterternary/attributes/marker/colorbar/thicknessmode
+            /// - traces/contour/attributes/colorbar/thicknessmode
+            /// - traces/contourcarpet/attributes/colorbar/thicknessmode
+            /// - traces/parcats/attributes/line/colorbar/thicknessmode
+            /// - traces/splom/attributes/marker/colorbar/thicknessmode
+            /// - traces/choropleth/attributes/colorbar/thicknessmode
+            /// - traces/treemap/attributes/marker/colorbar/thicknessmode
             public enum ThicknessMode: String, Encodable {
                 case fraction
                 case pixels
@@ -457,17 +502,28 @@ public struct Treemap: Trace {
             /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
             public var thickness: Double?
         
-            /// Determines whether this color bar's length (i.e. 
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
-            /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
             /// Use `len` to set the value.
+            /// - layout/layoutAttributes/sliders/items/slider/lenmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
+            /// - traces/heatmapgl/attributes/colorbar/lenmode
+            /// - traces/mesh3d/attributes/colorbar/lenmode
+            /// - traces/scattergl/attributes/marker/colorbar/lenmode
+            /// - traces/parcoords/attributes/line/colorbar/lenmode
+            /// - traces/scatterternary/attributes/marker/colorbar/lenmode
+            /// - traces/contour/attributes/colorbar/lenmode
+            /// - traces/contourcarpet/attributes/colorbar/lenmode
+            /// - traces/parcats/attributes/line/colorbar/lenmode
+            /// - traces/splom/attributes/marker/colorbar/lenmode
+            /// - traces/choropleth/attributes/colorbar/lenmode
+            /// - traces/treemap/attributes/marker/colorbar/lenmode
             public enum LengthMode: String, Encodable {
                 case fraction
                 case pixels
             }
-            /// Determines whether this color bar's length (i.e. 
+            /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
-            /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
             /// Use `len` to set the value.
             public var lengthMode: LengthMode?
         
@@ -479,17 +535,27 @@ public struct Treemap: Trace {
             /// Sets the x position of the color bar (in plot fraction).
             public var x: Double?
         
-            /// Sets this color bar's horizontal position anchor. 
-            ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+            /// Sets the anchor for the x position
+            /// - layout/layoutAttributes/images/items/image/xanchor
+            /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
+            /// - traces/heatmapgl/attributes/colorbar/xanchor
+            /// - traces/mesh3d/attributes/colorbar/xanchor
+            /// - traces/scattergl/attributes/marker/colorbar/xanchor
+            /// - traces/parcoords/attributes/line/colorbar/xanchor
+            /// - traces/scatterternary/attributes/marker/colorbar/xanchor
+            /// - traces/contour/attributes/colorbar/xanchor
+            /// - traces/contourcarpet/attributes/colorbar/xanchor
+            /// - traces/parcats/attributes/line/colorbar/xanchor
+            /// - traces/splom/attributes/marker/colorbar/xanchor
+            /// - traces/choropleth/attributes/colorbar/xanchor
+            /// - traces/treemap/attributes/marker/colorbar/xanchor
             public enum XAnchor: String, Encodable {
                 case left
                 case center
                 case right
             }
-            /// Sets this color bar's horizontal position anchor. 
-            ///
-            /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+            /// Sets the anchor for the x position
             public var xAnchor: XAnchor?
         
             /// Sets the amount of padding (in px) along the x direction.
@@ -498,13 +564,26 @@ public struct Treemap: Trace {
             /// Sets the y position of the color bar (in plot fraction).
             public var y: Double?
         
-            /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+            /// Sets the anchor for the y position.
+            /// - layout/layoutAttributes/images/items/image/yanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
+            /// - traces/heatmapgl/attributes/colorbar/yanchor
+            /// - traces/mesh3d/attributes/colorbar/yanchor
+            /// - traces/scattergl/attributes/marker/colorbar/yanchor
+            /// - traces/parcoords/attributes/line/colorbar/yanchor
+            /// - traces/scatterternary/attributes/marker/colorbar/yanchor
+            /// - traces/contour/attributes/colorbar/yanchor
+            /// - traces/contourcarpet/attributes/colorbar/yanchor
+            /// - traces/parcats/attributes/line/colorbar/yanchor
+            /// - traces/splom/attributes/marker/colorbar/yanchor
+            /// - traces/choropleth/attributes/colorbar/yanchor
+            /// - traces/treemap/attributes/marker/colorbar/yanchor
             public enum YAnchor: String, Encodable {
                 case top
                 case middle
                 case bottom
             }
-            /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the color bar.
+            /// Sets the anchor for the y position.
             public var yAnchor: YAnchor?
         
             /// Sets the amount of padding (in px) along the y direction.
@@ -532,6 +611,28 @@ public struct Treemap: Trace {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+            /// - traces/heatmapgl/attributes/colorbar/tickmode
+            /// - traces/mesh3d/attributes/colorbar/tickmode
+            /// - traces/scattergl/attributes/marker/colorbar/tickmode
+            /// - traces/parcoords/attributes/line/colorbar/tickmode
+            /// - traces/scatterternary/attributes/marker/colorbar/tickmode
+            /// - traces/contour/attributes/colorbar/tickmode
+            /// - traces/contourcarpet/attributes/colorbar/tickmode
+            /// - traces/parcats/attributes/line/colorbar/tickmode
+            /// - traces/splom/attributes/marker/colorbar/tickmode
+            /// - traces/choropleth/attributes/colorbar/tickmode
+            /// - traces/treemap/attributes/marker/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -592,6 +693,28 @@ public struct Treemap: Trace {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+            /// - traces/heatmapgl/attributes/colorbar/ticks
+            /// - traces/mesh3d/attributes/colorbar/ticks
+            /// - traces/scattergl/attributes/marker/colorbar/ticks
+            /// - traces/parcoords/attributes/line/colorbar/ticks
+            /// - traces/scatterternary/attributes/marker/colorbar/ticks
+            /// - traces/contour/attributes/colorbar/ticks
+            /// - traces/contourcarpet/attributes/colorbar/ticks
+            /// - traces/parcats/attributes/line/colorbar/ticks
+            /// - traces/splom/attributes/marker/colorbar/ticks
+            /// - traces/choropleth/attributes/colorbar/ticks
+            /// - traces/treemap/attributes/marker/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -714,6 +837,28 @@ public struct Treemap: Trace {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+            /// - traces/heatmapgl/attributes/colorbar/showtickprefix
+            /// - traces/mesh3d/attributes/colorbar/showtickprefix
+            /// - traces/scattergl/attributes/marker/colorbar/showtickprefix
+            /// - traces/parcoords/attributes/line/colorbar/showtickprefix
+            /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
+            /// - traces/contour/attributes/colorbar/showtickprefix
+            /// - traces/contourcarpet/attributes/colorbar/showtickprefix
+            /// - traces/parcats/attributes/line/colorbar/showtickprefix
+            /// - traces/splom/attributes/marker/colorbar/showtickprefix
+            /// - traces/choropleth/attributes/colorbar/showtickprefix
+            /// - traces/treemap/attributes/marker/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -730,6 +875,28 @@ public struct Treemap: Trace {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+            /// - traces/heatmapgl/attributes/colorbar/showticksuffix
+            /// - traces/mesh3d/attributes/colorbar/showticksuffix
+            /// - traces/scattergl/attributes/marker/colorbar/showticksuffix
+            /// - traces/parcoords/attributes/line/colorbar/showticksuffix
+            /// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
+            /// - traces/contour/attributes/colorbar/showticksuffix
+            /// - traces/contourcarpet/attributes/colorbar/showticksuffix
+            /// - traces/parcats/attributes/line/colorbar/showticksuffix
+            /// - traces/splom/attributes/marker/colorbar/showticksuffix
+            /// - traces/choropleth/attributes/colorbar/showticksuffix
+            /// - traces/treemap/attributes/marker/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -746,6 +913,28 @@ public struct Treemap: Trace {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+            /// - traces/heatmapgl/attributes/colorbar/exponentformat
+            /// - traces/mesh3d/attributes/colorbar/exponentformat
+            /// - traces/scattergl/attributes/marker/colorbar/exponentformat
+            /// - traces/parcoords/attributes/line/colorbar/exponentformat
+            /// - traces/scatterternary/attributes/marker/colorbar/exponentformat
+            /// - traces/contour/attributes/colorbar/exponentformat
+            /// - traces/contourcarpet/attributes/colorbar/exponentformat
+            /// - traces/parcats/attributes/line/colorbar/exponentformat
+            /// - traces/splom/attributes/marker/colorbar/exponentformat
+            /// - traces/choropleth/attributes/colorbar/exponentformat
+            /// - traces/treemap/attributes/marker/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -764,6 +953,28 @@ public struct Treemap: Trace {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+            /// - traces/heatmapgl/attributes/colorbar/showexponent
+            /// - traces/mesh3d/attributes/colorbar/showexponent
+            /// - traces/scattergl/attributes/marker/colorbar/showexponent
+            /// - traces/parcoords/attributes/line/colorbar/showexponent
+            /// - traces/scatterternary/attributes/marker/colorbar/showexponent
+            /// - traces/contour/attributes/colorbar/showexponent
+            /// - traces/contourcarpet/attributes/colorbar/showexponent
+            /// - traces/parcats/attributes/line/colorbar/showexponent
+            /// - traces/splom/attributes/marker/colorbar/showexponent
+            /// - traces/choropleth/attributes/colorbar/showexponent
+            /// - traces/treemap/attributes/marker/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -816,6 +1027,18 @@ public struct Treemap: Trace {
                 /// Determines the location of color bar's title with respect to the color bar. 
                 ///
                 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+                /// - layout/layoutAttributes/coloraxis/colorbar/title/side
+                /// - traces/heatmapgl/attributes/colorbar/title/side
+                /// - traces/mesh3d/attributes/colorbar/title/side
+                /// - traces/scattergl/attributes/marker/colorbar/title/side
+                /// - traces/parcoords/attributes/line/colorbar/title/side
+                /// - traces/scatterternary/attributes/marker/colorbar/title/side
+                /// - traces/contour/attributes/colorbar/title/side
+                /// - traces/contourcarpet/attributes/colorbar/title/side
+                /// - traces/parcats/attributes/line/colorbar/title/side
+                /// - traces/splom/attributes/marker/colorbar/title/side
+                /// - traces/choropleth/attributes/colorbar/title/side
+                /// - traces/treemap/attributes/marker/colorbar/title/side
                 public enum Side: String, Encodable {
                     case right
                     case top
@@ -868,6 +1091,18 @@ public struct Treemap: Trace {
                 public var titleFont: TitleFont?
             
                 /// Deprecated in favor of color bar's `title.side`.
+                /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
+                /// - traces/heatmapgl/attributes/colorbar/_deprecated/titleside
+                /// - traces/mesh3d/attributes/colorbar/_deprecated/titleside
+                /// - traces/scattergl/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
+                /// - traces/scatterternary/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/contour/attributes/colorbar/_deprecated/titleside
+                /// - traces/contourcarpet/attributes/colorbar/_deprecated/titleside
+                /// - traces/parcats/attributes/line/colorbar/_deprecated/titleside
+                /// - traces/splom/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/choropleth/attributes/colorbar/_deprecated/titleside
+                /// - traces/treemap/attributes/marker/colorbar/_deprecated/titleside
                 public enum TitleSide: String, Encodable {
                     case right
                     case top
@@ -973,6 +1208,7 @@ public struct Treemap: Trace {
         public var visible: Bool?
     
         /// Determines on which side of the the treemap the `pathbar` should be presented.
+        /// - traces/treemap/attributes/pathbar/side
         public enum Side: String, Encodable {
             case top
             case bottom
@@ -981,6 +1217,7 @@ public struct Treemap: Trace {
         public var side: Side?
     
         /// Determines which shape is used for edges between `barpath` labels.
+        /// - traces/treemap/attributes/pathbar/edgeshape
         public enum EdgeShape: String, Encodable {
             case greaterThan = ">"
             case lessThan = "<"
@@ -1052,6 +1289,7 @@ public struct Treemap: Trace {
     public var text: [Double]?
 
     /// Determines which trace information appear on the graph.
+    /// - traces/treemap/attributes/textinfo
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -1108,6 +1346,7 @@ public struct Treemap: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/treemap/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -1280,7 +1519,11 @@ public struct Treemap: Trace {
     /// Sets the font used for `textinfo` lying outside the sector.
     public var outSideTextFont: OutSideTextFont?
 
-    /// Sets the positions of the `text` elements.
+    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    /// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/textposition
+    /// - traces/scattergl/attributes/textposition
+    /// - traces/scatterternary/attributes/textposition
+    /// - traces/treemap/attributes/textposition
     public enum TextPosition: String, Encodable {
         case topLeft = "top left"
         case topCenter = "top center"
@@ -1292,7 +1535,7 @@ public struct Treemap: Trace {
         case bottomCenter = "bottom center"
         case bottomRight = "bottom right"
     }
-    /// Sets the positions of the `text` elements.
+    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: TextPosition?
 
     public struct Domain: Encodable {

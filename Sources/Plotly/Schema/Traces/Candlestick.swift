@@ -13,6 +13,26 @@ public struct Candlestick: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/candlestick/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -75,6 +95,17 @@ public struct Candlestick: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/heatmapgl/attributes/hoverinfo
+    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/ohlc/attributes/hoverinfo
+    /// - traces/scattergl/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
+    /// - traces/area/attributes/hoverinfo
+    /// - traces/pointcloud/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
+    /// - traces/surface/attributes/hoverinfo
+    /// - traces/candlestick/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -309,6 +340,24 @@ public struct Candlestick: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/candlestick/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -357,6 +406,12 @@ public struct Candlestick: Trace {
     public var hoverLabel: HoverLabel?
 
     /// Sets the calendar system to use with `x` date data.
+    /// - traces/mesh3d/attributes/xcalendar
+    /// - traces/ohlc/attributes/xcalendar
+    /// - traces/scattergl/attributes/xcalendar
+    /// - traces/contour/attributes/xcalendar
+    /// - traces/surface/attributes/xcalendar
+    /// - traces/candlestick/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
         case chinese

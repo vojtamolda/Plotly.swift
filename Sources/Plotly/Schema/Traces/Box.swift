@@ -15,6 +15,37 @@ public struct Box: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/candlestick/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/barpolar/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/image/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/cone/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/indicator/attributes/visible
+    /// - traces/scattergeo/attributes/visible
+    /// - traces/box/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -72,6 +103,20 @@ public struct Box: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/heatmapgl/attributes/hoverinfo
+    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/ohlc/attributes/hoverinfo
+    /// - traces/scattergl/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
+    /// - traces/area/attributes/hoverinfo
+    /// - traces/pointcloud/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
+    /// - traces/surface/attributes/hoverinfo
+    /// - traces/candlestick/attributes/hoverinfo
+    /// - traces/heatmap/attributes/hoverinfo
+    /// - traces/violin/attributes/hoverinfo
+    /// - traces/box/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -154,6 +199,34 @@ public struct Box: Trace {
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
         /// Has an effect only if the hover label text spans more two or more lines
+        /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/candlestick/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/barpolar/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/cone/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/scattergeo/attributes/hoverlabel/align
+        /// - traces/box/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -317,6 +390,7 @@ public struct Box: Trace {
     public var notchWidth: Double?
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
+    /// - traces/box/attributes/boxpoints
     public enum BoxPoints: String, Encodable {
         case all
         case outliers
@@ -329,6 +403,7 @@ public struct Box: Trace {
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). 
     ///
     /// If *sd* the standard deviation is also drawn.
+    /// - traces/box/attributes/boxmean
     public enum BoxMean: String, Encodable {
         case `true` = "true"
         case sd
@@ -352,16 +427,17 @@ public struct Box: Trace {
     /// boxes
     public var pointPosition: Double?
 
-    /// Sets the orientation of the box(es). 
-    ///
-    /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
+    /// Sets the orientation of the modebar.
+    /// - layout/layoutAttributes/modebar/orientation
+    /// - layout/layoutAttributes/legend/orientation
+    /// - traces/waterfall/attributes/orientation
+    /// - traces/violin/attributes/orientation
+    /// - traces/box/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
     }
-    /// Sets the orientation of the box(es). 
-    ///
-    /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
+    /// Sets the orientation of the modebar.
     public var orientation: Orientation?
 
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically selected based on the positions of other box traces in the same subplot.
@@ -376,6 +452,13 @@ public struct Box: Trace {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
+        /// - traces/scattergl/attributes/marker/symbol
+        /// - traces/scatterternary/attributes/marker/symbol
+        /// - traces/splom/attributes/marker/symbol
+        /// - traces/area/attributes/marker/symbol
+        /// - traces/violin/attributes/marker/symbol
+        /// - traces/scattergeo/attributes/marker/symbol
+        /// - traces/box/attributes/marker/symbol
         public enum Symbol: String, Encodable {
             case circle
             case circleOpen = "circle-open"
@@ -658,6 +741,7 @@ public struct Box: Trace {
     public var unselected: Unselected?
 
     /// Do the hover effects highlight individual boxes  or sample points or both?
+    /// - traces/box/attributes/hoveron
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -678,6 +762,14 @@ public struct Box: Trace {
     public var hoverOn: HoverOn?
 
     /// Sets the calendar system to use with `x` date data.
+    /// - traces/mesh3d/attributes/xcalendar
+    /// - traces/ohlc/attributes/xcalendar
+    /// - traces/scattergl/attributes/xcalendar
+    /// - traces/contour/attributes/xcalendar
+    /// - traces/surface/attributes/xcalendar
+    /// - traces/candlestick/attributes/xcalendar
+    /// - traces/heatmap/attributes/xcalendar
+    /// - traces/box/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
         case chinese
@@ -700,6 +792,12 @@ public struct Box: Trace {
     public var xCalendar: XCalendar?
 
     /// Sets the calendar system to use with `y` date data.
+    /// - traces/mesh3d/attributes/ycalendar
+    /// - traces/scattergl/attributes/ycalendar
+    /// - traces/contour/attributes/ycalendar
+    /// - traces/surface/attributes/ycalendar
+    /// - traces/heatmap/attributes/ycalendar
+    /// - traces/box/attributes/ycalendar
     public enum YCalendar: String, Encodable {
         case gregorian
         case chinese
