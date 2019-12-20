@@ -1,22 +1,76 @@
 
+// MARK: Swift Data Type Protocols
+
+/// A data type that can return lines of Swift code with it's own definition.
+protocol Definable {
+    /// Returns lines of Swift code that fully define the data type including the nested members.
+    func definition() -> [String]
+}
+extension Definable {
+    /// Returns empty lines which is useful for Swift built-in types like Int, String or [Double].
+    func definition() -> [String] {
+        return []
+    }
+}
+
+/// A Swift data type that corresponds to some Plotly schema origin data type.
+protocol SwiftType: Definable where OriginType: SchemaType {
+    associatedtype OriginType
+    var name: String { get }
+    var schema: OriginType { get }
+    var documentation: [String] { get }
+}
+extension SwiftType where OriginType: SchemaType {
+    /// Default implementation of documentation text extracted from the origin Plotly schema data type.
+    var documentation: [String] { schema.description?.documentation() ?? [] }
+}
+
+/// A shared Swift type that tracks it's references to prevent duplicate definitions of identical types.
+protocol SwiftSharedType: SwiftType, Equatable {
+    var access: String { get }
+    var protocols: [String] { get }
+    var references: [String] { get set }
+    static var existing: [Self] { get set }
+
+    init(named: String, schema: OriginType)
+    /// Checks for duplicates and if there is one returns a previously existing instance the the type.
+    static func createShared(named: String, schema: OriginType) -> Self
+}
+extension SwiftSharedType {
+    /// Default implementation that prevents duplication of types.
+    static func createShared(named: String, schema: OriginType) -> Self {
+        var new = Self.init(named: named, schema: schema)
+        if let index = Self.existing.firstIndex(where: { $0 == new }) {
+            Self.existing[index].references.append(schema.decodingPath)
+            return Self.existing[index]
+        } else {
+            new.references.append(schema.decodingPath)
+            Self.existing.append(new)
+            return new
+        }
+    }
+}
+
+
 /// Container for Swift data types that map to corresponding values in the Plotly JSON schema hierarchy.
 struct Swift {
     /// Storage of Plotly mangledtogethernames translated to Swift camelCaseNames for each identifier in the schema.
     static var name: Name? = nil
 
+
     // MARK: - Swift Data Types
 
     /// Data type that maps Plotly `data_array` to a numerical array in Swift.
-    struct DataArray: SwiftDataType {
-        let type: String = "[Double]"
+    struct DataArray: SwiftType {
+        let name: String = "[Double]"
         let identifier: String = "[Double]"
-        let schema: SchemaDataType?
+        var schema: Schema.DataArray
     }
 
     /// Data type that maps Plotly `enumerated` to Swift `enum`.
-    struct Enumerated: SwiftComplexDataType {
-        let type: String
-        let schema: SchemaDataType?
+    struct Enumerated: SwiftSharedType {
+        let name: String
+        var schema: Schema.Enumerated
 
         let access: String = "public"
         var protocols: [String] = ["String", "Encodable"]
@@ -29,11 +83,9 @@ struct Swift {
         }
         var cases: [Case] = []
 
-        init(type: String, schema: SchemaDataType) {
-            let schema = schema as! Schema.Attribute.Enumerated
-            self.schema = schema
-            // Workaround for enum called Type that collides with Swift built-in Type
-            self.type = Swift.name!.pascalCased(type)
+        init(named name: String, schema enumerated: Schema.Enumerated) {
+            self.name = Swift.name!.pascalCased(name)
+            self.schema = enumerated
 
             // Workaround for numerical values of Marker Symbols
             if schema.decodingPath.hasSuffix("marker/symbol") {
@@ -77,7 +129,7 @@ struct Swift {
                 let rawValue = (sanitized == string) ? nil : string.escaped()
                 return Case(label: sanitized, rawValue: rawValue)
             default:
-                fatalError("Invalid enum case in '\(self.schema!.decodingPath)'")
+                fatalError("Invalid enum case in '\(self.schema.decodingPath)'")
             }
         }
 
@@ -86,14 +138,14 @@ struct Swift {
             var lines = [String]()
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += documentation
-            for reference in references {
+            for reference in references.sorted() {
                 lines += ["/// - \(reference)"]
             }
 
-            lines += ["\(access) enum \(type)\(protocols) {"]
-            for cas in cases {
-                let rawValue = (cas.rawValue != nil) ? " = \(cas.rawValue!)" : ""
-                lines += ["case \(cas.label)\(rawValue)"].indented()
+            lines += ["\(access) enum \(name)\(protocols) {"]
+            for `case` in cases {
+                let rawValue = (`case`.rawValue != nil) ? " = \(`case`.rawValue!)" : ""
+                lines += ["case \(`case`.label)\(rawValue)"].indented()
             }
             lines += ["}"]
             return lines
@@ -101,72 +153,72 @@ struct Swift {
 
         /// Checks for equality by comparing types and cases of the two `Enumerated` types.
         static func == (lhs: Enumerated, rhs: Enumerated) -> Bool {
-            let typeEqual = lhs.type == rhs.type
+            let typeEqual = lhs.name == rhs.name
             let casesEqual = lhs.cases == rhs.cases
             return typeEqual && casesEqual
         }
     }
 
     /// Plotly `boolean` data type represented as a Swift `Bool`.
-    struct Boolean: SwiftDataType {
-        let type: String = "Bool"
-        let schema: SchemaDataType?
+    struct Boolean: SwiftType {
+        let name: String = "Bool"
+        var schema: Schema.Boolean
     }
 
     /// Plotly `number` data type represented as a Swift `Double`.
-    struct Number: SwiftDataType {
-        let type: String = "Double"
-        let schema: SchemaDataType?
+    struct Number: SwiftType {
+        let name: String = "Double"
+        var schema: Schema.Number
     }
 
     /// Plotly `integer` data type represented as a Swift `Int`.
-    struct Integer: SwiftDataType {
-        let type: String = "Int"
-        let schema: SchemaDataType?
+    struct Integer: SwiftType {
+        let name: String = "Int"
+        var schema: Schema.Integer
     }
 
     /// Plotly `string` data type represented as a Swift `String`.
     /// - Note: Appended underscore prevents collision with the Swift built-in type.
-    struct String_: SwiftDataType {
-        let type: String = "String"
-        let schema: SchemaDataType?
+    struct String_: SwiftType {
+        let name: String = "String"
+        var schema: Schema.String_
     }
 
     /// Plotly `color` data type is manually re-implemented in Swift.
-    struct Color: SwiftDataType {
-        let type: String = "Color"
-        let schema: SchemaDataType?
+    struct Color: SwiftType {
+        let name: String = "Color"
+        var schema: Schema.Color
     }
 
     /// Plotly `colorlist` data type is manually re-implemented in Swift.
-    struct ColorList: SwiftDataType {
-        let type: String = "ColorList"
-        let schema: SchemaDataType?
+    struct ColorList: SwiftType {
+        let name: String = "ColorList"
+        var schema: Schema.ColorList
     }
 
     /// Plotly `colorscale` data type is manually re-implemented in Swift.
     /// - Note: `Layout.ColorScale` is renamed to `Layout.ColorMap` to prevent conflicts.
-    struct ColorScale: SwiftDataType {
-        let type: String = "ColorScale"
-        let schema: SchemaDataType?
+    struct ColorScale: SwiftType {
+        let name: String = "ColorScale"
+        var schema: Schema.ColorScale
     }
 
     /// Plotly `Angle` data type represented as a Swift `Double`.
-    struct Angle: SwiftDataType {
-        let type: String = "Angle"
-        let schema: SchemaDataType?
+    struct Angle: SwiftType {
+        let name: String = "Angle"
+        var schema: Schema.Angle
     }
 
     /// Plotly `subplotid` data type is manually re-implemented in Swift.
-    struct SubPlotID: SwiftDataType {
-        let type: String = "SubPlotID"
-        let schema: SchemaDataType?
+    struct SubPlotID: SwiftType {
+        let name: String = "SubPlotID"
+        var schema: Schema.SubPlotID
     }
 
     /// Data type that maps Plotly `flaglist` to `OptionSet` from the Swift standard library.
-    struct FlagList: SwiftComplexDataType {
-        let type: String
-        let schema: SchemaDataType?
+    struct FlagList: SwiftSharedType {
+        let name: String
+        var schema: Schema.FlagList
 
         let access: String = "public"
         var references: [String] = []
@@ -179,10 +231,9 @@ struct Swift {
         }
         var options: [Option] = []
 
-        init(type: String, schema: SchemaDataType) {
-            let schema = schema as! Schema.Attribute.FlagList
-            self.type = Swift.name!.pascalCased(type)
-            self.schema = schema
+        init(named name: String, schema flagList: Schema.FlagList) {
+            self.name = Swift.name!.pascalCased(name)
+            self.schema = flagList
 
             options = schema.flags.map { sanitized($0) }
             if let extras = schema.extras {
@@ -200,16 +251,16 @@ struct Swift {
         func definition() -> [String] {
             var lines = [String]()
             lines += documentation
-            for reference in references {
+            for reference in references.sorted() {
                 lines += ["/// - \(reference)"]
             }
 
-            lines += ["\(access) struct \(type): OptionSet, Encodable {"]
+            lines += ["\(access) struct \(name): OptionSet, Encodable {"]
             lines += ["\(access) let rawValue: Int"].indented()
             lines += [""]
             for (i, option) in options.enumerated() {
                 let label = option.label
-                lines += ["\(access) static let \(label) = \(type)(rawValue: 1 << \(i))"].indented()
+                lines += ["\(access) static let \(label) = \(name)(rawValue: 1 << \(i))"].indented()
             }
             lines += [""]
             lines += ["\(access) init(rawValue: Int) { self.rawValue = rawValue }"].indented()
@@ -229,36 +280,43 @@ struct Swift {
 
         /// Checks for equality by comparing types and options of the two `FlagList` types.
         static func == (lhs: FlagList, rhs: FlagList) -> Bool {
-            let typeEqual = lhs.type == rhs.type
+            let typeEqual = lhs.name == rhs.name
             let optionsEqual = lhs.options == rhs.options
             return typeEqual && optionsEqual
         }
     }
 
-    struct Anything: SwiftDataType {
-        let type: String = "Anything"
-        let schema: SchemaDataType?
+    /// Plotly `any` data type is manually re-implemented in Swift.
+    /// - Note: Appended underscore prevents collision with the Swift built-in type.
+    /// - Note: Name `Anything` prevents collision with the Swift built-in type `Any`.
+    struct Any_: SwiftType {
+        let name: String = "Anything"
+        var schema: Schema.Any_
     }
 
-    struct InfoArray: SwiftDataType {
-        let type: String = "InfoArray"
-        let schema: SchemaDataType?
+    /// Plotly `any` data type is manually re-implemented in Swift.
+    struct InfoArray: SwiftType {
+        let name: String = "InfoArray"
+        var schema: Schema.InfoArray
     }
 
     /// Data type that maps hierarchical Plotly `object` to Swift `struct`.
-    struct Struct: SwiftDataType {
-        let type: String
+    struct Struct: SwiftSharedType {
+        let name: String
         var documentation: [String] = []
-        let schema: SchemaDataType? = nil
+        var schema: Schema.Entries
 
         var access: String = "public"
         var protocols: [String] = ["Encodable"]
+        var references: [String] = []
+        static var existing: [Swift.Struct] = []
 
-        var members: [Definable]
+        var members: [Any]
         var primitives: [String: Schema.Primitive]
 
-        init(identifier: String, entries: Schema.Entries) {
-            self.type = Swift.name!.pascalCased(identifier)
+        init(named name: String, schema entries: Schema.Entries) {
+            self.name = Swift.name!.pascalCased(name)
+            self.schema = entries
 
             members = []
             primitives = [:]
@@ -267,11 +325,53 @@ struct Swift {
                 case .primitive(let primitive):
                     self.primitives[identifier] = primitive
                 case .attribute(let attribute):
-                    let attributeType = createDataType(identifier: identifier, from: attribute)
-                    members += [Instance(identifier: identifier, dataType: attributeType)]
+                    switch attribute {
+                    case .dataArray(let dataArray):
+                        let dataArrayType = Swift.DataArray(schema: dataArray)
+                        members += [Instance(named: identifier, of: dataArrayType)]
+                    case .enumerated(let enumerated):
+                        let enumeratedType = Swift.Enumerated.createShared(named: identifier, schema: enumerated)
+                        members += [Instance(named: identifier, of: enumeratedType)]
+                    case .boolean(let boolean):
+                        let booleanType = Swift.Boolean(schema: boolean)
+                        members += [Instance(named: identifier, of: booleanType)]
+                    case .number(let number):
+                        let numberType = Swift.Number(schema: number)
+                        members += [Instance(named: identifier, of: numberType)]
+                    case .integer(let integer):
+                        let integerType = Swift.Integer(schema: integer)
+                        members += [Instance(named: identifier, of: integerType)]
+                    case .string(let string):
+                        let stringType = Swift.String_(schema: string)
+                        members += [Instance(named: identifier, of: stringType)]
+                    case .color(let color):
+                        let colorType = Swift.Color(schema: color)
+                        members += [Instance(named: identifier, of: colorType)]
+                    case .colorList(let colorList):
+                        let colorListType = Swift.ColorList.init(schema: colorList)
+                        members += [Instance(named: identifier, of: colorListType)]
+                    case .colorScale(let colorScale):
+                        let colorScaleType = Swift.ColorScale(schema: colorScale)
+                        members += [Instance(named: identifier, of: colorScaleType)]
+                    case .angle(let angle):
+                        let angleType = Swift.Angle(schema: angle)
+                        members += [Instance(named: identifier, of: angleType)]
+                    case .subPlotId(let subPlotId):
+                        let subPlotIdType = Swift.SubPlotID(schema: subPlotId)
+                        members += [Instance(named: identifier, of: subPlotIdType)]
+                    case .flagList(let flagList):
+                        let flagListType = Swift.FlagList.createShared(named: identifier, schema: flagList)
+                        members += [Instance(named: identifier, of: flagListType)]
+                    case .any(let any):
+                        let anyType = Swift.Any_(schema: any)
+                        members += [Instance(named: identifier, of: anyType)]
+                    case .infoArray(let infoArray):
+                        let infoArrayType = Swift.InfoArray(schema: infoArray)
+                        members += [Instance(named: identifier, of: infoArrayType)]
+                    }
                 case .entries(let entries):
-                    let nestedStruct = Self(identifier: identifier, entries: entries)
-                    members += [Instance(identifier: identifier, dataType: nestedStruct)]
+                    let nestedStruct = Swift.Struct.createShared(named: identifier, schema: entries)
+                    members += [Instance(named: identifier, of: nestedStruct)]
                 }
             }
 
@@ -285,113 +385,32 @@ struct Swift {
         func definition() -> [String] {
             var lines = [String]()
             lines += documentation
+            for reference in references.sorted() {
+                lines += ["/// - \(reference)"]
+            }
 
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += ["\(access) struct \(type)\(protocols) {"]
+            lines += ["\(access) struct \(name)\(protocols) {"]
 
             for member in members {
-                lines += member.definition().indented()
+                let m = member as! Definable
+                lines += m.definition().indented()
                 lines += [""]
             }
 
-            let variables = members.compactMap { $0 as? Instance }.filter { $0.const == nil }
+            let variables = members.compactMap { $0 as? Instantiable }.filter { $0.constant == nil }
             let arguments = variables.map { $0.argument() + " = nil" }.joined(separator: ", ")
             lines += ["\(access) init(\(arguments)) {"].indented()
-            lines += variables.map { "self.\($0.identifier) = \($0.identifier)" }.indented(2)
+            lines += variables.map { "self.\($0.name) = \($0.name)" }.indented(2)
             lines += ["}"].indented()
 
             lines += ["}"]
             return lines
         }
-    }
 
-    /// Constructs a Swift data type corresponding to an `attribute` from the Plotly schema.
-    static func createDataType(identifier: String, from attribute: Schema.Attribute) -> SwiftDataType {
-        switch attribute {
-        case .dataArray(let dataArray):
-            return DataArray(schema: dataArray)
-        case .enumerated(let enumerated):
-            return Enumerated.create(type: identifier, schema: enumerated)
-        case .boolean(let boolean):
-            return Boolean(schema: boolean)
-        case .number(let number):
-            return Number(schema: number)
-        case .integer(let integer):
-            return Integer(schema: integer)
-        case .string(let string):
-            return String_(schema: string)
-        case .color(let color):
-            return Color(schema: color)
-        case .colorList(let colorList):
-            return ColorList(schema: colorList)
-        case .colorScale(let colorScale):
-            return ColorScale(schema: colorScale)
-        case .angle(let angle):
-            return Angle(schema: angle)
-        case .subPlotID(let subPlotID):
-            return SubPlotID(schema: subPlotID)
-        case .flagList(let flagList):
-            return FlagList.create(type: identifier, schema: flagList)
-        case .anything(let anything):
-            return Anything(schema: anything)
-        case .infoArray(let infoArray):
-            return InfoArray(schema: infoArray)
-        }
-    }
-}
-
-// MARK: - Swift Data Type Protocol
-
-
-/// A data type that can return lines of Swift code with it's own definition.
-protocol Definable {
-    /// Returns lines of Swift code that fully define the data type including the nested members.
-    func definition() -> [String]
-}
-// TODO: Documentation
-extension Definable {
-    /// Returns empty lines which is useful for Swift built-in types like Int, String or [Double].
-    func definition() -> [String] {
-        return []
-    }
-}
-
-/// A data type that can be used as an argument when generating Swift code from Plotly schema.
-protocol SwiftDataType: Definable {
-    var type: String { get }
-    var schema: SchemaDataType? { get }
-    var documentation: [String] { get }
-}
-/// Extension with default implementations of commonly shared functionality.
-extension SwiftDataType {
-    /// Documentation of the data type extracted from Plotly schema.
-    var documentation: [String] {
-        (schema?.description != nil) ? schema!.description!.documentation() : [String]()
-    }
-}
-
-/// TODO: Documentation
-protocol SwiftComplexDataType: SwiftDataType, Equatable {
-    var access: String { get }
-    var protocols: [String] { get }
-    var references: [String] { get set }
-    static var existing: [Self] { get set }
-
-    init(type: String, schema: SchemaDataType)
-    static func create(type: String, schema: SchemaDataType) -> Self
-}
-/// TODO: Documentation
-extension SwiftComplexDataType {
-    /// TODO: Documentation
-    static func create(type: String, schema: SchemaDataType) -> Self {
-        var new = Self.init(type: type, schema: schema)
-        if let index = Self.existing.firstIndex(where: { $0 == new }) {
-            Self.existing[index].references.append(schema.decodingPath)
-            return Self.existing[index]
-        } else {
-            new.references.append(schema.decodingPath)
-            Self.existing.append(new)
-            return new
+        // TODO: Implementation
+        static func == (lhs: Swift.Struct, rhs: Swift.Struct) -> Bool {
+            return false
         }
     }
 }

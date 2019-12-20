@@ -12,6 +12,7 @@ public struct Config: Encodable {
     /// Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.
     public var editable: Bool?
 
+    /// - config/edits
     public struct Edits: Encodable {
         /// Determines if the main anchor of the annotation is editable. 
         ///

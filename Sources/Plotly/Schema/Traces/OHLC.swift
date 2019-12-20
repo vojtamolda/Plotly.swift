@@ -13,9 +13,22 @@ public struct OHLC: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/mesh3d/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/isosurface/attributes/visible
     /// - traces/ohlc/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/table/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/volume/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -78,9 +91,17 @@ public struct OHLC: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/heatmapgl/attributes/hoverinfo
-    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/heatmap/attributes/hoverinfo
+    /// - traces/histogram2d/attributes/hoverinfo
+    /// - traces/histogram2dcontour/attributes/hoverinfo
+    /// - traces/isosurface/attributes/hoverinfo
     /// - traces/ohlc/attributes/hoverinfo
+    /// - traces/scatter3d/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
+    /// - traces/table/attributes/hoverinfo
+    /// - traces/violin/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -115,6 +136,7 @@ public struct OHLC: Trace {
     /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
+    /// - traces/ohlc/attributes/stream
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -133,9 +155,12 @@ public struct OHLC: Trace {
     }
     public var stream: Stream?
 
+    /// - traces/ohlc/attributes/transforms
     public struct Transforms: Encodable {
+        /// - traces/ohlc/attributes/transforms/items
         public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            /// - traces/ohlc/attributes/transforms/items/transform
             public struct Transform: Encodable {
                 public init() {
                 }
@@ -184,6 +209,7 @@ public struct OHLC: Trace {
     /// Sets the close values.
     public var close: [Double]?
 
+    /// - traces/ohlc/attributes/line
     public struct Line: Encodable {
         /// [object Object] Note that this style setting can also be set per direction via `increasing.line.width` and `decreasing.line.width`.
         public var width: Double?
@@ -202,7 +228,9 @@ public struct OHLC: Trace {
     }
     public var line: Line?
 
+    /// - traces/ohlc/attributes/increasing
     public struct Increasing: Encodable {
+        /// - traces/ohlc/attributes/increasing/line
         public struct Line: Encodable {
             /// Sets the line color.
             public var color: Color?
@@ -230,7 +258,9 @@ public struct OHLC: Trace {
     }
     public var increasing: Increasing?
 
+    /// - traces/ohlc/attributes/decreasing
     public struct Decreasing: Encodable {
+        /// - traces/ohlc/attributes/decreasing/line
         public struct Line: Encodable {
             /// Sets the line color.
             public var color: Color?
@@ -270,6 +300,7 @@ public struct OHLC: Trace {
     /// Sets the width of the open/close tick marks relative to the *x* minimal interval.
     public var tickWidth: Double?
 
+    /// - traces/ohlc/attributes/hoverlabel
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         public var backgroundColor: Color?
@@ -278,6 +309,7 @@ public struct OHLC: Trace {
         public var borderColor: Color?
     
         /// Sets the font used in hover labels.
+        /// - traces/ohlc/attributes/hoverlabel/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -319,9 +351,20 @@ public struct OHLC: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
-        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/isosurface/attributes/hoverlabel/align
         /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/table/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -370,8 +413,12 @@ public struct OHLC: Trace {
     public var hoverLabel: HoverLabel?
 
     /// Sets the calendar system to use with `x` date data.
-    /// - traces/mesh3d/attributes/xcalendar
+    /// - traces/contour/attributes/xcalendar
+    /// - traces/heatmap/attributes/xcalendar
+    /// - traces/histogram2d/attributes/xcalendar
+    /// - traces/histogram2dcontour/attributes/xcalendar
     /// - traces/ohlc/attributes/xcalendar
+    /// - traces/scatter3d/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
         case chinese

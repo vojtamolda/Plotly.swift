@@ -7,18 +7,53 @@ public struct Area: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/mesh3d/attributes/visible
-    /// - traces/ohlc/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    /// - traces/scattergl/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/scatterternary/attributes/visible
+    /// - traces/area/attributes/visible
+    /// - traces/bar/attributes/visible
+    /// - traces/barpolar/attributes/visible
+    /// - traces/box/attributes/visible
+    /// - traces/candlestick/attributes/visible
+    /// - traces/carpet/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/choroplethmapbox/attributes/visible
+    /// - traces/cone/attributes/visible
     /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/histogram/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/image/attributes/visible
+    /// - traces/indicator/attributes/visible
+    /// - traces/isosurface/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
     /// - traces/parcats/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/sankey/attributes/visible
+    /// - traces/scatter/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/scattercarpet/attributes/visible
+    /// - traces/scattergeo/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/scatterpolar/attributes/visible
+    /// - traces/scatterpolargl/attributes/visible
+    /// - traces/scatterternary/attributes/visible
     /// - traces/splom/attributes/visible
-    /// - traces/area/attributes/visible
+    /// - traces/streamtube/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/table/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/waterfall/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -74,13 +109,28 @@ public struct Area: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/area/attributes/hoverinfo
+    /// - traces/bar/attributes/hoverinfo
+    /// - traces/box/attributes/hoverinfo
+    /// - traces/candlestick/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/heatmap/attributes/hoverinfo
     /// - traces/heatmapgl/attributes/hoverinfo
+    /// - traces/histogram/attributes/hoverinfo
+    /// - traces/histogram2d/attributes/hoverinfo
+    /// - traces/histogram2dcontour/attributes/hoverinfo
+    /// - traces/isosurface/attributes/hoverinfo
     /// - traces/mesh3d/attributes/hoverinfo
     /// - traces/ohlc/attributes/hoverinfo
+    /// - traces/pointcloud/attributes/hoverinfo
+    /// - traces/scatter/attributes/hoverinfo
+    /// - traces/scatter3d/attributes/hoverinfo
     /// - traces/scattergl/attributes/hoverinfo
-    /// - traces/contour/attributes/hoverinfo
     /// - traces/splom/attributes/hoverinfo
-    /// - traces/area/attributes/hoverinfo
+    /// - traces/surface/attributes/hoverinfo
+    /// - traces/table/attributes/hoverinfo
+    /// - traces/violin/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -115,6 +165,7 @@ public struct Area: Trace {
     /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
+    /// - traces/area/attributes/hoverlabel
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         public var backgroundColor: Color?
@@ -123,6 +174,7 @@ public struct Area: Trace {
         public var borderColor: Color?
     
         /// Sets the font used in hover labels.
+        /// - traces/area/attributes/hoverlabel/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -164,15 +216,50 @@ public struct Area: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/bar/attributes/hoverlabel/align
+        /// - traces/barpolar/attributes/hoverlabel/align
+        /// - traces/box/attributes/hoverlabel/align
+        /// - traces/candlestick/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/choroplethmapbox/attributes/hoverlabel/align
+        /// - traces/cone/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/funnel/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
         /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/histogram/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
+        /// - traces/isosurface/attributes/hoverlabel/align
         /// - traces/mesh3d/attributes/hoverlabel/align
         /// - traces/ohlc/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/link/hoverlabel/align
+        /// - traces/sankey/attributes/node/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/scattercarpet/attributes/hoverlabel/align
+        /// - traces/scattergeo/attributes/hoverlabel/align
         /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/scatterpolar/attributes/hoverlabel/align
+        /// - traces/scatterpolargl/attributes/hoverlabel/align
         /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
         /// - traces/splom/attributes/hoverlabel/align
-        /// - traces/area/attributes/hoverlabel/align
+        /// - traces/streamtube/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/table/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -216,6 +303,7 @@ public struct Area: Trace {
     }
     public var hoverLabel: HoverLabel?
 
+    /// - traces/area/attributes/stream
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -234,9 +322,12 @@ public struct Area: Trace {
     }
     public var stream: Stream?
 
+    /// - traces/area/attributes/transforms
     public struct Transforms: Encodable {
+        /// - traces/area/attributes/transforms/items
         public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            /// - traces/area/attributes/transforms/items/transform
             public struct Transform: Encodable {
                 public init() {
                 }
@@ -278,6 +369,7 @@ public struct Area: Trace {
     /// Sets the angular coordinates for legacy polar chart only.
     public var t: [Double]?
 
+    /// - traces/area/attributes/marker
     public struct Marker: Encodable {
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
         ///
@@ -296,10 +388,17 @@ public struct Area: Trace {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
+        /// - traces/area/attributes/marker/symbol
+        /// - traces/box/attributes/marker/symbol
+        /// - traces/scatter/attributes/marker/symbol
+        /// - traces/scattercarpet/attributes/marker/symbol
+        /// - traces/scattergeo/attributes/marker/symbol
         /// - traces/scattergl/attributes/marker/symbol
+        /// - traces/scatterpolar/attributes/marker/symbol
+        /// - traces/scatterpolargl/attributes/marker/symbol
         /// - traces/scatterternary/attributes/marker/symbol
         /// - traces/splom/attributes/marker/symbol
-        /// - traces/area/attributes/marker/symbol
+        /// - traces/violin/attributes/marker/symbol
         public enum Symbol: String, Encodable {
             case circle
             case circleOpen = "circle-open"

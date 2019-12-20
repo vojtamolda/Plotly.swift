@@ -12,9 +12,23 @@ public struct Waterfall: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/mesh3d/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/isosurface/attributes/visible
     /// - traces/ohlc/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/scattergeo/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/table/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/volume/attributes/visible
     /// - traces/waterfall/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
@@ -74,6 +88,7 @@ public struct Waterfall: Trace {
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything?
 
+    /// - traces/waterfall/attributes/hoverlabel
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         public var backgroundColor: Color?
@@ -82,6 +97,7 @@ public struct Waterfall: Trace {
         public var borderColor: Color?
     
         /// Sets the font used in hover labels.
+        /// - traces/waterfall/attributes/hoverlabel/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -123,9 +139,21 @@ public struct Waterfall: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
-        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/isosurface/attributes/hoverlabel/align
         /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/scattergeo/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/table/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
         /// - traces/waterfall/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
@@ -170,6 +198,7 @@ public struct Waterfall: Trace {
     }
     public var hoverLabel: HoverLabel?
 
+    /// - traces/waterfall/attributes/stream
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -188,9 +217,12 @@ public struct Waterfall: Trace {
     }
     public var stream: Stream?
 
+    /// - traces/waterfall/attributes/transforms
     public struct Transforms: Encodable {
+        /// - traces/waterfall/attributes/transforms/items
         public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            /// - traces/waterfall/attributes/transforms/items/transform
             public struct Transform: Encodable {
                 public init() {
                 }
@@ -420,6 +452,7 @@ public struct Waterfall: Trace {
     public var textAngle: Angle?
 
     /// Sets the font used for `text`.
+    /// - traces/waterfall/attributes/textfont
     public struct TextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. 
         ///
@@ -458,6 +491,7 @@ public struct Waterfall: Trace {
     public var textFont: TextFont?
 
     /// Sets the font used for `text` lying inside the bar.
+    /// - traces/waterfall/attributes/insidetextfont
     public struct InsideTextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. 
         ///
@@ -496,6 +530,7 @@ public struct Waterfall: Trace {
     public var insideTextFont: InsideTextFont?
 
     /// Sets the font used for `text` lying outside the bar.
+    /// - traces/waterfall/attributes/outsidetextfont
     public struct OutSideTextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. 
         ///
@@ -551,8 +586,9 @@ public struct Waterfall: Trace {
     public var clipOnAxis: Bool?
 
     /// Sets the orientation of the modebar.
-    /// - layout/layoutAttributes/modebar/orientation
     /// - layout/layoutAttributes/legend/orientation
+    /// - layout/layoutAttributes/modebar/orientation
+    /// - traces/violin/attributes/orientation
     /// - traces/waterfall/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
@@ -570,11 +606,14 @@ public struct Waterfall: Trace {
     /// Sets the bar width (in position axis units).
     public var width: Double?
 
+    /// - traces/waterfall/attributes/increasing
     public struct Increasing: Encodable {
+        /// - traces/waterfall/attributes/increasing/marker
         public struct Marker: Encodable {
             /// Sets the marker color of all increasing values.
             public var color: Color?
         
+            /// - traces/waterfall/attributes/increasing/marker/line
             public struct Line: Encodable {
                 /// Sets the line color of all increasing values.
                 public var color: Color?
@@ -602,11 +641,14 @@ public struct Waterfall: Trace {
     }
     public var increasing: Increasing?
 
+    /// - traces/waterfall/attributes/decreasing
     public struct Decreasing: Encodable {
+        /// - traces/waterfall/attributes/decreasing/marker
         public struct Marker: Encodable {
             /// Sets the marker color of all decreasing values.
             public var color: Color?
         
+            /// - traces/waterfall/attributes/decreasing/marker/line
             public struct Line: Encodable {
                 /// Sets the line color of all decreasing values.
                 public var color: Color?
@@ -634,11 +676,14 @@ public struct Waterfall: Trace {
     }
     public var decreasing: Decreasing?
 
+    /// - traces/waterfall/attributes/totals
     public struct Totals: Encodable {
+        /// - traces/waterfall/attributes/totals/marker
         public struct Marker: Encodable {
             /// Sets the marker color of all intermediate sums and total values.
             public var color: Color?
         
+            /// - traces/waterfall/attributes/totals/marker/line
             public struct Line: Encodable {
                 /// Sets the line color of all intermediate sums and total values.
                 public var color: Color?
@@ -666,7 +711,9 @@ public struct Waterfall: Trace {
     }
     public var totals: Totals?
 
+    /// - traces/waterfall/attributes/connector
     public struct Connector: Encodable {
+        /// - traces/waterfall/attributes/connector/line
         public struct Line: Encodable {
             /// Sets the line color.
             public var color: Color?

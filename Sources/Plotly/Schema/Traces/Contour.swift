@@ -13,14 +13,11 @@ public struct Contour: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/mesh3d/attributes/visible
-    /// - traces/ohlc/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    /// - traces/scattergl/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/scatterternary/attributes/visible
     /// - traces/contour/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/volume/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -76,11 +73,9 @@ public struct Contour: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/heatmapgl/attributes/hoverinfo
-    /// - traces/mesh3d/attributes/hoverinfo
-    /// - traces/ohlc/attributes/hoverinfo
-    /// - traces/scattergl/attributes/hoverinfo
     /// - traces/contour/attributes/hoverinfo
+    /// - traces/histogram2d/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -115,6 +110,7 @@ public struct Contour: Trace {
     /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
+    /// - traces/contour/attributes/hoverlabel
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         public var backgroundColor: Color?
@@ -123,6 +119,7 @@ public struct Contour: Trace {
         public var borderColor: Color?
     
         /// Sets the font used in hover labels.
+        /// - traces/contour/attributes/hoverlabel/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -164,13 +161,11 @@ public struct Contour: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
-        /// - traces/mesh3d/attributes/hoverlabel/align
-        /// - traces/ohlc/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
-        /// - traces/scattergl/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
         /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -214,6 +209,7 @@ public struct Contour: Trace {
     }
     public var hoverLabel: HoverLabel?
 
+    /// - traces/contour/attributes/stream
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -232,9 +228,12 @@ public struct Contour: Trace {
     }
     public var stream: Stream?
 
+    /// - traces/contour/attributes/transforms
     public struct Transforms: Encodable {
+        /// - traces/contour/attributes/transforms/items
         public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            /// - traces/contour/attributes/transforms/items/transform
             public struct Transform: Encodable {
                 public init() {
                 }
@@ -310,7 +309,6 @@ public struct Contour: Trace {
     ///
     /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
     /// `x` is not provided).
-    /// - traces/heatmapgl/attributes/xtype
     /// - traces/contour/attributes/xtype
     public enum XType: String, Encodable {
         case array
@@ -323,7 +321,6 @@ public struct Contour: Trace {
     public var xType: XType?
 
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
-    /// - traces/heatmapgl/attributes/ytype
     /// - traces/contour/attributes/ytype
     public enum YType: String, Encodable {
         case array
@@ -383,6 +380,7 @@ public struct Contour: Trace {
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
     public var nContours: Int?
 
+    /// - traces/contour/attributes/contours
     public struct Contours: Encodable {
         /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
         ///
@@ -445,6 +443,7 @@ public struct Contour: Trace {
         ///
         /// The default color comes from the lines, if shown. The default family and size come from
         /// `layout.font`.
+        /// - traces/contour/attributes/contours/labelfont
         public struct LabelFont: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -516,6 +515,7 @@ public struct Contour: Trace {
         /// second is the upper bound.
         public var value: Anything?
     
+        /// - traces/contour/attributes/contours/impliedEdits
         public struct ImpliedEdits: Encodable {
             public init() {
             }
@@ -539,6 +539,7 @@ public struct Contour: Trace {
     }
     public var contours: Contours?
 
+    /// - traces/contour/attributes/line
     public struct Line: Encodable {
         /// Sets the color of the contour level. 
         ///
@@ -612,18 +613,18 @@ public struct Contour: Trace {
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool?
 
+    /// - traces/contour/attributes/colorbar
     public struct ColorBar: Encodable {
         /// Determines whether this color bar's thickness (i.e. 
         ///
         /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
         /// Use `thickness` to set the value.
         /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
-        /// - traces/heatmapgl/attributes/colorbar/thicknessmode
-        /// - traces/mesh3d/attributes/colorbar/thicknessmode
-        /// - traces/scattergl/attributes/marker/colorbar/thicknessmode
-        /// - traces/parcoords/attributes/line/colorbar/thicknessmode
-        /// - traces/scatterternary/attributes/marker/colorbar/thicknessmode
         /// - traces/contour/attributes/colorbar/thicknessmode
+        /// - traces/densitymapbox/attributes/colorbar/thicknessmode
+        /// - traces/histogram2d/attributes/colorbar/thicknessmode
+        /// - traces/sunburst/attributes/marker/colorbar/thicknessmode
+        /// - traces/volume/attributes/colorbar/thicknessmode
         public enum ThicknessMode: String, Encodable {
             case fraction
             case pixels
@@ -640,14 +641,13 @@ public struct Contour: Trace {
         /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
         ///
         /// Use `len` to set the value.
-        /// - layout/layoutAttributes/sliders/items/slider/lenmode
         /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
-        /// - traces/heatmapgl/attributes/colorbar/lenmode
-        /// - traces/mesh3d/attributes/colorbar/lenmode
-        /// - traces/scattergl/attributes/marker/colorbar/lenmode
-        /// - traces/parcoords/attributes/line/colorbar/lenmode
-        /// - traces/scatterternary/attributes/marker/colorbar/lenmode
+        /// - layout/layoutAttributes/sliders/items/slider/lenmode
         /// - traces/contour/attributes/colorbar/lenmode
+        /// - traces/densitymapbox/attributes/colorbar/lenmode
+        /// - traces/histogram2d/attributes/colorbar/lenmode
+        /// - traces/sunburst/attributes/marker/colorbar/lenmode
+        /// - traces/volume/attributes/colorbar/lenmode
         public enum LengthMode: String, Encodable {
             case fraction
             case pixels
@@ -666,15 +666,14 @@ public struct Contour: Trace {
         public var x: Double?
     
         /// Sets the anchor for the x position
+        /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
         /// - layout/layoutAttributes/images/items/image/xanchor
         /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
-        /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
-        /// - traces/heatmapgl/attributes/colorbar/xanchor
-        /// - traces/mesh3d/attributes/colorbar/xanchor
-        /// - traces/scattergl/attributes/marker/colorbar/xanchor
-        /// - traces/parcoords/attributes/line/colorbar/xanchor
-        /// - traces/scatterternary/attributes/marker/colorbar/xanchor
         /// - traces/contour/attributes/colorbar/xanchor
+        /// - traces/densitymapbox/attributes/colorbar/xanchor
+        /// - traces/histogram2d/attributes/colorbar/xanchor
+        /// - traces/sunburst/attributes/marker/colorbar/xanchor
+        /// - traces/volume/attributes/colorbar/xanchor
         public enum XAnchor: String, Encodable {
             case left
             case center
@@ -690,14 +689,13 @@ public struct Contour: Trace {
         public var y: Double?
     
         /// Sets the anchor for the y position.
-        /// - layout/layoutAttributes/images/items/image/yanchor
         /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
-        /// - traces/heatmapgl/attributes/colorbar/yanchor
-        /// - traces/mesh3d/attributes/colorbar/yanchor
-        /// - traces/scattergl/attributes/marker/colorbar/yanchor
-        /// - traces/parcoords/attributes/line/colorbar/yanchor
-        /// - traces/scatterternary/attributes/marker/colorbar/yanchor
+        /// - layout/layoutAttributes/images/items/image/yanchor
         /// - traces/contour/attributes/colorbar/yanchor
+        /// - traces/densitymapbox/attributes/colorbar/yanchor
+        /// - traces/histogram2d/attributes/colorbar/yanchor
+        /// - traces/sunburst/attributes/marker/colorbar/yanchor
+        /// - traces/volume/attributes/colorbar/yanchor
         public enum YAnchor: String, Encodable {
             case top
             case middle
@@ -731,23 +729,22 @@ public struct Contour: Trace {
         /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
         /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
         /// provided).
-        /// - layout/layoutAttributes/xaxis/tickmode
-        /// - layout/layoutAttributes/yaxis/tickmode
-        /// - layout/layoutAttributes/ternary/aaxis/tickmode
-        /// - layout/layoutAttributes/ternary/baxis/tickmode
-        /// - layout/layoutAttributes/ternary/caxis/tickmode
+        /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+        /// - layout/layoutAttributes/polar/angularaxis/tickmode
+        /// - layout/layoutAttributes/polar/radialaxis/tickmode
         /// - layout/layoutAttributes/scene/xaxis/tickmode
         /// - layout/layoutAttributes/scene/yaxis/tickmode
         /// - layout/layoutAttributes/scene/zaxis/tickmode
-        /// - layout/layoutAttributes/polar/radialaxis/tickmode
-        /// - layout/layoutAttributes/polar/angularaxis/tickmode
-        /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
-        /// - traces/heatmapgl/attributes/colorbar/tickmode
-        /// - traces/mesh3d/attributes/colorbar/tickmode
-        /// - traces/scattergl/attributes/marker/colorbar/tickmode
-        /// - traces/parcoords/attributes/line/colorbar/tickmode
-        /// - traces/scatterternary/attributes/marker/colorbar/tickmode
+        /// - layout/layoutAttributes/ternary/aaxis/tickmode
+        /// - layout/layoutAttributes/ternary/baxis/tickmode
+        /// - layout/layoutAttributes/ternary/caxis/tickmode
+        /// - layout/layoutAttributes/xaxis/tickmode
+        /// - layout/layoutAttributes/yaxis/tickmode
         /// - traces/contour/attributes/colorbar/tickmode
+        /// - traces/densitymapbox/attributes/colorbar/tickmode
+        /// - traces/histogram2d/attributes/colorbar/tickmode
+        /// - traces/sunburst/attributes/marker/colorbar/tickmode
+        /// - traces/volume/attributes/colorbar/tickmode
         public enum TickMode: String, Encodable {
             case auto
             case linear
@@ -808,23 +805,22 @@ public struct Contour: Trace {
         ///
         /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
         /// (inside) the axis lines.
-        /// - layout/layoutAttributes/xaxis/ticks
-        /// - layout/layoutAttributes/yaxis/ticks
-        /// - layout/layoutAttributes/ternary/aaxis/ticks
-        /// - layout/layoutAttributes/ternary/baxis/ticks
-        /// - layout/layoutAttributes/ternary/caxis/ticks
+        /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+        /// - layout/layoutAttributes/polar/angularaxis/ticks
+        /// - layout/layoutAttributes/polar/radialaxis/ticks
         /// - layout/layoutAttributes/scene/xaxis/ticks
         /// - layout/layoutAttributes/scene/yaxis/ticks
         /// - layout/layoutAttributes/scene/zaxis/ticks
-        /// - layout/layoutAttributes/polar/radialaxis/ticks
-        /// - layout/layoutAttributes/polar/angularaxis/ticks
-        /// - layout/layoutAttributes/coloraxis/colorbar/ticks
-        /// - traces/heatmapgl/attributes/colorbar/ticks
-        /// - traces/mesh3d/attributes/colorbar/ticks
-        /// - traces/scattergl/attributes/marker/colorbar/ticks
-        /// - traces/parcoords/attributes/line/colorbar/ticks
-        /// - traces/scatterternary/attributes/marker/colorbar/ticks
+        /// - layout/layoutAttributes/ternary/aaxis/ticks
+        /// - layout/layoutAttributes/ternary/baxis/ticks
+        /// - layout/layoutAttributes/ternary/caxis/ticks
+        /// - layout/layoutAttributes/xaxis/ticks
+        /// - layout/layoutAttributes/yaxis/ticks
         /// - traces/contour/attributes/colorbar/ticks
+        /// - traces/densitymapbox/attributes/colorbar/ticks
+        /// - traces/histogram2d/attributes/colorbar/ticks
+        /// - traces/sunburst/attributes/marker/colorbar/ticks
+        /// - traces/volume/attributes/colorbar/ticks
         public enum Ticks: String, Encodable {
             case outside
             case inside
@@ -849,6 +845,7 @@ public struct Contour: Trace {
         public var showTickLabels: Bool?
     
         /// Sets the color bar's tick label font
+        /// - traces/contour/attributes/colorbar/tickfont
         public struct TickFont: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -888,8 +885,11 @@ public struct Contour: Trace {
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var tickFormat: String?
     
+        /// - traces/contour/attributes/colorbar/tickformatstops
         public struct TickFormatStops: Encodable {
+            /// - traces/contour/attributes/colorbar/tickformatstops/items
             public struct Items: Encodable {
+                /// - traces/contour/attributes/colorbar/tickformatstops/items/tickformatstop
                 public struct TickFormatStop: Encodable {
                     /// Determines whether or not this stop is used. 
                     ///
@@ -947,23 +947,22 @@ public struct Contour: Trace {
         ///
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
-        /// - layout/layoutAttributes/xaxis/showtickprefix
-        /// - layout/layoutAttributes/yaxis/showtickprefix
-        /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
-        /// - layout/layoutAttributes/ternary/baxis/showtickprefix
-        /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+        /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+        /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+        /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
         /// - layout/layoutAttributes/scene/xaxis/showtickprefix
         /// - layout/layoutAttributes/scene/yaxis/showtickprefix
         /// - layout/layoutAttributes/scene/zaxis/showtickprefix
-        /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
-        /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
-        /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
-        /// - traces/heatmapgl/attributes/colorbar/showtickprefix
-        /// - traces/mesh3d/attributes/colorbar/showtickprefix
-        /// - traces/scattergl/attributes/marker/colorbar/showtickprefix
-        /// - traces/parcoords/attributes/line/colorbar/showtickprefix
-        /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
+        /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+        /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+        /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+        /// - layout/layoutAttributes/xaxis/showtickprefix
+        /// - layout/layoutAttributes/yaxis/showtickprefix
         /// - traces/contour/attributes/colorbar/showtickprefix
+        /// - traces/densitymapbox/attributes/colorbar/showtickprefix
+        /// - traces/histogram2d/attributes/colorbar/showtickprefix
+        /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
+        /// - traces/volume/attributes/colorbar/showtickprefix
         public enum ShowTickPrefix: String, Encodable {
             case all
             case first
@@ -980,23 +979,22 @@ public struct Contour: Trace {
         public var tickSuffix: String?
     
         /// Same as `showtickprefix` but for tick suffixes.
-        /// - layout/layoutAttributes/xaxis/showticksuffix
-        /// - layout/layoutAttributes/yaxis/showticksuffix
-        /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
-        /// - layout/layoutAttributes/ternary/baxis/showticksuffix
-        /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+        /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+        /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+        /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
         /// - layout/layoutAttributes/scene/xaxis/showticksuffix
         /// - layout/layoutAttributes/scene/yaxis/showticksuffix
         /// - layout/layoutAttributes/scene/zaxis/showticksuffix
-        /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
-        /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
-        /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
-        /// - traces/heatmapgl/attributes/colorbar/showticksuffix
-        /// - traces/mesh3d/attributes/colorbar/showticksuffix
-        /// - traces/scattergl/attributes/marker/colorbar/showticksuffix
-        /// - traces/parcoords/attributes/line/colorbar/showticksuffix
-        /// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
+        /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+        /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+        /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+        /// - layout/layoutAttributes/xaxis/showticksuffix
+        /// - layout/layoutAttributes/yaxis/showticksuffix
         /// - traces/contour/attributes/colorbar/showticksuffix
+        /// - traces/densitymapbox/attributes/colorbar/showticksuffix
+        /// - traces/histogram2d/attributes/colorbar/showticksuffix
+        /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+        /// - traces/volume/attributes/colorbar/showticksuffix
         public enum ShowTickSuffix: String, Encodable {
             case all
             case first
@@ -1013,23 +1011,22 @@ public struct Contour: Trace {
         ///
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-        /// - layout/layoutAttributes/xaxis/exponentformat
-        /// - layout/layoutAttributes/yaxis/exponentformat
-        /// - layout/layoutAttributes/ternary/aaxis/exponentformat
-        /// - layout/layoutAttributes/ternary/baxis/exponentformat
-        /// - layout/layoutAttributes/ternary/caxis/exponentformat
+        /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+        /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+        /// - layout/layoutAttributes/polar/radialaxis/exponentformat
         /// - layout/layoutAttributes/scene/xaxis/exponentformat
         /// - layout/layoutAttributes/scene/yaxis/exponentformat
         /// - layout/layoutAttributes/scene/zaxis/exponentformat
-        /// - layout/layoutAttributes/polar/radialaxis/exponentformat
-        /// - layout/layoutAttributes/polar/angularaxis/exponentformat
-        /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
-        /// - traces/heatmapgl/attributes/colorbar/exponentformat
-        /// - traces/mesh3d/attributes/colorbar/exponentformat
-        /// - traces/scattergl/attributes/marker/colorbar/exponentformat
-        /// - traces/parcoords/attributes/line/colorbar/exponentformat
-        /// - traces/scatterternary/attributes/marker/colorbar/exponentformat
+        /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+        /// - layout/layoutAttributes/ternary/baxis/exponentformat
+        /// - layout/layoutAttributes/ternary/caxis/exponentformat
+        /// - layout/layoutAttributes/xaxis/exponentformat
+        /// - layout/layoutAttributes/yaxis/exponentformat
         /// - traces/contour/attributes/colorbar/exponentformat
+        /// - traces/densitymapbox/attributes/colorbar/exponentformat
+        /// - traces/histogram2d/attributes/colorbar/exponentformat
+        /// - traces/sunburst/attributes/marker/colorbar/exponentformat
+        /// - traces/volume/attributes/colorbar/exponentformat
         public enum ExponentFormat: String, Encodable {
             case none
             case e
@@ -1048,23 +1045,22 @@ public struct Contour: Trace {
         ///
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
-        /// - layout/layoutAttributes/xaxis/showexponent
-        /// - layout/layoutAttributes/yaxis/showexponent
-        /// - layout/layoutAttributes/ternary/aaxis/showexponent
-        /// - layout/layoutAttributes/ternary/baxis/showexponent
-        /// - layout/layoutAttributes/ternary/caxis/showexponent
+        /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+        /// - layout/layoutAttributes/polar/angularaxis/showexponent
+        /// - layout/layoutAttributes/polar/radialaxis/showexponent
         /// - layout/layoutAttributes/scene/xaxis/showexponent
         /// - layout/layoutAttributes/scene/yaxis/showexponent
         /// - layout/layoutAttributes/scene/zaxis/showexponent
-        /// - layout/layoutAttributes/polar/radialaxis/showexponent
-        /// - layout/layoutAttributes/polar/angularaxis/showexponent
-        /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
-        /// - traces/heatmapgl/attributes/colorbar/showexponent
-        /// - traces/mesh3d/attributes/colorbar/showexponent
-        /// - traces/scattergl/attributes/marker/colorbar/showexponent
-        /// - traces/parcoords/attributes/line/colorbar/showexponent
-        /// - traces/scatterternary/attributes/marker/colorbar/showexponent
+        /// - layout/layoutAttributes/ternary/aaxis/showexponent
+        /// - layout/layoutAttributes/ternary/baxis/showexponent
+        /// - layout/layoutAttributes/ternary/caxis/showexponent
+        /// - layout/layoutAttributes/xaxis/showexponent
+        /// - layout/layoutAttributes/yaxis/showexponent
         /// - traces/contour/attributes/colorbar/showexponent
+        /// - traces/densitymapbox/attributes/colorbar/showexponent
+        /// - traces/histogram2d/attributes/colorbar/showexponent
+        /// - traces/sunburst/attributes/marker/colorbar/showexponent
+        /// - traces/volume/attributes/colorbar/showexponent
         public enum ShowExponent: String, Encodable {
             case all
             case first
@@ -1077,6 +1073,7 @@ public struct Contour: Trace {
         /// last tick is shown. If *none*, no exponents appear.
         public var showExponent: ShowExponent?
     
+        /// - traces/contour/attributes/colorbar/title
         public struct Title: Encodable {
             /// Sets the title of the color bar. 
             ///
@@ -1087,6 +1084,7 @@ public struct Contour: Trace {
             /// Sets this color bar's title font. 
             ///
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+            /// - traces/contour/attributes/colorbar/title/font
             public struct Font: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -1118,12 +1116,11 @@ public struct Contour: Trace {
             ///
             /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
             /// - layout/layoutAttributes/coloraxis/colorbar/title/side
-            /// - traces/heatmapgl/attributes/colorbar/title/side
-            /// - traces/mesh3d/attributes/colorbar/title/side
-            /// - traces/scattergl/attributes/marker/colorbar/title/side
-            /// - traces/parcoords/attributes/line/colorbar/title/side
-            /// - traces/scatterternary/attributes/marker/colorbar/title/side
             /// - traces/contour/attributes/colorbar/title/side
+            /// - traces/densitymapbox/attributes/colorbar/title/side
+            /// - traces/histogram2d/attributes/colorbar/title/side
+            /// - traces/sunburst/attributes/marker/colorbar/title/side
+            /// - traces/volume/attributes/colorbar/title/side
             public enum Side: String, Encodable {
                 case right
                 case top
@@ -1142,6 +1139,7 @@ public struct Contour: Trace {
         }
         public var title: Title?
     
+        /// - traces/contour/attributes/colorbar/_deprecated
         public struct Deprecated: Encodable {
             /// Deprecated in favor of color bar's `title.text`. 
             ///
@@ -1150,6 +1148,7 @@ public struct Contour: Trace {
             public var title: String?
         
             /// Deprecated in favor of color bar's `title.font`.
+            /// - traces/contour/attributes/colorbar/_deprecated/titlefont
             public struct TitleFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -1177,12 +1176,11 @@ public struct Contour: Trace {
         
             /// Deprecated in favor of color bar's `title.side`.
             /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
-            /// - traces/heatmapgl/attributes/colorbar/_deprecated/titleside
-            /// - traces/mesh3d/attributes/colorbar/_deprecated/titleside
-            /// - traces/scattergl/attributes/marker/colorbar/_deprecated/titleside
-            /// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
-            /// - traces/scatterternary/attributes/marker/colorbar/_deprecated/titleside
             /// - traces/contour/attributes/colorbar/_deprecated/titleside
+            /// - traces/densitymapbox/attributes/colorbar/_deprecated/titleside
+            /// - traces/histogram2d/attributes/colorbar/_deprecated/titleside
+            /// - traces/sunburst/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/volume/attributes/colorbar/_deprecated/titleside
             public enum TitleSide: String, Encodable {
                 case right
                 case top
@@ -1259,10 +1257,8 @@ public struct Contour: Trace {
     public var colorAxis: SubPlotID?
 
     /// Sets the calendar system to use with `x` date data.
-    /// - traces/mesh3d/attributes/xcalendar
-    /// - traces/ohlc/attributes/xcalendar
-    /// - traces/scattergl/attributes/xcalendar
     /// - traces/contour/attributes/xcalendar
+    /// - traces/histogram2d/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
         case chinese
@@ -1285,9 +1281,8 @@ public struct Contour: Trace {
     public var xCalendar: XCalendar?
 
     /// Sets the calendar system to use with `y` date data.
-    /// - traces/mesh3d/attributes/ycalendar
-    /// - traces/scattergl/attributes/ycalendar
     /// - traces/contour/attributes/ycalendar
+    /// - traces/histogram2d/attributes/ycalendar
     public enum YCalendar: String, Encodable {
         case gregorian
         case chinese

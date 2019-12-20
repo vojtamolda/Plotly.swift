@@ -15,37 +15,26 @@ public struct Box: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/mesh3d/attributes/visible
-    /// - traces/ohlc/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    /// - traces/scattergl/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/scatterternary/attributes/visible
+    /// - traces/box/attributes/visible
     /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
-    /// - traces/parcats/attributes/visible
-    /// - traces/splom/attributes/visible
-    /// - traces/area/attributes/visible
-    /// - traces/pointcloud/attributes/visible
-    /// - traces/choropleth/attributes/visible
-    /// - traces/treemap/attributes/visible
-    /// - traces/volume/attributes/visible
-    /// - traces/surface/attributes/visible
-    /// - traces/funnelarea/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
-    /// - traces/candlestick/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/barpolar/attributes/visible
     /// - traces/densitymapbox/attributes/visible
-    /// - traces/image/attributes/visible
-    /// - traces/pie/attributes/visible
-    /// - traces/cone/attributes/visible
-    /// - traces/sunburst/attributes/visible
-    /// - traces/violin/attributes/visible
-    /// - traces/indicator/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/isosurface/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatter3d/attributes/visible
     /// - traces/scattergeo/attributes/visible
-    /// - traces/box/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/table/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/waterfall/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -103,20 +92,18 @@ public struct Box: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/heatmapgl/attributes/hoverinfo
-    /// - traces/mesh3d/attributes/hoverinfo
-    /// - traces/ohlc/attributes/hoverinfo
-    /// - traces/scattergl/attributes/hoverinfo
-    /// - traces/contour/attributes/hoverinfo
-    /// - traces/splom/attributes/hoverinfo
-    /// - traces/area/attributes/hoverinfo
-    /// - traces/pointcloud/attributes/hoverinfo
-    /// - traces/volume/attributes/hoverinfo
-    /// - traces/surface/attributes/hoverinfo
-    /// - traces/candlestick/attributes/hoverinfo
-    /// - traces/heatmap/attributes/hoverinfo
-    /// - traces/violin/attributes/hoverinfo
     /// - traces/box/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/heatmap/attributes/hoverinfo
+    /// - traces/histogram2d/attributes/hoverinfo
+    /// - traces/histogram2dcontour/attributes/hoverinfo
+    /// - traces/isosurface/attributes/hoverinfo
+    /// - traces/ohlc/attributes/hoverinfo
+    /// - traces/scatter3d/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
+    /// - traces/table/attributes/hoverinfo
+    /// - traces/violin/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -151,6 +138,7 @@ public struct Box: Trace {
     /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
+    /// - traces/box/attributes/hoverlabel
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         public var backgroundColor: Color?
@@ -159,6 +147,7 @@ public struct Box: Trace {
         public var borderColor: Color?
     
         /// Sets the font used in hover labels.
+        /// - traces/box/attributes/hoverlabel/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -200,33 +189,23 @@ public struct Box: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
-        /// - traces/mesh3d/attributes/hoverlabel/align
-        /// - traces/ohlc/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
-        /// - traces/scattergl/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
-        /// - traces/splom/attributes/hoverlabel/align
-        /// - traces/area/attributes/hoverlabel/align
-        /// - traces/pointcloud/attributes/hoverlabel/align
-        /// - traces/choropleth/attributes/hoverlabel/align
-        /// - traces/treemap/attributes/hoverlabel/align
-        /// - traces/volume/attributes/hoverlabel/align
-        /// - traces/surface/attributes/hoverlabel/align
-        /// - traces/funnelarea/attributes/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
-        /// - traces/candlestick/attributes/hoverlabel/align
-        /// - traces/heatmap/attributes/hoverlabel/align
-        /// - traces/barpolar/attributes/hoverlabel/align
-        /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/image/attributes/hoverlabel/align
-        /// - traces/pie/attributes/hoverlabel/align
-        /// - traces/cone/attributes/hoverlabel/align
-        /// - traces/sunburst/attributes/hoverlabel/align
-        /// - traces/violin/attributes/hoverlabel/align
-        /// - traces/scattergeo/attributes/hoverlabel/align
         /// - traces/box/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/isosurface/attributes/hoverlabel/align
+        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/scattergeo/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/table/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -270,6 +249,7 @@ public struct Box: Trace {
     }
     public var hoverLabel: HoverLabel?
 
+    /// - traces/box/attributes/stream
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -288,9 +268,12 @@ public struct Box: Trace {
     }
     public var stream: Stream?
 
+    /// - traces/box/attributes/transforms
     public struct Transforms: Encodable {
+        /// - traces/box/attributes/transforms/items
         public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            /// - traces/box/attributes/transforms/items/transform
             public struct Transform: Encodable {
                 public init() {
                 }
@@ -428,11 +411,11 @@ public struct Box: Trace {
     public var pointPosition: Double?
 
     /// Sets the orientation of the modebar.
-    /// - layout/layoutAttributes/modebar/orientation
     /// - layout/layoutAttributes/legend/orientation
-    /// - traces/waterfall/attributes/orientation
-    /// - traces/violin/attributes/orientation
+    /// - layout/layoutAttributes/modebar/orientation
     /// - traces/box/attributes/orientation
+    /// - traces/violin/attributes/orientation
+    /// - traces/waterfall/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
@@ -443,6 +426,7 @@ public struct Box: Trace {
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically selected based on the positions of other box traces in the same subplot.
     public var width: Double?
 
+    /// - traces/box/attributes/marker
     public struct Marker: Encodable {
         /// Sets the color of the outlier sample points.
         public var outlierColor: Color?
@@ -452,13 +436,11 @@ public struct Box: Trace {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
-        /// - traces/scattergl/attributes/marker/symbol
+        /// - traces/box/attributes/marker/symbol
+        /// - traces/scattergeo/attributes/marker/symbol
         /// - traces/scatterternary/attributes/marker/symbol
         /// - traces/splom/attributes/marker/symbol
-        /// - traces/area/attributes/marker/symbol
         /// - traces/violin/attributes/marker/symbol
-        /// - traces/scattergeo/attributes/marker/symbol
-        /// - traces/box/attributes/marker/symbol
         public enum Symbol: String, Encodable {
             case circle
             case circleOpen = "circle-open"
@@ -623,6 +605,7 @@ public struct Box: Trace {
         /// if set.
         public var color: Color?
     
+        /// - traces/box/attributes/marker/line
         public struct Line: Encodable {
             /// Sets themarker.linecolor. 
             ///
@@ -662,6 +645,7 @@ public struct Box: Trace {
     }
     public var marker: Marker?
 
+    /// - traces/box/attributes/line
     public struct Line: Encodable {
         /// Sets the color of line bounding the box(es).
         public var color: Color?
@@ -690,7 +674,9 @@ public struct Box: Trace {
     /// This controls whether bars compute their positional range dependently or independently.
     public var alignmentGroup: String?
 
+    /// - traces/box/attributes/selected
     public struct Selected: Encodable {
+        /// - traces/box/attributes/selected/marker
         public struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
             public var opacity: Double?
@@ -715,7 +701,9 @@ public struct Box: Trace {
     }
     public var selected: Selected?
 
+    /// - traces/box/attributes/unselected
     public struct Unselected: Encodable {
+        /// - traces/box/attributes/unselected/marker
         public struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
             public var opacity: Double?
@@ -762,14 +750,13 @@ public struct Box: Trace {
     public var hoverOn: HoverOn?
 
     /// Sets the calendar system to use with `x` date data.
-    /// - traces/mesh3d/attributes/xcalendar
-    /// - traces/ohlc/attributes/xcalendar
-    /// - traces/scattergl/attributes/xcalendar
-    /// - traces/contour/attributes/xcalendar
-    /// - traces/surface/attributes/xcalendar
-    /// - traces/candlestick/attributes/xcalendar
-    /// - traces/heatmap/attributes/xcalendar
     /// - traces/box/attributes/xcalendar
+    /// - traces/contour/attributes/xcalendar
+    /// - traces/heatmap/attributes/xcalendar
+    /// - traces/histogram2d/attributes/xcalendar
+    /// - traces/histogram2dcontour/attributes/xcalendar
+    /// - traces/ohlc/attributes/xcalendar
+    /// - traces/scatter3d/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
         case chinese
@@ -792,12 +779,12 @@ public struct Box: Trace {
     public var xCalendar: XCalendar?
 
     /// Sets the calendar system to use with `y` date data.
-    /// - traces/mesh3d/attributes/ycalendar
-    /// - traces/scattergl/attributes/ycalendar
-    /// - traces/contour/attributes/ycalendar
-    /// - traces/surface/attributes/ycalendar
-    /// - traces/heatmap/attributes/ycalendar
     /// - traces/box/attributes/ycalendar
+    /// - traces/contour/attributes/ycalendar
+    /// - traces/heatmap/attributes/ycalendar
+    /// - traces/histogram2d/attributes/ycalendar
+    /// - traces/histogram2dcontour/attributes/ycalendar
+    /// - traces/scatter3d/attributes/ycalendar
     public enum YCalendar: String, Encodable {
         case gregorian
         case chinese

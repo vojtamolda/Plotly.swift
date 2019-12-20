@@ -1,5 +1,27 @@
 public struct Layout: Encodable {
     
+    // MARK: - FunnelArea Trace
+
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    public var hiddenLabels: [Double]?
+
+    /// Sets the default funnelarea slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendfunnelareacolors`.
+    public var funnelAreaColorWay: ColorList?
+
+    /// If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    public var extendFunnelAreaColors: Bool?
+
+    /// Sets the source reference on plot.ly for  hiddenlabels .
+    public var hiddenLabelsSource: String?
+
+    
     // MARK: - Funnel Trace
 
     /// Determines how bars at the same location coordinate are displayed on the graph. 
@@ -25,177 +47,6 @@ public struct Layout: Encodable {
 
     /// Sets the gap (in plot fraction) between bars of the same location coordinate.
     public var funnelGroupGap: Double?
-
-    
-    // MARK: - Histogram Trace
-
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    /// - traces/bar/layoutAttributes/barmode
-    /// - traces/histogram/layoutAttributes/barmode
-    public enum BarMode: String, Encodable {
-        case stack
-        case group
-        case overlay
-        case relative
-    }
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    public var barMode: BarMode?
-
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    /// - traces/bar/layoutAttributes/barnorm
-    /// - traces/histogram/layoutAttributes/barnorm
-    public enum Barnorm: String, Encodable {
-        case none = ""
-        case fraction
-        case percent
-    }
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    public var barnorm: Barnorm?
-
-    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var barGap: Double?
-
-    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var barGroupGap: Double?
-
-    
-    // MARK: - Bar Trace
-
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    /// - traces/bar/layoutAttributes/barmode
-    public enum BarMode: String, Encodable {
-        case stack
-        case group
-        case overlay
-        case relative
-    }
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    public var barMode: BarMode?
-
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    /// - traces/bar/layoutAttributes/barnorm
-    public enum Barnorm: String, Encodable {
-        case none = ""
-        case fraction
-        case percent
-    }
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    public var barnorm: Barnorm?
-
-    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var barGap: Double?
-
-    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var barGroupGap: Double?
-
-    
-    // MARK: - Box Trace
-
-    /// Determines how boxes at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
-    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
-    /// multiple boxes. Has no effect on traces that have *width* set.
-    /// - traces/candlestick/layoutAttributes/boxmode
-    /// - traces/box/layoutAttributes/boxmode
-    public enum BoxMode: String, Encodable {
-        case group
-        case overlay
-    }
-    /// Determines how boxes at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
-    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
-    /// multiple boxes. Has no effect on traces that have *width* set.
-    public var boxMode: BoxMode?
-
-    /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var boxGap: Double?
-
-    /// Sets the gap (in plot fraction) between boxes of the same location coordinate. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var boxGroupGap: Double?
-
-    
-    // MARK: - Violin Trace
-
-    /// Determines how violins at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the violins are plotted next to one another centered around the shared location. If
-    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
-    /// multiple violins. Has no effect on traces that have *width* set.
-    /// - traces/violin/layoutAttributes/violinmode
-    public enum ViolinMode: String, Encodable {
-        case group
-        case overlay
-    }
-    /// Determines how violins at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the violins are plotted next to one another centered around the shared location. If
-    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
-    /// multiple violins. Has no effect on traces that have *width* set.
-    public var violinMode: ViolinMode?
-
-    /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var violinGap: Double?
-
-    /// Sets the gap (in plot fraction) between violins of the same location coordinate. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var violinGroupGap: Double?
-
-    
-    // MARK: - Sunburst Trace
-
-    /// Sets the default sunburst slice colors. 
-    ///
-    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
-    /// still be extended with lighter and darker colors, see `extendsunburstcolors`.
-    public var sunburstColorWay: ColorList?
-
-    /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
-    ///
-    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
-    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
-    /// never extended.
-    public var extendSunburstColors: Bool?
 
     
     // MARK: - Pie Trace
@@ -244,6 +95,100 @@ public struct Layout: Encodable {
     public var barGap: Double?
 
     
+    // MARK: - Bar Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    /// - traces/bar/layoutAttributes/barmode
+    /// - traces/histogram/layoutAttributes/barmode
+    public enum BarMode: String, Encodable {
+        case stack
+        case group
+        case overlay
+        case relative
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    public var barMode: BarMode?
+
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    /// - traces/bar/layoutAttributes/barnorm
+    /// - traces/histogram/layoutAttributes/barnorm
+    public enum Barnorm: String, Encodable {
+        case none = ""
+        case fraction
+        case percent
+    }
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    public var barnorm: Barnorm?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    public var barGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    public var barGroupGap: Double?
+
+    
+    // MARK: - Histogram Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    /// - traces/histogram/layoutAttributes/barmode
+    public enum BarMode: String, Encodable {
+        case stack
+        case group
+        case overlay
+        case relative
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    public var barMode: BarMode?
+
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    /// - traces/histogram/layoutAttributes/barnorm
+    public enum Barnorm: String, Encodable {
+        case none = ""
+        case fraction
+        case percent
+    }
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    public var barnorm: Barnorm?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    public var barGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    public var barGroupGap: Double?
+
+    
     // MARK: - Candlestick Trace
 
     /// Determines how boxes at the same location coordinate are displayed on the graph. 
@@ -251,6 +196,7 @@ public struct Layout: Encodable {
     /// If *group*, the boxes are plotted next to one another centered around the shared location. If
     /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
     /// multiple boxes. Has no effect on traces that have *width* set.
+    /// - traces/box/layoutAttributes/boxmode
     /// - traces/candlestick/layoutAttributes/boxmode
     public enum BoxMode: String, Encodable {
         case group
@@ -274,28 +220,6 @@ public struct Layout: Encodable {
     public var boxGroupGap: Double?
 
     
-    // MARK: - FunnelArea Trace
-
-    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    public var hiddenLabels: [Double]?
-
-    /// Sets the default funnelarea slice colors. 
-    ///
-    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
-    /// still be extended with lighter and darker colors, see `extendfunnelareacolors`.
-    public var funnelAreaColorWay: ColorList?
-
-    /// If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
-    ///
-    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
-    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
-    /// never extended.
-    public var extendFunnelAreaColors: Bool?
-
-    /// Sets the source reference on plot.ly for  hiddenlabels .
-    public var hiddenLabelsSource: String?
-
-    
     // MARK: - Treemap Trace
 
     /// Sets the default treemap slice colors. 
@@ -310,6 +234,36 @@ public struct Layout: Encodable {
     /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
     /// never extended.
     public var extendTreemapColors: Bool?
+
+    
+    // MARK: - Box Trace
+
+    /// Determines how boxes at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
+    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
+    /// multiple boxes. Has no effect on traces that have *width* set.
+    /// - traces/box/layoutAttributes/boxmode
+    public enum BoxMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how boxes at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
+    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
+    /// multiple boxes. Has no effect on traces that have *width* set.
+    public var boxMode: BoxMode?
+
+    /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var boxGap: Double?
+
+    /// Sets the gap (in plot fraction) between boxes of the same location coordinate. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var boxGroupGap: Double?
 
     
     // MARK: - Waterfall Trace
@@ -338,11 +292,58 @@ public struct Layout: Encodable {
     public var waterfallGroupGap: Double?
 
     
+    // MARK: - Violin Trace
+
+    /// Determines how violins at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the violins are plotted next to one another centered around the shared location. If
+    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
+    /// multiple violins. Has no effect on traces that have *width* set.
+    /// - traces/violin/layoutAttributes/violinmode
+    public enum ViolinMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how violins at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the violins are plotted next to one another centered around the shared location. If
+    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
+    /// multiple violins. Has no effect on traces that have *width* set.
+    public var violinMode: ViolinMode?
+
+    /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var violinGap: Double?
+
+    /// Sets the gap (in plot fraction) between violins of the same location coordinate. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var violinGroupGap: Double?
+
+    
+    // MARK: - Sunburst Trace
+
+    /// Sets the default sunburst slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendsunburstcolors`.
+    public var sunburstColorWay: ColorList?
+
+    /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    public var extendSunburstColors: Bool?
+
+    
     // MARK: - General
 
     /// Sets the global font. 
     ///
     /// Note that fonts used in traces and other layout components inherit from the global font.
+    /// - layout/layoutAttributes/font
     public struct Font: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. 
         ///
@@ -370,6 +371,7 @@ public struct Layout: Encodable {
     /// Note that fonts used in traces and other layout components inherit from the global font.
     public var font: Font?
 
+    /// - layout/layoutAttributes/title
     public struct Title: Encodable {
         /// Sets the plot's title. 
         ///
@@ -380,6 +382,7 @@ public struct Layout: Encodable {
         /// Sets the title font. 
         ///
         /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+        /// - layout/layoutAttributes/title/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -489,6 +492,7 @@ public struct Layout: Encodable {
         /// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
         /// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
         /// respective anchor value is *middle*/*center*.
+        /// - layout/layoutAttributes/title/pad
         public struct Padding: Encodable {
             /// The amount of padding (in px) along the top of the component.
             public var t: Double?
@@ -543,6 +547,7 @@ public struct Layout: Encodable {
     /// Sets the plot's height (in px).
     public var height: Double?
 
+    /// - layout/layoutAttributes/margin
     public struct Margin: Encodable {
         /// Sets the left margin (in px).
         public var l: Double?
@@ -648,6 +653,7 @@ public struct Layout: Encodable {
     /// `templateitemname` and `visible: false`.
     public var template: Anything?
 
+    /// - layout/layoutAttributes/modebar
     public struct ModeBar: Encodable {
         /// Sets the orientation of the modebar.
         /// - layout/layoutAttributes/modebar/orientation
@@ -692,6 +698,7 @@ public struct Layout: Encodable {
     public var meta: Anything?
 
     /// Sets transition options used during Plotly.react updates.
+    /// - layout/layoutAttributes/transition
     public struct Transition: Encodable {
         /// The duration of the transition, in milliseconds. 
         ///
@@ -759,6 +766,7 @@ public struct Layout: Encodable {
     /// Sets transition options used during Plotly.react updates.
     public var transition: Transition?
 
+    /// - layout/layoutAttributes/_deprecated
     public struct Deprecated: Encodable {
         /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
         ///
@@ -768,6 +776,7 @@ public struct Layout: Encodable {
         /// Former `titlefont` is now the sub-attribute `font` of `title`. 
         ///
         /// To customize title font properties, please use `title.font` now.
+        /// - layout/layoutAttributes/_deprecated/titlefont
         public struct TitleFont: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -897,6 +906,7 @@ public struct Layout: Encodable {
     /// can be hovered on but will not generate spikelines, such as scatter fills.
     public var spikeDistance: Int?
 
+    /// - layout/layoutAttributes/hoverlabel
     public struct HoverLabel: Encodable {
         /// Sets the background color of all hover labels on graph
         public var backgroundColor: Color?
@@ -905,6 +915,7 @@ public struct Layout: Encodable {
         public var borderColor: Color?
     
         /// Sets the default hover label font used by all traces on the graph.
+        /// - layout/layoutAttributes/hoverlabel/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -978,6 +989,7 @@ public struct Layout: Encodable {
     /// limit.
     public var selectDirection: SelectDirection?
 
+    /// - layout/layoutAttributes/grid
     public struct Grid: Encodable {
         /// The number of rows in the grid. 
         ///
@@ -1049,6 +1061,7 @@ public struct Layout: Encodable {
         /// Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.
         public var yGap: Double?
     
+        /// - layout/layoutAttributes/grid/domain
         public struct Domain: Encodable {
             /// Sets the horizontal domain of this grid subplot (in plot fraction). 
             ///
@@ -1141,6 +1154,7 @@ public struct Layout: Encodable {
     /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
     public var calendar: Calendar?
 
+    /// - layout/layoutAttributes/xaxis
     public struct XAxis: Encodable {
         /// A single toggle to hide the axis while preserving interaction like dragging. 
         ///
@@ -1153,6 +1167,7 @@ public struct Layout: Encodable {
         /// this.
         public var color: Color?
     
+        /// - layout/layoutAttributes/xaxis/title
         public struct Title: Encodable {
             /// Sets the title of this axis. 
             ///
@@ -1163,6 +1178,7 @@ public struct Layout: Encodable {
             /// Sets this axis' title font. 
             ///
             /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+            /// - layout/layoutAttributes/xaxis/title/font
             public struct Font: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -1544,6 +1560,7 @@ public struct Layout: Encodable {
         public var spikeSnap: SpikeSnap?
     
         /// Sets the tick font.
+        /// - layout/layoutAttributes/xaxis/tickfont
         public struct TickFont: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -1656,8 +1673,11 @@ public struct Layout: Encodable {
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var tickFormat: String?
     
+        /// - layout/layoutAttributes/xaxis/tickformatstops
         public struct TickFormatStops: Encodable {
+            /// - layout/layoutAttributes/xaxis/tickformatstops/items
             public struct Items: Encodable {
+                /// - layout/layoutAttributes/xaxis/tickformatstops/items/tickformatstop
                 public struct TickFormatStop: Encodable {
                     /// Determines whether or not this stop is used. 
                     ///
@@ -1882,6 +1902,7 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
+        /// - layout/layoutAttributes/xaxis/_deprecated
         public struct Deprecated: Encodable {
             /// Obsolete. 
             ///
@@ -1897,6 +1918,7 @@ public struct Layout: Encodable {
             /// Former `titlefont` is now the sub-attribute `font` of `title`. 
             ///
             /// To customize title font properties, please use `title.font` now.
+            /// - layout/layoutAttributes/xaxis/_deprecated/titlefont
             public struct TitleFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -1932,6 +1954,7 @@ public struct Layout: Encodable {
         }
         public var deprecated: Deprecated?
     
+        /// - layout/layoutAttributes/xaxis/rangeslider
         public struct RangeSlider: Encodable {
             /// Sets the background color of the range slider.
             public var backgroundColor: Color?
@@ -1964,6 +1987,7 @@ public struct Layout: Encodable {
             /// If visible, perpendicular axes will be set to `fixedrange`
             public var visible: Bool?
         
+            /// - layout/layoutAttributes/xaxis/rangeslider/yaxis
             public struct YAxis: Encodable {
                 /// Determines whether or not the range of this axis in the rangeslider use the same value than in the main plot when zooming in/out. 
                 ///
@@ -2004,6 +2028,7 @@ public struct Layout: Encodable {
         }
         public var rangeSlider: RangeSlider?
     
+        /// - layout/layoutAttributes/xaxis/rangeselector
         public struct RangeSelector: Encodable {
             /// Determines whether or not this range selector is visible. 
             ///
@@ -2011,11 +2036,14 @@ public struct Layout: Encodable {
             /// *date*.
             public var visible: Bool?
         
+            /// - layout/layoutAttributes/xaxis/rangeselector/buttons
             public struct Buttons: Encodable {
+                /// - layout/layoutAttributes/xaxis/rangeselector/buttons/items
                 public struct Items: Encodable {
                     /// Sets the specifications for each buttons. 
                     ///
                     /// By default, a range selector comes with no buttons.
+                    /// - layout/layoutAttributes/xaxis/rangeselector/buttons/items/button
                     public struct Button: Encodable {
                         /// Determines whether or not this button is visible.
                         public var visible: Bool?
@@ -2155,6 +2183,7 @@ public struct Layout: Encodable {
             public var yAnchor: YAnchor?
         
             /// Sets the font of the range selector button text.
+            /// - layout/layoutAttributes/xaxis/rangeselector/font
             public struct Font: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -2319,6 +2348,7 @@ public struct Layout: Encodable {
     }
     public var xAxis: XAxis?
 
+    /// - layout/layoutAttributes/yaxis
     public struct YAxis: Encodable {
         /// A single toggle to hide the axis while preserving interaction like dragging. 
         ///
@@ -2331,6 +2361,7 @@ public struct Layout: Encodable {
         /// this.
         public var color: Color?
     
+        /// - layout/layoutAttributes/yaxis/title
         public struct Title: Encodable {
             /// Sets the title of this axis. 
             ///
@@ -2341,6 +2372,7 @@ public struct Layout: Encodable {
             /// Sets this axis' title font. 
             ///
             /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+            /// - layout/layoutAttributes/yaxis/title/font
             public struct Font: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -2735,6 +2767,7 @@ public struct Layout: Encodable {
         public var spikeSnap: SpikeSnap?
     
         /// Sets the tick font.
+        /// - layout/layoutAttributes/yaxis/tickfont
         public struct TickFont: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -2851,8 +2884,11 @@ public struct Layout: Encodable {
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var tickFormat: String?
     
+        /// - layout/layoutAttributes/yaxis/tickformatstops
         public struct TickFormatStops: Encodable {
+            /// - layout/layoutAttributes/yaxis/tickformatstops/items
             public struct Items: Encodable {
+                /// - layout/layoutAttributes/yaxis/tickformatstops/items/tickformatstop
                 public struct TickFormatStop: Encodable {
                     /// Determines whether or not this stop is used. 
                     ///
@@ -3082,6 +3118,7 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
+        /// - layout/layoutAttributes/yaxis/_deprecated
         public struct Deprecated: Encodable {
             /// Obsolete. 
             ///
@@ -3097,6 +3134,7 @@ public struct Layout: Encodable {
             /// Former `titlefont` is now the sub-attribute `font` of `title`. 
             ///
             /// To customize title font properties, please use `title.font` now.
+            /// - layout/layoutAttributes/yaxis/_deprecated/titlefont
             public struct TitleFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -3242,7 +3280,9 @@ public struct Layout: Encodable {
     }
     public var yAxis: YAxis?
 
+    /// - layout/layoutAttributes/ternary
     public struct Ternary: Encodable {
+        /// - layout/layoutAttributes/ternary/domain
         public struct Domain: Encodable {
             /// Sets the horizontal domain of this ternary subplot (in plot fraction).
             public var x: InfoArray?
@@ -3271,7 +3311,9 @@ public struct Layout: Encodable {
         /// The number each triplet should sum to, and the maximum range of each axis
         public var sum: Double?
     
+        /// - layout/layoutAttributes/ternary/aaxis
         public struct AAxis: Encodable {
+            /// - layout/layoutAttributes/ternary/aaxis/title
             public struct Title: Encodable {
                 /// Sets the title of this axis. 
                 ///
@@ -3282,6 +3324,7 @@ public struct Layout: Encodable {
                 /// Sets this axis' title font. 
                 ///
                 /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                /// - layout/layoutAttributes/ternary/aaxis/title/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -3329,9 +3372,9 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
             /// - layout/layoutAttributes/xaxis/tickmode
             /// - layout/layoutAttributes/yaxis/tickmode
-            /// - layout/layoutAttributes/ternary/aaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -3392,9 +3435,9 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
             /// - layout/layoutAttributes/xaxis/ticks
             /// - layout/layoutAttributes/yaxis/ticks
-            /// - layout/layoutAttributes/ternary/aaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -3422,9 +3465,9 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
             /// - layout/layoutAttributes/xaxis/showtickprefix
             /// - layout/layoutAttributes/yaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -3441,9 +3484,9 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
             /// - layout/layoutAttributes/xaxis/showticksuffix
             /// - layout/layoutAttributes/yaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -3460,9 +3503,9 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
             /// - layout/layoutAttributes/xaxis/showexponent
             /// - layout/layoutAttributes/yaxis/showexponent
-            /// - layout/layoutAttributes/ternary/aaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -3479,9 +3522,9 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
             /// - layout/layoutAttributes/xaxis/exponentformat
             /// - layout/layoutAttributes/yaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -3500,6 +3543,7 @@ public struct Layout: Encodable {
             public var separatethousands: Bool?
         
             /// Sets the tick font.
+            /// - layout/layoutAttributes/ternary/aaxis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -3539,8 +3583,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/ternary/aaxis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/ternary/aaxis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/ternary/aaxis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -3626,9 +3673,9 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
+            /// - layout/layoutAttributes/ternary/aaxis/layer
             /// - layout/layoutAttributes/xaxis/layer
             /// - layout/layoutAttributes/yaxis/layer
-            /// - layout/layoutAttributes/ternary/aaxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -3647,6 +3694,7 @@ public struct Layout: Encodable {
             /// view corresponds to all the minima set to zero.
             public var min: Double?
         
+            /// - layout/layoutAttributes/ternary/aaxis/_deprecated
             public struct Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
                 ///
@@ -3656,6 +3704,7 @@ public struct Layout: Encodable {
                 /// Former `titlefont` is now the sub-attribute `font` of `title`. 
                 ///
                 /// To customize title font properties, please use `title.font` now.
+                /// - layout/layoutAttributes/ternary/aaxis/_deprecated/titlefont
                 public struct TitleFont: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -3743,7 +3792,9 @@ public struct Layout: Encodable {
         }
         public var aAxis: AAxis?
     
+        /// - layout/layoutAttributes/ternary/baxis
         public struct BAxis: Encodable {
+            /// - layout/layoutAttributes/ternary/baxis/title
             public struct Title: Encodable {
                 /// Sets the title of this axis. 
                 ///
@@ -3754,6 +3805,7 @@ public struct Layout: Encodable {
                 /// Sets this axis' title font. 
                 ///
                 /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                /// - layout/layoutAttributes/ternary/baxis/title/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -3801,10 +3853,10 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
             /// - layout/layoutAttributes/ternary/aaxis/tickmode
             /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -3865,10 +3917,10 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
             /// - layout/layoutAttributes/ternary/aaxis/ticks
             /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -3896,10 +3948,10 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -3916,10 +3968,10 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -3936,10 +3988,10 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
             /// - layout/layoutAttributes/ternary/aaxis/showexponent
             /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -3956,10 +4008,10 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
             /// - layout/layoutAttributes/ternary/aaxis/exponentformat
             /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -3978,6 +4030,7 @@ public struct Layout: Encodable {
             public var separatethousands: Bool?
         
             /// Sets the tick font.
+            /// - layout/layoutAttributes/ternary/baxis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -4017,8 +4070,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/ternary/baxis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/ternary/baxis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/ternary/baxis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -4104,10 +4160,10 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            /// - layout/layoutAttributes/xaxis/layer
-            /// - layout/layoutAttributes/yaxis/layer
             /// - layout/layoutAttributes/ternary/aaxis/layer
             /// - layout/layoutAttributes/ternary/baxis/layer
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -4126,6 +4182,7 @@ public struct Layout: Encodable {
             /// view corresponds to all the minima set to zero.
             public var min: Double?
         
+            /// - layout/layoutAttributes/ternary/baxis/_deprecated
             public struct Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
                 ///
@@ -4135,6 +4192,7 @@ public struct Layout: Encodable {
                 /// Former `titlefont` is now the sub-attribute `font` of `title`. 
                 ///
                 /// To customize title font properties, please use `title.font` now.
+                /// - layout/layoutAttributes/ternary/baxis/_deprecated/titlefont
                 public struct TitleFont: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -4222,7 +4280,9 @@ public struct Layout: Encodable {
         }
         public var bAxis: BAxis?
     
+        /// - layout/layoutAttributes/ternary/caxis
         public struct CAxis: Encodable {
+            /// - layout/layoutAttributes/ternary/caxis/title
             public struct Title: Encodable {
                 /// Sets the title of this axis. 
                 ///
@@ -4233,6 +4293,7 @@ public struct Layout: Encodable {
                 /// Sets this axis' title font. 
                 ///
                 /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                /// - layout/layoutAttributes/ternary/caxis/title/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -4280,11 +4341,11 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
             /// - layout/layoutAttributes/ternary/aaxis/tickmode
             /// - layout/layoutAttributes/ternary/baxis/tickmode
             /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -4345,11 +4406,11 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
             /// - layout/layoutAttributes/ternary/aaxis/ticks
             /// - layout/layoutAttributes/ternary/baxis/ticks
             /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -4377,11 +4438,11 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/baxis/showtickprefix
             /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -4398,11 +4459,11 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/baxis/showticksuffix
             /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -4419,11 +4480,11 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
             /// - layout/layoutAttributes/ternary/aaxis/showexponent
             /// - layout/layoutAttributes/ternary/baxis/showexponent
             /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -4440,11 +4501,11 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
             /// - layout/layoutAttributes/ternary/aaxis/exponentformat
             /// - layout/layoutAttributes/ternary/baxis/exponentformat
             /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -4463,6 +4524,7 @@ public struct Layout: Encodable {
             public var separatethousands: Bool?
         
             /// Sets the tick font.
+            /// - layout/layoutAttributes/ternary/caxis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -4502,8 +4564,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/ternary/caxis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/ternary/caxis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/ternary/caxis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -4589,11 +4654,11 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            /// - layout/layoutAttributes/xaxis/layer
-            /// - layout/layoutAttributes/yaxis/layer
             /// - layout/layoutAttributes/ternary/aaxis/layer
             /// - layout/layoutAttributes/ternary/baxis/layer
             /// - layout/layoutAttributes/ternary/caxis/layer
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -4612,6 +4677,7 @@ public struct Layout: Encodable {
             /// view corresponds to all the minima set to zero.
             public var min: Double?
         
+            /// - layout/layoutAttributes/ternary/caxis/_deprecated
             public struct Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
                 ///
@@ -4621,6 +4687,7 @@ public struct Layout: Encodable {
                 /// Former `titlefont` is now the sub-attribute `font` of `title`. 
                 ///
                 /// To customize title font properties, please use `title.font` now.
+                /// - layout/layoutAttributes/ternary/caxis/_deprecated/titlefont
                 public struct TitleFont: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -4725,14 +4792,17 @@ public struct Layout: Encodable {
     }
     public var ternary: Ternary?
 
+    /// - layout/layoutAttributes/scene
     public struct Scene: Encodable {
         public var backgroundColor: Color?
     
+        /// - layout/layoutAttributes/scene/camera
         public struct Camera: Encodable {
             /// Sets the (x,y,z) components of the 'up' camera vector. 
             ///
             /// This vector determines the up direction of this scene with respect to the page. The default is
             /// *{x: 0, y: 0, z: 1}* which means that the z axis points up.
+            /// - layout/layoutAttributes/scene/camera/up
             public struct Up: Encodable {
                 public var x: Double?
             
@@ -4755,6 +4825,7 @@ public struct Layout: Encodable {
             /// Sets the (x,y,z) components of the 'center' camera vector This vector determines the translation (x,y,z) space about the center of this scene. 
             ///
             /// By default, there is no such translation.
+            /// - layout/layoutAttributes/scene/camera/center
             public struct Center: Encodable {
                 public var x: Double?
             
@@ -4776,6 +4847,7 @@ public struct Layout: Encodable {
             /// Sets the (x,y,z) components of the 'eye' camera vector. 
             ///
             /// This vector determines the view point about the origin of this scene.
+            /// - layout/layoutAttributes/scene/camera/eye
             public struct Eye: Encodable {
                 public var x: Double?
             
@@ -4794,6 +4866,7 @@ public struct Layout: Encodable {
             /// This vector determines the view point about the origin of this scene.
             public var eye: Eye?
         
+            /// - layout/layoutAttributes/scene/camera/projection
             public struct Projection: Encodable {
                 /// Sets the projection type. 
                 ///
@@ -4825,6 +4898,7 @@ public struct Layout: Encodable {
         }
         public var camera: Camera?
     
+        /// - layout/layoutAttributes/scene/domain
         public struct Domain: Encodable {
             /// Sets the horizontal domain of this scene subplot (in plot fraction).
             public var x: InfoArray?
@@ -4871,6 +4945,7 @@ public struct Layout: Encodable {
         public var aspectMode: AspectMode?
     
         /// Sets this scene's axis aspectratio.
+        /// - layout/layoutAttributes/scene/aspectratio
         public struct AspectRatio: Encodable {
             public var x: Double?
         
@@ -4878,6 +4953,7 @@ public struct Layout: Encodable {
         
             public var z: Double?
         
+            /// - layout/layoutAttributes/scene/aspectratio/impliedEdits
             public struct ImpliedEdits: Encodable {
                 public init() {
                 }
@@ -4894,6 +4970,7 @@ public struct Layout: Encodable {
         /// Sets this scene's axis aspectratio.
         public var aspectRatio: AspectRatio?
     
+        /// - layout/layoutAttributes/scene/xaxis
         public struct XAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. 
             ///
@@ -4938,9 +5015,9 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
+            /// - layout/layoutAttributes/scene/xaxis/categoryorder
             /// - layout/layoutAttributes/xaxis/categoryorder
             /// - layout/layoutAttributes/yaxis/categoryorder
-            /// - layout/layoutAttributes/scene/xaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -4977,6 +5054,7 @@ public struct Layout: Encodable {
             /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
             public var categoryArray: [Double]?
         
+            /// - layout/layoutAttributes/scene/xaxis/title
             public struct Title: Encodable {
                 /// Sets the title of this axis. 
                 ///
@@ -4987,6 +5065,7 @@ public struct Layout: Encodable {
                 /// Sets this axis' title font. 
                 ///
                 /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                /// - layout/layoutAttributes/scene/xaxis/title/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -5042,9 +5121,9 @@ public struct Layout: Encodable {
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+            /// - layout/layoutAttributes/scene/xaxis/autorange
             /// - layout/layoutAttributes/xaxis/autorange
             /// - layout/layoutAttributes/yaxis/autorange
-            /// - layout/layoutAttributes/scene/xaxis/autorange
             public enum AutoRange: String, Encodable {
                 case `true` = "true"
                 case `false` = "false"
@@ -5059,9 +5138,9 @@ public struct Layout: Encodable {
             ///
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
+            /// - layout/layoutAttributes/scene/xaxis/rangemode
             /// - layout/layoutAttributes/xaxis/rangemode
             /// - layout/layoutAttributes/yaxis/rangemode
-            /// - layout/layoutAttributes/scene/xaxis/rangemode
             public enum RangeMode: String, Encodable {
                 case normal
                 case toZero = "tozero"
@@ -5089,12 +5168,12 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
             /// - layout/layoutAttributes/ternary/aaxis/tickmode
             /// - layout/layoutAttributes/ternary/baxis/tickmode
             /// - layout/layoutAttributes/ternary/caxis/tickmode
-            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -5155,12 +5234,12 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
             /// - layout/layoutAttributes/ternary/aaxis/ticks
             /// - layout/layoutAttributes/ternary/baxis/ticks
             /// - layout/layoutAttributes/ternary/caxis/ticks
-            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -5177,9 +5256,9 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+            /// - layout/layoutAttributes/scene/xaxis/mirror
             /// - layout/layoutAttributes/xaxis/mirror
             /// - layout/layoutAttributes/yaxis/mirror
-            /// - layout/layoutAttributes/scene/xaxis/mirror
             public enum Mirror: String, Encodable {
                 case `true` = "true"
                 case ticks
@@ -5207,6 +5286,7 @@ public struct Layout: Encodable {
             public var showTickLabels: Bool?
         
             /// Sets the tick font.
+            /// - layout/layoutAttributes/scene/xaxis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -5244,12 +5324,12 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/baxis/showtickprefix
             /// - layout/layoutAttributes/ternary/caxis/showtickprefix
-            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -5266,12 +5346,12 @@ public struct Layout: Encodable {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/baxis/showticksuffix
             /// - layout/layoutAttributes/ternary/caxis/showticksuffix
-            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -5285,12 +5365,12 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
             /// - layout/layoutAttributes/ternary/aaxis/showexponent
             /// - layout/layoutAttributes/ternary/baxis/showexponent
             /// - layout/layoutAttributes/ternary/caxis/showexponent
-            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -5307,12 +5387,12 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
             /// - layout/layoutAttributes/ternary/aaxis/exponentformat
             /// - layout/layoutAttributes/ternary/baxis/exponentformat
             /// - layout/layoutAttributes/ternary/caxis/exponentformat
-            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -5339,8 +5419,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/scene/xaxis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/scene/xaxis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/scene/xaxis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -5431,6 +5514,7 @@ public struct Layout: Encodable {
             /// Sets the width (in px) of the zero line.
             public var zeroLineWidth: Double?
         
+            /// - layout/layoutAttributes/scene/xaxis/_deprecated
             public struct Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
                 ///
@@ -5440,6 +5524,7 @@ public struct Layout: Encodable {
                 /// Former `titlefont` is now the sub-attribute `font` of `title`. 
                 ///
                 /// To customize title font properties, please use `title.font` now.
+                /// - layout/layoutAttributes/scene/xaxis/_deprecated/titlefont
                 public struct TitleFont: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -5476,9 +5561,9 @@ public struct Layout: Encodable {
         
             /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
             /// - layout/layoutAttributes/calendar
+            /// - layout/layoutAttributes/scene/xaxis/calendar
             /// - layout/layoutAttributes/xaxis/calendar
             /// - layout/layoutAttributes/yaxis/calendar
-            /// - layout/layoutAttributes/scene/xaxis/calendar
             public enum Calendar: String, Encodable {
                 case gregorian
                 case chinese
@@ -5568,6 +5653,7 @@ public struct Layout: Encodable {
         }
         public var xAxis: XAxis?
     
+        /// - layout/layoutAttributes/scene/yaxis
         public struct YAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. 
             ///
@@ -5612,10 +5698,10 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            /// - layout/layoutAttributes/xaxis/categoryorder
-            /// - layout/layoutAttributes/yaxis/categoryorder
             /// - layout/layoutAttributes/scene/xaxis/categoryorder
             /// - layout/layoutAttributes/scene/yaxis/categoryorder
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -5652,6 +5738,7 @@ public struct Layout: Encodable {
             /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
             public var categoryArray: [Double]?
         
+            /// - layout/layoutAttributes/scene/yaxis/title
             public struct Title: Encodable {
                 /// Sets the title of this axis. 
                 ///
@@ -5662,6 +5749,7 @@ public struct Layout: Encodable {
                 /// Sets this axis' title font. 
                 ///
                 /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                /// - layout/layoutAttributes/scene/yaxis/title/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -5718,10 +5806,10 @@ public struct Layout: Encodable {
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-            /// - layout/layoutAttributes/xaxis/autorange
-            /// - layout/layoutAttributes/yaxis/autorange
             /// - layout/layoutAttributes/scene/xaxis/autorange
             /// - layout/layoutAttributes/scene/yaxis/autorange
+            /// - layout/layoutAttributes/xaxis/autorange
+            /// - layout/layoutAttributes/yaxis/autorange
             public enum AutoRange: String, Encodable {
                 case `true` = "true"
                 case `false` = "false"
@@ -5736,10 +5824,10 @@ public struct Layout: Encodable {
             ///
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
-            /// - layout/layoutAttributes/xaxis/rangemode
-            /// - layout/layoutAttributes/yaxis/rangemode
             /// - layout/layoutAttributes/scene/xaxis/rangemode
             /// - layout/layoutAttributes/scene/yaxis/rangemode
+            /// - layout/layoutAttributes/xaxis/rangemode
+            /// - layout/layoutAttributes/yaxis/rangemode
             public enum RangeMode: String, Encodable {
                 case normal
                 case toZero = "tozero"
@@ -5767,13 +5855,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
             /// - layout/layoutAttributes/ternary/aaxis/tickmode
             /// - layout/layoutAttributes/ternary/baxis/tickmode
             /// - layout/layoutAttributes/ternary/caxis/tickmode
-            /// - layout/layoutAttributes/scene/xaxis/tickmode
-            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -5834,13 +5922,13 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
             /// - layout/layoutAttributes/ternary/aaxis/ticks
             /// - layout/layoutAttributes/ternary/baxis/ticks
             /// - layout/layoutAttributes/ternary/caxis/ticks
-            /// - layout/layoutAttributes/scene/xaxis/ticks
-            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -5857,10 +5945,10 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
-            /// - layout/layoutAttributes/xaxis/mirror
-            /// - layout/layoutAttributes/yaxis/mirror
             /// - layout/layoutAttributes/scene/xaxis/mirror
             /// - layout/layoutAttributes/scene/yaxis/mirror
+            /// - layout/layoutAttributes/xaxis/mirror
+            /// - layout/layoutAttributes/yaxis/mirror
             public enum Mirror: String, Encodable {
                 case `true` = "true"
                 case ticks
@@ -5888,6 +5976,7 @@ public struct Layout: Encodable {
             public var showTickLabels: Bool?
         
             /// Sets the tick font.
+            /// - layout/layoutAttributes/scene/yaxis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -5925,13 +6014,13 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/baxis/showtickprefix
             /// - layout/layoutAttributes/ternary/caxis/showtickprefix
-            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
-            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -5948,13 +6037,13 @@ public struct Layout: Encodable {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/baxis/showticksuffix
             /// - layout/layoutAttributes/ternary/caxis/showticksuffix
-            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
-            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -5968,13 +6057,13 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
             /// - layout/layoutAttributes/ternary/aaxis/showexponent
             /// - layout/layoutAttributes/ternary/baxis/showexponent
             /// - layout/layoutAttributes/ternary/caxis/showexponent
-            /// - layout/layoutAttributes/scene/xaxis/showexponent
-            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -5991,13 +6080,13 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
             /// - layout/layoutAttributes/ternary/aaxis/exponentformat
             /// - layout/layoutAttributes/ternary/baxis/exponentformat
             /// - layout/layoutAttributes/ternary/caxis/exponentformat
-            /// - layout/layoutAttributes/scene/xaxis/exponentformat
-            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -6024,8 +6113,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/scene/yaxis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/scene/yaxis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/scene/yaxis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -6116,6 +6208,7 @@ public struct Layout: Encodable {
             /// Sets the width (in px) of the zero line.
             public var zeroLineWidth: Double?
         
+            /// - layout/layoutAttributes/scene/yaxis/_deprecated
             public struct Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
                 ///
@@ -6125,6 +6218,7 @@ public struct Layout: Encodable {
                 /// Former `titlefont` is now the sub-attribute `font` of `title`. 
                 ///
                 /// To customize title font properties, please use `title.font` now.
+                /// - layout/layoutAttributes/scene/yaxis/_deprecated/titlefont
                 public struct TitleFont: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -6161,10 +6255,10 @@ public struct Layout: Encodable {
         
             /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
             /// - layout/layoutAttributes/calendar
-            /// - layout/layoutAttributes/xaxis/calendar
-            /// - layout/layoutAttributes/yaxis/calendar
             /// - layout/layoutAttributes/scene/xaxis/calendar
             /// - layout/layoutAttributes/scene/yaxis/calendar
+            /// - layout/layoutAttributes/xaxis/calendar
+            /// - layout/layoutAttributes/yaxis/calendar
             public enum Calendar: String, Encodable {
                 case gregorian
                 case chinese
@@ -6254,6 +6348,7 @@ public struct Layout: Encodable {
         }
         public var yAxis: YAxis?
     
+        /// - layout/layoutAttributes/scene/zaxis
         public struct ZAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. 
             ///
@@ -6298,11 +6393,11 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            /// - layout/layoutAttributes/xaxis/categoryorder
-            /// - layout/layoutAttributes/yaxis/categoryorder
             /// - layout/layoutAttributes/scene/xaxis/categoryorder
             /// - layout/layoutAttributes/scene/yaxis/categoryorder
             /// - layout/layoutAttributes/scene/zaxis/categoryorder
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -6339,6 +6434,7 @@ public struct Layout: Encodable {
             /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
             public var categoryArray: [Double]?
         
+            /// - layout/layoutAttributes/scene/zaxis/title
             public struct Title: Encodable {
                 /// Sets the title of this axis. 
                 ///
@@ -6349,6 +6445,7 @@ public struct Layout: Encodable {
                 /// Sets this axis' title font. 
                 ///
                 /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                /// - layout/layoutAttributes/scene/zaxis/title/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -6406,11 +6503,11 @@ public struct Layout: Encodable {
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-            /// - layout/layoutAttributes/xaxis/autorange
-            /// - layout/layoutAttributes/yaxis/autorange
             /// - layout/layoutAttributes/scene/xaxis/autorange
             /// - layout/layoutAttributes/scene/yaxis/autorange
             /// - layout/layoutAttributes/scene/zaxis/autorange
+            /// - layout/layoutAttributes/xaxis/autorange
+            /// - layout/layoutAttributes/yaxis/autorange
             public enum AutoRange: String, Encodable {
                 case `true` = "true"
                 case `false` = "false"
@@ -6425,11 +6522,11 @@ public struct Layout: Encodable {
             ///
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
-            /// - layout/layoutAttributes/xaxis/rangemode
-            /// - layout/layoutAttributes/yaxis/rangemode
             /// - layout/layoutAttributes/scene/xaxis/rangemode
             /// - layout/layoutAttributes/scene/yaxis/rangemode
             /// - layout/layoutAttributes/scene/zaxis/rangemode
+            /// - layout/layoutAttributes/xaxis/rangemode
+            /// - layout/layoutAttributes/yaxis/rangemode
             public enum RangeMode: String, Encodable {
                 case normal
                 case toZero = "tozero"
@@ -6457,14 +6554,14 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
-            /// - layout/layoutAttributes/ternary/aaxis/tickmode
-            /// - layout/layoutAttributes/ternary/baxis/tickmode
-            /// - layout/layoutAttributes/ternary/caxis/tickmode
             /// - layout/layoutAttributes/scene/xaxis/tickmode
             /// - layout/layoutAttributes/scene/yaxis/tickmode
             /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -6525,14 +6622,14 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
-            /// - layout/layoutAttributes/ternary/aaxis/ticks
-            /// - layout/layoutAttributes/ternary/baxis/ticks
-            /// - layout/layoutAttributes/ternary/caxis/ticks
             /// - layout/layoutAttributes/scene/xaxis/ticks
             /// - layout/layoutAttributes/scene/yaxis/ticks
             /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -6549,11 +6646,11 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
-            /// - layout/layoutAttributes/xaxis/mirror
-            /// - layout/layoutAttributes/yaxis/mirror
             /// - layout/layoutAttributes/scene/xaxis/mirror
             /// - layout/layoutAttributes/scene/yaxis/mirror
             /// - layout/layoutAttributes/scene/zaxis/mirror
+            /// - layout/layoutAttributes/xaxis/mirror
+            /// - layout/layoutAttributes/yaxis/mirror
             public enum Mirror: String, Encodable {
                 case `true` = "true"
                 case ticks
@@ -6581,6 +6678,7 @@ public struct Layout: Encodable {
             public var showTickLabels: Bool?
         
             /// Sets the tick font.
+            /// - layout/layoutAttributes/scene/zaxis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -6618,14 +6716,14 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
             /// - layout/layoutAttributes/scene/xaxis/showtickprefix
             /// - layout/layoutAttributes/scene/yaxis/showtickprefix
             /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -6642,14 +6740,14 @@ public struct Layout: Encodable {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
             /// - layout/layoutAttributes/scene/xaxis/showticksuffix
             /// - layout/layoutAttributes/scene/yaxis/showticksuffix
             /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -6663,14 +6761,14 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
-            /// - layout/layoutAttributes/ternary/aaxis/showexponent
-            /// - layout/layoutAttributes/ternary/baxis/showexponent
-            /// - layout/layoutAttributes/ternary/caxis/showexponent
             /// - layout/layoutAttributes/scene/xaxis/showexponent
             /// - layout/layoutAttributes/scene/yaxis/showexponent
             /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -6687,14 +6785,14 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/baxis/exponentformat
-            /// - layout/layoutAttributes/ternary/caxis/exponentformat
             /// - layout/layoutAttributes/scene/xaxis/exponentformat
             /// - layout/layoutAttributes/scene/yaxis/exponentformat
             /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -6721,8 +6819,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/scene/zaxis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/scene/zaxis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/scene/zaxis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -6813,6 +6914,7 @@ public struct Layout: Encodable {
             /// Sets the width (in px) of the zero line.
             public var zeroLineWidth: Double?
         
+            /// - layout/layoutAttributes/scene/zaxis/_deprecated
             public struct Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
                 ///
@@ -6822,6 +6924,7 @@ public struct Layout: Encodable {
                 /// Former `titlefont` is now the sub-attribute `font` of `title`. 
                 ///
                 /// To customize title font properties, please use `title.font` now.
+                /// - layout/layoutAttributes/scene/zaxis/_deprecated/titlefont
                 public struct TitleFont: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -6858,11 +6961,11 @@ public struct Layout: Encodable {
         
             /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
             /// - layout/layoutAttributes/calendar
-            /// - layout/layoutAttributes/xaxis/calendar
-            /// - layout/layoutAttributes/yaxis/calendar
             /// - layout/layoutAttributes/scene/xaxis/calendar
             /// - layout/layoutAttributes/scene/yaxis/calendar
             /// - layout/layoutAttributes/scene/zaxis/calendar
+            /// - layout/layoutAttributes/xaxis/calendar
+            /// - layout/layoutAttributes/yaxis/calendar
             public enum Calendar: String, Encodable {
                 case gregorian
                 case chinese
@@ -6978,6 +7081,7 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
+        /// - layout/layoutAttributes/scene/_deprecated
         public struct Deprecated: Encodable {
             /// Obsolete. 
             ///
@@ -6990,8 +7094,11 @@ public struct Layout: Encodable {
         }
         public var deprecated: Deprecated?
     
+        /// - layout/layoutAttributes/scene/annotations
         public struct Annotations: Encodable {
+            /// - layout/layoutAttributes/scene/annotations/items
             public struct Items: Encodable {
+                /// - layout/layoutAttributes/scene/annotations/items/annotation
                 public struct Annotation: Encodable {
                     /// Determines whether or not this annotation is visible.
                     public var visible: Bool?
@@ -7016,9 +7123,9 @@ public struct Layout: Encodable {
                     /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
                     /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
                     /// `xanchor` value automatically based on the value of `x`.
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
                     /// - layout/layoutAttributes/title/xanchor
                     /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
-                    /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
                     public enum XAnchor: String, Encodable {
                         case auto
                         case left
@@ -7040,9 +7147,9 @@ public struct Layout: Encodable {
                     /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
                     /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
                     /// calculates the `yanchor` value automatically based on the value of `y`.
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
                     /// - layout/layoutAttributes/title/yanchor
                     /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
-                    /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
                     public enum YAnchor: String, Encodable {
                         case auto
                         case top
@@ -7069,6 +7176,7 @@ public struct Layout: Encodable {
                     public var textAngle: Angle?
                 
                     /// Sets the annotation text font.
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/font
                     public struct Font: Encodable {
                         /// HTML font family - the typeface that will be applied by the web browser. 
                         ///
@@ -7218,6 +7326,7 @@ public struct Layout: Encodable {
                     /// If omitted or blank, no hover label will appear.
                     public var hoverText: String?
                 
+                    /// - layout/layoutAttributes/scene/annotations/items/annotation/hoverlabel
                     public struct HoverLabel: Encodable {
                         /// Sets the background color of the hover label. 
                         ///
@@ -7232,6 +7341,7 @@ public struct Layout: Encodable {
                         /// Sets the hover label text font. 
                         ///
                         /// By default uses the global hover font and size, with color from `hoverlabel.bordercolor`.
+                        /// - layout/layoutAttributes/scene/annotations/items/annotation/hoverlabel/font
                         public struct Font: Encodable {
                             /// HTML font family - the typeface that will be applied by the web browser. 
                             ///
@@ -7361,7 +7471,9 @@ public struct Layout: Encodable {
     }
     public var scene: Scene?
 
+    /// - layout/layoutAttributes/geo
     public struct Geo: Encodable {
+        /// - layout/layoutAttributes/geo/domain
         public struct Domain: Encodable {
             /// Sets the horizontal domain of this geo subplot (in plot fraction). 
             ///
@@ -7423,6 +7535,7 @@ public struct Layout: Encodable {
         /// Set the scope of the map.
         public var scope: Scope?
     
+        /// - layout/layoutAttributes/geo/projection
         public struct Projection: Encodable {
             /// Sets the projection type.
             /// - layout/layoutAttributes/geo/projection/type
@@ -7453,6 +7566,7 @@ public struct Layout: Encodable {
             /// Sets the projection type.
             public var type: Rule?
         
+            /// - layout/layoutAttributes/geo/projection/rotation
             public struct Rotation: Encodable {
                 /// Rotates the map along parallels (in degrees East). 
                 ///
@@ -7492,6 +7606,7 @@ public struct Layout: Encodable {
         }
         public var projection: Projection?
     
+        /// - layout/layoutAttributes/geo/center
         public struct Center: Encodable {
             /// Sets the longitude of the map's center. 
             ///
@@ -7580,6 +7695,7 @@ public struct Layout: Encodable {
         /// Set the background color of the map
         public var backgroundColor: Color?
     
+        /// - layout/layoutAttributes/geo/lonaxis
         public struct LongitudeAxis: Encodable {
             /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
             public var range: InfoArray?
@@ -7610,6 +7726,7 @@ public struct Layout: Encodable {
         }
         public var longitudeAxis: LongitudeAxis?
     
+        /// - layout/layoutAttributes/geo/lataxis
         public struct LatitudeAxis: Encodable {
             /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
             public var range: InfoArray?
@@ -7680,7 +7797,9 @@ public struct Layout: Encodable {
     }
     public var geo: Geo?
 
+    /// - layout/layoutAttributes/mapbox
     public struct Mapbox: Encodable {
+        /// - layout/layoutAttributes/mapbox/domain
         public struct Domain: Encodable {
             /// Sets the horizontal domain of this mapbox subplot (in plot fraction).
             public var x: InfoArray?
@@ -7727,6 +7846,7 @@ public struct Layout: Encodable {
         /// mapbox://mapbox.mapbox-<name>-<version>
         public var style: Anything?
     
+        /// - layout/layoutAttributes/mapbox/center
         public struct Center: Encodable {
             /// Sets the longitude of the center of the map (in degrees East).
             public var longitude: Double?
@@ -7750,8 +7870,11 @@ public struct Layout: Encodable {
         /// Sets the pitch angle of the map (in degrees, where *0* means perpendicular to the surface of the map) (mapbox.pitch).
         public var pitch: Double?
     
+        /// - layout/layoutAttributes/mapbox/layers
         public struct Layers: Encodable {
+            /// - layout/layoutAttributes/mapbox/layers/items
             public struct Items: Encodable {
+                /// - layout/layoutAttributes/mapbox/layers/items/layer
                 public struct Layer: Encodable {
                     /// Determines whether this layer is displayed
                     public var visible: Bool?
@@ -7839,6 +7962,7 @@ public struct Layout: Encodable {
                     /// At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
                     public var maxZoom: Double?
                 
+                    /// - layout/layoutAttributes/mapbox/layers/items/layer/circle
                     public struct Circle: Encodable {
                         /// Sets the circle radius (mapbox.layer.paint.circle-radius). 
                         ///
@@ -7851,6 +7975,7 @@ public struct Layout: Encodable {
                     }
                     public var circle: Circle?
                 
+                    /// - layout/layoutAttributes/mapbox/layers/items/layer/line
                     public struct Line: Encodable {
                         /// Sets the line width (mapbox.layer.paint.line-width). 
                         ///
@@ -7873,6 +7998,7 @@ public struct Layout: Encodable {
                     }
                     public var line: Line?
                 
+                    /// - layout/layoutAttributes/mapbox/layers/items/layer/fill
                     public struct Fill: Encodable {
                         /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color). 
                         ///
@@ -7885,6 +8011,7 @@ public struct Layout: Encodable {
                     }
                     public var fill: Fill?
                 
+                    /// - layout/layoutAttributes/mapbox/layers/items/layer/symbol
                     public struct Symbol: Encodable {
                         /// Sets the symbol icon image (mapbox.layer.layout.icon-image). 
                         ///
@@ -7920,6 +8047,7 @@ public struct Layout: Encodable {
                         /// Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). 
                         ///
                         /// Has an effect only when `type` is set to *symbol*.
+                        /// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/textfont
                         public struct TextFont: Encodable {
                             /// HTML font family - the typeface that will be applied by the web browser. 
                             ///
@@ -8044,7 +8172,9 @@ public struct Layout: Encodable {
     }
     public var mapbox: Mapbox?
 
+    /// - layout/layoutAttributes/polar
     public struct Polar: Encodable {
+        /// - layout/layoutAttributes/polar/domain
         public struct Domain: Encodable {
             /// Sets the horizontal domain of this polar subplot (in plot fraction).
             public var x: InfoArray?
@@ -8079,6 +8209,7 @@ public struct Layout: Encodable {
         /// Set the background color of the subplot
         public var backgroundColor: Color?
     
+        /// - layout/layoutAttributes/polar/radialaxis
         public struct RadialAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. 
             ///
@@ -8089,10 +8220,10 @@ public struct Layout: Encodable {
             ///
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
+            /// - layout/layoutAttributes/polar/radialaxis/type
             /// - layout/layoutAttributes/scene/xaxis/type
             /// - layout/layoutAttributes/scene/yaxis/type
             /// - layout/layoutAttributes/scene/zaxis/type
-            /// - layout/layoutAttributes/polar/radialaxis/type
             public enum Rule: String, Encodable {
                 case auto = "-"
                 case linear
@@ -8109,12 +8240,12 @@ public struct Layout: Encodable {
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-            /// - layout/layoutAttributes/xaxis/autorange
-            /// - layout/layoutAttributes/yaxis/autorange
+            /// - layout/layoutAttributes/polar/radialaxis/autorange
             /// - layout/layoutAttributes/scene/xaxis/autorange
             /// - layout/layoutAttributes/scene/yaxis/autorange
             /// - layout/layoutAttributes/scene/zaxis/autorange
-            /// - layout/layoutAttributes/polar/radialaxis/autorange
+            /// - layout/layoutAttributes/xaxis/autorange
+            /// - layout/layoutAttributes/yaxis/autorange
             public enum AutoRange: String, Encodable {
                 case `true` = "true"
                 case `false` = "false"
@@ -8161,12 +8292,12 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            /// - layout/layoutAttributes/xaxis/categoryorder
-            /// - layout/layoutAttributes/yaxis/categoryorder
+            /// - layout/layoutAttributes/polar/radialaxis/categoryorder
             /// - layout/layoutAttributes/scene/xaxis/categoryorder
             /// - layout/layoutAttributes/scene/yaxis/categoryorder
             /// - layout/layoutAttributes/scene/zaxis/categoryorder
-            /// - layout/layoutAttributes/polar/radialaxis/categoryorder
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -8218,6 +8349,7 @@ public struct Layout: Encodable {
             /// Determines on which side of radial axis line the tick and tick labels appear.
             public var side: Side?
         
+            /// - layout/layoutAttributes/polar/radialaxis/title
             public struct Title: Encodable {
                 /// Sets the title of this axis. 
                 ///
@@ -8228,6 +8360,7 @@ public struct Layout: Encodable {
                 /// Sets this axis' title font. 
                 ///
                 /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+                /// - layout/layoutAttributes/polar/radialaxis/title/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -8276,6 +8409,7 @@ public struct Layout: Encodable {
             /// Defaults to `polar<N>.uirevision`.
             public var uiRevision: Anything?
         
+            /// - layout/layoutAttributes/polar/radialaxis/_deprecated
             public struct Deprecated: Encodable {
                 /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
                 ///
@@ -8285,6 +8419,7 @@ public struct Layout: Encodable {
                 /// Former `titlefont` is now the sub-attribute `font` of `title`. 
                 ///
                 /// To customize title font properties, please use `title.font` now.
+                /// - layout/layoutAttributes/polar/radialaxis/_deprecated/titlefont
                 public struct TitleFont: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -8352,15 +8487,15 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
-            /// - layout/layoutAttributes/ternary/aaxis/tickmode
-            /// - layout/layoutAttributes/ternary/baxis/tickmode
-            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
             /// - layout/layoutAttributes/scene/xaxis/tickmode
             /// - layout/layoutAttributes/scene/yaxis/tickmode
             /// - layout/layoutAttributes/scene/zaxis/tickmode
-            /// - layout/layoutAttributes/polar/radialaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -8421,15 +8556,15 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
-            /// - layout/layoutAttributes/ternary/aaxis/ticks
-            /// - layout/layoutAttributes/ternary/baxis/ticks
-            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
             /// - layout/layoutAttributes/scene/xaxis/ticks
             /// - layout/layoutAttributes/scene/yaxis/ticks
             /// - layout/layoutAttributes/scene/zaxis/ticks
-            /// - layout/layoutAttributes/polar/radialaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -8457,15 +8592,15 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
             /// - layout/layoutAttributes/scene/xaxis/showtickprefix
             /// - layout/layoutAttributes/scene/yaxis/showtickprefix
             /// - layout/layoutAttributes/scene/zaxis/showtickprefix
-            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -8482,15 +8617,15 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
             /// - layout/layoutAttributes/scene/xaxis/showticksuffix
             /// - layout/layoutAttributes/scene/yaxis/showticksuffix
             /// - layout/layoutAttributes/scene/zaxis/showticksuffix
-            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -8507,15 +8642,15 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
-            /// - layout/layoutAttributes/ternary/aaxis/showexponent
-            /// - layout/layoutAttributes/ternary/baxis/showexponent
-            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
             /// - layout/layoutAttributes/scene/xaxis/showexponent
             /// - layout/layoutAttributes/scene/yaxis/showexponent
             /// - layout/layoutAttributes/scene/zaxis/showexponent
-            /// - layout/layoutAttributes/polar/radialaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -8532,15 +8667,15 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/baxis/exponentformat
-            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
             /// - layout/layoutAttributes/scene/xaxis/exponentformat
             /// - layout/layoutAttributes/scene/yaxis/exponentformat
             /// - layout/layoutAttributes/scene/zaxis/exponentformat
-            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -8559,6 +8694,7 @@ public struct Layout: Encodable {
             public var separatethousands: Bool?
         
             /// Sets the tick font.
+            /// - layout/layoutAttributes/polar/radialaxis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -8598,8 +8734,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/polar/radialaxis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/polar/radialaxis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/polar/radialaxis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -8656,12 +8795,12 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            /// - layout/layoutAttributes/xaxis/layer
-            /// - layout/layoutAttributes/yaxis/layer
+            /// - layout/layoutAttributes/polar/radialaxis/layer
             /// - layout/layoutAttributes/ternary/aaxis/layer
             /// - layout/layoutAttributes/ternary/baxis/layer
             /// - layout/layoutAttributes/ternary/caxis/layer
-            /// - layout/layoutAttributes/polar/radialaxis/layer
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -8676,12 +8815,12 @@ public struct Layout: Encodable {
         
             /// Sets the default calendar system to use for interpreting and displaying dates throughout the plot.
             /// - layout/layoutAttributes/calendar
-            /// - layout/layoutAttributes/xaxis/calendar
-            /// - layout/layoutAttributes/yaxis/calendar
+            /// - layout/layoutAttributes/polar/radialaxis/calendar
             /// - layout/layoutAttributes/scene/xaxis/calendar
             /// - layout/layoutAttributes/scene/yaxis/calendar
             /// - layout/layoutAttributes/scene/zaxis/calendar
-            /// - layout/layoutAttributes/polar/radialaxis/calendar
+            /// - layout/layoutAttributes/xaxis/calendar
+            /// - layout/layoutAttributes/yaxis/calendar
             public enum Calendar: String, Encodable {
                 case gregorian
                 case chinese
@@ -8764,6 +8903,7 @@ public struct Layout: Encodable {
         }
         public var radialAxis: RadialAxis?
     
+        /// - layout/layoutAttributes/polar/angularaxis
         public struct AngularAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging. 
             ///
@@ -8797,13 +8937,13 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            /// - layout/layoutAttributes/xaxis/categoryorder
-            /// - layout/layoutAttributes/yaxis/categoryorder
+            /// - layout/layoutAttributes/polar/angularaxis/categoryorder
+            /// - layout/layoutAttributes/polar/radialaxis/categoryorder
             /// - layout/layoutAttributes/scene/xaxis/categoryorder
             /// - layout/layoutAttributes/scene/yaxis/categoryorder
             /// - layout/layoutAttributes/scene/zaxis/categoryorder
-            /// - layout/layoutAttributes/polar/radialaxis/categoryorder
-            /// - layout/layoutAttributes/polar/angularaxis/categoryorder
+            /// - layout/layoutAttributes/xaxis/categoryorder
+            /// - layout/layoutAttributes/yaxis/categoryorder
             public enum CategoryOrder: String, Encodable {
                 case trace
                 case categoryAscending = "category ascending"
@@ -8920,16 +9060,16 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
-            /// - layout/layoutAttributes/ternary/aaxis/tickmode
-            /// - layout/layoutAttributes/ternary/baxis/tickmode
-            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
             /// - layout/layoutAttributes/scene/xaxis/tickmode
             /// - layout/layoutAttributes/scene/yaxis/tickmode
             /// - layout/layoutAttributes/scene/zaxis/tickmode
-            /// - layout/layoutAttributes/polar/radialaxis/tickmode
-            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -8990,16 +9130,16 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
-            /// - layout/layoutAttributes/ternary/aaxis/ticks
-            /// - layout/layoutAttributes/ternary/baxis/ticks
-            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
             /// - layout/layoutAttributes/scene/xaxis/ticks
             /// - layout/layoutAttributes/scene/yaxis/ticks
             /// - layout/layoutAttributes/scene/zaxis/ticks
-            /// - layout/layoutAttributes/polar/radialaxis/ticks
-            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -9027,16 +9167,16 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
             /// - layout/layoutAttributes/scene/xaxis/showtickprefix
             /// - layout/layoutAttributes/scene/yaxis/showtickprefix
             /// - layout/layoutAttributes/scene/zaxis/showtickprefix
-            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
-            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -9053,16 +9193,16 @@ public struct Layout: Encodable {
             public var tickPrefix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
             /// - layout/layoutAttributes/scene/xaxis/showticksuffix
             /// - layout/layoutAttributes/scene/yaxis/showticksuffix
             /// - layout/layoutAttributes/scene/zaxis/showticksuffix
-            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
-            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -9079,16 +9219,16 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
-            /// - layout/layoutAttributes/ternary/aaxis/showexponent
-            /// - layout/layoutAttributes/ternary/baxis/showexponent
-            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
             /// - layout/layoutAttributes/scene/xaxis/showexponent
             /// - layout/layoutAttributes/scene/yaxis/showexponent
             /// - layout/layoutAttributes/scene/zaxis/showexponent
-            /// - layout/layoutAttributes/polar/radialaxis/showexponent
-            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -9105,16 +9245,16 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/baxis/exponentformat
-            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
             /// - layout/layoutAttributes/scene/xaxis/exponentformat
             /// - layout/layoutAttributes/scene/yaxis/exponentformat
             /// - layout/layoutAttributes/scene/zaxis/exponentformat
-            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
-            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -9133,6 +9273,7 @@ public struct Layout: Encodable {
             public var separatethousands: Bool?
         
             /// Sets the tick font.
+            /// - layout/layoutAttributes/polar/angularaxis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -9172,8 +9313,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/polar/angularaxis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/polar/angularaxis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/polar/angularaxis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -9230,13 +9374,13 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            /// - layout/layoutAttributes/xaxis/layer
-            /// - layout/layoutAttributes/yaxis/layer
+            /// - layout/layoutAttributes/polar/angularaxis/layer
+            /// - layout/layoutAttributes/polar/radialaxis/layer
             /// - layout/layoutAttributes/ternary/aaxis/layer
             /// - layout/layoutAttributes/ternary/baxis/layer
             /// - layout/layoutAttributes/ternary/caxis/layer
-            /// - layout/layoutAttributes/polar/radialaxis/layer
-            /// - layout/layoutAttributes/polar/angularaxis/layer
+            /// - layout/layoutAttributes/xaxis/layer
+            /// - layout/layoutAttributes/yaxis/layer
             public enum Layer: String, Encodable {
                 case aboveTraces = "above traces"
                 case belowTraces = "below traces"
@@ -9341,6 +9485,7 @@ public struct Layout: Encodable {
     }
     public var polar: Polar?
 
+    /// - layout/layoutAttributes/radialaxis
     public struct RadialAxis: Encodable {
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
         ///
@@ -9419,6 +9564,7 @@ public struct Layout: Encodable {
     }
     public var radialAxis: RadialAxis?
 
+    /// - layout/layoutAttributes/angularaxis
     public struct AngularAxis: Encodable {
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
         ///
@@ -9443,8 +9589,8 @@ public struct Layout: Encodable {
         /// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
         ///
         /// Sets the orientation (from the paper perspective) of the radial axis tick labels.
-        /// - layout/layoutAttributes/radialaxis/tickorientation
         /// - layout/layoutAttributes/angularaxis/tickorientation
+        /// - layout/layoutAttributes/radialaxis/tickorientation
         public enum TickOrientation: String, Encodable {
             case horizontal
             case vertical
@@ -9510,6 +9656,7 @@ public struct Layout: Encodable {
     /// Rotates the entire polar by the given angle in legacy polar charts.
     public var orientation: Angle?
 
+    /// - layout/layoutAttributes/legend
     public struct Legend: Encodable {
         /// Sets the legend background color.
         public var backgroundColor: Color?
@@ -9521,6 +9668,7 @@ public struct Layout: Encodable {
         public var borderWidth: Double?
     
         /// Sets the font used to text the legend items.
+        /// - layout/layoutAttributes/legend/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -9547,8 +9695,8 @@ public struct Layout: Encodable {
         public var font: Font?
     
         /// Sets the orientation of the modebar.
-        /// - layout/layoutAttributes/modebar/orientation
         /// - layout/layoutAttributes/legend/orientation
+        /// - layout/layoutAttributes/modebar/orientation
         public enum Orientation: String, Encodable {
             case v
             case h
@@ -9645,10 +9793,10 @@ public struct Layout: Encodable {
         /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
         /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
         /// `xanchor` value automatically based on the value of `x`.
+        /// - layout/layoutAttributes/legend/xanchor
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
         /// - layout/layoutAttributes/title/xanchor
         /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
-        /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
-        /// - layout/layoutAttributes/legend/xanchor
         public enum XAnchor: String, Encodable {
             case auto
             case left
@@ -9674,10 +9822,10 @@ public struct Layout: Encodable {
         /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
         /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
         /// calculates the `yanchor` value automatically based on the value of `y`.
+        /// - layout/layoutAttributes/legend/yanchor
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
         /// - layout/layoutAttributes/title/yanchor
         /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
-        /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
-        /// - layout/layoutAttributes/legend/yanchor
         public enum YAnchor: String, Encodable {
             case auto
             case top
@@ -9699,8 +9847,8 @@ public struct Layout: Encodable {
         /// Sets the vertical alignment of the `text` within the box. 
         ///
         /// Has an effect only if an explicit height is set to override the text height.
-        /// - layout/layoutAttributes/scene/annotations/items/annotation/valign
         /// - layout/layoutAttributes/legend/valign
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/valign
         public enum VerticalAlign: String, Encodable {
             case top
             case middle
@@ -9732,8 +9880,11 @@ public struct Layout: Encodable {
     }
     public var legend: Legend?
 
+    /// - layout/layoutAttributes/annotations
     public struct Annotations: Encodable {
+        /// - layout/layoutAttributes/annotations/items
         public struct Items: Encodable {
+            /// - layout/layoutAttributes/annotations/items/annotation
             public struct Annotation: Encodable {
                 /// Determines whether or not this annotation is visible.
                 public var visible: Bool?
@@ -9748,6 +9899,7 @@ public struct Layout: Encodable {
                 public var textAngle: Angle?
             
                 /// Sets the annotation text font.
+                /// - layout/layoutAttributes/annotations/items/annotation/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -9791,8 +9943,8 @@ public struct Layout: Encodable {
                 ///
                 /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
                 /// HTML tags) or if an explicit width is set to override the text width.
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/align
                 /// - layout/layoutAttributes/annotations/items/annotation/align
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/align
                 public enum Align: String, Encodable {
                     case left
                     case center
@@ -9807,9 +9959,9 @@ public struct Layout: Encodable {
                 /// Sets the vertical alignment of the `text` within the box. 
                 ///
                 /// Has an effect only if an explicit height is set to override the text height.
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/valign
-                /// - layout/layoutAttributes/legend/valign
                 /// - layout/layoutAttributes/annotations/items/annotation/valign
+                /// - layout/layoutAttributes/legend/valign
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/valign
                 public enum VerticalAlign: String, Encodable {
                     case top
                     case middle
@@ -9848,8 +10000,8 @@ public struct Layout: Encodable {
                 public var startArrowHead: Int?
             
                 /// Sets the annotation arrow head position.
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/arrowside
                 /// - layout/layoutAttributes/annotations/items/annotation/arrowside
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/arrowside
                 public struct ArrowSide: OptionSet, Encodable {
                     public let rawValue: Int
                 
@@ -9975,11 +10127,11 @@ public struct Layout: Encodable {
                 /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
                 /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
                 /// `xanchor` value automatically based on the value of `x`.
+                /// - layout/layoutAttributes/annotations/items/annotation/xanchor
+                /// - layout/layoutAttributes/legend/xanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
                 /// - layout/layoutAttributes/title/xanchor
                 /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
-                /// - layout/layoutAttributes/legend/xanchor
-                /// - layout/layoutAttributes/annotations/items/annotation/xanchor
                 public enum XAnchor: String, Encodable {
                     case auto
                     case left
@@ -10027,11 +10179,11 @@ public struct Layout: Encodable {
                 /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
                 /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
                 /// calculates the `yanchor` value automatically based on the value of `y`.
+                /// - layout/layoutAttributes/annotations/items/annotation/yanchor
+                /// - layout/layoutAttributes/legend/yanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
                 /// - layout/layoutAttributes/title/yanchor
                 /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
-                /// - layout/layoutAttributes/legend/yanchor
-                /// - layout/layoutAttributes/annotations/items/annotation/yanchor
                 public enum YAnchor: String, Encodable {
                     case auto
                     case top
@@ -10085,6 +10237,7 @@ public struct Layout: Encodable {
                 /// If omitted or blank, no hover label will appear.
                 public var hoverText: String?
             
+                /// - layout/layoutAttributes/annotations/items/annotation/hoverlabel
                 public struct HoverLabel: Encodable {
                     /// Sets the background color of the hover label. 
                     ///
@@ -10099,6 +10252,7 @@ public struct Layout: Encodable {
                     /// Sets the hover label text font. 
                     ///
                     /// By default uses the global hover font and size, with color from `hoverlabel.bordercolor`.
+                    /// - layout/layoutAttributes/annotations/items/annotation/hoverlabel/font
                     public struct Font: Encodable {
                         /// HTML font family - the typeface that will be applied by the web browser. 
                         ///
@@ -10140,6 +10294,7 @@ public struct Layout: Encodable {
                 /// `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
                 public var captureEvents: Bool?
             
+                /// - layout/layoutAttributes/annotations/items/annotation/_deprecated
                 public struct Deprecated: Encodable {
                     /// Obsolete. 
                     ///
@@ -10229,8 +10384,11 @@ public struct Layout: Encodable {
     }
     public var annotations: Annotations?
 
+    /// - layout/layoutAttributes/shapes
     public struct Shapes: Encodable {
+        /// - layout/layoutAttributes/shapes/items
         public struct Items: Encodable {
+            /// - layout/layoutAttributes/shapes/items/shape
             public struct Shape: Encodable {
                 /// Determines whether or not this shape is visible.
                 public var visible: Bool?
@@ -10398,6 +10556,7 @@ public struct Layout: Encodable {
                 /// Sets the opacity of the shape.
                 public var opacity: Double?
             
+                /// - layout/layoutAttributes/shapes/items/shape/line
                 public struct Line: Encodable {
                     /// Sets the line color.
                     public var color: Color?
@@ -10474,8 +10633,11 @@ public struct Layout: Encodable {
     }
     public var shapes: Shapes?
 
+    /// - layout/layoutAttributes/images
     public struct Images: Encodable {
+        /// - layout/layoutAttributes/images/items
         public struct Items: Encodable {
+            /// - layout/layoutAttributes/images/items/image
             public struct Image: Encodable {
                 /// Determines whether or not this image is visible.
                 public var visible: Bool?
@@ -10487,8 +10649,8 @@ public struct Layout: Encodable {
                 public var source: String?
             
                 /// Specifies whether shapes are drawn below or above traces.
-                /// - layout/layoutAttributes/shapes/items/shape/layer
                 /// - layout/layoutAttributes/images/items/image/layer
+                /// - layout/layoutAttributes/shapes/items/shape/layer
                 public enum Layer: String, Encodable {
                     case below
                     case above
@@ -10559,8 +10721,8 @@ public struct Layout: Encodable {
                 /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
                 /// normalized coordinates where 0 (1) corresponds to the left (right) side.
                 /// - layout/layoutAttributes/annotations/items/annotation/xref
-                /// - layout/layoutAttributes/shapes/items/shape/xref
                 /// - layout/layoutAttributes/images/items/image/xref
+                /// - layout/layoutAttributes/shapes/items/shape/xref
                 public enum XReference: String, Encodable {
                     case paper
                     case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
@@ -10578,8 +10740,8 @@ public struct Layout: Encodable {
                 /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
                 /// normalized coordinates where 0 (1) corresponds to the bottom (top).
                 /// - layout/layoutAttributes/annotations/items/annotation/yref
-                /// - layout/layoutAttributes/shapes/items/shape/yref
                 /// - layout/layoutAttributes/images/items/image/yref
+                /// - layout/layoutAttributes/shapes/items/shape/yref
                 public enum YReference: String, Encodable {
                     case paper
                     case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -10639,8 +10801,11 @@ public struct Layout: Encodable {
     }
     public var images: Images?
 
+    /// - layout/layoutAttributes/updatemenus
     public struct UpdateMenus: Encodable {
+        /// - layout/layoutAttributes/updatemenus/items
         public struct Items: Encodable {
+            /// - layout/layoutAttributes/updatemenus/items/updatemenu
             public struct UpdateMenu: Encodable {
                 /// Determines whether or not the update menu is visible.
                 public var visible: Bool?
@@ -10677,8 +10842,11 @@ public struct Layout: Encodable {
                 /// Highlights active dropdown item or active button if true.
                 public var showActive: Bool?
             
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons
                 public struct Buttons: Encodable {
+                    /// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons/items
                     public struct Items: Encodable {
+                        /// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons/items/button
                         public struct Button: Encodable {
                             /// Determines whether or not this button is visible.
                             public var visible: Bool?
@@ -10771,12 +10939,12 @@ public struct Layout: Encodable {
                 /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
                 /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
                 /// `xanchor` value automatically based on the value of `x`.
-                /// - layout/layoutAttributes/title/xanchor
-                /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
-                /// - layout/layoutAttributes/legend/xanchor
                 /// - layout/layoutAttributes/annotations/items/annotation/xanchor
+                /// - layout/layoutAttributes/legend/xanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
+                /// - layout/layoutAttributes/title/xanchor
                 /// - layout/layoutAttributes/updatemenus/items/updatemenu/xanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
                 public enum XAnchor: String, Encodable {
                     case auto
                     case left
@@ -10798,12 +10966,12 @@ public struct Layout: Encodable {
                 /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
                 /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
                 /// calculates the `yanchor` value automatically based on the value of `y`.
-                /// - layout/layoutAttributes/title/yanchor
-                /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
-                /// - layout/layoutAttributes/legend/yanchor
                 /// - layout/layoutAttributes/annotations/items/annotation/yanchor
+                /// - layout/layoutAttributes/legend/yanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
+                /// - layout/layoutAttributes/title/yanchor
                 /// - layout/layoutAttributes/updatemenus/items/updatemenu/yanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
                 public enum YAnchor: String, Encodable {
                     case auto
                     case top
@@ -10818,6 +10986,7 @@ public struct Layout: Encodable {
                 public var yAnchor: YAnchor?
             
                 /// Sets the padding around the buttons or dropdown menu.
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/pad
                 public struct Padding: Encodable {
                     /// The amount of padding (in px) along the top of the component.
                     public var t: Double?
@@ -10842,6 +11011,7 @@ public struct Layout: Encodable {
                 public var padding: Padding?
             
                 /// Sets the font of the update menu button text.
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -10926,8 +11096,11 @@ public struct Layout: Encodable {
     }
     public var updateMenus: UpdateMenus?
 
+    /// - layout/layoutAttributes/sliders
     public struct Sliders: Encodable {
+        /// - layout/layoutAttributes/sliders/items
         public struct Items: Encodable {
+            /// - layout/layoutAttributes/sliders/items/slider
             public struct Slider: Encodable {
                 /// Determines whether or not the slider is visible.
                 public var visible: Bool?
@@ -10935,8 +11108,11 @@ public struct Layout: Encodable {
                 /// Determines which button (by index starting from 0) is considered active.
                 public var active: Double?
             
+                /// - layout/layoutAttributes/sliders/items/slider/steps
                 public struct Steps: Encodable {
+                    /// - layout/layoutAttributes/sliders/items/slider/steps/items
                     public struct Items: Encodable {
+                        /// - layout/layoutAttributes/sliders/items/slider/steps/items/step
                         public struct Step: Encodable {
                             /// Determines whether or not this step is included in the slider.
                             public var visible: Bool?
@@ -10946,8 +11122,8 @@ public struct Layout: Encodable {
                             /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
                             /// calls and will not bind automatically to state updates. This may be used to create a component
                             /// interface and attach to updatemenu events manually via JavaScript.
-                            /// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons/items/button/method
                             /// - layout/layoutAttributes/sliders/items/slider/steps/items/step/method
+                            /// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons/items/button/method
                             public enum Method: String, Encodable {
                                 case restyle
                                 case relayout
@@ -11044,6 +11220,7 @@ public struct Layout: Encodable {
                 public var x: Double?
             
                 /// Set the padding of the slider component along each side.
+                /// - layout/layoutAttributes/sliders/items/slider/pad
                 public struct Padding: Encodable {
                     /// The amount of padding (in px) along the top of the component.
                     public var t: Double?
@@ -11072,13 +11249,13 @@ public struct Layout: Encodable {
                 /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
                 /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
                 /// `xanchor` value automatically based on the value of `x`.
-                /// - layout/layoutAttributes/title/xanchor
-                /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
-                /// - layout/layoutAttributes/legend/xanchor
                 /// - layout/layoutAttributes/annotations/items/annotation/xanchor
-                /// - layout/layoutAttributes/updatemenus/items/updatemenu/xanchor
+                /// - layout/layoutAttributes/legend/xanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/xanchor
                 /// - layout/layoutAttributes/sliders/items/slider/xanchor
+                /// - layout/layoutAttributes/title/xanchor
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/xanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/xanchor
                 public enum XAnchor: String, Encodable {
                     case auto
                     case left
@@ -11100,13 +11277,13 @@ public struct Layout: Encodable {
                 /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
                 /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
                 /// calculates the `yanchor` value automatically based on the value of `y`.
-                /// - layout/layoutAttributes/title/yanchor
-                /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
-                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
-                /// - layout/layoutAttributes/legend/yanchor
                 /// - layout/layoutAttributes/annotations/items/annotation/yanchor
-                /// - layout/layoutAttributes/updatemenus/items/updatemenu/yanchor
+                /// - layout/layoutAttributes/legend/yanchor
+                /// - layout/layoutAttributes/scene/annotations/items/annotation/yanchor
                 /// - layout/layoutAttributes/sliders/items/slider/yanchor
+                /// - layout/layoutAttributes/title/yanchor
+                /// - layout/layoutAttributes/updatemenus/items/updatemenu/yanchor
+                /// - layout/layoutAttributes/xaxis/rangeselector/yanchor
                 public enum YAnchor: String, Encodable {
                     case auto
                     case top
@@ -11120,13 +11297,14 @@ public struct Layout: Encodable {
                 /// calculates the `yanchor` value automatically based on the value of `y`.
                 public var yAnchor: YAnchor?
             
+                /// - layout/layoutAttributes/sliders/items/slider/transition
                 public struct Transition: Encodable {
                     /// Sets the duration of the slider transition
                     public var duration: Double?
                 
                     /// The easing function used for the transition
-                    /// - layout/layoutAttributes/transition/easing
                     /// - layout/layoutAttributes/sliders/items/slider/transition/easing
+                    /// - layout/layoutAttributes/transition/easing
                     public enum Easing: String, Encodable {
                         case linear
                         case quad
@@ -11175,6 +11353,7 @@ public struct Layout: Encodable {
                 }
                 public var transition: Transition?
             
+                /// - layout/layoutAttributes/sliders/items/slider/currentvalue
                 public struct CurrentValue: Encodable {
                     /// Shows the currently-selected value above the slider.
                     public var visible: Bool?
@@ -11200,6 +11379,7 @@ public struct Layout: Encodable {
                     public var suffix: String?
                 
                     /// Sets the font of the current value label text.
+                    /// - layout/layoutAttributes/sliders/items/slider/currentvalue/font
                     public struct Font: Encodable {
                         /// HTML font family - the typeface that will be applied by the web browser. 
                         ///
@@ -11237,6 +11417,7 @@ public struct Layout: Encodable {
                 public var currentValue: CurrentValue?
             
                 /// Sets the font of the slider step labels.
+                /// - layout/layoutAttributes/sliders/items/slider/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -11342,6 +11523,7 @@ public struct Layout: Encodable {
     }
     public var sliders: Sliders?
 
+    /// - layout/layoutAttributes/colorscale
     public struct ColorMap: Encodable {
         /// Sets the default sequential colorscale for positive values. 
         ///
@@ -11366,6 +11548,7 @@ public struct Layout: Encodable {
     }
     public var colorScale: ColorMap?
 
+    /// - layout/layoutAttributes/coloraxis
     public struct ColorAxis: Encodable {
         /// Determines whether or not the color domain is computed with respect to the input data (here corresponding trace color array(s)) or the bounds set in `cmin` and `cmax`  Defaults to `false` when `cmin` and `cmax` are set by the user.
         public var cAuto: Bool?
@@ -11414,6 +11597,7 @@ public struct Layout: Encodable {
         /// Determines whether or not a colorbar is displayed for this trace.
         public var showScale: Bool?
     
+        /// - layout/layoutAttributes/coloraxis/colorbar
         public struct ColorBar: Encodable {
             /// Determines whether this color bar's thickness (i.e. 
             ///
@@ -11436,8 +11620,8 @@ public struct Layout: Encodable {
             /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
             /// Use `len` to set the value.
-            /// - layout/layoutAttributes/sliders/items/slider/lenmode
             /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
+            /// - layout/layoutAttributes/sliders/items/slider/lenmode
             public enum LengthMode: String, Encodable {
                 case fraction
                 case pixels
@@ -11456,9 +11640,9 @@ public struct Layout: Encodable {
             public var x: Double?
         
             /// Sets the anchor for the x position
+            /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
             /// - layout/layoutAttributes/images/items/image/xanchor
             /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
-            /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
             public enum XAnchor: String, Encodable {
                 case left
                 case center
@@ -11474,8 +11658,8 @@ public struct Layout: Encodable {
             public var y: Double?
         
             /// Sets the anchor for the y position.
-            /// - layout/layoutAttributes/images/items/image/yanchor
             /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
+            /// - layout/layoutAttributes/images/items/image/yanchor
             public enum YAnchor: String, Encodable {
                 case top
                 case middle
@@ -11509,17 +11693,17 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
-            /// - layout/layoutAttributes/ternary/aaxis/tickmode
-            /// - layout/layoutAttributes/ternary/baxis/tickmode
-            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
             /// - layout/layoutAttributes/scene/xaxis/tickmode
             /// - layout/layoutAttributes/scene/yaxis/tickmode
             /// - layout/layoutAttributes/scene/zaxis/tickmode
-            /// - layout/layoutAttributes/polar/radialaxis/tickmode
-            /// - layout/layoutAttributes/polar/angularaxis/tickmode
-            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -11580,17 +11764,17 @@ public struct Layout: Encodable {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
-            /// - layout/layoutAttributes/ternary/aaxis/ticks
-            /// - layout/layoutAttributes/ternary/baxis/ticks
-            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
             /// - layout/layoutAttributes/scene/xaxis/ticks
             /// - layout/layoutAttributes/scene/yaxis/ticks
             /// - layout/layoutAttributes/scene/zaxis/ticks
-            /// - layout/layoutAttributes/polar/radialaxis/ticks
-            /// - layout/layoutAttributes/polar/angularaxis/ticks
-            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -11615,6 +11799,7 @@ public struct Layout: Encodable {
             public var showTickLabels: Bool?
         
             /// Sets the color bar's tick label font
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -11654,8 +11839,11 @@ public struct Layout: Encodable {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - layout/layoutAttributes/coloraxis/colorbar/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - layout/layoutAttributes/coloraxis/colorbar/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -11713,17 +11901,17 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
             /// - layout/layoutAttributes/scene/xaxis/showtickprefix
             /// - layout/layoutAttributes/scene/yaxis/showtickprefix
             /// - layout/layoutAttributes/scene/zaxis/showtickprefix
-            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
-            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
-            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -11740,17 +11928,17 @@ public struct Layout: Encodable {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
             /// - layout/layoutAttributes/scene/xaxis/showticksuffix
             /// - layout/layoutAttributes/scene/yaxis/showticksuffix
             /// - layout/layoutAttributes/scene/zaxis/showticksuffix
-            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
-            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
-            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -11767,17 +11955,17 @@ public struct Layout: Encodable {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/baxis/exponentformat
-            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
             /// - layout/layoutAttributes/scene/xaxis/exponentformat
             /// - layout/layoutAttributes/scene/yaxis/exponentformat
             /// - layout/layoutAttributes/scene/zaxis/exponentformat
-            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
-            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
-            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -11796,17 +11984,17 @@ public struct Layout: Encodable {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
-            /// - layout/layoutAttributes/ternary/aaxis/showexponent
-            /// - layout/layoutAttributes/ternary/baxis/showexponent
-            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
             /// - layout/layoutAttributes/scene/xaxis/showexponent
             /// - layout/layoutAttributes/scene/yaxis/showexponent
             /// - layout/layoutAttributes/scene/zaxis/showexponent
-            /// - layout/layoutAttributes/polar/radialaxis/showexponent
-            /// - layout/layoutAttributes/polar/angularaxis/showexponent
-            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -11819,6 +12007,7 @@ public struct Layout: Encodable {
             /// last tick is shown. If *none*, no exponents appear.
             public var showExponent: ShowExponent?
         
+            /// - layout/layoutAttributes/coloraxis/colorbar/title
             public struct Title: Encodable {
                 /// Sets the title of the color bar. 
                 ///
@@ -11829,6 +12018,7 @@ public struct Layout: Encodable {
                 /// Sets this color bar's title font. 
                 ///
                 /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+                /// - layout/layoutAttributes/coloraxis/colorbar/title/font
                 public struct Font: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -11878,6 +12068,7 @@ public struct Layout: Encodable {
             }
             public var title: Title?
         
+            /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated
             public struct Deprecated: Encodable {
                 /// Deprecated in favor of color bar's `title.text`. 
                 ///
@@ -11886,6 +12077,7 @@ public struct Layout: Encodable {
                 public var title: String?
             
                 /// Deprecated in favor of color bar's `title.font`.
+                /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titlefont
                 public struct TitleFont: Encodable {
                     /// HTML font family - the typeface that will be applied by the web browser. 
                     ///
@@ -11998,44 +12190,44 @@ public struct Layout: Encodable {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
-    public init(funnelMode: FunnelMode? = nil, funnelGap: Double? = nil, funnelGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, violinMode: ViolinMode? = nil, violinGap: Double? = nil, violinGroupGap: Double? = nil, sunburstColorWay: ColorList? = nil, extendSunburstColors: Bool? = nil, hiddenLabels: [Double]? = nil, pieColorWay: ColorList? = nil, extendPieColors: Bool? = nil, hiddenLabelsSource: String? = nil, barMode: BarMode? = nil, barGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, hiddenLabels: [Double]? = nil, funnelAreaColorWay: ColorList? = nil, extendFunnelAreaColors: Bool? = nil, hiddenLabelsSource: String? = nil, treemapColorWay: ColorList? = nil, extendTreemapColors: Bool? = nil, waterfallMode: WaterfallMode? = nil, waterfallGap: Double? = nil, waterfallGroupGap: Double? = nil, font: Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, deprecated: Deprecated? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: Annotations? = nil, shapes: Shapes? = nil, images: Images? = nil, updateMenus: UpdateMenus? = nil, sliders: Sliders? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
+    public init(hiddenLabels: [Double]? = nil, funnelAreaColorWay: ColorList? = nil, extendFunnelAreaColors: Bool? = nil, hiddenLabelsSource: String? = nil, funnelMode: FunnelMode? = nil, funnelGap: Double? = nil, funnelGroupGap: Double? = nil, hiddenLabels: [Double]? = nil, pieColorWay: ColorList? = nil, extendPieColors: Bool? = nil, hiddenLabelsSource: String? = nil, barMode: BarMode? = nil, barGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, treemapColorWay: ColorList? = nil, extendTreemapColors: Bool? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, waterfallMode: WaterfallMode? = nil, waterfallGap: Double? = nil, waterfallGroupGap: Double? = nil, violinMode: ViolinMode? = nil, violinGap: Double? = nil, violinGroupGap: Double? = nil, sunburstColorWay: ColorList? = nil, extendSunburstColors: Bool? = nil, font: Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, deprecated: Deprecated? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: Annotations? = nil, shapes: Shapes? = nil, images: Images? = nil, updateMenus: UpdateMenus? = nil, sliders: Sliders? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
+        self.hiddenLabels = hiddenLabels
+        self.funnelAreaColorWay = funnelAreaColorWay
+        self.extendFunnelAreaColors = extendFunnelAreaColors
+        self.hiddenLabelsSource = hiddenLabelsSource
         self.funnelMode = funnelMode
         self.funnelGap = funnelGap
         self.funnelGroupGap = funnelGroupGap
-        self.barMode = barMode
-        self.barnorm = barnorm
-        self.barGap = barGap
-        self.barGroupGap = barGroupGap
-        self.barMode = barMode
-        self.barnorm = barnorm
-        self.barGap = barGap
-        self.barGroupGap = barGroupGap
-        self.boxMode = boxMode
-        self.boxGap = boxGap
-        self.boxGroupGap = boxGroupGap
-        self.violinMode = violinMode
-        self.violinGap = violinGap
-        self.violinGroupGap = violinGroupGap
-        self.sunburstColorWay = sunburstColorWay
-        self.extendSunburstColors = extendSunburstColors
         self.hiddenLabels = hiddenLabels
         self.pieColorWay = pieColorWay
         self.extendPieColors = extendPieColors
         self.hiddenLabelsSource = hiddenLabelsSource
         self.barMode = barMode
         self.barGap = barGap
+        self.barMode = barMode
+        self.barnorm = barnorm
+        self.barGap = barGap
+        self.barGroupGap = barGroupGap
+        self.barMode = barMode
+        self.barnorm = barnorm
+        self.barGap = barGap
+        self.barGroupGap = barGroupGap
         self.boxMode = boxMode
         self.boxGap = boxGap
         self.boxGroupGap = boxGroupGap
-        self.hiddenLabels = hiddenLabels
-        self.funnelAreaColorWay = funnelAreaColorWay
-        self.extendFunnelAreaColors = extendFunnelAreaColors
-        self.hiddenLabelsSource = hiddenLabelsSource
         self.treemapColorWay = treemapColorWay
         self.extendTreemapColors = extendTreemapColors
+        self.boxMode = boxMode
+        self.boxGap = boxGap
+        self.boxGroupGap = boxGroupGap
         self.waterfallMode = waterfallMode
         self.waterfallGap = waterfallGap
         self.waterfallGroupGap = waterfallGroupGap
+        self.violinMode = violinMode
+        self.violinGap = violinGap
+        self.violinGroupGap = violinGroupGap
+        self.sunburstColorWay = sunburstColorWay
+        self.extendSunburstColors = extendSunburstColors
         self.font = font
         self.title = title
         self.autoSize = autoSize

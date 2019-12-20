@@ -10,31 +10,48 @@ public struct Pie: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/mesh3d/attributes/visible
-    /// - traces/ohlc/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    /// - traces/scattergl/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/scatterternary/attributes/visible
+    /// - traces/bar/attributes/visible
+    /// - traces/barpolar/attributes/visible
+    /// - traces/box/attributes/visible
+    /// - traces/candlestick/attributes/visible
+    /// - traces/carpet/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/choroplethmapbox/attributes/visible
+    /// - traces/cone/attributes/visible
     /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
-    /// - traces/parcats/attributes/visible
-    /// - traces/splom/attributes/visible
-    /// - traces/area/attributes/visible
-    /// - traces/pointcloud/attributes/visible
-    /// - traces/choropleth/attributes/visible
-    /// - traces/treemap/attributes/visible
-    /// - traces/volume/attributes/visible
-    /// - traces/surface/attributes/visible
-    /// - traces/funnelarea/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
-    /// - traces/candlestick/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/barpolar/attributes/visible
     /// - traces/densitymapbox/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/histogram/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
     /// - traces/image/attributes/visible
+    /// - traces/indicator/attributes/visible
+    /// - traces/isosurface/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/parcoords/attributes/visible
     /// - traces/pie/attributes/visible
+    /// - traces/sankey/attributes/visible
+    /// - traces/scatter/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/scattercarpet/attributes/visible
+    /// - traces/scattergeo/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/scatterpolar/attributes/visible
+    /// - traces/scatterpolargl/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/streamtube/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/table/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/waterfall/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -86,6 +103,7 @@ public struct Pie: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
+    /// - traces/pie/attributes/hoverlabel
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         public var backgroundColor: Color?
@@ -94,6 +112,7 @@ public struct Pie: Trace {
         public var borderColor: Color?
     
         /// Sets the font used in hover labels.
+        /// - traces/pie/attributes/hoverlabel/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -135,28 +154,45 @@ public struct Pie: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/bar/attributes/hoverlabel/align
+        /// - traces/barpolar/attributes/hoverlabel/align
+        /// - traces/box/attributes/hoverlabel/align
+        /// - traces/candlestick/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/choroplethmapbox/attributes/hoverlabel/align
+        /// - traces/cone/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
         /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/histogram/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
+        /// - traces/isosurface/attributes/hoverlabel/align
         /// - traces/mesh3d/attributes/hoverlabel/align
         /// - traces/ohlc/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
-        /// - traces/scattergl/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
-        /// - traces/splom/attributes/hoverlabel/align
-        /// - traces/area/attributes/hoverlabel/align
-        /// - traces/pointcloud/attributes/hoverlabel/align
-        /// - traces/choropleth/attributes/hoverlabel/align
-        /// - traces/treemap/attributes/hoverlabel/align
-        /// - traces/volume/attributes/hoverlabel/align
-        /// - traces/surface/attributes/hoverlabel/align
-        /// - traces/funnelarea/attributes/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
-        /// - traces/candlestick/attributes/hoverlabel/align
-        /// - traces/heatmap/attributes/hoverlabel/align
-        /// - traces/barpolar/attributes/hoverlabel/align
-        /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/image/attributes/hoverlabel/align
         /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/link/hoverlabel/align
+        /// - traces/sankey/attributes/node/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/scattercarpet/attributes/hoverlabel/align
+        /// - traces/scattergeo/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/scatterpolar/attributes/hoverlabel/align
+        /// - traces/scatterpolargl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/streamtube/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/table/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -200,6 +236,7 @@ public struct Pie: Trace {
     }
     public var hoverLabel: HoverLabel?
 
+    /// - traces/pie/attributes/stream
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -218,9 +255,12 @@ public struct Pie: Trace {
     }
     public var stream: Stream?
 
+    /// - traces/pie/attributes/transforms
     public struct Transforms: Encodable {
+        /// - traces/pie/attributes/transforms/items
         public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            /// - traces/pie/attributes/transforms/items/transform
             public struct Transform: Encodable {
                 public init() {
                 }
@@ -275,12 +315,14 @@ public struct Pie: Trace {
     /// If omitted, we count occurrences of each label.
     public var values: [Double]?
 
+    /// - traces/pie/attributes/marker
     public struct Marker: Encodable {
         /// Sets the color of each sector. 
         ///
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
+        /// - traces/pie/attributes/marker/line
         public struct Line: Encodable {
             /// Sets the color of the line enclosing each sector.
             public var color: Color?
@@ -332,7 +374,6 @@ public struct Pie: Trace {
     public var scaleGroup: String?
 
     /// Determines which trace information appear on the graph.
-    /// - traces/funnelarea/attributes/textinfo
     /// - traces/pie/attributes/textinfo
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
@@ -363,7 +404,6 @@ public struct Pie: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/funnelarea/attributes/hoverinfo
     /// - traces/pie/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
@@ -437,8 +477,9 @@ public struct Pie: Trace {
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
-    /// - traces/waterfall/attributes/textposition
+    /// - traces/bar/attributes/textposition
     /// - traces/pie/attributes/textposition
+    /// - traces/waterfall/attributes/textposition
     public enum TextPosition: String, Encodable {
         case inside
         case outside
@@ -455,6 +496,7 @@ public struct Pie: Trace {
     public var textPosition: TextPosition?
 
     /// Sets the font used for `textinfo`.
+    /// - traces/pie/attributes/textfont
     public struct TextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. 
         ///
@@ -493,6 +535,7 @@ public struct Pie: Trace {
     public var textFont: TextFont?
 
     /// Sets the font used for `textinfo` lying inside the sector.
+    /// - traces/pie/attributes/insidetextfont
     public struct InsideTextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. 
         ///
@@ -531,6 +574,7 @@ public struct Pie: Trace {
     public var insideTextFont: InsideTextFont?
 
     /// Sets the font used for `textinfo` lying outside the sector.
+    /// - traces/pie/attributes/outsidetextfont
     public struct OutSideTextFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. 
         ///
@@ -571,6 +615,7 @@ public struct Pie: Trace {
     /// Determines whether outside text labels can push the margins.
     public var autoMargin: Bool?
 
+    /// - traces/pie/attributes/title
     public struct Title: Encodable {
         /// Sets the title of the chart. 
         ///
@@ -582,6 +627,7 @@ public struct Pie: Trace {
         /// Sets the font used for `title`. 
         ///
         /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+        /// - traces/pie/attributes/title/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -647,6 +693,7 @@ public struct Pie: Trace {
     }
     public var title: Title?
 
+    /// - traces/pie/attributes/domain
     public struct Domain: Encodable {
         /// Sets the horizontal domain of this pie trace (in plot fraction).
         public var x: InfoArray?
@@ -700,6 +747,7 @@ public struct Pie: Trace {
     /// one or more slices.
     public var pull: Double?
 
+    /// - traces/pie/attributes/_deprecated
     public struct Deprecated: Encodable {
         /// Deprecated in favor of `title.text`. 
         ///
@@ -707,6 +755,7 @@ public struct Pie: Trace {
         public var title: String?
     
         /// Deprecated in favor of `title.font`.
+        /// - traces/pie/attributes/_deprecated/titlefont
         public struct TitleFont: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///

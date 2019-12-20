@@ -11,35 +11,30 @@ public struct Indicator: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/mesh3d/attributes/visible
-    /// - traces/ohlc/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    /// - traces/scattergl/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/scatterternary/attributes/visible
+    /// - traces/box/attributes/visible
+    /// - traces/choroplethmapbox/attributes/visible
     /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
-    /// - traces/parcats/attributes/visible
-    /// - traces/splom/attributes/visible
-    /// - traces/area/attributes/visible
-    /// - traces/pointcloud/attributes/visible
-    /// - traces/choropleth/attributes/visible
-    /// - traces/treemap/attributes/visible
-    /// - traces/volume/attributes/visible
-    /// - traces/surface/attributes/visible
-    /// - traces/funnelarea/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
-    /// - traces/candlestick/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/barpolar/attributes/visible
     /// - traces/densitymapbox/attributes/visible
-    /// - traces/image/attributes/visible
-    /// - traces/pie/attributes/visible
-    /// - traces/cone/attributes/visible
-    /// - traces/sunburst/attributes/visible
-    /// - traces/violin/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
     /// - traces/indicator/attributes/visible
+    /// - traces/isosurface/attributes/visible
+    /// - traces/ohlc/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/scatter/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/scattergeo/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/table/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/waterfall/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -80,6 +75,7 @@ public struct Indicator: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
+    /// - traces/indicator/attributes/stream
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -98,9 +94,12 @@ public struct Indicator: Trace {
     }
     public var stream: Stream?
 
+    /// - traces/indicator/attributes/transforms
     public struct Transforms: Encodable {
+        /// - traces/indicator/attributes/transforms/items
         public struct Items: Encodable {
             /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+            /// - traces/indicator/attributes/transforms/items/transform
             public struct Transform: Encodable {
                 public init() {
                 }
@@ -168,9 +167,11 @@ public struct Indicator: Trace {
     ///
     /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
     /// HTML tags) or if an explicit width is set to override the text width.
-    /// - layout/layoutAttributes/scene/annotations/items/annotation/align
     /// - layout/layoutAttributes/annotations/items/annotation/align
+    /// - layout/layoutAttributes/scene/annotations/items/annotation/align
     /// - traces/indicator/attributes/align
+    /// - traces/table/attributes/cells/align
+    /// - traces/table/attributes/header/align
     public enum Align: String, Encodable {
         case left
         case center
@@ -182,6 +183,7 @@ public struct Indicator: Trace {
     /// HTML tags) or if an explicit width is set to override the text width.
     public var align: Align?
 
+    /// - traces/indicator/attributes/domain
     public struct Domain: Encodable {
         /// Sets the horizontal domain of this indicator trace (in plot fraction).
         public var x: InfoArray?
@@ -204,6 +206,7 @@ public struct Indicator: Trace {
     }
     public var domain: Domain?
 
+    /// - traces/indicator/attributes/title
     public struct Title: Encodable {
         /// Sets the title of this indicator.
         public var text: String?
@@ -212,10 +215,12 @@ public struct Indicator: Trace {
         ///
         /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
         /// HTML tags) or if an explicit width is set to override the text width.
-        /// - layout/layoutAttributes/scene/annotations/items/annotation/align
         /// - layout/layoutAttributes/annotations/items/annotation/align
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/align
         /// - traces/indicator/attributes/align
         /// - traces/indicator/attributes/title/align
+        /// - traces/table/attributes/cells/align
+        /// - traces/table/attributes/header/align
         public enum Align: String, Encodable {
             case left
             case center
@@ -228,6 +233,7 @@ public struct Indicator: Trace {
         public var align: Align?
     
         /// Set the font used to display the title
+        /// - traces/indicator/attributes/title/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -261,6 +267,7 @@ public struct Indicator: Trace {
     }
     public var title: Title?
 
+    /// - traces/indicator/attributes/number
     public struct Number: Encodable {
         /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. 
         ///
@@ -268,6 +275,7 @@ public struct Indicator: Trace {
         public var valueFormat: String?
     
         /// Set the font used to display main number
+        /// - traces/indicator/attributes/number/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -308,6 +316,7 @@ public struct Indicator: Trace {
     }
     public var number: Number?
 
+    /// - traces/indicator/attributes/delta
     public struct Delta: Encodable {
         /// Sets the reference value to compute the delta. 
         ///
@@ -333,6 +342,7 @@ public struct Indicator: Trace {
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
         public var valueFormat: String?
     
+        /// - traces/indicator/attributes/delta/increasing
         public struct Increasing: Encodable {
             /// Sets the symbol to display for increasing value
             public var symbol: String?
@@ -347,6 +357,7 @@ public struct Indicator: Trace {
         }
         public var increasing: Increasing?
     
+        /// - traces/indicator/attributes/delta/decreasing
         public struct Decreasing: Encodable {
             /// Sets the symbol to display for increasing value
             public var symbol: String?
@@ -362,6 +373,7 @@ public struct Indicator: Trace {
         public var decreasing: Decreasing?
     
         /// Set the font used to display the delta
+        /// - traces/indicator/attributes/delta/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -400,6 +412,7 @@ public struct Indicator: Trace {
     public var delta: Delta?
 
     /// The gauge of the Indicator plot.
+    /// - traces/indicator/attributes/gauge
     public struct Gauge: Encodable {
         /// Set the shape of the gauge
         /// - traces/indicator/attributes/gauge/shape
@@ -411,10 +424,12 @@ public struct Indicator: Trace {
         public var shape: Shape?
     
         /// Set the appearance of the gauge's value
+        /// - traces/indicator/attributes/gauge/bar
         public struct Bar: Encodable {
             /// Sets the background color of the arc.
             public var color: Color?
         
+            /// - traces/indicator/attributes/gauge/bar/line
             public struct Line: Encodable {
                 /// Sets the color of the line enclosing each sector.
                 public var color: Color?
@@ -450,6 +465,7 @@ public struct Indicator: Trace {
         /// Sets the width (in px) of the border enclosing the gauge.
         public var borderWidth: Double?
     
+        /// - traces/indicator/attributes/gauge/axis
         public struct Axis: Encodable {
             /// Sets the range of this axis.
             public var range: InfoArray?
@@ -466,37 +482,37 @@ public struct Indicator: Trace {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
-            /// - layout/layoutAttributes/ternary/aaxis/tickmode
-            /// - layout/layoutAttributes/ternary/baxis/tickmode
-            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
             /// - layout/layoutAttributes/scene/xaxis/tickmode
             /// - layout/layoutAttributes/scene/yaxis/tickmode
             /// - layout/layoutAttributes/scene/zaxis/tickmode
-            /// - layout/layoutAttributes/polar/radialaxis/tickmode
-            /// - layout/layoutAttributes/polar/angularaxis/tickmode
-            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
-            /// - traces/heatmapgl/attributes/colorbar/tickmode
-            /// - traces/mesh3d/attributes/colorbar/tickmode
-            /// - traces/scattergl/attributes/marker/colorbar/tickmode
-            /// - traces/parcoords/attributes/line/colorbar/tickmode
-            /// - traces/scatterternary/attributes/marker/colorbar/tickmode
+            /// - layout/layoutAttributes/ternary/aaxis/tickmode
+            /// - layout/layoutAttributes/ternary/baxis/tickmode
+            /// - layout/layoutAttributes/ternary/caxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - traces/choroplethmapbox/attributes/colorbar/tickmode
             /// - traces/contour/attributes/colorbar/tickmode
             /// - traces/contourcarpet/attributes/colorbar/tickmode
-            /// - traces/parcats/attributes/line/colorbar/tickmode
-            /// - traces/splom/attributes/marker/colorbar/tickmode
-            /// - traces/choropleth/attributes/colorbar/tickmode
-            /// - traces/treemap/attributes/marker/colorbar/tickmode
-            /// - traces/volume/attributes/colorbar/tickmode
-            /// - traces/surface/attributes/colorbar/tickmode
-            /// - traces/scattermapbox/attributes/marker/colorbar/tickmode
-            /// - traces/heatmap/attributes/colorbar/tickmode
-            /// - traces/barpolar/attributes/marker/colorbar/tickmode
             /// - traces/densitymapbox/attributes/colorbar/tickmode
-            /// - traces/cone/attributes/colorbar/tickmode
-            /// - traces/sunburst/attributes/marker/colorbar/tickmode
+            /// - traces/heatmap/attributes/colorbar/tickmode
+            /// - traces/heatmapgl/attributes/colorbar/tickmode
+            /// - traces/histogram2d/attributes/colorbar/tickmode
+            /// - traces/histogram2dcontour/attributes/colorbar/tickmode
             /// - traces/indicator/attributes/gauge/axis/tickmode
+            /// - traces/isosurface/attributes/colorbar/tickmode
+            /// - traces/parcats/attributes/line/colorbar/tickmode
+            /// - traces/parcoords/attributes/line/colorbar/tickmode
+            /// - traces/scatter/attributes/marker/colorbar/tickmode
+            /// - traces/scatter3d/attributes/line/colorbar/tickmode
+            /// - traces/scatter3d/attributes/marker/colorbar/tickmode
+            /// - traces/scattergeo/attributes/marker/colorbar/tickmode
+            /// - traces/scatterternary/attributes/marker/colorbar/tickmode
+            /// - traces/splom/attributes/marker/colorbar/tickmode
+            /// - traces/sunburst/attributes/marker/colorbar/tickmode
+            /// - traces/volume/attributes/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -557,37 +573,37 @@ public struct Indicator: Trace {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
-            /// - layout/layoutAttributes/ternary/aaxis/ticks
-            /// - layout/layoutAttributes/ternary/baxis/ticks
-            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
             /// - layout/layoutAttributes/scene/xaxis/ticks
             /// - layout/layoutAttributes/scene/yaxis/ticks
             /// - layout/layoutAttributes/scene/zaxis/ticks
-            /// - layout/layoutAttributes/polar/radialaxis/ticks
-            /// - layout/layoutAttributes/polar/angularaxis/ticks
-            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
-            /// - traces/heatmapgl/attributes/colorbar/ticks
-            /// - traces/mesh3d/attributes/colorbar/ticks
-            /// - traces/scattergl/attributes/marker/colorbar/ticks
-            /// - traces/parcoords/attributes/line/colorbar/ticks
-            /// - traces/scatterternary/attributes/marker/colorbar/ticks
+            /// - layout/layoutAttributes/ternary/aaxis/ticks
+            /// - layout/layoutAttributes/ternary/baxis/ticks
+            /// - layout/layoutAttributes/ternary/caxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
+            /// - traces/choroplethmapbox/attributes/colorbar/ticks
             /// - traces/contour/attributes/colorbar/ticks
             /// - traces/contourcarpet/attributes/colorbar/ticks
-            /// - traces/parcats/attributes/line/colorbar/ticks
-            /// - traces/splom/attributes/marker/colorbar/ticks
-            /// - traces/choropleth/attributes/colorbar/ticks
-            /// - traces/treemap/attributes/marker/colorbar/ticks
-            /// - traces/volume/attributes/colorbar/ticks
-            /// - traces/surface/attributes/colorbar/ticks
-            /// - traces/scattermapbox/attributes/marker/colorbar/ticks
-            /// - traces/heatmap/attributes/colorbar/ticks
-            /// - traces/barpolar/attributes/marker/colorbar/ticks
             /// - traces/densitymapbox/attributes/colorbar/ticks
-            /// - traces/cone/attributes/colorbar/ticks
-            /// - traces/sunburst/attributes/marker/colorbar/ticks
+            /// - traces/heatmap/attributes/colorbar/ticks
+            /// - traces/heatmapgl/attributes/colorbar/ticks
+            /// - traces/histogram2d/attributes/colorbar/ticks
+            /// - traces/histogram2dcontour/attributes/colorbar/ticks
             /// - traces/indicator/attributes/gauge/axis/ticks
+            /// - traces/isosurface/attributes/colorbar/ticks
+            /// - traces/parcats/attributes/line/colorbar/ticks
+            /// - traces/parcoords/attributes/line/colorbar/ticks
+            /// - traces/scatter/attributes/marker/colorbar/ticks
+            /// - traces/scatter3d/attributes/line/colorbar/ticks
+            /// - traces/scatter3d/attributes/marker/colorbar/ticks
+            /// - traces/scattergeo/attributes/marker/colorbar/ticks
+            /// - traces/scatterternary/attributes/marker/colorbar/ticks
+            /// - traces/splom/attributes/marker/colorbar/ticks
+            /// - traces/sunburst/attributes/marker/colorbar/ticks
+            /// - traces/volume/attributes/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -612,6 +628,7 @@ public struct Indicator: Trace {
             public var showTickLabels: Bool?
         
             /// Sets the color bar's tick label font
+            /// - traces/indicator/attributes/gauge/axis/tickfont
             public struct TickFont: Encodable {
                 /// HTML font family - the typeface that will be applied by the web browser. 
                 ///
@@ -651,8 +668,11 @@ public struct Indicator: Trace {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String?
         
+            /// - traces/indicator/attributes/gauge/axis/tickformatstops
             public struct TickFormatStops: Encodable {
+                /// - traces/indicator/attributes/gauge/axis/tickformatstops/items
                 public struct Items: Encodable {
+                    /// - traces/indicator/attributes/gauge/axis/tickformatstops/items/tickformatstop
                     public struct TickFormatStop: Encodable {
                         /// Determines whether or not this stop is used. 
                         ///
@@ -710,37 +730,37 @@ public struct Indicator: Trace {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
-            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
             /// - layout/layoutAttributes/scene/xaxis/showtickprefix
             /// - layout/layoutAttributes/scene/yaxis/showtickprefix
             /// - layout/layoutAttributes/scene/zaxis/showtickprefix
-            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
-            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
-            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
-            /// - traces/heatmapgl/attributes/colorbar/showtickprefix
-            /// - traces/mesh3d/attributes/colorbar/showtickprefix
-            /// - traces/scattergl/attributes/marker/colorbar/showtickprefix
-            /// - traces/parcoords/attributes/line/colorbar/showtickprefix
-            /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
+            /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/baxis/showtickprefix
+            /// - layout/layoutAttributes/ternary/caxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - traces/choroplethmapbox/attributes/colorbar/showtickprefix
             /// - traces/contour/attributes/colorbar/showtickprefix
             /// - traces/contourcarpet/attributes/colorbar/showtickprefix
-            /// - traces/parcats/attributes/line/colorbar/showtickprefix
-            /// - traces/splom/attributes/marker/colorbar/showtickprefix
-            /// - traces/choropleth/attributes/colorbar/showtickprefix
-            /// - traces/treemap/attributes/marker/colorbar/showtickprefix
-            /// - traces/volume/attributes/colorbar/showtickprefix
-            /// - traces/surface/attributes/colorbar/showtickprefix
-            /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
-            /// - traces/heatmap/attributes/colorbar/showtickprefix
-            /// - traces/barpolar/attributes/marker/colorbar/showtickprefix
             /// - traces/densitymapbox/attributes/colorbar/showtickprefix
-            /// - traces/cone/attributes/colorbar/showtickprefix
-            /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
+            /// - traces/heatmap/attributes/colorbar/showtickprefix
+            /// - traces/heatmapgl/attributes/colorbar/showtickprefix
+            /// - traces/histogram2d/attributes/colorbar/showtickprefix
+            /// - traces/histogram2dcontour/attributes/colorbar/showtickprefix
             /// - traces/indicator/attributes/gauge/axis/showtickprefix
+            /// - traces/isosurface/attributes/colorbar/showtickprefix
+            /// - traces/parcats/attributes/line/colorbar/showtickprefix
+            /// - traces/parcoords/attributes/line/colorbar/showtickprefix
+            /// - traces/scatter/attributes/marker/colorbar/showtickprefix
+            /// - traces/scatter3d/attributes/line/colorbar/showtickprefix
+            /// - traces/scatter3d/attributes/marker/colorbar/showtickprefix
+            /// - traces/scattergeo/attributes/marker/colorbar/showtickprefix
+            /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
+            /// - traces/splom/attributes/marker/colorbar/showtickprefix
+            /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
+            /// - traces/volume/attributes/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -757,37 +777,37 @@ public struct Indicator: Trace {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
-            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
             /// - layout/layoutAttributes/scene/xaxis/showticksuffix
             /// - layout/layoutAttributes/scene/yaxis/showticksuffix
             /// - layout/layoutAttributes/scene/zaxis/showticksuffix
-            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
-            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
-            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
-            /// - traces/heatmapgl/attributes/colorbar/showticksuffix
-            /// - traces/mesh3d/attributes/colorbar/showticksuffix
-            /// - traces/scattergl/attributes/marker/colorbar/showticksuffix
-            /// - traces/parcoords/attributes/line/colorbar/showticksuffix
-            /// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
+            /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/baxis/showticksuffix
+            /// - layout/layoutAttributes/ternary/caxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - traces/choroplethmapbox/attributes/colorbar/showticksuffix
             /// - traces/contour/attributes/colorbar/showticksuffix
             /// - traces/contourcarpet/attributes/colorbar/showticksuffix
-            /// - traces/parcats/attributes/line/colorbar/showticksuffix
-            /// - traces/splom/attributes/marker/colorbar/showticksuffix
-            /// - traces/choropleth/attributes/colorbar/showticksuffix
-            /// - traces/treemap/attributes/marker/colorbar/showticksuffix
-            /// - traces/volume/attributes/colorbar/showticksuffix
-            /// - traces/surface/attributes/colorbar/showticksuffix
-            /// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
-            /// - traces/heatmap/attributes/colorbar/showticksuffix
-            /// - traces/barpolar/attributes/marker/colorbar/showticksuffix
             /// - traces/densitymapbox/attributes/colorbar/showticksuffix
-            /// - traces/cone/attributes/colorbar/showticksuffix
-            /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+            /// - traces/heatmap/attributes/colorbar/showticksuffix
+            /// - traces/heatmapgl/attributes/colorbar/showticksuffix
+            /// - traces/histogram2d/attributes/colorbar/showticksuffix
+            /// - traces/histogram2dcontour/attributes/colorbar/showticksuffix
             /// - traces/indicator/attributes/gauge/axis/showticksuffix
+            /// - traces/isosurface/attributes/colorbar/showticksuffix
+            /// - traces/parcats/attributes/line/colorbar/showticksuffix
+            /// - traces/parcoords/attributes/line/colorbar/showticksuffix
+            /// - traces/scatter/attributes/marker/colorbar/showticksuffix
+            /// - traces/scatter3d/attributes/line/colorbar/showticksuffix
+            /// - traces/scatter3d/attributes/marker/colorbar/showticksuffix
+            /// - traces/scattergeo/attributes/marker/colorbar/showticksuffix
+            /// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
+            /// - traces/splom/attributes/marker/colorbar/showticksuffix
+            /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+            /// - traces/volume/attributes/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -804,37 +824,37 @@ public struct Indicator: Trace {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
-            /// - layout/layoutAttributes/ternary/baxis/exponentformat
-            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
             /// - layout/layoutAttributes/scene/xaxis/exponentformat
             /// - layout/layoutAttributes/scene/yaxis/exponentformat
             /// - layout/layoutAttributes/scene/zaxis/exponentformat
-            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
-            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
-            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
-            /// - traces/heatmapgl/attributes/colorbar/exponentformat
-            /// - traces/mesh3d/attributes/colorbar/exponentformat
-            /// - traces/scattergl/attributes/marker/colorbar/exponentformat
-            /// - traces/parcoords/attributes/line/colorbar/exponentformat
-            /// - traces/scatterternary/attributes/marker/colorbar/exponentformat
+            /// - layout/layoutAttributes/ternary/aaxis/exponentformat
+            /// - layout/layoutAttributes/ternary/baxis/exponentformat
+            /// - layout/layoutAttributes/ternary/caxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - traces/choroplethmapbox/attributes/colorbar/exponentformat
             /// - traces/contour/attributes/colorbar/exponentformat
             /// - traces/contourcarpet/attributes/colorbar/exponentformat
-            /// - traces/parcats/attributes/line/colorbar/exponentformat
-            /// - traces/splom/attributes/marker/colorbar/exponentformat
-            /// - traces/choropleth/attributes/colorbar/exponentformat
-            /// - traces/treemap/attributes/marker/colorbar/exponentformat
-            /// - traces/volume/attributes/colorbar/exponentformat
-            /// - traces/surface/attributes/colorbar/exponentformat
-            /// - traces/scattermapbox/attributes/marker/colorbar/exponentformat
-            /// - traces/heatmap/attributes/colorbar/exponentformat
-            /// - traces/barpolar/attributes/marker/colorbar/exponentformat
             /// - traces/densitymapbox/attributes/colorbar/exponentformat
-            /// - traces/cone/attributes/colorbar/exponentformat
-            /// - traces/sunburst/attributes/marker/colorbar/exponentformat
+            /// - traces/heatmap/attributes/colorbar/exponentformat
+            /// - traces/heatmapgl/attributes/colorbar/exponentformat
+            /// - traces/histogram2d/attributes/colorbar/exponentformat
+            /// - traces/histogram2dcontour/attributes/colorbar/exponentformat
             /// - traces/indicator/attributes/gauge/axis/exponentformat
+            /// - traces/isosurface/attributes/colorbar/exponentformat
+            /// - traces/parcats/attributes/line/colorbar/exponentformat
+            /// - traces/parcoords/attributes/line/colorbar/exponentformat
+            /// - traces/scatter/attributes/marker/colorbar/exponentformat
+            /// - traces/scatter3d/attributes/line/colorbar/exponentformat
+            /// - traces/scatter3d/attributes/marker/colorbar/exponentformat
+            /// - traces/scattergeo/attributes/marker/colorbar/exponentformat
+            /// - traces/scatterternary/attributes/marker/colorbar/exponentformat
+            /// - traces/splom/attributes/marker/colorbar/exponentformat
+            /// - traces/sunburst/attributes/marker/colorbar/exponentformat
+            /// - traces/volume/attributes/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -853,37 +873,37 @@ public struct Indicator: Trace {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
-            /// - layout/layoutAttributes/ternary/aaxis/showexponent
-            /// - layout/layoutAttributes/ternary/baxis/showexponent
-            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
             /// - layout/layoutAttributes/scene/xaxis/showexponent
             /// - layout/layoutAttributes/scene/yaxis/showexponent
             /// - layout/layoutAttributes/scene/zaxis/showexponent
-            /// - layout/layoutAttributes/polar/radialaxis/showexponent
-            /// - layout/layoutAttributes/polar/angularaxis/showexponent
-            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
-            /// - traces/heatmapgl/attributes/colorbar/showexponent
-            /// - traces/mesh3d/attributes/colorbar/showexponent
-            /// - traces/scattergl/attributes/marker/colorbar/showexponent
-            /// - traces/parcoords/attributes/line/colorbar/showexponent
-            /// - traces/scatterternary/attributes/marker/colorbar/showexponent
+            /// - layout/layoutAttributes/ternary/aaxis/showexponent
+            /// - layout/layoutAttributes/ternary/baxis/showexponent
+            /// - layout/layoutAttributes/ternary/caxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - traces/choroplethmapbox/attributes/colorbar/showexponent
             /// - traces/contour/attributes/colorbar/showexponent
             /// - traces/contourcarpet/attributes/colorbar/showexponent
-            /// - traces/parcats/attributes/line/colorbar/showexponent
-            /// - traces/splom/attributes/marker/colorbar/showexponent
-            /// - traces/choropleth/attributes/colorbar/showexponent
-            /// - traces/treemap/attributes/marker/colorbar/showexponent
-            /// - traces/volume/attributes/colorbar/showexponent
-            /// - traces/surface/attributes/colorbar/showexponent
-            /// - traces/scattermapbox/attributes/marker/colorbar/showexponent
-            /// - traces/heatmap/attributes/colorbar/showexponent
-            /// - traces/barpolar/attributes/marker/colorbar/showexponent
             /// - traces/densitymapbox/attributes/colorbar/showexponent
-            /// - traces/cone/attributes/colorbar/showexponent
-            /// - traces/sunburst/attributes/marker/colorbar/showexponent
+            /// - traces/heatmap/attributes/colorbar/showexponent
+            /// - traces/heatmapgl/attributes/colorbar/showexponent
+            /// - traces/histogram2d/attributes/colorbar/showexponent
+            /// - traces/histogram2dcontour/attributes/colorbar/showexponent
             /// - traces/indicator/attributes/gauge/axis/showexponent
+            /// - traces/isosurface/attributes/colorbar/showexponent
+            /// - traces/parcats/attributes/line/colorbar/showexponent
+            /// - traces/parcoords/attributes/line/colorbar/showexponent
+            /// - traces/scatter/attributes/marker/colorbar/showexponent
+            /// - traces/scatter3d/attributes/line/colorbar/showexponent
+            /// - traces/scatter3d/attributes/marker/colorbar/showexponent
+            /// - traces/scattergeo/attributes/marker/colorbar/showexponent
+            /// - traces/scatterternary/attributes/marker/colorbar/showexponent
+            /// - traces/splom/attributes/marker/colorbar/showexponent
+            /// - traces/sunburst/attributes/marker/colorbar/showexponent
+            /// - traces/volume/attributes/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -933,12 +953,16 @@ public struct Indicator: Trace {
         }
         public var axis: Axis?
     
+        /// - traces/indicator/attributes/gauge/steps
         public struct Steps: Encodable {
+            /// - traces/indicator/attributes/gauge/steps/items
             public struct Items: Encodable {
+                /// - traces/indicator/attributes/gauge/steps/items/step
                 public struct Step: Encodable {
                     /// Sets the background color of the arc.
                     public var color: Color?
                 
+                    /// - traces/indicator/attributes/gauge/steps/items/step/line
                     public struct Line: Encodable {
                         /// Sets the color of the line enclosing each sector.
                         public var color: Color?
@@ -998,7 +1022,9 @@ public struct Indicator: Trace {
         }
         public var steps: Steps?
     
+        /// - traces/indicator/attributes/gauge/threshold
         public struct Threshold: Encodable {
+            /// - traces/indicator/attributes/gauge/threshold/line
             public struct Line: Encodable {
                 /// Sets the color of the threshold line.
                 public var color: Color?

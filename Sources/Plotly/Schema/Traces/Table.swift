@@ -12,50 +12,20 @@ public struct Table: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/mesh3d/attributes/visible
-    /// - traces/ohlc/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    /// - traces/scattergl/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/scatterternary/attributes/visible
     /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
-    /// - traces/parcats/attributes/visible
-    /// - traces/splom/attributes/visible
-    /// - traces/area/attributes/visible
-    /// - traces/pointcloud/attributes/visible
-    /// - traces/choropleth/attributes/visible
-    /// - traces/treemap/attributes/visible
-    /// - traces/volume/attributes/visible
-    /// - traces/surface/attributes/visible
-    /// - traces/funnelarea/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
-    /// - traces/candlestick/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/barpolar/attributes/visible
     /// - traces/densitymapbox/attributes/visible
-    /// - traces/image/attributes/visible
-    /// - traces/pie/attributes/visible
-    /// - traces/cone/attributes/visible
-    /// - traces/sunburst/attributes/visible
-    /// - traces/violin/attributes/visible
-    /// - traces/indicator/attributes/visible
-    /// - traces/scattergeo/attributes/visible
-    /// - traces/box/attributes/visible
-    /// - traces/histogram2dcontour/attributes/visible
-    /// - traces/scatter3d/attributes/visible
-    /// - traces/scatter/attributes/visible
-    /// - traces/bar/attributes/visible
-    /// - traces/streamtube/attributes/visible
-    /// - traces/histogram/attributes/visible
-    /// - traces/funnel/attributes/visible
-    /// - traces/scatterpolargl/attributes/visible
+    /// - traces/heatmap/attributes/visible
     /// - traces/histogram2d/attributes/visible
-    /// - traces/scatterpolar/attributes/visible
-    /// - traces/sankey/attributes/visible
-    /// - traces/carpet/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/isosurface/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/sunburst/attributes/visible
     /// - traces/table/attributes/visible
+    /// - traces/volume/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -100,27 +70,15 @@ public struct Table: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/heatmapgl/attributes/hoverinfo
-    /// - traces/mesh3d/attributes/hoverinfo
-    /// - traces/ohlc/attributes/hoverinfo
-    /// - traces/scattergl/attributes/hoverinfo
     /// - traces/contour/attributes/hoverinfo
-    /// - traces/splom/attributes/hoverinfo
-    /// - traces/area/attributes/hoverinfo
-    /// - traces/pointcloud/attributes/hoverinfo
-    /// - traces/volume/attributes/hoverinfo
-    /// - traces/surface/attributes/hoverinfo
-    /// - traces/candlestick/attributes/hoverinfo
     /// - traces/heatmap/attributes/hoverinfo
-    /// - traces/violin/attributes/hoverinfo
-    /// - traces/box/attributes/hoverinfo
-    /// - traces/histogram2dcontour/attributes/hoverinfo
-    /// - traces/scatter3d/attributes/hoverinfo
-    /// - traces/scatter/attributes/hoverinfo
-    /// - traces/bar/attributes/hoverinfo
-    /// - traces/histogram/attributes/hoverinfo
     /// - traces/histogram2d/attributes/hoverinfo
+    /// - traces/histogram2dcontour/attributes/hoverinfo
+    /// - traces/isosurface/attributes/hoverinfo
+    /// - traces/scatter3d/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
     /// - traces/table/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -155,6 +113,7 @@ public struct Table: Trace {
     /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
+    /// - traces/table/attributes/hoverlabel
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
         public var backgroundColor: Color?
@@ -163,6 +122,7 @@ public struct Table: Trace {
         public var borderColor: Color?
     
         /// Sets the font used in hover labels.
+        /// - traces/table/attributes/hoverlabel/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -204,47 +164,18 @@ public struct Table: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
-        /// - traces/mesh3d/attributes/hoverlabel/align
-        /// - traces/ohlc/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
-        /// - traces/scattergl/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
         /// - traces/contour/attributes/hoverlabel/align
-        /// - traces/splom/attributes/hoverlabel/align
-        /// - traces/area/attributes/hoverlabel/align
-        /// - traces/pointcloud/attributes/hoverlabel/align
-        /// - traces/choropleth/attributes/hoverlabel/align
-        /// - traces/treemap/attributes/hoverlabel/align
-        /// - traces/volume/attributes/hoverlabel/align
-        /// - traces/surface/attributes/hoverlabel/align
-        /// - traces/funnelarea/attributes/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
-        /// - traces/candlestick/attributes/hoverlabel/align
-        /// - traces/heatmap/attributes/hoverlabel/align
-        /// - traces/barpolar/attributes/hoverlabel/align
         /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/image/attributes/hoverlabel/align
-        /// - traces/pie/attributes/hoverlabel/align
-        /// - traces/cone/attributes/hoverlabel/align
-        /// - traces/sunburst/attributes/hoverlabel/align
-        /// - traces/violin/attributes/hoverlabel/align
-        /// - traces/scattergeo/attributes/hoverlabel/align
-        /// - traces/box/attributes/hoverlabel/align
-        /// - traces/histogram2dcontour/attributes/hoverlabel/align
-        /// - traces/scatter3d/attributes/hoverlabel/align
-        /// - traces/scatter/attributes/hoverlabel/align
-        /// - traces/bar/attributes/hoverlabel/align
-        /// - traces/streamtube/attributes/hoverlabel/align
-        /// - traces/histogram/attributes/hoverlabel/align
-        /// - traces/funnel/attributes/hoverlabel/align
-        /// - traces/scatterpolargl/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
         /// - traces/histogram2d/attributes/hoverlabel/align
-        /// - traces/scatterpolar/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/node/hoverlabel/align
-        /// - traces/sankey/attributes/link/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/isosurface/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
         /// - traces/table/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -288,6 +219,7 @@ public struct Table: Trace {
     }
     public var hoverLabel: HoverLabel?
 
+    /// - traces/table/attributes/stream
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -318,6 +250,7 @@ public struct Table: Trace {
     /// stays with it as it moves.
     public var uiRevision: Anything?
 
+    /// - traces/table/attributes/domain
     public struct Domain: Encodable {
         /// Sets the horizontal domain of this table trace (in plot fraction).
         public var x: InfoArray?
@@ -348,6 +281,7 @@ public struct Table: Trace {
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     public var columnOrder: [Double]?
 
+    /// - traces/table/attributes/header
     public struct Header: Encodable {
         /// Header cell values. 
         ///
@@ -374,10 +308,8 @@ public struct Table: Trace {
         ///
         /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
         /// HTML tags) or if an explicit width is set to override the text width.
-        /// - layout/layoutAttributes/scene/annotations/items/annotation/align
         /// - layout/layoutAttributes/annotations/items/annotation/align
-        /// - traces/indicator/attributes/align
-        /// - traces/indicator/attributes/title/align
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/align
         /// - traces/table/attributes/header/align
         public enum Align: String, Encodable {
             case left
@@ -390,6 +322,7 @@ public struct Table: Trace {
         /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Align?
     
+        /// - traces/table/attributes/header/line
         public struct Line: Encodable {
             public var width: Double?
         
@@ -410,6 +343,7 @@ public struct Table: Trace {
         }
         public var line: Line?
     
+        /// - traces/table/attributes/header/fill
         public struct Fill: Encodable {
             /// Sets the cell fill color. 
             ///
@@ -426,6 +360,7 @@ public struct Table: Trace {
         }
         public var fill: Fill?
     
+        /// - traces/table/attributes/header/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///
@@ -496,6 +431,7 @@ public struct Table: Trace {
     }
     public var header: Header?
 
+    /// - traces/table/attributes/cells
     public struct Cells: Encodable {
         /// Cell values. 
         ///
@@ -522,12 +458,10 @@ public struct Table: Trace {
         ///
         /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
         /// HTML tags) or if an explicit width is set to override the text width.
-        /// - layout/layoutAttributes/scene/annotations/items/annotation/align
         /// - layout/layoutAttributes/annotations/items/annotation/align
-        /// - traces/indicator/attributes/align
-        /// - traces/indicator/attributes/title/align
-        /// - traces/table/attributes/header/align
+        /// - layout/layoutAttributes/scene/annotations/items/annotation/align
         /// - traces/table/attributes/cells/align
+        /// - traces/table/attributes/header/align
         public enum Align: String, Encodable {
             case left
             case center
@@ -539,6 +473,7 @@ public struct Table: Trace {
         /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Align?
     
+        /// - traces/table/attributes/cells/line
         public struct Line: Encodable {
             public var width: Double?
         
@@ -559,6 +494,7 @@ public struct Table: Trace {
         }
         public var line: Line?
     
+        /// - traces/table/attributes/cells/fill
         public struct Fill: Encodable {
             /// Sets the cell fill color. 
             ///
@@ -575,6 +511,7 @@ public struct Table: Trace {
         }
         public var fill: Fill?
     
+        /// - traces/table/attributes/cells/font
         public struct Font: Encodable {
             /// HTML font family - the typeface that will be applied by the web browser. 
             ///

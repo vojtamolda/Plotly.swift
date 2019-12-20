@@ -6,7 +6,7 @@ struct Layout {
     var layoutAttributes: Swift.Struct
 
     init(schema: Schema.Layout) {
-        layoutAttributes = Swift.Struct(identifier: "layout", entries: schema.layoutAttributes)
+        layoutAttributes = Swift.Struct(named: "layout", schema: schema.layoutAttributes)
 
         let sectionMark = Mark(label: "General")
         layoutAttributes.members.insert(sectionMark, at: 0)
