@@ -10,6 +10,7 @@ public struct ScatterGL: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/area/attributes/visible
     /// - traces/bar/attributes/visible
     /// - traces/barpolar/attributes/visible
     /// - traces/box/attributes/visible
@@ -18,7 +19,6 @@ public struct ScatterGL: Trace {
     /// - traces/choropleth/attributes/visible
     /// - traces/choroplethmapbox/attributes/visible
     /// - traces/cone/attributes/visible
-    /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
     /// - traces/densitymapbox/attributes/visible
     /// - traces/funnel/attributes/visible
@@ -115,10 +115,10 @@ public struct ScatterGL: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/area/attributes/hoverinfo
     /// - traces/bar/attributes/hoverinfo
     /// - traces/box/attributes/hoverinfo
     /// - traces/candlestick/attributes/hoverinfo
-    /// - traces/contour/attributes/hoverinfo
     /// - traces/heatmap/attributes/hoverinfo
     /// - traces/heatmapgl/attributes/hoverinfo
     /// - traces/histogram/attributes/hoverinfo
@@ -221,6 +221,7 @@ public struct ScatterGL: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/area/attributes/hoverlabel/align
         /// - traces/bar/attributes/hoverlabel/align
         /// - traces/barpolar/attributes/hoverlabel/align
         /// - traces/box/attributes/hoverlabel/align
@@ -228,7 +229,6 @@ public struct ScatterGL: Trace {
         /// - traces/choropleth/attributes/hoverlabel/align
         /// - traces/choroplethmapbox/attributes/hoverlabel/align
         /// - traces/cone/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
         /// - traces/densitymapbox/attributes/hoverlabel/align
         /// - traces/funnel/attributes/hoverlabel/align
         /// - traces/funnelarea/attributes/hoverlabel/align
@@ -473,8 +473,7 @@ public struct ScatterGL: Trace {
     /// Determines the drawing mode for this scatter trace. 
     ///
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
-    /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
-    /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    /// Otherwise, the `text` elements appear on hover.
     /// - traces/scatter/attributes/mode
     /// - traces/scatter3d/attributes/mode
     /// - traces/scattercarpet/attributes/mode
@@ -507,8 +506,7 @@ public struct ScatterGL: Trace {
     /// Determines the drawing mode for this scatter trace. 
     ///
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
-    /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
-    /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    /// Otherwise, the `text` elements appear on hover.
     public var mode: Mode?
 
     /// - traces/scattergl/attributes/line
@@ -536,7 +534,7 @@ public struct ScatterGL: Trace {
         /// The values correspond to step-wise line shapes.
         public var shape: Shape?
     
-        /// Sets the dash style of the lines.
+        /// Sets the style of the lines.
         /// - traces/scatter3d/attributes/line/dash
         /// - traces/scattergl/attributes/line/dash
         /// - traces/scatterpolargl/attributes/line/dash
@@ -548,7 +546,7 @@ public struct ScatterGL: Trace {
             case dashDot = "dashdot"
             case longDashDot = "longdashdot"
         }
-        /// Sets the dash style of the lines.
+        /// Sets the style of the lines.
         public var dash: Dash?
     
         public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Dash? = nil) {
@@ -633,7 +631,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/thicknessmode
             /// - traces/choroplethmapbox/attributes/colorbar/thicknessmode
             /// - traces/cone/attributes/colorbar/thicknessmode
-            /// - traces/contour/attributes/colorbar/thicknessmode
             /// - traces/contourcarpet/attributes/colorbar/thicknessmode
             /// - traces/densitymapbox/attributes/colorbar/thicknessmode
             /// - traces/funnel/attributes/marker/colorbar/thicknessmode
@@ -685,7 +682,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/lenmode
             /// - traces/choroplethmapbox/attributes/colorbar/lenmode
             /// - traces/cone/attributes/colorbar/lenmode
-            /// - traces/contour/attributes/colorbar/lenmode
             /// - traces/contourcarpet/attributes/colorbar/lenmode
             /// - traces/densitymapbox/attributes/colorbar/lenmode
             /// - traces/funnel/attributes/marker/colorbar/lenmode
@@ -740,7 +736,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/xanchor
             /// - traces/choroplethmapbox/attributes/colorbar/xanchor
             /// - traces/cone/attributes/colorbar/xanchor
-            /// - traces/contour/attributes/colorbar/xanchor
             /// - traces/contourcarpet/attributes/colorbar/xanchor
             /// - traces/densitymapbox/attributes/colorbar/xanchor
             /// - traces/funnel/attributes/marker/colorbar/xanchor
@@ -791,7 +786,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/yanchor
             /// - traces/choroplethmapbox/attributes/colorbar/yanchor
             /// - traces/cone/attributes/colorbar/yanchor
-            /// - traces/contour/attributes/colorbar/yanchor
             /// - traces/contourcarpet/attributes/colorbar/yanchor
             /// - traces/densitymapbox/attributes/colorbar/yanchor
             /// - traces/funnel/attributes/marker/colorbar/yanchor
@@ -869,7 +863,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/tickmode
             /// - traces/choroplethmapbox/attributes/colorbar/tickmode
             /// - traces/cone/attributes/colorbar/tickmode
-            /// - traces/contour/attributes/colorbar/tickmode
             /// - traces/contourcarpet/attributes/colorbar/tickmode
             /// - traces/densitymapbox/attributes/colorbar/tickmode
             /// - traces/funnel/attributes/marker/colorbar/tickmode
@@ -975,7 +968,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/ticks
             /// - traces/choroplethmapbox/attributes/colorbar/ticks
             /// - traces/cone/attributes/colorbar/ticks
-            /// - traces/contour/attributes/colorbar/ticks
             /// - traces/contourcarpet/attributes/colorbar/ticks
             /// - traces/densitymapbox/attributes/colorbar/ticks
             /// - traces/funnel/attributes/marker/colorbar/ticks
@@ -1149,7 +1141,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/showtickprefix
             /// - traces/choroplethmapbox/attributes/colorbar/showtickprefix
             /// - traces/cone/attributes/colorbar/showtickprefix
-            /// - traces/contour/attributes/colorbar/showtickprefix
             /// - traces/contourcarpet/attributes/colorbar/showtickprefix
             /// - traces/densitymapbox/attributes/colorbar/showtickprefix
             /// - traces/funnel/attributes/marker/colorbar/showtickprefix
@@ -1213,7 +1204,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/showticksuffix
             /// - traces/choroplethmapbox/attributes/colorbar/showticksuffix
             /// - traces/cone/attributes/colorbar/showticksuffix
-            /// - traces/contour/attributes/colorbar/showticksuffix
             /// - traces/contourcarpet/attributes/colorbar/showticksuffix
             /// - traces/densitymapbox/attributes/colorbar/showticksuffix
             /// - traces/funnel/attributes/marker/colorbar/showticksuffix
@@ -1277,7 +1267,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/exponentformat
             /// - traces/choroplethmapbox/attributes/colorbar/exponentformat
             /// - traces/cone/attributes/colorbar/exponentformat
-            /// - traces/contour/attributes/colorbar/exponentformat
             /// - traces/contourcarpet/attributes/colorbar/exponentformat
             /// - traces/densitymapbox/attributes/colorbar/exponentformat
             /// - traces/funnel/attributes/marker/colorbar/exponentformat
@@ -1343,7 +1332,6 @@ public struct ScatterGL: Trace {
             /// - traces/choropleth/attributes/colorbar/showexponent
             /// - traces/choroplethmapbox/attributes/colorbar/showexponent
             /// - traces/cone/attributes/colorbar/showexponent
-            /// - traces/contour/attributes/colorbar/showexponent
             /// - traces/contourcarpet/attributes/colorbar/showexponent
             /// - traces/densitymapbox/attributes/colorbar/showexponent
             /// - traces/funnel/attributes/marker/colorbar/showexponent
@@ -1433,7 +1421,6 @@ public struct ScatterGL: Trace {
                 /// - traces/choropleth/attributes/colorbar/title/side
                 /// - traces/choroplethmapbox/attributes/colorbar/title/side
                 /// - traces/cone/attributes/colorbar/title/side
-                /// - traces/contour/attributes/colorbar/title/side
                 /// - traces/contourcarpet/attributes/colorbar/title/side
                 /// - traces/densitymapbox/attributes/colorbar/title/side
                 /// - traces/funnel/attributes/marker/colorbar/title/side
@@ -1522,7 +1509,6 @@ public struct ScatterGL: Trace {
                 /// - traces/choropleth/attributes/colorbar/_deprecated/titleside
                 /// - traces/choroplethmapbox/attributes/colorbar/_deprecated/titleside
                 /// - traces/cone/attributes/colorbar/_deprecated/titleside
-                /// - traces/contour/attributes/colorbar/_deprecated/titleside
                 /// - traces/contourcarpet/attributes/colorbar/_deprecated/titleside
                 /// - traces/densitymapbox/attributes/colorbar/_deprecated/titleside
                 /// - traces/funnel/attributes/marker/colorbar/_deprecated/titleside
@@ -1631,6 +1617,7 @@ public struct ScatterGL: Trace {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
+        /// - traces/area/attributes/marker/symbol
         /// - traces/box/attributes/marker/symbol
         /// - traces/scatter/attributes/marker/symbol
         /// - traces/scattercarpet/attributes/marker/symbol
@@ -2340,7 +2327,6 @@ public struct ScatterGL: Trace {
     /// - traces/bar/attributes/xcalendar
     /// - traces/box/attributes/xcalendar
     /// - traces/candlestick/attributes/xcalendar
-    /// - traces/contour/attributes/xcalendar
     /// - traces/heatmap/attributes/xcalendar
     /// - traces/histogram/attributes/xcalendar
     /// - traces/histogram2d/attributes/xcalendar
@@ -2375,7 +2361,6 @@ public struct ScatterGL: Trace {
     /// Sets the calendar system to use with `y` date data.
     /// - traces/bar/attributes/ycalendar
     /// - traces/box/attributes/ycalendar
-    /// - traces/contour/attributes/ycalendar
     /// - traces/heatmap/attributes/ycalendar
     /// - traces/histogram/attributes/ycalendar
     /// - traces/histogram2d/attributes/ycalendar

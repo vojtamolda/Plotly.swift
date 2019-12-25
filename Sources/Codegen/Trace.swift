@@ -3,10 +3,10 @@ import Foundation
 
 /// Swift struct corresponding to a Plotly `trace`.
 struct Trace {
-    var attributes: Swift.Struct
+    var attributes: Swift.Object
 
     init(identifier: String, schema: Schema.Trace, layout: inout Layout) {
-        attributes = Swift.Struct(named: identifier, schema: schema.attributes)
+        attributes = Swift.Object(named: identifier, schema: schema.attributes)
         if let description = schema.meta["description"] {
             attributes.documentation = description.documentation()
         }
@@ -29,7 +29,7 @@ struct Trace {
             let sectionMark = Mark(label: "\(attributes.name) Trace")
             layout.layoutAttributes.members.insert(sectionMark, at: 0)
 
-            let layoutAttributes = Swift.Struct(named: "layout", schema: entries)
+            let layoutAttributes = Swift.Object(named: "layout", schema: entries)
             layout.layoutAttributes.members.insert(contentsOf: layoutAttributes.members, at: 1)
         }
     }

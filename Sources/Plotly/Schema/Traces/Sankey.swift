@@ -11,32 +11,12 @@ public struct Sankey: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/box/attributes/visible
-    /// - traces/choroplethmapbox/attributes/visible
-    /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
     /// - traces/densitymapbox/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/histogram2d/attributes/visible
-    /// - traces/histogram2dcontour/attributes/visible
-    /// - traces/indicator/attributes/visible
-    /// - traces/isosurface/attributes/visible
-    /// - traces/ohlc/attributes/visible
-    /// - traces/parcats/attributes/visible
     /// - traces/parcoords/attributes/visible
+    /// - traces/pie/attributes/visible
     /// - traces/sankey/attributes/visible
-    /// - traces/scatter/attributes/visible
-    /// - traces/scatter3d/attributes/visible
-    /// - traces/scattergeo/attributes/visible
-    /// - traces/scatterternary/attributes/visible
-    /// - traces/splom/attributes/visible
-    /// - traces/sunburst/attributes/visible
-    /// - traces/table/attributes/visible
-    /// - traces/treemap/attributes/visible
-    /// - traces/violin/attributes/visible
-    /// - traces/volume/attributes/visible
-    /// - traces/waterfall/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -197,28 +177,10 @@ public struct Sankey: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/box/attributes/hoverlabel/align
-        /// - traces/choroplethmapbox/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
         /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/heatmap/attributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
-        /// - traces/histogram2d/attributes/hoverlabel/align
-        /// - traces/histogram2dcontour/attributes/hoverlabel/align
-        /// - traces/isosurface/attributes/hoverlabel/align
-        /// - traces/ohlc/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
         /// - traces/sankey/attributes/hoverlabel/align
-        /// - traces/scatter/attributes/hoverlabel/align
-        /// - traces/scatter3d/attributes/hoverlabel/align
-        /// - traces/scattergeo/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/splom/attributes/hoverlabel/align
-        /// - traces/sunburst/attributes/hoverlabel/align
-        /// - traces/table/attributes/hoverlabel/align
-        /// - traces/treemap/attributes/hoverlabel/align
-        /// - traces/violin/attributes/hoverlabel/align
-        /// - traces/volume/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -288,11 +250,7 @@ public struct Sankey: Trace {
     /// Sets the orientation of the modebar.
     /// - layout/layoutAttributes/legend/orientation
     /// - layout/layoutAttributes/modebar/orientation
-    /// - traces/box/attributes/orientation
     /// - traces/sankey/attributes/orientation
-    /// - traces/scatter/attributes/orientation
-    /// - traces/violin/attributes/orientation
-    /// - traces/waterfall/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
@@ -478,29 +436,11 @@ public struct Sankey: Trace {
             ///
             /// Has an effect only if the hover label text spans more two or more lines
             /// - layout/layoutAttributes/hoverlabel/align
-            /// - traces/box/attributes/hoverlabel/align
-            /// - traces/choroplethmapbox/attributes/hoverlabel/align
-            /// - traces/contour/attributes/hoverlabel/align
             /// - traces/densitymapbox/attributes/hoverlabel/align
-            /// - traces/heatmap/attributes/hoverlabel/align
-            /// - traces/heatmapgl/attributes/hoverlabel/align
-            /// - traces/histogram2d/attributes/hoverlabel/align
-            /// - traces/histogram2dcontour/attributes/hoverlabel/align
-            /// - traces/isosurface/attributes/hoverlabel/align
-            /// - traces/ohlc/attributes/hoverlabel/align
+            /// - traces/pie/attributes/hoverlabel/align
             /// - traces/sankey/attributes/hoverlabel/align
             /// - traces/sankey/attributes/node/hoverlabel/align
-            /// - traces/scatter/attributes/hoverlabel/align
-            /// - traces/scatter3d/attributes/hoverlabel/align
-            /// - traces/scattergeo/attributes/hoverlabel/align
-            /// - traces/scatterternary/attributes/hoverlabel/align
-            /// - traces/splom/attributes/hoverlabel/align
-            /// - traces/sunburst/attributes/hoverlabel/align
-            /// - traces/table/attributes/hoverlabel/align
-            /// - traces/treemap/attributes/hoverlabel/align
-            /// - traces/violin/attributes/hoverlabel/align
-            /// - traces/volume/attributes/hoverlabel/align
-            /// - traces/waterfall/attributes/hoverlabel/align
+            /// - traces/scattermapbox/attributes/hoverlabel/align
             public enum Align: String, Encodable {
                 case left
                 case right
@@ -710,30 +650,12 @@ public struct Sankey: Trace {
             ///
             /// Has an effect only if the hover label text spans more two or more lines
             /// - layout/layoutAttributes/hoverlabel/align
-            /// - traces/box/attributes/hoverlabel/align
-            /// - traces/choroplethmapbox/attributes/hoverlabel/align
-            /// - traces/contour/attributes/hoverlabel/align
             /// - traces/densitymapbox/attributes/hoverlabel/align
-            /// - traces/heatmap/attributes/hoverlabel/align
-            /// - traces/heatmapgl/attributes/hoverlabel/align
-            /// - traces/histogram2d/attributes/hoverlabel/align
-            /// - traces/histogram2dcontour/attributes/hoverlabel/align
-            /// - traces/isosurface/attributes/hoverlabel/align
-            /// - traces/ohlc/attributes/hoverlabel/align
+            /// - traces/pie/attributes/hoverlabel/align
             /// - traces/sankey/attributes/hoverlabel/align
             /// - traces/sankey/attributes/link/hoverlabel/align
             /// - traces/sankey/attributes/node/hoverlabel/align
-            /// - traces/scatter/attributes/hoverlabel/align
-            /// - traces/scatter3d/attributes/hoverlabel/align
-            /// - traces/scattergeo/attributes/hoverlabel/align
-            /// - traces/scatterternary/attributes/hoverlabel/align
-            /// - traces/splom/attributes/hoverlabel/align
-            /// - traces/sunburst/attributes/hoverlabel/align
-            /// - traces/table/attributes/hoverlabel/align
-            /// - traces/treemap/attributes/hoverlabel/align
-            /// - traces/violin/attributes/hoverlabel/align
-            /// - traces/volume/attributes/hoverlabel/align
-            /// - traces/waterfall/attributes/hoverlabel/align
+            /// - traces/scattermapbox/attributes/hoverlabel/align
             public enum Align: String, Encodable {
                 case left
                 case right

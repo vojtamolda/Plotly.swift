@@ -15,26 +15,15 @@ public struct Box: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/bar/attributes/visible
     /// - traces/box/attributes/visible
-    /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
     /// - traces/densitymapbox/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/histogram2d/attributes/visible
-    /// - traces/histogram2dcontour/attributes/visible
-    /// - traces/isosurface/attributes/visible
-    /// - traces/ohlc/attributes/visible
-    /// - traces/parcats/attributes/visible
+    /// - traces/heatmapgl/attributes/visible
     /// - traces/parcoords/attributes/visible
-    /// - traces/scatter3d/attributes/visible
-    /// - traces/scattergeo/attributes/visible
-    /// - traces/scatterternary/attributes/visible
-    /// - traces/splom/attributes/visible
-    /// - traces/sunburst/attributes/visible
-    /// - traces/table/attributes/visible
-    /// - traces/violin/attributes/visible
-    /// - traces/volume/attributes/visible
-    /// - traces/waterfall/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/sankey/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -92,18 +81,9 @@ public struct Box: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/bar/attributes/hoverinfo
     /// - traces/box/attributes/hoverinfo
-    /// - traces/contour/attributes/hoverinfo
-    /// - traces/heatmap/attributes/hoverinfo
-    /// - traces/histogram2d/attributes/hoverinfo
-    /// - traces/histogram2dcontour/attributes/hoverinfo
-    /// - traces/isosurface/attributes/hoverinfo
-    /// - traces/ohlc/attributes/hoverinfo
-    /// - traces/scatter3d/attributes/hoverinfo
-    /// - traces/splom/attributes/hoverinfo
-    /// - traces/table/attributes/hoverinfo
-    /// - traces/violin/attributes/hoverinfo
-    /// - traces/volume/attributes/hoverinfo
+    /// - traces/heatmapgl/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -189,23 +169,15 @@ public struct Box: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/bar/attributes/hoverlabel/align
         /// - traces/box/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
         /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/heatmap/attributes/hoverlabel/align
-        /// - traces/histogram2d/attributes/hoverlabel/align
-        /// - traces/histogram2dcontour/attributes/hoverlabel/align
-        /// - traces/isosurface/attributes/hoverlabel/align
-        /// - traces/ohlc/attributes/hoverlabel/align
-        /// - traces/scatter3d/attributes/hoverlabel/align
-        /// - traces/scattergeo/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/splom/attributes/hoverlabel/align
-        /// - traces/sunburst/attributes/hoverlabel/align
-        /// - traces/table/attributes/hoverlabel/align
-        /// - traces/violin/attributes/hoverlabel/align
-        /// - traces/volume/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/link/hoverlabel/align
+        /// - traces/sankey/attributes/node/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -413,9 +385,9 @@ public struct Box: Trace {
     /// Sets the orientation of the modebar.
     /// - layout/layoutAttributes/legend/orientation
     /// - layout/layoutAttributes/modebar/orientation
+    /// - traces/bar/attributes/orientation
     /// - traces/box/attributes/orientation
-    /// - traces/violin/attributes/orientation
-    /// - traces/waterfall/attributes/orientation
+    /// - traces/sankey/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
@@ -437,10 +409,6 @@ public struct Box: Trace {
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
         /// - traces/box/attributes/marker/symbol
-        /// - traces/scattergeo/attributes/marker/symbol
-        /// - traces/scatterternary/attributes/marker/symbol
-        /// - traces/splom/attributes/marker/symbol
-        /// - traces/violin/attributes/marker/symbol
         public enum Symbol: String, Encodable {
             case circle
             case circleOpen = "circle-open"
@@ -750,13 +718,8 @@ public struct Box: Trace {
     public var hoverOn: HoverOn?
 
     /// Sets the calendar system to use with `x` date data.
+    /// - traces/bar/attributes/xcalendar
     /// - traces/box/attributes/xcalendar
-    /// - traces/contour/attributes/xcalendar
-    /// - traces/heatmap/attributes/xcalendar
-    /// - traces/histogram2d/attributes/xcalendar
-    /// - traces/histogram2dcontour/attributes/xcalendar
-    /// - traces/ohlc/attributes/xcalendar
-    /// - traces/scatter3d/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
         case chinese
@@ -779,12 +742,8 @@ public struct Box: Trace {
     public var xCalendar: XCalendar?
 
     /// Sets the calendar system to use with `y` date data.
+    /// - traces/bar/attributes/ycalendar
     /// - traces/box/attributes/ycalendar
-    /// - traces/contour/attributes/ycalendar
-    /// - traces/heatmap/attributes/ycalendar
-    /// - traces/histogram2d/attributes/ycalendar
-    /// - traces/histogram2dcontour/attributes/ycalendar
-    /// - traces/scatter3d/attributes/ycalendar
     public enum YCalendar: String, Encodable {
         case gregorian
         case chinese

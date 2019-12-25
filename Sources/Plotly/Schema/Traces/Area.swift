@@ -14,9 +14,7 @@ public struct Area: Trace {
     /// - traces/candlestick/attributes/visible
     /// - traces/carpet/attributes/visible
     /// - traces/choropleth/attributes/visible
-    /// - traces/choroplethmapbox/attributes/visible
     /// - traces/cone/attributes/visible
-    /// - traces/contour/attributes/visible
     /// - traces/contourcarpet/attributes/visible
     /// - traces/densitymapbox/attributes/visible
     /// - traces/funnel/attributes/visible
@@ -27,7 +25,6 @@ public struct Area: Trace {
     /// - traces/histogram2d/attributes/visible
     /// - traces/histogram2dcontour/attributes/visible
     /// - traces/image/attributes/visible
-    /// - traces/indicator/attributes/visible
     /// - traces/isosurface/attributes/visible
     /// - traces/mesh3d/attributes/visible
     /// - traces/ohlc/attributes/visible
@@ -40,7 +37,6 @@ public struct Area: Trace {
     /// - traces/scatter3d/attributes/visible
     /// - traces/scattercarpet/attributes/visible
     /// - traces/scattergeo/attributes/visible
-    /// - traces/scattergl/attributes/visible
     /// - traces/scattermapbox/attributes/visible
     /// - traces/scatterpolar/attributes/visible
     /// - traces/scatterpolargl/attributes/visible
@@ -113,7 +109,6 @@ public struct Area: Trace {
     /// - traces/bar/attributes/hoverinfo
     /// - traces/box/attributes/hoverinfo
     /// - traces/candlestick/attributes/hoverinfo
-    /// - traces/contour/attributes/hoverinfo
     /// - traces/heatmap/attributes/hoverinfo
     /// - traces/heatmapgl/attributes/hoverinfo
     /// - traces/histogram/attributes/hoverinfo
@@ -125,7 +120,6 @@ public struct Area: Trace {
     /// - traces/pointcloud/attributes/hoverinfo
     /// - traces/scatter/attributes/hoverinfo
     /// - traces/scatter3d/attributes/hoverinfo
-    /// - traces/scattergl/attributes/hoverinfo
     /// - traces/splom/attributes/hoverinfo
     /// - traces/surface/attributes/hoverinfo
     /// - traces/table/attributes/hoverinfo
@@ -222,9 +216,7 @@ public struct Area: Trace {
         /// - traces/box/attributes/hoverlabel/align
         /// - traces/candlestick/attributes/hoverlabel/align
         /// - traces/choropleth/attributes/hoverlabel/align
-        /// - traces/choroplethmapbox/attributes/hoverlabel/align
         /// - traces/cone/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
         /// - traces/densitymapbox/attributes/hoverlabel/align
         /// - traces/funnel/attributes/hoverlabel/align
         /// - traces/funnelarea/attributes/hoverlabel/align
@@ -246,7 +238,6 @@ public struct Area: Trace {
         /// - traces/scatter3d/attributes/hoverlabel/align
         /// - traces/scattercarpet/attributes/hoverlabel/align
         /// - traces/scattergeo/attributes/hoverlabel/align
-        /// - traces/scattergl/attributes/hoverlabel/align
         /// - traces/scattermapbox/attributes/hoverlabel/align
         /// - traces/scatterpolar/attributes/hoverlabel/align
         /// - traces/scatterpolargl/attributes/hoverlabel/align
@@ -393,7 +384,6 @@ public struct Area: Trace {
         /// - traces/scatter/attributes/marker/symbol
         /// - traces/scattercarpet/attributes/marker/symbol
         /// - traces/scattergeo/attributes/marker/symbol
-        /// - traces/scattergl/attributes/marker/symbol
         /// - traces/scatterpolar/attributes/marker/symbol
         /// - traces/scatterpolargl/attributes/marker/symbol
         /// - traces/scatterternary/attributes/marker/symbol

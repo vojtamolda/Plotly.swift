@@ -1,5 +1,148 @@
 public struct Layout: Encodable {
     
+    // MARK: - Treemap Trace
+
+    /// Sets the default treemap slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendtreemapcolors`.
+    public var treemapColorWay: ColorList?
+
+    /// If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    public var extendTreemapColors: Bool?
+
+    
+    // MARK: - Violin Trace
+
+    /// Determines how violins at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the violins are plotted next to one another centered around the shared location. If
+    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
+    /// multiple violins. Has no effect on traces that have *width* set.
+    /// - traces/violin/layoutAttributes/violinmode
+    public enum ViolinMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how violins at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the violins are plotted next to one another centered around the shared location. If
+    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
+    /// multiple violins. Has no effect on traces that have *width* set.
+    public var violinMode: ViolinMode?
+
+    /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var violinGap: Double?
+
+    /// Sets the gap (in plot fraction) between violins of the same location coordinate. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var violinGroupGap: Double?
+
+    
+    // MARK: - Candlestick Trace
+
+    /// Determines how boxes at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
+    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
+    /// multiple boxes. Has no effect on traces that have *width* set.
+    /// - traces/box/layoutAttributes/boxmode
+    /// - traces/candlestick/layoutAttributes/boxmode
+    public enum BoxMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how boxes at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
+    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
+    /// multiple boxes. Has no effect on traces that have *width* set.
+    public var boxMode: BoxMode?
+
+    /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var boxGap: Double?
+
+    /// Sets the gap (in plot fraction) between boxes of the same location coordinate. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    public var boxGroupGap: Double?
+
+    
+    // MARK: - Sunburst Trace
+
+    /// Sets the default sunburst slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendsunburstcolors`.
+    public var sunburstColorWay: ColorList?
+
+    /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    public var extendSunburstColors: Bool?
+
+    
+    // MARK: - BarPolar Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted
+    /// over one another, you might need to an *opacity* to see multiple bars.
+    /// - traces/barpolar/layoutAttributes/barmode
+    public enum BarMode: String, Encodable {
+        case stack
+        case overlay
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted
+    /// over one another, you might need to an *opacity* to see multiple bars.
+    public var barMode: BarMode?
+
+    /// Sets the gap between bars of adjacent location coordinates. 
+    ///
+    /// Values are unitless, they represent fractions of the minimum difference in bar positions in the
+    /// data.
+    public var barGap: Double?
+
+    
+    // MARK: - Waterfall Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *group*, the bars are plotted next to one another centered around the shared location. With
+    /// *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple
+    /// bars.
+    /// - traces/waterfall/layoutAttributes/waterfallmode
+    public enum WaterfallMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *group*, the bars are plotted next to one another centered around the shared location. With
+    /// *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple
+    /// bars.
+    public var waterfallMode: WaterfallMode?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    public var waterfallGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    public var waterfallGroupGap: Double?
+
+    
     // MARK: - FunnelArea Trace
 
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
@@ -49,53 +192,7 @@ public struct Layout: Encodable {
     public var funnelGroupGap: Double?
 
     
-    // MARK: - Pie Trace
-
-    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    public var hiddenLabels: [Double]?
-
-    /// Sets the default pie slice colors. 
-    ///
-    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
-    /// still be extended with lighter and darker colors, see `extendpiecolors`.
-    public var pieColorWay: ColorList?
-
-    /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
-    ///
-    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
-    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
-    /// never extended.
-    public var extendPieColors: Bool?
-
-    /// Sets the source reference on plot.ly for  hiddenlabels .
-    public var hiddenLabelsSource: String?
-
-    
-    // MARK: - BarPolar Trace
-
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted
-    /// over one another, you might need to an *opacity* to see multiple bars.
-    /// - traces/barpolar/layoutAttributes/barmode
-    public enum BarMode: String, Encodable {
-        case stack
-        case overlay
-    }
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *overlay*, the bars are plotted
-    /// over one another, you might need to an *opacity* to see multiple bars.
-    public var barMode: BarMode?
-
-    /// Sets the gap between bars of adjacent location coordinates. 
-    ///
-    /// Values are unitless, they represent fractions of the minimum difference in bar positions in the
-    /// data.
-    public var barGap: Double?
-
-    
-    // MARK: - Bar Trace
+    // MARK: - Histogram Trace
 
     /// Determines how bars at the same location coordinate are displayed on the graph. 
     ///
@@ -143,99 +240,6 @@ public struct Layout: Encodable {
     public var barGroupGap: Double?
 
     
-    // MARK: - Histogram Trace
-
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    /// - traces/histogram/layoutAttributes/barmode
-    public enum BarMode: String, Encodable {
-        case stack
-        case group
-        case overlay
-        case relative
-    }
-    /// Determines how bars at the same location coordinate are displayed on the graph. 
-    ///
-    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-    /// on top of one another, with negative values below the axis, positive values above With *group*,
-    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
-    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    public var barMode: BarMode?
-
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    /// - traces/histogram/layoutAttributes/barnorm
-    public enum Barnorm: String, Encodable {
-        case none = ""
-        case fraction
-        case percent
-    }
-    /// Sets the normalization for bar traces on the graph. 
-    ///
-    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
-    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    public var barnorm: Barnorm?
-
-    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var barGap: Double?
-
-    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var barGroupGap: Double?
-
-    
-    // MARK: - Candlestick Trace
-
-    /// Determines how boxes at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
-    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
-    /// multiple boxes. Has no effect on traces that have *width* set.
-    /// - traces/box/layoutAttributes/boxmode
-    /// - traces/candlestick/layoutAttributes/boxmode
-    public enum BoxMode: String, Encodable {
-        case group
-        case overlay
-    }
-    /// Determines how boxes at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
-    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
-    /// multiple boxes. Has no effect on traces that have *width* set.
-    public var boxMode: BoxMode?
-
-    /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var boxGap: Double?
-
-    /// Sets the gap (in plot fraction) between boxes of the same location coordinate. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var boxGroupGap: Double?
-
-    
-    // MARK: - Treemap Trace
-
-    /// Sets the default treemap slice colors. 
-    ///
-    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
-    /// still be extended with lighter and darker colors, see `extendtreemapcolors`.
-    public var treemapColorWay: ColorList?
-
-    /// If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
-    ///
-    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
-    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
-    /// never extended.
-    public var extendTreemapColors: Bool?
-
-    
     // MARK: - Box Trace
 
     /// Determines how boxes at the same location coordinate are displayed on the graph. 
@@ -266,76 +270,72 @@ public struct Layout: Encodable {
     public var boxGroupGap: Double?
 
     
-    // MARK: - Waterfall Trace
+    // MARK: - Bar Trace
 
     /// Determines how bars at the same location coordinate are displayed on the graph. 
     ///
-    /// With *group*, the bars are plotted next to one another centered around the shared location. With
-    /// *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple
-    /// bars.
-    /// - traces/waterfall/layoutAttributes/waterfallmode
-    public enum WaterfallMode: String, Encodable {
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    /// - traces/bar/layoutAttributes/barmode
+    public enum BarMode: String, Encodable {
+        case stack
         case group
         case overlay
+        case relative
     }
     /// Determines how bars at the same location coordinate are displayed on the graph. 
     ///
-    /// With *group*, the bars are plotted next to one another centered around the shared location. With
-    /// *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple
-    /// bars.
-    public var waterfallMode: WaterfallMode?
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    public var barMode: BarMode?
+
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    /// - traces/bar/layoutAttributes/barnorm
+    public enum Barnorm: String, Encodable {
+        case none = ""
+        case fraction
+        case percent
+    }
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    public var barnorm: Barnorm?
 
     /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var waterfallGap: Double?
+    public var barGap: Double?
 
     /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var waterfallGroupGap: Double?
+    public var barGroupGap: Double?
 
     
-    // MARK: - Violin Trace
+    // MARK: - Pie Trace
 
-    /// Determines how violins at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the violins are plotted next to one another centered around the shared location. If
-    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
-    /// multiple violins. Has no effect on traces that have *width* set.
-    /// - traces/violin/layoutAttributes/violinmode
-    public enum ViolinMode: String, Encodable {
-        case group
-        case overlay
-    }
-    /// Determines how violins at the same location coordinate are displayed on the graph. 
-    ///
-    /// If *group*, the violins are plotted next to one another centered around the shared location. If
-    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
-    /// multiple violins. Has no effect on traces that have *width* set.
-    public var violinMode: ViolinMode?
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    public var hiddenLabels: [Double]?
 
-    /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var violinGap: Double?
-
-    /// Sets the gap (in plot fraction) between violins of the same location coordinate. 
-    ///
-    /// Has no effect on traces that have *width* set.
-    public var violinGroupGap: Double?
-
-    
-    // MARK: - Sunburst Trace
-
-    /// Sets the default sunburst slice colors. 
+    /// Sets the default pie slice colors. 
     ///
     /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
-    /// still be extended with lighter and darker colors, see `extendsunburstcolors`.
-    public var sunburstColorWay: ColorList?
+    /// still be extended with lighter and darker colors, see `extendpiecolors`.
+    public var pieColorWay: ColorList?
 
-    /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
     ///
     /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
     /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
     /// never extended.
-    public var extendSunburstColors: Bool?
+    public var extendPieColors: Bool?
+
+    /// Sets the source reference on plot.ly for  hiddenlabels .
+    public var hiddenLabelsSource: String?
 
     
     // MARK: - General
@@ -12190,7 +12190,22 @@ public struct Layout: Encodable {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
-    public init(hiddenLabels: [Double]? = nil, funnelAreaColorWay: ColorList? = nil, extendFunnelAreaColors: Bool? = nil, hiddenLabelsSource: String? = nil, funnelMode: FunnelMode? = nil, funnelGap: Double? = nil, funnelGroupGap: Double? = nil, hiddenLabels: [Double]? = nil, pieColorWay: ColorList? = nil, extendPieColors: Bool? = nil, hiddenLabelsSource: String? = nil, barMode: BarMode? = nil, barGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, treemapColorWay: ColorList? = nil, extendTreemapColors: Bool? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, waterfallMode: WaterfallMode? = nil, waterfallGap: Double? = nil, waterfallGroupGap: Double? = nil, violinMode: ViolinMode? = nil, violinGap: Double? = nil, violinGroupGap: Double? = nil, sunburstColorWay: ColorList? = nil, extendSunburstColors: Bool? = nil, font: Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, deprecated: Deprecated? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: Annotations? = nil, shapes: Shapes? = nil, images: Images? = nil, updateMenus: UpdateMenus? = nil, sliders: Sliders? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
+    public init(treemapColorWay: ColorList? = nil, extendTreemapColors: Bool? = nil, violinMode: ViolinMode? = nil, violinGap: Double? = nil, violinGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, sunburstColorWay: ColorList? = nil, extendSunburstColors: Bool? = nil, barMode: BarMode? = nil, barGap: Double? = nil, waterfallMode: WaterfallMode? = nil, waterfallGap: Double? = nil, waterfallGroupGap: Double? = nil, hiddenLabels: [Double]? = nil, funnelAreaColorWay: ColorList? = nil, extendFunnelAreaColors: Bool? = nil, hiddenLabelsSource: String? = nil, funnelMode: FunnelMode? = nil, funnelGap: Double? = nil, funnelGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, barMode: BarMode? = nil, barnorm: Barnorm? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, hiddenLabels: [Double]? = nil, pieColorWay: ColorList? = nil, extendPieColors: Bool? = nil, hiddenLabelsSource: String? = nil, font: Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, deprecated: Deprecated? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: Annotations? = nil, shapes: Shapes? = nil, images: Images? = nil, updateMenus: UpdateMenus? = nil, sliders: Sliders? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
+        self.treemapColorWay = treemapColorWay
+        self.extendTreemapColors = extendTreemapColors
+        self.violinMode = violinMode
+        self.violinGap = violinGap
+        self.violinGroupGap = violinGroupGap
+        self.boxMode = boxMode
+        self.boxGap = boxGap
+        self.boxGroupGap = boxGroupGap
+        self.sunburstColorWay = sunburstColorWay
+        self.extendSunburstColors = extendSunburstColors
+        self.barMode = barMode
+        self.barGap = barGap
+        self.waterfallMode = waterfallMode
+        self.waterfallGap = waterfallGap
+        self.waterfallGroupGap = waterfallGroupGap
         self.hiddenLabels = hiddenLabels
         self.funnelAreaColorWay = funnelAreaColorWay
         self.extendFunnelAreaColors = extendFunnelAreaColors
@@ -12198,36 +12213,21 @@ public struct Layout: Encodable {
         self.funnelMode = funnelMode
         self.funnelGap = funnelGap
         self.funnelGroupGap = funnelGroupGap
+        self.barMode = barMode
+        self.barnorm = barnorm
+        self.barGap = barGap
+        self.barGroupGap = barGroupGap
+        self.boxMode = boxMode
+        self.boxGap = boxGap
+        self.boxGroupGap = boxGroupGap
+        self.barMode = barMode
+        self.barnorm = barnorm
+        self.barGap = barGap
+        self.barGroupGap = barGroupGap
         self.hiddenLabels = hiddenLabels
         self.pieColorWay = pieColorWay
         self.extendPieColors = extendPieColors
         self.hiddenLabelsSource = hiddenLabelsSource
-        self.barMode = barMode
-        self.barGap = barGap
-        self.barMode = barMode
-        self.barnorm = barnorm
-        self.barGap = barGap
-        self.barGroupGap = barGroupGap
-        self.barMode = barMode
-        self.barnorm = barnorm
-        self.barGap = barGap
-        self.barGroupGap = barGroupGap
-        self.boxMode = boxMode
-        self.boxGap = boxGap
-        self.boxGroupGap = boxGroupGap
-        self.treemapColorWay = treemapColorWay
-        self.extendTreemapColors = extendTreemapColors
-        self.boxMode = boxMode
-        self.boxGap = boxGap
-        self.boxGroupGap = boxGroupGap
-        self.waterfallMode = waterfallMode
-        self.waterfallGap = waterfallGap
-        self.waterfallGroupGap = waterfallGroupGap
-        self.violinMode = violinMode
-        self.violinGap = violinGap
-        self.violinGroupGap = violinGroupGap
-        self.sunburstColorWay = sunburstColorWay
-        self.extendSunburstColors = extendSunburstColors
         self.font = font
         self.title = title
         self.autoSize = autoSize

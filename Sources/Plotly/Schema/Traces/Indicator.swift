@@ -11,27 +11,48 @@ public struct Indicator: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/area/attributes/visible
+    /// - traces/bar/attributes/visible
+    /// - traces/barpolar/attributes/visible
     /// - traces/box/attributes/visible
+    /// - traces/candlestick/attributes/visible
+    /// - traces/carpet/attributes/visible
+    /// - traces/choropleth/attributes/visible
     /// - traces/choroplethmapbox/attributes/visible
-    /// - traces/contour/attributes/visible
+    /// - traces/cone/attributes/visible
     /// - traces/contourcarpet/attributes/visible
     /// - traces/densitymapbox/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/funnelarea/attributes/visible
     /// - traces/heatmap/attributes/visible
     /// - traces/heatmapgl/attributes/visible
+    /// - traces/histogram/attributes/visible
     /// - traces/histogram2d/attributes/visible
     /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/image/attributes/visible
     /// - traces/indicator/attributes/visible
     /// - traces/isosurface/attributes/visible
+    /// - traces/mesh3d/attributes/visible
     /// - traces/ohlc/attributes/visible
     /// - traces/parcats/attributes/visible
     /// - traces/parcoords/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/sankey/attributes/visible
     /// - traces/scatter/attributes/visible
     /// - traces/scatter3d/attributes/visible
+    /// - traces/scattercarpet/attributes/visible
     /// - traces/scattergeo/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/scatterpolar/attributes/visible
+    /// - traces/scatterpolargl/attributes/visible
     /// - traces/scatterternary/attributes/visible
     /// - traces/splom/attributes/visible
+    /// - traces/streamtube/attributes/visible
     /// - traces/sunburst/attributes/visible
+    /// - traces/surface/attributes/visible
     /// - traces/table/attributes/visible
+    /// - traces/treemap/attributes/visible
     /// - traces/violin/attributes/visible
     /// - traces/volume/attributes/visible
     /// - traces/waterfall/attributes/visible
@@ -493,25 +514,38 @@ public struct Indicator: Trace {
             /// - layout/layoutAttributes/ternary/caxis/tickmode
             /// - layout/layoutAttributes/xaxis/tickmode
             /// - layout/layoutAttributes/yaxis/tickmode
+            /// - traces/bar/attributes/marker/colorbar/tickmode
+            /// - traces/barpolar/attributes/marker/colorbar/tickmode
+            /// - traces/choropleth/attributes/colorbar/tickmode
             /// - traces/choroplethmapbox/attributes/colorbar/tickmode
-            /// - traces/contour/attributes/colorbar/tickmode
+            /// - traces/cone/attributes/colorbar/tickmode
             /// - traces/contourcarpet/attributes/colorbar/tickmode
             /// - traces/densitymapbox/attributes/colorbar/tickmode
+            /// - traces/funnel/attributes/marker/colorbar/tickmode
             /// - traces/heatmap/attributes/colorbar/tickmode
             /// - traces/heatmapgl/attributes/colorbar/tickmode
+            /// - traces/histogram/attributes/marker/colorbar/tickmode
             /// - traces/histogram2d/attributes/colorbar/tickmode
             /// - traces/histogram2dcontour/attributes/colorbar/tickmode
             /// - traces/indicator/attributes/gauge/axis/tickmode
             /// - traces/isosurface/attributes/colorbar/tickmode
+            /// - traces/mesh3d/attributes/colorbar/tickmode
             /// - traces/parcats/attributes/line/colorbar/tickmode
             /// - traces/parcoords/attributes/line/colorbar/tickmode
             /// - traces/scatter/attributes/marker/colorbar/tickmode
             /// - traces/scatter3d/attributes/line/colorbar/tickmode
             /// - traces/scatter3d/attributes/marker/colorbar/tickmode
+            /// - traces/scattercarpet/attributes/marker/colorbar/tickmode
             /// - traces/scattergeo/attributes/marker/colorbar/tickmode
+            /// - traces/scattermapbox/attributes/marker/colorbar/tickmode
+            /// - traces/scatterpolar/attributes/marker/colorbar/tickmode
+            /// - traces/scatterpolargl/attributes/marker/colorbar/tickmode
             /// - traces/scatterternary/attributes/marker/colorbar/tickmode
             /// - traces/splom/attributes/marker/colorbar/tickmode
+            /// - traces/streamtube/attributes/colorbar/tickmode
             /// - traces/sunburst/attributes/marker/colorbar/tickmode
+            /// - traces/surface/attributes/colorbar/tickmode
+            /// - traces/treemap/attributes/marker/colorbar/tickmode
             /// - traces/volume/attributes/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
@@ -584,25 +618,38 @@ public struct Indicator: Trace {
             /// - layout/layoutAttributes/ternary/caxis/ticks
             /// - layout/layoutAttributes/xaxis/ticks
             /// - layout/layoutAttributes/yaxis/ticks
+            /// - traces/bar/attributes/marker/colorbar/ticks
+            /// - traces/barpolar/attributes/marker/colorbar/ticks
+            /// - traces/choropleth/attributes/colorbar/ticks
             /// - traces/choroplethmapbox/attributes/colorbar/ticks
-            /// - traces/contour/attributes/colorbar/ticks
+            /// - traces/cone/attributes/colorbar/ticks
             /// - traces/contourcarpet/attributes/colorbar/ticks
             /// - traces/densitymapbox/attributes/colorbar/ticks
+            /// - traces/funnel/attributes/marker/colorbar/ticks
             /// - traces/heatmap/attributes/colorbar/ticks
             /// - traces/heatmapgl/attributes/colorbar/ticks
+            /// - traces/histogram/attributes/marker/colorbar/ticks
             /// - traces/histogram2d/attributes/colorbar/ticks
             /// - traces/histogram2dcontour/attributes/colorbar/ticks
             /// - traces/indicator/attributes/gauge/axis/ticks
             /// - traces/isosurface/attributes/colorbar/ticks
+            /// - traces/mesh3d/attributes/colorbar/ticks
             /// - traces/parcats/attributes/line/colorbar/ticks
             /// - traces/parcoords/attributes/line/colorbar/ticks
             /// - traces/scatter/attributes/marker/colorbar/ticks
             /// - traces/scatter3d/attributes/line/colorbar/ticks
             /// - traces/scatter3d/attributes/marker/colorbar/ticks
+            /// - traces/scattercarpet/attributes/marker/colorbar/ticks
             /// - traces/scattergeo/attributes/marker/colorbar/ticks
+            /// - traces/scattermapbox/attributes/marker/colorbar/ticks
+            /// - traces/scatterpolar/attributes/marker/colorbar/ticks
+            /// - traces/scatterpolargl/attributes/marker/colorbar/ticks
             /// - traces/scatterternary/attributes/marker/colorbar/ticks
             /// - traces/splom/attributes/marker/colorbar/ticks
+            /// - traces/streamtube/attributes/colorbar/ticks
             /// - traces/sunburst/attributes/marker/colorbar/ticks
+            /// - traces/surface/attributes/colorbar/ticks
+            /// - traces/treemap/attributes/marker/colorbar/ticks
             /// - traces/volume/attributes/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
@@ -741,25 +788,40 @@ public struct Indicator: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showtickprefix
             /// - layout/layoutAttributes/xaxis/showtickprefix
             /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - traces/bar/attributes/marker/colorbar/showtickprefix
+            /// - traces/barpolar/attributes/marker/colorbar/showtickprefix
+            /// - traces/carpet/attributes/aaxis/showtickprefix
+            /// - traces/carpet/attributes/baxis/showtickprefix
+            /// - traces/choropleth/attributes/colorbar/showtickprefix
             /// - traces/choroplethmapbox/attributes/colorbar/showtickprefix
-            /// - traces/contour/attributes/colorbar/showtickprefix
+            /// - traces/cone/attributes/colorbar/showtickprefix
             /// - traces/contourcarpet/attributes/colorbar/showtickprefix
             /// - traces/densitymapbox/attributes/colorbar/showtickprefix
+            /// - traces/funnel/attributes/marker/colorbar/showtickprefix
             /// - traces/heatmap/attributes/colorbar/showtickprefix
             /// - traces/heatmapgl/attributes/colorbar/showtickprefix
+            /// - traces/histogram/attributes/marker/colorbar/showtickprefix
             /// - traces/histogram2d/attributes/colorbar/showtickprefix
             /// - traces/histogram2dcontour/attributes/colorbar/showtickprefix
             /// - traces/indicator/attributes/gauge/axis/showtickprefix
             /// - traces/isosurface/attributes/colorbar/showtickprefix
+            /// - traces/mesh3d/attributes/colorbar/showtickprefix
             /// - traces/parcats/attributes/line/colorbar/showtickprefix
             /// - traces/parcoords/attributes/line/colorbar/showtickprefix
             /// - traces/scatter/attributes/marker/colorbar/showtickprefix
             /// - traces/scatter3d/attributes/line/colorbar/showtickprefix
             /// - traces/scatter3d/attributes/marker/colorbar/showtickprefix
+            /// - traces/scattercarpet/attributes/marker/colorbar/showtickprefix
             /// - traces/scattergeo/attributes/marker/colorbar/showtickprefix
+            /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
+            /// - traces/scatterpolar/attributes/marker/colorbar/showtickprefix
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showtickprefix
             /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
             /// - traces/splom/attributes/marker/colorbar/showtickprefix
+            /// - traces/streamtube/attributes/colorbar/showtickprefix
             /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
+            /// - traces/surface/attributes/colorbar/showtickprefix
+            /// - traces/treemap/attributes/marker/colorbar/showtickprefix
             /// - traces/volume/attributes/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
@@ -788,25 +850,40 @@ public struct Indicator: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showticksuffix
             /// - layout/layoutAttributes/xaxis/showticksuffix
             /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - traces/bar/attributes/marker/colorbar/showticksuffix
+            /// - traces/barpolar/attributes/marker/colorbar/showticksuffix
+            /// - traces/carpet/attributes/aaxis/showticksuffix
+            /// - traces/carpet/attributes/baxis/showticksuffix
+            /// - traces/choropleth/attributes/colorbar/showticksuffix
             /// - traces/choroplethmapbox/attributes/colorbar/showticksuffix
-            /// - traces/contour/attributes/colorbar/showticksuffix
+            /// - traces/cone/attributes/colorbar/showticksuffix
             /// - traces/contourcarpet/attributes/colorbar/showticksuffix
             /// - traces/densitymapbox/attributes/colorbar/showticksuffix
+            /// - traces/funnel/attributes/marker/colorbar/showticksuffix
             /// - traces/heatmap/attributes/colorbar/showticksuffix
             /// - traces/heatmapgl/attributes/colorbar/showticksuffix
+            /// - traces/histogram/attributes/marker/colorbar/showticksuffix
             /// - traces/histogram2d/attributes/colorbar/showticksuffix
             /// - traces/histogram2dcontour/attributes/colorbar/showticksuffix
             /// - traces/indicator/attributes/gauge/axis/showticksuffix
             /// - traces/isosurface/attributes/colorbar/showticksuffix
+            /// - traces/mesh3d/attributes/colorbar/showticksuffix
             /// - traces/parcats/attributes/line/colorbar/showticksuffix
             /// - traces/parcoords/attributes/line/colorbar/showticksuffix
             /// - traces/scatter/attributes/marker/colorbar/showticksuffix
             /// - traces/scatter3d/attributes/line/colorbar/showticksuffix
             /// - traces/scatter3d/attributes/marker/colorbar/showticksuffix
+            /// - traces/scattercarpet/attributes/marker/colorbar/showticksuffix
             /// - traces/scattergeo/attributes/marker/colorbar/showticksuffix
+            /// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
+            /// - traces/scatterpolar/attributes/marker/colorbar/showticksuffix
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showticksuffix
             /// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
             /// - traces/splom/attributes/marker/colorbar/showticksuffix
+            /// - traces/streamtube/attributes/colorbar/showticksuffix
             /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+            /// - traces/surface/attributes/colorbar/showticksuffix
+            /// - traces/treemap/attributes/marker/colorbar/showticksuffix
             /// - traces/volume/attributes/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
@@ -835,25 +912,40 @@ public struct Indicator: Trace {
             /// - layout/layoutAttributes/ternary/caxis/exponentformat
             /// - layout/layoutAttributes/xaxis/exponentformat
             /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - traces/bar/attributes/marker/colorbar/exponentformat
+            /// - traces/barpolar/attributes/marker/colorbar/exponentformat
+            /// - traces/carpet/attributes/aaxis/exponentformat
+            /// - traces/carpet/attributes/baxis/exponentformat
+            /// - traces/choropleth/attributes/colorbar/exponentformat
             /// - traces/choroplethmapbox/attributes/colorbar/exponentformat
-            /// - traces/contour/attributes/colorbar/exponentformat
+            /// - traces/cone/attributes/colorbar/exponentformat
             /// - traces/contourcarpet/attributes/colorbar/exponentformat
             /// - traces/densitymapbox/attributes/colorbar/exponentformat
+            /// - traces/funnel/attributes/marker/colorbar/exponentformat
             /// - traces/heatmap/attributes/colorbar/exponentformat
             /// - traces/heatmapgl/attributes/colorbar/exponentformat
+            /// - traces/histogram/attributes/marker/colorbar/exponentformat
             /// - traces/histogram2d/attributes/colorbar/exponentformat
             /// - traces/histogram2dcontour/attributes/colorbar/exponentformat
             /// - traces/indicator/attributes/gauge/axis/exponentformat
             /// - traces/isosurface/attributes/colorbar/exponentformat
+            /// - traces/mesh3d/attributes/colorbar/exponentformat
             /// - traces/parcats/attributes/line/colorbar/exponentformat
             /// - traces/parcoords/attributes/line/colorbar/exponentformat
             /// - traces/scatter/attributes/marker/colorbar/exponentformat
             /// - traces/scatter3d/attributes/line/colorbar/exponentformat
             /// - traces/scatter3d/attributes/marker/colorbar/exponentformat
+            /// - traces/scattercarpet/attributes/marker/colorbar/exponentformat
             /// - traces/scattergeo/attributes/marker/colorbar/exponentformat
+            /// - traces/scattermapbox/attributes/marker/colorbar/exponentformat
+            /// - traces/scatterpolar/attributes/marker/colorbar/exponentformat
+            /// - traces/scatterpolargl/attributes/marker/colorbar/exponentformat
             /// - traces/scatterternary/attributes/marker/colorbar/exponentformat
             /// - traces/splom/attributes/marker/colorbar/exponentformat
+            /// - traces/streamtube/attributes/colorbar/exponentformat
             /// - traces/sunburst/attributes/marker/colorbar/exponentformat
+            /// - traces/surface/attributes/colorbar/exponentformat
+            /// - traces/treemap/attributes/marker/colorbar/exponentformat
             /// - traces/volume/attributes/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
@@ -884,25 +976,40 @@ public struct Indicator: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showexponent
             /// - layout/layoutAttributes/xaxis/showexponent
             /// - layout/layoutAttributes/yaxis/showexponent
+            /// - traces/bar/attributes/marker/colorbar/showexponent
+            /// - traces/barpolar/attributes/marker/colorbar/showexponent
+            /// - traces/carpet/attributes/aaxis/showexponent
+            /// - traces/carpet/attributes/baxis/showexponent
+            /// - traces/choropleth/attributes/colorbar/showexponent
             /// - traces/choroplethmapbox/attributes/colorbar/showexponent
-            /// - traces/contour/attributes/colorbar/showexponent
+            /// - traces/cone/attributes/colorbar/showexponent
             /// - traces/contourcarpet/attributes/colorbar/showexponent
             /// - traces/densitymapbox/attributes/colorbar/showexponent
+            /// - traces/funnel/attributes/marker/colorbar/showexponent
             /// - traces/heatmap/attributes/colorbar/showexponent
             /// - traces/heatmapgl/attributes/colorbar/showexponent
+            /// - traces/histogram/attributes/marker/colorbar/showexponent
             /// - traces/histogram2d/attributes/colorbar/showexponent
             /// - traces/histogram2dcontour/attributes/colorbar/showexponent
             /// - traces/indicator/attributes/gauge/axis/showexponent
             /// - traces/isosurface/attributes/colorbar/showexponent
+            /// - traces/mesh3d/attributes/colorbar/showexponent
             /// - traces/parcats/attributes/line/colorbar/showexponent
             /// - traces/parcoords/attributes/line/colorbar/showexponent
             /// - traces/scatter/attributes/marker/colorbar/showexponent
             /// - traces/scatter3d/attributes/line/colorbar/showexponent
             /// - traces/scatter3d/attributes/marker/colorbar/showexponent
+            /// - traces/scattercarpet/attributes/marker/colorbar/showexponent
             /// - traces/scattergeo/attributes/marker/colorbar/showexponent
+            /// - traces/scattermapbox/attributes/marker/colorbar/showexponent
+            /// - traces/scatterpolar/attributes/marker/colorbar/showexponent
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showexponent
             /// - traces/scatterternary/attributes/marker/colorbar/showexponent
             /// - traces/splom/attributes/marker/colorbar/showexponent
+            /// - traces/streamtube/attributes/colorbar/showexponent
             /// - traces/sunburst/attributes/marker/colorbar/showexponent
+            /// - traces/surface/attributes/colorbar/showexponent
+            /// - traces/treemap/attributes/marker/colorbar/showexponent
             /// - traces/volume/attributes/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all

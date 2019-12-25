@@ -8,11 +8,20 @@ public struct ParallelCategories: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/contour/attributes/visible
+    /// - traces/bar/attributes/visible
+    /// - traces/box/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
     /// - traces/densitymapbox/attributes/visible
-    /// - traces/histogram2d/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/histogram/attributes/visible
     /// - traces/parcats/attributes/visible
-    /// - traces/sunburst/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/sankey/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/scatterpolargl/attributes/visible
     /// - traces/volume/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
@@ -445,11 +454,16 @@ public struct ParallelCategories: Trace {
             /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
             /// Use `thickness` to set the value.
             /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
-            /// - traces/contour/attributes/colorbar/thicknessmode
+            /// - traces/bar/attributes/marker/colorbar/thicknessmode
+            /// - traces/contourcarpet/attributes/colorbar/thicknessmode
             /// - traces/densitymapbox/attributes/colorbar/thicknessmode
-            /// - traces/histogram2d/attributes/colorbar/thicknessmode
+            /// - traces/funnel/attributes/marker/colorbar/thicknessmode
+            /// - traces/heatmapgl/attributes/colorbar/thicknessmode
+            /// - traces/histogram/attributes/marker/colorbar/thicknessmode
             /// - traces/parcats/attributes/line/colorbar/thicknessmode
-            /// - traces/sunburst/attributes/marker/colorbar/thicknessmode
+            /// - traces/parcoords/attributes/line/colorbar/thicknessmode
+            /// - traces/scattermapbox/attributes/marker/colorbar/thicknessmode
+            /// - traces/scatterpolargl/attributes/marker/colorbar/thicknessmode
             /// - traces/volume/attributes/colorbar/thicknessmode
             public enum ThicknessMode: String, Encodable {
                 case fraction
@@ -469,11 +483,16 @@ public struct ParallelCategories: Trace {
             /// Use `len` to set the value.
             /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
             /// - layout/layoutAttributes/sliders/items/slider/lenmode
-            /// - traces/contour/attributes/colorbar/lenmode
+            /// - traces/bar/attributes/marker/colorbar/lenmode
+            /// - traces/contourcarpet/attributes/colorbar/lenmode
             /// - traces/densitymapbox/attributes/colorbar/lenmode
-            /// - traces/histogram2d/attributes/colorbar/lenmode
+            /// - traces/funnel/attributes/marker/colorbar/lenmode
+            /// - traces/heatmapgl/attributes/colorbar/lenmode
+            /// - traces/histogram/attributes/marker/colorbar/lenmode
             /// - traces/parcats/attributes/line/colorbar/lenmode
-            /// - traces/sunburst/attributes/marker/colorbar/lenmode
+            /// - traces/parcoords/attributes/line/colorbar/lenmode
+            /// - traces/scattermapbox/attributes/marker/colorbar/lenmode
+            /// - traces/scatterpolargl/attributes/marker/colorbar/lenmode
             /// - traces/volume/attributes/colorbar/lenmode
             public enum LengthMode: String, Encodable {
                 case fraction
@@ -496,11 +515,16 @@ public struct ParallelCategories: Trace {
             /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
             /// - layout/layoutAttributes/images/items/image/xanchor
             /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
-            /// - traces/contour/attributes/colorbar/xanchor
+            /// - traces/bar/attributes/marker/colorbar/xanchor
+            /// - traces/contourcarpet/attributes/colorbar/xanchor
             /// - traces/densitymapbox/attributes/colorbar/xanchor
-            /// - traces/histogram2d/attributes/colorbar/xanchor
+            /// - traces/funnel/attributes/marker/colorbar/xanchor
+            /// - traces/heatmapgl/attributes/colorbar/xanchor
+            /// - traces/histogram/attributes/marker/colorbar/xanchor
             /// - traces/parcats/attributes/line/colorbar/xanchor
-            /// - traces/sunburst/attributes/marker/colorbar/xanchor
+            /// - traces/parcoords/attributes/line/colorbar/xanchor
+            /// - traces/scattermapbox/attributes/marker/colorbar/xanchor
+            /// - traces/scatterpolargl/attributes/marker/colorbar/xanchor
             /// - traces/volume/attributes/colorbar/xanchor
             public enum XAnchor: String, Encodable {
                 case left
@@ -519,11 +543,16 @@ public struct ParallelCategories: Trace {
             /// Sets the anchor for the y position.
             /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
             /// - layout/layoutAttributes/images/items/image/yanchor
-            /// - traces/contour/attributes/colorbar/yanchor
+            /// - traces/bar/attributes/marker/colorbar/yanchor
+            /// - traces/contourcarpet/attributes/colorbar/yanchor
             /// - traces/densitymapbox/attributes/colorbar/yanchor
-            /// - traces/histogram2d/attributes/colorbar/yanchor
+            /// - traces/funnel/attributes/marker/colorbar/yanchor
+            /// - traces/heatmapgl/attributes/colorbar/yanchor
+            /// - traces/histogram/attributes/marker/colorbar/yanchor
             /// - traces/parcats/attributes/line/colorbar/yanchor
-            /// - traces/sunburst/attributes/marker/colorbar/yanchor
+            /// - traces/parcoords/attributes/line/colorbar/yanchor
+            /// - traces/scattermapbox/attributes/marker/colorbar/yanchor
+            /// - traces/scatterpolargl/attributes/marker/colorbar/yanchor
             /// - traces/volume/attributes/colorbar/yanchor
             public enum YAnchor: String, Encodable {
                 case top
@@ -569,11 +598,16 @@ public struct ParallelCategories: Trace {
             /// - layout/layoutAttributes/ternary/caxis/tickmode
             /// - layout/layoutAttributes/xaxis/tickmode
             /// - layout/layoutAttributes/yaxis/tickmode
-            /// - traces/contour/attributes/colorbar/tickmode
+            /// - traces/bar/attributes/marker/colorbar/tickmode
+            /// - traces/contourcarpet/attributes/colorbar/tickmode
             /// - traces/densitymapbox/attributes/colorbar/tickmode
-            /// - traces/histogram2d/attributes/colorbar/tickmode
+            /// - traces/funnel/attributes/marker/colorbar/tickmode
+            /// - traces/heatmapgl/attributes/colorbar/tickmode
+            /// - traces/histogram/attributes/marker/colorbar/tickmode
             /// - traces/parcats/attributes/line/colorbar/tickmode
-            /// - traces/sunburst/attributes/marker/colorbar/tickmode
+            /// - traces/parcoords/attributes/line/colorbar/tickmode
+            /// - traces/scattermapbox/attributes/marker/colorbar/tickmode
+            /// - traces/scatterpolargl/attributes/marker/colorbar/tickmode
             /// - traces/volume/attributes/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
@@ -646,11 +680,16 @@ public struct ParallelCategories: Trace {
             /// - layout/layoutAttributes/ternary/caxis/ticks
             /// - layout/layoutAttributes/xaxis/ticks
             /// - layout/layoutAttributes/yaxis/ticks
-            /// - traces/contour/attributes/colorbar/ticks
+            /// - traces/bar/attributes/marker/colorbar/ticks
+            /// - traces/contourcarpet/attributes/colorbar/ticks
             /// - traces/densitymapbox/attributes/colorbar/ticks
-            /// - traces/histogram2d/attributes/colorbar/ticks
+            /// - traces/funnel/attributes/marker/colorbar/ticks
+            /// - traces/heatmapgl/attributes/colorbar/ticks
+            /// - traces/histogram/attributes/marker/colorbar/ticks
             /// - traces/parcats/attributes/line/colorbar/ticks
-            /// - traces/sunburst/attributes/marker/colorbar/ticks
+            /// - traces/parcoords/attributes/line/colorbar/ticks
+            /// - traces/scattermapbox/attributes/marker/colorbar/ticks
+            /// - traces/scatterpolargl/attributes/marker/colorbar/ticks
             /// - traces/volume/attributes/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
@@ -789,11 +828,16 @@ public struct ParallelCategories: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showtickprefix
             /// - layout/layoutAttributes/xaxis/showtickprefix
             /// - layout/layoutAttributes/yaxis/showtickprefix
-            /// - traces/contour/attributes/colorbar/showtickprefix
+            /// - traces/bar/attributes/marker/colorbar/showtickprefix
+            /// - traces/contourcarpet/attributes/colorbar/showtickprefix
             /// - traces/densitymapbox/attributes/colorbar/showtickprefix
-            /// - traces/histogram2d/attributes/colorbar/showtickprefix
+            /// - traces/funnel/attributes/marker/colorbar/showtickprefix
+            /// - traces/heatmapgl/attributes/colorbar/showtickprefix
+            /// - traces/histogram/attributes/marker/colorbar/showtickprefix
             /// - traces/parcats/attributes/line/colorbar/showtickprefix
-            /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
+            /// - traces/parcoords/attributes/line/colorbar/showtickprefix
+            /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showtickprefix
             /// - traces/volume/attributes/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
@@ -822,11 +866,16 @@ public struct ParallelCategories: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showticksuffix
             /// - layout/layoutAttributes/xaxis/showticksuffix
             /// - layout/layoutAttributes/yaxis/showticksuffix
-            /// - traces/contour/attributes/colorbar/showticksuffix
+            /// - traces/bar/attributes/marker/colorbar/showticksuffix
+            /// - traces/contourcarpet/attributes/colorbar/showticksuffix
             /// - traces/densitymapbox/attributes/colorbar/showticksuffix
-            /// - traces/histogram2d/attributes/colorbar/showticksuffix
+            /// - traces/funnel/attributes/marker/colorbar/showticksuffix
+            /// - traces/heatmapgl/attributes/colorbar/showticksuffix
+            /// - traces/histogram/attributes/marker/colorbar/showticksuffix
             /// - traces/parcats/attributes/line/colorbar/showticksuffix
-            /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+            /// - traces/parcoords/attributes/line/colorbar/showticksuffix
+            /// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showticksuffix
             /// - traces/volume/attributes/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
@@ -855,11 +904,16 @@ public struct ParallelCategories: Trace {
             /// - layout/layoutAttributes/ternary/caxis/exponentformat
             /// - layout/layoutAttributes/xaxis/exponentformat
             /// - layout/layoutAttributes/yaxis/exponentformat
-            /// - traces/contour/attributes/colorbar/exponentformat
+            /// - traces/bar/attributes/marker/colorbar/exponentformat
+            /// - traces/contourcarpet/attributes/colorbar/exponentformat
             /// - traces/densitymapbox/attributes/colorbar/exponentformat
-            /// - traces/histogram2d/attributes/colorbar/exponentformat
+            /// - traces/funnel/attributes/marker/colorbar/exponentformat
+            /// - traces/heatmapgl/attributes/colorbar/exponentformat
+            /// - traces/histogram/attributes/marker/colorbar/exponentformat
             /// - traces/parcats/attributes/line/colorbar/exponentformat
-            /// - traces/sunburst/attributes/marker/colorbar/exponentformat
+            /// - traces/parcoords/attributes/line/colorbar/exponentformat
+            /// - traces/scattermapbox/attributes/marker/colorbar/exponentformat
+            /// - traces/scatterpolargl/attributes/marker/colorbar/exponentformat
             /// - traces/volume/attributes/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
@@ -890,11 +944,16 @@ public struct ParallelCategories: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showexponent
             /// - layout/layoutAttributes/xaxis/showexponent
             /// - layout/layoutAttributes/yaxis/showexponent
-            /// - traces/contour/attributes/colorbar/showexponent
+            /// - traces/bar/attributes/marker/colorbar/showexponent
+            /// - traces/contourcarpet/attributes/colorbar/showexponent
             /// - traces/densitymapbox/attributes/colorbar/showexponent
-            /// - traces/histogram2d/attributes/colorbar/showexponent
+            /// - traces/funnel/attributes/marker/colorbar/showexponent
+            /// - traces/heatmapgl/attributes/colorbar/showexponent
+            /// - traces/histogram/attributes/marker/colorbar/showexponent
             /// - traces/parcats/attributes/line/colorbar/showexponent
-            /// - traces/sunburst/attributes/marker/colorbar/showexponent
+            /// - traces/parcoords/attributes/line/colorbar/showexponent
+            /// - traces/scattermapbox/attributes/marker/colorbar/showexponent
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showexponent
             /// - traces/volume/attributes/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
@@ -951,11 +1010,16 @@ public struct ParallelCategories: Trace {
                 ///
                 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
                 /// - layout/layoutAttributes/coloraxis/colorbar/title/side
-                /// - traces/contour/attributes/colorbar/title/side
+                /// - traces/bar/attributes/marker/colorbar/title/side
+                /// - traces/contourcarpet/attributes/colorbar/title/side
                 /// - traces/densitymapbox/attributes/colorbar/title/side
-                /// - traces/histogram2d/attributes/colorbar/title/side
+                /// - traces/funnel/attributes/marker/colorbar/title/side
+                /// - traces/heatmapgl/attributes/colorbar/title/side
+                /// - traces/histogram/attributes/marker/colorbar/title/side
                 /// - traces/parcats/attributes/line/colorbar/title/side
-                /// - traces/sunburst/attributes/marker/colorbar/title/side
+                /// - traces/parcoords/attributes/line/colorbar/title/side
+                /// - traces/scattermapbox/attributes/marker/colorbar/title/side
+                /// - traces/scatterpolargl/attributes/marker/colorbar/title/side
                 /// - traces/volume/attributes/colorbar/title/side
                 public enum Side: String, Encodable {
                     case right
@@ -1012,11 +1076,16 @@ public struct ParallelCategories: Trace {
             
                 /// Deprecated in favor of color bar's `title.side`.
                 /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
-                /// - traces/contour/attributes/colorbar/_deprecated/titleside
+                /// - traces/bar/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/contourcarpet/attributes/colorbar/_deprecated/titleside
                 /// - traces/densitymapbox/attributes/colorbar/_deprecated/titleside
-                /// - traces/histogram2d/attributes/colorbar/_deprecated/titleside
+                /// - traces/funnel/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/heatmapgl/attributes/colorbar/_deprecated/titleside
+                /// - traces/histogram/attributes/marker/colorbar/_deprecated/titleside
                 /// - traces/parcats/attributes/line/colorbar/_deprecated/titleside
-                /// - traces/sunburst/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
+                /// - traces/scattermapbox/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/scatterpolargl/attributes/marker/colorbar/_deprecated/titleside
                 /// - traces/volume/attributes/colorbar/_deprecated/titleside
                 public enum TitleSide: String, Encodable {
                     case right

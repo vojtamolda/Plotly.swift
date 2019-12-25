@@ -8,10 +8,11 @@ public struct DensityMapbox: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/contourcarpet/attributes/visible
     /// - traces/densitymapbox/attributes/visible
-    /// - traces/histogram2d/attributes/visible
-    /// - traces/sunburst/attributes/visible
-    /// - traces/volume/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -107,9 +108,8 @@ public struct DensityMapbox: Trace {
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
         /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/histogram2d/attributes/hoverlabel/align
-        /// - traces/sunburst/attributes/hoverlabel/align
-        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -351,10 +351,10 @@ public struct DensityMapbox: Trace {
         /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
         /// Use `thickness` to set the value.
         /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
+        /// - traces/contourcarpet/attributes/colorbar/thicknessmode
         /// - traces/densitymapbox/attributes/colorbar/thicknessmode
-        /// - traces/histogram2d/attributes/colorbar/thicknessmode
-        /// - traces/sunburst/attributes/marker/colorbar/thicknessmode
-        /// - traces/volume/attributes/colorbar/thicknessmode
+        /// - traces/parcoords/attributes/line/colorbar/thicknessmode
+        /// - traces/scattermapbox/attributes/marker/colorbar/thicknessmode
         public enum ThicknessMode: String, Encodable {
             case fraction
             case pixels
@@ -373,10 +373,10 @@ public struct DensityMapbox: Trace {
         /// Use `len` to set the value.
         /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
         /// - layout/layoutAttributes/sliders/items/slider/lenmode
+        /// - traces/contourcarpet/attributes/colorbar/lenmode
         /// - traces/densitymapbox/attributes/colorbar/lenmode
-        /// - traces/histogram2d/attributes/colorbar/lenmode
-        /// - traces/sunburst/attributes/marker/colorbar/lenmode
-        /// - traces/volume/attributes/colorbar/lenmode
+        /// - traces/parcoords/attributes/line/colorbar/lenmode
+        /// - traces/scattermapbox/attributes/marker/colorbar/lenmode
         public enum LengthMode: String, Encodable {
             case fraction
             case pixels
@@ -398,10 +398,10 @@ public struct DensityMapbox: Trace {
         /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
         /// - layout/layoutAttributes/images/items/image/xanchor
         /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
+        /// - traces/contourcarpet/attributes/colorbar/xanchor
         /// - traces/densitymapbox/attributes/colorbar/xanchor
-        /// - traces/histogram2d/attributes/colorbar/xanchor
-        /// - traces/sunburst/attributes/marker/colorbar/xanchor
-        /// - traces/volume/attributes/colorbar/xanchor
+        /// - traces/parcoords/attributes/line/colorbar/xanchor
+        /// - traces/scattermapbox/attributes/marker/colorbar/xanchor
         public enum XAnchor: String, Encodable {
             case left
             case center
@@ -419,10 +419,10 @@ public struct DensityMapbox: Trace {
         /// Sets the anchor for the y position.
         /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
         /// - layout/layoutAttributes/images/items/image/yanchor
+        /// - traces/contourcarpet/attributes/colorbar/yanchor
         /// - traces/densitymapbox/attributes/colorbar/yanchor
-        /// - traces/histogram2d/attributes/colorbar/yanchor
-        /// - traces/sunburst/attributes/marker/colorbar/yanchor
-        /// - traces/volume/attributes/colorbar/yanchor
+        /// - traces/parcoords/attributes/line/colorbar/yanchor
+        /// - traces/scattermapbox/attributes/marker/colorbar/yanchor
         public enum YAnchor: String, Encodable {
             case top
             case middle
@@ -467,10 +467,10 @@ public struct DensityMapbox: Trace {
         /// - layout/layoutAttributes/ternary/caxis/tickmode
         /// - layout/layoutAttributes/xaxis/tickmode
         /// - layout/layoutAttributes/yaxis/tickmode
+        /// - traces/contourcarpet/attributes/colorbar/tickmode
         /// - traces/densitymapbox/attributes/colorbar/tickmode
-        /// - traces/histogram2d/attributes/colorbar/tickmode
-        /// - traces/sunburst/attributes/marker/colorbar/tickmode
-        /// - traces/volume/attributes/colorbar/tickmode
+        /// - traces/parcoords/attributes/line/colorbar/tickmode
+        /// - traces/scattermapbox/attributes/marker/colorbar/tickmode
         public enum TickMode: String, Encodable {
             case auto
             case linear
@@ -542,10 +542,10 @@ public struct DensityMapbox: Trace {
         /// - layout/layoutAttributes/ternary/caxis/ticks
         /// - layout/layoutAttributes/xaxis/ticks
         /// - layout/layoutAttributes/yaxis/ticks
+        /// - traces/contourcarpet/attributes/colorbar/ticks
         /// - traces/densitymapbox/attributes/colorbar/ticks
-        /// - traces/histogram2d/attributes/colorbar/ticks
-        /// - traces/sunburst/attributes/marker/colorbar/ticks
-        /// - traces/volume/attributes/colorbar/ticks
+        /// - traces/parcoords/attributes/line/colorbar/ticks
+        /// - traces/scattermapbox/attributes/marker/colorbar/ticks
         public enum Ticks: String, Encodable {
             case outside
             case inside
@@ -683,10 +683,10 @@ public struct DensityMapbox: Trace {
         /// - layout/layoutAttributes/ternary/caxis/showtickprefix
         /// - layout/layoutAttributes/xaxis/showtickprefix
         /// - layout/layoutAttributes/yaxis/showtickprefix
+        /// - traces/contourcarpet/attributes/colorbar/showtickprefix
         /// - traces/densitymapbox/attributes/colorbar/showtickprefix
-        /// - traces/histogram2d/attributes/colorbar/showtickprefix
-        /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
-        /// - traces/volume/attributes/colorbar/showtickprefix
+        /// - traces/parcoords/attributes/line/colorbar/showtickprefix
+        /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
         public enum ShowTickPrefix: String, Encodable {
             case all
             case first
@@ -714,10 +714,10 @@ public struct DensityMapbox: Trace {
         /// - layout/layoutAttributes/ternary/caxis/showticksuffix
         /// - layout/layoutAttributes/xaxis/showticksuffix
         /// - layout/layoutAttributes/yaxis/showticksuffix
+        /// - traces/contourcarpet/attributes/colorbar/showticksuffix
         /// - traces/densitymapbox/attributes/colorbar/showticksuffix
-        /// - traces/histogram2d/attributes/colorbar/showticksuffix
-        /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
-        /// - traces/volume/attributes/colorbar/showticksuffix
+        /// - traces/parcoords/attributes/line/colorbar/showticksuffix
+        /// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
         public enum ShowTickSuffix: String, Encodable {
             case all
             case first
@@ -745,10 +745,10 @@ public struct DensityMapbox: Trace {
         /// - layout/layoutAttributes/ternary/caxis/exponentformat
         /// - layout/layoutAttributes/xaxis/exponentformat
         /// - layout/layoutAttributes/yaxis/exponentformat
+        /// - traces/contourcarpet/attributes/colorbar/exponentformat
         /// - traces/densitymapbox/attributes/colorbar/exponentformat
-        /// - traces/histogram2d/attributes/colorbar/exponentformat
-        /// - traces/sunburst/attributes/marker/colorbar/exponentformat
-        /// - traces/volume/attributes/colorbar/exponentformat
+        /// - traces/parcoords/attributes/line/colorbar/exponentformat
+        /// - traces/scattermapbox/attributes/marker/colorbar/exponentformat
         public enum ExponentFormat: String, Encodable {
             case none
             case e
@@ -778,10 +778,10 @@ public struct DensityMapbox: Trace {
         /// - layout/layoutAttributes/ternary/caxis/showexponent
         /// - layout/layoutAttributes/xaxis/showexponent
         /// - layout/layoutAttributes/yaxis/showexponent
+        /// - traces/contourcarpet/attributes/colorbar/showexponent
         /// - traces/densitymapbox/attributes/colorbar/showexponent
-        /// - traces/histogram2d/attributes/colorbar/showexponent
-        /// - traces/sunburst/attributes/marker/colorbar/showexponent
-        /// - traces/volume/attributes/colorbar/showexponent
+        /// - traces/parcoords/attributes/line/colorbar/showexponent
+        /// - traces/scattermapbox/attributes/marker/colorbar/showexponent
         public enum ShowExponent: String, Encodable {
             case all
             case first
@@ -837,10 +837,10 @@ public struct DensityMapbox: Trace {
             ///
             /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
             /// - layout/layoutAttributes/coloraxis/colorbar/title/side
+            /// - traces/contourcarpet/attributes/colorbar/title/side
             /// - traces/densitymapbox/attributes/colorbar/title/side
-            /// - traces/histogram2d/attributes/colorbar/title/side
-            /// - traces/sunburst/attributes/marker/colorbar/title/side
-            /// - traces/volume/attributes/colorbar/title/side
+            /// - traces/parcoords/attributes/line/colorbar/title/side
+            /// - traces/scattermapbox/attributes/marker/colorbar/title/side
             public enum Side: String, Encodable {
                 case right
                 case top
@@ -896,10 +896,10 @@ public struct DensityMapbox: Trace {
         
             /// Deprecated in favor of color bar's `title.side`.
             /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
+            /// - traces/contourcarpet/attributes/colorbar/_deprecated/titleside
             /// - traces/densitymapbox/attributes/colorbar/_deprecated/titleside
-            /// - traces/histogram2d/attributes/colorbar/_deprecated/titleside
-            /// - traces/sunburst/attributes/marker/colorbar/_deprecated/titleside
-            /// - traces/volume/attributes/colorbar/_deprecated/titleside
+            /// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
+            /// - traces/scattermapbox/attributes/marker/colorbar/_deprecated/titleside
             public enum TitleSide: String, Encodable {
                 case right
                 case top

@@ -1,5 +1,5 @@
 
-// MARK: Schema Data Type Protocol
+// MARK: Plotly Schema Data Type Protocols
 
 /// An decodable object that remembers the coding path of the container it originates from.
 protocol DecodableWithPath: Decodable {
@@ -30,20 +30,17 @@ protocol SchemaType: DecodableWithPath {
 }
 
 
+// MARK: - Plotly Schema Content
+
 /// Container for Swift structs that map onto objects in Plotly JSON schema hierarchy.
-/// - SeeAlso: Decodable
 struct Schema: Decodable {
     /// Workaround to sort `Entries` in the same order as the Plotly schema.
     static var order: Order? = nil
 
-
-    // MARK: - Schema Content
-
     /// Representation of `/defs` key in the Plotly schema.
-    ///
     /// - Warning: The entire `/defs/*` subtree and especially the`ValObjects` data type
-    /// specifications are more or less ignored. Type information stored here is implicitly coded into the way
-    /// different cases of the `Attribute` decoding. Any change like an addition of a new data type
+    /// specifications are more or less ignored. Knowledge about types stored here is used implicitly
+    /// to decode each case of the `Attribute`. Any change like an addition of a new data type
     /// require a manual change of the decoding process.
     struct Defs: Decodable {
         struct ValObject: Decodable {
@@ -65,16 +62,16 @@ struct Schema: Decodable {
         let animatable: Bool
         let categories: [String]
         let meta: [String: String]
-        let attributes: Entries
-        let layoutAttributes: Entries?
+        let attributes: Object
+        let layoutAttributes: Object?
 
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: Keys.self)
             type = try container.decode(String.self, forKey: Keys("type"))
             animatable = try container.decode(Bool.self, forKey: Keys("animatable"))
-            attributes = try container.decode(Entries.self, forKey: Keys("attributes"))
-            layoutAttributes = try container.decodeIfPresent(Entries.self,
-                                                        forKey: Keys("layoutAttributes"))
+            attributes = try container.decode(Object.self, forKey: Keys("attributes"))
+            layoutAttributes = try container.decodeIfPresent(Object.self,
+                                                             forKey: Keys("layoutAttributes"))
             meta = try container.decode([String: String].self, forKey: Keys("meta"))
             // There is an empty dict in 'traces/area' instead of a list like everywhere else.
             categories = (try? container.decode([String].self, forKey: Keys("categories"))) ?? []
@@ -86,7 +83,7 @@ struct Schema: Decodable {
 
     /// Specification of `layout/*` subtree attributes.
     struct Layout: Decodable {
-        let layoutAttributes: Entries
+        let layoutAttributes: Object
     }
     /// Decoded `layout` object.
     let layout: Layout
@@ -106,34 +103,34 @@ struct Schema: Decodable {
     // FIXME: Frames are currently not used.
     struct Frames: Decodable {
         struct Items: Decodable {
-            let frames_entry: Entries
+            let frames_entry: Object
         }
         let items: Items
     }
     let frames: Frames
 
     // FIXME: Animation is currently not used.
-    let animation: Entries
+    let animation: Object
 
     /// Decoded `config/*` attributes.
-    let config: Entries
+    let config: Object
 
 
-    // MARK: - Schema Decoding Types
+    // MARK: - Decoding Infrastructure
 
-    /// Basic decoding block of the Plotly JSON schema hierarchy (i.e. primitive, typed attribute or nested sub-entries).
+    /// Basic decoding block of the Plotly JSON schema hierarchy (i.e. primitive, typed attribute or nested object).
     enum Entry: Decodable {
         case primitive(_ primitive: Primitive)
         case attribute(_ attribute: Attribute)
-        case entries(_ entries: Entries)
+        case object(_ object: Object)
 
         init(from decoder: Decoder) throws {
             if let primitive = try? Primitive.init(from: decoder) {
                 self = .primitive(primitive)
             } else if let attribute = try? Attribute.init(from: decoder) {
                 self = .attribute(attribute)
-            } else if let entries = try? Entries.init(from: decoder) {
-                self = .entries(entries)
+            } else if let object = try? Object.init(from: decoder) {
+                self = .object(object)
             } else {
                 let decodingPath = decoder.codingPath.map { $0.stringValue }.joined(separator: "/")
                 fatalError("Unsupported entry type in '\(decodingPath)'")
@@ -239,10 +236,10 @@ struct Schema: Decodable {
         }
     }
 
-    /// Ordered, nested decoding container consisting of other decoded sub-entries.
+    /// Ordered, nested decoding container consisting of other decoded entries.
     /// - Note: Order of nested members is based on reading `Order.json` file because Swift
     /// Dictionaries and JSONParser can't guarantee persistent ordering before and after decoding.
-    struct Entries: SchemaType {
+    struct Object: SchemaType {
         var codingPath: [CodingKey] = []
         let valType: String = "object"
         let description: String? = nil
@@ -267,7 +264,7 @@ struct Schema: Decodable {
     }
 
 
-    // MARK: Schema Data Types
+    // MARK: - Data Types
 
     /// Decoded Plotly schema attribute of type `data_array`.
     /// - Remark: Properties originate from `defs/valObjects/data_array`.

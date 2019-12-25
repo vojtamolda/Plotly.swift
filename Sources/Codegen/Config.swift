@@ -3,10 +3,10 @@ import Foundation
 
 /// Swift struct corresponding to Plotly `config`.
 struct Config {
-    let attributes: Swift.Struct
+    let attributes: Swift.Object
 
-    init(schema: Schema.Entries) {
-        attributes = Swift.Struct(named: "config", schema: schema)
+    init(schema: Schema.Object) {
+        attributes = Swift.Object(named: "config", schema: schema)
     }
 
     /// Returns lines of Swift code that fully define the Config struct and all of it's nested members.

@@ -13,7 +13,7 @@ extension Definable {
     }
 }
 
-/// A Swift data type that corresponds to some Plotly schema origin data type.
+/// A Swift data type that originates from some Plotly schema data type.
 protocol SwiftType: Definable where OriginType: SchemaType {
     associatedtype OriginType
     var name: String { get }
@@ -52,13 +52,129 @@ extension SwiftSharedType {
 }
 
 
+// MARK: - Swift Plotly Schema Equivalents
+
 /// Container for Swift data types that map to corresponding values in the Plotly JSON schema hierarchy.
 struct Swift {
     /// Storage of Plotly mangledtogethernames translated to Swift camelCaseNames for each identifier in the schema.
     static var name: Name? = nil
 
+    /// Data type that maps hierarchical Plotly `object` to a Swift `struct`.
+    struct Object: SwiftSharedType {
+        let name: String
+        var documentation: [String] = []
+        var schema: Schema.Object
 
-    // MARK: - Swift Data Types
+        var access: String = "public"
+        var protocols: [String] = ["Encodable"]
+        var references: [String] = []
+        static var existing: [Swift.Object] = []
+
+        var members: [Any]
+        var primitives: [String: Schema.Primitive]
+
+        init(named name: String, schema object: Schema.Object) {
+            self.name = Swift.name!.pascalCased(name)
+            self.schema = object
+
+            members = []
+            primitives = [:]
+            for (identifier, entry) in object.entries {
+                switch entry {
+                case .primitive(let primitive):
+                    self.primitives[identifier] = primitive
+                case .attribute(let attribute):
+                    switch attribute {
+                    case .dataArray(let dataArray):
+                        let dataArrayType = Swift.DataArray(schema: dataArray)
+                        members += [Instance(named: identifier, of: dataArrayType)]
+                    case .enumerated(let enumerated):
+                        let enumeratedType = Swift.Enumerated.createShared(named: identifier, schema: enumerated)
+                        members += [Instance(named: identifier, of: enumeratedType)]
+                    case .boolean(let boolean):
+                        let booleanType = Swift.Boolean(schema: boolean)
+                        members += [Instance(named: identifier, of: booleanType)]
+                    case .number(let number):
+                        let numberType = Swift.Number(schema: number)
+                        members += [Instance(named: identifier, of: numberType)]
+                    case .integer(let integer):
+                        let integerType = Swift.Integer(schema: integer)
+                        members += [Instance(named: identifier, of: integerType)]
+                    case .string(let string):
+                        let stringType = Swift.String_(schema: string)
+                        members += [Instance(named: identifier, of: stringType)]
+                    case .color(let color):
+                        let colorType = Swift.Color(schema: color)
+                        members += [Instance(named: identifier, of: colorType)]
+                    case .colorList(let colorList):
+                        let colorListType = Swift.ColorList.init(schema: colorList)
+                        members += [Instance(named: identifier, of: colorListType)]
+                    case .colorScale(let colorScale):
+                        let colorScaleType = Swift.ColorScale(schema: colorScale)
+                        members += [Instance(named: identifier, of: colorScaleType)]
+                    case .angle(let angle):
+                        let angleType = Swift.Angle(schema: angle)
+                        members += [Instance(named: identifier, of: angleType)]
+                    case .subPlotId(let subPlotId):
+                        let subPlotIdType = Swift.SubPlotID(schema: subPlotId)
+                        members += [Instance(named: identifier, of: subPlotIdType)]
+                    case .flagList(let flagList):
+                        let flagListType = Swift.FlagList.createShared(named: identifier, schema: flagList)
+                        members += [Instance(named: identifier, of: flagListType)]
+                    case .any(let any):
+                        let anyType = Swift.Any_(schema: any)
+                        members += [Instance(named: identifier, of: anyType)]
+                    case .infoArray(let infoArray):
+                        let infoArrayType = Swift.InfoArray(schema: infoArray)
+                        members += [Instance(named: identifier, of: infoArrayType)]
+                    }
+                case .object(let object):
+                    let nestedObject = Swift.Object.createShared(named: identifier, schema: object)
+                    members += [Instance(named: identifier, of: nestedObject)]
+                }
+
+                if let description = primitives["description"],
+                    case Schema.Primitive.string(let string) = description {
+                        documentation = string.documentation()
+                }
+            }
+        }
+
+        /// Returns lines of Swift code that fully define the struct and all of it's nested members.
+        func definition() -> [String] {
+            var lines = [String]()
+            lines += documentation
+            for reference in references.sorted() {
+                lines += ["/// - \(reference)"]
+            }
+
+            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
+            lines += ["\(access) struct \(name)\(protocols) {"]
+
+            for member in members {
+                let m = member as! Definable
+                lines += m.definition().indented()
+                lines += [""]
+            }
+
+            let variables = members.compactMap { $0 as? Instantiable }.filter { $0.constant == nil }
+            let arguments = variables.map { $0.argument() + " = nil" }.joined(separator: ", ")
+            lines += ["\(access) init(\(arguments)) {"].indented()
+            lines += variables.map { "self.\($0.name) = \($0.name)" }.indented(2)
+            lines += ["}"].indented()
+
+            lines += ["}"]
+            return lines
+        }
+
+        // TODO: Implementation
+        static func == (lhs: Swift.Object, rhs: Swift.Object) -> Bool {
+            return false
+        }
+    }
+
+
+    // MARK: - Data Types
 
     /// Data type that maps Plotly `data_array` to a numerical array in Swift.
     struct DataArray: SwiftType {
@@ -300,117 +416,4 @@ struct Swift {
         var schema: Schema.InfoArray
     }
 
-    /// Data type that maps hierarchical Plotly `object` to Swift `struct`.
-    struct Struct: SwiftSharedType {
-        let name: String
-        var documentation: [String] = []
-        var schema: Schema.Entries
-
-        var access: String = "public"
-        var protocols: [String] = ["Encodable"]
-        var references: [String] = []
-        static var existing: [Swift.Struct] = []
-
-        var members: [Any]
-        var primitives: [String: Schema.Primitive]
-
-        init(named name: String, schema entries: Schema.Entries) {
-            self.name = Swift.name!.pascalCased(name)
-            self.schema = entries
-
-            members = []
-            primitives = [:]
-            for (identifier, entry) in entries.entries {
-                switch entry {
-                case .primitive(let primitive):
-                    self.primitives[identifier] = primitive
-                case .attribute(let attribute):
-                    switch attribute {
-                    case .dataArray(let dataArray):
-                        let dataArrayType = Swift.DataArray(schema: dataArray)
-                        members += [Instance(named: identifier, of: dataArrayType)]
-                    case .enumerated(let enumerated):
-                        let enumeratedType = Swift.Enumerated.createShared(named: identifier, schema: enumerated)
-                        members += [Instance(named: identifier, of: enumeratedType)]
-                    case .boolean(let boolean):
-                        let booleanType = Swift.Boolean(schema: boolean)
-                        members += [Instance(named: identifier, of: booleanType)]
-                    case .number(let number):
-                        let numberType = Swift.Number(schema: number)
-                        members += [Instance(named: identifier, of: numberType)]
-                    case .integer(let integer):
-                        let integerType = Swift.Integer(schema: integer)
-                        members += [Instance(named: identifier, of: integerType)]
-                    case .string(let string):
-                        let stringType = Swift.String_(schema: string)
-                        members += [Instance(named: identifier, of: stringType)]
-                    case .color(let color):
-                        let colorType = Swift.Color(schema: color)
-                        members += [Instance(named: identifier, of: colorType)]
-                    case .colorList(let colorList):
-                        let colorListType = Swift.ColorList.init(schema: colorList)
-                        members += [Instance(named: identifier, of: colorListType)]
-                    case .colorScale(let colorScale):
-                        let colorScaleType = Swift.ColorScale(schema: colorScale)
-                        members += [Instance(named: identifier, of: colorScaleType)]
-                    case .angle(let angle):
-                        let angleType = Swift.Angle(schema: angle)
-                        members += [Instance(named: identifier, of: angleType)]
-                    case .subPlotId(let subPlotId):
-                        let subPlotIdType = Swift.SubPlotID(schema: subPlotId)
-                        members += [Instance(named: identifier, of: subPlotIdType)]
-                    case .flagList(let flagList):
-                        let flagListType = Swift.FlagList.createShared(named: identifier, schema: flagList)
-                        members += [Instance(named: identifier, of: flagListType)]
-                    case .any(let any):
-                        let anyType = Swift.Any_(schema: any)
-                        members += [Instance(named: identifier, of: anyType)]
-                    case .infoArray(let infoArray):
-                        let infoArrayType = Swift.InfoArray(schema: infoArray)
-                        members += [Instance(named: identifier, of: infoArrayType)]
-                    }
-                case .entries(let entries):
-                    let nestedStruct = Swift.Struct.createShared(named: identifier, schema: entries)
-                    members += [Instance(named: identifier, of: nestedStruct)]
-                }
-            }
-
-            if let description = primitives["description"],
-                case Schema.Primitive.string(let descriptionString) = description {
-                documentation = descriptionString.documentation()
-            }
-        }
-
-        /// Returns lines of Swift code that fully define the struct and all of it's nested members.
-        func definition() -> [String] {
-            var lines = [String]()
-            lines += documentation
-            for reference in references.sorted() {
-                lines += ["/// - \(reference)"]
-            }
-
-            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += ["\(access) struct \(name)\(protocols) {"]
-
-            for member in members {
-                let m = member as! Definable
-                lines += m.definition().indented()
-                lines += [""]
-            }
-
-            let variables = members.compactMap { $0 as? Instantiable }.filter { $0.constant == nil }
-            let arguments = variables.map { $0.argument() + " = nil" }.joined(separator: ", ")
-            lines += ["\(access) init(\(arguments)) {"].indented()
-            lines += variables.map { "self.\($0.name) = \($0.name)" }.indented(2)
-            lines += ["}"].indented()
-
-            lines += ["}"]
-            return lines
-        }
-
-        // TODO: Implementation
-        static func == (lhs: Swift.Struct, rhs: Swift.Struct) -> Bool {
-            return false
-        }
-    }
 }

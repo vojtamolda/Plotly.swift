@@ -10,8 +10,32 @@ public struct Sunburst: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/bar/attributes/visible
+    /// - traces/barpolar/attributes/visible
+    /// - traces/box/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/cone/attributes/visible
+    /// - traces/contourcarpet/attributes/visible
+    /// - traces/densitymapbox/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/heatmapgl/attributes/visible
+    /// - traces/histogram/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/parcats/attributes/visible
+    /// - traces/parcoords/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/sankey/attributes/visible
+    /// - traces/scattercarpet/attributes/visible
+    /// - traces/scattermapbox/attributes/visible
+    /// - traces/scatterpolar/attributes/visible
+    /// - traces/scatterpolargl/attributes/visible
+    /// - traces/scatterternary/attributes/visible
     /// - traces/sunburst/attributes/visible
+    /// - traces/surface/attributes/visible
     /// - traces/volume/attributes/visible
+    /// - traces/waterfall/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -106,8 +130,31 @@ public struct Sunburst: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/bar/attributes/hoverlabel/align
+        /// - traces/barpolar/attributes/hoverlabel/align
+        /// - traces/box/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/cone/attributes/hoverlabel/align
+        /// - traces/densitymapbox/attributes/hoverlabel/align
+        /// - traces/funnel/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/histogram/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/hoverlabel/align
+        /// - traces/sankey/attributes/link/hoverlabel/align
+        /// - traces/sankey/attributes/node/hoverlabel/align
+        /// - traces/scattercarpet/attributes/hoverlabel/align
+        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/scatterpolar/attributes/hoverlabel/align
+        /// - traces/scatterpolargl/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
         /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
         /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -362,7 +409,25 @@ public struct Sunburst: Trace {
             /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
             /// Use `thickness` to set the value.
             /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
+            /// - traces/bar/attributes/marker/colorbar/thicknessmode
+            /// - traces/barpolar/attributes/marker/colorbar/thicknessmode
+            /// - traces/choropleth/attributes/colorbar/thicknessmode
+            /// - traces/cone/attributes/colorbar/thicknessmode
+            /// - traces/contourcarpet/attributes/colorbar/thicknessmode
+            /// - traces/densitymapbox/attributes/colorbar/thicknessmode
+            /// - traces/funnel/attributes/marker/colorbar/thicknessmode
+            /// - traces/heatmapgl/attributes/colorbar/thicknessmode
+            /// - traces/histogram/attributes/marker/colorbar/thicknessmode
+            /// - traces/histogram2d/attributes/colorbar/thicknessmode
+            /// - traces/parcats/attributes/line/colorbar/thicknessmode
+            /// - traces/parcoords/attributes/line/colorbar/thicknessmode
+            /// - traces/scattercarpet/attributes/marker/colorbar/thicknessmode
+            /// - traces/scattermapbox/attributes/marker/colorbar/thicknessmode
+            /// - traces/scatterpolar/attributes/marker/colorbar/thicknessmode
+            /// - traces/scatterpolargl/attributes/marker/colorbar/thicknessmode
+            /// - traces/scatterternary/attributes/marker/colorbar/thicknessmode
             /// - traces/sunburst/attributes/marker/colorbar/thicknessmode
+            /// - traces/surface/attributes/colorbar/thicknessmode
             /// - traces/volume/attributes/colorbar/thicknessmode
             public enum ThicknessMode: String, Encodable {
                 case fraction
@@ -382,7 +447,25 @@ public struct Sunburst: Trace {
             /// Use `len` to set the value.
             /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
             /// - layout/layoutAttributes/sliders/items/slider/lenmode
+            /// - traces/bar/attributes/marker/colorbar/lenmode
+            /// - traces/barpolar/attributes/marker/colorbar/lenmode
+            /// - traces/choropleth/attributes/colorbar/lenmode
+            /// - traces/cone/attributes/colorbar/lenmode
+            /// - traces/contourcarpet/attributes/colorbar/lenmode
+            /// - traces/densitymapbox/attributes/colorbar/lenmode
+            /// - traces/funnel/attributes/marker/colorbar/lenmode
+            /// - traces/heatmapgl/attributes/colorbar/lenmode
+            /// - traces/histogram/attributes/marker/colorbar/lenmode
+            /// - traces/histogram2d/attributes/colorbar/lenmode
+            /// - traces/parcats/attributes/line/colorbar/lenmode
+            /// - traces/parcoords/attributes/line/colorbar/lenmode
+            /// - traces/scattercarpet/attributes/marker/colorbar/lenmode
+            /// - traces/scattermapbox/attributes/marker/colorbar/lenmode
+            /// - traces/scatterpolar/attributes/marker/colorbar/lenmode
+            /// - traces/scatterpolargl/attributes/marker/colorbar/lenmode
+            /// - traces/scatterternary/attributes/marker/colorbar/lenmode
             /// - traces/sunburst/attributes/marker/colorbar/lenmode
+            /// - traces/surface/attributes/colorbar/lenmode
             /// - traces/volume/attributes/colorbar/lenmode
             public enum LengthMode: String, Encodable {
                 case fraction
@@ -405,7 +488,25 @@ public struct Sunburst: Trace {
             /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
             /// - layout/layoutAttributes/images/items/image/xanchor
             /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
+            /// - traces/bar/attributes/marker/colorbar/xanchor
+            /// - traces/barpolar/attributes/marker/colorbar/xanchor
+            /// - traces/choropleth/attributes/colorbar/xanchor
+            /// - traces/cone/attributes/colorbar/xanchor
+            /// - traces/contourcarpet/attributes/colorbar/xanchor
+            /// - traces/densitymapbox/attributes/colorbar/xanchor
+            /// - traces/funnel/attributes/marker/colorbar/xanchor
+            /// - traces/heatmapgl/attributes/colorbar/xanchor
+            /// - traces/histogram/attributes/marker/colorbar/xanchor
+            /// - traces/histogram2d/attributes/colorbar/xanchor
+            /// - traces/parcats/attributes/line/colorbar/xanchor
+            /// - traces/parcoords/attributes/line/colorbar/xanchor
+            /// - traces/scattercarpet/attributes/marker/colorbar/xanchor
+            /// - traces/scattermapbox/attributes/marker/colorbar/xanchor
+            /// - traces/scatterpolar/attributes/marker/colorbar/xanchor
+            /// - traces/scatterpolargl/attributes/marker/colorbar/xanchor
+            /// - traces/scatterternary/attributes/marker/colorbar/xanchor
             /// - traces/sunburst/attributes/marker/colorbar/xanchor
+            /// - traces/surface/attributes/colorbar/xanchor
             /// - traces/volume/attributes/colorbar/xanchor
             public enum XAnchor: String, Encodable {
                 case left
@@ -424,7 +525,25 @@ public struct Sunburst: Trace {
             /// Sets the anchor for the y position.
             /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
             /// - layout/layoutAttributes/images/items/image/yanchor
+            /// - traces/bar/attributes/marker/colorbar/yanchor
+            /// - traces/barpolar/attributes/marker/colorbar/yanchor
+            /// - traces/choropleth/attributes/colorbar/yanchor
+            /// - traces/cone/attributes/colorbar/yanchor
+            /// - traces/contourcarpet/attributes/colorbar/yanchor
+            /// - traces/densitymapbox/attributes/colorbar/yanchor
+            /// - traces/funnel/attributes/marker/colorbar/yanchor
+            /// - traces/heatmapgl/attributes/colorbar/yanchor
+            /// - traces/histogram/attributes/marker/colorbar/yanchor
+            /// - traces/histogram2d/attributes/colorbar/yanchor
+            /// - traces/parcats/attributes/line/colorbar/yanchor
+            /// - traces/parcoords/attributes/line/colorbar/yanchor
+            /// - traces/scattercarpet/attributes/marker/colorbar/yanchor
+            /// - traces/scattermapbox/attributes/marker/colorbar/yanchor
+            /// - traces/scatterpolar/attributes/marker/colorbar/yanchor
+            /// - traces/scatterpolargl/attributes/marker/colorbar/yanchor
+            /// - traces/scatterternary/attributes/marker/colorbar/yanchor
             /// - traces/sunburst/attributes/marker/colorbar/yanchor
+            /// - traces/surface/attributes/colorbar/yanchor
             /// - traces/volume/attributes/colorbar/yanchor
             public enum YAnchor: String, Encodable {
                 case top
@@ -470,7 +589,25 @@ public struct Sunburst: Trace {
             /// - layout/layoutAttributes/ternary/caxis/tickmode
             /// - layout/layoutAttributes/xaxis/tickmode
             /// - layout/layoutAttributes/yaxis/tickmode
+            /// - traces/bar/attributes/marker/colorbar/tickmode
+            /// - traces/barpolar/attributes/marker/colorbar/tickmode
+            /// - traces/choropleth/attributes/colorbar/tickmode
+            /// - traces/cone/attributes/colorbar/tickmode
+            /// - traces/contourcarpet/attributes/colorbar/tickmode
+            /// - traces/densitymapbox/attributes/colorbar/tickmode
+            /// - traces/funnel/attributes/marker/colorbar/tickmode
+            /// - traces/heatmapgl/attributes/colorbar/tickmode
+            /// - traces/histogram/attributes/marker/colorbar/tickmode
+            /// - traces/histogram2d/attributes/colorbar/tickmode
+            /// - traces/parcats/attributes/line/colorbar/tickmode
+            /// - traces/parcoords/attributes/line/colorbar/tickmode
+            /// - traces/scattercarpet/attributes/marker/colorbar/tickmode
+            /// - traces/scattermapbox/attributes/marker/colorbar/tickmode
+            /// - traces/scatterpolar/attributes/marker/colorbar/tickmode
+            /// - traces/scatterpolargl/attributes/marker/colorbar/tickmode
+            /// - traces/scatterternary/attributes/marker/colorbar/tickmode
             /// - traces/sunburst/attributes/marker/colorbar/tickmode
+            /// - traces/surface/attributes/colorbar/tickmode
             /// - traces/volume/attributes/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
@@ -543,7 +680,25 @@ public struct Sunburst: Trace {
             /// - layout/layoutAttributes/ternary/caxis/ticks
             /// - layout/layoutAttributes/xaxis/ticks
             /// - layout/layoutAttributes/yaxis/ticks
+            /// - traces/bar/attributes/marker/colorbar/ticks
+            /// - traces/barpolar/attributes/marker/colorbar/ticks
+            /// - traces/choropleth/attributes/colorbar/ticks
+            /// - traces/cone/attributes/colorbar/ticks
+            /// - traces/contourcarpet/attributes/colorbar/ticks
+            /// - traces/densitymapbox/attributes/colorbar/ticks
+            /// - traces/funnel/attributes/marker/colorbar/ticks
+            /// - traces/heatmapgl/attributes/colorbar/ticks
+            /// - traces/histogram/attributes/marker/colorbar/ticks
+            /// - traces/histogram2d/attributes/colorbar/ticks
+            /// - traces/parcats/attributes/line/colorbar/ticks
+            /// - traces/parcoords/attributes/line/colorbar/ticks
+            /// - traces/scattercarpet/attributes/marker/colorbar/ticks
+            /// - traces/scattermapbox/attributes/marker/colorbar/ticks
+            /// - traces/scatterpolar/attributes/marker/colorbar/ticks
+            /// - traces/scatterpolargl/attributes/marker/colorbar/ticks
+            /// - traces/scatterternary/attributes/marker/colorbar/ticks
             /// - traces/sunburst/attributes/marker/colorbar/ticks
+            /// - traces/surface/attributes/colorbar/ticks
             /// - traces/volume/attributes/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
@@ -682,7 +837,25 @@ public struct Sunburst: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showtickprefix
             /// - layout/layoutAttributes/xaxis/showtickprefix
             /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - traces/bar/attributes/marker/colorbar/showtickprefix
+            /// - traces/barpolar/attributes/marker/colorbar/showtickprefix
+            /// - traces/choropleth/attributes/colorbar/showtickprefix
+            /// - traces/cone/attributes/colorbar/showtickprefix
+            /// - traces/contourcarpet/attributes/colorbar/showtickprefix
+            /// - traces/densitymapbox/attributes/colorbar/showtickprefix
+            /// - traces/funnel/attributes/marker/colorbar/showtickprefix
+            /// - traces/heatmapgl/attributes/colorbar/showtickprefix
+            /// - traces/histogram/attributes/marker/colorbar/showtickprefix
+            /// - traces/histogram2d/attributes/colorbar/showtickprefix
+            /// - traces/parcats/attributes/line/colorbar/showtickprefix
+            /// - traces/parcoords/attributes/line/colorbar/showtickprefix
+            /// - traces/scattercarpet/attributes/marker/colorbar/showtickprefix
+            /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
+            /// - traces/scatterpolar/attributes/marker/colorbar/showtickprefix
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showtickprefix
+            /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
             /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
+            /// - traces/surface/attributes/colorbar/showtickprefix
             /// - traces/volume/attributes/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
@@ -711,7 +884,25 @@ public struct Sunburst: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showticksuffix
             /// - layout/layoutAttributes/xaxis/showticksuffix
             /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - traces/bar/attributes/marker/colorbar/showticksuffix
+            /// - traces/barpolar/attributes/marker/colorbar/showticksuffix
+            /// - traces/choropleth/attributes/colorbar/showticksuffix
+            /// - traces/cone/attributes/colorbar/showticksuffix
+            /// - traces/contourcarpet/attributes/colorbar/showticksuffix
+            /// - traces/densitymapbox/attributes/colorbar/showticksuffix
+            /// - traces/funnel/attributes/marker/colorbar/showticksuffix
+            /// - traces/heatmapgl/attributes/colorbar/showticksuffix
+            /// - traces/histogram/attributes/marker/colorbar/showticksuffix
+            /// - traces/histogram2d/attributes/colorbar/showticksuffix
+            /// - traces/parcats/attributes/line/colorbar/showticksuffix
+            /// - traces/parcoords/attributes/line/colorbar/showticksuffix
+            /// - traces/scattercarpet/attributes/marker/colorbar/showticksuffix
+            /// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
+            /// - traces/scatterpolar/attributes/marker/colorbar/showticksuffix
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showticksuffix
+            /// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
             /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+            /// - traces/surface/attributes/colorbar/showticksuffix
             /// - traces/volume/attributes/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
@@ -740,7 +931,25 @@ public struct Sunburst: Trace {
             /// - layout/layoutAttributes/ternary/caxis/exponentformat
             /// - layout/layoutAttributes/xaxis/exponentformat
             /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - traces/bar/attributes/marker/colorbar/exponentformat
+            /// - traces/barpolar/attributes/marker/colorbar/exponentformat
+            /// - traces/choropleth/attributes/colorbar/exponentformat
+            /// - traces/cone/attributes/colorbar/exponentformat
+            /// - traces/contourcarpet/attributes/colorbar/exponentformat
+            /// - traces/densitymapbox/attributes/colorbar/exponentformat
+            /// - traces/funnel/attributes/marker/colorbar/exponentformat
+            /// - traces/heatmapgl/attributes/colorbar/exponentformat
+            /// - traces/histogram/attributes/marker/colorbar/exponentformat
+            /// - traces/histogram2d/attributes/colorbar/exponentformat
+            /// - traces/parcats/attributes/line/colorbar/exponentformat
+            /// - traces/parcoords/attributes/line/colorbar/exponentformat
+            /// - traces/scattercarpet/attributes/marker/colorbar/exponentformat
+            /// - traces/scattermapbox/attributes/marker/colorbar/exponentformat
+            /// - traces/scatterpolar/attributes/marker/colorbar/exponentformat
+            /// - traces/scatterpolargl/attributes/marker/colorbar/exponentformat
+            /// - traces/scatterternary/attributes/marker/colorbar/exponentformat
             /// - traces/sunburst/attributes/marker/colorbar/exponentformat
+            /// - traces/surface/attributes/colorbar/exponentformat
             /// - traces/volume/attributes/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
@@ -771,7 +980,25 @@ public struct Sunburst: Trace {
             /// - layout/layoutAttributes/ternary/caxis/showexponent
             /// - layout/layoutAttributes/xaxis/showexponent
             /// - layout/layoutAttributes/yaxis/showexponent
+            /// - traces/bar/attributes/marker/colorbar/showexponent
+            /// - traces/barpolar/attributes/marker/colorbar/showexponent
+            /// - traces/choropleth/attributes/colorbar/showexponent
+            /// - traces/cone/attributes/colorbar/showexponent
+            /// - traces/contourcarpet/attributes/colorbar/showexponent
+            /// - traces/densitymapbox/attributes/colorbar/showexponent
+            /// - traces/funnel/attributes/marker/colorbar/showexponent
+            /// - traces/heatmapgl/attributes/colorbar/showexponent
+            /// - traces/histogram/attributes/marker/colorbar/showexponent
+            /// - traces/histogram2d/attributes/colorbar/showexponent
+            /// - traces/parcats/attributes/line/colorbar/showexponent
+            /// - traces/parcoords/attributes/line/colorbar/showexponent
+            /// - traces/scattercarpet/attributes/marker/colorbar/showexponent
+            /// - traces/scattermapbox/attributes/marker/colorbar/showexponent
+            /// - traces/scatterpolar/attributes/marker/colorbar/showexponent
+            /// - traces/scatterpolargl/attributes/marker/colorbar/showexponent
+            /// - traces/scatterternary/attributes/marker/colorbar/showexponent
             /// - traces/sunburst/attributes/marker/colorbar/showexponent
+            /// - traces/surface/attributes/colorbar/showexponent
             /// - traces/volume/attributes/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
@@ -828,7 +1055,25 @@ public struct Sunburst: Trace {
                 ///
                 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
                 /// - layout/layoutAttributes/coloraxis/colorbar/title/side
+                /// - traces/bar/attributes/marker/colorbar/title/side
+                /// - traces/barpolar/attributes/marker/colorbar/title/side
+                /// - traces/choropleth/attributes/colorbar/title/side
+                /// - traces/cone/attributes/colorbar/title/side
+                /// - traces/contourcarpet/attributes/colorbar/title/side
+                /// - traces/densitymapbox/attributes/colorbar/title/side
+                /// - traces/funnel/attributes/marker/colorbar/title/side
+                /// - traces/heatmapgl/attributes/colorbar/title/side
+                /// - traces/histogram/attributes/marker/colorbar/title/side
+                /// - traces/histogram2d/attributes/colorbar/title/side
+                /// - traces/parcats/attributes/line/colorbar/title/side
+                /// - traces/parcoords/attributes/line/colorbar/title/side
+                /// - traces/scattercarpet/attributes/marker/colorbar/title/side
+                /// - traces/scattermapbox/attributes/marker/colorbar/title/side
+                /// - traces/scatterpolar/attributes/marker/colorbar/title/side
+                /// - traces/scatterpolargl/attributes/marker/colorbar/title/side
+                /// - traces/scatterternary/attributes/marker/colorbar/title/side
                 /// - traces/sunburst/attributes/marker/colorbar/title/side
+                /// - traces/surface/attributes/colorbar/title/side
                 /// - traces/volume/attributes/colorbar/title/side
                 public enum Side: String, Encodable {
                     case right
@@ -885,7 +1130,25 @@ public struct Sunburst: Trace {
             
                 /// Deprecated in favor of color bar's `title.side`.
                 /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
+                /// - traces/bar/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/barpolar/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/choropleth/attributes/colorbar/_deprecated/titleside
+                /// - traces/cone/attributes/colorbar/_deprecated/titleside
+                /// - traces/contourcarpet/attributes/colorbar/_deprecated/titleside
+                /// - traces/densitymapbox/attributes/colorbar/_deprecated/titleside
+                /// - traces/funnel/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/heatmapgl/attributes/colorbar/_deprecated/titleside
+                /// - traces/histogram/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/histogram2d/attributes/colorbar/_deprecated/titleside
+                /// - traces/parcats/attributes/line/colorbar/_deprecated/titleside
+                /// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
+                /// - traces/scattercarpet/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/scattermapbox/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/scatterpolar/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/scatterpolargl/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/scatterternary/attributes/marker/colorbar/_deprecated/titleside
                 /// - traces/sunburst/attributes/marker/colorbar/_deprecated/titleside
+                /// - traces/surface/attributes/colorbar/_deprecated/titleside
                 /// - traces/volume/attributes/colorbar/_deprecated/titleside
                 public enum TitleSide: String, Encodable {
                     case right
