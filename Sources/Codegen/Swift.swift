@@ -20,7 +20,7 @@ protocol SwiftType: Definable where OriginType: SchemaType {
     var schema: OriginType { get }
     var documentation: [String] { get }
 }
-extension SwiftType where OriginType: SchemaType {
+extension SwiftType {
     /// Default implementation of documentation text extracted from the origin Plotly schema data type.
     var documentation: [String] { schema.description?.documentation() ?? [] }
 }
@@ -144,7 +144,7 @@ struct Swift {
         func definition() -> [String] {
             var lines = [String]()
             lines += documentation
-            for reference in references.sorted() {
+            for reference in references {
                 lines += ["/// - \(reference)"]
             }
 
@@ -254,7 +254,7 @@ struct Swift {
             var lines = [String]()
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += documentation
-            for reference in references.sorted() {
+            for reference in references {
                 lines += ["/// - \(reference)"]
             }
 
@@ -367,7 +367,7 @@ struct Swift {
         func definition() -> [String] {
             var lines = [String]()
             lines += documentation
-            for reference in references.sorted() {
+            for reference in references {
                 lines += ["/// - \(reference)"]
             }
 
@@ -415,5 +415,4 @@ struct Swift {
         let name: String = "InfoArray"
         var schema: Schema.InfoArray
     }
-
 }

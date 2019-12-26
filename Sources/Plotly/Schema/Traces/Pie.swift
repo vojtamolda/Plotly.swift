@@ -10,7 +10,19 @@ public struct Pie: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    /// - traces/parcoords/attributes/visible
+    /// - traces/scatter/attributes/visible
+    /// - traces/bar/attributes/visible
+    /// - traces/box/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/histogram/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/image/attributes/visible
     /// - traces/pie/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
@@ -114,6 +126,19 @@ public struct Pie: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
+        /// - traces/bar/attributes/hoverlabel/align
+        /// - traces/box/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/histogram/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/funnel/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
         /// - traces/pie/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
@@ -392,7 +417,16 @@ public struct Pie: Trace {
     /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`.
     public var textTemplate: String?
 
-    /// Specifies the location of the `textinfo`.
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
+    /// - traces/bar/attributes/textposition
+    /// - traces/funnel/attributes/textposition
+    /// - traces/waterfall/attributes/textposition
     /// - traces/pie/attributes/textposition
     public enum TextPosition: String, Encodable {
         case inside
@@ -400,7 +434,13 @@ public struct Pie: Trace {
         case auto
         case none
     }
-    /// Specifies the location of the `textinfo`.
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
     public var textPosition: TextPosition?
 
     /// Sets the font used for `textinfo`.

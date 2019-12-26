@@ -12,23 +12,23 @@ public struct FunnelArea: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/scatter/attributes/visible
     /// - traces/bar/attributes/visible
     /// - traces/box/attributes/visible
-    /// - traces/contourcarpet/attributes/visible
-    /// - traces/densitymapbox/attributes/visible
-    /// - traces/funnel/attributes/visible
-    /// - traces/funnelarea/attributes/visible
-    /// - traces/heatmapgl/attributes/visible
+    /// - traces/heatmap/attributes/visible
     /// - traces/histogram/attributes/visible
-    /// - traces/parcats/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/pie/attributes/visible
-    /// - traces/pointcloud/attributes/visible
-    /// - traces/sankey/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
-    /// - traces/scatterpolargl/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/contour/attributes/visible
     /// - traces/scatterternary/attributes/visible
-    /// - traces/volume/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/image/attributes/visible
+    /// - traces/pie/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/funnelarea/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -131,22 +131,23 @@ public struct FunnelArea: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
         /// - traces/bar/attributes/hoverlabel/align
         /// - traces/box/attributes/hoverlabel/align
-        /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/funnel/attributes/hoverlabel/align
-        /// - traces/funnelarea/attributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
         /// - traces/histogram/attributes/hoverlabel/align
-        /// - traces/pie/attributes/hoverlabel/align
-        /// - traces/pointcloud/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/link/hoverlabel/align
-        /// - traces/sankey/attributes/node/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
-        /// - traces/scatterpolargl/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
         /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/funnel/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
+        /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -330,8 +331,8 @@ public struct FunnelArea: Trace {
     public var scaleGroup: String?
 
     /// Determines which trace information appear on the graph.
-    /// - traces/funnelarea/attributes/textinfo
     /// - traces/pie/attributes/textinfo
+    /// - traces/funnelarea/attributes/textinfo
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -374,8 +375,8 @@ public struct FunnelArea: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/funnelarea/attributes/hoverinfo
     /// - traces/pie/attributes/hoverinfo
+    /// - traces/funnelarea/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     

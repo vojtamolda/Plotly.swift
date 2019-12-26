@@ -15,15 +15,9 @@ public struct Box: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/scatter/attributes/visible
     /// - traces/bar/attributes/visible
     /// - traces/box/attributes/visible
-    /// - traces/contourcarpet/attributes/visible
-    /// - traces/densitymapbox/attributes/visible
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/pie/attributes/visible
-    /// - traces/sankey/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -81,9 +75,9 @@ public struct Box: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/scatter/attributes/hoverinfo
     /// - traces/bar/attributes/hoverinfo
     /// - traces/box/attributes/hoverinfo
-    /// - traces/heatmapgl/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -169,15 +163,9 @@ public struct Box: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
         /// - traces/bar/attributes/hoverlabel/align
         /// - traces/box/attributes/hoverlabel/align
-        /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
-        /// - traces/pie/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/link/hoverlabel/align
-        /// - traces/sankey/attributes/node/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -383,11 +371,11 @@ public struct Box: Trace {
     public var pointPosition: Double?
 
     /// Sets the orientation of the modebar.
-    /// - layout/layoutAttributes/legend/orientation
     /// - layout/layoutAttributes/modebar/orientation
+    /// - layout/layoutAttributes/legend/orientation
+    /// - traces/scatter/attributes/orientation
     /// - traces/bar/attributes/orientation
     /// - traces/box/attributes/orientation
-    /// - traces/sankey/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
@@ -408,6 +396,7 @@ public struct Box: Trace {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
+        /// - traces/scatter/attributes/marker/symbol
         /// - traces/box/attributes/marker/symbol
         public enum Symbol: String, Encodable {
             case circle
@@ -718,6 +707,7 @@ public struct Box: Trace {
     public var hoverOn: HoverOn?
 
     /// Sets the calendar system to use with `x` date data.
+    /// - traces/scatter/attributes/xcalendar
     /// - traces/bar/attributes/xcalendar
     /// - traces/box/attributes/xcalendar
     public enum XCalendar: String, Encodable {
@@ -742,6 +732,7 @@ public struct Box: Trace {
     public var xCalendar: XCalendar?
 
     /// Sets the calendar system to use with `y` date data.
+    /// - traces/scatter/attributes/ycalendar
     /// - traces/bar/attributes/ycalendar
     /// - traces/box/attributes/ycalendar
     public enum YCalendar: String, Encodable {

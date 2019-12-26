@@ -18,7 +18,7 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     var layout = Layout(schema: schema.layout)
 
     let tracesDirectory = outputDirectory.appendingPathComponent("Traces")
-    for (identifier, schema) in schema.traces {
+    for (identifier, schema) in schema.traces.all {
         let trace = Trace(identifier: identifier, schema: schema, layout: &layout)
         trace.write(to: tracesDirectory.appendingPathComponent("\(trace.attributes.name).swift"))
     }

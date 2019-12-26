@@ -8,18 +8,35 @@ public struct PointCloud: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/scatter/attributes/visible
     /// - traces/bar/attributes/visible
     /// - traces/box/attributes/visible
-    /// - traces/contourcarpet/attributes/visible
-    /// - traces/densitymapbox/attributes/visible
-    /// - traces/heatmapgl/attributes/visible
+    /// - traces/heatmap/attributes/visible
     /// - traces/histogram/attributes/visible
-    /// - traces/parcoords/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/image/attributes/visible
     /// - traces/pie/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/isosurface/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/cone/attributes/visible
+    /// - traces/streamtube/attributes/visible
+    /// - traces/scattergeo/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/splom/attributes/visible
     /// - traces/pointcloud/attributes/visible
-    /// - traces/sankey/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
-    /// - traces/scatterpolargl/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -75,10 +92,22 @@ public struct PointCloud: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/scatter/attributes/hoverinfo
     /// - traces/bar/attributes/hoverinfo
     /// - traces/box/attributes/hoverinfo
-    /// - traces/heatmapgl/attributes/hoverinfo
+    /// - traces/heatmap/attributes/hoverinfo
     /// - traces/histogram/attributes/hoverinfo
+    /// - traces/histogram2d/attributes/hoverinfo
+    /// - traces/histogram2dcontour/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/violin/attributes/hoverinfo
+    /// - traces/scatter3d/attributes/hoverinfo
+    /// - traces/surface/attributes/hoverinfo
+    /// - traces/isosurface/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
+    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/scattergl/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
     /// - traces/pointcloud/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
@@ -165,18 +194,35 @@ public struct PointCloud: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
         /// - traces/bar/attributes/hoverlabel/align
         /// - traces/box/attributes/hoverlabel/align
-        /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
         /// - traces/histogram/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/funnel/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
         /// - traces/pie/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/isosurface/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/cone/attributes/hoverlabel/align
+        /// - traces/streamtube/attributes/hoverlabel/align
+        /// - traces/scattergeo/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
         /// - traces/pointcloud/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/link/hoverlabel/align
-        /// - traces/sankey/attributes/node/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
-        /// - traces/scatterpolargl/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right

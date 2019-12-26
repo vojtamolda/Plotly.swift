@@ -12,23 +12,17 @@ public struct Waterfall: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/scatter/attributes/visible
     /// - traces/bar/attributes/visible
     /// - traces/box/attributes/visible
-    /// - traces/contourcarpet/attributes/visible
-    /// - traces/densitymapbox/attributes/visible
-    /// - traces/funnel/attributes/visible
-    /// - traces/funnelarea/attributes/visible
-    /// - traces/heatmapgl/attributes/visible
+    /// - traces/heatmap/attributes/visible
     /// - traces/histogram/attributes/visible
-    /// - traces/parcats/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/pie/attributes/visible
-    /// - traces/pointcloud/attributes/visible
-    /// - traces/sankey/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
-    /// - traces/scatterpolargl/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/contour/attributes/visible
     /// - traces/scatterternary/attributes/visible
-    /// - traces/volume/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/funnel/attributes/visible
     /// - traces/waterfall/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
@@ -139,22 +133,17 @@ public struct Waterfall: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
         /// - traces/bar/attributes/hoverlabel/align
         /// - traces/box/attributes/hoverlabel/align
-        /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/funnel/attributes/hoverlabel/align
-        /// - traces/funnelarea/attributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
         /// - traces/histogram/attributes/hoverlabel/align
-        /// - traces/pie/attributes/hoverlabel/align
-        /// - traces/pointcloud/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/link/hoverlabel/align
-        /// - traces/sankey/attributes/node/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
-        /// - traces/scatterpolargl/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
         /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/funnel/attributes/hoverlabel/align
         /// - traces/waterfall/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
@@ -413,10 +402,15 @@ public struct Waterfall: Trace {
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     public var text: String?
 
-    /// Specifies the location of the `textinfo`.
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
     /// - traces/bar/attributes/textposition
     /// - traces/funnel/attributes/textposition
-    /// - traces/pie/attributes/textposition
     /// - traces/waterfall/attributes/textposition
     public enum TextPosition: String, Encodable {
         case inside
@@ -424,7 +418,13 @@ public struct Waterfall: Trace {
         case auto
         case none
     }
-    /// Specifies the location of the `textinfo`.
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
     public var textPosition: TextPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
@@ -582,13 +582,14 @@ public struct Waterfall: Trace {
     public var clipOnAxis: Bool?
 
     /// Sets the orientation of the modebar.
-    /// - layout/layoutAttributes/legend/orientation
     /// - layout/layoutAttributes/modebar/orientation
+    /// - layout/layoutAttributes/legend/orientation
+    /// - traces/scatter/attributes/orientation
     /// - traces/bar/attributes/orientation
     /// - traces/box/attributes/orientation
-    /// - traces/funnel/attributes/orientation
     /// - traces/histogram/attributes/orientation
-    /// - traces/sankey/attributes/orientation
+    /// - traces/violin/attributes/orientation
+    /// - traces/funnel/attributes/orientation
     /// - traces/waterfall/attributes/orientation
     public enum Orientation: String, Encodable {
         case v

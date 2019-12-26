@@ -8,14 +8,36 @@ public struct HeatmapGL: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/scatter/attributes/visible
     /// - traces/bar/attributes/visible
-    /// - traces/contourcarpet/attributes/visible
-    /// - traces/densitymapbox/attributes/visible
-    /// - traces/heatmapgl/attributes/visible
-    /// - traces/parcoords/attributes/visible
+    /// - traces/box/attributes/visible
+    /// - traces/heatmap/attributes/visible
+    /// - traces/histogram/attributes/visible
+    /// - traces/histogram2d/attributes/visible
+    /// - traces/histogram2dcontour/attributes/visible
+    /// - traces/contour/attributes/visible
+    /// - traces/scatterternary/attributes/visible
+    /// - traces/violin/attributes/visible
+    /// - traces/funnel/attributes/visible
+    /// - traces/waterfall/attributes/visible
+    /// - traces/image/attributes/visible
     /// - traces/pie/attributes/visible
-    /// - traces/sankey/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
+    /// - traces/sunburst/attributes/visible
+    /// - traces/treemap/attributes/visible
+    /// - traces/funnelarea/attributes/visible
+    /// - traces/scatter3d/attributes/visible
+    /// - traces/surface/attributes/visible
+    /// - traces/isosurface/attributes/visible
+    /// - traces/volume/attributes/visible
+    /// - traces/mesh3d/attributes/visible
+    /// - traces/cone/attributes/visible
+    /// - traces/streamtube/attributes/visible
+    /// - traces/scattergeo/attributes/visible
+    /// - traces/choropleth/attributes/visible
+    /// - traces/scattergl/attributes/visible
+    /// - traces/splom/attributes/visible
+    /// - traces/pointcloud/attributes/visible
+    /// - traces/heatmapgl/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -63,7 +85,23 @@ public struct HeatmapGL: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/scatter/attributes/hoverinfo
     /// - traces/bar/attributes/hoverinfo
+    /// - traces/box/attributes/hoverinfo
+    /// - traces/heatmap/attributes/hoverinfo
+    /// - traces/histogram/attributes/hoverinfo
+    /// - traces/histogram2d/attributes/hoverinfo
+    /// - traces/histogram2dcontour/attributes/hoverinfo
+    /// - traces/contour/attributes/hoverinfo
+    /// - traces/violin/attributes/hoverinfo
+    /// - traces/scatter3d/attributes/hoverinfo
+    /// - traces/surface/attributes/hoverinfo
+    /// - traces/isosurface/attributes/hoverinfo
+    /// - traces/volume/attributes/hoverinfo
+    /// - traces/mesh3d/attributes/hoverinfo
+    /// - traces/scattergl/attributes/hoverinfo
+    /// - traces/splom/attributes/hoverinfo
+    /// - traces/pointcloud/attributes/hoverinfo
     /// - traces/heatmapgl/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
@@ -150,14 +188,36 @@ public struct HeatmapGL: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
         /// - traces/bar/attributes/hoverlabel/align
-        /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/heatmapgl/attributes/hoverlabel/align
+        /// - traces/box/attributes/hoverlabel/align
+        /// - traces/heatmap/attributes/hoverlabel/align
+        /// - traces/histogram/attributes/hoverlabel/align
+        /// - traces/histogram2d/attributes/hoverlabel/align
+        /// - traces/histogram2dcontour/attributes/hoverlabel/align
+        /// - traces/contour/attributes/hoverlabel/align
+        /// - traces/scatterternary/attributes/hoverlabel/align
+        /// - traces/violin/attributes/hoverlabel/align
+        /// - traces/funnel/attributes/hoverlabel/align
+        /// - traces/waterfall/attributes/hoverlabel/align
+        /// - traces/image/attributes/hoverlabel/align
         /// - traces/pie/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/link/hoverlabel/align
-        /// - traces/sankey/attributes/node/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
+        /// - traces/sunburst/attributes/hoverlabel/align
+        /// - traces/treemap/attributes/hoverlabel/align
+        /// - traces/funnelarea/attributes/hoverlabel/align
+        /// - traces/scatter3d/attributes/hoverlabel/align
+        /// - traces/surface/attributes/hoverlabel/align
+        /// - traces/isosurface/attributes/hoverlabel/align
+        /// - traces/volume/attributes/hoverlabel/align
+        /// - traces/mesh3d/attributes/hoverlabel/align
+        /// - traces/cone/attributes/hoverlabel/align
+        /// - traces/streamtube/attributes/hoverlabel/align
+        /// - traces/scattergeo/attributes/hoverlabel/align
+        /// - traces/choropleth/attributes/hoverlabel/align
+        /// - traces/scattergl/attributes/hoverlabel/align
+        /// - traces/splom/attributes/hoverlabel/align
+        /// - traces/pointcloud/attributes/hoverlabel/align
+        /// - traces/heatmapgl/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -298,6 +358,8 @@ public struct HeatmapGL: Trace {
     ///
     /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
     /// `x` is not provided).
+    /// - traces/heatmap/attributes/xtype
+    /// - traces/contour/attributes/xtype
     /// - traces/heatmapgl/attributes/xtype
     public enum XType: String, Encodable {
         case array
@@ -310,6 +372,8 @@ public struct HeatmapGL: Trace {
     public var xType: XType?
 
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
+    /// - traces/heatmap/attributes/ytype
+    /// - traces/contour/attributes/ytype
     /// - traces/heatmapgl/attributes/ytype
     public enum YType: String, Encodable {
         case array
@@ -369,12 +433,30 @@ public struct HeatmapGL: Trace {
         /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
         /// Use `thickness` to set the value.
         /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
+        /// - traces/scatter/attributes/marker/colorbar/thicknessmode
         /// - traces/bar/attributes/marker/colorbar/thicknessmode
-        /// - traces/contourcarpet/attributes/colorbar/thicknessmode
-        /// - traces/densitymapbox/attributes/colorbar/thicknessmode
+        /// - traces/heatmap/attributes/colorbar/thicknessmode
+        /// - traces/histogram/attributes/marker/colorbar/thicknessmode
+        /// - traces/histogram2d/attributes/colorbar/thicknessmode
+        /// - traces/histogram2dcontour/attributes/colorbar/thicknessmode
+        /// - traces/contour/attributes/colorbar/thicknessmode
+        /// - traces/scatterternary/attributes/marker/colorbar/thicknessmode
+        /// - traces/funnel/attributes/marker/colorbar/thicknessmode
+        /// - traces/sunburst/attributes/marker/colorbar/thicknessmode
+        /// - traces/treemap/attributes/marker/colorbar/thicknessmode
+        /// - traces/scatter3d/attributes/line/colorbar/thicknessmode
+        /// - traces/scatter3d/attributes/marker/colorbar/thicknessmode
+        /// - traces/surface/attributes/colorbar/thicknessmode
+        /// - traces/isosurface/attributes/colorbar/thicknessmode
+        /// - traces/volume/attributes/colorbar/thicknessmode
+        /// - traces/mesh3d/attributes/colorbar/thicknessmode
+        /// - traces/cone/attributes/colorbar/thicknessmode
+        /// - traces/streamtube/attributes/colorbar/thicknessmode
+        /// - traces/scattergeo/attributes/marker/colorbar/thicknessmode
+        /// - traces/choropleth/attributes/colorbar/thicknessmode
+        /// - traces/scattergl/attributes/marker/colorbar/thicknessmode
+        /// - traces/splom/attributes/marker/colorbar/thicknessmode
         /// - traces/heatmapgl/attributes/colorbar/thicknessmode
-        /// - traces/parcoords/attributes/line/colorbar/thicknessmode
-        /// - traces/scattermapbox/attributes/marker/colorbar/thicknessmode
         public enum ThicknessMode: String, Encodable {
             case fraction
             case pixels
@@ -391,14 +473,32 @@ public struct HeatmapGL: Trace {
         /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
         ///
         /// Use `len` to set the value.
-        /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
         /// - layout/layoutAttributes/sliders/items/slider/lenmode
+        /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
+        /// - traces/scatter/attributes/marker/colorbar/lenmode
         /// - traces/bar/attributes/marker/colorbar/lenmode
-        /// - traces/contourcarpet/attributes/colorbar/lenmode
-        /// - traces/densitymapbox/attributes/colorbar/lenmode
+        /// - traces/heatmap/attributes/colorbar/lenmode
+        /// - traces/histogram/attributes/marker/colorbar/lenmode
+        /// - traces/histogram2d/attributes/colorbar/lenmode
+        /// - traces/histogram2dcontour/attributes/colorbar/lenmode
+        /// - traces/contour/attributes/colorbar/lenmode
+        /// - traces/scatterternary/attributes/marker/colorbar/lenmode
+        /// - traces/funnel/attributes/marker/colorbar/lenmode
+        /// - traces/sunburst/attributes/marker/colorbar/lenmode
+        /// - traces/treemap/attributes/marker/colorbar/lenmode
+        /// - traces/scatter3d/attributes/line/colorbar/lenmode
+        /// - traces/scatter3d/attributes/marker/colorbar/lenmode
+        /// - traces/surface/attributes/colorbar/lenmode
+        /// - traces/isosurface/attributes/colorbar/lenmode
+        /// - traces/volume/attributes/colorbar/lenmode
+        /// - traces/mesh3d/attributes/colorbar/lenmode
+        /// - traces/cone/attributes/colorbar/lenmode
+        /// - traces/streamtube/attributes/colorbar/lenmode
+        /// - traces/scattergeo/attributes/marker/colorbar/lenmode
+        /// - traces/choropleth/attributes/colorbar/lenmode
+        /// - traces/scattergl/attributes/marker/colorbar/lenmode
+        /// - traces/splom/attributes/marker/colorbar/lenmode
         /// - traces/heatmapgl/attributes/colorbar/lenmode
-        /// - traces/parcoords/attributes/line/colorbar/lenmode
-        /// - traces/scattermapbox/attributes/marker/colorbar/lenmode
         public enum LengthMode: String, Encodable {
             case fraction
             case pixels
@@ -417,15 +517,33 @@ public struct HeatmapGL: Trace {
         public var x: Double?
     
         /// Sets the anchor for the x position
-        /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
         /// - layout/layoutAttributes/images/items/image/xanchor
         /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
+        /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
+        /// - traces/scatter/attributes/marker/colorbar/xanchor
         /// - traces/bar/attributes/marker/colorbar/xanchor
-        /// - traces/contourcarpet/attributes/colorbar/xanchor
-        /// - traces/densitymapbox/attributes/colorbar/xanchor
+        /// - traces/heatmap/attributes/colorbar/xanchor
+        /// - traces/histogram/attributes/marker/colorbar/xanchor
+        /// - traces/histogram2d/attributes/colorbar/xanchor
+        /// - traces/histogram2dcontour/attributes/colorbar/xanchor
+        /// - traces/contour/attributes/colorbar/xanchor
+        /// - traces/scatterternary/attributes/marker/colorbar/xanchor
+        /// - traces/funnel/attributes/marker/colorbar/xanchor
+        /// - traces/sunburst/attributes/marker/colorbar/xanchor
+        /// - traces/treemap/attributes/marker/colorbar/xanchor
+        /// - traces/scatter3d/attributes/line/colorbar/xanchor
+        /// - traces/scatter3d/attributes/marker/colorbar/xanchor
+        /// - traces/surface/attributes/colorbar/xanchor
+        /// - traces/isosurface/attributes/colorbar/xanchor
+        /// - traces/volume/attributes/colorbar/xanchor
+        /// - traces/mesh3d/attributes/colorbar/xanchor
+        /// - traces/cone/attributes/colorbar/xanchor
+        /// - traces/streamtube/attributes/colorbar/xanchor
+        /// - traces/scattergeo/attributes/marker/colorbar/xanchor
+        /// - traces/choropleth/attributes/colorbar/xanchor
+        /// - traces/scattergl/attributes/marker/colorbar/xanchor
+        /// - traces/splom/attributes/marker/colorbar/xanchor
         /// - traces/heatmapgl/attributes/colorbar/xanchor
-        /// - traces/parcoords/attributes/line/colorbar/xanchor
-        /// - traces/scattermapbox/attributes/marker/colorbar/xanchor
         public enum XAnchor: String, Encodable {
             case left
             case center
@@ -441,14 +559,32 @@ public struct HeatmapGL: Trace {
         public var y: Double?
     
         /// Sets the anchor for the y position.
-        /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
         /// - layout/layoutAttributes/images/items/image/yanchor
+        /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
+        /// - traces/scatter/attributes/marker/colorbar/yanchor
         /// - traces/bar/attributes/marker/colorbar/yanchor
-        /// - traces/contourcarpet/attributes/colorbar/yanchor
-        /// - traces/densitymapbox/attributes/colorbar/yanchor
+        /// - traces/heatmap/attributes/colorbar/yanchor
+        /// - traces/histogram/attributes/marker/colorbar/yanchor
+        /// - traces/histogram2d/attributes/colorbar/yanchor
+        /// - traces/histogram2dcontour/attributes/colorbar/yanchor
+        /// - traces/contour/attributes/colorbar/yanchor
+        /// - traces/scatterternary/attributes/marker/colorbar/yanchor
+        /// - traces/funnel/attributes/marker/colorbar/yanchor
+        /// - traces/sunburst/attributes/marker/colorbar/yanchor
+        /// - traces/treemap/attributes/marker/colorbar/yanchor
+        /// - traces/scatter3d/attributes/line/colorbar/yanchor
+        /// - traces/scatter3d/attributes/marker/colorbar/yanchor
+        /// - traces/surface/attributes/colorbar/yanchor
+        /// - traces/isosurface/attributes/colorbar/yanchor
+        /// - traces/volume/attributes/colorbar/yanchor
+        /// - traces/mesh3d/attributes/colorbar/yanchor
+        /// - traces/cone/attributes/colorbar/yanchor
+        /// - traces/streamtube/attributes/colorbar/yanchor
+        /// - traces/scattergeo/attributes/marker/colorbar/yanchor
+        /// - traces/choropleth/attributes/colorbar/yanchor
+        /// - traces/scattergl/attributes/marker/colorbar/yanchor
+        /// - traces/splom/attributes/marker/colorbar/yanchor
         /// - traces/heatmapgl/attributes/colorbar/yanchor
-        /// - traces/parcoords/attributes/line/colorbar/yanchor
-        /// - traces/scattermapbox/attributes/marker/colorbar/yanchor
         public enum YAnchor: String, Encodable {
             case top
             case middle
@@ -482,23 +618,41 @@ public struct HeatmapGL: Trace {
         /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
         /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
         /// provided).
-        /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
-        /// - layout/layoutAttributes/polar/angularaxis/tickmode
-        /// - layout/layoutAttributes/polar/radialaxis/tickmode
-        /// - layout/layoutAttributes/scene/xaxis/tickmode
-        /// - layout/layoutAttributes/scene/yaxis/tickmode
-        /// - layout/layoutAttributes/scene/zaxis/tickmode
+        /// - layout/layoutAttributes/xaxis/tickmode
+        /// - layout/layoutAttributes/yaxis/tickmode
         /// - layout/layoutAttributes/ternary/aaxis/tickmode
         /// - layout/layoutAttributes/ternary/baxis/tickmode
         /// - layout/layoutAttributes/ternary/caxis/tickmode
-        /// - layout/layoutAttributes/xaxis/tickmode
-        /// - layout/layoutAttributes/yaxis/tickmode
+        /// - layout/layoutAttributes/scene/xaxis/tickmode
+        /// - layout/layoutAttributes/scene/yaxis/tickmode
+        /// - layout/layoutAttributes/scene/zaxis/tickmode
+        /// - layout/layoutAttributes/polar/radialaxis/tickmode
+        /// - layout/layoutAttributes/polar/angularaxis/tickmode
+        /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+        /// - traces/scatter/attributes/marker/colorbar/tickmode
         /// - traces/bar/attributes/marker/colorbar/tickmode
-        /// - traces/contourcarpet/attributes/colorbar/tickmode
-        /// - traces/densitymapbox/attributes/colorbar/tickmode
+        /// - traces/heatmap/attributes/colorbar/tickmode
+        /// - traces/histogram/attributes/marker/colorbar/tickmode
+        /// - traces/histogram2d/attributes/colorbar/tickmode
+        /// - traces/histogram2dcontour/attributes/colorbar/tickmode
+        /// - traces/contour/attributes/colorbar/tickmode
+        /// - traces/scatterternary/attributes/marker/colorbar/tickmode
+        /// - traces/funnel/attributes/marker/colorbar/tickmode
+        /// - traces/sunburst/attributes/marker/colorbar/tickmode
+        /// - traces/treemap/attributes/marker/colorbar/tickmode
+        /// - traces/scatter3d/attributes/line/colorbar/tickmode
+        /// - traces/scatter3d/attributes/marker/colorbar/tickmode
+        /// - traces/surface/attributes/colorbar/tickmode
+        /// - traces/isosurface/attributes/colorbar/tickmode
+        /// - traces/volume/attributes/colorbar/tickmode
+        /// - traces/mesh3d/attributes/colorbar/tickmode
+        /// - traces/cone/attributes/colorbar/tickmode
+        /// - traces/streamtube/attributes/colorbar/tickmode
+        /// - traces/scattergeo/attributes/marker/colorbar/tickmode
+        /// - traces/choropleth/attributes/colorbar/tickmode
+        /// - traces/scattergl/attributes/marker/colorbar/tickmode
+        /// - traces/splom/attributes/marker/colorbar/tickmode
         /// - traces/heatmapgl/attributes/colorbar/tickmode
-        /// - traces/parcoords/attributes/line/colorbar/tickmode
-        /// - traces/scattermapbox/attributes/marker/colorbar/tickmode
         public enum TickMode: String, Encodable {
             case auto
             case linear
@@ -559,23 +713,41 @@ public struct HeatmapGL: Trace {
         ///
         /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
         /// (inside) the axis lines.
-        /// - layout/layoutAttributes/coloraxis/colorbar/ticks
-        /// - layout/layoutAttributes/polar/angularaxis/ticks
-        /// - layout/layoutAttributes/polar/radialaxis/ticks
-        /// - layout/layoutAttributes/scene/xaxis/ticks
-        /// - layout/layoutAttributes/scene/yaxis/ticks
-        /// - layout/layoutAttributes/scene/zaxis/ticks
+        /// - layout/layoutAttributes/xaxis/ticks
+        /// - layout/layoutAttributes/yaxis/ticks
         /// - layout/layoutAttributes/ternary/aaxis/ticks
         /// - layout/layoutAttributes/ternary/baxis/ticks
         /// - layout/layoutAttributes/ternary/caxis/ticks
-        /// - layout/layoutAttributes/xaxis/ticks
-        /// - layout/layoutAttributes/yaxis/ticks
+        /// - layout/layoutAttributes/scene/xaxis/ticks
+        /// - layout/layoutAttributes/scene/yaxis/ticks
+        /// - layout/layoutAttributes/scene/zaxis/ticks
+        /// - layout/layoutAttributes/polar/radialaxis/ticks
+        /// - layout/layoutAttributes/polar/angularaxis/ticks
+        /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+        /// - traces/scatter/attributes/marker/colorbar/ticks
         /// - traces/bar/attributes/marker/colorbar/ticks
-        /// - traces/contourcarpet/attributes/colorbar/ticks
-        /// - traces/densitymapbox/attributes/colorbar/ticks
+        /// - traces/heatmap/attributes/colorbar/ticks
+        /// - traces/histogram/attributes/marker/colorbar/ticks
+        /// - traces/histogram2d/attributes/colorbar/ticks
+        /// - traces/histogram2dcontour/attributes/colorbar/ticks
+        /// - traces/contour/attributes/colorbar/ticks
+        /// - traces/scatterternary/attributes/marker/colorbar/ticks
+        /// - traces/funnel/attributes/marker/colorbar/ticks
+        /// - traces/sunburst/attributes/marker/colorbar/ticks
+        /// - traces/treemap/attributes/marker/colorbar/ticks
+        /// - traces/scatter3d/attributes/line/colorbar/ticks
+        /// - traces/scatter3d/attributes/marker/colorbar/ticks
+        /// - traces/surface/attributes/colorbar/ticks
+        /// - traces/isosurface/attributes/colorbar/ticks
+        /// - traces/volume/attributes/colorbar/ticks
+        /// - traces/mesh3d/attributes/colorbar/ticks
+        /// - traces/cone/attributes/colorbar/ticks
+        /// - traces/streamtube/attributes/colorbar/ticks
+        /// - traces/scattergeo/attributes/marker/colorbar/ticks
+        /// - traces/choropleth/attributes/colorbar/ticks
+        /// - traces/scattergl/attributes/marker/colorbar/ticks
+        /// - traces/splom/attributes/marker/colorbar/ticks
         /// - traces/heatmapgl/attributes/colorbar/ticks
-        /// - traces/parcoords/attributes/line/colorbar/ticks
-        /// - traces/scattermapbox/attributes/marker/colorbar/ticks
         public enum Ticks: String, Encodable {
             case outside
             case inside
@@ -702,23 +874,41 @@ public struct HeatmapGL: Trace {
         ///
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
-        /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
-        /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
-        /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
-        /// - layout/layoutAttributes/scene/xaxis/showtickprefix
-        /// - layout/layoutAttributes/scene/yaxis/showtickprefix
-        /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+        /// - layout/layoutAttributes/xaxis/showtickprefix
+        /// - layout/layoutAttributes/yaxis/showtickprefix
         /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
         /// - layout/layoutAttributes/ternary/baxis/showtickprefix
         /// - layout/layoutAttributes/ternary/caxis/showtickprefix
-        /// - layout/layoutAttributes/xaxis/showtickprefix
-        /// - layout/layoutAttributes/yaxis/showtickprefix
+        /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+        /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+        /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+        /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+        /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+        /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+        /// - traces/scatter/attributes/marker/colorbar/showtickprefix
         /// - traces/bar/attributes/marker/colorbar/showtickprefix
-        /// - traces/contourcarpet/attributes/colorbar/showtickprefix
-        /// - traces/densitymapbox/attributes/colorbar/showtickprefix
+        /// - traces/heatmap/attributes/colorbar/showtickprefix
+        /// - traces/histogram/attributes/marker/colorbar/showtickprefix
+        /// - traces/histogram2d/attributes/colorbar/showtickprefix
+        /// - traces/histogram2dcontour/attributes/colorbar/showtickprefix
+        /// - traces/contour/attributes/colorbar/showtickprefix
+        /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
+        /// - traces/funnel/attributes/marker/colorbar/showtickprefix
+        /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
+        /// - traces/treemap/attributes/marker/colorbar/showtickprefix
+        /// - traces/scatter3d/attributes/line/colorbar/showtickprefix
+        /// - traces/scatter3d/attributes/marker/colorbar/showtickprefix
+        /// - traces/surface/attributes/colorbar/showtickprefix
+        /// - traces/isosurface/attributes/colorbar/showtickprefix
+        /// - traces/volume/attributes/colorbar/showtickprefix
+        /// - traces/mesh3d/attributes/colorbar/showtickprefix
+        /// - traces/cone/attributes/colorbar/showtickprefix
+        /// - traces/streamtube/attributes/colorbar/showtickprefix
+        /// - traces/scattergeo/attributes/marker/colorbar/showtickprefix
+        /// - traces/choropleth/attributes/colorbar/showtickprefix
+        /// - traces/scattergl/attributes/marker/colorbar/showtickprefix
+        /// - traces/splom/attributes/marker/colorbar/showtickprefix
         /// - traces/heatmapgl/attributes/colorbar/showtickprefix
-        /// - traces/parcoords/attributes/line/colorbar/showtickprefix
-        /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
         public enum ShowTickPrefix: String, Encodable {
             case all
             case first
@@ -735,23 +925,41 @@ public struct HeatmapGL: Trace {
         public var tickSuffix: String?
     
         /// Same as `showtickprefix` but for tick suffixes.
-        /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
-        /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
-        /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
-        /// - layout/layoutAttributes/scene/xaxis/showticksuffix
-        /// - layout/layoutAttributes/scene/yaxis/showticksuffix
-        /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+        /// - layout/layoutAttributes/xaxis/showticksuffix
+        /// - layout/layoutAttributes/yaxis/showticksuffix
         /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
         /// - layout/layoutAttributes/ternary/baxis/showticksuffix
         /// - layout/layoutAttributes/ternary/caxis/showticksuffix
-        /// - layout/layoutAttributes/xaxis/showticksuffix
-        /// - layout/layoutAttributes/yaxis/showticksuffix
+        /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+        /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+        /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+        /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+        /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+        /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+        /// - traces/scatter/attributes/marker/colorbar/showticksuffix
         /// - traces/bar/attributes/marker/colorbar/showticksuffix
-        /// - traces/contourcarpet/attributes/colorbar/showticksuffix
-        /// - traces/densitymapbox/attributes/colorbar/showticksuffix
+        /// - traces/heatmap/attributes/colorbar/showticksuffix
+        /// - traces/histogram/attributes/marker/colorbar/showticksuffix
+        /// - traces/histogram2d/attributes/colorbar/showticksuffix
+        /// - traces/histogram2dcontour/attributes/colorbar/showticksuffix
+        /// - traces/contour/attributes/colorbar/showticksuffix
+        /// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
+        /// - traces/funnel/attributes/marker/colorbar/showticksuffix
+        /// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+        /// - traces/treemap/attributes/marker/colorbar/showticksuffix
+        /// - traces/scatter3d/attributes/line/colorbar/showticksuffix
+        /// - traces/scatter3d/attributes/marker/colorbar/showticksuffix
+        /// - traces/surface/attributes/colorbar/showticksuffix
+        /// - traces/isosurface/attributes/colorbar/showticksuffix
+        /// - traces/volume/attributes/colorbar/showticksuffix
+        /// - traces/mesh3d/attributes/colorbar/showticksuffix
+        /// - traces/cone/attributes/colorbar/showticksuffix
+        /// - traces/streamtube/attributes/colorbar/showticksuffix
+        /// - traces/scattergeo/attributes/marker/colorbar/showticksuffix
+        /// - traces/choropleth/attributes/colorbar/showticksuffix
+        /// - traces/scattergl/attributes/marker/colorbar/showticksuffix
+        /// - traces/splom/attributes/marker/colorbar/showticksuffix
         /// - traces/heatmapgl/attributes/colorbar/showticksuffix
-        /// - traces/parcoords/attributes/line/colorbar/showticksuffix
-        /// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
         public enum ShowTickSuffix: String, Encodable {
             case all
             case first
@@ -768,23 +976,41 @@ public struct HeatmapGL: Trace {
         ///
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-        /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
-        /// - layout/layoutAttributes/polar/angularaxis/exponentformat
-        /// - layout/layoutAttributes/polar/radialaxis/exponentformat
-        /// - layout/layoutAttributes/scene/xaxis/exponentformat
-        /// - layout/layoutAttributes/scene/yaxis/exponentformat
-        /// - layout/layoutAttributes/scene/zaxis/exponentformat
+        /// - layout/layoutAttributes/xaxis/exponentformat
+        /// - layout/layoutAttributes/yaxis/exponentformat
         /// - layout/layoutAttributes/ternary/aaxis/exponentformat
         /// - layout/layoutAttributes/ternary/baxis/exponentformat
         /// - layout/layoutAttributes/ternary/caxis/exponentformat
-        /// - layout/layoutAttributes/xaxis/exponentformat
-        /// - layout/layoutAttributes/yaxis/exponentformat
+        /// - layout/layoutAttributes/scene/xaxis/exponentformat
+        /// - layout/layoutAttributes/scene/yaxis/exponentformat
+        /// - layout/layoutAttributes/scene/zaxis/exponentformat
+        /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+        /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+        /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+        /// - traces/scatter/attributes/marker/colorbar/exponentformat
         /// - traces/bar/attributes/marker/colorbar/exponentformat
-        /// - traces/contourcarpet/attributes/colorbar/exponentformat
-        /// - traces/densitymapbox/attributes/colorbar/exponentformat
+        /// - traces/heatmap/attributes/colorbar/exponentformat
+        /// - traces/histogram/attributes/marker/colorbar/exponentformat
+        /// - traces/histogram2d/attributes/colorbar/exponentformat
+        /// - traces/histogram2dcontour/attributes/colorbar/exponentformat
+        /// - traces/contour/attributes/colorbar/exponentformat
+        /// - traces/scatterternary/attributes/marker/colorbar/exponentformat
+        /// - traces/funnel/attributes/marker/colorbar/exponentformat
+        /// - traces/sunburst/attributes/marker/colorbar/exponentformat
+        /// - traces/treemap/attributes/marker/colorbar/exponentformat
+        /// - traces/scatter3d/attributes/line/colorbar/exponentformat
+        /// - traces/scatter3d/attributes/marker/colorbar/exponentformat
+        /// - traces/surface/attributes/colorbar/exponentformat
+        /// - traces/isosurface/attributes/colorbar/exponentformat
+        /// - traces/volume/attributes/colorbar/exponentformat
+        /// - traces/mesh3d/attributes/colorbar/exponentformat
+        /// - traces/cone/attributes/colorbar/exponentformat
+        /// - traces/streamtube/attributes/colorbar/exponentformat
+        /// - traces/scattergeo/attributes/marker/colorbar/exponentformat
+        /// - traces/choropleth/attributes/colorbar/exponentformat
+        /// - traces/scattergl/attributes/marker/colorbar/exponentformat
+        /// - traces/splom/attributes/marker/colorbar/exponentformat
         /// - traces/heatmapgl/attributes/colorbar/exponentformat
-        /// - traces/parcoords/attributes/line/colorbar/exponentformat
-        /// - traces/scattermapbox/attributes/marker/colorbar/exponentformat
         public enum ExponentFormat: String, Encodable {
             case none
             case e
@@ -803,23 +1029,41 @@ public struct HeatmapGL: Trace {
         ///
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
-        /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
-        /// - layout/layoutAttributes/polar/angularaxis/showexponent
-        /// - layout/layoutAttributes/polar/radialaxis/showexponent
-        /// - layout/layoutAttributes/scene/xaxis/showexponent
-        /// - layout/layoutAttributes/scene/yaxis/showexponent
-        /// - layout/layoutAttributes/scene/zaxis/showexponent
+        /// - layout/layoutAttributes/xaxis/showexponent
+        /// - layout/layoutAttributes/yaxis/showexponent
         /// - layout/layoutAttributes/ternary/aaxis/showexponent
         /// - layout/layoutAttributes/ternary/baxis/showexponent
         /// - layout/layoutAttributes/ternary/caxis/showexponent
-        /// - layout/layoutAttributes/xaxis/showexponent
-        /// - layout/layoutAttributes/yaxis/showexponent
+        /// - layout/layoutAttributes/scene/xaxis/showexponent
+        /// - layout/layoutAttributes/scene/yaxis/showexponent
+        /// - layout/layoutAttributes/scene/zaxis/showexponent
+        /// - layout/layoutAttributes/polar/radialaxis/showexponent
+        /// - layout/layoutAttributes/polar/angularaxis/showexponent
+        /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+        /// - traces/scatter/attributes/marker/colorbar/showexponent
         /// - traces/bar/attributes/marker/colorbar/showexponent
-        /// - traces/contourcarpet/attributes/colorbar/showexponent
-        /// - traces/densitymapbox/attributes/colorbar/showexponent
+        /// - traces/heatmap/attributes/colorbar/showexponent
+        /// - traces/histogram/attributes/marker/colorbar/showexponent
+        /// - traces/histogram2d/attributes/colorbar/showexponent
+        /// - traces/histogram2dcontour/attributes/colorbar/showexponent
+        /// - traces/contour/attributes/colorbar/showexponent
+        /// - traces/scatterternary/attributes/marker/colorbar/showexponent
+        /// - traces/funnel/attributes/marker/colorbar/showexponent
+        /// - traces/sunburst/attributes/marker/colorbar/showexponent
+        /// - traces/treemap/attributes/marker/colorbar/showexponent
+        /// - traces/scatter3d/attributes/line/colorbar/showexponent
+        /// - traces/scatter3d/attributes/marker/colorbar/showexponent
+        /// - traces/surface/attributes/colorbar/showexponent
+        /// - traces/isosurface/attributes/colorbar/showexponent
+        /// - traces/volume/attributes/colorbar/showexponent
+        /// - traces/mesh3d/attributes/colorbar/showexponent
+        /// - traces/cone/attributes/colorbar/showexponent
+        /// - traces/streamtube/attributes/colorbar/showexponent
+        /// - traces/scattergeo/attributes/marker/colorbar/showexponent
+        /// - traces/choropleth/attributes/colorbar/showexponent
+        /// - traces/scattergl/attributes/marker/colorbar/showexponent
+        /// - traces/splom/attributes/marker/colorbar/showexponent
         /// - traces/heatmapgl/attributes/colorbar/showexponent
-        /// - traces/parcoords/attributes/line/colorbar/showexponent
-        /// - traces/scattermapbox/attributes/marker/colorbar/showexponent
         public enum ShowExponent: String, Encodable {
             case all
             case first
@@ -875,12 +1119,30 @@ public struct HeatmapGL: Trace {
             ///
             /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
             /// - layout/layoutAttributes/coloraxis/colorbar/title/side
+            /// - traces/scatter/attributes/marker/colorbar/title/side
             /// - traces/bar/attributes/marker/colorbar/title/side
-            /// - traces/contourcarpet/attributes/colorbar/title/side
-            /// - traces/densitymapbox/attributes/colorbar/title/side
+            /// - traces/heatmap/attributes/colorbar/title/side
+            /// - traces/histogram/attributes/marker/colorbar/title/side
+            /// - traces/histogram2d/attributes/colorbar/title/side
+            /// - traces/histogram2dcontour/attributes/colorbar/title/side
+            /// - traces/contour/attributes/colorbar/title/side
+            /// - traces/scatterternary/attributes/marker/colorbar/title/side
+            /// - traces/funnel/attributes/marker/colorbar/title/side
+            /// - traces/sunburst/attributes/marker/colorbar/title/side
+            /// - traces/treemap/attributes/marker/colorbar/title/side
+            /// - traces/scatter3d/attributes/line/colorbar/title/side
+            /// - traces/scatter3d/attributes/marker/colorbar/title/side
+            /// - traces/surface/attributes/colorbar/title/side
+            /// - traces/isosurface/attributes/colorbar/title/side
+            /// - traces/volume/attributes/colorbar/title/side
+            /// - traces/mesh3d/attributes/colorbar/title/side
+            /// - traces/cone/attributes/colorbar/title/side
+            /// - traces/streamtube/attributes/colorbar/title/side
+            /// - traces/scattergeo/attributes/marker/colorbar/title/side
+            /// - traces/choropleth/attributes/colorbar/title/side
+            /// - traces/scattergl/attributes/marker/colorbar/title/side
+            /// - traces/splom/attributes/marker/colorbar/title/side
             /// - traces/heatmapgl/attributes/colorbar/title/side
-            /// - traces/parcoords/attributes/line/colorbar/title/side
-            /// - traces/scattermapbox/attributes/marker/colorbar/title/side
             public enum Side: String, Encodable {
                 case right
                 case top
@@ -936,12 +1198,30 @@ public struct HeatmapGL: Trace {
         
             /// Deprecated in favor of color bar's `title.side`.
             /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
+            /// - traces/scatter/attributes/marker/colorbar/_deprecated/titleside
             /// - traces/bar/attributes/marker/colorbar/_deprecated/titleside
-            /// - traces/contourcarpet/attributes/colorbar/_deprecated/titleside
-            /// - traces/densitymapbox/attributes/colorbar/_deprecated/titleside
+            /// - traces/heatmap/attributes/colorbar/_deprecated/titleside
+            /// - traces/histogram/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/histogram2d/attributes/colorbar/_deprecated/titleside
+            /// - traces/histogram2dcontour/attributes/colorbar/_deprecated/titleside
+            /// - traces/contour/attributes/colorbar/_deprecated/titleside
+            /// - traces/scatterternary/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/funnel/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/sunburst/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/treemap/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/scatter3d/attributes/line/colorbar/_deprecated/titleside
+            /// - traces/scatter3d/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/surface/attributes/colorbar/_deprecated/titleside
+            /// - traces/isosurface/attributes/colorbar/_deprecated/titleside
+            /// - traces/volume/attributes/colorbar/_deprecated/titleside
+            /// - traces/mesh3d/attributes/colorbar/_deprecated/titleside
+            /// - traces/cone/attributes/colorbar/_deprecated/titleside
+            /// - traces/streamtube/attributes/colorbar/_deprecated/titleside
+            /// - traces/scattergeo/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/choropleth/attributes/colorbar/_deprecated/titleside
+            /// - traces/scattergl/attributes/marker/colorbar/_deprecated/titleside
+            /// - traces/splom/attributes/marker/colorbar/_deprecated/titleside
             /// - traces/heatmapgl/attributes/colorbar/_deprecated/titleside
-            /// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
-            /// - traces/scattermapbox/attributes/marker/colorbar/_deprecated/titleside
             public enum TitleSide: String, Encodable {
                 case right
                 case top

@@ -10,13 +10,8 @@ public struct Bar: Trace {
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    /// - traces/scatter/attributes/visible
     /// - traces/bar/attributes/visible
-    /// - traces/contourcarpet/attributes/visible
-    /// - traces/densitymapbox/attributes/visible
-    /// - traces/parcoords/attributes/visible
-    /// - traces/pie/attributes/visible
-    /// - traces/sankey/attributes/visible
-    /// - traces/scattermapbox/attributes/visible
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -79,6 +74,7 @@ public struct Bar: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    /// - traces/scatter/attributes/hoverinfo
     /// - traces/bar/attributes/hoverinfo
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
@@ -165,13 +161,8 @@ public struct Bar: Trace {
         ///
         /// Has an effect only if the hover label text spans more two or more lines
         /// - layout/layoutAttributes/hoverlabel/align
+        /// - traces/scatter/attributes/hoverlabel/align
         /// - traces/bar/attributes/hoverlabel/align
-        /// - traces/densitymapbox/attributes/hoverlabel/align
-        /// - traces/pie/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/hoverlabel/align
-        /// - traces/sankey/attributes/link/hoverlabel/align
-        /// - traces/sankey/attributes/node/hoverlabel/align
-        /// - traces/scattermapbox/attributes/hoverlabel/align
         public enum Align: String, Encodable {
             case left
             case right
@@ -343,16 +334,27 @@ public struct Bar: Trace {
     /// `<extra></extra>`.
     public var hoverTemplate: String?
 
-    /// Specifies the location of the `textinfo`.
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
     /// - traces/bar/attributes/textposition
-    /// - traces/pie/attributes/textposition
     public enum TextPosition: String, Encodable {
         case inside
         case outside
         case auto
         case none
     }
-    /// Specifies the location of the `textinfo`.
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
     public var textPosition: TextPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
@@ -506,10 +508,10 @@ public struct Bar: Trace {
     public var clipOnAxis: Bool?
 
     /// Sets the orientation of the modebar.
-    /// - layout/layoutAttributes/legend/orientation
     /// - layout/layoutAttributes/modebar/orientation
+    /// - layout/layoutAttributes/legend/orientation
+    /// - traces/scatter/attributes/orientation
     /// - traces/bar/attributes/orientation
-    /// - traces/sankey/attributes/orientation
     public enum Orientation: String, Encodable {
         case v
         case h
@@ -690,11 +692,8 @@ public struct Bar: Trace {
             /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
             /// Use `thickness` to set the value.
             /// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
+            /// - traces/scatter/attributes/marker/colorbar/thicknessmode
             /// - traces/bar/attributes/marker/colorbar/thicknessmode
-            /// - traces/contourcarpet/attributes/colorbar/thicknessmode
-            /// - traces/densitymapbox/attributes/colorbar/thicknessmode
-            /// - traces/parcoords/attributes/line/colorbar/thicknessmode
-            /// - traces/scattermapbox/attributes/marker/colorbar/thicknessmode
             public enum ThicknessMode: String, Encodable {
                 case fraction
                 case pixels
@@ -711,13 +710,10 @@ public struct Bar: Trace {
             /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
             ///
             /// Use `len` to set the value.
-            /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
             /// - layout/layoutAttributes/sliders/items/slider/lenmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
+            /// - traces/scatter/attributes/marker/colorbar/lenmode
             /// - traces/bar/attributes/marker/colorbar/lenmode
-            /// - traces/contourcarpet/attributes/colorbar/lenmode
-            /// - traces/densitymapbox/attributes/colorbar/lenmode
-            /// - traces/parcoords/attributes/line/colorbar/lenmode
-            /// - traces/scattermapbox/attributes/marker/colorbar/lenmode
             public enum LengthMode: String, Encodable {
                 case fraction
                 case pixels
@@ -736,14 +732,11 @@ public struct Bar: Trace {
             public var x: Double?
         
             /// Sets the anchor for the x position
-            /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
             /// - layout/layoutAttributes/images/items/image/xanchor
             /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
+            /// - traces/scatter/attributes/marker/colorbar/xanchor
             /// - traces/bar/attributes/marker/colorbar/xanchor
-            /// - traces/contourcarpet/attributes/colorbar/xanchor
-            /// - traces/densitymapbox/attributes/colorbar/xanchor
-            /// - traces/parcoords/attributes/line/colorbar/xanchor
-            /// - traces/scattermapbox/attributes/marker/colorbar/xanchor
             public enum XAnchor: String, Encodable {
                 case left
                 case center
@@ -759,13 +752,10 @@ public struct Bar: Trace {
             public var y: Double?
         
             /// Sets the anchor for the y position.
-            /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
             /// - layout/layoutAttributes/images/items/image/yanchor
+            /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
+            /// - traces/scatter/attributes/marker/colorbar/yanchor
             /// - traces/bar/attributes/marker/colorbar/yanchor
-            /// - traces/contourcarpet/attributes/colorbar/yanchor
-            /// - traces/densitymapbox/attributes/colorbar/yanchor
-            /// - traces/parcoords/attributes/line/colorbar/yanchor
-            /// - traces/scattermapbox/attributes/marker/colorbar/yanchor
             public enum YAnchor: String, Encodable {
                 case top
                 case middle
@@ -799,22 +789,19 @@ public struct Bar: Trace {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
-            /// - layout/layoutAttributes/polar/angularaxis/tickmode
-            /// - layout/layoutAttributes/polar/radialaxis/tickmode
-            /// - layout/layoutAttributes/scene/xaxis/tickmode
-            /// - layout/layoutAttributes/scene/yaxis/tickmode
-            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/xaxis/tickmode
+            /// - layout/layoutAttributes/yaxis/tickmode
             /// - layout/layoutAttributes/ternary/aaxis/tickmode
             /// - layout/layoutAttributes/ternary/baxis/tickmode
             /// - layout/layoutAttributes/ternary/caxis/tickmode
-            /// - layout/layoutAttributes/xaxis/tickmode
-            /// - layout/layoutAttributes/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/xaxis/tickmode
+            /// - layout/layoutAttributes/scene/yaxis/tickmode
+            /// - layout/layoutAttributes/scene/zaxis/tickmode
+            /// - layout/layoutAttributes/polar/radialaxis/tickmode
+            /// - layout/layoutAttributes/polar/angularaxis/tickmode
+            /// - layout/layoutAttributes/coloraxis/colorbar/tickmode
+            /// - traces/scatter/attributes/marker/colorbar/tickmode
             /// - traces/bar/attributes/marker/colorbar/tickmode
-            /// - traces/contourcarpet/attributes/colorbar/tickmode
-            /// - traces/densitymapbox/attributes/colorbar/tickmode
-            /// - traces/parcoords/attributes/line/colorbar/tickmode
-            /// - traces/scattermapbox/attributes/marker/colorbar/tickmode
             public enum TickMode: String, Encodable {
                 case auto
                 case linear
@@ -875,22 +862,19 @@ public struct Bar: Trace {
             ///
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
-            /// - layout/layoutAttributes/polar/angularaxis/ticks
-            /// - layout/layoutAttributes/polar/radialaxis/ticks
-            /// - layout/layoutAttributes/scene/xaxis/ticks
-            /// - layout/layoutAttributes/scene/yaxis/ticks
-            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/xaxis/ticks
+            /// - layout/layoutAttributes/yaxis/ticks
             /// - layout/layoutAttributes/ternary/aaxis/ticks
             /// - layout/layoutAttributes/ternary/baxis/ticks
             /// - layout/layoutAttributes/ternary/caxis/ticks
-            /// - layout/layoutAttributes/xaxis/ticks
-            /// - layout/layoutAttributes/yaxis/ticks
+            /// - layout/layoutAttributes/scene/xaxis/ticks
+            /// - layout/layoutAttributes/scene/yaxis/ticks
+            /// - layout/layoutAttributes/scene/zaxis/ticks
+            /// - layout/layoutAttributes/polar/radialaxis/ticks
+            /// - layout/layoutAttributes/polar/angularaxis/ticks
+            /// - layout/layoutAttributes/coloraxis/colorbar/ticks
+            /// - traces/scatter/attributes/marker/colorbar/ticks
             /// - traces/bar/attributes/marker/colorbar/ticks
-            /// - traces/contourcarpet/attributes/colorbar/ticks
-            /// - traces/densitymapbox/attributes/colorbar/ticks
-            /// - traces/parcoords/attributes/line/colorbar/ticks
-            /// - traces/scattermapbox/attributes/marker/colorbar/ticks
             public enum Ticks: String, Encodable {
                 case outside
                 case inside
@@ -1017,22 +1001,19 @@ public struct Bar: Trace {
             ///
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
-            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
-            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
-            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
-            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
-            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/xaxis/showtickprefix
+            /// - layout/layoutAttributes/yaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
             /// - layout/layoutAttributes/ternary/baxis/showtickprefix
             /// - layout/layoutAttributes/ternary/caxis/showtickprefix
-            /// - layout/layoutAttributes/xaxis/showtickprefix
-            /// - layout/layoutAttributes/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/xaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/yaxis/showtickprefix
+            /// - layout/layoutAttributes/scene/zaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
+            /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
+            /// - traces/scatter/attributes/marker/colorbar/showtickprefix
             /// - traces/bar/attributes/marker/colorbar/showtickprefix
-            /// - traces/contourcarpet/attributes/colorbar/showtickprefix
-            /// - traces/densitymapbox/attributes/colorbar/showtickprefix
-            /// - traces/parcoords/attributes/line/colorbar/showtickprefix
-            /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
             public enum ShowTickPrefix: String, Encodable {
                 case all
                 case first
@@ -1049,22 +1030,19 @@ public struct Bar: Trace {
             public var tickSuffix: String?
         
             /// Same as `showtickprefix` but for tick suffixes.
-            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
-            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
-            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
-            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
-            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
-            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/xaxis/showticksuffix
+            /// - layout/layoutAttributes/yaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/aaxis/showticksuffix
             /// - layout/layoutAttributes/ternary/baxis/showticksuffix
             /// - layout/layoutAttributes/ternary/caxis/showticksuffix
-            /// - layout/layoutAttributes/xaxis/showticksuffix
-            /// - layout/layoutAttributes/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/xaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/yaxis/showticksuffix
+            /// - layout/layoutAttributes/scene/zaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+            /// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+            /// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+            /// - traces/scatter/attributes/marker/colorbar/showticksuffix
             /// - traces/bar/attributes/marker/colorbar/showticksuffix
-            /// - traces/contourcarpet/attributes/colorbar/showticksuffix
-            /// - traces/densitymapbox/attributes/colorbar/showticksuffix
-            /// - traces/parcoords/attributes/line/colorbar/showticksuffix
-            /// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
             public enum ShowTickSuffix: String, Encodable {
                 case all
                 case first
@@ -1081,22 +1059,19 @@ public struct Bar: Trace {
             ///
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
-            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
-            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
-            /// - layout/layoutAttributes/scene/xaxis/exponentformat
-            /// - layout/layoutAttributes/scene/yaxis/exponentformat
-            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/xaxis/exponentformat
+            /// - layout/layoutAttributes/yaxis/exponentformat
             /// - layout/layoutAttributes/ternary/aaxis/exponentformat
             /// - layout/layoutAttributes/ternary/baxis/exponentformat
             /// - layout/layoutAttributes/ternary/caxis/exponentformat
-            /// - layout/layoutAttributes/xaxis/exponentformat
-            /// - layout/layoutAttributes/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/xaxis/exponentformat
+            /// - layout/layoutAttributes/scene/yaxis/exponentformat
+            /// - layout/layoutAttributes/scene/zaxis/exponentformat
+            /// - layout/layoutAttributes/polar/radialaxis/exponentformat
+            /// - layout/layoutAttributes/polar/angularaxis/exponentformat
+            /// - layout/layoutAttributes/coloraxis/colorbar/exponentformat
+            /// - traces/scatter/attributes/marker/colorbar/exponentformat
             /// - traces/bar/attributes/marker/colorbar/exponentformat
-            /// - traces/contourcarpet/attributes/colorbar/exponentformat
-            /// - traces/densitymapbox/attributes/colorbar/exponentformat
-            /// - traces/parcoords/attributes/line/colorbar/exponentformat
-            /// - traces/scattermapbox/attributes/marker/colorbar/exponentformat
             public enum ExponentFormat: String, Encodable {
                 case none
                 case e
@@ -1115,22 +1090,19 @@ public struct Bar: Trace {
             ///
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
-            /// - layout/layoutAttributes/polar/angularaxis/showexponent
-            /// - layout/layoutAttributes/polar/radialaxis/showexponent
-            /// - layout/layoutAttributes/scene/xaxis/showexponent
-            /// - layout/layoutAttributes/scene/yaxis/showexponent
-            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/xaxis/showexponent
+            /// - layout/layoutAttributes/yaxis/showexponent
             /// - layout/layoutAttributes/ternary/aaxis/showexponent
             /// - layout/layoutAttributes/ternary/baxis/showexponent
             /// - layout/layoutAttributes/ternary/caxis/showexponent
-            /// - layout/layoutAttributes/xaxis/showexponent
-            /// - layout/layoutAttributes/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/xaxis/showexponent
+            /// - layout/layoutAttributes/scene/yaxis/showexponent
+            /// - layout/layoutAttributes/scene/zaxis/showexponent
+            /// - layout/layoutAttributes/polar/radialaxis/showexponent
+            /// - layout/layoutAttributes/polar/angularaxis/showexponent
+            /// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+            /// - traces/scatter/attributes/marker/colorbar/showexponent
             /// - traces/bar/attributes/marker/colorbar/showexponent
-            /// - traces/contourcarpet/attributes/colorbar/showexponent
-            /// - traces/densitymapbox/attributes/colorbar/showexponent
-            /// - traces/parcoords/attributes/line/colorbar/showexponent
-            /// - traces/scattermapbox/attributes/marker/colorbar/showexponent
             public enum ShowExponent: String, Encodable {
                 case all
                 case first
@@ -1186,11 +1158,8 @@ public struct Bar: Trace {
                 ///
                 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
                 /// - layout/layoutAttributes/coloraxis/colorbar/title/side
+                /// - traces/scatter/attributes/marker/colorbar/title/side
                 /// - traces/bar/attributes/marker/colorbar/title/side
-                /// - traces/contourcarpet/attributes/colorbar/title/side
-                /// - traces/densitymapbox/attributes/colorbar/title/side
-                /// - traces/parcoords/attributes/line/colorbar/title/side
-                /// - traces/scattermapbox/attributes/marker/colorbar/title/side
                 public enum Side: String, Encodable {
                     case right
                     case top
@@ -1246,11 +1215,8 @@ public struct Bar: Trace {
             
                 /// Deprecated in favor of color bar's `title.side`.
                 /// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
+                /// - traces/scatter/attributes/marker/colorbar/_deprecated/titleside
                 /// - traces/bar/attributes/marker/colorbar/_deprecated/titleside
-                /// - traces/contourcarpet/attributes/colorbar/_deprecated/titleside
-                /// - traces/densitymapbox/attributes/colorbar/_deprecated/titleside
-                /// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
-                /// - traces/scattermapbox/attributes/marker/colorbar/_deprecated/titleside
                 public enum TitleSide: String, Encodable {
                     case right
                     case top
@@ -1467,6 +1433,8 @@ public struct Bar: Trace {
         /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
         /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
         /// the bar lengths are set with data set `array`.
+        /// - traces/scatter/attributes/error_x/type
+        /// - traces/scatter/attributes/error_y/type
         /// - traces/bar/attributes/error_x/type
         public enum Rule: String, Encodable {
             case percent
@@ -1565,6 +1533,8 @@ public struct Bar: Trace {
         /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
         /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
         /// the bar lengths are set with data set `array`.
+        /// - traces/scatter/attributes/error_x/type
+        /// - traces/scatter/attributes/error_y/type
         /// - traces/bar/attributes/error_x/type
         /// - traces/bar/attributes/error_y/type
         public enum Rule: String, Encodable {
@@ -1651,6 +1621,7 @@ public struct Bar: Trace {
     public var yError: YError?
 
     /// Sets the calendar system to use with `x` date data.
+    /// - traces/scatter/attributes/xcalendar
     /// - traces/bar/attributes/xcalendar
     public enum XCalendar: String, Encodable {
         case gregorian
@@ -1674,6 +1645,7 @@ public struct Bar: Trace {
     public var xCalendar: XCalendar?
 
     /// Sets the calendar system to use with `y` date data.
+    /// - traces/scatter/attributes/ycalendar
     /// - traces/bar/attributes/ycalendar
     public enum YCalendar: String, Encodable {
         case gregorian
