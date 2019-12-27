@@ -2,19 +2,39 @@
 protocol Instantiable: Definable {
     var name: String { get }
     var constant: String? { get }
+    var optional: Bool { get }
+    var access: Swift.Access { get }
 
-    func argument() -> String
+    var argument: String { get }
 }
 
 
 /// Instantiation of a variable or property with an associated Swift data type.
-struct Instance<Type>: Instantiable, Equatable where Type: SwiftType {
-    let name: String
+struct Instance<Type>: Instantiable where Type: SwiftType {
     var type: Type
+    let name: String
     let constant: String?
     let optional: Bool
-    var access: String? = "public"
-    var documentation: [String] { type.documentation }
+    var access: Swift.Access = .public
+
+    /// Lines of Swift code that define the `Instance`.
+    var definition: [String] {
+        var lines = [String]()
+        if let sharedType = type as? Definable {
+            lines += sharedType.define(as: .inlined)
+        } else {
+            lines += type.documentation
+        }
+        if let const = self.constant {
+            lines += ["\(access)let \(argument) = \(const)"]
+        } else {
+            lines += ["\(access)var \(argument)"]
+        }
+        return lines
+    }
+    /// Chunk of Swift code that use the instance as a function argument.
+    var argument: String { "\(name): \(type.name)\(optional ? "?" : "")" }
+
 
     /// Creates instance of the specified data type accessible by identifier.
     init(named name: String, of type: Type, constant: String? = nil, optional: Bool = true) {
@@ -23,33 +43,6 @@ struct Instance<Type>: Instantiable, Equatable where Type: SwiftType {
         self.constant = constant
         self.optional = optional
     }
-
-    /// Returns a chunk of Swift code that use the instance as a function argument.
-    func argument() -> String {
-        return "\(name): \(type.name)\(optional ? "?" : "")"
-    }
-
-    /// Returns lines of Swift code that define the instance.
-    func definition() -> [String] {
-        var lines = [String]()
-        lines += type.definition()
-        lines += documentation
-        let access = (self.access != nil) ? (self.access! + " ") : ""
-        if let const = self.constant {
-            lines += ["\(access)let \(argument()) = \(const)"]
-        } else {
-            lines += ["\(access)var \(argument())"]
-        }
-        return lines
-    }
-
-    /// Checks for equality by comparing identifiers and data types of the two `Instance`s.
-    static func == (lhs: Instance, rhs: Instance) -> Bool {
-        let identifierEqual = lhs.name == rhs.name
-        // FIXME: Compare dataTypes
-        // let dataTypeEqual = lhs.dataType == rhs.dataType
-        return identifierEqual
-    }
 }
 
 
@@ -57,9 +50,5 @@ struct Instance<Type>: Instantiable, Equatable where Type: SwiftType {
 struct Mark: Definable {
     var label: String
     var separator = true
-
-    /// Returns lines of Swift code that define the instance.
-    func definition() -> [String] {
-        ["", "// MARK: \(separator ? "-" : "") \(label)"]
-    }
+    var definition: [String] { ["", "// MARK: \(separator ? "-" : "") \(label)"] }
 }

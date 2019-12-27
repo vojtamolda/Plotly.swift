@@ -8,37 +8,7 @@ public struct FunnelArea: Trace {
 
     public let animatable: Bool = false
 
-    /// Determines whether or not this trace is visible. 
-    ///
-    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
-    /// legend itself is visible).
-    /// - traces/scatter/attributes/visible
-    /// - traces/bar/attributes/visible
-    /// - traces/box/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/histogram/attributes/visible
-    /// - traces/histogram2d/attributes/visible
-    /// - traces/histogram2dcontour/attributes/visible
-    /// - traces/contour/attributes/visible
-    /// - traces/scatterternary/attributes/visible
-    /// - traces/violin/attributes/visible
-    /// - traces/funnel/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    /// - traces/image/attributes/visible
-    /// - traces/pie/attributes/visible
-    /// - traces/sunburst/attributes/visible
-    /// - traces/treemap/attributes/visible
-    /// - traces/funnelarea/attributes/visible
-    public enum Visible: String, Encodable {
-        case `true` = "true"
-        case `false` = "false"
-        case legendOnly = "legendonly"
-    }
-    /// Determines whether or not this trace is visible. 
-    ///
-    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
-    /// legend itself is visible).
-    public var visible: Visible?
+    public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool?
@@ -80,160 +50,11 @@ public struct FunnelArea: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    /// - traces/funnelarea/attributes/hoverlabel
-    public struct HoverLabel: Encodable {
-        /// Sets the background color of the hover labels for this trace
-        public var backgroundColor: Color?
-    
-        /// Sets the border color of the hover labels for this trace.
-        public var borderColor: Color?
-    
-        /// Sets the font used in hover labels.
-        /// - traces/funnelarea/attributes/hoverlabel/font
-        public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. 
-            ///
-            /// The web browser will only be able to apply a font if it is available on the system which it
-            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-            /// which to apply fonts if they aren't available on the system. The plotly service (at
-            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            public var family: String?
-        
-            public var size: Double?
-        
-            public var color: Color?
-        
-            /// Sets the source reference on plot.ly for  family .
-            public var familySource: String?
-        
-            /// Sets the source reference on plot.ly for  size .
-            public var sizeSource: String?
-        
-            /// Sets the source reference on plot.ly for  color .
-            public var colorSource: String?
-        
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-                self.family = family
-                self.size = size
-                self.color = color
-                self.familySource = familySource
-                self.sizeSource = sizeSource
-                self.colorSource = colorSource
-            }
-        }
-        /// Sets the font used in hover labels.
-        public var font: Font?
-    
-        /// Sets the horizontal alignment of the text content within hover label box. 
-        ///
-        /// Has an effect only if the hover label text spans more two or more lines
-        /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/scatter/attributes/hoverlabel/align
-        /// - traces/bar/attributes/hoverlabel/align
-        /// - traces/box/attributes/hoverlabel/align
-        /// - traces/heatmap/attributes/hoverlabel/align
-        /// - traces/histogram/attributes/hoverlabel/align
-        /// - traces/histogram2d/attributes/hoverlabel/align
-        /// - traces/histogram2dcontour/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/violin/attributes/hoverlabel/align
-        /// - traces/funnel/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
-        /// - traces/image/attributes/hoverlabel/align
-        /// - traces/pie/attributes/hoverlabel/align
-        /// - traces/sunburst/attributes/hoverlabel/align
-        /// - traces/treemap/attributes/hoverlabel/align
-        /// - traces/funnelarea/attributes/hoverlabel/align
-        public enum Align: String, Encodable {
-            case left
-            case right
-            case auto
-        }
-        /// Sets the horizontal alignment of the text content within hover label box. 
-        ///
-        /// Has an effect only if the hover label text spans more two or more lines
-        public var align: Align?
-    
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
-        ///
-        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
-        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
-        /// truncate to `namelength - 3` characters and add an ellipsis.
-        public var nameLength: Int?
-    
-        /// Sets the source reference on plot.ly for  bgcolor .
-        public var backgroundColorSource: String?
-    
-        /// Sets the source reference on plot.ly for  bordercolor .
-        public var borderColorSource: String?
-    
-        /// Sets the source reference on plot.ly for  align .
-        public var alignSource: String?
-    
-        /// Sets the source reference on plot.ly for  namelength .
-        public var nameLengthSource: String?
-    
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
-            self.backgroundColor = backgroundColor
-            self.borderColor = borderColor
-            self.font = font
-            self.align = align
-            self.nameLength = nameLength
-            self.backgroundColorSource = backgroundColorSource
-            self.borderColorSource = borderColorSource
-            self.alignSource = alignSource
-            self.nameLengthSource = nameLengthSource
-        }
-    }
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: HoverLabel1?
 
-    /// - traces/funnelarea/attributes/stream
-    public struct Stream: Encodable {
-        /// The stream id number links a data trace on a plot with a stream. 
-        ///
-        /// See https://plot.ly/settings for more details.
-        public var token: String?
-    
-        /// Sets the maximum number of points to keep on the plots from an incoming stream. 
-        ///
-        /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxPoints: Double?
-    
-        public init(token: String? = nil, maxPoints: Double? = nil) {
-            self.token = token
-            self.maxPoints = maxPoints
-        }
-    }
-    public var stream: Stream?
+    public var stream: Stream0?
 
-    /// - traces/funnelarea/attributes/transforms
-    public struct Transforms: Encodable {
-        /// - traces/funnelarea/attributes/transforms/items
-        public struct Items: Encodable {
-            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            /// - traces/funnelarea/attributes/transforms/items/transform
-            public struct Transform: Encodable {
-                public init() {
-                }
-            }
-            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            public var transform: Transform?
-        
-            public init(transform: Transform? = nil) {
-                self.transform = transform
-            }
-        }
-        public var items: Items?
-    
-        public init(items: Items? = nil) {
-            self.items = items
-        }
-    }
-    public var transforms: Transforms?
+    public var transforms: TickFormatStops0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -270,48 +91,7 @@ public struct FunnelArea: Trace {
     /// If omitted, we count occurrences of each label.
     public var values: [Double]?
 
-    /// - traces/funnelarea/attributes/marker
-    public struct Marker: Encodable {
-        /// Sets the color of each sector. 
-        ///
-        /// If not specified, the default trace color set is used to pick the sector colors.
-        public var colors: [Double]?
-    
-        /// - traces/funnelarea/attributes/marker/line
-        public struct Line: Encodable {
-            /// Sets the color of the line enclosing each sector. 
-            ///
-            /// Defaults to the `paper_bgcolor` value.
-            public var color: Color?
-        
-            /// Sets the width (in px) of the line enclosing each sector.
-            public var width: Double?
-        
-            /// Sets the source reference on plot.ly for  color .
-            public var colorSource: String?
-        
-            /// Sets the source reference on plot.ly for  width .
-            public var widthSource: String?
-        
-            public init(color: Color? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
-                self.color = color
-                self.width = width
-                self.colorSource = colorSource
-                self.widthSource = widthSource
-            }
-        }
-        public var line: Line?
-    
-        /// Sets the source reference on plot.ly for  colors .
-        public var colorsSource: String?
-    
-        public init(colors: [Double]? = nil, line: Line? = nil, colorsSource: String? = nil) {
-            self.colors = colors
-            self.line = line
-            self.colorsSource = colorsSource
-        }
-    }
-    public var marker: Marker?
+    public var marker: Marker8?
 
     /// Sets text elements associated with each sector. 
     ///
@@ -330,33 +110,7 @@ public struct FunnelArea: Trace {
     /// If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
     public var scaleGroup: String?
 
-    /// Determines which trace information appear on the graph.
-    /// - traces/pie/attributes/textinfo
-    /// - traces/funnelarea/attributes/textinfo
-    public struct TextInfo: OptionSet, Encodable {
-        public let rawValue: Int
-    
-        public static let label = TextInfo(rawValue: 1 << 0)
-        public static let text = TextInfo(rawValue: 1 << 1)
-        public static let value = TextInfo(rawValue: 1 << 2)
-        public static let percent = TextInfo(rawValue: 1 << 3)
-        public static let none = TextInfo(rawValue: 1 << 4)
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["percent"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["none"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-    /// Determines which trace information appear on the graph.
-    public var textInfo: TextInfo?
+    public var textInfo: TextInfo0?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -371,45 +125,7 @@ public struct FunnelArea: Trace {
     /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`.
     public var textTemplate: String?
 
-    /// Determines which trace information appear on hover. 
-    ///
-    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-    /// click and hover events are still fired.
-    /// - traces/pie/attributes/hoverinfo
-    /// - traces/funnelarea/attributes/hoverinfo
-    public struct HoverInfo: OptionSet, Encodable {
-        public let rawValue: Int
-    
-        public static let label = HoverInfo(rawValue: 1 << 0)
-        public static let text = HoverInfo(rawValue: 1 << 1)
-        public static let value = HoverInfo(rawValue: 1 << 2)
-        public static let percent = HoverInfo(rawValue: 1 << 3)
-        public static let name = HoverInfo(rawValue: 1 << 4)
-        public static let all = HoverInfo(rawValue: 1 << 5)
-        public static let none = HoverInfo(rawValue: 1 << 6)
-        public static let skip = HoverInfo(rawValue: 1 << 7)
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["percent"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["name"] }
-            if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
-            if (self.rawValue & 1 << 6) != 0 { options += ["none"] }
-            if (self.rawValue & 1 << 7) != 0 { options += ["skip"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-    /// Determines which trace information appear on hover. 
-    ///
-    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-    /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo2?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -435,183 +151,15 @@ public struct FunnelArea: Trace {
         case inside
         case none
     }
-    /// Specifies the location of the `textinfo`.
     public var textPosition: TextPosition?
 
-    /// Sets the font used for `textinfo`.
-    /// - traces/funnelarea/attributes/textfont
-    public struct TextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. 
-        ///
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
-    
-        public var size: Double?
-    
-        public var color: Color?
-    
-        /// Sets the source reference on plot.ly for  family .
-        public var familySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        public var colorSource: String?
-    
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.family = family
-            self.size = size
-            self.color = color
-            self.familySource = familySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
-    /// Sets the font used for `textinfo`.
-    public var textFont: TextFont?
+    public var textFont: Font1?
 
-    /// Sets the font used for `textinfo` lying inside the sector.
-    /// - traces/funnelarea/attributes/insidetextfont
-    public struct InsideTextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. 
-        ///
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
-    
-        public var size: Double?
-    
-        public var color: Color?
-    
-        /// Sets the source reference on plot.ly for  family .
-        public var familySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        public var colorSource: String?
-    
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.family = family
-            self.size = size
-            self.color = color
-            self.familySource = familySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
-    /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: InsideTextFont?
+    public var insideTextFont: Font1?
 
-    /// - traces/funnelarea/attributes/title
-    public struct Title: Encodable {
-        /// Sets the title of the chart. 
-        ///
-        /// If it is empty, no title is displayed. Note that before the existence of `title.text`, the
-        /// title's contents used to be defined as the `title` attribute itself. This behavior has been
-        /// deprecated.
-        public var text: String?
-    
-        /// Sets the font used for `title`. 
-        ///
-        /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-        /// - traces/funnelarea/attributes/title/font
-        public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. 
-            ///
-            /// The web browser will only be able to apply a font if it is available on the system which it
-            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-            /// which to apply fonts if they aren't available on the system. The plotly service (at
-            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            public var family: String?
-        
-            public var size: Double?
-        
-            public var color: Color?
-        
-            /// Sets the source reference on plot.ly for  family .
-            public var familySource: String?
-        
-            /// Sets the source reference on plot.ly for  size .
-            public var sizeSource: String?
-        
-            /// Sets the source reference on plot.ly for  color .
-            public var colorSource: String?
-        
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-                self.family = family
-                self.size = size
-                self.color = color
-                self.familySource = familySource
-                self.sizeSource = sizeSource
-                self.colorSource = colorSource
-            }
-        }
-        /// Sets the font used for `title`. 
-        ///
-        /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-        public var font: Font?
-    
-        /// Specifies the location of the `title`. 
-        ///
-        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
-        /// - traces/funnelarea/attributes/title/position
-        public enum Position: String, Encodable {
-            case topLeft = "top left"
-            case topCenter = "top center"
-            case topRight = "top right"
-        }
-        /// Specifies the location of the `title`. 
-        ///
-        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
-        public var position: Position?
-    
-        public init(text: String? = nil, font: Font? = nil, position: Position? = nil) {
-            self.text = text
-            self.font = font
-            self.position = position
-        }
-    }
-    public var title: Title?
+    public var title: Title3?
 
-    /// - traces/funnelarea/attributes/domain
-    public struct Domain: Encodable {
-        /// Sets the horizontal domain of this funnelarea trace (in plot fraction).
-        public var x: InfoArray?
-    
-        /// Sets the vertical domain of this funnelarea trace (in plot fraction).
-        public var y: InfoArray?
-    
-        /// If there is a layout grid, use the domain for this row in the grid for this funnelarea trace .
-        public var row: Int?
-    
-        /// If there is a layout grid, use the domain for this column in the grid for this funnelarea trace .
-        public var column: Int?
-    
-        public init(x: InfoArray? = nil, y: InfoArray? = nil, row: Int? = nil, column: Int? = nil) {
-            self.x = x
-            self.y = y
-            self.row = row
-            self.column = column
-        }
-    }
-    public var domain: Domain?
+    public var domain: Domain0?
 
     /// Sets the ratio between height and width
     public var aspectRatio: Double?
@@ -652,7 +200,7 @@ public struct FunnelArea: Trace {
     /// Sets the source reference on plot.ly for  textposition .
     public var textPositionSource: String?
 
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: TextFont? = nil, insideTextFont: InsideTextFont? = nil, title: Title? = nil, domain: Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textTemplateSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker8? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo0? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo2? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, title: Title3? = nil, domain: Domain0? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textTemplateSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

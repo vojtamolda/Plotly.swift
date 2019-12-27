@@ -1,33 +1,46 @@
+import Foundation
+
 
 // MARK: Swift Data Type Protocols
 
-/// A data type that can return lines of Swift code with it's own definition.
-protocol Definable {
-    /// Returns lines of Swift code that fully define the data type including the nested members.
-    func definition() -> [String]
-}
-extension Definable {
-    /// Returns empty lines which is useful for Swift built-in types like Int, String or [Double].
-    func definition() -> [String] {
-        return []
-    }
-}
-
 /// A Swift data type that originates from some Plotly schema data type.
-protocol SwiftType: Definable where OriginType: SchemaType {
+protocol SwiftType where OriginType: SchemaType {
     associatedtype OriginType
     var name: String { get }
     var schema: OriginType { get }
     var documentation: [String] { get }
 }
 extension SwiftType {
-    /// Default implementation of documentation text extracted from the origin Plotly schema data type.
+    /// Default implementation that extracts documentation text from the originating Plotly schema data type.
     var documentation: [String] { schema.description?.documentation() ?? [] }
 }
 
-/// A shared Swift type that tracks it's references to prevent duplicate definitions of identical types.
-protocol SwiftSharedType: SwiftType, Equatable {
-    var access: String { get }
+/// A data type that can return lines of Swift code with it's own definition.
+protocol Definable {
+    /// Lines of Swift code that fully define the data type including the nested inline structs.
+    var definition: [String] { get }
+
+    /// Definition of the data type within a specific context.
+    func define(as context: Swift.Context) -> [String]
+}
+extension Definable {
+    /// Default implementation for non-shared types.
+    func define(as context: Swift.Context) -> [String] {
+        return definition
+    }
+
+    /// Default implementation that writes Swift code that defines the data type to a URL.
+    func write(to url: URL) {
+        let lines = define(as: .shared)
+        let contents = lines.joined(separator: "\n")
+        try! contents.write(to: url, atomically: true, encoding: .utf8)
+    }
+}
+
+/// A shared Swift type that tracks it's references to allow re-use and prevent duplicate definitions of identical objects.
+protocol SwiftSharedType: SwiftType, Definable, Equatable, AnyObject {
+    var name: String { get set }
+    var access: Swift.Access { get }
     var protocols: [String] { get }
     var references: [String] { get set }
     static var existing: [Self] { get set }
@@ -35,19 +48,51 @@ protocol SwiftSharedType: SwiftType, Equatable {
     init(named: String, schema: OriginType)
     /// Checks for duplicates and if there is one returns a previously existing instance the the type.
     static func createShared(named: String, schema: OriginType) -> Self
+    /// Writes Swift code that defines the data type to a URL and avoids identifier collisions thanks to shared `existing` dict.
+    static func write(to url: URL, _ existing: inout [String: Int])
 }
 extension SwiftSharedType {
-    /// Default implementation that prevents duplication of types.
+    var singleInstance: Bool { references.count == 1 }
+
+    /// Default implementation that avoids duplication of identical shared types.
     static func createShared(named: String, schema: OriginType) -> Self {
-        var new = Self.init(named: named, schema: schema)
-        if let index = Self.existing.firstIndex(where: { $0 == new }) {
-            Self.existing[index].references.append(schema.decodingPath)
-            return Self.existing[index]
+        var type = Self.init(named: named, schema: schema)
+        if let index = Self.existing.firstIndex(where: { $0 == type }) {
+            type = Self.existing[index]
         } else {
-            new.references.append(schema.decodingPath)
-            Self.existing.append(new)
-            return new
+            Self.existing.append(type)
         }
+        type.references.append(schema.decodingPath)
+        return type
+    }
+
+    /// Default implementation for shared types that is empty for inlined, non single-instance cases and avoids duplication.
+    func define(as context: Swift.Context) -> [String] {
+        switch context {
+        case .inlined:
+            return singleInstance ? definition : []
+        case .shared:
+            return singleInstance ? [] : definition
+        }
+    }
+
+    /// Writes Swift code that defines the data type to a URL and avoids identifier collisions thanks to shared `existing` dict.
+    static func write(to url: URL, _ existing: inout [String: Int])  {
+        var lines = [String]()
+
+        for type in Self.existing.filter({ !$0.singleInstance }) {
+            if existing.contains(where: { $0.key == type.name }) {
+                existing[type.name]! += 1
+            } else {
+                existing[type.name] = 0
+            }
+            type.name = "\(type.name)\(existing[type.name]!)"
+            lines += type.define(as: .shared)
+            lines += [""]
+        }
+
+        let contents = lines.joined(separator: "\n")
+        try! contents.write(to: url, atomically: true, encoding: .utf8)
     }
 }
 
@@ -55,23 +100,48 @@ extension SwiftSharedType {
 // MARK: - Swift Plotly Schema Equivalents
 
 /// Container for Swift data types that map to corresponding values in the Plotly JSON schema hierarchy.
-struct Swift {
+class Swift {
     /// Storage of Plotly mangledtogethernames translated to Swift camelCaseNames for each identifier in the schema.
     static var name: Name? = nil
 
     /// Data type that maps hierarchical Plotly `object` to a Swift `struct`.
-    struct Object: SwiftSharedType {
-        let name: String
+    final class Object: SwiftSharedType {
+        var name: String
         var documentation: [String] = []
         var schema: Schema.Object
 
-        var access: String = "public"
+        let access: Swift.Access = .public
         var protocols: [String] = ["Encodable"]
         var references: [String] = []
         static var existing: [Swift.Object] = []
 
-        var members: [Any]
+        var members: [Definable]
         var primitives: [String: Schema.Primitive]
+
+        var definition: [String] {
+            var lines = [String]()
+            lines += documentation
+            for reference in references {
+                lines += ["/// - \(reference)"]
+            }
+
+            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
+            lines += ["\(access)struct \(name)\(protocols) {"]
+
+            for member in members {
+                lines += member.define(as: .inlined).indented()
+                lines += [""]
+            }
+
+            let variables = members.compactMap { $0 as? Instantiable }.filter { $0.constant == nil }
+            let arguments = variables.map { $0.argument + " = nil" }.joined(separator: ", ")
+            lines += ["\(access)init(\(arguments)) {"].indented()
+            lines += variables.map { "self.\($0.name) = \($0.name)" }.indented(2)
+            lines += ["}"].indented()
+
+            lines += ["}"]
+            return lines
+        }
 
         init(named name: String, schema object: Schema.Object) {
             self.name = Swift.name!.pascalCased(name)
@@ -140,36 +210,23 @@ struct Swift {
             }
         }
 
-        /// Returns lines of Swift code that fully define the struct and all of it's nested members.
-        func definition() -> [String] {
-            var lines = [String]()
-            lines += documentation
-            for reference in references {
-                lines += ["/// - \(reference)"]
-            }
-
-            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += ["\(access) struct \(name)\(protocols) {"]
-
-            for member in members {
-                let m = member as! Definable
-                lines += m.definition().indented()
-                lines += [""]
-            }
-
-            let variables = members.compactMap { $0 as? Instantiable }.filter { $0.constant == nil }
-            let arguments = variables.map { $0.argument() + " = nil" }.joined(separator: ", ")
-            lines += ["\(access) init(\(arguments)) {"].indented()
-            lines += variables.map { "self.\($0.name) = \($0.name)" }.indented(2)
-            lines += ["}"].indented()
-
-            lines += ["}"]
-            return lines
-        }
-
-        // TODO: Implementation
+        /// Recursively compares objects by checking member equivalence.
         static func == (lhs: Swift.Object, rhs: Swift.Object) -> Bool {
-            return false
+            return lhs.members.elementsEqual(rhs.members) { l, r in
+                if let lObject = l as? Object, let rObject = r as? Object {
+                    if lObject.name != rObject.name { return false }
+                    if lObject.documentation != rObject.documentation { return false }
+                    return lObject == rObject
+                } else if let lInstance = l as? Instantiable, let rInstance = r as? Instantiable {
+                    if lInstance.name != rInstance.name { return false }
+                    if lInstance.constant != rInstance.constant { return false }
+                    if lInstance.optional != rInstance.optional { return false }
+                    if lInstance.access != rInstance.access { return false }
+                    return true
+                } else {
+                    return false
+                }
+            }
         }
     }
 
@@ -179,16 +236,15 @@ struct Swift {
     /// Data type that maps Plotly `data_array` to a numerical array in Swift.
     struct DataArray: SwiftType {
         let name: String = "[Double]"
-        let identifier: String = "[Double]"
         var schema: Schema.DataArray
     }
 
     /// Data type that maps Plotly `enumerated` to Swift `enum`.
-    struct Enumerated: SwiftSharedType {
-        let name: String
+    final class Enumerated: SwiftSharedType {
+        var name: String
         var schema: Schema.Enumerated
 
-        let access: String = "public"
+        let access: Swift.Access = .public
         var protocols: [String] = ["String", "Encodable"]
         var references: [String] = []
         static var existing: [Enumerated] = []
@@ -198,6 +254,23 @@ struct Swift {
             let rawValue: String?
         }
         var cases: [Case] = []
+
+        var definition: [String] {
+            var lines = [String]()
+            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
+            lines += documentation
+            for reference in references {
+                lines += ["/// - \(reference)"]
+            }
+
+            lines += ["\(access)enum \(name)\(protocols) {"]
+            for `case` in cases {
+                let rawValue = (`case`.rawValue != nil) ? " = \(`case`.rawValue!)" : ""
+                lines += ["case \(`case`.label)\(rawValue)"].indented()
+            }
+            lines += ["}"]
+            return lines
+        }
 
         init(named name: String, schema enumerated: Schema.Enumerated) {
             self.name = Swift.name!.pascalCased(name)
@@ -249,29 +322,9 @@ struct Swift {
             }
         }
 
-        /// Returns lines of Swift code that fully define the enum.
-        func definition() -> [String] {
-            var lines = [String]()
-            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += documentation
-            for reference in references {
-                lines += ["/// - \(reference)"]
-            }
-
-            lines += ["\(access) enum \(name)\(protocols) {"]
-            for `case` in cases {
-                let rawValue = (`case`.rawValue != nil) ? " = \(`case`.rawValue!)" : ""
-                lines += ["case \(`case`.label)\(rawValue)"].indented()
-            }
-            lines += ["}"]
-            return lines
-        }
-
         /// Checks for equality by comparing types and cases of the two `Enumerated` types.
         static func == (lhs: Enumerated, rhs: Enumerated) -> Bool {
-            let typeEqual = lhs.name == rhs.name
-            let casesEqual = lhs.cases == rhs.cases
-            return typeEqual && casesEqual
+            return lhs.cases == rhs.cases
         }
     }
 
@@ -332,11 +385,11 @@ struct Swift {
     }
 
     /// Data type that maps Plotly `flaglist` to `OptionSet` from the Swift standard library.
-    struct FlagList: SwiftSharedType {
-        let name: String
+    final class FlagList: SwiftSharedType {
+        var name: String
         var schema: Schema.FlagList
 
-        let access: String = "public"
+        let access: Swift.Access = .public
         var references: [String] = []
         let protocols: [String] = []
         static var existing: [FlagList] = []
@@ -346,6 +399,36 @@ struct Swift {
             let rawValue: String
         }
         var options: [Option] = []
+
+        var definition: [String] {
+            var lines = [String]()
+            lines += documentation
+            for reference in references {
+                lines += ["/// - \(reference)"]
+            }
+
+            lines += ["\(access)struct \(name): OptionSet, Encodable {"]
+            lines += ["\(access)let rawValue: Int"].indented()
+            lines += [""]
+            for (i, option) in options.enumerated() {
+                let label = option.label
+                lines += ["\(access)static let \(label) = \(name)(rawValue: 1 << \(i))"].indented()
+            }
+            lines += [""]
+            lines += ["\(access)init(rawValue: Int) { self.rawValue = rawValue }"].indented()
+            lines += [""]
+            lines += ["\(access)func encode(to encoder: Encoder) throws {"].indented()
+            lines += ["var options = [String]()"].indented(2)
+            for (i, option) in options.enumerated() {
+                let rawValue = option.rawValue
+                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(rawValue)] }"].indented(2)
+            }
+            lines += ["var container = encoder.singleValueContainer()"].indented(2)
+            lines += ["try container.encode(options.joined(separator: \"+\"))"].indented(2)
+            lines += ["}"].indented()
+            lines += ["}"]
+            return lines
+        }
 
         init(named name: String, schema flagList: Schema.FlagList) {
             self.name = Swift.name!.pascalCased(name)
@@ -363,42 +446,9 @@ struct Swift {
             return Option(label: sanitized, rawValue: string.escaped())
         }
 
-        /// Returns lines of Swift code that fully define the OptionSet struct.
-        func definition() -> [String] {
-            var lines = [String]()
-            lines += documentation
-            for reference in references {
-                lines += ["/// - \(reference)"]
-            }
-
-            lines += ["\(access) struct \(name): OptionSet, Encodable {"]
-            lines += ["\(access) let rawValue: Int"].indented()
-            lines += [""]
-            for (i, option) in options.enumerated() {
-                let label = option.label
-                lines += ["\(access) static let \(label) = \(name)(rawValue: 1 << \(i))"].indented()
-            }
-            lines += [""]
-            lines += ["\(access) init(rawValue: Int) { self.rawValue = rawValue }"].indented()
-            lines += [""]
-            lines += ["\(access) func encode(to encoder: Encoder) throws {"].indented()
-            lines += ["var options = [String]()"].indented(2)
-            for (i, option) in options.enumerated() {
-                let rawValue = option.rawValue
-                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(rawValue)] }"].indented(2)
-            }
-            lines += ["var container = encoder.singleValueContainer()"].indented(2)
-            lines += ["try container.encode(options.joined(separator: \"+\"))"].indented(2)
-            lines += ["}"].indented()
-            lines += ["}"]
-            return lines
-        }
-
         /// Checks for equality by comparing types and options of the two `FlagList` types.
         static func == (lhs: FlagList, rhs: FlagList) -> Bool {
-            let typeEqual = lhs.name == rhs.name
-            let optionsEqual = lhs.options == rhs.options
-            return typeEqual && optionsEqual
+            return lhs.options == rhs.options
         }
     }
 
@@ -414,5 +464,22 @@ struct Swift {
     struct InfoArray: SwiftType {
         let name: String = "InfoArray"
         var schema: Schema.InfoArray
+    }
+
+
+    // MARK: - Utilities
+
+    /// Definition context of a Swift type.
+    enum Context {
+        case inlined, shared
+    }
+
+    /// Access level of a Swift property or a struct.
+    enum Access: String, CustomStringConvertible {
+        var description: String { self.rawValue }
+
+        case `private` = "private "
+        case `public` = "public "
+        case `default` = ""
     }
 }

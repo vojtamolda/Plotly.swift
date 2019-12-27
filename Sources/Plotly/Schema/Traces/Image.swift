@@ -9,33 +9,7 @@ public struct Image: Trace {
 
     public let animatable: Bool = false
 
-    /// Determines whether or not this trace is visible. 
-    ///
-    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
-    /// legend itself is visible).
-    /// - traces/scatter/attributes/visible
-    /// - traces/bar/attributes/visible
-    /// - traces/box/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/histogram/attributes/visible
-    /// - traces/histogram2d/attributes/visible
-    /// - traces/histogram2dcontour/attributes/visible
-    /// - traces/contour/attributes/visible
-    /// - traces/scatterternary/attributes/visible
-    /// - traces/violin/attributes/visible
-    /// - traces/funnel/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    /// - traces/image/attributes/visible
-    public enum Visible: String, Encodable {
-        case `true` = "true"
-        case `false` = "false"
-        case legendOnly = "legendonly"
-    }
-    /// Determines whether or not this trace is visible. 
-    ///
-    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
-    /// legend itself is visible).
-    public var visible: Visible?
+    public var visible: Visible0?
 
     /// Sets the opacity of the trace.
     public var opacity: Double?
@@ -69,131 +43,9 @@ public struct Image: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    /// - traces/image/attributes/hoverlabel
-    public struct HoverLabel: Encodable {
-        /// Sets the background color of the hover labels for this trace
-        public var backgroundColor: Color?
-    
-        /// Sets the border color of the hover labels for this trace.
-        public var borderColor: Color?
-    
-        /// Sets the font used in hover labels.
-        /// - traces/image/attributes/hoverlabel/font
-        public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. 
-            ///
-            /// The web browser will only be able to apply a font if it is available on the system which it
-            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-            /// which to apply fonts if they aren't available on the system. The plotly service (at
-            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            public var family: String?
-        
-            public var size: Double?
-        
-            public var color: Color?
-        
-            /// Sets the source reference on plot.ly for  family .
-            public var familySource: String?
-        
-            /// Sets the source reference on plot.ly for  size .
-            public var sizeSource: String?
-        
-            /// Sets the source reference on plot.ly for  color .
-            public var colorSource: String?
-        
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-                self.family = family
-                self.size = size
-                self.color = color
-                self.familySource = familySource
-                self.sizeSource = sizeSource
-                self.colorSource = colorSource
-            }
-        }
-        /// Sets the font used in hover labels.
-        public var font: Font?
-    
-        /// Sets the horizontal alignment of the text content within hover label box. 
-        ///
-        /// Has an effect only if the hover label text spans more two or more lines
-        /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/scatter/attributes/hoverlabel/align
-        /// - traces/bar/attributes/hoverlabel/align
-        /// - traces/box/attributes/hoverlabel/align
-        /// - traces/heatmap/attributes/hoverlabel/align
-        /// - traces/histogram/attributes/hoverlabel/align
-        /// - traces/histogram2d/attributes/hoverlabel/align
-        /// - traces/histogram2dcontour/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/violin/attributes/hoverlabel/align
-        /// - traces/funnel/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
-        /// - traces/image/attributes/hoverlabel/align
-        public enum Align: String, Encodable {
-            case left
-            case right
-            case auto
-        }
-        /// Sets the horizontal alignment of the text content within hover label box. 
-        ///
-        /// Has an effect only if the hover label text spans more two or more lines
-        public var align: Align?
-    
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
-        ///
-        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
-        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
-        /// truncate to `namelength - 3` characters and add an ellipsis.
-        public var nameLength: Int?
-    
-        /// Sets the source reference on plot.ly for  bgcolor .
-        public var backgroundColorSource: String?
-    
-        /// Sets the source reference on plot.ly for  bordercolor .
-        public var borderColorSource: String?
-    
-        /// Sets the source reference on plot.ly for  align .
-        public var alignSource: String?
-    
-        /// Sets the source reference on plot.ly for  namelength .
-        public var nameLengthSource: String?
-    
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
-            self.backgroundColor = backgroundColor
-            self.borderColor = borderColor
-            self.font = font
-            self.align = align
-            self.nameLength = nameLength
-            self.backgroundColorSource = backgroundColorSource
-            self.borderColorSource = borderColorSource
-            self.alignSource = alignSource
-            self.nameLengthSource = nameLengthSource
-        }
-    }
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: HoverLabel1?
 
-    /// - traces/image/attributes/stream
-    public struct Stream: Encodable {
-        /// The stream id number links a data trace on a plot with a stream. 
-        ///
-        /// See https://plot.ly/settings for more details.
-        public var token: String?
-    
-        /// Sets the maximum number of points to keep on the plots from an incoming stream. 
-        ///
-        /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxPoints: Double?
-    
-        public init(token: String? = nil, maxPoints: Double? = nil) {
-            self.token = token
-            self.maxPoints = maxPoints
-        }
-    }
-    public var stream: Stream?
+    public var stream: Stream0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -218,7 +70,6 @@ public struct Image: Trace {
         case HSL = "hsl"
         case HSLA = "hsla"
     }
-    /// Color model used to map the numerical color components described in `z` into colors.
     public var colorModel: ColorModel?
 
     /// Array defining the lower bound for each color component. 
@@ -288,10 +139,6 @@ public struct Image: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines which trace information appear on hover. 
-    ///
-    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -347,7 +194,7 @@ public struct Image: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

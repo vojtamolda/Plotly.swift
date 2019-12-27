@@ -13,17 +13,24 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     let schema = try! JSONDecoder().decode(Schema.self, from: schemaData)
 
     let config = Config(schema: schema.config)
-    config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
-
     var layout = Layout(schema: schema.layout)
-
-    let tracesDirectory = outputDirectory.appendingPathComponent("Traces")
+    var traces = [Trace]()
     for (identifier, schema) in schema.traces.all {
-        let trace = Trace(identifier: identifier, schema: schema, layout: &layout)
-        trace.write(to: tracesDirectory.appendingPathComponent("\(trace.attributes.name).swift"))
+        traces += [Trace(identifier: identifier, schema: schema, layout: &layout)]
     }
 
+    var existing = [String: Int]()
+    let sharedDirectory = outputDirectory.appendingPathComponent("Shared")
+    Swift.Enumerated.write(to: sharedDirectory.appendingPathComponent("Enumerated.swift"), &existing)
+    Swift.FlagList.write(to: sharedDirectory.appendingPathComponent("FlagList.swift"), &existing)
+    Swift.Object.write(to: sharedDirectory.appendingPathComponent("Object.swift"), &existing)
+
+    config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
     layout.write(to: outputDirectory.appendingPathComponent("Layout.swift"))
+    let tracesDirectory = outputDirectory.appendingPathComponent("Traces")
+    for trace in traces {
+        trace.write(to: tracesDirectory.appendingPathComponent("\(trace.attributes.name).swift"))
+    }
 }
 
 

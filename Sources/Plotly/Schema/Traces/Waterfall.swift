@@ -8,32 +8,7 @@ public struct Waterfall: Trace {
 
     public let animatable: Bool = false
 
-    /// Determines whether or not this trace is visible. 
-    ///
-    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
-    /// legend itself is visible).
-    /// - traces/scatter/attributes/visible
-    /// - traces/bar/attributes/visible
-    /// - traces/box/attributes/visible
-    /// - traces/heatmap/attributes/visible
-    /// - traces/histogram/attributes/visible
-    /// - traces/histogram2d/attributes/visible
-    /// - traces/histogram2dcontour/attributes/visible
-    /// - traces/contour/attributes/visible
-    /// - traces/scatterternary/attributes/visible
-    /// - traces/violin/attributes/visible
-    /// - traces/funnel/attributes/visible
-    /// - traces/waterfall/attributes/visible
-    public enum Visible: String, Encodable {
-        case `true` = "true"
-        case `false` = "false"
-        case legendOnly = "legendonly"
-    }
-    /// Determines whether or not this trace is visible. 
-    ///
-    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
-    /// legend itself is visible).
-    public var visible: Visible?
+    public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool?
@@ -82,155 +57,11 @@ public struct Waterfall: Trace {
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything?
 
-    /// - traces/waterfall/attributes/hoverlabel
-    public struct HoverLabel: Encodable {
-        /// Sets the background color of the hover labels for this trace
-        public var backgroundColor: Color?
-    
-        /// Sets the border color of the hover labels for this trace.
-        public var borderColor: Color?
-    
-        /// Sets the font used in hover labels.
-        /// - traces/waterfall/attributes/hoverlabel/font
-        public struct Font: Encodable {
-            /// HTML font family - the typeface that will be applied by the web browser. 
-            ///
-            /// The web browser will only be able to apply a font if it is available on the system which it
-            /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-            /// which to apply fonts if they aren't available on the system. The plotly service (at
-            /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-            /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-            /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-            /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-            public var family: String?
-        
-            public var size: Double?
-        
-            public var color: Color?
-        
-            /// Sets the source reference on plot.ly for  family .
-            public var familySource: String?
-        
-            /// Sets the source reference on plot.ly for  size .
-            public var sizeSource: String?
-        
-            /// Sets the source reference on plot.ly for  color .
-            public var colorSource: String?
-        
-            public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-                self.family = family
-                self.size = size
-                self.color = color
-                self.familySource = familySource
-                self.sizeSource = sizeSource
-                self.colorSource = colorSource
-            }
-        }
-        /// Sets the font used in hover labels.
-        public var font: Font?
-    
-        /// Sets the horizontal alignment of the text content within hover label box. 
-        ///
-        /// Has an effect only if the hover label text spans more two or more lines
-        /// - layout/layoutAttributes/hoverlabel/align
-        /// - traces/scatter/attributes/hoverlabel/align
-        /// - traces/bar/attributes/hoverlabel/align
-        /// - traces/box/attributes/hoverlabel/align
-        /// - traces/heatmap/attributes/hoverlabel/align
-        /// - traces/histogram/attributes/hoverlabel/align
-        /// - traces/histogram2d/attributes/hoverlabel/align
-        /// - traces/histogram2dcontour/attributes/hoverlabel/align
-        /// - traces/contour/attributes/hoverlabel/align
-        /// - traces/scatterternary/attributes/hoverlabel/align
-        /// - traces/violin/attributes/hoverlabel/align
-        /// - traces/funnel/attributes/hoverlabel/align
-        /// - traces/waterfall/attributes/hoverlabel/align
-        public enum Align: String, Encodable {
-            case left
-            case right
-            case auto
-        }
-        /// Sets the horizontal alignment of the text content within hover label box. 
-        ///
-        /// Has an effect only if the hover label text spans more two or more lines
-        public var align: Align?
-    
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
-        ///
-        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
-        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
-        /// truncate to `namelength - 3` characters and add an ellipsis.
-        public var nameLength: Int?
-    
-        /// Sets the source reference on plot.ly for  bgcolor .
-        public var backgroundColorSource: String?
-    
-        /// Sets the source reference on plot.ly for  bordercolor .
-        public var borderColorSource: String?
-    
-        /// Sets the source reference on plot.ly for  align .
-        public var alignSource: String?
-    
-        /// Sets the source reference on plot.ly for  namelength .
-        public var nameLengthSource: String?
-    
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
-            self.backgroundColor = backgroundColor
-            self.borderColor = borderColor
-            self.font = font
-            self.align = align
-            self.nameLength = nameLength
-            self.backgroundColorSource = backgroundColorSource
-            self.borderColorSource = borderColorSource
-            self.alignSource = alignSource
-            self.nameLengthSource = nameLengthSource
-        }
-    }
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: HoverLabel1?
 
-    /// - traces/waterfall/attributes/stream
-    public struct Stream: Encodable {
-        /// The stream id number links a data trace on a plot with a stream. 
-        ///
-        /// See https://plot.ly/settings for more details.
-        public var token: String?
-    
-        /// Sets the maximum number of points to keep on the plots from an incoming stream. 
-        ///
-        /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxPoints: Double?
-    
-        public init(token: String? = nil, maxPoints: Double? = nil) {
-            self.token = token
-            self.maxPoints = maxPoints
-        }
-    }
-    public var stream: Stream?
+    public var stream: Stream0?
 
-    /// - traces/waterfall/attributes/transforms
-    public struct Transforms: Encodable {
-        /// - traces/waterfall/attributes/transforms/items
-        public struct Items: Encodable {
-            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            /// - traces/waterfall/attributes/transforms/items/transform
-            public struct Transform: Encodable {
-                public init() {
-                }
-            }
-            /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-            public var transform: Transform?
-        
-            public init(transform: Transform? = nil) {
-                self.transform = transform
-            }
-        }
-        public var items: Items?
-    
-        public init(items: Items? = nil) {
-            self.items = items
-        }
-    }
-    public var transforms: Transforms?
+    public var transforms: TickFormatStops0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -343,10 +174,6 @@ public struct Waterfall: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines which trace information appear on hover. 
-    ///
-    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
     /// Determines which trace information appear on the graph. 
@@ -377,9 +204,6 @@ public struct Waterfall: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines which trace information appear on the graph. 
-    ///
-    /// In the case of having multiple waterfalls, totals are computed separately (per trace).
     public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. 
@@ -402,42 +226,9 @@ public struct Waterfall: Trace {
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     public var text: String?
 
-    /// Specifies the location of the `text`. 
-    ///
-    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
-    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
-    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
-    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
-    /// outside.
-    /// - traces/bar/attributes/textposition
-    /// - traces/funnel/attributes/textposition
-    /// - traces/waterfall/attributes/textposition
-    public enum TextPosition: String, Encodable {
-        case inside
-        case outside
-        case auto
-        case none
-    }
-    /// Specifies the location of the `text`. 
-    ///
-    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
-    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
-    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
-    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
-    /// outside.
-    public var textPosition: TextPosition?
+    public var textPosition: TextPosition1?
 
-    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    /// - traces/bar/attributes/insidetextanchor
-    /// - traces/funnel/attributes/insidetextanchor
-    /// - traces/waterfall/attributes/insidetextanchor
-    public enum InsideTextAnchor: String, Encodable {
-        case end
-        case middle
-        case start
-    }
-    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    public var insideTextAnchor: InsideTextAnchor?
+    public var insideTextAnchor: InsideTextAnchor0?
 
     /// Sets the angle of the tick labels with respect to the bar. 
     ///
@@ -445,135 +236,13 @@ public struct Waterfall: Trace {
     /// automatically be rotated to fit with the maximum size in bars.
     public var textAngle: Angle?
 
-    /// Sets the font used for `text`.
-    /// - traces/waterfall/attributes/textfont
-    public struct TextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. 
-        ///
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
-    
-        public var size: Double?
-    
-        public var color: Color?
-    
-        /// Sets the source reference on plot.ly for  family .
-        public var familySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        public var colorSource: String?
-    
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.family = family
-            self.size = size
-            self.color = color
-            self.familySource = familySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
-    /// Sets the font used for `text`.
-    public var textFont: TextFont?
+    public var textFont: Font1?
 
-    /// Sets the font used for `text` lying inside the bar.
-    /// - traces/waterfall/attributes/insidetextfont
-    public struct InsideTextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. 
-        ///
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
-    
-        public var size: Double?
-    
-        public var color: Color?
-    
-        /// Sets the source reference on plot.ly for  family .
-        public var familySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        public var colorSource: String?
-    
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.family = family
-            self.size = size
-            self.color = color
-            self.familySource = familySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
-    /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: InsideTextFont?
+    public var insideTextFont: Font1?
 
-    /// Sets the font used for `text` lying outside the bar.
-    /// - traces/waterfall/attributes/outsidetextfont
-    public struct OutSideTextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser. 
-        ///
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
-    
-        public var size: Double?
-    
-        public var color: Color?
-    
-        /// Sets the source reference on plot.ly for  family .
-        public var familySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        public var colorSource: String?
-    
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.family = family
-            self.size = size
-            self.color = color
-            self.familySource = familySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
-    /// Sets the font used for `text` lying outside the bar.
-    public var outSideTextFont: OutSideTextFont?
+    public var outSideTextFont: Font1?
 
-    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    /// - traces/bar/attributes/constraintext
-    /// - traces/funnel/attributes/constraintext
-    /// - traces/waterfall/attributes/constraintext
-    public enum ConstrainText: String, Encodable {
-        case inside
-        case outside
-        case both
-        case none
-    }
-    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    public var constrainText: ConstrainText?
+    public var constrainText: ConstrainText0?
 
     /// Determines whether the text nodes are clipped about the subplot axes. 
     ///
@@ -581,22 +250,7 @@ public struct Waterfall: Trace {
     /// `yaxis.layer` to *below traces*.
     public var clipOnAxis: Bool?
 
-    /// Sets the orientation of the modebar.
-    /// - layout/layoutAttributes/modebar/orientation
-    /// - layout/layoutAttributes/legend/orientation
-    /// - traces/scatter/attributes/orientation
-    /// - traces/bar/attributes/orientation
-    /// - traces/box/attributes/orientation
-    /// - traces/histogram/attributes/orientation
-    /// - traces/violin/attributes/orientation
-    /// - traces/funnel/attributes/orientation
-    /// - traces/waterfall/attributes/orientation
-    public enum Orientation: String, Encodable {
-        case v
-        case h
-    }
-    /// Sets the orientation of the modebar.
-    public var orientation: Orientation?
+    public var orientation: Orientation0?
 
     /// Shifts the position where the bar is drawn (in position axis units). 
     ///
@@ -607,134 +261,15 @@ public struct Waterfall: Trace {
     /// Sets the bar width (in position axis units).
     public var width: Double?
 
-    /// - traces/waterfall/attributes/increasing
-    public struct Increasing: Encodable {
-        /// - traces/waterfall/attributes/increasing/marker
-        public struct Marker: Encodable {
-            /// Sets the marker color of all increasing values.
-            public var color: Color?
-        
-            /// - traces/waterfall/attributes/increasing/marker/line
-            public struct Line: Encodable {
-                /// Sets the line color of all increasing values.
-                public var color: Color?
-            
-                /// Sets the line width of all increasing values.
-                public var width: Double?
-            
-                public init(color: Color? = nil, width: Double? = nil) {
-                    self.color = color
-                    self.width = width
-                }
-            }
-            public var line: Line?
-        
-            public init(color: Color? = nil, line: Line? = nil) {
-                self.color = color
-                self.line = line
-            }
-        }
-        public var marker: Marker?
-    
-        public init(marker: Marker? = nil) {
-            self.marker = marker
-        }
-    }
-    public var increasing: Increasing?
+    public var increasing: Selected1?
 
-    /// - traces/waterfall/attributes/decreasing
-    public struct Decreasing: Encodable {
-        /// - traces/waterfall/attributes/decreasing/marker
-        public struct Marker: Encodable {
-            /// Sets the marker color of all decreasing values.
-            public var color: Color?
-        
-            /// - traces/waterfall/attributes/decreasing/marker/line
-            public struct Line: Encodable {
-                /// Sets the line color of all decreasing values.
-                public var color: Color?
-            
-                /// Sets the line width of all decreasing values.
-                public var width: Double?
-            
-                public init(color: Color? = nil, width: Double? = nil) {
-                    self.color = color
-                    self.width = width
-                }
-            }
-            public var line: Line?
-        
-            public init(color: Color? = nil, line: Line? = nil) {
-                self.color = color
-                self.line = line
-            }
-        }
-        public var marker: Marker?
-    
-        public init(marker: Marker? = nil) {
-            self.marker = marker
-        }
-    }
-    public var decreasing: Decreasing?
+    public var decreasing: Selected1?
 
-    /// - traces/waterfall/attributes/totals
-    public struct Totals: Encodable {
-        /// - traces/waterfall/attributes/totals/marker
-        public struct Marker: Encodable {
-            /// Sets the marker color of all intermediate sums and total values.
-            public var color: Color?
-        
-            /// - traces/waterfall/attributes/totals/marker/line
-            public struct Line: Encodable {
-                /// Sets the line color of all intermediate sums and total values.
-                public var color: Color?
-            
-                /// Sets the line width of all intermediate sums and total values.
-                public var width: Double?
-            
-                public init(color: Color? = nil, width: Double? = nil) {
-                    self.color = color
-                    self.width = width
-                }
-            }
-            public var line: Line?
-        
-            public init(color: Color? = nil, line: Line? = nil) {
-                self.color = color
-                self.line = line
-            }
-        }
-        public var marker: Marker?
-    
-        public init(marker: Marker? = nil) {
-            self.marker = marker
-        }
-    }
-    public var totals: Totals?
+    public var totals: Selected1?
 
     /// - traces/waterfall/attributes/connector
     public struct Connector: Encodable {
-        /// - traces/waterfall/attributes/connector/line
-        public struct Line: Encodable {
-            /// Sets the line color.
-            public var color: Color?
-        
-            /// Sets the line width (in px).
-            public var width: Double?
-        
-            /// Sets the dash style of lines. 
-            ///
-            /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-            /// dash length list in px (eg *5px,10px,2px,2px*).
-            public var dash: String?
-        
-            public init(color: Color? = nil, width: Double? = nil, dash: String? = nil) {
-                self.color = color
-                self.width = width
-                self.dash = dash
-            }
-        }
-        public var line: Line?
+        public var line: Line0?
     
         /// Sets the shape of connector lines.
         /// - traces/waterfall/attributes/connector/mode
@@ -742,13 +277,12 @@ public struct Waterfall: Trace {
             case spanning
             case between
         }
-        /// Sets the shape of connector lines.
         public var mode: Mode?
     
         /// Determines if connector lines are drawn. 
         public var visible: Bool?
     
-        public init(line: Line? = nil, mode: Mode? = nil, visible: Bool? = nil) {
+        public init(line: Line0? = nil, mode: Mode? = nil, visible: Bool? = nil) {
             self.line = line
             self.mode = mode
             self.visible = visible
@@ -818,7 +352,7 @@ public struct Waterfall: Trace {
     /// Sets the source reference on plot.ly for  width .
     public var widthSource: String?
 
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: Transforms? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: TextFont? = nil, insideTextFont: InsideTextFont? = nil, outSideTextFont: OutSideTextFont? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, offset: Double? = nil, width: Double? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, measureSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition1? = nil, insideTextAnchor: InsideTextAnchor0? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText0? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, increasing: Selected1? = nil, decreasing: Selected1? = nil, totals: Selected1? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, measureSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
