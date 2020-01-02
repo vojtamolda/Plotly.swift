@@ -235,6 +235,54 @@ public struct DensityMapbox: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case longitude = "lon"
+        case latitude = "lat"
+        case z
+        case radius
+        case below
+        case text
+        case hoverText = "hovertext"
+        case hoverInfo = "hoverinfo"
+        case hoverTemplate = "hovertemplate"
+        case zAuto = "zauto"
+        case zMin = "zmin"
+        case zMax = "zmax"
+        case zMiddle = "zmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case subPlot = "subplot"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case longitudeSource = "lonsrc"
+        case latitudeSource = "latsrc"
+        case zSource = "zsrc"
+        case radiusSource = "radiussrc"
+        case textSource = "textsrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+    }
+    
     public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: [Double]? = nil, radius: Double? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, zSource: String? = nil, radiusSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity

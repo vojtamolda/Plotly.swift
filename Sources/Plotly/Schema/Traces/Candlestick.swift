@@ -174,6 +174,52 @@ public struct Candlestick: Trace {
     /// Sets the source reference on plot.ly for  hovertext .
     public var hoverTextSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case hoverInfo = "hoverinfo"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case x
+        case open
+        case high
+        case low
+        case close
+        case line
+        case increasing
+        case decreasing
+        case text
+        case hoverText = "hovertext"
+        case whiskerWidth = "whiskerwidth"
+        case hoverLabel = "hoverlabel"
+        case xCalendar = "xcalendar"
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case xSource = "xsrc"
+        case openSource = "opensrc"
+        case highSource = "highsrc"
+        case lowSource = "lowsrc"
+        case closeSource = "closesrc"
+        case textSource = "textsrc"
+        case hoverTextSource = "hovertextsrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing2? = nil, decreasing: Increasing2? = nil, text: String? = nil, hoverText: String? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel2? = nil, xCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, openSource: String? = nil, highSource: String? = nil, lowSource: String? = nil, closeSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

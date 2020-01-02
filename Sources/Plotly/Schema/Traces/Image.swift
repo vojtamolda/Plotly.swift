@@ -194,6 +194,44 @@ public struct Image: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverLabel = "hoverlabel"
+        case stream
+        case uiRevision = "uirevision"
+        case z
+        case colorModel = "colormodel"
+        case zMin = "zmin"
+        case zMax = "zmax"
+        case x0
+        case y0
+        case dx
+        case dy
+        case text
+        case hoverText = "hovertext"
+        case hoverInfo = "hoverinfo"
+        case hoverTemplate = "hovertemplate"
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case zSource = "zsrc"
+        case textSource = "textsrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+    }
+    
     public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity

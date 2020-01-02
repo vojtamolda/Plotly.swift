@@ -1,6 +1,7 @@
 
 protocol Instantiable: Definable {
     var name: String { get }
+    var codingName: String { get }
     var constant: String? { get }
     var optional: Bool { get }
     var access: Swift.Access { get }
@@ -13,6 +14,7 @@ protocol Instantiable: Definable {
 struct Instance<Type>: Instantiable where Type: SwiftType {
     var type: Type
     let name: String
+    let codingName: String
     let constant: String?
     let optional: Bool
     var access: Swift.Access = .public
@@ -39,6 +41,7 @@ struct Instance<Type>: Instantiable where Type: SwiftType {
     /// Creates instance of the specified data type accessible by identifier.
     init(named name: String, of type: Type, constant: String? = nil, optional: Bool = true) {
         self.name = Swift.name!.camelCased(name)
+        self.codingName = name
         self.type = type
         self.constant = constant
         self.optional = optional

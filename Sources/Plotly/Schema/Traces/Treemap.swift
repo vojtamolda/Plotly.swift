@@ -136,6 +136,14 @@ public struct Treemap: Trace {
         /// Sets the inner padding (in px).
         public var padding: Double?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case packing
+            case squarifyRatio = "squarifyratio"
+            case flip
+            case padding = "pad"
+        }
+        
         public init(packing: Packing? = nil, squarifyRatio: Double? = nil, flip: Flip? = nil, padding: Double? = nil) {
             self.packing = packing
             self.squarifyRatio = squarifyRatio
@@ -243,6 +251,25 @@ public struct Treemap: Trace {
         /// Sets the source reference on plot.ly for  colors .
         public var colorsSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case padding = "pad"
+            case colors
+            case depthFade = "depthfade"
+            case line
+            case cAuto = "cauto"
+            case cMin = "cmin"
+            case cMax = "cmax"
+            case cMiddle = "cmid"
+            case colorScale = "colorscale"
+            case autoColorScale = "autocolorscale"
+            case reverseScale = "reversescale"
+            case showScale = "showscale"
+            case colorBar = "colorbar"
+            case colorAxis = "coloraxis"
+            case colorsSource = "colorssrc"
+        }
+        
         public init(padding: Padding? = nil, colors: [Double]? = nil, depthFade: AutoRange0? = nil, line: Line6? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorsSource: String? = nil) {
             self.padding = padding
             self.colors = colors
@@ -290,6 +317,15 @@ public struct Treemap: Trace {
     
         public var textFont: Font1?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case side
+            case edgeShape = "edgeshape"
+            case thickness
+            case textFont = "textfont"
+        }
+        
         public init(visible: Bool? = nil, side: Side3? = nil, edgeShape: EdgeShape? = nil, thickness: Double? = nil, textFont: Font1? = nil) {
             self.visible = visible
             self.side = side
@@ -393,6 +429,55 @@ public struct Treemap: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case labels
+        case parents
+        case values
+        case branchValues = "branchvalues"
+        case count
+        case level
+        case maxDepth = "maxdepth"
+        case tiling
+        case marker
+        case pathBar = "pathbar"
+        case text
+        case textInfo = "textinfo"
+        case textTemplate = "texttemplate"
+        case hoverText = "hovertext"
+        case hoverInfo = "hoverinfo"
+        case hoverTemplate = "hovertemplate"
+        case textFont = "textfont"
+        case insideTextFont = "insidetextfont"
+        case outSideTextFont = "outsidetextfont"
+        case textPosition = "textposition"
+        case domain
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case labelsSource = "labelssrc"
+        case parentsSource = "parentssrc"
+        case valuesSource = "valuessrc"
+        case textSource = "textsrc"
+        case textTemplateSource = "texttemplatesrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+    }
+    
     public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues0? = nil, count: Count0? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo1? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo3? = nil, hoverTemplate: String? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, textPosition: TextPosition0? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity

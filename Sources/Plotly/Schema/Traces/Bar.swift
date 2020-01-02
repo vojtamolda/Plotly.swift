@@ -276,6 +276,78 @@ public struct Bar: Trace {
     /// Sets the source reference on plot.ly for  t .
     public var tSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case hoverInfo = "hoverinfo"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case x
+        case x0
+        case dx
+        case y
+        case y0
+        case dy
+        case text
+        case textTemplate = "texttemplate"
+        case hoverText = "hovertext"
+        case hoverTemplate = "hovertemplate"
+        case textPosition = "textposition"
+        case insideTextAnchor = "insidetextanchor"
+        case textAngle = "textangle"
+        case textFont = "textfont"
+        case insideTextFont = "insidetextfont"
+        case outSideTextFont = "outsidetextfont"
+        case constrainText = "constraintext"
+        case clipOnAxis = "cliponaxis"
+        case orientation
+        case base
+        case offset
+        case width
+        case marker
+        case offsetGroup = "offsetgroup"
+        case alignmentGroup = "alignmentgroup"
+        case selected
+        case unselected
+        case r
+        case t
+        case xError = "error_x"
+        case yError = "error_y"
+        case xCalendar = "xcalendar"
+        case yCalendar = "ycalendar"
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case xSource = "xsrc"
+        case ySource = "ysrc"
+        case textSource = "textsrc"
+        case textTemplateSource = "texttemplatesrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+        case textPositionSource = "textpositionsrc"
+        case baseSource = "basesrc"
+        case offsetSource = "offsetsrc"
+        case widthSource = "widthsrc"
+        case rSource = "rsrc"
+        case tSource = "tsrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: TextPosition1? = nil, insideTextAnchor: InsideTextAnchor0? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText0? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker2? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: XError0? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

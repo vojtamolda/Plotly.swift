@@ -118,6 +118,14 @@ public struct Indicator: Trace {
         /// Sets a suffix appearing next to the number.
         public var suffix: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case valueFormat = "valueformat"
+            case font
+            case prefix
+            case suffix
+        }
+        
         public init(valueFormat: String? = nil, font: Font0? = nil, prefix: String? = nil, suffix: String? = nil) {
             self.valueFormat = valueFormat
             self.font = font
@@ -150,6 +158,17 @@ public struct Indicator: Trace {
     
         public var font: Font0?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case reference
+            case position
+            case relative
+            case valueFormat = "valueformat"
+            case increasing
+            case decreasing
+            case font
+        }
+        
         public init(reference: Double? = nil, position: Side0? = nil, relative: Bool? = nil, valueFormat: String? = nil, increasing: Increasing0? = nil, decreasing: Increasing0? = nil, font: Font0? = nil) {
             self.reference = reference
             self.position = position
@@ -310,6 +329,36 @@ public struct Indicator: Trace {
             /// Sets the source reference on plot.ly for  ticktext .
             public var tickTextSource: String?
         
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case range
+                case visible
+                case tickMode = "tickmode"
+                case numTicks = "nticks"
+                case tick0
+                case dTick = "dtick"
+                case tickValues = "tickvals"
+                case tickText = "ticktext"
+                case ticks
+                case tickLength = "ticklen"
+                case tickWidth = "tickwidth"
+                case tickColor = "tickcolor"
+                case showTickLabels = "showticklabels"
+                case tickFont = "tickfont"
+                case tickAngle = "tickangle"
+                case tickFormat = "tickformat"
+                case tickFormatStops = "tickformatstops"
+                case tickPrefix = "tickprefix"
+                case showTickPrefix = "showtickprefix"
+                case tickSuffix = "ticksuffix"
+                case showTickSuffix = "showticksuffix"
+                case separatethousands
+                case exponentFormat = "exponentformat"
+                case showExponent = "showexponent"
+                case tickValuesSource = "tickvalssrc"
+                case tickTextSource = "ticktextsrc"
+            }
+            
             public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat0? = nil, showExponent: ShowTickPrefix0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
                 self.range = range
                 self.visible = visible
@@ -361,6 +410,18 @@ public struct Indicator: Trace {
         }
         public var threshold: Threshold?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case shape
+            case bar
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case borderWidth = "borderwidth"
+            case axis
+            case steps
+            case threshold
+        }
+        
         public init(shape: Shape? = nil, bar: Bar? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, axis: Axis? = nil, steps: TickFormatStops0? = nil, threshold: Threshold? = nil) {
             self.shape = shape
             self.bar = bar
@@ -383,6 +444,32 @@ public struct Indicator: Trace {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case mode
+        case value
+        case align
+        case domain
+        case title
+        case number
+        case delta
+        case gauge
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+    }
+    
     public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Align1? = nil, domain: Domain0? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
         self.visible = visible
         self.name = name

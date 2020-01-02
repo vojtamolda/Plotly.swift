@@ -220,6 +220,61 @@ public struct ContourCarpet: Trace {
     /// Sets the source reference on plot.ly for  hovertext .
     public var hoverTextSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case stream
+        case uiRevision = "uirevision"
+        case carpet
+        case z
+        case a
+        case a0
+        case da
+        case b
+        case b0
+        case db
+        case text
+        case hoverText = "hovertext"
+        case transpose
+        case aType = "atype"
+        case bType = "btype"
+        case fillColor = "fillcolor"
+        case autoContour = "autocontour"
+        case nContours = "ncontours"
+        case contours
+        case line
+        case zAuto = "zauto"
+        case zMin = "zmin"
+        case zMax = "zmax"
+        case zMiddle = "zmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case zSource = "zsrc"
+        case aSource = "asrc"
+        case bSource = "bsrc"
+        case textSource = "textsrc"
+        case hoverTextSource = "hovertextsrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: [Double]? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: XType0? = nil, bType: XType0? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours0? = nil, line: Line4? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, aSource: String? = nil, bSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

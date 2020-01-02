@@ -227,6 +227,63 @@ public struct Volume: Trace {
     /// Sets the source reference on plot.ly for  hoverinfo .
     public var hoverInfoSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverLabel = "hoverlabel"
+        case stream
+        case uiRevision = "uirevision"
+        case x
+        case y
+        case z
+        case value
+        case isoMin = "isomin"
+        case isoMax = "isomax"
+        case surface
+        case spaceFrame = "spaceframe"
+        case slices
+        case caps
+        case text
+        case hoverText = "hovertext"
+        case hoverTemplate = "hovertemplate"
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case opacity
+        case opacityScale = "opacityscale"
+        case lightPosition = "lightposition"
+        case lighting
+        case flatShading = "flatshading"
+        case contour
+        case hoverInfo = "hoverinfo"
+        case scene
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case xSource = "xsrc"
+        case ySource = "ysrc"
+        case zSource = "zsrc"
+        case valueSource = "valuesrc"
+        case textSource = "textsrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+        case hoverInfoSource = "hoverinfosrc"
+    }
+    
     public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface0? = nil, spaceFrame: SpaceFrame0? = nil, slices: Up0? = nil, caps: Up0? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, flatShading: Bool? = nil, contour: Contour0? = nil, hoverInfo: HoverInfo1? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, valueSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name

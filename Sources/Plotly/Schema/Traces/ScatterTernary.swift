@@ -253,6 +253,60 @@ public struct ScatterTernary: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case a
+        case b
+        case c
+        case sum
+        case mode
+        case text
+        case textTemplate = "texttemplate"
+        case hoverText = "hovertext"
+        case line
+        case connectGaps = "connectgaps"
+        case clipOnAxis = "cliponaxis"
+        case fill
+        case fillColor = "fillcolor"
+        case marker
+        case textFont = "textfont"
+        case textPosition = "textposition"
+        case selected
+        case unselected
+        case hoverInfo = "hoverinfo"
+        case hoverOn = "hoveron"
+        case hoverTemplate = "hovertemplate"
+        case subPlot = "subplot"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case aSource = "asrc"
+        case bSource = "bsrc"
+        case cSource = "csrc"
+        case textSource = "textsrc"
+        case textTemplateSource = "texttemplatesrc"
+        case hoverTextSource = "hovertextsrc"
+        case textPositionSource = "textpositionsrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, a: [Double]? = nil, b: [Double]? = nil, c: [Double]? = nil, sum: Double? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line5? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Fill1? = nil, fillColor: Color? = nil, marker: Marker6? = nil, textFont: Font1? = nil, textPosition: TextPosition0? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn0? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, aSource: String? = nil, bSource: String? = nil, cSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

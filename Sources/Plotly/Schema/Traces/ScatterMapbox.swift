@@ -219,6 +219,31 @@ public struct ScatterMapbox: Trace {
         /// Sets the source reference on plot.ly for  color .
         public var colorSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case symbol
+            case opacity
+            case size
+            case sizeReference = "sizeref"
+            case sizeMin = "sizemin"
+            case sizeMode = "sizemode"
+            case color
+            case cAuto = "cauto"
+            case cMin = "cmin"
+            case cMax = "cmax"
+            case cMiddle = "cmid"
+            case colorScale = "colorscale"
+            case autoColorScale = "autocolorscale"
+            case reverseScale = "reversescale"
+            case showScale = "showscale"
+            case colorBar = "colorbar"
+            case colorAxis = "coloraxis"
+            case symbolSource = "symbolsrc"
+            case opacitySource = "opacitysrc"
+            case sizeSource = "sizesrc"
+            case colorSource = "colorsrc"
+        }
+        
         public init(symbol: String? = nil, opacity: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, opacitySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
             self.symbol = symbol
             self.opacity = opacity
@@ -353,6 +378,55 @@ public struct ScatterMapbox: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case longitude = "lon"
+        case latitude = "lat"
+        case mode
+        case text
+        case textTemplate = "texttemplate"
+        case hoverText = "hovertext"
+        case line
+        case connectGaps = "connectgaps"
+        case marker
+        case fill
+        case fillColor = "fillcolor"
+        case textFont = "textfont"
+        case textPosition = "textposition"
+        case below
+        case selected
+        case unselected
+        case hoverInfo = "hoverinfo"
+        case hoverTemplate = "hovertemplate"
+        case subPlot = "subplot"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case longitudeSource = "lonsrc"
+        case latitudeSource = "latsrc"
+        case textSource = "textsrc"
+        case textTemplateSource = "texttemplatesrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line3? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill2? = nil, fillColor: Color? = nil, textFont: Font0? = nil, textPosition: TextPosition0? = nil, below: String? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

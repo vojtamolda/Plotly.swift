@@ -68,6 +68,19 @@ public struct Layout: Encodable {
     
         public var padding: Padding0?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case text
+            case font
+            case xReference = "xref"
+            case yReference = "yref"
+            case x
+            case y
+            case xAnchor = "xanchor"
+            case yAnchor = "yanchor"
+            case padding = "pad"
+        }
+        
         public init(text: String? = nil, font: Font0? = nil, xReference: XReference0? = nil, yReference: XReference0? = nil, x: Double? = nil, y: Double? = nil, xAnchor: XAnchor0? = nil, yAnchor: YAnchor0? = nil, padding: Padding0? = nil) {
             self.text = text
             self.font = font
@@ -117,6 +130,16 @@ public struct Layout: Encodable {
         /// the margins by defaults.
         public var autoExpand: Bool?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case l
+            case r
+            case t
+            case b
+            case padding = "pad"
+            case autoExpand = "autoexpand"
+        }
+        
         public init(l: Double? = nil, r: Double? = nil, t: Double? = nil, b: Double? = nil, padding: Double? = nil, autoExpand: Bool? = nil) {
             self.l = l
             self.r = r
@@ -218,6 +241,15 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case orientation
+            case backgroundColor = "bgcolor"
+            case color
+            case activeColor = "activecolor"
+            case uiRevision = "uirevision"
+        }
+        
         public init(orientation: Orientation0? = nil, backgroundColor: Color? = nil, color: Color? = nil, activeColor: Color? = nil, uiRevision: Anything? = nil) {
             self.orientation = orientation
             self.backgroundColor = backgroundColor
@@ -357,6 +389,15 @@ public struct Layout: Encodable {
         /// truncate to `namelength - 3` characters and add an ellipsis.
         public var nameLength: Int?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case font
+            case align
+            case nameLength = "namelength"
+        }
+        
         public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font0? = nil, align: Align0? = nil, nameLength: Int? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
@@ -492,6 +533,22 @@ public struct Layout: Encodable {
         }
         public var ySide: YSide?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case rows
+            case rowOrder = "roworder"
+            case columns
+            case subPlots = "subplots"
+            case xAxes = "xaxes"
+            case yAxes = "yaxes"
+            case pattern
+            case xGap = "xgap"
+            case yGap = "ygap"
+            case domain
+            case xSide = "xside"
+            case ySide = "yside"
+        }
+        
         public init(rows: Int? = nil, rowOrder: RowOrder? = nil, columns: Int? = nil, subPlots: InfoArray? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, pattern: Pattern? = nil, xGap: Double? = nil, yGap: Double? = nil, domain: Domain? = nil, xSide: XSide? = nil, ySide: YSide? = nil) {
             self.rows = rows
             self.rowOrder = rowOrder
@@ -813,6 +870,12 @@ public struct Layout: Encodable {
                 /// Sets the range of this axis for the rangeslider.
                 public var range: InfoArray?
             
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case rangeMode = "rangemode"
+                    case range
+                }
+                
                 public init(rangeMode: RangeMode? = nil, range: InfoArray? = nil) {
                     self.rangeMode = rangeMode
                     self.range = range
@@ -820,6 +883,18 @@ public struct Layout: Encodable {
             }
             public var yAxis: YAxis?
         
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case backgroundColor = "bgcolor"
+                case borderColor = "bordercolor"
+                case borderWidth = "borderwidth"
+                case autoRange = "autorange"
+                case range
+                case thickness
+                case visible
+                case yAxis = "yaxis"
+            }
+            
             public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Int? = nil, autoRange: Bool? = nil, range: InfoArray? = nil, thickness: Double? = nil, visible: Bool? = nil, yAxis: YAxis? = nil) {
                 self.backgroundColor = backgroundColor
                 self.borderColor = borderColor
@@ -867,6 +942,21 @@ public struct Layout: Encodable {
             /// Sets the width (in px) of the border enclosing the range selector.
             public var borderWidth: Double?
         
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case buttons
+                case x
+                case xAnchor = "xanchor"
+                case y
+                case yAnchor = "yanchor"
+                case font
+                case backgroundColor = "bgcolor"
+                case activeColor = "activecolor"
+                case borderColor = "bordercolor"
+                case borderWidth = "borderwidth"
+            }
+            
             public init(visible: Bool? = nil, buttons: TickFormatStops0? = nil, x: Double? = nil, xAnchor: XAnchor0? = nil, y: Double? = nil, yAnchor: YAnchor0? = nil, font: Font0? = nil, backgroundColor: Color? = nil, activeColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil) {
                 self.visible = visible
                 self.buttons = buttons
@@ -894,6 +984,82 @@ public struct Layout: Encodable {
         /// Sets the source reference on plot.ly for  categoryarray .
         public var categoryArraySource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case color
+            case title
+            case type
+            case autoRange = "autorange"
+            case rangeMode = "rangemode"
+            case range
+            case fixedRange = "fixedrange"
+            case scaleAnchor = "scaleanchor"
+            case scaleRatio = "scaleratio"
+            case constrain
+            case constrainToward = "constraintoward"
+            case matches
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case ticksOn = "tickson"
+            case mirror
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case autoMargin = "automargin"
+            case showSpikes = "showspikes"
+            case spikeColor = "spikecolor"
+            case spikeThickness = "spikethickness"
+            case spikeDash = "spikedash"
+            case spikeMode = "spikemode"
+            case spikeSnap = "spikesnap"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickPrefix = "tickprefix"
+            case showTickPrefix = "showtickprefix"
+            case tickSuffix = "ticksuffix"
+            case showTickSuffix = "showticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separatethousands
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case hoverFormat = "hoverformat"
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case zeroLine = "zeroline"
+            case zeroLineColor = "zerolinecolor"
+            case zeroLineWidth = "zerolinewidth"
+            case showDividers = "showdividers"
+            case dividerColor = "dividercolor"
+            case dividerWidth = "dividerwidth"
+            case anchor
+            case side
+            case overlaying
+            case layer
+            case domain
+            case position
+            case categoryOrder = "categoryorder"
+            case categoryArray = "categoryarray"
+            case uiRevision = "uirevision"
+            case rangeSlider = "rangeslider"
+            case rangeSelector = "rangeselector"
+            case calendar
+            case tickValuesSource = "tickvalssrc"
+            case tickTextSource = "ticktextsrc"
+            case categoryArraySource = "categoryarraysrc"
+        }
+        
         public init(visible: Bool? = nil, color: Color? = nil, title: Title0? = nil, type: Rule0? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor0? = nil, scaleRatio: Double? = nil, constrain: Constrain0? = nil, constrainToward: ConstrainToward0? = nil, matches: ScaleAnchor0? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, ticksOn: TicksOn0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode0? = nil, spikeSnap: SpikeSnap0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor0? = nil, side: Side0? = nil, overlaying: Anchor0? = nil, layer: Layer0? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
             self.visible = visible
             self.color = color
@@ -1234,6 +1400,80 @@ public struct Layout: Encodable {
         /// Sets the source reference on plot.ly for  categoryarray .
         public var categoryArraySource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case color
+            case title
+            case type
+            case autoRange = "autorange"
+            case rangeMode = "rangemode"
+            case range
+            case fixedRange = "fixedrange"
+            case scaleAnchor = "scaleanchor"
+            case scaleRatio = "scaleratio"
+            case constrain
+            case constrainToward = "constraintoward"
+            case matches
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case ticksOn = "tickson"
+            case mirror
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case autoMargin = "automargin"
+            case showSpikes = "showspikes"
+            case spikeColor = "spikecolor"
+            case spikeThickness = "spikethickness"
+            case spikeDash = "spikedash"
+            case spikeMode = "spikemode"
+            case spikeSnap = "spikesnap"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickPrefix = "tickprefix"
+            case showTickPrefix = "showtickprefix"
+            case tickSuffix = "ticksuffix"
+            case showTickSuffix = "showticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separatethousands
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case hoverFormat = "hoverformat"
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case zeroLine = "zeroline"
+            case zeroLineColor = "zerolinecolor"
+            case zeroLineWidth = "zerolinewidth"
+            case showDividers = "showdividers"
+            case dividerColor = "dividercolor"
+            case dividerWidth = "dividerwidth"
+            case anchor
+            case side
+            case overlaying
+            case layer
+            case domain
+            case position
+            case categoryOrder = "categoryorder"
+            case categoryArray = "categoryarray"
+            case uiRevision = "uirevision"
+            case calendar
+            case tickValuesSource = "tickvalssrc"
+            case tickTextSource = "ticktextsrc"
+            case categoryArraySource = "categoryarraysrc"
+        }
+        
         public init(visible: Bool? = nil, color: Color? = nil, title: Title0? = nil, type: Rule0? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor0? = nil, scaleRatio: Double? = nil, constrain: Constrain0? = nil, constrainToward: ConstrainToward0? = nil, matches: ScaleAnchor0? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, ticksOn: TicksOn0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode0? = nil, spikeSnap: SpikeSnap0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor0? = nil, side: Side0? = nil, overlaying: Anchor0? = nil, layer: Layer0? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar: Calendar0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
             self.visible = visible
             self.color = color
@@ -1330,6 +1570,17 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case domain
+            case backgroundColor = "bgcolor"
+            case sum
+            case aAxis = "aaxis"
+            case bAxis = "baxis"
+            case cAxis = "caxis"
+            case uiRevision = "uirevision"
+        }
+        
         public init(domain: Domain0? = nil, backgroundColor: Color? = nil, sum: Double? = nil, aAxis: AAxis0? = nil, bAxis: AAxis0? = nil, cAxis: AAxis0? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.backgroundColor = backgroundColor
@@ -1452,6 +1703,22 @@ public struct Layout: Encodable {
     
         public var annotations: TickFormatStops0?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case backgroundColor = "bgcolor"
+            case camera
+            case domain
+            case aspectMode = "aspectmode"
+            case aspectRatio = "aspectratio"
+            case xAxis = "xaxis"
+            case yAxis = "yaxis"
+            case zAxis = "zaxis"
+            case dragMode = "dragmode"
+            case hoverMode = "hovermode"
+            case uiRevision = "uirevision"
+            case annotations
+        }
+        
         public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Domain0? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis0? = nil, yAxis: XAxis0? = nil, zAxis: XAxis0? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations: TickFormatStops0? = nil) {
             self.backgroundColor = backgroundColor
             self.camera = camera
@@ -1539,6 +1806,13 @@ public struct Layout: Encodable {
                 /// Roll the map (in degrees) For example, a roll of *180* makes the map appear upside down.
                 public var roll: Double?
             
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case longitude = "lon"
+                    case latitude = "lat"
+                    case roll
+                }
+                
                 public init(longitude: Double? = nil, latitude: Double? = nil, roll: Double? = nil) {
                     self.longitude = longitude
                     self.latitude = latitude
@@ -1645,6 +1919,40 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case domain
+            case resolution
+            case scope
+            case projection
+            case center
+            case showCoastLines = "showcoastlines"
+            case coastLineColor = "coastlinecolor"
+            case coastLineWidth = "coastlinewidth"
+            case showLand = "showland"
+            case landColor = "landcolor"
+            case showOcean = "showocean"
+            case oceanColor = "oceancolor"
+            case showLakes = "showlakes"
+            case lakeColor = "lakecolor"
+            case showRivers = "showrivers"
+            case riverColor = "rivercolor"
+            case riverWidth = "riverwidth"
+            case showCountries = "showcountries"
+            case countryColor = "countrycolor"
+            case countryWidth = "countrywidth"
+            case showSubUnits = "showsubunits"
+            case subUnitColor = "subunitcolor"
+            case subUnitWidth = "subunitwidth"
+            case showFrame = "showframe"
+            case frameColor = "framecolor"
+            case frameWidth = "framewidth"
+            case backgroundColor = "bgcolor"
+            case longitudeAxis = "lonaxis"
+            case latitudeAxis = "lataxis"
+            case uiRevision = "uirevision"
+        }
+        
         public init(domain: Domain0? = nil, resolution: Resolution? = nil, scope: Scope? = nil, projection: Projection? = nil, center: Center0? = nil, showCoastLines: Bool? = nil, coastLineColor: Color? = nil, coastLineWidth: Double? = nil, showLand: Bool? = nil, landColor: Color? = nil, showOcean: Bool? = nil, oceanColor: Color? = nil, showLakes: Bool? = nil, lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor: Color? = nil, riverWidth: Double? = nil, showCountries: Bool? = nil, countryColor: Color? = nil, countryWidth: Double? = nil, showSubUnits: Bool? = nil, subUnitColor: Color? = nil, subUnitWidth: Double? = nil, showFrame: Bool? = nil, frameColor: Color? = nil, frameWidth: Double? = nil, backgroundColor: Color? = nil, longitudeAxis: LongitudeAxis0? = nil, latitudeAxis: LongitudeAxis0? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.resolution = resolution
@@ -1726,6 +2034,19 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case domain
+            case accessToken = "accesstoken"
+            case style
+            case center
+            case zoom
+            case bearing
+            case pitch
+            case layers
+            case uiRevision = "uirevision"
+        }
+        
         public init(domain: Domain0? = nil, accessToken: String? = nil, style: Anything? = nil, center: Center0? = nil, zoom: Double? = nil, bearing: Double? = nil, pitch: Double? = nil, layers: TickFormatStops0? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.accessToken = accessToken
@@ -1951,6 +2272,56 @@ public struct Layout: Encodable {
             /// Sets the source reference on plot.ly for  ticktext .
             public var tickTextSource: String?
         
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case type
+                case autoRange = "autorange"
+                case rangeMode = "rangemode"
+                case range
+                case categoryOrder = "categoryorder"
+                case categoryArray = "categoryarray"
+                case angle
+                case side
+                case title
+                case hoverFormat = "hoverformat"
+                case uiRevision = "uirevision"
+                case color
+                case showLine = "showline"
+                case lineColor = "linecolor"
+                case lineWidth = "linewidth"
+                case showGrid = "showgrid"
+                case gridColor = "gridcolor"
+                case gridWidth = "gridwidth"
+                case tickMode = "tickmode"
+                case numTicks = "nticks"
+                case tick0
+                case dTick = "dtick"
+                case tickValues = "tickvals"
+                case tickText = "ticktext"
+                case ticks
+                case tickLength = "ticklen"
+                case tickWidth = "tickwidth"
+                case tickColor = "tickcolor"
+                case showTickLabels = "showticklabels"
+                case showTickPrefix = "showtickprefix"
+                case tickPrefix = "tickprefix"
+                case showTickSuffix = "showticksuffix"
+                case tickSuffix = "ticksuffix"
+                case showExponent = "showexponent"
+                case exponentFormat = "exponentformat"
+                case separatethousands
+                case tickFont = "tickfont"
+                case tickAngle = "tickangle"
+                case tickFormat = "tickformat"
+                case tickFormatStops = "tickformatstops"
+                case layer
+                case calendar
+                case categoryArraySource = "categoryarraysrc"
+                case tickValuesSource = "tickvalssrc"
+                case tickTextSource = "ticktextsrc"
+            }
+            
             public init(visible: Bool? = nil, type: Rule1? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side1? = nil, title: Title1? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, layer: Layer0? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
                 self.visible = visible
                 self.type = type
@@ -2201,6 +2572,53 @@ public struct Layout: Encodable {
             /// Sets the source reference on plot.ly for  ticktext .
             public var tickTextSource: String?
         
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case type
+                case categoryOrder = "categoryorder"
+                case categoryArray = "categoryarray"
+                case thetaUnit = "thetaunit"
+                case period
+                case direction
+                case rotation
+                case hoverFormat = "hoverformat"
+                case uiRevision = "uirevision"
+                case color
+                case showLine = "showline"
+                case lineColor = "linecolor"
+                case lineWidth = "linewidth"
+                case showGrid = "showgrid"
+                case gridColor = "gridcolor"
+                case gridWidth = "gridwidth"
+                case tickMode = "tickmode"
+                case numTicks = "nticks"
+                case tick0
+                case dTick = "dtick"
+                case tickValues = "tickvals"
+                case tickText = "ticktext"
+                case ticks
+                case tickLength = "ticklen"
+                case tickWidth = "tickwidth"
+                case tickColor = "tickcolor"
+                case showTickLabels = "showticklabels"
+                case showTickPrefix = "showtickprefix"
+                case tickPrefix = "tickprefix"
+                case showTickSuffix = "showticksuffix"
+                case tickSuffix = "ticksuffix"
+                case showExponent = "showexponent"
+                case exponentFormat = "exponentformat"
+                case separatethousands
+                case tickFont = "tickfont"
+                case tickAngle = "tickangle"
+                case tickFormat = "tickformat"
+                case tickFormatStops = "tickformatstops"
+                case layer
+                case categoryArraySource = "categoryarraysrc"
+                case tickValuesSource = "tickvalssrc"
+                case tickTextSource = "ticktextsrc"
+            }
+            
             public init(visible: Bool? = nil, type: Rule? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction: Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, layer: Layer0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
                 self.visible = visible
                 self.type = type
@@ -2266,6 +2684,18 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case domain
+            case sector
+            case hole
+            case backgroundColor = "bgcolor"
+            case radialAxis = "radialaxis"
+            case angularAxis = "angularaxis"
+            case gridShape = "gridshape"
+            case uiRevision = "uirevision"
+        }
+        
         public init(domain: Domain0? = nil, sector: InfoArray? = nil, hole: Double? = nil, backgroundColor: Color? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, gridShape: GridShape? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.sector = sector
@@ -2331,6 +2761,21 @@ public struct Layout: Encodable {
         /// Determines whether or not this axis will be visible.
         public var visible: Bool?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case range
+            case domain
+            case orientation
+            case showLine = "showline"
+            case showTickLabels = "showticklabels"
+            case tickOrientation = "tickorientation"
+            case tickLength = "ticklen"
+            case tickColor = "tickcolor"
+            case tickSuffix = "ticksuffix"
+            case endPadding = "endpadding"
+            case visible
+        }
+        
         public init(range: InfoArray? = nil, domain: InfoArray? = nil, orientation: Double? = nil, showLine: Bool? = nil, showTickLabels: Bool? = nil, tickOrientation: TickOrientation0? = nil, tickLength: Double? = nil, tickColor: Color? = nil, tickSuffix: String? = nil, endPadding: Double? = nil, visible: Bool? = nil) {
             self.range = range
             self.domain = domain
@@ -2394,6 +2839,20 @@ public struct Layout: Encodable {
         /// Determines whether or not this axis will be visible.
         public var visible: Bool?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case range
+            case domain
+            case showLine = "showline"
+            case showTickLabels = "showticklabels"
+            case tickOrientation = "tickorientation"
+            case tickLength = "ticklen"
+            case tickColor = "tickcolor"
+            case tickSuffix = "ticksuffix"
+            case endPadding = "endpadding"
+            case visible
+        }
+        
         public init(range: InfoArray? = nil, domain: InfoArray? = nil, showLine: Bool? = nil, showTickLabels: Bool? = nil, tickOrientation: TickOrientation0? = nil, tickLength: Double? = nil, tickColor: Color? = nil, tickSuffix: String? = nil, endPadding: Double? = nil, visible: Bool? = nil) {
             self.range = range
             self.domain = domain
@@ -2496,6 +2955,26 @@ public struct Layout: Encodable {
     
         public var verticalAlign: VerticalAlign0?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case borderWidth = "borderwidth"
+            case font
+            case orientation
+            case traceOrder = "traceorder"
+            case traceGroupGap = "tracegroupgap"
+            case itemSizing = "itemsizing"
+            case itemClick = "itemclick"
+            case itemDoubleClick = "itemdoubleclick"
+            case x
+            case xAnchor = "xanchor"
+            case y
+            case yAnchor = "yanchor"
+            case uiRevision = "uirevision"
+            case verticalAlign = "valign"
+        }
+        
         public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, font: Font0? = nil, orientation: Orientation0? = nil, traceOrder: TraceOrder? = nil, traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemClick: ItemClick0? = nil, itemDoubleClick: ItemClick0? = nil, x: Double? = nil, xAnchor: XAnchor0? = nil, y: Double? = nil, yAnchor: YAnchor0? = nil, uiRevision: Anything? = nil, verticalAlign: VerticalAlign0? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
@@ -2544,6 +3023,13 @@ public struct Layout: Encodable {
         /// Note that `autocolorscale` must be true for this attribute to work.
         public var diverging: ColorScale?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case sequential
+            case sequentialMinus = "sequentialminus"
+            case diverging
+        }
+        
         public init(sequential: ColorScale? = nil, sequentialMinus: ColorScale? = nil, diverging: ColorScale? = nil) {
             self.sequential = sequential
             self.sequentialMinus = sequentialMinus
@@ -2603,6 +3089,19 @@ public struct Layout: Encodable {
     
         public var colorBar: ColorBar0?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case cAuto = "cauto"
+            case cMin = "cmin"
+            case cMax = "cmax"
+            case cMiddle = "cmid"
+            case colorScale = "colorscale"
+            case autoColorScale = "autocolorscale"
+            case reverseScale = "reversescale"
+            case showScale = "showscale"
+            case colorBar = "colorbar"
+        }
+        
         public init(cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil) {
             self.cAuto = cAuto
             self.cMin = cMin
@@ -2620,6 +3119,59 @@ public struct Layout: Encodable {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case font
+        case title
+        case autoSize = "autosize"
+        case width
+        case height
+        case margin
+        case paperBackgroundColor = "paper_bgcolor"
+        case plotBackgroundColor = "plot_bgcolor"
+        case separators
+        case hideSources = "hidesources"
+        case showLegend = "showlegend"
+        case colorWay = "colorway"
+        case dataRevision = "datarevision"
+        case uiRevision = "uirevision"
+        case editRevision = "editrevision"
+        case selectionRevision = "selectionrevision"
+        case template
+        case modeBar = "modebar"
+        case meta
+        case transition
+        case clickMode = "clickmode"
+        case dragMode = "dragmode"
+        case hoverMode = "hovermode"
+        case hoverDistance = "hoverdistance"
+        case spikeDistance = "spikedistance"
+        case hoverLabel = "hoverlabel"
+        case selectDirection = "selectdirection"
+        case grid
+        case calendar
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case ternary
+        case scene
+        case geo
+        case mapbox
+        case polar
+        case radialAxis = "radialaxis"
+        case angularAxis = "angularaxis"
+        case direction
+        case orientation
+        case legend
+        case annotations
+        case shapes
+        case images
+        case updateMenus = "updatemenus"
+        case sliders
+        case colorScale = "colorscale"
+        case colorAxis = "coloraxis"
+        case metaSource = "metasrc"
+    }
+    
     public init(font: Font0? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar0? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Side1? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: TickFormatStops0? = nil, shapes: TickFormatStops0? = nil, images: TickFormatStops0? = nil, updateMenus: TickFormatStops0? = nil, sliders: TickFormatStops0? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
         self.font = font
         self.title = title

@@ -227,6 +227,64 @@ public struct ScatterGL: Trace {
     /// Sets the source reference on plot.ly for  texttemplate .
     public var textTemplateSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case hoverInfo = "hoverinfo"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case x
+        case x0
+        case dx
+        case y
+        case y0
+        case dy
+        case text
+        case hoverText = "hovertext"
+        case textPosition = "textposition"
+        case textFont = "textfont"
+        case mode
+        case line
+        case marker
+        case connectGaps = "connectgaps"
+        case fill
+        case fillColor = "fillcolor"
+        case selected
+        case unselected
+        case opacity
+        case hoverTemplate = "hovertemplate"
+        case textTemplate = "texttemplate"
+        case xError = "error_x"
+        case yError = "error_y"
+        case xCalendar = "xcalendar"
+        case yCalendar = "ycalendar"
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case xSource = "xsrc"
+        case ySource = "ysrc"
+        case textSource = "textsrc"
+        case hoverTextSource = "hovertextsrc"
+        case textPositionSource = "textpositionsrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+        case textTemplateSource = "texttemplatesrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, hoverText: String? = nil, textPosition: TextPosition0? = nil, textFont: Font1? = nil, mode: Mode0? = nil, line: Line7? = nil, marker: Marker10? = nil, connectGaps: Bool? = nil, fill: Fill0? = nil, fillColor: Color? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, opacity: Double? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, xError: XError0? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverTemplateSource: String? = nil, textTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

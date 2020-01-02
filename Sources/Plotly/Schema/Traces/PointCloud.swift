@@ -140,6 +140,12 @@ public struct PointCloud: Trace {
             /// Specifies what fraction of the marker area is covered with the border.
             public var areaRatio: Double?
         
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case color
+                case areaRatio = "arearatio"
+            }
+            
             public init(color: Color? = nil, areaRatio: Double? = nil) {
                 self.color = color
                 self.areaRatio = areaRatio
@@ -147,6 +153,16 @@ public struct PointCloud: Trace {
         }
         public var border: Border?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case color
+            case opacity
+            case blend
+            case sizeMin = "sizemin"
+            case sizeMax = "sizemax"
+            case border
+        }
+        
         public init(color: Color? = nil, opacity: Double? = nil, blend: Bool? = nil, sizeMin: Double? = nil, sizeMax: Double? = nil, border: Border? = nil) {
             self.color = color
             self.opacity = opacity
@@ -203,6 +219,46 @@ public struct PointCloud: Trace {
     /// Sets the source reference on plot.ly for  text .
     public var textSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverInfo = "hoverinfo"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case uiRevision = "uirevision"
+        case x
+        case y
+        case xy
+        case indices
+        case xBounds = "xbounds"
+        case yBounds = "ybounds"
+        case text
+        case marker
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case xSource = "xsrc"
+        case ySource = "ysrc"
+        case xySource = "xysrc"
+        case indicesSource = "indicessrc"
+        case xBoundsSource = "xboundssrc"
+        case yBoundsSource = "yboundssrc"
+        case textSource = "textsrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: String? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, xySource: String? = nil, indicesSource: String? = nil, xBoundsSource: String? = nil, yBoundsSource: String? = nil, textSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

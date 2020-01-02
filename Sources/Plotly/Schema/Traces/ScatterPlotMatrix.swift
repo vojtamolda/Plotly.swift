@@ -164,6 +164,46 @@ public struct ScatterPlotMatrix: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case hoverInfo = "hoverinfo"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case dimensions
+        case text
+        case hoverText = "hovertext"
+        case hoverTemplate = "hovertemplate"
+        case marker
+        case xAxes = "xaxes"
+        case yAxes = "yaxes"
+        case diagonal
+        case showUpperHalf = "showupperhalf"
+        case showLowerHalf = "showlowerhalf"
+        case selected
+        case unselected
+        case opacity
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case textSource = "textsrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, dimensions: TickFormatStops0? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, marker: Marker10? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, diagonal: Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, opacity: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

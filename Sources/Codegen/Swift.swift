@@ -118,7 +118,7 @@ class Swift {
         var members: [Definable]
         var primitives: [String: Schema.Primitive]
 
-        static let ignoredIdentifiers: Set = ["_deprecated"]
+        static private let ignoredIdentifiers: Set = ["_deprecated"]
 
         var definition: [String] {
             var lines = [String]()
@@ -134,6 +134,7 @@ class Swift {
                 lines += member.define(as: .inlined).indented()
                 lines += [""]
             }
+            lines += codingKeys.indented()
 
             let variables = members.compactMap { $0 as? Instantiable }.filter { $0.constant == nil }
             let arguments = variables.map { $0.argument + " = nil" }.joined(separator: ", ")
@@ -142,6 +143,24 @@ class Swift {
             lines += ["}"].indented()
 
             lines += ["}"]
+            return lines
+        }
+
+        private var codingKeys: [String] {
+            let properties = members.compactMap { $0 as? Instantiable }
+            if properties.filter({ $0.name != $0.codingName }).isEmpty { return [] }
+
+            var lines = [String]()
+            lines += ["/// Plotly compatible property encoding"]
+            lines += ["enum CodingKeys: String, CodingKey {"]
+            for property in properties {
+                if property.name != property.codingName {
+                    lines += ["case \(property.name) = \(property.codingName.escaped())"].indented()
+                } else {
+                    lines += ["case \(property.name)"].indented()
+                }
+            }
+            lines += ["}", ""]
             return lines
         }
 

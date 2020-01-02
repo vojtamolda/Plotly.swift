@@ -235,6 +235,24 @@ public struct ParallelCategories: Trace {
         /// Sets the source reference on plot.ly for  color .
         public var colorSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case color
+            case cAuto = "cauto"
+            case cMin = "cmin"
+            case cMax = "cmax"
+            case cMiddle = "cmid"
+            case colorScale = "colorscale"
+            case autoColorScale = "autocolorscale"
+            case reverseScale = "reversescale"
+            case showScale = "showscale"
+            case colorBar = "colorbar"
+            case colorAxis = "coloraxis"
+            case shape
+            case hoverTemplate = "hovertemplate"
+            case colorSource = "colorsrc"
+        }
+        
         public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil, colorSource: String? = nil) {
             self.color = color
             self.cAuto = cAuto
@@ -265,6 +283,33 @@ public struct ParallelCategories: Trace {
     /// Sets the source reference on plot.ly for  counts .
     public var countsSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case name
+        case uid
+        case meta
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case domain
+        case hoverInfo = "hoverinfo"
+        case hoverOn = "hoveron"
+        case hoverTemplate = "hovertemplate"
+        case arrangement
+        case bundleColors = "bundlecolors"
+        case sortPaths = "sortpaths"
+        case labelFont = "labelfont"
+        case tickFont = "tickfont"
+        case dimensions
+        case line
+        case counts
+        case metaSource = "metasrc"
+        case countsSource = "countssrc"
+    }
+    
     public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, dimensions: TickFormatStops0? = nil, line: Line? = nil, counts: Double? = nil, metaSource: String? = nil, countsSource: String? = nil) {
         self.visible = visible
         self.name = name

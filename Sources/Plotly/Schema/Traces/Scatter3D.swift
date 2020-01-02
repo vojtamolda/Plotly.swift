@@ -221,6 +221,24 @@ public struct Scatter3D: Trace {
         /// Sets the source reference on plot.ly for  color .
         public var colorSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case width
+            case dash
+            case color
+            case cAuto = "cauto"
+            case cMin = "cmin"
+            case cMax = "cmax"
+            case cMiddle = "cmid"
+            case colorScale = "colorscale"
+            case autoColorScale = "autocolorscale"
+            case reverseScale = "reversescale"
+            case showScale = "showscale"
+            case colorBar = "colorbar"
+            case colorAxis = "coloraxis"
+            case colorSource = "colorsrc"
+        }
+        
         public init(width: Double? = nil, dash: Dash0? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorSource: String? = nil) {
             self.width = width
             self.dash = dash
@@ -351,6 +369,21 @@ public struct Scatter3D: Trace {
             /// Sets the source reference on plot.ly for  color .
             public var colorSource: String?
         
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case width
+                case color
+                case cAuto = "cauto"
+                case cMin = "cmin"
+                case cMax = "cmax"
+                case cMiddle = "cmid"
+                case colorScale = "colorscale"
+                case autoColorScale = "autocolorscale"
+                case reverseScale = "reversescale"
+                case colorAxis = "coloraxis"
+                case colorSource = "colorsrc"
+            }
+            
             public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil, colorSource: String? = nil) {
                 self.width = width
                 self.color = color
@@ -442,6 +475,31 @@ public struct Scatter3D: Trace {
         /// Sets the source reference on plot.ly for  color .
         public var colorSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case symbol
+            case size
+            case sizeReference = "sizeref"
+            case sizeMin = "sizemin"
+            case sizeMode = "sizemode"
+            case opacity
+            case colorBar = "colorbar"
+            case line
+            case color
+            case cAuto = "cauto"
+            case cMin = "cmin"
+            case cMax = "cmax"
+            case cMiddle = "cmid"
+            case colorScale = "colorscale"
+            case autoColorScale = "autocolorscale"
+            case reverseScale = "reversescale"
+            case showScale = "showscale"
+            case colorAxis = "coloraxis"
+            case symbolSource = "symbolsrc"
+            case sizeSource = "sizesrc"
+            case colorSource = "colorsrc"
+        }
+        
         public init(symbol: Symbol? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, opacity: Double? = nil, colorBar: ColorBar0? = nil, line: Line? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
             self.symbol = symbol
             self.size = size
@@ -493,6 +551,15 @@ public struct Scatter3D: Trace {
         /// Sets the source reference on plot.ly for  size .
         public var sizeSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case color
+            case size
+            case family
+            case colorSource = "colorsrc"
+            case sizeSource = "sizesrc"
+        }
+        
         public init(color: Color? = nil, size: Double? = nil, family: String? = nil, colorSource: String? = nil, sizeSource: String? = nil) {
             self.color = color
             self.size = size
@@ -559,6 +626,61 @@ public struct Scatter3D: Trace {
     /// Sets the source reference on plot.ly for  hoverinfo .
     public var hoverInfoSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case x
+        case y
+        case z
+        case text
+        case textTemplate = "texttemplate"
+        case hoverText = "hovertext"
+        case hoverTemplate = "hovertemplate"
+        case mode
+        case surfaceAxis = "surfaceaxis"
+        case surfaceColor = "surfacecolor"
+        case projection
+        case connectGaps = "connectgaps"
+        case line
+        case marker
+        case textPosition = "textposition"
+        case textFont = "textfont"
+        case hoverInfo = "hoverinfo"
+        case xError = "error_x"
+        case yError = "error_y"
+        case zError = "error_z"
+        case xCalendar = "xcalendar"
+        case yCalendar = "ycalendar"
+        case zCalendar = "zcalendar"
+        case scene
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case xSource = "xsrc"
+        case ySource = "ysrc"
+        case zSource = "zsrc"
+        case textSource = "textsrc"
+        case textTemplateSource = "texttemplatesrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+        case textPositionSource = "textpositionsrc"
+        case hoverInfoSource = "hoverinfosrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Mode0? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Up0? = nil, connectGaps: Bool? = nil, line: Line? = nil, marker: Marker? = nil, textPosition: TextPosition0? = nil, textFont: TextFont? = nil, hoverInfo: HoverInfo1? = nil, xError: XError1? = nil, yError: XError1? = nil, zError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

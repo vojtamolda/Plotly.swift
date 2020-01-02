@@ -277,6 +277,15 @@ public struct TickFormatStop0: Encodable {
     /// `visible: true`.
     public var templateItemName: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case enabled
+        case dTickRange = "dtickrange"
+        case value
+        case name
+        case templateItemName = "templateitemname"
+    }
+    
     public init(enabled: Bool? = nil, dTickRange: InfoArray? = nil, value: String? = nil, name: String? = nil, templateItemName: String? = nil) {
         self.enabled = enabled
         self.dTickRange = dTickRange
@@ -337,6 +346,11 @@ public struct TickFormatStop0: Encodable {
 public struct Items0: Encodable {
     public var tickFormatStop: TickFormatStop0?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case tickFormatStop = "tickformatstop"
+    }
+    
     public init(tickFormatStop: TickFormatStop0? = nil) {
         self.tickFormatStop = tickFormatStop
     }
@@ -511,6 +525,17 @@ public struct Items1: Encodable {
         /// `visible: true`.
         public var templateItemName: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case step
+            case stepMode = "stepmode"
+            case count
+            case label
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
         public init(visible: Bool? = nil, step: Step? = nil, stepMode: StepMode? = nil, count: Double? = nil, label: String? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.step = step
@@ -738,6 +763,46 @@ public struct AAxis0: Encodable {
     /// Sets the source reference on plot.ly for  ticktext .
     public var tickTextSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case title
+        case color
+        case tickMode = "tickmode"
+        case numTicks = "nticks"
+        case tick0
+        case dTick = "dtick"
+        case tickValues = "tickvals"
+        case tickText = "ticktext"
+        case ticks
+        case tickLength = "ticklen"
+        case tickWidth = "tickwidth"
+        case tickColor = "tickcolor"
+        case showTickLabels = "showticklabels"
+        case showTickPrefix = "showtickprefix"
+        case tickPrefix = "tickprefix"
+        case showTickSuffix = "showticksuffix"
+        case tickSuffix = "ticksuffix"
+        case showExponent = "showexponent"
+        case exponentFormat = "exponentformat"
+        case separatethousands
+        case tickFont = "tickfont"
+        case tickAngle = "tickangle"
+        case tickFormat = "tickformat"
+        case tickFormatStops = "tickformatstops"
+        case hoverFormat = "hoverformat"
+        case showLine = "showline"
+        case lineColor = "linecolor"
+        case lineWidth = "linewidth"
+        case showGrid = "showgrid"
+        case gridColor = "gridcolor"
+        case gridWidth = "gridwidth"
+        case layer
+        case min
+        case uiRevision = "uirevision"
+        case tickValuesSource = "tickvalssrc"
+        case tickTextSource = "ticktextsrc"
+    }
+    
     public init(title: Title1? = nil, color: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer0? = nil, min: Double? = nil, uiRevision: Anything? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
         self.title = title
         self.color = color
@@ -1064,6 +1129,63 @@ public struct XAxis0: Encodable {
     /// Sets the source reference on plot.ly for  ticktext .
     public var tickTextSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case visible
+        case showSpikes = "showspikes"
+        case spikeSides = "spikesides"
+        case spikeThickness = "spikethickness"
+        case spikeColor = "spikecolor"
+        case showBackground = "showbackground"
+        case backgroundColor = "backgroundcolor"
+        case showAxesLabels = "showaxeslabels"
+        case color
+        case categoryOrder = "categoryorder"
+        case categoryArray = "categoryarray"
+        case title
+        case type
+        case autoRange = "autorange"
+        case rangeMode = "rangemode"
+        case range
+        case tickMode = "tickmode"
+        case numTicks = "nticks"
+        case tick0
+        case dTick = "dtick"
+        case tickValues = "tickvals"
+        case tickText = "ticktext"
+        case ticks
+        case mirror
+        case tickLength = "ticklen"
+        case tickWidth = "tickwidth"
+        case tickColor = "tickcolor"
+        case showTickLabels = "showticklabels"
+        case tickFont = "tickfont"
+        case tickAngle = "tickangle"
+        case tickPrefix = "tickprefix"
+        case showTickPrefix = "showtickprefix"
+        case tickSuffix = "ticksuffix"
+        case showTickSuffix = "showticksuffix"
+        case showExponent = "showexponent"
+        case exponentFormat = "exponentformat"
+        case separatethousands
+        case tickFormat = "tickformat"
+        case tickFormatStops = "tickformatstops"
+        case hoverFormat = "hoverformat"
+        case showLine = "showline"
+        case lineColor = "linecolor"
+        case lineWidth = "linewidth"
+        case showGrid = "showgrid"
+        case gridColor = "gridcolor"
+        case gridWidth = "gridwidth"
+        case zeroLine = "zeroline"
+        case zeroLineColor = "zerolinecolor"
+        case zeroLineWidth = "zerolinewidth"
+        case calendar
+        case categoryArraySource = "categoryarraysrc"
+        case tickValuesSource = "tickvalssrc"
+        case tickTextSource = "ticktextsrc"
+    }
+    
     public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, title: Title1? = nil, type: Rule1? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
         self.visible = visible
         self.showSpikes = showSpikes
@@ -1136,6 +1258,13 @@ public struct HoverLabel0: Encodable {
 
     public var font: Font0?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case backgroundColor = "bgcolor"
+        case borderColor = "bordercolor"
+        case font
+    }
+    
     public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font0? = nil) {
         self.backgroundColor = backgroundColor
         self.borderColor = borderColor
@@ -1288,6 +1417,47 @@ public struct Items2: Encodable {
         /// `visible: true`.
         public var templateItemName: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case x
+            case y
+            case z
+            case ax
+            case ay
+            case xAnchor = "xanchor"
+            case xShift = "xshift"
+            case yAnchor = "yanchor"
+            case yShift = "yshift"
+            case text
+            case textAngle = "textangle"
+            case font
+            case width
+            case height
+            case opacity
+            case align
+            case verticalAlign = "valign"
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case borderPadding = "borderpad"
+            case borderWidth = "borderwidth"
+            case showArrow = "showarrow"
+            case arrowColor = "arrowcolor"
+            case arrowHead = "arrowhead"
+            case startArrowHead = "startarrowhead"
+            case arrowSide = "arrowside"
+            case arrowSize = "arrowsize"
+            case startArrowSize = "startarrowsize"
+            case arrowWidth = "arrowwidth"
+            case standoff
+            case startStandoff = "startstandoff"
+            case hoverText = "hovertext"
+            case hoverLabel = "hoverlabel"
+            case captureEvents = "captureevents"
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
         public init(visible: Bool? = nil, x: Anything? = nil, y: Anything? = nil, z: Anything? = nil, ax: Double? = nil, ay: Double? = nil, xAnchor: XAnchor0? = nil, xShift: Double? = nil, yAnchor: YAnchor0? = nil, yShift: Double? = nil, text: String? = nil, textAngle: Angle? = nil, font: Font0? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: Align1? = nil, verticalAlign: VerticalAlign0? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide0? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, hoverText: String? = nil, hoverLabel: HoverLabel0? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.x = x
@@ -1350,6 +1520,12 @@ public struct Center0: Encodable {
     /// default.
     public var latitude: Double?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case longitude = "lon"
+        case latitude = "lat"
+    }
+    
     public init(longitude: Double? = nil, latitude: Double? = nil) {
         self.longitude = longitude
         self.latitude = latitude
@@ -1377,6 +1553,16 @@ public struct LongitudeAxis0: Encodable {
     /// Sets the graticule's stroke width (in px).
     public var gridWidth: Double?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case range
+        case showGrid = "showgrid"
+        case tick0
+        case dTick = "dtick"
+        case gridColor = "gridcolor"
+        case gridWidth = "gridwidth"
+    }
+    
     public init(range: InfoArray? = nil, showGrid: Bool? = nil, tick0: Double? = nil, dTick: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil) {
         self.range = range
         self.showGrid = showGrid
@@ -1458,6 +1644,18 @@ public struct Items3: Encodable {
         /// `visible: true`.
         public var templateItemName: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case method
+            case args
+            case label
+            case value
+            case execute
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
         public init(visible: Bool? = nil, method: Method0? = nil, args: InfoArray? = nil, label: String? = nil, value: String? = nil, execute: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.method = method
@@ -1709,6 +1907,50 @@ public struct ColorBar0: Encodable {
     /// Sets the source reference on plot.ly for  ticktext .
     public var tickTextSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case thicknessMode = "thicknessmode"
+        case thickness
+        case lengthMode = "lenmode"
+        case length = "len"
+        case x
+        case xAnchor = "xanchor"
+        case xPadding = "xpad"
+        case y
+        case yAnchor = "yanchor"
+        case yPading = "ypad"
+        case outLineColor = "outlinecolor"
+        case outLineWidth = "outlinewidth"
+        case borderColor = "bordercolor"
+        case borderWidth = "borderwidth"
+        case backgroundColor = "bgcolor"
+        case tickMode = "tickmode"
+        case numTicks = "nticks"
+        case tick0
+        case dTick = "dtick"
+        case tickValues = "tickvals"
+        case tickText = "ticktext"
+        case ticks
+        case tickLength = "ticklen"
+        case tickWidth = "tickwidth"
+        case tickColor = "tickcolor"
+        case showTickLabels = "showticklabels"
+        case tickFont = "tickfont"
+        case tickAngle = "tickangle"
+        case tickFormat = "tickformat"
+        case tickFormatStops = "tickformatstops"
+        case tickPrefix = "tickprefix"
+        case showTickPrefix = "showtickprefix"
+        case tickSuffix = "ticksuffix"
+        case showTickSuffix = "showticksuffix"
+        case separatethousands
+        case exponentFormat = "exponentformat"
+        case showExponent = "showexponent"
+        case title
+        case tickValuesSource = "tickvalssrc"
+        case tickTextSource = "ticktextsrc"
+    }
+    
     public init(thicknessMode: LengthMode0? = nil, thickness: Double? = nil, lengthMode: LengthMode0? = nil, length: Double? = nil, x: Double? = nil, xAnchor: Align1? = nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: VerticalAlign0? = nil, yPading: Double? = nil, outLineColor: Color? = nil, outLineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat0? = nil, showExponent: ShowTickPrefix0? = nil, title: Title2? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
         self.thicknessMode = thicknessMode
         self.thickness = thickness
@@ -1855,6 +2097,16 @@ public struct Font1: Encodable {
     /// Sets the source reference on plot.ly for  color .
     public var colorSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case family
+        case size
+        case color
+        case familySource = "familysrc"
+        case sizeSource = "sizesrc"
+        case colorSource = "colorsrc"
+    }
+    
     public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
         self.family = family
         self.size = size
@@ -1937,6 +2189,19 @@ public struct HoverLabel1: Encodable {
     /// Sets the source reference on plot.ly for  namelength .
     public var nameLengthSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case backgroundColor = "bgcolor"
+        case borderColor = "bordercolor"
+        case font
+        case align
+        case nameLength = "namelength"
+        case backgroundColorSource = "bgcolorsrc"
+        case borderColorSource = "bordercolorsrc"
+        case alignSource = "alignsrc"
+        case nameLengthSource = "namelengthsrc"
+    }
+    
     public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font1? = nil, align: Align0? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
         self.backgroundColor = backgroundColor
         self.borderColor = borderColor
@@ -2008,6 +2273,12 @@ public struct Stream0: Encodable {
     /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
     public var maxPoints: Double?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case token
+        case maxPoints = "maxpoints"
+    }
+    
     public init(token: String? = nil, maxPoints: Double? = nil) {
         self.token = token
         self.maxPoints = maxPoints
@@ -2138,6 +2409,22 @@ public struct Line1: Encodable {
     /// Sets the source reference on plot.ly for  color .
     public var colorSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case width
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case colorAxis = "coloraxis"
+        case widthSource = "widthsrc"
+        case colorSource = "colorsrc"
+    }
+    
     public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil, widthSource: String? = nil, colorSource: String? = nil) {
         self.width = width
         self.color = color
@@ -2171,6 +2458,14 @@ public struct Gradient0: Encodable {
     /// Sets the source reference on plot.ly for  color .
     public var colorSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case color
+        case typeSource = "typesrc"
+        case colorSource = "colorsrc"
+    }
+    
     public init(type: Rule2? = nil, color: Color? = nil, typeSource: String? = nil, colorSource: String? = nil) {
         self.type = type
         self.color = color
@@ -2292,6 +2587,34 @@ public struct Marker0: Encodable {
     /// Sets the source reference on plot.ly for  color .
     public var colorSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case symbol
+        case opacity
+        case size
+        case maxDisplayed = "maxdisplayed"
+        case sizeReference = "sizeref"
+        case sizeMin = "sizemin"
+        case sizeMode = "sizemode"
+        case line
+        case gradient
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case symbolSource = "symbolsrc"
+        case opacitySource = "opacitysrc"
+        case sizeSource = "sizesrc"
+        case colorSource = "colorsrc"
+    }
+    
     public init(symbol: Symbol0? = nil, opacity: Double? = nil, size: Double? = nil, maxDisplayed: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, line: Line1? = nil, gradient: Gradient0? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, opacitySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
         self.symbol = symbol
         self.opacity = opacity
@@ -2413,6 +2736,12 @@ public struct Selected0: Encodable {
 
     public var textFont: TextFont0?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case marker
+        case textFont = "textfont"
+    }
+    
     public init(marker: Marker1? = nil, textFont: TextFont0? = nil) {
         self.marker = marker
         self.textFont = textFont
@@ -2467,6 +2796,25 @@ public struct XError0: Encodable {
     /// Sets the source reference on plot.ly for  arrayminus .
     public var arrayMinusSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case visible
+        case type
+        case symmetric
+        case array
+        case arrayMinus = "arrayminus"
+        case value
+        case valueMinus = "valueminus"
+        case traceReference = "traceref"
+        case traceReferenceMinus = "tracerefminus"
+        case yCopyStyle = "copy_ystyle"
+        case color
+        case thickness
+        case width
+        case arraySource = "arraysrc"
+        case arrayMinusSource = "arrayminussrc"
+    }
+    
     public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, yCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
         self.visible = visible
         self.type = type
@@ -2533,6 +2881,24 @@ public struct YError0: Encodable {
     /// Sets the source reference on plot.ly for  arrayminus .
     public var arrayMinusSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case visible
+        case type
+        case symmetric
+        case array
+        case arrayMinus = "arrayminus"
+        case value
+        case valueMinus = "valueminus"
+        case traceReference = "traceref"
+        case traceReferenceMinus = "tracerefminus"
+        case color
+        case thickness
+        case width
+        case arraySource = "arraysrc"
+        case arrayMinusSource = "arrayminussrc"
+    }
+    
     public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
         self.visible = visible
         self.type = type
@@ -2635,6 +3001,25 @@ public struct Marker2: Encodable {
     /// Sets the source reference on plot.ly for  opacity .
     public var opacitySource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case line
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case opacity
+        case colorSource = "colorsrc"
+        case opacitySource = "opacitysrc"
+    }
+    
     public init(line: Line1? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, colorSource: String? = nil, opacitySource: String? = nil) {
         self.line = line
         self.color = color
@@ -2694,6 +3079,14 @@ public struct Line2: Encodable {
     /// Sets the border line width (in px) of the outlier sample points.
     public var outlierWidth: Double?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case color
+        case width
+        case outlierColor = "outliercolor"
+        case outlierWidth = "outlierwidth"
+    }
+    
     public init(color: Color? = nil, width: Double? = nil, outlierColor: Color? = nil, outlierWidth: Double? = nil) {
         self.color = color
         self.width = width
@@ -2725,6 +3118,16 @@ public struct Marker4: Encodable {
 
     public var line: Line2?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case outlierColor = "outliercolor"
+        case symbol
+        case opacity
+        case size
+        case color
+        case line
+    }
+    
     public init(outlierColor: Color? = nil, symbol: Symbol0? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line2? = nil) {
         self.outlierColor = outlierColor
         self.symbol = symbol
@@ -2838,6 +3241,12 @@ public struct Marker5: Encodable {
     /// Sets the source reference on plot.ly for  color .
     public var colorSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case color
+        case colorSource = "colorsrc"
+    }
+    
     public init(color: [Double]? = nil, colorSource: String? = nil) {
         self.color = color
         self.colorSource = colorSource
@@ -2892,6 +3301,22 @@ public struct Contours0: Encodable {
 
     public var impliedEdits: ImpliedEdits0?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case start
+        case end
+        case size
+        case coloring
+        case showLines = "showlines"
+        case showLabels = "showlabels"
+        case labelFont = "labelfont"
+        case labelFormat = "labelformat"
+        case operation
+        case value
+        case impliedEdits
+    }
+    
     public init(type: Rule4? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring0? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation0? = nil, value: Anything? = nil, impliedEdits: ImpliedEdits0? = nil) {
         self.type = type
         self.start = start
@@ -3082,6 +3507,34 @@ public struct Marker6: Encodable {
     /// Sets the source reference on plot.ly for  color .
     public var colorSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case symbol
+        case opacity
+        case maxDisplayed = "maxdisplayed"
+        case size
+        case sizeReference = "sizeref"
+        case sizeMin = "sizemin"
+        case sizeMode = "sizemode"
+        case line
+        case gradient
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case symbolSource = "symbolsrc"
+        case opacitySource = "opacitysrc"
+        case sizeSource = "sizesrc"
+        case colorSource = "colorsrc"
+    }
+    
     public init(symbol: Symbol0? = nil, opacity: Double? = nil, maxDisplayed: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, line: Line1? = nil, gradient: Gradient0? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, opacitySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
         self.symbol = symbol
         self.opacity = opacity
@@ -3146,6 +3599,14 @@ public struct Line6: Encodable {
     /// Sets the source reference on plot.ly for  width .
     public var widthSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case color
+        case width
+        case colorSource = "colorsrc"
+        case widthSource = "widthsrc"
+    }
+    
     public init(color: Color? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
         self.color = color
         self.width = width
@@ -3167,6 +3628,13 @@ public struct Marker8: Encodable {
     /// Sets the source reference on plot.ly for  colors .
     public var colorsSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case colors
+        case line
+        case colorsSource = "colorssrc"
+    }
+    
     public init(colors: [Double]? = nil, line: Line6? = nil, colorsSource: String? = nil) {
         self.colors = colors
         self.line = line
@@ -3290,6 +3758,25 @@ public struct XError1: Encodable {
     /// Sets the source reference on plot.ly for  arrayminus .
     public var arrayMinusSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case visible
+        case type
+        case symmetric
+        case array
+        case arrayMinus = "arrayminus"
+        case value
+        case valueMinus = "valueminus"
+        case traceReference = "traceref"
+        case traceReferenceMinus = "tracerefminus"
+        case zCopyStyle = "copy_zstyle"
+        case color
+        case thickness
+        case width
+        case arraySource = "arraysrc"
+        case arrayMinusSource = "arrayminussrc"
+    }
+    
     public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, zCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
         self.visible = visible
         self.type = type
@@ -3353,6 +3840,21 @@ public struct X1: Encodable {
     /// Sets the width of the highlighted contour lines.
     public var highlightWidth: Double?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case show
+        case start
+        case end
+        case size
+        case project
+        case color
+        case useColormap = "usecolormap"
+        case width
+        case highlight
+        case highlightColor = "highlightcolor"
+        case highlightWidth = "highlightwidth"
+    }
+    
     public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Up0? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
         self.show = show
         self.start = start
@@ -3448,6 +3950,14 @@ public struct X2: Encodable {
     /// Sets the source reference on plot.ly for  locations .
     public var locationsSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case show
+        case locations
+        case fill
+        case locationsSource = "locationssrc"
+    }
+    
     public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
         self.show = show
         self.locations = locations
@@ -3486,6 +3996,17 @@ public struct Lighting0: Encodable {
     /// shine.
     public var fresnel: Double?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case vertexNormalsEpsilon = "vertexnormalsepsilon"
+        case faceNormalsEpsilon = "facenormalsepsilon"
+        case ambient
+        case diffuse
+        case specular
+        case roughness
+        case fresnel
+    }
+    
     public init(vertexNormalsEpsilon: Double? = nil, faceNormalsEpsilon: Double? = nil, ambient: Double? = nil, diffuse: Double? = nil, specular: Double? = nil, roughness: Double? = nil, fresnel: Double? = nil) {
         self.vertexNormalsEpsilon = vertexNormalsEpsilon
         self.faceNormalsEpsilon = faceNormalsEpsilon
@@ -3528,6 +4049,13 @@ public struct Marker9: Encodable {
     /// Sets the source reference on plot.ly for  opacity .
     public var opacitySource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case line
+        case opacity
+        case opacitySource = "opacitysrc"
+    }
+    
     public init(line: Line6? = nil, opacity: Double? = nil, opacitySource: String? = nil) {
         self.line = line
         self.opacity = opacity
@@ -3631,6 +4159,22 @@ public struct Line8: Encodable {
     /// Sets the source reference on plot.ly for  width .
     public var widthSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case colorAxis = "coloraxis"
+        case width
+        case colorSource = "colorsrc"
+        case widthSource = "widthsrc"
+    }
+    
     public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
         self.color = color
         self.cAuto = cAuto
@@ -3754,6 +4298,32 @@ public struct Marker10: Encodable {
     /// Sets the source reference on plot.ly for  opacity .
     public var opacitySource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case symbol
+        case size
+        case sizeReference = "sizeref"
+        case sizeMin = "sizemin"
+        case sizeMode = "sizemode"
+        case opacity
+        case line
+        case colorSource = "colorsrc"
+        case symbolSource = "symbolsrc"
+        case sizeSource = "sizesrc"
+        case opacitySource = "opacitysrc"
+    }
+    
     public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, symbol: Symbol0? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, opacity: Double? = nil, line: Line8? = nil, colorSource: String? = nil, symbolSource: String? = nil, sizeSource: String? = nil, opacitySource: String? = nil) {
         self.color = color
         self.cAuto = cAuto
@@ -3843,6 +4413,17 @@ public struct Items5: Encodable {
         /// Sets the source reference on plot.ly for  values .
         public var valuesSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case label
+            case values
+            case axis
+            case name
+            case templateItemName = "templateitemname"
+            case valuesSource = "valuessrc"
+        }
+        
         public init(visible: Bool? = nil, label: String? = nil, values: [Double]? = nil, axis: Axis? = nil, name: String? = nil, templateItemName: String? = nil, valuesSource: String? = nil) {
             self.visible = visible
             self.label = label
@@ -3888,6 +4469,14 @@ public struct Line9: Encodable {
     /// Sets the source reference on plot.ly for  color .
     public var colorSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case width
+        case color
+        case widthSource = "widthsrc"
+        case colorSource = "colorsrc"
+    }
+    
     public init(width: Double? = nil, color: Color? = nil, widthSource: String? = nil, colorSource: String? = nil) {
         self.width = width
         self.color = color
@@ -3943,6 +4532,24 @@ public struct Header0: Encodable {
     /// Sets the source reference on plot.ly for  align .
     public var alignSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case values
+        case format
+        case prefix
+        case suffix
+        case height
+        case align
+        case line
+        case fill
+        case font
+        case valuesSource = "valuessrc"
+        case formatSource = "formatsrc"
+        case prefixSource = "prefixsrc"
+        case suffixSource = "suffixsrc"
+        case alignSource = "alignsrc"
+    }
+    
     public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Align1? = nil, line: Line9? = nil, fill: Marker5? = nil, font: Font1? = nil, valuesSource: String? = nil, formatSource: String? = nil, prefixSource: String? = nil, suffixSource: String? = nil, alignSource: String? = nil) {
         self.values = values
         self.format = format
@@ -4161,6 +4768,62 @@ public struct AAxis1: Encodable {
     /// Sets the source reference on plot.ly for  categoryarray .
     public var categoryArraySource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case color
+        case smoothing
+        case title
+        case type
+        case autoRange = "autorange"
+        case rangeMode = "rangemode"
+        case range
+        case fixedRange = "fixedrange"
+        case cheaterType = "cheatertype"
+        case tickMode = "tickmode"
+        case numTicks = "nticks"
+        case tickValues = "tickvals"
+        case tickText = "ticktext"
+        case showTickLabels = "showticklabels"
+        case tickFont = "tickfont"
+        case tickAngle = "tickangle"
+        case tickPrefix = "tickprefix"
+        case showTickPrefix = "showtickprefix"
+        case tickSuffix = "ticksuffix"
+        case showTickSuffix = "showticksuffix"
+        case showExponent = "showexponent"
+        case exponentFormat = "exponentformat"
+        case separatethousands
+        case tickFormat = "tickformat"
+        case tickFormatStops = "tickformatstops"
+        case categoryOrder = "categoryorder"
+        case categoryArray = "categoryarray"
+        case labelPadding = "labelpadding"
+        case labelPrefix = "labelprefix"
+        case labelSuffix = "labelsuffix"
+        case showLine = "showline"
+        case lineColor = "linecolor"
+        case lineWidth = "linewidth"
+        case gridColor = "gridcolor"
+        case gridWidth = "gridwidth"
+        case showGrid = "showgrid"
+        case minorGridCount = "minorgridcount"
+        case minorGridWidth = "minorgridwidth"
+        case minorGridColor = "minorgridcolor"
+        case startLine = "startline"
+        case startLineColor = "startlinecolor"
+        case startLineWidth = "startlinewidth"
+        case endLine = "endline"
+        case endLineWidth = "endlinewidth"
+        case endLineColor = "endlinecolor"
+        case tick0
+        case dTick = "dtick"
+        case arrayTick0 = "arraytick0"
+        case arraydTick = "arraydtick"
+        case tickValuesSource = "tickvalssrc"
+        case tickTextSource = "ticktextsrc"
+        case categoryArraySource = "categoryarraysrc"
+    }
+    
     public init(color: Color? = nil, smoothing: Double? = nil, title: Title4? = nil, type: Rule5? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType0? = nil, tickMode: TickMode1? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, categoryOrder: CategoryOrder1? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
         self.color = color
         self.smoothing = smoothing
@@ -4262,6 +4925,20 @@ public struct HoverLabel2: Encodable {
     /// Sets the source reference on plot.ly for  namelength .
     public var nameLengthSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case backgroundColor = "bgcolor"
+        case borderColor = "bordercolor"
+        case font
+        case align
+        case nameLength = "namelength"
+        case split
+        case backgroundColorSource = "bgcolorsrc"
+        case borderColorSource = "bordercolorsrc"
+        case alignSource = "alignsrc"
+        case nameLengthSource = "namelengthsrc"
+    }
+    
     public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font1? = nil, align: Align0? = nil, nameLength: Int? = nil, split: Bool? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
         self.backgroundColor = backgroundColor
         self.borderColor = borderColor
@@ -4287,6 +4964,12 @@ public struct Increasing2: Encodable {
     /// whichever is available.
     public var fillColor: Color?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case line
+        case fillColor = "fillcolor"
+    }
+    
     public init(line: Line3? = nil, fillColor: Color? = nil) {
         self.line = line
         self.fillColor = fillColor

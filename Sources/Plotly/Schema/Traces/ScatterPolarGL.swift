@@ -216,6 +216,60 @@ public struct ScatterPolarGL: Trace {
     /// Sets the source reference on plot.ly for  hoverinfo .
     public var hoverInfoSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case mode
+        case r
+        case theta
+        case r0
+        case dr
+        case theta0
+        case dTheta = "dtheta"
+        case thetaUnit = "thetaunit"
+        case text
+        case textTemplate = "texttemplate"
+        case hoverText = "hovertext"
+        case hoverTemplate = "hovertemplate"
+        case line
+        case connectGaps = "connectgaps"
+        case marker
+        case fill
+        case fillColor = "fillcolor"
+        case textPosition = "textposition"
+        case textFont = "textfont"
+        case hoverInfo = "hoverinfo"
+        case selected
+        case unselected
+        case subPlot = "subplot"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case rSource = "rsrc"
+        case thetaSource = "thetasrc"
+        case textSource = "textsrc"
+        case textTemplateSource = "texttemplatesrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+        case textPositionSource = "textpositionsrc"
+        case hoverInfoSource = "hoverinfosrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, mode: Mode0? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, line: Line7? = nil, connectGaps: Bool? = nil, marker: Marker10? = nil, fill: Fill0? = nil, fillColor: Color? = nil, textPosition: TextPosition0? = nil, textFont: Font1? = nil, hoverInfo: HoverInfo5? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

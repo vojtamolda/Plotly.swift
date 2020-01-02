@@ -263,7 +263,7 @@ struct Schema: Decodable {
 
         var entries: [(identifier: String, entry: Entry)] = []
 
-        static let ignoredKeys: Set = ["_isSubplotObj", "_isLinkedToArray", "_arrayAttrRegexps"]
+        static private let ignoredKeys: Set = ["_isSubplotObj", "_isLinkedToArray", "_arrayAttrRegexps"]
 
         init(from decoder: Decoder) throws {
             codingPath = decoder.codingPath

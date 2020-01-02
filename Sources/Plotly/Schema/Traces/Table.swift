@@ -89,6 +89,33 @@ public struct Table: Trace {
     /// Sets the source reference on plot.ly for  columnorder .
     public var columnOrderSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverInfo = "hoverinfo"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case uiRevision = "uirevision"
+        case domain
+        case columnWidth = "columnwidth"
+        case columnOrder = "columnorder"
+        case header
+        case cells
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case columnWidthSource = "columnwidthsrc"
+        case columnOrderSource = "columnordersrc"
+    }
+    
     public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, columnWidth: Double? = nil, columnOrder: [Double]? = nil, header: Header0? = nil, cells: Header0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, columnWidthSource: String? = nil, columnOrderSource: String? = nil) {
         self.visible = visible
         self.name = name

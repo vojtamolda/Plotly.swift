@@ -95,6 +95,16 @@ public struct StreamTube: Trace {
         /// Sets the source reference on plot.ly for  z .
         public var zSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case x
+            case y
+            case z
+            case xSource = "xsrc"
+            case ySource = "ysrc"
+            case zSource = "zsrc"
+        }
+        
         public init(x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil) {
             self.x = x
             self.y = y
@@ -291,6 +301,59 @@ public struct StreamTube: Trace {
     /// Sets the source reference on plot.ly for  hoverinfo .
     public var hoverInfoSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverLabel = "hoverlabel"
+        case stream
+        case uiRevision = "uirevision"
+        case x
+        case y
+        case z
+        case u
+        case v
+        case w
+        case starts
+        case maxDisplayed = "maxdisplayed"
+        case sizeReference = "sizeref"
+        case text
+        case hoverText = "hovertext"
+        case hoverTemplate = "hovertemplate"
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case opacity
+        case lightPosition = "lightposition"
+        case lighting
+        case hoverInfo = "hoverinfo"
+        case scene
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case xSource = "xsrc"
+        case ySource = "ysrc"
+        case zSource = "zsrc"
+        case uSource = "usrc"
+        case vSource = "vsrc"
+        case wSource = "wsrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+        case hoverInfoSource = "hoverinfosrc"
+    }
+    
     public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, uSource: String? = nil, vSource: String? = nil, wSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name

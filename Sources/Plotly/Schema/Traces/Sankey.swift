@@ -187,6 +187,26 @@ public struct Sankey: Trace {
         /// Sets the source reference on plot.ly for  hovertemplate .
         public var hoverTemplateSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case label
+            case groups
+            case x
+            case y
+            case color
+            case line
+            case padding = "pad"
+            case thickness
+            case hoverInfo = "hoverinfo"
+            case hoverLabel = "hoverlabel"
+            case hoverTemplate = "hovertemplate"
+            case labelSource = "labelsrc"
+            case xSource = "xsrc"
+            case ySource = "ysrc"
+            case colorSource = "colorsrc"
+            case hoverTemplateSource = "hovertemplatesrc"
+        }
+        
         public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Line6? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel1? = nil, hoverTemplate: String? = nil, labelSource: String? = nil, xSource: String? = nil, ySource: String? = nil, colorSource: String? = nil, hoverTemplateSource: String? = nil) {
             self.label = label
             self.groups = groups
@@ -272,6 +292,26 @@ public struct Sankey: Trace {
         /// Sets the source reference on plot.ly for  hovertemplate .
         public var hoverTemplateSource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case label
+            case color
+            case line
+            case source
+            case target
+            case value
+            case hoverInfo = "hoverinfo"
+            case hoverLabel = "hoverlabel"
+            case hoverTemplate = "hovertemplate"
+            case colorScales = "colorscales"
+            case labelSource = "labelsrc"
+            case colorSource = "colorsrc"
+            case sourceSource = "sourcesrc"
+            case targetSource = "targetsrc"
+            case valueSource = "valuesrc"
+            case hoverTemplateSource = "hovertemplatesrc"
+        }
+        
         public init(label: [Double]? = nil, color: Color? = nil, line: Line6? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel1? = nil, hoverTemplate: String? = nil, colorScales: TickFormatStops0? = nil, labelSource: String? = nil, colorSource: String? = nil, sourceSource: String? = nil, targetSource: String? = nil, valueSource: String? = nil, hoverTemplateSource: String? = nil) {
             self.label = label
             self.color = color
@@ -302,6 +342,34 @@ public struct Sankey: Trace {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case stream
+        case uiRevision = "uirevision"
+        case hoverInfo = "hoverinfo"
+        case hoverLabel = "hoverlabel"
+        case domain
+        case orientation
+        case valueFormat = "valueformat"
+        case valueSuffix = "valuesuffix"
+        case arrangement
+        case textFont = "textfont"
+        case node
+        case link
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+    }
+    
     public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel1? = nil, domain: Domain0? = nil, orientation: Orientation0? = nil, valueFormat: String? = nil, valueSuffix: String? = nil, arrangement: Arrangement? = nil, textFont: Font0? = nil, node: Node? = nil, link: Link? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
         self.visible = visible
         self.name = name

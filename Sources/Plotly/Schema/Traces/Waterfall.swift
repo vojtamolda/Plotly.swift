@@ -352,6 +352,73 @@ public struct Waterfall: Trace {
     /// Sets the source reference on plot.ly for  width .
     public var widthSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case selectedPoints = "selectedpoints"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case measure
+        case base
+        case x
+        case x0
+        case dx
+        case y
+        case y0
+        case dy
+        case hoverText = "hovertext"
+        case hoverTemplate = "hovertemplate"
+        case hoverInfo = "hoverinfo"
+        case textInfo = "textinfo"
+        case textTemplate = "texttemplate"
+        case text
+        case textPosition = "textposition"
+        case insideTextAnchor = "insidetextanchor"
+        case textAngle = "textangle"
+        case textFont = "textfont"
+        case insideTextFont = "insidetextfont"
+        case outSideTextFont = "outsidetextfont"
+        case constrainText = "constraintext"
+        case clipOnAxis = "cliponaxis"
+        case orientation
+        case offset
+        case width
+        case increasing
+        case decreasing
+        case totals
+        case connector
+        case offsetGroup = "offsetgroup"
+        case alignmentGroup = "alignmentgroup"
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case measureSource = "measuresrc"
+        case xSource = "xsrc"
+        case ySource = "ysrc"
+        case hoverTextSource = "hovertextsrc"
+        case hoverTemplateSource = "hovertemplatesrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case textTemplateSource = "texttemplatesrc"
+        case textSource = "textsrc"
+        case textPositionSource = "textpositionsrc"
+        case offsetSource = "offsetsrc"
+        case widthSource = "widthsrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition1? = nil, insideTextAnchor: InsideTextAnchor0? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText0? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, increasing: Selected1? = nil, decreasing: Selected1? = nil, totals: Selected1? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, measureSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

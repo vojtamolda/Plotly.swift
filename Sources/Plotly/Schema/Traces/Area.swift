@@ -108,6 +108,18 @@ public struct Area: Trace {
         /// Sets the source reference on plot.ly for  opacity .
         public var opacitySource: String?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case color
+            case size
+            case symbol
+            case opacity
+            case colorSource = "colorsrc"
+            case sizeSource = "sizesrc"
+            case symbolSource = "symbolsrc"
+            case opacitySource = "opacitysrc"
+        }
+        
         public init(color: Color? = nil, size: Double? = nil, symbol: Symbol0? = nil, opacity: Double? = nil, colorSource: String? = nil, sizeSource: String? = nil, symbolSource: String? = nil, opacitySource: String? = nil) {
             self.color = color
             self.size = size
@@ -139,6 +151,35 @@ public struct Area: Trace {
     /// Sets the source reference on plot.ly for  t .
     public var tSource: String?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case animatable
+        case visible
+        case showLegend = "showlegend"
+        case legendGroup = "legendgroup"
+        case opacity
+        case name
+        case uid
+        case ids
+        case customData = "customdata"
+        case meta
+        case hoverInfo = "hoverinfo"
+        case hoverLabel = "hoverlabel"
+        case stream
+        case transforms
+        case uiRevision = "uirevision"
+        case r
+        case t
+        case marker
+        case idsSource = "idssrc"
+        case customDataSource = "customdatasrc"
+        case metaSource = "metasrc"
+        case hoverInfoSource = "hoverinfosrc"
+        case rSource = "rsrc"
+        case tSource = "tsrc"
+    }
+    
     public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, t: [Double]? = nil, marker: Marker? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend

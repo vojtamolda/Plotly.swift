@@ -49,6 +49,20 @@ public struct Config: Encodable {
         /// Enables editing the global layout title.
         public var titleText: Bool?
     
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case annotationPosition
+            case annotationTail
+            case annotationText
+            case axisTitleText
+            case colorBarPosition = "colorbarPosition"
+            case colorBarTitleText = "colorbarTitleText"
+            case legendPosition
+            case legendText
+            case shapePosition
+            case titleText
+        }
+        
         public init(annotationPosition: Bool? = nil, annotationTail: Bool? = nil, annotationText: Bool? = nil, axisTitleText: Bool? = nil, colorBarPosition: Bool? = nil, colorBarTitleText: Bool? = nil, legendPosition: Bool? = nil, legendText: Bool? = nil, shapePosition: Bool? = nil, titleText: Bool? = nil) {
             self.annotationPosition = annotationPosition
             self.annotationTail = annotationTail
@@ -248,6 +262,46 @@ public struct Config: Encodable {
     /// used in custom formats.
     public var locales: Anything?
 
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case staticPlot
+        case plotlyServerURL
+        case editable
+        case edits
+        case autosizable
+        case responsive
+        case fillFrame
+        case frameMargins
+        case scrollZoom
+        case doubleClick
+        case doubleClickDelay
+        case showAxisDragHandles
+        case showAxisRangeEntryBoxes
+        case showTips
+        case showLink
+        case linkText
+        case sendData
+        case showSources
+        case displayModeBar
+        case showSendToCloud
+        case showEditInChartStudio
+        case modeBarButtonsToRemove
+        case modeBarButtonsToAdd
+        case modeBarButtons
+        case toImageButtonOptions
+        case displayLogo = "displaylogo"
+        case watermark
+        case plotGlPixelRatio
+        case setBackground
+        case topoJsonURL = "topojsonURL"
+        case mapboxAccessToken
+        case logging
+        case queueLength
+        case globalTransforms
+        case locale
+        case locales
+    }
+    
     public init(staticPlot: Bool? = nil, plotlyServerURL: String? = nil, editable: Bool? = nil, edits: Edits? = nil, autosizable: Bool? = nil, responsive: Bool? = nil, fillFrame: Bool? = nil, frameMargins: Double? = nil, scrollZoom: ScrollZoom? = nil, doubleClick: DoubleClick? = nil, doubleClickDelay: Double? = nil, showAxisDragHandles: Bool? = nil, showAxisRangeEntryBoxes: Bool? = nil, showTips: Bool? = nil, showLink: Bool? = nil, linkText: String? = nil, sendData: Bool? = nil, showSources: Anything? = nil, displayModeBar: DisplayModeBar? = nil, showSendToCloud: Bool? = nil, showEditInChartStudio: Bool? = nil, modeBarButtonsToRemove: Anything? = nil, modeBarButtonsToAdd: Anything? = nil, modeBarButtons: Anything? = nil, toImageButtonOptions: Anything? = nil, displayLogo: Bool? = nil, watermark: Bool? = nil, plotGlPixelRatio: Double? = nil, setBackground: Anything? = nil, topoJsonURL: String? = nil, mapboxAccessToken: String? = nil, logging: Bool? = nil, queueLength: Int? = nil, globalTransforms: Anything? = nil, locale: String? = nil, locales: Anything? = nil) {
         self.staticPlot = staticPlot
         self.plotlyServerURL = plotlyServerURL

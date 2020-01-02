@@ -2,7 +2,10 @@ import Foundation
 
 
 /// Protocol shared by all chart types that can appear in a _Plotly_ `Figure`.
-public protocol Trace: Encodable { }
+public protocol Trace: Encodable {
+    var type: String { get }
+    var animatable: Bool { get }
+}
 
 
 /// Swift representation of a _Plotly.js_ chart.
