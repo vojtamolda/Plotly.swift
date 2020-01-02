@@ -208,8 +208,6 @@ public struct Bar: Trace {
     /// t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
     public var t: [Double]?
 
-    public var deprecated: Deprecated4?
-
     public var xError: XError0?
 
     public var yError: YError0?
@@ -278,7 +276,7 @@ public struct Bar: Trace {
     /// Sets the source reference on plot.ly for  t .
     public var tSource: String?
 
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: TextPosition1? = nil, insideTextAnchor: InsideTextAnchor0? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText0? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker2? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, r: [Double]? = nil, t: [Double]? = nil, deprecated: Deprecated4? = nil, xError: XError0? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: TextPosition1? = nil, insideTextAnchor: InsideTextAnchor0? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText0? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker2? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: XError0? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -323,7 +321,6 @@ public struct Bar: Trace {
         self.unselected = unselected
         self.r = r
         self.t = t
-        self.deprecated = deprecated
         self.xError = xError
         self.yError = yError
         self.xCalendar = xCalendar

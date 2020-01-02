@@ -118,6 +118,8 @@ class Swift {
         var members: [Definable]
         var primitives: [String: Schema.Primitive]
 
+        static let ignoredIdentifiers: Set = ["_deprecated"]
+
         var definition: [String] {
             var lines = [String]()
             lines += documentation
@@ -150,6 +152,8 @@ class Swift {
             members = []
             primitives = [:]
             for (identifier, entry) in object.entries {
+                if Self.ignoredIdentifiers.contains(identifier) { continue }
+
                 switch entry {
                 case .primitive(let primitive):
                     self.primitives[identifier] = primitive

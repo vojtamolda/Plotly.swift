@@ -263,8 +263,6 @@ public struct Layout: Encodable {
     }
     public var transition: Transition?
 
-    public var deprecated: Deprecated0?
-
     /// Determines the mode of single click interactions. 
     ///
     /// *event* is the default value and emits the `plotly_click` event. In addition this mode emits the
@@ -765,8 +763,6 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
-        public var deprecated: Deprecated1?
-    
         /// - layout/layoutAttributes/xaxis/rangeslider
         public struct RangeSlider: Encodable {
             /// Sets the background color of the range slider.
@@ -898,7 +894,7 @@ public struct Layout: Encodable {
         /// Sets the source reference on plot.ly for  categoryarray .
         public var categoryArraySource: String?
     
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title0? = nil, type: Rule0? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor0? = nil, scaleRatio: Double? = nil, constrain: Constrain0? = nil, constrainToward: ConstrainToward0? = nil, matches: ScaleAnchor0? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, ticksOn: TicksOn0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode0? = nil, spikeSnap: SpikeSnap0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor0? = nil, side: Side0? = nil, overlaying: Anchor0? = nil, layer: Layer0? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, deprecated: Deprecated1? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
+        public init(visible: Bool? = nil, color: Color? = nil, title: Title0? = nil, type: Rule0? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor0? = nil, scaleRatio: Double? = nil, constrain: Constrain0? = nil, constrainToward: ConstrainToward0? = nil, matches: ScaleAnchor0? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, ticksOn: TicksOn0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode0? = nil, spikeSnap: SpikeSnap0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor0? = nil, side: Side0? = nil, overlaying: Anchor0? = nil, layer: Layer0? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
             self.visible = visible
             self.color = color
             self.title = title
@@ -965,7 +961,6 @@ public struct Layout: Encodable {
             self.categoryOrder = categoryOrder
             self.categoryArray = categoryArray
             self.uiRevision = uiRevision
-            self.deprecated = deprecated
             self.rangeSlider = rangeSlider
             self.rangeSelector = rangeSelector
             self.calendar = calendar
@@ -1228,8 +1223,6 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
-        public var deprecated: Deprecated1?
-    
         public var calendar: Calendar0?
     
         /// Sets the source reference on plot.ly for  tickvals .
@@ -1241,7 +1234,7 @@ public struct Layout: Encodable {
         /// Sets the source reference on plot.ly for  categoryarray .
         public var categoryArraySource: String?
     
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title0? = nil, type: Rule0? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor0? = nil, scaleRatio: Double? = nil, constrain: Constrain0? = nil, constrainToward: ConstrainToward0? = nil, matches: ScaleAnchor0? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, ticksOn: TicksOn0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode0? = nil, spikeSnap: SpikeSnap0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor0? = nil, side: Side0? = nil, overlaying: Anchor0? = nil, layer: Layer0? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, deprecated: Deprecated1? = nil, calendar: Calendar0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
+        public init(visible: Bool? = nil, color: Color? = nil, title: Title0? = nil, type: Rule0? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor0? = nil, scaleRatio: Double? = nil, constrain: Constrain0? = nil, constrainToward: ConstrainToward0? = nil, matches: ScaleAnchor0? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, ticksOn: TicksOn0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode0? = nil, spikeSnap: SpikeSnap0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor0? = nil, side: Side0? = nil, overlaying: Anchor0? = nil, layer: Layer0? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar: Calendar0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
             self.visible = visible
             self.color = color
             self.title = title
@@ -1308,7 +1301,6 @@ public struct Layout: Encodable {
             self.categoryOrder = categoryOrder
             self.categoryArray = categoryArray
             self.uiRevision = uiRevision
-            self.deprecated = deprecated
             self.calendar = calendar
             self.tickValuesSource = tickValuesSource
             self.tickTextSource = tickTextSource
@@ -1458,22 +1450,9 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything?
     
-        /// - layout/layoutAttributes/scene/_deprecated
-        public struct Deprecated: Encodable {
-            /// Obsolete. 
-            ///
-            /// Use `camera` instead.
-            public var cameraPosition: InfoArray?
-        
-            public init(cameraPosition: InfoArray? = nil) {
-                self.cameraPosition = cameraPosition
-            }
-        }
-        public var deprecated: Deprecated?
-    
         public var annotations: TickFormatStops0?
     
-        public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Domain0? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis0? = nil, yAxis: XAxis0? = nil, zAxis: XAxis0? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, deprecated: Deprecated? = nil, annotations: TickFormatStops0? = nil) {
+        public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Domain0? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis0? = nil, yAxis: XAxis0? = nil, zAxis: XAxis0? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations: TickFormatStops0? = nil) {
             self.backgroundColor = backgroundColor
             self.camera = camera
             self.domain = domain
@@ -1485,7 +1464,6 @@ public struct Layout: Encodable {
             self.dragMode = dragMode
             self.hoverMode = hoverMode
             self.uiRevision = uiRevision
-            self.deprecated = deprecated
             self.annotations = annotations
         }
     }
@@ -1841,8 +1819,6 @@ public struct Layout: Encodable {
             /// Defaults to `polar<N>.uirevision`.
             public var uiRevision: Anything?
         
-            public var deprecated: Deprecated0?
-        
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
             ///
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
@@ -1975,7 +1951,7 @@ public struct Layout: Encodable {
             /// Sets the source reference on plot.ly for  ticktext .
             public var tickTextSource: String?
         
-            public init(visible: Bool? = nil, type: Rule1? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side1? = nil, title: Title1? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, deprecated: Deprecated0? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, layer: Layer0? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(visible: Bool? = nil, type: Rule1? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side1? = nil, title: Title1? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, layer: Layer0? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
                 self.visible = visible
                 self.type = type
                 self.autoRange = autoRange
@@ -1988,7 +1964,6 @@ public struct Layout: Encodable {
                 self.title = title
                 self.hoverFormat = hoverFormat
                 self.uiRevision = uiRevision
-                self.deprecated = deprecated
                 self.color = color
                 self.showLine = showLine
                 self.lineColor = lineColor
@@ -2645,7 +2620,7 @@ public struct Layout: Encodable {
     /// Sets the source reference on plot.ly for  meta .
     public var metaSource: String?
 
-    public init(font: Font0? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, deprecated: Deprecated0? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar0? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Side1? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: TickFormatStops0? = nil, shapes: TickFormatStops0? = nil, images: TickFormatStops0? = nil, updateMenus: TickFormatStops0? = nil, sliders: TickFormatStops0? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
+    public init(font: Font0? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar0? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Side1? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: TickFormatStops0? = nil, shapes: TickFormatStops0? = nil, images: TickFormatStops0? = nil, updateMenus: TickFormatStops0? = nil, sliders: TickFormatStops0? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
         self.font = font
         self.title = title
         self.autoSize = autoSize
@@ -2666,7 +2641,6 @@ public struct Layout: Encodable {
         self.modeBar = modeBar
         self.meta = meta
         self.transition = transition
-        self.deprecated = deprecated
         self.clickMode = clickMode
         self.dragMode = dragMode
         self.hoverMode = hoverMode

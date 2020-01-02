@@ -3,38 +3,28 @@
 /// Note that fonts used in traces and other layout components inherit from the global font.
 /// - layout/layoutAttributes/font
 /// - layout/layoutAttributes/title/font
-/// - layout/layoutAttributes/_deprecated/titlefont
 /// - layout/layoutAttributes/hoverlabel/font
 /// - layout/layoutAttributes/xaxis/title/font
 /// - layout/layoutAttributes/xaxis/tickfont
-/// - layout/layoutAttributes/xaxis/_deprecated/titlefont
 /// - layout/layoutAttributes/xaxis/rangeselector/font
 /// - layout/layoutAttributes/yaxis/title/font
 /// - layout/layoutAttributes/yaxis/tickfont
-/// - layout/layoutAttributes/yaxis/_deprecated/titlefont
 /// - layout/layoutAttributes/ternary/aaxis/title/font
 /// - layout/layoutAttributes/ternary/aaxis/tickfont
-/// - layout/layoutAttributes/ternary/aaxis/_deprecated/titlefont
 /// - layout/layoutAttributes/ternary/baxis/title/font
 /// - layout/layoutAttributes/ternary/baxis/tickfont
-/// - layout/layoutAttributes/ternary/baxis/_deprecated/titlefont
 /// - layout/layoutAttributes/ternary/caxis/title/font
 /// - layout/layoutAttributes/ternary/caxis/tickfont
-/// - layout/layoutAttributes/ternary/caxis/_deprecated/titlefont
 /// - layout/layoutAttributes/scene/xaxis/title/font
 /// - layout/layoutAttributes/scene/xaxis/tickfont
-/// - layout/layoutAttributes/scene/xaxis/_deprecated/titlefont
 /// - layout/layoutAttributes/scene/yaxis/title/font
 /// - layout/layoutAttributes/scene/yaxis/tickfont
-/// - layout/layoutAttributes/scene/yaxis/_deprecated/titlefont
 /// - layout/layoutAttributes/scene/zaxis/title/font
 /// - layout/layoutAttributes/scene/zaxis/tickfont
-/// - layout/layoutAttributes/scene/zaxis/_deprecated/titlefont
 /// - layout/layoutAttributes/scene/annotations/items/annotation/font
 /// - layout/layoutAttributes/scene/annotations/items/annotation/hoverlabel/font
 /// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/textfont
 /// - layout/layoutAttributes/polar/radialaxis/title/font
-/// - layout/layoutAttributes/polar/radialaxis/_deprecated/titlefont
 /// - layout/layoutAttributes/polar/radialaxis/tickfont
 /// - layout/layoutAttributes/polar/angularaxis/tickfont
 /// - layout/layoutAttributes/legend/font
@@ -45,103 +35,72 @@
 /// - layout/layoutAttributes/sliders/items/slider/font
 /// - layout/layoutAttributes/coloraxis/colorbar/tickfont
 /// - layout/layoutAttributes/coloraxis/colorbar/title/font
-/// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titlefont
 /// - traces/scatter/attributes/marker/colorbar/tickfont
 /// - traces/scatter/attributes/marker/colorbar/title/font
-/// - traces/scatter/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/bar/attributes/marker/colorbar/tickfont
 /// - traces/bar/attributes/marker/colorbar/title/font
-/// - traces/bar/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/heatmap/attributes/colorbar/tickfont
 /// - traces/heatmap/attributes/colorbar/title/font
-/// - traces/heatmap/attributes/colorbar/_deprecated/titlefont
 /// - traces/histogram/attributes/marker/colorbar/tickfont
 /// - traces/histogram/attributes/marker/colorbar/title/font
-/// - traces/histogram/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/histogram2d/attributes/colorbar/tickfont
 /// - traces/histogram2d/attributes/colorbar/title/font
-/// - traces/histogram2d/attributes/colorbar/_deprecated/titlefont
 /// - traces/histogram2dcontour/attributes/contours/labelfont
 /// - traces/histogram2dcontour/attributes/colorbar/tickfont
 /// - traces/histogram2dcontour/attributes/colorbar/title/font
-/// - traces/histogram2dcontour/attributes/colorbar/_deprecated/titlefont
 /// - traces/contour/attributes/contours/labelfont
 /// - traces/contour/attributes/colorbar/tickfont
 /// - traces/contour/attributes/colorbar/title/font
-/// - traces/contour/attributes/colorbar/_deprecated/titlefont
 /// - traces/scatterternary/attributes/marker/colorbar/tickfont
 /// - traces/scatterternary/attributes/marker/colorbar/title/font
-/// - traces/scatterternary/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/funnel/attributes/marker/colorbar/tickfont
 /// - traces/funnel/attributes/marker/colorbar/title/font
-/// - traces/funnel/attributes/marker/colorbar/_deprecated/titlefont
-/// - traces/pie/attributes/_deprecated/titlefont
 /// - traces/sunburst/attributes/marker/colorbar/tickfont
 /// - traces/sunburst/attributes/marker/colorbar/title/font
-/// - traces/sunburst/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/treemap/attributes/marker/colorbar/tickfont
 /// - traces/treemap/attributes/marker/colorbar/title/font
-/// - traces/treemap/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/scatter3d/attributes/line/colorbar/tickfont
 /// - traces/scatter3d/attributes/line/colorbar/title/font
-/// - traces/scatter3d/attributes/line/colorbar/_deprecated/titlefont
 /// - traces/scatter3d/attributes/marker/colorbar/tickfont
 /// - traces/scatter3d/attributes/marker/colorbar/title/font
-/// - traces/scatter3d/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/surface/attributes/colorbar/tickfont
 /// - traces/surface/attributes/colorbar/title/font
-/// - traces/surface/attributes/colorbar/_deprecated/titlefont
 /// - traces/isosurface/attributes/colorbar/tickfont
 /// - traces/isosurface/attributes/colorbar/title/font
-/// - traces/isosurface/attributes/colorbar/_deprecated/titlefont
 /// - traces/volume/attributes/colorbar/tickfont
 /// - traces/volume/attributes/colorbar/title/font
-/// - traces/volume/attributes/colorbar/_deprecated/titlefont
 /// - traces/mesh3d/attributes/colorbar/tickfont
 /// - traces/mesh3d/attributes/colorbar/title/font
-/// - traces/mesh3d/attributes/colorbar/_deprecated/titlefont
 /// - traces/cone/attributes/colorbar/tickfont
 /// - traces/cone/attributes/colorbar/title/font
-/// - traces/cone/attributes/colorbar/_deprecated/titlefont
 /// - traces/streamtube/attributes/colorbar/tickfont
 /// - traces/streamtube/attributes/colorbar/title/font
-/// - traces/streamtube/attributes/colorbar/_deprecated/titlefont
 /// - traces/scattergeo/attributes/marker/colorbar/tickfont
 /// - traces/scattergeo/attributes/marker/colorbar/title/font
-/// - traces/scattergeo/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/choropleth/attributes/colorbar/tickfont
 /// - traces/choropleth/attributes/colorbar/title/font
-/// - traces/choropleth/attributes/colorbar/_deprecated/titlefont
 /// - traces/scattergl/attributes/marker/colorbar/tickfont
 /// - traces/scattergl/attributes/marker/colorbar/title/font
-/// - traces/scattergl/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/splom/attributes/marker/colorbar/tickfont
 /// - traces/splom/attributes/marker/colorbar/title/font
-/// - traces/splom/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/heatmapgl/attributes/colorbar/tickfont
 /// - traces/heatmapgl/attributes/colorbar/title/font
-/// - traces/heatmapgl/attributes/colorbar/_deprecated/titlefont
 /// - traces/parcoords/attributes/labelfont
 /// - traces/parcoords/attributes/tickfont
 /// - traces/parcoords/attributes/rangefont
 /// - traces/parcoords/attributes/line/colorbar/tickfont
 /// - traces/parcoords/attributes/line/colorbar/title/font
-/// - traces/parcoords/attributes/line/colorbar/_deprecated/titlefont
 /// - traces/parcats/attributes/labelfont
 /// - traces/parcats/attributes/tickfont
 /// - traces/parcats/attributes/line/colorbar/tickfont
 /// - traces/parcats/attributes/line/colorbar/title/font
-/// - traces/parcats/attributes/line/colorbar/_deprecated/titlefont
 /// - traces/scattermapbox/attributes/marker/colorbar/tickfont
 /// - traces/scattermapbox/attributes/marker/colorbar/title/font
-/// - traces/scattermapbox/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/scattermapbox/attributes/textfont
 /// - traces/choroplethmapbox/attributes/colorbar/tickfont
 /// - traces/choroplethmapbox/attributes/colorbar/title/font
-/// - traces/choroplethmapbox/attributes/colorbar/_deprecated/titlefont
 /// - traces/densitymapbox/attributes/colorbar/tickfont
 /// - traces/densitymapbox/attributes/colorbar/title/font
-/// - traces/densitymapbox/attributes/colorbar/_deprecated/titlefont
 /// - traces/sankey/attributes/textfont
 /// - traces/indicator/attributes/title/font
 /// - traces/indicator/attributes/number/font
@@ -149,27 +108,20 @@
 /// - traces/indicator/attributes/gauge/axis/tickfont
 /// - traces/carpet/attributes/aaxis/title/font
 /// - traces/carpet/attributes/aaxis/tickfont
-/// - traces/carpet/attributes/aaxis/_deprecated/titlefont
 /// - traces/carpet/attributes/baxis/title/font
 /// - traces/carpet/attributes/baxis/tickfont
-/// - traces/carpet/attributes/baxis/_deprecated/titlefont
 /// - traces/carpet/attributes/font
 /// - traces/scattercarpet/attributes/marker/colorbar/tickfont
 /// - traces/scattercarpet/attributes/marker/colorbar/title/font
-/// - traces/scattercarpet/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/contourcarpet/attributes/contours/labelfont
 /// - traces/contourcarpet/attributes/colorbar/tickfont
 /// - traces/contourcarpet/attributes/colorbar/title/font
-/// - traces/contourcarpet/attributes/colorbar/_deprecated/titlefont
 /// - traces/scatterpolar/attributes/marker/colorbar/tickfont
 /// - traces/scatterpolar/attributes/marker/colorbar/title/font
-/// - traces/scatterpolar/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/scatterpolargl/attributes/marker/colorbar/tickfont
 /// - traces/scatterpolargl/attributes/marker/colorbar/title/font
-/// - traces/scatterpolargl/attributes/marker/colorbar/_deprecated/titlefont
 /// - traces/barpolar/attributes/marker/colorbar/tickfont
 /// - traces/barpolar/attributes/marker/colorbar/title/font
-/// - traces/barpolar/attributes/marker/colorbar/_deprecated/titlefont
 public struct Font0: Encodable {
     /// HTML font family - the typeface that will be applied by the web browser. 
     ///
@@ -220,28 +172,6 @@ public struct Padding0: Encodable {
         self.r = r
         self.b = b
         self.l = l
-    }
-}
-
-/// - layout/layoutAttributes/_deprecated
-/// - layout/layoutAttributes/ternary/aaxis/_deprecated
-/// - layout/layoutAttributes/ternary/baxis/_deprecated
-/// - layout/layoutAttributes/ternary/caxis/_deprecated
-/// - layout/layoutAttributes/scene/xaxis/_deprecated
-/// - layout/layoutAttributes/scene/yaxis/_deprecated
-/// - layout/layoutAttributes/scene/zaxis/_deprecated
-/// - layout/layoutAttributes/polar/radialaxis/_deprecated
-public struct Deprecated0: Encodable {
-    /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
-    ///
-    /// To set the contents of the title, please use `title.text` now.
-    public var title: String?
-
-    public var titleFont: Font0?
-
-    public init(title: String? = nil, titleFont: Font0? = nil) {
-        self.title = title
-        self.titleFont = titleFont
     }
 }
 
@@ -515,29 +445,6 @@ public struct TickFormatStops0: Encodable {
 
     public init(items: Items0? = nil) {
         self.items = items
-    }
-}
-
-/// - layout/layoutAttributes/xaxis/_deprecated
-/// - layout/layoutAttributes/yaxis/_deprecated
-public struct Deprecated1: Encodable {
-    /// Obsolete. 
-    ///
-    /// Set `tickmode` to *auto* for old `autotick` *true* behavior. Set `tickmode` to *linear* for
-    /// `autotick` *false*.
-    public var autoTick: Bool?
-
-    /// Value of `title` is no longer a simple *string* but a set of sub-attributes. 
-    ///
-    /// To set the axis' title, please use `title.text` now.
-    public var title: String?
-
-    public var titleFont: Font0?
-
-    public init(autoTick: Bool? = nil, title: String? = nil, titleFont: Font0? = nil) {
-        self.autoTick = autoTick
-        self.title = title
-        self.titleFont = titleFont
     }
 }
 
@@ -820,8 +727,6 @@ public struct AAxis0: Encodable {
     /// view corresponds to all the minima set to zero.
     public var min: Double?
 
-    public var deprecated: Deprecated0?
-
     /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true` configuration. 
     ///
     /// Defaults to `ternary<N>.uirevision`.
@@ -833,7 +738,7 @@ public struct AAxis0: Encodable {
     /// Sets the source reference on plot.ly for  ticktext .
     public var tickTextSource: String?
 
-    public init(title: Title1? = nil, color: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer0? = nil, min: Double? = nil, deprecated: Deprecated0? = nil, uiRevision: Anything? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+    public init(title: Title1? = nil, color: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer0? = nil, min: Double? = nil, uiRevision: Anything? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
         self.title = title
         self.color = color
         self.tickMode = tickMode
@@ -867,7 +772,6 @@ public struct AAxis0: Encodable {
         self.gridWidth = gridWidth
         self.layer = layer
         self.min = min
-        self.deprecated = deprecated
         self.uiRevision = uiRevision
         self.tickValuesSource = tickValuesSource
         self.tickTextSource = tickTextSource
@@ -930,9 +834,6 @@ public struct Up0: Encodable {
 /// - traces/treemap/attributes/transforms/items/transform
 /// - traces/funnelarea/attributes/transforms/items/transform
 /// - traces/scatter3d/attributes/transforms/items/transform
-/// - traces/surface/attributes/_deprecated/zauto
-/// - traces/surface/attributes/_deprecated/zmin
-/// - traces/surface/attributes/_deprecated/zmax
 /// - traces/scattergeo/attributes/transforms/items/transform
 /// - traces/choropleth/attributes/transforms/items/transform
 /// - traces/scattergl/attributes/transforms/items/transform
@@ -1152,8 +1053,6 @@ public struct XAxis0: Encodable {
     /// Sets the width (in px) of the zero line.
     public var zeroLineWidth: Double?
 
-    public var deprecated: Deprecated0?
-
     public var calendar: Calendar0?
 
     /// Sets the source reference on plot.ly for  categoryarray .
@@ -1165,7 +1064,7 @@ public struct XAxis0: Encodable {
     /// Sets the source reference on plot.ly for  ticktext .
     public var tickTextSource: String?
 
-    public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, title: Title1? = nil, type: Rule1? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, deprecated: Deprecated0? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+    public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, title: Title1? = nil, type: Rule1? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
         self.visible = visible
         self.showSpikes = showSpikes
         self.spikeSides = spikeSides
@@ -1215,7 +1114,6 @@ public struct XAxis0: Encodable {
         self.zeroLine = zeroLine
         self.zeroLineColor = zeroLineColor
         self.zeroLineWidth = zeroLineWidth
-        self.deprecated = deprecated
         self.calendar = calendar
         self.categoryArraySource = categoryArraySource
         self.tickValuesSource = tickValuesSource
@@ -1631,59 +1529,6 @@ public struct Title2: Encodable {
     }
 }
 
-/// - layout/layoutAttributes/coloraxis/colorbar/_deprecated
-/// - traces/scatter/attributes/marker/colorbar/_deprecated
-/// - traces/bar/attributes/marker/colorbar/_deprecated
-/// - traces/heatmap/attributes/colorbar/_deprecated
-/// - traces/histogram/attributes/marker/colorbar/_deprecated
-/// - traces/histogram2d/attributes/colorbar/_deprecated
-/// - traces/histogram2dcontour/attributes/colorbar/_deprecated
-/// - traces/contour/attributes/colorbar/_deprecated
-/// - traces/scatterternary/attributes/marker/colorbar/_deprecated
-/// - traces/funnel/attributes/marker/colorbar/_deprecated
-/// - traces/sunburst/attributes/marker/colorbar/_deprecated
-/// - traces/treemap/attributes/marker/colorbar/_deprecated
-/// - traces/scatter3d/attributes/line/colorbar/_deprecated
-/// - traces/scatter3d/attributes/marker/colorbar/_deprecated
-/// - traces/surface/attributes/colorbar/_deprecated
-/// - traces/isosurface/attributes/colorbar/_deprecated
-/// - traces/volume/attributes/colorbar/_deprecated
-/// - traces/mesh3d/attributes/colorbar/_deprecated
-/// - traces/cone/attributes/colorbar/_deprecated
-/// - traces/streamtube/attributes/colorbar/_deprecated
-/// - traces/scattergeo/attributes/marker/colorbar/_deprecated
-/// - traces/choropleth/attributes/colorbar/_deprecated
-/// - traces/scattergl/attributes/marker/colorbar/_deprecated
-/// - traces/splom/attributes/marker/colorbar/_deprecated
-/// - traces/heatmapgl/attributes/colorbar/_deprecated
-/// - traces/parcoords/attributes/line/colorbar/_deprecated
-/// - traces/parcats/attributes/line/colorbar/_deprecated
-/// - traces/scattermapbox/attributes/marker/colorbar/_deprecated
-/// - traces/choroplethmapbox/attributes/colorbar/_deprecated
-/// - traces/densitymapbox/attributes/colorbar/_deprecated
-/// - traces/scattercarpet/attributes/marker/colorbar/_deprecated
-/// - traces/contourcarpet/attributes/colorbar/_deprecated
-/// - traces/scatterpolar/attributes/marker/colorbar/_deprecated
-/// - traces/scatterpolargl/attributes/marker/colorbar/_deprecated
-/// - traces/barpolar/attributes/marker/colorbar/_deprecated
-public struct Deprecated2: Encodable {
-    /// Deprecated in favor of color bar's `title.text`. 
-    ///
-    /// Note that value of color bar's `title` is no longer a simple *string* but a set of
-    /// sub-attributes.
-    public var title: String?
-
-    public var titleFont: Font0?
-
-    public var titleSide: Side2?
-
-    public init(title: String? = nil, titleFont: Font0? = nil, titleSide: Side2? = nil) {
-        self.title = title
-        self.titleFont = titleFont
-        self.titleSide = titleSide
-    }
-}
-
 /// - layout/layoutAttributes/coloraxis/colorbar
 /// - traces/scatter/attributes/marker/colorbar
 /// - traces/bar/attributes/marker/colorbar
@@ -1858,15 +1703,13 @@ public struct ColorBar0: Encodable {
 
     public var title: Title2?
 
-    public var deprecated: Deprecated2?
-
     /// Sets the source reference on plot.ly for  tickvals .
     public var tickValuesSource: String?
 
     /// Sets the source reference on plot.ly for  ticktext .
     public var tickTextSource: String?
 
-    public init(thicknessMode: LengthMode0? = nil, thickness: Double? = nil, lengthMode: LengthMode0? = nil, length: Double? = nil, x: Double? = nil, xAnchor: Align1? = nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: VerticalAlign0? = nil, yPading: Double? = nil, outLineColor: Color? = nil, outLineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat0? = nil, showExponent: ShowTickPrefix0? = nil, title: Title2? = nil, deprecated: Deprecated2? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+    public init(thicknessMode: LengthMode0? = nil, thickness: Double? = nil, lengthMode: LengthMode0? = nil, length: Double? = nil, x: Double? = nil, xAnchor: Align1? = nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: VerticalAlign0? = nil, yPading: Double? = nil, outLineColor: Color? = nil, outLineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat0? = nil, showExponent: ShowTickPrefix0? = nil, title: Title2? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
         self.thicknessMode = thicknessMode
         self.thickness = thickness
         self.lengthMode = lengthMode
@@ -1905,7 +1748,6 @@ public struct ColorBar0: Encodable {
         self.exponentFormat = exponentFormat
         self.showExponent = showExponent
         self.title = title
-        self.deprecated = deprecated
         self.tickValuesSource = tickValuesSource
         self.tickTextSource = tickTextSource
     }
@@ -2577,33 +2419,6 @@ public struct Selected0: Encodable {
     }
 }
 
-/// - traces/scatter/attributes/error_x/_deprecated
-/// - traces/scatter/attributes/error_y/_deprecated
-/// - traces/bar/attributes/error_x/_deprecated
-/// - traces/bar/attributes/error_y/_deprecated
-/// - traces/histogram/attributes/error_x/_deprecated
-/// - traces/histogram/attributes/error_y/_deprecated
-/// - traces/sunburst/attributes/leaf
-/// - traces/scatter3d/attributes/error_x/_deprecated
-/// - traces/scatter3d/attributes/error_y/_deprecated
-/// - traces/scatter3d/attributes/error_z/_deprecated
-/// - traces/choropleth/attributes/selected/marker
-/// - traces/choropleth/attributes/unselected/marker
-/// - traces/scattergl/attributes/error_x/_deprecated
-/// - traces/scattergl/attributes/error_y/_deprecated
-/// - traces/choroplethmapbox/attributes/selected/marker
-/// - traces/choroplethmapbox/attributes/unselected/marker
-public struct Deprecated3: Encodable {
-    /// Obsolete. 
-    ///
-    /// Use the alpha channel in error bar `color` to set the opacity.
-    public var opacity: Double?
-
-    public init(opacity: Double? = nil) {
-        self.opacity = opacity
-    }
-}
-
 /// - traces/scatter/attributes/error_x
 /// - traces/bar/attributes/error_x
 /// - traces/histogram/attributes/error_x
@@ -2646,15 +2461,13 @@ public struct XError0: Encodable {
     /// Sets the width (in px) of the cross-bar at both ends of the error bars.
     public var width: Double?
 
-    public var deprecated: Deprecated3?
-
     /// Sets the source reference on plot.ly for  array .
     public var arraySource: String?
 
     /// Sets the source reference on plot.ly for  arrayminus .
     public var arrayMinusSource: String?
 
-    public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, yCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, deprecated: Deprecated3? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
+    public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, yCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
         self.visible = visible
         self.type = type
         self.symmetric = symmetric
@@ -2668,7 +2481,6 @@ public struct XError0: Encodable {
         self.color = color
         self.thickness = thickness
         self.width = width
-        self.deprecated = deprecated
         self.arraySource = arraySource
         self.arrayMinusSource = arrayMinusSource
     }
@@ -2715,15 +2527,13 @@ public struct YError0: Encodable {
     /// Sets the width (in px) of the cross-bar at both ends of the error bars.
     public var width: Double?
 
-    public var deprecated: Deprecated3?
-
     /// Sets the source reference on plot.ly for  array .
     public var arraySource: String?
 
     /// Sets the source reference on plot.ly for  arrayminus .
     public var arrayMinusSource: String?
 
-    public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, deprecated: Deprecated3? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
+    public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
         self.visible = visible
         self.type = type
         self.symmetric = symmetric
@@ -2736,7 +2546,6 @@ public struct YError0: Encodable {
         self.color = color
         self.thickness = thickness
         self.width = width
-        self.deprecated = deprecated
         self.arraySource = arraySource
         self.arrayMinusSource = arrayMinusSource
     }
@@ -2861,16 +2670,6 @@ public struct Marker3: Encodable {
     public init(opacity: Double? = nil, color: Color? = nil) {
         self.opacity = opacity
         self.color = color
-    }
-}
-
-/// - traces/bar/attributes/_deprecated
-/// - traces/histogram/attributes/_deprecated
-public struct Deprecated4: Encodable {
-    public var bardir: Orientation0?
-
-    public init(bardir: Orientation0? = nil) {
-        self.bardir = bardir
     }
 }
 
@@ -3387,12 +3186,41 @@ public struct Title3: Encodable {
 
     public var font: Font1?
 
-    public var position: Position0?
+    /// Specifies the location of the `title`. 
+    ///
+    /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
+    /// - traces/pie/attributes/title/position
+    public enum Position: String, Encodable {
+        case topLeft = "top left"
+        case topCenter = "top center"
+        case topRight = "top right"
+        case middleCenter = "middle center"
+        case bottomLeft = "bottom left"
+        case bottomCenter = "bottom center"
+        case bottomRight = "bottom right"
+    }
+    public var position: Position?
 
-    public init(text: String? = nil, font: Font1? = nil, position: Position0? = nil) {
+    public init(text: String? = nil, font: Font1? = nil, position: Position? = nil) {
         self.text = text
         self.font = font
         self.position = position
+    }
+}
+
+/// - traces/sunburst/attributes/leaf
+/// - traces/choropleth/attributes/selected/marker
+/// - traces/choropleth/attributes/unselected/marker
+/// - traces/choroplethmapbox/attributes/selected/marker
+/// - traces/choroplethmapbox/attributes/unselected/marker
+public struct Leaf0: Encodable {
+    /// Sets the opacity of the leaves. 
+    ///
+    /// With colorscale it is defaulted to 1; otherwise it is defaulted to 0.7
+    public var opacity: Double?
+
+    public init(opacity: Double? = nil) {
+        self.opacity = opacity
     }
 }
 
@@ -3456,15 +3284,13 @@ public struct XError1: Encodable {
     /// Sets the width (in px) of the cross-bar at both ends of the error bars.
     public var width: Double?
 
-    public var deprecated: Deprecated3?
-
     /// Sets the source reference on plot.ly for  array .
     public var arraySource: String?
 
     /// Sets the source reference on plot.ly for  arrayminus .
     public var arrayMinusSource: String?
 
-    public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, zCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, deprecated: Deprecated3? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
+    public init(visible: Bool? = nil, type: Rule3? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, zCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
         self.visible = visible
         self.type = type
         self.symmetric = symmetric
@@ -3478,7 +3304,6 @@ public struct XError1: Encodable {
         self.color = color
         self.thickness = thickness
         self.width = width
-        self.deprecated = deprecated
         self.arraySource = arraySource
         self.arrayMinusSource = arrayMinusSource
     }
@@ -4159,26 +3984,6 @@ public struct Title4: Encodable {
     }
 }
 
-/// - traces/carpet/attributes/aaxis/_deprecated
-/// - traces/carpet/attributes/baxis/_deprecated
-public struct Deprecated5: Encodable {
-    /// Deprecated in favor of `title.text`. 
-    ///
-    /// Note that value of `title` is no longer a simple *string* but a set of sub-attributes.
-    public var title: String?
-
-    public var titleFont: Font0?
-
-    /// Deprecated in favor of `title.offset`.
-    public var titleOffset: Double?
-
-    public init(title: String? = nil, titleFont: Font0? = nil, titleOffset: Double? = nil) {
-        self.title = title
-        self.titleFont = titleFont
-        self.titleOffset = titleOffset
-    }
-}
-
 /// - traces/carpet/attributes/aaxis
 /// - traces/carpet/attributes/baxis
 public struct AAxis1: Encodable {
@@ -4347,8 +4152,6 @@ public struct AAxis1: Encodable {
     /// The stride between grid lines along the axis
     public var arraydTick: Int?
 
-    public var deprecated: Deprecated5?
-
     /// Sets the source reference on plot.ly for  tickvals .
     public var tickValuesSource: String?
 
@@ -4358,7 +4161,7 @@ public struct AAxis1: Encodable {
     /// Sets the source reference on plot.ly for  categoryarray .
     public var categoryArraySource: String?
 
-    public init(color: Color? = nil, smoothing: Double? = nil, title: Title4? = nil, type: Rule5? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType0? = nil, tickMode: TickMode1? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, categoryOrder: CategoryOrder1? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil, deprecated: Deprecated5? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
+    public init(color: Color? = nil, smoothing: Double? = nil, title: Title4? = nil, type: Rule5? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType0? = nil, tickMode: TickMode1? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels0? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, showExponent: ShowTickPrefix0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, categoryOrder: CategoryOrder1? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
         self.color = color
         self.smoothing = smoothing
         self.title = title
@@ -4408,7 +4211,6 @@ public struct AAxis1: Encodable {
         self.dTick = dTick
         self.arrayTick0 = arrayTick0
         self.arraydTick = arraydTick
-        self.deprecated = deprecated
         self.tickValuesSource = tickValuesSource
         self.tickTextSource = tickTextSource
         self.categoryArraySource = categoryArraySource

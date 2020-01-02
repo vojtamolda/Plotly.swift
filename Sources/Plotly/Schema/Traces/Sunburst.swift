@@ -179,7 +179,7 @@ public struct Sunburst: Trace {
     }
     public var marker: Marker?
 
-    public var leaf: Deprecated3?
+    public var leaf: Leaf0?
 
     /// Sets text elements associated with each sector. 
     ///
@@ -272,7 +272,7 @@ public struct Sunburst: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues0? = nil, count: Count0? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Deprecated3? = nil, text: [Double]? = nil, textInfo: TextInfo1? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo3? = nil, hoverTemplate: String? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues0? = nil, count: Count0? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf0? = nil, text: [Double]? = nil, textInfo: TextInfo1? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo3? = nil, hoverTemplate: String? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

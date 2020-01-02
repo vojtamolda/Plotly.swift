@@ -52,10 +52,8 @@ public enum YAnchor0: String, Encodable {
 /// - layout/layoutAttributes/legend/orientation
 /// - traces/scatter/attributes/orientation
 /// - traces/bar/attributes/orientation
-/// - traces/bar/attributes/_deprecated/bardir
 /// - traces/box/attributes/orientation
 /// - traces/histogram/attributes/orientation
-/// - traces/histogram/attributes/_deprecated/bardir
 /// - traces/violin/attributes/orientation
 /// - traces/funnel/attributes/orientation
 /// - traces/waterfall/attributes/orientation
@@ -1077,75 +1075,40 @@ public enum LengthMode0: String, Encodable {
 ///
 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
 /// - layout/layoutAttributes/coloraxis/colorbar/title/side
-/// - layout/layoutAttributes/coloraxis/colorbar/_deprecated/titleside
 /// - traces/scatter/attributes/marker/colorbar/title/side
-/// - traces/scatter/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/bar/attributes/marker/colorbar/title/side
-/// - traces/bar/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/heatmap/attributes/colorbar/title/side
-/// - traces/heatmap/attributes/colorbar/_deprecated/titleside
 /// - traces/histogram/attributes/marker/colorbar/title/side
-/// - traces/histogram/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/histogram2d/attributes/colorbar/title/side
-/// - traces/histogram2d/attributes/colorbar/_deprecated/titleside
 /// - traces/histogram2dcontour/attributes/colorbar/title/side
-/// - traces/histogram2dcontour/attributes/colorbar/_deprecated/titleside
 /// - traces/contour/attributes/colorbar/title/side
-/// - traces/contour/attributes/colorbar/_deprecated/titleside
 /// - traces/scatterternary/attributes/marker/colorbar/title/side
-/// - traces/scatterternary/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/funnel/attributes/marker/colorbar/title/side
-/// - traces/funnel/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/sunburst/attributes/marker/colorbar/title/side
-/// - traces/sunburst/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/treemap/attributes/marker/colorbar/title/side
-/// - traces/treemap/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/scatter3d/attributes/line/colorbar/title/side
-/// - traces/scatter3d/attributes/line/colorbar/_deprecated/titleside
 /// - traces/scatter3d/attributes/marker/colorbar/title/side
-/// - traces/scatter3d/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/surface/attributes/colorbar/title/side
-/// - traces/surface/attributes/colorbar/_deprecated/titleside
 /// - traces/isosurface/attributes/colorbar/title/side
-/// - traces/isosurface/attributes/colorbar/_deprecated/titleside
 /// - traces/volume/attributes/colorbar/title/side
-/// - traces/volume/attributes/colorbar/_deprecated/titleside
 /// - traces/mesh3d/attributes/colorbar/title/side
-/// - traces/mesh3d/attributes/colorbar/_deprecated/titleside
 /// - traces/cone/attributes/colorbar/title/side
-/// - traces/cone/attributes/colorbar/_deprecated/titleside
 /// - traces/streamtube/attributes/colorbar/title/side
-/// - traces/streamtube/attributes/colorbar/_deprecated/titleside
 /// - traces/scattergeo/attributes/marker/colorbar/title/side
-/// - traces/scattergeo/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/choropleth/attributes/colorbar/title/side
-/// - traces/choropleth/attributes/colorbar/_deprecated/titleside
 /// - traces/scattergl/attributes/marker/colorbar/title/side
-/// - traces/scattergl/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/splom/attributes/marker/colorbar/title/side
-/// - traces/splom/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/heatmapgl/attributes/colorbar/title/side
-/// - traces/heatmapgl/attributes/colorbar/_deprecated/titleside
 /// - traces/parcoords/attributes/line/colorbar/title/side
-/// - traces/parcoords/attributes/line/colorbar/_deprecated/titleside
 /// - traces/parcats/attributes/line/colorbar/title/side
-/// - traces/parcats/attributes/line/colorbar/_deprecated/titleside
 /// - traces/scattermapbox/attributes/marker/colorbar/title/side
-/// - traces/scattermapbox/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/choroplethmapbox/attributes/colorbar/title/side
-/// - traces/choroplethmapbox/attributes/colorbar/_deprecated/titleside
 /// - traces/densitymapbox/attributes/colorbar/title/side
-/// - traces/densitymapbox/attributes/colorbar/_deprecated/titleside
 /// - traces/scattercarpet/attributes/marker/colorbar/title/side
-/// - traces/scattercarpet/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/contourcarpet/attributes/colorbar/title/side
-/// - traces/contourcarpet/attributes/colorbar/_deprecated/titleside
 /// - traces/scatterpolar/attributes/marker/colorbar/title/side
-/// - traces/scatterpolar/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/scatterpolargl/attributes/marker/colorbar/title/side
-/// - traces/scatterpolargl/attributes/marker/colorbar/_deprecated/titleside
 /// - traces/barpolar/attributes/marker/colorbar/title/side
-/// - traces/barpolar/attributes/marker/colorbar/_deprecated/titleside
 public enum Side2: String, Encodable {
     case right
     case top
@@ -1686,21 +1649,6 @@ public enum Fill1: String, Encodable {
     case none
     case toSelf = "toself"
     case toNext = "tonext"
-}
-
-/// Specifies the location of the `title`. 
-///
-/// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
-/// - traces/pie/attributes/title/position
-/// - traces/pie/attributes/_deprecated/titleposition
-public enum Position0: String, Encodable {
-    case topLeft = "top left"
-    case topCenter = "top center"
-    case topRight = "top right"
-    case middleCenter = "middle center"
-    case bottomLeft = "bottom left"
-    case bottomCenter = "bottom center"
-    case bottomRight = "bottom right"
 }
 
 /// Determines how the items in `values` are summed. 

@@ -206,8 +206,6 @@ public struct Histogram: Trace {
 
     public var unselected: Selected0?
 
-    public var deprecated: Deprecated4?
-
     public var xError: XError0?
 
     public var yError: YError0?
@@ -255,7 +253,7 @@ public struct Histogram: Trace {
     /// Sets the source reference on plot.ly for  hovertemplate .
     public var hoverTemplateSource: String?
 
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, orientation: Orientation0? = nil, binningFunction: BinningFunction0? = nil, normalization: Normalization0? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: String? = nil, marker: Marker2? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, deprecated: Deprecated4? = nil, xError: XError0? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, orientation: Orientation0? = nil, binningFunction: BinningFunction0? = nil, normalization: Normalization0? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: String? = nil, marker: Marker2? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, xError: XError0? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -292,7 +290,6 @@ public struct Histogram: Trace {
         self.alignmentGroup = alignmentGroup
         self.selected = selected
         self.unselected = unselected
-        self.deprecated = deprecated
         self.xError = xError
         self.yError = yError
         self.xCalendar = xCalendar

@@ -201,22 +201,6 @@ public struct Surface: Trace {
     /// the near future and is subject to change.
     public var opacity: Double?
 
-    /// - traces/surface/attributes/_deprecated
-    public struct Deprecated: Encodable {
-        public var zAuto: ImpliedEdits0?
-    
-        public var zMin: ImpliedEdits0?
-    
-        public var zMax: ImpliedEdits0?
-    
-        public init(zAuto: ImpliedEdits0? = nil, zMin: ImpliedEdits0? = nil, zMax: ImpliedEdits0? = nil) {
-            self.zAuto = zAuto
-            self.zMin = zMin
-            self.zMax = zMax
-        }
-    }
-    public var deprecated: Deprecated?
-
     public var hoverInfo: HoverInfo1?
 
     public var xCalendar: Calendar0?
@@ -264,7 +248,7 @@ public struct Surface: Trace {
     /// Sets the source reference on plot.ly for  hoverinfo .
     public var hoverInfoSource: String?
 
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, contours: Up0? = nil, hideSurface: Bool? = nil, lightPosition: Up0? = nil, lighting: Lighting? = nil, opacity: Double? = nil, deprecated: Deprecated? = nil, hoverInfo: HoverInfo1? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, surfaceColorSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, contours: Up0? = nil, hideSurface: Bool? = nil, lightPosition: Up0? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: HoverInfo1? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, surfaceColorSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -297,7 +281,6 @@ public struct Surface: Trace {
         self.lightPosition = lightPosition
         self.lighting = lighting
         self.opacity = opacity
-        self.deprecated = deprecated
         self.hoverInfo = hoverInfo
         self.xCalendar = xCalendar
         self.yCalendar = yCalendar

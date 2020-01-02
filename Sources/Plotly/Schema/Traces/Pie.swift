@@ -177,25 +177,6 @@ public struct Pie: Trace {
     /// one or more slices.
     public var pull: Double?
 
-    /// - traces/pie/attributes/_deprecated
-    public struct Deprecated: Encodable {
-        /// Deprecated in favor of `title.text`. 
-        ///
-        /// Note that value of `title` is no longer a simple *string* but a set of sub-attributes.
-        public var title: String?
-    
-        public var titleFont: Font0?
-    
-        public var titlePosition: Position0?
-    
-        public init(title: String? = nil, titleFont: Font0? = nil, titlePosition: Position0? = nil) {
-            self.title = title
-            self.titleFont = titleFont
-            self.titlePosition = titlePosition
-        }
-    }
-    public var deprecated: Deprecated?
-
     /// Sets the source reference on plot.ly for  ids .
     public var idsSource: String?
 
@@ -232,7 +213,7 @@ public struct Pie: Trace {
     /// Sets the source reference on plot.ly for  pull .
     public var pullSource: String?
 
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker8? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo0? = nil, hoverInfo: HoverInfo2? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: TextPosition1? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, autoMargin: Bool? = nil, title: Title3? = nil, domain: Domain0? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Side1? = nil, rotation: Double? = nil, pull: Double? = nil, deprecated: Deprecated? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textTemplateSource: String? = nil, textPositionSource: String? = nil, pullSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker8? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo0? = nil, hoverInfo: HoverInfo2? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: TextPosition1? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, autoMargin: Bool? = nil, title: Title3? = nil, domain: Domain0? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Side1? = nil, rotation: Double? = nil, pull: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textTemplateSource: String? = nil, textPositionSource: String? = nil, pullSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -270,7 +251,6 @@ public struct Pie: Trace {
         self.direction = direction
         self.rotation = rotation
         self.pull = pull
-        self.deprecated = deprecated
         self.idsSource = idsSource
         self.customDataSource = customDataSource
         self.metaSource = metaSource
