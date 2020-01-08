@@ -3,27 +3,31 @@ import Foundation
 
 /// Swift struct corresponding to a Plotly `trace`.
 struct Trace: Definable {
+    let schema: Schema.Trace
+    let attributes: Swift.Object
+
+    var documentation: [String] {  schema.meta["description"]?.documentation() ?? [] }
     var definition: [String] { attributes.definition }
-    var attributes: Swift.Object
 
     init(identifier: String, schema: Schema.Trace, layout: inout Layout) {
+        self.schema = schema
+
         attributes = Swift.Object(named: identifier, schema: schema.attributes)
-        if let description = schema.meta["description"] {
-            attributes.documentation = description.documentation()
-        }
         attributes.protocols = ["Trace"]
 
         let stringDummy = Schema.String_(codingPath: [], valType: "string", description: nil,
                                          editType: nil, role: nil, dflt: nil, noBlank: nil,
                                          strict: nil, values: nil, arrayOk: nil)
-        let typeConst = Instance(named: "type", of: Swift.String_(schema: stringDummy),
-                                 constant: schema.type.escaped(), optional: false)
+        let typeConst = Instance(of: Swift.String_(schema: stringDummy), named: "type")
+        typeConst.constant = schema.type.escaped()
+        typeConst.optional = false
         attributes.members.insert(typeConst, at: 0)
 
         let boolDummy = Schema.Boolean(codingPath: [], valType: "bool", description: nil,
                                        editType: nil, role: nil)
-        let animatableConst = Instance(named: "animatable", of: Swift.Boolean(schema: boolDummy),
-                                       constant: String(schema.animatable), optional: false)
+        let animatableConst = Instance(of: Swift.Boolean(schema: boolDummy), named: "animatable")
+        animatableConst.constant = String(schema.animatable)
+        animatableConst.optional = false
         attributes.members.insert(animatableConst, at: 1)
 
         if let entries = schema.layoutAttributes {

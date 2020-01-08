@@ -7,6 +7,10 @@ public struct Indicator: Trace {
 
     public let animatable: Bool = true
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -77,11 +81,19 @@ public struct Indicator: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines how the value is displayed on the graph. 
+    ///
+    /// `number` displays the value numerically in text. `delta` displays the difference to a reference
+    /// value in text. Finally, `gauge` displays the value graphically on an axis.
     public var mode: Mode?
 
     /// Sets the number to be displayed.
     public var value: Double?
 
+    /// Sets the horizontal alignment of the `text` within the box. 
+    ///
+    /// Note that this attribute has no effect if an angular gauge is displayed: in this case, it is
+    /// always centered
     public var align: Align1?
 
     public var domain: Domain0?
@@ -91,8 +103,12 @@ public struct Indicator: Trace {
         /// Sets the title of this indicator.
         public var text: String?
     
+        /// Sets the horizontal alignment of the title. 
+        ///
+        /// It defaults to `center` except for bullet charts for which it defaults to right.
         public var align: Align1?
     
+        /// Set the font used to display the title
         public var font: Font0?
     
         public init(text: String? = nil, align: Align1? = nil, font: Font0? = nil) {
@@ -110,6 +126,7 @@ public struct Indicator: Trace {
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
         public var valueFormat: String?
     
+        /// Set the font used to display main number
         public var font: Font0?
     
         /// Sets a prefix appearing before the number.
@@ -142,7 +159,16 @@ public struct Indicator: Trace {
         /// By default, it is set to the current value.
         public var reference: Double?
     
-        public var position: Side0?
+        /// Sets the position of delta with respect to the number.
+        /// - traces/indicator/attributes/delta/position
+        public enum Position: String, Encodable {
+            case top
+            case bottom
+            case left
+            case right
+        }
+        /// Sets the position of delta with respect to the number.
+        public var position: Position?
     
         /// Show relative change
         public var relative: Bool?
@@ -152,10 +178,37 @@ public struct Indicator: Trace {
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
         public var valueFormat: String?
     
-        public var increasing: Increasing0?
+        /// - traces/indicator/attributes/delta/increasing
+        public struct Increasing: Encodable {
+            /// Sets the symbol to display for increasing value
+            public var symbol: String?
+        
+            /// Sets the color for increasing value.
+            public var color: Color?
+        
+            public init(symbol: String? = nil, color: Color? = nil) {
+                self.symbol = symbol
+                self.color = color
+            }
+        }
+        public var increasing: Increasing?
     
-        public var decreasing: Increasing0?
+        /// - traces/indicator/attributes/delta/decreasing
+        public struct Decreasing: Encodable {
+            /// Sets the symbol to display for increasing value
+            public var symbol: String?
+        
+            /// Sets the color for increasing value.
+            public var color: Color?
+        
+            public init(symbol: String? = nil, color: Color? = nil) {
+                self.symbol = symbol
+                self.color = color
+            }
+        }
+        public var decreasing: Decreasing?
     
+        /// Set the font used to display the delta
         public var font: Font0?
     
         /// Plotly compatible property encoding
@@ -169,7 +222,7 @@ public struct Indicator: Trace {
             case font
         }
         
-        public init(reference: Double? = nil, position: Side0? = nil, relative: Bool? = nil, valueFormat: String? = nil, increasing: Increasing0? = nil, decreasing: Increasing0? = nil, font: Font0? = nil) {
+        public init(reference: Double? = nil, position: Position? = nil, relative: Bool? = nil, valueFormat: String? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, font: Font0? = nil) {
             self.reference = reference
             self.position = position
             self.relative = relative
@@ -190,6 +243,7 @@ public struct Indicator: Trace {
             case angular
             case bullet
         }
+        /// Set the shape of the gauge
         public var shape: Shape?
     
         /// Set the appearance of the gauge's value
@@ -198,17 +252,18 @@ public struct Indicator: Trace {
             /// Sets the background color of the arc.
             public var color: Color?
         
-            public var line: Line3?
+            public var line: Line2?
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
             public var thickness: Double?
         
-            public init(color: Color? = nil, line: Line3? = nil, thickness: Double? = nil) {
+            public init(color: Color? = nil, line: Line2? = nil, thickness: Double? = nil) {
                 self.color = color
                 self.line = line
                 self.thickness = thickness
             }
         }
+        /// Set the appearance of the gauge's value
         public var bar: Bar?
     
         /// Sets the gauge background color.
@@ -230,6 +285,13 @@ public struct Indicator: Trace {
             /// Default is true when a cheater plot is present on the axis, otherwise false
             public var visible: Bool?
         
+            /// Sets the tick mode for this axis. 
+            ///
+            /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+            /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+            /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+            /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+            /// provided).
             public var tickMode: TickMode0?
         
             /// Specifies the maximum number of ticks for the particular axis. 
@@ -274,6 +336,10 @@ public struct Indicator: Trace {
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
             public var tickText: [Double]?
         
+            /// Determines whether ticks are drawn or not. 
+            ///
+            /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+            /// (inside) the axis lines.
             public var ticks: Ticks0?
         
             /// Sets the tick length (in px).
@@ -288,6 +354,7 @@ public struct Indicator: Trace {
             /// Determines whether or not the tick labels are drawn.
             public var showTickLabels: Bool?
         
+            /// Sets the color bar's tick label font
             public var tickFont: Font0?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
@@ -309,19 +376,32 @@ public struct Indicator: Trace {
             /// Sets a tick label prefix.
             public var tickPrefix: String?
         
+            /// If *all*, all tick labels are displayed with a prefix. 
+            ///
+            /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+            /// displayed with a suffix. If *none*, tick prefixes are hidden.
             public var showTickPrefix: ShowTickPrefix0?
         
             /// Sets a tick label suffix.
             public var tickSuffix: String?
         
-            public var showTickSuffix: ShowTickPrefix0?
+            /// Same as `showtickprefix` but for tick suffixes.
+            public var showTickSuffix: ShowTickSuffix0?
         
             /// If "true", even 4-digit integers are separated
             public var separatethousands: Bool?
         
+            /// Determines a formatting rule for the tick exponents. 
+            ///
+            /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+            /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             public var exponentFormat: ExponentFormat0?
         
-            public var showExponent: ShowTickPrefix0?
+            /// If *all*, all exponents are shown besides their significands. 
+            ///
+            /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+            /// last tick is shown. If *none*, no exponents appear.
+            public var showExponent: ShowExponent0?
         
             /// Sets the source reference on plot.ly for  tickvals .
             public var tickValuesSource: String?
@@ -359,7 +439,7 @@ public struct Indicator: Trace {
                 case tickTextSource = "ticktextsrc"
             }
             
-            public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickPrefix0? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat0? = nil, showExponent: ShowTickPrefix0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat0? = nil, showExponent: ShowExponent0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
                 self.range = range
                 self.visible = visible
                 self.tickMode = tickMode
@@ -394,7 +474,7 @@ public struct Indicator: Trace {
     
         /// - traces/indicator/attributes/gauge/threshold
         public struct Threshold: Encodable {
-            public var line: Line3?
+            public var line: Line2?
         
             /// Sets the thickness of the threshold line as a fraction of the thickness of the gauge.
             public var thickness: Double?
@@ -402,7 +482,7 @@ public struct Indicator: Trace {
             /// Sets a treshold value drawn as a line.
             public var value: Double?
         
-            public init(line: Line3? = nil, thickness: Double? = nil, value: Double? = nil) {
+            public init(line: Line2? = nil, thickness: Double? = nil, value: Double? = nil) {
                 self.line = line
                 self.thickness = thickness
                 self.value = value
@@ -433,6 +513,7 @@ public struct Indicator: Trace {
             self.threshold = threshold
         }
     }
+    /// The gauge of the Indicator plot.
     public var gauge: Gauge?
 
     /// Sets the source reference on plot.ly for  ids .

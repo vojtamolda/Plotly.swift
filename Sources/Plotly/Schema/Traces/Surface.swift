@@ -10,6 +10,10 @@ public struct Surface: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -41,7 +45,7 @@ public struct Surface: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -201,12 +205,19 @@ public struct Surface: Trace {
     /// the near future and is subject to change.
     public var opacity: Double?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
+    /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
 
+    /// Sets the calendar system to use with `y` date data.
     public var yCalendar: Calendar0?
 
+    /// Sets the calendar system to use with `z` date data.
     public var zCalendar: Calendar0?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
@@ -302,7 +313,7 @@ public struct Surface: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, contours: Up0? = nil, hideSurface: Bool? = nil, lightPosition: Up0? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: HoverInfo1? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, surfaceColorSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, contours: Up0? = nil, hideSurface: Bool? = nil, lightPosition: Up0? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: HoverInfo0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, surfaceColorSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

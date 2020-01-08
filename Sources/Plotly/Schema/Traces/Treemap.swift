@@ -6,6 +6,10 @@ public struct Treemap: Trace {
 
     public let animatable: Bool = true
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the opacity of the trace.
@@ -40,7 +44,7 @@ public struct Treemap: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -73,9 +77,43 @@ public struct Treemap: Trace {
     /// Use with `branchvalues` to determine how the values are summed.
     public var values: [Double]?
 
-    public var branchValues: BranchValues0?
+    /// Determines how the items in `values` are summed. 
+    ///
+    /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
+    /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
+    /// be the extra part not part of the sum of the values at their leaves.
+    /// - traces/treemap/attributes/branchvalues
+    public enum BranchValues: String, Encodable {
+        case remainder
+        case total
+    }
+    /// Determines how the items in `values` are summed. 
+    ///
+    /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
+    /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
+    /// be the extra part not part of the sum of the values at their leaves.
+    public var branchValues: BranchValues?
 
-    public var count: Count0?
+    /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
+    /// - traces/treemap/attributes/count
+    public struct Count: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let branches = Count(rawValue: 1 << 0)
+        public static let leaves = Count(rawValue: 1 << 1)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["branches"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["leaves"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
+    public var count: Count?
 
     /// Sets the level from which this trace hierarchy is rendered. 
     ///
@@ -102,6 +140,9 @@ public struct Treemap: Trace {
             case sliceDice = "slice-dice"
             case diceSlice = "dice-slice"
         }
+        /// Determines d3 treemap solver. 
+        ///
+        /// For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
         public var packing: Packing?
     
         /// When using *squarify* `packing` algorithm, according to https://github.com/d3/d3-hierarchy/blob/master/README.md#squarify_ratio this option specifies the desired aspect ratio of the generated rectangles. 
@@ -131,6 +172,7 @@ public struct Treemap: Trace {
                 try container.encode(options.joined(separator: "+"))
             }
         }
+        /// Determines if the positions obtained from solver are flipped on each axis.
         public var flip: Flip?
     
         /// Sets the inner padding (in px).
@@ -183,9 +225,27 @@ public struct Treemap: Trace {
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
-        public var depthFade: AutoRange0?
+        /// Determines if the sector colors are faded towards the background from the leaves up to the headers. 
+        ///
+        /// This option is unavailable when a `colorscale` is present, defaults to false when
+        /// `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading
+        /// direction is inverted, that is the top elements within hierarchy are drawn with fully saturated
+        /// colors while the leaves are faded towards the background color.
+        /// - traces/treemap/attributes/marker/depthfade
+        public enum DepthFade: String, Encodable {
+            case `true` = "true"
+            case `false` = "false"
+            case reversed
+        }
+        /// Determines if the sector colors are faded towards the background from the leaves up to the headers. 
+        ///
+        /// This option is unavailable when a `colorscale` is present, defaults to false when
+        /// `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading
+        /// direction is inverted, that is the top elements within hierarchy are drawn with fully saturated
+        /// colors while the leaves are faded towards the background color.
+        public var depthFade: DepthFade?
     
-        public var line: Line6?
+        public var line: Line3?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here colors) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if colorsis set to a numerical array. 
         ///
@@ -270,7 +330,7 @@ public struct Treemap: Trace {
             case colorsSource = "colorssrc"
         }
         
-        public init(padding: Padding? = nil, colors: [Double]? = nil, depthFade: AutoRange0? = nil, line: Line6? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorsSource: String? = nil) {
+        public init(padding: Padding? = nil, colors: [Double]? = nil, depthFade: DepthFade? = nil, line: Line3? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorsSource: String? = nil) {
             self.padding = padding
             self.colors = colors
             self.depthFade = depthFade
@@ -297,7 +357,14 @@ public struct Treemap: Trace {
         /// outside the trace `domain` and with one pixel gap.
         public var visible: Bool?
     
-        public var side: Side3?
+        /// Determines on which side of the the treemap the `pathbar` should be presented.
+        /// - traces/treemap/attributes/pathbar/side
+        public enum Side: String, Encodable {
+            case top
+            case bottom
+        }
+        /// Determines on which side of the the treemap the `pathbar` should be presented.
+        public var side: Side?
     
         /// Determines which shape is used for edges between `barpath` labels.
         /// - traces/treemap/attributes/pathbar/edgeshape
@@ -308,6 +375,7 @@ public struct Treemap: Trace {
             case forwardSlash = "/"
             case backwardSlash = "\\"
         }
+        /// Determines which shape is used for edges between `barpath` labels.
         public var edgeShape: EdgeShape?
     
         /// Sets the thickness of `pathbar` (in px). 
@@ -315,6 +383,7 @@ public struct Treemap: Trace {
         /// If not specified the `pathbar.textfont.size` is used with 3 pixles extra padding on each side.
         public var thickness: Double?
     
+        /// Sets the font used inside `pathbar`.
         public var textFont: Font1?
     
         /// Plotly compatible property encoding
@@ -326,7 +395,7 @@ public struct Treemap: Trace {
             case textFont = "textfont"
         }
         
-        public init(visible: Bool? = nil, side: Side3? = nil, edgeShape: EdgeShape? = nil, thickness: Double? = nil, textFont: Font1? = nil) {
+        public init(visible: Bool? = nil, side: Side? = nil, edgeShape: EdgeShape? = nil, thickness: Double? = nil, textFont: Font1? = nil) {
             self.visible = visible
             self.side = side
             self.edgeShape = edgeShape
@@ -343,7 +412,38 @@ public struct Treemap: Trace {
     /// the hover labels.
     public var text: [Double]?
 
-    public var textInfo: TextInfo1?
+    /// Determines which trace information appear on the graph.
+    /// - traces/treemap/attributes/textinfo
+    public struct TextInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let label = TextInfo(rawValue: 1 << 0)
+        public static let text = TextInfo(rawValue: 1 << 1)
+        public static let value = TextInfo(rawValue: 1 << 2)
+        public static let currentPath = TextInfo(rawValue: 1 << 3)
+        public static let percentRoot = TextInfo(rawValue: 1 << 4)
+        public static let percentEntry = TextInfo(rawValue: 1 << 5)
+        public static let percentParent = TextInfo(rawValue: 1 << 6)
+        public static let none = TextInfo(rawValue: 1 << 7)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["current path"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["percent root"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["percent entry"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["percent parent"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["none"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on the graph.
+    public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -366,7 +466,50 @@ public struct Treemap: Trace {
     /// *text* flag.
     public var hoverText: String?
 
-    public var hoverInfo: HoverInfo3?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    /// - traces/treemap/attributes/hoverinfo
+    public struct HoverInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let label = HoverInfo(rawValue: 1 << 0)
+        public static let text = HoverInfo(rawValue: 1 << 1)
+        public static let value = HoverInfo(rawValue: 1 << 2)
+        public static let name = HoverInfo(rawValue: 1 << 3)
+        public static let currentPath = HoverInfo(rawValue: 1 << 4)
+        public static let percentRoot = HoverInfo(rawValue: 1 << 5)
+        public static let percentEntry = HoverInfo(rawValue: 1 << 6)
+        public static let percentParent = HoverInfo(rawValue: 1 << 7)
+        public static let all = HoverInfo(rawValue: 1 << 8)
+        public static let none = HoverInfo(rawValue: 1 << 9)
+        public static let skip = HoverInfo(rawValue: 1 << 10)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["current path"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["percent root"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["percent entry"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["percent parent"] }
+            if (self.rawValue & 1 << 8) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 9) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 10) != 0 { options += ["skip"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -386,12 +529,16 @@ public struct Treemap: Trace {
     /// `<extra></extra>`.
     public var hoverTemplate: String?
 
+    /// Sets the font used for `textinfo`.
     public var textFont: Font1?
 
+    /// Sets the font used for `textinfo` lying inside the sector.
     public var insideTextFont: Font1?
 
+    /// Sets the font used for `textinfo` lying outside the sector.
     public var outSideTextFont: Font1?
 
+    /// Sets the positions of the `text` elements.
     public var textPosition: TextPosition0?
 
     public var domain: Domain0?
@@ -478,7 +625,7 @@ public struct Treemap: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues0? = nil, count: Count0? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo1? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo3? = nil, hoverTemplate: String? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, textPosition: TextPosition0? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, textPosition: TextPosition0? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

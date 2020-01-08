@@ -4,6 +4,10 @@ public struct BarPolar: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -53,7 +57,7 @@ public struct BarPolar: Trace {
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -98,7 +102,19 @@ public struct BarPolar: Trace {
     /// coordinates.
     public var dTheta: Double?
 
-    public var thetaUnit: ThetaUnit0?
+    /// Sets the unit of input *theta* values. 
+    ///
+    /// Has an effect only when on *linear* angular axes.
+    /// - traces/barpolar/attributes/thetaunit
+    public enum ThetaUnit: String, Encodable {
+        case radians
+        case degrees
+        case gradians
+    }
+    /// Sets the unit of input *theta* values. 
+    ///
+    /// Has an effect only when on *linear* angular axes.
+    public var thetaUnit: ThetaUnit?
 
     /// Sets where the bar base is drawn (in radial axis units). 
     ///
@@ -120,9 +136,162 @@ public struct BarPolar: Trace {
     /// Same as `text`.
     public var hoverText: String?
 
-    public var marker: Marker2?
+    /// - traces/barpolar/attributes/marker
+    public struct Marker: Encodable {
+        public var line: Line1?
+    
+        /// Sets themarkercolor. 
+        ///
+        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+        /// if set.
+        public var color: Color?
+    
+        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
+        ///
+        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+        public var cAuto: Bool?
+    
+        /// Sets the lower bound of the color domain. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+        public var cMin: Double?
+    
+        /// Sets the upper bound of the color domain. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+        public var cMax: Double?
+    
+        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+        public var cMiddle: Double?
+    
+        /// Sets the colorscale. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
+        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
+        /// name string of the following list:
+        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+        public var colorScale: ColorScale?
+    
+        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
+        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+        /// numbers in the `color` array are all positive, all negative or mixed.
+        public var autoColorScale: Bool?
+    
+        /// Reverses the color mapping if true. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
+        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+        public var reverseScale: Bool?
+    
+        /// Determines whether or not a colorbar is displayed for this trace. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array.
+        public var showScale: Bool?
+    
+        public var colorBar: ColorBar0?
+    
+        /// Sets a reference to a shared color axis. 
+        ///
+        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+        public var colorAxis: SubPlotID?
+    
+        /// Sets the opacity of the bars.
+        public var opacity: Double?
+    
+        /// Sets the source reference on plot.ly for  color .
+        public var colorSource: String?
+    
+        /// Sets the source reference on plot.ly for  opacity .
+        public var opacitySource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case line
+            case color
+            case cAuto = "cauto"
+            case cMin = "cmin"
+            case cMax = "cmax"
+            case cMiddle = "cmid"
+            case colorScale = "colorscale"
+            case autoColorScale = "autocolorscale"
+            case reverseScale = "reversescale"
+            case showScale = "showscale"
+            case colorBar = "colorbar"
+            case colorAxis = "coloraxis"
+            case opacity
+            case colorSource = "colorsrc"
+            case opacitySource = "opacitysrc"
+        }
+        
+        public init(line: Line1? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, colorSource: String? = nil, opacitySource: String? = nil) {
+            self.line = line
+            self.color = color
+            self.cAuto = cAuto
+            self.cMin = cMin
+            self.cMax = cMax
+            self.cMiddle = cMiddle
+            self.colorScale = colorScale
+            self.autoColorScale = autoColorScale
+            self.reverseScale = reverseScale
+            self.showScale = showScale
+            self.colorBar = colorBar
+            self.colorAxis = colorAxis
+            self.opacity = opacity
+            self.colorSource = colorSource
+            self.opacitySource = opacitySource
+        }
+    }
+    public var marker: Marker?
 
-    public var hoverInfo: HoverInfo5?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    /// - traces/barpolar/attributes/hoverinfo
+    public struct HoverInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let r = HoverInfo(rawValue: 1 << 0)
+        public static let theta = HoverInfo(rawValue: 1 << 1)
+        public static let text = HoverInfo(rawValue: 1 << 2)
+        public static let name = HoverInfo(rawValue: 1 << 3)
+        public static let all = HoverInfo(rawValue: 1 << 4)
+        public static let none = HoverInfo(rawValue: 1 << 5)
+        public static let skip = HoverInfo(rawValue: 1 << 6)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["r"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["theta"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["skip"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -237,7 +406,7 @@ public struct BarPolar: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit0? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker2? = nil, hoverInfo: HoverInfo5? = nil, hoverTemplate: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

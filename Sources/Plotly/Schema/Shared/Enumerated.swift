@@ -1,14 +1,3 @@
-/// Sets the container `x` refers to. 
-///
-/// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
-/// area only.
-/// - layout/layoutAttributes/title/xref
-/// - layout/layoutAttributes/title/yref
-public enum XReference0: String, Encodable {
-    case container
-    case paper
-}
-
 /// Sets the title's horizontal alignment with respect to its x position. 
 ///
 /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
@@ -61,48 +50,6 @@ public enum YAnchor0: String, Encodable {
 public enum Orientation0: String, Encodable {
     case v
     case h
-}
-
-/// The easing function used for the transition
-/// - layout/layoutAttributes/transition/easing
-/// - layout/layoutAttributes/sliders/items/slider/transition/easing
-public enum Easing0: String, Encodable {
-    case linear
-    case quad
-    case cubic
-    case sin
-    case exp
-    case circle
-    case elastic
-    case back
-    case bounce
-    case linearIn = "linear-in"
-    case quadIn = "quad-in"
-    case cubicIn = "cubic-in"
-    case sinIn = "sin-in"
-    case expIn = "exp-in"
-    case circleIn = "circle-in"
-    case elasticIn = "elastic-in"
-    case backIn = "back-in"
-    case bounceIn = "bounce-in"
-    case linearOut = "linear-out"
-    case quadOut = "quad-out"
-    case cubicOut = "cubic-out"
-    case sinOut = "sin-out"
-    case expOut = "exp-out"
-    case circleOut = "circle-out"
-    case elasticOut = "elastic-out"
-    case backOut = "back-out"
-    case bounceOut = "bounce-out"
-    case linearInOut = "linear-in-out"
-    case quadInOut = "quad-in-out"
-    case cubicInOut = "cubic-in-out"
-    case sinInOut = "sin-in-out"
-    case expInOut = "exp-in-out"
-    case circleInOut = "circle-in-out"
-    case elasticInOut = "elastic-in-out"
-    case backInOut = "back-in-out"
-    case bounceInOut = "bounce-in-out"
 }
 
 /// Sets the horizontal alignment of the text content within hover label box. 
@@ -215,21 +162,6 @@ public enum Calendar0: String, Encodable {
     case ummalqura
 }
 
-/// Sets the axis type. 
-///
-/// By default, plotly attempts to determined the axis type by looking into the data of the traces
-/// that referenced the axis in question.
-/// - layout/layoutAttributes/xaxis/type
-/// - layout/layoutAttributes/yaxis/type
-public enum Rule0: String, Encodable {
-    case auto = "-"
-    case linear
-    case log
-    case date
-    case category
-    case multiCategory = "multicategory"
-}
-
 /// Determines whether or not the range of this axis is computed in relation to the input data. 
 ///
 /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -239,7 +171,6 @@ public enum Rule0: String, Encodable {
 /// - layout/layoutAttributes/scene/yaxis/autorange
 /// - layout/layoutAttributes/scene/zaxis/autorange
 /// - layout/layoutAttributes/polar/radialaxis/autorange
-/// - traces/treemap/attributes/marker/depthfade
 /// - traces/carpet/attributes/aaxis/autorange
 /// - traces/carpet/attributes/baxis/autorange
 public enum AutoRange0: String, Encodable {
@@ -263,50 +194,6 @@ public enum RangeMode0: String, Encodable {
     case normal
     case toZero = "tozero"
     case nonNegative = "nonnegative"
-}
-
-/// If set to another axis id (e.g. 
-///
-/// `x2`, `y`), the range of this axis changes together with the range of the corresponding axis
-/// such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but
-/// when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain`
-/// and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis:
-/// {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`.
-/// The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter
-/// (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}`
-/// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
-/// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
-/// `scaleanchor` and a `matches` constraint is currently forbidden.
-/// - layout/layoutAttributes/xaxis/scaleanchor
-/// - layout/layoutAttributes/xaxis/matches
-/// - layout/layoutAttributes/yaxis/scaleanchor
-/// - layout/layoutAttributes/yaxis/matches
-public enum ScaleAnchor0: String, Encodable {
-    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
-}
-
-/// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*.
-/// - layout/layoutAttributes/xaxis/constrain
-/// - layout/layoutAttributes/yaxis/constrain
-public enum Constrain0: String, Encodable {
-    case range
-    case domain
-}
-
-/// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines which direction we push the originally specified plot area. 
-///
-/// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
-/// and *bottom* for y axes.
-/// - layout/layoutAttributes/xaxis/constraintoward
-/// - layout/layoutAttributes/yaxis/constraintoward
-public enum ConstrainToward0: String, Encodable {
-    case left
-    case center
-    case right
-    case top
-    case middle
-    case bottom
 }
 
 /// Sets the tick mode for this axis. 
@@ -424,17 +311,6 @@ public enum Ticks0: String, Encodable {
     case none = ""
 }
 
-/// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels. 
-///
-/// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
-/// ticks and grid lines are drawn half a category to the left/bottom of labels.
-/// - layout/layoutAttributes/xaxis/tickson
-/// - layout/layoutAttributes/yaxis/tickson
-public enum TicksOn0: String, Encodable {
-    case labels
-    case boundaries
-}
-
 /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. 
 ///
 /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
@@ -453,163 +329,174 @@ public enum Mirror0: String, Encodable {
     case allTicks = "allticks"
 }
 
-/// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
-/// - layout/layoutAttributes/xaxis/spikesnap
-/// - layout/layoutAttributes/yaxis/spikesnap
-public enum SpikeSnap0: String, Encodable {
-    case data
-    case cursor
-}
-
 /// If *all*, all tick labels are displayed with a prefix. 
 ///
 /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
 /// displayed with a suffix. If *none*, tick prefixes are hidden.
 /// - layout/layoutAttributes/xaxis/showtickprefix
-/// - layout/layoutAttributes/xaxis/showticksuffix
-/// - layout/layoutAttributes/xaxis/showexponent
 /// - layout/layoutAttributes/yaxis/showtickprefix
-/// - layout/layoutAttributes/yaxis/showticksuffix
-/// - layout/layoutAttributes/yaxis/showexponent
 /// - layout/layoutAttributes/ternary/aaxis/showtickprefix
-/// - layout/layoutAttributes/ternary/aaxis/showticksuffix
-/// - layout/layoutAttributes/ternary/aaxis/showexponent
 /// - layout/layoutAttributes/ternary/baxis/showtickprefix
-/// - layout/layoutAttributes/ternary/baxis/showticksuffix
-/// - layout/layoutAttributes/ternary/baxis/showexponent
 /// - layout/layoutAttributes/ternary/caxis/showtickprefix
-/// - layout/layoutAttributes/ternary/caxis/showticksuffix
-/// - layout/layoutAttributes/ternary/caxis/showexponent
 /// - layout/layoutAttributes/scene/xaxis/showtickprefix
-/// - layout/layoutAttributes/scene/xaxis/showticksuffix
-/// - layout/layoutAttributes/scene/xaxis/showexponent
 /// - layout/layoutAttributes/scene/yaxis/showtickprefix
-/// - layout/layoutAttributes/scene/yaxis/showticksuffix
-/// - layout/layoutAttributes/scene/yaxis/showexponent
 /// - layout/layoutAttributes/scene/zaxis/showtickprefix
-/// - layout/layoutAttributes/scene/zaxis/showticksuffix
-/// - layout/layoutAttributes/scene/zaxis/showexponent
 /// - layout/layoutAttributes/polar/radialaxis/showtickprefix
-/// - layout/layoutAttributes/polar/radialaxis/showticksuffix
-/// - layout/layoutAttributes/polar/radialaxis/showexponent
 /// - layout/layoutAttributes/polar/angularaxis/showtickprefix
-/// - layout/layoutAttributes/polar/angularaxis/showticksuffix
-/// - layout/layoutAttributes/polar/angularaxis/showexponent
 /// - layout/layoutAttributes/coloraxis/colorbar/showtickprefix
-/// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
-/// - layout/layoutAttributes/coloraxis/colorbar/showexponent
 /// - traces/scatter/attributes/marker/colorbar/showtickprefix
-/// - traces/scatter/attributes/marker/colorbar/showticksuffix
-/// - traces/scatter/attributes/marker/colorbar/showexponent
 /// - traces/bar/attributes/marker/colorbar/showtickprefix
-/// - traces/bar/attributes/marker/colorbar/showticksuffix
-/// - traces/bar/attributes/marker/colorbar/showexponent
 /// - traces/heatmap/attributes/colorbar/showtickprefix
-/// - traces/heatmap/attributes/colorbar/showticksuffix
-/// - traces/heatmap/attributes/colorbar/showexponent
 /// - traces/histogram/attributes/marker/colorbar/showtickprefix
-/// - traces/histogram/attributes/marker/colorbar/showticksuffix
-/// - traces/histogram/attributes/marker/colorbar/showexponent
 /// - traces/histogram2d/attributes/colorbar/showtickprefix
-/// - traces/histogram2d/attributes/colorbar/showticksuffix
-/// - traces/histogram2d/attributes/colorbar/showexponent
 /// - traces/histogram2dcontour/attributes/colorbar/showtickprefix
-/// - traces/histogram2dcontour/attributes/colorbar/showticksuffix
-/// - traces/histogram2dcontour/attributes/colorbar/showexponent
 /// - traces/contour/attributes/colorbar/showtickprefix
-/// - traces/contour/attributes/colorbar/showticksuffix
-/// - traces/contour/attributes/colorbar/showexponent
 /// - traces/scatterternary/attributes/marker/colorbar/showtickprefix
-/// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
-/// - traces/scatterternary/attributes/marker/colorbar/showexponent
 /// - traces/funnel/attributes/marker/colorbar/showtickprefix
-/// - traces/funnel/attributes/marker/colorbar/showticksuffix
-/// - traces/funnel/attributes/marker/colorbar/showexponent
 /// - traces/sunburst/attributes/marker/colorbar/showtickprefix
-/// - traces/sunburst/attributes/marker/colorbar/showticksuffix
-/// - traces/sunburst/attributes/marker/colorbar/showexponent
 /// - traces/treemap/attributes/marker/colorbar/showtickprefix
-/// - traces/treemap/attributes/marker/colorbar/showticksuffix
-/// - traces/treemap/attributes/marker/colorbar/showexponent
 /// - traces/scatter3d/attributes/line/colorbar/showtickprefix
-/// - traces/scatter3d/attributes/line/colorbar/showticksuffix
-/// - traces/scatter3d/attributes/line/colorbar/showexponent
 /// - traces/scatter3d/attributes/marker/colorbar/showtickprefix
-/// - traces/scatter3d/attributes/marker/colorbar/showticksuffix
-/// - traces/scatter3d/attributes/marker/colorbar/showexponent
 /// - traces/surface/attributes/colorbar/showtickprefix
-/// - traces/surface/attributes/colorbar/showticksuffix
-/// - traces/surface/attributes/colorbar/showexponent
 /// - traces/isosurface/attributes/colorbar/showtickprefix
-/// - traces/isosurface/attributes/colorbar/showticksuffix
-/// - traces/isosurface/attributes/colorbar/showexponent
 /// - traces/volume/attributes/colorbar/showtickprefix
-/// - traces/volume/attributes/colorbar/showticksuffix
-/// - traces/volume/attributes/colorbar/showexponent
 /// - traces/mesh3d/attributes/colorbar/showtickprefix
-/// - traces/mesh3d/attributes/colorbar/showticksuffix
-/// - traces/mesh3d/attributes/colorbar/showexponent
 /// - traces/cone/attributes/colorbar/showtickprefix
-/// - traces/cone/attributes/colorbar/showticksuffix
-/// - traces/cone/attributes/colorbar/showexponent
 /// - traces/streamtube/attributes/colorbar/showtickprefix
-/// - traces/streamtube/attributes/colorbar/showticksuffix
-/// - traces/streamtube/attributes/colorbar/showexponent
 /// - traces/scattergeo/attributes/marker/colorbar/showtickprefix
-/// - traces/scattergeo/attributes/marker/colorbar/showticksuffix
-/// - traces/scattergeo/attributes/marker/colorbar/showexponent
 /// - traces/choropleth/attributes/colorbar/showtickprefix
-/// - traces/choropleth/attributes/colorbar/showticksuffix
-/// - traces/choropleth/attributes/colorbar/showexponent
 /// - traces/scattergl/attributes/marker/colorbar/showtickprefix
-/// - traces/scattergl/attributes/marker/colorbar/showticksuffix
-/// - traces/scattergl/attributes/marker/colorbar/showexponent
 /// - traces/splom/attributes/marker/colorbar/showtickprefix
-/// - traces/splom/attributes/marker/colorbar/showticksuffix
-/// - traces/splom/attributes/marker/colorbar/showexponent
 /// - traces/heatmapgl/attributes/colorbar/showtickprefix
-/// - traces/heatmapgl/attributes/colorbar/showticksuffix
-/// - traces/heatmapgl/attributes/colorbar/showexponent
 /// - traces/parcoords/attributes/line/colorbar/showtickprefix
-/// - traces/parcoords/attributes/line/colorbar/showticksuffix
-/// - traces/parcoords/attributes/line/colorbar/showexponent
 /// - traces/parcats/attributes/line/colorbar/showtickprefix
-/// - traces/parcats/attributes/line/colorbar/showticksuffix
-/// - traces/parcats/attributes/line/colorbar/showexponent
 /// - traces/scattermapbox/attributes/marker/colorbar/showtickprefix
-/// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
-/// - traces/scattermapbox/attributes/marker/colorbar/showexponent
 /// - traces/choroplethmapbox/attributes/colorbar/showtickprefix
-/// - traces/choroplethmapbox/attributes/colorbar/showticksuffix
-/// - traces/choroplethmapbox/attributes/colorbar/showexponent
 /// - traces/densitymapbox/attributes/colorbar/showtickprefix
-/// - traces/densitymapbox/attributes/colorbar/showticksuffix
-/// - traces/densitymapbox/attributes/colorbar/showexponent
 /// - traces/indicator/attributes/gauge/axis/showtickprefix
-/// - traces/indicator/attributes/gauge/axis/showticksuffix
-/// - traces/indicator/attributes/gauge/axis/showexponent
 /// - traces/carpet/attributes/aaxis/showtickprefix
-/// - traces/carpet/attributes/aaxis/showticksuffix
-/// - traces/carpet/attributes/aaxis/showexponent
 /// - traces/carpet/attributes/baxis/showtickprefix
-/// - traces/carpet/attributes/baxis/showticksuffix
-/// - traces/carpet/attributes/baxis/showexponent
 /// - traces/scattercarpet/attributes/marker/colorbar/showtickprefix
-/// - traces/scattercarpet/attributes/marker/colorbar/showticksuffix
-/// - traces/scattercarpet/attributes/marker/colorbar/showexponent
 /// - traces/contourcarpet/attributes/colorbar/showtickprefix
-/// - traces/contourcarpet/attributes/colorbar/showticksuffix
-/// - traces/contourcarpet/attributes/colorbar/showexponent
 /// - traces/scatterpolar/attributes/marker/colorbar/showtickprefix
-/// - traces/scatterpolar/attributes/marker/colorbar/showticksuffix
-/// - traces/scatterpolar/attributes/marker/colorbar/showexponent
 /// - traces/scatterpolargl/attributes/marker/colorbar/showtickprefix
-/// - traces/scatterpolargl/attributes/marker/colorbar/showticksuffix
-/// - traces/scatterpolargl/attributes/marker/colorbar/showexponent
 /// - traces/barpolar/attributes/marker/colorbar/showtickprefix
-/// - traces/barpolar/attributes/marker/colorbar/showticksuffix
-/// - traces/barpolar/attributes/marker/colorbar/showexponent
 public enum ShowTickPrefix0: String, Encodable {
+    case all
+    case first
+    case last
+    case none
+}
+
+/// Same as `showtickprefix` but for tick suffixes.
+/// - layout/layoutAttributes/xaxis/showticksuffix
+/// - layout/layoutAttributes/yaxis/showticksuffix
+/// - layout/layoutAttributes/ternary/aaxis/showticksuffix
+/// - layout/layoutAttributes/ternary/baxis/showticksuffix
+/// - layout/layoutAttributes/ternary/caxis/showticksuffix
+/// - layout/layoutAttributes/scene/xaxis/showticksuffix
+/// - layout/layoutAttributes/scene/yaxis/showticksuffix
+/// - layout/layoutAttributes/scene/zaxis/showticksuffix
+/// - layout/layoutAttributes/polar/radialaxis/showticksuffix
+/// - layout/layoutAttributes/polar/angularaxis/showticksuffix
+/// - layout/layoutAttributes/coloraxis/colorbar/showticksuffix
+/// - traces/scatter/attributes/marker/colorbar/showticksuffix
+/// - traces/bar/attributes/marker/colorbar/showticksuffix
+/// - traces/heatmap/attributes/colorbar/showticksuffix
+/// - traces/histogram/attributes/marker/colorbar/showticksuffix
+/// - traces/histogram2d/attributes/colorbar/showticksuffix
+/// - traces/histogram2dcontour/attributes/colorbar/showticksuffix
+/// - traces/contour/attributes/colorbar/showticksuffix
+/// - traces/scatterternary/attributes/marker/colorbar/showticksuffix
+/// - traces/funnel/attributes/marker/colorbar/showticksuffix
+/// - traces/sunburst/attributes/marker/colorbar/showticksuffix
+/// - traces/treemap/attributes/marker/colorbar/showticksuffix
+/// - traces/scatter3d/attributes/line/colorbar/showticksuffix
+/// - traces/scatter3d/attributes/marker/colorbar/showticksuffix
+/// - traces/surface/attributes/colorbar/showticksuffix
+/// - traces/isosurface/attributes/colorbar/showticksuffix
+/// - traces/volume/attributes/colorbar/showticksuffix
+/// - traces/mesh3d/attributes/colorbar/showticksuffix
+/// - traces/cone/attributes/colorbar/showticksuffix
+/// - traces/streamtube/attributes/colorbar/showticksuffix
+/// - traces/scattergeo/attributes/marker/colorbar/showticksuffix
+/// - traces/choropleth/attributes/colorbar/showticksuffix
+/// - traces/scattergl/attributes/marker/colorbar/showticksuffix
+/// - traces/splom/attributes/marker/colorbar/showticksuffix
+/// - traces/heatmapgl/attributes/colorbar/showticksuffix
+/// - traces/parcoords/attributes/line/colorbar/showticksuffix
+/// - traces/parcats/attributes/line/colorbar/showticksuffix
+/// - traces/scattermapbox/attributes/marker/colorbar/showticksuffix
+/// - traces/choroplethmapbox/attributes/colorbar/showticksuffix
+/// - traces/densitymapbox/attributes/colorbar/showticksuffix
+/// - traces/indicator/attributes/gauge/axis/showticksuffix
+/// - traces/carpet/attributes/aaxis/showticksuffix
+/// - traces/carpet/attributes/baxis/showticksuffix
+/// - traces/scattercarpet/attributes/marker/colorbar/showticksuffix
+/// - traces/contourcarpet/attributes/colorbar/showticksuffix
+/// - traces/scatterpolar/attributes/marker/colorbar/showticksuffix
+/// - traces/scatterpolargl/attributes/marker/colorbar/showticksuffix
+/// - traces/barpolar/attributes/marker/colorbar/showticksuffix
+public enum ShowTickSuffix0: String, Encodable {
+    case all
+    case first
+    case last
+    case none
+}
+
+/// If *all*, all exponents are shown besides their significands. 
+///
+/// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+/// last tick is shown. If *none*, no exponents appear.
+/// - layout/layoutAttributes/xaxis/showexponent
+/// - layout/layoutAttributes/yaxis/showexponent
+/// - layout/layoutAttributes/ternary/aaxis/showexponent
+/// - layout/layoutAttributes/ternary/baxis/showexponent
+/// - layout/layoutAttributes/ternary/caxis/showexponent
+/// - layout/layoutAttributes/scene/xaxis/showexponent
+/// - layout/layoutAttributes/scene/yaxis/showexponent
+/// - layout/layoutAttributes/scene/zaxis/showexponent
+/// - layout/layoutAttributes/polar/radialaxis/showexponent
+/// - layout/layoutAttributes/polar/angularaxis/showexponent
+/// - layout/layoutAttributes/coloraxis/colorbar/showexponent
+/// - traces/scatter/attributes/marker/colorbar/showexponent
+/// - traces/bar/attributes/marker/colorbar/showexponent
+/// - traces/heatmap/attributes/colorbar/showexponent
+/// - traces/histogram/attributes/marker/colorbar/showexponent
+/// - traces/histogram2d/attributes/colorbar/showexponent
+/// - traces/histogram2dcontour/attributes/colorbar/showexponent
+/// - traces/contour/attributes/colorbar/showexponent
+/// - traces/scatterternary/attributes/marker/colorbar/showexponent
+/// - traces/funnel/attributes/marker/colorbar/showexponent
+/// - traces/sunburst/attributes/marker/colorbar/showexponent
+/// - traces/treemap/attributes/marker/colorbar/showexponent
+/// - traces/scatter3d/attributes/line/colorbar/showexponent
+/// - traces/scatter3d/attributes/marker/colorbar/showexponent
+/// - traces/surface/attributes/colorbar/showexponent
+/// - traces/isosurface/attributes/colorbar/showexponent
+/// - traces/volume/attributes/colorbar/showexponent
+/// - traces/mesh3d/attributes/colorbar/showexponent
+/// - traces/cone/attributes/colorbar/showexponent
+/// - traces/streamtube/attributes/colorbar/showexponent
+/// - traces/scattergeo/attributes/marker/colorbar/showexponent
+/// - traces/choropleth/attributes/colorbar/showexponent
+/// - traces/scattergl/attributes/marker/colorbar/showexponent
+/// - traces/splom/attributes/marker/colorbar/showexponent
+/// - traces/heatmapgl/attributes/colorbar/showexponent
+/// - traces/parcoords/attributes/line/colorbar/showexponent
+/// - traces/parcats/attributes/line/colorbar/showexponent
+/// - traces/scattermapbox/attributes/marker/colorbar/showexponent
+/// - traces/choroplethmapbox/attributes/colorbar/showexponent
+/// - traces/densitymapbox/attributes/colorbar/showexponent
+/// - traces/indicator/attributes/gauge/axis/showexponent
+/// - traces/carpet/attributes/aaxis/showexponent
+/// - traces/carpet/attributes/baxis/showexponent
+/// - traces/scattercarpet/attributes/marker/colorbar/showexponent
+/// - traces/contourcarpet/attributes/colorbar/showexponent
+/// - traces/scatterpolar/attributes/marker/colorbar/showexponent
+/// - traces/scatterpolargl/attributes/marker/colorbar/showexponent
+/// - traces/barpolar/attributes/marker/colorbar/showexponent
+public enum ShowExponent0: String, Encodable {
     case all
     case first
     case last
@@ -677,31 +564,6 @@ public enum ExponentFormat0: String, Encodable {
     case B
 }
 
-/// If set to an opposite-letter axis id (e.g. 
-///
-/// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
-/// axis' position is determined by `position`.
-/// - layout/layoutAttributes/xaxis/anchor
-/// - layout/layoutAttributes/xaxis/overlaying
-/// - layout/layoutAttributes/yaxis/anchor
-/// - layout/layoutAttributes/yaxis/overlaying
-public enum Anchor0: String, Encodable {
-    case free
-    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
-}
-
-/// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the plotting area.
-/// - layout/layoutAttributes/xaxis/side
-/// - layout/layoutAttributes/yaxis/side
-/// - traces/indicator/attributes/delta/position
-public enum Side0: String, Encodable {
-    case top
-    case bottom
-    case left
-    case right
-}
-
 /// Sets the layer on which this axis is displayed. 
 ///
 /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
@@ -757,28 +619,47 @@ public enum CategoryOrder0: String, Encodable {
     case medianDescending = "median descending"
 }
 
-/// Sets the axis type. 
-///
-/// By default, plotly attempts to determined the axis type by looking into the data of the traces
-/// that referenced the axis in question.
-/// - layout/layoutAttributes/scene/xaxis/type
-/// - layout/layoutAttributes/scene/yaxis/type
-/// - layout/layoutAttributes/scene/zaxis/type
-/// - layout/layoutAttributes/polar/radialaxis/type
-public enum Rule1: String, Encodable {
-    case auto = "-"
-    case linear
-    case log
-    case date
-    case category
-}
-
 /// Sets the horizontal alignment of the `text` within the box. 
 ///
 /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
 /// HTML tags) or if an explicit width is set to override the text width.
 /// - layout/layoutAttributes/scene/annotations/items/annotation/align
 /// - layout/layoutAttributes/annotations/items/annotation/align
+/// - traces/indicator/attributes/align
+/// - traces/indicator/attributes/title/align
+/// - traces/table/attributes/header/align
+/// - traces/table/attributes/cells/align
+public enum Align1: String, Encodable {
+    case left
+    case center
+    case right
+}
+
+/// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+/// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/textposition
+/// - traces/scatter/attributes/textposition
+/// - traces/scatterternary/attributes/textposition
+/// - traces/treemap/attributes/textposition
+/// - traces/scatter3d/attributes/textposition
+/// - traces/scattergeo/attributes/textposition
+/// - traces/scattergl/attributes/textposition
+/// - traces/scattermapbox/attributes/textposition
+/// - traces/scattercarpet/attributes/textposition
+/// - traces/scatterpolar/attributes/textposition
+/// - traces/scatterpolargl/attributes/textposition
+public enum TextPosition0: String, Encodable {
+    case topLeft = "top left"
+    case topCenter = "top center"
+    case topRight = "top right"
+    case middleLeft = "middle left"
+    case middleCenter = "middle center"
+    case middleRight = "middle right"
+    case bottomLeft = "bottom left"
+    case bottomCenter = "bottom center"
+    case bottomRight = "bottom right"
+}
+
+/// Sets the anchor for the x position
 /// - layout/layoutAttributes/images/items/image/xanchor
 /// - layout/layoutAttributes/sliders/items/slider/currentvalue/xanchor
 /// - layout/layoutAttributes/coloraxis/colorbar/xanchor
@@ -811,27 +692,18 @@ public enum Rule1: String, Encodable {
 /// - traces/scattermapbox/attributes/marker/colorbar/xanchor
 /// - traces/choroplethmapbox/attributes/colorbar/xanchor
 /// - traces/densitymapbox/attributes/colorbar/xanchor
-/// - traces/indicator/attributes/align
-/// - traces/indicator/attributes/title/align
-/// - traces/table/attributes/header/align
-/// - traces/table/attributes/cells/align
 /// - traces/scattercarpet/attributes/marker/colorbar/xanchor
 /// - traces/contourcarpet/attributes/colorbar/xanchor
 /// - traces/scatterpolar/attributes/marker/colorbar/xanchor
 /// - traces/scatterpolargl/attributes/marker/colorbar/xanchor
 /// - traces/barpolar/attributes/marker/colorbar/xanchor
-public enum Align1: String, Encodable {
+public enum XAnchor1: String, Encodable {
     case left
     case center
     case right
 }
 
-/// Sets the vertical alignment of the `text` within the box. 
-///
-/// Has an effect only if an explicit height is set to override the text height.
-/// - layout/layoutAttributes/scene/annotations/items/annotation/valign
-/// - layout/layoutAttributes/legend/valign
-/// - layout/layoutAttributes/annotations/items/annotation/valign
+/// Sets the anchor for the y position.
 /// - layout/layoutAttributes/images/items/image/yanchor
 /// - layout/layoutAttributes/coloraxis/colorbar/yanchor
 /// - traces/scatter/attributes/marker/colorbar/yanchor
@@ -868,205 +740,96 @@ public enum Align1: String, Encodable {
 /// - traces/scatterpolar/attributes/marker/colorbar/yanchor
 /// - traces/scatterpolargl/attributes/marker/colorbar/yanchor
 /// - traces/barpolar/attributes/marker/colorbar/yanchor
-public enum VerticalAlign0: String, Encodable {
+public enum YAnchor1: String, Encodable {
     case top
     case middle
     case bottom
-}
-
-/// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-/// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/textposition
-/// - traces/scatter/attributes/textposition
-/// - traces/scatterternary/attributes/textposition
-/// - traces/treemap/attributes/textposition
-/// - traces/scatter3d/attributes/textposition
-/// - traces/scattergeo/attributes/textposition
-/// - traces/scattergl/attributes/textposition
-/// - traces/scattermapbox/attributes/textposition
-/// - traces/scattercarpet/attributes/textposition
-/// - traces/scatterpolar/attributes/textposition
-/// - traces/scatterpolargl/attributes/textposition
-public enum TextPosition0: String, Encodable {
-    case topLeft = "top left"
-    case topCenter = "top center"
-    case topRight = "top right"
-    case middleLeft = "middle left"
-    case middleCenter = "middle center"
-    case middleRight = "middle right"
-    case bottomLeft = "bottom left"
-    case bottomCenter = "bottom center"
-    case bottomRight = "bottom right"
-}
-
-/// Determines on which side of radial axis line the tick and tick labels appear.
-/// - layout/layoutAttributes/polar/radialaxis/side
-/// - layout/layoutAttributes/direction
-/// - traces/pie/attributes/direction
-public enum Side1: String, Encodable {
-    case clockwise
-    case counterClockwise = "counterclockwise"
-}
-
-/// Legacy polar charts are deprecated! Please switch to *polar* subplots. 
-///
-/// Sets the orientation (from the paper perspective) of the radial axis tick labels.
-/// - layout/layoutAttributes/radialaxis/tickorientation
-/// - layout/layoutAttributes/angularaxis/tickorientation
-public enum TickOrientation0: String, Encodable {
-    case horizontal
-    case vertical
-}
-
-/// Determines the behavior on legend item click. 
-///
-/// *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the
-/// clicked item the sole visible item on the graph. *false* disable legend item click interactions.
-/// - layout/layoutAttributes/legend/itemclick
-/// - layout/layoutAttributes/legend/itemdoubleclick
-public enum ItemClick0: String, Encodable {
-    case toggle
-    case toggleOthers = "toggleothers"
-    case `false` = "false"
-}
-
-/// Sets the annotation's x coordinate axis. 
-///
-/// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
-/// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-/// normalized coordinates where 0 (1) corresponds to the left (right) side.
-/// - layout/layoutAttributes/annotations/items/annotation/xref
-/// - layout/layoutAttributes/shapes/items/shape/xref
-/// - layout/layoutAttributes/images/items/image/xref
-public enum XReference1: String, Encodable {
-    case paper
-    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-}
-
-/// Sets the annotation's y coordinate axis. 
-///
-/// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
-/// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-/// normalized coordinates where 0 (1) corresponds to the bottom (top).
-/// - layout/layoutAttributes/annotations/items/annotation/yref
-/// - layout/layoutAttributes/shapes/items/shape/yref
-/// - layout/layoutAttributes/images/items/image/yref
-public enum YReference0: String, Encodable {
-    case paper
-    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
-}
-
-/// Specifies whether shapes are drawn below or above traces.
-/// - layout/layoutAttributes/shapes/items/shape/layer
-/// - layout/layoutAttributes/images/items/image/layer
-public enum Layer1: String, Encodable {
-    case below
-    case above
-}
-
-/// Sets the shapes's sizing mode along the x axis. 
-///
-/// If set to *scaled*, `x0`, `x1` and x coordinates within `path` refer to data values on the x
-/// axis or a fraction of the plot area's width (`xref` set to *paper*). If set to *pixel*,
-/// `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x
-/// coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed
-/// width while maintaining a position relative to data or plot fraction.
-/// - layout/layoutAttributes/shapes/items/shape/xsizemode
-/// - layout/layoutAttributes/shapes/items/shape/ysizemode
-public enum XSizeMode0: String, Encodable {
-    case scaled
-    case pixel
-}
-
-/// Sets the Plotly method to be called on click. 
-///
-/// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
-/// calls and will not bind automatically to state updates. This may be used to create a component
-/// interface and attach to updatemenu events manually via JavaScript.
-/// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons/items/button/method
-/// - layout/layoutAttributes/sliders/items/slider/steps/items/step/method
-public enum Method0: String, Encodable {
-    case restyle
-    case relayout
-    case animate
-    case update
-    case skip
 }
 
 /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
 ///
 /// Use `len` to set the value.
 /// - layout/layoutAttributes/sliders/items/slider/lenmode
-/// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
 /// - layout/layoutAttributes/coloraxis/colorbar/lenmode
-/// - traces/scatter/attributes/marker/colorbar/thicknessmode
 /// - traces/scatter/attributes/marker/colorbar/lenmode
-/// - traces/bar/attributes/marker/colorbar/thicknessmode
 /// - traces/bar/attributes/marker/colorbar/lenmode
-/// - traces/heatmap/attributes/colorbar/thicknessmode
 /// - traces/heatmap/attributes/colorbar/lenmode
-/// - traces/histogram/attributes/marker/colorbar/thicknessmode
 /// - traces/histogram/attributes/marker/colorbar/lenmode
-/// - traces/histogram2d/attributes/colorbar/thicknessmode
 /// - traces/histogram2d/attributes/colorbar/lenmode
-/// - traces/histogram2dcontour/attributes/colorbar/thicknessmode
 /// - traces/histogram2dcontour/attributes/colorbar/lenmode
-/// - traces/contour/attributes/colorbar/thicknessmode
 /// - traces/contour/attributes/colorbar/lenmode
-/// - traces/scatterternary/attributes/marker/colorbar/thicknessmode
 /// - traces/scatterternary/attributes/marker/colorbar/lenmode
-/// - traces/funnel/attributes/marker/colorbar/thicknessmode
 /// - traces/funnel/attributes/marker/colorbar/lenmode
-/// - traces/sunburst/attributes/marker/colorbar/thicknessmode
 /// - traces/sunburst/attributes/marker/colorbar/lenmode
-/// - traces/treemap/attributes/marker/colorbar/thicknessmode
 /// - traces/treemap/attributes/marker/colorbar/lenmode
-/// - traces/scatter3d/attributes/line/colorbar/thicknessmode
 /// - traces/scatter3d/attributes/line/colorbar/lenmode
-/// - traces/scatter3d/attributes/marker/colorbar/thicknessmode
 /// - traces/scatter3d/attributes/marker/colorbar/lenmode
-/// - traces/surface/attributes/colorbar/thicknessmode
 /// - traces/surface/attributes/colorbar/lenmode
-/// - traces/isosurface/attributes/colorbar/thicknessmode
 /// - traces/isosurface/attributes/colorbar/lenmode
-/// - traces/volume/attributes/colorbar/thicknessmode
 /// - traces/volume/attributes/colorbar/lenmode
-/// - traces/mesh3d/attributes/colorbar/thicknessmode
 /// - traces/mesh3d/attributes/colorbar/lenmode
-/// - traces/cone/attributes/colorbar/thicknessmode
 /// - traces/cone/attributes/colorbar/lenmode
-/// - traces/streamtube/attributes/colorbar/thicknessmode
 /// - traces/streamtube/attributes/colorbar/lenmode
-/// - traces/scattergeo/attributes/marker/colorbar/thicknessmode
 /// - traces/scattergeo/attributes/marker/colorbar/lenmode
-/// - traces/choropleth/attributes/colorbar/thicknessmode
 /// - traces/choropleth/attributes/colorbar/lenmode
-/// - traces/scattergl/attributes/marker/colorbar/thicknessmode
 /// - traces/scattergl/attributes/marker/colorbar/lenmode
-/// - traces/splom/attributes/marker/colorbar/thicknessmode
 /// - traces/splom/attributes/marker/colorbar/lenmode
-/// - traces/heatmapgl/attributes/colorbar/thicknessmode
 /// - traces/heatmapgl/attributes/colorbar/lenmode
-/// - traces/parcoords/attributes/line/colorbar/thicknessmode
 /// - traces/parcoords/attributes/line/colorbar/lenmode
-/// - traces/parcats/attributes/line/colorbar/thicknessmode
 /// - traces/parcats/attributes/line/colorbar/lenmode
-/// - traces/scattermapbox/attributes/marker/colorbar/thicknessmode
 /// - traces/scattermapbox/attributes/marker/colorbar/lenmode
-/// - traces/choroplethmapbox/attributes/colorbar/thicknessmode
 /// - traces/choroplethmapbox/attributes/colorbar/lenmode
-/// - traces/densitymapbox/attributes/colorbar/thicknessmode
 /// - traces/densitymapbox/attributes/colorbar/lenmode
-/// - traces/scattercarpet/attributes/marker/colorbar/thicknessmode
 /// - traces/scattercarpet/attributes/marker/colorbar/lenmode
-/// - traces/contourcarpet/attributes/colorbar/thicknessmode
 /// - traces/contourcarpet/attributes/colorbar/lenmode
-/// - traces/scatterpolar/attributes/marker/colorbar/thicknessmode
 /// - traces/scatterpolar/attributes/marker/colorbar/lenmode
-/// - traces/scatterpolargl/attributes/marker/colorbar/thicknessmode
 /// - traces/scatterpolargl/attributes/marker/colorbar/lenmode
-/// - traces/barpolar/attributes/marker/colorbar/thicknessmode
 /// - traces/barpolar/attributes/marker/colorbar/lenmode
 public enum LengthMode0: String, Encodable {
+    case fraction
+    case pixels
+}
+
+/// Determines whether this color bar's thickness (i.e. 
+///
+/// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
+/// Use `thickness` to set the value.
+/// - layout/layoutAttributes/coloraxis/colorbar/thicknessmode
+/// - traces/scatter/attributes/marker/colorbar/thicknessmode
+/// - traces/bar/attributes/marker/colorbar/thicknessmode
+/// - traces/heatmap/attributes/colorbar/thicknessmode
+/// - traces/histogram/attributes/marker/colorbar/thicknessmode
+/// - traces/histogram2d/attributes/colorbar/thicknessmode
+/// - traces/histogram2dcontour/attributes/colorbar/thicknessmode
+/// - traces/contour/attributes/colorbar/thicknessmode
+/// - traces/scatterternary/attributes/marker/colorbar/thicknessmode
+/// - traces/funnel/attributes/marker/colorbar/thicknessmode
+/// - traces/sunburst/attributes/marker/colorbar/thicknessmode
+/// - traces/treemap/attributes/marker/colorbar/thicknessmode
+/// - traces/scatter3d/attributes/line/colorbar/thicknessmode
+/// - traces/scatter3d/attributes/marker/colorbar/thicknessmode
+/// - traces/surface/attributes/colorbar/thicknessmode
+/// - traces/isosurface/attributes/colorbar/thicknessmode
+/// - traces/volume/attributes/colorbar/thicknessmode
+/// - traces/mesh3d/attributes/colorbar/thicknessmode
+/// - traces/cone/attributes/colorbar/thicknessmode
+/// - traces/streamtube/attributes/colorbar/thicknessmode
+/// - traces/scattergeo/attributes/marker/colorbar/thicknessmode
+/// - traces/choropleth/attributes/colorbar/thicknessmode
+/// - traces/scattergl/attributes/marker/colorbar/thicknessmode
+/// - traces/splom/attributes/marker/colorbar/thicknessmode
+/// - traces/heatmapgl/attributes/colorbar/thicknessmode
+/// - traces/parcoords/attributes/line/colorbar/thicknessmode
+/// - traces/parcats/attributes/line/colorbar/thicknessmode
+/// - traces/scattermapbox/attributes/marker/colorbar/thicknessmode
+/// - traces/choroplethmapbox/attributes/colorbar/thicknessmode
+/// - traces/densitymapbox/attributes/colorbar/thicknessmode
+/// - traces/scattercarpet/attributes/marker/colorbar/thicknessmode
+/// - traces/contourcarpet/attributes/colorbar/thicknessmode
+/// - traces/scatterpolar/attributes/marker/colorbar/thicknessmode
+/// - traces/scatterpolargl/attributes/marker/colorbar/thicknessmode
+/// - traces/barpolar/attributes/marker/colorbar/thicknessmode
+public enum ThicknessMode0: String, Encodable {
     case fraction
     case pixels
 }
@@ -1109,7 +872,7 @@ public enum LengthMode0: String, Encodable {
 /// - traces/scatterpolar/attributes/marker/colorbar/title/side
 /// - traces/scatterpolargl/attributes/marker/colorbar/title/side
 /// - traces/barpolar/attributes/marker/colorbar/title/side
-public enum Side2: String, Encodable {
+public enum Side0: String, Encodable {
     case right
     case top
     case bottom
@@ -1170,48 +933,6 @@ public enum Visible0: String, Encodable {
     case `true` = "true"
     case `false` = "false"
     case legendOnly = "legendonly"
-}
-
-/// Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`. 
-///
-/// Sets the normalization for the sum of this `stackgroup`. With *fraction*, the value of each
-/// trace at each location is divided by the sum of all trace values at that location. *percent* is
-/// the same but multiplied by 100 to show percentages. If there are multiple subplots, or multiple
-/// `stackgroup`s on one subplot, each will be normalized within its own set.
-/// - traces/scatter/attributes/groupnorm
-/// - traces/bar/layoutAttributes/barnorm
-/// - traces/histogram/layoutAttributes/barnorm
-public enum GroupNormalization0: String, Encodable {
-    case none = ""
-    case fraction
-    case percent
-}
-
-/// Sets the area to fill with a solid color. 
-///
-/// Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if
-/// `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to
-/// x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and
-/// the endpoints of the trace before it, connecting those endpoints with straight lines (to make a
-/// stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*.
-/// *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into
-/// a closed shape. *tonext* fills the space between two traces if one completely encloses the other
-/// (eg consecutive contour lines), and behaves like *toself* if there is no trace before it.
-/// *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup`
-/// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
-/// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
-/// later ones will be pushed down in the drawing order.
-/// - traces/scatter/attributes/fill
-/// - traces/scattergl/attributes/fill
-/// - traces/scatterpolargl/attributes/fill
-public enum Fill0: String, Encodable {
-    case none
-    case toZeroY = "tozeroy"
-    case toZeroX = "tozerox"
-    case toNextY = "tonexty"
-    case toNextX = "tonextx"
-    case toSelf = "toself"
-    case toNext = "tonext"
 }
 
 /// Sets the marker symbol type. 
@@ -1399,7 +1120,7 @@ public enum SizeMode0: String, Encodable {
 /// - traces/scattergeo/attributes/marker/gradient/type
 /// - traces/scattercarpet/attributes/marker/gradient/type
 /// - traces/scatterpolar/attributes/marker/gradient/type
-public enum Rule2: String, Encodable {
+public enum Rule0: String, Encodable {
     case radial
     case horizontal
     case vertical
@@ -1423,375 +1144,9 @@ public enum Rule2: String, Encodable {
 /// - traces/scatter3d/attributes/error_z/type
 /// - traces/scattergl/attributes/error_x/type
 /// - traces/scattergl/attributes/error_y/type
-public enum Rule3: String, Encodable {
+public enum Rule1: String, Encodable {
     case percent
     case constant
     case sqrt
     case data
-}
-
-/// Specifies the location of the `text`. 
-///
-/// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
-/// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
-/// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
-/// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
-/// outside.
-/// - traces/bar/attributes/textposition
-/// - traces/funnel/attributes/textposition
-/// - traces/waterfall/attributes/textposition
-/// - traces/pie/attributes/textposition
-public enum TextPosition1: String, Encodable {
-    case inside
-    case outside
-    case auto
-    case none
-}
-
-/// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-/// - traces/bar/attributes/insidetextanchor
-/// - traces/funnel/attributes/insidetextanchor
-/// - traces/waterfall/attributes/insidetextanchor
-public enum InsideTextAnchor0: String, Encodable {
-    case end
-    case middle
-    case start
-}
-
-/// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-/// - traces/bar/attributes/constraintext
-/// - traces/funnel/attributes/constraintext
-/// - traces/waterfall/attributes/constraintext
-public enum ConstrainText0: String, Encodable {
-    case inside
-    case outside
-    case both
-    case none
-}
-
-/// Determines how bars at the same location coordinate are displayed on the graph. 
-///
-/// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
-/// on top of one another, with negative values below the axis, positive values above With *group*,
-/// the bars are plotted next to one another centered around the shared location. With *overlay*,
-/// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-/// - traces/bar/layoutAttributes/barmode
-/// - traces/histogram/layoutAttributes/barmode
-public enum BarMode0: String, Encodable {
-    case stack
-    case group
-    case overlay
-    case relative
-}
-
-/// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
-/// - traces/box/attributes/boxpoints
-/// - traces/violin/attributes/points
-public enum BoxPoints0: String, Encodable {
-    case all
-    case outliers
-    case suspectedOutliers = "suspectedoutliers"
-    case `false` = "false"
-}
-
-/// Determines how boxes at the same location coordinate are displayed on the graph. 
-///
-/// If *group*, the boxes are plotted next to one another centered around the shared location. If
-/// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
-/// multiple boxes. Has no effect on traces that have *width* set.
-/// - traces/box/layoutAttributes/boxmode
-/// - traces/violin/layoutAttributes/violinmode
-/// - traces/waterfall/layoutAttributes/waterfallmode
-/// - traces/candlestick/layoutAttributes/boxmode
-public enum BoxMode0: String, Encodable {
-    case group
-    case overlay
-}
-
-/// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). 
-///
-/// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
-/// `x` is not provided).
-/// - traces/heatmap/attributes/xtype
-/// - traces/heatmap/attributes/ytype
-/// - traces/contour/attributes/xtype
-/// - traces/contour/attributes/ytype
-/// - traces/heatmapgl/attributes/xtype
-/// - traces/heatmapgl/attributes/ytype
-/// - traces/contourcarpet/attributes/atype
-/// - traces/contourcarpet/attributes/btype
-public enum XType0: String, Encodable {
-    case array
-    case scaled
-}
-
-/// Picks a smoothing algorithm use to smooth `z` data.
-/// - traces/heatmap/attributes/zsmooth
-/// - traces/histogram2d/attributes/zsmooth
-public enum ZSmooth0: String, Encodable {
-    case fast
-    case best
-    case `false` = "false"
-}
-
-/// Specifies the binning function used for this histogram trace. 
-///
-/// If *count*, the histogram values are computed by counting the number of values lying inside each
-/// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
-/// average, the minimum or the maximum of the values lying inside each bin respectively.
-/// - traces/histogram/attributes/histfunc
-/// - traces/histogram2d/attributes/histfunc
-/// - traces/histogram2dcontour/attributes/histfunc
-public enum BinningFunction0: String, Encodable {
-    case count
-    case sum
-    case avg
-    case min
-    case max
-}
-
-/// Specifies the type of normalization used for this histogram trace. 
-///
-/// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
-/// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
-/// the percentage / fraction of occurrences with respect to the total number of sample points
-/// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
-/// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
-/// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
-/// the area of each bar corresponds to the probability that an event will fall into the
-/// corresponding bin (here, the sum of all bin AREAS equals 1).
-/// - traces/histogram/attributes/histnorm
-/// - traces/histogram2d/attributes/histnorm
-/// - traces/histogram2dcontour/attributes/histnorm
-public enum Normalization0: String, Encodable {
-    case none = ""
-    case percent
-    case probability
-    case density
-    case probabilityDensity = "probability density"
-}
-
-/// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
-///
-/// If `constraint`, the data is represented as constraints with the invalid region shaded as
-/// specified by the `operation` and `value` parameters.
-/// - traces/histogram2dcontour/attributes/contours/type
-/// - traces/contour/attributes/contours/type
-/// - traces/contourcarpet/attributes/contours/type
-public enum Rule4: String, Encodable {
-    case levels
-    case constraint
-}
-
-/// Determines the coloring method showing the contour values. 
-///
-/// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
-/// coloring is applied between each contour level. If *lines*, coloring is done on the contour
-/// lines. If *none*, no coloring is applied on this trace.
-/// - traces/histogram2dcontour/attributes/contours/coloring
-/// - traces/contour/attributes/contours/coloring
-public enum Coloring0: String, Encodable {
-    case fill
-    case heatmap
-    case lines
-    case none
-}
-
-/// Sets the constraint operation. 
-///
-/// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
-/// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
-/// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
-/// intervals make no difference to constraint display, but all versions are allowed for consistency
-/// with filter transforms.
-/// - traces/histogram2dcontour/attributes/contours/operation
-/// - traces/contour/attributes/contours/operation
-/// - traces/contourcarpet/attributes/contours/operation
-public enum Operation0: String, Encodable {
-    case equalTo = "="
-    case lessThan = "<"
-    case greaterEqualThan = ">="
-    case greaterThan = ">"
-    case lessEqualThan = "<="
-    case insideInclusive = "[]"
-    case insideExclusive = "()"
-    case insideInclusiveExclusive = "[)"
-    case insideExclusiveInclusive = "(]"
-    case outsideInclusive = "]["
-    case outsideExclusive = ")("
-    case outsideInclusiveExclusive = "]("
-    case outsideExclusiveInclusive = ")["
-}
-
-/// Determines the line shape. 
-///
-/// With *spline* the lines are drawn using spline interpolation. The other available values
-/// correspond to step-wise line shapes.
-/// - traces/scatterternary/attributes/line/shape
-/// - traces/scattercarpet/attributes/line/shape
-/// - traces/scatterpolar/attributes/line/shape
-public enum Shape0: String, Encodable {
-    case linear
-    case spline
-}
-
-/// Sets the area to fill with a solid color. 
-///
-/// Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to
-/// scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has
-/// gaps) into a closed shape. *tonext* fills the space between two traces if one completely
-/// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
-/// trace before it. *tonext* should not be used if one trace does not enclose the other.
-/// - traces/scatterternary/attributes/fill
-/// - traces/scattercarpet/attributes/fill
-/// - traces/scatterpolar/attributes/fill
-public enum Fill1: String, Encodable {
-    case none
-    case toSelf = "toself"
-    case toNext = "tonext"
-}
-
-/// Determines how the items in `values` are summed. 
-///
-/// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
-/// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
-/// be the extra part not part of the sum of the values at their leaves.
-/// - traces/sunburst/attributes/branchvalues
-/// - traces/treemap/attributes/branchvalues
-public enum BranchValues0: String, Encodable {
-    case remainder
-    case total
-}
-
-/// Determines on which side of the the treemap the `pathbar` should be presented.
-/// - traces/treemap/attributes/pathbar/side
-/// - traces/parcoords/attributes/labelside
-public enum Side3: String, Encodable {
-    case top
-    case bottom
-}
-
-/// Sets the dash style of the lines.
-/// - traces/scatter3d/attributes/line/dash
-/// - traces/scattergl/attributes/line/dash
-/// - traces/scatterpolargl/attributes/line/dash
-public enum Dash0: String, Encodable {
-    case solid
-    case dot
-    case dash
-    case longDash = "longdash"
-    case dashDot = "dashdot"
-    case longDashDot = "longdashdot"
-}
-
-/// Determines the set of locations used to match entries in `locations` to regions on the map.
-/// - traces/scattergeo/attributes/locationmode
-/// - traces/choropleth/attributes/locationmode
-public enum LocationMode0: String, Encodable {
-    case ISO3 = "ISO-3"
-    case statesOfUSA = "USA-states"
-    case countryNames = "country names"
-}
-
-/// Sets the area to fill with a solid color. 
-///
-/// Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each
-/// segment of the trace if it has gaps) into a closed shape.
-/// - traces/scattergeo/attributes/fill
-/// - traces/scattermapbox/attributes/fill
-public enum Fill2: String, Encodable {
-    case none
-    case toSelf = "toself"
-}
-
-/// Determines the line shape. 
-///
-/// The values correspond to step-wise line shapes.
-/// - traces/scattergl/attributes/line/shape
-/// - traces/scatterpolargl/attributes/line/shape
-public enum Shape1: String, Encodable {
-    case linear
-    case hv
-    case vh
-    case hvh
-    case vhv
-}
-
-/// Specifies the ordering logic for the categories in the dimension. 
-///
-/// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
-/// Set `categoryorder` to *category ascending* or *category descending* if order should be
-/// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
-/// derive the ordering from the attribute `categoryarray`. If a category is not found in the
-/// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
-/// mode. The unspecified categories will follow the categories in `categoryarray`.
-/// - traces/parcats/attributes/dimensions/items/dimension/categoryorder
-/// - traces/carpet/attributes/aaxis/categoryorder
-/// - traces/carpet/attributes/baxis/categoryorder
-public enum CategoryOrder1: String, Encodable {
-    case trace
-    case categoryAscending = "category ascending"
-    case categoryDescending = "category descending"
-    case array
-}
-
-/// Determines which trace information appear when hovering nodes. 
-///
-/// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-/// click and hover events are still fired.
-/// - traces/sankey/attributes/node/hoverinfo
-/// - traces/sankey/attributes/link/hoverinfo
-public enum HoverInfo0: String, Encodable {
-    case all
-    case none
-    case skip
-}
-
-/// Sets the axis type. 
-///
-/// By default, plotly attempts to determined the axis type by looking into the data of the traces
-/// that referenced the axis in question.
-/// - traces/carpet/attributes/aaxis/type
-/// - traces/carpet/attributes/baxis/type
-public enum Rule5: String, Encodable {
-    case auto = "-"
-    case linear
-    case date
-    case category
-}
-
-/// - traces/carpet/attributes/aaxis/cheatertype
-/// - traces/carpet/attributes/baxis/cheatertype
-public enum CheaterType0: String, Encodable {
-    case index
-    case value
-}
-
-/// - traces/carpet/attributes/aaxis/tickmode
-/// - traces/carpet/attributes/baxis/tickmode
-public enum TickMode1: String, Encodable {
-    case linear
-    case array
-}
-
-/// Determines whether axis labels are drawn on the low side, the high side, both, or neither side of the axis.
-/// - traces/carpet/attributes/aaxis/showticklabels
-/// - traces/carpet/attributes/baxis/showticklabels
-public enum ShowTickLabels0: String, Encodable {
-    case start
-    case end
-    case both
-    case none
-}
-
-/// Sets the unit of input *theta* values. 
-///
-/// Has an effect only when on *linear* angular axes.
-/// - traces/scatterpolar/attributes/thetaunit
-/// - traces/scatterpolargl/attributes/thetaunit
-/// - traces/barpolar/attributes/thetaunit
-public enum ThetaUnit0: String, Encodable {
-    case radians
-    case degrees
-    case gradians
 }

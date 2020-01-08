@@ -6,6 +6,10 @@ public struct Histogram2D: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the opacity of the trace.
@@ -40,9 +44,13 @@ public struct Histogram2D: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -69,11 +77,76 @@ public struct Histogram2D: Trace {
     /// Sets the aggregation data.
     public var z: [Double]?
 
-    public var marker: Marker5?
+    /// - traces/histogram2d/attributes/marker
+    public struct Marker: Encodable {
+        /// Sets the aggregation data.
+        public var color: [Double]?
+    
+        /// Sets the source reference on plot.ly for  color .
+        public var colorSource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case color
+            case colorSource = "colorsrc"
+        }
+        
+        public init(color: [Double]? = nil, colorSource: String? = nil) {
+            self.color = color
+            self.colorSource = colorSource
+        }
+    }
+    public var marker: Marker?
 
-    public var normalization: Normalization0?
+    /// Specifies the type of normalization used for this histogram trace. 
+    ///
+    /// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
+    /// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
+    /// the percentage / fraction of occurrences with respect to the total number of sample points
+    /// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
+    /// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
+    /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
+    /// the area of each bar corresponds to the probability that an event will fall into the
+    /// corresponding bin (here, the sum of all bin AREAS equals 1).
+    /// - traces/histogram2d/attributes/histnorm
+    public enum Normalization: String, Encodable {
+        case none = ""
+        case percent
+        case probability
+        case density
+        case probabilityDensity = "probability density"
+    }
+    /// Specifies the type of normalization used for this histogram trace. 
+    ///
+    /// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
+    /// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
+    /// the percentage / fraction of occurrences with respect to the total number of sample points
+    /// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
+    /// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
+    /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
+    /// the area of each bar corresponds to the probability that an event will fall into the
+    /// corresponding bin (here, the sum of all bin AREAS equals 1).
+    public var normalization: Normalization?
 
-    public var binningFunction: BinningFunction0?
+    /// Specifies the binning function used for this histogram trace. 
+    ///
+    /// If *count*, the histogram values are computed by counting the number of values lying inside each
+    /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
+    /// average, the minimum or the maximum of the values lying inside each bin respectively.
+    /// - traces/histogram2d/attributes/histfunc
+    public enum BinningFunction: String, Encodable {
+        case count
+        case sum
+        case avg
+        case min
+        case max
+    }
+    /// Specifies the binning function used for this histogram trace. 
+    ///
+    /// If *count*, the histogram values are computed by counting the number of values lying inside each
+    /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
+    /// average, the minimum or the maximum of the values lying inside each bin respectively.
+    public var binningFunction: BinningFunction?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -126,7 +199,15 @@ public struct Histogram2D: Trace {
     /// Sets the vertical gap (in pixels) between bricks.
     public var yGap: Double?
 
-    public var zSmooth: ZSmooth0?
+    /// Picks a smoothing algorithm use to smooth `z` data.
+    /// - traces/histogram2d/attributes/zsmooth
+    public enum ZSmooth: String, Encodable {
+        case fast
+        case best
+        case `false` = "false"
+    }
+    /// Picks a smoothing algorithm use to smooth `z` data.
+    public var zSmooth: ZSmooth?
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
     ///
@@ -203,8 +284,10 @@ public struct Histogram2D: Trace {
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     public var colorAxis: SubPlotID?
 
+    /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
 
+    /// Sets the calendar system to use with `y` date data.
     public var yCalendar: Calendar0?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
@@ -303,7 +386,7 @@ public struct Histogram2D: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker5? = nil, normalization: Normalization0? = nil, binningFunction: BinningFunction0? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth0? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

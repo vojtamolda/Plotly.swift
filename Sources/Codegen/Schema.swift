@@ -257,23 +257,29 @@ struct Schema: Decodable {
     struct Object: SchemaType {
         var codingPath: [CodingKey] = []
         let valType: String = "object"
-        let description: String? = nil
-        let editType: String? = nil
-        let role: String? = nil
+        let description: String?
+        let editType: String?
+        let role: String?
 
         var entries: [(identifier: String, entry: Entry)] = []
 
-        static private let ignoredKeys: Set = ["_isSubplotObj", "_isLinkedToArray", "_arrayAttrRegexps"]
+        static private let ignored: Set = ["_isSubplotObj", "_isLinkedToArray", "_arrayAttrRegexps"]
 
         init(from decoder: Decoder) throws {
             codingPath = decoder.codingPath
-
             let container = try decoder.container(keyedBy: Keys.self)
+
+            description = try container.decodeIfPresent(String.self, forKey: Keys("description"))
+            editType = try container.decodeIfPresent(String.self, forKey: Keys("editType"))
+            role = try container.decodeIfPresent(String.self, forKey: Keys("role"))
+
             for key in container.allKeys {
-                if Self.ignoredKeys.contains(key.stringValue) { continue }
+                if Self.ignored.contains(key.stringValue) { continue }
+
                 let entry = try Entry(from: container.superDecoder(forKey: key))
                 entries += [(identifier: key.stringValue, entry: entry)]
             }
+
             Schema.order?.sorted(entries: &entries, at: decoder.codingPath)
         }
     }

@@ -7,6 +7,10 @@ public struct Volume: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -38,7 +42,7 @@ public struct Volume: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -72,7 +76,74 @@ public struct Volume: Trace {
     /// Sets the maximum boundary for iso-surface plot.
     public var isoMax: Double?
 
-    public var surface: Surface0?
+    /// - traces/volume/attributes/surface
+    public struct Surface: Encodable {
+        /// Hides/displays surfaces between minimum and maximum iso-values.
+        public var show: Bool?
+    
+        /// Sets the number of iso-surfaces between minimum and maximum iso-values. 
+        ///
+        /// By default this value is 2 meaning that only minimum and maximum surfaces would be drawn.
+        public var count: Int?
+    
+        /// Sets the fill ratio of the iso-surface. 
+        ///
+        /// The default fill value of the surface is 1 meaning that they are entirely shaded. On the other
+        /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
+        /// edges.
+        public var fill: Double?
+    
+        /// Sets the surface pattern of the iso-surface 3-D sections. 
+        ///
+        /// The default pattern of the surface is `all` meaning that the rest of surface elements would be
+        /// shaded. The check options (either 1 or 2) could be used to draw half of the squares on the
+        /// surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to
+        /// reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
+        /// - traces/volume/attributes/surface/pattern
+        public struct Pattern: OptionSet, Encodable {
+            public let rawValue: Int
+        
+            public static let a = Pattern(rawValue: 1 << 0)
+            public static let b = Pattern(rawValue: 1 << 1)
+            public static let c = Pattern(rawValue: 1 << 2)
+            public static let d = Pattern(rawValue: 1 << 3)
+            public static let e = Pattern(rawValue: 1 << 4)
+            public static let all = Pattern(rawValue: 1 << 5)
+            public static let odd = Pattern(rawValue: 1 << 6)
+            public static let even = Pattern(rawValue: 1 << 7)
+        
+            public init(rawValue: Int) { self.rawValue = rawValue }
+        
+            public func encode(to encoder: Encoder) throws {
+                var options = [String]()
+                if (self.rawValue & 1 << 0) != 0 { options += ["A"] }
+                if (self.rawValue & 1 << 1) != 0 { options += ["B"] }
+                if (self.rawValue & 1 << 2) != 0 { options += ["C"] }
+                if (self.rawValue & 1 << 3) != 0 { options += ["D"] }
+                if (self.rawValue & 1 << 4) != 0 { options += ["E"] }
+                if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
+                if (self.rawValue & 1 << 6) != 0 { options += ["odd"] }
+                if (self.rawValue & 1 << 7) != 0 { options += ["even"] }
+                var container = encoder.singleValueContainer()
+                try container.encode(options.joined(separator: "+"))
+            }
+        }
+        /// Sets the surface pattern of the iso-surface 3-D sections. 
+        ///
+        /// The default pattern of the surface is `all` meaning that the rest of surface elements would be
+        /// shaded. The check options (either 1 or 2) could be used to draw half of the squares on the
+        /// surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to
+        /// reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
+        public var pattern: Pattern?
+    
+        public init(show: Bool? = nil, count: Int? = nil, fill: Double? = nil, pattern: Pattern? = nil) {
+            self.show = show
+            self.count = count
+            self.fill = fill
+            self.pattern = pattern
+        }
+    }
+    public var surface: Surface?
 
     public var spaceFrame: SpaceFrame0?
 
@@ -184,9 +255,30 @@ public struct Volume: Trace {
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     public var flatShading: Bool?
 
-    public var contour: Contour0?
+    /// - traces/volume/attributes/contour
+    public struct Contour: Encodable {
+        /// Sets whether or not dynamic contours are shown on hover
+        public var show: Bool?
+    
+        /// Sets the color of the contour lines.
+        public var color: Color?
+    
+        /// Sets the width of the contour lines.
+        public var width: Double?
+    
+        public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
+            self.show = show
+            self.color = color
+            self.width = width
+        }
+    }
+    public var contour: Contour?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -284,7 +376,7 @@ public struct Volume: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface0? = nil, spaceFrame: SpaceFrame0? = nil, slices: Up0? = nil, caps: Up0? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, flatShading: Bool? = nil, contour: Contour0? = nil, hoverInfo: HoverInfo1? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, valueSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame0? = nil, slices: Up0? = nil, caps: Up0? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, flatShading: Bool? = nil, contour: Contour? = nil, hoverInfo: HoverInfo0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, valueSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -15,6 +15,10 @@ public struct Heatmap: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the opacity of the trace.
@@ -49,9 +53,13 @@ public struct Heatmap: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -109,11 +117,39 @@ public struct Heatmap: Trace {
     /// Transposes the z data.
     public var transpose: Bool?
 
-    public var xType: XType0?
+    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). 
+    ///
+    /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
+    /// `x` is not provided).
+    /// - traces/heatmap/attributes/xtype
+    public enum XType: String, Encodable {
+        case array
+        case scaled
+    }
+    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). 
+    ///
+    /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
+    /// `x` is not provided).
+    public var xType: XType?
 
-    public var yType: XType0?
+    /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
+    /// - traces/heatmap/attributes/ytype
+    public enum YType: String, Encodable {
+        case array
+        case scaled
+    }
+    /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
+    public var yType: YType?
 
-    public var zSmooth: ZSmooth0?
+    /// Picks a smoothing algorithm use to smooth `z` data.
+    /// - traces/heatmap/attributes/zsmooth
+    public enum ZSmooth: String, Encodable {
+        case fast
+        case best
+        case `false` = "false"
+    }
+    /// Picks a smoothing algorithm use to smooth `z` data.
+    public var zSmooth: ZSmooth?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -207,8 +243,10 @@ public struct Heatmap: Trace {
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     public var colorAxis: SubPlotID?
 
+    /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
 
+    /// Sets the calendar system to use with `y` date data.
     public var yCalendar: Calendar0?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
@@ -314,7 +352,7 @@ public struct Heatmap: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: XType0? = nil, yType: XType0? = nil, zSmooth: ZSmooth0? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, xGap: Double? = nil, yGap: Double? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: XType? = nil, yType: YType? = nil, zSmooth: ZSmooth? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, xGap: Double? = nil, yGap: Double? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

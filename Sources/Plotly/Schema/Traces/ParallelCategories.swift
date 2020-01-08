@@ -4,6 +4,10 @@ public struct ParallelCategories: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -68,6 +72,10 @@ public struct ParallelCategories: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
     /// Sets the hover interaction mode for the parcats diagram. 
@@ -81,6 +89,11 @@ public struct ParallelCategories: Trace {
         case color
         case dimension
     }
+    /// Sets the hover interaction mode for the parcats diagram. 
+    ///
+    /// If `category`, hover interaction take place per category. If `color`, hover interactions take
+    /// place per color per category. If `dimension`, hover interactions take place across all
+    /// categories per dimension.
     public var hoverOn: HoverOn?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -112,6 +125,11 @@ public struct ParallelCategories: Trace {
         case freeform
         case fixed
     }
+    /// Sets the drag interaction mode for categories and dimensions. 
+    ///
+    /// If `perpendicular`, the categories can only move along a line perpendicular to the paths. If
+    /// `freeform`, the categories can freely move on the plane. If `fixed`, the categories and
+    /// dimensions are stationary.
     public var arrangement: Arrangement?
 
     /// Sort paths so that like colors are bundled together within each category.
@@ -126,10 +144,16 @@ public struct ParallelCategories: Trace {
         case forward
         case backward
     }
+    /// Sets the path sorting algorithm. 
+    ///
+    /// If `forward`, sort paths based on dimension categories from left to right. If `backward`, sort
+    /// paths based on dimensions categories from right to left.
     public var sortPaths: SortPaths?
 
+    /// Sets the font for the `dimension` labels.
     public var labelFont: Font0?
 
+    /// Sets the font for the `category` labels.
     public var tickFont: Font0?
 
     public var dimensions: TickFormatStops0?
@@ -213,6 +237,10 @@ public struct ParallelCategories: Trace {
             case linear
             case hspline
         }
+        /// Sets the shape of the paths. 
+        ///
+        /// If `linear`, paths are composed of straight lines. If `hspline`, paths are composed of
+        /// horizontal curved splines
         public var shape: Shape?
     
         /// Template string used for rendering the information that appear on hover box. 

@@ -3,6 +3,10 @@ public struct Area: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -45,9 +49,13 @@ public struct Area: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -89,6 +97,11 @@ public struct Area: Trace {
         /// Sets the marker size (in px).
         public var size: Double?
     
+        /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
+        ///
+        /// Sets the marker symbol type. Adding 100 is equivalent to appending *-open* to a symbol name.
+        /// Adding 200 is equivalent to appending *-dot* to a symbol name. Adding 300 is equivalent to
+        /// appending *-open-dot* or *dot-open* to a symbol name.
         public var symbol: Symbol0?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
@@ -180,7 +193,7 @@ public struct Area: Trace {
         case tSource = "tsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, t: [Double]? = nil, marker: Marker? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, t: [Double]? = nil, marker: Marker? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

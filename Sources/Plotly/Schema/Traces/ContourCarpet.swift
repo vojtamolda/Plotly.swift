@@ -6,6 +6,10 @@ public struct ContourCarpet: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -105,9 +109,29 @@ public struct ContourCarpet: Trace {
     /// Transposes the z data.
     public var transpose: Bool?
 
-    public var aType: XType0?
+    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). 
+    ///
+    /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
+    /// `x` is not provided).
+    /// - traces/contourcarpet/attributes/atype
+    public enum AType: String, Encodable {
+        case array
+        case scaled
+    }
+    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). 
+    ///
+    /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
+    /// `x` is not provided).
+    public var aType: AType?
 
-    public var bType: XType0?
+    /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
+    /// - traces/contourcarpet/attributes/btype
+    public enum BType: String, Encodable {
+        case array
+        case scaled
+    }
+    /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
+    public var bType: BType?
 
     /// Sets the fill color if `contours.type` is *constraint*. 
     ///
@@ -127,9 +151,175 @@ public struct ContourCarpet: Trace {
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
     public var nContours: Int?
 
-    public var contours: Contours0?
+    /// - traces/contourcarpet/attributes/contours
+    public struct Contours: Encodable {
+        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
+        ///
+        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
+        /// specified by the `operation` and `value` parameters.
+        /// - traces/contourcarpet/attributes/contours/type
+        public enum Rule: String, Encodable {
+            case levels
+            case constraint
+        }
+        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
+        ///
+        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
+        /// specified by the `operation` and `value` parameters.
+        public var type: Rule?
+    
+        /// Sets the starting contour level value. 
+        ///
+        /// Must be less than `contours.end`
+        public var start: Double?
+    
+        /// Sets the end contour level value. 
+        ///
+        /// Must be more than `contours.start`
+        public var end: Double?
+    
+        /// Sets the step between each contour level. 
+        ///
+        /// Must be positive.
+        public var size: Double?
+    
+        /// Determines the coloring method showing the contour values. 
+        ///
+        /// If *fill*, coloring is done evenly between each contour level If *lines*, coloring is done on
+        /// the contour lines. If *none*, no coloring is applied on this trace.
+        /// - traces/contourcarpet/attributes/contours/coloring
+        public enum Coloring: String, Encodable {
+            case fill
+            case lines
+            case none
+        }
+        /// Determines the coloring method showing the contour values. 
+        ///
+        /// If *fill*, coloring is done evenly between each contour level If *lines*, coloring is done on
+        /// the contour lines. If *none*, no coloring is applied on this trace.
+        public var coloring: Coloring?
+    
+        /// Determines whether or not the contour lines are drawn. 
+        ///
+        /// Has an effect only if `contours.coloring` is set to *fill*.
+        public var showLines: Bool?
+    
+        /// Determines whether to label the contour lines with their values.
+        public var showLabels: Bool?
+    
+        /// Sets the font used for labeling the contour levels. 
+        ///
+        /// The default color comes from the lines, if shown. The default family and size come from
+        /// `layout.font`.
+        public var labelFont: Font0?
+    
+        /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        public var labelFormat: String?
+    
+        /// Sets the constraint operation. 
+        ///
+        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
+        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
+        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
+        /// intervals make no difference to constraint display, but all versions are allowed for consistency
+        /// with filter transforms.
+        /// - traces/contourcarpet/attributes/contours/operation
+        public enum Operation: String, Encodable {
+            case equalTo = "="
+            case lessThan = "<"
+            case greaterEqualThan = ">="
+            case greaterThan = ">"
+            case lessEqualThan = "<="
+            case insideInclusive = "[]"
+            case insideExclusive = "()"
+            case insideInclusiveExclusive = "[)"
+            case insideExclusiveInclusive = "(]"
+            case outsideInclusive = "]["
+            case outsideExclusive = ")("
+            case outsideInclusiveExclusive = "]("
+            case outsideExclusiveInclusive = ")["
+        }
+        /// Sets the constraint operation. 
+        ///
+        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
+        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
+        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
+        /// intervals make no difference to constraint display, but all versions are allowed for consistency
+        /// with filter transforms.
+        public var operation: Operation?
+    
+        /// Sets the value or values of the constraint boundary. 
+        ///
+        /// When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be
+        /// a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[)
+        /// *value* is expected to be an array of two numbers where the first is the lower bound and the
+        /// second is the upper bound.
+        public var value: Anything?
+    
+        public var impliedEdits: ImpliedEdits0?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case type
+            case start
+            case end
+            case size
+            case coloring
+            case showLines = "showlines"
+            case showLabels = "showlabels"
+            case labelFont = "labelfont"
+            case labelFormat = "labelformat"
+            case operation
+            case value
+            case impliedEdits
+        }
+        
+        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: ImpliedEdits0? = nil) {
+            self.type = type
+            self.start = start
+            self.end = end
+            self.size = size
+            self.coloring = coloring
+            self.showLines = showLines
+            self.showLabels = showLabels
+            self.labelFont = labelFont
+            self.labelFormat = labelFormat
+            self.operation = operation
+            self.value = value
+            self.impliedEdits = impliedEdits
+        }
+    }
+    public var contours: Contours?
 
-    public var line: Line4?
+    /// - traces/contourcarpet/attributes/line
+    public struct Line: Encodable {
+        /// Sets the color of the contour level. 
+        ///
+        /// Has no effect if `contours.coloring` is set to *lines*.
+        public var color: Color?
+    
+        /// Sets the contour line width in (in px) Defaults to *0.5* when `contours.type` is *levels*. 
+        ///
+        /// Defaults to *2* when `contour.type` is *constraint*.
+        public var width: Double?
+    
+        /// Sets the dash style of lines. 
+        ///
+        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+        /// dash length list in px (eg *5px,10px,2px,2px*).
+        public var dash: String?
+    
+        /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
+        public var smoothing: Double?
+    
+        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, smoothing: Double? = nil) {
+            self.color = color
+            self.width = width
+            self.dash = dash
+            self.smoothing = smoothing
+        }
+    }
+    public var line: Line?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     public var zAuto: Bool?
@@ -275,7 +465,7 @@ public struct ContourCarpet: Trace {
         case hoverTextSource = "hovertextsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: [Double]? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: XType0? = nil, bType: XType0? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours0? = nil, line: Line4? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, aSource: String? = nil, bSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: [Double]? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, aSource: String? = nil, bSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

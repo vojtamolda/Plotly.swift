@@ -8,6 +8,10 @@ public struct Waterfall: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -57,7 +61,7 @@ public struct Waterfall: Trace {
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -174,6 +178,10 @@ public struct Waterfall: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
     /// Determines which trace information appear on the graph. 
@@ -204,6 +212,9 @@ public struct Waterfall: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines which trace information appear on the graph. 
+    ///
+    /// In the case of having multiple waterfalls, totals are computed separately (per trace).
     public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. 
@@ -226,9 +237,38 @@ public struct Waterfall: Trace {
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     public var text: String?
 
-    public var textPosition: TextPosition1?
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
+    /// - traces/waterfall/attributes/textposition
+    public enum TextPosition: String, Encodable {
+        case inside
+        case outside
+        case auto
+        case none
+    }
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
+    public var textPosition: TextPosition?
 
-    public var insideTextAnchor: InsideTextAnchor0?
+    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
+    /// - traces/waterfall/attributes/insidetextanchor
+    public enum InsideTextAnchor: String, Encodable {
+        case end
+        case middle
+        case start
+    }
+    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
+    public var insideTextAnchor: InsideTextAnchor?
 
     /// Sets the angle of the tick labels with respect to the bar. 
     ///
@@ -236,13 +276,25 @@ public struct Waterfall: Trace {
     /// automatically be rotated to fit with the maximum size in bars.
     public var textAngle: Angle?
 
+    /// Sets the font used for `text`.
     public var textFont: Font1?
 
+    /// Sets the font used for `text` lying inside the bar.
     public var insideTextFont: Font1?
 
+    /// Sets the font used for `text` lying outside the bar.
     public var outSideTextFont: Font1?
 
-    public var constrainText: ConstrainText0?
+    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
+    /// - traces/waterfall/attributes/constraintext
+    public enum ConstrainText: String, Encodable {
+        case inside
+        case outside
+        case both
+        case none
+    }
+    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
+    public var constrainText: ConstrainText?
 
     /// Determines whether the text nodes are clipped about the subplot axes. 
     ///
@@ -250,6 +302,9 @@ public struct Waterfall: Trace {
     /// `yaxis.layer` to *below traces*.
     public var clipOnAxis: Bool?
 
+    /// Sets the orientation of the bars. 
+    ///
+    /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
     public var orientation: Orientation0?
 
     /// Shifts the position where the bar is drawn (in position axis units). 
@@ -277,6 +332,7 @@ public struct Waterfall: Trace {
             case spanning
             case between
         }
+        /// Sets the shape of connector lines.
         public var mode: Mode?
     
         /// Determines if connector lines are drawn. 
@@ -419,7 +475,7 @@ public struct Waterfall: Trace {
         case widthSource = "widthsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition1? = nil, insideTextAnchor: InsideTextAnchor0? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText0? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, increasing: Selected1? = nil, decreasing: Selected1? = nil, totals: Selected1? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, measureSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, increasing: Selected1? = nil, decreasing: Selected1? = nil, totals: Selected1? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, measureSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

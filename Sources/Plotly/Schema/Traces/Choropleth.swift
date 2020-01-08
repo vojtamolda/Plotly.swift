@@ -6,6 +6,10 @@ public struct Choropleth: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -44,7 +48,7 @@ public struct Choropleth: Trace {
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -67,7 +71,15 @@ public struct Choropleth: Trace {
     /// See `locationmode` for more info.
     public var locations: [Double]?
 
-    public var locationMode: LocationMode0?
+    /// Determines the set of locations used to match entries in `locations` to regions on the map.
+    /// - traces/choropleth/attributes/locationmode
+    public enum LocationMode: String, Encodable {
+        case ISO3 = "ISO-3"
+        case statesOfUSA = "USA-states"
+        case countryNames = "country names"
+    }
+    /// Determines the set of locations used to match entries in `locations` to regions on the map.
+    public var locationMode: LocationMode?
 
     /// Sets the color values.
     public var z: [Double]?
@@ -78,13 +90,71 @@ public struct Choropleth: Trace {
     /// Same as `text`.
     public var hoverText: String?
 
-    public var marker: Marker9?
+    /// - traces/choropleth/attributes/marker
+    public struct Marker: Encodable {
+        public var line: Line3?
+    
+        /// Sets the opacity of the locations.
+        public var opacity: Double?
+    
+        /// Sets the source reference on plot.ly for  opacity .
+        public var opacitySource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case line
+            case opacity
+            case opacitySource = "opacitysrc"
+        }
+        
+        public init(line: Line3? = nil, opacity: Double? = nil, opacitySource: String? = nil) {
+            self.line = line
+            self.opacity = opacity
+            self.opacitySource = opacitySource
+        }
+    }
+    public var marker: Marker?
 
     public var selected: Selected1?
 
     public var unselected: Selected1?
 
-    public var hoverInfo: HoverInfo4?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    /// - traces/choropleth/attributes/hoverinfo
+    public struct HoverInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let location = HoverInfo(rawValue: 1 << 0)
+        public static let z = HoverInfo(rawValue: 1 << 1)
+        public static let text = HoverInfo(rawValue: 1 << 2)
+        public static let name = HoverInfo(rawValue: 1 << 3)
+        public static let all = HoverInfo(rawValue: 1 << 4)
+        public static let none = HoverInfo(rawValue: 1 << 5)
+        public static let skip = HoverInfo(rawValue: 1 << 6)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["location"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["z"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["skip"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -236,7 +306,7 @@ public struct Choropleth: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, locationMode: LocationMode0? = nil, z: [Double]? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker9? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverInfo: HoverInfo4? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, geo: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, locationsSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, z: [Double]? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, geo: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, locationsSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

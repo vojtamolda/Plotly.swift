@@ -7,6 +7,10 @@ public struct Sankey: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -83,12 +87,18 @@ public struct Sankey: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired. Note that this attribute is superseded by
+    /// `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
     public var hoverInfo: HoverInfo?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var domain: Domain0?
 
+    /// Sets the orientation of the Sankey diagram.
     public var orientation: Orientation0?
 
     /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. 
@@ -113,8 +123,14 @@ public struct Sankey: Trace {
         case freeform
         case fixed
     }
+    /// If value is `snap` (the default), the node arrangement is assisted by automatic snapping of elements to preserve space between nodes specified via `nodepad`. 
+    ///
+    /// If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If
+    /// value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are
+    /// stationary.
     public var arrangement: Arrangement?
 
+    /// Sets the font for node labels
     public var textFont: Font0?
 
     /// The nodes of the Sankey plot.
@@ -143,7 +159,7 @@ public struct Sankey: Trace {
         /// node.
         public var color: Color?
     
-        public var line: Line6?
+        public var line: Line3?
     
         /// Sets the padding (in px) between the `nodes`.
         public var padding: Double?
@@ -151,9 +167,23 @@ public struct Sankey: Trace {
         /// Sets the thickness (in px) of the `nodes`.
         public var thickness: Double?
     
-        public var hoverInfo: HoverInfo0?
+        /// Determines which trace information appear when hovering nodes. 
+        ///
+        /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+        /// click and hover events are still fired.
+        /// - traces/sankey/attributes/node/hoverinfo
+        public enum HoverInfo: String, Encodable {
+            case all
+            case none
+            case skip
+        }
+        /// Determines which trace information appear when hovering nodes. 
+        ///
+        /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+        /// click and hover events are still fired.
+        public var hoverInfo: HoverInfo?
     
-        public var hoverLabel: HoverLabel1?
+        public var hoverLabel: HoverLabel0?
     
         /// Template string used for rendering the information that appear on hover box. 
         ///
@@ -207,7 +237,7 @@ public struct Sankey: Trace {
             case hoverTemplateSource = "hovertemplatesrc"
         }
         
-        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Line6? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel1? = nil, hoverTemplate: String? = nil, labelSource: String? = nil, xSource: String? = nil, ySource: String? = nil, colorSource: String? = nil, hoverTemplateSource: String? = nil) {
+        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Line3? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel0? = nil, hoverTemplate: String? = nil, labelSource: String? = nil, xSource: String? = nil, ySource: String? = nil, colorSource: String? = nil, hoverTemplateSource: String? = nil) {
             self.label = label
             self.groups = groups
             self.x = x
@@ -226,6 +256,7 @@ public struct Sankey: Trace {
             self.hoverTemplateSource = hoverTemplateSource
         }
     }
+    /// The nodes of the Sankey plot.
     public var node: Node?
 
     /// The links of the Sankey plot.
@@ -240,7 +271,7 @@ public struct Sankey: Trace {
         /// omitted, then by default, a translucent grey link will be used.
         public var color: Color?
     
-        public var line: Line6?
+        public var line: Line3?
     
         /// An integer number `[0..nodes.length - 1]` that represents the source node.
         public var source: [Double]?
@@ -251,9 +282,23 @@ public struct Sankey: Trace {
         /// A numeric value representing the flow volume value.
         public var value: [Double]?
     
-        public var hoverInfo: HoverInfo0?
+        /// Determines which trace information appear when hovering links. 
+        ///
+        /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+        /// click and hover events are still fired.
+        /// - traces/sankey/attributes/link/hoverinfo
+        public enum HoverInfo: String, Encodable {
+            case all
+            case none
+            case skip
+        }
+        /// Determines which trace information appear when hovering links. 
+        ///
+        /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+        /// click and hover events are still fired.
+        public var hoverInfo: HoverInfo?
     
-        public var hoverLabel: HoverLabel1?
+        public var hoverLabel: HoverLabel0?
     
         /// Template string used for rendering the information that appear on hover box. 
         ///
@@ -312,7 +357,7 @@ public struct Sankey: Trace {
             case hoverTemplateSource = "hovertemplatesrc"
         }
         
-        public init(label: [Double]? = nil, color: Color? = nil, line: Line6? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel1? = nil, hoverTemplate: String? = nil, colorScales: TickFormatStops0? = nil, labelSource: String? = nil, colorSource: String? = nil, sourceSource: String? = nil, targetSource: String? = nil, valueSource: String? = nil, hoverTemplateSource: String? = nil) {
+        public init(label: [Double]? = nil, color: Color? = nil, line: Line3? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel0? = nil, hoverTemplate: String? = nil, colorScales: TickFormatStops0? = nil, labelSource: String? = nil, colorSource: String? = nil, sourceSource: String? = nil, targetSource: String? = nil, valueSource: String? = nil, hoverTemplateSource: String? = nil) {
             self.label = label
             self.color = color
             self.line = line
@@ -331,6 +376,7 @@ public struct Sankey: Trace {
             self.hoverTemplateSource = hoverTemplateSource
         }
     }
+    /// The links of the Sankey plot.
     public var link: Link?
 
     /// Sets the source reference on plot.ly for  ids .
@@ -370,7 +416,7 @@ public struct Sankey: Trace {
         case metaSource = "metasrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel1? = nil, domain: Domain0? = nil, orientation: Orientation0? = nil, valueFormat: String? = nil, valueSuffix: String? = nil, arrangement: Arrangement? = nil, textFont: Font0? = nil, node: Node? = nil, link: Link? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel0? = nil, domain: Domain0? = nil, orientation: Orientation0? = nil, valueFormat: String? = nil, valueSuffix: String? = nil, arrangement: Arrangement? = nil, textFont: Font0? = nil, node: Node? = nil, link: Link? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

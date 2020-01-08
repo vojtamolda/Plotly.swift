@@ -6,6 +6,10 @@ public struct Sunburst: Trace {
 
     public let animatable: Bool = true
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the opacity of the trace.
@@ -40,7 +44,7 @@ public struct Sunburst: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -73,9 +77,43 @@ public struct Sunburst: Trace {
     /// Use with `branchvalues` to determine how the values are summed.
     public var values: [Double]?
 
-    public var branchValues: BranchValues0?
+    /// Determines how the items in `values` are summed. 
+    ///
+    /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
+    /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
+    /// be the extra part not part of the sum of the values at their leaves.
+    /// - traces/sunburst/attributes/branchvalues
+    public enum BranchValues: String, Encodable {
+        case remainder
+        case total
+    }
+    /// Determines how the items in `values` are summed. 
+    ///
+    /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
+    /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
+    /// be the extra part not part of the sum of the values at their leaves.
+    public var branchValues: BranchValues?
 
-    public var count: Count0?
+    /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
+    /// - traces/sunburst/attributes/count
+    public struct Count: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let branches = Count(rawValue: 1 << 0)
+        public static let leaves = Count(rawValue: 1 << 1)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["branches"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["leaves"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
+    public var count: Count?
 
     /// Sets the level from which this trace hierarchy is rendered. 
     ///
@@ -95,7 +133,7 @@ public struct Sunburst: Trace {
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
-        public var line: Line6?
+        public var line: Line3?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here colors) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if colorsis set to a numerical array. 
         ///
@@ -178,7 +216,7 @@ public struct Sunburst: Trace {
             case colorsSource = "colorssrc"
         }
         
-        public init(colors: [Double]? = nil, line: Line6? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorsSource: String? = nil) {
+        public init(colors: [Double]? = nil, line: Line3? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorsSource: String? = nil) {
             self.colors = colors
             self.line = line
             self.cAuto = cAuto
@@ -205,7 +243,38 @@ public struct Sunburst: Trace {
     /// the hover labels.
     public var text: [Double]?
 
-    public var textInfo: TextInfo1?
+    /// Determines which trace information appear on the graph.
+    /// - traces/sunburst/attributes/textinfo
+    public struct TextInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let label = TextInfo(rawValue: 1 << 0)
+        public static let text = TextInfo(rawValue: 1 << 1)
+        public static let value = TextInfo(rawValue: 1 << 2)
+        public static let currentPath = TextInfo(rawValue: 1 << 3)
+        public static let percentRoot = TextInfo(rawValue: 1 << 4)
+        public static let percentEntry = TextInfo(rawValue: 1 << 5)
+        public static let percentParent = TextInfo(rawValue: 1 << 6)
+        public static let none = TextInfo(rawValue: 1 << 7)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["current path"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["percent root"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["percent entry"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["percent parent"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["none"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on the graph.
+    public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -228,7 +297,50 @@ public struct Sunburst: Trace {
     /// *text* flag.
     public var hoverText: String?
 
-    public var hoverInfo: HoverInfo3?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    /// - traces/sunburst/attributes/hoverinfo
+    public struct HoverInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let label = HoverInfo(rawValue: 1 << 0)
+        public static let text = HoverInfo(rawValue: 1 << 1)
+        public static let value = HoverInfo(rawValue: 1 << 2)
+        public static let name = HoverInfo(rawValue: 1 << 3)
+        public static let currentPath = HoverInfo(rawValue: 1 << 4)
+        public static let percentRoot = HoverInfo(rawValue: 1 << 5)
+        public static let percentEntry = HoverInfo(rawValue: 1 << 6)
+        public static let percentParent = HoverInfo(rawValue: 1 << 7)
+        public static let all = HoverInfo(rawValue: 1 << 8)
+        public static let none = HoverInfo(rawValue: 1 << 9)
+        public static let skip = HoverInfo(rawValue: 1 << 10)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["current path"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["percent root"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["percent entry"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["percent parent"] }
+            if (self.rawValue & 1 << 8) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 9) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 10) != 0 { options += ["skip"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -248,10 +360,13 @@ public struct Sunburst: Trace {
     /// `<extra></extra>`.
     public var hoverTemplate: String?
 
+    /// Sets the font used for `textinfo`.
     public var textFont: Font1?
 
+    /// Sets the font used for `textinfo` lying inside the sector.
     public var insideTextFont: Font1?
 
+    /// Sets the font used for `textinfo` lying outside the sector.
     public var outSideTextFont: Font1?
 
     public var domain: Domain0?
@@ -336,7 +451,7 @@ public struct Sunburst: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues0? = nil, count: Count0? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf0? = nil, text: [Double]? = nil, textInfo: TextInfo1? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo3? = nil, hoverTemplate: String? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf0? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

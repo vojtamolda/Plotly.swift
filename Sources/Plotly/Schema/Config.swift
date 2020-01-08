@@ -122,6 +122,11 @@ public struct Config: Encodable {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines whether mouse wheel or two-finger scroll zooms is enable. 
+    ///
+    /// Turned on by default for gl3d, geo and mapbox subplots (as these subplot types do not have
+    /// zoombox via pan), but turned off by default for cartesian subplots. Set `scrollZoom` to *false*
+    /// to disable scrolling for all subplots.
     public var scrollZoom: ScrollZoom?
 
     /// Sets the double click interaction mode. 
@@ -138,6 +143,13 @@ public struct Config: Encodable {
         case autoSize = "autosize"
         case resetAndAutoSize = "reset+autosize"
     }
+    /// Sets the double click interaction mode. 
+    ///
+    /// Has an effect only in cartesian plots. If *false*, double click is disable. If *reset*, double
+    /// click resets the axis ranges to their initial values. If *autosize*, double click set the axis
+    /// ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis
+    /// ranges to their initial values and even double clicks set the axis ranges to their autorange
+    /// values.
     public var doubleClick: DoubleClick?
 
     /// Sets the delay for registering a double-click in ms. 
@@ -180,6 +192,10 @@ public struct Config: Encodable {
         case `true` = "true"
         case `false` = "false"
     }
+    /// Determines the mode bar display mode. 
+    ///
+    /// If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If
+    /// *hover*, the mode bar is visible while the mouse cursor is on the graph container.
     public var displayModeBar: DisplayModeBar?
 
     /// Should we include a ModeBar button, labeled "Edit in Chart Studio", that sends this chart to plot.ly or another plotly server as specified by `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0 this button was included by default, now it is opt-in using this flag. 

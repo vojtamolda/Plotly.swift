@@ -8,6 +8,10 @@ public struct FunnelArea: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -50,7 +54,7 @@ public struct FunnelArea: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -91,7 +95,32 @@ public struct FunnelArea: Trace {
     /// If omitted, we count occurrences of each label.
     public var values: [Double]?
 
-    public var marker: Marker8?
+    /// - traces/funnelarea/attributes/marker
+    public struct Marker: Encodable {
+        /// Sets the color of each sector. 
+        ///
+        /// If not specified, the default trace color set is used to pick the sector colors.
+        public var colors: [Double]?
+    
+        public var line: Line3?
+    
+        /// Sets the source reference on plot.ly for  colors .
+        public var colorsSource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case colors
+            case line
+            case colorsSource = "colorssrc"
+        }
+        
+        public init(colors: [Double]? = nil, line: Line3? = nil, colorsSource: String? = nil) {
+            self.colors = colors
+            self.line = line
+            self.colorsSource = colorsSource
+        }
+    }
+    public var marker: Marker?
 
     /// Sets text elements associated with each sector. 
     ///
@@ -110,7 +139,32 @@ public struct FunnelArea: Trace {
     /// If there are multiple funnelareas that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
     public var scaleGroup: String?
 
-    public var textInfo: TextInfo0?
+    /// Determines which trace information appear on the graph.
+    /// - traces/funnelarea/attributes/textinfo
+    public struct TextInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let label = TextInfo(rawValue: 1 << 0)
+        public static let text = TextInfo(rawValue: 1 << 1)
+        public static let value = TextInfo(rawValue: 1 << 2)
+        public static let percent = TextInfo(rawValue: 1 << 3)
+        public static let none = TextInfo(rawValue: 1 << 4)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["percent"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["none"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on the graph.
+    public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -125,7 +179,44 @@ public struct FunnelArea: Trace {
     /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `text` and `percent`.
     public var textTemplate: String?
 
-    public var hoverInfo: HoverInfo2?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    /// - traces/funnelarea/attributes/hoverinfo
+    public struct HoverInfo: OptionSet, Encodable {
+        public let rawValue: Int
+    
+        public static let label = HoverInfo(rawValue: 1 << 0)
+        public static let text = HoverInfo(rawValue: 1 << 1)
+        public static let value = HoverInfo(rawValue: 1 << 2)
+        public static let percent = HoverInfo(rawValue: 1 << 3)
+        public static let name = HoverInfo(rawValue: 1 << 4)
+        public static let all = HoverInfo(rawValue: 1 << 5)
+        public static let none = HoverInfo(rawValue: 1 << 6)
+        public static let skip = HoverInfo(rawValue: 1 << 7)
+    
+        public init(rawValue: Int) { self.rawValue = rawValue }
+    
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["text"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["value"] }
+            if (self.rawValue & 1 << 3) != 0 { options += ["percent"] }
+            if (self.rawValue & 1 << 4) != 0 { options += ["name"] }
+            if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
+            if (self.rawValue & 1 << 6) != 0 { options += ["none"] }
+            if (self.rawValue & 1 << 7) != 0 { options += ["skip"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -151,13 +242,50 @@ public struct FunnelArea: Trace {
         case inside
         case none
     }
+    /// Specifies the location of the `textinfo`.
     public var textPosition: TextPosition?
 
+    /// Sets the font used for `textinfo`.
     public var textFont: Font1?
 
+    /// Sets the font used for `textinfo` lying inside the sector.
     public var insideTextFont: Font1?
 
-    public var title: Title3?
+    /// - traces/funnelarea/attributes/title
+    public struct Title: Encodable {
+        /// Sets the title of the chart. 
+        ///
+        /// If it is empty, no title is displayed. Note that before the existence of `title.text`, the
+        /// title's contents used to be defined as the `title` attribute itself. This behavior has been
+        /// deprecated.
+        public var text: String?
+    
+        /// Sets the font used for `title`. 
+        ///
+        /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+        public var font: Font1?
+    
+        /// Specifies the location of the `title`. 
+        ///
+        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
+        /// - traces/funnelarea/attributes/title/position
+        public enum Position: String, Encodable {
+            case topLeft = "top left"
+            case topCenter = "top center"
+            case topRight = "top right"
+        }
+        /// Specifies the location of the `title`. 
+        ///
+        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
+        public var position: Position?
+    
+        public init(text: String? = nil, font: Font1? = nil, position: Position? = nil) {
+            self.text = text
+            self.font = font
+            self.position = position
+        }
+    }
+    public var title: Title?
 
     public var domain: Domain0?
 
@@ -249,7 +377,7 @@ public struct FunnelArea: Trace {
         case textPositionSource = "textpositionsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker8? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo0? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo2? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, title: Title3? = nil, domain: Domain0? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textTemplateSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, title: Title? = nil, domain: Domain0? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textTemplateSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

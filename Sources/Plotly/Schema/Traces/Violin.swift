@@ -8,6 +8,10 @@ public struct Violin: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -52,9 +56,13 @@ public struct Violin: Trace {
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -100,6 +108,9 @@ public struct Violin: Trace {
     /// attribute `scalegroup` (please see its description for details).
     public var name: String?
 
+    /// Sets the orientation of the violin(s). 
+    ///
+    /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
     public var orientation: Orientation0?
 
     /// Sets the bandwidth used to compute the kernel density estimate. 
@@ -119,6 +130,7 @@ public struct Violin: Trace {
         case width
         case count
     }
+    /// Sets the metric by which the width of each violin is determined.*width* means each violin has the same (max) width*count* means the violins are scaled by the number of sample points makingup each violin.
     public var scaleMode: ScaleMode?
 
     /// Sets the method by which the span in data space where the density function will be computed. 
@@ -132,6 +144,11 @@ public struct Violin: Trace {
         case hard
         case manual
     }
+    /// Sets the method by which the span in data space where the density function will be computed. 
+    ///
+    /// *soft* means the span goes from the sample's minimum value minus two bandwidths to the sample's
+    /// maximum value plus two bandwidths. *hard* means the span goes from the sample's minimum to its
+    /// maximum value. For custom span settings, use mode *manual* and fill in the `span` attribute.
     public var spanMode: SpanMode?
 
     /// Sets the span in data space for which the density function will be computed. 
@@ -139,7 +156,7 @@ public struct Violin: Trace {
     /// Has an effect only when `spanmode` is set to *manual*.
     public var span: InfoArray?
 
-    public var line: Line3?
+    public var line: Line2?
 
     /// Sets the fill color. 
     ///
@@ -147,7 +164,16 @@ public struct Violin: Trace {
     /// whichever is available.
     public var fillColor: Color?
 
-    public var points: BoxPoints0?
+    /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points
+    /// - traces/violin/attributes/points
+    public enum Points: String, Encodable {
+        case all
+        case outliers
+        case suspectedOutliers = "suspectedoutliers"
+        case `false` = "false"
+    }
+    /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points
+    public var points: Points?
 
     /// Sets the amount of jitter in the sample points drawn. 
     ///
@@ -168,7 +194,88 @@ public struct Violin: Trace {
     /// violin traces in the same subplot.
     public var width: Double?
 
-    public var marker: Marker4?
+    /// - traces/violin/attributes/marker
+    public struct Marker: Encodable {
+        /// Sets the color of the outlier sample points.
+        public var outlierColor: Color?
+    
+        /// Sets the marker symbol type. 
+        ///
+        /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
+        /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
+        /// *dot-open* to a symbol name.
+        public var symbol: Symbol0?
+    
+        /// Sets the marker opacity.
+        public var opacity: Double?
+    
+        /// Sets the marker size (in px).
+        public var size: Double?
+    
+        /// Sets themarkercolor. 
+        ///
+        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+        /// if set.
+        public var color: Color?
+    
+        /// - traces/violin/attributes/marker/line
+        public struct Line: Encodable {
+            /// Sets themarker.linecolor. 
+            ///
+            /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+            /// relative to the max and min values of the array or relative to `marker.line.cmin` and
+            /// `marker.line.cmax` if set.
+            public var color: Color?
+        
+            /// Sets the width (in px) of the lines bounding the marker points.
+            public var width: Double?
+        
+            /// Sets the border line color of the outlier sample points. 
+            ///
+            /// Defaults to marker.color
+            public var outlierColor: Color?
+        
+            /// Sets the border line width (in px) of the outlier sample points.
+            public var outlierWidth: Double?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case color
+                case width
+                case outlierColor = "outliercolor"
+                case outlierWidth = "outlierwidth"
+            }
+            
+            public init(color: Color? = nil, width: Double? = nil, outlierColor: Color? = nil, outlierWidth: Double? = nil) {
+                self.color = color
+                self.width = width
+                self.outlierColor = outlierColor
+                self.outlierWidth = outlierWidth
+            }
+        }
+        public var line: Line?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case outlierColor = "outliercolor"
+            case symbol
+            case opacity
+            case size
+            case color
+            case line
+        }
+        
+        public init(outlierColor: Color? = nil, symbol: Symbol0? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
+            self.outlierColor = outlierColor
+            self.symbol = symbol
+            self.opacity = opacity
+            self.size = size
+            self.color = color
+            self.line = line
+        }
+    }
+    public var marker: Marker?
 
     /// Sets the text elements associated with each sample value. 
     ///
@@ -210,7 +317,7 @@ public struct Violin: Trace {
         /// Sets the inner box plot fill color.
         public var fillColor: Color?
     
-        public var line: Line3?
+        public var line: Line2?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -220,7 +327,7 @@ public struct Violin: Trace {
             case line
         }
         
-        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line: Line3? = nil) {
+        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line: Line2? = nil) {
             self.visible = visible
             self.width = width
             self.fillColor = fillColor
@@ -261,6 +368,10 @@ public struct Violin: Trace {
         case positive
         case negative
     }
+    /// Determines on which side of the position value the density function making up one half of a violin is plotted. 
+    ///
+    /// Useful when comparing two violin traces under *overlay* mode, where one trace has `side` set to
+    /// *positive* and the other to *negative*.
     public var side: Side?
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
@@ -297,6 +408,7 @@ public struct Violin: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?
     public var hoverOn: HoverOn?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
@@ -398,7 +510,7 @@ public struct Violin: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Orientation0? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Line3? = nil, fillColor: Color? = nil, points: BoxPoints0? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: Marker4? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Orientation0? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Line2? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: Marker? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

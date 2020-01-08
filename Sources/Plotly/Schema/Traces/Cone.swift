@@ -8,6 +8,10 @@ public struct Cone: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -39,7 +43,7 @@ public struct Cone: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -79,6 +83,7 @@ public struct Cone: Trace {
         case scaled
         case absolute
     }
+    /// Determines whether `sizeref` is set as a *scaled* (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as *absolute* value (in the same units as the vector field).
     public var sizeMode: SizeMode?
 
     /// Adjusts the cone size scaling. 
@@ -101,6 +106,9 @@ public struct Cone: Trace {
         case cm
         case center
     }
+    /// Sets the cones' anchor with respect to their x/y/z positions. 
+    ///
+    /// Note that *cm* denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
     public var anchor: Anchor?
 
     /// Sets the text elements associated with the cones. 
@@ -235,6 +243,10 @@ public struct Cone: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
@@ -337,7 +349,7 @@ public struct Cone: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, uSource: String? = nil, vSource: String? = nil, wSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, uSource: String? = nil, vSource: String? = nil, wSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

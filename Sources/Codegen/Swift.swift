@@ -3,30 +3,34 @@ import Foundation
 
 // MARK: Swift Data Type Protocols
 
-/// A Swift data type that originates from some Plotly schema data type.
-protocol SwiftType where OriginType: SchemaType {
-    associatedtype OriginType
+/// A Swift data type that originates from some Plotly schema origin data type.
+protocol SwiftType where Origin: SchemaType {
+    associatedtype Origin
     var name: String { get }
-    var schema: OriginType { get }
-    var documentation: [String] { get }
+    var schema: Origin { get }
+
+    /// Creates instance of the Swift data type with the specified name.
+    func instance(named: String) -> Instance<Self>
 }
 extension SwiftType {
-    /// Default implementation that extracts documentation text from the originating Plotly schema data type.
-    var documentation: [String] { schema.description?.documentation() ?? [] }
+    /// Default implementation for non-shared types.
+    func instance(named: String) -> Instance<Self> {
+        return Instance(of: self, named: named)
+    }
 }
 
-/// A data type that can return lines of Swift code with it's own definition.
+/// Object that can return lines of Swift code with it's own documentation and definition.
 protocol Definable {
-    /// Lines of Swift code that fully define the data type including the nested inline structs.
+    var documentation: [String] { get }
     var definition: [String] { get }
 
-    /// Definition of the data type within a specific context.
+    /// Definition of the data type (including the nested inline structs) within a specific context.
     func define(as context: Swift.Context) -> [String]
 }
 extension Definable {
-    /// Default implementation for non-shared types.
+    /// Default implementation that ignores context and is useful for simple non-shared objects.
     func define(as context: Swift.Context) -> [String] {
-        return definition
+        return documentation + definition
     }
 
     /// Default implementation that writes Swift code that defines the data type to a URL.
@@ -40,39 +44,53 @@ extension Definable {
 /// A shared Swift type that tracks it's references to allow re-use and prevent duplicate definitions of identical objects.
 protocol SwiftSharedType: SwiftType, Definable, Equatable, AnyObject {
     var name: String { get set }
-    var access: Swift.Access { get }
-    var protocols: [String] { get }
-    var references: [String] { get set }
+    var access: Swift.Access { get set }
+    var instances: [Instance<Self>] { get set }
     static var existing: [Self] { get set }
 
-    init(named: String, schema: OriginType)
-    /// Checks for duplicates and if there is one returns a previously existing instance the the type.
-    static func createShared(named: String, schema: OriginType) -> Self
     /// Writes Swift code that defines the data type to a URL and avoids identifier collisions thanks to shared `existing` dict.
     static func write(to url: URL, _ existing: inout [String: Int])
 }
 extension SwiftSharedType {
-    var singleInstance: Bool { references.count == 1 }
+    var shared: Bool { instances.count > 1 }
+    var documentation: [String] { schema.description?.documentation() ?? [] }
 
-    /// Default implementation that avoids duplication of identical shared types.
-    static func createShared(named: String, schema: OriginType) -> Self {
-        var type = Self.init(named: named, schema: schema)
-        if let index = Self.existing.firstIndex(where: { $0 == type }) {
-            type = Self.existing[index]
-        } else {
-            Self.existing.append(type)
-        }
-        type.references.append(schema.decodingPath)
-        return type
+    /// Default implementation for shared types that keeps track of instances.
+    func instance(named: String) -> Instance<Self> {
+        let instance = Instance(of: self, named: named)
+        instances.append(instance)
+        return instance
     }
 
     /// Default implementation for shared types that is empty for inlined, non single-instance cases and avoids duplication.
     func define(as context: Swift.Context) -> [String] {
         switch context {
         case .inlined:
-            return singleInstance ? definition : []
+            return shared ? [] : documentation + definition
         case .shared:
-            return singleInstance ? [] : definition
+            return shared ? documentation + definition : []
+        }
+    }
+
+    /// Identifies shared data types and re-associate instances of duplicates.
+    static func share() {
+        var identicalGroups = [[Self]]()
+        var remainingTypes = Self.existing
+
+        for type in Self.existing {
+            let identicalTypes = remainingTypes.filter { $0 == type }
+            if !identicalTypes.isEmpty { identicalGroups.append(identicalTypes) }
+            remainingTypes.removeAll { $0 == type }
+        }
+
+        for identicalTypes in identicalGroups {
+            if identicalTypes.count < 5 { continue }
+            let sharedType = identicalTypes[0]
+            for type in identicalTypes {
+                let instance = type.instances.popLast()!
+                instance.type = sharedType
+                sharedType.instances.append(instance)
+            }
         }
     }
 
@@ -80,7 +98,7 @@ extension SwiftSharedType {
     static func write(to url: URL, _ existing: inout [String: Int])  {
         var lines = [String]()
 
-        for type in Self.existing.filter({ !$0.singleInstance }) {
+        for type in Self.existing.filter({ $0.shared }) {
             if existing.contains(where: { $0.key == type.name }) {
                 existing[type.name]! += 1
             } else {
@@ -107,24 +125,22 @@ class Swift {
     /// Data type that maps hierarchical Plotly `object` to a Swift `struct`.
     final class Object: SwiftSharedType {
         var name: String
-        var documentation: [String] = []
         var schema: Schema.Object
-
-        let access: Swift.Access = .public
+        var access: Swift.Access = .public
         var protocols: [String] = ["Encodable"]
-        var references: [String] = []
-        static var existing: [Swift.Object] = []
+
+        var instances: [Instance<Object>] = []
+        static var existing: [Object] = []
 
         var members: [Definable]
         var primitives: [String: Schema.Primitive]
 
-        static private let ignoredIdentifiers: Set = ["_deprecated"]
+        static private let ignored: Set = ["_deprecated"]
 
         var definition: [String] {
             var lines = [String]()
-            lines += documentation
-            for reference in references {
-                lines += ["/// - \(reference)"]
+            for instance in instances {
+                lines += ["/// - \(instance.schema.decodingPath)"]
             }
 
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
@@ -167,11 +183,12 @@ class Swift {
         init(named name: String, schema object: Schema.Object) {
             self.name = Swift.name!.pascalCased(name)
             self.schema = object
+            self.members = []
+            self.primitives = [:]
+            Self.existing.append(self)
 
-            members = []
-            primitives = [:]
             for (identifier, entry) in object.entries {
-                if Self.ignoredIdentifiers.contains(identifier) { continue }
+                if Self.ignored.contains(identifier) { continue }
 
                 switch entry {
                 case .primitive(let primitive):
@@ -180,55 +197,50 @@ class Swift {
                     switch attribute {
                     case .dataArray(let dataArray):
                         let dataArrayType = Swift.DataArray(schema: dataArray)
-                        members += [Instance(named: identifier, of: dataArrayType)]
+                        members += [dataArrayType.instance(named: identifier)]
                     case .enumerated(let enumerated):
-                        let enumeratedType = Swift.Enumerated.createShared(named: identifier, schema: enumerated)
-                        members += [Instance(named: identifier, of: enumeratedType)]
+                        let enumeratedType = Swift.Enumerated(named: identifier, schema: enumerated)
+                        members += [enumeratedType.instance(named: identifier)]
                     case .boolean(let boolean):
                         let booleanType = Swift.Boolean(schema: boolean)
-                        members += [Instance(named: identifier, of: booleanType)]
+                        members += [booleanType.instance(named: identifier)]
                     case .number(let number):
                         let numberType = Swift.Number(schema: number)
-                        members += [Instance(named: identifier, of: numberType)]
+                        members += [numberType.instance(named: identifier)]
                     case .integer(let integer):
                         let integerType = Swift.Integer(schema: integer)
-                        members += [Instance(named: identifier, of: integerType)]
+                        members += [integerType.instance(named: identifier)]
                     case .string(let string):
                         let stringType = Swift.String_(schema: string)
-                        members += [Instance(named: identifier, of: stringType)]
+                        members += [stringType.instance(named: identifier)]
                     case .color(let color):
                         let colorType = Swift.Color(schema: color)
-                        members += [Instance(named: identifier, of: colorType)]
+                        members += [colorType.instance(named: identifier)]
                     case .colorList(let colorList):
                         let colorListType = Swift.ColorList.init(schema: colorList)
-                        members += [Instance(named: identifier, of: colorListType)]
+                        members += [colorListType.instance(named: identifier)]
                     case .colorScale(let colorScale):
                         let colorScaleType = Swift.ColorScale(schema: colorScale)
-                        members += [Instance(named: identifier, of: colorScaleType)]
+                        members += [colorScaleType.instance(named: identifier)]
                     case .angle(let angle):
                         let angleType = Swift.Angle(schema: angle)
-                        members += [Instance(named: identifier, of: angleType)]
+                        members += [angleType.instance(named: identifier)]
                     case .subPlotId(let subPlotId):
                         let subPlotIdType = Swift.SubPlotID(schema: subPlotId)
-                        members += [Instance(named: identifier, of: subPlotIdType)]
+                        members += [subPlotIdType.instance(named: identifier)]
                     case .flagList(let flagList):
-                        let flagListType = Swift.FlagList.createShared(named: identifier, schema: flagList)
-                        members += [Instance(named: identifier, of: flagListType)]
+                        let flagListType = Swift.FlagList(named: identifier, schema: flagList)
+                        members += [flagListType.instance(named: identifier)]
                     case .any(let any):
                         let anyType = Swift.Any_(schema: any)
-                        members += [Instance(named: identifier, of: anyType)]
+                        members += [anyType.instance(named: identifier)]
                     case .infoArray(let infoArray):
                         let infoArrayType = Swift.InfoArray(schema: infoArray)
-                        members += [Instance(named: identifier, of: infoArrayType)]
+                        members += [infoArrayType.instance(named: identifier)]
                     }
                 case .object(let object):
-                    let nestedObject = Swift.Object.createShared(named: identifier, schema: object)
-                    members += [Instance(named: identifier, of: nestedObject)]
-                }
-
-                if let description = primitives["description"],
-                    case Schema.Primitive.string(let string) = description {
-                        documentation = string.documentation()
+                    let nestedObject = Swift.Object(named: identifier, schema: object)
+                    members += [nestedObject.instance(named: identifier)]
                 }
             }
         }
@@ -237,8 +249,8 @@ class Swift {
         static func == (lhs: Swift.Object, rhs: Swift.Object) -> Bool {
             return lhs.members.elementsEqual(rhs.members) { l, r in
                 if let lObject = l as? Object, let rObject = r as? Object {
-                    if lObject.name != rObject.name { return false }
-                    if lObject.documentation != rObject.documentation { return false }
+                    let nameAlmostEqual = lhs.name.contains(rhs.name) || rhs.name.contains(lhs.name)
+                    if !nameAlmostEqual { return false }
                     return lObject == rObject
                 } else if let lInstance = l as? Instantiable, let rInstance = r as? Instantiable {
                     if lInstance.name != rInstance.name { return false }
@@ -266,10 +278,10 @@ class Swift {
     final class Enumerated: SwiftSharedType {
         var name: String
         var schema: Schema.Enumerated
-
-        let access: Swift.Access = .public
+        var access: Swift.Access = .public
         var protocols: [String] = ["String", "Encodable"]
-        var references: [String] = []
+
+        var instances: [Instance<Enumerated>] = []
         static var existing: [Enumerated] = []
 
         struct Case: Equatable {
@@ -281,9 +293,8 @@ class Swift {
         var definition: [String] {
             var lines = [String]()
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += documentation
-            for reference in references {
-                lines += ["/// - \(reference)"]
+            for instance in instances {
+                lines += ["/// - \(instance.schema.decodingPath)"]
             }
 
             lines += ["\(access)enum \(name)\(protocols) {"]
@@ -298,6 +309,7 @@ class Swift {
         init(named name: String, schema enumerated: Schema.Enumerated) {
             self.name = Swift.name!.pascalCased(name)
             self.schema = enumerated
+            Self.existing.append(self)
 
             // Workaround for numerical values of Marker Symbols
             if schema.decodingPath.hasSuffix("marker/symbol") {
@@ -347,7 +359,9 @@ class Swift {
 
         /// Checks for equality by comparing types and cases of the two `Enumerated` types.
         static func == (lhs: Enumerated, rhs: Enumerated) -> Bool {
-            return lhs.cases == rhs.cases
+            let nameAlmostEqual = lhs.name.contains(rhs.name) || rhs.name.contains(lhs.name)
+            let casesEqual = lhs.cases == rhs.cases
+            return nameAlmostEqual && casesEqual
         }
     }
 
@@ -411,10 +425,10 @@ class Swift {
     final class FlagList: SwiftSharedType {
         var name: String
         var schema: Schema.FlagList
-
-        let access: Swift.Access = .public
-        var references: [String] = []
+        var access: Swift.Access = .public
         let protocols: [String] = []
+
+        var instances: [Instance<FlagList>] = []
         static var existing: [FlagList] = []
 
         struct Option: Equatable {
@@ -425,9 +439,8 @@ class Swift {
 
         var definition: [String] {
             var lines = [String]()
-            lines += documentation
-            for reference in references {
-                lines += ["/// - \(reference)"]
+            for instance in instances {
+                lines += ["/// - \(instance.schema.decodingPath)"]
             }
 
             lines += ["\(access)struct \(name): OptionSet, Encodable {"]
@@ -456,6 +469,7 @@ class Swift {
         init(named name: String, schema flagList: Schema.FlagList) {
             self.name = Swift.name!.pascalCased(name)
             self.schema = flagList
+            Self.existing.append(self)
 
             options = schema.flags.map { sanitized($0) }
             if let extras = schema.extras {
@@ -471,7 +485,9 @@ class Swift {
 
         /// Checks for equality by comparing types and options of the two `FlagList` types.
         static func == (lhs: FlagList, rhs: FlagList) -> Bool {
-            return lhs.options == rhs.options
+            let nameAlmostEqual = lhs.name.contains(rhs.name) || rhs.name.contains(lhs.name)
+            let optionsEqual = lhs.options == rhs.options
+            return nameAlmostEqual && optionsEqual
         }
     }
 

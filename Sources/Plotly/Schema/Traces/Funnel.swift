@@ -9,6 +9,10 @@ public struct Funnel: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -58,7 +62,7 @@ public struct Funnel: Trace {
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -166,6 +170,10 @@ public struct Funnel: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
     public var hoverInfo: HoverInfo?
 
     /// Determines which trace information appear on the graph. 
@@ -199,6 +207,10 @@ public struct Funnel: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Determines which trace information appear on the graph. 
+    ///
+    /// In the case of having multiple funnels, percentages & totals are computed separately (per
+    /// trace).
     public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. 
@@ -222,9 +234,38 @@ public struct Funnel: Trace {
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     public var text: String?
 
-    public var textPosition: TextPosition1?
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
+    /// - traces/funnel/attributes/textposition
+    public enum TextPosition: String, Encodable {
+        case inside
+        case outside
+        case auto
+        case none
+    }
+    /// Specifies the location of the `text`. 
+    ///
+    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+    /// outside.
+    public var textPosition: TextPosition?
 
-    public var insideTextAnchor: InsideTextAnchor0?
+    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
+    /// - traces/funnel/attributes/insidetextanchor
+    public enum InsideTextAnchor: String, Encodable {
+        case end
+        case middle
+        case start
+    }
+    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
+    public var insideTextAnchor: InsideTextAnchor?
 
     /// Sets the angle of the tick labels with respect to the bar. 
     ///
@@ -232,13 +273,25 @@ public struct Funnel: Trace {
     /// automatically be rotated to fit with the maximum size in bars.
     public var textAngle: Angle?
 
+    /// Sets the font used for `text`.
     public var textFont: Font1?
 
+    /// Sets the font used for `text` lying inside the bar.
     public var insideTextFont: Font1?
 
+    /// Sets the font used for `text` lying outside the bar.
     public var outSideTextFont: Font1?
 
-    public var constrainText: ConstrainText0?
+    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
+    /// - traces/funnel/attributes/constraintext
+    public enum ConstrainText: String, Encodable {
+        case inside
+        case outside
+        case both
+        case none
+    }
+    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
+    public var constrainText: ConstrainText?
 
     /// Determines whether the text nodes are clipped about the subplot axes. 
     ///
@@ -246,6 +299,12 @@ public struct Funnel: Trace {
     /// `yaxis.layer` to *below traces*.
     public var clipOnAxis: Bool?
 
+    /// Sets the orientation of the funnels. 
+    ///
+    /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal). By default
+    /// funnels are tend to be oriented horizontally; unless only *y* array is presented or orientation
+    /// is set to *v*. Also regarding graphs including only 'horizontal' funnels, *autorange* on the
+    /// *y-axis* are set to *reversed*.
     public var orientation: Orientation0?
 
     /// Shifts the position where the bar is drawn (in position axis units). 
@@ -257,7 +316,125 @@ public struct Funnel: Trace {
     /// Sets the bar width (in position axis units).
     public var width: Double?
 
-    public var marker: Marker2?
+    /// - traces/funnel/attributes/marker
+    public struct Marker: Encodable {
+        public var line: Line1?
+    
+        /// Sets themarkercolor. 
+        ///
+        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+        /// if set.
+        public var color: Color?
+    
+        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
+        ///
+        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+        public var cAuto: Bool?
+    
+        /// Sets the lower bound of the color domain. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+        public var cMin: Double?
+    
+        /// Sets the upper bound of the color domain. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+        public var cMax: Double?
+    
+        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+        public var cMiddle: Double?
+    
+        /// Sets the colorscale. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
+        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
+        /// name string of the following list:
+        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+        public var colorScale: ColorScale?
+    
+        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
+        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+        /// numbers in the `color` array are all positive, all negative or mixed.
+        public var autoColorScale: Bool?
+    
+        /// Reverses the color mapping if true. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
+        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+        public var reverseScale: Bool?
+    
+        /// Determines whether or not a colorbar is displayed for this trace. 
+        ///
+        /// Has an effect only if in `marker.color`is set to a numerical array.
+        public var showScale: Bool?
+    
+        public var colorBar: ColorBar0?
+    
+        /// Sets a reference to a shared color axis. 
+        ///
+        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+        public var colorAxis: SubPlotID?
+    
+        /// Sets the opacity of the bars.
+        public var opacity: Double?
+    
+        /// Sets the source reference on plot.ly for  color .
+        public var colorSource: String?
+    
+        /// Sets the source reference on plot.ly for  opacity .
+        public var opacitySource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case line
+            case color
+            case cAuto = "cauto"
+            case cMin = "cmin"
+            case cMax = "cmax"
+            case cMiddle = "cmid"
+            case colorScale = "colorscale"
+            case autoColorScale = "autocolorscale"
+            case reverseScale = "reversescale"
+            case showScale = "showscale"
+            case colorBar = "colorbar"
+            case colorAxis = "coloraxis"
+            case opacity
+            case colorSource = "colorsrc"
+            case opacitySource = "opacitysrc"
+        }
+        
+        public init(line: Line1? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, colorSource: String? = nil, opacitySource: String? = nil) {
+            self.line = line
+            self.color = color
+            self.cAuto = cAuto
+            self.cMin = cMin
+            self.cMax = cMax
+            self.cMiddle = cMiddle
+            self.colorScale = colorScale
+            self.autoColorScale = autoColorScale
+            self.reverseScale = reverseScale
+            self.showScale = showScale
+            self.colorBar = colorBar
+            self.colorAxis = colorAxis
+            self.opacity = opacity
+            self.colorSource = colorSource
+            self.opacitySource = opacitySource
+        }
+    }
+    public var marker: Marker?
 
     /// - traces/funnel/attributes/connector
     public struct Connector: Encodable {
@@ -397,7 +574,7 @@ public struct Funnel: Trace {
         case textPositionSource = "textpositionsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition1? = nil, insideTextAnchor: InsideTextAnchor0? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText0? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker2? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

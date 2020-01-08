@@ -6,6 +6,10 @@ public struct ParallelCoordinates: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -61,12 +65,30 @@ public struct ParallelCoordinates: Trace {
     /// may be positioned better inside margins when `labelposition` is set to *bottom*.
     public var labelAngle: Angle?
 
-    public var labelSide: Side3?
+    /// Specifies the location of the `label`. 
+    ///
+    /// *top* positions labels above, next to the title *bottom* positions labels below the graph Tilted
+    /// labels with *labelangle* may be positioned better inside margins when `labelposition` is set to
+    /// *bottom*.
+    /// - traces/parcoords/attributes/labelside
+    public enum LabelSide: String, Encodable {
+        case top
+        case bottom
+    }
+    /// Specifies the location of the `label`. 
+    ///
+    /// *top* positions labels above, next to the title *bottom* positions labels below the graph Tilted
+    /// labels with *labelangle* may be positioned better inside margins when `labelposition` is set to
+    /// *bottom*.
+    public var labelSide: LabelSide?
 
+    /// Sets the font for the `dimension` labels.
     public var labelFont: Font0?
 
+    /// Sets the font for the `dimension` tick values.
     public var tickFont: Font0?
 
+    /// Sets the font for the `dimension` range values.
     public var rangeFont: Font0?
 
     public var dimensions: TickFormatStops0?
@@ -212,7 +234,7 @@ public struct ParallelCoordinates: Trace {
         case metaSource = "metasrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, labelAngle: Angle? = nil, labelSide: Side3? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, rangeFont: Font0? = nil, dimensions: TickFormatStops0? = nil, line: Line? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, rangeFont: Font0? = nil, dimensions: TickFormatStops0? = nil, line: Line? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

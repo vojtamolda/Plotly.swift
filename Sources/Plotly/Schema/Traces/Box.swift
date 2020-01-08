@@ -11,6 +11,10 @@ public struct Box: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -55,9 +59,13 @@ public struct Box: Trace {
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -142,7 +150,16 @@ public struct Box: Trace {
     /// For example, with 0, the notches are as wide as the box(es).
     public var notchWidth: Double?
 
-    public var boxPoints: BoxPoints0?
+    /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
+    /// - traces/box/attributes/boxpoints
+    public enum BoxPoints: String, Encodable {
+        case all
+        case outliers
+        case suspectedOutliers = "suspectedoutliers"
+        case `false` = "false"
+    }
+    /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
+    public var boxPoints: BoxPoints?
 
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). 
     ///
@@ -153,6 +170,9 @@ public struct Box: Trace {
         case sd
         case `false` = "false"
     }
+    /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). 
+    ///
+    /// If *sd* the standard deviation is also drawn.
     public var boxMean: BoxMean?
 
     /// Sets the amount of jitter in the sample points drawn. 
@@ -168,14 +188,98 @@ public struct Box: Trace {
     /// boxes
     public var pointPosition: Double?
 
+    /// Sets the orientation of the box(es). 
+    ///
+    /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
     public var orientation: Orientation0?
 
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically selected based on the positions of other box traces in the same subplot.
     public var width: Double?
 
-    public var marker: Marker4?
+    /// - traces/box/attributes/marker
+    public struct Marker: Encodable {
+        /// Sets the color of the outlier sample points.
+        public var outlierColor: Color?
+    
+        /// Sets the marker symbol type. 
+        ///
+        /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
+        /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
+        /// *dot-open* to a symbol name.
+        public var symbol: Symbol0?
+    
+        /// Sets the marker opacity.
+        public var opacity: Double?
+    
+        /// Sets the marker size (in px).
+        public var size: Double?
+    
+        /// Sets themarkercolor. 
+        ///
+        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+        /// if set.
+        public var color: Color?
+    
+        /// - traces/box/attributes/marker/line
+        public struct Line: Encodable {
+            /// Sets themarker.linecolor. 
+            ///
+            /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+            /// relative to the max and min values of the array or relative to `marker.line.cmin` and
+            /// `marker.line.cmax` if set.
+            public var color: Color?
+        
+            /// Sets the width (in px) of the lines bounding the marker points.
+            public var width: Double?
+        
+            /// Sets the border line color of the outlier sample points. 
+            ///
+            /// Defaults to marker.color
+            public var outlierColor: Color?
+        
+            /// Sets the border line width (in px) of the outlier sample points.
+            public var outlierWidth: Double?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case color
+                case width
+                case outlierColor = "outliercolor"
+                case outlierWidth = "outlierwidth"
+            }
+            
+            public init(color: Color? = nil, width: Double? = nil, outlierColor: Color? = nil, outlierWidth: Double? = nil) {
+                self.color = color
+                self.width = width
+                self.outlierColor = outlierColor
+                self.outlierWidth = outlierWidth
+            }
+        }
+        public var line: Line?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case outlierColor = "outliercolor"
+            case symbol
+            case opacity
+            case size
+            case color
+            case line
+        }
+        
+        public init(outlierColor: Color? = nil, symbol: Symbol0? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
+            self.outlierColor = outlierColor
+            self.symbol = symbol
+            self.opacity = opacity
+            self.size = size
+            self.color = color
+            self.line = line
+        }
+    }
+    public var marker: Marker?
 
-    public var line: Line3?
+    public var line: Line2?
 
     /// Sets the fill color. 
     ///
@@ -213,10 +317,13 @@ public struct Box: Trace {
             try container.encode(options.joined(separator: "+"))
         }
     }
+    /// Do the hover effects highlight individual boxes  or sample points or both?
     public var hoverOn: HoverOn?
 
+    /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
 
+    /// Sets the calendar system to use with `y` date data.
     public var yCalendar: Calendar0?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
@@ -316,7 +423,7 @@ public struct Box: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints0? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Orientation0? = nil, width: Double? = nil, marker: Marker4? = nil, line: Line3? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverOn: HoverOn? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Orientation0? = nil, width: Double? = nil, marker: Marker? = nil, line: Line2? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverOn: HoverOn? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

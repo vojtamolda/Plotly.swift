@@ -6,6 +6,10 @@ public struct Histogram2DContour: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -48,9 +52,13 @@ public struct Histogram2DContour: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -77,11 +85,76 @@ public struct Histogram2DContour: Trace {
     /// Sets the aggregation data.
     public var z: [Double]?
 
-    public var marker: Marker5?
+    /// - traces/histogram2dcontour/attributes/marker
+    public struct Marker: Encodable {
+        /// Sets the aggregation data.
+        public var color: [Double]?
+    
+        /// Sets the source reference on plot.ly for  color .
+        public var colorSource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case color
+            case colorSource = "colorsrc"
+        }
+        
+        public init(color: [Double]? = nil, colorSource: String? = nil) {
+            self.color = color
+            self.colorSource = colorSource
+        }
+    }
+    public var marker: Marker?
 
-    public var normalization: Normalization0?
+    /// Specifies the type of normalization used for this histogram trace. 
+    ///
+    /// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
+    /// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
+    /// the percentage / fraction of occurrences with respect to the total number of sample points
+    /// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
+    /// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
+    /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
+    /// the area of each bar corresponds to the probability that an event will fall into the
+    /// corresponding bin (here, the sum of all bin AREAS equals 1).
+    /// - traces/histogram2dcontour/attributes/histnorm
+    public enum Normalization: String, Encodable {
+        case none = ""
+        case percent
+        case probability
+        case density
+        case probabilityDensity = "probability density"
+    }
+    /// Specifies the type of normalization used for this histogram trace. 
+    ///
+    /// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
+    /// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
+    /// the percentage / fraction of occurrences with respect to the total number of sample points
+    /// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
+    /// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
+    /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
+    /// the area of each bar corresponds to the probability that an event will fall into the
+    /// corresponding bin (here, the sum of all bin AREAS equals 1).
+    public var normalization: Normalization?
 
-    public var binningFunction: BinningFunction0?
+    /// Specifies the binning function used for this histogram trace. 
+    ///
+    /// If *count*, the histogram values are computed by counting the number of values lying inside each
+    /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
+    /// average, the minimum or the maximum of the values lying inside each bin respectively.
+    /// - traces/histogram2dcontour/attributes/histfunc
+    public enum BinningFunction: String, Encodable {
+        case count
+        case sum
+        case avg
+        case min
+        case max
+    }
+    /// Specifies the binning function used for this histogram trace. 
+    ///
+    /// If *count*, the histogram values are computed by counting the number of values lying inside each
+    /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
+    /// average, the minimum or the maximum of the values lying inside each bin respectively.
+    public var binningFunction: BinningFunction?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -140,9 +213,176 @@ public struct Histogram2DContour: Trace {
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
     public var nContours: Int?
 
-    public var contours: Contours0?
+    /// - traces/histogram2dcontour/attributes/contours
+    public struct Contours: Encodable {
+        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
+        ///
+        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
+        /// specified by the `operation` and `value` parameters.
+        /// - traces/histogram2dcontour/attributes/contours/type
+        public enum Rule: String, Encodable {
+            case levels
+            case constraint
+        }
+        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
+        ///
+        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
+        /// specified by the `operation` and `value` parameters.
+        public var type: Rule?
+    
+        /// Sets the starting contour level value. 
+        ///
+        /// Must be less than `contours.end`
+        public var start: Double?
+    
+        /// Sets the end contour level value. 
+        ///
+        /// Must be more than `contours.start`
+        public var end: Double?
+    
+        /// Sets the step between each contour level. 
+        ///
+        /// Must be positive.
+        public var size: Double?
+    
+        /// Determines the coloring method showing the contour values. 
+        ///
+        /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
+        /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
+        /// lines. If *none*, no coloring is applied on this trace.
+        /// - traces/histogram2dcontour/attributes/contours/coloring
+        public enum Coloring: String, Encodable {
+            case fill
+            case heatmap
+            case lines
+            case none
+        }
+        /// Determines the coloring method showing the contour values. 
+        ///
+        /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
+        /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
+        /// lines. If *none*, no coloring is applied on this trace.
+        public var coloring: Coloring?
+    
+        /// Determines whether or not the contour lines are drawn. 
+        ///
+        /// Has an effect only if `contours.coloring` is set to *fill*.
+        public var showLines: Bool?
+    
+        /// Determines whether to label the contour lines with their values.
+        public var showLabels: Bool?
+    
+        /// Sets the font used for labeling the contour levels. 
+        ///
+        /// The default color comes from the lines, if shown. The default family and size come from
+        /// `layout.font`.
+        public var labelFont: Font0?
+    
+        /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        public var labelFormat: String?
+    
+        /// Sets the constraint operation. 
+        ///
+        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
+        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
+        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
+        /// intervals make no difference to constraint display, but all versions are allowed for consistency
+        /// with filter transforms.
+        /// - traces/histogram2dcontour/attributes/contours/operation
+        public enum Operation: String, Encodable {
+            case equalTo = "="
+            case lessThan = "<"
+            case greaterEqualThan = ">="
+            case greaterThan = ">"
+            case lessEqualThan = "<="
+            case insideInclusive = "[]"
+            case insideExclusive = "()"
+            case insideInclusiveExclusive = "[)"
+            case insideExclusiveInclusive = "(]"
+            case outsideInclusive = "]["
+            case outsideExclusive = ")("
+            case outsideInclusiveExclusive = "]("
+            case outsideExclusiveInclusive = ")["
+        }
+        /// Sets the constraint operation. 
+        ///
+        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
+        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
+        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
+        /// intervals make no difference to constraint display, but all versions are allowed for consistency
+        /// with filter transforms.
+        public var operation: Operation?
+    
+        /// Sets the value or values of the constraint boundary. 
+        ///
+        /// When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be
+        /// a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[)
+        /// *value* is expected to be an array of two numbers where the first is the lower bound and the
+        /// second is the upper bound.
+        public var value: Anything?
+    
+        public var impliedEdits: ImpliedEdits0?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case type
+            case start
+            case end
+            case size
+            case coloring
+            case showLines = "showlines"
+            case showLabels = "showlabels"
+            case labelFont = "labelfont"
+            case labelFormat = "labelformat"
+            case operation
+            case value
+            case impliedEdits
+        }
+        
+        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: ImpliedEdits0? = nil) {
+            self.type = type
+            self.start = start
+            self.end = end
+            self.size = size
+            self.coloring = coloring
+            self.showLines = showLines
+            self.showLabels = showLabels
+            self.labelFont = labelFont
+            self.labelFormat = labelFormat
+            self.operation = operation
+            self.value = value
+            self.impliedEdits = impliedEdits
+        }
+    }
+    public var contours: Contours?
 
-    public var line: Line4?
+    /// - traces/histogram2dcontour/attributes/line
+    public struct Line: Encodable {
+        /// Sets the color of the contour level. 
+        ///
+        /// Has no effect if `contours.coloring` is set to *lines*.
+        public var color: Color?
+    
+        /// Sets the contour line width in (in px)
+        public var width: Double?
+    
+        /// Sets the dash style of lines. 
+        ///
+        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+        /// dash length list in px (eg *5px,10px,2px,2px*).
+        public var dash: String?
+    
+        /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
+        public var smoothing: Double?
+    
+        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, smoothing: Double? = nil) {
+            self.color = color
+            self.width = width
+            self.dash = dash
+            self.smoothing = smoothing
+        }
+    }
+    public var line: Line?
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
     ///
@@ -219,8 +459,10 @@ public struct Histogram2DContour: Trace {
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     public var colorAxis: SubPlotID?
 
+    /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
 
+    /// Sets the calendar system to use with `y` date data.
     public var yCalendar: Calendar0?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
@@ -322,7 +564,7 @@ public struct Histogram2DContour: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo1? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker5? = nil, normalization: Normalization0? = nil, binningFunction: BinningFunction0? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours0? = nil, line: Line4? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

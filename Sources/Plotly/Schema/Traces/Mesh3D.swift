@@ -4,6 +4,10 @@ public struct Mesh3D: Trace {
 
     public let animatable: Bool = false
 
+    /// Determines whether or not this trace is visible. 
+    ///
+    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+    /// legend itself is visible).
     public var visible: Visible0?
 
     /// Sets the trace name. 
@@ -35,7 +39,7 @@ public struct Mesh3D: Trace {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Anything?
 
-    public var hoverLabel: HoverLabel1?
+    public var hoverLabel: HoverLabel0?
 
     public var stream: Stream0?
 
@@ -132,6 +136,10 @@ public struct Mesh3D: Trace {
         case y
         case z
     }
+    /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation. 
+    ///
+    /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay
+    /// triangulation.
     public var delaunayAxis: DelaunayAxis?
 
     /// Determines how the mesh surface triangles are derived from the set of vertices (points) represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not supplied. 
@@ -226,18 +234,42 @@ public struct Mesh3D: Trace {
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     public var flatShading: Bool?
 
-    public var contour: Contour0?
+    /// - traces/mesh3d/attributes/contour
+    public struct Contour: Encodable {
+        /// Sets whether or not dynamic contours are shown on hover
+        public var show: Bool?
+    
+        /// Sets the color of the contour lines.
+        public var color: Color?
+    
+        /// Sets the width of the contour lines.
+        public var width: Double?
+    
+        public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
+            self.show = show
+            self.color = color
+            self.width = width
+        }
+    }
+    public var contour: Contour?
 
     public var lightPosition: Up0?
 
     public var lighting: Lighting0?
 
-    public var hoverInfo: HoverInfo1?
+    /// Determines which trace information appear on hover. 
+    ///
+    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+    /// click and hover events are still fired.
+    public var hoverInfo: HoverInfo0?
 
+    /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
 
+    /// Sets the calendar system to use with `y` date data.
     public var yCalendar: Calendar0?
 
+    /// Sets the calendar system to use with `z` date data.
     public var zCalendar: Calendar0?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
@@ -360,7 +392,7 @@ public struct Mesh3D: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel1? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Contour0? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo1? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, iSource: String? = nil, jSource: String? = nil, kSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, intensitySource: String? = nil, vertexColorSource: String? = nil, faceColorSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Contour? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, iSource: String? = nil, jSource: String? = nil, kSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, intensitySource: String? = nil, vertexColorSource: String? = nil, faceColorSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
