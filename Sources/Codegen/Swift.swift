@@ -140,7 +140,7 @@ class Swift {
         var definition: [String] {
             var lines = [String]()
             for instance in instances {
-                lines += ["/// - \(instance.schema.decodingPath)"]
+                lines += ["/// - \(instance.schema.path)"]
             }
 
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
@@ -164,16 +164,16 @@ class Swift {
 
         private var codingKeys: [String] {
             let properties = members.compactMap { $0 as? Instantiable }
-            if properties.filter({ $0.name != $0.codingName }).isEmpty { return [] }
+            if properties.filter({ $0.name != $0.schemaName }).isEmpty { return [] }
 
             var lines = [String]()
             lines += ["/// Plotly compatible property encoding"]
             lines += ["enum CodingKeys: String, CodingKey {"]
-            for property in properties {
-                if property.name != property.codingName {
-                    lines += ["case \(property.name) = \(property.codingName.escaped())"].indented()
+            for prop in properties {
+                if prop.name == prop.schemaName {
+                    lines += ["case \(prop.name)"].indented()
                 } else {
-                    lines += ["case \(property.name)"].indented()
+                    lines += ["case \(prop.name) = \(prop.schemaName.escaped())"].indented()
                 }
             }
             lines += ["}", ""]
@@ -294,7 +294,7 @@ class Swift {
             var lines = [String]()
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             for instance in instances {
-                lines += ["/// - \(instance.schema.decodingPath)"]
+                lines += ["/// - \(instance.schema.path)"]
             }
 
             lines += ["\(access)enum \(name)\(protocols) {"]
@@ -312,7 +312,7 @@ class Swift {
             Self.existing.append(self)
 
             // Workaround for numerical values of Marker Symbols
-            if schema.decodingPath.hasSuffix("marker/symbol") {
+            if schema.path.hasSuffix("marker/symbol") {
                 let onlyStrings = schema.values.filter {
                     if case Schema.Primitive.string = $0 { return true } else { return false }
                 }
@@ -320,18 +320,18 @@ class Swift {
                 return
             }
             // Workaround for numerical values of Geo Resolution
-            if schema.decodingPath.hasSuffix("geo/resolution") {
+            if schema.path.hasSuffix("geo/resolution") {
                 protocols[0] = "Int"
                 cases = schema.values.map { primitive -> Case in
                     guard case let Schema.Primitive.int(int) = primitive else {
-                        fatalError("Unsupported Geo Resolution value in '\(schema.decodingPath)'")
+                        fatalError("Unsupported Geo Resolution value in '\(schema.path)'")
                     }
                     return Case(label: "oneOver\(int)M", rawValue: "\(int)")
                 }
                 return
             }
             // Improvement of meaningless numerical values of SurfaceAxis
-            if schema.decodingPath.hasSuffix("surfaceaxis") {
+            if schema.path.hasSuffix("surfaceaxis") {
                 protocols[0] = "Int"
                 cases = [Case(label: "none", rawValue: "-1"), Case(label: "x", rawValue: "0"),
                          Case(label: "y", rawValue: "1"), Case(label: "z", rawValue: "2")]
@@ -353,7 +353,7 @@ class Swift {
                 let rawValue = (sanitized == string) ? nil : string.escaped()
                 return Case(label: sanitized, rawValue: rawValue)
             default:
-                fatalError("Invalid enum case in '\(self.schema.decodingPath)'")
+                fatalError("Invalid enum case in '\(self.schema.path)'")
             }
         }
 
@@ -440,7 +440,7 @@ class Swift {
         var definition: [String] {
             var lines = [String]()
             for instance in instances {
-                lines += ["/// - \(instance.schema.decodingPath)"]
+                lines += ["/// - \(instance.schema.path)"]
             }
 
             lines += ["\(access)struct \(name): OptionSet, Encodable {"]

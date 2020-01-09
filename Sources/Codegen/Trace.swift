@@ -15,16 +15,16 @@ struct Trace: Definable {
         attributes = Swift.Object(named: identifier, schema: schema.attributes)
         attributes.protocols = ["Trace"]
 
-        let stringDummy = Schema.String_(codingPath: [], valType: "string", description: nil,
-                                         editType: nil, role: nil, dflt: nil, noBlank: nil,
-                                         strict: nil, values: nil, arrayOk: nil)
+        let stringDummy = Schema.String_(codingPath: [Schema.Keys("type")], valType: "string",
+                                         description: nil, editType: nil, role: nil, dflt: nil,
+                                         noBlank: nil, strict: nil, values: nil, arrayOk: nil)
         let typeConst = Instance(of: Swift.String_(schema: stringDummy), named: "type")
         typeConst.constant = schema.type.escaped()
         typeConst.optional = false
         attributes.members.insert(typeConst, at: 0)
 
-        let boolDummy = Schema.Boolean(codingPath: [], valType: "bool", description: nil,
-                                       editType: nil, role: nil)
+        let boolDummy = Schema.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool",
+                                       description: nil, editType: nil, role: nil)
         let animatableConst = Instance(of: Swift.Boolean(schema: boolDummy), named: "animatable")
         animatableConst.constant = String(schema.animatable)
         animatableConst.optional = false

@@ -2,27 +2,23 @@
 // MARK: Plotly Schema Data Type Protocols
 
 /// An decodable object that remembers the coding path of the container it originates from.
-protocol DecodableWithPath: Decodable {
-    /// Coding keys that form the path of the container where the object originates from.
+protocol SchemaDecodable: Decodable {
+    var name: String { get }
     var codingPath: [CodingKey] { get set }
-    /// Coding keys converted to String and separated with slashes.
-    var decodingPath: String { get }
-
-    /// Creates a new instance by decoding from the given decoder and stores the coding path of the decoder.
-    init(parse decoder: Decoder) throws
 }
-/// Extension with default implementations that work well for JSON schemas.
-extension DecodableWithPath {
-    var decodingPath: String { codingPath.map { $0.stringValue }.joined(separator: "/") }
+extension SchemaDecodable {
+    var name: String { codingPath.last!.stringValue }
+    var path: String { codingPath.map { $0.stringValue }.joined(separator: "/") }
 
+    /// Default implementation that stores the coding path of the decoder.
     init(parse decoder: Decoder) throws {
         try self.init(from: decoder)
-        self.codingPath = decoder.codingPath
+        codingPath = decoder.codingPath
     }
 }
 
 /// A data type decoded from Plotly JSON schema.
-protocol SchemaType: DecodableWithPath {
+protocol SchemaType: SchemaDecodable {
     var valType: String { get }
     var description: String? { get }
     var editType: String? { get }
@@ -256,6 +252,7 @@ struct Schema: Decodable {
     /// Dictionaries and JSONParser can't guarantee persistent ordering before and after decoding.
     struct Object: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String = "object"
         let description: String?
         let editType: String?
@@ -267,8 +264,8 @@ struct Schema: Decodable {
 
         init(from decoder: Decoder) throws {
             codingPath = decoder.codingPath
-            let container = try decoder.container(keyedBy: Keys.self)
 
+            let container = try decoder.container(keyedBy: Keys.self)
             description = try container.decodeIfPresent(String.self, forKey: Keys("description"))
             editType = try container.decodeIfPresent(String.self, forKey: Keys("editType"))
             role = try container.decodeIfPresent(String.self, forKey: Keys("role"))
@@ -291,6 +288,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/data_array`.
     struct DataArray: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -307,6 +305,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/enumerated`.
     struct Enumerated: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -322,10 +321,11 @@ struct Schema: Decodable {
         }
     }
 
-    /// Decoded Plotly schema `boolean` type.
+    /// Decoded Plotly schema `boolean` attribute.
     /// - Remark: Properties originate from `/defs/valObjects/boolean`.
     struct Boolean: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -338,10 +338,11 @@ struct Schema: Decodable {
         }
     }
 
-    /// Decoded Plotly schema `number` type.
+    /// Decoded Plotly schema `number` attribute.
     /// - Remark: Properties originate from `/defs/valObjects/number`.
     struct Number: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -357,10 +358,11 @@ struct Schema: Decodable {
         }
     }
 
-    /// Decoded Plotly schema `integer` type.
+    /// Decoded Plotly schema `integer` attribute.
     /// - Remark: Properties originate from `/defs/valObjects/integer`.
     struct Integer: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -376,11 +378,12 @@ struct Schema: Decodable {
         }
     }
 
-    /// Decoded Plotly schema `string` type.
+    /// Decoded Plotly schema `string` attribute.
     /// - Note: Appended underscore prevents collision with the Swift built-in type.
     /// - Remark: Properties originate from `/defs/valObjects/string`.
     struct String_: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -401,6 +404,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/color`.
     struct Color: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -418,6 +422,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/colorlist`.
     struct ColorList: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -434,6 +439,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/colorscale`.
     struct ColorScale: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -450,6 +456,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/angle`.
     struct Angle: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -466,6 +473,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/subplotid`.
     struct SubPlotID: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -483,6 +491,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/flaglist`.
     struct FlagList: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -503,6 +512,7 @@ struct Schema: Decodable {
     /// - Note: Appended underscore prevents collision with the Swift built-in type.
     struct Any_: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?
@@ -521,6 +531,7 @@ struct Schema: Decodable {
     /// - Remark: Properties originate from `/defs/valObjects/info_array`.
     struct InfoArray: SchemaType {
         var codingPath: [CodingKey] = []
+
         let valType: String
         let description: String?
         let editType: String?

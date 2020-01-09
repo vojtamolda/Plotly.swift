@@ -1,7 +1,7 @@
 
 protocol Instantiable: Definable {
     var name: String { get }
-    var codingName: String { get }
+    var schemaName: String { get }
     var constant: String? { get set }
     var optional: Bool { get set }
     var access: Swift.Access { get set }
@@ -15,7 +15,7 @@ class Instance<Type>: Instantiable where Type: SwiftType {
     let schema: Type.Origin
 
     let name: String
-    let codingName: String
+    var schemaName: String { schema.name }
     var constant: String? =  nil
     var optional: Bool = true
     var access: Swift.Access = .public
@@ -35,7 +35,6 @@ class Instance<Type>: Instantiable where Type: SwiftType {
         self.schema = type.schema
 
         self.name = Swift.name!.camelCased(name)
-        self.codingName = name
     }
 
     func define(as context: Swift.Context) -> [String] {
