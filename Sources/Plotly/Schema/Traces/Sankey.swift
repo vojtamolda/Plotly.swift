@@ -68,7 +68,7 @@ public struct Sankey: Trace {
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired. Note that this attribute is superseded by
     /// `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
-    /// - traces/sankey/attributes/hoverinfo
+    /// - [Sankey.HoverInfo](traces/sankey/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -116,7 +116,7 @@ public struct Sankey: Trace {
     /// If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If
     /// value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are
     /// stationary.
-    /// - traces/sankey/attributes/arrangement
+    /// - [Sankey.Arrangement](traces/sankey/attributes/arrangement)
     public enum Arrangement: String, Encodable {
         case snap
         case perpendicular
@@ -134,7 +134,7 @@ public struct Sankey: Trace {
     public var textFont: Font0?
 
     /// The nodes of the Sankey plot.
-    /// - traces/sankey/attributes/node
+    /// - [Sankey.Node](traces/sankey/attributes/node)
     public struct Node: Encodable {
         /// The shown name of the node.
         public var label: [Double]?
@@ -159,7 +159,7 @@ public struct Sankey: Trace {
         /// node.
         public var color: Color?
     
-        public var line: Line3?
+        public var line: Line2?
     
         /// Sets the padding (in px) between the `nodes`.
         public var padding: Double?
@@ -171,7 +171,7 @@ public struct Sankey: Trace {
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
-        /// - traces/sankey/attributes/node/hoverinfo
+        /// - [Sankey.Node.HoverInfo](traces/sankey/attributes/node/hoverinfo)
         public enum HoverInfo: String, Encodable {
             case all
             case none
@@ -237,7 +237,7 @@ public struct Sankey: Trace {
             case hoverTemplateSource = "hovertemplatesrc"
         }
         
-        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Line3? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel0? = nil, hoverTemplate: String? = nil, labelSource: String? = nil, xSource: String? = nil, ySource: String? = nil, colorSource: String? = nil, hoverTemplateSource: String? = nil) {
+        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Line2? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel0? = nil, hoverTemplate: String? = nil, labelSource: String? = nil, xSource: String? = nil, ySource: String? = nil, colorSource: String? = nil, hoverTemplateSource: String? = nil) {
             self.label = label
             self.groups = groups
             self.x = x
@@ -260,7 +260,7 @@ public struct Sankey: Trace {
     public var node: Node?
 
     /// The links of the Sankey plot.
-    /// - traces/sankey/attributes/link
+    /// - [Sankey.Link](traces/sankey/attributes/link)
     public struct Link: Encodable {
         /// The shown name of the link.
         public var label: [Double]?
@@ -271,7 +271,7 @@ public struct Sankey: Trace {
         /// omitted, then by default, a translucent grey link will be used.
         public var color: Color?
     
-        public var line: Line3?
+        public var line: Line2?
     
         /// An integer number `[0..nodes.length - 1]` that represents the source node.
         public var source: [Double]?
@@ -286,7 +286,7 @@ public struct Sankey: Trace {
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
-        /// - traces/sankey/attributes/link/hoverinfo
+        /// - [Sankey.Link.HoverInfo](traces/sankey/attributes/link/hoverinfo)
         public enum HoverInfo: String, Encodable {
             case all
             case none
@@ -317,7 +317,84 @@ public struct Sankey: Trace {
         /// secondary box completely, use an empty tag `<extra></extra>`.
         public var hoverTemplate: String?
     
-        public var colorScales: TickFormatStops0?
+        /// - [Sankey.Link.ColorScales](traces/sankey/attributes/link/colorscales)
+        public struct ColorScales: Encodable {
+            /// - [Sankey.Link.ColorScales.Items](traces/sankey/attributes/link/colorscales/items)
+            public struct Items: Encodable {
+                /// - [Sankey.Link.ColorScales.Items.ConcentrationScales](traces/sankey/attributes/link/colorscales/items/concentrationscales)
+                public struct ConcentrationScales: Encodable {
+                    /// The label of the links to color based on their concentration within a flow.
+                    public var label: String?
+                
+                    /// Sets the upper bound of the color domain.
+                    public var cMax: Double?
+                
+                    /// Sets the lower bound of the color domain.
+                    public var cMin: Double?
+                
+                    /// Sets the colorscale. 
+                    ///
+                    /// The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba,
+                    /// hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1)
+                    /// values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the
+                    /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
+                    /// be a palette name string of the following list:
+                    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+                    public var colorScale: ColorScale?
+                
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+                    ///
+                    /// You can modify these items in the output figure by making your own item with `templateitemname`
+                    /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+                    /// false` to hide it). Has no effect outside of a template.
+                    public var name: String?
+                
+                    /// Used to refer to a named item in this array in the template. 
+                    ///
+                    /// Named items from the template will be created even without a matching item in the input figure,
+                    /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+                    /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+                    /// template or no matching item, this item will be hidden unless you explicitly show it with
+                    /// `visible: true`.
+                    public var templateItemName: String?
+                
+                    /// Plotly compatible property encoding
+                    enum CodingKeys: String, CodingKey {
+                        case label
+                        case cMax = "cmax"
+                        case cMin = "cmin"
+                        case colorScale = "colorscale"
+                        case name
+                        case templateItemName = "templateitemname"
+                    }
+                    
+                    public init(label: String? = nil, cMax: Double? = nil, cMin: Double? = nil, colorScale: ColorScale? = nil, name: String? = nil, templateItemName: String? = nil) {
+                        self.label = label
+                        self.cMax = cMax
+                        self.cMin = cMin
+                        self.colorScale = colorScale
+                        self.name = name
+                        self.templateItemName = templateItemName
+                    }
+                }
+                public var concentrationScales: ConcentrationScales?
+            
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case concentrationScales = "concentrationscales"
+                }
+                
+                public init(concentrationScales: ConcentrationScales? = nil) {
+                    self.concentrationScales = concentrationScales
+                }
+            }
+            public var items: Items?
+        
+            public init(items: Items? = nil) {
+                self.items = items
+            }
+        }
+        public var colorScales: ColorScales?
     
         /// Sets the source reference on plot.ly for  label .
         public var labelSource: String?
@@ -357,7 +434,7 @@ public struct Sankey: Trace {
             case hoverTemplateSource = "hovertemplatesrc"
         }
         
-        public init(label: [Double]? = nil, color: Color? = nil, line: Line3? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel0? = nil, hoverTemplate: String? = nil, colorScales: TickFormatStops0? = nil, labelSource: String? = nil, colorSource: String? = nil, sourceSource: String? = nil, targetSource: String? = nil, valueSource: String? = nil, hoverTemplateSource: String? = nil) {
+        public init(label: [Double]? = nil, color: Color? = nil, line: Line2? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel0? = nil, hoverTemplate: String? = nil, colorScales: ColorScales? = nil, labelSource: String? = nil, colorSource: String? = nil, sourceSource: String? = nil, targetSource: String? = nil, valueSource: String? = nil, hoverTemplateSource: String? = nil) {
             self.label = label
             self.color = color
             self.line = line

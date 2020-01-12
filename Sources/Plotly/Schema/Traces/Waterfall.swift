@@ -65,7 +65,7 @@ public struct Waterfall: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -145,7 +145,7 @@ public struct Waterfall: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/waterfall/attributes/hoverinfo
+    /// - [Waterfall.HoverInfo](traces/waterfall/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -187,7 +187,7 @@ public struct Waterfall: Trace {
     /// Determines which trace information appear on the graph. 
     ///
     /// In the case of having multiple waterfalls, totals are computed separately (per trace).
-    /// - traces/waterfall/attributes/textinfo
+    /// - [Waterfall.TextInfo](traces/waterfall/attributes/textinfo)
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -244,7 +244,7 @@ public struct Waterfall: Trace {
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
-    /// - traces/waterfall/attributes/textposition
+    /// - [Waterfall.TextPosition](traces/waterfall/attributes/textposition)
     public enum TextPosition: String, Encodable {
         case inside
         case outside
@@ -261,7 +261,7 @@ public struct Waterfall: Trace {
     public var textPosition: TextPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    /// - traces/waterfall/attributes/insidetextanchor
+    /// - [Waterfall.InsideTextAnchor](traces/waterfall/attributes/insidetextanchor)
     public enum InsideTextAnchor: String, Encodable {
         case end
         case middle
@@ -277,16 +277,16 @@ public struct Waterfall: Trace {
     public var textAngle: Angle?
 
     /// Sets the font used for `text`.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: Font1?
+    public var insideTextFont: Font0?
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outSideTextFont: Font1?
+    public var outSideTextFont: Font0?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    /// - traces/waterfall/attributes/constraintext
+    /// - [Waterfall.ConstrainText](traces/waterfall/attributes/constraintext)
     public enum ConstrainText: String, Encodable {
         case inside
         case outside
@@ -316,18 +316,78 @@ public struct Waterfall: Trace {
     /// Sets the bar width (in position axis units).
     public var width: Double?
 
-    public var increasing: Selected1?
+    /// - [Waterfall.Increasing](traces/waterfall/attributes/increasing)
+    public struct Increasing: Encodable {
+        /// - [Waterfall.Increasing.Marker](traces/waterfall/attributes/increasing/marker)
+        public struct Marker: Encodable {
+            /// Sets the marker color of all increasing values.
+            public var color: Color?
+        
+            public var line: Line0?
+        
+            public init(color: Color? = nil, line: Line0? = nil) {
+                self.color = color
+                self.line = line
+            }
+        }
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
+    public var increasing: Increasing?
 
-    public var decreasing: Selected1?
+    /// - [Waterfall.Decreasing](traces/waterfall/attributes/decreasing)
+    public struct Decreasing: Encodable {
+        /// - [Waterfall.Decreasing.Marker](traces/waterfall/attributes/decreasing/marker)
+        public struct Marker: Encodable {
+            /// Sets the marker color of all decreasing values.
+            public var color: Color?
+        
+            public var line: Line0?
+        
+            public init(color: Color? = nil, line: Line0? = nil) {
+                self.color = color
+                self.line = line
+            }
+        }
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
+    public var decreasing: Decreasing?
 
-    public var totals: Selected1?
+    /// - [Waterfall.Totals](traces/waterfall/attributes/totals)
+    public struct Totals: Encodable {
+        /// - [Waterfall.Totals.Marker](traces/waterfall/attributes/totals/marker)
+        public struct Marker: Encodable {
+            /// Sets the marker color of all intermediate sums and total values.
+            public var color: Color?
+        
+            public var line: Line0?
+        
+            public init(color: Color? = nil, line: Line0? = nil) {
+                self.color = color
+                self.line = line
+            }
+        }
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
+    public var totals: Totals?
 
-    /// - traces/waterfall/attributes/connector
+    /// - [Waterfall.Connector](traces/waterfall/attributes/connector)
     public struct Connector: Encodable {
         public var line: Line0?
     
         /// Sets the shape of connector lines.
-        /// - traces/waterfall/attributes/connector/mode
+        /// - [Waterfall.Connector.Mode](traces/waterfall/attributes/connector/mode)
         public enum Mode: String, Encodable {
             case spanning
             case between
@@ -475,7 +535,7 @@ public struct Waterfall: Trace {
         case widthSource = "widthsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, increasing: Selected1? = nil, decreasing: Selected1? = nil, totals: Selected1? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, measureSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, measureSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

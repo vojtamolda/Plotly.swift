@@ -66,7 +66,7 @@ public struct Funnel: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -137,7 +137,7 @@ public struct Funnel: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/funnel/attributes/hoverinfo
+    /// - [Funnel.HoverInfo](traces/funnel/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -180,7 +180,7 @@ public struct Funnel: Trace {
     ///
     /// In the case of having multiple funnels, percentages & totals are computed separately (per
     /// trace).
-    /// - traces/funnel/attributes/textinfo
+    /// - [Funnel.TextInfo](traces/funnel/attributes/textinfo)
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -241,7 +241,7 @@ public struct Funnel: Trace {
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
-    /// - traces/funnel/attributes/textposition
+    /// - [Funnel.TextPosition](traces/funnel/attributes/textposition)
     public enum TextPosition: String, Encodable {
         case inside
         case outside
@@ -258,7 +258,7 @@ public struct Funnel: Trace {
     public var textPosition: TextPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    /// - traces/funnel/attributes/insidetextanchor
+    /// - [Funnel.InsideTextAnchor](traces/funnel/attributes/insidetextanchor)
     public enum InsideTextAnchor: String, Encodable {
         case end
         case middle
@@ -274,16 +274,16 @@ public struct Funnel: Trace {
     public var textAngle: Angle?
 
     /// Sets the font used for `text`.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: Font1?
+    public var insideTextFont: Font0?
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outSideTextFont: Font1?
+    public var outSideTextFont: Font0?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    /// - traces/funnel/attributes/constraintext
+    /// - [Funnel.ConstrainText](traces/funnel/attributes/constraintext)
     public enum ConstrainText: String, Encodable {
         case inside
         case outside
@@ -316,7 +316,7 @@ public struct Funnel: Trace {
     /// Sets the bar width (in position axis units).
     public var width: Double?
 
-    /// - traces/funnel/attributes/marker
+    /// - [Funnel.Marker](traces/funnel/attributes/marker)
     public struct Marker: Encodable {
         public var line: Line1?
     
@@ -436,7 +436,7 @@ public struct Funnel: Trace {
     }
     public var marker: Marker?
 
-    /// - traces/funnel/attributes/connector
+    /// - [Funnel.Connector](traces/funnel/attributes/connector)
     public struct Connector: Encodable {
         /// Sets the fill color.
         public var fillColor: Color?
@@ -574,7 +574,7 @@ public struct Funnel: Trace {
         case textPositionSource = "textpositionsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

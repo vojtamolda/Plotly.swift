@@ -43,7 +43,7 @@ public struct ParallelCoordinates: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -70,7 +70,7 @@ public struct ParallelCoordinates: Trace {
     /// *top* positions labels above, next to the title *bottom* positions labels below the graph Tilted
     /// labels with *labelangle* may be positioned better inside margins when `labelposition` is set to
     /// *bottom*.
-    /// - traces/parcoords/attributes/labelside
+    /// - [ParallelCoordinates.LabelSide](traces/parcoords/attributes/labelside)
     public enum LabelSide: String, Encodable {
         case top
         case bottom
@@ -91,9 +91,138 @@ public struct ParallelCoordinates: Trace {
     /// Sets the font for the `dimension` range values.
     public var rangeFont: Font0?
 
-    public var dimensions: TickFormatStops0?
+    /// - [ParallelCoordinates.Dimensions](traces/parcoords/attributes/dimensions)
+    public struct Dimensions: Encodable {
+        /// - [ParallelCoordinates.Dimensions.Items](traces/parcoords/attributes/dimensions/items)
+        public struct Items: Encodable {
+            /// The dimensions (variables) of the parallel coordinates chart. 
+            ///
+            /// 2..60 dimensions are supported.
+            /// - [ParallelCoordinates.Dimensions.Items.Dimension](traces/parcoords/attributes/dimensions/items/dimension)
+            public struct Dimension: Encodable {
+                /// The shown name of the dimension.
+                public var label: String?
+            
+                /// Sets the values at which ticks on this axis appear.
+                public var tickValues: [Double]?
+            
+                /// Sets the text displayed at the ticks position via `tickvals`.
+                public var tickText: [Double]?
+            
+                /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
+                ///
+                /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+                /// And for dates see:
+                /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
+                /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+                /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+                public var tickFormat: String?
+            
+                /// Shows the dimension when set to `true` (the default). 
+                ///
+                /// Hides the dimension for `false`.
+                public var visible: Bool?
+            
+                /// The domain range that represents the full, shown axis extent. 
+                ///
+                /// Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers
+                /// as elements.
+                public var range: InfoArray?
+            
+                /// The domain range to which the filter on the dimension is constrained. 
+                ///
+                /// Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is
+                /// not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
+                public var constraintRange: InfoArray?
+            
+                /// Do we allow multiple selection ranges or just a single range?
+                public var multiSelect: Bool?
+            
+                /// Dimension values. 
+                ///
+                /// `values[n]` represents the value of the `n`th point in the dataset, therefore the `values`
+                /// vector for all dimensions must be the same (longer vectors will be truncated). Each value must
+                /// be a finite number.
+                public var values: [Double]?
+            
+                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+                ///
+                /// You can modify these items in the output figure by making your own item with `templateitemname`
+                /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+                /// false` to hide it). Has no effect outside of a template.
+                public var name: String?
+            
+                /// Used to refer to a named item in this array in the template. 
+                ///
+                /// Named items from the template will be created even without a matching item in the input figure,
+                /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+                /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+                /// template or no matching item, this item will be hidden unless you explicitly show it with
+                /// `visible: true`.
+                public var templateItemName: String?
+            
+                /// Sets the source reference on plot.ly for  tickvals .
+                public var tickValuesSource: String?
+            
+                /// Sets the source reference on plot.ly for  ticktext .
+                public var tickTextSource: String?
+            
+                /// Sets the source reference on plot.ly for  values .
+                public var valuesSource: String?
+            
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case label
+                    case tickValues = "tickvals"
+                    case tickText = "ticktext"
+                    case tickFormat = "tickformat"
+                    case visible
+                    case range
+                    case constraintRange = "constraintrange"
+                    case multiSelect = "multiselect"
+                    case values
+                    case name
+                    case templateItemName = "templateitemname"
+                    case tickValuesSource = "tickvalssrc"
+                    case tickTextSource = "ticktextsrc"
+                    case valuesSource = "valuessrc"
+                }
+                
+                public init(label: String? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, tickFormat: String? = nil, visible: Bool? = nil, range: InfoArray? = nil, constraintRange: InfoArray? = nil, multiSelect: Bool? = nil, values: [Double]? = nil, name: String? = nil, templateItemName: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, valuesSource: String? = nil) {
+                    self.label = label
+                    self.tickValues = tickValues
+                    self.tickText = tickText
+                    self.tickFormat = tickFormat
+                    self.visible = visible
+                    self.range = range
+                    self.constraintRange = constraintRange
+                    self.multiSelect = multiSelect
+                    self.values = values
+                    self.name = name
+                    self.templateItemName = templateItemName
+                    self.tickValuesSource = tickValuesSource
+                    self.tickTextSource = tickTextSource
+                    self.valuesSource = valuesSource
+                }
+            }
+            /// The dimensions (variables) of the parallel coordinates chart. 
+            ///
+            /// 2..60 dimensions are supported.
+            public var dimension: Dimension?
+        
+            public init(dimension: Dimension? = nil) {
+                self.dimension = dimension
+            }
+        }
+        public var items: Items?
+    
+        public init(items: Items? = nil) {
+            self.items = items
+        }
+    }
+    public var dimensions: Dimensions?
 
-    /// - traces/parcoords/attributes/line
+    /// - [ParallelCoordinates.Line](traces/parcoords/attributes/line)
     public struct Line: Encodable {
         /// Sets thelinecolor. 
         ///
@@ -234,7 +363,7 @@ public struct ParallelCoordinates: Trace {
         case metaSource = "metasrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, rangeFont: Font0? = nil, dimensions: TickFormatStops0? = nil, line: Line? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, rangeFont: Font0? = nil, dimensions: Dimensions? = nil, line: Line? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

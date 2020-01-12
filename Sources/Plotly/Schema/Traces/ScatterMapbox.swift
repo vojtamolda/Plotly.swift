@@ -61,7 +61,7 @@ public struct ScatterMapbox: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -113,14 +113,14 @@ public struct ScatterMapbox: Trace {
     /// To be seen, trace `hoverinfo` must contain a *text* flag.
     public var hoverText: String?
 
-    public var line: Line2?
+    public var line: Line0?
 
     /// Determines whether or not gaps (i.e. 
     ///
     /// {nan} or missing values) in the provided data arrays are connected.
     public var connectGaps: Bool?
 
-    /// - traces/scattermapbox/attributes/marker
+    /// - [ScatterMapbox.Marker](traces/scattermapbox/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the marker symbol. 
         ///
@@ -285,7 +285,7 @@ public struct ScatterMapbox: Trace {
     ///
     /// Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each
     /// segment of the trace if it has gaps) into a closed shape.
-    /// - traces/scattermapbox/attributes/fill
+    /// - [ScatterMapbox.Fill](traces/scattermapbox/attributes/fill)
     public enum Fill: String, Encodable {
         case none
         case toSelf = "toself"
@@ -316,15 +316,15 @@ public struct ScatterMapbox: Trace {
     /// scattermapbox layers above every other layer, set `below` to *''*.
     public var below: String?
 
-    public var selected: Selected1?
+    public var selected: Selected0?
 
-    public var unselected: Selected1?
+    public var unselected: Selected0?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/scattermapbox/attributes/hoverinfo
+    /// - [ScatterMapbox.HoverInfo](traces/scattermapbox/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -459,7 +459,7 @@ public struct ScatterMapbox: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line2? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Font0? = nil, textPosition: TextPosition0? = nil, below: String? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line0? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Font0? = nil, textPosition: TextPosition0? = nil, below: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

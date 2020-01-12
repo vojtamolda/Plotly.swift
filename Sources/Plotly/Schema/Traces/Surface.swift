@@ -157,7 +157,312 @@ public struct Surface: Trace {
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
     public var colorAxis: SubPlotID?
 
-    public var contours: Up0?
+    /// - [Surface.Contours](traces/surface/attributes/contours)
+    public struct Contours: Encodable {
+        /// - [Surface.Contours.X](traces/surface/attributes/contours/x)
+        public struct X: Encodable {
+            /// Determines whether or not contour lines about the x dimension are drawn.
+            public var show: Bool?
+        
+            /// Sets the starting contour level value. 
+            ///
+            /// Must be less than `contours.end`
+            public var start: Double?
+        
+            /// Sets the end contour level value. 
+            ///
+            /// Must be more than `contours.start`
+            public var end: Double?
+        
+            /// Sets the step between each contour level. 
+            ///
+            /// Must be positive.
+            public var size: Double?
+        
+            /// - [Surface.Contours.X.Project](traces/surface/attributes/contours/x/project)
+            public struct Project: Encodable {
+                /// Determines whether or not these contour lines are projected on the x plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var x: Bool?
+            
+                /// Determines whether or not these contour lines are projected on the y plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var y: Bool?
+            
+                /// Determines whether or not these contour lines are projected on the z plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var z: Bool?
+            
+                public init(x: Bool? = nil, y: Bool? = nil, z: Bool? = nil) {
+                    self.x = x
+                    self.y = y
+                    self.z = z
+                }
+            }
+            public var project: Project?
+        
+            /// Sets the color of the contour lines.
+            public var color: Color?
+        
+            /// An alternate to *color*. 
+            ///
+            /// Determines whether or not the contour lines are colored using the trace *colorscale*.
+            public var useColormap: Bool?
+        
+            /// Sets the width of the contour lines.
+            public var width: Double?
+        
+            /// Determines whether or not contour lines about the x dimension are highlighted on hover.
+            public var highlight: Bool?
+        
+            /// Sets the color of the highlighted contour lines.
+            public var highlightColor: Color?
+        
+            /// Sets the width of the highlighted contour lines.
+            public var highlightWidth: Double?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case show
+                case start
+                case end
+                case size
+                case project
+                case color
+                case useColormap = "usecolormap"
+                case width
+                case highlight
+                case highlightColor = "highlightcolor"
+                case highlightWidth = "highlightwidth"
+            }
+            
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Project? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+                self.show = show
+                self.start = start
+                self.end = end
+                self.size = size
+                self.project = project
+                self.color = color
+                self.useColormap = useColormap
+                self.width = width
+                self.highlight = highlight
+                self.highlightColor = highlightColor
+                self.highlightWidth = highlightWidth
+            }
+        }
+        public var x: X?
+    
+        /// - [Surface.Contours.Y](traces/surface/attributes/contours/y)
+        public struct Y: Encodable {
+            /// Determines whether or not contour lines about the y dimension are drawn.
+            public var show: Bool?
+        
+            /// Sets the starting contour level value. 
+            ///
+            /// Must be less than `contours.end`
+            public var start: Double?
+        
+            /// Sets the end contour level value. 
+            ///
+            /// Must be more than `contours.start`
+            public var end: Double?
+        
+            /// Sets the step between each contour level. 
+            ///
+            /// Must be positive.
+            public var size: Double?
+        
+            /// - [Surface.Contours.Y.Project](traces/surface/attributes/contours/y/project)
+            public struct Project: Encodable {
+                /// Determines whether or not these contour lines are projected on the x plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var x: Bool?
+            
+                /// Determines whether or not these contour lines are projected on the y plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var y: Bool?
+            
+                /// Determines whether or not these contour lines are projected on the z plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var z: Bool?
+            
+                public init(x: Bool? = nil, y: Bool? = nil, z: Bool? = nil) {
+                    self.x = x
+                    self.y = y
+                    self.z = z
+                }
+            }
+            public var project: Project?
+        
+            /// Sets the color of the contour lines.
+            public var color: Color?
+        
+            /// An alternate to *color*. 
+            ///
+            /// Determines whether or not the contour lines are colored using the trace *colorscale*.
+            public var useColormap: Bool?
+        
+            /// Sets the width of the contour lines.
+            public var width: Double?
+        
+            /// Determines whether or not contour lines about the y dimension are highlighted on hover.
+            public var highlight: Bool?
+        
+            /// Sets the color of the highlighted contour lines.
+            public var highlightColor: Color?
+        
+            /// Sets the width of the highlighted contour lines.
+            public var highlightWidth: Double?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case show
+                case start
+                case end
+                case size
+                case project
+                case color
+                case useColormap = "usecolormap"
+                case width
+                case highlight
+                case highlightColor = "highlightcolor"
+                case highlightWidth = "highlightwidth"
+            }
+            
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Project? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+                self.show = show
+                self.start = start
+                self.end = end
+                self.size = size
+                self.project = project
+                self.color = color
+                self.useColormap = useColormap
+                self.width = width
+                self.highlight = highlight
+                self.highlightColor = highlightColor
+                self.highlightWidth = highlightWidth
+            }
+        }
+        public var y: Y?
+    
+        /// - [Surface.Contours.Z](traces/surface/attributes/contours/z)
+        public struct Z: Encodable {
+            /// Determines whether or not contour lines about the z dimension are drawn.
+            public var show: Bool?
+        
+            /// Sets the starting contour level value. 
+            ///
+            /// Must be less than `contours.end`
+            public var start: Double?
+        
+            /// Sets the end contour level value. 
+            ///
+            /// Must be more than `contours.start`
+            public var end: Double?
+        
+            /// Sets the step between each contour level. 
+            ///
+            /// Must be positive.
+            public var size: Double?
+        
+            /// - [Surface.Contours.Z.Project](traces/surface/attributes/contours/z/project)
+            public struct Project: Encodable {
+                /// Determines whether or not these contour lines are projected on the x plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var x: Bool?
+            
+                /// Determines whether or not these contour lines are projected on the y plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var y: Bool?
+            
+                /// Determines whether or not these contour lines are projected on the z plane. 
+                ///
+                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
+                /// is set to *true*, the projected lines are shown in permanence.
+                public var z: Bool?
+            
+                public init(x: Bool? = nil, y: Bool? = nil, z: Bool? = nil) {
+                    self.x = x
+                    self.y = y
+                    self.z = z
+                }
+            }
+            public var project: Project?
+        
+            /// Sets the color of the contour lines.
+            public var color: Color?
+        
+            /// An alternate to *color*. 
+            ///
+            /// Determines whether or not the contour lines are colored using the trace *colorscale*.
+            public var useColormap: Bool?
+        
+            /// Sets the width of the contour lines.
+            public var width: Double?
+        
+            /// Determines whether or not contour lines about the z dimension are highlighted on hover.
+            public var highlight: Bool?
+        
+            /// Sets the color of the highlighted contour lines.
+            public var highlightColor: Color?
+        
+            /// Sets the width of the highlighted contour lines.
+            public var highlightWidth: Double?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case show
+                case start
+                case end
+                case size
+                case project
+                case color
+                case useColormap = "usecolormap"
+                case width
+                case highlight
+                case highlightColor = "highlightcolor"
+                case highlightWidth = "highlightwidth"
+            }
+            
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Project? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+                self.show = show
+                self.start = start
+                self.end = end
+                self.size = size
+                self.project = project
+                self.color = color
+                self.useColormap = useColormap
+                self.width = width
+                self.highlight = highlight
+                self.highlightColor = highlightColor
+                self.highlightWidth = highlightWidth
+            }
+        }
+        public var z: Z?
+    
+        public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
+            self.x = x
+            self.y = y
+            self.z = z
+        }
+    }
+    public var contours: Contours?
 
     /// Determines whether or not a surface is drawn. 
     ///
@@ -165,9 +470,9 @@ public struct Surface: Trace {
     /// *true* to draw a wire frame plot.
     public var hideSurface: Bool?
 
-    public var lightPosition: Up0?
+    public var lightPosition: LightPosition0?
 
-    /// - traces/surface/attributes/lighting
+    /// - [Surface.Lighting](traces/surface/attributes/lighting)
     public struct Lighting: Encodable {
         /// Ambient light increases overall color visibility but can wash out the image.
         public var ambient: Double?
@@ -313,7 +618,7 @@ public struct Surface: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, contours: Up0? = nil, hideSurface: Bool? = nil, lightPosition: Up0? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: HoverInfo0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, surfaceColorSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: LightPosition0? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: HoverInfo0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, surfaceColorSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

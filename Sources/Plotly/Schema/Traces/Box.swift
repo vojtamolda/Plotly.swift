@@ -69,7 +69,7 @@ public struct Box: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -151,7 +151,7 @@ public struct Box: Trace {
     public var notchWidth: Double?
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
-    /// - traces/box/attributes/boxpoints
+    /// - [Box.BoxPoints](traces/box/attributes/boxpoints)
     public enum BoxPoints: String, Encodable {
         case all
         case outliers
@@ -164,7 +164,7 @@ public struct Box: Trace {
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). 
     ///
     /// If *sd* the standard deviation is also drawn.
-    /// - traces/box/attributes/boxmean
+    /// - [Box.BoxMean](traces/box/attributes/boxmean)
     public enum BoxMean: String, Encodable {
         case `true` = "true"
         case sd
@@ -196,7 +196,7 @@ public struct Box: Trace {
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically selected based on the positions of other box traces in the same subplot.
     public var width: Double?
 
-    /// - traces/box/attributes/marker
+    /// - [Box.Marker](traces/box/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the color of the outlier sample points.
         public var outlierColor: Color?
@@ -221,7 +221,7 @@ public struct Box: Trace {
         /// if set.
         public var color: Color?
     
-        /// - traces/box/attributes/marker/line
+        /// - [Box.Marker.Line](traces/box/attributes/marker/line)
         public struct Line: Encodable {
             /// Sets themarker.linecolor. 
             ///
@@ -279,7 +279,7 @@ public struct Box: Trace {
     }
     public var marker: Marker?
 
-    public var line: Line2?
+    public var line: Line0?
 
     /// Sets the fill color. 
     ///
@@ -295,12 +295,12 @@ public struct Box: Trace {
     /// This controls whether bars compute their positional range dependently or independently.
     public var alignmentGroup: String?
 
-    public var selected: Selected1?
+    public var selected: Selected0?
 
-    public var unselected: Selected1?
+    public var unselected: Selected0?
 
     /// Do the hover effects highlight individual boxes  or sample points or both?
-    /// - traces/box/attributes/hoveron
+    /// - [Box.HoverOn](traces/box/attributes/hoveron)
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -423,7 +423,7 @@ public struct Box: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Orientation0? = nil, width: Double? = nil, marker: Marker? = nil, line: Line2? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverOn: HoverOn? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Orientation0? = nil, width: Double? = nil, marker: Marker? = nil, line: Line0? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverOn: HoverOn? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

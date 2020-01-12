@@ -44,7 +44,7 @@ public struct Indicator: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -62,7 +62,7 @@ public struct Indicator: Trace {
     ///
     /// `number` displays the value numerically in text. `delta` displays the difference to a reference
     /// value in text. Finally, `gauge` displays the value graphically on an axis.
-    /// - traces/indicator/attributes/mode
+    /// - [Indicator.Mode](traces/indicator/attributes/mode)
     public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -98,7 +98,7 @@ public struct Indicator: Trace {
 
     public var domain: Domain0?
 
-    /// - traces/indicator/attributes/title
+    /// - [Indicator.Title](traces/indicator/attributes/title)
     public struct Title: Encodable {
         /// Sets the title of this indicator.
         public var text: String?
@@ -119,7 +119,7 @@ public struct Indicator: Trace {
     }
     public var title: Title?
 
-    /// - traces/indicator/attributes/number
+    /// - [Indicator.Number](traces/indicator/attributes/number)
     public struct Number: Encodable {
         /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. 
         ///
@@ -152,7 +152,7 @@ public struct Indicator: Trace {
     }
     public var number: Number?
 
-    /// - traces/indicator/attributes/delta
+    /// - [Indicator.Delta](traces/indicator/attributes/delta)
     public struct Delta: Encodable {
         /// Sets the reference value to compute the delta. 
         ///
@@ -160,7 +160,7 @@ public struct Indicator: Trace {
         public var reference: Double?
     
         /// Sets the position of delta with respect to the number.
-        /// - traces/indicator/attributes/delta/position
+        /// - [Indicator.Delta.Position](traces/indicator/attributes/delta/position)
         public enum Position: String, Encodable {
             case top
             case bottom
@@ -178,7 +178,7 @@ public struct Indicator: Trace {
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
         public var valueFormat: String?
     
-        /// - traces/indicator/attributes/delta/increasing
+        /// - [Indicator.Delta.Increasing](traces/indicator/attributes/delta/increasing)
         public struct Increasing: Encodable {
             /// Sets the symbol to display for increasing value
             public var symbol: String?
@@ -193,7 +193,7 @@ public struct Indicator: Trace {
         }
         public var increasing: Increasing?
     
-        /// - traces/indicator/attributes/delta/decreasing
+        /// - [Indicator.Delta.Decreasing](traces/indicator/attributes/delta/decreasing)
         public struct Decreasing: Encodable {
             /// Sets the symbol to display for increasing value
             public var symbol: String?
@@ -235,10 +235,10 @@ public struct Indicator: Trace {
     public var delta: Delta?
 
     /// The gauge of the Indicator plot.
-    /// - traces/indicator/attributes/gauge
+    /// - [Indicator.Gauge](traces/indicator/attributes/gauge)
     public struct Gauge: Encodable {
         /// Set the shape of the gauge
-        /// - traces/indicator/attributes/gauge/shape
+        /// - [Indicator.Gauge.Shape](traces/indicator/attributes/gauge/shape)
         public enum Shape: String, Encodable {
             case angular
             case bullet
@@ -247,17 +247,17 @@ public struct Indicator: Trace {
         public var shape: Shape?
     
         /// Set the appearance of the gauge's value
-        /// - traces/indicator/attributes/gauge/bar
+        /// - [Indicator.Gauge.Bar](traces/indicator/attributes/gauge/bar)
         public struct Bar: Encodable {
             /// Sets the background color of the arc.
             public var color: Color?
         
-            public var line: Line2?
+            public var line: Line0?
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
             public var thickness: Double?
         
-            public init(color: Color? = nil, line: Line2? = nil, thickness: Double? = nil) {
+            public init(color: Color? = nil, line: Line0? = nil, thickness: Double? = nil) {
                 self.color = color
                 self.line = line
                 self.thickness = thickness
@@ -275,7 +275,7 @@ public struct Indicator: Trace {
         /// Sets the width (in px) of the border enclosing the gauge.
         public var borderWidth: Double?
     
-        /// - traces/indicator/attributes/gauge/axis
+        /// - [Indicator.Gauge.Axis](traces/indicator/attributes/gauge/axis)
         public struct Axis: Encodable {
             /// Sets the range of this axis.
             public var range: InfoArray?
@@ -470,11 +470,75 @@ public struct Indicator: Trace {
         }
         public var axis: Axis?
     
-        public var steps: TickFormatStops0?
+        /// - [Indicator.Gauge.Steps](traces/indicator/attributes/gauge/steps)
+        public struct Steps: Encodable {
+            /// - [Indicator.Gauge.Steps.Items](traces/indicator/attributes/gauge/steps/items)
+            public struct Items: Encodable {
+                /// - [Indicator.Gauge.Steps.Items.Step](traces/indicator/attributes/gauge/steps/items/step)
+                public struct Step: Encodable {
+                    /// Sets the background color of the arc.
+                    public var color: Color?
+                
+                    public var line: Line0?
+                
+                    /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
+                    public var thickness: Double?
+                
+                    /// Sets the range of this axis.
+                    public var range: InfoArray?
+                
+                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+                    ///
+                    /// You can modify these items in the output figure by making your own item with `templateitemname`
+                    /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+                    /// false` to hide it). Has no effect outside of a template.
+                    public var name: String?
+                
+                    /// Used to refer to a named item in this array in the template. 
+                    ///
+                    /// Named items from the template will be created even without a matching item in the input figure,
+                    /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+                    /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+                    /// template or no matching item, this item will be hidden unless you explicitly show it with
+                    /// `visible: true`.
+                    public var templateItemName: String?
+                
+                    /// Plotly compatible property encoding
+                    enum CodingKeys: String, CodingKey {
+                        case color
+                        case line
+                        case thickness
+                        case range
+                        case name
+                        case templateItemName = "templateitemname"
+                    }
+                    
+                    public init(color: Color? = nil, line: Line0? = nil, thickness: Double? = nil, range: InfoArray? = nil, name: String? = nil, templateItemName: String? = nil) {
+                        self.color = color
+                        self.line = line
+                        self.thickness = thickness
+                        self.range = range
+                        self.name = name
+                        self.templateItemName = templateItemName
+                    }
+                }
+                public var step: Step?
+            
+                public init(step: Step? = nil) {
+                    self.step = step
+                }
+            }
+            public var items: Items?
+        
+            public init(items: Items? = nil) {
+                self.items = items
+            }
+        }
+        public var steps: Steps?
     
-        /// - traces/indicator/attributes/gauge/threshold
+        /// - [Indicator.Gauge.Threshold](traces/indicator/attributes/gauge/threshold)
         public struct Threshold: Encodable {
-            public var line: Line2?
+            public var line: Line0?
         
             /// Sets the thickness of the threshold line as a fraction of the thickness of the gauge.
             public var thickness: Double?
@@ -482,7 +546,7 @@ public struct Indicator: Trace {
             /// Sets a treshold value drawn as a line.
             public var value: Double?
         
-            public init(line: Line2? = nil, thickness: Double? = nil, value: Double? = nil) {
+            public init(line: Line0? = nil, thickness: Double? = nil, value: Double? = nil) {
                 self.line = line
                 self.thickness = thickness
                 self.value = value
@@ -502,7 +566,7 @@ public struct Indicator: Trace {
             case threshold
         }
         
-        public init(shape: Shape? = nil, bar: Bar? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, axis: Axis? = nil, steps: TickFormatStops0? = nil, threshold: Threshold? = nil) {
+        public init(shape: Shape? = nil, bar: Bar? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, axis: Axis? = nil, steps: Steps? = nil, threshold: Threshold? = nil) {
             self.shape = shape
             self.bar = bar
             self.backgroundColor = backgroundColor
@@ -551,7 +615,7 @@ public struct Indicator: Trace {
         case metaSource = "metasrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Align1? = nil, domain: Domain0? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Align1? = nil, domain: Domain0? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

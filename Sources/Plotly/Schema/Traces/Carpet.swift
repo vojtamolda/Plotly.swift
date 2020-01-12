@@ -104,7 +104,7 @@ public struct Carpet: Trace {
     /// Only used if `x` is been ommitted.
     public var cheaterSlope: Double?
 
-    /// - traces/carpet/attributes/aaxis
+    /// - [Carpet.AAxis](traces/carpet/attributes/aaxis)
     public struct AAxis: Encodable {
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
         ///
@@ -114,28 +114,66 @@ public struct Carpet: Trace {
     
         public var smoothing: Double?
     
-        /// - traces/carpet/attributes/aaxis/title
+        /// - [Layout.ColorAxis.ColorBar0.Title](layout/layoutAttributes/coloraxis/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/bar/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmap/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2d/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2dcontour/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/contour/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterternary/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnel/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/pie/attributes/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/sunburst/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/treemap/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnelarea/attributes/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/line/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/surface/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/isosurface/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/volume/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/mesh3d/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/cone/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/streamtube/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergeo/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/choropleth/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergl/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/splom/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmapgl/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcoords/attributes/line/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcats/attributes/line/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattermapbox/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/choroplethmapbox/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/densitymapbox/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/aaxis/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/baxis/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattercarpet/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/contourcarpet/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolar/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolargl/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/barpolar/attributes/marker/colorbar/title)
         public struct Title: Encodable {
-            /// Sets the title of this axis. 
+            /// Sets the title of the color bar. 
             ///
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
             public var text: String?
         
-            /// Sets this axis' title font. 
+            /// Sets this color bar's title font. 
             ///
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
             public var font: Font0?
         
-            /// An additional amount by which to offset the title from the tick labels, given in pixels. 
+            /// Determines the location of color bar's title with respect to the color bar. 
             ///
-            /// Note that this used to be set by the now deprecated `titleoffset` attribute.
-            public var offset: Double?
+            /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+            public var side: Side0?
         
-            public init(text: String? = nil, font: Font0? = nil, offset: Double? = nil) {
+            public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
                 self.text = text
                 self.font = font
-                self.offset = offset
+                self.side = side
             }
         }
         public var title: Title?
@@ -144,7 +182,7 @@ public struct Carpet: Trace {
         ///
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
-        /// - traces/carpet/attributes/aaxis/type
+        /// - [Carpet.AAxis.Rule](traces/carpet/attributes/aaxis/type)
         public enum Rule: String, Encodable {
             case auto = "-"
             case linear
@@ -182,14 +220,14 @@ public struct Carpet: Trace {
         /// If true, then zoom is disabled.
         public var fixedRange: Bool?
     
-        /// - traces/carpet/attributes/aaxis/cheatertype
+        /// - [Carpet.AAxis.CheaterType](traces/carpet/attributes/aaxis/cheatertype)
         public enum CheaterType: String, Encodable {
             case index
             case value
         }
         public var cheaterType: CheaterType?
     
-        /// - traces/carpet/attributes/aaxis/tickmode
+        /// - [Carpet.AAxis.TickMode](traces/carpet/attributes/aaxis/tickmode)
         public enum TickMode: String, Encodable {
             case linear
             case array
@@ -213,7 +251,7 @@ public struct Carpet: Trace {
         public var tickText: [Double]?
     
         /// Determines whether axis labels are drawn on the low side, the high side, both, or neither side of the axis.
-        /// - traces/carpet/attributes/aaxis/showticklabels
+        /// - [Carpet.AAxis.ShowTickLabels](traces/carpet/attributes/aaxis/showticklabels)
         public enum ShowTickLabels: String, Encodable {
             case start
             case end
@@ -279,7 +317,7 @@ public struct Carpet: Trace {
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        /// - traces/carpet/attributes/aaxis/categoryorder
+        /// - [Carpet.AAxis.CategoryOrder](traces/carpet/attributes/aaxis/categoryorder)
         public enum CategoryOrder: String, Encodable {
             case trace
             case categoryAscending = "category ascending"
@@ -495,7 +533,7 @@ public struct Carpet: Trace {
     }
     public var aAxis: AAxis?
 
-    /// - traces/carpet/attributes/baxis
+    /// - [Carpet.BAxis](traces/carpet/attributes/baxis)
     public struct BAxis: Encodable {
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
         ///
@@ -505,28 +543,66 @@ public struct Carpet: Trace {
     
         public var smoothing: Double?
     
-        /// - traces/carpet/attributes/baxis/title
+        /// - [Layout.ColorAxis.ColorBar0.Title](layout/layoutAttributes/coloraxis/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/bar/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmap/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2d/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2dcontour/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/contour/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterternary/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnel/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/pie/attributes/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/sunburst/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/treemap/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnelarea/attributes/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/line/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/surface/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/isosurface/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/volume/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/mesh3d/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/cone/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/streamtube/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergeo/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/choropleth/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergl/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/splom/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmapgl/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcoords/attributes/line/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcats/attributes/line/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattermapbox/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/choroplethmapbox/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/densitymapbox/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/aaxis/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/baxis/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattercarpet/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/contourcarpet/attributes/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolar/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolargl/attributes/marker/colorbar/title)
+        /// - [Layout.ColorAxis.ColorBar0.Title](traces/barpolar/attributes/marker/colorbar/title)
         public struct Title: Encodable {
-            /// Sets the title of this axis. 
+            /// Sets the title of the color bar. 
             ///
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
             public var text: String?
         
-            /// Sets this axis' title font. 
+            /// Sets this color bar's title font. 
             ///
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
             public var font: Font0?
         
-            /// An additional amount by which to offset the title from the tick labels, given in pixels. 
+            /// Determines the location of color bar's title with respect to the color bar. 
             ///
-            /// Note that this used to be set by the now deprecated `titleoffset` attribute.
-            public var offset: Double?
+            /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+            public var side: Side0?
         
-            public init(text: String? = nil, font: Font0? = nil, offset: Double? = nil) {
+            public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
                 self.text = text
                 self.font = font
-                self.offset = offset
+                self.side = side
             }
         }
         public var title: Title?
@@ -535,7 +611,7 @@ public struct Carpet: Trace {
         ///
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
-        /// - traces/carpet/attributes/baxis/type
+        /// - [Carpet.BAxis.Rule](traces/carpet/attributes/baxis/type)
         public enum Rule: String, Encodable {
             case auto = "-"
             case linear
@@ -573,14 +649,14 @@ public struct Carpet: Trace {
         /// If true, then zoom is disabled.
         public var fixedRange: Bool?
     
-        /// - traces/carpet/attributes/baxis/cheatertype
+        /// - [Carpet.BAxis.CheaterType](traces/carpet/attributes/baxis/cheatertype)
         public enum CheaterType: String, Encodable {
             case index
             case value
         }
         public var cheaterType: CheaterType?
     
-        /// - traces/carpet/attributes/baxis/tickmode
+        /// - [Carpet.BAxis.TickMode](traces/carpet/attributes/baxis/tickmode)
         public enum TickMode: String, Encodable {
             case linear
             case array
@@ -604,7 +680,7 @@ public struct Carpet: Trace {
         public var tickText: [Double]?
     
         /// Determines whether axis labels are drawn on the low side, the high side, both, or neither side of the axis.
-        /// - traces/carpet/attributes/baxis/showticklabels
+        /// - [Carpet.BAxis.ShowTickLabels](traces/carpet/attributes/baxis/showticklabels)
         public enum ShowTickLabels: String, Encodable {
             case start
             case end
@@ -670,7 +746,7 @@ public struct Carpet: Trace {
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        /// - traces/carpet/attributes/baxis/categoryorder
+        /// - [Carpet.BAxis.CategoryOrder](traces/carpet/attributes/baxis/categoryorder)
         public enum CategoryOrder: String, Encodable {
             case trace
             case categoryAscending = "category ascending"

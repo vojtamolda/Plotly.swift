@@ -65,7 +65,7 @@ public struct ScatterPolarGL: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -116,7 +116,7 @@ public struct ScatterPolarGL: Trace {
     /// Sets the unit of input *theta* values. 
     ///
     /// Has an effect only when on *linear* angular axes.
-    /// - traces/scatterpolargl/attributes/thetaunit
+    /// - [ScatterPolarGL.ThetaUnit](traces/scatterpolargl/attributes/thetaunit)
     public enum ThetaUnit: String, Encodable {
         case radians
         case degrees
@@ -171,58 +171,14 @@ public struct ScatterPolarGL: Trace {
     /// `<extra></extra>`.
     public var hoverTemplate: String?
 
-    /// - traces/scatterpolargl/attributes/line
-    public struct Line: Encodable {
-        /// Sets the line color.
-        public var color: Color?
-    
-        /// Sets the line width (in px).
-        public var width: Double?
-    
-        /// Determines the line shape. 
-        ///
-        /// The values correspond to step-wise line shapes.
-        /// - traces/scatterpolargl/attributes/line/shape
-        public enum Shape: String, Encodable {
-            case linear
-            case hv
-            case vh
-            case hvh
-            case vhv
-        }
-        /// Determines the line shape. 
-        ///
-        /// The values correspond to step-wise line shapes.
-        public var shape: Shape?
-    
-        /// Sets the style of the lines.
-        /// - traces/scatterpolargl/attributes/line/dash
-        public enum Dash: String, Encodable {
-            case solid
-            case dot
-            case dash
-            case longDash = "longdash"
-            case dashDot = "dashdot"
-            case longDashDot = "longdashdot"
-        }
-        /// Sets the style of the lines.
-        public var dash: Dash?
-    
-        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Dash? = nil) {
-            self.color = color
-            self.width = width
-            self.shape = shape
-            self.dash = dash
-        }
-    }
-    public var line: Line?
+    public var line: Line2?
 
     /// Determines whether or not gaps (i.e. 
     ///
     /// {nan} or missing values) in the provided data arrays are connected.
     public var connectGaps: Bool?
 
-    /// - traces/scatterpolargl/attributes/marker
+    /// - [ScatterPolarGL.Marker](traces/scatterpolargl/attributes/marker)
     public struct Marker: Encodable {
         /// Sets themarkercolor. 
         ///
@@ -321,7 +277,7 @@ public struct ScatterPolarGL: Trace {
         /// Sets the marker opacity.
         public var opacity: Double?
     
-        /// - traces/scatterpolargl/attributes/marker/line
+        /// - [ScatterPolarGL.Marker.Line](traces/scatterpolargl/attributes/marker/line)
         public struct Line: Encodable {
             /// Sets themarker.linecolor. 
             ///
@@ -506,7 +462,7 @@ public struct ScatterPolarGL: Trace {
     /// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
     /// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
     /// later ones will be pushed down in the drawing order.
-    /// - traces/scatterpolargl/attributes/fill
+    /// - [ScatterPolarGL.Fill](traces/scatterpolargl/attributes/fill)
     public enum Fill: String, Encodable {
         case none
         case toZeroY = "tozeroy"
@@ -542,13 +498,13 @@ public struct ScatterPolarGL: Trace {
     public var textPosition: TextPosition0?
 
     /// Sets the text font.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/scatterpolargl/attributes/hoverinfo
+    /// - [ScatterPolarGL.HoverInfo](traces/scatterpolargl/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -678,7 +634,7 @@ public struct ScatterPolarGL: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, mode: Mode0? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, line: Line? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textPosition: TextPosition0? = nil, textFont: Font1? = nil, hoverInfo: HoverInfo? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, mode: Mode0? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, line: Line2? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textPosition: TextPosition0? = nil, textFont: Font0? = nil, hoverInfo: HoverInfo? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

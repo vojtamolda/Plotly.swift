@@ -65,7 +65,7 @@ public struct Contour: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -123,7 +123,7 @@ public struct Contour: Trace {
     ///
     /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
     /// `x` is not provided).
-    /// - traces/contour/attributes/xtype
+    /// - [Contour.XType](traces/contour/attributes/xtype)
     public enum XType: String, Encodable {
         case array
         case scaled
@@ -135,7 +135,7 @@ public struct Contour: Trace {
     public var xType: XType?
 
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
-    /// - traces/contour/attributes/ytype
+    /// - [Contour.YType](traces/contour/attributes/ytype)
     public enum YType: String, Encodable {
         case array
         case scaled
@@ -194,13 +194,13 @@ public struct Contour: Trace {
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
     public var nContours: Int?
 
-    /// - traces/contour/attributes/contours
+    /// - [Contour.Contours](traces/contour/attributes/contours)
     public struct Contours: Encodable {
         /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
         ///
         /// If `constraint`, the data is represented as constraints with the invalid region shaded as
         /// specified by the `operation` and `value` parameters.
-        /// - traces/contour/attributes/contours/type
+        /// - [Contour.Contours.Rule](traces/contour/attributes/contours/type)
         public enum Rule: String, Encodable {
             case levels
             case constraint
@@ -231,7 +231,7 @@ public struct Contour: Trace {
         /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
         /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
         /// lines. If *none*, no coloring is applied on this trace.
-        /// - traces/contour/attributes/contours/coloring
+        /// - [Contour.Contours.Coloring](traces/contour/attributes/contours/coloring)
         public enum Coloring: String, Encodable {
             case fill
             case heatmap
@@ -269,7 +269,7 @@ public struct Contour: Trace {
         /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
         /// intervals make no difference to constraint display, but all versions are allowed for consistency
         /// with filter transforms.
-        /// - traces/contour/attributes/contours/operation
+        /// - [Contour.Contours.Operation](traces/contour/attributes/contours/operation)
         public enum Operation: String, Encodable {
             case equalTo = "="
             case lessThan = "<"
@@ -302,7 +302,7 @@ public struct Contour: Trace {
         /// second is the upper bound.
         public var value: Anything?
     
-        public var impliedEdits: ImpliedEdits0?
+        public var impliedEdits: Edits0?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -320,7 +320,7 @@ public struct Contour: Trace {
             case impliedEdits
         }
         
-        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: ImpliedEdits0? = nil) {
+        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: Edits0? = nil) {
             self.type = type
             self.start = start
             self.end = end
@@ -337,35 +337,7 @@ public struct Contour: Trace {
     }
     public var contours: Contours?
 
-    /// - traces/contour/attributes/line
-    public struct Line: Encodable {
-        /// Sets the color of the contour level. 
-        ///
-        /// Has no effect if `contours.coloring` is set to *lines*.
-        public var color: Color?
-    
-        /// Sets the contour line width in (in px) Defaults to *0.5* when `contours.type` is *levels*. 
-        ///
-        /// Defaults to *2* when `contour.type` is *constraint*.
-        public var width: Double?
-    
-        /// Sets the dash style of lines. 
-        ///
-        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-        /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
-    
-        /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
-        public var smoothing: Double?
-    
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, smoothing: Double? = nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
-            self.smoothing = smoothing
-        }
-    }
-    public var line: Line?
+    public var line: Line0?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     public var zAuto: Bool?
@@ -533,7 +505,7 @@ public struct Contour: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: XType? = nil, yType: YType? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: XType? = nil, yType: YType? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line0? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -70,7 +70,7 @@ public struct OHLC: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -101,7 +101,7 @@ public struct OHLC: Trace {
     /// Sets the close values.
     public var close: [Double]?
 
-    /// - traces/ohlc/attributes/line
+    /// - [OHLC.Line](traces/ohlc/attributes/line)
     public struct Line: Encodable {
         /// [object Object] Note that this style setting can also be set per direction via `increasing.line.width` and `decreasing.line.width`.
         public var width: Double?
@@ -120,7 +120,7 @@ public struct OHLC: Trace {
     }
     public var line: Line?
 
-    /// - traces/ohlc/attributes/increasing
+    /// - [OHLC.Increasing](traces/ohlc/attributes/increasing)
     public struct Increasing: Encodable {
         public var line: Line0?
     
@@ -130,7 +130,7 @@ public struct OHLC: Trace {
     }
     public var increasing: Increasing?
 
-    /// - traces/ohlc/attributes/decreasing
+    /// - [OHLC.Decreasing](traces/ohlc/attributes/decreasing)
     public struct Decreasing: Encodable {
         public var line: Line0?
     
@@ -152,72 +152,7 @@ public struct OHLC: Trace {
     /// Sets the width of the open/close tick marks relative to the *x* minimal interval.
     public var tickWidth: Double?
 
-    /// - traces/ohlc/attributes/hoverlabel
-    public struct HoverLabel: Encodable {
-        /// Sets the background color of the hover labels for this trace
-        public var backgroundColor: Color?
-    
-        /// Sets the border color of the hover labels for this trace.
-        public var borderColor: Color?
-    
-        /// Sets the font used in hover labels.
-        public var font: Font1?
-    
-        /// Sets the horizontal alignment of the text content within hover label box. 
-        ///
-        /// Has an effect only if the hover label text spans more two or more lines
-        public var align: Align0?
-    
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
-        ///
-        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
-        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
-        /// truncate to `namelength - 3` characters and add an ellipsis.
-        public var nameLength: Int?
-    
-        /// Show hover information (open, close, high, low) in separate labels.
-        public var split: Bool?
-    
-        /// Sets the source reference on plot.ly for  bgcolor .
-        public var backgroundColorSource: String?
-    
-        /// Sets the source reference on plot.ly for  bordercolor .
-        public var borderColorSource: String?
-    
-        /// Sets the source reference on plot.ly for  align .
-        public var alignSource: String?
-    
-        /// Sets the source reference on plot.ly for  namelength .
-        public var nameLengthSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case backgroundColor = "bgcolor"
-            case borderColor = "bordercolor"
-            case font
-            case align
-            case nameLength = "namelength"
-            case split
-            case backgroundColorSource = "bgcolorsrc"
-            case borderColorSource = "bordercolorsrc"
-            case alignSource = "alignsrc"
-            case nameLengthSource = "namelengthsrc"
-        }
-        
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font1? = nil, align: Align0? = nil, nameLength: Int? = nil, split: Bool? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
-            self.backgroundColor = backgroundColor
-            self.borderColor = borderColor
-            self.font = font
-            self.align = align
-            self.nameLength = nameLength
-            self.split = split
-            self.backgroundColorSource = backgroundColorSource
-            self.borderColorSource = borderColorSource
-            self.alignSource = alignSource
-            self.nameLengthSource = nameLengthSource
-        }
-    }
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: HoverLabel0?
 
     /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
@@ -313,7 +248,7 @@ public struct OHLC: Trace {
         case hoverTextSource = "hovertextsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, openSource: String? = nil, highSource: String? = nil, lowSource: String? = nil, closeSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel0? = nil, xCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, openSource: String? = nil, highSource: String? = nil, lowSource: String? = nil, closeSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -54,7 +54,7 @@ public struct Histogram2D: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -77,7 +77,7 @@ public struct Histogram2D: Trace {
     /// Sets the aggregation data.
     public var z: [Double]?
 
-    /// - traces/histogram2d/attributes/marker
+    /// - [Histogram2D.Marker](traces/histogram2d/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the aggregation data.
         public var color: [Double]?
@@ -108,7 +108,7 @@ public struct Histogram2D: Trace {
     /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    /// - traces/histogram2d/attributes/histnorm
+    /// - [Histogram2D.Normalization](traces/histogram2d/attributes/histnorm)
     public enum Normalization: String, Encodable {
         case none = ""
         case percent
@@ -133,7 +133,7 @@ public struct Histogram2D: Trace {
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
     /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    /// - traces/histogram2d/attributes/histfunc
+    /// - [Histogram2D.BinningFunction](traces/histogram2d/attributes/histfunc)
     public enum BinningFunction: String, Encodable {
         case count
         case sum
@@ -154,7 +154,41 @@ public struct Histogram2D: Trace {
     /// histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
     public var xNumBins: Int?
 
-    public var xBins: XBins0?
+    /// - [Histogram2D.XBins](traces/histogram2d/attributes/xbins)
+    public struct XBins: Encodable {
+        /// Sets the starting value for the x axis bins. 
+        ///
+        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
+        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
+        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
+        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
+        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
+        /// based on the category serial numbers, and defaults to -0.5. 
+        public var start: Anything?
+    
+        /// Sets the end value for the x axis bins. 
+        ///
+        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
+        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
+        /// a date string, and for category data `end` is based on the category serial numbers.
+        public var end: Anything?
+    
+        /// Sets the size of each x axis bin. 
+        ///
+        /// Default behavior: If `nbinsx` is 0 or omitted, we choose a nice round bin size such that the
+        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsx` is
+        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
+        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
+        /// categories to bin together (always defaults to 1). 
+        public var size: Anything?
+    
+        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
+            self.start = start
+            self.end = end
+            self.size = size
+        }
+    }
+    public var xBins: XBins?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -162,7 +196,41 @@ public struct Histogram2D: Trace {
     /// histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
     public var yNumBins: Int?
 
-    public var yBins: XBins0?
+    /// - [Histogram2D.YBins](traces/histogram2d/attributes/ybins)
+    public struct YBins: Encodable {
+        /// Sets the starting value for the y axis bins. 
+        ///
+        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
+        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
+        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
+        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
+        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
+        /// based on the category serial numbers, and defaults to -0.5. 
+        public var start: Anything?
+    
+        /// Sets the end value for the y axis bins. 
+        ///
+        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
+        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
+        /// a date string, and for category data `end` is based on the category serial numbers.
+        public var end: Anything?
+    
+        /// Sets the size of each y axis bin. 
+        ///
+        /// Default behavior: If `nbinsy` is 0 or omitted, we choose a nice round bin size such that the
+        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsy` is
+        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
+        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
+        /// categories to bin together (always defaults to 1). 
+        public var size: Anything?
+    
+        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
+            self.start = start
+            self.end = end
+            self.size = size
+        }
+    }
+    public var yBins: YBins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. 
     ///
@@ -200,7 +268,7 @@ public struct Histogram2D: Trace {
     public var yGap: Double?
 
     /// Picks a smoothing algorithm use to smooth `z` data.
-    /// - traces/histogram2d/attributes/zsmooth
+    /// - [Histogram2D.ZSmooth](traces/histogram2d/attributes/zsmooth)
     public enum ZSmooth: String, Encodable {
         case fast
         case best
@@ -386,7 +454,7 @@ public struct Histogram2D: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: XBins? = nil, yNumBins: Int? = nil, yBins: YBins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

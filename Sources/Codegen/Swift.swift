@@ -44,6 +44,7 @@ extension Definable {
 /// A shared Swift type that tracks it's references to allow re-use and prevent duplicate definitions of identical objects.
 protocol SwiftSharedType: SwiftType, Definable, Equatable, AnyObject {
     var name: String { get set }
+    var parent: Swift.Object? { get }
     var access: Swift.Access { get set }
     var instances: [Instance<Self>] { get set }
     static var existing: [Self] { get set }
@@ -52,7 +53,21 @@ protocol SwiftSharedType: SwiftType, Definable, Equatable, AnyObject {
     static func write(to url: URL, _ existing: inout [String: Int])
 }
 extension SwiftSharedType {
-    var shared: Bool { instances.count > 1 }
+    var path: String {
+        var ancestors = [name]
+        var ancestor = self.parent
+        while ancestor != nil {
+            ancestors.append(ancestor!.name)
+            ancestor = ancestor!.parent
+        }
+        let path = ancestors.reversed().joined(separator: ".")
+        return path
+    }
+    var shared: Bool {
+        let ancestorIsShared = parent?.shared ?? false
+        let hasMultipleInstances = instances.count > 1
+        return hasMultipleInstances && !ancestorIsShared
+    }
     var documentation: [String] { schema.description?.documentation() ?? [] }
 
     /// Default implementation for shared types that keeps track of instances.
@@ -86,7 +101,7 @@ extension SwiftSharedType {
         for identicalTypes in identicalGroups {
             if identicalTypes.count < 5 { continue }
             let sharedType = identicalTypes[0]
-            for type in identicalTypes {
+            for type in identicalTypes.filter({ !$0.instances.isEmpty }) {
                 let instance = type.instances.popLast()!
                 instance.type = sharedType
                 sharedType.instances.append(instance)
@@ -125,6 +140,7 @@ class Swift {
     /// Data type that maps hierarchical Plotly `object` to a Swift `struct`.
     final class Object: SwiftSharedType {
         var name: String
+        var parent: Object?
         var schema: Schema.Object
         var access: Swift.Access = .public
         var protocols: [String] = ["Encodable"]
@@ -140,7 +156,7 @@ class Swift {
         var definition: [String] {
             var lines = [String]()
             for instance in instances {
-                lines += ["/// - \(instance.schema.path)"]
+                lines += ["/// - [\(instance.type.path)](\(instance.schema.path))"]
             }
 
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
@@ -180,8 +196,9 @@ class Swift {
             return lines
         }
 
-        init(named name: String, schema object: Schema.Object) {
+        init(named name: String, parent: Swift.Object? = nil, schema object: Schema.Object) {
             self.name = Swift.name!.pascalCased(name)
+            self.parent = parent
             self.schema = object
             self.members = []
             self.primitives = [:]
@@ -199,7 +216,7 @@ class Swift {
                         let dataArrayType = Swift.DataArray(schema: dataArray)
                         members += [dataArrayType.instance(named: identifier)]
                     case .enumerated(let enumerated):
-                        let enumeratedType = Swift.Enumerated(named: identifier, schema: enumerated)
+                        let enumeratedType = Swift.Enumerated(named: identifier, parent: self, schema: enumerated)
                         members += [enumeratedType.instance(named: identifier)]
                     case .boolean(let boolean):
                         let booleanType = Swift.Boolean(schema: boolean)
@@ -229,7 +246,7 @@ class Swift {
                         let subPlotIdType = Swift.SubPlotID(schema: subPlotId)
                         members += [subPlotIdType.instance(named: identifier)]
                     case .flagList(let flagList):
-                        let flagListType = Swift.FlagList(named: identifier, schema: flagList)
+                        let flagListType = Swift.FlagList(named: identifier, parent: self, schema: flagList)
                         members += [flagListType.instance(named: identifier)]
                     case .any(let any):
                         let anyType = Swift.Any_(schema: any)
@@ -239,7 +256,7 @@ class Swift {
                         members += [infoArrayType.instance(named: identifier)]
                     }
                 case .object(let object):
-                    let nestedObject = Swift.Object(named: identifier, schema: object)
+                    let nestedObject = Swift.Object(named: identifier, parent: self, schema: object)
                     members += [nestedObject.instance(named: identifier)]
                 }
             }
@@ -247,10 +264,14 @@ class Swift {
 
         /// Recursively compares objects by checking member equivalence.
         static func == (lhs: Swift.Object, rhs: Swift.Object) -> Bool {
-            return lhs.members.elementsEqual(rhs.members) { l, r in
+            if !lhs.name.almostEqual(to: rhs.name) { return false }
+
+            let subsetEndIndex = min(lhs.members.endIndex, rhs.members.endIndex)
+            let lhsMembersSubset = lhs.members[0 ..< subsetEndIndex]
+            let rhsMembersSubset = rhs.members[0 ..< subsetEndIndex]
+
+            return lhsMembersSubset.elementsEqual(rhsMembersSubset) { l, r in
                 if let lObject = l as? Object, let rObject = r as? Object {
-                    let nameAlmostEqual = lhs.name.contains(rhs.name) || rhs.name.contains(lhs.name)
-                    if !nameAlmostEqual { return false }
                     return lObject == rObject
                 } else if let lInstance = l as? Instantiable, let rInstance = r as? Instantiable {
                     if lInstance.name != rInstance.name { return false }
@@ -277,6 +298,7 @@ class Swift {
     /// Data type that maps Plotly `enumerated` to Swift `enum`.
     final class Enumerated: SwiftSharedType {
         var name: String
+        var parent: Swift.Object?
         var schema: Schema.Enumerated
         var access: Swift.Access = .public
         var protocols: [String] = ["String", "Encodable"]
@@ -294,7 +316,7 @@ class Swift {
             var lines = [String]()
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             for instance in instances {
-                lines += ["/// - \(instance.schema.path)"]
+                lines += ["/// - [\(instance.type.path)](\(instance.schema.path))"]
             }
 
             lines += ["\(access)enum \(name)\(protocols) {"]
@@ -306,8 +328,9 @@ class Swift {
             return lines
         }
 
-        init(named name: String, schema enumerated: Schema.Enumerated) {
+        init(named name: String, parent: Swift.Object, schema enumerated: Schema.Enumerated) {
             self.name = Swift.name!.pascalCased(name)
+            self.parent = parent
             self.schema = enumerated
             Self.existing.append(self)
 
@@ -359,7 +382,7 @@ class Swift {
 
         /// Checks for equality by comparing types and cases of the two `Enumerated` types.
         static func == (lhs: Enumerated, rhs: Enumerated) -> Bool {
-            let nameAlmostEqual = lhs.name.contains(rhs.name) || rhs.name.contains(lhs.name)
+            let nameAlmostEqual = lhs.name.almostEqual(to: rhs.name)
             let casesEqual = lhs.cases == rhs.cases
             return nameAlmostEqual && casesEqual
         }
@@ -424,6 +447,7 @@ class Swift {
     /// Data type that maps Plotly `flaglist` to `OptionSet` from the Swift standard library.
     final class FlagList: SwiftSharedType {
         var name: String
+        var parent: Swift.Object?
         var schema: Schema.FlagList
         var access: Swift.Access = .public
         let protocols: [String] = []
@@ -440,7 +464,7 @@ class Swift {
         var definition: [String] {
             var lines = [String]()
             for instance in instances {
-                lines += ["/// - \(instance.schema.path)"]
+                lines += ["/// - [\(instance.type.path)](\(instance.schema.path))"]
             }
 
             lines += ["\(access)struct \(name): OptionSet, Encodable {"]
@@ -466,8 +490,9 @@ class Swift {
             return lines
         }
 
-        init(named name: String, schema flagList: Schema.FlagList) {
+        init(named name: String, parent: Swift.Object, schema flagList: Schema.FlagList) {
             self.name = Swift.name!.pascalCased(name)
+            self.parent = parent
             self.schema = flagList
             Self.existing.append(self)
 
@@ -485,7 +510,7 @@ class Swift {
 
         /// Checks for equality by comparing types and options of the two `FlagList` types.
         static func == (lhs: FlagList, rhs: FlagList) -> Bool {
-            let nameAlmostEqual = lhs.name.contains(rhs.name) || rhs.name.contains(lhs.name)
+            let nameAlmostEqual = lhs.name.almostEqual(to: rhs.name)
             let optionsEqual = lhs.options == rhs.options
             return nameAlmostEqual && optionsEqual
         }

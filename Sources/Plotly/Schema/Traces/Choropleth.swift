@@ -52,7 +52,7 @@ public struct Choropleth: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -72,7 +72,7 @@ public struct Choropleth: Trace {
     public var locations: [Double]?
 
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
-    /// - traces/choropleth/attributes/locationmode
+    /// - [Choropleth.LocationMode](traces/choropleth/attributes/locationmode)
     public enum LocationMode: String, Encodable {
         case ISO3 = "ISO-3"
         case statesOfUSA = "USA-states"
@@ -90,9 +90,9 @@ public struct Choropleth: Trace {
     /// Same as `text`.
     public var hoverText: String?
 
-    /// - traces/choropleth/attributes/marker
+    /// - [Choropleth.Marker](traces/choropleth/attributes/marker)
     public struct Marker: Encodable {
-        public var line: Line3?
+        public var line: Line2?
     
         /// Sets the opacity of the locations.
         public var opacity: Double?
@@ -107,7 +107,7 @@ public struct Choropleth: Trace {
             case opacitySource = "opacitysrc"
         }
         
-        public init(line: Line3? = nil, opacity: Double? = nil, opacitySource: String? = nil) {
+        public init(line: Line2? = nil, opacity: Double? = nil, opacitySource: String? = nil) {
             self.line = line
             self.opacity = opacity
             self.opacitySource = opacitySource
@@ -115,15 +115,15 @@ public struct Choropleth: Trace {
     }
     public var marker: Marker?
 
-    public var selected: Selected1?
+    public var selected: Selected0?
 
-    public var unselected: Selected1?
+    public var unselected: Selected0?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/choropleth/attributes/hoverinfo
+    /// - [Choropleth.HoverInfo](traces/choropleth/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -306,7 +306,7 @@ public struct Choropleth: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, z: [Double]? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, geo: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, locationsSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, z: [Double]? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, geo: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, locationsSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

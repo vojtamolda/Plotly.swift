@@ -29,7 +29,7 @@ public struct ParallelCategories: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -49,7 +49,7 @@ public struct ParallelCategories: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/parcats/attributes/hoverinfo
+    /// - [ParallelCategories.HoverInfo](traces/parcats/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -83,7 +83,7 @@ public struct ParallelCategories: Trace {
     /// If `category`, hover interaction take place per category. If `color`, hover interactions take
     /// place per color per category. If `dimension`, hover interactions take place across all
     /// categories per dimension.
-    /// - traces/parcats/attributes/hoveron
+    /// - [ParallelCategories.HoverOn](traces/parcats/attributes/hoveron)
     public enum HoverOn: String, Encodable {
         case category
         case color
@@ -119,7 +119,7 @@ public struct ParallelCategories: Trace {
     /// If `perpendicular`, the categories can only move along a line perpendicular to the paths. If
     /// `freeform`, the categories can freely move on the plane. If `fixed`, the categories and
     /// dimensions are stationary.
-    /// - traces/parcats/attributes/arrangement
+    /// - [ParallelCategories.Arrangement](traces/parcats/attributes/arrangement)
     public enum Arrangement: String, Encodable {
         case perpendicular
         case freeform
@@ -139,7 +139,7 @@ public struct ParallelCategories: Trace {
     ///
     /// If `forward`, sort paths based on dimension categories from left to right. If `backward`, sort
     /// paths based on dimensions categories from right to left.
-    /// - traces/parcats/attributes/sortpaths
+    /// - [ParallelCategories.SortPaths](traces/parcats/attributes/sortpaths)
     public enum SortPaths: String, Encodable {
         case forward
         case backward
@@ -156,9 +156,118 @@ public struct ParallelCategories: Trace {
     /// Sets the font for the `category` labels.
     public var tickFont: Font0?
 
-    public var dimensions: TickFormatStops0?
+    /// - [ParallelCategories.Dimensions](traces/parcats/attributes/dimensions)
+    public struct Dimensions: Encodable {
+        /// - [ParallelCategories.Dimensions.Items](traces/parcats/attributes/dimensions/items)
+        public struct Items: Encodable {
+            /// The dimensions (variables) of the parallel categories diagram.
+            /// - [ParallelCategories.Dimensions.Items.Dimension](traces/parcats/attributes/dimensions/items/dimension)
+            public struct Dimension: Encodable {
+                /// The shown name of the dimension.
+                public var label: String?
+            
+                /// Specifies the ordering logic for the categories in the dimension. 
+                ///
+                /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+                /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+                /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+                /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+                /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+                /// mode. The unspecified categories will follow the categories in `categoryarray`.
+                /// - [ParallelCategories.Dimensions.Items.Dimension.CategoryOrder](traces/parcats/attributes/dimensions/items/dimension/categoryorder)
+                public enum CategoryOrder: String, Encodable {
+                    case trace
+                    case categoryAscending = "category ascending"
+                    case categoryDescending = "category descending"
+                    case array
+                }
+                /// Specifies the ordering logic for the categories in the dimension. 
+                ///
+                /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+                /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+                /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+                /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+                /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+                /// mode. The unspecified categories will follow the categories in `categoryarray`.
+                public var categoryOrder: CategoryOrder?
+            
+                /// Sets the order in which categories in this dimension appear. 
+                ///
+                /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+                public var categoryArray: [Double]?
+            
+                /// Sets alternative tick labels for the categories in this dimension. 
+                ///
+                /// Only has an effect if `categoryorder` is set to *array*. Should be an array the same length as
+                /// `categoryarray` Used with `categoryorder`.
+                public var tickText: [Double]?
+            
+                /// Dimension values. 
+                ///
+                /// `values[n]` represents the category value of the `n`th point in the dataset, therefore the
+                /// `values` vector for all dimensions must be the same (longer vectors will be truncated).
+                public var values: [Double]?
+            
+                /// The display index of dimension, from left to right, zero indexed, defaults to dimension index.
+                public var displayIndex: Int?
+            
+                /// Shows the dimension when set to `true` (the default). 
+                ///
+                /// Hides the dimension for `false`.
+                public var visible: Bool?
+            
+                /// Sets the source reference on plot.ly for  categoryarray .
+                public var categoryArraySource: String?
+            
+                /// Sets the source reference on plot.ly for  ticktext .
+                public var tickTextSource: String?
+            
+                /// Sets the source reference on plot.ly for  values .
+                public var valuesSource: String?
+            
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case label
+                    case categoryOrder = "categoryorder"
+                    case categoryArray = "categoryarray"
+                    case tickText = "ticktext"
+                    case values
+                    case displayIndex = "displayindex"
+                    case visible
+                    case categoryArraySource = "categoryarraysrc"
+                    case tickTextSource = "ticktextsrc"
+                    case valuesSource = "valuessrc"
+                }
+                
+                public init(label: String? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, tickText: [Double]? = nil, values: [Double]? = nil, displayIndex: Int? = nil, visible: Bool? = nil, categoryArraySource: String? = nil, tickTextSource: String? = nil, valuesSource: String? = nil) {
+                    self.label = label
+                    self.categoryOrder = categoryOrder
+                    self.categoryArray = categoryArray
+                    self.tickText = tickText
+                    self.values = values
+                    self.displayIndex = displayIndex
+                    self.visible = visible
+                    self.categoryArraySource = categoryArraySource
+                    self.tickTextSource = tickTextSource
+                    self.valuesSource = valuesSource
+                }
+            }
+            /// The dimensions (variables) of the parallel categories diagram.
+            public var dimension: Dimension?
+        
+            public init(dimension: Dimension? = nil) {
+                self.dimension = dimension
+            }
+        }
+        public var items: Items?
+    
+        public init(items: Items? = nil) {
+            self.items = items
+        }
+    }
+    public var dimensions: Dimensions?
 
-    /// - traces/parcats/attributes/line
+    /// - [ParallelCategories.Line](traces/parcats/attributes/line)
     public struct Line: Encodable {
         /// Sets thelinecolor. 
         ///
@@ -232,7 +341,7 @@ public struct ParallelCategories: Trace {
         ///
         /// If `linear`, paths are composed of straight lines. If `hspline`, paths are composed of
         /// horizontal curved splines
-        /// - traces/parcats/attributes/line/shape
+        /// - [ParallelCategories.Line.Shape](traces/parcats/attributes/line/shape)
         public enum Shape: String, Encodable {
             case linear
             case hspline
@@ -338,7 +447,7 @@ public struct ParallelCategories: Trace {
         case countsSource = "countssrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, dimensions: TickFormatStops0? = nil, line: Line? = nil, counts: Double? = nil, metaSource: String? = nil, countsSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, dimensions: Dimensions? = nil, line: Line? = nil, counts: Double? = nil, metaSource: String? = nil, countsSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

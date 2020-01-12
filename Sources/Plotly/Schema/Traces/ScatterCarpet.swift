@@ -61,7 +61,7 @@ public struct ScatterCarpet: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -118,49 +118,7 @@ public struct ScatterCarpet: Trace {
     /// must contain a *text* flag.
     public var hoverText: String?
 
-    /// - traces/scattercarpet/attributes/line
-    public struct Line: Encodable {
-        /// Sets the line color.
-        public var color: Color?
-    
-        /// Sets the line width (in px).
-        public var width: Double?
-    
-        /// Sets the dash style of lines. 
-        ///
-        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-        /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
-    
-        /// Determines the line shape. 
-        ///
-        /// With *spline* the lines are drawn using spline interpolation. The other available values
-        /// correspond to step-wise line shapes.
-        /// - traces/scattercarpet/attributes/line/shape
-        public enum Shape: String, Encodable {
-            case linear
-            case spline
-        }
-        /// Determines the line shape. 
-        ///
-        /// With *spline* the lines are drawn using spline interpolation. The other available values
-        /// correspond to step-wise line shapes.
-        public var shape: Shape?
-    
-        /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. 
-        ///
-        /// *0* corresponds to no smoothing (equivalent to a *linear* shape).
-        public var smoothing: Double?
-    
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, shape: Shape? = nil, smoothing: Double? = nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
-            self.shape = shape
-            self.smoothing = smoothing
-        }
-    }
-    public var line: Line?
+    public var line: Line0?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -174,7 +132,7 @@ public struct ScatterCarpet: Trace {
     /// gaps) into a closed shape. *tonext* fills the space between two traces if one completely
     /// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
     /// trace before it. *tonext* should not be used if one trace does not enclose the other.
-    /// - traces/scattercarpet/attributes/fill
+    /// - [ScatterCarpet.Fill](traces/scattercarpet/attributes/fill)
     public enum Fill: String, Encodable {
         case none
         case toSelf = "toself"
@@ -195,7 +153,7 @@ public struct ScatterCarpet: Trace {
     /// whichever is available.
     public var fillColor: Color?
 
-    /// - traces/scattercarpet/attributes/marker
+    /// - [ScatterCarpet.Marker](traces/scattercarpet/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the marker symbol type. 
         ///
@@ -373,7 +331,7 @@ public struct ScatterCarpet: Trace {
     public var marker: Marker?
 
     /// Sets the text font.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: TextPosition0?
@@ -386,7 +344,7 @@ public struct ScatterCarpet: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/scattercarpet/attributes/hoverinfo
+    /// - [ScatterCarpet.HoverInfo](traces/scattercarpet/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -420,7 +378,7 @@ public struct ScatterCarpet: Trace {
     public var hoverInfo: HoverInfo?
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
-    /// - traces/scattercarpet/attributes/hoveron
+    /// - [ScatterCarpet.HoverOn](traces/scattercarpet/attributes/hoveron)
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -554,7 +512,7 @@ public struct ScatterCarpet: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, carpet: String? = nil, a: [Double]? = nil, b: [Double]? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line? = nil, connectGaps: Bool? = nil, fill: Fill? = nil, fillColor: Color? = nil, marker: Marker? = nil, textFont: Font1? = nil, textPosition: TextPosition0? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, aSource: String? = nil, bSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, carpet: String? = nil, a: [Double]? = nil, b: [Double]? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line0? = nil, connectGaps: Bool? = nil, fill: Fill? = nil, fillColor: Color? = nil, marker: Marker? = nil, textFont: Font0? = nil, textPosition: TextPosition0? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, aSource: String? = nil, bSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -66,7 +66,7 @@ public struct Violin: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -125,7 +125,7 @@ public struct Violin: Trace {
     public var scaleGroup: String?
 
     /// Sets the metric by which the width of each violin is determined.*width* means each violin has the same (max) width*count* means the violins are scaled by the number of sample points makingup each violin.
-    /// - traces/violin/attributes/scalemode
+    /// - [Violin.ScaleMode](traces/violin/attributes/scalemode)
     public enum ScaleMode: String, Encodable {
         case width
         case count
@@ -138,7 +138,7 @@ public struct Violin: Trace {
     /// *soft* means the span goes from the sample's minimum value minus two bandwidths to the sample's
     /// maximum value plus two bandwidths. *hard* means the span goes from the sample's minimum to its
     /// maximum value. For custom span settings, use mode *manual* and fill in the `span` attribute.
-    /// - traces/violin/attributes/spanmode
+    /// - [Violin.SpanMode](traces/violin/attributes/spanmode)
     public enum SpanMode: String, Encodable {
         case soft
         case hard
@@ -156,7 +156,7 @@ public struct Violin: Trace {
     /// Has an effect only when `spanmode` is set to *manual*.
     public var span: InfoArray?
 
-    public var line: Line2?
+    public var line: Line0?
 
     /// Sets the fill color. 
     ///
@@ -165,7 +165,7 @@ public struct Violin: Trace {
     public var fillColor: Color?
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points
-    /// - traces/violin/attributes/points
+    /// - [Violin.Points](traces/violin/attributes/points)
     public enum Points: String, Encodable {
         case all
         case outliers
@@ -194,7 +194,7 @@ public struct Violin: Trace {
     /// violin traces in the same subplot.
     public var width: Double?
 
-    /// - traces/violin/attributes/marker
+    /// - [Violin.Marker](traces/violin/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the color of the outlier sample points.
         public var outlierColor: Color?
@@ -219,7 +219,7 @@ public struct Violin: Trace {
         /// if set.
         public var color: Color?
     
-        /// - traces/violin/attributes/marker/line
+        /// - [Violin.Marker.Line](traces/violin/attributes/marker/line)
         public struct Line: Encodable {
             /// Sets themarker.linecolor. 
             ///
@@ -304,7 +304,7 @@ public struct Violin: Trace {
     /// `<extra></extra>`.
     public var hoverTemplate: String?
 
-    /// - traces/violin/attributes/box
+    /// - [Violin.Box](traces/violin/attributes/box)
     public struct Box: Encodable {
         /// Determines if an miniature box plot is drawn inside the violins. 
         public var visible: Bool?
@@ -317,7 +317,7 @@ public struct Violin: Trace {
         /// Sets the inner box plot fill color.
         public var fillColor: Color?
     
-        public var line: Line2?
+        public var line: Line0?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -327,7 +327,7 @@ public struct Violin: Trace {
             case line
         }
         
-        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line: Line2? = nil) {
+        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line: Line0? = nil) {
             self.visible = visible
             self.width = width
             self.fillColor = fillColor
@@ -336,7 +336,7 @@ public struct Violin: Trace {
     }
     public var box: Box?
 
-    /// - traces/violin/attributes/meanline
+    /// - [Violin.MeanLine](traces/violin/attributes/meanline)
     public struct MeanLine: Encodable {
         /// Determines if a line corresponding to the sample's mean is shown inside the violins. 
         ///
@@ -362,7 +362,7 @@ public struct Violin: Trace {
     ///
     /// Useful when comparing two violin traces under *overlay* mode, where one trace has `side` set to
     /// *positive* and the other to *negative*.
-    /// - traces/violin/attributes/side
+    /// - [Violin.Side](traces/violin/attributes/side)
     public enum Side: String, Encodable {
         case both
         case positive
@@ -382,12 +382,12 @@ public struct Violin: Trace {
     /// This controls whether bars compute their positional range dependently or independently.
     public var alignmentGroup: String?
 
-    public var selected: Selected1?
+    public var selected: Selected0?
 
-    public var unselected: Selected1?
+    public var unselected: Selected0?
 
     /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?
-    /// - traces/violin/attributes/hoveron
+    /// - [Violin.HoverOn](traces/violin/attributes/hoveron)
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -510,7 +510,7 @@ public struct Violin: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Orientation0? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Line2? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: Marker? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected1? = nil, unselected: Selected1? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Orientation0? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Line0? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: Marker? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

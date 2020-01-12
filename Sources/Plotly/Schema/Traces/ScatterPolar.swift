@@ -65,7 +65,7 @@ public struct ScatterPolar: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -116,7 +116,7 @@ public struct ScatterPolar: Trace {
     /// Sets the unit of input *theta* values. 
     ///
     /// Has an effect only when on *linear* angular axes.
-    /// - traces/scatterpolar/attributes/thetaunit
+    /// - [ScatterPolar.ThetaUnit](traces/scatterpolar/attributes/thetaunit)
     public enum ThetaUnit: String, Encodable {
         case radians
         case degrees
@@ -154,56 +154,14 @@ public struct ScatterPolar: Trace {
     /// must contain a *text* flag.
     public var hoverText: String?
 
-    /// - traces/scatterpolar/attributes/line
-    public struct Line: Encodable {
-        /// Sets the line color.
-        public var color: Color?
-    
-        /// Sets the line width (in px).
-        public var width: Double?
-    
-        /// Sets the dash style of lines. 
-        ///
-        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-        /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
-    
-        /// Determines the line shape. 
-        ///
-        /// With *spline* the lines are drawn using spline interpolation. The other available values
-        /// correspond to step-wise line shapes.
-        /// - traces/scatterpolar/attributes/line/shape
-        public enum Shape: String, Encodable {
-            case linear
-            case spline
-        }
-        /// Determines the line shape. 
-        ///
-        /// With *spline* the lines are drawn using spline interpolation. The other available values
-        /// correspond to step-wise line shapes.
-        public var shape: Shape?
-    
-        /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. 
-        ///
-        /// *0* corresponds to no smoothing (equivalent to a *linear* shape).
-        public var smoothing: Double?
-    
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, shape: Shape? = nil, smoothing: Double? = nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
-            self.shape = shape
-            self.smoothing = smoothing
-        }
-    }
-    public var line: Line?
+    public var line: Line0?
 
     /// Determines whether or not gaps (i.e. 
     ///
     /// {nan} or missing values) in the provided data arrays are connected.
     public var connectGaps: Bool?
 
-    /// - traces/scatterpolar/attributes/marker
+    /// - [ScatterPolar.Marker](traces/scatterpolar/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the marker symbol type. 
         ///
@@ -390,7 +348,7 @@ public struct ScatterPolar: Trace {
     public var textPosition: TextPosition0?
 
     /// Sets the text font.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Sets the area to fill with a solid color. 
     ///
@@ -399,7 +357,7 @@ public struct ScatterPolar: Trace {
     /// gaps) into a closed shape. *tonext* fills the space between two traces if one completely
     /// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
     /// trace before it. *tonext* should not be used if one trace does not enclose the other.
-    /// - traces/scatterpolar/attributes/fill
+    /// - [ScatterPolar.Fill](traces/scatterpolar/attributes/fill)
     public enum Fill: String, Encodable {
         case none
         case toSelf = "toself"
@@ -424,7 +382,7 @@ public struct ScatterPolar: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/scatterpolar/attributes/hoverinfo
+    /// - [ScatterPolar.HoverInfo](traces/scatterpolar/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -458,7 +416,7 @@ public struct ScatterPolar: Trace {
     public var hoverInfo: HoverInfo?
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
-    /// - traces/scatterpolar/attributes/hoveron
+    /// - [ScatterPolar.HoverOn](traces/scatterpolar/attributes/hoveron)
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -594,7 +552,7 @@ public struct ScatterPolar: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, mode: Mode0? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, clipOnAxis: Bool? = nil, textPosition: TextPosition0? = nil, textFont: Font1? = nil, fill: Fill? = nil, fillColor: Color? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, mode: Mode0? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line0? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, clipOnAxis: Bool? = nil, textPosition: TextPosition0? = nil, textFont: Font0? = nil, fill: Fill? = nil, fillColor: Color? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

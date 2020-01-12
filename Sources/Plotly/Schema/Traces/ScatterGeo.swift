@@ -61,7 +61,7 @@ public struct ScatterGeo: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -87,7 +87,7 @@ public struct ScatterGeo: Trace {
     public var locations: [Double]?
 
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
-    /// - traces/scattergeo/attributes/locationmode
+    /// - [ScatterGeo.LocationMode](traces/scattergeo/attributes/locationmode)
     public enum LocationMode: String, Encodable {
         case ISO3 = "ISO-3"
         case statesOfUSA = "USA-states"
@@ -132,7 +132,7 @@ public struct ScatterGeo: Trace {
     public var hoverText: String?
 
     /// Sets the text font.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: TextPosition0?
@@ -144,7 +144,7 @@ public struct ScatterGeo: Trace {
     /// {nan} or missing values) in the provided data arrays are connected.
     public var connectGaps: Bool?
 
-    /// - traces/scattergeo/attributes/marker
+    /// - [ScatterGeo.Marker](traces/scattergeo/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the marker symbol type. 
         ///
@@ -318,7 +318,7 @@ public struct ScatterGeo: Trace {
     ///
     /// Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each
     /// segment of the trace if it has gaps) into a closed shape.
-    /// - traces/scattergeo/attributes/fill
+    /// - [ScatterGeo.Fill](traces/scattergeo/attributes/fill)
     public enum Fill: String, Encodable {
         case none
         case toSelf = "toself"
@@ -343,7 +343,7 @@ public struct ScatterGeo: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/scattergeo/attributes/hoverinfo
+    /// - [ScatterGeo.HoverInfo](traces/scattergeo/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -489,7 +489,7 @@ public struct ScatterGeo: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, textFont: Font1? = nil, textPosition: TextPosition0? = nil, line: Line0? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, geo: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, locationsSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, textFont: Font0? = nil, textPosition: TextPosition0? = nil, line: Line0? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, geo: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, locationsSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

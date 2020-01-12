@@ -58,7 +58,7 @@ public struct Scatter3D: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -133,7 +133,7 @@ public struct Scatter3D: Trace {
     public var mode: Mode0?
 
     /// If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are filled with a Delaunay surface about the x, y, z respectively.
-    /// - traces/scatter3d/attributes/surfaceaxis
+    /// - [Scatter3D.SurfaceAxis](traces/scatter3d/attributes/surfaceaxis)
     public enum SurfaceAxis: Int, Encodable {
         case none = -1
         case x = 0
@@ -146,20 +146,85 @@ public struct Scatter3D: Trace {
     /// Sets the surface fill color.
     public var surfaceColor: Color?
 
-    public var projection: Up0?
+    /// - [Scatter3D.Projection](traces/scatter3d/attributes/projection)
+    public struct Projection: Encodable {
+        /// - [Scatter3D.Projection.X](traces/scatter3d/attributes/projection/x)
+        public struct X: Encodable {
+            /// Sets whether or not projections are shown along the x axis.
+            public var show: Bool?
+        
+            /// Sets the projection color.
+            public var opacity: Double?
+        
+            /// Sets the scale factor determining the size of the projection marker points.
+            public var scale: Double?
+        
+            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+                self.show = show
+                self.opacity = opacity
+                self.scale = scale
+            }
+        }
+        public var x: X?
+    
+        /// - [Scatter3D.Projection.Y](traces/scatter3d/attributes/projection/y)
+        public struct Y: Encodable {
+            /// Sets whether or not projections are shown along the y axis.
+            public var show: Bool?
+        
+            /// Sets the projection color.
+            public var opacity: Double?
+        
+            /// Sets the scale factor determining the size of the projection marker points.
+            public var scale: Double?
+        
+            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+                self.show = show
+                self.opacity = opacity
+                self.scale = scale
+            }
+        }
+        public var y: Y?
+    
+        /// - [Scatter3D.Projection.Z](traces/scatter3d/attributes/projection/z)
+        public struct Z: Encodable {
+            /// Sets whether or not projections are shown along the z axis.
+            public var show: Bool?
+        
+            /// Sets the projection color.
+            public var opacity: Double?
+        
+            /// Sets the scale factor determining the size of the projection marker points.
+            public var scale: Double?
+        
+            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+                self.show = show
+                self.opacity = opacity
+                self.scale = scale
+            }
+        }
+        public var z: Z?
+    
+        public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
+            self.x = x
+            self.y = y
+            self.z = z
+        }
+    }
+    public var projection: Projection?
 
     /// Determines whether or not gaps (i.e. 
     ///
     /// {nan} or missing values) in the provided data arrays are connected.
     public var connectGaps: Bool?
 
-    /// - traces/scatter3d/attributes/line
+    /// - [Scatter3D.Line](traces/scatter3d/attributes/line)
     public struct Line: Encodable {
         /// Sets the line width (in px).
         public var width: Double?
     
         /// Sets the dash style of the lines.
-        /// - traces/scatter3d/attributes/line/dash
+        /// - [Scatter3D.Line.Dash](traces/scatter3d/attributes/line/dash)
         public enum Dash: String, Encodable {
             case solid
             case dot
@@ -279,10 +344,10 @@ public struct Scatter3D: Trace {
     }
     public var line: Line?
 
-    /// - traces/scatter3d/attributes/marker
+    /// - [Scatter3D.Marker](traces/scatter3d/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the marker symbol type.
-        /// - traces/scatter3d/attributes/marker/symbol
+        /// - [Scatter3D.Marker.Symbol](traces/scatter3d/attributes/marker/symbol)
         public enum Symbol: String, Encodable {
             case circle
             case circleOpen = "circle-open"
@@ -324,7 +389,7 @@ public struct Scatter3D: Trace {
     
         public var colorBar: ColorBar0?
     
-        /// - traces/scatter3d/attributes/marker/line
+        /// - [Scatter3D.Marker.Line](traces/scatter3d/attributes/marker/line)
         public struct Line: Encodable {
             /// Sets the width (in px) of the lines bounding the marker points.
             public var width: Double?
@@ -554,44 +619,33 @@ public struct Scatter3D: Trace {
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: TextPosition0?
 
-    /// - traces/scatter3d/attributes/textfont
+    /// - [Scatter.Selected0.TextFont](traces/scatter/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatter/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/bar/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/bar/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/histogram/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/histogram/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterternary/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterternary/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatter3d/attributes/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattergeo/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattergeo/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattergl/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattergl/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattercarpet/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattercarpet/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterpolar/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterpolar/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterpolargl/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterpolargl/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/barpolar/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/barpolar/attributes/unselected/textfont)
     public struct TextFont: Encodable {
+        /// Sets the text font color of selected points.
         public var color: Color?
     
-        public var size: Double?
-    
-        /// HTML font family - the typeface that will be applied by the web browser. 
-        ///
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        public var colorSource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        public var sizeSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case color
-            case size
-            case family
-            case colorSource = "colorsrc"
-            case sizeSource = "sizesrc"
-        }
-        
-        public init(color: Color? = nil, size: Double? = nil, family: String? = nil, colorSource: String? = nil, sizeSource: String? = nil) {
+        public init(color: Color? = nil) {
             self.color = color
-            self.size = size
-            self.family = family
-            self.colorSource = colorSource
-            self.sizeSource = sizeSource
         }
     }
     public var textFont: TextFont?
@@ -602,7 +656,7 @@ public struct Scatter3D: Trace {
     /// click and hover events are still fired.
     public var hoverInfo: HoverInfo0?
 
-    /// - traces/scatter3d/attributes/error_x
+    /// - [Scatter3D.XError](traces/scatter3d/attributes/error_x)
     public struct XError: Encodable {
         /// Determines whether or not this set of error bars is visible.
         public var visible: Bool?
@@ -692,7 +746,7 @@ public struct Scatter3D: Trace {
     }
     public var xError: XError?
 
-    /// - traces/scatter3d/attributes/error_y
+    /// - [Scatter3D.YError](traces/scatter3d/attributes/error_y)
     public struct YError: Encodable {
         /// Determines whether or not this set of error bars is visible.
         public var visible: Bool?
@@ -782,7 +836,91 @@ public struct Scatter3D: Trace {
     }
     public var yError: YError?
 
-    public var zError: YError0?
+    /// - [Scatter3D.ZError](traces/scatter3d/attributes/error_z)
+    public struct ZError: Encodable {
+        /// Determines whether or not this set of error bars is visible.
+        public var visible: Bool?
+    
+        /// Determines the rule used to generate the error bars. 
+        ///
+        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
+        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
+        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+        /// the bar lengths are set with data set `array`.
+        public var type: Rule1?
+    
+        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
+        public var symmetric: Bool?
+    
+        /// Sets the data corresponding the length of each error bar. 
+        ///
+        /// Values are plotted relative to the underlying data.
+        public var array: [Double]?
+    
+        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+        public var arrayMinus: [Double]?
+    
+        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
+        public var value: Double?
+    
+        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
+        public var valueMinus: Double?
+    
+        public var traceReference: Int?
+    
+        public var traceReferenceMinus: Int?
+    
+        /// Sets the stoke color of the error bars.
+        public var color: Color?
+    
+        /// Sets the thickness (in px) of the error bars.
+        public var thickness: Double?
+    
+        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
+        public var width: Double?
+    
+        /// Sets the source reference on plot.ly for  array .
+        public var arraySource: String?
+    
+        /// Sets the source reference on plot.ly for  arrayminus .
+        public var arrayMinusSource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case type
+            case symmetric
+            case array
+            case arrayMinus = "arrayminus"
+            case value
+            case valueMinus = "valueminus"
+            case traceReference = "traceref"
+            case traceReferenceMinus = "tracerefminus"
+            case color
+            case thickness
+            case width
+            case arraySource = "arraysrc"
+            case arrayMinusSource = "arrayminussrc"
+        }
+        
+        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
+            self.visible = visible
+            self.type = type
+            self.symmetric = symmetric
+            self.array = array
+            self.arrayMinus = arrayMinus
+            self.value = value
+            self.valueMinus = valueMinus
+            self.traceReference = traceReference
+            self.traceReferenceMinus = traceReferenceMinus
+            self.color = color
+            self.thickness = thickness
+            self.width = width
+            self.arraySource = arraySource
+            self.arrayMinusSource = arrayMinusSource
+        }
+    }
+    public var zError: ZError?
 
     /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
@@ -890,7 +1028,7 @@ public struct Scatter3D: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Mode0? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Up0? = nil, connectGaps: Bool? = nil, line: Line? = nil, marker: Marker? = nil, textPosition: TextPosition0? = nil, textFont: TextFont? = nil, hoverInfo: HoverInfo0? = nil, xError: XError? = nil, yError: YError? = nil, zError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Mode0? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Projection? = nil, connectGaps: Bool? = nil, line: Line? = nil, marker: Marker? = nil, textPosition: TextPosition0? = nil, textFont: TextFont? = nil, hoverInfo: HoverInfo0? = nil, xError: XError? = nil, yError: YError? = nil, zError: ZError? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

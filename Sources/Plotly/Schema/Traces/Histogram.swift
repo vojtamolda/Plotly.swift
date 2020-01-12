@@ -69,7 +69,7 @@ public struct Histogram: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -108,7 +108,7 @@ public struct Histogram: Trace {
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
     /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    /// - traces/histogram/attributes/histfunc
+    /// - [Histogram.BinningFunction](traces/histogram/attributes/histfunc)
     public enum BinningFunction: String, Encodable {
         case count
         case sum
@@ -133,7 +133,7 @@ public struct Histogram: Trace {
     /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    /// - traces/histogram/attributes/histnorm
+    /// - [Histogram.Normalization](traces/histogram/attributes/histnorm)
     public enum Normalization: String, Encodable {
         case none = ""
         case percent
@@ -153,7 +153,7 @@ public struct Histogram: Trace {
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
     public var normalization: Normalization?
 
-    /// - traces/histogram/attributes/cumulative
+    /// - [Histogram.Cumulative](traces/histogram/attributes/cumulative)
     public struct Cumulative: Encodable {
         /// If true, display the cumulative distribution by summing the binned values. 
         ///
@@ -167,7 +167,7 @@ public struct Histogram: Trace {
         ///
         /// If *increasing* (default) we sum all prior bins, so the result increases from left to right. If
         /// *decreasing* we sum later bins so the result decreases from left to right.
-        /// - traces/histogram/attributes/cumulative/direction
+        /// - [Histogram.Cumulative.Direction](traces/histogram/attributes/cumulative/direction)
         public enum Direction: String, Encodable {
             case increasing
             case decreasing
@@ -184,7 +184,7 @@ public struct Histogram: Trace {
         /// current cumulative value. *include* is the default for compatibility with various other tools,
         /// however it introduces a half-bin bias to the results. *exclude* makes the opposite half-bin
         /// bias, and *half* removes it.
-        /// - traces/histogram/attributes/cumulative/currentbin
+        /// - [Histogram.Cumulative.Currentbin](traces/histogram/attributes/cumulative/currentbin)
         public enum Currentbin: String, Encodable {
             case include
             case exclude
@@ -212,7 +212,45 @@ public struct Histogram: Trace {
     /// histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
     public var xNumBins: Int?
 
-    public var xBins: XBins0?
+    /// - [Histogram.XBins](traces/histogram/attributes/xbins)
+    public struct XBins: Encodable {
+        /// Sets the starting value for the x axis bins. 
+        ///
+        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
+        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
+        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
+        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
+        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
+        /// based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying
+        /// histograms share a subplot, the first explicit `start` is used exactly and all others are
+        /// shifted down (if necessary) to differ from that one by an integer number of bins.
+        public var start: Anything?
+    
+        /// Sets the end value for the x axis bins. 
+        ///
+        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
+        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
+        /// a date string, and for category data `end` is based on the category serial numbers.
+        public var end: Anything?
+    
+        /// Sets the size of each x axis bin. 
+        ///
+        /// Default behavior: If `nbinsx` is 0 or omitted, we choose a nice round bin size such that the
+        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsx` is
+        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
+        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
+        /// categories to bin together (always defaults to 1). If multiple non-overlaying histograms share a
+        /// subplot, the first explicit `size` is used and all others discarded. If no `size` is
+        /// provided,the sample data from all traces is combined to determine `size` as described above.
+        public var size: Anything?
+    
+        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
+            self.start = start
+            self.end = end
+            self.size = size
+        }
+    }
+    public var xBins: XBins?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -220,7 +258,45 @@ public struct Histogram: Trace {
     /// histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
     public var yNumBins: Int?
 
-    public var yBins: XBins0?
+    /// - [Histogram.YBins](traces/histogram/attributes/ybins)
+    public struct YBins: Encodable {
+        /// Sets the starting value for the y axis bins. 
+        ///
+        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
+        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
+        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
+        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
+        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
+        /// based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying
+        /// histograms share a subplot, the first explicit `start` is used exactly and all others are
+        /// shifted down (if necessary) to differ from that one by an integer number of bins.
+        public var start: Anything?
+    
+        /// Sets the end value for the y axis bins. 
+        ///
+        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
+        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
+        /// a date string, and for category data `end` is based on the category serial numbers.
+        public var end: Anything?
+    
+        /// Sets the size of each y axis bin. 
+        ///
+        /// Default behavior: If `nbinsy` is 0 or omitted, we choose a nice round bin size such that the
+        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsy` is
+        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
+        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
+        /// categories to bin together (always defaults to 1). If multiple non-overlaying histograms share a
+        /// subplot, the first explicit `size` is used and all others discarded. If no `size` is
+        /// provided,the sample data from all traces is combined to determine `size` as described above.
+        public var size: Anything?
+    
+        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
+            self.start = start
+            self.end = end
+            self.size = size
+        }
+    }
+    public var yBins: YBins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. 
     ///
@@ -259,7 +335,7 @@ public struct Histogram: Trace {
     /// completely, use an empty tag `<extra></extra>`.
     public var hoverTemplate: String?
 
-    /// - traces/histogram/attributes/marker
+    /// - [Histogram.Marker](traces/histogram/attributes/marker)
     public struct Marker: Encodable {
         public var line: Line1?
     
@@ -391,7 +467,7 @@ public struct Histogram: Trace {
 
     public var unselected: Selected0?
 
-    /// - traces/histogram/attributes/error_x
+    /// - [Histogram.XError](traces/histogram/attributes/error_x)
     public struct XError: Encodable {
         /// Determines whether or not this set of error bars is visible.
         public var visible: Bool?
@@ -481,7 +557,91 @@ public struct Histogram: Trace {
     }
     public var xError: XError?
 
-    public var yError: YError0?
+    /// - [Histogram.YError](traces/histogram/attributes/error_y)
+    public struct YError: Encodable {
+        /// Determines whether or not this set of error bars is visible.
+        public var visible: Bool?
+    
+        /// Determines the rule used to generate the error bars. 
+        ///
+        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
+        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
+        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+        /// the bar lengths are set with data set `array`.
+        public var type: Rule1?
+    
+        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
+        public var symmetric: Bool?
+    
+        /// Sets the data corresponding the length of each error bar. 
+        ///
+        /// Values are plotted relative to the underlying data.
+        public var array: [Double]?
+    
+        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+        public var arrayMinus: [Double]?
+    
+        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
+        public var value: Double?
+    
+        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
+        public var valueMinus: Double?
+    
+        public var traceReference: Int?
+    
+        public var traceReferenceMinus: Int?
+    
+        /// Sets the stoke color of the error bars.
+        public var color: Color?
+    
+        /// Sets the thickness (in px) of the error bars.
+        public var thickness: Double?
+    
+        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
+        public var width: Double?
+    
+        /// Sets the source reference on plot.ly for  array .
+        public var arraySource: String?
+    
+        /// Sets the source reference on plot.ly for  arrayminus .
+        public var arrayMinusSource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case type
+            case symmetric
+            case array
+            case arrayMinus = "arrayminus"
+            case value
+            case valueMinus = "valueminus"
+            case traceReference = "traceref"
+            case traceReferenceMinus = "tracerefminus"
+            case color
+            case thickness
+            case width
+            case arraySource = "arraysrc"
+            case arrayMinusSource = "arrayminussrc"
+        }
+        
+        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
+            self.visible = visible
+            self.type = type
+            self.symmetric = symmetric
+            self.array = array
+            self.arrayMinus = arrayMinus
+            self.value = value
+            self.valueMinus = valueMinus
+            self.traceReference = traceReference
+            self.traceReferenceMinus = traceReferenceMinus
+            self.color = color
+            self.thickness = thickness
+            self.width = width
+            self.arraySource = arraySource
+            self.arrayMinusSource = arrayMinusSource
+        }
+    }
+    public var yError: YError?
 
     /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
@@ -585,7 +745,7 @@ public struct Histogram: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, orientation: Orientation0? = nil, binningFunction: BinningFunction? = nil, normalization: Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: String? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, xError: XError? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, orientation: Orientation0? = nil, binningFunction: BinningFunction? = nil, normalization: Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: XBins? = nil, yNumBins: Int? = nil, yBins: YBins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: String? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, xError: XError? = nil, yError: YError? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

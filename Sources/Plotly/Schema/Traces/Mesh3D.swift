@@ -130,7 +130,7 @@ public struct Mesh3D: Trace {
     ///
     /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay
     /// triangulation.
-    /// - traces/mesh3d/attributes/delaunayaxis
+    /// - [Mesh3D.DelaunayAxis](traces/mesh3d/attributes/delaunayaxis)
     public enum DelaunayAxis: String, Encodable {
         case x
         case y
@@ -234,7 +234,7 @@ public struct Mesh3D: Trace {
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     public var flatShading: Bool?
 
-    /// - traces/mesh3d/attributes/contour
+    /// - [Mesh3D.Contour](traces/mesh3d/attributes/contour)
     public struct Contour: Encodable {
         /// Sets whether or not dynamic contours are shown on hover
         public var show: Bool?
@@ -253,7 +253,7 @@ public struct Mesh3D: Trace {
     }
     public var contour: Contour?
 
-    public var lightPosition: Up0?
+    public var lightPosition: LightPosition0?
 
     public var lighting: Lighting0?
 
@@ -392,7 +392,7 @@ public struct Mesh3D: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Contour? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, iSource: String? = nil, jSource: String? = nil, kSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, intensitySource: String? = nil, vertexColorSource: String? = nil, faceColorSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Contour? = nil, lightPosition: LightPosition0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, iSource: String? = nil, jSource: String? = nil, kSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, intensitySource: String? = nil, vertexColorSource: String? = nil, faceColorSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

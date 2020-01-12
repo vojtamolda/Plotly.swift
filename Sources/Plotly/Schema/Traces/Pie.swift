@@ -56,7 +56,7 @@ public struct Pie: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -93,14 +93,14 @@ public struct Pie: Trace {
     /// If omitted, we count occurrences of each label.
     public var values: [Double]?
 
-    /// - traces/pie/attributes/marker
+    /// - [Pie.Marker](traces/pie/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the color of each sector. 
         ///
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
-        public var line: Line3?
+        public var line: Line2?
     
         /// Sets the source reference on plot.ly for  colors .
         public var colorsSource: String?
@@ -112,7 +112,7 @@ public struct Pie: Trace {
             case colorsSource = "colorssrc"
         }
         
-        public init(colors: [Double]? = nil, line: Line3? = nil, colorsSource: String? = nil) {
+        public init(colors: [Double]? = nil, line: Line2? = nil, colorsSource: String? = nil) {
             self.colors = colors
             self.line = line
             self.colorsSource = colorsSource
@@ -138,7 +138,7 @@ public struct Pie: Trace {
     public var scaleGroup: String?
 
     /// Determines which trace information appear on the graph.
-    /// - traces/pie/attributes/textinfo
+    /// - [Pie.TextInfo](traces/pie/attributes/textinfo)
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -168,7 +168,7 @@ public struct Pie: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/pie/attributes/hoverinfo
+    /// - [Pie.HoverInfo](traces/pie/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -235,7 +235,7 @@ public struct Pie: Trace {
     public var textTemplate: String?
 
     /// Specifies the location of the `textinfo`.
-    /// - traces/pie/attributes/textposition
+    /// - [Pie.TextPosition](traces/pie/attributes/textposition)
     public enum TextPosition: String, Encodable {
         case inside
         case outside
@@ -246,53 +246,77 @@ public struct Pie: Trace {
     public var textPosition: TextPosition?
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Font1?
+    public var insideTextFont: Font0?
 
     /// Sets the font used for `textinfo` lying outside the sector.
-    public var outSideTextFont: Font1?
+    public var outSideTextFont: Font0?
 
     /// Determines whether outside text labels can push the margins.
     public var autoMargin: Bool?
 
-    /// - traces/pie/attributes/title
+    /// - [Layout.ColorAxis.ColorBar0.Title](layout/layoutAttributes/coloraxis/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/bar/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmap/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2d/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2dcontour/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/contour/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterternary/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnel/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/pie/attributes/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/sunburst/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/treemap/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnelarea/attributes/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/line/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/surface/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/isosurface/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/volume/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/mesh3d/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/cone/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/streamtube/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergeo/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/choropleth/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergl/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/splom/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmapgl/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcoords/attributes/line/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcats/attributes/line/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattermapbox/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/choroplethmapbox/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/densitymapbox/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/aaxis/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/baxis/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattercarpet/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/contourcarpet/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolar/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolargl/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/barpolar/attributes/marker/colorbar/title)
     public struct Title: Encodable {
-        /// Sets the title of the chart. 
+        /// Sets the title of the color bar. 
         ///
-        /// If it is empty, no title is displayed. Note that before the existence of `title.text`, the
-        /// title's contents used to be defined as the `title` attribute itself. This behavior has been
-        /// deprecated.
+        /// Note that before the existence of `title.text`, the title's contents used to be defined as the
+        /// `title` attribute itself. This behavior has been deprecated.
         public var text: String?
     
-        /// Sets the font used for `title`. 
+        /// Sets this color bar's title font. 
         ///
         /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-        public var font: Font1?
+        public var font: Font0?
     
-        /// Specifies the location of the `title`. 
+        /// Determines the location of color bar's title with respect to the color bar. 
         ///
-        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
-        /// - traces/pie/attributes/title/position
-        public enum Position: String, Encodable {
-            case topLeft = "top left"
-            case topCenter = "top center"
-            case topRight = "top right"
-            case middleCenter = "middle center"
-            case bottomLeft = "bottom left"
-            case bottomCenter = "bottom center"
-            case bottomRight = "bottom right"
-        }
-        /// Specifies the location of the `title`. 
-        ///
-        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
-        public var position: Position?
+        /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+        public var side: Side0?
     
-        public init(text: String? = nil, font: Font1? = nil, position: Position? = nil) {
+        public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
             self.text = text
             self.font = font
-            self.position = position
+            self.side = side
         }
     }
     public var title: Title?
@@ -308,7 +332,7 @@ public struct Pie: Trace {
     public var sort: Bool?
 
     /// Specifies the direction at which succeeding sectors follow one another.
-    /// - traces/pie/attributes/direction
+    /// - [Pie.Direction](traces/pie/attributes/direction)
     public enum Direction: String, Encodable {
         case clockwise
         case counterClockwise = "counterclockwise"
@@ -416,7 +440,7 @@ public struct Pie: Trace {
         case pullSource = "pullsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Domain0? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textTemplateSource: String? = nil, textPositionSource: String? = nil, pullSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Domain0? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textTemplateSource: String? = nil, textPositionSource: String? = nil, pullSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

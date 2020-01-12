@@ -1,127 +1,272 @@
+/// - [Config.Edits0](config/edits)
+/// - [Config.Edits0](layout/layoutAttributes/scene/aspectratio/impliedEdits)
+/// - [Config.Edits0](traces/histogram2dcontour/attributes/contours/impliedEdits)
+/// - [Config.Edits0](traces/contour/attributes/contours/impliedEdits)
+/// - [Config.Edits0](traces/contourcarpet/attributes/contours/impliedEdits)
+public struct Edits0: Encodable {
+    /// Determines if the main anchor of the annotation is editable. 
+    ///
+    /// The main anchor corresponds to the text (if no arrow) or the arrow (which drags the whole thing
+    /// leaving the arrow length & direction unchanged).
+    public var annotationPosition: Bool?
+
+    /// Has only an effect for annotations with arrows. 
+    ///
+    /// Enables changing the length and direction of the arrow.
+    public var annotationTail: Bool?
+
+    /// Enables editing annotation text.
+    public var annotationText: Bool?
+
+    /// Enables editing axis title text.
+    public var axisTitleText: Bool?
+
+    /// Enables moving colorbars.
+    public var colorBarPosition: Bool?
+
+    /// Enables editing colorbar title text.
+    public var colorBarTitleText: Bool?
+
+    /// Enables moving the legend.
+    public var legendPosition: Bool?
+
+    /// Enables editing the trace name fields from the legend
+    public var legendText: Bool?
+
+    /// Enables moving shapes.
+    public var shapePosition: Bool?
+
+    /// Enables editing the global layout title.
+    public var titleText: Bool?
+
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case annotationPosition
+        case annotationTail
+        case annotationText
+        case axisTitleText
+        case colorBarPosition = "colorbarPosition"
+        case colorBarTitleText = "colorbarTitleText"
+        case legendPosition
+        case legendText
+        case shapePosition
+        case titleText
+    }
+    
+    public init(annotationPosition: Bool? = nil, annotationTail: Bool? = nil, annotationText: Bool? = nil, axisTitleText: Bool? = nil, colorBarPosition: Bool? = nil, colorBarTitleText: Bool? = nil, legendPosition: Bool? = nil, legendText: Bool? = nil, shapePosition: Bool? = nil, titleText: Bool? = nil) {
+        self.annotationPosition = annotationPosition
+        self.annotationTail = annotationTail
+        self.annotationText = annotationText
+        self.axisTitleText = axisTitleText
+        self.colorBarPosition = colorBarPosition
+        self.colorBarTitleText = colorBarTitleText
+        self.legendPosition = legendPosition
+        self.legendText = legendText
+        self.shapePosition = shapePosition
+        self.titleText = titleText
+    }
+}
+
 /// Sets the global font. 
 ///
 /// Note that fonts used in traces and other layout components inherit from the global font.
-/// - layout/layoutAttributes/font
-/// - layout/layoutAttributes/title/font
-/// - layout/layoutAttributes/hoverlabel/font
-/// - layout/layoutAttributes/xaxis/title/font
-/// - layout/layoutAttributes/xaxis/tickfont
-/// - layout/layoutAttributes/xaxis/rangeselector/font
-/// - layout/layoutAttributes/yaxis/title/font
-/// - layout/layoutAttributes/yaxis/tickfont
-/// - layout/layoutAttributes/ternary/aaxis/title/font
-/// - layout/layoutAttributes/ternary/aaxis/tickfont
-/// - layout/layoutAttributes/ternary/baxis/title/font
-/// - layout/layoutAttributes/ternary/baxis/tickfont
-/// - layout/layoutAttributes/ternary/caxis/title/font
-/// - layout/layoutAttributes/ternary/caxis/tickfont
-/// - layout/layoutAttributes/scene/xaxis/title/font
-/// - layout/layoutAttributes/scene/xaxis/tickfont
-/// - layout/layoutAttributes/scene/yaxis/title/font
-/// - layout/layoutAttributes/scene/yaxis/tickfont
-/// - layout/layoutAttributes/scene/zaxis/title/font
-/// - layout/layoutAttributes/scene/zaxis/tickfont
-/// - layout/layoutAttributes/scene/annotations/items/annotation/font
-/// - layout/layoutAttributes/scene/annotations/items/annotation/hoverlabel/font
-/// - layout/layoutAttributes/mapbox/layers/items/layer/symbol/textfont
-/// - layout/layoutAttributes/polar/radialaxis/title/font
-/// - layout/layoutAttributes/polar/radialaxis/tickfont
-/// - layout/layoutAttributes/polar/angularaxis/tickfont
-/// - layout/layoutAttributes/legend/font
-/// - layout/layoutAttributes/annotations/items/annotation/font
-/// - layout/layoutAttributes/annotations/items/annotation/hoverlabel/font
-/// - layout/layoutAttributes/updatemenus/items/updatemenu/font
-/// - layout/layoutAttributes/sliders/items/slider/currentvalue/font
-/// - layout/layoutAttributes/sliders/items/slider/font
-/// - layout/layoutAttributes/coloraxis/colorbar/tickfont
-/// - layout/layoutAttributes/coloraxis/colorbar/title/font
-/// - traces/scatter/attributes/marker/colorbar/tickfont
-/// - traces/scatter/attributes/marker/colorbar/title/font
-/// - traces/bar/attributes/marker/colorbar/tickfont
-/// - traces/bar/attributes/marker/colorbar/title/font
-/// - traces/heatmap/attributes/colorbar/tickfont
-/// - traces/heatmap/attributes/colorbar/title/font
-/// - traces/histogram/attributes/marker/colorbar/tickfont
-/// - traces/histogram/attributes/marker/colorbar/title/font
-/// - traces/histogram2d/attributes/colorbar/tickfont
-/// - traces/histogram2d/attributes/colorbar/title/font
-/// - traces/histogram2dcontour/attributes/contours/labelfont
-/// - traces/histogram2dcontour/attributes/colorbar/tickfont
-/// - traces/histogram2dcontour/attributes/colorbar/title/font
-/// - traces/contour/attributes/contours/labelfont
-/// - traces/contour/attributes/colorbar/tickfont
-/// - traces/contour/attributes/colorbar/title/font
-/// - traces/scatterternary/attributes/marker/colorbar/tickfont
-/// - traces/scatterternary/attributes/marker/colorbar/title/font
-/// - traces/funnel/attributes/marker/colorbar/tickfont
-/// - traces/funnel/attributes/marker/colorbar/title/font
-/// - traces/sunburst/attributes/marker/colorbar/tickfont
-/// - traces/sunburst/attributes/marker/colorbar/title/font
-/// - traces/treemap/attributes/marker/colorbar/tickfont
-/// - traces/treemap/attributes/marker/colorbar/title/font
-/// - traces/scatter3d/attributes/line/colorbar/tickfont
-/// - traces/scatter3d/attributes/line/colorbar/title/font
-/// - traces/scatter3d/attributes/marker/colorbar/tickfont
-/// - traces/scatter3d/attributes/marker/colorbar/title/font
-/// - traces/surface/attributes/colorbar/tickfont
-/// - traces/surface/attributes/colorbar/title/font
-/// - traces/isosurface/attributes/colorbar/tickfont
-/// - traces/isosurface/attributes/colorbar/title/font
-/// - traces/volume/attributes/colorbar/tickfont
-/// - traces/volume/attributes/colorbar/title/font
-/// - traces/mesh3d/attributes/colorbar/tickfont
-/// - traces/mesh3d/attributes/colorbar/title/font
-/// - traces/cone/attributes/colorbar/tickfont
-/// - traces/cone/attributes/colorbar/title/font
-/// - traces/streamtube/attributes/colorbar/tickfont
-/// - traces/streamtube/attributes/colorbar/title/font
-/// - traces/scattergeo/attributes/marker/colorbar/tickfont
-/// - traces/scattergeo/attributes/marker/colorbar/title/font
-/// - traces/choropleth/attributes/colorbar/tickfont
-/// - traces/choropleth/attributes/colorbar/title/font
-/// - traces/scattergl/attributes/marker/colorbar/tickfont
-/// - traces/scattergl/attributes/marker/colorbar/title/font
-/// - traces/splom/attributes/marker/colorbar/tickfont
-/// - traces/splom/attributes/marker/colorbar/title/font
-/// - traces/heatmapgl/attributes/colorbar/tickfont
-/// - traces/heatmapgl/attributes/colorbar/title/font
-/// - traces/parcoords/attributes/labelfont
-/// - traces/parcoords/attributes/tickfont
-/// - traces/parcoords/attributes/rangefont
-/// - traces/parcoords/attributes/line/colorbar/tickfont
-/// - traces/parcoords/attributes/line/colorbar/title/font
-/// - traces/parcats/attributes/labelfont
-/// - traces/parcats/attributes/tickfont
-/// - traces/parcats/attributes/line/colorbar/tickfont
-/// - traces/parcats/attributes/line/colorbar/title/font
-/// - traces/scattermapbox/attributes/marker/colorbar/tickfont
-/// - traces/scattermapbox/attributes/marker/colorbar/title/font
-/// - traces/scattermapbox/attributes/textfont
-/// - traces/choroplethmapbox/attributes/colorbar/tickfont
-/// - traces/choroplethmapbox/attributes/colorbar/title/font
-/// - traces/densitymapbox/attributes/colorbar/tickfont
-/// - traces/densitymapbox/attributes/colorbar/title/font
-/// - traces/sankey/attributes/textfont
-/// - traces/indicator/attributes/title/font
-/// - traces/indicator/attributes/number/font
-/// - traces/indicator/attributes/delta/font
-/// - traces/indicator/attributes/gauge/axis/tickfont
-/// - traces/carpet/attributes/aaxis/title/font
-/// - traces/carpet/attributes/aaxis/tickfont
-/// - traces/carpet/attributes/baxis/title/font
-/// - traces/carpet/attributes/baxis/tickfont
-/// - traces/carpet/attributes/font
-/// - traces/scattercarpet/attributes/marker/colorbar/tickfont
-/// - traces/scattercarpet/attributes/marker/colorbar/title/font
-/// - traces/contourcarpet/attributes/contours/labelfont
-/// - traces/contourcarpet/attributes/colorbar/tickfont
-/// - traces/contourcarpet/attributes/colorbar/title/font
-/// - traces/scatterpolar/attributes/marker/colorbar/tickfont
-/// - traces/scatterpolar/attributes/marker/colorbar/title/font
-/// - traces/scatterpolargl/attributes/marker/colorbar/tickfont
-/// - traces/scatterpolargl/attributes/marker/colorbar/title/font
-/// - traces/barpolar/attributes/marker/colorbar/tickfont
-/// - traces/barpolar/attributes/marker/colorbar/title/font
+/// - [Layout.Font0](layout/layoutAttributes/font)
+/// - [Layout.Font0](layout/layoutAttributes/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/hoverlabel/font)
+/// - [Layout.Font0](layout/layoutAttributes/xaxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/xaxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/xaxis/rangeselector/font)
+/// - [Layout.Font0](layout/layoutAttributes/yaxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/yaxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/ternary/aaxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/ternary/aaxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/ternary/baxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/ternary/baxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/ternary/caxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/ternary/caxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/scene/xaxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/scene/xaxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/scene/yaxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/scene/yaxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/scene/zaxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/scene/zaxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/scene/annotations/items/annotation/font)
+/// - [Layout.Font0](layout/layoutAttributes/scene/annotations/items/annotation/hoverlabel/font)
+/// - [Layout.Font0](layout/layoutAttributes/mapbox/layers/items/layer/symbol/textfont)
+/// - [Layout.Font0](layout/layoutAttributes/polar/radialaxis/title/font)
+/// - [Layout.Font0](layout/layoutAttributes/polar/radialaxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/polar/angularaxis/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/legend/font)
+/// - [Layout.Font0](layout/layoutAttributes/annotations/items/annotation/font)
+/// - [Layout.Font0](layout/layoutAttributes/annotations/items/annotation/hoverlabel/font)
+/// - [Layout.Font0](layout/layoutAttributes/updatemenus/items/updatemenu/font)
+/// - [Layout.Font0](layout/layoutAttributes/sliders/items/slider/currentvalue/font)
+/// - [Layout.Font0](layout/layoutAttributes/sliders/items/slider/font)
+/// - [Layout.Font0](layout/layoutAttributes/coloraxis/colorbar/tickfont)
+/// - [Layout.Font0](layout/layoutAttributes/coloraxis/colorbar/title/font)
+/// - [Layout.Font0](traces/scatter/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scatter/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scatter/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/scatter/attributes/textfont)
+/// - [Layout.Font0](traces/bar/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/bar/attributes/textfont)
+/// - [Layout.Font0](traces/bar/attributes/insidetextfont)
+/// - [Layout.Font0](traces/bar/attributes/outsidetextfont)
+/// - [Layout.Font0](traces/bar/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/bar/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/box/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/heatmap/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/heatmap/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/heatmap/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/histogram/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/histogram/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/histogram/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/histogram2d/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/histogram2d/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/histogram2d/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/histogram2dcontour/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/histogram2dcontour/attributes/contours/labelfont)
+/// - [Layout.Font0](traces/histogram2dcontour/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/histogram2dcontour/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/contour/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/contour/attributes/contours/labelfont)
+/// - [Layout.Font0](traces/contour/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/contour/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/scatterternary/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scatterternary/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scatterternary/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/scatterternary/attributes/textfont)
+/// - [Layout.Font0](traces/violin/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/funnel/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/funnel/attributes/textfont)
+/// - [Layout.Font0](traces/funnel/attributes/insidetextfont)
+/// - [Layout.Font0](traces/funnel/attributes/outsidetextfont)
+/// - [Layout.Font0](traces/funnel/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/funnel/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/waterfall/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/waterfall/attributes/textfont)
+/// - [Layout.Font0](traces/waterfall/attributes/insidetextfont)
+/// - [Layout.Font0](traces/waterfall/attributes/outsidetextfont)
+/// - [Layout.Font0](traces/image/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/pie/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/pie/attributes/textfont)
+/// - [Layout.Font0](traces/pie/attributes/insidetextfont)
+/// - [Layout.Font0](traces/pie/attributes/outsidetextfont)
+/// - [Layout.Font0](traces/pie/attributes/title/font)
+/// - [Layout.Font0](traces/sunburst/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/sunburst/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/sunburst/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/sunburst/attributes/textfont)
+/// - [Layout.Font0](traces/sunburst/attributes/insidetextfont)
+/// - [Layout.Font0](traces/sunburst/attributes/outsidetextfont)
+/// - [Layout.Font0](traces/treemap/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/treemap/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/treemap/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/treemap/attributes/pathbar/textfont)
+/// - [Layout.Font0](traces/treemap/attributes/textfont)
+/// - [Layout.Font0](traces/treemap/attributes/insidetextfont)
+/// - [Layout.Font0](traces/treemap/attributes/outsidetextfont)
+/// - [Layout.Font0](traces/funnelarea/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/funnelarea/attributes/textfont)
+/// - [Layout.Font0](traces/funnelarea/attributes/insidetextfont)
+/// - [Layout.Font0](traces/funnelarea/attributes/title/font)
+/// - [Layout.Font0](traces/scatter3d/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scatter3d/attributes/line/colorbar/tickfont)
+/// - [Layout.Font0](traces/scatter3d/attributes/line/colorbar/title/font)
+/// - [Layout.Font0](traces/scatter3d/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scatter3d/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/surface/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/surface/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/surface/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/isosurface/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/isosurface/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/isosurface/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/volume/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/volume/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/volume/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/mesh3d/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/mesh3d/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/mesh3d/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/cone/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/cone/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/cone/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/streamtube/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/streamtube/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/streamtube/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/scattergeo/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scattergeo/attributes/textfont)
+/// - [Layout.Font0](traces/scattergeo/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scattergeo/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/choropleth/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/choropleth/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/choropleth/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/scattergl/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scattergl/attributes/textfont)
+/// - [Layout.Font0](traces/scattergl/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scattergl/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/splom/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/splom/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/splom/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/pointcloud/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/heatmapgl/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/heatmapgl/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/heatmapgl/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/parcoords/attributes/labelfont)
+/// - [Layout.Font0](traces/parcoords/attributes/tickfont)
+/// - [Layout.Font0](traces/parcoords/attributes/rangefont)
+/// - [Layout.Font0](traces/parcoords/attributes/line/colorbar/tickfont)
+/// - [Layout.Font0](traces/parcoords/attributes/line/colorbar/title/font)
+/// - [Layout.Font0](traces/parcats/attributes/labelfont)
+/// - [Layout.Font0](traces/parcats/attributes/tickfont)
+/// - [Layout.Font0](traces/parcats/attributes/line/colorbar/tickfont)
+/// - [Layout.Font0](traces/parcats/attributes/line/colorbar/title/font)
+/// - [Layout.Font0](traces/scattermapbox/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scattermapbox/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scattermapbox/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/scattermapbox/attributes/textfont)
+/// - [Layout.Font0](traces/choroplethmapbox/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/choroplethmapbox/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/choroplethmapbox/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/densitymapbox/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/densitymapbox/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/densitymapbox/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/sankey/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/sankey/attributes/textfont)
+/// - [Layout.Font0](traces/sankey/attributes/node/hoverlabel/font)
+/// - [Layout.Font0](traces/sankey/attributes/link/hoverlabel/font)
+/// - [Layout.Font0](traces/indicator/attributes/title/font)
+/// - [Layout.Font0](traces/indicator/attributes/number/font)
+/// - [Layout.Font0](traces/indicator/attributes/delta/font)
+/// - [Layout.Font0](traces/indicator/attributes/gauge/axis/tickfont)
+/// - [Layout.Font0](traces/table/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/table/attributes/header/font)
+/// - [Layout.Font0](traces/table/attributes/cells/font)
+/// - [Layout.Font0](traces/carpet/attributes/aaxis/title/font)
+/// - [Layout.Font0](traces/carpet/attributes/aaxis/tickfont)
+/// - [Layout.Font0](traces/carpet/attributes/baxis/title/font)
+/// - [Layout.Font0](traces/carpet/attributes/baxis/tickfont)
+/// - [Layout.Font0](traces/carpet/attributes/font)
+/// - [Layout.Font0](traces/scattercarpet/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scattercarpet/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scattercarpet/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/scattercarpet/attributes/textfont)
+/// - [Layout.Font0](traces/contourcarpet/attributes/contours/labelfont)
+/// - [Layout.Font0](traces/contourcarpet/attributes/colorbar/tickfont)
+/// - [Layout.Font0](traces/contourcarpet/attributes/colorbar/title/font)
+/// - [Layout.Font0](traces/ohlc/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/candlestick/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scatterpolar/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scatterpolar/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scatterpolar/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/scatterpolar/attributes/textfont)
+/// - [Layout.Font0](traces/scatterpolargl/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/scatterpolargl/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/scatterpolargl/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/scatterpolargl/attributes/textfont)
+/// - [Layout.Font0](traces/barpolar/attributes/hoverlabel/font)
+/// - [Layout.Font0](traces/barpolar/attributes/marker/colorbar/tickfont)
+/// - [Layout.Font0](traces/barpolar/attributes/marker/colorbar/title/font)
+/// - [Layout.Font0](traces/area/attributes/hoverlabel/font)
 public struct Font0: Encodable {
     /// HTML font family - the typeface that will be applied by the web browser. 
     ///
@@ -145,105 +290,456 @@ public struct Font0: Encodable {
     }
 }
 
-/// - layout/layoutAttributes/xaxis/tickformatstops
-/// - layout/layoutAttributes/xaxis/rangeselector/buttons
-/// - layout/layoutAttributes/yaxis/tickformatstops
-/// - layout/layoutAttributes/ternary/aaxis/tickformatstops
-/// - layout/layoutAttributes/ternary/baxis/tickformatstops
-/// - layout/layoutAttributes/ternary/caxis/tickformatstops
-/// - layout/layoutAttributes/scene/xaxis/tickformatstops
-/// - layout/layoutAttributes/scene/yaxis/tickformatstops
-/// - layout/layoutAttributes/scene/zaxis/tickformatstops
-/// - layout/layoutAttributes/scene/annotations
-/// - layout/layoutAttributes/mapbox/layers
-/// - layout/layoutAttributes/polar/radialaxis/tickformatstops
-/// - layout/layoutAttributes/polar/angularaxis/tickformatstops
-/// - layout/layoutAttributes/annotations
-/// - layout/layoutAttributes/shapes
-/// - layout/layoutAttributes/images
-/// - layout/layoutAttributes/updatemenus
-/// - layout/layoutAttributes/updatemenus/items/updatemenu/buttons
-/// - layout/layoutAttributes/sliders
-/// - layout/layoutAttributes/sliders/items/slider/steps
-/// - layout/layoutAttributes/coloraxis/colorbar/tickformatstops
-/// - traces/scatter/attributes/transforms
-/// - traces/scatter/attributes/marker/colorbar/tickformatstops
-/// - traces/bar/attributes/transforms
-/// - traces/bar/attributes/marker/colorbar/tickformatstops
-/// - traces/box/attributes/transforms
-/// - traces/heatmap/attributes/transforms
-/// - traces/heatmap/attributes/colorbar/tickformatstops
-/// - traces/histogram/attributes/transforms
-/// - traces/histogram/attributes/marker/colorbar/tickformatstops
-/// - traces/histogram2d/attributes/transforms
-/// - traces/histogram2d/attributes/colorbar/tickformatstops
-/// - traces/histogram2dcontour/attributes/transforms
-/// - traces/histogram2dcontour/attributes/colorbar/tickformatstops
-/// - traces/contour/attributes/transforms
-/// - traces/contour/attributes/colorbar/tickformatstops
-/// - traces/scatterternary/attributes/transforms
-/// - traces/scatterternary/attributes/marker/colorbar/tickformatstops
-/// - traces/violin/attributes/transforms
-/// - traces/funnel/attributes/transforms
-/// - traces/funnel/attributes/marker/colorbar/tickformatstops
-/// - traces/waterfall/attributes/transforms
-/// - traces/pie/attributes/transforms
-/// - traces/sunburst/attributes/transforms
-/// - traces/sunburst/attributes/marker/colorbar/tickformatstops
-/// - traces/treemap/attributes/transforms
-/// - traces/treemap/attributes/marker/colorbar/tickformatstops
-/// - traces/funnelarea/attributes/transforms
-/// - traces/scatter3d/attributes/transforms
-/// - traces/scatter3d/attributes/line/colorbar/tickformatstops
-/// - traces/scatter3d/attributes/marker/colorbar/tickformatstops
-/// - traces/surface/attributes/colorbar/tickformatstops
-/// - traces/isosurface/attributes/colorbar/tickformatstops
-/// - traces/volume/attributes/colorbar/tickformatstops
-/// - traces/mesh3d/attributes/colorbar/tickformatstops
-/// - traces/cone/attributes/colorbar/tickformatstops
-/// - traces/streamtube/attributes/colorbar/tickformatstops
-/// - traces/scattergeo/attributes/transforms
-/// - traces/scattergeo/attributes/marker/colorbar/tickformatstops
-/// - traces/choropleth/attributes/transforms
-/// - traces/choropleth/attributes/colorbar/tickformatstops
-/// - traces/scattergl/attributes/transforms
-/// - traces/scattergl/attributes/marker/colorbar/tickformatstops
-/// - traces/splom/attributes/transforms
-/// - traces/splom/attributes/dimensions
-/// - traces/splom/attributes/marker/colorbar/tickformatstops
-/// - traces/heatmapgl/attributes/transforms
-/// - traces/heatmapgl/attributes/colorbar/tickformatstops
-/// - traces/parcoords/attributes/transforms
-/// - traces/parcoords/attributes/dimensions
-/// - traces/parcoords/attributes/line/colorbar/tickformatstops
-/// - traces/parcats/attributes/transforms
-/// - traces/parcats/attributes/dimensions
-/// - traces/parcats/attributes/line/colorbar/tickformatstops
-/// - traces/scattermapbox/attributes/transforms
-/// - traces/scattermapbox/attributes/marker/colorbar/tickformatstops
-/// - traces/choroplethmapbox/attributes/transforms
-/// - traces/choroplethmapbox/attributes/colorbar/tickformatstops
-/// - traces/densitymapbox/attributes/transforms
-/// - traces/densitymapbox/attributes/colorbar/tickformatstops
-/// - traces/sankey/attributes/link/colorscales
-/// - traces/indicator/attributes/transforms
-/// - traces/indicator/attributes/gauge/axis/tickformatstops
-/// - traces/indicator/attributes/gauge/steps
-/// - traces/carpet/attributes/aaxis/tickformatstops
-/// - traces/carpet/attributes/baxis/tickformatstops
-/// - traces/scattercarpet/attributes/transforms
-/// - traces/scattercarpet/attributes/marker/colorbar/tickformatstops
-/// - traces/contourcarpet/attributes/colorbar/tickformatstops
-/// - traces/ohlc/attributes/transforms
-/// - traces/candlestick/attributes/transforms
-/// - traces/scatterpolar/attributes/transforms
-/// - traces/scatterpolar/attributes/marker/colorbar/tickformatstops
-/// - traces/scatterpolargl/attributes/transforms
-/// - traces/scatterpolargl/attributes/marker/colorbar/tickformatstops
-/// - traces/barpolar/attributes/transforms
-/// - traces/barpolar/attributes/marker/colorbar/tickformatstops
-/// - traces/area/attributes/transforms
+/// - [Layout.Title0](layout/layoutAttributes/title)
+/// - [Layout.Title0](layout/layoutAttributes/ternary/aaxis/title)
+/// - [Layout.Title0](layout/layoutAttributes/ternary/baxis/title)
+/// - [Layout.Title0](layout/layoutAttributes/ternary/caxis/title)
+/// - [Layout.Title0](layout/layoutAttributes/scene/xaxis/title)
+/// - [Layout.Title0](layout/layoutAttributes/scene/yaxis/title)
+/// - [Layout.Title0](layout/layoutAttributes/scene/zaxis/title)
+/// - [Layout.Title0](layout/layoutAttributes/polar/radialaxis/title)
+public struct Title0: Encodable {
+    /// Sets the plot's title. 
+    ///
+    /// Note that before the existence of `title.text`, the title's contents used to be defined as the
+    /// `title` attribute itself. This behavior has been deprecated.
+    public var text: String?
+
+    /// Sets the title font. 
+    ///
+    /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+    public var font: Font0?
+
+    /// Sets the container `x` refers to. 
+    ///
+    /// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
+    /// area only.
+    /// - [Layout.Title0.XReference](layout/layoutAttributes/title/xref)
+    public enum XReference: String, Encodable {
+        case container
+        case paper
+    }
+    /// Sets the container `x` refers to. 
+    ///
+    /// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
+    /// area only.
+    public var xReference: XReference?
+
+    /// Sets the container `y` refers to. 
+    ///
+    /// *container* spans the entire `height` of the plot. *paper* refers to the height of the plotting
+    /// area only.
+    /// - [Layout.Title0.YReference](layout/layoutAttributes/title/yref)
+    public enum YReference: String, Encodable {
+        case container
+        case paper
+    }
+    /// Sets the container `y` refers to. 
+    ///
+    /// *container* spans the entire `height` of the plot. *paper* refers to the height of the plotting
+    /// area only.
+    public var yReference: YReference?
+
+    /// Sets the x position with respect to `xref` in normalized coordinates from *0* (left) to *1* (right).
+    public var x: Double?
+
+    /// Sets the y position with respect to `yref` in normalized coordinates from *0* (bottom) to *1* (top). 
+    ///
+    /// *auto* places the baseline of the title onto the vertical center of the top margin.
+    public var y: Double?
+
+    /// Sets the title's horizontal alignment with respect to its x position. 
+    ///
+    /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+    /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+    /// `xanchor` value automatically based on the value of `x`.
+    /// - [Layout.Title0.XAnchor0](layout/layoutAttributes/title/xanchor)
+    /// - [Layout.Title0.XAnchor0](layout/layoutAttributes/xaxis/rangeselector/xanchor)
+    /// - [Layout.Title0.XAnchor0](layout/layoutAttributes/scene/annotations/items/annotation/xanchor)
+    /// - [Layout.Title0.XAnchor0](layout/layoutAttributes/legend/xanchor)
+    /// - [Layout.Title0.XAnchor0](layout/layoutAttributes/annotations/items/annotation/xanchor)
+    /// - [Layout.Title0.XAnchor0](layout/layoutAttributes/updatemenus/items/updatemenu/xanchor)
+    /// - [Layout.Title0.XAnchor0](layout/layoutAttributes/sliders/items/slider/xanchor)
+    public enum XAnchor0: String, Encodable {
+        case auto
+        case left
+        case center
+        case right
+    }
+    /// Sets the title's horizontal alignment with respect to its x position. 
+    ///
+    /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+    /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+    /// `xanchor` value automatically based on the value of `x`.
+    public var xAnchor: XAnchor0?
+
+    /// Sets the title's vertical alignment with respect to its y position. 
+    ///
+    /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+    /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+    /// calculates the `yanchor` value automatically based on the value of `y`.
+    /// - [Layout.Title0.YAnchor0](layout/layoutAttributes/title/yanchor)
+    /// - [Layout.Title0.YAnchor0](layout/layoutAttributes/xaxis/rangeselector/yanchor)
+    /// - [Layout.Title0.YAnchor0](layout/layoutAttributes/scene/annotations/items/annotation/yanchor)
+    /// - [Layout.Title0.YAnchor0](layout/layoutAttributes/legend/yanchor)
+    /// - [Layout.Title0.YAnchor0](layout/layoutAttributes/annotations/items/annotation/yanchor)
+    /// - [Layout.Title0.YAnchor0](layout/layoutAttributes/updatemenus/items/updatemenu/yanchor)
+    /// - [Layout.Title0.YAnchor0](layout/layoutAttributes/sliders/items/slider/yanchor)
+    public enum YAnchor0: String, Encodable {
+        case auto
+        case top
+        case middle
+        case bottom
+    }
+    /// Sets the title's vertical alignment with respect to its y position. 
+    ///
+    /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+    /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+    /// calculates the `yanchor` value automatically based on the value of `y`.
+    public var yAnchor: YAnchor0?
+
+    /// Sets the padding of the title. 
+    ///
+    /// Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set
+    /// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
+    /// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
+    /// respective anchor value is *middle*/*center*.
+    /// - [Layout.Title0.Padding](layout/layoutAttributes/title/pad)
+    public struct Padding: Encodable {
+        /// The amount of padding (in px) along the top of the component.
+        public var t: Double?
+    
+        /// The amount of padding (in px) on the right side of the component.
+        public var r: Double?
+    
+        /// The amount of padding (in px) along the bottom of the component.
+        public var b: Double?
+    
+        /// The amount of padding (in px) on the left side of the component.
+        public var l: Double?
+    
+        public init(t: Double? = nil, r: Double? = nil, b: Double? = nil, l: Double? = nil) {
+            self.t = t
+            self.r = r
+            self.b = b
+            self.l = l
+        }
+    }
+    /// Sets the padding of the title. 
+    ///
+    /// Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set
+    /// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
+    /// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
+    /// respective anchor value is *middle*/*center*.
+    public var padding: Padding?
+
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case text
+        case font
+        case xReference = "xref"
+        case yReference = "yref"
+        case x
+        case y
+        case xAnchor = "xanchor"
+        case yAnchor = "yanchor"
+        case padding = "pad"
+    }
+    
+    public init(text: String? = nil, font: Font0? = nil, xReference: XReference? = nil, yReference: YReference? = nil, x: Double? = nil, y: Double? = nil, xAnchor: XAnchor0? = nil, yAnchor: YAnchor0? = nil, padding: Padding? = nil) {
+        self.text = text
+        self.font = font
+        self.xReference = xReference
+        self.yReference = yReference
+        self.x = x
+        self.y = y
+        self.xAnchor = xAnchor
+        self.yAnchor = yAnchor
+        self.padding = padding
+    }
+}
+
+/// - [Layout.HoverLabel0](layout/layoutAttributes/hoverlabel)
+/// - [Layout.HoverLabel0](layout/layoutAttributes/scene/annotations/items/annotation/hoverlabel)
+/// - [Layout.HoverLabel0](layout/layoutAttributes/annotations/items/annotation/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scatter/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/bar/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/box/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/heatmap/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/histogram/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/histogram2d/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/histogram2dcontour/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/contour/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scatterternary/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/violin/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/funnel/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/waterfall/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/image/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/pie/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/sunburst/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/treemap/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/funnelarea/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scatter3d/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/surface/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/isosurface/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/volume/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/mesh3d/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/cone/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/streamtube/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scattergeo/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/choropleth/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scattergl/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/splom/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/pointcloud/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/heatmapgl/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scattermapbox/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/choroplethmapbox/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/densitymapbox/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/sankey/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/sankey/attributes/node/hoverlabel)
+/// - [Layout.HoverLabel0](traces/sankey/attributes/link/hoverlabel)
+/// - [Layout.HoverLabel0](traces/table/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scattercarpet/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/ohlc/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/candlestick/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scatterpolar/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/scatterpolargl/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/barpolar/attributes/hoverlabel)
+/// - [Layout.HoverLabel0](traces/area/attributes/hoverlabel)
+public struct HoverLabel0: Encodable {
+    /// Sets the background color of all hover labels on graph
+    public var backgroundColor: Color?
+
+    /// Sets the border color of all hover labels on graph.
+    public var borderColor: Color?
+
+    /// Sets the default hover label font used by all traces on the graph.
+    public var font: Font0?
+
+    /// Sets the horizontal alignment of the text content within hover label box. 
+    ///
+    /// Has an effect only if the hover label text spans more two or more lines
+    /// - [Layout.HoverLabel0.Align0](layout/layoutAttributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scatter/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/bar/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/box/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/heatmap/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/histogram/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/histogram2d/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/histogram2dcontour/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/contour/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scatterternary/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/violin/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/funnel/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/waterfall/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/image/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/pie/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/sunburst/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/treemap/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/funnelarea/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scatter3d/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/surface/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/isosurface/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/volume/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/mesh3d/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/cone/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/streamtube/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scattergeo/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/choropleth/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scattergl/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/splom/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/pointcloud/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/heatmapgl/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scattermapbox/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/choroplethmapbox/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/densitymapbox/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/sankey/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/sankey/attributes/node/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/sankey/attributes/link/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/table/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scattercarpet/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/ohlc/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/candlestick/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scatterpolar/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/scatterpolargl/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/barpolar/attributes/hoverlabel/align)
+    /// - [Layout.HoverLabel0.Align0](traces/area/attributes/hoverlabel/align)
+    public enum Align0: String, Encodable {
+        case left
+        case right
+        case auto
+    }
+    /// Sets the horizontal alignment of the text content within hover label box. 
+    ///
+    /// Has an effect only if the hover label text spans more two or more lines
+    public var align: Align0?
+
+    /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
+    ///
+    /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
+    /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
+    /// truncate to `namelength - 3` characters and add an ellipsis.
+    public var nameLength: Int?
+
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case backgroundColor = "bgcolor"
+        case borderColor = "bordercolor"
+        case font
+        case align
+        case nameLength = "namelength"
+    }
+    
+    public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font0? = nil, align: Align0? = nil, nameLength: Int? = nil) {
+        self.backgroundColor = backgroundColor
+        self.borderColor = borderColor
+        self.font = font
+        self.align = align
+        self.nameLength = nameLength
+    }
+}
+
+/// - [Layout.Grid.Domain0](layout/layoutAttributes/grid/domain)
+/// - [Layout.Grid.Domain0](layout/layoutAttributes/ternary/domain)
+/// - [Layout.Grid.Domain0](layout/layoutAttributes/scene/domain)
+/// - [Layout.Grid.Domain0](layout/layoutAttributes/geo/domain)
+/// - [Layout.Grid.Domain0](layout/layoutAttributes/mapbox/domain)
+/// - [Layout.Grid.Domain0](layout/layoutAttributes/polar/domain)
+/// - [Layout.Grid.Domain0](traces/pie/attributes/domain)
+/// - [Layout.Grid.Domain0](traces/sunburst/attributes/domain)
+/// - [Layout.Grid.Domain0](traces/treemap/attributes/domain)
+/// - [Layout.Grid.Domain0](traces/funnelarea/attributes/domain)
+/// - [Layout.Grid.Domain0](traces/parcoords/attributes/domain)
+/// - [Layout.Grid.Domain0](traces/parcats/attributes/domain)
+/// - [Layout.Grid.Domain0](traces/sankey/attributes/domain)
+/// - [Layout.Grid.Domain0](traces/indicator/attributes/domain)
+/// - [Layout.Grid.Domain0](traces/table/attributes/domain)
+public struct Domain0: Encodable {
+    /// Sets the horizontal domain of this grid subplot (in plot fraction). 
+    ///
+    /// The first and last cells end exactly at the domain edges, with no grout around the edges.
+    public var x: InfoArray?
+
+    /// Sets the vertical domain of this grid subplot (in plot fraction). 
+    ///
+    /// The first and last cells end exactly at the domain edges, with no grout around the edges.
+    public var y: InfoArray?
+
+    public init(x: InfoArray? = nil, y: InfoArray? = nil) {
+        self.x = x
+        self.y = y
+    }
+}
+
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/xaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/yaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/ternary/aaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/ternary/baxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/ternary/caxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/scene/xaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/scene/yaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/scene/zaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/polar/radialaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/polar/angularaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](layout/layoutAttributes/coloraxis/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scatter/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/bar/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/heatmap/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/histogram/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/histogram2d/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/histogram2dcontour/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/contour/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scatterternary/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/funnel/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/sunburst/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/treemap/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scatter3d/attributes/line/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scatter3d/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/surface/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/isosurface/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/volume/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/mesh3d/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/cone/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/streamtube/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scattergeo/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/choropleth/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scattergl/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/splom/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/heatmapgl/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/parcoords/attributes/line/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/parcats/attributes/line/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scattermapbox/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/choroplethmapbox/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/densitymapbox/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/indicator/attributes/gauge/axis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/carpet/attributes/aaxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/carpet/attributes/baxis/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scattercarpet/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/contourcarpet/attributes/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scatterpolar/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/scatterpolargl/attributes/marker/colorbar/tickformatstops)
+/// - [Layout.XAxis.TickFormatStops0](traces/barpolar/attributes/marker/colorbar/tickformatstops)
 public struct TickFormatStops0: Encodable {
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/xaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/yaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/ternary/aaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/ternary/baxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/ternary/caxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/scene/xaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/scene/yaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/scene/zaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/polar/radialaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/polar/angularaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](layout/layoutAttributes/coloraxis/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scatter/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/bar/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/heatmap/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/histogram/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/histogram2d/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/histogram2dcontour/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/contour/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scatterternary/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/funnel/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/sunburst/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/treemap/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scatter3d/attributes/line/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scatter3d/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/surface/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/isosurface/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/volume/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/mesh3d/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/cone/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/streamtube/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scattergeo/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/choropleth/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scattergl/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/splom/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/heatmapgl/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/parcoords/attributes/line/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/parcats/attributes/line/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scattermapbox/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/choroplethmapbox/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/densitymapbox/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/indicator/attributes/gauge/axis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/carpet/attributes/aaxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/carpet/attributes/baxis/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scattercarpet/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/contourcarpet/attributes/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scatterpolar/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/scatterpolargl/attributes/marker/colorbar/tickformatstops/items)
+    /// - [Layout.XAxis.TickFormatStops0.Items](traces/barpolar/attributes/marker/colorbar/tickformatstops/items)
+    public struct Items: Encodable {
+        public var tickFormatStop: TickFormatStop?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case tickFormatStop = "tickformatstop"
+        }
+        
+        public init(tickFormatStop: TickFormatStop? = nil) {
+            self.tickFormatStop = tickFormatStop
+        }
+    }
     public var items: Items?
 
     public init(items: Items? = nil) {
@@ -251,115 +747,54 @@ public struct TickFormatStops0: Encodable {
     }
 }
 
-/// - layout/layoutAttributes/xaxis/tickformatstops/items
-/// - layout/layoutAttributes/yaxis/tickformatstops/items
-/// - layout/layoutAttributes/ternary/aaxis/tickformatstops/items
-/// - layout/layoutAttributes/ternary/baxis/tickformatstops/items
-/// - layout/layoutAttributes/ternary/caxis/tickformatstops/items
-/// - layout/layoutAttributes/scene/xaxis/tickformatstops/items
-/// - layout/layoutAttributes/scene/yaxis/tickformatstops/items
-/// - layout/layoutAttributes/scene/zaxis/tickformatstops/items
-/// - layout/layoutAttributes/polar/radialaxis/tickformatstops/items
-/// - layout/layoutAttributes/polar/angularaxis/tickformatstops/items
-/// - layout/layoutAttributes/coloraxis/colorbar/tickformatstops/items
-/// - traces/scatter/attributes/marker/colorbar/tickformatstops/items
-/// - traces/bar/attributes/marker/colorbar/tickformatstops/items
-/// - traces/heatmap/attributes/colorbar/tickformatstops/items
-/// - traces/histogram/attributes/marker/colorbar/tickformatstops/items
-/// - traces/histogram2d/attributes/colorbar/tickformatstops/items
-/// - traces/histogram2dcontour/attributes/colorbar/tickformatstops/items
-/// - traces/contour/attributes/colorbar/tickformatstops/items
-/// - traces/scatterternary/attributes/marker/colorbar/tickformatstops/items
-/// - traces/funnel/attributes/marker/colorbar/tickformatstops/items
-/// - traces/sunburst/attributes/marker/colorbar/tickformatstops/items
-/// - traces/treemap/attributes/marker/colorbar/tickformatstops/items
-/// - traces/scatter3d/attributes/line/colorbar/tickformatstops/items
-/// - traces/scatter3d/attributes/marker/colorbar/tickformatstops/items
-/// - traces/surface/attributes/colorbar/tickformatstops/items
-/// - traces/isosurface/attributes/colorbar/tickformatstops/items
-/// - traces/volume/attributes/colorbar/tickformatstops/items
-/// - traces/mesh3d/attributes/colorbar/tickformatstops/items
-/// - traces/cone/attributes/colorbar/tickformatstops/items
-/// - traces/streamtube/attributes/colorbar/tickformatstops/items
-/// - traces/scattergeo/attributes/marker/colorbar/tickformatstops/items
-/// - traces/choropleth/attributes/colorbar/tickformatstops/items
-/// - traces/scattergl/attributes/marker/colorbar/tickformatstops/items
-/// - traces/splom/attributes/marker/colorbar/tickformatstops/items
-/// - traces/heatmapgl/attributes/colorbar/tickformatstops/items
-/// - traces/parcoords/attributes/line/colorbar/tickformatstops/items
-/// - traces/parcats/attributes/line/colorbar/tickformatstops/items
-/// - traces/scattermapbox/attributes/marker/colorbar/tickformatstops/items
-/// - traces/choroplethmapbox/attributes/colorbar/tickformatstops/items
-/// - traces/densitymapbox/attributes/colorbar/tickformatstops/items
-/// - traces/indicator/attributes/gauge/axis/tickformatstops/items
-/// - traces/carpet/attributes/aaxis/tickformatstops/items
-/// - traces/carpet/attributes/baxis/tickformatstops/items
-/// - traces/scattercarpet/attributes/marker/colorbar/tickformatstops/items
-/// - traces/contourcarpet/attributes/colorbar/tickformatstops/items
-/// - traces/scatterpolar/attributes/marker/colorbar/tickformatstops/items
-/// - traces/scatterpolargl/attributes/marker/colorbar/tickformatstops/items
-/// - traces/barpolar/attributes/marker/colorbar/tickformatstops/items
-public struct Items0: Encodable {
-    public var tickFormatStop: TickFormatStop?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case tickFormatStop = "tickformatstop"
-    }
-    
-    public init(tickFormatStop: TickFormatStop? = nil) {
-        self.tickFormatStop = tickFormatStop
-    }
-}
-
-/// - layout/layoutAttributes/xaxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/yaxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/ternary/aaxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/ternary/baxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/ternary/caxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/scene/xaxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/scene/yaxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/scene/zaxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/polar/radialaxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/polar/angularaxis/tickformatstops/items/tickformatstop
-/// - layout/layoutAttributes/coloraxis/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scatter/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/bar/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/heatmap/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/histogram/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/histogram2d/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/histogram2dcontour/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/contour/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scatterternary/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/funnel/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/sunburst/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/treemap/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scatter3d/attributes/line/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scatter3d/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/surface/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/isosurface/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/volume/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/mesh3d/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/cone/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/streamtube/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scattergeo/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/choropleth/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scattergl/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/splom/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/heatmapgl/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/parcoords/attributes/line/colorbar/tickformatstops/items/tickformatstop
-/// - traces/parcats/attributes/line/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scattermapbox/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/choroplethmapbox/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/densitymapbox/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/indicator/attributes/gauge/axis/tickformatstops/items/tickformatstop
-/// - traces/carpet/attributes/aaxis/tickformatstops/items/tickformatstop
-/// - traces/carpet/attributes/baxis/tickformatstops/items/tickformatstop
-/// - traces/scattercarpet/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/contourcarpet/attributes/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scatterpolar/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/scatterpolargl/attributes/marker/colorbar/tickformatstops/items/tickformatstop
-/// - traces/barpolar/attributes/marker/colorbar/tickformatstops/items/tickformatstop
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/xaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/yaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/ternary/aaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/ternary/baxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/ternary/caxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/scene/xaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/scene/yaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/scene/zaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/polar/radialaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/polar/angularaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](layout/layoutAttributes/coloraxis/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scatter/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/bar/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/heatmap/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/histogram/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/histogram2d/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/histogram2dcontour/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/contour/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scatterternary/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/funnel/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/sunburst/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/treemap/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scatter3d/attributes/line/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scatter3d/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/surface/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/isosurface/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/volume/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/mesh3d/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/cone/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/streamtube/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scattergeo/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/choropleth/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scattergl/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/splom/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/heatmapgl/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/parcoords/attributes/line/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/parcats/attributes/line/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scattermapbox/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/choroplethmapbox/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/densitymapbox/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/indicator/attributes/gauge/axis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/carpet/attributes/aaxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/carpet/attributes/baxis/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scattercarpet/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/contourcarpet/attributes/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scatterpolar/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/scatterpolargl/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
+/// - [Layout.XAxis.TickFormatStops0.Items.TickFormatStop0](traces/barpolar/attributes/marker/colorbar/tickformatstops/items/tickformatstop)
 public struct TickFormatStop0: Encodable {
     /// Determines whether or not this stop is used. 
     ///
@@ -406,152 +841,30 @@ public struct TickFormatStop0: Encodable {
     }
 }
 
-/// - layout/layoutAttributes/ternary/domain
-/// - layout/layoutAttributes/scene/domain
-/// - layout/layoutAttributes/geo/domain
-/// - layout/layoutAttributes/mapbox/domain
-/// - layout/layoutAttributes/polar/domain
-/// - traces/pie/attributes/domain
-/// - traces/sunburst/attributes/domain
-/// - traces/treemap/attributes/domain
-/// - traces/funnelarea/attributes/domain
-/// - traces/parcoords/attributes/domain
-/// - traces/parcats/attributes/domain
-/// - traces/sankey/attributes/domain
-/// - traces/indicator/attributes/domain
-/// - traces/table/attributes/domain
-public struct Domain0: Encodable {
-    /// Sets the horizontal domain of this ternary subplot (in plot fraction).
-    public var x: InfoArray?
-
-    /// Sets the vertical domain of this ternary subplot (in plot fraction).
-    public var y: InfoArray?
-
-    /// If there is a layout grid, use the domain for this row in the grid for this ternary subplot .
-    public var row: Int?
-
-    /// If there is a layout grid, use the domain for this column in the grid for this ternary subplot .
-    public var column: Int?
-
-    public init(x: InfoArray? = nil, y: InfoArray? = nil, row: Int? = nil, column: Int? = nil) {
-        self.x = x
-        self.y = y
-        self.row = row
-        self.column = column
-    }
-}
-
-/// - layout/layoutAttributes/ternary/aaxis/title
-/// - layout/layoutAttributes/ternary/baxis/title
-/// - layout/layoutAttributes/ternary/caxis/title
-/// - layout/layoutAttributes/scene/xaxis/title
-/// - layout/layoutAttributes/scene/yaxis/title
-/// - layout/layoutAttributes/scene/zaxis/title
-/// - layout/layoutAttributes/polar/radialaxis/title
-public struct Title0: Encodable {
-    /// Sets the title of this axis. 
-    ///
-    /// Note that before the existence of `title.text`, the title's contents used to be defined as the
-    /// `title` attribute itself. This behavior has been deprecated.
-    public var text: String?
-
-    /// Sets this axis' title font. 
-    ///
-    /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
-    public var font: Font0?
-
-    public init(text: String? = nil, font: Font0? = nil) {
-        self.text = text
-        self.font = font
-    }
-}
-
-/// Sets the (x,y,z) components of the 'up' camera vector. 
-///
-/// This vector determines the up direction of this scene with respect to the page. The default is
-/// *{x: 0, y: 0, z: 1}* which means that the z axis points up.
-/// - layout/layoutAttributes/scene/camera/up
-/// - layout/layoutAttributes/scene/camera/center
-/// - layout/layoutAttributes/scene/camera/eye
-/// - traces/scatter3d/attributes/projection
-/// - traces/surface/attributes/contours
-/// - traces/surface/attributes/contours/x/project
-/// - traces/surface/attributes/contours/y/project
-/// - traces/surface/attributes/contours/z/project
-/// - traces/surface/attributes/lightposition
-/// - traces/isosurface/attributes/slices
-/// - traces/isosurface/attributes/caps
-/// - traces/isosurface/attributes/lightposition
-/// - traces/volume/attributes/slices
-/// - traces/volume/attributes/caps
-/// - traces/volume/attributes/lightposition
-/// - traces/mesh3d/attributes/lightposition
-/// - traces/cone/attributes/lightposition
-/// - traces/streamtube/attributes/lightposition
-public struct Up0: Encodable {
-    public var x: Double?
-
-    public var y: Double?
-
-    public var z: Double?
-
-    public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
-        self.x = x
-        self.y = y
-        self.z = z
-    }
-}
-
-/// - layout/layoutAttributes/scene/aspectratio/impliedEdits
-/// - traces/scatter/attributes/transforms/items/transform
-/// - traces/bar/attributes/transforms/items/transform
-/// - traces/box/attributes/transforms/items/transform
-/// - traces/heatmap/attributes/transforms/items/transform
-/// - traces/histogram/attributes/transforms/items/transform
-/// - traces/histogram2d/attributes/transforms/items/transform
-/// - traces/histogram2dcontour/attributes/transforms/items/transform
-/// - traces/histogram2dcontour/attributes/contours/impliedEdits
-/// - traces/contour/attributes/transforms/items/transform
-/// - traces/contour/attributes/contours/impliedEdits
-/// - traces/scatterternary/attributes/transforms/items/transform
-/// - traces/violin/attributes/transforms/items/transform
-/// - traces/funnel/attributes/transforms/items/transform
-/// - traces/waterfall/attributes/transforms/items/transform
-/// - traces/pie/attributes/transforms/items/transform
-/// - traces/sunburst/attributes/transforms/items/transform
-/// - traces/treemap/attributes/transforms/items/transform
-/// - traces/funnelarea/attributes/transforms/items/transform
-/// - traces/scatter3d/attributes/transforms/items/transform
-/// - traces/scattergeo/attributes/transforms/items/transform
-/// - traces/choropleth/attributes/transforms/items/transform
-/// - traces/scattergl/attributes/transforms/items/transform
-/// - traces/splom/attributes/transforms/items/transform
-/// - traces/heatmapgl/attributes/transforms/items/transform
-/// - traces/parcoords/attributes/transforms/items/transform
-/// - traces/parcats/attributes/transforms/items/transform
-/// - traces/scattermapbox/attributes/transforms/items/transform
-/// - traces/choroplethmapbox/attributes/transforms/items/transform
-/// - traces/densitymapbox/attributes/transforms/items/transform
-/// - traces/indicator/attributes/transforms/items/transform
-/// - traces/scattercarpet/attributes/transforms/items/transform
-/// - traces/contourcarpet/attributes/contours/impliedEdits
-/// - traces/ohlc/attributes/transforms/items/transform
-/// - traces/candlestick/attributes/transforms/items/transform
-/// - traces/scatterpolar/attributes/transforms/items/transform
-/// - traces/scatterpolargl/attributes/transforms/items/transform
-/// - traces/barpolar/attributes/transforms/items/transform
-/// - traces/area/attributes/transforms/items/transform
-public struct ImpliedEdits0: Encodable {
-    public init() {
-    }
-}
-
-/// - layout/layoutAttributes/shapes/items/shape/line
-/// - traces/funnel/attributes/connector/line
-/// - traces/waterfall/attributes/connector/line
-/// - traces/scattergeo/attributes/line
-/// - traces/ohlc/attributes/increasing/line
-/// - traces/ohlc/attributes/decreasing/line
+/// - [Layout.Shapes.Items.Shape.Line0](layout/layoutAttributes/shapes/items/shape/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/box/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/histogram2dcontour/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/contour/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/scatterternary/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/violin/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/violin/attributes/box/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/funnel/attributes/connector/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/waterfall/attributes/increasing/marker/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/waterfall/attributes/decreasing/marker/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/waterfall/attributes/totals/marker/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/waterfall/attributes/connector/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/scattergeo/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/scattermapbox/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/indicator/attributes/gauge/bar/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/indicator/attributes/gauge/steps/items/step/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/indicator/attributes/gauge/threshold/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/scattercarpet/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/contourcarpet/attributes/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/ohlc/attributes/increasing/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/ohlc/attributes/decreasing/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/candlestick/attributes/increasing/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/candlestick/attributes/decreasing/line)
+/// - [Layout.Shapes.Items.Shape.Line0](traces/scatterpolar/attributes/line)
 public struct Line0: Encodable {
     /// Sets the line color.
     public var color: Color?
@@ -572,42 +885,85 @@ public struct Line0: Encodable {
     }
 }
 
-/// - layout/layoutAttributes/coloraxis/colorbar
-/// - traces/scatter/attributes/marker/colorbar
-/// - traces/bar/attributes/marker/colorbar
-/// - traces/heatmap/attributes/colorbar
-/// - traces/histogram/attributes/marker/colorbar
-/// - traces/histogram2d/attributes/colorbar
-/// - traces/histogram2dcontour/attributes/colorbar
-/// - traces/contour/attributes/colorbar
-/// - traces/scatterternary/attributes/marker/colorbar
-/// - traces/funnel/attributes/marker/colorbar
-/// - traces/sunburst/attributes/marker/colorbar
-/// - traces/treemap/attributes/marker/colorbar
-/// - traces/scatter3d/attributes/line/colorbar
-/// - traces/scatter3d/attributes/marker/colorbar
-/// - traces/surface/attributes/colorbar
-/// - traces/isosurface/attributes/colorbar
-/// - traces/volume/attributes/colorbar
-/// - traces/mesh3d/attributes/colorbar
-/// - traces/cone/attributes/colorbar
-/// - traces/streamtube/attributes/colorbar
-/// - traces/scattergeo/attributes/marker/colorbar
-/// - traces/choropleth/attributes/colorbar
-/// - traces/scattergl/attributes/marker/colorbar
-/// - traces/splom/attributes/marker/colorbar
-/// - traces/heatmapgl/attributes/colorbar
-/// - traces/parcoords/attributes/line/colorbar
-/// - traces/parcats/attributes/line/colorbar
-/// - traces/scattermapbox/attributes/marker/colorbar
-/// - traces/choroplethmapbox/attributes/colorbar
-/// - traces/densitymapbox/attributes/colorbar
-/// - traces/scattercarpet/attributes/marker/colorbar
-/// - traces/contourcarpet/attributes/colorbar
-/// - traces/scatterpolar/attributes/marker/colorbar
-/// - traces/scatterpolargl/attributes/marker/colorbar
-/// - traces/barpolar/attributes/marker/colorbar
+/// - [Layout.ColorAxis.ColorBar0](layout/layoutAttributes/coloraxis/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scatter/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/bar/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/heatmap/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/histogram/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/histogram2d/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/histogram2dcontour/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/contour/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scatterternary/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/funnel/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/sunburst/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/treemap/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scatter3d/attributes/line/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scatter3d/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/surface/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/isosurface/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/volume/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/mesh3d/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/cone/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/streamtube/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scattergeo/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/choropleth/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scattergl/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/splom/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/heatmapgl/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/parcoords/attributes/line/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/parcats/attributes/line/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scattermapbox/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/choroplethmapbox/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/densitymapbox/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scattercarpet/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/contourcarpet/attributes/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scatterpolar/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/scatterpolargl/attributes/marker/colorbar)
+/// - [Layout.ColorAxis.ColorBar0](traces/barpolar/attributes/marker/colorbar)
 public struct ColorBar0: Encodable {
+    /// Determines whether this color bar's thickness (i.e. 
+    ///
+    /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
+    /// Use `thickness` to set the value.
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](layout/layoutAttributes/coloraxis/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scatter/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/bar/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/heatmap/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/histogram/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/histogram2d/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/histogram2dcontour/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/contour/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scatterternary/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/funnel/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/sunburst/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/treemap/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scatter3d/attributes/line/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scatter3d/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/surface/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/isosurface/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/volume/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/mesh3d/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/cone/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/streamtube/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scattergeo/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/choropleth/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scattergl/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/splom/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/heatmapgl/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/parcoords/attributes/line/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/parcats/attributes/line/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scattermapbox/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/choroplethmapbox/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/densitymapbox/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scattercarpet/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/contourcarpet/attributes/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scatterpolar/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/scatterpolargl/attributes/marker/colorbar/thicknessmode)
+    /// - [Layout.ColorAxis.ColorBar0.ThicknessMode0](traces/barpolar/attributes/marker/colorbar/thicknessmode)
+    public enum ThicknessMode0: String, Encodable {
+        case fraction
+        case pixels
+    }
     /// Determines whether this color bar's thickness (i.e. 
     ///
     /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
@@ -781,6 +1137,68 @@ public struct ColorBar0: Encodable {
     /// last tick is shown. If *none*, no exponents appear.
     public var showExponent: ShowExponent0?
 
+    /// - [Layout.ColorAxis.ColorBar0.Title](layout/layoutAttributes/coloraxis/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/bar/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmap/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2d/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2dcontour/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/contour/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterternary/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnel/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/pie/attributes/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/sunburst/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/treemap/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnelarea/attributes/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/line/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/surface/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/isosurface/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/volume/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/mesh3d/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/cone/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/streamtube/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergeo/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/choropleth/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergl/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/splom/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmapgl/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcoords/attributes/line/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcats/attributes/line/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattermapbox/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/choroplethmapbox/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/densitymapbox/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/aaxis/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/baxis/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattercarpet/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/contourcarpet/attributes/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolar/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolargl/attributes/marker/colorbar/title)
+    /// - [Layout.ColorAxis.ColorBar0.Title](traces/barpolar/attributes/marker/colorbar/title)
+    public struct Title: Encodable {
+        /// Sets the title of the color bar. 
+        ///
+        /// Note that before the existence of `title.text`, the title's contents used to be defined as the
+        /// `title` attribute itself. This behavior has been deprecated.
+        public var text: String?
+    
+        /// Sets this color bar's title font. 
+        ///
+        /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+        public var font: Font0?
+    
+        /// Determines the location of color bar's title with respect to the color bar. 
+        ///
+        /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+        public var side: Side0?
+    
+        public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
+            self.text = text
+            self.font = font
+            self.side = side
+        }
+    }
     public var title: Title?
 
     /// Sets the source reference on plot.ly for  tickvals .
@@ -877,336 +1295,53 @@ public struct ColorBar0: Encodable {
     }
 }
 
-/// - layout/layoutAttributes/coloraxis/colorbar/title
-/// - traces/scatter/attributes/marker/colorbar/title
-/// - traces/bar/attributes/marker/colorbar/title
-/// - traces/heatmap/attributes/colorbar/title
-/// - traces/histogram/attributes/marker/colorbar/title
-/// - traces/histogram2d/attributes/colorbar/title
-/// - traces/histogram2dcontour/attributes/colorbar/title
-/// - traces/contour/attributes/colorbar/title
-/// - traces/scatterternary/attributes/marker/colorbar/title
-/// - traces/funnel/attributes/marker/colorbar/title
-/// - traces/sunburst/attributes/marker/colorbar/title
-/// - traces/treemap/attributes/marker/colorbar/title
-/// - traces/scatter3d/attributes/line/colorbar/title
-/// - traces/scatter3d/attributes/marker/colorbar/title
-/// - traces/surface/attributes/colorbar/title
-/// - traces/isosurface/attributes/colorbar/title
-/// - traces/volume/attributes/colorbar/title
-/// - traces/mesh3d/attributes/colorbar/title
-/// - traces/cone/attributes/colorbar/title
-/// - traces/streamtube/attributes/colorbar/title
-/// - traces/scattergeo/attributes/marker/colorbar/title
-/// - traces/choropleth/attributes/colorbar/title
-/// - traces/scattergl/attributes/marker/colorbar/title
-/// - traces/splom/attributes/marker/colorbar/title
-/// - traces/heatmapgl/attributes/colorbar/title
-/// - traces/parcoords/attributes/line/colorbar/title
-/// - traces/parcats/attributes/line/colorbar/title
-/// - traces/scattermapbox/attributes/marker/colorbar/title
-/// - traces/choroplethmapbox/attributes/colorbar/title
-/// - traces/densitymapbox/attributes/colorbar/title
-/// - traces/scattercarpet/attributes/marker/colorbar/title
-/// - traces/contourcarpet/attributes/colorbar/title
-/// - traces/scatterpolar/attributes/marker/colorbar/title
-/// - traces/scatterpolargl/attributes/marker/colorbar/title
-/// - traces/barpolar/attributes/marker/colorbar/title
-public struct Title1: Encodable {
-    /// Sets the title of the color bar. 
-    ///
-    /// Note that before the existence of `title.text`, the title's contents used to be defined as the
-    /// `title` attribute itself. This behavior has been deprecated.
-    public var text: String?
-
-    /// Sets this color bar's title font. 
-    ///
-    /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-    public var font: Font0?
-
-    /// Determines the location of color bar's title with respect to the color bar. 
-    ///
-    /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
-    public var side: Side0?
-
-    public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
-        self.text = text
-        self.font = font
-        self.side = side
-    }
-}
-
-/// - traces/scatter/attributes/hoverlabel
-/// - traces/bar/attributes/hoverlabel
-/// - traces/box/attributes/hoverlabel
-/// - traces/heatmap/attributes/hoverlabel
-/// - traces/histogram/attributes/hoverlabel
-/// - traces/histogram2d/attributes/hoverlabel
-/// - traces/histogram2dcontour/attributes/hoverlabel
-/// - traces/contour/attributes/hoverlabel
-/// - traces/scatterternary/attributes/hoverlabel
-/// - traces/violin/attributes/hoverlabel
-/// - traces/funnel/attributes/hoverlabel
-/// - traces/waterfall/attributes/hoverlabel
-/// - traces/image/attributes/hoverlabel
-/// - traces/pie/attributes/hoverlabel
-/// - traces/sunburst/attributes/hoverlabel
-/// - traces/treemap/attributes/hoverlabel
-/// - traces/funnelarea/attributes/hoverlabel
-/// - traces/scatter3d/attributes/hoverlabel
-/// - traces/surface/attributes/hoverlabel
-/// - traces/isosurface/attributes/hoverlabel
-/// - traces/volume/attributes/hoverlabel
-/// - traces/mesh3d/attributes/hoverlabel
-/// - traces/cone/attributes/hoverlabel
-/// - traces/streamtube/attributes/hoverlabel
-/// - traces/scattergeo/attributes/hoverlabel
-/// - traces/choropleth/attributes/hoverlabel
-/// - traces/scattergl/attributes/hoverlabel
-/// - traces/splom/attributes/hoverlabel
-/// - traces/pointcloud/attributes/hoverlabel
-/// - traces/heatmapgl/attributes/hoverlabel
-/// - traces/scattermapbox/attributes/hoverlabel
-/// - traces/choroplethmapbox/attributes/hoverlabel
-/// - traces/densitymapbox/attributes/hoverlabel
-/// - traces/sankey/attributes/hoverlabel
-/// - traces/sankey/attributes/node/hoverlabel
-/// - traces/sankey/attributes/link/hoverlabel
-/// - traces/table/attributes/hoverlabel
-/// - traces/scattercarpet/attributes/hoverlabel
-/// - traces/scatterpolar/attributes/hoverlabel
-/// - traces/scatterpolargl/attributes/hoverlabel
-/// - traces/barpolar/attributes/hoverlabel
-/// - traces/area/attributes/hoverlabel
-public struct HoverLabel0: Encodable {
-    /// Sets the background color of the hover labels for this trace
-    public var backgroundColor: Color?
-
-    /// Sets the border color of the hover labels for this trace.
-    public var borderColor: Color?
-
-    /// Sets the font used in hover labels.
-    public var font: Font?
-
-    /// Sets the horizontal alignment of the text content within hover label box. 
-    ///
-    /// Has an effect only if the hover label text spans more two or more lines
-    public var align: Align0?
-
-    /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
-    ///
-    /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
-    /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
-    /// truncate to `namelength - 3` characters and add an ellipsis.
-    public var nameLength: Int?
-
-    /// Sets the source reference on plot.ly for  bgcolor .
-    public var backgroundColorSource: String?
-
-    /// Sets the source reference on plot.ly for  bordercolor .
-    public var borderColorSource: String?
-
-    /// Sets the source reference on plot.ly for  align .
-    public var alignSource: String?
-
-    /// Sets the source reference on plot.ly for  namelength .
-    public var nameLengthSource: String?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case backgroundColor = "bgcolor"
-        case borderColor = "bordercolor"
-        case font
-        case align
-        case nameLength = "namelength"
-        case backgroundColorSource = "bgcolorsrc"
-        case borderColorSource = "bordercolorsrc"
-        case alignSource = "alignsrc"
-        case nameLengthSource = "namelengthsrc"
-    }
-    
-    public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: Align0? = nil, nameLength: Int? = nil, backgroundColorSource: String? = nil, borderColorSource: String? = nil, alignSource: String? = nil, nameLengthSource: String? = nil) {
-        self.backgroundColor = backgroundColor
-        self.borderColor = borderColor
-        self.font = font
-        self.align = align
-        self.nameLength = nameLength
-        self.backgroundColorSource = backgroundColorSource
-        self.borderColorSource = borderColorSource
-        self.alignSource = alignSource
-        self.nameLengthSource = nameLengthSource
-    }
-}
-
-/// Sets the font used in hover labels.
-/// - traces/scatter/attributes/hoverlabel/font
-/// - traces/scatter/attributes/textfont
-/// - traces/bar/attributes/hoverlabel/font
-/// - traces/bar/attributes/textfont
-/// - traces/bar/attributes/insidetextfont
-/// - traces/bar/attributes/outsidetextfont
-/// - traces/box/attributes/hoverlabel/font
-/// - traces/heatmap/attributes/hoverlabel/font
-/// - traces/histogram/attributes/hoverlabel/font
-/// - traces/histogram2d/attributes/hoverlabel/font
-/// - traces/histogram2dcontour/attributes/hoverlabel/font
-/// - traces/contour/attributes/hoverlabel/font
-/// - traces/scatterternary/attributes/hoverlabel/font
-/// - traces/scatterternary/attributes/textfont
-/// - traces/violin/attributes/hoverlabel/font
-/// - traces/funnel/attributes/hoverlabel/font
-/// - traces/funnel/attributes/textfont
-/// - traces/funnel/attributes/insidetextfont
-/// - traces/funnel/attributes/outsidetextfont
-/// - traces/waterfall/attributes/hoverlabel/font
-/// - traces/waterfall/attributes/textfont
-/// - traces/waterfall/attributes/insidetextfont
-/// - traces/waterfall/attributes/outsidetextfont
-/// - traces/image/attributes/hoverlabel/font
-/// - traces/pie/attributes/hoverlabel/font
-/// - traces/pie/attributes/textfont
-/// - traces/pie/attributes/insidetextfont
-/// - traces/pie/attributes/outsidetextfont
-/// - traces/pie/attributes/title/font
-/// - traces/sunburst/attributes/hoverlabel/font
-/// - traces/sunburst/attributes/textfont
-/// - traces/sunburst/attributes/insidetextfont
-/// - traces/sunburst/attributes/outsidetextfont
-/// - traces/treemap/attributes/hoverlabel/font
-/// - traces/treemap/attributes/pathbar/textfont
-/// - traces/treemap/attributes/textfont
-/// - traces/treemap/attributes/insidetextfont
-/// - traces/treemap/attributes/outsidetextfont
-/// - traces/funnelarea/attributes/hoverlabel/font
-/// - traces/funnelarea/attributes/textfont
-/// - traces/funnelarea/attributes/insidetextfont
-/// - traces/funnelarea/attributes/title/font
-/// - traces/scatter3d/attributes/hoverlabel/font
-/// - traces/surface/attributes/hoverlabel/font
-/// - traces/isosurface/attributes/hoverlabel/font
-/// - traces/volume/attributes/hoverlabel/font
-/// - traces/mesh3d/attributes/hoverlabel/font
-/// - traces/cone/attributes/hoverlabel/font
-/// - traces/streamtube/attributes/hoverlabel/font
-/// - traces/scattergeo/attributes/hoverlabel/font
-/// - traces/scattergeo/attributes/textfont
-/// - traces/choropleth/attributes/hoverlabel/font
-/// - traces/scattergl/attributes/hoverlabel/font
-/// - traces/scattergl/attributes/textfont
-/// - traces/splom/attributes/hoverlabel/font
-/// - traces/pointcloud/attributes/hoverlabel/font
-/// - traces/heatmapgl/attributes/hoverlabel/font
-/// - traces/scattermapbox/attributes/hoverlabel/font
-/// - traces/choroplethmapbox/attributes/hoverlabel/font
-/// - traces/densitymapbox/attributes/hoverlabel/font
-/// - traces/sankey/attributes/hoverlabel/font
-/// - traces/sankey/attributes/node/hoverlabel/font
-/// - traces/sankey/attributes/link/hoverlabel/font
-/// - traces/table/attributes/hoverlabel/font
-/// - traces/table/attributes/header/font
-/// - traces/table/attributes/cells/font
-/// - traces/scattercarpet/attributes/hoverlabel/font
-/// - traces/scattercarpet/attributes/textfont
-/// - traces/ohlc/attributes/hoverlabel/font
-/// - traces/candlestick/attributes/hoverlabel/font
-/// - traces/scatterpolar/attributes/hoverlabel/font
-/// - traces/scatterpolar/attributes/textfont
-/// - traces/scatterpolargl/attributes/hoverlabel/font
-/// - traces/scatterpolargl/attributes/textfont
-/// - traces/barpolar/attributes/hoverlabel/font
-/// - traces/area/attributes/hoverlabel/font
-public struct Font1: Encodable {
-    /// HTML font family - the typeface that will be applied by the web browser. 
-    ///
-    /// The web browser will only be able to apply a font if it is available on the system which it
-    /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-    /// which to apply fonts if they aren't available on the system. The plotly service (at
-    /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-    /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-    /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-    /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-    public var family: String?
-
-    public var size: Double?
-
-    public var color: Color?
-
-    /// Sets the source reference on plot.ly for  family .
-    public var familySource: String?
-
-    /// Sets the source reference on plot.ly for  size .
-    public var sizeSource: String?
-
-    /// Sets the source reference on plot.ly for  color .
-    public var colorSource: String?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case family
-        case size
-        case color
-        case familySource = "familysrc"
-        case sizeSource = "sizesrc"
-        case colorSource = "colorsrc"
-    }
-    
-    public init(family: String? = nil, size: Double? = nil, color: Color? = nil, familySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-        self.family = family
-        self.size = size
-        self.color = color
-        self.familySource = familySource
-        self.sizeSource = sizeSource
-        self.colorSource = colorSource
-    }
-}
-
-/// - traces/scatter/attributes/stream
-/// - traces/bar/attributes/stream
-/// - traces/box/attributes/stream
-/// - traces/heatmap/attributes/stream
-/// - traces/histogram/attributes/stream
-/// - traces/histogram2d/attributes/stream
-/// - traces/histogram2dcontour/attributes/stream
-/// - traces/contour/attributes/stream
-/// - traces/scatterternary/attributes/stream
-/// - traces/violin/attributes/stream
-/// - traces/funnel/attributes/stream
-/// - traces/waterfall/attributes/stream
-/// - traces/image/attributes/stream
-/// - traces/pie/attributes/stream
-/// - traces/sunburst/attributes/stream
-/// - traces/treemap/attributes/stream
-/// - traces/funnelarea/attributes/stream
-/// - traces/scatter3d/attributes/stream
-/// - traces/surface/attributes/stream
-/// - traces/isosurface/attributes/stream
-/// - traces/volume/attributes/stream
-/// - traces/mesh3d/attributes/stream
-/// - traces/cone/attributes/stream
-/// - traces/streamtube/attributes/stream
-/// - traces/scattergeo/attributes/stream
-/// - traces/choropleth/attributes/stream
-/// - traces/scattergl/attributes/stream
-/// - traces/splom/attributes/stream
-/// - traces/pointcloud/attributes/stream
-/// - traces/heatmapgl/attributes/stream
-/// - traces/parcoords/attributes/stream
-/// - traces/parcats/attributes/stream
-/// - traces/scattermapbox/attributes/stream
-/// - traces/choroplethmapbox/attributes/stream
-/// - traces/densitymapbox/attributes/stream
-/// - traces/sankey/attributes/stream
-/// - traces/indicator/attributes/stream
-/// - traces/table/attributes/stream
-/// - traces/carpet/attributes/stream
-/// - traces/scattercarpet/attributes/stream
-/// - traces/contourcarpet/attributes/stream
-/// - traces/ohlc/attributes/stream
-/// - traces/candlestick/attributes/stream
-/// - traces/scatterpolar/attributes/stream
-/// - traces/scatterpolargl/attributes/stream
-/// - traces/barpolar/attributes/stream
-/// - traces/area/attributes/stream
+/// - [Scatter.Stream0](traces/scatter/attributes/stream)
+/// - [Scatter.Stream0](traces/bar/attributes/stream)
+/// - [Scatter.Stream0](traces/box/attributes/stream)
+/// - [Scatter.Stream0](traces/heatmap/attributes/stream)
+/// - [Scatter.Stream0](traces/histogram/attributes/stream)
+/// - [Scatter.Stream0](traces/histogram2d/attributes/stream)
+/// - [Scatter.Stream0](traces/histogram2dcontour/attributes/stream)
+/// - [Scatter.Stream0](traces/contour/attributes/stream)
+/// - [Scatter.Stream0](traces/scatterternary/attributes/stream)
+/// - [Scatter.Stream0](traces/violin/attributes/stream)
+/// - [Scatter.Stream0](traces/funnel/attributes/stream)
+/// - [Scatter.Stream0](traces/waterfall/attributes/stream)
+/// - [Scatter.Stream0](traces/image/attributes/stream)
+/// - [Scatter.Stream0](traces/pie/attributes/stream)
+/// - [Scatter.Stream0](traces/sunburst/attributes/stream)
+/// - [Scatter.Stream0](traces/treemap/attributes/stream)
+/// - [Scatter.Stream0](traces/funnelarea/attributes/stream)
+/// - [Scatter.Stream0](traces/scatter3d/attributes/stream)
+/// - [Scatter.Stream0](traces/surface/attributes/stream)
+/// - [Scatter.Stream0](traces/isosurface/attributes/stream)
+/// - [Scatter.Stream0](traces/volume/attributes/stream)
+/// - [Scatter.Stream0](traces/mesh3d/attributes/stream)
+/// - [Scatter.Stream0](traces/cone/attributes/stream)
+/// - [Scatter.Stream0](traces/streamtube/attributes/stream)
+/// - [Scatter.Stream0](traces/scattergeo/attributes/stream)
+/// - [Scatter.Stream0](traces/choropleth/attributes/stream)
+/// - [Scatter.Stream0](traces/scattergl/attributes/stream)
+/// - [Scatter.Stream0](traces/splom/attributes/stream)
+/// - [Scatter.Stream0](traces/pointcloud/attributes/stream)
+/// - [Scatter.Stream0](traces/heatmapgl/attributes/stream)
+/// - [Scatter.Stream0](traces/parcoords/attributes/stream)
+/// - [Scatter.Stream0](traces/parcats/attributes/stream)
+/// - [Scatter.Stream0](traces/scattermapbox/attributes/stream)
+/// - [Scatter.Stream0](traces/choroplethmapbox/attributes/stream)
+/// - [Scatter.Stream0](traces/densitymapbox/attributes/stream)
+/// - [Scatter.Stream0](traces/sankey/attributes/stream)
+/// - [Scatter.Stream0](traces/indicator/attributes/stream)
+/// - [Scatter.Stream0](traces/table/attributes/stream)
+/// - [Scatter.Stream0](traces/carpet/attributes/stream)
+/// - [Scatter.Stream0](traces/scattercarpet/attributes/stream)
+/// - [Scatter.Stream0](traces/contourcarpet/attributes/stream)
+/// - [Scatter.Stream0](traces/ohlc/attributes/stream)
+/// - [Scatter.Stream0](traces/candlestick/attributes/stream)
+/// - [Scatter.Stream0](traces/scatterpolar/attributes/stream)
+/// - [Scatter.Stream0](traces/scatterpolargl/attributes/stream)
+/// - [Scatter.Stream0](traces/barpolar/attributes/stream)
+/// - [Scatter.Stream0](traces/area/attributes/stream)
 public struct Stream0: Encodable {
     /// The stream id number links a data trace on a plot with a stream. 
     ///
@@ -1230,59 +1365,136 @@ public struct Stream0: Encodable {
     }
 }
 
-/// - traces/scatter/attributes/transforms/items
-/// - traces/bar/attributes/transforms/items
-/// - traces/box/attributes/transforms/items
-/// - traces/heatmap/attributes/transforms/items
-/// - traces/histogram/attributes/transforms/items
-/// - traces/histogram2d/attributes/transforms/items
-/// - traces/histogram2dcontour/attributes/transforms/items
-/// - traces/contour/attributes/transforms/items
-/// - traces/scatterternary/attributes/transforms/items
-/// - traces/violin/attributes/transforms/items
-/// - traces/funnel/attributes/transforms/items
-/// - traces/waterfall/attributes/transforms/items
-/// - traces/pie/attributes/transforms/items
-/// - traces/sunburst/attributes/transforms/items
-/// - traces/treemap/attributes/transforms/items
-/// - traces/funnelarea/attributes/transforms/items
-/// - traces/scatter3d/attributes/transforms/items
-/// - traces/scattergeo/attributes/transforms/items
-/// - traces/choropleth/attributes/transforms/items
-/// - traces/scattergl/attributes/transforms/items
-/// - traces/splom/attributes/transforms/items
-/// - traces/heatmapgl/attributes/transforms/items
-/// - traces/parcoords/attributes/transforms/items
-/// - traces/parcats/attributes/transforms/items
-/// - traces/scattermapbox/attributes/transforms/items
-/// - traces/choroplethmapbox/attributes/transforms/items
-/// - traces/densitymapbox/attributes/transforms/items
-/// - traces/indicator/attributes/transforms/items
-/// - traces/scattercarpet/attributes/transforms/items
-/// - traces/ohlc/attributes/transforms/items
-/// - traces/candlestick/attributes/transforms/items
-/// - traces/scatterpolar/attributes/transforms/items
-/// - traces/scatterpolargl/attributes/transforms/items
-/// - traces/barpolar/attributes/transforms/items
-/// - traces/area/attributes/transforms/items
-public struct Items1: Encodable {
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-    public var transform: ImpliedEdits0?
+/// - [Scatter.Transforms0](traces/scatter/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scatter/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/bar/attributes/transforms)
+/// - [Scatter.Transforms0](traces/bar/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/box/attributes/transforms)
+/// - [Scatter.Transforms0](traces/box/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/heatmap/attributes/transforms)
+/// - [Scatter.Transforms0](traces/heatmap/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/histogram/attributes/transforms)
+/// - [Scatter.Transforms0](traces/histogram/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/histogram2d/attributes/transforms)
+/// - [Scatter.Transforms0](traces/histogram2d/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/histogram2dcontour/attributes/transforms)
+/// - [Scatter.Transforms0](traces/histogram2dcontour/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/contour/attributes/transforms)
+/// - [Scatter.Transforms0](traces/contour/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/scatterternary/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scatterternary/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/violin/attributes/transforms)
+/// - [Scatter.Transforms0](traces/violin/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/funnel/attributes/transforms)
+/// - [Scatter.Transforms0](traces/funnel/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/waterfall/attributes/transforms)
+/// - [Scatter.Transforms0](traces/waterfall/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/pie/attributes/transforms)
+/// - [Scatter.Transforms0](traces/pie/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/sunburst/attributes/transforms)
+/// - [Scatter.Transforms0](traces/sunburst/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/treemap/attributes/transforms)
+/// - [Scatter.Transforms0](traces/treemap/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/funnelarea/attributes/transforms)
+/// - [Scatter.Transforms0](traces/funnelarea/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/scatter3d/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scatter3d/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/scattergeo/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scattergeo/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/choropleth/attributes/transforms)
+/// - [Scatter.Transforms0](traces/choropleth/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/scattergl/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scattergl/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/splom/attributes/transforms)
+/// - [Scatter.Transforms0](traces/splom/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/heatmapgl/attributes/transforms)
+/// - [Scatter.Transforms0](traces/heatmapgl/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/parcoords/attributes/transforms)
+/// - [Scatter.Transforms0](traces/parcoords/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/parcats/attributes/transforms)
+/// - [Scatter.Transforms0](traces/parcats/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/scattermapbox/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scattermapbox/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/choroplethmapbox/attributes/transforms)
+/// - [Scatter.Transforms0](traces/choroplethmapbox/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/densitymapbox/attributes/transforms)
+/// - [Scatter.Transforms0](traces/densitymapbox/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/indicator/attributes/transforms)
+/// - [Scatter.Transforms0](traces/indicator/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/scattercarpet/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scattercarpet/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/ohlc/attributes/transforms)
+/// - [Scatter.Transforms0](traces/ohlc/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/candlestick/attributes/transforms)
+/// - [Scatter.Transforms0](traces/candlestick/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/scatterpolar/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scatterpolar/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/scatterpolargl/attributes/transforms)
+/// - [Scatter.Transforms0](traces/scatterpolargl/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/barpolar/attributes/transforms)
+/// - [Scatter.Transforms0](traces/barpolar/attributes/transforms/items/transform)
+/// - [Scatter.Transforms0](traces/area/attributes/transforms)
+/// - [Scatter.Transforms0](traces/area/attributes/transforms/items/transform)
+public struct Transforms0: Encodable {
+    /// - [Scatter.Transforms0.Items](traces/scatter/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/bar/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/box/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/heatmap/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/histogram/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/histogram2d/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/histogram2dcontour/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/contour/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/scatterternary/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/violin/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/funnel/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/waterfall/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/pie/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/sunburst/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/treemap/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/funnelarea/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/scatter3d/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/scattergeo/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/choropleth/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/scattergl/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/splom/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/heatmapgl/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/parcoords/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/parcats/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/scattermapbox/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/choroplethmapbox/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/densitymapbox/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/indicator/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/scattercarpet/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/ohlc/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/candlestick/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/scatterpolar/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/scatterpolargl/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/barpolar/attributes/transforms/items)
+    /// - [Scatter.Transforms0.Items](traces/area/attributes/transforms/items)
+    public struct Items: Encodable {
+        /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
+        public var transform: Transforms0?
+    
+        public init(transform: Transforms0? = nil) {
+            self.transform = transform
+        }
+    }
+    public var items: Items?
 
-    public init(transform: ImpliedEdits0? = nil) {
-        self.transform = transform
+    public init(items: Items? = nil) {
+        self.items = items
     }
 }
 
-/// - traces/scatter/attributes/marker/line
-/// - traces/bar/attributes/marker/line
-/// - traces/histogram/attributes/marker/line
-/// - traces/scatterternary/attributes/marker/line
-/// - traces/funnel/attributes/marker/line
-/// - traces/scattergeo/attributes/marker/line
-/// - traces/scattercarpet/attributes/marker/line
-/// - traces/scatterpolar/attributes/marker/line
-/// - traces/barpolar/attributes/marker/line
+/// - [Scatter.Marker.Line1](traces/scatter/attributes/marker/line)
+/// - [Scatter.Marker.Line1](traces/bar/attributes/marker/line)
+/// - [Scatter.Marker.Line1](traces/histogram/attributes/marker/line)
+/// - [Scatter.Marker.Line1](traces/scatterternary/attributes/marker/line)
+/// - [Scatter.Marker.Line1](traces/funnel/attributes/marker/line)
+/// - [Scatter.Marker.Line1](traces/scattergeo/attributes/marker/line)
+/// - [Scatter.Marker.Line1](traces/scattercarpet/attributes/marker/line)
+/// - [Scatter.Marker.Line1](traces/scatterpolar/attributes/marker/line)
+/// - [Scatter.Marker.Line1](traces/barpolar/attributes/marker/line)
 public struct Line1: Encodable {
     /// Sets the width (in px) of the lines bounding the marker points.
     public var width: Double?
@@ -1387,12 +1599,24 @@ public struct Line1: Encodable {
     }
 }
 
-/// - traces/scatter/attributes/marker/gradient
-/// - traces/scatterternary/attributes/marker/gradient
-/// - traces/scattergeo/attributes/marker/gradient
-/// - traces/scattercarpet/attributes/marker/gradient
-/// - traces/scatterpolar/attributes/marker/gradient
+/// - [Scatter.Marker.Gradient0](traces/scatter/attributes/marker/gradient)
+/// - [Scatter.Marker.Gradient0](traces/scatterternary/attributes/marker/gradient)
+/// - [Scatter.Marker.Gradient0](traces/scattergeo/attributes/marker/gradient)
+/// - [Scatter.Marker.Gradient0](traces/scattercarpet/attributes/marker/gradient)
+/// - [Scatter.Marker.Gradient0](traces/scatterpolar/attributes/marker/gradient)
 public struct Gradient0: Encodable {
+    /// Sets the type of gradient used to fill the markers
+    /// - [Scatter.Marker.Gradient0.Rule0](traces/scatter/attributes/marker/gradient/type)
+    /// - [Scatter.Marker.Gradient0.Rule0](traces/scatterternary/attributes/marker/gradient/type)
+    /// - [Scatter.Marker.Gradient0.Rule0](traces/scattergeo/attributes/marker/gradient/type)
+    /// - [Scatter.Marker.Gradient0.Rule0](traces/scattercarpet/attributes/marker/gradient/type)
+    /// - [Scatter.Marker.Gradient0.Rule0](traces/scatterpolar/attributes/marker/gradient/type)
+    public enum Rule0: String, Encodable {
+        case radial
+        case horizontal
+        case vertical
+        case none
+    }
     /// Sets the type of gradient used to fill the markers
     public var type: Rule0?
 
@@ -1421,29 +1645,118 @@ public struct Gradient0: Encodable {
     }
 }
 
-/// - traces/scatter/attributes/selected
-/// - traces/scatter/attributes/unselected
-/// - traces/bar/attributes/selected
-/// - traces/bar/attributes/unselected
-/// - traces/histogram/attributes/selected
-/// - traces/histogram/attributes/unselected
-/// - traces/scatterternary/attributes/selected
-/// - traces/scatterternary/attributes/unselected
-/// - traces/scattergeo/attributes/selected
-/// - traces/scattergeo/attributes/unselected
-/// - traces/scattergl/attributes/selected
-/// - traces/scattergl/attributes/unselected
-/// - traces/scattercarpet/attributes/selected
-/// - traces/scattercarpet/attributes/unselected
-/// - traces/scatterpolar/attributes/selected
-/// - traces/scatterpolar/attributes/unselected
-/// - traces/scatterpolargl/attributes/selected
-/// - traces/scatterpolargl/attributes/unselected
-/// - traces/barpolar/attributes/selected
-/// - traces/barpolar/attributes/unselected
+/// - [Scatter.Selected0](traces/scatter/attributes/selected)
+/// - [Scatter.Selected0](traces/scatter/attributes/unselected)
+/// - [Scatter.Selected0](traces/bar/attributes/selected)
+/// - [Scatter.Selected0](traces/bar/attributes/unselected)
+/// - [Scatter.Selected0](traces/box/attributes/selected)
+/// - [Scatter.Selected0](traces/box/attributes/unselected)
+/// - [Scatter.Selected0](traces/histogram/attributes/selected)
+/// - [Scatter.Selected0](traces/histogram/attributes/unselected)
+/// - [Scatter.Selected0](traces/scatterternary/attributes/selected)
+/// - [Scatter.Selected0](traces/scatterternary/attributes/unselected)
+/// - [Scatter.Selected0](traces/violin/attributes/selected)
+/// - [Scatter.Selected0](traces/violin/attributes/unselected)
+/// - [Scatter.Selected0](traces/scattergeo/attributes/selected)
+/// - [Scatter.Selected0](traces/scattergeo/attributes/unselected)
+/// - [Scatter.Selected0](traces/choropleth/attributes/selected)
+/// - [Scatter.Selected0](traces/choropleth/attributes/unselected)
+/// - [Scatter.Selected0](traces/scattergl/attributes/selected)
+/// - [Scatter.Selected0](traces/scattergl/attributes/unselected)
+/// - [Scatter.Selected0](traces/splom/attributes/selected)
+/// - [Scatter.Selected0](traces/splom/attributes/unselected)
+/// - [Scatter.Selected0](traces/scattermapbox/attributes/selected)
+/// - [Scatter.Selected0](traces/scattermapbox/attributes/unselected)
+/// - [Scatter.Selected0](traces/choroplethmapbox/attributes/selected)
+/// - [Scatter.Selected0](traces/choroplethmapbox/attributes/unselected)
+/// - [Scatter.Selected0](traces/scattercarpet/attributes/selected)
+/// - [Scatter.Selected0](traces/scattercarpet/attributes/unselected)
+/// - [Scatter.Selected0](traces/scatterpolar/attributes/selected)
+/// - [Scatter.Selected0](traces/scatterpolar/attributes/unselected)
+/// - [Scatter.Selected0](traces/scatterpolargl/attributes/selected)
+/// - [Scatter.Selected0](traces/scatterpolargl/attributes/unselected)
+/// - [Scatter.Selected0](traces/barpolar/attributes/selected)
+/// - [Scatter.Selected0](traces/barpolar/attributes/unselected)
 public struct Selected0: Encodable {
+    /// - [Scatter.Selected0.Marker](traces/scatter/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scatter/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/bar/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/bar/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/box/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/box/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/histogram/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/histogram/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scatterternary/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scatterternary/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/violin/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/violin/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scattergeo/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scattergeo/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/choropleth/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/choropleth/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scattergl/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scattergl/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/splom/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/splom/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scattermapbox/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scattermapbox/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/choroplethmapbox/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/choroplethmapbox/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scattercarpet/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scattercarpet/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scatterpolar/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scatterpolar/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scatterpolargl/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/scatterpolargl/attributes/unselected/marker)
+    /// - [Scatter.Selected0.Marker](traces/barpolar/attributes/selected/marker)
+    /// - [Scatter.Selected0.Marker](traces/barpolar/attributes/unselected/marker)
+    public struct Marker: Encodable {
+        /// Sets the marker opacity of selected points.
+        public var opacity: Double?
+    
+        /// Sets the marker color of selected points.
+        public var color: Color?
+    
+        /// Sets the marker size of selected points.
+        public var size: Double?
+    
+        public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+            self.opacity = opacity
+            self.color = color
+            self.size = size
+        }
+    }
     public var marker: Marker?
 
+    /// - [Scatter.Selected0.TextFont](traces/scatter/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatter/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/bar/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/bar/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/histogram/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/histogram/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterternary/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterternary/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatter3d/attributes/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattergeo/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattergeo/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattergl/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattergl/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattercarpet/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scattercarpet/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterpolar/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterpolar/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterpolargl/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/scatterpolargl/attributes/unselected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/barpolar/attributes/selected/textfont)
+    /// - [Scatter.Selected0.TextFont](traces/barpolar/attributes/unselected/textfont)
+    public struct TextFont: Encodable {
+        /// Sets the text font color of selected points.
+        public var color: Color?
+    
+        public init(color: Color? = nil) {
+            self.color = color
+        }
+    }
     public var textFont: TextFont?
 
     /// Plotly compatible property encoding
@@ -1458,283 +1771,17 @@ public struct Selected0: Encodable {
     }
 }
 
-/// - traces/scatter/attributes/selected/marker
-/// - traces/scatter/attributes/unselected/marker
-/// - traces/box/attributes/selected/marker
-/// - traces/box/attributes/unselected/marker
-/// - traces/scatterternary/attributes/selected/marker
-/// - traces/scatterternary/attributes/unselected/marker
-/// - traces/violin/attributes/selected/marker
-/// - traces/violin/attributes/unselected/marker
-/// - traces/scattergeo/attributes/selected/marker
-/// - traces/scattergeo/attributes/unselected/marker
-/// - traces/scattergl/attributes/selected/marker
-/// - traces/scattergl/attributes/unselected/marker
-/// - traces/splom/attributes/selected/marker
-/// - traces/splom/attributes/unselected/marker
-/// - traces/scattermapbox/attributes/selected/marker
-/// - traces/scattermapbox/attributes/unselected/marker
-/// - traces/scattercarpet/attributes/selected/marker
-/// - traces/scattercarpet/attributes/unselected/marker
-/// - traces/scatterpolar/attributes/selected/marker
-/// - traces/scatterpolar/attributes/unselected/marker
-/// - traces/scatterpolargl/attributes/selected/marker
-/// - traces/scatterpolargl/attributes/unselected/marker
-public struct Marker0: Encodable {
-    /// Sets the marker opacity of selected points.
-    public var opacity: Double?
-
-    /// Sets the marker color of selected points.
-    public var color: Color?
-
-    /// Sets the marker size of selected points.
-    public var size: Double?
-
-    public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
-        self.opacity = opacity
-        self.color = color
-        self.size = size
-    }
-}
-
-/// - traces/scatter/attributes/selected/textfont
-/// - traces/scatter/attributes/unselected/textfont
-/// - traces/bar/attributes/selected/textfont
-/// - traces/bar/attributes/unselected/textfont
-/// - traces/histogram/attributes/selected/textfont
-/// - traces/histogram/attributes/unselected/textfont
-/// - traces/scatterternary/attributes/selected/textfont
-/// - traces/scatterternary/attributes/unselected/textfont
-/// - traces/scattergeo/attributes/selected/textfont
-/// - traces/scattergeo/attributes/unselected/textfont
-/// - traces/scattergl/attributes/selected/textfont
-/// - traces/scattergl/attributes/unselected/textfont
-/// - traces/scattercarpet/attributes/selected/textfont
-/// - traces/scattercarpet/attributes/unselected/textfont
-/// - traces/scatterpolar/attributes/selected/textfont
-/// - traces/scatterpolar/attributes/unselected/textfont
-/// - traces/scatterpolargl/attributes/selected/textfont
-/// - traces/scatterpolargl/attributes/unselected/textfont
-/// - traces/barpolar/attributes/selected/textfont
-/// - traces/barpolar/attributes/unselected/textfont
-public struct TextFont0: Encodable {
-    /// Sets the text font color of selected points.
-    public var color: Color?
-
-    public init(color: Color? = nil) {
-        self.color = color
-    }
-}
-
-/// - traces/scatter/attributes/error_y
-/// - traces/bar/attributes/error_y
-/// - traces/histogram/attributes/error_y
-/// - traces/scatter3d/attributes/error_z
-/// - traces/scattergl/attributes/error_y
-public struct YError0: Encodable {
-    /// Determines whether or not this set of error bars is visible.
-    public var visible: Bool?
-
-    /// Determines the rule used to generate the error bars. 
-    ///
-    /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-    /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-    /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-    /// the bar lengths are set with data set `array`.
-    public var type: Rule1?
-
-    /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
-    public var symmetric: Bool?
-
-    /// Sets the data corresponding the length of each error bar. 
-    ///
-    /// Values are plotted relative to the underlying data.
-    public var array: [Double]?
-
-    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-    public var arrayMinus: [Double]?
-
-    /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
-    public var value: Double?
-
-    /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
-    public var valueMinus: Double?
-
-    public var traceReference: Int?
-
-    public var traceReferenceMinus: Int?
-
-    /// Sets the stoke color of the error bars.
-    public var color: Color?
-
-    /// Sets the thickness (in px) of the error bars.
-    public var thickness: Double?
-
-    /// Sets the width (in px) of the cross-bar at both ends of the error bars.
-    public var width: Double?
-
-    /// Sets the source reference on plot.ly for  array .
-    public var arraySource: String?
-
-    /// Sets the source reference on plot.ly for  arrayminus .
-    public var arrayMinusSource: String?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case visible
-        case type
-        case symmetric
-        case array
-        case arrayMinus = "arrayminus"
-        case value
-        case valueMinus = "valueminus"
-        case traceReference = "traceref"
-        case traceReferenceMinus = "tracerefminus"
-        case color
-        case thickness
-        case width
-        case arraySource = "arraysrc"
-        case arrayMinusSource = "arrayminussrc"
-    }
-    
-    public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
-        self.visible = visible
-        self.type = type
-        self.symmetric = symmetric
-        self.array = array
-        self.arrayMinus = arrayMinus
-        self.value = value
-        self.valueMinus = valueMinus
-        self.traceReference = traceReference
-        self.traceReferenceMinus = traceReferenceMinus
-        self.color = color
-        self.thickness = thickness
-        self.width = width
-        self.arraySource = arraySource
-        self.arrayMinusSource = arrayMinusSource
-    }
-}
-
-/// - traces/bar/attributes/selected/marker
-/// - traces/bar/attributes/unselected/marker
-/// - traces/histogram/attributes/selected/marker
-/// - traces/histogram/attributes/unselected/marker
-/// - traces/barpolar/attributes/selected/marker
-/// - traces/barpolar/attributes/unselected/marker
-public struct Marker1: Encodable {
-    /// Sets the marker opacity of selected points.
-    public var opacity: Double?
-
-    /// Sets the marker color of selected points.
-    public var color: Color?
-
-    public init(opacity: Double? = nil, color: Color? = nil) {
-        self.opacity = opacity
-        self.color = color
-    }
-}
-
-/// - traces/box/attributes/line
-/// - traces/violin/attributes/line
-/// - traces/violin/attributes/box/line
-/// - traces/waterfall/attributes/increasing/marker/line
-/// - traces/waterfall/attributes/decreasing/marker/line
-/// - traces/waterfall/attributes/totals/marker/line
-/// - traces/scattermapbox/attributes/line
-/// - traces/indicator/attributes/gauge/bar/line
-/// - traces/indicator/attributes/gauge/steps/items/step/line
-/// - traces/indicator/attributes/gauge/threshold/line
-/// - traces/candlestick/attributes/increasing/line
-/// - traces/candlestick/attributes/decreasing/line
+/// - [Pie.Marker.Line2](traces/pie/attributes/marker/line)
+/// - [Pie.Marker.Line2](traces/sunburst/attributes/marker/line)
+/// - [Pie.Marker.Line2](traces/treemap/attributes/marker/line)
+/// - [Pie.Marker.Line2](traces/funnelarea/attributes/marker/line)
+/// - [Pie.Marker.Line2](traces/choropleth/attributes/marker/line)
+/// - [Pie.Marker.Line2](traces/scattergl/attributes/line)
+/// - [Pie.Marker.Line2](traces/choroplethmapbox/attributes/marker/line)
+/// - [Pie.Marker.Line2](traces/sankey/attributes/node/line)
+/// - [Pie.Marker.Line2](traces/sankey/attributes/link/line)
+/// - [Pie.Marker.Line2](traces/scatterpolargl/attributes/line)
 public struct Line2: Encodable {
-    /// Sets the color of line bounding the box(es).
-    public var color: Color?
-
-    /// Sets the width (in px) of line bounding the box(es).
-    public var width: Double?
-
-    public init(color: Color? = nil, width: Double? = nil) {
-        self.color = color
-        self.width = width
-    }
-}
-
-/// - traces/box/attributes/selected
-/// - traces/box/attributes/unselected
-/// - traces/violin/attributes/selected
-/// - traces/violin/attributes/unselected
-/// - traces/waterfall/attributes/increasing
-/// - traces/waterfall/attributes/decreasing
-/// - traces/waterfall/attributes/totals
-/// - traces/choropleth/attributes/selected
-/// - traces/choropleth/attributes/unselected
-/// - traces/splom/attributes/selected
-/// - traces/splom/attributes/unselected
-/// - traces/scattermapbox/attributes/selected
-/// - traces/scattermapbox/attributes/unselected
-/// - traces/choroplethmapbox/attributes/selected
-/// - traces/choroplethmapbox/attributes/unselected
-public struct Selected1: Encodable {
-    public var marker: Marker0?
-
-    public init(marker: Marker0? = nil) {
-        self.marker = marker
-    }
-}
-
-/// - traces/histogram/attributes/xbins
-/// - traces/histogram/attributes/ybins
-/// - traces/histogram2d/attributes/xbins
-/// - traces/histogram2d/attributes/ybins
-/// - traces/histogram2dcontour/attributes/xbins
-/// - traces/histogram2dcontour/attributes/ybins
-public struct XBins0: Encodable {
-    /// Sets the starting value for the x axis bins. 
-    ///
-    /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
-    /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
-    /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
-    /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
-    /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
-    /// based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying
-    /// histograms share a subplot, the first explicit `start` is used exactly and all others are
-    /// shifted down (if necessary) to differ from that one by an integer number of bins.
-    public var start: Anything?
-
-    /// Sets the end value for the x axis bins. 
-    ///
-    /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
-    /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
-    /// a date string, and for category data `end` is based on the category serial numbers.
-    public var end: Anything?
-
-    /// Sets the size of each x axis bin. 
-    ///
-    /// Default behavior: If `nbinsx` is 0 or omitted, we choose a nice round bin size such that the
-    /// number of bins is about the same as the typical number of samples in each bin. If `nbinsx` is
-    /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
-    /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
-    /// categories to bin together (always defaults to 1). If multiple non-overlaying histograms share a
-    /// subplot, the first explicit `size` is used and all others discarded. If no `size` is
-    /// provided,the sample data from all traces is combined to determine `size` as described above.
-    public var size: Anything?
-
-    public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
-        self.start = start
-        self.end = end
-        self.size = size
-    }
-}
-
-/// - traces/pie/attributes/marker/line
-/// - traces/sunburst/attributes/marker/line
-/// - traces/treemap/attributes/marker/line
-/// - traces/funnelarea/attributes/marker/line
-/// - traces/choropleth/attributes/marker/line
-/// - traces/choroplethmapbox/attributes/marker/line
-/// - traces/sankey/attributes/node/line
-/// - traces/sankey/attributes/link/line
-public struct Line3: Encodable {
     /// Sets the color of the line enclosing each sector.
     public var color: Color?
 
@@ -1763,95 +1810,34 @@ public struct Line3: Encodable {
     }
 }
 
-/// - traces/sunburst/attributes/leaf
-/// - traces/choropleth/attributes/selected/marker
-/// - traces/choropleth/attributes/unselected/marker
-/// - traces/choroplethmapbox/attributes/selected/marker
-/// - traces/choroplethmapbox/attributes/unselected/marker
-public struct Leaf0: Encodable {
-    /// Sets the opacity of the leaves. 
-    ///
-    /// With colorscale it is defaulted to 1; otherwise it is defaulted to 0.7
-    public var opacity: Double?
+/// - [Surface.LightPosition0](traces/surface/attributes/lightposition)
+/// - [Surface.LightPosition0](traces/isosurface/attributes/lightposition)
+/// - [Surface.LightPosition0](traces/volume/attributes/lightposition)
+/// - [Surface.LightPosition0](traces/mesh3d/attributes/lightposition)
+/// - [Surface.LightPosition0](traces/cone/attributes/lightposition)
+/// - [Surface.LightPosition0](traces/streamtube/attributes/lightposition)
+public struct LightPosition0: Encodable {
+    /// Numeric vector, representing the X coordinate for each vertex.
+    public var x: Double?
 
-    public init(opacity: Double? = nil) {
-        self.opacity = opacity
+    /// Numeric vector, representing the Y coordinate for each vertex.
+    public var y: Double?
+
+    /// Numeric vector, representing the Z coordinate for each vertex.
+    public var z: Double?
+
+    public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
+        self.x = x
+        self.y = y
+        self.z = z
     }
 }
 
-/// - traces/isosurface/attributes/spaceframe
-/// - traces/isosurface/attributes/caps/x
-/// - traces/isosurface/attributes/caps/y
-/// - traces/isosurface/attributes/caps/z
-/// - traces/volume/attributes/spaceframe
-/// - traces/volume/attributes/caps/x
-/// - traces/volume/attributes/caps/y
-/// - traces/volume/attributes/caps/z
-public struct SpaceFrame0: Encodable {
-    /// Displays/hides tetrahedron shapes between minimum and maximum iso-values. 
-    ///
-    /// Often useful when either caps or surfaces are disabled or filled with values less than 1.
-    public var show: Bool?
-
-    /// Sets the fill ratio of the `spaceframe` elements. 
-    ///
-    /// The default fill value is 0.15 meaning that only 15% of the area of every faces of tetras would
-    /// be shaded. Applying a greater `fill` ratio would allow the creation of stronger elements or
-    /// could be sued to have entirely closed areas (in case of using 1).
-    public var fill: Double?
-
-    public init(show: Bool? = nil, fill: Double? = nil) {
-        self.show = show
-        self.fill = fill
-    }
-}
-
-/// - traces/isosurface/attributes/slices/x
-/// - traces/isosurface/attributes/slices/y
-/// - traces/isosurface/attributes/slices/z
-/// - traces/volume/attributes/slices/x
-/// - traces/volume/attributes/slices/y
-/// - traces/volume/attributes/slices/z
-public struct X0: Encodable {
-    /// Determines whether or not slice planes about the x dimension are drawn.
-    public var show: Bool?
-
-    /// Specifies the location(s) of slices on the axis. 
-    ///
-    /// When not specified slices would be created for all points of the axis x except start and end.
-    public var locations: [Double]?
-
-    /// Sets the fill ratio of the `slices`. 
-    ///
-    /// The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other
-    /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
-    /// edges.
-    public var fill: Double?
-
-    /// Sets the source reference on plot.ly for  locations .
-    public var locationsSource: String?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case show
-        case locations
-        case fill
-        case locationsSource = "locationssrc"
-    }
-    
-    public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
-        self.show = show
-        self.locations = locations
-        self.fill = fill
-        self.locationsSource = locationsSource
-    }
-}
-
-/// - traces/isosurface/attributes/lighting
-/// - traces/volume/attributes/lighting
-/// - traces/mesh3d/attributes/lighting
-/// - traces/cone/attributes/lighting
-/// - traces/streamtube/attributes/lighting
+/// - [Isosurface.Lighting0](traces/isosurface/attributes/lighting)
+/// - [Isosurface.Lighting0](traces/volume/attributes/lighting)
+/// - [Isosurface.Lighting0](traces/mesh3d/attributes/lighting)
+/// - [Isosurface.Lighting0](traces/cone/attributes/lighting)
+/// - [Isosurface.Lighting0](traces/streamtube/attributes/lighting)
 public struct Lighting0: Encodable {
     /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
     public var vertexNormalsEpsilon: Double?

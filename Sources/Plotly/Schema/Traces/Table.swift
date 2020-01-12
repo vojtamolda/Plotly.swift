@@ -75,7 +75,7 @@ public struct Table: Trace {
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     public var columnOrder: [Double]?
 
-    /// - traces/table/attributes/header
+    /// - [Table.Header](traces/table/attributes/header)
     public struct Header: Encodable {
         /// Header cell values. 
         ///
@@ -104,7 +104,7 @@ public struct Table: Trace {
         /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Align1?
     
-        /// - traces/table/attributes/header/line
+        /// - [Table.Header.Line](traces/table/attributes/header/line)
         public struct Line: Encodable {
             public var width: Double?
         
@@ -133,7 +133,7 @@ public struct Table: Trace {
         }
         public var line: Line?
     
-        /// - traces/table/attributes/header/fill
+        /// - [Table.Header.Fill](traces/table/attributes/header/fill)
         public struct Fill: Encodable {
             /// Sets the cell fill color. 
             ///
@@ -156,7 +156,7 @@ public struct Table: Trace {
         }
         public var fill: Fill?
     
-        public var font: Font1?
+        public var font: Font0?
     
         /// Sets the source reference on plot.ly for  values .
         public var valuesSource: String?
@@ -191,7 +191,7 @@ public struct Table: Trace {
             case alignSource = "alignsrc"
         }
         
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Align1? = nil, line: Line? = nil, fill: Fill? = nil, font: Font1? = nil, valuesSource: String? = nil, formatSource: String? = nil, prefixSource: String? = nil, suffixSource: String? = nil, alignSource: String? = nil) {
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Align1? = nil, line: Line? = nil, fill: Fill? = nil, font: Font0? = nil, valuesSource: String? = nil, formatSource: String? = nil, prefixSource: String? = nil, suffixSource: String? = nil, alignSource: String? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -210,7 +210,7 @@ public struct Table: Trace {
     }
     public var header: Header?
 
-    /// - traces/table/attributes/cells
+    /// - [Table.Cells](traces/table/attributes/cells)
     public struct Cells: Encodable {
         /// Cell values. 
         ///
@@ -239,7 +239,7 @@ public struct Table: Trace {
         /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Align1?
     
-        /// - traces/table/attributes/cells/line
+        /// - [Table.Cells.Line](traces/table/attributes/cells/line)
         public struct Line: Encodable {
             public var width: Double?
         
@@ -268,7 +268,7 @@ public struct Table: Trace {
         }
         public var line: Line?
     
-        /// - traces/table/attributes/cells/fill
+        /// - [Table.Cells.Fill](traces/table/attributes/cells/fill)
         public struct Fill: Encodable {
             /// Sets the cell fill color. 
             ///
@@ -291,7 +291,7 @@ public struct Table: Trace {
         }
         public var fill: Fill?
     
-        public var font: Font1?
+        public var font: Font0?
     
         /// Sets the source reference on plot.ly for  values .
         public var valuesSource: String?
@@ -326,7 +326,7 @@ public struct Table: Trace {
             case alignSource = "alignsrc"
         }
         
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Align1? = nil, line: Line? = nil, fill: Fill? = nil, font: Font1? = nil, valuesSource: String? = nil, formatSource: String? = nil, prefixSource: String? = nil, suffixSource: String? = nil, alignSource: String? = nil) {
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Align1? = nil, line: Line? = nil, fill: Fill? = nil, font: Font0? = nil, valuesSource: String? = nil, formatSource: String? = nil, prefixSource: String? = nil, suffixSource: String? = nil, alignSource: String? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix

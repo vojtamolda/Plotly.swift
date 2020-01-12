@@ -76,7 +76,7 @@ public struct Volume: Trace {
     /// Sets the maximum boundary for iso-surface plot.
     public var isoMax: Double?
 
-    /// - traces/volume/attributes/surface
+    /// - [Volume.Surface](traces/volume/attributes/surface)
     public struct Surface: Encodable {
         /// Hides/displays surfaces between minimum and maximum iso-values.
         public var show: Bool?
@@ -99,7 +99,7 @@ public struct Volume: Trace {
         /// shaded. The check options (either 1 or 2) could be used to draw half of the squares on the
         /// surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to
         /// reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
-        /// - traces/volume/attributes/surface/pattern
+        /// - [Volume.Surface.Pattern](traces/volume/attributes/surface/pattern)
         public struct Pattern: OptionSet, Encodable {
             public let rawValue: Int
         
@@ -145,11 +145,225 @@ public struct Volume: Trace {
     }
     public var surface: Surface?
 
-    public var spaceFrame: SpaceFrame0?
+    /// - [Volume.SpaceFrame](traces/volume/attributes/spaceframe)
+    public struct SpaceFrame: Encodable {
+        /// Displays/hides tetrahedron shapes between minimum and maximum iso-values. 
+        ///
+        /// Often useful when either caps or surfaces are disabled or filled with values less than 1.
+        public var show: Bool?
+    
+        /// Sets the fill ratio of the `spaceframe` elements. 
+        ///
+        /// The default fill value is 1 meaning that they are entirely shaded. Applying a `fill` ratio less
+        /// than one would allow the creation of openings parallel to the edges.
+        public var fill: Double?
+    
+        public init(show: Bool? = nil, fill: Double? = nil) {
+            self.show = show
+            self.fill = fill
+        }
+    }
+    public var spaceFrame: SpaceFrame?
 
-    public var slices: Up0?
+    /// - [Volume.Slices](traces/volume/attributes/slices)
+    public struct Slices: Encodable {
+        /// - [Volume.Slices.X](traces/volume/attributes/slices/x)
+        public struct X: Encodable {
+            /// Determines whether or not slice planes about the x dimension are drawn.
+            public var show: Bool?
+        
+            /// Specifies the location(s) of slices on the axis. 
+            ///
+            /// When not specified slices would be created for all points of the axis x except start and end.
+            public var locations: [Double]?
+        
+            /// Sets the fill ratio of the `slices`. 
+            ///
+            /// The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other
+            /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
+            /// edges.
+            public var fill: Double?
+        
+            /// Sets the source reference on plot.ly for  locations .
+            public var locationsSource: String?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case show
+                case locations
+                case fill
+                case locationsSource = "locationssrc"
+            }
+            
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+                self.show = show
+                self.locations = locations
+                self.fill = fill
+                self.locationsSource = locationsSource
+            }
+        }
+        public var x: X?
+    
+        /// - [Volume.Slices.Y](traces/volume/attributes/slices/y)
+        public struct Y: Encodable {
+            /// Determines whether or not slice planes about the y dimension are drawn.
+            public var show: Bool?
+        
+            /// Specifies the location(s) of slices on the axis. 
+            ///
+            /// When not specified slices would be created for all points of the axis y except start and end.
+            public var locations: [Double]?
+        
+            /// Sets the fill ratio of the `slices`. 
+            ///
+            /// The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other
+            /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
+            /// edges.
+            public var fill: Double?
+        
+            /// Sets the source reference on plot.ly for  locations .
+            public var locationsSource: String?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case show
+                case locations
+                case fill
+                case locationsSource = "locationssrc"
+            }
+            
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+                self.show = show
+                self.locations = locations
+                self.fill = fill
+                self.locationsSource = locationsSource
+            }
+        }
+        public var y: Y?
+    
+        /// - [Volume.Slices.Z](traces/volume/attributes/slices/z)
+        public struct Z: Encodable {
+            /// Determines whether or not slice planes about the z dimension are drawn.
+            public var show: Bool?
+        
+            /// Specifies the location(s) of slices on the axis. 
+            ///
+            /// When not specified slices would be created for all points of the axis z except start and end.
+            public var locations: [Double]?
+        
+            /// Sets the fill ratio of the `slices`. 
+            ///
+            /// The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other
+            /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
+            /// edges.
+            public var fill: Double?
+        
+            /// Sets the source reference on plot.ly for  locations .
+            public var locationsSource: String?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case show
+                case locations
+                case fill
+                case locationsSource = "locationssrc"
+            }
+            
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+                self.show = show
+                self.locations = locations
+                self.fill = fill
+                self.locationsSource = locationsSource
+            }
+        }
+        public var z: Z?
+    
+        public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
+            self.x = x
+            self.y = y
+            self.z = z
+        }
+    }
+    public var slices: Slices?
 
-    public var caps: Up0?
+    /// - [Volume.Caps](traces/volume/attributes/caps)
+    public struct Caps: Encodable {
+        /// - [Volume.Caps.X](traces/volume/attributes/caps/x)
+        public struct X: Encodable {
+            /// Sets the fill ratio of the `slices`. 
+            ///
+            /// The default fill value of the x `slices` is 1 meaning that they are entirely shaded. On the
+            /// other hand Applying a `fill` ratio less than one would allow the creation of openings parallel
+            /// to the edges.
+            public var show: Bool?
+        
+            /// Sets the fill ratio of the `caps`. 
+            ///
+            /// The default fill value of the `caps` is 1 meaning that they are entirely shaded. On the other
+            /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
+            /// edges.
+            public var fill: Double?
+        
+            public init(show: Bool? = nil, fill: Double? = nil) {
+                self.show = show
+                self.fill = fill
+            }
+        }
+        public var x: X?
+    
+        /// - [Volume.Caps.Y](traces/volume/attributes/caps/y)
+        public struct Y: Encodable {
+            /// Sets the fill ratio of the `slices`. 
+            ///
+            /// The default fill value of the y `slices` is 1 meaning that they are entirely shaded. On the
+            /// other hand Applying a `fill` ratio less than one would allow the creation of openings parallel
+            /// to the edges.
+            public var show: Bool?
+        
+            /// Sets the fill ratio of the `caps`. 
+            ///
+            /// The default fill value of the `caps` is 1 meaning that they are entirely shaded. On the other
+            /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
+            /// edges.
+            public var fill: Double?
+        
+            public init(show: Bool? = nil, fill: Double? = nil) {
+                self.show = show
+                self.fill = fill
+            }
+        }
+        public var y: Y?
+    
+        /// - [Volume.Caps.Z](traces/volume/attributes/caps/z)
+        public struct Z: Encodable {
+            /// Sets the fill ratio of the `slices`. 
+            ///
+            /// The default fill value of the z `slices` is 1 meaning that they are entirely shaded. On the
+            /// other hand Applying a `fill` ratio less than one would allow the creation of openings parallel
+            /// to the edges.
+            public var show: Bool?
+        
+            /// Sets the fill ratio of the `caps`. 
+            ///
+            /// The default fill value of the `caps` is 1 meaning that they are entirely shaded. On the other
+            /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
+            /// edges.
+            public var fill: Double?
+        
+            public init(show: Bool? = nil, fill: Double? = nil) {
+                self.show = show
+                self.fill = fill
+            }
+        }
+        public var z: Z?
+    
+        public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
+            self.x = x
+            self.y = y
+            self.z = z
+        }
+    }
+    public var caps: Caps?
 
     /// Sets the text elements associated with the vertices. 
     ///
@@ -248,14 +462,14 @@ public struct Volume: Trace {
     /// is 'uniform'.
     public var opacityScale: Anything?
 
-    public var lightPosition: Up0?
+    public var lightPosition: LightPosition0?
 
     public var lighting: Lighting0?
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     public var flatShading: Bool?
 
-    /// - traces/volume/attributes/contour
+    /// - [Volume.Contour](traces/volume/attributes/contour)
     public struct Contour: Encodable {
         /// Sets whether or not dynamic contours are shown on hover
         public var show: Bool?
@@ -376,7 +590,7 @@ public struct Volume: Trace {
         case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame0? = nil, slices: Up0? = nil, caps: Up0? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: Up0? = nil, lighting: Lighting0? = nil, flatShading: Bool? = nil, contour: Contour? = nil, hoverInfo: HoverInfo0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, valueSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: LightPosition0? = nil, lighting: Lighting0? = nil, flatShading: Bool? = nil, contour: Contour? = nil, hoverInfo: HoverInfo0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, valueSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

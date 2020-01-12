@@ -66,7 +66,7 @@ public struct ScatterGL: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -126,58 +126,14 @@ public struct ScatterGL: Trace {
     public var textPosition: TextPosition0?
 
     /// Sets the text font.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Determines the drawing mode for this scatter trace.
     public var mode: Mode0?
 
-    /// - traces/scattergl/attributes/line
-    public struct Line: Encodable {
-        /// Sets the line color.
-        public var color: Color?
-    
-        /// Sets the line width (in px).
-        public var width: Double?
-    
-        /// Determines the line shape. 
-        ///
-        /// The values correspond to step-wise line shapes.
-        /// - traces/scattergl/attributes/line/shape
-        public enum Shape: String, Encodable {
-            case linear
-            case hv
-            case vh
-            case hvh
-            case vhv
-        }
-        /// Determines the line shape. 
-        ///
-        /// The values correspond to step-wise line shapes.
-        public var shape: Shape?
-    
-        /// Sets the style of the lines.
-        /// - traces/scattergl/attributes/line/dash
-        public enum Dash: String, Encodable {
-            case solid
-            case dot
-            case dash
-            case longDash = "longdash"
-            case dashDot = "dashdot"
-            case longDashDot = "longdashdot"
-        }
-        /// Sets the style of the lines.
-        public var dash: Dash?
-    
-        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Dash? = nil) {
-            self.color = color
-            self.width = width
-            self.shape = shape
-            self.dash = dash
-        }
-    }
-    public var line: Line?
+    public var line: Line2?
 
-    /// - traces/scattergl/attributes/marker
+    /// - [ScatterGL.Marker](traces/scattergl/attributes/marker)
     public struct Marker: Encodable {
         /// Sets themarkercolor. 
         ///
@@ -276,7 +232,7 @@ public struct ScatterGL: Trace {
         /// Sets the marker opacity.
         public var opacity: Double?
     
-        /// - traces/scattergl/attributes/marker/line
+        /// - [ScatterGL.Marker.Line](traces/scattergl/attributes/marker/line)
         public struct Line: Encodable {
             /// Sets themarker.linecolor. 
             ///
@@ -466,7 +422,7 @@ public struct ScatterGL: Trace {
     /// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
     /// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
     /// later ones will be pushed down in the drawing order.
-    /// - traces/scattergl/attributes/fill
+    /// - [ScatterGL.Fill](traces/scattergl/attributes/fill)
     public enum Fill: String, Encodable {
         case none
         case toZeroY = "tozeroy"
@@ -535,7 +491,7 @@ public struct ScatterGL: Trace {
     /// `arrayOk: true`) are available. 
     public var textTemplate: String?
 
-    /// - traces/scattergl/attributes/error_x
+    /// - [ScatterGL.XError](traces/scattergl/attributes/error_x)
     public struct XError: Encodable {
         /// Determines whether or not this set of error bars is visible.
         public var visible: Bool?
@@ -625,7 +581,91 @@ public struct ScatterGL: Trace {
     }
     public var xError: XError?
 
-    public var yError: YError0?
+    /// - [ScatterGL.YError](traces/scattergl/attributes/error_y)
+    public struct YError: Encodable {
+        /// Determines whether or not this set of error bars is visible.
+        public var visible: Bool?
+    
+        /// Determines the rule used to generate the error bars. 
+        ///
+        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
+        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
+        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+        /// the bar lengths are set with data set `array`.
+        public var type: Rule1?
+    
+        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
+        public var symmetric: Bool?
+    
+        /// Sets the data corresponding the length of each error bar. 
+        ///
+        /// Values are plotted relative to the underlying data.
+        public var array: [Double]?
+    
+        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+        public var arrayMinus: [Double]?
+    
+        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
+        public var value: Double?
+    
+        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
+        public var valueMinus: Double?
+    
+        public var traceReference: Int?
+    
+        public var traceReferenceMinus: Int?
+    
+        /// Sets the stoke color of the error bars.
+        public var color: Color?
+    
+        /// Sets the thickness (in px) of the error bars.
+        public var thickness: Double?
+    
+        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
+        public var width: Double?
+    
+        /// Sets the source reference on plot.ly for  array .
+        public var arraySource: String?
+    
+        /// Sets the source reference on plot.ly for  arrayminus .
+        public var arrayMinusSource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case type
+            case symmetric
+            case array
+            case arrayMinus = "arrayminus"
+            case value
+            case valueMinus = "valueminus"
+            case traceReference = "traceref"
+            case traceReferenceMinus = "tracerefminus"
+            case color
+            case thickness
+            case width
+            case arraySource = "arraysrc"
+            case arrayMinusSource = "arrayminussrc"
+        }
+        
+        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
+            self.visible = visible
+            self.type = type
+            self.symmetric = symmetric
+            self.array = array
+            self.arrayMinus = arrayMinus
+            self.value = value
+            self.valueMinus = valueMinus
+            self.traceReference = traceReference
+            self.traceReferenceMinus = traceReferenceMinus
+            self.color = color
+            self.thickness = thickness
+            self.width = width
+            self.arraySource = arraySource
+            self.arrayMinusSource = arrayMinusSource
+        }
+    }
+    public var yError: YError?
 
     /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
@@ -736,7 +776,7 @@ public struct ScatterGL: Trace {
         case textTemplateSource = "texttemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, hoverText: String? = nil, textPosition: TextPosition0? = nil, textFont: Font1? = nil, mode: Mode0? = nil, line: Line? = nil, marker: Marker? = nil, connectGaps: Bool? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, opacity: Double? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, xError: XError? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverTemplateSource: String? = nil, textTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, hoverText: String? = nil, textPosition: TextPosition0? = nil, textFont: Font0? = nil, mode: Mode0? = nil, line: Line2? = nil, marker: Marker? = nil, connectGaps: Bool? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, opacity: Double? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, xError: XError? = nil, yError: YError? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverTemplateSource: String? = nil, textTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

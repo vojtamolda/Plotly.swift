@@ -69,7 +69,7 @@ public struct Bar: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -162,7 +162,7 @@ public struct Bar: Trace {
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
-    /// - traces/bar/attributes/textposition
+    /// - [Bar.TextPosition](traces/bar/attributes/textposition)
     public enum TextPosition: String, Encodable {
         case inside
         case outside
@@ -179,7 +179,7 @@ public struct Bar: Trace {
     public var textPosition: TextPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    /// - traces/bar/attributes/insidetextanchor
+    /// - [Bar.InsideTextAnchor](traces/bar/attributes/insidetextanchor)
     public enum InsideTextAnchor: String, Encodable {
         case end
         case middle
@@ -195,16 +195,16 @@ public struct Bar: Trace {
     public var textAngle: Angle?
 
     /// Sets the font used for `text`.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: Font1?
+    public var insideTextFont: Font0?
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outSideTextFont: Font1?
+    public var outSideTextFont: Font0?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    /// - traces/bar/attributes/constraintext
+    /// - [Bar.ConstrainText](traces/bar/attributes/constraintext)
     public enum ConstrainText: String, Encodable {
         case inside
         case outside
@@ -240,7 +240,7 @@ public struct Bar: Trace {
     /// Sets the bar width (in position axis units).
     public var width: Double?
 
-    /// - traces/bar/attributes/marker
+    /// - [Bar.Marker](traces/bar/attributes/marker)
     public struct Marker: Encodable {
         public var line: Line1?
     
@@ -378,7 +378,7 @@ public struct Bar: Trace {
     /// t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
     public var t: [Double]?
 
-    /// - traces/bar/attributes/error_x
+    /// - [Bar.XError](traces/bar/attributes/error_x)
     public struct XError: Encodable {
         /// Determines whether or not this set of error bars is visible.
         public var visible: Bool?
@@ -468,7 +468,91 @@ public struct Bar: Trace {
     }
     public var xError: XError?
 
-    public var yError: YError0?
+    /// - [Bar.YError](traces/bar/attributes/error_y)
+    public struct YError: Encodable {
+        /// Determines whether or not this set of error bars is visible.
+        public var visible: Bool?
+    
+        /// Determines the rule used to generate the error bars. 
+        ///
+        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
+        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
+        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+        /// the bar lengths are set with data set `array`.
+        public var type: Rule1?
+    
+        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
+        public var symmetric: Bool?
+    
+        /// Sets the data corresponding the length of each error bar. 
+        ///
+        /// Values are plotted relative to the underlying data.
+        public var array: [Double]?
+    
+        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+        public var arrayMinus: [Double]?
+    
+        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
+        public var value: Double?
+    
+        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
+        public var valueMinus: Double?
+    
+        public var traceReference: Int?
+    
+        public var traceReferenceMinus: Int?
+    
+        /// Sets the stoke color of the error bars.
+        public var color: Color?
+    
+        /// Sets the thickness (in px) of the error bars.
+        public var thickness: Double?
+    
+        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
+        public var width: Double?
+    
+        /// Sets the source reference on plot.ly for  array .
+        public var arraySource: String?
+    
+        /// Sets the source reference on plot.ly for  arrayminus .
+        public var arrayMinusSource: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case type
+            case symmetric
+            case array
+            case arrayMinus = "arrayminus"
+            case value
+            case valueMinus = "valueminus"
+            case traceReference = "traceref"
+            case traceReferenceMinus = "tracerefminus"
+            case color
+            case thickness
+            case width
+            case arraySource = "arraysrc"
+            case arrayMinusSource = "arrayminussrc"
+        }
+        
+        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
+            self.visible = visible
+            self.type = type
+            self.symmetric = symmetric
+            self.array = array
+            self.arrayMinus = arrayMinus
+            self.value = value
+            self.valueMinus = valueMinus
+            self.traceReference = traceReference
+            self.traceReferenceMinus = traceReferenceMinus
+            self.color = color
+            self.thickness = thickness
+            self.width = width
+            self.arraySource = arraySource
+            self.arrayMinusSource = arrayMinusSource
+        }
+    }
+    public var yError: YError?
 
     /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Calendar0?
@@ -608,7 +692,7 @@ public struct Bar: Trace {
         case tSource = "tsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: XError? = nil, yError: YError0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: XError? = nil, yError: YError? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

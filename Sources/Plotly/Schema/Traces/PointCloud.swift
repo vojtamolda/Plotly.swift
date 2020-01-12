@@ -109,7 +109,7 @@ public struct PointCloud: Trace {
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
     public var text: String?
 
-    /// - traces/pointcloud/attributes/marker
+    /// - [PointCloud.Marker](traces/pointcloud/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the marker fill color. 
         ///
@@ -137,7 +137,7 @@ public struct PointCloud: Trace {
         /// Effective when the `pointcloud` shows only few points.
         public var sizeMax: Double?
     
-        /// - traces/pointcloud/attributes/marker/border
+        /// - [PointCloud.Marker.Border](traces/pointcloud/attributes/marker/border)
         public struct Border: Encodable {
             /// Sets the stroke color. 
             ///

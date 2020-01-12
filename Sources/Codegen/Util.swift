@@ -15,7 +15,7 @@ extension String {
     }
 
     /// Wraps the string with newlines so to not exceed the `width` characters  and formats the text as documentation markup.
-    public func documentation(columns: Int = 100) -> [String] {
+    func documentation(columns: Int = 100) -> [String] {
         if self == "" { return [] }
 
         var text = [String]()
@@ -39,6 +39,12 @@ extension String {
         text += [line + scanner.string.suffix(from: scanner.currentIndex)]
 
         return text
+    }
+
+    /// Compares two string by checking whether one contains the other lowercased or vice versa.
+    func almostEqual(to other: String) -> Bool {
+        let (lowerSelf, lowerOther) = (self.lowercased(), other.lowercased())
+        return lowerSelf.contains(lowerOther) || lowerOther.contains(lowerSelf)
     }
 }
 

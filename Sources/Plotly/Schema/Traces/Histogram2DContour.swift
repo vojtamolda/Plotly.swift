@@ -62,7 +62,7 @@ public struct Histogram2DContour: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -85,7 +85,7 @@ public struct Histogram2DContour: Trace {
     /// Sets the aggregation data.
     public var z: [Double]?
 
-    /// - traces/histogram2dcontour/attributes/marker
+    /// - [Histogram2DContour.Marker](traces/histogram2dcontour/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the aggregation data.
         public var color: [Double]?
@@ -116,7 +116,7 @@ public struct Histogram2DContour: Trace {
     /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    /// - traces/histogram2dcontour/attributes/histnorm
+    /// - [Histogram2DContour.Normalization](traces/histogram2dcontour/attributes/histnorm)
     public enum Normalization: String, Encodable {
         case none = ""
         case percent
@@ -141,7 +141,7 @@ public struct Histogram2DContour: Trace {
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
     /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    /// - traces/histogram2dcontour/attributes/histfunc
+    /// - [Histogram2DContour.BinningFunction](traces/histogram2dcontour/attributes/histfunc)
     public enum BinningFunction: String, Encodable {
         case count
         case sum
@@ -162,7 +162,41 @@ public struct Histogram2DContour: Trace {
     /// histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
     public var xNumBins: Int?
 
-    public var xBins: XBins0?
+    /// - [Histogram2DContour.XBins](traces/histogram2dcontour/attributes/xbins)
+    public struct XBins: Encodable {
+        /// Sets the starting value for the x axis bins. 
+        ///
+        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
+        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
+        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
+        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
+        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
+        /// based on the category serial numbers, and defaults to -0.5. 
+        public var start: Anything?
+    
+        /// Sets the end value for the x axis bins. 
+        ///
+        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
+        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
+        /// a date string, and for category data `end` is based on the category serial numbers.
+        public var end: Anything?
+    
+        /// Sets the size of each x axis bin. 
+        ///
+        /// Default behavior: If `nbinsx` is 0 or omitted, we choose a nice round bin size such that the
+        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsx` is
+        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
+        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
+        /// categories to bin together (always defaults to 1). 
+        public var size: Anything?
+    
+        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
+            self.start = start
+            self.end = end
+            self.size = size
+        }
+    }
+    public var xBins: XBins?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -170,7 +204,41 @@ public struct Histogram2DContour: Trace {
     /// histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
     public var yNumBins: Int?
 
-    public var yBins: XBins0?
+    /// - [Histogram2DContour.YBins](traces/histogram2dcontour/attributes/ybins)
+    public struct YBins: Encodable {
+        /// Sets the starting value for the y axis bins. 
+        ///
+        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
+        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
+        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
+        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
+        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
+        /// based on the category serial numbers, and defaults to -0.5. 
+        public var start: Anything?
+    
+        /// Sets the end value for the y axis bins. 
+        ///
+        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
+        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
+        /// a date string, and for category data `end` is based on the category serial numbers.
+        public var end: Anything?
+    
+        /// Sets the size of each y axis bin. 
+        ///
+        /// Default behavior: If `nbinsy` is 0 or omitted, we choose a nice round bin size such that the
+        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsy` is
+        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
+        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
+        /// categories to bin together (always defaults to 1). 
+        public var size: Anything?
+    
+        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
+            self.start = start
+            self.end = end
+            self.size = size
+        }
+    }
+    public var yBins: YBins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. 
     ///
@@ -213,13 +281,13 @@ public struct Histogram2DContour: Trace {
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
     public var nContours: Int?
 
-    /// - traces/histogram2dcontour/attributes/contours
+    /// - [Histogram2DContour.Contours](traces/histogram2dcontour/attributes/contours)
     public struct Contours: Encodable {
         /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
         ///
         /// If `constraint`, the data is represented as constraints with the invalid region shaded as
         /// specified by the `operation` and `value` parameters.
-        /// - traces/histogram2dcontour/attributes/contours/type
+        /// - [Histogram2DContour.Contours.Rule](traces/histogram2dcontour/attributes/contours/type)
         public enum Rule: String, Encodable {
             case levels
             case constraint
@@ -250,7 +318,7 @@ public struct Histogram2DContour: Trace {
         /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
         /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
         /// lines. If *none*, no coloring is applied on this trace.
-        /// - traces/histogram2dcontour/attributes/contours/coloring
+        /// - [Histogram2DContour.Contours.Coloring](traces/histogram2dcontour/attributes/contours/coloring)
         public enum Coloring: String, Encodable {
             case fill
             case heatmap
@@ -288,7 +356,7 @@ public struct Histogram2DContour: Trace {
         /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
         /// intervals make no difference to constraint display, but all versions are allowed for consistency
         /// with filter transforms.
-        /// - traces/histogram2dcontour/attributes/contours/operation
+        /// - [Histogram2DContour.Contours.Operation](traces/histogram2dcontour/attributes/contours/operation)
         public enum Operation: String, Encodable {
             case equalTo = "="
             case lessThan = "<"
@@ -321,7 +389,7 @@ public struct Histogram2DContour: Trace {
         /// second is the upper bound.
         public var value: Anything?
     
-        public var impliedEdits: ImpliedEdits0?
+        public var impliedEdits: Edits0?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -339,7 +407,7 @@ public struct Histogram2DContour: Trace {
             case impliedEdits
         }
         
-        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: ImpliedEdits0? = nil) {
+        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: Edits0? = nil) {
             self.type = type
             self.start = start
             self.end = end
@@ -356,33 +424,7 @@ public struct Histogram2DContour: Trace {
     }
     public var contours: Contours?
 
-    /// - traces/histogram2dcontour/attributes/line
-    public struct Line: Encodable {
-        /// Sets the color of the contour level. 
-        ///
-        /// Has no effect if `contours.coloring` is set to *lines*.
-        public var color: Color?
-    
-        /// Sets the contour line width in (in px)
-        public var width: Double?
-    
-        /// Sets the dash style of lines. 
-        ///
-        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-        /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
-    
-        /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
-        public var smoothing: Double?
-    
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, smoothing: Double? = nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
-            self.smoothing = smoothing
-        }
-    }
-    public var line: Line?
+    public var line: Line0?
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
     ///
@@ -564,7 +606,7 @@ public struct Histogram2DContour: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: XBins0? = nil, yNumBins: Int? = nil, yBins: XBins0? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: XBins? = nil, yNumBins: Int? = nil, yBins: YBins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line0? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

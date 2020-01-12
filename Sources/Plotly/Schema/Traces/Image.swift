@@ -67,7 +67,7 @@ public struct Image: Trace {
     public var z: [Double]?
 
     /// Color model used to map the numerical color components described in `z` into colors.
-    /// - traces/image/attributes/colormodel
+    /// - [Image.ColorModel](traces/image/attributes/colormodel)
     public enum ColorModel: String, Encodable {
         case RGB = "rgb"
         case RGBA = "rgba"
@@ -113,7 +113,7 @@ public struct Image: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/image/attributes/hoverinfo
+    /// - [Image.HoverInfo](traces/image/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     

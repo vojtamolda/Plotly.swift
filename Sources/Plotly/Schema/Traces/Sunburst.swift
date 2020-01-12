@@ -48,7 +48,7 @@ public struct Sunburst: Trace {
 
     public var stream: Stream0?
 
-    public var transforms: TickFormatStops0?
+    public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -82,7 +82,7 @@ public struct Sunburst: Trace {
     /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
     /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
     /// be the extra part not part of the sum of the values at their leaves.
-    /// - traces/sunburst/attributes/branchvalues
+    /// - [Sunburst.BranchValues](traces/sunburst/attributes/branchvalues)
     public enum BranchValues: String, Encodable {
         case remainder
         case total
@@ -95,7 +95,7 @@ public struct Sunburst: Trace {
     public var branchValues: BranchValues?
 
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
-    /// - traces/sunburst/attributes/count
+    /// - [Sunburst.Count](traces/sunburst/attributes/count)
     public struct Count: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -126,14 +126,14 @@ public struct Sunburst: Trace {
     /// Set `maxdepth` to *-1* to render all the levels in the hierarchy.
     public var maxDepth: Int?
 
-    /// - traces/sunburst/attributes/marker
+    /// - [Sunburst.Marker](traces/sunburst/attributes/marker)
     public struct Marker: Encodable {
         /// Sets the color of each sector of this trace. 
         ///
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
-        public var line: Line3?
+        public var line: Line2?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here colors) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if colorsis set to a numerical array. 
         ///
@@ -216,7 +216,7 @@ public struct Sunburst: Trace {
             case colorsSource = "colorssrc"
         }
         
-        public init(colors: [Double]? = nil, line: Line3? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorsSource: String? = nil) {
+        public init(colors: [Double]? = nil, line: Line2? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorsSource: String? = nil) {
             self.colors = colors
             self.line = line
             self.cAuto = cAuto
@@ -234,7 +234,18 @@ public struct Sunburst: Trace {
     }
     public var marker: Marker?
 
-    public var leaf: Leaf0?
+    /// - [Sunburst.Leaf](traces/sunburst/attributes/leaf)
+    public struct Leaf: Encodable {
+        /// Sets the opacity of the leaves. 
+        ///
+        /// With colorscale it is defaulted to 1; otherwise it is defaulted to 0.7
+        public var opacity: Double?
+    
+        public init(opacity: Double? = nil) {
+            self.opacity = opacity
+        }
+    }
+    public var leaf: Leaf?
 
     /// Sets text elements associated with each sector. 
     ///
@@ -244,7 +255,7 @@ public struct Sunburst: Trace {
     public var text: [Double]?
 
     /// Determines which trace information appear on the graph.
-    /// - traces/sunburst/attributes/textinfo
+    /// - [Sunburst.TextInfo](traces/sunburst/attributes/textinfo)
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -301,7 +312,7 @@ public struct Sunburst: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - traces/sunburst/attributes/hoverinfo
+    /// - [Sunburst.HoverInfo](traces/sunburst/attributes/hoverinfo)
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -361,13 +372,13 @@ public struct Sunburst: Trace {
     public var hoverTemplate: String?
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Font1?
+    public var textFont: Font0?
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Font1?
+    public var insideTextFont: Font0?
 
     /// Sets the font used for `textinfo` lying outside the sector.
-    public var outSideTextFont: Font1?
+    public var outSideTextFont: Font0?
 
     public var domain: Domain0?
 
@@ -451,7 +462,7 @@ public struct Sunburst: Trace {
         case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: TickFormatStops0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf0? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Font1? = nil, insideTextFont: Font1? = nil, outSideTextFont: Font1? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
