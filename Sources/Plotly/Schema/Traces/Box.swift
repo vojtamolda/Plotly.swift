@@ -7,40 +7,85 @@
 /// to the box' edges +/- 1.5 times the interquartile range (IQR: Q3-Q1), see *boxpoints* for other
 /// options.
 public struct Box: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "box"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-visible) |
+    /// [Python](https://plot.ly/python/reference/#box-visible) |
+    /// [R](https://plot.ly/r/reference/#box-visible)
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-showlegend) |
+    /// [Python](https://plot.ly/python/reference/#box-showlegend) |
+    /// [R](https://plot.ly/r/reference/#box-showlegend)
     public var showLegend: Bool?
 
     /// Sets the legend group for this trace. 
     ///
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-legendgroup) |
+    /// [Python](https://plot.ly/python/reference/#box-legendgroup) |
+    /// [R](https://plot.ly/r/reference/#box-legendgroup)
     public var legendGroup: String?
 
     /// Sets the opacity of the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-opacity) |
+    /// [Python](https://plot.ly/python/reference/#box-opacity) |
+    /// [R](https://plot.ly/r/reference/#box-opacity)
     public var opacity: Double?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-uid) |
+    /// [Python](https://plot.ly/python/reference/#box-uid) |
+    /// [R](https://plot.ly/r/reference/#box-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-ids) |
+    /// [Python](https://plot.ly/python/reference/#box-ids) |
+    /// [R](https://plot.ly/r/reference/#box-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-customdata) |
+    /// [Python](https://plot.ly/python/reference/#box-customdata) |
+    /// [R](https://plot.ly/r/reference/#box-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -50,6 +95,11 @@ public struct Box: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-meta) |
+    /// [Python](https://plot.ly/python/reference/#box-meta) |
+    /// [R](https://plot.ly/r/reference/#box-meta)
     public var meta: Anything?
 
     /// Array containing integer indices of selected points. 
@@ -57,18 +107,43 @@ public struct Box: Trace {
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-selectedpoints) |
+    /// [Python](https://plot.ly/python/reference/#box-selectedpoints) |
+    /// [R](https://plot.ly/r/reference/#box-selectedpoints)
     public var selectedPoints: Anything?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#box-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#box-hoverinfo)
     public var hoverInfo: HoverInfo0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#box-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#box-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-stream) |
+    /// [Python](https://plot.ly/python/reference/#box-stream) |
+    /// [R](https://plot.ly/r/reference/#box-stream)
     public var stream: Stream0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-transforms) |
+    /// [Python](https://plot.ly/python/reference/#box-transforms) |
+    /// [R](https://plot.ly/r/reference/#box-transforms)
     public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -81,26 +156,51 @@ public struct Box: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#box-uirevision) |
+    /// [R](https://plot.ly/r/reference/#box-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the y sample data or coordinates. 
     ///
     /// See overview for more info.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-y) |
+    /// [Python](https://plot.ly/python/reference/#box-y) |
+    /// [R](https://plot.ly/r/reference/#box-y)
     public var y: [Double]?
 
     /// Sets the x sample data or coordinates. 
     ///
     /// See overview for more info.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-x) |
+    /// [Python](https://plot.ly/python/reference/#box-x) |
+    /// [R](https://plot.ly/r/reference/#box-x)
     public var x: [Double]?
 
     /// Sets the x coordinate of the box. 
     ///
     /// See overview for more info.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-x0) |
+    /// [Python](https://plot.ly/python/reference/#box-x0) |
+    /// [R](https://plot.ly/r/reference/#box-x0)
     public var x0: Anything?
 
     /// Sets the y coordinate of the box. 
     ///
     /// See overview for more info.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-y0) |
+    /// [Python](https://plot.ly/python/reference/#box-y0) |
+    /// [R](https://plot.ly/r/reference/#box-y0)
     public var y0: Anything?
 
     /// Sets the trace name. 
@@ -108,6 +208,11 @@ public struct Box: Trace {
     /// The trace name appear as the legend item and on hover. For box traces, the name will also be
     /// used for the position coordinate, if `x` and `x0` (`y` and `y0` if horizontal) are missing and
     /// the position axis is categorical
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-name) |
+    /// [Python](https://plot.ly/python/reference/#box-name) |
+    /// [R](https://plot.ly/r/reference/#box-name)
     public var name: String?
 
     /// Sets the text elements associated with each sample value. 
@@ -115,9 +220,19 @@ public struct Box: Trace {
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-text) |
+    /// [Python](https://plot.ly/python/reference/#box-text) |
+    /// [R](https://plot.ly/r/reference/#box-text)
     public var text: String?
 
     /// Same as `text`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-hovertext) |
+    /// [Python](https://plot.ly/python/reference/#box-hovertext) |
+    /// [R](https://plot.ly/r/reference/#box-hovertext)
     public var hoverText: String?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -135,23 +250,45 @@ public struct Box: Trace {
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#box-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#box-hovertemplate)
     public var hoverTemplate: String?
 
     /// Sets the width of the whiskers relative to the box' width. 
     ///
     /// For example, with 1, the whiskers are as wide as the box(es).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-whiskerwidth) |
+    /// [Python](https://plot.ly/python/reference/#box-whiskerwidth) |
+    /// [R](https://plot.ly/r/reference/#box-whiskerwidth)
     public var whiskerWidth: Double?
 
     /// Determines whether or not notches should be drawn.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-notched) |
+    /// [Python](https://plot.ly/python/reference/#box-notched) |
+    /// [R](https://plot.ly/r/reference/#box-notched)
     public var notched: Bool?
 
     /// Sets the width of the notches relative to the box' width. 
     ///
     /// For example, with 0, the notches are as wide as the box(es).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-notchwidth) |
+    /// [Python](https://plot.ly/python/reference/#box-notchwidth) |
+    /// [R](https://plot.ly/r/reference/#box-notchwidth)
     public var notchWidth: Double?
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
-    /// - [Box.BoxPoints](traces/box/attributes/boxpoints)
+    ///
+    /// # Used By
+    /// `Box.boxPoints` |
     public enum BoxPoints: String, Encodable {
         case all
         case outliers
@@ -159,12 +296,19 @@ public struct Box: Trace {
         case `false` = "false"
     }
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-boxpoints) |
+    /// [Python](https://plot.ly/python/reference/#box-boxpoints) |
+    /// [R](https://plot.ly/r/reference/#box-boxpoints)
     public var boxPoints: BoxPoints?
 
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). 
     ///
     /// If *sd* the standard deviation is also drawn.
-    /// - [Box.BoxMean](traces/box/attributes/boxmean)
+    ///
+    /// # Used By
+    /// `Box.boxMean` |
     public enum BoxMean: String, Encodable {
         case `true` = "true"
         case sd
@@ -173,12 +317,22 @@ public struct Box: Trace {
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). 
     ///
     /// If *sd* the standard deviation is also drawn.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-boxmean) |
+    /// [Python](https://plot.ly/python/reference/#box-boxmean) |
+    /// [R](https://plot.ly/r/reference/#box-boxmean)
     public var boxMean: BoxMean?
 
     /// Sets the amount of jitter in the sample points drawn. 
     ///
     /// If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn
     /// in a random jitter of width equal to the width of the box(es).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-jitter) |
+    /// [Python](https://plot.ly/python/reference/#box-jitter) |
+    /// [R](https://plot.ly/r/reference/#box-jitter)
     public var jitter: Double?
 
     /// Sets the position of the sample points in relation to the box(es). 
@@ -186,19 +340,41 @@ public struct Box: Trace {
     /// If *0*, the sample points are places over the center of the box(es). Positive (negative) values
     /// correspond to positions to the right (left) for vertical boxes and above (below) for horizontal
     /// boxes
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-pointpos) |
+    /// [Python](https://plot.ly/python/reference/#box-pointpos) |
+    /// [R](https://plot.ly/r/reference/#box-pointpos)
     public var pointPosition: Double?
 
     /// Sets the orientation of the box(es). 
     ///
     /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-orientation) |
+    /// [Python](https://plot.ly/python/reference/#box-orientation) |
+    /// [R](https://plot.ly/r/reference/#box-orientation)
     public var orientation: Orientation0?
 
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically selected based on the positions of other box traces in the same subplot.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-width) |
+    /// [Python](https://plot.ly/python/reference/#box-width) |
+    /// [R](https://plot.ly/r/reference/#box-width)
     public var width: Double?
 
-    /// - [Box.Marker](traces/box/attributes/marker)
+    ///
+    /// # Used By
+    /// `Box.marker` |
     public struct Marker: Encodable {
         /// Sets the color of the outlier sample points.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-outliercolor) |
+        /// [Python](https://plot.ly/python/reference/#box-marker-outliercolor) |
+        /// [R](https://plot.ly/r/reference/#box-marker-outliercolor)
         public var outlierColor: Color?
     
         /// Sets the marker symbol type. 
@@ -206,12 +382,27 @@ public struct Box: Trace {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-symbol) |
+        /// [Python](https://plot.ly/python/reference/#box-marker-symbol) |
+        /// [R](https://plot.ly/r/reference/#box-marker-symbol)
         public var symbol: Symbol0?
     
         /// Sets the marker opacity.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-opacity) |
+        /// [Python](https://plot.ly/python/reference/#box-marker-opacity) |
+        /// [R](https://plot.ly/r/reference/#box-marker-opacity)
         public var opacity: Double?
     
         /// Sets the marker size (in px).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-size) |
+        /// [Python](https://plot.ly/python/reference/#box-marker-size) |
+        /// [R](https://plot.ly/r/reference/#box-marker-size)
         public var size: Double?
     
         /// Sets themarkercolor. 
@@ -219,26 +410,53 @@ public struct Box: Trace {
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-color) |
+        /// [Python](https://plot.ly/python/reference/#box-marker-color) |
+        /// [R](https://plot.ly/r/reference/#box-marker-color)
         public var color: Color?
     
-        /// - [Box.Marker.Line](traces/box/attributes/marker/line)
+        ///
+        /// # Used By
+        /// `Box.Marker.line` |
         public struct Line: Encodable {
             /// Sets themarker.linecolor. 
             ///
             /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
             /// relative to the max and min values of the array or relative to `marker.line.cmin` and
             /// `marker.line.cmax` if set.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-line-color) |
+            /// [Python](https://plot.ly/python/reference/#box-marker-line-color) |
+            /// [R](https://plot.ly/r/reference/#box-marker-line-color)
             public var color: Color?
         
             /// Sets the width (in px) of the lines bounding the marker points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-line-width) |
+            /// [Python](https://plot.ly/python/reference/#box-marker-line-width) |
+            /// [R](https://plot.ly/r/reference/#box-marker-line-width)
             public var width: Double?
         
             /// Sets the border line color of the outlier sample points. 
             ///
             /// Defaults to marker.color
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-line-outliercolor) |
+            /// [Python](https://plot.ly/python/reference/#box-marker-line-outliercolor) |
+            /// [R](https://plot.ly/r/reference/#box-marker-line-outliercolor)
             public var outlierColor: Color?
         
             /// Sets the border line width (in px) of the outlier sample points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-line-outlierwidth) |
+            /// [Python](https://plot.ly/python/reference/#box-marker-line-outlierwidth) |
+            /// [R](https://plot.ly/r/reference/#box-marker-line-outlierwidth)
             public var outlierWidth: Double?
         
             /// Plotly compatible property encoding
@@ -256,6 +474,11 @@ public struct Box: Trace {
                 self.outlierWidth = outlierWidth
             }
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-line) |
+        /// [Python](https://plot.ly/python/reference/#box-marker-line) |
+        /// [R](https://plot.ly/r/reference/#box-marker-line)
         public var line: Line?
     
         /// Plotly compatible property encoding
@@ -277,30 +500,67 @@ public struct Box: Trace {
             self.line = line
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-marker) |
+    /// [Python](https://plot.ly/python/reference/#box-marker) |
+    /// [R](https://plot.ly/r/reference/#box-marker)
     public var marker: Marker?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-line) |
+    /// [Python](https://plot.ly/python/reference/#box-line) |
+    /// [R](https://plot.ly/r/reference/#box-line)
     public var line: Line0?
 
     /// Sets the fill color. 
     ///
     /// Defaults to a half-transparent variant of the line color, marker color, or marker line color,
     /// whichever is available.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-fillcolor) |
+    /// [Python](https://plot.ly/python/reference/#box-fillcolor) |
+    /// [R](https://plot.ly/r/reference/#box-fillcolor)
     public var fillColor: Color?
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-offsetgroup) |
+    /// [Python](https://plot.ly/python/reference/#box-offsetgroup) |
+    /// [R](https://plot.ly/r/reference/#box-offsetgroup)
     public var offsetGroup: String?
 
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup. 
     ///
     /// This controls whether bars compute their positional range dependently or independently.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-alignmentgroup) |
+    /// [Python](https://plot.ly/python/reference/#box-alignmentgroup) |
+    /// [R](https://plot.ly/r/reference/#box-alignmentgroup)
     public var alignmentGroup: String?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-selected) |
+    /// [Python](https://plot.ly/python/reference/#box-selected) |
+    /// [R](https://plot.ly/r/reference/#box-selected)
     public var selected: Selected0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-unselected) |
+    /// [Python](https://plot.ly/python/reference/#box-unselected) |
+    /// [R](https://plot.ly/r/reference/#box-unselected)
     public var unselected: Selected0?
 
     /// Do the hover effects highlight individual boxes  or sample points or both?
-    /// - [Box.HoverOn](traces/box/attributes/hoveron)
+    ///
+    /// # Used By
+    /// `Box.hoverOn` |
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -318,51 +578,121 @@ public struct Box: Trace {
         }
     }
     /// Do the hover effects highlight individual boxes  or sample points or both?
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-hoveron) |
+    /// [Python](https://plot.ly/python/reference/#box-hoveron) |
+    /// [R](https://plot.ly/r/reference/#box-hoveron)
     public var hoverOn: HoverOn?
 
     /// Sets the calendar system to use with `x` date data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-xcalendar) |
+    /// [Python](https://plot.ly/python/reference/#box-xcalendar) |
+    /// [R](https://plot.ly/r/reference/#box-xcalendar)
     public var xCalendar: Calendar0?
 
     /// Sets the calendar system to use with `y` date data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-ycalendar) |
+    /// [Python](https://plot.ly/python/reference/#box-ycalendar) |
+    /// [R](https://plot.ly/r/reference/#box-ycalendar)
     public var yCalendar: Calendar0?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-xaxis) |
+    /// [Python](https://plot.ly/python/reference/#box-xaxis) |
+    /// [R](https://plot.ly/r/reference/#box-xaxis)
     public var xAxis: SubPlotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. 
     ///
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-yaxis) |
+    /// [Python](https://plot.ly/python/reference/#box-yaxis) |
+    /// [R](https://plot.ly/r/reference/#box-yaxis)
     public var yAxis: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#box-idssrc) |
+    /// [R](https://plot.ly/r/reference/#box-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#box-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#box-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#box-metasrc) |
+    /// [R](https://plot.ly/r/reference/#box-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#box-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#box-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  y .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-ysrc) |
+    /// [Python](https://plot.ly/python/reference/#box-ysrc) |
+    /// [R](https://plot.ly/r/reference/#box-ysrc)
     public var ySource: String?
 
     /// Sets the source reference on plot.ly for  x .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-xsrc) |
+    /// [Python](https://plot.ly/python/reference/#box-xsrc) |
+    /// [R](https://plot.ly/r/reference/#box-xsrc)
     public var xSource: String?
 
     /// Sets the source reference on plot.ly for  text .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-textsrc) |
+    /// [Python](https://plot.ly/python/reference/#box-textsrc) |
+    /// [R](https://plot.ly/r/reference/#box-textsrc)
     public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-hovertextsrc) |
+    /// [Python](https://plot.ly/python/reference/#box-hovertextsrc) |
+    /// [R](https://plot.ly/r/reference/#box-hovertextsrc)
     public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-hovertemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#box-hovertemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#box-hovertemplatesrc)
     public var hoverTemplateSource: String?
 
     /// Plotly compatible property encoding

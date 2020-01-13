@@ -5,6 +5,8 @@ protocol Instantiable: Definable {
     var constant: String? { get set }
     var optional: Bool { get set }
     var access: Swift.Access { get set }
+
+    var path: String { get }
     var argument: String { get }
 }
 
@@ -13,6 +15,7 @@ protocol Instantiable: Definable {
 class Instance<Type>: Instantiable where Type: SwiftType {
     var type: Type
     let schema: Type.Origin
+    let parent: Swift.Object?
 
     let name: String
     var schemaName: String { schema.name }
@@ -20,8 +23,25 @@ class Instance<Type>: Instantiable where Type: SwiftType {
     var optional: Bool = true
     var access: Swift.Access = .public
 
+    var path: String { (parent?.path ?? "") + "." + name }
     var argument: String { "\(name): \(type.name)\(optional ? "?" : "")" }
-    var documentation: [String] { schema.description?.documentation() ?? [] }
+    var documentation: [String] {
+        var link = schema.path
+        link = link.replacingOccurrences(of: "/", with: "-")
+        link = link.replacingOccurrences(of: "traces-", with: "")
+        link = link.replacingOccurrences(of: "attributes-", with: "")
+        link = link.replacingOccurrences(of: "layoutAttributes-", with: "")
+        let reference = [
+            "///",
+            "/// # Plotly Reference",
+            "/// [JavaScript](https://plot.ly/javascript/reference/#\(link)) |",
+            "/// [Python](https://plot.ly/python/reference/#\(link)) |",
+            "/// [R](https://plot.ly/r/reference/#\(link))",
+
+        ]
+        let documentation = schema.description?.documentation() ?? []
+        return documentation + reference
+    }
     var definition: [String] {
         if let const = self.constant {
             return ["\(access)let \(argument) = \(const)"]
@@ -33,6 +53,7 @@ class Instance<Type>: Instantiable where Type: SwiftType {
     init(of type: Type, named name: String) {
         self.type = type
         self.schema = type.schema
+        self.parent = type.parent
 
         self.name = Swift.name!.camelCased(name)
     }

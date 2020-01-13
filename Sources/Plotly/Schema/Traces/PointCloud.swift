@@ -1,44 +1,94 @@
 /// The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
 public struct PointCloud: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "pointcloud"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-visible) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-visible) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-visible)
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-showlegend) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-showlegend) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-showlegend)
     public var showLegend: Bool?
 
     /// Sets the legend group for this trace. 
     ///
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-legendgroup) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-legendgroup) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-legendgroup)
     public var legendGroup: String?
 
     /// Sets the opacity of the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-opacity) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-opacity) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-opacity)
     public var opacity: Double?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-name) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-name) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-uid) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-uid) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-ids) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-ids) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-customdata) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-customdata) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -48,16 +98,36 @@ public struct PointCloud: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-meta) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-meta) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-meta)
     public var meta: Anything?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-hoverinfo)
     public var hoverInfo: HoverInfo0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-stream) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-stream) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-stream)
     public var stream: Stream0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -70,18 +140,38 @@ public struct PointCloud: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-uirevision) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the x coordinates.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-x) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-x) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-x)
     public var x: [Double]?
 
     /// Sets the y coordinates.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-y) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-y) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-y)
     public var y: [Double]?
 
     /// Faster alternative to specifying `x` and `y` separately. 
     ///
     /// If supplied, it must be a typed `Float32Array` array that represents points such that `xy[i * 2]
     /// = x[i]` and `xy[i * 2 + 1] = y[i]`
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xy) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-xy) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-xy)
     public var xy: [Double]?
 
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. 
@@ -90,16 +180,31 @@ public struct PointCloud: Trace {
     /// the number of points. For the best performance and memory use, create one large `indices` typed
     /// array that is guaranteed to be at least as long as the largest number of points during use, and
     /// reuse it on each `Plotly.restyle()` call.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-indices) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-indices) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-indices)
     public var indices: [Double]?
 
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. 
     ///
     /// Use it in conjunction with `xy` and `ybounds` for the performance benefits.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xbounds) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-xbounds) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-xbounds)
     public var xBounds: [Double]?
 
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array. 
     ///
     /// Use it in conjunction with `xy` and `xbounds` for the performance benefits.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-ybounds) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-ybounds) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-ybounds)
     public var yBounds: [Double]?
 
     /// Sets text elements associated with each (x,y) pair. 
@@ -107,14 +212,26 @@ public struct PointCloud: Trace {
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-text) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-text) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-text)
     public var text: String?
 
-    /// - [PointCloud.Marker](traces/pointcloud/attributes/marker)
+    ///
+    /// # Used By
+    /// `PointCloud.marker` |
     public struct Marker: Encodable {
         /// Sets the marker fill color. 
         ///
         /// It accepts a specific color.If the color is not fully opaque and there are hundreds of
         /// thousandsof points, it may cause slower zooming and panning.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker-color) |
+        /// [Python](https://plot.ly/python/reference/#pointcloud-marker-color) |
+        /// [R](https://plot.ly/r/reference/#pointcloud-marker-color)
         public var color: Color?
     
         /// Sets the marker opacity. 
@@ -122,30 +239,62 @@ public struct PointCloud: Trace {
         /// The default value is `1` (fully opaque). If the markers are not fully opaque and there are
         /// hundreds of thousands of points, it may cause slower zooming and panning. Opacity fades the
         /// color even if `blend` is left on `false` even if there is no translucency effect in that case.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker-opacity) |
+        /// [Python](https://plot.ly/python/reference/#pointcloud-marker-opacity) |
+        /// [R](https://plot.ly/r/reference/#pointcloud-marker-opacity)
         public var opacity: Double?
     
         /// Determines if colors are blended together for a translucency effect in case `opacity` is specified as a value less then `1`. 
         ///
         /// Setting `blend` to `true` reduces zoom/pan speed if used with large numbers of points.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker-blend) |
+        /// [Python](https://plot.ly/python/reference/#pointcloud-marker-blend) |
+        /// [R](https://plot.ly/r/reference/#pointcloud-marker-blend)
         public var blend: Bool?
     
         /// Sets the minimum size (in px) of the rendered marker points, effective when the `pointcloud` shows a million or more points.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker-sizemin) |
+        /// [Python](https://plot.ly/python/reference/#pointcloud-marker-sizemin) |
+        /// [R](https://plot.ly/r/reference/#pointcloud-marker-sizemin)
         public var sizeMin: Double?
     
         /// Sets the maximum size (in px) of the rendered marker points. 
         ///
         /// Effective when the `pointcloud` shows only few points.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker-sizemax) |
+        /// [Python](https://plot.ly/python/reference/#pointcloud-marker-sizemax) |
+        /// [R](https://plot.ly/r/reference/#pointcloud-marker-sizemax)
         public var sizeMax: Double?
     
-        /// - [PointCloud.Marker.Border](traces/pointcloud/attributes/marker/border)
+        ///
+        /// # Used By
+        /// `PointCloud.Marker.border` |
         public struct Border: Encodable {
             /// Sets the stroke color. 
             ///
             /// It accepts a specific color. If the color is not fully opaque and there are hundreds of
             /// thousands of points, it may cause slower zooming and panning.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker-border-color) |
+            /// [Python](https://plot.ly/python/reference/#pointcloud-marker-border-color) |
+            /// [R](https://plot.ly/r/reference/#pointcloud-marker-border-color)
             public var color: Color?
         
             /// Specifies what fraction of the marker area is covered with the border.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker-border-arearatio) |
+            /// [Python](https://plot.ly/python/reference/#pointcloud-marker-border-arearatio) |
+            /// [R](https://plot.ly/r/reference/#pointcloud-marker-border-arearatio)
             public var areaRatio: Double?
         
             /// Plotly compatible property encoding
@@ -159,6 +308,11 @@ public struct PointCloud: Trace {
                 self.areaRatio = areaRatio
             }
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker-border) |
+        /// [Python](https://plot.ly/python/reference/#pointcloud-marker-border) |
+        /// [R](https://plot.ly/r/reference/#pointcloud-marker-border)
         public var border: Border?
     
         /// Plotly compatible property encoding
@@ -180,51 +334,121 @@ public struct PointCloud: Trace {
             self.border = border
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-marker) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-marker) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-marker)
     public var marker: Marker?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xaxis) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-xaxis) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-xaxis)
     public var xAxis: SubPlotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. 
     ///
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-yaxis) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-yaxis) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-yaxis)
     public var yAxis: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-idssrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-metasrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  x .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xsrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-xsrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-xsrc)
     public var xSource: String?
 
     /// Sets the source reference on plot.ly for  y .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-ysrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-ysrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-ysrc)
     public var ySource: String?
 
     /// Sets the source reference on plot.ly for  xy .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xysrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-xysrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-xysrc)
     public var xySource: String?
 
     /// Sets the source reference on plot.ly for  indices .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-indicessrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-indicessrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-indicessrc)
     public var indicesSource: String?
 
     /// Sets the source reference on plot.ly for  xbounds .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xboundssrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-xboundssrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-xboundssrc)
     public var xBoundsSource: String?
 
     /// Sets the source reference on plot.ly for  ybounds .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-yboundssrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-yboundssrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-yboundssrc)
     public var yBoundsSource: String?
 
     /// Sets the source reference on plot.ly for  text .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-textsrc) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-textsrc) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-textsrc)
     public var textSource: String?
 
     /// Plotly compatible property encoding

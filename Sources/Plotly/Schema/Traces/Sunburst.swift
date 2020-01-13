@@ -2,37 +2,77 @@
 ///
 /// The sunburst sectors are determined by the entries in *labels* or *ids* and in *parents*.
 public struct Sunburst: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "sunburst"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = true
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-visible) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-visible) |
+    /// [R](https://plot.ly/r/reference/#sunburst-visible)
     public var visible: Visible0?
 
     /// Sets the opacity of the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-opacity) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-opacity) |
+    /// [R](https://plot.ly/r/reference/#sunburst-opacity)
     public var opacity: Double?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-name) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-name) |
+    /// [R](https://plot.ly/r/reference/#sunburst-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-uid) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-uid) |
+    /// [R](https://plot.ly/r/reference/#sunburst-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-ids) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-ids) |
+    /// [R](https://plot.ly/r/reference/#sunburst-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-customdata) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-customdata) |
+    /// [R](https://plot.ly/r/reference/#sunburst-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -42,12 +82,32 @@ public struct Sunburst: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-meta) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-meta) |
+    /// [R](https://plot.ly/r/reference/#sunburst-meta)
     public var meta: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#sunburst-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-stream) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-stream) |
+    /// [R](https://plot.ly/r/reference/#sunburst-stream)
     public var stream: Stream0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-transforms) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-transforms) |
+    /// [R](https://plot.ly/r/reference/#sunburst-transforms)
     public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -60,9 +120,19 @@ public struct Sunburst: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-uirevision) |
+    /// [R](https://plot.ly/r/reference/#sunburst-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the labels of each of the sectors.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-labels) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-labels) |
+    /// [R](https://plot.ly/r/reference/#sunburst-labels)
     public var labels: [Double]?
 
     /// Sets the parent sectors for each of the sectors. 
@@ -70,11 +140,21 @@ public struct Sunburst: Trace {
     /// Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is
     /// filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly
     /// attempts to find matching items in `labels`, but beware they must be unique.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-parents) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-parents) |
+    /// [R](https://plot.ly/r/reference/#sunburst-parents)
     public var parents: [Double]?
 
     /// Sets the values associated with each of the sectors. 
     ///
     /// Use with `branchvalues` to determine how the values are summed.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-values) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-values) |
+    /// [R](https://plot.ly/r/reference/#sunburst-values)
     public var values: [Double]?
 
     /// Determines how the items in `values` are summed. 
@@ -82,7 +162,9 @@ public struct Sunburst: Trace {
     /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
     /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
     /// be the extra part not part of the sum of the values at their leaves.
-    /// - [Sunburst.BranchValues](traces/sunburst/attributes/branchvalues)
+    ///
+    /// # Used By
+    /// `Sunburst.branchValues` |
     public enum BranchValues: String, Encodable {
         case remainder
         case total
@@ -92,10 +174,17 @@ public struct Sunburst: Trace {
     /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
     /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
     /// be the extra part not part of the sum of the values at their leaves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-branchvalues) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-branchvalues) |
+    /// [R](https://plot.ly/r/reference/#sunburst-branchvalues)
     public var branchValues: BranchValues?
 
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
-    /// - [Sunburst.Count](traces/sunburst/attributes/count)
+    ///
+    /// # Used By
+    /// `Sunburst.count` |
     public struct Count: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -113,49 +202,96 @@ public struct Sunburst: Trace {
         }
     }
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-count) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-count) |
+    /// [R](https://plot.ly/r/reference/#sunburst-count)
     public var count: Count?
 
     /// Sets the level from which this trace hierarchy is rendered. 
     ///
     /// Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is
     /// filled in, otherwise plotly attempts to find a matching item in `labels`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-level) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-level) |
+    /// [R](https://plot.ly/r/reference/#sunburst-level)
     public var level: Anything?
 
     /// Sets the number of rendered sectors from any given `level`. 
     ///
     /// Set `maxdepth` to *-1* to render all the levels in the hierarchy.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-maxdepth) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-maxdepth) |
+    /// [R](https://plot.ly/r/reference/#sunburst-maxdepth)
     public var maxDepth: Int?
 
-    /// - [Sunburst.Marker](traces/sunburst/attributes/marker)
+    ///
+    /// # Used By
+    /// `Sunburst.marker` |
     public struct Marker: Encodable {
         /// Sets the color of each sector of this trace. 
         ///
         /// If not specified, the default trace color set is used to pick the sector colors.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-colors) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-colors) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-colors)
         public var colors: [Double]?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-line) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-line) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-line)
         public var line: Line2?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here colors) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if colorsis set to a numerical array. 
         ///
         /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-cauto) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-cauto) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-cauto)
         public var cAuto: Bool?
     
         /// Sets the lower bound of the color domain. 
         ///
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors and if set, `marker.cmax` must be set as well.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-cmin) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-cmin) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-cmin)
         public var cMin: Double?
     
         /// Sets the upper bound of the color domain. 
         ///
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors and if set, `marker.cmin` must be set as well.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-cmax) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-cmax) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-cmax)
         public var cMax: Double?
     
         /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
         ///
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors. Has no effect when `marker.cauto` is `false`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-cmid) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-cmid) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-cmid)
         public var cMiddle: Double?
     
         /// Sets the colorscale. 
@@ -167,6 +303,11 @@ public struct Sunburst: Trace {
         /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-colorscale) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-colorscale) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-colorscale)
         public var colorScale: ColorScale?
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
@@ -174,19 +315,39 @@ public struct Sunburst: Trace {
         /// Has an effect only if colorsis set to a numerical array. In case `colorscale` is unspecified or
         /// `autocolorscale` is true, the default palette will be chosen according to whether numbers in the
         /// `color` array are all positive, all negative or mixed.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-autocolorscale) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-autocolorscale) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-autocolorscale)
         public var autoColorScale: Bool?
     
         /// Reverses the color mapping if true. 
         ///
         /// Has an effect only if colorsis set to a numerical array. If true, `marker.cmin` will correspond
         /// to the last color in the array and `marker.cmax` will correspond to the first color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-reversescale) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-reversescale) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-reversescale)
         public var reverseScale: Bool?
     
         /// Determines whether or not a colorbar is displayed for this trace. 
         ///
         /// Has an effect only if colorsis set to a numerical array.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-showscale) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-showscale) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-showscale)
         public var showScale: Bool?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-colorbar) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-colorbar) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-colorbar)
         public var colorBar: ColorBar0?
     
         /// Sets a reference to a shared color axis. 
@@ -194,9 +355,19 @@ public struct Sunburst: Trace {
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-coloraxis) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-coloraxis) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-coloraxis)
         public var colorAxis: SubPlotID?
     
         /// Sets the source reference on plot.ly for  colors .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-colorssrc) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-marker-colorssrc) |
+        /// [R](https://plot.ly/r/reference/#sunburst-marker-colorssrc)
         public var colorsSource: String?
     
         /// Plotly compatible property encoding
@@ -232,19 +403,36 @@ public struct Sunburst: Trace {
             self.colorsSource = colorsSource
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-marker) |
+    /// [R](https://plot.ly/r/reference/#sunburst-marker)
     public var marker: Marker?
 
-    /// - [Sunburst.Leaf](traces/sunburst/attributes/leaf)
+    ///
+    /// # Used By
+    /// `Sunburst.leaf` |
     public struct Leaf: Encodable {
         /// Sets the opacity of the leaves. 
         ///
         /// With colorscale it is defaulted to 1; otherwise it is defaulted to 0.7
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-leaf-opacity) |
+        /// [Python](https://plot.ly/python/reference/#sunburst-leaf-opacity) |
+        /// [R](https://plot.ly/r/reference/#sunburst-leaf-opacity)
         public var opacity: Double?
     
         public init(opacity: Double? = nil) {
             self.opacity = opacity
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-leaf) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-leaf) |
+    /// [R](https://plot.ly/r/reference/#sunburst-leaf)
     public var leaf: Leaf?
 
     /// Sets text elements associated with each sector. 
@@ -252,10 +440,17 @@ public struct Sunburst: Trace {
     /// If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-text) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-text) |
+    /// [R](https://plot.ly/r/reference/#sunburst-text)
     public var text: [Double]?
 
     /// Determines which trace information appear on the graph.
-    /// - [Sunburst.TextInfo](traces/sunburst/attributes/textinfo)
+    ///
+    /// # Used By
+    /// `Sunburst.textInfo` |
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -285,6 +480,11 @@ public struct Sunburst: Trace {
         }
     }
     /// Determines which trace information appear on the graph.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-textinfo) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-textinfo) |
+    /// [R](https://plot.ly/r/reference/#sunburst-textinfo)
     public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. 
@@ -299,6 +499,11 @@ public struct Sunburst: Trace {
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`,
     /// `percentEntry`, `percentParent`, `label` and `value`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-texttemplate) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-texttemplate) |
+    /// [R](https://plot.ly/r/reference/#sunburst-texttemplate)
     public var textTemplate: String?
 
     /// Sets hover text elements associated with each sector. 
@@ -306,13 +511,20 @@ public struct Sunburst: Trace {
     /// If a single string, the same string appears for all data points. If an array of string, the
     /// items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a
     /// *text* flag.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hovertext) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-hovertext) |
+    /// [R](https://plot.ly/r/reference/#sunburst-hovertext)
     public var hoverText: String?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - [Sunburst.HoverInfo](traces/sunburst/attributes/hoverinfo)
+    ///
+    /// # Used By
+    /// `Sunburst.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -351,6 +563,11 @@ public struct Sunburst: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#sunburst-hoverinfo)
     public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -369,50 +586,130 @@ public struct Sunburst: Trace {
     /// and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#sunburst-hovertemplate)
     public var hoverTemplate: String?
 
     /// Sets the font used for `textinfo`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-textfont) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-textfont) |
+    /// [R](https://plot.ly/r/reference/#sunburst-textfont)
     public var textFont: Font0?
 
     /// Sets the font used for `textinfo` lying inside the sector.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-insidetextfont) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-insidetextfont) |
+    /// [R](https://plot.ly/r/reference/#sunburst-insidetextfont)
     public var insideTextFont: Font0?
 
     /// Sets the font used for `textinfo` lying outside the sector.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-outsidetextfont) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-outsidetextfont) |
+    /// [R](https://plot.ly/r/reference/#sunburst-outsidetextfont)
     public var outSideTextFont: Font0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-domain) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-domain) |
+    /// [R](https://plot.ly/r/reference/#sunburst-domain)
     public var domain: Domain0?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-idssrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-metasrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  labels .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-labelssrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-labelssrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-labelssrc)
     public var labelsSource: String?
 
     /// Sets the source reference on plot.ly for  parents .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-parentssrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-parentssrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-parentssrc)
     public var parentsSource: String?
 
     /// Sets the source reference on plot.ly for  values .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-valuessrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-valuessrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-valuessrc)
     public var valuesSource: String?
 
     /// Sets the source reference on plot.ly for  text .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-textsrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-textsrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-textsrc)
     public var textSource: String?
 
     /// Sets the source reference on plot.ly for  texttemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-texttemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-texttemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-texttemplatesrc)
     public var textTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hovertextsrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-hovertextsrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-hovertextsrc)
     public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hovertemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-hovertemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#sunburst-hovertemplatesrc)
     public var hoverTemplateSource: String?
 
     /// Plotly compatible property encoding

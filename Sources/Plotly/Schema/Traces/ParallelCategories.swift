@@ -1,21 +1,46 @@
 /// Parallel categories diagram for multidimensional categorical data.
 public struct ParallelCategories: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "parcats"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-visible) |
+    /// [Python](https://plot.ly/python/reference/#parcats-visible) |
+    /// [R](https://plot.ly/r/reference/#parcats-visible)
     public var visible: Visible0?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-name) |
+    /// [Python](https://plot.ly/python/reference/#parcats-name) |
+    /// [R](https://plot.ly/r/reference/#parcats-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-uid) |
+    /// [Python](https://plot.ly/python/reference/#parcats-uid) |
+    /// [R](https://plot.ly/r/reference/#parcats-uid)
     public var uid: String?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -25,10 +50,25 @@ public struct ParallelCategories: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-meta) |
+    /// [Python](https://plot.ly/python/reference/#parcats-meta) |
+    /// [R](https://plot.ly/r/reference/#parcats-meta)
     public var meta: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-stream) |
+    /// [Python](https://plot.ly/python/reference/#parcats-stream) |
+    /// [R](https://plot.ly/r/reference/#parcats-stream)
     public var stream: Stream0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-transforms) |
+    /// [Python](https://plot.ly/python/reference/#parcats-transforms) |
+    /// [R](https://plot.ly/r/reference/#parcats-transforms)
     public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -41,15 +81,27 @@ public struct ParallelCategories: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#parcats-uirevision) |
+    /// [R](https://plot.ly/r/reference/#parcats-uirevision)
     public var uiRevision: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-domain) |
+    /// [Python](https://plot.ly/python/reference/#parcats-domain) |
+    /// [R](https://plot.ly/r/reference/#parcats-domain)
     public var domain: Domain0?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - [ParallelCategories.HoverInfo](traces/parcats/attributes/hoverinfo)
+    ///
+    /// # Used By
+    /// `ParallelCategories.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -76,6 +128,11 @@ public struct ParallelCategories: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#parcats-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#parcats-hoverinfo)
     public var hoverInfo: HoverInfo?
 
     /// Sets the hover interaction mode for the parcats diagram. 
@@ -83,7 +140,9 @@ public struct ParallelCategories: Trace {
     /// If `category`, hover interaction take place per category. If `color`, hover interactions take
     /// place per color per category. If `dimension`, hover interactions take place across all
     /// categories per dimension.
-    /// - [ParallelCategories.HoverOn](traces/parcats/attributes/hoveron)
+    ///
+    /// # Used By
+    /// `ParallelCategories.hoverOn` |
     public enum HoverOn: String, Encodable {
         case category
         case color
@@ -94,6 +153,11 @@ public struct ParallelCategories: Trace {
     /// If `category`, hover interaction take place per category. If `color`, hover interactions take
     /// place per color per category. If `dimension`, hover interactions take place across all
     /// categories per dimension.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-hoveron) |
+    /// [Python](https://plot.ly/python/reference/#parcats-hoveron) |
+    /// [R](https://plot.ly/r/reference/#parcats-hoveron)
     public var hoverOn: HoverOn?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -112,6 +176,11 @@ public struct ParallelCategories: Trace {
     /// `colorcount` and `bandcolorcount`. Anything contained in tag `<extra>` is displayed in the
     /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#parcats-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#parcats-hovertemplate)
     public var hoverTemplate: String?
 
     /// Sets the drag interaction mode for categories and dimensions. 
@@ -119,7 +188,9 @@ public struct ParallelCategories: Trace {
     /// If `perpendicular`, the categories can only move along a line perpendicular to the paths. If
     /// `freeform`, the categories can freely move on the plane. If `fixed`, the categories and
     /// dimensions are stationary.
-    /// - [ParallelCategories.Arrangement](traces/parcats/attributes/arrangement)
+    ///
+    /// # Used By
+    /// `ParallelCategories.arrangement` |
     public enum Arrangement: String, Encodable {
         case perpendicular
         case freeform
@@ -130,16 +201,28 @@ public struct ParallelCategories: Trace {
     /// If `perpendicular`, the categories can only move along a line perpendicular to the paths. If
     /// `freeform`, the categories can freely move on the plane. If `fixed`, the categories and
     /// dimensions are stationary.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-arrangement) |
+    /// [Python](https://plot.ly/python/reference/#parcats-arrangement) |
+    /// [R](https://plot.ly/r/reference/#parcats-arrangement)
     public var arrangement: Arrangement?
 
     /// Sort paths so that like colors are bundled together within each category.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-bundlecolors) |
+    /// [Python](https://plot.ly/python/reference/#parcats-bundlecolors) |
+    /// [R](https://plot.ly/r/reference/#parcats-bundlecolors)
     public var bundleColors: Bool?
 
     /// Sets the path sorting algorithm. 
     ///
     /// If `forward`, sort paths based on dimension categories from left to right. If `backward`, sort
     /// paths based on dimensions categories from right to left.
-    /// - [ParallelCategories.SortPaths](traces/parcats/attributes/sortpaths)
+    ///
+    /// # Used By
+    /// `ParallelCategories.sortPaths` |
     public enum SortPaths: String, Encodable {
         case forward
         case backward
@@ -148,22 +231,48 @@ public struct ParallelCategories: Trace {
     ///
     /// If `forward`, sort paths based on dimension categories from left to right. If `backward`, sort
     /// paths based on dimensions categories from right to left.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-sortpaths) |
+    /// [Python](https://plot.ly/python/reference/#parcats-sortpaths) |
+    /// [R](https://plot.ly/r/reference/#parcats-sortpaths)
     public var sortPaths: SortPaths?
 
     /// Sets the font for the `dimension` labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-labelfont) |
+    /// [Python](https://plot.ly/python/reference/#parcats-labelfont) |
+    /// [R](https://plot.ly/r/reference/#parcats-labelfont)
     public var labelFont: Font0?
 
     /// Sets the font for the `category` labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-tickfont) |
+    /// [Python](https://plot.ly/python/reference/#parcats-tickfont) |
+    /// [R](https://plot.ly/r/reference/#parcats-tickfont)
     public var tickFont: Font0?
 
-    /// - [ParallelCategories.Dimensions](traces/parcats/attributes/dimensions)
+    ///
+    /// # Used By
+    /// `ParallelCategories.dimensions` |
     public struct Dimensions: Encodable {
-        /// - [ParallelCategories.Dimensions.Items](traces/parcats/attributes/dimensions/items)
+        ///
+        /// # Used By
+        /// `ParallelCategories.Dimensions.items` |
         public struct Items: Encodable {
             /// The dimensions (variables) of the parallel categories diagram.
-            /// - [ParallelCategories.Dimensions.Items.Dimension](traces/parcats/attributes/dimensions/items/dimension)
+            ///
+            /// # Used By
+            /// `ParallelCategories.Dimensions.Items.dimension` |
             public struct Dimension: Encodable {
                 /// The shown name of the dimension.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-label) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-label) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-label)
                 public var label: String?
             
                 /// Specifies the ordering logic for the categories in the dimension. 
@@ -174,7 +283,9 @@ public struct ParallelCategories: Trace {
                 /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
                 /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
                 /// mode. The unspecified categories will follow the categories in `categoryarray`.
-                /// - [ParallelCategories.Dimensions.Items.Dimension.CategoryOrder](traces/parcats/attributes/dimensions/items/dimension/categoryorder)
+                ///
+                /// # Used By
+                /// `ParallelCategories.Dimensions.Items.Dimension.categoryOrder` |
                 public enum CategoryOrder: String, Encodable {
                     case trace
                     case categoryAscending = "category ascending"
@@ -189,40 +300,85 @@ public struct ParallelCategories: Trace {
                 /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
                 /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
                 /// mode. The unspecified categories will follow the categories in `categoryarray`.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryorder) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryorder) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryorder)
                 public var categoryOrder: CategoryOrder?
             
                 /// Sets the order in which categories in this dimension appear. 
                 ///
                 /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryarray) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryarray) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryarray)
                 public var categoryArray: [Double]?
             
                 /// Sets alternative tick labels for the categories in this dimension. 
                 ///
                 /// Only has an effect if `categoryorder` is set to *array*. Should be an array the same length as
                 /// `categoryarray` Used with `categoryorder`.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-ticktext) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-ticktext) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-ticktext)
                 public var tickText: [Double]?
             
                 /// Dimension values. 
                 ///
                 /// `values[n]` represents the category value of the `n`th point in the dataset, therefore the
                 /// `values` vector for all dimensions must be the same (longer vectors will be truncated).
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-values) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-values) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-values)
                 public var values: [Double]?
             
                 /// The display index of dimension, from left to right, zero indexed, defaults to dimension index.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-displayindex) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-displayindex) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-displayindex)
                 public var displayIndex: Int?
             
                 /// Shows the dimension when set to `true` (the default). 
                 ///
                 /// Hides the dimension for `false`.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-visible) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-visible) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-visible)
                 public var visible: Bool?
             
                 /// Sets the source reference on plot.ly for  categoryarray .
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryarraysrc) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryarraysrc) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryarraysrc)
                 public var categoryArraySource: String?
             
                 /// Sets the source reference on plot.ly for  ticktext .
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-ticktextsrc) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-ticktextsrc) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-ticktextsrc)
                 public var tickTextSource: String?
             
                 /// Sets the source reference on plot.ly for  values .
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-valuessrc) |
+                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-valuessrc) |
+                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-valuessrc)
                 public var valuesSource: String?
             
                 /// Plotly compatible property encoding
@@ -253,50 +409,92 @@ public struct ParallelCategories: Trace {
                 }
             }
             /// The dimensions (variables) of the parallel categories diagram.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension) |
+            /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension) |
+            /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension)
             public var dimension: Dimension?
         
             public init(dimension: Dimension? = nil) {
                 self.dimension = dimension
             }
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items) |
+        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items) |
+        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items)
         public var items: Items?
     
         public init(items: Items? = nil) {
             self.items = items
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions) |
+    /// [Python](https://plot.ly/python/reference/#parcats-dimensions) |
+    /// [R](https://plot.ly/r/reference/#parcats-dimensions)
     public var dimensions: Dimensions?
 
-    /// - [ParallelCategories.Line](traces/parcats/attributes/line)
+    ///
+    /// # Used By
+    /// `ParallelCategories.line` |
     public struct Line: Encodable {
         /// Sets thelinecolor. 
         ///
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if
         /// set.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-color) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-color) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-color)
         public var color: Color?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax`  Has an effect only if in `line.color`is set to a numerical array. 
         ///
         /// Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-cauto) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-cauto) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-cauto)
         public var cAuto: Bool?
     
         /// Sets the lower bound of the color domain. 
         ///
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color` and if set, `line.cmax` must be set as well.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-cmin) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-cmin) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-cmin)
         public var cMin: Double?
     
         /// Sets the upper bound of the color domain. 
         ///
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color` and if set, `line.cmin` must be set as well.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-cmax) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-cmax) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-cmax)
         public var cMax: Double?
     
         /// Sets the mid-point of the color domain by scaling `line.cmin` and/or `line.cmax` to be equidistant to this point. 
         ///
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color`. Has no effect when `line.cauto` is `false`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-cmid) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-cmid) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-cmid)
         public var cMiddle: Double?
     
         /// Sets the colorscale. 
@@ -308,6 +506,11 @@ public struct ParallelCategories: Trace {
         /// in color space, use`line.cmin` and `line.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-colorscale) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-colorscale) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-colorscale)
         public var colorScale: ColorScale?
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `line.colorscale`. 
@@ -315,19 +518,39 @@ public struct ParallelCategories: Trace {
         /// Has an effect only if in `line.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-autocolorscale) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-autocolorscale) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-autocolorscale)
         public var autoColorScale: Bool?
     
         /// Reverses the color mapping if true. 
         ///
         /// Has an effect only if in `line.color`is set to a numerical array. If true, `line.cmin` will
         /// correspond to the last color in the array and `line.cmax` will correspond to the first color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-reversescale) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-reversescale) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-reversescale)
         public var reverseScale: Bool?
     
         /// Determines whether or not a colorbar is displayed for this trace. 
         ///
         /// Has an effect only if in `line.color`is set to a numerical array.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-showscale) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-showscale) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-showscale)
         public var showScale: Bool?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-colorbar) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-colorbar) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-colorbar)
         public var colorBar: ColorBar0?
     
         /// Sets a reference to a shared color axis. 
@@ -335,13 +558,20 @@ public struct ParallelCategories: Trace {
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-coloraxis) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-coloraxis) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-coloraxis)
         public var colorAxis: SubPlotID?
     
         /// Sets the shape of the paths. 
         ///
         /// If `linear`, paths are composed of straight lines. If `hspline`, paths are composed of
         /// horizontal curved splines
-        /// - [ParallelCategories.Line.Shape](traces/parcats/attributes/line/shape)
+        ///
+        /// # Used By
+        /// `ParallelCategories.Line.shape` |
         public enum Shape: String, Encodable {
             case linear
             case hspline
@@ -350,6 +580,11 @@ public struct ParallelCategories: Trace {
         ///
         /// If `linear`, paths are composed of straight lines. If `hspline`, paths are composed of
         /// horizontal curved splines
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-shape) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-shape) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-shape)
         public var shape: Shape?
     
         /// Template string used for rendering the information that appear on hover box. 
@@ -367,9 +602,19 @@ public struct ParallelCategories: Trace {
         /// true`) are available. variables `count` and `probability`. Anything contained in tag `<extra>`
         /// is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
         /// secondary box completely, use an empty tag `<extra></extra>`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-hovertemplate) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-hovertemplate) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-hovertemplate)
         public var hoverTemplate: String?
     
         /// Sets the source reference on plot.ly for  color .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-colorsrc) |
+        /// [Python](https://plot.ly/python/reference/#parcats-line-colorsrc) |
+        /// [R](https://plot.ly/r/reference/#parcats-line-colorsrc)
         public var colorSource: String?
     
         /// Plotly compatible property encoding
@@ -407,17 +652,37 @@ public struct ParallelCategories: Trace {
             self.colorSource = colorSource
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line) |
+    /// [Python](https://plot.ly/python/reference/#parcats-line) |
+    /// [R](https://plot.ly/r/reference/#parcats-line)
     public var line: Line?
 
     /// The number of observations represented by each state. 
     ///
     /// Defaults to 1 so that each state represents one observation
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-counts) |
+    /// [Python](https://plot.ly/python/reference/#parcats-counts) |
+    /// [R](https://plot.ly/r/reference/#parcats-counts)
     public var counts: Double?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#parcats-metasrc) |
+    /// [R](https://plot.ly/r/reference/#parcats-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  counts .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-countssrc) |
+    /// [Python](https://plot.ly/python/reference/#parcats-countssrc) |
+    /// [R](https://plot.ly/r/reference/#parcats-countssrc)
     public var countsSource: String?
 
     /// Plotly compatible property encoding

@@ -191,20 +191,20 @@ struct Schema: Decodable {
 
     /// Attribute data type from the Plotly JSON schema hierarchy with an associated data type.
     enum Attribute: Decodable {
-        case dataArray(_ dataArray: DataArray)
-        case enumerated(_ enumerated: Enumerated)
-        case boolean(_ boolean: Boolean)
-        case number(_ number: Number)
-        case integer(_ integer: Integer)
-        case string(_ string: String_)
-        case color(_ color: Color)
-        case colorList(_ colorList: ColorList)
-        case colorScale(_ colorScale: ColorScale)
-        case angle(_ angle: Angle)
-        case subPlotId(_ subPlotId: SubPlotID)
-        case flagList(_ flagList: FlagList)
-        case any(_ any: Any_)
-        case infoArray(_ infoArray: InfoArray)
+        case dataArray(_ dataArray: Schema.DataArray)
+        case enumerated(_ enumerated: Schema.Enumerated)
+        case boolean(_ boolean: Schema.Boolean)
+        case number(_ number: Schema.Number)
+        case integer(_ integer: Schema.Integer)
+        case string(_ string: Schema.String_)
+        case color(_ color: Schema.Color)
+        case colorList(_ colorList: Schema.ColorList)
+        case colorScale(_ colorScale: Schema.ColorScale)
+        case angle(_ angle: Schema.Angle)
+        case subPlotId(_ subPlotId: Schema.SubPlotID)
+        case flagList(_ flagList: Schema.FlagList)
+        case any(_ any: Schema.Any_)
+        case infoArray(_ infoArray: Schema.InfoArray)
 
         /// Creates a new attribute by pivoting on the `valType` value and decoding the correspoding Plotly schema data type.
         init(from decoder: Decoder) throws {
@@ -213,33 +213,33 @@ struct Schema: Decodable {
 
             switch valType {
             case "data_array":
-                self = .dataArray(try DataArray.init(parse: decoder))
+                self = .dataArray(try Schema.DataArray(parse: decoder))
             case "enumerated":
-                self = .enumerated(try Enumerated.init(parse: decoder))
+                self = .enumerated(try Schema.Enumerated(parse: decoder))
             case "boolean":
-                self  = .boolean(try Boolean.init(parse: decoder))
+                self  = .boolean(try Schema.Boolean(parse: decoder))
             case "number":
-                self = .number(try Number.init(parse: decoder))
+                self = .number(try Schema.Number(parse: decoder))
             case "integer":
-                self = .integer(try Integer.init(parse: decoder))
+                self = .integer(try Schema.Integer(parse: decoder))
             case "string":
-                self = .string(try String_.init(parse :decoder))
+                self = .string(try Schema.String_(parse :decoder))
             case "color":
-                self = .color(try Color.init(parse: decoder))
+                self = .color(try Schema.Color(parse: decoder))
             case "colorlist":
-                self = .colorList(try ColorList.init(parse: decoder))
+                self = .colorList(try Schema.ColorList(parse: decoder))
             case "colorscale":
-                self = .colorScale(try ColorScale.init(parse: decoder))
+                self = .colorScale(try Schema.ColorScale(parse: decoder))
             case "angle":
-                self = .angle(try Angle.init(parse: decoder))
+                self = .angle(try Schema.Angle(parse: decoder))
             case "subplotid":
-                self = .subPlotId(try SubPlotID.init(parse: decoder))
+                self = .subPlotId(try Schema.SubPlotID(parse: decoder))
             case "flaglist":
-                self = .flagList(try FlagList.init(parse: decoder))
+                self = .flagList(try Schema.FlagList(parse: decoder))
             case "any":
-                self = .any(try Any_.init(parse: decoder))
+                self = .any(try Schema.Any_(parse: decoder))
             case "info_array":
-                self = .infoArray(try InfoArray.init(parse: decoder))
+                self = .infoArray(try Schema.InfoArray(parse: decoder))
             default:
                 let path = String(reflecting: container)
                 fatalError("Unsupported attribute data type '\(valType)' in '\(path)'")

@@ -2,28 +2,30 @@
 ///
 /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
 /// click and hover events are still fired.
-/// - [Scatter.HoverInfo0](traces/scatter/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/bar/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/box/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/heatmap/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/histogram/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/histogram2d/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/histogram2dcontour/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/contour/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/violin/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/scatter3d/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/surface/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/isosurface/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/volume/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/mesh3d/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/scattergl/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/splom/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/pointcloud/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/heatmapgl/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/table/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/ohlc/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/candlestick/attributes/hoverinfo)
-/// - [Scatter.HoverInfo0](traces/area/attributes/hoverinfo)
+///
+/// # Used By
+/// `Scatter.hoverInfo` |
+/// `Bar.hoverInfo` |
+/// `Box.hoverInfo` |
+/// `Heatmap.hoverInfo` |
+/// `Histogram.hoverInfo` |
+/// `Histogram2D.hoverInfo` |
+/// `Histogram2DContour.hoverInfo` |
+/// `Contour.hoverInfo` |
+/// `Violin.hoverInfo` |
+/// `Scatter3D.hoverInfo` |
+/// `Surface.hoverInfo` |
+/// `Isosurface.hoverInfo` |
+/// `Volume.hoverInfo` |
+/// `Mesh3D.hoverInfo` |
+/// `ScatterGL.hoverInfo` |
+/// `ScatterPlotMatrix.hoverInfo` |
+/// `PointCloud.hoverInfo` |
+/// `HeatmapGL.hoverInfo` |
+/// `Table.hoverInfo` |
+/// `OHLC.hoverInfo` |
+/// `Candlestick.hoverInfo` |
+/// `Area.hoverInfo` |
 public struct HoverInfo0: OptionSet, Encodable {
     public let rawValue: Int
 
@@ -58,15 +60,17 @@ public struct HoverInfo0: OptionSet, Encodable {
 /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
 /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
 /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-/// - [Scatter.Mode0](traces/scatter/attributes/mode)
-/// - [Scatter.Mode0](traces/scatterternary/attributes/mode)
-/// - [Scatter.Mode0](traces/scatter3d/attributes/mode)
-/// - [Scatter.Mode0](traces/scattergeo/attributes/mode)
-/// - [Scatter.Mode0](traces/scattergl/attributes/mode)
-/// - [Scatter.Mode0](traces/scattermapbox/attributes/mode)
-/// - [Scatter.Mode0](traces/scattercarpet/attributes/mode)
-/// - [Scatter.Mode0](traces/scatterpolar/attributes/mode)
-/// - [Scatter.Mode0](traces/scatterpolargl/attributes/mode)
+///
+/// # Used By
+/// `Scatter.mode` |
+/// `ScatterTernary.mode` |
+/// `Scatter3D.mode` |
+/// `ScatterGeo.mode` |
+/// `ScatterGL.mode` |
+/// `ScatterMapbox.mode` |
+/// `ScatterCarpet.mode` |
+/// `ScatterPolar.mode` |
+/// `ScatterPolarGL.mode` |
 public struct Mode0: OptionSet, Encodable {
     public let rawValue: Int
 

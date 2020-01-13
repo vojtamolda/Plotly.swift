@@ -1,44 +1,94 @@
 /// The data visualized as scatter point or lines on a geographic map is provided either by longitude/latitude pairs in `lon` and `lat` respectively or by geographic location IDs or names in `locations`.
 public struct ScatterGeo: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "scattergeo"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-visible) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-visible) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-visible)
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-showlegend) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-showlegend) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-showlegend)
     public var showLegend: Bool?
 
     /// Sets the legend group for this trace. 
     ///
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-legendgroup) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-legendgroup) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-legendgroup)
     public var legendGroup: String?
 
     /// Sets the opacity of the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-opacity) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-opacity) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-opacity)
     public var opacity: Double?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-name) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-name) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-uid) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-uid) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-ids) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-ids) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-customdata) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-customdata) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -48,6 +98,11 @@ public struct ScatterGeo: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-meta) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-meta) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-meta)
     public var meta: Anything?
 
     /// Array containing integer indices of selected points. 
@@ -55,12 +110,32 @@ public struct ScatterGeo: Trace {
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-selectedpoints) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-selectedpoints) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-selectedpoints)
     public var selectedPoints: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-stream) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-stream) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-stream)
     public var stream: Stream0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-transforms) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-transforms) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-transforms)
     public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -73,27 +148,54 @@ public struct ScatterGeo: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-uirevision) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the longitude coordinates (in degrees East).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-lon) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-lon) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-lon)
     public var longitude: [Double]?
 
     /// Sets the latitude coordinates (in degrees North).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-lat) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-lat) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-lat)
     public var latitude: [Double]?
 
     /// Sets the coordinates via location IDs or names. 
     ///
     /// Coordinates correspond to the centroid of each location given. See `locationmode` for more info.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-locations) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-locations) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-locations)
     public var locations: [Double]?
 
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
-    /// - [ScatterGeo.LocationMode](traces/scattergeo/attributes/locationmode)
+    ///
+    /// # Used By
+    /// `ScatterGeo.locationMode` |
     public enum LocationMode: String, Encodable {
         case ISO3 = "ISO-3"
         case statesOfUSA = "USA-states"
         case countryNames = "country names"
     }
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-locationmode) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-locationmode) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-locationmode)
     public var locationMode: LocationMode?
 
     /// Determines the drawing mode for this scatter trace. 
@@ -101,6 +203,11 @@ public struct ScatterGeo: Trace {
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-mode) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-mode) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-mode)
     public var mode: Mode0?
 
     /// Sets text elements associated with each (lon,lat) pair or item in `locations`. 
@@ -109,6 +216,11 @@ public struct ScatterGeo: Trace {
     /// items are mapped in order to the this trace's (lon,lat) or `locations` coordinates. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-text) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-text) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-text)
     public var text: String?
 
     /// Template string used for rendering the information text that appear on points. 
@@ -122,6 +234,11 @@ public struct ScatterGeo: Trace {
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `lat`, `lon`, `location` and `text`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-texttemplate) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-texttemplate) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-texttemplate)
     public var textTemplate: String?
 
     /// Sets hover text elements associated with each (lon,lat) pair or item in `locations`. 
@@ -129,56 +246,128 @@ public struct ScatterGeo: Trace {
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (lon,lat) or `locations` coordinates. To be seen,
     /// trace `hoverinfo` must contain a *text* flag.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hovertext) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-hovertext) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-hovertext)
     public var hoverText: String?
 
     /// Sets the text font.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-textfont) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-textfont) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-textfont)
     public var textFont: Font0?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-textposition) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-textposition) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-textposition)
     public var textPosition: TextPosition0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-line) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-line) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-line)
     public var line: Line0?
 
     /// Determines whether or not gaps (i.e. 
     ///
     /// {nan} or missing values) in the provided data arrays are connected.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-connectgaps) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-connectgaps) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-connectgaps)
     public var connectGaps: Bool?
 
-    /// - [ScatterGeo.Marker](traces/scattergeo/attributes/marker)
+    ///
+    /// # Used By
+    /// `ScatterGeo.marker` |
     public struct Marker: Encodable {
         /// Sets the marker symbol type. 
         ///
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-symbol) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-symbol) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-symbol)
         public var symbol: Symbol0?
     
         /// Sets the marker opacity.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-opacity) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-opacity) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-opacity)
         public var opacity: Double?
     
         /// Sets the marker size (in px).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-size) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-size) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-size)
         public var size: Double?
     
         /// Has an effect only if `marker.size` is set to a numerical array. 
         ///
         /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
         /// and `sizemode`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-sizeref) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-sizeref) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-sizeref)
         public var sizeReference: Double?
     
         /// Has an effect only if `marker.size` is set to a numerical array. 
         ///
         /// Sets the minimum size (in px) of the rendered marker points.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-sizemin) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-sizemin) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-sizemin)
         public var sizeMin: Double?
     
         /// Has an effect only if `marker.size` is set to a numerical array. 
         ///
         /// Sets the rule for which the data in `size` is converted to pixels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-sizemode) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-sizemode) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-sizemode)
         public var sizeMode: SizeMode0?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-colorbar) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-colorbar) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-colorbar)
         public var colorBar: ColorBar0?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-line) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-line) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-line)
         public var line: Line1?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-gradient) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-gradient) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-gradient)
         public var gradient: Gradient0?
     
         /// Sets themarkercolor. 
@@ -186,29 +375,54 @@ public struct ScatterGeo: Trace {
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-color) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-color) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-color)
         public var color: Color?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
         ///
         /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-cauto) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-cauto) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-cauto)
         public var cAuto: Bool?
     
         /// Sets the lower bound of the color domain. 
         ///
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-cmin) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-cmin) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-cmin)
         public var cMin: Double?
     
         /// Sets the upper bound of the color domain. 
         ///
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-cmax) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-cmax) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-cmax)
         public var cMax: Double?
     
         /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
         ///
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-cmid) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-cmid) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-cmid)
         public var cMiddle: Double?
     
         /// Sets the colorscale. 
@@ -220,6 +434,11 @@ public struct ScatterGeo: Trace {
         /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-colorscale) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-colorscale) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-colorscale)
         public var colorScale: ColorScale?
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
@@ -227,17 +446,32 @@ public struct ScatterGeo: Trace {
         /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-autocolorscale) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-autocolorscale) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-autocolorscale)
         public var autoColorScale: Bool?
     
         /// Reverses the color mapping if true. 
         ///
         /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
         /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-reversescale) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-reversescale) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-reversescale)
         public var reverseScale: Bool?
     
         /// Determines whether or not a colorbar is displayed for this trace. 
         ///
         /// Has an effect only if in `marker.color`is set to a numerical array.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-showscale) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-showscale) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-showscale)
         public var showScale: Bool?
     
         /// Sets a reference to a shared color axis. 
@@ -245,18 +479,43 @@ public struct ScatterGeo: Trace {
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-coloraxis) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-coloraxis) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-coloraxis)
         public var colorAxis: SubPlotID?
     
         /// Sets the source reference on plot.ly for  symbol .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-symbolsrc) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-symbolsrc) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-symbolsrc)
         public var symbolSource: String?
     
         /// Sets the source reference on plot.ly for  opacity .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-opacitysrc) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-opacitysrc) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-opacitysrc)
         public var opacitySource: String?
     
         /// Sets the source reference on plot.ly for  size .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-sizesrc) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-sizesrc) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-sizesrc)
         public var sizeSource: String?
     
         /// Sets the source reference on plot.ly for  color .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-colorsrc) |
+        /// [Python](https://plot.ly/python/reference/#scattergeo-marker-colorsrc) |
+        /// [R](https://plot.ly/r/reference/#scattergeo-marker-colorsrc)
         public var colorSource: String?
     
         /// Plotly compatible property encoding
@@ -312,13 +571,20 @@ public struct ScatterGeo: Trace {
             self.colorSource = colorSource
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-marker) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-marker)
     public var marker: Marker?
 
     /// Sets the area to fill with a solid color. 
     ///
     /// Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each
     /// segment of the trace if it has gaps) into a closed shape.
-    /// - [ScatterGeo.Fill](traces/scattergeo/attributes/fill)
+    ///
+    /// # Used By
+    /// `ScatterGeo.fill` |
     public enum Fill: String, Encodable {
         case none
         case toSelf = "toself"
@@ -327,23 +593,45 @@ public struct ScatterGeo: Trace {
     ///
     /// Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each
     /// segment of the trace if it has gaps) into a closed shape.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-fill) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-fill) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-fill)
     public var fill: Fill?
 
     /// Sets the fill color. 
     ///
     /// Defaults to a half-transparent variant of the line color, marker color, or marker line color,
     /// whichever is available.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-fillcolor) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-fillcolor) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-fillcolor)
     public var fillColor: Color?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-selected) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-selected) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-selected)
     public var selected: Selected0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-unselected) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-unselected) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-unselected)
     public var unselected: Selected0?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - [ScatterGeo.HoverInfo](traces/scattergeo/attributes/hoverinfo)
+    ///
+    /// # Used By
+    /// `ScatterGeo.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -376,6 +664,11 @@ public struct ScatterGeo: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-hoverinfo)
     public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -393,48 +686,118 @@ public struct ScatterGeo: Trace {
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-hovertemplate)
     public var hoverTemplate: String?
 
     /// Sets a reference between this trace's geospatial coordinates and a geographic map. 
     ///
     /// If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the
     /// geospatial coordinates refer to `layout.geo2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-geo) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-geo) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-geo)
     public var geo: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-idssrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-metasrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  lon .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-lonsrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-lonsrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-lonsrc)
     public var longitudeSource: String?
 
     /// Sets the source reference on plot.ly for  lat .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-latsrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-latsrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-latsrc)
     public var latitudeSource: String?
 
     /// Sets the source reference on plot.ly for  locations .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-locationssrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-locationssrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-locationssrc)
     public var locationsSource: String?
 
     /// Sets the source reference on plot.ly for  text .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-textsrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-textsrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-textsrc)
     public var textSource: String?
 
     /// Sets the source reference on plot.ly for  texttemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-texttemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-texttemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-texttemplatesrc)
     public var textTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hovertextsrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-hovertextsrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-hovertextsrc)
     public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  textposition .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-textpositionsrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-textpositionsrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-textpositionsrc)
     public var textPositionSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hovertemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-hovertemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-hovertemplatesrc)
     public var hoverTemplateSource: String?
 
     /// Plotly compatible property encoding

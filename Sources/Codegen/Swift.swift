@@ -7,12 +7,24 @@ import Foundation
 protocol SwiftType where Origin: SchemaType {
     associatedtype Origin
     var name: String { get }
+    var parent: Swift.Object? { get }
     var schema: Origin { get }
 
     /// Creates instance of the Swift data type with the specified name.
     func instance(named: String) -> Instance<Self>
 }
 extension SwiftType {
+    var path: String {
+        var ancestors = [name]
+        var ancestor = self.parent
+        while ancestor != nil {
+            ancestors.append(ancestor!.name)
+            ancestor = ancestor!.parent
+        }
+        let path = ancestors.reversed().joined(separator: ".")
+        return path
+    }
+
     /// Default implementation for non-shared types.
     func instance(named: String) -> Instance<Self> {
         return Instance(of: self, named: named)
@@ -44,7 +56,6 @@ extension Definable {
 /// A shared Swift type that tracks it's references to allow re-use and prevent duplicate definitions of identical objects.
 protocol SwiftSharedType: SwiftType, Definable, Equatable, AnyObject {
     var name: String { get set }
-    var parent: Swift.Object? { get }
     var access: Swift.Access { get set }
     var instances: [Instance<Self>] { get set }
     static var existing: [Self] { get set }
@@ -53,22 +64,20 @@ protocol SwiftSharedType: SwiftType, Definable, Equatable, AnyObject {
     static func write(to url: URL, _ existing: inout [String: Int])
 }
 extension SwiftSharedType {
-    var path: String {
-        var ancestors = [name]
-        var ancestor = self.parent
-        while ancestor != nil {
-            ancestors.append(ancestor!.name)
-            ancestor = ancestor!.parent
-        }
-        let path = ancestors.reversed().joined(separator: ".")
-        return path
-    }
     var shared: Bool {
         let ancestorIsShared = parent?.shared ?? false
         let hasMultipleInstances = instances.count > 1
         return hasMultipleInstances && !ancestorIsShared
     }
-    var documentation: [String] { schema.description?.documentation() ?? [] }
+    var documentation: [String] {
+        var lines = schema.description?.documentation() ?? []
+        lines += ["///"]
+        lines += ["/// # Used By"]
+        for instance in instances {
+            lines += ["/// `\(instance.path)` |"]
+        }
+        return lines
+    }
 
     /// Default implementation for shared types that keeps track of instances.
     func instance(named: String) -> Instance<Self> {
@@ -140,13 +149,13 @@ class Swift {
     /// Data type that maps hierarchical Plotly `object` to a Swift `struct`.
     final class Object: SwiftSharedType {
         var name: String
-        var parent: Object?
+        var parent: Swift.Object?
         var schema: Schema.Object
         var access: Swift.Access = .public
         var protocols: [String] = ["Encodable"]
 
-        var instances: [Instance<Object>] = []
-        static var existing: [Object] = []
+        var instances: [Instance<Swift.Object>] = []
+        static var existing: [Swift.Object] = []
 
         var members: [Definable]
         var primitives: [String: Schema.Primitive]
@@ -155,10 +164,6 @@ class Swift {
 
         var definition: [String] {
             var lines = [String]()
-            for instance in instances {
-                lines += ["/// - [\(instance.type.path)](\(instance.schema.path))"]
-            }
-
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += ["\(access)struct \(name)\(protocols) {"]
 
@@ -213,46 +218,46 @@ class Swift {
                 case .attribute(let attribute):
                     switch attribute {
                     case .dataArray(let dataArray):
-                        let dataArrayType = Swift.DataArray(schema: dataArray)
+                        let dataArrayType = Swift.DataArray(parent: self, schema: dataArray)
                         members += [dataArrayType.instance(named: identifier)]
                     case .enumerated(let enumerated):
                         let enumeratedType = Swift.Enumerated(named: identifier, parent: self, schema: enumerated)
                         members += [enumeratedType.instance(named: identifier)]
                     case .boolean(let boolean):
-                        let booleanType = Swift.Boolean(schema: boolean)
+                        let booleanType = Swift.Boolean(parent: self, schema: boolean)
                         members += [booleanType.instance(named: identifier)]
                     case .number(let number):
-                        let numberType = Swift.Number(schema: number)
+                        let numberType = Swift.Number(parent: self, schema: number)
                         members += [numberType.instance(named: identifier)]
                     case .integer(let integer):
-                        let integerType = Swift.Integer(schema: integer)
+                        let integerType = Swift.Integer(parent: self, schema: integer)
                         members += [integerType.instance(named: identifier)]
                     case .string(let string):
-                        let stringType = Swift.String_(schema: string)
+                        let stringType = Swift.String_(parent: self, schema: string)
                         members += [stringType.instance(named: identifier)]
                     case .color(let color):
-                        let colorType = Swift.Color(schema: color)
+                        let colorType = Swift.Color(parent: self, schema: color)
                         members += [colorType.instance(named: identifier)]
                     case .colorList(let colorList):
-                        let colorListType = Swift.ColorList.init(schema: colorList)
+                        let colorListType = Swift.ColorList.init(parent: self, schema: colorList)
                         members += [colorListType.instance(named: identifier)]
                     case .colorScale(let colorScale):
-                        let colorScaleType = Swift.ColorScale(schema: colorScale)
+                        let colorScaleType = Swift.ColorScale(parent: self, schema: colorScale)
                         members += [colorScaleType.instance(named: identifier)]
                     case .angle(let angle):
-                        let angleType = Swift.Angle(schema: angle)
+                        let angleType = Swift.Angle(parent: self, schema: angle)
                         members += [angleType.instance(named: identifier)]
                     case .subPlotId(let subPlotId):
-                        let subPlotIdType = Swift.SubPlotID(schema: subPlotId)
+                        let subPlotIdType = Swift.SubPlotID(parent: self, schema: subPlotId)
                         members += [subPlotIdType.instance(named: identifier)]
                     case .flagList(let flagList):
                         let flagListType = Swift.FlagList(named: identifier, parent: self, schema: flagList)
                         members += [flagListType.instance(named: identifier)]
                     case .any(let any):
-                        let anyType = Swift.Any_(schema: any)
+                        let anyType = Swift.Any_(parent: self, schema: any)
                         members += [anyType.instance(named: identifier)]
                     case .infoArray(let infoArray):
-                        let infoArrayType = Swift.InfoArray(schema: infoArray)
+                        let infoArrayType = Swift.InfoArray(parent: self, schema: infoArray)
                         members += [infoArrayType.instance(named: identifier)]
                     }
                 case .object(let object):
@@ -292,6 +297,7 @@ class Swift {
     /// Data type that maps Plotly `data_array` to a numerical array in Swift.
     struct DataArray: SwiftType {
         let name: String = "[Double]"
+        let parent: Swift.Object?
         var schema: Schema.DataArray
     }
 
@@ -303,8 +309,8 @@ class Swift {
         var access: Swift.Access = .public
         var protocols: [String] = ["String", "Encodable"]
 
-        var instances: [Instance<Enumerated>] = []
-        static var existing: [Enumerated] = []
+        var instances: [Instance<Swift.Enumerated>] = []
+        static var existing: [Swift.Enumerated] = []
 
         struct Case: Equatable {
             let label: String
@@ -314,11 +320,8 @@ class Swift {
 
         var definition: [String] {
             var lines = [String]()
-            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            for instance in instances {
-                lines += ["/// - [\(instance.type.path)](\(instance.schema.path))"]
-            }
 
+            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += ["\(access)enum \(name)\(protocols) {"]
             for `case` in cases {
                 let rawValue = (`case`.rawValue != nil) ? " = \(`case`.rawValue!)" : ""
@@ -381,7 +384,7 @@ class Swift {
         }
 
         /// Checks for equality by comparing types and cases of the two `Enumerated` types.
-        static func == (lhs: Enumerated, rhs: Enumerated) -> Bool {
+        static func == (lhs: Swift.Enumerated, rhs: Swift.Enumerated) -> Bool {
             let nameAlmostEqual = lhs.name.almostEqual(to: rhs.name)
             let casesEqual = lhs.cases == rhs.cases
             return nameAlmostEqual && casesEqual
@@ -391,18 +394,21 @@ class Swift {
     /// Plotly `boolean` data type represented as a Swift `Bool`.
     struct Boolean: SwiftType {
         let name: String = "Bool"
+        let parent: Swift.Object?
         var schema: Schema.Boolean
     }
 
     /// Plotly `number` data type represented as a Swift `Double`.
     struct Number: SwiftType {
         let name: String = "Double"
+        let parent: Swift.Object?
         var schema: Schema.Number
     }
 
     /// Plotly `integer` data type represented as a Swift `Int`.
     struct Integer: SwiftType {
         let name: String = "Int"
+        let parent: Swift.Object?
         var schema: Schema.Integer
     }
 
@@ -410,18 +416,21 @@ class Swift {
     /// - Note: Appended underscore prevents collision with the Swift built-in type.
     struct String_: SwiftType {
         let name: String = "String"
+        let parent: Swift.Object?
         var schema: Schema.String_
     }
 
     /// Plotly `color` data type is manually re-implemented in Swift.
     struct Color: SwiftType {
         let name: String = "Color"
+        let parent: Swift.Object?
         var schema: Schema.Color
     }
 
     /// Plotly `colorlist` data type is manually re-implemented in Swift.
     struct ColorList: SwiftType {
         let name: String = "ColorList"
+        let parent: Swift.Object?
         var schema: Schema.ColorList
     }
 
@@ -429,18 +438,21 @@ class Swift {
     /// - Note: `Layout.ColorScale` is renamed to `Layout.ColorMap` to prevent conflicts.
     struct ColorScale: SwiftType {
         let name: String = "ColorScale"
+        let parent: Swift.Object?
         var schema: Schema.ColorScale
     }
 
     /// Plotly `Angle` data type represented as a Swift `Double`.
     struct Angle: SwiftType {
         let name: String = "Angle"
+        let parent: Swift.Object?
         var schema: Schema.Angle
     }
 
     /// Plotly `subplotid` data type is manually re-implemented in Swift.
     struct SubPlotID: SwiftType {
         let name: String = "SubPlotID"
+        let parent: Swift.Object?
         var schema: Schema.SubPlotID
     }
 
@@ -452,8 +464,8 @@ class Swift {
         var access: Swift.Access = .public
         let protocols: [String] = []
 
-        var instances: [Instance<FlagList>] = []
-        static var existing: [FlagList] = []
+        var instances: [Instance<Swift.FlagList>] = []
+        static var existing: [Swift.FlagList] = []
 
         struct Option: Equatable {
             let label: String
@@ -463,9 +475,6 @@ class Swift {
 
         var definition: [String] {
             var lines = [String]()
-            for instance in instances {
-                lines += ["/// - [\(instance.type.path)](\(instance.schema.path))"]
-            }
 
             lines += ["\(access)struct \(name): OptionSet, Encodable {"]
             lines += ["\(access)let rawValue: Int"].indented()
@@ -509,7 +518,7 @@ class Swift {
         }
 
         /// Checks for equality by comparing types and options of the two `FlagList` types.
-        static func == (lhs: FlagList, rhs: FlagList) -> Bool {
+        static func == (lhs: Swift.FlagList, rhs: Swift.FlagList) -> Bool {
             let nameAlmostEqual = lhs.name.almostEqual(to: rhs.name)
             let optionsEqual = lhs.options == rhs.options
             return nameAlmostEqual && optionsEqual
@@ -521,12 +530,14 @@ class Swift {
     /// - Note: Name `Anything` prevents collision with the Swift built-in type `Any`.
     struct Any_: SwiftType {
         let name: String = "Anything"
+        let parent: Swift.Object?
         var schema: Schema.Any_
     }
 
     /// Plotly `any` data type is manually re-implemented in Swift.
     struct InfoArray: SwiftType {
         let name: String = "InfoArray"
+        let parent: Swift.Object?
         var schema: Schema.InfoArray
     }
 

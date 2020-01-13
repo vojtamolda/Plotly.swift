@@ -4,37 +4,77 @@
 /// `y` values. `x` and `y` may either be 2D arrays matching with each dimension matching that of
 /// `a` and `b`, or they may be 1D arrays with total length equal to that of `a` and `b`.
 public struct Carpet: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "carpet"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = true
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-visible) |
+    /// [Python](https://plot.ly/python/reference/#carpet-visible) |
+    /// [R](https://plot.ly/r/reference/#carpet-visible)
     public var visible: Visible0?
 
     /// Sets the opacity of the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-opacity) |
+    /// [Python](https://plot.ly/python/reference/#carpet-opacity) |
+    /// [R](https://plot.ly/r/reference/#carpet-opacity)
     public var opacity: Double?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-name) |
+    /// [Python](https://plot.ly/python/reference/#carpet-name) |
+    /// [R](https://plot.ly/r/reference/#carpet-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-uid) |
+    /// [Python](https://plot.ly/python/reference/#carpet-uid) |
+    /// [R](https://plot.ly/r/reference/#carpet-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-ids) |
+    /// [Python](https://plot.ly/python/reference/#carpet-ids) |
+    /// [R](https://plot.ly/r/reference/#carpet-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-customdata) |
+    /// [Python](https://plot.ly/python/reference/#carpet-customdata) |
+    /// [R](https://plot.ly/r/reference/#carpet-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -44,8 +84,18 @@ public struct Carpet: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-meta) |
+    /// [Python](https://plot.ly/python/reference/#carpet-meta) |
+    /// [R](https://plot.ly/r/reference/#carpet-meta)
     public var meta: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-stream) |
+    /// [Python](https://plot.ly/python/reference/#carpet-stream) |
+    /// [R](https://plot.ly/r/reference/#carpet-stream)
     public var stream: Stream0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -58,116 +108,200 @@ public struct Carpet: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#carpet-uirevision) |
+    /// [R](https://plot.ly/r/reference/#carpet-uirevision)
     public var uiRevision: Anything?
 
     /// An identifier for this carpet, so that `scattercarpet` and `contourcarpet` traces can specify a carpet plot on which they lie
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-carpet) |
+    /// [Python](https://plot.ly/python/reference/#carpet-carpet) |
+    /// [R](https://plot.ly/r/reference/#carpet-carpet)
     public var carpet: String?
 
     /// A two dimensional array of x coordinates at each carpet point. 
     ///
     /// If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-x) |
+    /// [Python](https://plot.ly/python/reference/#carpet-x) |
+    /// [R](https://plot.ly/r/reference/#carpet-x)
     public var x: [Double]?
 
     /// A two dimensional array of y coordinates at each carpet point.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-y) |
+    /// [Python](https://plot.ly/python/reference/#carpet-y) |
+    /// [R](https://plot.ly/r/reference/#carpet-y)
     public var y: [Double]?
 
     /// An array containing values of the first parameter value
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-a) |
+    /// [Python](https://plot.ly/python/reference/#carpet-a) |
+    /// [R](https://plot.ly/r/reference/#carpet-a)
     public var a: [Double]?
 
     /// Alternate to `a`. 
     ///
     /// Builds a linear space of a coordinates. Use with `da` where `a0` is the starting coordinate and
     /// `da` the step.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-a0) |
+    /// [Python](https://plot.ly/python/reference/#carpet-a0) |
+    /// [R](https://plot.ly/r/reference/#carpet-a0)
     public var a0: Double?
 
     /// Sets the a coordinate step. 
     ///
     /// See `a0` for more info.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-da) |
+    /// [Python](https://plot.ly/python/reference/#carpet-da) |
+    /// [R](https://plot.ly/r/reference/#carpet-da)
     public var da: Double?
 
     /// A two dimensional array of y coordinates at each carpet point.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-b) |
+    /// [Python](https://plot.ly/python/reference/#carpet-b) |
+    /// [R](https://plot.ly/r/reference/#carpet-b)
     public var b: [Double]?
 
     /// Alternate to `b`. 
     ///
     /// Builds a linear space of a coordinates. Use with `db` where `b0` is the starting coordinate and
     /// `db` the step.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-b0) |
+    /// [Python](https://plot.ly/python/reference/#carpet-b0) |
+    /// [R](https://plot.ly/r/reference/#carpet-b0)
     public var b0: Double?
 
     /// Sets the b coordinate step. 
     ///
     /// See `b0` for more info.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-db) |
+    /// [Python](https://plot.ly/python/reference/#carpet-db) |
+    /// [R](https://plot.ly/r/reference/#carpet-db)
     public var db: Double?
 
     /// The shift applied to each successive row of data in creating a cheater plot. 
     ///
     /// Only used if `x` is been ommitted.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-cheaterslope) |
+    /// [Python](https://plot.ly/python/reference/#carpet-cheaterslope) |
+    /// [R](https://plot.ly/r/reference/#carpet-cheaterslope)
     public var cheaterSlope: Double?
 
-    /// - [Carpet.AAxis](traces/carpet/attributes/aaxis)
+    ///
+    /// # Used By
+    /// `Carpet.aAxis` |
     public struct AAxis: Encodable {
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
         ///
         /// Grid color is lightened by blending this with the plot background Individual pieces can override
         /// this.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-color) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-color) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-color)
         public var color: Color?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-smoothing) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-smoothing) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-smoothing)
         public var smoothing: Double?
     
-        /// - [Layout.ColorAxis.ColorBar0.Title](layout/layoutAttributes/coloraxis/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/bar/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmap/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2d/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2dcontour/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/contour/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterternary/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnel/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/pie/attributes/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/sunburst/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/treemap/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnelarea/attributes/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/line/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/surface/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/isosurface/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/volume/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/mesh3d/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/cone/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/streamtube/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergeo/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/choropleth/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergl/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/splom/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmapgl/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcoords/attributes/line/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcats/attributes/line/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattermapbox/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/choroplethmapbox/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/densitymapbox/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/aaxis/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/baxis/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattercarpet/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/contourcarpet/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolar/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolargl/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/barpolar/attributes/marker/colorbar/title)
+        ///
+        /// # Used By
+        /// `Layout.ColorAxis.ColorBar0.title` |
+        /// `Scatter.Marker.ColorBar.title` |
+        /// `Bar.Marker.ColorBar.title` |
+        /// `Heatmap.ColorBar.title` |
+        /// `Histogram.Marker.ColorBar.title` |
+        /// `Histogram2D.ColorBar.title` |
+        /// `Histogram2DContour.ColorBar.title` |
+        /// `Contour.ColorBar.title` |
+        /// `ScatterTernary.Marker.ColorBar.title` |
+        /// `Funnel.Marker.ColorBar.title` |
+        /// `Pie.title` |
+        /// `Sunburst.Marker.ColorBar.title` |
+        /// `Treemap.Marker.ColorBar.title` |
+        /// `FunnelArea.title` |
+        /// `Scatter3D.Line.ColorBar.title` |
+        /// `Scatter3D.Marker.ColorBar.title` |
+        /// `Surface.ColorBar.title` |
+        /// `Isosurface.ColorBar.title` |
+        /// `Volume.ColorBar.title` |
+        /// `Mesh3D.ColorBar.title` |
+        /// `Cone.ColorBar.title` |
+        /// `StreamTube.ColorBar.title` |
+        /// `ScatterGeo.Marker.ColorBar.title` |
+        /// `Choropleth.ColorBar.title` |
+        /// `ScatterGL.Marker.ColorBar.title` |
+        /// `ScatterPlotMatrix.Marker.ColorBar.title` |
+        /// `HeatmapGL.ColorBar.title` |
+        /// `ParallelCoordinates.Line.ColorBar.title` |
+        /// `ParallelCategories.Line.ColorBar.title` |
+        /// `ScatterMapbox.Marker.ColorBar.title` |
+        /// `ChoroplethMapbox.ColorBar.title` |
+        /// `DensityMapbox.ColorBar.title` |
+        /// `Carpet.AAxis.title` |
+        /// `Carpet.BAxis.title` |
+        /// `ScatterCarpet.Marker.ColorBar.title` |
+        /// `ContourCarpet.ColorBar.title` |
+        /// `ScatterPolar.Marker.ColorBar.title` |
+        /// `ScatterPolarGL.Marker.ColorBar.title` |
+        /// `BarPolar.Marker.ColorBar.title` |
         public struct Title: Encodable {
             /// Sets the title of the color bar. 
             ///
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-text) |
+            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-text) |
+            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-text)
             public var text: String?
         
             /// Sets this color bar's title font. 
             ///
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-font) |
+            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-font) |
+            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-font)
             public var font: Font0?
         
             /// Determines the location of color bar's title with respect to the color bar. 
             ///
             /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-side) |
+            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-side) |
+            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-side)
             public var side: Side0?
         
             public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
@@ -176,13 +310,20 @@ public struct Carpet: Trace {
                 self.side = side
             }
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-title) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-title) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-title)
         public var title: Title?
     
         /// Sets the axis type. 
         ///
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
-        /// - [Carpet.AAxis.Rule](traces/carpet/attributes/aaxis/type)
+        ///
+        /// # Used By
+        /// `Carpet.AAxis.type` |
         public enum Rule: String, Encodable {
             case auto = "-"
             case linear
@@ -193,17 +334,32 @@ public struct Carpet: Trace {
         ///
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-type) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-type) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-type)
         public var type: Rule?
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. 
         ///
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-autorange) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-autorange) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-autorange)
         public var autoRange: AutoRange0?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
         /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
         /// is non-negative, regardless of the input data.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-rangemode) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-rangemode) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-rangemode)
         public var rangeMode: RangeMode0?
     
         /// Sets the range of this axis. 
@@ -213,45 +369,86 @@ public struct Carpet: Trace {
         /// strings, like date data, though Date objects and unix milliseconds will be accepted and
         /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
         /// where each category is assigned a serial number from zero in the order it appears.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-range) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-range) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-range)
         public var range: InfoArray?
     
         /// Determines whether or not this axis is zoom-able. 
         ///
         /// If true, then zoom is disabled.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-fixedrange) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-fixedrange) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-fixedrange)
         public var fixedRange: Bool?
     
-        /// - [Carpet.AAxis.CheaterType](traces/carpet/attributes/aaxis/cheatertype)
+        ///
+        /// # Used By
+        /// `Carpet.AAxis.cheaterType` |
         public enum CheaterType: String, Encodable {
             case index
             case value
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-cheatertype) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-cheatertype) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-cheatertype)
         public var cheaterType: CheaterType?
     
-        /// - [Carpet.AAxis.TickMode](traces/carpet/attributes/aaxis/tickmode)
+        ///
+        /// # Used By
+        /// `Carpet.AAxis.tickMode` |
         public enum TickMode: String, Encodable {
             case linear
             case array
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickmode) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickmode) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickmode)
         public var tickMode: TickMode?
     
         /// Specifies the maximum number of ticks for the particular axis. 
         ///
         /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
         /// Has an effect only if `tickmode` is set to *auto*.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-nticks) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-nticks) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-nticks)
         public var numTicks: Int?
     
         /// Sets the values at which ticks on this axis appear. 
         ///
         /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickvals) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickvals) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickvals)
         public var tickValues: [Double]?
     
         /// Sets the text displayed at the ticks position via `tickvals`. 
         ///
         /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-ticktext) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-ticktext) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-ticktext)
         public var tickText: [Double]?
     
         /// Determines whether axis labels are drawn on the low side, the high side, both, or neither side of the axis.
-        /// - [Carpet.AAxis.ShowTickLabels](traces/carpet/attributes/aaxis/showticklabels)
+        ///
+        /// # Used By
+        /// `Carpet.AAxis.showTickLabels` |
         public enum ShowTickLabels: String, Encodable {
             case start
             case end
@@ -259,44 +456,94 @@ public struct Carpet: Trace {
             case none
         }
         /// Determines whether axis labels are drawn on the low side, the high side, both, or neither side of the axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showticklabels) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showticklabels) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-showticklabels)
         public var showTickLabels: ShowTickLabels?
     
         /// Sets the tick font.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickfont) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickfont) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickfont)
         public var tickFont: Font0?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
         /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickangle) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickangle) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickangle)
         public var tickAngle: Angle?
     
         /// Sets a tick label prefix.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickprefix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickprefix) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickprefix)
         public var tickPrefix: String?
     
         /// If *all*, all tick labels are displayed with a prefix. 
         ///
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showtickprefix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showtickprefix) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-showtickprefix)
         public var showTickPrefix: ShowTickPrefix0?
     
         /// Sets a tick label suffix.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-ticksuffix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-ticksuffix) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-ticksuffix)
         public var tickSuffix: String?
     
         /// Same as `showtickprefix` but for tick suffixes.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showticksuffix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showticksuffix) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-showticksuffix)
         public var showTickSuffix: ShowTickSuffix0?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showexponent) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showexponent) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-showexponent)
         public var showExponent: ShowExponent0?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-exponentformat) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-exponentformat) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-exponentformat)
         public var exponentFormat: ExponentFormat0?
     
         /// If "true", even 4-digit integers are separated
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-separatethousands) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-separatethousands) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-separatethousands)
         public var separatethousands: Bool?
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -305,8 +552,18 @@ public struct Carpet: Trace {
         /// And for dates see: We add one item to d3's date formatter: *%{n}f* for fractional seconds with n
         /// digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display
         /// *09~15~23.46*
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickformat) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickformat) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickformat)
         public var tickFormat: String?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickformatstops) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickformatstops) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickformatstops)
         public var tickFormatStops: TickFormatStops0?
     
         /// Specifies the ordering logic for the case of categorical variables. 
@@ -317,7 +574,9 @@ public struct Carpet: Trace {
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        /// - [Carpet.AAxis.CategoryOrder](traces/carpet/attributes/aaxis/categoryorder)
+        ///
+        /// # Used By
+        /// `Carpet.AAxis.categoryOrder` |
         public enum CategoryOrder: String, Encodable {
             case trace
             case categoryAscending = "category ascending"
@@ -332,92 +591,227 @@ public struct Carpet: Trace {
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-categoryorder) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-categoryorder) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-categoryorder)
         public var categoryOrder: CategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
         /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-categoryarray) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-categoryarray) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-categoryarray)
         public var categoryArray: [Double]?
     
         /// Extra padding between label and the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-labelpadding) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-labelpadding) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-labelpadding)
         public var labelPadding: Int?
     
         /// Sets a axis label prefix.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-labelprefix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-labelprefix) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-labelprefix)
         public var labelPrefix: String?
     
         /// Sets a axis label suffix.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-labelsuffix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-labelsuffix) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-labelsuffix)
         public var labelSuffix: String?
     
         /// Determines whether or not a line bounding this axis is drawn.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showline) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showline) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-showline)
         public var showLine: Bool?
     
         /// Sets the axis line color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-linecolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-linecolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-linecolor)
         public var lineColor: Color?
     
         /// Sets the width (in px) of the axis line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-linewidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-linewidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-linewidth)
         public var lineWidth: Double?
     
         /// Sets the axis line color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-gridcolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-gridcolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-gridcolor)
         public var gridColor: Color?
     
         /// Sets the width (in px) of the axis line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-gridwidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-gridwidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-gridwidth)
         public var gridWidth: Double?
     
         /// Determines whether or not grid lines are drawn. 
         ///
         /// If *true*, the grid lines are drawn at every tick mark.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showgrid) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showgrid) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-showgrid)
         public var showGrid: Bool?
     
         /// Sets the number of minor grid ticks per major grid tick
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-minorgridcount) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-minorgridcount) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-minorgridcount)
         public var minorGridCount: Int?
     
         /// Sets the width (in px) of the grid lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-minorgridwidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-minorgridwidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-minorgridwidth)
         public var minorGridWidth: Double?
     
         /// Sets the color of the grid lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-minorgridcolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-minorgridcolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-minorgridcolor)
         public var minorGridColor: Color?
     
         /// Determines whether or not a line is drawn at along the starting value of this axis. 
         ///
         /// If *true*, the start line is drawn on top of the grid lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-startline) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-startline) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-startline)
         public var startLine: Bool?
     
         /// Sets the line color of the start line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-startlinecolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-startlinecolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-startlinecolor)
         public var startLineColor: Color?
     
         /// Sets the width (in px) of the start line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-startlinewidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-startlinewidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-startlinewidth)
         public var startLineWidth: Double?
     
         /// Determines whether or not a line is drawn at along the final value of this axis. 
         ///
         /// If *true*, the end line is drawn on top of the grid lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-endline) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-endline) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-endline)
         public var endLine: Bool?
     
         /// Sets the width (in px) of the end line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-endlinewidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-endlinewidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-endlinewidth)
         public var endLineWidth: Double?
     
         /// Sets the line color of the end line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-endlinecolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-endlinecolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-endlinecolor)
         public var endLineColor: Color?
     
         /// The starting index of grid lines along the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tick0) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tick0) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tick0)
         public var tick0: Double?
     
         /// The stride between grid lines along the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-dtick) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-dtick) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-dtick)
         public var dTick: Double?
     
         /// The starting index of grid lines along the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-arraytick0) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-arraytick0) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-arraytick0)
         public var arrayTick0: Int?
     
         /// The stride between grid lines along the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-arraydtick) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-arraydtick) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-arraydtick)
         public var arraydTick: Int?
     
         /// Sets the source reference on plot.ly for  tickvals .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickvalssrc) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickvalssrc) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickvalssrc)
         public var tickValuesSource: String?
     
         /// Sets the source reference on plot.ly for  ticktext .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-ticktextsrc) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-ticktextsrc) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-ticktextsrc)
         public var tickTextSource: String?
     
         /// Sets the source reference on plot.ly for  categoryarray .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-categoryarraysrc) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-categoryarraysrc) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-categoryarraysrc)
         public var categoryArraySource: String?
     
         /// Plotly compatible property encoding
@@ -531,72 +925,106 @@ public struct Carpet: Trace {
             self.categoryArraySource = categoryArraySource
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis) |
+    /// [Python](https://plot.ly/python/reference/#carpet-aaxis) |
+    /// [R](https://plot.ly/r/reference/#carpet-aaxis)
     public var aAxis: AAxis?
 
-    /// - [Carpet.BAxis](traces/carpet/attributes/baxis)
+    ///
+    /// # Used By
+    /// `Carpet.bAxis` |
     public struct BAxis: Encodable {
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
         ///
         /// Grid color is lightened by blending this with the plot background Individual pieces can override
         /// this.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-color) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-color) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-color)
         public var color: Color?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-smoothing) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-smoothing) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-smoothing)
         public var smoothing: Double?
     
-        /// - [Layout.ColorAxis.ColorBar0.Title](layout/layoutAttributes/coloraxis/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/bar/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmap/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2d/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2dcontour/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/contour/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterternary/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnel/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/pie/attributes/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/sunburst/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/treemap/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnelarea/attributes/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/line/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/surface/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/isosurface/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/volume/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/mesh3d/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/cone/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/streamtube/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergeo/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/choropleth/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergl/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/splom/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmapgl/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcoords/attributes/line/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcats/attributes/line/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattermapbox/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/choroplethmapbox/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/densitymapbox/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/aaxis/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/baxis/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattercarpet/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/contourcarpet/attributes/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolar/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolargl/attributes/marker/colorbar/title)
-        /// - [Layout.ColorAxis.ColorBar0.Title](traces/barpolar/attributes/marker/colorbar/title)
+        ///
+        /// # Used By
+        /// `Layout.ColorAxis.ColorBar0.title` |
+        /// `Scatter.Marker.ColorBar.title` |
+        /// `Bar.Marker.ColorBar.title` |
+        /// `Heatmap.ColorBar.title` |
+        /// `Histogram.Marker.ColorBar.title` |
+        /// `Histogram2D.ColorBar.title` |
+        /// `Histogram2DContour.ColorBar.title` |
+        /// `Contour.ColorBar.title` |
+        /// `ScatterTernary.Marker.ColorBar.title` |
+        /// `Funnel.Marker.ColorBar.title` |
+        /// `Pie.title` |
+        /// `Sunburst.Marker.ColorBar.title` |
+        /// `Treemap.Marker.ColorBar.title` |
+        /// `FunnelArea.title` |
+        /// `Scatter3D.Line.ColorBar.title` |
+        /// `Scatter3D.Marker.ColorBar.title` |
+        /// `Surface.ColorBar.title` |
+        /// `Isosurface.ColorBar.title` |
+        /// `Volume.ColorBar.title` |
+        /// `Mesh3D.ColorBar.title` |
+        /// `Cone.ColorBar.title` |
+        /// `StreamTube.ColorBar.title` |
+        /// `ScatterGeo.Marker.ColorBar.title` |
+        /// `Choropleth.ColorBar.title` |
+        /// `ScatterGL.Marker.ColorBar.title` |
+        /// `ScatterPlotMatrix.Marker.ColorBar.title` |
+        /// `HeatmapGL.ColorBar.title` |
+        /// `ParallelCoordinates.Line.ColorBar.title` |
+        /// `ParallelCategories.Line.ColorBar.title` |
+        /// `ScatterMapbox.Marker.ColorBar.title` |
+        /// `ChoroplethMapbox.ColorBar.title` |
+        /// `DensityMapbox.ColorBar.title` |
+        /// `Carpet.AAxis.title` |
+        /// `Carpet.BAxis.title` |
+        /// `ScatterCarpet.Marker.ColorBar.title` |
+        /// `ContourCarpet.ColorBar.title` |
+        /// `ScatterPolar.Marker.ColorBar.title` |
+        /// `ScatterPolarGL.Marker.ColorBar.title` |
+        /// `BarPolar.Marker.ColorBar.title` |
         public struct Title: Encodable {
             /// Sets the title of the color bar. 
             ///
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-text) |
+            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-text) |
+            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-text)
             public var text: String?
         
             /// Sets this color bar's title font. 
             ///
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-font) |
+            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-font) |
+            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-font)
             public var font: Font0?
         
             /// Determines the location of color bar's title with respect to the color bar. 
             ///
             /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-side) |
+            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-side) |
+            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-side)
             public var side: Side0?
         
             public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
@@ -605,13 +1033,20 @@ public struct Carpet: Trace {
                 self.side = side
             }
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-title) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-title) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-title)
         public var title: Title?
     
         /// Sets the axis type. 
         ///
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
-        /// - [Carpet.BAxis.Rule](traces/carpet/attributes/baxis/type)
+        ///
+        /// # Used By
+        /// `Carpet.BAxis.type` |
         public enum Rule: String, Encodable {
             case auto = "-"
             case linear
@@ -622,17 +1057,32 @@ public struct Carpet: Trace {
         ///
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-type) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-type) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-type)
         public var type: Rule?
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. 
         ///
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-autorange) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-autorange) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-autorange)
         public var autoRange: AutoRange0?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
         /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
         /// is non-negative, regardless of the input data.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-rangemode) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-rangemode) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-rangemode)
         public var rangeMode: RangeMode0?
     
         /// Sets the range of this axis. 
@@ -642,45 +1092,86 @@ public struct Carpet: Trace {
         /// strings, like date data, though Date objects and unix milliseconds will be accepted and
         /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
         /// where each category is assigned a serial number from zero in the order it appears.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-range) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-range) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-range)
         public var range: InfoArray?
     
         /// Determines whether or not this axis is zoom-able. 
         ///
         /// If true, then zoom is disabled.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-fixedrange) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-fixedrange) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-fixedrange)
         public var fixedRange: Bool?
     
-        /// - [Carpet.BAxis.CheaterType](traces/carpet/attributes/baxis/cheatertype)
+        ///
+        /// # Used By
+        /// `Carpet.BAxis.cheaterType` |
         public enum CheaterType: String, Encodable {
             case index
             case value
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-cheatertype) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-cheatertype) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-cheatertype)
         public var cheaterType: CheaterType?
     
-        /// - [Carpet.BAxis.TickMode](traces/carpet/attributes/baxis/tickmode)
+        ///
+        /// # Used By
+        /// `Carpet.BAxis.tickMode` |
         public enum TickMode: String, Encodable {
             case linear
             case array
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickmode) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickmode) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickmode)
         public var tickMode: TickMode?
     
         /// Specifies the maximum number of ticks for the particular axis. 
         ///
         /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
         /// Has an effect only if `tickmode` is set to *auto*.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-nticks) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-nticks) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-nticks)
         public var numTicks: Int?
     
         /// Sets the values at which ticks on this axis appear. 
         ///
         /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickvals) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickvals) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickvals)
         public var tickValues: [Double]?
     
         /// Sets the text displayed at the ticks position via `tickvals`. 
         ///
         /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-ticktext) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-ticktext) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-ticktext)
         public var tickText: [Double]?
     
         /// Determines whether axis labels are drawn on the low side, the high side, both, or neither side of the axis.
-        /// - [Carpet.BAxis.ShowTickLabels](traces/carpet/attributes/baxis/showticklabels)
+        ///
+        /// # Used By
+        /// `Carpet.BAxis.showTickLabels` |
         public enum ShowTickLabels: String, Encodable {
             case start
             case end
@@ -688,44 +1179,94 @@ public struct Carpet: Trace {
             case none
         }
         /// Determines whether axis labels are drawn on the low side, the high side, both, or neither side of the axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showticklabels) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-showticklabels) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-showticklabels)
         public var showTickLabels: ShowTickLabels?
     
         /// Sets the tick font.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickfont) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickfont) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickfont)
         public var tickFont: Font0?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
         /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickangle) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickangle) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickangle)
         public var tickAngle: Angle?
     
         /// Sets a tick label prefix.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickprefix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickprefix) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickprefix)
         public var tickPrefix: String?
     
         /// If *all*, all tick labels are displayed with a prefix. 
         ///
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showtickprefix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-showtickprefix) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-showtickprefix)
         public var showTickPrefix: ShowTickPrefix0?
     
         /// Sets a tick label suffix.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-ticksuffix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-ticksuffix) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-ticksuffix)
         public var tickSuffix: String?
     
         /// Same as `showtickprefix` but for tick suffixes.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showticksuffix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-showticksuffix) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-showticksuffix)
         public var showTickSuffix: ShowTickSuffix0?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showexponent) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-showexponent) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-showexponent)
         public var showExponent: ShowExponent0?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-exponentformat) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-exponentformat) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-exponentformat)
         public var exponentFormat: ExponentFormat0?
     
         /// If "true", even 4-digit integers are separated
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-separatethousands) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-separatethousands) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-separatethousands)
         public var separatethousands: Bool?
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -734,8 +1275,18 @@ public struct Carpet: Trace {
         /// And for dates see: We add one item to d3's date formatter: *%{n}f* for fractional seconds with n
         /// digits. For example, *2016-10-13 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display
         /// *09~15~23.46*
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickformat) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickformat) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickformat)
         public var tickFormat: String?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickformatstops) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickformatstops) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickformatstops)
         public var tickFormatStops: TickFormatStops0?
     
         /// Specifies the ordering logic for the case of categorical variables. 
@@ -746,7 +1297,9 @@ public struct Carpet: Trace {
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        /// - [Carpet.BAxis.CategoryOrder](traces/carpet/attributes/baxis/categoryorder)
+        ///
+        /// # Used By
+        /// `Carpet.BAxis.categoryOrder` |
         public enum CategoryOrder: String, Encodable {
             case trace
             case categoryAscending = "category ascending"
@@ -761,92 +1314,227 @@ public struct Carpet: Trace {
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-categoryorder) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-categoryorder) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-categoryorder)
         public var categoryOrder: CategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
         /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-categoryarray) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-categoryarray) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-categoryarray)
         public var categoryArray: [Double]?
     
         /// Extra padding between label and the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-labelpadding) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-labelpadding) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-labelpadding)
         public var labelPadding: Int?
     
         /// Sets a axis label prefix.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-labelprefix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-labelprefix) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-labelprefix)
         public var labelPrefix: String?
     
         /// Sets a axis label suffix.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-labelsuffix) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-labelsuffix) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-labelsuffix)
         public var labelSuffix: String?
     
         /// Determines whether or not a line bounding this axis is drawn.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showline) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-showline) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-showline)
         public var showLine: Bool?
     
         /// Sets the axis line color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-linecolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-linecolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-linecolor)
         public var lineColor: Color?
     
         /// Sets the width (in px) of the axis line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-linewidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-linewidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-linewidth)
         public var lineWidth: Double?
     
         /// Sets the axis line color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-gridcolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-gridcolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-gridcolor)
         public var gridColor: Color?
     
         /// Sets the width (in px) of the axis line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-gridwidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-gridwidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-gridwidth)
         public var gridWidth: Double?
     
         /// Determines whether or not grid lines are drawn. 
         ///
         /// If *true*, the grid lines are drawn at every tick mark.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showgrid) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-showgrid) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-showgrid)
         public var showGrid: Bool?
     
         /// Sets the number of minor grid ticks per major grid tick
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-minorgridcount) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-minorgridcount) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-minorgridcount)
         public var minorGridCount: Int?
     
         /// Sets the width (in px) of the grid lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-minorgridwidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-minorgridwidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-minorgridwidth)
         public var minorGridWidth: Double?
     
         /// Sets the color of the grid lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-minorgridcolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-minorgridcolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-minorgridcolor)
         public var minorGridColor: Color?
     
         /// Determines whether or not a line is drawn at along the starting value of this axis. 
         ///
         /// If *true*, the start line is drawn on top of the grid lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-startline) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-startline) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-startline)
         public var startLine: Bool?
     
         /// Sets the line color of the start line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-startlinecolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-startlinecolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-startlinecolor)
         public var startLineColor: Color?
     
         /// Sets the width (in px) of the start line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-startlinewidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-startlinewidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-startlinewidth)
         public var startLineWidth: Double?
     
         /// Determines whether or not a line is drawn at along the final value of this axis. 
         ///
         /// If *true*, the end line is drawn on top of the grid lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-endline) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-endline) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-endline)
         public var endLine: Bool?
     
         /// Sets the width (in px) of the end line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-endlinewidth) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-endlinewidth) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-endlinewidth)
         public var endLineWidth: Double?
     
         /// Sets the line color of the end line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-endlinecolor) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-endlinecolor) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-endlinecolor)
         public var endLineColor: Color?
     
         /// The starting index of grid lines along the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tick0) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tick0) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tick0)
         public var tick0: Double?
     
         /// The stride between grid lines along the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-dtick) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-dtick) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-dtick)
         public var dTick: Double?
     
         /// The starting index of grid lines along the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-arraytick0) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-arraytick0) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-arraytick0)
         public var arrayTick0: Int?
     
         /// The stride between grid lines along the axis
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-arraydtick) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-arraydtick) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-arraydtick)
         public var arraydTick: Int?
     
         /// Sets the source reference on plot.ly for  tickvals .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickvalssrc) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickvalssrc) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickvalssrc)
         public var tickValuesSource: String?
     
         /// Sets the source reference on plot.ly for  ticktext .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-ticktextsrc) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-ticktextsrc) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-ticktextsrc)
         public var tickTextSource: String?
     
         /// Sets the source reference on plot.ly for  categoryarray .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-categoryarraysrc) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-categoryarraysrc) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-categoryarraysrc)
         public var categoryArraySource: String?
     
         /// Plotly compatible property encoding
@@ -960,48 +1648,108 @@ public struct Carpet: Trace {
             self.categoryArraySource = categoryArraySource
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis) |
+    /// [Python](https://plot.ly/python/reference/#carpet-baxis) |
+    /// [R](https://plot.ly/r/reference/#carpet-baxis)
     public var bAxis: BAxis?
 
     /// The default font used for axis & tick labels on this carpet
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-font) |
+    /// [Python](https://plot.ly/python/reference/#carpet-font) |
+    /// [R](https://plot.ly/r/reference/#carpet-font)
     public var font: Font0?
 
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
     ///
     /// Grid color is lightened by blending this with the plot background Individual pieces can override
     /// this.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-color) |
+    /// [Python](https://plot.ly/python/reference/#carpet-color) |
+    /// [R](https://plot.ly/r/reference/#carpet-color)
     public var color: Color?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-xaxis) |
+    /// [Python](https://plot.ly/python/reference/#carpet-xaxis) |
+    /// [R](https://plot.ly/r/reference/#carpet-xaxis)
     public var xAxis: SubPlotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. 
     ///
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-yaxis) |
+    /// [Python](https://plot.ly/python/reference/#carpet-yaxis) |
+    /// [R](https://plot.ly/r/reference/#carpet-yaxis)
     public var yAxis: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#carpet-idssrc) |
+    /// [R](https://plot.ly/r/reference/#carpet-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#carpet-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#carpet-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#carpet-metasrc) |
+    /// [R](https://plot.ly/r/reference/#carpet-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  x .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-xsrc) |
+    /// [Python](https://plot.ly/python/reference/#carpet-xsrc) |
+    /// [R](https://plot.ly/r/reference/#carpet-xsrc)
     public var xSource: String?
 
     /// Sets the source reference on plot.ly for  y .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-ysrc) |
+    /// [Python](https://plot.ly/python/reference/#carpet-ysrc) |
+    /// [R](https://plot.ly/r/reference/#carpet-ysrc)
     public var ySource: String?
 
     /// Sets the source reference on plot.ly for  a .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-asrc) |
+    /// [Python](https://plot.ly/python/reference/#carpet-asrc) |
+    /// [R](https://plot.ly/r/reference/#carpet-asrc)
     public var aSource: String?
 
     /// Sets the source reference on plot.ly for  b .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-bsrc) |
+    /// [Python](https://plot.ly/python/reference/#carpet-bsrc) |
+    /// [R](https://plot.ly/r/reference/#carpet-bsrc)
     public var bSource: String?
 
     /// Plotly compatible property encoding

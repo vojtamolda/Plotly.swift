@@ -1,33 +1,68 @@
 /// Draws sets of triangles with coordinates given by three 1-dimensional arrays in `x`, `y`, `z` and (1) a sets of `i`, `j`, `k` indices (2) Delaunay triangulation or (3) the Alpha-shape algorithm or (4) the Convex-hull algorithm
 public struct Mesh3D: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "mesh3d"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-visible) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-visible) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-visible)
     public var visible: Visible0?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-name) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-name) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-uid) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-uid) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ids) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-ids) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-customdata) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-customdata) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -37,10 +72,25 @@ public struct Mesh3D: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-meta) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-meta) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-meta)
     public var meta: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-stream) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-stream) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-stream)
     public var stream: Stream0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -53,24 +103,44 @@ public struct Mesh3D: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-uirevision) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the X coordinates of the vertices. 
     ///
     /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
     /// nth vertex.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-x) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-x) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-x)
     public var x: [Double]?
 
     /// Sets the Y coordinates of the vertices. 
     ///
     /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
     /// nth vertex.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-y) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-y) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-y)
     public var y: [Double]?
 
     /// Sets the Z coordinates of the vertices. 
     ///
     /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
     /// nth vertex.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-z) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-z) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-z)
     public var z: [Double]?
 
     /// A vector of vertex indices, i.e. 
@@ -80,6 +150,11 @@ public struct Mesh3D: Trace {
     /// mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays.
     /// Therefore, each element in `i` represents a point in space, which is the first vertex of a
     /// triangle.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-i) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-i) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-i)
     public var i: [Double]?
 
     /// A vector of vertex indices, i.e. 
@@ -89,6 +164,11 @@ public struct Mesh3D: Trace {
     /// mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays.
     /// Therefore, each element in `j` represents a point in space, which is the second vertex of a
     /// triangle.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-j) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-j) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-j)
     public var j: [Double]?
 
     /// A vector of vertex indices, i.e. 
@@ -98,15 +178,30 @@ public struct Mesh3D: Trace {
     /// mesh, where `k[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays.
     /// Therefore, each element in `k` represents a point in space, which is the third vertex of a
     /// triangle.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-k) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-k) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-k)
     public var k: [Double]?
 
     /// Sets the text elements associated with the vertices. 
     ///
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-text) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-text) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-text)
     public var text: String?
 
     /// Same as `text`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hovertext) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-hovertext) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-hovertext)
     public var hoverText: String?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -124,13 +219,20 @@ public struct Mesh3D: Trace {
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-hovertemplate)
     public var hoverTemplate: String?
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation. 
     ///
     /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay
     /// triangulation.
-    /// - [Mesh3D.DelaunayAxis](traces/mesh3d/attributes/delaunayaxis)
+    ///
+    /// # Used By
+    /// `Mesh3D.delaunayAxis` |
     public enum DelaunayAxis: String, Encodable {
         case x
         case y
@@ -140,6 +242,11 @@ public struct Mesh3D: Trace {
     ///
     /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay
     /// triangulation.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-delaunayaxis) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-delaunayaxis) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-delaunayaxis)
     public var delaunayAxis: DelaunayAxis?
 
     /// Determines how the mesh surface triangles are derived from the set of vertices (points) represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not supplied. 
@@ -153,39 +260,84 @@ public struct Mesh3D: Trace {
     /// parameter for the mesh fitting. If *0*, the convex-hull algorithm is used. It is suitable for
     /// convex bodies or if the intention is to enclose the `x`, `y` and `z` point set into a convex
     /// hull.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-alphahull) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-alphahull) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-alphahull)
     public var alphaHull: Double?
 
     /// Sets the vertex intensity values, used for plotting fields on meshes
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-intensity) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-intensity) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-intensity)
     public var intensity: [Double]?
 
     /// Sets the color of the whole mesh
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-color) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-color) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-color)
     public var color: Color?
 
     /// Sets the color of each vertex Overrides *color*. 
     ///
     /// While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex
     /// color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-vertexcolor) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-vertexcolor) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-vertexcolor)
     public var vertexColor: [Double]?
 
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-facecolor) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-facecolor) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-facecolor)
     public var faceColor: [Double]?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here `intensity`) or the bounds set in `cmin` and `cmax`  Defaults to `false` when `cmin` and `cmax` are set by the user.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-cauto) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-cauto) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-cauto)
     public var cAuto: Bool?
 
     /// Sets the lower bound of the color domain. 
     ///
     /// Value should have the same units as `intensity` and if set, `cmax` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-cmin) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-cmin) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-cmin)
     public var cMin: Double?
 
     /// Sets the upper bound of the color domain. 
     ///
     /// Value should have the same units as `intensity` and if set, `cmin` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-cmax) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-cmax) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-cmax)
     public var cMax: Double?
 
     /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this point. 
     ///
     /// Value should have the same units as `intensity`. Has no effect when `cauto` is `false`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-cmid) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-cmid) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-cmid)
     public var cMiddle: Double?
 
     /// Sets the colorscale. 
@@ -196,6 +348,11 @@ public struct Mesh3D: Trace {
     /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-colorscale) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-colorscale) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-colorscale)
     public var colorScale: ColorScale?
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. 
@@ -203,17 +360,37 @@ public struct Mesh3D: Trace {
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-autocolorscale) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-autocolorscale) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-autocolorscale)
     public var autoColorScale: Bool?
 
     /// Reverses the color mapping if true. 
     ///
     /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
     /// first color.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-reversescale) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-reversescale) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-reversescale)
     public var reverseScale: Bool?
 
     /// Determines whether or not a colorbar is displayed for this trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-showscale) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-showscale) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-showscale)
     public var showScale: Bool?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-colorbar) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-colorbar) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-colorbar)
     public var colorBar: ColorBar0?
 
     /// Sets a reference to a shared color axis. 
@@ -221,6 +398,11 @@ public struct Mesh3D: Trace {
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-coloraxis) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-coloraxis) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-coloraxis)
     public var colorAxis: SubPlotID?
 
     /// Sets the opacity of the surface. 
@@ -229,20 +411,47 @@ public struct Mesh3D: Trace {
     /// equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent
     /// surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in
     /// the near future and is subject to change.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-opacity) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-opacity) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-opacity)
     public var opacity: Double?
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-flatshading) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-flatshading) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-flatshading)
     public var flatShading: Bool?
 
-    /// - [Mesh3D.Contour](traces/mesh3d/attributes/contour)
+    ///
+    /// # Used By
+    /// `Mesh3D.contour` |
     public struct Contour: Encodable {
         /// Sets whether or not dynamic contours are shown on hover
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour-show) |
+        /// [Python](https://plot.ly/python/reference/#mesh3d-contour-show) |
+        /// [R](https://plot.ly/r/reference/#mesh3d-contour-show)
         public var show: Bool?
     
         /// Sets the color of the contour lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour-color) |
+        /// [Python](https://plot.ly/python/reference/#mesh3d-contour-color) |
+        /// [R](https://plot.ly/r/reference/#mesh3d-contour-color)
         public var color: Color?
     
         /// Sets the width of the contour lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour-width) |
+        /// [Python](https://plot.ly/python/reference/#mesh3d-contour-width) |
+        /// [R](https://plot.ly/r/reference/#mesh3d-contour-width)
         public var width: Double?
     
         public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
@@ -251,79 +460,199 @@ public struct Mesh3D: Trace {
             self.width = width
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-contour) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-contour)
     public var contour: Contour?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-lightposition) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-lightposition) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-lightposition)
     public var lightPosition: LightPosition0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-lighting) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-lighting) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-lighting)
     public var lighting: Lighting0?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-hoverinfo)
     public var hoverInfo: HoverInfo0?
 
     /// Sets the calendar system to use with `x` date data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-xcalendar) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-xcalendar) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-xcalendar)
     public var xCalendar: Calendar0?
 
     /// Sets the calendar system to use with `y` date data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ycalendar) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-ycalendar) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-ycalendar)
     public var yCalendar: Calendar0?
 
     /// Sets the calendar system to use with `z` date data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-zcalendar) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-zcalendar) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-zcalendar)
     public var zCalendar: Calendar0?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-scene) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-scene) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-scene)
     public var scene: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-idssrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-metasrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  x .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-xsrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-xsrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-xsrc)
     public var xSource: String?
 
     /// Sets the source reference on plot.ly for  y .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ysrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-ysrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-ysrc)
     public var ySource: String?
 
     /// Sets the source reference on plot.ly for  z .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-zsrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-zsrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-zsrc)
     public var zSource: String?
 
     /// Sets the source reference on plot.ly for  i .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-isrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-isrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-isrc)
     public var iSource: String?
 
     /// Sets the source reference on plot.ly for  j .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-jsrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-jsrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-jsrc)
     public var jSource: String?
 
     /// Sets the source reference on plot.ly for  k .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ksrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-ksrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-ksrc)
     public var kSource: String?
 
     /// Sets the source reference on plot.ly for  text .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-textsrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-textsrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-textsrc)
     public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hovertextsrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-hovertextsrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-hovertextsrc)
     public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hovertemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-hovertemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-hovertemplatesrc)
     public var hoverTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  intensity .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-intensitysrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-intensitysrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-intensitysrc)
     public var intensitySource: String?
 
     /// Sets the source reference on plot.ly for  vertexcolor .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-vertexcolorsrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-vertexcolorsrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-vertexcolorsrc)
     public var vertexColorSource: String?
 
     /// Sets the source reference on plot.ly for  facecolor .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-facecolorsrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-facecolorsrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-facecolorsrc)
     public var faceColorSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Plotly compatible property encoding

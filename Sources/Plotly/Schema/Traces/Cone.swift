@@ -4,34 +4,69 @@
 /// component arrays `u`, `v`, `w`. The cones are drawn exactly at the positions given by `x`, `y`
 /// and `z`.
 public struct Cone: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "cone"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-visible) |
+    /// [Python](https://plot.ly/python/reference/#cone-visible) |
+    /// [R](https://plot.ly/r/reference/#cone-visible)
     public var visible: Visible0?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-name) |
+    /// [Python](https://plot.ly/python/reference/#cone-name) |
+    /// [R](https://plot.ly/r/reference/#cone-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-uid) |
+    /// [Python](https://plot.ly/python/reference/#cone-uid) |
+    /// [R](https://plot.ly/r/reference/#cone-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-ids) |
+    /// [Python](https://plot.ly/python/reference/#cone-ids) |
+    /// [R](https://plot.ly/r/reference/#cone-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-customdata) |
+    /// [Python](https://plot.ly/python/reference/#cone-customdata) |
+    /// [R](https://plot.ly/r/reference/#cone-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -41,10 +76,25 @@ public struct Cone: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-meta) |
+    /// [Python](https://plot.ly/python/reference/#cone-meta) |
+    /// [R](https://plot.ly/r/reference/#cone-meta)
     public var meta: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#cone-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#cone-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-stream) |
+    /// [Python](https://plot.ly/python/reference/#cone-stream) |
+    /// [R](https://plot.ly/r/reference/#cone-stream)
     public var stream: Stream0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -57,33 +107,75 @@ public struct Cone: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#cone-uirevision) |
+    /// [R](https://plot.ly/r/reference/#cone-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the x coordinates of the vector field and of the displayed cones.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-x) |
+    /// [Python](https://plot.ly/python/reference/#cone-x) |
+    /// [R](https://plot.ly/r/reference/#cone-x)
     public var x: [Double]?
 
     /// Sets the y coordinates of the vector field and of the displayed cones.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-y) |
+    /// [Python](https://plot.ly/python/reference/#cone-y) |
+    /// [R](https://plot.ly/r/reference/#cone-y)
     public var y: [Double]?
 
     /// Sets the z coordinates of the vector field and of the displayed cones.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-z) |
+    /// [Python](https://plot.ly/python/reference/#cone-z) |
+    /// [R](https://plot.ly/r/reference/#cone-z)
     public var z: [Double]?
 
     /// Sets the x components of the vector field.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-u) |
+    /// [Python](https://plot.ly/python/reference/#cone-u) |
+    /// [R](https://plot.ly/r/reference/#cone-u)
     public var u: [Double]?
 
     /// Sets the y components of the vector field.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-v) |
+    /// [Python](https://plot.ly/python/reference/#cone-v) |
+    /// [R](https://plot.ly/r/reference/#cone-v)
     public var v: [Double]?
 
     /// Sets the z components of the vector field.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-w) |
+    /// [Python](https://plot.ly/python/reference/#cone-w) |
+    /// [R](https://plot.ly/r/reference/#cone-w)
     public var w: [Double]?
 
     /// Determines whether `sizeref` is set as a *scaled* (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as *absolute* value (in the same units as the vector field).
-    /// - [Cone.SizeMode](traces/cone/attributes/sizemode)
+    ///
+    /// # Used By
+    /// `Cone.sizeMode` |
     public enum SizeMode: String, Encodable {
         case scaled
         case absolute
     }
     /// Determines whether `sizeref` is set as a *scaled* (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as *absolute* value (in the same units as the vector field).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-sizemode) |
+    /// [Python](https://plot.ly/python/reference/#cone-sizemode) |
+    /// [R](https://plot.ly/r/reference/#cone-sizemode)
     public var sizeMode: SizeMode?
 
     /// Adjusts the cone size scaling. 
@@ -94,12 +186,19 @@ public struct Cone: Trace {
     /// trace use the same factor. With `sizemode` set to *scaled*, `sizeref` is unitless, its default
     /// value is *0.5* With `sizemode` set to *absolute*, `sizeref` has the same units as the u/v/w
     /// vector field, its the default value is half the sample's maximum vector norm.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-sizeref) |
+    /// [Python](https://plot.ly/python/reference/#cone-sizeref) |
+    /// [R](https://plot.ly/r/reference/#cone-sizeref)
     public var sizeReference: Double?
 
     /// Sets the cones' anchor with respect to their x/y/z positions. 
     ///
     /// Note that *cm* denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
-    /// - [Cone.Anchor](traces/cone/attributes/anchor)
+    ///
+    /// # Used By
+    /// `Cone.anchor` |
     public enum Anchor: String, Encodable {
         case tip
         case tail
@@ -109,15 +208,30 @@ public struct Cone: Trace {
     /// Sets the cones' anchor with respect to their x/y/z positions. 
     ///
     /// Note that *cm* denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-anchor) |
+    /// [Python](https://plot.ly/python/reference/#cone-anchor) |
+    /// [R](https://plot.ly/r/reference/#cone-anchor)
     public var anchor: Anchor?
 
     /// Sets the text elements associated with the cones. 
     ///
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-text) |
+    /// [Python](https://plot.ly/python/reference/#cone-text) |
+    /// [R](https://plot.ly/r/reference/#cone-text)
     public var text: String?
 
     /// Same as `text`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-hovertext) |
+    /// [Python](https://plot.ly/python/reference/#cone-hovertext) |
+    /// [R](https://plot.ly/r/reference/#cone-hovertext)
     public var hoverText: String?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -135,24 +249,49 @@ public struct Cone: Trace {
     /// true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the
     /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#cone-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#cone-hovertemplate)
     public var hoverTemplate: String?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here u/v/w norm) or the bounds set in `cmin` and `cmax`  Defaults to `false` when `cmin` and `cmax` are set by the user.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-cauto) |
+    /// [Python](https://plot.ly/python/reference/#cone-cauto) |
+    /// [R](https://plot.ly/r/reference/#cone-cauto)
     public var cAuto: Bool?
 
     /// Sets the lower bound of the color domain. 
     ///
     /// Value should have the same units as u/v/w norm and if set, `cmax` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-cmin) |
+    /// [Python](https://plot.ly/python/reference/#cone-cmin) |
+    /// [R](https://plot.ly/r/reference/#cone-cmin)
     public var cMin: Double?
 
     /// Sets the upper bound of the color domain. 
     ///
     /// Value should have the same units as u/v/w norm and if set, `cmin` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-cmax) |
+    /// [Python](https://plot.ly/python/reference/#cone-cmax) |
+    /// [R](https://plot.ly/r/reference/#cone-cmax)
     public var cMax: Double?
 
     /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this point. 
     ///
     /// Value should have the same units as u/v/w norm. Has no effect when `cauto` is `false`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-cmid) |
+    /// [Python](https://plot.ly/python/reference/#cone-cmid) |
+    /// [R](https://plot.ly/r/reference/#cone-cmid)
     public var cMiddle: Double?
 
     /// Sets the colorscale. 
@@ -163,6 +302,11 @@ public struct Cone: Trace {
     /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-colorscale) |
+    /// [Python](https://plot.ly/python/reference/#cone-colorscale) |
+    /// [R](https://plot.ly/r/reference/#cone-colorscale)
     public var colorScale: ColorScale?
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. 
@@ -170,17 +314,37 @@ public struct Cone: Trace {
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-autocolorscale) |
+    /// [Python](https://plot.ly/python/reference/#cone-autocolorscale) |
+    /// [R](https://plot.ly/r/reference/#cone-autocolorscale)
     public var autoColorScale: Bool?
 
     /// Reverses the color mapping if true. 
     ///
     /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
     /// first color.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-reversescale) |
+    /// [Python](https://plot.ly/python/reference/#cone-reversescale) |
+    /// [R](https://plot.ly/r/reference/#cone-reversescale)
     public var reverseScale: Bool?
 
     /// Determines whether or not a colorbar is displayed for this trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-showscale) |
+    /// [Python](https://plot.ly/python/reference/#cone-showscale) |
+    /// [R](https://plot.ly/r/reference/#cone-showscale)
     public var showScale: Bool?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-colorbar) |
+    /// [Python](https://plot.ly/python/reference/#cone-colorbar) |
+    /// [R](https://plot.ly/r/reference/#cone-colorbar)
     public var colorBar: ColorBar0?
 
     /// Sets a reference to a shared color axis. 
@@ -188,6 +352,11 @@ public struct Cone: Trace {
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-coloraxis) |
+    /// [Python](https://plot.ly/python/reference/#cone-coloraxis) |
+    /// [R](https://plot.ly/r/reference/#cone-coloraxis)
     public var colorAxis: SubPlotID?
 
     /// Sets the opacity of the surface. 
@@ -196,17 +365,34 @@ public struct Cone: Trace {
     /// equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent
     /// surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in
     /// the near future and is subject to change.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-opacity) |
+    /// [Python](https://plot.ly/python/reference/#cone-opacity) |
+    /// [R](https://plot.ly/r/reference/#cone-opacity)
     public var opacity: Double?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-lightposition) |
+    /// [Python](https://plot.ly/python/reference/#cone-lightposition) |
+    /// [R](https://plot.ly/r/reference/#cone-lightposition)
     public var lightPosition: LightPosition0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-lighting) |
+    /// [Python](https://plot.ly/python/reference/#cone-lighting) |
+    /// [R](https://plot.ly/r/reference/#cone-lighting)
     public var lighting: Lighting0?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - [Cone.HoverInfo](traces/cone/attributes/hoverinfo)
+    ///
+    /// # Used By
+    /// `Cone.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -247,51 +433,126 @@ public struct Cone: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#cone-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#cone-hoverinfo)
     public var hoverInfo: HoverInfo?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-scene) |
+    /// [Python](https://plot.ly/python/reference/#cone-scene) |
+    /// [R](https://plot.ly/r/reference/#cone-scene)
     public var scene: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-idssrc) |
+    /// [R](https://plot.ly/r/reference/#cone-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#cone-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-metasrc) |
+    /// [R](https://plot.ly/r/reference/#cone-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  x .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-xsrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-xsrc) |
+    /// [R](https://plot.ly/r/reference/#cone-xsrc)
     public var xSource: String?
 
     /// Sets the source reference on plot.ly for  y .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-ysrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-ysrc) |
+    /// [R](https://plot.ly/r/reference/#cone-ysrc)
     public var ySource: String?
 
     /// Sets the source reference on plot.ly for  z .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-zsrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-zsrc) |
+    /// [R](https://plot.ly/r/reference/#cone-zsrc)
     public var zSource: String?
 
     /// Sets the source reference on plot.ly for  u .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-usrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-usrc) |
+    /// [R](https://plot.ly/r/reference/#cone-usrc)
     public var uSource: String?
 
     /// Sets the source reference on plot.ly for  v .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-vsrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-vsrc) |
+    /// [R](https://plot.ly/r/reference/#cone-vsrc)
     public var vSource: String?
 
     /// Sets the source reference on plot.ly for  w .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-wsrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-wsrc) |
+    /// [R](https://plot.ly/r/reference/#cone-wsrc)
     public var wSource: String?
 
     /// Sets the source reference on plot.ly for  text .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-textsrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-textsrc) |
+    /// [R](https://plot.ly/r/reference/#cone-textsrc)
     public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-hovertextsrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-hovertextsrc) |
+    /// [R](https://plot.ly/r/reference/#cone-hovertextsrc)
     public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-hovertemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-hovertemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#cone-hovertemplatesrc)
     public var hoverTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#cone-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#cone-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Plotly compatible property encoding

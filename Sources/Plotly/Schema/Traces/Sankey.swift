@@ -3,34 +3,69 @@
 /// The nodes are specified in `nodes` and the links between sources and targets in `links`. The
 /// colors are set in `nodes[i].color` and `links[i].color`, otherwise defaults are used.
 public struct Sankey: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "sankey"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-visible) |
+    /// [Python](https://plot.ly/python/reference/#sankey-visible) |
+    /// [R](https://plot.ly/r/reference/#sankey-visible)
     public var visible: Visible0?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-name) |
+    /// [Python](https://plot.ly/python/reference/#sankey-name) |
+    /// [R](https://plot.ly/r/reference/#sankey-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-uid) |
+    /// [Python](https://plot.ly/python/reference/#sankey-uid) |
+    /// [R](https://plot.ly/r/reference/#sankey-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-ids) |
+    /// [Python](https://plot.ly/python/reference/#sankey-ids) |
+    /// [R](https://plot.ly/r/reference/#sankey-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-customdata) |
+    /// [Python](https://plot.ly/python/reference/#sankey-customdata) |
+    /// [R](https://plot.ly/r/reference/#sankey-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -40,6 +75,11 @@ public struct Sankey: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-meta) |
+    /// [Python](https://plot.ly/python/reference/#sankey-meta) |
+    /// [R](https://plot.ly/r/reference/#sankey-meta)
     public var meta: Anything?
 
     /// Array containing integer indices of selected points. 
@@ -47,8 +87,18 @@ public struct Sankey: Trace {
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-selectedpoints) |
+    /// [Python](https://plot.ly/python/reference/#sankey-selectedpoints) |
+    /// [R](https://plot.ly/r/reference/#sankey-selectedpoints)
     public var selectedPoints: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-stream) |
+    /// [Python](https://plot.ly/python/reference/#sankey-stream) |
+    /// [R](https://plot.ly/r/reference/#sankey-stream)
     public var stream: Stream0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -61,6 +111,11 @@ public struct Sankey: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#sankey-uirevision) |
+    /// [R](https://plot.ly/r/reference/#sankey-uirevision)
     public var uiRevision: Anything?
 
     /// Determines which trace information appear on hover. 
@@ -68,7 +123,9 @@ public struct Sankey: Trace {
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired. Note that this attribute is superseded by
     /// `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
-    /// - [Sankey.HoverInfo](traces/sankey/attributes/hoverinfo)
+    ///
+    /// # Used By
+    /// `Sankey.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -92,23 +149,53 @@ public struct Sankey: Trace {
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired. Note that this attribute is superseded by
     /// `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#sankey-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#sankey-hoverinfo)
     public var hoverInfo: HoverInfo?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#sankey-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#sankey-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-domain) |
+    /// [Python](https://plot.ly/python/reference/#sankey-domain) |
+    /// [R](https://plot.ly/r/reference/#sankey-domain)
     public var domain: Domain0?
 
     /// Sets the orientation of the Sankey diagram.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-orientation) |
+    /// [Python](https://plot.ly/python/reference/#sankey-orientation) |
+    /// [R](https://plot.ly/r/reference/#sankey-orientation)
     public var orientation: Orientation0?
 
     /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. 
     ///
     /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-valueformat) |
+    /// [Python](https://plot.ly/python/reference/#sankey-valueformat) |
+    /// [R](https://plot.ly/r/reference/#sankey-valueformat)
     public var valueFormat: String?
 
     /// Adds a unit to follow the value in the hover tooltip. 
     ///
     /// Add a space if a separation is necessary from the value.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-valuesuffix) |
+    /// [Python](https://plot.ly/python/reference/#sankey-valuesuffix) |
+    /// [R](https://plot.ly/r/reference/#sankey-valuesuffix)
     public var valueSuffix: String?
 
     /// If value is `snap` (the default), the node arrangement is assisted by automatic snapping of elements to preserve space between nodes specified via `nodepad`. 
@@ -116,7 +203,9 @@ public struct Sankey: Trace {
     /// If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If
     /// value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are
     /// stationary.
-    /// - [Sankey.Arrangement](traces/sankey/attributes/arrangement)
+    ///
+    /// # Used By
+    /// `Sankey.arrangement` |
     public enum Arrangement: String, Encodable {
         case snap
         case perpendicular
@@ -128,27 +217,59 @@ public struct Sankey: Trace {
     /// If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If
     /// value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are
     /// stationary.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-arrangement) |
+    /// [Python](https://plot.ly/python/reference/#sankey-arrangement) |
+    /// [R](https://plot.ly/r/reference/#sankey-arrangement)
     public var arrangement: Arrangement?
 
     /// Sets the font for node labels
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-textfont) |
+    /// [Python](https://plot.ly/python/reference/#sankey-textfont) |
+    /// [R](https://plot.ly/r/reference/#sankey-textfont)
     public var textFont: Font0?
 
     /// The nodes of the Sankey plot.
-    /// - [Sankey.Node](traces/sankey/attributes/node)
+    ///
+    /// # Used By
+    /// `Sankey.node` |
     public struct Node: Encodable {
         /// The shown name of the node.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-label) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-label) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-label)
         public var label: [Double]?
     
         /// Groups of nodes. 
         ///
         /// Each group is defined by an array with the indices of the nodes it contains. Multiple groups can
         /// be specified.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-groups) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-groups) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-groups)
         public var groups: InfoArray?
     
         /// The normalized horizontal position of the node.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-x) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-x) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-x)
         public var x: [Double]?
     
         /// The normalized vertical position of the node.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-y) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-y) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-y)
         public var y: [Double]?
     
         /// Sets the `node` color. 
@@ -157,21 +278,43 @@ public struct Sankey: Trace {
         /// omitted, then the default `Plotly` color palette will be cycled through to have a variety of
         /// colors. These defaults are not fully opaque, to allow some visibility of what is beneath the
         /// node.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-color) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-color) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-color)
         public var color: Color?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-line) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-line) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-line)
         public var line: Line2?
     
         /// Sets the padding (in px) between the `nodes`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-pad) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-pad) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-pad)
         public var padding: Double?
     
         /// Sets the thickness (in px) of the `nodes`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-thickness) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-thickness) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-thickness)
         public var thickness: Double?
     
         /// Determines which trace information appear when hovering nodes. 
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
-        /// - [Sankey.Node.HoverInfo](traces/sankey/attributes/node/hoverinfo)
+        ///
+        /// # Used By
+        /// `Sankey.Node.hoverInfo` |
         public enum HoverInfo: String, Encodable {
             case all
             case none
@@ -181,8 +324,18 @@ public struct Sankey: Trace {
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-hoverinfo) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-hoverinfo) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-hoverinfo)
         public var hoverInfo: HoverInfo?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-hoverlabel) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-hoverlabel) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-hoverlabel)
         public var hoverLabel: HoverLabel0?
     
         /// Template string used for rendering the information that appear on hover box. 
@@ -200,21 +353,51 @@ public struct Sankey: Trace {
         /// true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is
         /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
         /// secondary box completely, use an empty tag `<extra></extra>`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-hovertemplate) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-hovertemplate) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-hovertemplate)
         public var hoverTemplate: String?
     
         /// Sets the source reference on plot.ly for  label .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-labelsrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-labelsrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-labelsrc)
         public var labelSource: String?
     
         /// Sets the source reference on plot.ly for  x .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-xsrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-xsrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-xsrc)
         public var xSource: String?
     
         /// Sets the source reference on plot.ly for  y .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-ysrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-ysrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-ysrc)
         public var ySource: String?
     
         /// Sets the source reference on plot.ly for  color .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-colorsrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-colorsrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-colorsrc)
         public var colorSource: String?
     
         /// Sets the source reference on plot.ly for  hovertemplate .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-hovertemplatesrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-node-hovertemplatesrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-node-hovertemplatesrc)
         public var hoverTemplateSource: String?
     
         /// Plotly compatible property encoding
@@ -257,36 +440,75 @@ public struct Sankey: Trace {
         }
     }
     /// The nodes of the Sankey plot.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node) |
+    /// [Python](https://plot.ly/python/reference/#sankey-node) |
+    /// [R](https://plot.ly/r/reference/#sankey-node)
     public var node: Node?
 
     /// The links of the Sankey plot.
-    /// - [Sankey.Link](traces/sankey/attributes/link)
+    ///
+    /// # Used By
+    /// `Sankey.link` |
     public struct Link: Encodable {
         /// The shown name of the link.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-label) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-label) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-label)
         public var label: [Double]?
     
         /// Sets the `link` color. 
         ///
         /// It can be a single value, or an array for specifying color for each `link`. If `link.color` is
         /// omitted, then by default, a translucent grey link will be used.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-color) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-color) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-color)
         public var color: Color?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-line) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-line) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-line)
         public var line: Line2?
     
         /// An integer number `[0..nodes.length - 1]` that represents the source node.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-source) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-source) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-source)
         public var source: [Double]?
     
         /// An integer number `[0..nodes.length - 1]` that represents the target node.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-target) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-target) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-target)
         public var target: [Double]?
     
         /// A numeric value representing the flow volume value.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-value) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-value) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-value)
         public var value: [Double]?
     
         /// Determines which trace information appear when hovering links. 
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
-        /// - [Sankey.Link.HoverInfo](traces/sankey/attributes/link/hoverinfo)
+        ///
+        /// # Used By
+        /// `Sankey.Link.hoverInfo` |
         public enum HoverInfo: String, Encodable {
             case all
             case none
@@ -296,8 +518,18 @@ public struct Sankey: Trace {
         ///
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-hoverinfo) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-hoverinfo) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-hoverinfo)
         public var hoverInfo: HoverInfo?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-hoverlabel) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-hoverlabel) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-hoverlabel)
         public var hoverLabel: HoverLabel0?
     
         /// Template string used for rendering the information that appear on hover box. 
@@ -315,21 +547,47 @@ public struct Sankey: Trace {
         /// true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is
         /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
         /// secondary box completely, use an empty tag `<extra></extra>`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-hovertemplate) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-hovertemplate) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-hovertemplate)
         public var hoverTemplate: String?
     
-        /// - [Sankey.Link.ColorScales](traces/sankey/attributes/link/colorscales)
+        ///
+        /// # Used By
+        /// `Sankey.Link.colorScales` |
         public struct ColorScales: Encodable {
-            /// - [Sankey.Link.ColorScales.Items](traces/sankey/attributes/link/colorscales/items)
+            ///
+            /// # Used By
+            /// `Sankey.Link.ColorScales.items` |
             public struct Items: Encodable {
-                /// - [Sankey.Link.ColorScales.Items.ConcentrationScales](traces/sankey/attributes/link/colorscales/items/concentrationscales)
+                ///
+                /// # Used By
+                /// `Sankey.Link.ColorScales.Items.concentrationScales` |
                 public struct ConcentrationScales: Encodable {
                     /// The label of the links to color based on their concentration within a flow.
+                    ///
+                    /// # Plotly Reference
+                    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items-concentrationscales-label) |
+                    /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items-concentrationscales-label) |
+                    /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items-concentrationscales-label)
                     public var label: String?
                 
                     /// Sets the upper bound of the color domain.
+                    ///
+                    /// # Plotly Reference
+                    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items-concentrationscales-cmax) |
+                    /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items-concentrationscales-cmax) |
+                    /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items-concentrationscales-cmax)
                     public var cMax: Double?
                 
                     /// Sets the lower bound of the color domain.
+                    ///
+                    /// # Plotly Reference
+                    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items-concentrationscales-cmin) |
+                    /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items-concentrationscales-cmin) |
+                    /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items-concentrationscales-cmin)
                     public var cMin: Double?
                 
                     /// Sets the colorscale. 
@@ -340,6 +598,11 @@ public struct Sankey: Trace {
                     /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
                     /// be a palette name string of the following list:
                     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+                    ///
+                    /// # Plotly Reference
+                    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items-concentrationscales-colorscale) |
+                    /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items-concentrationscales-colorscale) |
+                    /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items-concentrationscales-colorscale)
                     public var colorScale: ColorScale?
                 
                     /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
@@ -347,6 +610,11 @@ public struct Sankey: Trace {
                     /// You can modify these items in the output figure by making your own item with `templateitemname`
                     /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
                     /// false` to hide it). Has no effect outside of a template.
+                    ///
+                    /// # Plotly Reference
+                    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items-concentrationscales-name) |
+                    /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items-concentrationscales-name) |
+                    /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items-concentrationscales-name)
                     public var name: String?
                 
                     /// Used to refer to a named item in this array in the template. 
@@ -356,6 +624,11 @@ public struct Sankey: Trace {
                     /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
                     /// template or no matching item, this item will be hidden unless you explicitly show it with
                     /// `visible: true`.
+                    ///
+                    /// # Plotly Reference
+                    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items-concentrationscales-templateitemname) |
+                    /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items-concentrationscales-templateitemname) |
+                    /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items-concentrationscales-templateitemname)
                     public var templateItemName: String?
                 
                     /// Plotly compatible property encoding
@@ -377,6 +650,11 @@ public struct Sankey: Trace {
                         self.templateItemName = templateItemName
                     }
                 }
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items-concentrationscales) |
+                /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items-concentrationscales) |
+                /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items-concentrationscales)
                 public var concentrationScales: ConcentrationScales?
             
                 /// Plotly compatible property encoding
@@ -388,30 +666,70 @@ public struct Sankey: Trace {
                     self.concentrationScales = concentrationScales
                 }
             }
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items) |
+            /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items) |
+            /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items)
             public var items: Items?
         
             public init(items: Items? = nil) {
                 self.items = items
             }
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-colorscales)
         public var colorScales: ColorScales?
     
         /// Sets the source reference on plot.ly for  label .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-labelsrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-labelsrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-labelsrc)
         public var labelSource: String?
     
         /// Sets the source reference on plot.ly for  color .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorsrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-colorsrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-colorsrc)
         public var colorSource: String?
     
         /// Sets the source reference on plot.ly for  source .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-sourcesrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-sourcesrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-sourcesrc)
         public var sourceSource: String?
     
         /// Sets the source reference on plot.ly for  target .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-targetsrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-targetsrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-targetsrc)
         public var targetSource: String?
     
         /// Sets the source reference on plot.ly for  value .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-valuesrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-valuesrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-valuesrc)
         public var valueSource: String?
     
         /// Sets the source reference on plot.ly for  hovertemplate .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-hovertemplatesrc) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-hovertemplatesrc) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-hovertemplatesrc)
         public var hoverTemplateSource: String?
     
         /// Plotly compatible property encoding
@@ -454,15 +772,35 @@ public struct Sankey: Trace {
         }
     }
     /// The links of the Sankey plot.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link) |
+    /// [Python](https://plot.ly/python/reference/#sankey-link) |
+    /// [R](https://plot.ly/r/reference/#sankey-link)
     public var link: Link?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#sankey-idssrc) |
+    /// [R](https://plot.ly/r/reference/#sankey-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#sankey-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#sankey-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sankey-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#sankey-metasrc) |
+    /// [R](https://plot.ly/r/reference/#sankey-metasrc)
     public var metaSource: String?
 
     /// Plotly compatible property encoding

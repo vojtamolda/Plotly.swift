@@ -2,37 +2,77 @@
 ///
 /// The resulting distribution is visualized as a heatmap.
 public struct Histogram2D: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "histogram2d"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-visible) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-visible) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-visible)
     public var visible: Visible0?
 
     /// Sets the opacity of the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-opacity) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-opacity) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-opacity)
     public var opacity: Double?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-name) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-name) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-uid) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-uid) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ids) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-ids) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-customdata) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-customdata) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -42,18 +82,43 @@ public struct Histogram2D: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-meta) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-meta) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-meta)
     public var meta: Anything?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-hoverinfo)
     public var hoverInfo: HoverInfo0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-stream) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-stream) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-stream)
     public var stream: Stream0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-transforms) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-transforms) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-transforms)
     public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -66,23 +131,55 @@ public struct Histogram2D: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-uirevision) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the sample data to be binned on the x axis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-x) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-x) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-x)
     public var x: [Double]?
 
     /// Sets the sample data to be binned on the y axis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-y) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-y) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-y)
     public var y: [Double]?
 
     /// Sets the aggregation data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-z) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-z) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-z)
     public var z: [Double]?
 
-    /// - [Histogram2D.Marker](traces/histogram2d/attributes/marker)
+    ///
+    /// # Used By
+    /// `Histogram2D.marker` |
     public struct Marker: Encodable {
         /// Sets the aggregation data.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-marker-color) |
+        /// [Python](https://plot.ly/python/reference/#histogram2d-marker-color) |
+        /// [R](https://plot.ly/r/reference/#histogram2d-marker-color)
         public var color: [Double]?
     
         /// Sets the source reference on plot.ly for  color .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-marker-colorsrc) |
+        /// [Python](https://plot.ly/python/reference/#histogram2d-marker-colorsrc) |
+        /// [R](https://plot.ly/r/reference/#histogram2d-marker-colorsrc)
         public var colorSource: String?
     
         /// Plotly compatible property encoding
@@ -96,6 +193,11 @@ public struct Histogram2D: Trace {
             self.colorSource = colorSource
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-marker) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-marker) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-marker)
     public var marker: Marker?
 
     /// Specifies the type of normalization used for this histogram trace. 
@@ -108,7 +210,9 @@ public struct Histogram2D: Trace {
     /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    /// - [Histogram2D.Normalization](traces/histogram2d/attributes/histnorm)
+    ///
+    /// # Used By
+    /// `Histogram2D.normalization` |
     public enum Normalization: String, Encodable {
         case none = ""
         case percent
@@ -126,6 +230,11 @@ public struct Histogram2D: Trace {
     /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-histnorm) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-histnorm) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-histnorm)
     public var normalization: Normalization?
 
     /// Specifies the binning function used for this histogram trace. 
@@ -133,7 +242,9 @@ public struct Histogram2D: Trace {
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
     /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    /// - [Histogram2D.BinningFunction](traces/histogram2d/attributes/histfunc)
+    ///
+    /// # Used By
+    /// `Histogram2D.binningFunction` |
     public enum BinningFunction: String, Encodable {
         case count
         case sum
@@ -146,15 +257,27 @@ public struct Histogram2D: Trace {
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
     /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-histfunc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-histfunc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-histfunc)
     public var binningFunction: BinningFunction?
 
     /// Specifies the maximum number of desired bins. 
     ///
     /// This value will be used in an algorithm that will decide the optimal bin size such that the
     /// histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-nbinsx) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-nbinsx) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-nbinsx)
     public var xNumBins: Int?
 
-    /// - [Histogram2D.XBins](traces/histogram2d/attributes/xbins)
+    ///
+    /// # Used By
+    /// `Histogram2D.xBins` |
     public struct XBins: Encodable {
         /// Sets the starting value for the x axis bins. 
         ///
@@ -164,6 +287,11 @@ public struct Histogram2D: Trace {
         /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
         /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
         /// based on the category serial numbers, and defaults to -0.5. 
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins-start) |
+        /// [Python](https://plot.ly/python/reference/#histogram2d-xbins-start) |
+        /// [R](https://plot.ly/r/reference/#histogram2d-xbins-start)
         public var start: Anything?
     
         /// Sets the end value for the x axis bins. 
@@ -171,6 +299,11 @@ public struct Histogram2D: Trace {
         /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
         /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
         /// a date string, and for category data `end` is based on the category serial numbers.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins-end) |
+        /// [Python](https://plot.ly/python/reference/#histogram2d-xbins-end) |
+        /// [R](https://plot.ly/r/reference/#histogram2d-xbins-end)
         public var end: Anything?
     
         /// Sets the size of each x axis bin. 
@@ -180,6 +313,11 @@ public struct Histogram2D: Trace {
         /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
         /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
         /// categories to bin together (always defaults to 1). 
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins-size) |
+        /// [Python](https://plot.ly/python/reference/#histogram2d-xbins-size) |
+        /// [R](https://plot.ly/r/reference/#histogram2d-xbins-size)
         public var size: Anything?
     
         public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
@@ -188,15 +326,27 @@ public struct Histogram2D: Trace {
             self.size = size
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-xbins) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-xbins)
     public var xBins: XBins?
 
     /// Specifies the maximum number of desired bins. 
     ///
     /// This value will be used in an algorithm that will decide the optimal bin size such that the
     /// histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-nbinsy) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-nbinsy) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-nbinsy)
     public var yNumBins: Int?
 
-    /// - [Histogram2D.YBins](traces/histogram2d/attributes/ybins)
+    ///
+    /// # Used By
+    /// `Histogram2D.yBins` |
     public struct YBins: Encodable {
         /// Sets the starting value for the y axis bins. 
         ///
@@ -206,6 +356,11 @@ public struct Histogram2D: Trace {
         /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
         /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
         /// based on the category serial numbers, and defaults to -0.5. 
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins-start) |
+        /// [Python](https://plot.ly/python/reference/#histogram2d-ybins-start) |
+        /// [R](https://plot.ly/r/reference/#histogram2d-ybins-start)
         public var start: Anything?
     
         /// Sets the end value for the y axis bins. 
@@ -213,6 +368,11 @@ public struct Histogram2D: Trace {
         /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
         /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
         /// a date string, and for category data `end` is based on the category serial numbers.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins-end) |
+        /// [Python](https://plot.ly/python/reference/#histogram2d-ybins-end) |
+        /// [R](https://plot.ly/r/reference/#histogram2d-ybins-end)
         public var end: Anything?
     
         /// Sets the size of each y axis bin. 
@@ -222,6 +382,11 @@ public struct Histogram2D: Trace {
         /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
         /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
         /// categories to bin together (always defaults to 1). 
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins-size) |
+        /// [Python](https://plot.ly/python/reference/#histogram2d-ybins-size) |
+        /// [R](https://plot.ly/r/reference/#histogram2d-ybins-size)
         public var size: Anything?
     
         public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
@@ -230,21 +395,41 @@ public struct Histogram2D: Trace {
             self.size = size
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-ybins) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-ybins)
     public var yBins: YBins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. 
     ///
     /// However, we accept `autobinx: true` or `false` and will update `xbins` accordingly before
     /// deleting `autobinx` from the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-autobinx) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-autobinx) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-autobinx)
     public var xAutoBin: Bool?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobiny` is not needed. 
     ///
     /// However, we accept `autobiny: true` or `false` and will update `ybins` accordingly before
     /// deleting `autobiny` from the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-autobiny) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-autobiny) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-autobiny)
     public var yAutoBin: Bool?
 
     /// Set the `xbingroup` and `ybingroup` default prefix For example, setting a `bingroup` of *1* on two histogram2d traces will make them their x-bins and y-bins match separately.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-bingroup) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-bingroup) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-bingroup)
     public var binGroup: String?
 
     /// Set a group of histogram traces which will have compatible x-bin settings. 
@@ -252,6 +437,11 @@ public struct Histogram2D: Trace {
     /// Using `xbingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can
     /// have compatible x-bin settings. Note that the same `xbingroup` value can be used to set (1D)
     /// histogram `bingroup`
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbingroup) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-xbingroup) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-xbingroup)
     public var xBinGroup: String?
 
     /// Set a group of histogram traces which will have compatible y-bin settings. 
@@ -259,27 +449,54 @@ public struct Histogram2D: Trace {
     /// Using `ybingroup`, histogram2d and histogram2dcontour traces (on axes of the same axis type) can
     /// have compatible y-bin settings. Note that the same `ybingroup` value can be used to set (1D)
     /// histogram `bingroup`
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybingroup) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-ybingroup) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-ybingroup)
     public var yBinGroup: String?
 
     /// Sets the horizontal gap (in pixels) between bricks.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xgap) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-xgap) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-xgap)
     public var xGap: Double?
 
     /// Sets the vertical gap (in pixels) between bricks.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ygap) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-ygap) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-ygap)
     public var yGap: Double?
 
     /// Picks a smoothing algorithm use to smooth `z` data.
-    /// - [Histogram2D.ZSmooth](traces/histogram2d/attributes/zsmooth)
+    ///
+    /// # Used By
+    /// `Histogram2D.zSmooth` |
     public enum ZSmooth: String, Encodable {
         case fast
         case best
         case `false` = "false"
     }
     /// Picks a smoothing algorithm use to smooth `z` data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-zsmooth) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-zsmooth) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-zsmooth)
     public var zSmooth: ZSmooth?
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
     ///
     /// See: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-zhoverformat) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-zhoverformat) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-zhoverformat)
     public var zHoverFormat: String?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -297,24 +514,49 @@ public struct Histogram2D: Trace {
     /// true`) are available. variable `z` Anything contained in tag `<extra>` is displayed in the
     /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-hovertemplate)
     public var hoverTemplate: String?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-zauto) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-zauto) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-zauto)
     public var zAuto: Bool?
 
     /// Sets the lower bound of the color domain. 
     ///
     /// Value should have the same units as in `z` and if set, `zmax` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-zmin) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-zmin) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-zmin)
     public var zMin: Double?
 
     /// Sets the upper bound of the color domain. 
     ///
     /// Value should have the same units as in `z` and if set, `zmin` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-zmax) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-zmax) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-zmax)
     public var zMax: Double?
 
     /// Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this point. 
     ///
     /// Value should have the same units as in `z`. Has no effect when `zauto` is `false`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-zmid) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-zmid) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-zmid)
     public var zMiddle: Double?
 
     /// Sets the colorscale. 
@@ -325,6 +567,11 @@ public struct Histogram2D: Trace {
     /// bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-colorscale) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-colorscale) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-colorscale)
     public var colorScale: ColorScale?
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. 
@@ -332,17 +579,37 @@ public struct Histogram2D: Trace {
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-autocolorscale) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-autocolorscale) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-autocolorscale)
     public var autoColorScale: Bool?
 
     /// Reverses the color mapping if true. 
     ///
     /// If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the
     /// first color.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-reversescale) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-reversescale) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-reversescale)
     public var reverseScale: Bool?
 
     /// Determines whether or not a colorbar is displayed for this trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-showscale) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-showscale) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-showscale)
     public var showScale: Bool?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-colorbar) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-colorbar) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-colorbar)
     public var colorBar: ColorBar0?
 
     /// Sets a reference to a shared color axis. 
@@ -350,48 +617,113 @@ public struct Histogram2D: Trace {
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-coloraxis) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-coloraxis) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-coloraxis)
     public var colorAxis: SubPlotID?
 
     /// Sets the calendar system to use with `x` date data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xcalendar) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-xcalendar) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-xcalendar)
     public var xCalendar: Calendar0?
 
     /// Sets the calendar system to use with `y` date data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ycalendar) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-ycalendar) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-ycalendar)
     public var yCalendar: Calendar0?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xaxis) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-xaxis) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-xaxis)
     public var xAxis: SubPlotID?
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. 
     ///
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-yaxis) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-yaxis) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-yaxis)
     public var yAxis: SubPlotID?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-idssrc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-metasrc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  x .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xsrc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-xsrc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-xsrc)
     public var xSource: String?
 
     /// Sets the source reference on plot.ly for  y .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ysrc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-ysrc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-ysrc)
     public var ySource: String?
 
     /// Sets the source reference on plot.ly for  z .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-zsrc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-zsrc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-zsrc)
     public var zSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hovertemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-hovertemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-hovertemplatesrc)
     public var hoverTemplateSource: String?
 
     /// Plotly compatible property encoding

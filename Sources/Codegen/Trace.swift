@@ -15,17 +15,19 @@ struct Trace: Definable {
         attributes = Swift.Object(named: identifier, schema: schema.attributes)
         attributes.protocols = ["Trace"]
 
-        let stringDummy = Schema.String_(codingPath: [Schema.Keys("type")], valType: "string",
-                                         description: nil, editType: nil, role: nil, dflt: nil,
-                                         noBlank: nil, strict: nil, values: nil, arrayOk: nil)
-        let typeConst = Instance(of: Swift.String_(schema: stringDummy), named: "type")
+        let stringSchema = Schema.String_(codingPath: [Schema.Keys("type")], valType: "string",
+                                          description: nil, editType: nil, role: nil, dflt: nil,
+                                          noBlank: nil, strict: nil, values: nil, arrayOk: nil)
+        let stringType = Swift.String_(parent: attributes, schema: stringSchema)
+        let typeConst = Instance(of: stringType, named: "type")
         typeConst.constant = schema.type.escaped()
         typeConst.optional = false
         attributes.members.insert(typeConst, at: 0)
 
-        let boolDummy = Schema.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool",
-                                       description: nil, editType: nil, role: nil)
-        let animatableConst = Instance(of: Swift.Boolean(schema: boolDummy), named: "animatable")
+        let boolSchema = Schema.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool",
+                                        description: nil, editType: nil, role: nil)
+        let boolType = Swift.Boolean(parent: attributes, schema: boolSchema)
+        let animatableConst = Instance(of: boolType, named: "animatable")
         animatableConst.constant = String(schema.animatable)
         animatableConst.optional = false
         attributes.members.insert(animatableConst, at: 1)

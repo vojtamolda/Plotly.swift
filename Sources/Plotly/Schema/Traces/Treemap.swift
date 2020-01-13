@@ -2,37 +2,77 @@
 ///
 /// The treemap sectors are determined by the entries in *labels* or *ids* and in *parents*.
 public struct Treemap: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "treemap"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = true
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-visible) |
+    /// [Python](https://plot.ly/python/reference/#treemap-visible) |
+    /// [R](https://plot.ly/r/reference/#treemap-visible)
     public var visible: Visible0?
 
     /// Sets the opacity of the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-opacity) |
+    /// [Python](https://plot.ly/python/reference/#treemap-opacity) |
+    /// [R](https://plot.ly/r/reference/#treemap-opacity)
     public var opacity: Double?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-name) |
+    /// [Python](https://plot.ly/python/reference/#treemap-name) |
+    /// [R](https://plot.ly/r/reference/#treemap-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-uid) |
+    /// [Python](https://plot.ly/python/reference/#treemap-uid) |
+    /// [R](https://plot.ly/r/reference/#treemap-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-ids) |
+    /// [Python](https://plot.ly/python/reference/#treemap-ids) |
+    /// [R](https://plot.ly/r/reference/#treemap-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-customdata) |
+    /// [Python](https://plot.ly/python/reference/#treemap-customdata) |
+    /// [R](https://plot.ly/r/reference/#treemap-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -42,12 +82,32 @@ public struct Treemap: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-meta) |
+    /// [Python](https://plot.ly/python/reference/#treemap-meta) |
+    /// [R](https://plot.ly/r/reference/#treemap-meta)
     public var meta: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#treemap-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#treemap-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-stream) |
+    /// [Python](https://plot.ly/python/reference/#treemap-stream) |
+    /// [R](https://plot.ly/r/reference/#treemap-stream)
     public var stream: Stream0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-transforms) |
+    /// [Python](https://plot.ly/python/reference/#treemap-transforms) |
+    /// [R](https://plot.ly/r/reference/#treemap-transforms)
     public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -60,9 +120,19 @@ public struct Treemap: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#treemap-uirevision) |
+    /// [R](https://plot.ly/r/reference/#treemap-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the labels of each of the sectors.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-labels) |
+    /// [Python](https://plot.ly/python/reference/#treemap-labels) |
+    /// [R](https://plot.ly/r/reference/#treemap-labels)
     public var labels: [Double]?
 
     /// Sets the parent sectors for each of the sectors. 
@@ -70,11 +140,21 @@ public struct Treemap: Trace {
     /// Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is
     /// filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly
     /// attempts to find matching items in `labels`, but beware they must be unique.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-parents) |
+    /// [Python](https://plot.ly/python/reference/#treemap-parents) |
+    /// [R](https://plot.ly/r/reference/#treemap-parents)
     public var parents: [Double]?
 
     /// Sets the values associated with each of the sectors. 
     ///
     /// Use with `branchvalues` to determine how the values are summed.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-values) |
+    /// [Python](https://plot.ly/python/reference/#treemap-values) |
+    /// [R](https://plot.ly/r/reference/#treemap-values)
     public var values: [Double]?
 
     /// Determines how the items in `values` are summed. 
@@ -82,7 +162,9 @@ public struct Treemap: Trace {
     /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
     /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
     /// be the extra part not part of the sum of the values at their leaves.
-    /// - [Treemap.BranchValues](traces/treemap/attributes/branchvalues)
+    ///
+    /// # Used By
+    /// `Treemap.branchValues` |
     public enum BranchValues: String, Encodable {
         case remainder
         case total
@@ -92,10 +174,17 @@ public struct Treemap: Trace {
     /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
     /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
     /// be the extra part not part of the sum of the values at their leaves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-branchvalues) |
+    /// [Python](https://plot.ly/python/reference/#treemap-branchvalues) |
+    /// [R](https://plot.ly/r/reference/#treemap-branchvalues)
     public var branchValues: BranchValues?
 
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
-    /// - [Treemap.Count](traces/treemap/attributes/count)
+    ///
+    /// # Used By
+    /// `Treemap.count` |
     public struct Count: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -113,25 +202,44 @@ public struct Treemap: Trace {
         }
     }
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the *leaves* and/or *branches*, otherwise 0.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-count) |
+    /// [Python](https://plot.ly/python/reference/#treemap-count) |
+    /// [R](https://plot.ly/r/reference/#treemap-count)
     public var count: Count?
 
     /// Sets the level from which this trace hierarchy is rendered. 
     ///
     /// Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is
     /// filled in, otherwise plotly attempts to find a matching item in `labels`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-level) |
+    /// [Python](https://plot.ly/python/reference/#treemap-level) |
+    /// [R](https://plot.ly/r/reference/#treemap-level)
     public var level: Anything?
 
     /// Sets the number of rendered sectors from any given `level`. 
     ///
     /// Set `maxdepth` to *-1* to render all the levels in the hierarchy.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-maxdepth) |
+    /// [Python](https://plot.ly/python/reference/#treemap-maxdepth) |
+    /// [R](https://plot.ly/r/reference/#treemap-maxdepth)
     public var maxDepth: Int?
 
-    /// - [Treemap.Tiling](traces/treemap/attributes/tiling)
+    ///
+    /// # Used By
+    /// `Treemap.tiling` |
     public struct Tiling: Encodable {
         /// Determines d3 treemap solver. 
         ///
         /// For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
-        /// - [Treemap.Tiling.Packing](traces/treemap/attributes/tiling/packing)
+        ///
+        /// # Used By
+        /// `Treemap.Tiling.packing` |
         public enum Packing: String, Encodable {
             case squarify
             case binary
@@ -143,6 +251,11 @@ public struct Treemap: Trace {
         /// Determines d3 treemap solver. 
         ///
         /// For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-tiling-packing) |
+        /// [Python](https://plot.ly/python/reference/#treemap-tiling-packing) |
+        /// [R](https://plot.ly/r/reference/#treemap-tiling-packing)
         public var packing: Packing?
     
         /// When using *squarify* `packing` algorithm, according to https://github.com/d3/d3-hierarchy/blob/master/README.md#squarify_ratio this option specifies the desired aspect ratio of the generated rectangles. 
@@ -152,10 +265,17 @@ public struct Treemap: Trace {
         /// two will attempt to produce a mixture of rectangles whose width:height ratio is either 2:1 or
         /// 1:2. When using *squarify*, unlike d3 which uses the Golden Ratio i.e. 1.618034, Plotly applies
         /// 1 to increase squares in treemap layouts.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-tiling-squarifyratio) |
+        /// [Python](https://plot.ly/python/reference/#treemap-tiling-squarifyratio) |
+        /// [R](https://plot.ly/r/reference/#treemap-tiling-squarifyratio)
         public var squarifyRatio: Double?
     
         /// Determines if the positions obtained from solver are flipped on each axis.
-        /// - [Treemap.Tiling.Flip](traces/treemap/attributes/tiling/flip)
+        ///
+        /// # Used By
+        /// `Treemap.Tiling.flip` |
         public struct Flip: OptionSet, Encodable {
             public let rawValue: Int
         
@@ -173,9 +293,19 @@ public struct Treemap: Trace {
             }
         }
         /// Determines if the positions obtained from solver are flipped on each axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-tiling-flip) |
+        /// [Python](https://plot.ly/python/reference/#treemap-tiling-flip) |
+        /// [R](https://plot.ly/r/reference/#treemap-tiling-flip)
         public var flip: Flip?
     
         /// Sets the inner padding (in px).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-tiling-pad) |
+        /// [Python](https://plot.ly/python/reference/#treemap-tiling-pad) |
+        /// [R](https://plot.ly/r/reference/#treemap-tiling-pad)
         public var padding: Double?
     
         /// Plotly compatible property encoding
@@ -193,22 +323,51 @@ public struct Treemap: Trace {
             self.padding = padding
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-tiling) |
+    /// [Python](https://plot.ly/python/reference/#treemap-tiling) |
+    /// [R](https://plot.ly/r/reference/#treemap-tiling)
     public var tiling: Tiling?
 
-    /// - [Treemap.Marker](traces/treemap/attributes/marker)
+    ///
+    /// # Used By
+    /// `Treemap.marker` |
     public struct Marker: Encodable {
-        /// - [Treemap.Marker.Padding](traces/treemap/attributes/marker/pad)
+        ///
+        /// # Used By
+        /// `Treemap.Marker.padding` |
         public struct Padding: Encodable {
             /// Sets the padding form the top (in px).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-pad-t) |
+            /// [Python](https://plot.ly/python/reference/#treemap-marker-pad-t) |
+            /// [R](https://plot.ly/r/reference/#treemap-marker-pad-t)
             public var t: Double?
         
             /// Sets the padding form the left (in px).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-pad-l) |
+            /// [Python](https://plot.ly/python/reference/#treemap-marker-pad-l) |
+            /// [R](https://plot.ly/r/reference/#treemap-marker-pad-l)
             public var l: Double?
         
             /// Sets the padding form the right (in px).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-pad-r) |
+            /// [Python](https://plot.ly/python/reference/#treemap-marker-pad-r) |
+            /// [R](https://plot.ly/r/reference/#treemap-marker-pad-r)
             public var r: Double?
         
             /// Sets the padding form the bottom (in px).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-pad-b) |
+            /// [Python](https://plot.ly/python/reference/#treemap-marker-pad-b) |
+            /// [R](https://plot.ly/r/reference/#treemap-marker-pad-b)
             public var b: Double?
         
             public init(t: Double? = nil, l: Double? = nil, r: Double? = nil, b: Double? = nil) {
@@ -218,11 +377,21 @@ public struct Treemap: Trace {
                 self.b = b
             }
         }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-pad) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-pad) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-pad)
         public var padding: Padding?
     
         /// Sets the color of each sector of this trace. 
         ///
         /// If not specified, the default trace color set is used to pick the sector colors.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-colors) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-colors) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-colors)
         public var colors: [Double]?
     
         /// Determines if the sector colors are faded towards the background from the leaves up to the headers. 
@@ -231,7 +400,9 @@ public struct Treemap: Trace {
         /// `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading
         /// direction is inverted, that is the top elements within hierarchy are drawn with fully saturated
         /// colors while the leaves are faded towards the background color.
-        /// - [Treemap.Marker.DepthFade](traces/treemap/attributes/marker/depthfade)
+        ///
+        /// # Used By
+        /// `Treemap.Marker.depthFade` |
         public enum DepthFade: String, Encodable {
             case `true` = "true"
             case `false` = "false"
@@ -243,31 +414,61 @@ public struct Treemap: Trace {
         /// `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading
         /// direction is inverted, that is the top elements within hierarchy are drawn with fully saturated
         /// colors while the leaves are faded towards the background color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-depthfade) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-depthfade) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-depthfade)
         public var depthFade: DepthFade?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-line) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-line) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-line)
         public var line: Line2?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here colors) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if colorsis set to a numerical array. 
         ///
         /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-cauto) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-cauto) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-cauto)
         public var cAuto: Bool?
     
         /// Sets the lower bound of the color domain. 
         ///
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors and if set, `marker.cmax` must be set as well.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-cmin) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-cmin) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-cmin)
         public var cMin: Double?
     
         /// Sets the upper bound of the color domain. 
         ///
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors and if set, `marker.cmin` must be set as well.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-cmax) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-cmax) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-cmax)
         public var cMax: Double?
     
         /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
         ///
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors. Has no effect when `marker.cauto` is `false`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-cmid) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-cmid) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-cmid)
         public var cMiddle: Double?
     
         /// Sets the colorscale. 
@@ -279,6 +480,11 @@ public struct Treemap: Trace {
         /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-colorscale) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-colorscale) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-colorscale)
         public var colorScale: ColorScale?
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
@@ -286,19 +492,39 @@ public struct Treemap: Trace {
         /// Has an effect only if colorsis set to a numerical array. In case `colorscale` is unspecified or
         /// `autocolorscale` is true, the default palette will be chosen according to whether numbers in the
         /// `color` array are all positive, all negative or mixed.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-autocolorscale) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-autocolorscale) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-autocolorscale)
         public var autoColorScale: Bool?
     
         /// Reverses the color mapping if true. 
         ///
         /// Has an effect only if colorsis set to a numerical array. If true, `marker.cmin` will correspond
         /// to the last color in the array and `marker.cmax` will correspond to the first color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-reversescale) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-reversescale) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-reversescale)
         public var reverseScale: Bool?
     
         /// Determines whether or not a colorbar is displayed for this trace. 
         ///
         /// Has an effect only if colorsis set to a numerical array.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-showscale) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-showscale) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-showscale)
         public var showScale: Bool?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-colorbar) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-colorbar) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-colorbar)
         public var colorBar: ColorBar0?
     
         /// Sets a reference to a shared color axis. 
@@ -306,9 +532,19 @@ public struct Treemap: Trace {
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-coloraxis) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-coloraxis) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-coloraxis)
         public var colorAxis: SubPlotID?
     
         /// Sets the source reference on plot.ly for  colors .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-colorssrc) |
+        /// [Python](https://plot.ly/python/reference/#treemap-marker-colorssrc) |
+        /// [R](https://plot.ly/r/reference/#treemap-marker-colorssrc)
         public var colorsSource: String?
     
         /// Plotly compatible property encoding
@@ -348,26 +584,47 @@ public struct Treemap: Trace {
             self.colorsSource = colorsSource
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker) |
+    /// [Python](https://plot.ly/python/reference/#treemap-marker) |
+    /// [R](https://plot.ly/r/reference/#treemap-marker)
     public var marker: Marker?
 
-    /// - [Treemap.PathBar](traces/treemap/attributes/pathbar)
+    ///
+    /// # Used By
+    /// `Treemap.pathBar` |
     public struct PathBar: Encodable {
         /// Determines if the path bar is drawn i.e. 
         ///
         /// outside the trace `domain` and with one pixel gap.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-pathbar-visible) |
+        /// [Python](https://plot.ly/python/reference/#treemap-pathbar-visible) |
+        /// [R](https://plot.ly/r/reference/#treemap-pathbar-visible)
         public var visible: Bool?
     
         /// Determines on which side of the the treemap the `pathbar` should be presented.
-        /// - [Treemap.PathBar.Side](traces/treemap/attributes/pathbar/side)
+        ///
+        /// # Used By
+        /// `Treemap.PathBar.side` |
         public enum Side: String, Encodable {
             case top
             case bottom
         }
         /// Determines on which side of the the treemap the `pathbar` should be presented.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-pathbar-side) |
+        /// [Python](https://plot.ly/python/reference/#treemap-pathbar-side) |
+        /// [R](https://plot.ly/r/reference/#treemap-pathbar-side)
         public var side: Side?
     
         /// Determines which shape is used for edges between `barpath` labels.
-        /// - [Treemap.PathBar.EdgeShape](traces/treemap/attributes/pathbar/edgeshape)
+        ///
+        /// # Used By
+        /// `Treemap.PathBar.edgeShape` |
         public enum EdgeShape: String, Encodable {
             case greaterThan = ">"
             case lessThan = "<"
@@ -376,14 +633,29 @@ public struct Treemap: Trace {
             case backwardSlash = "\\"
         }
         /// Determines which shape is used for edges between `barpath` labels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-pathbar-edgeshape) |
+        /// [Python](https://plot.ly/python/reference/#treemap-pathbar-edgeshape) |
+        /// [R](https://plot.ly/r/reference/#treemap-pathbar-edgeshape)
         public var edgeShape: EdgeShape?
     
         /// Sets the thickness of `pathbar` (in px). 
         ///
         /// If not specified the `pathbar.textfont.size` is used with 3 pixles extra padding on each side.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-pathbar-thickness) |
+        /// [Python](https://plot.ly/python/reference/#treemap-pathbar-thickness) |
+        /// [R](https://plot.ly/r/reference/#treemap-pathbar-thickness)
         public var thickness: Double?
     
         /// Sets the font used inside `pathbar`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#treemap-pathbar-textfont) |
+        /// [Python](https://plot.ly/python/reference/#treemap-pathbar-textfont) |
+        /// [R](https://plot.ly/r/reference/#treemap-pathbar-textfont)
         public var textFont: Font0?
     
         /// Plotly compatible property encoding
@@ -403,6 +675,11 @@ public struct Treemap: Trace {
             self.textFont = textFont
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-pathbar) |
+    /// [Python](https://plot.ly/python/reference/#treemap-pathbar) |
+    /// [R](https://plot.ly/r/reference/#treemap-pathbar)
     public var pathBar: PathBar?
 
     /// Sets text elements associated with each sector. 
@@ -410,10 +687,17 @@ public struct Treemap: Trace {
     /// If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-text) |
+    /// [Python](https://plot.ly/python/reference/#treemap-text) |
+    /// [R](https://plot.ly/r/reference/#treemap-text)
     public var text: [Double]?
 
     /// Determines which trace information appear on the graph.
-    /// - [Treemap.TextInfo](traces/treemap/attributes/textinfo)
+    ///
+    /// # Used By
+    /// `Treemap.textInfo` |
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -443,6 +727,11 @@ public struct Treemap: Trace {
         }
     }
     /// Determines which trace information appear on the graph.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-textinfo) |
+    /// [Python](https://plot.ly/python/reference/#treemap-textinfo) |
+    /// [R](https://plot.ly/r/reference/#treemap-textinfo)
     public var textInfo: TextInfo?
 
     /// Template string used for rendering the information text that appear on points. 
@@ -457,6 +746,11 @@ public struct Treemap: Trace {
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`,
     /// `percentEntry`, `percentParent`, `label` and `value`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-texttemplate) |
+    /// [Python](https://plot.ly/python/reference/#treemap-texttemplate) |
+    /// [R](https://plot.ly/r/reference/#treemap-texttemplate)
     public var textTemplate: String?
 
     /// Sets hover text elements associated with each sector. 
@@ -464,13 +758,20 @@ public struct Treemap: Trace {
     /// If a single string, the same string appears for all data points. If an array of string, the
     /// items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a
     /// *text* flag.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hovertext) |
+    /// [Python](https://plot.ly/python/reference/#treemap-hovertext) |
+    /// [R](https://plot.ly/r/reference/#treemap-hovertext)
     public var hoverText: String?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - [Treemap.HoverInfo](traces/treemap/attributes/hoverinfo)
+    ///
+    /// # Used By
+    /// `Treemap.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -509,6 +810,11 @@ public struct Treemap: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#treemap-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#treemap-hoverinfo)
     public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -527,53 +833,138 @@ public struct Treemap: Trace {
     /// and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#treemap-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#treemap-hovertemplate)
     public var hoverTemplate: String?
 
     /// Sets the font used for `textinfo`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-textfont) |
+    /// [Python](https://plot.ly/python/reference/#treemap-textfont) |
+    /// [R](https://plot.ly/r/reference/#treemap-textfont)
     public var textFont: Font0?
 
     /// Sets the font used for `textinfo` lying inside the sector.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-insidetextfont) |
+    /// [Python](https://plot.ly/python/reference/#treemap-insidetextfont) |
+    /// [R](https://plot.ly/r/reference/#treemap-insidetextfont)
     public var insideTextFont: Font0?
 
     /// Sets the font used for `textinfo` lying outside the sector.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-outsidetextfont) |
+    /// [Python](https://plot.ly/python/reference/#treemap-outsidetextfont) |
+    /// [R](https://plot.ly/r/reference/#treemap-outsidetextfont)
     public var outSideTextFont: Font0?
 
     /// Sets the positions of the `text` elements.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-textposition) |
+    /// [Python](https://plot.ly/python/reference/#treemap-textposition) |
+    /// [R](https://plot.ly/r/reference/#treemap-textposition)
     public var textPosition: TextPosition0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-domain) |
+    /// [Python](https://plot.ly/python/reference/#treemap-domain) |
+    /// [R](https://plot.ly/r/reference/#treemap-domain)
     public var domain: Domain0?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-idssrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-metasrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  labels .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-labelssrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-labelssrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-labelssrc)
     public var labelsSource: String?
 
     /// Sets the source reference on plot.ly for  parents .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-parentssrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-parentssrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-parentssrc)
     public var parentsSource: String?
 
     /// Sets the source reference on plot.ly for  values .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-valuessrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-valuessrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-valuessrc)
     public var valuesSource: String?
 
     /// Sets the source reference on plot.ly for  text .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-textsrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-textsrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-textsrc)
     public var textSource: String?
 
     /// Sets the source reference on plot.ly for  texttemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-texttemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-texttemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-texttemplatesrc)
     public var textTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hovertextsrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-hovertextsrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-hovertextsrc)
     public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hovertemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#treemap-hovertemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#treemap-hovertemplatesrc)
     public var hoverTemplateSource: String?
 
     /// Plotly compatible property encoding

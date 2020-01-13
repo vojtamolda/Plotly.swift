@@ -2,45 +2,95 @@
 ///
 /// The sector labels are set in `labels`. The sector colors are set in `marker.colors`
 public struct Pie: Trace {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
+    /// [Python](https://plot.ly/python/reference/#type) |
+    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "pie"
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
+    /// [Python](https://plot.ly/python/reference/#animatable) |
+    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
     /// Determines whether or not this trace is visible. 
     ///
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-visible) |
+    /// [Python](https://plot.ly/python/reference/#pie-visible) |
+    /// [R](https://plot.ly/r/reference/#pie-visible)
     public var visible: Visible0?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-showlegend) |
+    /// [Python](https://plot.ly/python/reference/#pie-showlegend) |
+    /// [R](https://plot.ly/r/reference/#pie-showlegend)
     public var showLegend: Bool?
 
     /// Sets the legend group for this trace. 
     ///
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-legendgroup) |
+    /// [Python](https://plot.ly/python/reference/#pie-legendgroup) |
+    /// [R](https://plot.ly/r/reference/#pie-legendgroup)
     public var legendGroup: String?
 
     /// Sets the opacity of the trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-opacity) |
+    /// [Python](https://plot.ly/python/reference/#pie-opacity) |
+    /// [R](https://plot.ly/r/reference/#pie-opacity)
     public var opacity: Double?
 
     /// Sets the trace name. 
     ///
     /// The trace name appear as the legend item and on hover.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-name) |
+    /// [Python](https://plot.ly/python/reference/#pie-name) |
+    /// [R](https://plot.ly/r/reference/#pie-name)
     public var name: String?
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-uid) |
+    /// [Python](https://plot.ly/python/reference/#pie-uid) |
+    /// [R](https://plot.ly/r/reference/#pie-uid)
     public var uid: String?
 
     /// Assigns id labels to each datum. 
     ///
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-ids) |
+    /// [Python](https://plot.ly/python/reference/#pie-ids) |
+    /// [R](https://plot.ly/r/reference/#pie-ids)
     public var ids: [Double]?
 
     /// Assigns extra data each datum. 
     ///
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-customdata) |
+    /// [Python](https://plot.ly/python/reference/#pie-customdata) |
+    /// [R](https://plot.ly/r/reference/#pie-customdata)
     public var customData: [Double]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
@@ -50,12 +100,32 @@ public struct Pie: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-meta) |
+    /// [Python](https://plot.ly/python/reference/#pie-meta) |
+    /// [R](https://plot.ly/r/reference/#pie-meta)
     public var meta: Anything?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hoverlabel) |
+    /// [Python](https://plot.ly/python/reference/#pie-hoverlabel) |
+    /// [R](https://plot.ly/r/reference/#pie-hoverlabel)
     public var hoverLabel: HoverLabel0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-stream) |
+    /// [Python](https://plot.ly/python/reference/#pie-stream) |
+    /// [R](https://plot.ly/r/reference/#pie-stream)
     public var stream: Stream0?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-transforms) |
+    /// [Python](https://plot.ly/python/reference/#pie-transforms) |
+    /// [R](https://plot.ly/r/reference/#pie-transforms)
     public var transforms: Transforms0?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -68,6 +138,11 @@ public struct Pie: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-uirevision) |
+    /// [Python](https://plot.ly/python/reference/#pie-uirevision) |
+    /// [R](https://plot.ly/r/reference/#pie-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the sector labels. 
@@ -75,34 +150,71 @@ public struct Pie: Trace {
     /// If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if
     /// `values` is not provided. For other array attributes (including color) we use the first
     /// non-empty entry among all occurrences of the label.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-labels) |
+    /// [Python](https://plot.ly/python/reference/#pie-labels) |
+    /// [R](https://plot.ly/r/reference/#pie-labels)
     public var labels: [Double]?
 
     /// Alternate to `labels`. 
     ///
     /// Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and
     /// `dlabel` the step.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-label0) |
+    /// [Python](https://plot.ly/python/reference/#pie-label0) |
+    /// [R](https://plot.ly/r/reference/#pie-label0)
     public var label0: Double?
 
     /// Sets the label step. 
     ///
     /// See `label0` for more info.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-dlabel) |
+    /// [Python](https://plot.ly/python/reference/#pie-dlabel) |
+    /// [R](https://plot.ly/r/reference/#pie-dlabel)
     public var dLabel: Double?
 
     /// Sets the values of the sectors. 
     ///
     /// If omitted, we count occurrences of each label.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-values) |
+    /// [Python](https://plot.ly/python/reference/#pie-values) |
+    /// [R](https://plot.ly/r/reference/#pie-values)
     public var values: [Double]?
 
-    /// - [Pie.Marker](traces/pie/attributes/marker)
+    ///
+    /// # Used By
+    /// `Pie.marker` |
     public struct Marker: Encodable {
         /// Sets the color of each sector. 
         ///
         /// If not specified, the default trace color set is used to pick the sector colors.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-colors) |
+        /// [Python](https://plot.ly/python/reference/#pie-marker-colors) |
+        /// [R](https://plot.ly/r/reference/#pie-marker-colors)
         public var colors: [Double]?
     
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-line) |
+        /// [Python](https://plot.ly/python/reference/#pie-marker-line) |
+        /// [R](https://plot.ly/r/reference/#pie-marker-line)
         public var line: Line2?
     
         /// Sets the source reference on plot.ly for  colors .
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-colorssrc) |
+        /// [Python](https://plot.ly/python/reference/#pie-marker-colorssrc) |
+        /// [R](https://plot.ly/r/reference/#pie-marker-colorssrc)
         public var colorsSource: String?
     
         /// Plotly compatible property encoding
@@ -118,6 +230,11 @@ public struct Pie: Trace {
             self.colorsSource = colorsSource
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker) |
+    /// [Python](https://plot.ly/python/reference/#pie-marker) |
+    /// [R](https://plot.ly/r/reference/#pie-marker)
     public var marker: Marker?
 
     /// Sets text elements associated with each sector. 
@@ -125,6 +242,11 @@ public struct Pie: Trace {
     /// If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-text) |
+    /// [Python](https://plot.ly/python/reference/#pie-text) |
+    /// [R](https://plot.ly/r/reference/#pie-text)
     public var text: [Double]?
 
     /// Sets hover text elements associated with each sector. 
@@ -132,13 +254,25 @@ public struct Pie: Trace {
     /// If a single string, the same string appears for all data points. If an array of string, the
     /// items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a
     /// *text* flag.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hovertext) |
+    /// [Python](https://plot.ly/python/reference/#pie-hovertext) |
+    /// [R](https://plot.ly/r/reference/#pie-hovertext)
     public var hoverText: String?
 
     /// If there are multiple pie charts that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-scalegroup) |
+    /// [Python](https://plot.ly/python/reference/#pie-scalegroup) |
+    /// [R](https://plot.ly/r/reference/#pie-scalegroup)
     public var scaleGroup: String?
 
     /// Determines which trace information appear on the graph.
-    /// - [Pie.TextInfo](traces/pie/attributes/textinfo)
+    ///
+    /// # Used By
+    /// `Pie.textInfo` |
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -162,13 +296,20 @@ public struct Pie: Trace {
         }
     }
     /// Determines which trace information appear on the graph.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-textinfo) |
+    /// [Python](https://plot.ly/python/reference/#pie-textinfo) |
+    /// [R](https://plot.ly/r/reference/#pie-textinfo)
     public var textInfo: TextInfo?
 
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    /// - [Pie.HoverInfo](traces/pie/attributes/hoverinfo)
+    ///
+    /// # Used By
+    /// `Pie.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -201,6 +342,11 @@ public struct Pie: Trace {
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hoverinfo) |
+    /// [Python](https://plot.ly/python/reference/#pie-hoverinfo) |
+    /// [R](https://plot.ly/r/reference/#pie-hoverinfo)
     public var hoverInfo: HoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
@@ -219,6 +365,11 @@ public struct Pie: Trace {
     /// contained in tag `<extra>` is displayed in the secondary box, for example
     /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hovertemplate) |
+    /// [Python](https://plot.ly/python/reference/#pie-hovertemplate) |
+    /// [R](https://plot.ly/r/reference/#pie-hovertemplate)
     public var hoverTemplate: String?
 
     /// Template string used for rendering the information text that appear on points. 
@@ -232,10 +383,17 @@ public struct Pie: Trace {
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-texttemplate) |
+    /// [Python](https://plot.ly/python/reference/#pie-texttemplate) |
+    /// [R](https://plot.ly/r/reference/#pie-texttemplate)
     public var textTemplate: String?
 
     /// Specifies the location of the `textinfo`.
-    /// - [Pie.TextPosition](traces/pie/attributes/textposition)
+    ///
+    /// # Used By
+    /// `Pie.textPosition` |
     public enum TextPosition: String, Encodable {
         case inside
         case outside
@@ -243,74 +401,116 @@ public struct Pie: Trace {
         case none
     }
     /// Specifies the location of the `textinfo`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-textposition) |
+    /// [Python](https://plot.ly/python/reference/#pie-textposition) |
+    /// [R](https://plot.ly/r/reference/#pie-textposition)
     public var textPosition: TextPosition?
 
     /// Sets the font used for `textinfo`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-textfont) |
+    /// [Python](https://plot.ly/python/reference/#pie-textfont) |
+    /// [R](https://plot.ly/r/reference/#pie-textfont)
     public var textFont: Font0?
 
     /// Sets the font used for `textinfo` lying inside the sector.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-insidetextfont) |
+    /// [Python](https://plot.ly/python/reference/#pie-insidetextfont) |
+    /// [R](https://plot.ly/r/reference/#pie-insidetextfont)
     public var insideTextFont: Font0?
 
     /// Sets the font used for `textinfo` lying outside the sector.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-outsidetextfont) |
+    /// [Python](https://plot.ly/python/reference/#pie-outsidetextfont) |
+    /// [R](https://plot.ly/r/reference/#pie-outsidetextfont)
     public var outSideTextFont: Font0?
 
     /// Determines whether outside text labels can push the margins.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-automargin) |
+    /// [Python](https://plot.ly/python/reference/#pie-automargin) |
+    /// [R](https://plot.ly/r/reference/#pie-automargin)
     public var autoMargin: Bool?
 
-    /// - [Layout.ColorAxis.ColorBar0.Title](layout/layoutAttributes/coloraxis/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/bar/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmap/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2d/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/histogram2dcontour/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/contour/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterternary/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnel/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/pie/attributes/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/sunburst/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/treemap/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/funnelarea/attributes/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/line/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatter3d/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/surface/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/isosurface/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/volume/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/mesh3d/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/cone/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/streamtube/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergeo/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/choropleth/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattergl/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/splom/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/heatmapgl/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcoords/attributes/line/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/parcats/attributes/line/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattermapbox/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/choroplethmapbox/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/densitymapbox/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/aaxis/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/carpet/attributes/baxis/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scattercarpet/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/contourcarpet/attributes/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolar/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/scatterpolargl/attributes/marker/colorbar/title)
-    /// - [Layout.ColorAxis.ColorBar0.Title](traces/barpolar/attributes/marker/colorbar/title)
+    ///
+    /// # Used By
+    /// `Layout.ColorAxis.ColorBar0.title` |
+    /// `Scatter.Marker.ColorBar.title` |
+    /// `Bar.Marker.ColorBar.title` |
+    /// `Heatmap.ColorBar.title` |
+    /// `Histogram.Marker.ColorBar.title` |
+    /// `Histogram2D.ColorBar.title` |
+    /// `Histogram2DContour.ColorBar.title` |
+    /// `Contour.ColorBar.title` |
+    /// `ScatterTernary.Marker.ColorBar.title` |
+    /// `Funnel.Marker.ColorBar.title` |
+    /// `Pie.title` |
+    /// `Sunburst.Marker.ColorBar.title` |
+    /// `Treemap.Marker.ColorBar.title` |
+    /// `FunnelArea.title` |
+    /// `Scatter3D.Line.ColorBar.title` |
+    /// `Scatter3D.Marker.ColorBar.title` |
+    /// `Surface.ColorBar.title` |
+    /// `Isosurface.ColorBar.title` |
+    /// `Volume.ColorBar.title` |
+    /// `Mesh3D.ColorBar.title` |
+    /// `Cone.ColorBar.title` |
+    /// `StreamTube.ColorBar.title` |
+    /// `ScatterGeo.Marker.ColorBar.title` |
+    /// `Choropleth.ColorBar.title` |
+    /// `ScatterGL.Marker.ColorBar.title` |
+    /// `ScatterPlotMatrix.Marker.ColorBar.title` |
+    /// `HeatmapGL.ColorBar.title` |
+    /// `ParallelCoordinates.Line.ColorBar.title` |
+    /// `ParallelCategories.Line.ColorBar.title` |
+    /// `ScatterMapbox.Marker.ColorBar.title` |
+    /// `ChoroplethMapbox.ColorBar.title` |
+    /// `DensityMapbox.ColorBar.title` |
+    /// `Carpet.AAxis.title` |
+    /// `Carpet.BAxis.title` |
+    /// `ScatterCarpet.Marker.ColorBar.title` |
+    /// `ContourCarpet.ColorBar.title` |
+    /// `ScatterPolar.Marker.ColorBar.title` |
+    /// `ScatterPolarGL.Marker.ColorBar.title` |
+    /// `BarPolar.Marker.ColorBar.title` |
     public struct Title: Encodable {
         /// Sets the title of the color bar. 
         ///
         /// Note that before the existence of `title.text`, the title's contents used to be defined as the
         /// `title` attribute itself. This behavior has been deprecated.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-text) |
+        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-text) |
+        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-text)
         public var text: String?
     
         /// Sets this color bar's title font. 
         ///
         /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-font) |
+        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-font) |
+        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-font)
         public var font: Font0?
     
         /// Determines the location of color bar's title with respect to the color bar. 
         ///
         /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-side) |
+        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-side) |
+        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-side)
         public var side: Side0?
     
         public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
@@ -319,70 +519,167 @@ public struct Pie: Trace {
             self.side = side
         }
     }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-title) |
+    /// [Python](https://plot.ly/python/reference/#pie-title) |
+    /// [R](https://plot.ly/r/reference/#pie-title)
     public var title: Title?
 
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-domain) |
+    /// [Python](https://plot.ly/python/reference/#pie-domain) |
+    /// [R](https://plot.ly/r/reference/#pie-domain)
     public var domain: Domain0?
 
     /// Sets the fraction of the radius to cut out of the pie. 
     ///
     /// Use this to make a donut chart.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hole) |
+    /// [Python](https://plot.ly/python/reference/#pie-hole) |
+    /// [R](https://plot.ly/r/reference/#pie-hole)
     public var hole: Double?
 
     /// Determines whether or not the sectors are reordered from largest to smallest.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-sort) |
+    /// [Python](https://plot.ly/python/reference/#pie-sort) |
+    /// [R](https://plot.ly/r/reference/#pie-sort)
     public var sort: Bool?
 
     /// Specifies the direction at which succeeding sectors follow one another.
-    /// - [Pie.Direction](traces/pie/attributes/direction)
+    ///
+    /// # Used By
+    /// `Pie.direction` |
     public enum Direction: String, Encodable {
         case clockwise
         case counterClockwise = "counterclockwise"
     }
     /// Specifies the direction at which succeeding sectors follow one another.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-direction) |
+    /// [Python](https://plot.ly/python/reference/#pie-direction) |
+    /// [R](https://plot.ly/r/reference/#pie-direction)
     public var direction: Direction?
 
     /// Instead of the first slice starting at 12 o'clock, rotate to some other angle.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-rotation) |
+    /// [Python](https://plot.ly/python/reference/#pie-rotation) |
+    /// [R](https://plot.ly/r/reference/#pie-rotation)
     public var rotation: Double?
 
     /// Sets the fraction of larger radius to pull the sectors out from the center. 
     ///
     /// This can be a constant to pull all slices apart from each other equally or an array to highlight
     /// one or more slices.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-pull) |
+    /// [Python](https://plot.ly/python/reference/#pie-pull) |
+    /// [R](https://plot.ly/r/reference/#pie-pull)
     public var pull: Double?
 
     /// Sets the source reference on plot.ly for  ids .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-idssrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-idssrc) |
+    /// [R](https://plot.ly/r/reference/#pie-idssrc)
     public var idsSource: String?
 
     /// Sets the source reference on plot.ly for  customdata .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-customdatasrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-customdatasrc) |
+    /// [R](https://plot.ly/r/reference/#pie-customdatasrc)
     public var customDataSource: String?
 
     /// Sets the source reference on plot.ly for  meta .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-metasrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-metasrc) |
+    /// [R](https://plot.ly/r/reference/#pie-metasrc)
     public var metaSource: String?
 
     /// Sets the source reference on plot.ly for  labels .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-labelssrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-labelssrc) |
+    /// [R](https://plot.ly/r/reference/#pie-labelssrc)
     public var labelsSource: String?
 
     /// Sets the source reference on plot.ly for  values .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-valuessrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-valuessrc) |
+    /// [R](https://plot.ly/r/reference/#pie-valuessrc)
     public var valuesSource: String?
 
     /// Sets the source reference on plot.ly for  text .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-textsrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-textsrc) |
+    /// [R](https://plot.ly/r/reference/#pie-textsrc)
     public var textSource: String?
 
     /// Sets the source reference on plot.ly for  hovertext .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hovertextsrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-hovertextsrc) |
+    /// [R](https://plot.ly/r/reference/#pie-hovertextsrc)
     public var hoverTextSource: String?
 
     /// Sets the source reference on plot.ly for  hoverinfo .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hoverinfosrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-hoverinfosrc) |
+    /// [R](https://plot.ly/r/reference/#pie-hoverinfosrc)
     public var hoverInfoSource: String?
 
     /// Sets the source reference on plot.ly for  hovertemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hovertemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-hovertemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#pie-hovertemplatesrc)
     public var hoverTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  texttemplate .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-texttemplatesrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-texttemplatesrc) |
+    /// [R](https://plot.ly/r/reference/#pie-texttemplatesrc)
     public var textTemplateSource: String?
 
     /// Sets the source reference on plot.ly for  textposition .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-textpositionsrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-textpositionsrc) |
+    /// [R](https://plot.ly/r/reference/#pie-textpositionsrc)
     public var textPositionSource: String?
 
     /// Sets the source reference on plot.ly for  pull .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-pullsrc) |
+    /// [Python](https://plot.ly/python/reference/#pie-pullsrc) |
+    /// [R](https://plot.ly/r/reference/#pie-pullsrc)
     public var pullSource: String?
 
     /// Plotly compatible property encoding
