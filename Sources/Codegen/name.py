@@ -78,7 +78,7 @@ class Object(CamelCased):
         "splom": "ScatterPlotMatrix",
         "subplotid": "SubPlotID",
         "tickson": "TicksOn",
-        "type": "Rule",
+        "type": "`Type`",
         "valign": "VerticalAlign",
         "xref": "XReference",
         "yref": "YReference",

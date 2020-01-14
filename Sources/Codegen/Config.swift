@@ -9,6 +9,6 @@ struct Config: Definable {
     let attributes: Swift.Object
 
     init(schema: Schema.Object) {
-        attributes = Swift.Object(named: "config", schema: schema)
+        attributes = Swift.Object(named: "config", schema: schema)!
     }
 }

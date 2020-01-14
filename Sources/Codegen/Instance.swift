@@ -1,6 +1,7 @@
 
 protocol Instantiable: Definable {
     var name: String { get }
+    var array: Bool { get }
     var schemaName: String { get }
     var constant: String? { get set }
     var optional: Bool { get set }
@@ -18,13 +19,17 @@ class Instance<Type>: Instantiable where Type: SwiftType {
     let parent: Swift.Object?
 
     let name: String
+    var array: Bool
     var schemaName: String { schema.name }
     var constant: String? =  nil
     var optional: Bool = true
     var access: Swift.Access = .public
 
     var path: String { (parent?.path ?? "") + "." + name }
-    var argument: String { "\(name): \(type.name)\(optional ? "?" : "")" }
+    var argument: String {
+        let optionality = self.optional ? "?" : ""
+        let dataType = self.array ? "[\(type.name)]" : type.name
+        return "\(name): \(dataType)\(optionality)" }
     var documentation: [String] {
         var link = schema.path
         link = link.replacingOccurrences(of: "/", with: "-")
@@ -50,12 +55,13 @@ class Instance<Type>: Instantiable where Type: SwiftType {
         }
     }
 
-    init(of type: Type, named name: String) {
+    init(of type: Type, named name: String, array: Bool = false) {
         self.type = type
         self.schema = type.schema
         self.parent = type.parent
 
         self.name = Swift.name!.camelCased(name)
+        self.array = array
     }
 
     func define(as context: Swift.Context) -> [String] {

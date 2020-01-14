@@ -12,7 +12,7 @@ struct Trace: Definable {
     init(identifier: String, schema: Schema.Trace, layout: inout Layout) {
         self.schema = schema
 
-        attributes = Swift.Object(named: identifier, schema: schema.attributes)
+        attributes = Swift.Object(named: identifier, schema: schema.attributes)!
         attributes.protocols = ["Trace"]
 
         let stringSchema = Schema.String_(codingPath: [Schema.Keys("type")], valType: "string",

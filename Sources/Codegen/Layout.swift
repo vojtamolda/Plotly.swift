@@ -9,7 +9,7 @@ struct Layout: Definable {
     var definition: [String] { layoutAttributes.definition }
 
     init(schema: Schema.Layout) {
-        layoutAttributes = Swift.Object(named: "layout", schema: schema.layoutAttributes)
+        layoutAttributes = Swift.Object(named: "layout", schema: schema.layoutAttributes)!
         
         let sectionMark = Mark(label: "General")
         layoutAttributes.members.insert(sectionMark, at: 0)

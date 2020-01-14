@@ -26,7 +26,7 @@ public struct Volume: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#volume-visible) |
     /// [Python](https://plot.ly/python/reference/#volume-visible) |
     /// [R](https://plot.ly/r/reference/#volume-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -87,14 +87,14 @@ public struct Volume: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#volume-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#volume-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#volume-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#volume-stream) |
     /// [Python](https://plot.ly/python/reference/#volume-stream) |
     /// [R](https://plot.ly/r/reference/#volume-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -161,7 +161,6 @@ public struct Volume: Trace {
     /// [R](https://plot.ly/r/reference/#volume-isomax)
     public var isoMax: Double?
 
-    ///
     /// # Used By
     /// `Volume.surface` |
     public struct Surface: Encodable {
@@ -259,7 +258,6 @@ public struct Volume: Trace {
     /// [R](https://plot.ly/r/reference/#volume-surface)
     public var surface: Surface?
 
-    ///
     /// # Used By
     /// `Volume.spaceFrame` |
     public struct SpaceFrame: Encodable {
@@ -296,11 +294,9 @@ public struct Volume: Trace {
     /// [R](https://plot.ly/r/reference/#volume-spaceframe)
     public var spaceFrame: SpaceFrame?
 
-    ///
     /// # Used By
     /// `Volume.slices` |
     public struct Slices: Encodable {
-        ///
         /// # Used By
         /// `Volume.Slices.x` |
         public struct X: Encodable {
@@ -334,27 +330,10 @@ public struct Volume: Trace {
             /// [R](https://plot.ly/r/reference/#volume-slices-x-fill)
             public var fill: Double?
         
-            /// Sets the source reference on plot.ly for  locations .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#volume-slices-x-locationssrc) |
-            /// [Python](https://plot.ly/python/reference/#volume-slices-x-locationssrc) |
-            /// [R](https://plot.ly/r/reference/#volume-slices-x-locationssrc)
-            public var locationsSource: String?
-        
-            /// Plotly compatible property encoding
-            enum CodingKeys: String, CodingKey {
-                case show
-                case locations
-                case fill
-                case locationsSource = "locationssrc"
-            }
-            
-            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil) {
                 self.show = show
                 self.locations = locations
                 self.fill = fill
-                self.locationsSource = locationsSource
             }
         }
         ///
@@ -364,7 +343,6 @@ public struct Volume: Trace {
         /// [R](https://plot.ly/r/reference/#volume-slices-x)
         public var x: X?
     
-        ///
         /// # Used By
         /// `Volume.Slices.y` |
         public struct Y: Encodable {
@@ -398,27 +376,10 @@ public struct Volume: Trace {
             /// [R](https://plot.ly/r/reference/#volume-slices-y-fill)
             public var fill: Double?
         
-            /// Sets the source reference on plot.ly for  locations .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#volume-slices-y-locationssrc) |
-            /// [Python](https://plot.ly/python/reference/#volume-slices-y-locationssrc) |
-            /// [R](https://plot.ly/r/reference/#volume-slices-y-locationssrc)
-            public var locationsSource: String?
-        
-            /// Plotly compatible property encoding
-            enum CodingKeys: String, CodingKey {
-                case show
-                case locations
-                case fill
-                case locationsSource = "locationssrc"
-            }
-            
-            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil) {
                 self.show = show
                 self.locations = locations
                 self.fill = fill
-                self.locationsSource = locationsSource
             }
         }
         ///
@@ -428,7 +389,6 @@ public struct Volume: Trace {
         /// [R](https://plot.ly/r/reference/#volume-slices-y)
         public var y: Y?
     
-        ///
         /// # Used By
         /// `Volume.Slices.z` |
         public struct Z: Encodable {
@@ -462,27 +422,10 @@ public struct Volume: Trace {
             /// [R](https://plot.ly/r/reference/#volume-slices-z-fill)
             public var fill: Double?
         
-            /// Sets the source reference on plot.ly for  locations .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#volume-slices-z-locationssrc) |
-            /// [Python](https://plot.ly/python/reference/#volume-slices-z-locationssrc) |
-            /// [R](https://plot.ly/r/reference/#volume-slices-z-locationssrc)
-            public var locationsSource: String?
-        
-            /// Plotly compatible property encoding
-            enum CodingKeys: String, CodingKey {
-                case show
-                case locations
-                case fill
-                case locationsSource = "locationssrc"
-            }
-            
-            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil) {
                 self.show = show
                 self.locations = locations
                 self.fill = fill
-                self.locationsSource = locationsSource
             }
         }
         ///
@@ -505,11 +448,9 @@ public struct Volume: Trace {
     /// [R](https://plot.ly/r/reference/#volume-slices)
     public var slices: Slices?
 
-    ///
     /// # Used By
     /// `Volume.caps` |
     public struct Caps: Encodable {
-        ///
         /// # Used By
         /// `Volume.Caps.x` |
         public struct X: Encodable {
@@ -549,7 +490,6 @@ public struct Volume: Trace {
         /// [R](https://plot.ly/r/reference/#volume-caps-x)
         public var x: X?
     
-        ///
         /// # Used By
         /// `Volume.Caps.y` |
         public struct Y: Encodable {
@@ -589,7 +529,6 @@ public struct Volume: Trace {
         /// [R](https://plot.ly/r/reference/#volume-caps-y)
         public var y: Y?
     
-        ///
         /// # Used By
         /// `Volume.Caps.z` |
         public struct Z: Encodable {
@@ -772,7 +711,7 @@ public struct Volume: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#volume-colorbar) |
     /// [Python](https://plot.ly/python/reference/#volume-colorbar) |
     /// [R](https://plot.ly/r/reference/#volume-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -819,14 +758,14 @@ public struct Volume: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#volume-lightposition) |
     /// [Python](https://plot.ly/python/reference/#volume-lightposition) |
     /// [R](https://plot.ly/r/reference/#volume-lightposition)
-    public var lightPosition: LightPosition0?
+    public var lightPosition: LightPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#volume-lighting) |
     /// [Python](https://plot.ly/python/reference/#volume-lighting) |
     /// [R](https://plot.ly/r/reference/#volume-lighting)
-    public var lighting: Lighting0?
+    public var lighting: Lighting?
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     ///
@@ -837,45 +776,11 @@ public struct Volume: Trace {
     public var flatShading: Bool?
 
     ///
-    /// # Used By
-    /// `Volume.contour` |
-    public struct Contour: Encodable {
-        /// Sets whether or not dynamic contours are shown on hover
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#volume-contour-show) |
-        /// [Python](https://plot.ly/python/reference/#volume-contour-show) |
-        /// [R](https://plot.ly/r/reference/#volume-contour-show)
-        public var show: Bool?
-    
-        /// Sets the color of the contour lines.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#volume-contour-color) |
-        /// [Python](https://plot.ly/python/reference/#volume-contour-color) |
-        /// [R](https://plot.ly/r/reference/#volume-contour-color)
-        public var color: Color?
-    
-        /// Sets the width of the contour lines.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#volume-contour-width) |
-        /// [Python](https://plot.ly/python/reference/#volume-contour-width) |
-        /// [R](https://plot.ly/r/reference/#volume-contour-width)
-        public var width: Double?
-    
-        public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
-            self.show = show
-            self.color = color
-            self.width = width
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#volume-contour) |
     /// [Python](https://plot.ly/python/reference/#volume-contour) |
     /// [R](https://plot.ly/r/reference/#volume-contour)
-    public var contour: Contour?
+    public var contour: ContourHover?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -886,7 +791,7 @@ public struct Volume: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#volume-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#volume-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#volume-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -898,94 +803,6 @@ public struct Volume: Trace {
     /// [Python](https://plot.ly/python/reference/#volume-scene) |
     /// [R](https://plot.ly/r/reference/#volume-scene)
     public var scene: SubPlotID?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-idssrc) |
-    /// [R](https://plot.ly/r/reference/#volume-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#volume-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-metasrc) |
-    /// [R](https://plot.ly/r/reference/#volume-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-xsrc) |
-    /// [R](https://plot.ly/r/reference/#volume-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-ysrc) |
-    /// [R](https://plot.ly/r/reference/#volume-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-zsrc) |
-    /// [R](https://plot.ly/r/reference/#volume-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  value .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-valuesrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-valuesrc) |
-    /// [R](https://plot.ly/r/reference/#volume-valuesrc)
-    public var valueSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-textsrc) |
-    /// [R](https://plot.ly/r/reference/#volume-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#volume-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#volume-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#volume-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#volume-hoverinfosrc)
-    public var hoverInfoSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -1031,20 +848,9 @@ public struct Volume: Trace {
         case contour
         case hoverInfo = "hoverinfo"
         case scene
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case zSource = "zsrc"
-        case valueSource = "valuesrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: LightPosition0? = nil, lighting: Lighting0? = nil, flatShading: Bool? = nil, contour: Contour? = nil, hoverInfo: HoverInfo0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, valueSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, flatShading: Bool? = nil, contour: ContourHover? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -1085,16 +891,5 @@ public struct Volume: Trace {
         self.contour = contour
         self.hoverInfo = hoverInfo
         self.scene = scene
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.zSource = zSource
-        self.valueSource = valueSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.hoverInfoSource = hoverInfoSource
     }
 }

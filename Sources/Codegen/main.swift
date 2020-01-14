@@ -19,14 +19,13 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
         traces += [Trace(identifier: identifier, schema: schema, layout: &layout)]
     }
 
-    var existing = [String: Int]()
     let sharedDirectory = outputDirectory.appendingPathComponent("Shared")
     Swift.Enumerated.share()
-    Swift.Enumerated.write(to: sharedDirectory.appendingPathComponent("Enumerated.swift"), &existing)
+    Swift.Enumerated.write(to: sharedDirectory.appendingPathComponent("Enumerated.swift"))
     Swift.FlagList.share()
-    Swift.FlagList.write(to: sharedDirectory.appendingPathComponent("FlagList.swift"), &existing)
+    Swift.FlagList.write(to: sharedDirectory.appendingPathComponent("FlagList.swift"))
     Swift.Object.share()
-    Swift.Object.write(to: sharedDirectory.appendingPathComponent("Object.swift"), &existing)
+    Swift.Object.write(to: sharedDirectory.appendingPathComponent("Object.swift"))
 
     config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
     layout.write(to: outputDirectory.appendingPathComponent("Layout.swift"))

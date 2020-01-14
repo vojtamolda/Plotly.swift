@@ -28,7 +28,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-visible) |
     /// [Python](https://plot.ly/python/reference/#funnel-visible) |
     /// [R](https://plot.ly/r/reference/#funnel-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -127,21 +127,22 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#funnel-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#funnel-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-stream) |
     /// [Python](https://plot.ly/python/reference/#funnel-stream) |
     /// [R](https://plot.ly/r/reference/#funnel-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-transforms) |
-    /// [Python](https://plot.ly/python/reference/#funnel-transforms) |
-    /// [R](https://plot.ly/r/reference/#funnel-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#funnel-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#funnel-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -386,37 +387,12 @@ public struct Funnel: Trace {
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
     ///
-    /// # Used By
-    /// `Funnel.textPosition` |
-    public enum TextPosition: String, Encodable {
-        case inside
-        case outside
-        case auto
-        case none
-    }
-    /// Specifies the location of the `text`. 
-    ///
-    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
-    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
-    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
-    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
-    /// outside.
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-textposition) |
     /// [Python](https://plot.ly/python/reference/#funnel-textposition) |
     /// [R](https://plot.ly/r/reference/#funnel-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: AdjacentPosition?
 
-    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    ///
-    /// # Used By
-    /// `Funnel.insideTextAnchor` |
-    public enum InsideTextAnchor: String, Encodable {
-        case end
-        case middle
-        case start
-    }
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
     ///
     /// # Plotly Reference
@@ -442,7 +418,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-textfont) |
     /// [Python](https://plot.ly/python/reference/#funnel-textfont) |
     /// [R](https://plot.ly/r/reference/#funnel-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
     /// Sets the font used for `text` lying inside the bar.
     ///
@@ -450,7 +426,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#funnel-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#funnel-insidetextfont)
-    public var insideTextFont: Font0?
+    public var insideTextFont: Font?
 
     /// Sets the font used for `text` lying outside the bar.
     ///
@@ -458,18 +434,8 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#funnel-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#funnel-outsidetextfont)
-    public var outSideTextFont: Font0?
+    public var outSideTextFont: Font?
 
-    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    ///
-    /// # Used By
-    /// `Funnel.constrainText` |
-    public enum ConstrainText: String, Encodable {
-        case inside
-        case outside
-        case both
-        case none
-    }
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     ///
     /// # Plotly Reference
@@ -500,7 +466,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-orientation) |
     /// [Python](https://plot.ly/python/reference/#funnel-orientation) |
     /// [R](https://plot.ly/r/reference/#funnel-orientation)
-    public var orientation: Orientation0?
+    public var orientation: Orientation?
 
     /// Shifts the position where the bar is drawn (in position axis units). 
     ///
@@ -522,208 +488,12 @@ public struct Funnel: Trace {
     public var width: Double?
 
     ///
-    /// # Used By
-    /// `Funnel.marker` |
-    public struct Marker: Encodable {
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-line) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-line) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-line)
-        public var line: Line1?
-    
-        /// Sets themarkercolor. 
-        ///
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-color) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-color) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-color)
-        public var color: Color?
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
-        ///
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-cauto) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-cauto) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-cauto)
-        public var cAuto: Bool?
-    
-        /// Sets the lower bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-cmin) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-cmin) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-cmin)
-        public var cMin: Double?
-    
-        /// Sets the upper bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-cmax) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-cmax) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-cmax)
-        public var cMax: Double?
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-cmid) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-cmid) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-cmid)
-        public var cMiddle: Double?
-    
-        /// Sets the colorscale. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-colorscale) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-colorscale) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-colorscale)
-        public var colorScale: ColorScale?
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-autocolorscale) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-autocolorscale) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-autocolorscale)
-        public var autoColorScale: Bool?
-    
-        /// Reverses the color mapping if true. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-reversescale) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-reversescale) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-reversescale)
-        public var reverseScale: Bool?
-    
-        /// Determines whether or not a colorbar is displayed for this trace. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-showscale) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-showscale) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-showscale)
-        public var showScale: Bool?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-colorbar) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-colorbar) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-colorbar)
-        public var colorBar: ColorBar0?
-    
-        /// Sets a reference to a shared color axis. 
-        ///
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-coloraxis) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-coloraxis) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-coloraxis)
-        public var colorAxis: SubPlotID?
-    
-        /// Sets the opacity of the bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-opacity) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-opacity) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-opacity)
-        public var opacity: Double?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-colorsrc)
-        public var colorSource: String?
-    
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#funnel-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#funnel-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case line
-            case color
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorBar = "colorbar"
-            case colorAxis = "coloraxis"
-            case opacity
-            case colorSource = "colorsrc"
-            case opacitySource = "opacitysrc"
-        }
-        
-        public init(line: Line1? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, colorSource: String? = nil, opacitySource: String? = nil) {
-            self.line = line
-            self.color = color
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorBar = colorBar
-            self.colorAxis = colorAxis
-            self.opacity = opacity
-            self.colorSource = colorSource
-            self.opacitySource = opacitySource
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker) |
     /// [Python](https://plot.ly/python/reference/#funnel-marker) |
     /// [R](https://plot.ly/r/reference/#funnel-marker)
     public var marker: Marker?
 
-    ///
     /// # Used By
     /// `Funnel.connector` |
     public struct Connector: Encodable {
@@ -740,7 +510,7 @@ public struct Funnel: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#funnel-connector-line) |
         /// [Python](https://plot.ly/python/reference/#funnel-connector-line) |
         /// [R](https://plot.ly/r/reference/#funnel-connector-line)
-        public var line: Line0?
+        public var line: DashedLine?
     
         /// Determines if connector regions and lines are drawn.
         ///
@@ -757,7 +527,7 @@ public struct Funnel: Trace {
             case visible
         }
         
-        public init(fillColor: Color? = nil, line: Line0? = nil, visible: Bool? = nil) {
+        public init(fillColor: Color? = nil, line: DashedLine? = nil, visible: Bool? = nil) {
             self.fillColor = fillColor
             self.line = line
             self.visible = visible
@@ -810,94 +580,6 @@ public struct Funnel: Trace {
     /// [R](https://plot.ly/r/reference/#funnel-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-idssrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-metasrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-xsrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-ysrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-textsrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  textposition .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-textpositionsrc) |
-    /// [Python](https://plot.ly/python/reference/#funnel-textpositionsrc) |
-    /// [R](https://plot.ly/r/reference/#funnel-textpositionsrc)
-    public var textPositionSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -914,7 +596,7 @@ public struct Funnel: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case x
         case x0
@@ -945,20 +627,9 @@ public struct Funnel: Trace {
         case alignmentGroup = "alignmentgroup"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case textTemplateSource = "texttemplatesrc"
-        case textSource = "textsrc"
-        case textPositionSource = "textpositionsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -1002,16 +673,5 @@ public struct Funnel: Trace {
         self.alignmentGroup = alignmentGroup
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.hoverInfoSource = hoverInfoSource
-        self.textTemplateSource = textTemplateSource
-        self.textSource = textSource
-        self.textPositionSource = textPositionSource
     }
 }

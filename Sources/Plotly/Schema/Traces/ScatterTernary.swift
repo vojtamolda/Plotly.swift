@@ -25,7 +25,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-visible) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-visible) |
     /// [R](https://plot.ly/r/reference/#scatterternary-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -124,21 +124,22 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scatterternary-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-stream) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-stream) |
     /// [R](https://plot.ly/r/reference/#scatterternary-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-transforms) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-transforms) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#scatterternary-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#scatterternary-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -211,7 +212,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-mode) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-mode) |
     /// [R](https://plot.ly/r/reference/#scatterternary-mode)
-    public var mode: Mode0?
+    public var mode: Mode?
 
     /// Sets text elements associated with each (a,b,c) point. 
     ///
@@ -260,7 +261,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-line) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-line) |
     /// [R](https://plot.ly/r/reference/#scatterternary-line)
-    public var line: Line0?
+    public var line: SplineSmoothedDashedLine?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -291,26 +292,11 @@ public struct ScatterTernary: Trace {
     /// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
     /// trace before it. *tonext* should not be used if one trace does not enclose the other.
     ///
-    /// # Used By
-    /// `ScatterTernary.fill` |
-    public enum Fill: String, Encodable {
-        case none
-        case toSelf = "toself"
-        case toNext = "tonext"
-    }
-    /// Sets the area to fill with a solid color. 
-    ///
-    /// Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to
-    /// scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has
-    /// gaps) into a closed shape. *tonext* fills the space between two traces if one completely
-    /// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
-    /// trace before it. *tonext* should not be used if one trace does not enclose the other.
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-fill) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-fill) |
     /// [R](https://plot.ly/r/reference/#scatterternary-fill)
-    public var fill: Fill?
+    public var fill: AreaFill?
 
     /// Sets the fill color. 
     ///
@@ -324,308 +310,11 @@ public struct ScatterTernary: Trace {
     public var fillColor: Color?
 
     ///
-    /// # Used By
-    /// `ScatterTernary.marker` |
-    public struct Marker: Encodable {
-        /// Sets the marker symbol type. 
-        ///
-        /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
-        /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
-        /// *dot-open* to a symbol name.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-symbol) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-symbol) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-symbol)
-        public var symbol: Symbol0?
-    
-        /// Sets the marker opacity.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-opacity) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-opacity) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-opacity)
-        public var opacity: Double?
-    
-        /// Sets a maximum number of points to be drawn on the graph. 
-        ///
-        /// *0* corresponds to no limit.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-maxdisplayed) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-maxdisplayed) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-maxdisplayed)
-        public var maxDisplayed: Double?
-    
-        /// Sets the marker size (in px).
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-size) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-size) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-size)
-        public var size: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
-        /// and `sizemode`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-sizeref) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-sizeref) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-sizeref)
-        public var sizeReference: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the minimum size (in px) of the rendered marker points.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-sizemin) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-sizemin) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-sizemin)
-        public var sizeMin: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the rule for which the data in `size` is converted to pixels.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-sizemode) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-sizemode) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-sizemode)
-        public var sizeMode: SizeMode0?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-line) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-line) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-line)
-        public var line: Line1?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-gradient) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-gradient) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-gradient)
-        public var gradient: Gradient0?
-    
-        /// Sets themarkercolor. 
-        ///
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-color) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-color) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-color)
-        public var color: Color?
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
-        ///
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-cauto) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-cauto) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-cauto)
-        public var cAuto: Bool?
-    
-        /// Sets the lower bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-cmin) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-cmin) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-cmin)
-        public var cMin: Double?
-    
-        /// Sets the upper bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-cmax) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-cmax) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-cmax)
-        public var cMax: Double?
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-cmid) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-cmid) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-cmid)
-        public var cMiddle: Double?
-    
-        /// Sets the colorscale. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-colorscale) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-colorscale) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-colorscale)
-        public var colorScale: ColorScale?
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-autocolorscale) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-autocolorscale) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-autocolorscale)
-        public var autoColorScale: Bool?
-    
-        /// Reverses the color mapping if true. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-reversescale) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-reversescale) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-reversescale)
-        public var reverseScale: Bool?
-    
-        /// Determines whether or not a colorbar is displayed for this trace. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-showscale) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-showscale) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-showscale)
-        public var showScale: Bool?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-colorbar) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-colorbar) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-colorbar)
-        public var colorBar: ColorBar0?
-    
-        /// Sets a reference to a shared color axis. 
-        ///
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-coloraxis) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-coloraxis) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-coloraxis)
-        public var colorAxis: SubPlotID?
-    
-        /// Sets the source reference on plot.ly for  symbol .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-symbolsrc) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-symbolsrc) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-symbolsrc)
-        public var symbolSource: String?
-    
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-sizesrc) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-sizesrc) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-sizesrc)
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#scatterternary-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#scatterternary-marker-colorsrc)
-        public var colorSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case symbol
-            case opacity
-            case maxDisplayed = "maxdisplayed"
-            case size
-            case sizeReference = "sizeref"
-            case sizeMin = "sizemin"
-            case sizeMode = "sizemode"
-            case line
-            case gradient
-            case color
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorBar = "colorbar"
-            case colorAxis = "coloraxis"
-            case symbolSource = "symbolsrc"
-            case opacitySource = "opacitysrc"
-            case sizeSource = "sizesrc"
-            case colorSource = "colorsrc"
-        }
-        
-        public init(symbol: Symbol0? = nil, opacity: Double? = nil, maxDisplayed: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, line: Line1? = nil, gradient: Gradient0? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, opacitySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.symbol = symbol
-            self.opacity = opacity
-            self.maxDisplayed = maxDisplayed
-            self.size = size
-            self.sizeReference = sizeReference
-            self.sizeMin = sizeMin
-            self.sizeMode = sizeMode
-            self.line = line
-            self.gradient = gradient
-            self.color = color
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorBar = colorBar
-            self.colorAxis = colorAxis
-            self.symbolSource = symbolSource
-            self.opacitySource = opacitySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-marker) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-marker) |
     /// [R](https://plot.ly/r/reference/#scatterternary-marker)
-    public var marker: Marker?
+    public var marker: GradientMarker?
 
     /// Sets the text font.
     ///
@@ -633,7 +322,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-textfont) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-textfont) |
     /// [R](https://plot.ly/r/reference/#scatterternary-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     ///
@@ -641,21 +330,173 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-textposition) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-textposition) |
     /// [R](https://plot.ly/r/reference/#scatterternary-textposition)
-    public var textPosition: TextPosition0?
+    public var textPosition: TextPosition?
 
+    /// # Used By
+    /// `ScatterTernary.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `ScatterTernary.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#scatterternary-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#scatterternary-selected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-selected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#scatterternary-selected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#scatterternary-selected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-selected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#scatterternary-selected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#scatterternary-selected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#scatterternary-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#scatterternary-selected-marker)
+        public var marker: Marker?
+    
+        /// # Used By
+        /// `ScatterTernary.Selected.textFont` |
+        public struct TextFont: Encodable {
+            /// Sets the text font color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-selected-textfont-color) |
+            /// [Python](https://plot.ly/python/reference/#scatterternary-selected-textfont-color) |
+            /// [R](https://plot.ly/r/reference/#scatterternary-selected-textfont-color)
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-selected-textfont) |
+        /// [Python](https://plot.ly/python/reference/#scatterternary-selected-textfont) |
+        /// [R](https://plot.ly/r/reference/#scatterternary-selected-textfont)
+        public var textFont: TextFont?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case marker
+            case textFont = "textfont"
+        }
+        
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-selected) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-selected) |
     /// [R](https://plot.ly/r/reference/#scatterternary-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `ScatterTernary.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `ScatterTernary.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#scatterternary-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#scatterternary-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-unselected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#scatterternary-unselected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#scatterternary-unselected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-unselected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#scatterternary-unselected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#scatterternary-unselected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#scatterternary-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#scatterternary-unselected-marker)
+        public var marker: Marker?
+    
+        /// # Used By
+        /// `ScatterTernary.Unselected.textFont` |
+        public struct TextFont: Encodable {
+            /// Sets the text font color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-unselected-textfont-color) |
+            /// [Python](https://plot.ly/python/reference/#scatterternary-unselected-textfont-color) |
+            /// [R](https://plot.ly/r/reference/#scatterternary-unselected-textfont-color)
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-unselected-textfont) |
+        /// [Python](https://plot.ly/python/reference/#scatterternary-unselected-textfont) |
+        /// [R](https://plot.ly/r/reference/#scatterternary-unselected-textfont)
+        public var textFont: TextFont?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case marker
+            case textFont = "textfont"
+        }
+        
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-unselected) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-unselected) |
     /// [R](https://plot.ly/r/reference/#scatterternary-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -705,26 +546,6 @@ public struct ScatterTernary: Trace {
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
     ///
-    /// # Used By
-    /// `ScatterTernary.hoverOn` |
-    public struct HoverOn: OptionSet, Encodable {
-        public let rawValue: Int
-    
-        public static let points = HoverOn(rawValue: 1 << 0)
-        public static let fills = HoverOn(rawValue: 1 << 1)
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["points"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["fills"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-    /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-hoveron) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-hoveron) |
@@ -764,102 +585,6 @@ public struct ScatterTernary: Trace {
     /// [R](https://plot.ly/r/reference/#scatterternary-subplot)
     public var subPlot: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-idssrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-metasrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  a .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-asrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-asrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-asrc)
-    public var aSource: String?
-
-    /// Sets the source reference on plot.ly for  b .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-bsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-bsrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-bsrc)
-    public var bSource: String?
-
-    /// Sets the source reference on plot.ly for  c .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-csrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-csrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-csrc)
-    public var cSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-textsrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  textposition .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-textpositionsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-textpositionsrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-textpositionsrc)
-    public var textPositionSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -876,7 +601,7 @@ public struct ScatterTernary: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case a
         case b
@@ -900,21 +625,9 @@ public struct ScatterTernary: Trace {
         case hoverOn = "hoveron"
         case hoverTemplate = "hovertemplate"
         case subPlot = "subplot"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case aSource = "asrc"
-        case bSource = "bsrc"
-        case cSource = "csrc"
-        case textSource = "textsrc"
-        case textTemplateSource = "texttemplatesrc"
-        case hoverTextSource = "hovertextsrc"
-        case textPositionSource = "textpositionsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, a: [Double]? = nil, b: [Double]? = nil, c: [Double]? = nil, sum: Double? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line0? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Fill? = nil, fillColor: Color? = nil, marker: Marker? = nil, textFont: Font0? = nil, textPosition: TextPosition0? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, aSource: String? = nil, bSource: String? = nil, cSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, a: [Double]? = nil, b: [Double]? = nil, c: [Double]? = nil, sum: Double? = nil, mode: Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: AreaFill? = nil, fillColor: Color? = nil, marker: GradientMarker? = nil, textFont: Font? = nil, textPosition: TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -951,17 +664,5 @@ public struct ScatterTernary: Trace {
         self.hoverOn = hoverOn
         self.hoverTemplate = hoverTemplate
         self.subPlot = subPlot
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.aSource = aSource
-        self.bSource = bSource
-        self.cSource = cSource
-        self.textSource = textSource
-        self.textTemplateSource = textTemplateSource
-        self.hoverTextSource = hoverTextSource
-        self.textPositionSource = textPositionSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

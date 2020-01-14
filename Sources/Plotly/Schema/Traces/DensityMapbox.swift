@@ -23,7 +23,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-visible) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-visible) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -92,21 +92,22 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-stream) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-stream) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-transforms) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-transforms) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#densitymapbox-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#densitymapbox-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -352,7 +353,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-colorbar) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-colorbar) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -377,94 +378,6 @@ public struct DensityMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#densitymapbox-subplot)
     public var subPlot: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-idssrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-metasrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  lon .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-lonsrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-lonsrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-lonsrc)
-    public var longitudeSource: String?
-
-    /// Sets the source reference on plot.ly for  lat .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-latsrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-latsrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-latsrc)
-    public var latitudeSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-zsrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  radius .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-radiussrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-radiussrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-radiussrc)
-    public var radiusSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-textsrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -478,7 +391,7 @@ public struct DensityMapbox: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case longitude = "lon"
         case latitude = "lat"
@@ -500,20 +413,9 @@ public struct DensityMapbox: Trace {
         case colorBar = "colorbar"
         case colorAxis = "coloraxis"
         case subPlot = "subplot"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case longitudeSource = "lonsrc"
-        case latitudeSource = "latsrc"
-        case zSource = "zsrc"
-        case radiusSource = "radiussrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: [Double]? = nil, radius: Double? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, zSource: String? = nil, radiusSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: [Double]? = nil, radius: Double? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -545,16 +447,5 @@ public struct DensityMapbox: Trace {
         self.colorBar = colorBar
         self.colorAxis = colorAxis
         self.subPlot = subPlot
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.longitudeSource = longitudeSource
-        self.latitudeSource = latitudeSource
-        self.zSource = zSource
-        self.radiusSource = radiusSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

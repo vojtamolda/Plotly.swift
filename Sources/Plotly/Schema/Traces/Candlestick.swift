@@ -28,7 +28,7 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-visible) |
     /// [Python](https://plot.ly/python/reference/#candlestick-visible) |
     /// [R](https://plot.ly/r/reference/#candlestick-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -131,21 +131,22 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#candlestick-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#candlestick-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-stream) |
     /// [Python](https://plot.ly/python/reference/#candlestick-stream) |
     /// [R](https://plot.ly/r/reference/#candlestick-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-transforms) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-transforms) |
-    /// [R](https://plot.ly/r/reference/#candlestick-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#candlestick-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#candlestick-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -206,7 +207,6 @@ public struct Candlestick: Trace {
     /// [R](https://plot.ly/r/reference/#candlestick-close)
     public var close: [Double]?
 
-    ///
     /// # Used By
     /// `Candlestick.line` |
     public struct Line: Encodable {
@@ -232,16 +232,39 @@ public struct Candlestick: Trace {
     /// [R](https://plot.ly/r/reference/#candlestick-line)
     public var line: Line?
 
-    ///
     /// # Used By
     /// `Candlestick.increasing` |
     public struct Increasing: Encodable {
+        /// # Used By
+        /// `Candlestick.Increasing.line` |
+        public struct Line: Encodable {
+            /// Sets the color of line bounding the box(es).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-increasing-line-color) |
+            /// [Python](https://plot.ly/python/reference/#candlestick-increasing-line-color) |
+            /// [R](https://plot.ly/r/reference/#candlestick-increasing-line-color)
+            public var color: Color?
+        
+            /// Sets the width (in px) of line bounding the box(es).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-increasing-line-width) |
+            /// [Python](https://plot.ly/python/reference/#candlestick-increasing-line-width) |
+            /// [R](https://plot.ly/r/reference/#candlestick-increasing-line-width)
+            public var width: Double?
+        
+            public init(color: Color? = nil, width: Double? = nil) {
+                self.color = color
+                self.width = width
+            }
+        }
         ///
         /// # Plotly Reference
         /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-increasing-line) |
         /// [Python](https://plot.ly/python/reference/#candlestick-increasing-line) |
         /// [R](https://plot.ly/r/reference/#candlestick-increasing-line)
-        public var line: Line0?
+        public var line: Line?
     
         /// Sets the fill color. 
         ///
@@ -260,7 +283,7 @@ public struct Candlestick: Trace {
             case fillColor = "fillcolor"
         }
         
-        public init(line: Line0? = nil, fillColor: Color? = nil) {
+        public init(line: Line? = nil, fillColor: Color? = nil) {
             self.line = line
             self.fillColor = fillColor
         }
@@ -272,16 +295,39 @@ public struct Candlestick: Trace {
     /// [R](https://plot.ly/r/reference/#candlestick-increasing)
     public var increasing: Increasing?
 
-    ///
     /// # Used By
     /// `Candlestick.decreasing` |
     public struct Decreasing: Encodable {
+        /// # Used By
+        /// `Candlestick.Decreasing.line` |
+        public struct Line: Encodable {
+            /// Sets the color of line bounding the box(es).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-decreasing-line-color) |
+            /// [Python](https://plot.ly/python/reference/#candlestick-decreasing-line-color) |
+            /// [R](https://plot.ly/r/reference/#candlestick-decreasing-line-color)
+            public var color: Color?
+        
+            /// Sets the width (in px) of line bounding the box(es).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-decreasing-line-width) |
+            /// [Python](https://plot.ly/python/reference/#candlestick-decreasing-line-width) |
+            /// [R](https://plot.ly/r/reference/#candlestick-decreasing-line-width)
+            public var width: Double?
+        
+            public init(color: Color? = nil, width: Double? = nil) {
+                self.color = color
+                self.width = width
+            }
+        }
         ///
         /// # Plotly Reference
         /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-decreasing-line) |
         /// [Python](https://plot.ly/python/reference/#candlestick-decreasing-line) |
         /// [R](https://plot.ly/r/reference/#candlestick-decreasing-line)
-        public var line: Line0?
+        public var line: Line?
     
         /// Sets the fill color. 
         ///
@@ -300,7 +346,7 @@ public struct Candlestick: Trace {
             case fillColor = "fillcolor"
         }
         
-        public init(line: Line0? = nil, fillColor: Color? = nil) {
+        public init(line: Line? = nil, fillColor: Color? = nil) {
             self.line = line
             self.fillColor = fillColor
         }
@@ -341,12 +387,88 @@ public struct Candlestick: Trace {
     /// [R](https://plot.ly/r/reference/#candlestick-whiskerwidth)
     public var whiskerWidth: Double?
 
+    /// # Used By
+    /// `Candlestick.hoverLabel` |
+    public struct HoverLabel: Encodable {
+        /// Sets the background color of the hover labels for this trace
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-bgcolor) |
+        /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-bgcolor) |
+        /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-bgcolor)
+        public var backgroundColor: Color?
+    
+        /// Sets the border color of the hover labels for this trace.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-bordercolor) |
+        /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-bordercolor) |
+        /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-bordercolor)
+        public var borderColor: Color?
+    
+        /// Sets the font used in hover labels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-font) |
+        /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-font) |
+        /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-font)
+        public var font: Font?
+    
+        /// Sets the horizontal alignment of the text content within hover label box. 
+        ///
+        /// Has an effect only if the hover label text spans more two or more lines
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-align) |
+        /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-align) |
+        /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-align)
+        public var align: AutoAlign?
+    
+        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
+        ///
+        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
+        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
+        /// truncate to `namelength - 3` characters and add an ellipsis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-namelength) |
+        /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-namelength) |
+        /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-namelength)
+        public var nameLength: Int?
+    
+        /// Show hover information (open, close, high, low) in separate labels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-split) |
+        /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-split) |
+        /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-split)
+        public var split: Bool?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case font
+            case align
+            case nameLength = "namelength"
+            case split
+        }
+        
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: AutoAlign? = nil, nameLength: Int? = nil, split: Bool? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
+            self.font = font
+            self.align = align
+            self.nameLength = nameLength
+            self.split = split
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -354,7 +476,7 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#candlestick-xcalendar) |
     /// [R](https://plot.ly/r/reference/#candlestick-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -378,94 +500,6 @@ public struct Candlestick: Trace {
     /// [R](https://plot.ly/r/reference/#candlestick-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-idssrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-metasrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-xsrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  open .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-opensrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-opensrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-opensrc)
-    public var openSource: String?
-
-    /// Sets the source reference on plot.ly for  high .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-highsrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-highsrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-highsrc)
-    public var highSource: String?
-
-    /// Sets the source reference on plot.ly for  low .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-lowsrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-lowsrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-lowsrc)
-    public var lowSource: String?
-
-    /// Sets the source reference on plot.ly for  close .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-closesrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-closesrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-closesrc)
-    public var closeSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-textsrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#candlestick-hovertextsrc)
-    public var hoverTextSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -482,7 +516,7 @@ public struct Candlestick: Trace {
         case selectedPoints = "selectedpoints"
         case hoverInfo = "hoverinfo"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case x
         case open
@@ -499,20 +533,9 @@ public struct Candlestick: Trace {
         case xCalendar = "xcalendar"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case xSource = "xsrc"
-        case openSource = "opensrc"
-        case highSource = "highsrc"
-        case lowSource = "lowsrc"
-        case closeSource = "closesrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel0? = nil, xCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, openSource: String? = nil, highSource: String? = nil, lowSource: String? = nil, closeSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -542,16 +565,5 @@ public struct Candlestick: Trace {
         self.xCalendar = xCalendar
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.xSource = xSource
-        self.openSource = openSource
-        self.highSource = highSource
-        self.lowSource = lowSource
-        self.closeSource = closeSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
     }
 }

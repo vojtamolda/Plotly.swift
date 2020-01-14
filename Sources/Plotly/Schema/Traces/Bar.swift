@@ -25,7 +25,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-visible) |
     /// [Python](https://plot.ly/python/reference/#bar-visible) |
     /// [R](https://plot.ly/r/reference/#bar-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -128,28 +128,29 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#bar-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#bar-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#bar-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#bar-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-stream) |
     /// [Python](https://plot.ly/python/reference/#bar-stream) |
     /// [R](https://plot.ly/r/reference/#bar-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-transforms) |
-    /// [Python](https://plot.ly/python/reference/#bar-transforms) |
-    /// [R](https://plot.ly/r/reference/#bar-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#bar-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#bar-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -298,37 +299,12 @@ public struct Bar: Trace {
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
     ///
-    /// # Used By
-    /// `Bar.textPosition` |
-    public enum TextPosition: String, Encodable {
-        case inside
-        case outside
-        case auto
-        case none
-    }
-    /// Specifies the location of the `text`. 
-    ///
-    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
-    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
-    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
-    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
-    /// outside.
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-textposition) |
     /// [Python](https://plot.ly/python/reference/#bar-textposition) |
     /// [R](https://plot.ly/r/reference/#bar-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: AdjacentPosition?
 
-    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    ///
-    /// # Used By
-    /// `Bar.insideTextAnchor` |
-    public enum InsideTextAnchor: String, Encodable {
-        case end
-        case middle
-        case start
-    }
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
     ///
     /// # Plotly Reference
@@ -354,7 +330,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-textfont) |
     /// [Python](https://plot.ly/python/reference/#bar-textfont) |
     /// [R](https://plot.ly/r/reference/#bar-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
     /// Sets the font used for `text` lying inside the bar.
     ///
@@ -362,7 +338,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#bar-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#bar-insidetextfont)
-    public var insideTextFont: Font0?
+    public var insideTextFont: Font?
 
     /// Sets the font used for `text` lying outside the bar.
     ///
@@ -370,18 +346,8 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#bar-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#bar-outsidetextfont)
-    public var outSideTextFont: Font0?
+    public var outSideTextFont: Font?
 
-    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    ///
-    /// # Used By
-    /// `Bar.constrainText` |
-    public enum ConstrainText: String, Encodable {
-        case inside
-        case outside
-        case both
-        case none
-    }
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     ///
     /// # Plotly Reference
@@ -409,7 +375,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-orientation) |
     /// [Python](https://plot.ly/python/reference/#bar-orientation) |
     /// [R](https://plot.ly/r/reference/#bar-orientation)
-    public var orientation: Orientation0?
+    public var orientation: Orientation?
 
     /// Sets where the bar base is drawn (in position axis units). 
     ///
@@ -442,201 +408,6 @@ public struct Bar: Trace {
     public var width: Double?
 
     ///
-    /// # Used By
-    /// `Bar.marker` |
-    public struct Marker: Encodable {
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-line) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-line) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-line)
-        public var line: Line1?
-    
-        /// Sets themarkercolor. 
-        ///
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-color) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-color) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-color)
-        public var color: Color?
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
-        ///
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-cauto) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-cauto) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-cauto)
-        public var cAuto: Bool?
-    
-        /// Sets the lower bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-cmin) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-cmin) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-cmin)
-        public var cMin: Double?
-    
-        /// Sets the upper bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-cmax) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-cmax) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-cmax)
-        public var cMax: Double?
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-cmid) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-cmid) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-cmid)
-        public var cMiddle: Double?
-    
-        /// Sets the colorscale. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-colorscale) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-colorscale) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-colorscale)
-        public var colorScale: ColorScale?
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-autocolorscale) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-autocolorscale) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-autocolorscale)
-        public var autoColorScale: Bool?
-    
-        /// Reverses the color mapping if true. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-reversescale) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-reversescale) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-reversescale)
-        public var reverseScale: Bool?
-    
-        /// Determines whether or not a colorbar is displayed for this trace. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-showscale) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-showscale) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-showscale)
-        public var showScale: Bool?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-colorbar) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-colorbar) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-colorbar)
-        public var colorBar: ColorBar0?
-    
-        /// Sets a reference to a shared color axis. 
-        ///
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-coloraxis) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-coloraxis) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-coloraxis)
-        public var colorAxis: SubPlotID?
-    
-        /// Sets the opacity of the bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-opacity) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-opacity) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-opacity)
-        public var opacity: Double?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-colorsrc)
-        public var colorSource: String?
-    
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#bar-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#bar-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case line
-            case color
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorBar = "colorbar"
-            case colorAxis = "coloraxis"
-            case opacity
-            case colorSource = "colorsrc"
-            case opacitySource = "opacitysrc"
-        }
-        
-        public init(line: Line1? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, colorSource: String? = nil, opacitySource: String? = nil) {
-            self.line = line
-            self.color = color
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorBar = colorBar
-            self.colorAxis = colorAxis
-            self.opacity = opacity
-            self.colorSource = colorSource
-            self.opacitySource = opacitySource
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker) |
     /// [Python](https://plot.ly/python/reference/#bar-marker) |
@@ -661,19 +432,153 @@ public struct Bar: Trace {
     /// [R](https://plot.ly/r/reference/#bar-alignmentgroup)
     public var alignmentGroup: String?
 
+    /// # Used By
+    /// `Bar.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `Bar.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#bar-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#bar-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#bar-selected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#bar-selected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#bar-selected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#bar-selected-marker-color)
+            public var color: Color?
+        
+            public init(opacity: Double? = nil, color: Color? = nil) {
+                self.opacity = opacity
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#bar-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#bar-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#bar-selected-marker)
+        public var marker: Marker?
+    
+        /// # Used By
+        /// `Bar.Selected.textFont` |
+        public struct TextFont: Encodable {
+            /// Sets the text font color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#bar-selected-textfont-color) |
+            /// [Python](https://plot.ly/python/reference/#bar-selected-textfont-color) |
+            /// [R](https://plot.ly/r/reference/#bar-selected-textfont-color)
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#bar-selected-textfont) |
+        /// [Python](https://plot.ly/python/reference/#bar-selected-textfont) |
+        /// [R](https://plot.ly/r/reference/#bar-selected-textfont)
+        public var textFont: TextFont?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case marker
+            case textFont = "textfont"
+        }
+        
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-selected) |
     /// [Python](https://plot.ly/python/reference/#bar-selected) |
     /// [R](https://plot.ly/r/reference/#bar-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `Bar.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `Bar.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#bar-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#bar-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#bar-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#bar-unselected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#bar-unselected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#bar-unselected-marker-color)
+            public var color: Color?
+        
+            public init(opacity: Double? = nil, color: Color? = nil) {
+                self.opacity = opacity
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#bar-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#bar-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#bar-unselected-marker)
+        public var marker: Marker?
+    
+        /// # Used By
+        /// `Bar.Unselected.textFont` |
+        public struct TextFont: Encodable {
+            /// Sets the text font color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#bar-unselected-textfont-color) |
+            /// [Python](https://plot.ly/python/reference/#bar-unselected-textfont-color) |
+            /// [R](https://plot.ly/r/reference/#bar-unselected-textfont-color)
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#bar-unselected-textfont) |
+        /// [Python](https://plot.ly/python/reference/#bar-unselected-textfont) |
+        /// [R](https://plot.ly/r/reference/#bar-unselected-textfont)
+        public var textFont: TextFont?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case marker
+            case textFont = "textfont"
+        }
+        
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-unselected) |
     /// [Python](https://plot.ly/python/reference/#bar-unselected) |
     /// [R](https://plot.ly/r/reference/#bar-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
     ///
@@ -692,339 +597,18 @@ public struct Bar: Trace {
     public var t: [Double]?
 
     ///
-    /// # Used By
-    /// `Bar.xError` |
-    public struct XError: Encodable {
-        /// Determines whether or not this set of error bars is visible.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-visible) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-visible) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-visible)
-        public var visible: Bool?
-    
-        /// Determines the rule used to generate the error bars. 
-        ///
-        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-        /// the bar lengths are set with data set `array`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-type) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-type) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-type)
-        public var type: Rule1?
-    
-        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-symmetric) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-symmetric) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-symmetric)
-        public var symmetric: Bool?
-    
-        /// Sets the data corresponding the length of each error bar. 
-        ///
-        /// Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-array) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-array) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-array)
-        public var array: [Double]?
-    
-        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-arrayminus) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-arrayminus) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-arrayminus)
-        public var arrayMinus: [Double]?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-value) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-value) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-value)
-        public var value: Double?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-valueminus) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-valueminus) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-valueminus)
-        public var valueMinus: Double?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-traceref) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-traceref) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-traceref)
-        public var traceReference: Int?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-tracerefminus) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-tracerefminus) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-tracerefminus)
-        public var traceReferenceMinus: Int?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-copy_ystyle) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-copy_ystyle) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-copy_ystyle)
-        public var yCopyStyle: Bool?
-    
-        /// Sets the stoke color of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-color) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-color) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-color)
-        public var color: Color?
-    
-        /// Sets the thickness (in px) of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-thickness) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-thickness) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-thickness)
-        public var thickness: Double?
-    
-        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-width) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-width) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-width)
-        public var width: Double?
-    
-        /// Sets the source reference on plot.ly for  array .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-arraysrc) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-arraysrc) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-arraysrc)
-        public var arraySource: String?
-    
-        /// Sets the source reference on plot.ly for  arrayminus .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x-arrayminussrc) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_x-arrayminussrc) |
-        /// [R](https://plot.ly/r/reference/#bar-error_x-arrayminussrc)
-        public var arrayMinusSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case visible
-            case type
-            case symmetric
-            case array
-            case arrayMinus = "arrayminus"
-            case value
-            case valueMinus = "valueminus"
-            case traceReference = "traceref"
-            case traceReferenceMinus = "tracerefminus"
-            case yCopyStyle = "copy_ystyle"
-            case color
-            case thickness
-            case width
-            case arraySource = "arraysrc"
-            case arrayMinusSource = "arrayminussrc"
-        }
-        
-        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, yCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
-            self.visible = visible
-            self.type = type
-            self.symmetric = symmetric
-            self.array = array
-            self.arrayMinus = arrayMinus
-            self.value = value
-            self.valueMinus = valueMinus
-            self.traceReference = traceReference
-            self.traceReferenceMinus = traceReferenceMinus
-            self.yCopyStyle = yCopyStyle
-            self.color = color
-            self.thickness = thickness
-            self.width = width
-            self.arraySource = arraySource
-            self.arrayMinusSource = arrayMinusSource
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x) |
     /// [Python](https://plot.ly/python/reference/#bar-error_x) |
     /// [R](https://plot.ly/r/reference/#bar-error_x)
-    public var xError: XError?
+    public var xError: Error?
 
-    ///
-    /// # Used By
-    /// `Bar.yError` |
-    public struct YError: Encodable {
-        /// Determines whether or not this set of error bars is visible.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-visible) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-visible) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-visible)
-        public var visible: Bool?
-    
-        /// Determines the rule used to generate the error bars. 
-        ///
-        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-        /// the bar lengths are set with data set `array`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-type) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-type) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-type)
-        public var type: Rule1?
-    
-        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-symmetric) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-symmetric) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-symmetric)
-        public var symmetric: Bool?
-    
-        /// Sets the data corresponding the length of each error bar. 
-        ///
-        /// Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-array) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-array) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-array)
-        public var array: [Double]?
-    
-        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-arrayminus) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-arrayminus) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-arrayminus)
-        public var arrayMinus: [Double]?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-value) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-value) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-value)
-        public var value: Double?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-valueminus) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-valueminus) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-valueminus)
-        public var valueMinus: Double?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-traceref) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-traceref) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-traceref)
-        public var traceReference: Int?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-tracerefminus) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-tracerefminus) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-tracerefminus)
-        public var traceReferenceMinus: Int?
-    
-        /// Sets the stoke color of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-color) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-color) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-color)
-        public var color: Color?
-    
-        /// Sets the thickness (in px) of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-thickness) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-thickness) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-thickness)
-        public var thickness: Double?
-    
-        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-width) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-width) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-width)
-        public var width: Double?
-    
-        /// Sets the source reference on plot.ly for  array .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-arraysrc) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-arraysrc) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-arraysrc)
-        public var arraySource: String?
-    
-        /// Sets the source reference on plot.ly for  arrayminus .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y-arrayminussrc) |
-        /// [Python](https://plot.ly/python/reference/#bar-error_y-arrayminussrc) |
-        /// [R](https://plot.ly/r/reference/#bar-error_y-arrayminussrc)
-        public var arrayMinusSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case visible
-            case type
-            case symmetric
-            case array
-            case arrayMinus = "arrayminus"
-            case value
-            case valueMinus = "valueminus"
-            case traceReference = "traceref"
-            case traceReferenceMinus = "tracerefminus"
-            case color
-            case thickness
-            case width
-            case arraySource = "arraysrc"
-            case arrayMinusSource = "arrayminussrc"
-        }
-        
-        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
-            self.visible = visible
-            self.type = type
-            self.symmetric = symmetric
-            self.array = array
-            self.arrayMinus = arrayMinus
-            self.value = value
-            self.valueMinus = valueMinus
-            self.traceReference = traceReference
-            self.traceReferenceMinus = traceReferenceMinus
-            self.color = color
-            self.thickness = thickness
-            self.width = width
-            self.arraySource = arraySource
-            self.arrayMinusSource = arrayMinusSource
-        }
-    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y) |
     /// [Python](https://plot.ly/python/reference/#bar-error_y) |
     /// [R](https://plot.ly/r/reference/#bar-error_y)
-    public var yError: YError?
+    public var yError: Error?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -1032,7 +616,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#bar-xcalendar) |
     /// [R](https://plot.ly/r/reference/#bar-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -1040,7 +624,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#bar-ycalendar) |
     /// [R](https://plot.ly/r/reference/#bar-ycalendar)
-    public var yCalendar: Calendar0?
+    public var yCalendar: Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -1064,134 +648,6 @@ public struct Bar: Trace {
     /// [R](https://plot.ly/r/reference/#bar-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-idssrc) |
-    /// [R](https://plot.ly/r/reference/#bar-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#bar-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-metasrc) |
-    /// [R](https://plot.ly/r/reference/#bar-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#bar-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-xsrc) |
-    /// [R](https://plot.ly/r/reference/#bar-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-ysrc) |
-    /// [R](https://plot.ly/r/reference/#bar-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-textsrc) |
-    /// [R](https://plot.ly/r/reference/#bar-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#bar-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#bar-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#bar-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  textposition .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-textpositionsrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-textpositionsrc) |
-    /// [R](https://plot.ly/r/reference/#bar-textpositionsrc)
-    public var textPositionSource: String?
-
-    /// Sets the source reference on plot.ly for  base .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-basesrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-basesrc) |
-    /// [R](https://plot.ly/r/reference/#bar-basesrc)
-    public var baseSource: String?
-
-    /// Sets the source reference on plot.ly for  offset .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-offsetsrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-offsetsrc) |
-    /// [R](https://plot.ly/r/reference/#bar-offsetsrc)
-    public var offsetSource: String?
-
-    /// Sets the source reference on plot.ly for  width .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-widthsrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-widthsrc) |
-    /// [R](https://plot.ly/r/reference/#bar-widthsrc)
-    public var widthSource: String?
-
-    /// Sets the source reference on plot.ly for  r .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-rsrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-rsrc) |
-    /// [R](https://plot.ly/r/reference/#bar-rsrc)
-    public var rSource: String?
-
-    /// Sets the source reference on plot.ly for  t .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-tsrc) |
-    /// [Python](https://plot.ly/python/reference/#bar-tsrc) |
-    /// [R](https://plot.ly/r/reference/#bar-tsrc)
-    public var tSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -1209,7 +665,7 @@ public struct Bar: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case x
         case x0
@@ -1246,25 +702,9 @@ public struct Bar: Trace {
         case yCalendar = "ycalendar"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case textSource = "textsrc"
-        case textTemplateSource = "texttemplatesrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case textPositionSource = "textpositionsrc"
-        case baseSource = "basesrc"
-        case offsetSource = "offsetsrc"
-        case widthSource = "widthsrc"
-        case rSource = "rsrc"
-        case tSource = "tsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: XError? = nil, yError: YError? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -1315,21 +755,5 @@ public struct Bar: Trace {
         self.yCalendar = yCalendar
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.textSource = textSource
-        self.textTemplateSource = textTemplateSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.textPositionSource = textPositionSource
-        self.baseSource = baseSource
-        self.offsetSource = offsetSource
-        self.widthSource = widthSource
-        self.rSource = rSource
-        self.tSource = tSource
     }
 }

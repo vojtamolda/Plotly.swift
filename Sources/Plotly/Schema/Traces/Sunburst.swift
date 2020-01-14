@@ -25,7 +25,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-visible) |
     /// [Python](https://plot.ly/python/reference/#sunburst-visible) |
     /// [R](https://plot.ly/r/reference/#sunburst-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -94,21 +94,22 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#sunburst-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#sunburst-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-stream) |
     /// [Python](https://plot.ly/python/reference/#sunburst-stream) |
     /// [R](https://plot.ly/r/reference/#sunburst-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-transforms) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-transforms) |
-    /// [R](https://plot.ly/r/reference/#sunburst-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#sunburst-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -230,7 +231,6 @@ public struct Sunburst: Trace {
     /// [R](https://plot.ly/r/reference/#sunburst-maxdepth)
     public var maxDepth: Int?
 
-    ///
     /// # Used By
     /// `Sunburst.marker` |
     public struct Marker: Encodable {
@@ -249,7 +249,7 @@ public struct Sunburst: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-line) |
         /// [Python](https://plot.ly/python/reference/#sunburst-marker-line) |
         /// [R](https://plot.ly/r/reference/#sunburst-marker-line)
-        public var line: Line2?
+        public var line: Line?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here colors) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if colorsis set to a numerical array. 
         ///
@@ -348,7 +348,7 @@ public struct Sunburst: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-colorbar) |
         /// [Python](https://plot.ly/python/reference/#sunburst-marker-colorbar) |
         /// [R](https://plot.ly/r/reference/#sunburst-marker-colorbar)
-        public var colorBar: ColorBar0?
+        public var colorBar: ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -361,14 +361,6 @@ public struct Sunburst: Trace {
         /// [Python](https://plot.ly/python/reference/#sunburst-marker-coloraxis) |
         /// [R](https://plot.ly/r/reference/#sunburst-marker-coloraxis)
         public var colorAxis: SubPlotID?
-    
-        /// Sets the source reference on plot.ly for  colors .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-marker-colorssrc) |
-        /// [Python](https://plot.ly/python/reference/#sunburst-marker-colorssrc) |
-        /// [R](https://plot.ly/r/reference/#sunburst-marker-colorssrc)
-        public var colorsSource: String?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -384,10 +376,9 @@ public struct Sunburst: Trace {
             case showScale = "showscale"
             case colorBar = "colorbar"
             case colorAxis = "coloraxis"
-            case colorsSource = "colorssrc"
         }
         
-        public init(colors: [Double]? = nil, line: Line2? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorsSource: String? = nil) {
+        public init(colors: [Double]? = nil, line: Line? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.colors = colors
             self.line = line
             self.cAuto = cAuto
@@ -400,7 +391,6 @@ public struct Sunburst: Trace {
             self.showScale = showScale
             self.colorBar = colorBar
             self.colorAxis = colorAxis
-            self.colorsSource = colorsSource
         }
     }
     ///
@@ -410,7 +400,6 @@ public struct Sunburst: Trace {
     /// [R](https://plot.ly/r/reference/#sunburst-marker)
     public var marker: Marker?
 
-    ///
     /// # Used By
     /// `Sunburst.leaf` |
     public struct Leaf: Encodable {
@@ -599,7 +588,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-textfont) |
     /// [Python](https://plot.ly/python/reference/#sunburst-textfont) |
     /// [R](https://plot.ly/r/reference/#sunburst-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
     /// Sets the font used for `textinfo` lying inside the sector.
     ///
@@ -607,7 +596,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#sunburst-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#sunburst-insidetextfont)
-    public var insideTextFont: Font0?
+    public var insideTextFont: Font?
 
     /// Sets the font used for `textinfo` lying outside the sector.
     ///
@@ -615,102 +604,14 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#sunburst-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#sunburst-outsidetextfont)
-    public var outSideTextFont: Font0?
+    public var outSideTextFont: Font?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-domain) |
     /// [Python](https://plot.ly/python/reference/#sunburst-domain) |
     /// [R](https://plot.ly/r/reference/#sunburst-domain)
-    public var domain: Domain0?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-idssrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-metasrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  labels .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-labelssrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-labelssrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-labelssrc)
-    public var labelsSource: String?
-
-    /// Sets the source reference on plot.ly for  parents .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-parentssrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-parentssrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-parentssrc)
-    public var parentsSource: String?
-
-    /// Sets the source reference on plot.ly for  values .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-valuessrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-valuessrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-valuessrc)
-    public var valuesSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-textsrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#sunburst-hovertemplatesrc)
-    public var hoverTemplateSource: String?
+    public var domain: Domain?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -725,7 +626,7 @@ public struct Sunburst: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case labels
         case parents
@@ -746,20 +647,9 @@ public struct Sunburst: Trace {
         case insideTextFont = "insidetextfont"
         case outSideTextFont = "outsidetextfont"
         case domain
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case labelsSource = "labelssrc"
-        case parentsSource = "parentssrc"
-        case valuesSource = "valuessrc"
-        case textSource = "textsrc"
-        case textTemplateSource = "texttemplatesrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, domain: Domain0? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, parentsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, domain: Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -790,16 +680,5 @@ public struct Sunburst: Trace {
         self.insideTextFont = insideTextFont
         self.outSideTextFont = outSideTextFont
         self.domain = domain
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.labelsSource = labelsSource
-        self.parentsSource = parentsSource
-        self.valuesSource = valuesSource
-        self.textSource = textSource
-        self.textTemplateSource = textTemplateSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

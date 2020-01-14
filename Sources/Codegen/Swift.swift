@@ -11,7 +11,7 @@ protocol SwiftType where Origin: SchemaType {
     var schema: Origin { get }
 
     /// Creates instance of the Swift data type with the specified name.
-    func instance(named: String) -> Instance<Self>
+    func instance(named: String, array: Bool) -> Instance<Self>
 }
 extension SwiftType {
     var path: String {
@@ -26,8 +26,8 @@ extension SwiftType {
     }
 
     /// Default implementation for non-shared types.
-    func instance(named: String) -> Instance<Self> {
-        return Instance(of: self, named: named)
+    func instance(named: String, array: Bool = false) -> Instance<Self> {
+        return Instance(of: self, named: named, array: array)
     }
 }
 
@@ -54,24 +54,24 @@ extension Definable {
 }
 
 /// A shared Swift type that tracks it's references to allow re-use and prevent duplicate definitions of identical objects.
-protocol SwiftSharedType: SwiftType, Definable, Equatable, AnyObject {
+protocol SwiftSharedType: SwiftType, Definable, AnyObject {
     var name: String { get set }
+    var shared: Bool { get set }
     var access: Swift.Access { get set }
+    var priority: Int { get }
     var instances: [Instance<Self>] { get set }
-    static var existing: [Self] { get set }
+    static var existing: [Self] { get }
+
+    /// Checks whether the data type can by represented by `other` without loss of functionality and therefore shared.
+    func shareable(as other: Self) -> Bool
 
     /// Writes Swift code that defines the data type to a URL and avoids identifier collisions thanks to shared `existing` dict.
-    static func write(to url: URL, _ existing: inout [String: Int])
+    static func write(to url: URL)
 }
 extension SwiftSharedType {
-    var shared: Bool {
-        let ancestorIsShared = parent?.shared ?? false
-        let hasMultipleInstances = instances.count > 1
-        return hasMultipleInstances && !ancestorIsShared
-    }
     var documentation: [String] {
         var lines = schema.description?.documentation() ?? []
-        lines += ["///"]
+        if !lines.isEmpty { lines += ["///"] }
         lines += ["/// # Used By"]
         for instance in instances {
             lines += ["/// `\(instance.path)` |"]
@@ -80,8 +80,8 @@ extension SwiftSharedType {
     }
 
     /// Default implementation for shared types that keeps track of instances.
-    func instance(named: String) -> Instance<Self> {
-        let instance = Instance(of: self, named: named)
+    func instance(named: String, array: Bool = false) -> Instance<Self> {
+        let instance = Instance(of: self, named: named, array: array)
         instances.append(instance)
         return instance
     }
@@ -96,43 +96,40 @@ extension SwiftSharedType {
         }
     }
 
-    /// Identifies shared data types and re-associate instances of duplicates.
+    /// Identifies shareable data types and re-associates their instances to a single shared type.
     static func share() {
-        var identicalGroups = [[Self]]()
-        var remainingTypes = Self.existing
+        var visited = Set<Int>()
+        let prioritizedTypes = Self.existing.sorted{ $0.priority > $1.priority }.enumerated()
 
-        for type in Self.existing {
-            let identicalTypes = remainingTypes.filter { $0 == type }
-            if !identicalTypes.isEmpty { identicalGroups.append(identicalTypes) }
-            remainingTypes.removeAll { $0 == type }
-        }
+        for sharedType in prioritizedTypes where !visited.contains(sharedType.offset) {
+            visited.insert(sharedType.offset)
+            let shareableTypes = prioritizedTypes.filter { type in
+                !visited.contains(type.offset) && type.element.shareable(as: sharedType.element)
+            }
 
-        for identicalTypes in identicalGroups {
-            if identicalTypes.count < 5 { continue }
-            let sharedType = identicalTypes[0]
-            for type in identicalTypes.filter({ !$0.instances.isEmpty }) {
-                let instance = type.instances.popLast()!
-                instance.type = sharedType
-                sharedType.instances.append(instance)
+            let hasNonParentalInstances = (sharedType.element.parent?.instances.count ?? 0) <= shareableTypes.count
+            if hasNonParentalInstances && shareableTypes.count > 1 {
+                sharedType.element.shared = true
+                for type in shareableTypes where !type.element.instances.isEmpty {
+                    let instance = type.element.instances.removeLast()
+                    instance.type = sharedType.element
+                    sharedType.element.instances.append(instance)
+                }
+            }
+
+            shareableTypes.forEach { type in
+                visited.insert(type.offset)
             }
         }
     }
 
-    /// Writes Swift code that defines the data type to a URL and avoids identifier collisions thanks to shared `existing` dict.
-    static func write(to url: URL, _ existing: inout [String: Int])  {
+    /// Writes Swift code that defines the shared data types to a URL.
+    static func write(to url: URL)  {
         var lines = [String]()
-
         for type in Self.existing.filter({ $0.shared }) {
-            if existing.contains(where: { $0.key == type.name }) {
-                existing[type.name]! += 1
-            } else {
-                existing[type.name] = 0
-            }
-            type.name = "\(type.name)\(existing[type.name]!)"
             lines += type.define(as: .shared)
             lines += [""]
         }
-
         let contents = lines.joined(separator: "\n")
         try! contents.write(to: url, atomically: true, encoding: .utf8)
     }
@@ -149,9 +146,11 @@ class Swift {
     /// Data type that maps hierarchical Plotly `object` to a Swift `struct`.
     final class Object: SwiftSharedType {
         var name: String
+        var shared: Bool = false
         var parent: Swift.Object?
         var schema: Schema.Object
         var access: Swift.Access = .public
+        var priority: Int { members.count }
         var protocols: [String] = ["Encodable"]
 
         var instances: [Instance<Swift.Object>] = []
@@ -160,7 +159,7 @@ class Swift {
         var members: [Definable]
         var primitives: [String: Schema.Primitive]
 
-        static private let ignored: Set = ["_deprecated"]
+        static private let ignored: [String] = ["_deprecated", "src", "impliedEdits"]
 
         var definition: [String] {
             var lines = [String]()
@@ -201,16 +200,28 @@ class Swift {
             return lines
         }
 
-        init(named name: String, parent: Swift.Object? = nil, schema object: Schema.Object) {
+        init?(named name: String, parent: Swift.Object? = nil, schema object: Schema.Object) {
             self.name = Swift.name!.pascalCased(name)
             self.parent = parent
             self.schema = object
             self.members = []
             self.primitives = [:]
+
+            // Workaround for arrays of objects represented as `items` entry.
+            if let itemsEntry = object.entries.first(where: { $0.identifier == "items" }) {
+                guard case let parent = parent!,
+                    case let Schema.Entry.object(itemsSchema) = itemsEntry.entry,
+                    case let Schema.Entry.object(typeSchema) = itemsSchema.entries[0].entry else {
+                    fatalError()
+                }
+                let type = Swift.Object(named: typeSchema.name, parent: parent, schema: typeSchema)!
+                parent.members.append(type.instance(named: name, array: true))
+                return nil
+            }
             Self.existing.append(self)
 
             for (identifier, entry) in object.entries {
-                if Self.ignored.contains(identifier) { continue }
+                if Self.ignored.contains(where: { identifier.contains($0) }) { continue }
 
                 switch entry {
                 case .primitive(let primitive):
@@ -261,31 +272,74 @@ class Swift {
                         members += [infoArrayType.instance(named: identifier)]
                     }
                 case .object(let object):
-                    let nestedObject = Swift.Object(named: identifier, parent: self, schema: object)
-                    members += [nestedObject.instance(named: identifier)]
+                    if let nestedObjectType = Swift.Object(named: identifier, parent: self, schema: object) {
+                        members += [nestedObjectType.instance(named: identifier)]
+                    }
                 }
+            }
+            workarounds()
+        }
+
+        // TODO: Docs
+        private func workarounds() {
+            let properties = members.compactMap { $0 as? Instantiable }
+            switch name {
+            case "Line":
+                if properties.contains(where: { $0.name == "colorScale" }) { name = "Colored" + name }
+                if properties.contains(where: { $0.name == "dash" }) { name = "Dashed" + name }
+                if properties.contains(where: { $0.name == "smoothing" }) { name = "Smoothed" + name }
+                if properties.contains(where: { $0.name == "shape" }) { name = "Spline" + name }
+            case "Marker":
+                if properties.contains(where: { $0.name == "symbol" }) { name = "SymbolicMarker" }
+                if properties.contains(where: { $0.name == "gradient" }) { name = "GradientMarker" }
+            case "Contour":
+                if properties.count == 3 { name = "ContourHover"}
+            case "XBins":
+                fallthrough
+            case "YBins":
+                name = "Bins"
+            case "XError":
+                fallthrough
+            case "YError":
+                fallthrough
+            case "ZError":
+                name = "Error"
+                members = members.filter { ($0 as? Instantiable)?.name != "yCopyStyle" }
+                members = members.filter { ($0 as? Instantiable)?.name != "zCopyStyle" }
+            default:
+                return
             }
         }
 
-        /// Recursively compares objects by checking member equivalence.
-        static func == (lhs: Swift.Object, rhs: Swift.Object) -> Bool {
-            if !lhs.name.almostEqual(to: rhs.name) { return false }
+        /// Recursively compares objects and checks whether `other` consist of a superset of members.
+        func shareable(as other: Swift.Object) -> Bool {
+            if !self.name.almostEqual(to: other.name) { return false }
+            if other.members.count != self.members.count { return false }
+            if self.name == "Unselected" || self.name == "Selected" { return false }
+            if self.parent?.name == "Selected" || self.parent?.name == "Unselected" { return false }
+            if self.parent?.name == "Increasing" || self.parent?.name == "Decreasing" { return false }
 
-            let subsetEndIndex = min(lhs.members.endIndex, rhs.members.endIndex)
-            let lhsMembersSubset = lhs.members[0 ..< subsetEndIndex]
-            let rhsMembersSubset = rhs.members[0 ..< subsetEndIndex]
-
-            return lhsMembersSubset.elementsEqual(rhsMembersSubset) { l, r in
-                if let lObject = l as? Object, let rObject = r as? Object {
-                    return lObject == rObject
-                } else if let lInstance = l as? Instantiable, let rInstance = r as? Instantiable {
-                    if lInstance.name != rInstance.name { return false }
-                    if lInstance.constant != rInstance.constant { return false }
-                    if lInstance.optional != rInstance.optional { return false }
-                    if lInstance.access != rInstance.access { return false }
-                    return true
-                } else {
-                    return false
+            return self.members.allSatisfy { selfMember in
+                other.members.contains { otherMember in
+                    if let selfNestedObject = selfMember as? Swift.Object,
+                       let otherNestedObject = otherMember as? Swift.Object {
+                        return selfNestedObject.shareable(as: otherNestedObject)
+                    } else if let selfEnumerated = selfMember as? Swift.Enumerated,
+                              let otherEnumerated = otherMember as? Swift.Enumerated {
+                           return selfEnumerated.shareable(as: otherEnumerated)
+                    } else if let selfFlagList = selfMember as? Swift.FlagList,
+                              let otherFlagList = otherMember as? Swift.FlagList {
+                        return selfFlagList.shareable(as: otherFlagList)
+                    } else if let selfInstance = selfMember as? Instantiable,
+                              let otherInstance = otherMember as? Instantiable {
+                        if selfInstance.name != otherInstance.name { return false }
+                        if selfInstance.constant != otherInstance.constant { return false }
+                        if selfInstance.optional != otherInstance.optional { return false }
+                        if selfInstance.access != otherInstance.access { return false }
+                        return true
+                    } else {
+                        return false
+                    }
                 }
             }
         }
@@ -304,9 +358,11 @@ class Swift {
     /// Data type that maps Plotly `enumerated` to Swift `enum`.
     final class Enumerated: SwiftSharedType {
         var name: String
+        var shared: Bool = false
         var parent: Swift.Object?
         var schema: Schema.Enumerated
         var access: Swift.Access = .public
+        var priority: Int { cases.count }
         var protocols: [String] = ["String", "Encodable"]
 
         var instances: [Instance<Swift.Enumerated>] = []
@@ -365,10 +421,11 @@ class Swift {
             }
 
             cases = schema.values.map { sanitized($0) }
+            workarounds()
         }
 
         /// Transforms Plotly schema primitives to valid Swift cases.
-        func sanitized(_ primitive: Schema.Primitive) -> Case {
+        private func sanitized(_ primitive: Schema.Primitive) -> Case {
             switch primitive {
             case .bool(let bool):
                 let string = "\(bool)"
@@ -383,10 +440,40 @@ class Swift {
             }
         }
 
-        /// Checks for equality by comparing types and cases of the two `Enumerated` types.
-        static func == (lhs: Swift.Enumerated, rhs: Swift.Enumerated) -> Bool {
-            let nameAlmostEqual = lhs.name.almostEqual(to: rhs.name)
-            let casesEqual = lhs.cases == rhs.cases
+        // TODO: Docs
+        private func workarounds() {
+            switch name {
+            case "Align":
+                if cases.contains(where: { $0.label == "auto" }) { name = "AutoAlign"}
+                if cases.contains(where: { $0.label == "center" }) { name = "HorizontalAlign"}
+            case "XAnchor":
+                if cases.contains(where: { $0.label == "auto" }) { name = "XAutoAnchor"}
+            case "YAnchor":
+                if cases.contains(where: { $0.label == "auto" }) { name = "YAutoAnchor"}
+            case "TextPosition":
+                if cases.contains(where: { $0.label == "auto" }) { name = "AdjacentPosition"}
+            case "CategoryOrder":
+                if cases.count == 4 { name = "CarpetCategoryOrder"}
+            case "Fill":
+                if cases.count == 3 { name = "AreaFill"}
+            case "XReference":
+                name = "XAxisReference"
+            case "YReference":
+                name = "YAxisReference"
+            case "XType":
+                fallthrough
+            case "YType":
+                name = "AxisType"
+            default:
+                return
+            }
+        }
+
+        /// Checks for shareability by comparing names and cases of the two `Enumerated` types.
+        func shareable(as other: Swift.Enumerated) -> Bool {
+            if name == "`Type`" { return false }
+            let nameAlmostEqual = self.name.almostEqual(to: other.name)
+            let casesEqual = self.cases == other.cases
             return nameAlmostEqual && casesEqual
         }
     }
@@ -459,9 +546,11 @@ class Swift {
     /// Data type that maps Plotly `flaglist` to `OptionSet` from the Swift standard library.
     final class FlagList: SwiftSharedType {
         var name: String
+        var shared: Bool = false
         var parent: Swift.Object?
         var schema: Schema.FlagList
         var access: Swift.Access = .public
+        var priority: Int { options.count }
         let protocols: [String] = []
 
         var instances: [Instance<Swift.FlagList>] = []
@@ -509,18 +598,29 @@ class Swift {
             if let extras = schema.extras {
                 options += extras.map { sanitized(String(describing: $0)) }
             }
+            workarounds()
         }
 
         /// Transforms Plotly schema flag values to valid Swift options.
-        func sanitized(_ string: String) -> Option {
+        private func sanitized(_ string: String) -> Option {
             let sanitized = Swift.name!.flaglist[string]!
             return Option(label: sanitized, rawValue: string.escaped())
         }
 
-        /// Checks for equality by comparing types and options of the two `FlagList` types.
-        static func == (lhs: Swift.FlagList, rhs: Swift.FlagList) -> Bool {
-            let nameAlmostEqual = lhs.name.almostEqual(to: rhs.name)
-            let optionsEqual = lhs.options == rhs.options
+        // TODO: Docs
+        private func workarounds() {
+            switch name {
+            case "HoverInfo":
+                if options.contains(where: { $0.label == "theta" }) { name = "PolarHoverInfo" }
+            default:
+                return
+            }
+        }
+
+        /// Checks for shareability by comparing names and options of the two `FlagList` types.
+        func shareable(as other: Swift.FlagList) -> Bool {
+            let nameAlmostEqual = self.name.almostEqual(to: other.name)
+            let optionsEqual = self.options == other.options
             return nameAlmostEqual && optionsEqual
         }
     }

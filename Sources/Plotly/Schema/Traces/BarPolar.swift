@@ -23,7 +23,7 @@ public struct BarPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-visible) |
     /// [Python](https://plot.ly/python/reference/#barpolar-visible) |
     /// [R](https://plot.ly/r/reference/#barpolar-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -122,21 +122,22 @@ public struct BarPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#barpolar-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#barpolar-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-stream) |
     /// [Python](https://plot.ly/python/reference/#barpolar-stream) |
     /// [R](https://plot.ly/r/reference/#barpolar-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-transforms) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-transforms) |
-    /// [R](https://plot.ly/r/reference/#barpolar-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#barpolar-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#barpolar-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -216,17 +217,6 @@ public struct BarPolar: Trace {
     ///
     /// Has an effect only when on *linear* angular axes.
     ///
-    /// # Used By
-    /// `BarPolar.thetaUnit` |
-    public enum ThetaUnit: String, Encodable {
-        case radians
-        case degrees
-        case gradians
-    }
-    /// Sets the unit of input *theta* values. 
-    ///
-    /// Has an effect only when on *linear* angular axes.
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-thetaunit) |
     /// [Python](https://plot.ly/python/reference/#barpolar-thetaunit) |
@@ -279,201 +269,6 @@ public struct BarPolar: Trace {
     public var hoverText: String?
 
     ///
-    /// # Used By
-    /// `BarPolar.marker` |
-    public struct Marker: Encodable {
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-line) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-line) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-line)
-        public var line: Line1?
-    
-        /// Sets themarkercolor. 
-        ///
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-color) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-color) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-color)
-        public var color: Color?
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
-        ///
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-cauto) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-cauto) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-cauto)
-        public var cAuto: Bool?
-    
-        /// Sets the lower bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-cmin) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-cmin) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-cmin)
-        public var cMin: Double?
-    
-        /// Sets the upper bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-cmax) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-cmax) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-cmax)
-        public var cMax: Double?
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-cmid) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-cmid) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-cmid)
-        public var cMiddle: Double?
-    
-        /// Sets the colorscale. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-colorscale) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-colorscale) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-colorscale)
-        public var colorScale: ColorScale?
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-autocolorscale) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-autocolorscale) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-autocolorscale)
-        public var autoColorScale: Bool?
-    
-        /// Reverses the color mapping if true. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-reversescale) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-reversescale) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-reversescale)
-        public var reverseScale: Bool?
-    
-        /// Determines whether or not a colorbar is displayed for this trace. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-showscale) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-showscale) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-showscale)
-        public var showScale: Bool?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-colorbar) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-colorbar) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-colorbar)
-        public var colorBar: ColorBar0?
-    
-        /// Sets a reference to a shared color axis. 
-        ///
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-coloraxis) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-coloraxis) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-coloraxis)
-        public var colorAxis: SubPlotID?
-    
-        /// Sets the opacity of the bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-opacity) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-opacity) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-opacity)
-        public var opacity: Double?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-colorsrc)
-        public var colorSource: String?
-    
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#barpolar-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#barpolar-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case line
-            case color
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorBar = "colorbar"
-            case colorAxis = "coloraxis"
-            case opacity
-            case colorSource = "colorsrc"
-            case opacitySource = "opacitysrc"
-        }
-        
-        public init(line: Line1? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, colorSource: String? = nil, opacitySource: String? = nil) {
-            self.line = line
-            self.color = color
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorBar = colorBar
-            self.colorAxis = colorAxis
-            self.opacity = opacity
-            self.colorSource = colorSource
-            self.opacitySource = opacitySource
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker) |
     /// [Python](https://plot.ly/python/reference/#barpolar-marker) |
@@ -485,44 +280,11 @@ public struct BarPolar: Trace {
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
     ///
-    /// # Used By
-    /// `BarPolar.hoverInfo` |
-    public struct HoverInfo: OptionSet, Encodable {
-        public let rawValue: Int
-    
-        public static let r = HoverInfo(rawValue: 1 << 0)
-        public static let theta = HoverInfo(rawValue: 1 << 1)
-        public static let text = HoverInfo(rawValue: 1 << 2)
-        public static let name = HoverInfo(rawValue: 1 << 3)
-        public static let all = HoverInfo(rawValue: 1 << 4)
-        public static let none = HoverInfo(rawValue: 1 << 5)
-        public static let skip = HoverInfo(rawValue: 1 << 6)
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["r"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["theta"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["all"] }
-            if (self.rawValue & 1 << 5) != 0 { options += ["none"] }
-            if (self.rawValue & 1 << 6) != 0 { options += ["skip"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-    /// Determines which trace information appear on hover. 
-    ///
-    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-    /// click and hover events are still fired.
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#barpolar-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#barpolar-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: PolarHoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -546,19 +308,153 @@ public struct BarPolar: Trace {
     /// [R](https://plot.ly/r/reference/#barpolar-hovertemplate)
     public var hoverTemplate: String?
 
+    /// # Used By
+    /// `BarPolar.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `BarPolar.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#barpolar-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#barpolar-selected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-selected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#barpolar-selected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#barpolar-selected-marker-color)
+            public var color: Color?
+        
+            public init(opacity: Double? = nil, color: Color? = nil) {
+                self.opacity = opacity
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#barpolar-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#barpolar-selected-marker)
+        public var marker: Marker?
+    
+        /// # Used By
+        /// `BarPolar.Selected.textFont` |
+        public struct TextFont: Encodable {
+            /// Sets the text font color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-selected-textfont-color) |
+            /// [Python](https://plot.ly/python/reference/#barpolar-selected-textfont-color) |
+            /// [R](https://plot.ly/r/reference/#barpolar-selected-textfont-color)
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-selected-textfont) |
+        /// [Python](https://plot.ly/python/reference/#barpolar-selected-textfont) |
+        /// [R](https://plot.ly/r/reference/#barpolar-selected-textfont)
+        public var textFont: TextFont?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case marker
+            case textFont = "textfont"
+        }
+        
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-selected) |
     /// [Python](https://plot.ly/python/reference/#barpolar-selected) |
     /// [R](https://plot.ly/r/reference/#barpolar-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `BarPolar.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `BarPolar.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#barpolar-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#barpolar-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-unselected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#barpolar-unselected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#barpolar-unselected-marker-color)
+            public var color: Color?
+        
+            public init(opacity: Double? = nil, color: Color? = nil) {
+                self.opacity = opacity
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#barpolar-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#barpolar-unselected-marker)
+        public var marker: Marker?
+    
+        /// # Used By
+        /// `BarPolar.Unselected.textFont` |
+        public struct TextFont: Encodable {
+            /// Sets the text font color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-unselected-textfont-color) |
+            /// [Python](https://plot.ly/python/reference/#barpolar-unselected-textfont-color) |
+            /// [R](https://plot.ly/r/reference/#barpolar-unselected-textfont-color)
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-unselected-textfont) |
+        /// [Python](https://plot.ly/python/reference/#barpolar-unselected-textfont) |
+        /// [R](https://plot.ly/r/reference/#barpolar-unselected-textfont)
+        public var textFont: TextFont?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case marker
+            case textFont = "textfont"
+        }
+        
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-unselected) |
     /// [Python](https://plot.ly/python/reference/#barpolar-unselected) |
     /// [R](https://plot.ly/r/reference/#barpolar-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// Sets a reference between this trace's data coordinates and a polar subplot. 
     ///
@@ -570,102 +466,6 @@ public struct BarPolar: Trace {
     /// [Python](https://plot.ly/python/reference/#barpolar-subplot) |
     /// [R](https://plot.ly/r/reference/#barpolar-subplot)
     public var subPlot: SubPlotID?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-idssrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-metasrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  r .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-rsrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-rsrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-rsrc)
-    public var rSource: String?
-
-    /// Sets the source reference on plot.ly for  theta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-thetasrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-thetasrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-thetasrc)
-    public var thetaSource: String?
-
-    /// Sets the source reference on plot.ly for  base .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-basesrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-basesrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-basesrc)
-    public var baseSource: String?
-
-    /// Sets the source reference on plot.ly for  offset .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-offsetsrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-offsetsrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-offsetsrc)
-    public var offsetSource: String?
-
-    /// Sets the source reference on plot.ly for  width .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-widthsrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-widthsrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-widthsrc)
-    public var widthSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-textsrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#barpolar-hovertemplatesrc)
-    public var hoverTemplateSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -683,7 +483,7 @@ public struct BarPolar: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case r
         case theta
@@ -703,21 +503,9 @@ public struct BarPolar: Trace {
         case selected
         case unselected
         case subPlot = "subplot"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case rSource = "rsrc"
-        case thetaSource = "thetasrc"
-        case baseSource = "basesrc"
-        case offsetSource = "offsetsrc"
-        case widthSource = "widthsrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, baseSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, hoverInfo: PolarHoverInfo? = nil, hoverTemplate: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -750,17 +538,5 @@ public struct BarPolar: Trace {
         self.selected = selected
         self.unselected = unselected
         self.subPlot = subPlot
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.rSource = rSource
-        self.thetaSource = thetaSource
-        self.baseSource = baseSource
-        self.offsetSource = offsetSource
-        self.widthSource = widthSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

@@ -26,7 +26,7 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-visible) |
     /// [Python](https://plot.ly/python/reference/#isosurface-visible) |
     /// [R](https://plot.ly/r/reference/#isosurface-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -87,14 +87,14 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#isosurface-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#isosurface-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-stream) |
     /// [Python](https://plot.ly/python/reference/#isosurface-stream) |
     /// [R](https://plot.ly/r/reference/#isosurface-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -161,7 +161,6 @@ public struct Isosurface: Trace {
     /// [R](https://plot.ly/r/reference/#isosurface-isomax)
     public var isoMax: Double?
 
-    ///
     /// # Used By
     /// `Isosurface.surface` |
     public struct Surface: Encodable {
@@ -259,7 +258,6 @@ public struct Isosurface: Trace {
     /// [R](https://plot.ly/r/reference/#isosurface-surface)
     public var surface: Surface?
 
-    ///
     /// # Used By
     /// `Isosurface.spaceFrame` |
     public struct SpaceFrame: Encodable {
@@ -297,11 +295,9 @@ public struct Isosurface: Trace {
     /// [R](https://plot.ly/r/reference/#isosurface-spaceframe)
     public var spaceFrame: SpaceFrame?
 
-    ///
     /// # Used By
     /// `Isosurface.slices` |
     public struct Slices: Encodable {
-        ///
         /// # Used By
         /// `Isosurface.Slices.x` |
         public struct X: Encodable {
@@ -335,27 +331,10 @@ public struct Isosurface: Trace {
             /// [R](https://plot.ly/r/reference/#isosurface-slices-x-fill)
             public var fill: Double?
         
-            /// Sets the source reference on plot.ly for  locations .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-slices-x-locationssrc) |
-            /// [Python](https://plot.ly/python/reference/#isosurface-slices-x-locationssrc) |
-            /// [R](https://plot.ly/r/reference/#isosurface-slices-x-locationssrc)
-            public var locationsSource: String?
-        
-            /// Plotly compatible property encoding
-            enum CodingKeys: String, CodingKey {
-                case show
-                case locations
-                case fill
-                case locationsSource = "locationssrc"
-            }
-            
-            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil) {
                 self.show = show
                 self.locations = locations
                 self.fill = fill
-                self.locationsSource = locationsSource
             }
         }
         ///
@@ -365,7 +344,6 @@ public struct Isosurface: Trace {
         /// [R](https://plot.ly/r/reference/#isosurface-slices-x)
         public var x: X?
     
-        ///
         /// # Used By
         /// `Isosurface.Slices.y` |
         public struct Y: Encodable {
@@ -399,27 +377,10 @@ public struct Isosurface: Trace {
             /// [R](https://plot.ly/r/reference/#isosurface-slices-y-fill)
             public var fill: Double?
         
-            /// Sets the source reference on plot.ly for  locations .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-slices-y-locationssrc) |
-            /// [Python](https://plot.ly/python/reference/#isosurface-slices-y-locationssrc) |
-            /// [R](https://plot.ly/r/reference/#isosurface-slices-y-locationssrc)
-            public var locationsSource: String?
-        
-            /// Plotly compatible property encoding
-            enum CodingKeys: String, CodingKey {
-                case show
-                case locations
-                case fill
-                case locationsSource = "locationssrc"
-            }
-            
-            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil) {
                 self.show = show
                 self.locations = locations
                 self.fill = fill
-                self.locationsSource = locationsSource
             }
         }
         ///
@@ -429,7 +390,6 @@ public struct Isosurface: Trace {
         /// [R](https://plot.ly/r/reference/#isosurface-slices-y)
         public var y: Y?
     
-        ///
         /// # Used By
         /// `Isosurface.Slices.z` |
         public struct Z: Encodable {
@@ -463,27 +423,10 @@ public struct Isosurface: Trace {
             /// [R](https://plot.ly/r/reference/#isosurface-slices-z-fill)
             public var fill: Double?
         
-            /// Sets the source reference on plot.ly for  locations .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-slices-z-locationssrc) |
-            /// [Python](https://plot.ly/python/reference/#isosurface-slices-z-locationssrc) |
-            /// [R](https://plot.ly/r/reference/#isosurface-slices-z-locationssrc)
-            public var locationsSource: String?
-        
-            /// Plotly compatible property encoding
-            enum CodingKeys: String, CodingKey {
-                case show
-                case locations
-                case fill
-                case locationsSource = "locationssrc"
-            }
-            
-            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil, locationsSource: String? = nil) {
+            public init(show: Bool? = nil, locations: [Double]? = nil, fill: Double? = nil) {
                 self.show = show
                 self.locations = locations
                 self.fill = fill
-                self.locationsSource = locationsSource
             }
         }
         ///
@@ -506,11 +449,9 @@ public struct Isosurface: Trace {
     /// [R](https://plot.ly/r/reference/#isosurface-slices)
     public var slices: Slices?
 
-    ///
     /// # Used By
     /// `Isosurface.caps` |
     public struct Caps: Encodable {
-        ///
         /// # Used By
         /// `Isosurface.Caps.x` |
         public struct X: Encodable {
@@ -550,7 +491,6 @@ public struct Isosurface: Trace {
         /// [R](https://plot.ly/r/reference/#isosurface-caps-x)
         public var x: X?
     
-        ///
         /// # Used By
         /// `Isosurface.Caps.y` |
         public struct Y: Encodable {
@@ -590,7 +530,6 @@ public struct Isosurface: Trace {
         /// [R](https://plot.ly/r/reference/#isosurface-caps-y)
         public var y: Y?
     
-        ///
         /// # Used By
         /// `Isosurface.Caps.z` |
         public struct Z: Encodable {
@@ -773,7 +712,7 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-colorbar) |
     /// [Python](https://plot.ly/python/reference/#isosurface-colorbar) |
     /// [R](https://plot.ly/r/reference/#isosurface-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -805,14 +744,14 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-lightposition) |
     /// [Python](https://plot.ly/python/reference/#isosurface-lightposition) |
     /// [R](https://plot.ly/r/reference/#isosurface-lightposition)
-    public var lightPosition: LightPosition0?
+    public var lightPosition: LightPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-lighting) |
     /// [Python](https://plot.ly/python/reference/#isosurface-lighting) |
     /// [R](https://plot.ly/r/reference/#isosurface-lighting)
-    public var lighting: Lighting0?
+    public var lighting: Lighting?
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     ///
@@ -823,45 +762,11 @@ public struct Isosurface: Trace {
     public var flatShading: Bool?
 
     ///
-    /// # Used By
-    /// `Isosurface.contour` |
-    public struct Contour: Encodable {
-        /// Sets whether or not dynamic contours are shown on hover
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-contour-show) |
-        /// [Python](https://plot.ly/python/reference/#isosurface-contour-show) |
-        /// [R](https://plot.ly/r/reference/#isosurface-contour-show)
-        public var show: Bool?
-    
-        /// Sets the color of the contour lines.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-contour-color) |
-        /// [Python](https://plot.ly/python/reference/#isosurface-contour-color) |
-        /// [R](https://plot.ly/r/reference/#isosurface-contour-color)
-        public var color: Color?
-    
-        /// Sets the width of the contour lines.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-contour-width) |
-        /// [Python](https://plot.ly/python/reference/#isosurface-contour-width) |
-        /// [R](https://plot.ly/r/reference/#isosurface-contour-width)
-        public var width: Double?
-    
-        public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
-            self.show = show
-            self.color = color
-            self.width = width
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-contour) |
     /// [Python](https://plot.ly/python/reference/#isosurface-contour) |
     /// [R](https://plot.ly/r/reference/#isosurface-contour)
-    public var contour: Contour?
+    public var contour: ContourHover?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -872,7 +777,7 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#isosurface-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#isosurface-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -884,94 +789,6 @@ public struct Isosurface: Trace {
     /// [Python](https://plot.ly/python/reference/#isosurface-scene) |
     /// [R](https://plot.ly/r/reference/#isosurface-scene)
     public var scene: SubPlotID?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-idssrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-metasrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-xsrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-ysrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-zsrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  value .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-valuesrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-valuesrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-valuesrc)
-    public var valueSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-textsrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#isosurface-hoverinfosrc)
-    public var hoverInfoSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -1016,20 +833,9 @@ public struct Isosurface: Trace {
         case contour
         case hoverInfo = "hoverinfo"
         case scene
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case zSource = "zsrc"
-        case valueSource = "valuesrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: LightPosition0? = nil, lighting: Lighting0? = nil, flatShading: Bool? = nil, contour: Contour? = nil, hoverInfo: HoverInfo0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, valueSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, flatShading: Bool? = nil, contour: ContourHover? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -1069,16 +875,5 @@ public struct Isosurface: Trace {
         self.contour = contour
         self.hoverInfo = hoverInfo
         self.scene = scene
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.zSource = zSource
-        self.valueSource = valueSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.hoverInfoSource = hoverInfoSource
     }
 }

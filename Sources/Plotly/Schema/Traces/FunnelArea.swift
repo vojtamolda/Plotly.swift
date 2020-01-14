@@ -27,7 +27,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-visible) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-visible) |
     /// [R](https://plot.ly/r/reference/#funnelarea-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -114,21 +114,22 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#funnelarea-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-stream) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-stream) |
     /// [R](https://plot.ly/r/reference/#funnelarea-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-transforms) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-transforms) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#funnelarea-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#funnelarea-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -190,7 +191,6 @@ public struct FunnelArea: Trace {
     /// [R](https://plot.ly/r/reference/#funnelarea-values)
     public var values: [Double]?
 
-    ///
     /// # Used By
     /// `FunnelArea.marker` |
     public struct Marker: Encodable {
@@ -209,27 +209,11 @@ public struct FunnelArea: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-marker-line) |
         /// [Python](https://plot.ly/python/reference/#funnelarea-marker-line) |
         /// [R](https://plot.ly/r/reference/#funnelarea-marker-line)
-        public var line: Line2?
+        public var line: Line?
     
-        /// Sets the source reference on plot.ly for  colors .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-marker-colorssrc) |
-        /// [Python](https://plot.ly/python/reference/#funnelarea-marker-colorssrc) |
-        /// [R](https://plot.ly/r/reference/#funnelarea-marker-colorssrc)
-        public var colorsSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case colors
-            case line
-            case colorsSource = "colorssrc"
-        }
-        
-        public init(colors: [Double]? = nil, line: Line2? = nil, colorsSource: String? = nil) {
+        public init(colors: [Double]? = nil, line: Line? = nil) {
             self.colors = colors
             self.line = line
-            self.colorsSource = colorsSource
         }
     }
     ///
@@ -414,7 +398,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-textfont) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-textfont) |
     /// [R](https://plot.ly/r/reference/#funnelarea-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
     /// Sets the font used for `textinfo` lying inside the sector.
     ///
@@ -422,85 +406,58 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#funnelarea-insidetextfont)
-    public var insideTextFont: Font0?
+    public var insideTextFont: Font?
 
-    ///
     /// # Used By
-    /// `Layout.ColorAxis.ColorBar0.title` |
-    /// `Scatter.Marker.ColorBar.title` |
-    /// `Bar.Marker.ColorBar.title` |
-    /// `Heatmap.ColorBar.title` |
-    /// `Histogram.Marker.ColorBar.title` |
-    /// `Histogram2D.ColorBar.title` |
-    /// `Histogram2DContour.ColorBar.title` |
-    /// `Contour.ColorBar.title` |
-    /// `ScatterTernary.Marker.ColorBar.title` |
-    /// `Funnel.Marker.ColorBar.title` |
-    /// `Pie.title` |
-    /// `Sunburst.Marker.ColorBar.title` |
-    /// `Treemap.Marker.ColorBar.title` |
     /// `FunnelArea.title` |
-    /// `Scatter3D.Line.ColorBar.title` |
-    /// `Scatter3D.Marker.ColorBar.title` |
-    /// `Surface.ColorBar.title` |
-    /// `Isosurface.ColorBar.title` |
-    /// `Volume.ColorBar.title` |
-    /// `Mesh3D.ColorBar.title` |
-    /// `Cone.ColorBar.title` |
-    /// `StreamTube.ColorBar.title` |
-    /// `ScatterGeo.Marker.ColorBar.title` |
-    /// `Choropleth.ColorBar.title` |
-    /// `ScatterGL.Marker.ColorBar.title` |
-    /// `ScatterPlotMatrix.Marker.ColorBar.title` |
-    /// `HeatmapGL.ColorBar.title` |
-    /// `ParallelCoordinates.Line.ColorBar.title` |
-    /// `ParallelCategories.Line.ColorBar.title` |
-    /// `ScatterMapbox.Marker.ColorBar.title` |
-    /// `ChoroplethMapbox.ColorBar.title` |
-    /// `DensityMapbox.ColorBar.title` |
-    /// `Carpet.AAxis.title` |
-    /// `Carpet.BAxis.title` |
-    /// `ScatterCarpet.Marker.ColorBar.title` |
-    /// `ContourCarpet.ColorBar.title` |
-    /// `ScatterPolar.Marker.ColorBar.title` |
-    /// `ScatterPolarGL.Marker.ColorBar.title` |
-    /// `BarPolar.Marker.ColorBar.title` |
     public struct Title: Encodable {
-        /// Sets the title of the color bar. 
+        /// Sets the title of the chart. 
         ///
-        /// Note that before the existence of `title.text`, the title's contents used to be defined as the
-        /// `title` attribute itself. This behavior has been deprecated.
+        /// If it is empty, no title is displayed. Note that before the existence of `title.text`, the
+        /// title's contents used to be defined as the `title` attribute itself. This behavior has been
+        /// deprecated.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-text) |
-        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-text) |
-        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-text)
+        /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-title-text) |
+        /// [Python](https://plot.ly/python/reference/#funnelarea-title-text) |
+        /// [R](https://plot.ly/r/reference/#funnelarea-title-text)
         public var text: String?
     
-        /// Sets this color bar's title font. 
+        /// Sets the font used for `title`. 
         ///
         /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-font) |
-        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-font) |
-        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-font)
-        public var font: Font0?
+        /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-title-font) |
+        /// [Python](https://plot.ly/python/reference/#funnelarea-title-font) |
+        /// [R](https://plot.ly/r/reference/#funnelarea-title-font)
+        public var font: Font?
     
-        /// Determines the location of color bar's title with respect to the color bar. 
+        /// Specifies the location of the `title`. 
         ///
-        /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
+        ///
+        /// # Used By
+        /// `FunnelArea.Title.position` |
+        public enum Position: String, Encodable {
+            case topLeft = "top left"
+            case topCenter = "top center"
+            case topRight = "top right"
+        }
+        /// Specifies the location of the `title`. 
+        ///
+        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-side) |
-        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-side) |
-        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-side)
-        public var side: Side0?
+        /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-title-position) |
+        /// [Python](https://plot.ly/python/reference/#funnelarea-title-position) |
+        /// [R](https://plot.ly/r/reference/#funnelarea-title-position)
+        public var position: Position?
     
-        public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
+        public init(text: String? = nil, font: Font? = nil, position: Position? = nil) {
             self.text = text
             self.font = font
-            self.side = side
+            self.position = position
         }
     }
     ///
@@ -515,7 +472,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-domain) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-domain) |
     /// [R](https://plot.ly/r/reference/#funnelarea-domain)
-    public var domain: Domain0?
+    public var domain: Domain?
 
     /// Sets the ratio between height and width
     ///
@@ -533,94 +490,6 @@ public struct FunnelArea: Trace {
     /// [R](https://plot.ly/r/reference/#funnelarea-baseratio)
     public var baseRatio: Double?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-idssrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-metasrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  labels .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-labelssrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-labelssrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-labelssrc)
-    public var labelsSource: String?
-
-    /// Sets the source reference on plot.ly for  values .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-valuessrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-valuessrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-valuessrc)
-    public var valuesSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-textsrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  textposition .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-textpositionsrc) |
-    /// [Python](https://plot.ly/python/reference/#funnelarea-textpositionsrc) |
-    /// [R](https://plot.ly/r/reference/#funnelarea-textpositionsrc)
-    public var textPositionSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -636,7 +505,7 @@ public struct FunnelArea: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case labels
         case label0
@@ -657,20 +526,9 @@ public struct FunnelArea: Trace {
         case domain
         case aspectRatio = "aspectratio"
         case baseRatio = "baseratio"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case labelsSource = "labelssrc"
-        case valuesSource = "valuessrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case textTemplateSource = "texttemplatesrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case textPositionSource = "textpositionsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, title: Title? = nil, domain: Domain0? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, textTemplateSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, title: Title? = nil, domain: Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -703,16 +561,5 @@ public struct FunnelArea: Trace {
         self.domain = domain
         self.aspectRatio = aspectRatio
         self.baseRatio = baseRatio
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.labelsSource = labelsSource
-        self.valuesSource = valuesSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.textTemplateSource = textTemplateSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.textPositionSource = textPositionSource
     }
 }

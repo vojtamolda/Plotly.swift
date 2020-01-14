@@ -23,7 +23,7 @@ public struct ChoroplethMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-visible) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-visible) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -96,21 +96,22 @@ public struct ChoroplethMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-stream) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-stream) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-transforms) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-transforms) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#choroplethmapbox-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -183,7 +184,6 @@ public struct ChoroplethMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-hovertext)
     public var hoverText: String?
 
-    ///
     /// # Used By
     /// `ChoroplethMapbox.marker` |
     public struct Marker: Encodable {
@@ -192,7 +192,7 @@ public struct ChoroplethMapbox: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-marker-line) |
         /// [Python](https://plot.ly/python/reference/#choroplethmapbox-marker-line) |
         /// [R](https://plot.ly/r/reference/#choroplethmapbox-marker-line)
-        public var line: Line2?
+        public var line: Line?
     
         /// Sets the opacity of the locations.
         ///
@@ -202,25 +202,9 @@ public struct ChoroplethMapbox: Trace {
         /// [R](https://plot.ly/r/reference/#choroplethmapbox-marker-opacity)
         public var opacity: Double?
     
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#choroplethmapbox-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#choroplethmapbox-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case line
-            case opacity
-            case opacitySource = "opacitysrc"
-        }
-        
-        public init(line: Line2? = nil, opacity: Double? = nil, opacitySource: String? = nil) {
+        public init(line: Line? = nil, opacity: Double? = nil) {
             self.line = line
             self.opacity = opacity
-            self.opacitySource = opacitySource
         }
     }
     ///
@@ -230,19 +214,77 @@ public struct ChoroplethMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-marker)
     public var marker: Marker?
 
+    /// # Used By
+    /// `ChoroplethMapbox.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `ChoroplethMapbox.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#choroplethmapbox-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#choroplethmapbox-selected-marker-opacity)
+            public var opacity: Double?
+        
+            public init(opacity: Double? = nil) {
+                self.opacity = opacity
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#choroplethmapbox-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#choroplethmapbox-selected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-selected) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-selected) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `ChoroplethMapbox.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `ChoroplethMapbox.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#choroplethmapbox-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#choroplethmapbox-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            public init(opacity: Double? = nil) {
+                self.opacity = opacity
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#choroplethmapbox-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#choroplethmapbox-unselected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-unselected) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-unselected) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -399,7 +441,7 @@ public struct ChoroplethMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-colorbar) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-colorbar) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -424,78 +466,6 @@ public struct ChoroplethMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-subplot)
     public var subPlot: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-idssrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-metasrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  locations .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-locationssrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-locationssrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-locationssrc)
-    public var locationsSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-zsrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-textsrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#choroplethmapbox-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#choroplethmapbox-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -509,7 +479,7 @@ public struct ChoroplethMapbox: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case locations
         case z
@@ -533,18 +503,9 @@ public struct ChoroplethMapbox: Trace {
         case colorBar = "colorbar"
         case colorAxis = "coloraxis"
         case subPlot = "subplot"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case locationsSource = "locationssrc"
-        case zSource = "zsrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, z: [Double]? = nil, geoJson: Anything? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, locationsSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, z: [Double]? = nil, geoJson: Anything? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -578,14 +539,5 @@ public struct ChoroplethMapbox: Trace {
         self.colorBar = colorBar
         self.colorAxis = colorAxis
         self.subPlot = subPlot
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.locationsSource = locationsSource
-        self.zSource = zSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

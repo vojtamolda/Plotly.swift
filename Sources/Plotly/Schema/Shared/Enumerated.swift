@@ -7,12 +7,12 @@
 /// # Used By
 /// `Layout.Title.xAnchor` |
 /// `Layout.XAxis.RangeSelector.xAnchor` |
-/// `Layout.Scene.Annotations.Items.Annotation.xAnchor` |
+/// `Layout.Scene.Annotation.xAnchor` |
 /// `Layout.Legend.xAnchor` |
-/// `Layout.Annotations.Items.Annotation.xAnchor` |
-/// `Layout.UpdateMenus.Items.UpdateMenu.xAnchor` |
-/// `Layout.Sliders.Items.Slider.xAnchor` |
-public enum XAnchor0: String, Encodable {
+/// `Layout.Annotation.xAnchor` |
+/// `Layout.UpdateMenu.xAnchor` |
+/// `Layout.Slider.xAnchor` |
+public enum XAutoAnchor: String, Encodable {
     case auto
     case left
     case center
@@ -28,12 +28,12 @@ public enum XAnchor0: String, Encodable {
 /// # Used By
 /// `Layout.Title.yAnchor` |
 /// `Layout.XAxis.RangeSelector.yAnchor` |
-/// `Layout.Scene.Annotations.Items.Annotation.yAnchor` |
+/// `Layout.Scene.Annotation.yAnchor` |
 /// `Layout.Legend.yAnchor` |
-/// `Layout.Annotations.Items.Annotation.yAnchor` |
-/// `Layout.UpdateMenus.Items.UpdateMenu.yAnchor` |
-/// `Layout.Sliders.Items.Slider.yAnchor` |
-public enum YAnchor0: String, Encodable {
+/// `Layout.Annotation.yAnchor` |
+/// `Layout.UpdateMenu.yAnchor` |
+/// `Layout.Slider.yAnchor` |
+public enum YAutoAnchor: String, Encodable {
     case auto
     case top
     case middle
@@ -53,7 +53,7 @@ public enum YAnchor0: String, Encodable {
 /// `Funnel.orientation` |
 /// `Waterfall.orientation` |
 /// `Sankey.orientation` |
-public enum Orientation0: String, Encodable {
+public enum Orientation: String, Encodable {
     case v
     case h
 }
@@ -108,7 +108,7 @@ public enum Orientation0: String, Encodable {
 /// `ScatterPolarGL.HoverLabel.align` |
 /// `BarPolar.HoverLabel.align` |
 /// `Area.HoverLabel.align` |
-public enum Align0: String, Encodable {
+public enum AutoAlign: String, Encodable {
     case left
     case right
     case auto
@@ -153,7 +153,7 @@ public enum Align0: String, Encodable {
 /// `ScatterGL.yCalendar` |
 /// `OHLC.xCalendar` |
 /// `Candlestick.xCalendar` |
-public enum Calendar0: String, Encodable {
+public enum Calendar: String, Encodable {
     case gregorian
     case chinese
     case coptic
@@ -185,7 +185,7 @@ public enum Calendar0: String, Encodable {
 /// `Layout.Polar.RadialAxis.autoRange` |
 /// `Carpet.AAxis.autoRange` |
 /// `Carpet.BAxis.autoRange` |
-public enum AutoRange0: String, Encodable {
+public enum AutoRange: String, Encodable {
     case `true` = "true"
     case `false` = "false"
     case reversed
@@ -204,7 +204,7 @@ public enum AutoRange0: String, Encodable {
 /// `Layout.Scene.ZAxis.rangeMode` |
 /// `Carpet.AAxis.rangeMode` |
 /// `Carpet.BAxis.rangeMode` |
-public enum RangeMode0: String, Encodable {
+public enum RangeMode: String, Encodable {
     case normal
     case toZero = "tozero"
     case nonNegative = "nonnegative"
@@ -230,42 +230,42 @@ public enum RangeMode0: String, Encodable {
 /// `Layout.Polar.RadialAxis.tickMode` |
 /// `Layout.Polar.AngularAxis.tickMode` |
 /// `Layout.ColorAxis.ColorBar.tickMode` |
-/// `Scatter.Marker.ColorBar.tickMode` |
+/// `Scatter.GradientMarker.ColorBar.tickMode` |
 /// `Bar.Marker.ColorBar.tickMode` |
 /// `Heatmap.ColorBar.tickMode` |
 /// `Histogram.Marker.ColorBar.tickMode` |
 /// `Histogram2D.ColorBar.tickMode` |
 /// `Histogram2DContour.ColorBar.tickMode` |
 /// `Contour.ColorBar.tickMode` |
-/// `ScatterTernary.Marker.ColorBar.tickMode` |
+/// `ScatterTernary.GradientMarker.ColorBar.tickMode` |
 /// `Funnel.Marker.ColorBar.tickMode` |
 /// `Sunburst.Marker.ColorBar.tickMode` |
 /// `Treemap.Marker.ColorBar.tickMode` |
-/// `Scatter3D.Line.ColorBar.tickMode` |
-/// `Scatter3D.Marker.ColorBar.tickMode` |
+/// `Scatter3D.DashedColoredLine.ColorBar.tickMode` |
+/// `Scatter3D.SymbolicMarker.ColorBar.tickMode` |
 /// `Surface.ColorBar.tickMode` |
 /// `Isosurface.ColorBar.tickMode` |
 /// `Volume.ColorBar.tickMode` |
 /// `Mesh3D.ColorBar.tickMode` |
 /// `Cone.ColorBar.tickMode` |
 /// `StreamTube.ColorBar.tickMode` |
-/// `ScatterGeo.Marker.ColorBar.tickMode` |
+/// `ScatterGeo.GradientMarker.ColorBar.tickMode` |
 /// `Choropleth.ColorBar.tickMode` |
-/// `ScatterGL.Marker.ColorBar.tickMode` |
-/// `ScatterPlotMatrix.Marker.ColorBar.tickMode` |
+/// `ScatterGL.SymbolicMarker.ColorBar.tickMode` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickMode` |
 /// `HeatmapGL.ColorBar.tickMode` |
-/// `ParallelCoordinates.Line.ColorBar.tickMode` |
-/// `ParallelCategories.Line.ColorBar.tickMode` |
-/// `ScatterMapbox.Marker.ColorBar.tickMode` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.tickMode` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.tickMode` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.tickMode` |
 /// `ChoroplethMapbox.ColorBar.tickMode` |
 /// `DensityMapbox.ColorBar.tickMode` |
 /// `Indicator.Gauge.Axis.tickMode` |
-/// `ScatterCarpet.Marker.ColorBar.tickMode` |
+/// `ScatterCarpet.GradientMarker.ColorBar.tickMode` |
 /// `ContourCarpet.ColorBar.tickMode` |
-/// `ScatterPolar.Marker.ColorBar.tickMode` |
-/// `ScatterPolarGL.Marker.ColorBar.tickMode` |
+/// `ScatterPolar.GradientMarker.ColorBar.tickMode` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.tickMode` |
 /// `BarPolar.Marker.ColorBar.tickMode` |
-public enum TickMode0: String, Encodable {
+public enum TickMode: String, Encodable {
     case auto
     case linear
     case array
@@ -288,42 +288,42 @@ public enum TickMode0: String, Encodable {
 /// `Layout.Polar.RadialAxis.ticks` |
 /// `Layout.Polar.AngularAxis.ticks` |
 /// `Layout.ColorAxis.ColorBar.ticks` |
-/// `Scatter.Marker.ColorBar.ticks` |
+/// `Scatter.GradientMarker.ColorBar.ticks` |
 /// `Bar.Marker.ColorBar.ticks` |
 /// `Heatmap.ColorBar.ticks` |
 /// `Histogram.Marker.ColorBar.ticks` |
 /// `Histogram2D.ColorBar.ticks` |
 /// `Histogram2DContour.ColorBar.ticks` |
 /// `Contour.ColorBar.ticks` |
-/// `ScatterTernary.Marker.ColorBar.ticks` |
+/// `ScatterTernary.GradientMarker.ColorBar.ticks` |
 /// `Funnel.Marker.ColorBar.ticks` |
 /// `Sunburst.Marker.ColorBar.ticks` |
 /// `Treemap.Marker.ColorBar.ticks` |
-/// `Scatter3D.Line.ColorBar.ticks` |
-/// `Scatter3D.Marker.ColorBar.ticks` |
+/// `Scatter3D.DashedColoredLine.ColorBar.ticks` |
+/// `Scatter3D.SymbolicMarker.ColorBar.ticks` |
 /// `Surface.ColorBar.ticks` |
 /// `Isosurface.ColorBar.ticks` |
 /// `Volume.ColorBar.ticks` |
 /// `Mesh3D.ColorBar.ticks` |
 /// `Cone.ColorBar.ticks` |
 /// `StreamTube.ColorBar.ticks` |
-/// `ScatterGeo.Marker.ColorBar.ticks` |
+/// `ScatterGeo.GradientMarker.ColorBar.ticks` |
 /// `Choropleth.ColorBar.ticks` |
-/// `ScatterGL.Marker.ColorBar.ticks` |
-/// `ScatterPlotMatrix.Marker.ColorBar.ticks` |
+/// `ScatterGL.SymbolicMarker.ColorBar.ticks` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.ticks` |
 /// `HeatmapGL.ColorBar.ticks` |
-/// `ParallelCoordinates.Line.ColorBar.ticks` |
-/// `ParallelCategories.Line.ColorBar.ticks` |
-/// `ScatterMapbox.Marker.ColorBar.ticks` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.ticks` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.ticks` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.ticks` |
 /// `ChoroplethMapbox.ColorBar.ticks` |
 /// `DensityMapbox.ColorBar.ticks` |
 /// `Indicator.Gauge.Axis.ticks` |
-/// `ScatterCarpet.Marker.ColorBar.ticks` |
+/// `ScatterCarpet.GradientMarker.ColorBar.ticks` |
 /// `ContourCarpet.ColorBar.ticks` |
-/// `ScatterPolar.Marker.ColorBar.ticks` |
-/// `ScatterPolarGL.Marker.ColorBar.ticks` |
+/// `ScatterPolar.GradientMarker.ColorBar.ticks` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.ticks` |
 /// `BarPolar.Marker.ColorBar.ticks` |
-public enum Ticks0: String, Encodable {
+public enum Ticks: String, Encodable {
     case outside
     case inside
     case none = ""
@@ -341,7 +341,7 @@ public enum Ticks0: String, Encodable {
 /// `Layout.Scene.XAxis.mirror` |
 /// `Layout.Scene.YAxis.mirror` |
 /// `Layout.Scene.ZAxis.mirror` |
-public enum Mirror0: String, Encodable {
+public enum Mirror: String, Encodable {
     case `true` = "true"
     case ticks
     case `false` = "false"
@@ -366,44 +366,44 @@ public enum Mirror0: String, Encodable {
 /// `Layout.Polar.RadialAxis.showTickPrefix` |
 /// `Layout.Polar.AngularAxis.showTickPrefix` |
 /// `Layout.ColorAxis.ColorBar.showTickPrefix` |
-/// `Scatter.Marker.ColorBar.showTickPrefix` |
+/// `Scatter.GradientMarker.ColorBar.showTickPrefix` |
 /// `Bar.Marker.ColorBar.showTickPrefix` |
 /// `Heatmap.ColorBar.showTickPrefix` |
 /// `Histogram.Marker.ColorBar.showTickPrefix` |
 /// `Histogram2D.ColorBar.showTickPrefix` |
 /// `Histogram2DContour.ColorBar.showTickPrefix` |
 /// `Contour.ColorBar.showTickPrefix` |
-/// `ScatterTernary.Marker.ColorBar.showTickPrefix` |
+/// `ScatterTernary.GradientMarker.ColorBar.showTickPrefix` |
 /// `Funnel.Marker.ColorBar.showTickPrefix` |
 /// `Sunburst.Marker.ColorBar.showTickPrefix` |
 /// `Treemap.Marker.ColorBar.showTickPrefix` |
-/// `Scatter3D.Line.ColorBar.showTickPrefix` |
-/// `Scatter3D.Marker.ColorBar.showTickPrefix` |
+/// `Scatter3D.DashedColoredLine.ColorBar.showTickPrefix` |
+/// `Scatter3D.SymbolicMarker.ColorBar.showTickPrefix` |
 /// `Surface.ColorBar.showTickPrefix` |
 /// `Isosurface.ColorBar.showTickPrefix` |
 /// `Volume.ColorBar.showTickPrefix` |
 /// `Mesh3D.ColorBar.showTickPrefix` |
 /// `Cone.ColorBar.showTickPrefix` |
 /// `StreamTube.ColorBar.showTickPrefix` |
-/// `ScatterGeo.Marker.ColorBar.showTickPrefix` |
+/// `ScatterGeo.GradientMarker.ColorBar.showTickPrefix` |
 /// `Choropleth.ColorBar.showTickPrefix` |
-/// `ScatterGL.Marker.ColorBar.showTickPrefix` |
-/// `ScatterPlotMatrix.Marker.ColorBar.showTickPrefix` |
+/// `ScatterGL.SymbolicMarker.ColorBar.showTickPrefix` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickPrefix` |
 /// `HeatmapGL.ColorBar.showTickPrefix` |
-/// `ParallelCoordinates.Line.ColorBar.showTickPrefix` |
-/// `ParallelCategories.Line.ColorBar.showTickPrefix` |
-/// `ScatterMapbox.Marker.ColorBar.showTickPrefix` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.showTickPrefix` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.showTickPrefix` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.showTickPrefix` |
 /// `ChoroplethMapbox.ColorBar.showTickPrefix` |
 /// `DensityMapbox.ColorBar.showTickPrefix` |
 /// `Indicator.Gauge.Axis.showTickPrefix` |
 /// `Carpet.AAxis.showTickPrefix` |
 /// `Carpet.BAxis.showTickPrefix` |
-/// `ScatterCarpet.Marker.ColorBar.showTickPrefix` |
+/// `ScatterCarpet.GradientMarker.ColorBar.showTickPrefix` |
 /// `ContourCarpet.ColorBar.showTickPrefix` |
-/// `ScatterPolar.Marker.ColorBar.showTickPrefix` |
-/// `ScatterPolarGL.Marker.ColorBar.showTickPrefix` |
+/// `ScatterPolar.GradientMarker.ColorBar.showTickPrefix` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.showTickPrefix` |
 /// `BarPolar.Marker.ColorBar.showTickPrefix` |
-public enum ShowTickPrefix0: String, Encodable {
+public enum ShowTickPrefix: String, Encodable {
     case all
     case first
     case last
@@ -424,44 +424,44 @@ public enum ShowTickPrefix0: String, Encodable {
 /// `Layout.Polar.RadialAxis.showTickSuffix` |
 /// `Layout.Polar.AngularAxis.showTickSuffix` |
 /// `Layout.ColorAxis.ColorBar.showTickSuffix` |
-/// `Scatter.Marker.ColorBar.showTickSuffix` |
+/// `Scatter.GradientMarker.ColorBar.showTickSuffix` |
 /// `Bar.Marker.ColorBar.showTickSuffix` |
 /// `Heatmap.ColorBar.showTickSuffix` |
 /// `Histogram.Marker.ColorBar.showTickSuffix` |
 /// `Histogram2D.ColorBar.showTickSuffix` |
 /// `Histogram2DContour.ColorBar.showTickSuffix` |
 /// `Contour.ColorBar.showTickSuffix` |
-/// `ScatterTernary.Marker.ColorBar.showTickSuffix` |
+/// `ScatterTernary.GradientMarker.ColorBar.showTickSuffix` |
 /// `Funnel.Marker.ColorBar.showTickSuffix` |
 /// `Sunburst.Marker.ColorBar.showTickSuffix` |
 /// `Treemap.Marker.ColorBar.showTickSuffix` |
-/// `Scatter3D.Line.ColorBar.showTickSuffix` |
-/// `Scatter3D.Marker.ColorBar.showTickSuffix` |
+/// `Scatter3D.DashedColoredLine.ColorBar.showTickSuffix` |
+/// `Scatter3D.SymbolicMarker.ColorBar.showTickSuffix` |
 /// `Surface.ColorBar.showTickSuffix` |
 /// `Isosurface.ColorBar.showTickSuffix` |
 /// `Volume.ColorBar.showTickSuffix` |
 /// `Mesh3D.ColorBar.showTickSuffix` |
 /// `Cone.ColorBar.showTickSuffix` |
 /// `StreamTube.ColorBar.showTickSuffix` |
-/// `ScatterGeo.Marker.ColorBar.showTickSuffix` |
+/// `ScatterGeo.GradientMarker.ColorBar.showTickSuffix` |
 /// `Choropleth.ColorBar.showTickSuffix` |
-/// `ScatterGL.Marker.ColorBar.showTickSuffix` |
-/// `ScatterPlotMatrix.Marker.ColorBar.showTickSuffix` |
+/// `ScatterGL.SymbolicMarker.ColorBar.showTickSuffix` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickSuffix` |
 /// `HeatmapGL.ColorBar.showTickSuffix` |
-/// `ParallelCoordinates.Line.ColorBar.showTickSuffix` |
-/// `ParallelCategories.Line.ColorBar.showTickSuffix` |
-/// `ScatterMapbox.Marker.ColorBar.showTickSuffix` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.showTickSuffix` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.showTickSuffix` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.showTickSuffix` |
 /// `ChoroplethMapbox.ColorBar.showTickSuffix` |
 /// `DensityMapbox.ColorBar.showTickSuffix` |
 /// `Indicator.Gauge.Axis.showTickSuffix` |
 /// `Carpet.AAxis.showTickSuffix` |
 /// `Carpet.BAxis.showTickSuffix` |
-/// `ScatterCarpet.Marker.ColorBar.showTickSuffix` |
+/// `ScatterCarpet.GradientMarker.ColorBar.showTickSuffix` |
 /// `ContourCarpet.ColorBar.showTickSuffix` |
-/// `ScatterPolar.Marker.ColorBar.showTickSuffix` |
-/// `ScatterPolarGL.Marker.ColorBar.showTickSuffix` |
+/// `ScatterPolar.GradientMarker.ColorBar.showTickSuffix` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.showTickSuffix` |
 /// `BarPolar.Marker.ColorBar.showTickSuffix` |
-public enum ShowTickSuffix0: String, Encodable {
+public enum ShowTickSuffix: String, Encodable {
     case all
     case first
     case last
@@ -485,44 +485,44 @@ public enum ShowTickSuffix0: String, Encodable {
 /// `Layout.Polar.RadialAxis.showExponent` |
 /// `Layout.Polar.AngularAxis.showExponent` |
 /// `Layout.ColorAxis.ColorBar.showExponent` |
-/// `Scatter.Marker.ColorBar.showExponent` |
+/// `Scatter.GradientMarker.ColorBar.showExponent` |
 /// `Bar.Marker.ColorBar.showExponent` |
 /// `Heatmap.ColorBar.showExponent` |
 /// `Histogram.Marker.ColorBar.showExponent` |
 /// `Histogram2D.ColorBar.showExponent` |
 /// `Histogram2DContour.ColorBar.showExponent` |
 /// `Contour.ColorBar.showExponent` |
-/// `ScatterTernary.Marker.ColorBar.showExponent` |
+/// `ScatterTernary.GradientMarker.ColorBar.showExponent` |
 /// `Funnel.Marker.ColorBar.showExponent` |
 /// `Sunburst.Marker.ColorBar.showExponent` |
 /// `Treemap.Marker.ColorBar.showExponent` |
-/// `Scatter3D.Line.ColorBar.showExponent` |
-/// `Scatter3D.Marker.ColorBar.showExponent` |
+/// `Scatter3D.DashedColoredLine.ColorBar.showExponent` |
+/// `Scatter3D.SymbolicMarker.ColorBar.showExponent` |
 /// `Surface.ColorBar.showExponent` |
 /// `Isosurface.ColorBar.showExponent` |
 /// `Volume.ColorBar.showExponent` |
 /// `Mesh3D.ColorBar.showExponent` |
 /// `Cone.ColorBar.showExponent` |
 /// `StreamTube.ColorBar.showExponent` |
-/// `ScatterGeo.Marker.ColorBar.showExponent` |
+/// `ScatterGeo.GradientMarker.ColorBar.showExponent` |
 /// `Choropleth.ColorBar.showExponent` |
-/// `ScatterGL.Marker.ColorBar.showExponent` |
-/// `ScatterPlotMatrix.Marker.ColorBar.showExponent` |
+/// `ScatterGL.SymbolicMarker.ColorBar.showExponent` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.showExponent` |
 /// `HeatmapGL.ColorBar.showExponent` |
-/// `ParallelCoordinates.Line.ColorBar.showExponent` |
-/// `ParallelCategories.Line.ColorBar.showExponent` |
-/// `ScatterMapbox.Marker.ColorBar.showExponent` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.showExponent` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.showExponent` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.showExponent` |
 /// `ChoroplethMapbox.ColorBar.showExponent` |
 /// `DensityMapbox.ColorBar.showExponent` |
 /// `Indicator.Gauge.Axis.showExponent` |
 /// `Carpet.AAxis.showExponent` |
 /// `Carpet.BAxis.showExponent` |
-/// `ScatterCarpet.Marker.ColorBar.showExponent` |
+/// `ScatterCarpet.GradientMarker.ColorBar.showExponent` |
 /// `ContourCarpet.ColorBar.showExponent` |
-/// `ScatterPolar.Marker.ColorBar.showExponent` |
-/// `ScatterPolarGL.Marker.ColorBar.showExponent` |
+/// `ScatterPolar.GradientMarker.ColorBar.showExponent` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.showExponent` |
 /// `BarPolar.Marker.ColorBar.showExponent` |
-public enum ShowExponent0: String, Encodable {
+public enum ShowExponent: String, Encodable {
     case all
     case first
     case last
@@ -546,44 +546,44 @@ public enum ShowExponent0: String, Encodable {
 /// `Layout.Polar.RadialAxis.exponentFormat` |
 /// `Layout.Polar.AngularAxis.exponentFormat` |
 /// `Layout.ColorAxis.ColorBar.exponentFormat` |
-/// `Scatter.Marker.ColorBar.exponentFormat` |
+/// `Scatter.GradientMarker.ColorBar.exponentFormat` |
 /// `Bar.Marker.ColorBar.exponentFormat` |
 /// `Heatmap.ColorBar.exponentFormat` |
 /// `Histogram.Marker.ColorBar.exponentFormat` |
 /// `Histogram2D.ColorBar.exponentFormat` |
 /// `Histogram2DContour.ColorBar.exponentFormat` |
 /// `Contour.ColorBar.exponentFormat` |
-/// `ScatterTernary.Marker.ColorBar.exponentFormat` |
+/// `ScatterTernary.GradientMarker.ColorBar.exponentFormat` |
 /// `Funnel.Marker.ColorBar.exponentFormat` |
 /// `Sunburst.Marker.ColorBar.exponentFormat` |
 /// `Treemap.Marker.ColorBar.exponentFormat` |
-/// `Scatter3D.Line.ColorBar.exponentFormat` |
-/// `Scatter3D.Marker.ColorBar.exponentFormat` |
+/// `Scatter3D.DashedColoredLine.ColorBar.exponentFormat` |
+/// `Scatter3D.SymbolicMarker.ColorBar.exponentFormat` |
 /// `Surface.ColorBar.exponentFormat` |
 /// `Isosurface.ColorBar.exponentFormat` |
 /// `Volume.ColorBar.exponentFormat` |
 /// `Mesh3D.ColorBar.exponentFormat` |
 /// `Cone.ColorBar.exponentFormat` |
 /// `StreamTube.ColorBar.exponentFormat` |
-/// `ScatterGeo.Marker.ColorBar.exponentFormat` |
+/// `ScatterGeo.GradientMarker.ColorBar.exponentFormat` |
 /// `Choropleth.ColorBar.exponentFormat` |
-/// `ScatterGL.Marker.ColorBar.exponentFormat` |
-/// `ScatterPlotMatrix.Marker.ColorBar.exponentFormat` |
+/// `ScatterGL.SymbolicMarker.ColorBar.exponentFormat` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.exponentFormat` |
 /// `HeatmapGL.ColorBar.exponentFormat` |
-/// `ParallelCoordinates.Line.ColorBar.exponentFormat` |
-/// `ParallelCategories.Line.ColorBar.exponentFormat` |
-/// `ScatterMapbox.Marker.ColorBar.exponentFormat` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.exponentFormat` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.exponentFormat` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.exponentFormat` |
 /// `ChoroplethMapbox.ColorBar.exponentFormat` |
 /// `DensityMapbox.ColorBar.exponentFormat` |
 /// `Indicator.Gauge.Axis.exponentFormat` |
 /// `Carpet.AAxis.exponentFormat` |
 /// `Carpet.BAxis.exponentFormat` |
-/// `ScatterCarpet.Marker.ColorBar.exponentFormat` |
+/// `ScatterCarpet.GradientMarker.ColorBar.exponentFormat` |
 /// `ContourCarpet.ColorBar.exponentFormat` |
-/// `ScatterPolar.Marker.ColorBar.exponentFormat` |
-/// `ScatterPolarGL.Marker.ColorBar.exponentFormat` |
+/// `ScatterPolar.GradientMarker.ColorBar.exponentFormat` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.exponentFormat` |
 /// `BarPolar.Marker.ColorBar.exponentFormat` |
-public enum ExponentFormat0: String, Encodable {
+public enum ExponentFormat: String, Encodable {
     case none
     case e
     case E
@@ -607,7 +607,7 @@ public enum ExponentFormat0: String, Encodable {
 /// `Layout.Ternary.CAxis.layer` |
 /// `Layout.Polar.RadialAxis.layer` |
 /// `Layout.Polar.AngularAxis.layer` |
-public enum Layer0: String, Encodable {
+public enum Layer: String, Encodable {
     case aboveTraces = "above traces"
     case belowTraces = "below traces"
 }
@@ -632,7 +632,7 @@ public enum Layer0: String, Encodable {
 /// `Layout.Scene.ZAxis.categoryOrder` |
 /// `Layout.Polar.RadialAxis.categoryOrder` |
 /// `Layout.Polar.AngularAxis.categoryOrder` |
-public enum CategoryOrder0: String, Encodable {
+public enum CategoryOrder: String, Encodable {
     case trace
     case categoryAscending = "category ascending"
     case categoryDescending = "category descending"
@@ -657,22 +657,36 @@ public enum CategoryOrder0: String, Encodable {
 /// HTML tags) or if an explicit width is set to override the text width.
 ///
 /// # Used By
-/// `Layout.Scene.Annotations.Items.Annotation.align` |
-/// `Layout.Annotations.Items.Annotation.align` |
+/// `Layout.Scene.Annotation.align` |
+/// `Layout.Annotation.align` |
 /// `Indicator.align` |
 /// `Indicator.Title.align` |
 /// `Table.Header.align` |
 /// `Table.Cells.align` |
-public enum Align1: String, Encodable {
+public enum HorizontalAlign: String, Encodable {
     case left
     case center
     case right
 }
 
+/// Sets the vertical alignment of the `text` within the box. 
+///
+/// Has an effect only if an explicit height is set to override the text height.
+///
+/// # Used By
+/// `Layout.Scene.Annotation.verticalAlign` |
+/// `Layout.Legend.verticalAlign` |
+/// `Layout.Annotation.verticalAlign` |
+public enum VerticalAlign: String, Encodable {
+    case top
+    case middle
+    case bottom
+}
+
 /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
 ///
 /// # Used By
-/// `Layout.Mapbox.Layers.Items.Layer.Symbol.textPosition` |
+/// `Layout.Mapbox.Layer.Symbol.textPosition` |
 /// `Scatter.textPosition` |
 /// `ScatterTernary.textPosition` |
 /// `Treemap.textPosition` |
@@ -683,7 +697,7 @@ public enum Align1: String, Encodable {
 /// `ScatterCarpet.textPosition` |
 /// `ScatterPolar.textPosition` |
 /// `ScatterPolarGL.textPosition` |
-public enum TextPosition0: String, Encodable {
+public enum TextPosition: String, Encodable {
     case topLeft = "top left"
     case topCenter = "top center"
     case topRight = "top right"
@@ -695,47 +709,77 @@ public enum TextPosition0: String, Encodable {
     case bottomRight = "bottom right"
 }
 
+/// Sets the annotation's x coordinate axis. 
+///
+/// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
+/// *paper*, the `x` position refers to the distance from the left side of the plotting area in
+/// normalized coordinates where 0 (1) corresponds to the left (right) side.
+///
+/// # Used By
+/// `Layout.Annotation.xReference` |
+/// `Layout.Shape.xReference` |
+/// `Layout.Image.xReference` |
+public enum XAxisReference: String, Encodable {
+    case paper
+    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+}
+
+/// Sets the annotation's y coordinate axis. 
+///
+/// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+/// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
+/// normalized coordinates where 0 (1) corresponds to the bottom (top).
+///
+/// # Used By
+/// `Layout.Annotation.yReference` |
+/// `Layout.Shape.yReference` |
+/// `Layout.Image.yReference` |
+public enum YAxisReference: String, Encodable {
+    case paper
+    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+}
+
 /// Sets the anchor for the x position
 ///
 /// # Used By
-/// `Layout.Images.Items.Image.xAnchor` |
-/// `Layout.Sliders.Items.Slider.CurrentValue.xAnchor` |
+/// `Layout.Image.xAnchor` |
+/// `Layout.Slider.CurrentValue.xAnchor` |
 /// `Layout.ColorAxis.ColorBar.xAnchor` |
-/// `Scatter.Marker.ColorBar.xAnchor` |
+/// `Scatter.GradientMarker.ColorBar.xAnchor` |
 /// `Bar.Marker.ColorBar.xAnchor` |
 /// `Heatmap.ColorBar.xAnchor` |
 /// `Histogram.Marker.ColorBar.xAnchor` |
 /// `Histogram2D.ColorBar.xAnchor` |
 /// `Histogram2DContour.ColorBar.xAnchor` |
 /// `Contour.ColorBar.xAnchor` |
-/// `ScatterTernary.Marker.ColorBar.xAnchor` |
+/// `ScatterTernary.GradientMarker.ColorBar.xAnchor` |
 /// `Funnel.Marker.ColorBar.xAnchor` |
 /// `Sunburst.Marker.ColorBar.xAnchor` |
 /// `Treemap.Marker.ColorBar.xAnchor` |
-/// `Scatter3D.Line.ColorBar.xAnchor` |
-/// `Scatter3D.Marker.ColorBar.xAnchor` |
+/// `Scatter3D.DashedColoredLine.ColorBar.xAnchor` |
+/// `Scatter3D.SymbolicMarker.ColorBar.xAnchor` |
 /// `Surface.ColorBar.xAnchor` |
 /// `Isosurface.ColorBar.xAnchor` |
 /// `Volume.ColorBar.xAnchor` |
 /// `Mesh3D.ColorBar.xAnchor` |
 /// `Cone.ColorBar.xAnchor` |
 /// `StreamTube.ColorBar.xAnchor` |
-/// `ScatterGeo.Marker.ColorBar.xAnchor` |
+/// `ScatterGeo.GradientMarker.ColorBar.xAnchor` |
 /// `Choropleth.ColorBar.xAnchor` |
-/// `ScatterGL.Marker.ColorBar.xAnchor` |
-/// `ScatterPlotMatrix.Marker.ColorBar.xAnchor` |
+/// `ScatterGL.SymbolicMarker.ColorBar.xAnchor` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.xAnchor` |
 /// `HeatmapGL.ColorBar.xAnchor` |
-/// `ParallelCoordinates.Line.ColorBar.xAnchor` |
-/// `ParallelCategories.Line.ColorBar.xAnchor` |
-/// `ScatterMapbox.Marker.ColorBar.xAnchor` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.xAnchor` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.xAnchor` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.xAnchor` |
 /// `ChoroplethMapbox.ColorBar.xAnchor` |
 /// `DensityMapbox.ColorBar.xAnchor` |
-/// `ScatterCarpet.Marker.ColorBar.xAnchor` |
+/// `ScatterCarpet.GradientMarker.ColorBar.xAnchor` |
 /// `ContourCarpet.ColorBar.xAnchor` |
-/// `ScatterPolar.Marker.ColorBar.xAnchor` |
-/// `ScatterPolarGL.Marker.ColorBar.xAnchor` |
+/// `ScatterPolar.GradientMarker.ColorBar.xAnchor` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.xAnchor` |
 /// `BarPolar.Marker.ColorBar.xAnchor` |
-public enum XAnchor1: String, Encodable {
+public enum XAnchor: String, Encodable {
     case left
     case center
     case right
@@ -744,43 +788,43 @@ public enum XAnchor1: String, Encodable {
 /// Sets the anchor for the y position.
 ///
 /// # Used By
-/// `Layout.Images.Items.Image.yAnchor` |
+/// `Layout.Image.yAnchor` |
 /// `Layout.ColorAxis.ColorBar.yAnchor` |
-/// `Scatter.Marker.ColorBar.yAnchor` |
+/// `Scatter.GradientMarker.ColorBar.yAnchor` |
 /// `Bar.Marker.ColorBar.yAnchor` |
 /// `Heatmap.ColorBar.yAnchor` |
 /// `Histogram.Marker.ColorBar.yAnchor` |
 /// `Histogram2D.ColorBar.yAnchor` |
 /// `Histogram2DContour.ColorBar.yAnchor` |
 /// `Contour.ColorBar.yAnchor` |
-/// `ScatterTernary.Marker.ColorBar.yAnchor` |
+/// `ScatterTernary.GradientMarker.ColorBar.yAnchor` |
 /// `Funnel.Marker.ColorBar.yAnchor` |
 /// `Sunburst.Marker.ColorBar.yAnchor` |
 /// `Treemap.Marker.ColorBar.yAnchor` |
-/// `Scatter3D.Line.ColorBar.yAnchor` |
-/// `Scatter3D.Marker.ColorBar.yAnchor` |
+/// `Scatter3D.DashedColoredLine.ColorBar.yAnchor` |
+/// `Scatter3D.SymbolicMarker.ColorBar.yAnchor` |
 /// `Surface.ColorBar.yAnchor` |
 /// `Isosurface.ColorBar.yAnchor` |
 /// `Volume.ColorBar.yAnchor` |
 /// `Mesh3D.ColorBar.yAnchor` |
 /// `Cone.ColorBar.yAnchor` |
 /// `StreamTube.ColorBar.yAnchor` |
-/// `ScatterGeo.Marker.ColorBar.yAnchor` |
+/// `ScatterGeo.GradientMarker.ColorBar.yAnchor` |
 /// `Choropleth.ColorBar.yAnchor` |
-/// `ScatterGL.Marker.ColorBar.yAnchor` |
-/// `ScatterPlotMatrix.Marker.ColorBar.yAnchor` |
+/// `ScatterGL.SymbolicMarker.ColorBar.yAnchor` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.yAnchor` |
 /// `HeatmapGL.ColorBar.yAnchor` |
-/// `ParallelCoordinates.Line.ColorBar.yAnchor` |
-/// `ParallelCategories.Line.ColorBar.yAnchor` |
-/// `ScatterMapbox.Marker.ColorBar.yAnchor` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.yAnchor` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.yAnchor` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.yAnchor` |
 /// `ChoroplethMapbox.ColorBar.yAnchor` |
 /// `DensityMapbox.ColorBar.yAnchor` |
-/// `ScatterCarpet.Marker.ColorBar.yAnchor` |
+/// `ScatterCarpet.GradientMarker.ColorBar.yAnchor` |
 /// `ContourCarpet.ColorBar.yAnchor` |
-/// `ScatterPolar.Marker.ColorBar.yAnchor` |
-/// `ScatterPolarGL.Marker.ColorBar.yAnchor` |
+/// `ScatterPolar.GradientMarker.ColorBar.yAnchor` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.yAnchor` |
 /// `BarPolar.Marker.ColorBar.yAnchor` |
-public enum YAnchor1: String, Encodable {
+public enum YAnchor: String, Encodable {
     case top
     case middle
     case bottom
@@ -791,43 +835,43 @@ public enum YAnchor1: String, Encodable {
 /// Use `len` to set the value.
 ///
 /// # Used By
-/// `Layout.Sliders.Items.Slider.lengthMode` |
+/// `Layout.Slider.lengthMode` |
 /// `Layout.ColorAxis.ColorBar.lengthMode` |
-/// `Scatter.Marker.ColorBar.lengthMode` |
+/// `Scatter.GradientMarker.ColorBar.lengthMode` |
 /// `Bar.Marker.ColorBar.lengthMode` |
 /// `Heatmap.ColorBar.lengthMode` |
 /// `Histogram.Marker.ColorBar.lengthMode` |
 /// `Histogram2D.ColorBar.lengthMode` |
 /// `Histogram2DContour.ColorBar.lengthMode` |
 /// `Contour.ColorBar.lengthMode` |
-/// `ScatterTernary.Marker.ColorBar.lengthMode` |
+/// `ScatterTernary.GradientMarker.ColorBar.lengthMode` |
 /// `Funnel.Marker.ColorBar.lengthMode` |
 /// `Sunburst.Marker.ColorBar.lengthMode` |
 /// `Treemap.Marker.ColorBar.lengthMode` |
-/// `Scatter3D.Line.ColorBar.lengthMode` |
-/// `Scatter3D.Marker.ColorBar.lengthMode` |
+/// `Scatter3D.DashedColoredLine.ColorBar.lengthMode` |
+/// `Scatter3D.SymbolicMarker.ColorBar.lengthMode` |
 /// `Surface.ColorBar.lengthMode` |
 /// `Isosurface.ColorBar.lengthMode` |
 /// `Volume.ColorBar.lengthMode` |
 /// `Mesh3D.ColorBar.lengthMode` |
 /// `Cone.ColorBar.lengthMode` |
 /// `StreamTube.ColorBar.lengthMode` |
-/// `ScatterGeo.Marker.ColorBar.lengthMode` |
+/// `ScatterGeo.GradientMarker.ColorBar.lengthMode` |
 /// `Choropleth.ColorBar.lengthMode` |
-/// `ScatterGL.Marker.ColorBar.lengthMode` |
-/// `ScatterPlotMatrix.Marker.ColorBar.lengthMode` |
+/// `ScatterGL.SymbolicMarker.ColorBar.lengthMode` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.lengthMode` |
 /// `HeatmapGL.ColorBar.lengthMode` |
-/// `ParallelCoordinates.Line.ColorBar.lengthMode` |
-/// `ParallelCategories.Line.ColorBar.lengthMode` |
-/// `ScatterMapbox.Marker.ColorBar.lengthMode` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.lengthMode` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.lengthMode` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.lengthMode` |
 /// `ChoroplethMapbox.ColorBar.lengthMode` |
 /// `DensityMapbox.ColorBar.lengthMode` |
-/// `ScatterCarpet.Marker.ColorBar.lengthMode` |
+/// `ScatterCarpet.GradientMarker.ColorBar.lengthMode` |
 /// `ContourCarpet.ColorBar.lengthMode` |
-/// `ScatterPolar.Marker.ColorBar.lengthMode` |
-/// `ScatterPolarGL.Marker.ColorBar.lengthMode` |
+/// `ScatterPolar.GradientMarker.ColorBar.lengthMode` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.lengthMode` |
 /// `BarPolar.Marker.ColorBar.lengthMode` |
-public enum LengthMode0: String, Encodable {
+public enum LengthMode: String, Encodable {
     case fraction
     case pixels
 }
@@ -839,41 +883,41 @@ public enum LengthMode0: String, Encodable {
 ///
 /// # Used By
 /// `Layout.ColorAxis.ColorBar.thicknessMode` |
-/// `Scatter.Marker.ColorBar.thicknessMode` |
+/// `Scatter.GradientMarker.ColorBar.thicknessMode` |
 /// `Bar.Marker.ColorBar.thicknessMode` |
 /// `Heatmap.ColorBar.thicknessMode` |
 /// `Histogram.Marker.ColorBar.thicknessMode` |
 /// `Histogram2D.ColorBar.thicknessMode` |
 /// `Histogram2DContour.ColorBar.thicknessMode` |
 /// `Contour.ColorBar.thicknessMode` |
-/// `ScatterTernary.Marker.ColorBar.thicknessMode` |
+/// `ScatterTernary.GradientMarker.ColorBar.thicknessMode` |
 /// `Funnel.Marker.ColorBar.thicknessMode` |
 /// `Sunburst.Marker.ColorBar.thicknessMode` |
 /// `Treemap.Marker.ColorBar.thicknessMode` |
-/// `Scatter3D.Line.ColorBar.thicknessMode` |
-/// `Scatter3D.Marker.ColorBar.thicknessMode` |
+/// `Scatter3D.DashedColoredLine.ColorBar.thicknessMode` |
+/// `Scatter3D.SymbolicMarker.ColorBar.thicknessMode` |
 /// `Surface.ColorBar.thicknessMode` |
 /// `Isosurface.ColorBar.thicknessMode` |
 /// `Volume.ColorBar.thicknessMode` |
 /// `Mesh3D.ColorBar.thicknessMode` |
 /// `Cone.ColorBar.thicknessMode` |
 /// `StreamTube.ColorBar.thicknessMode` |
-/// `ScatterGeo.Marker.ColorBar.thicknessMode` |
+/// `ScatterGeo.GradientMarker.ColorBar.thicknessMode` |
 /// `Choropleth.ColorBar.thicknessMode` |
-/// `ScatterGL.Marker.ColorBar.thicknessMode` |
-/// `ScatterPlotMatrix.Marker.ColorBar.thicknessMode` |
+/// `ScatterGL.SymbolicMarker.ColorBar.thicknessMode` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.thicknessMode` |
 /// `HeatmapGL.ColorBar.thicknessMode` |
-/// `ParallelCoordinates.Line.ColorBar.thicknessMode` |
-/// `ParallelCategories.Line.ColorBar.thicknessMode` |
-/// `ScatterMapbox.Marker.ColorBar.thicknessMode` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.thicknessMode` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.thicknessMode` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.thicknessMode` |
 /// `ChoroplethMapbox.ColorBar.thicknessMode` |
 /// `DensityMapbox.ColorBar.thicknessMode` |
-/// `ScatterCarpet.Marker.ColorBar.thicknessMode` |
+/// `ScatterCarpet.GradientMarker.ColorBar.thicknessMode` |
 /// `ContourCarpet.ColorBar.thicknessMode` |
-/// `ScatterPolar.Marker.ColorBar.thicknessMode` |
-/// `ScatterPolarGL.Marker.ColorBar.thicknessMode` |
+/// `ScatterPolar.GradientMarker.ColorBar.thicknessMode` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.thicknessMode` |
 /// `BarPolar.Marker.ColorBar.thicknessMode` |
-public enum ThicknessMode0: String, Encodable {
+public enum ThicknessMode: String, Encodable {
     case fraction
     case pixels
 }
@@ -884,41 +928,41 @@ public enum ThicknessMode0: String, Encodable {
 ///
 /// # Used By
 /// `Layout.ColorAxis.ColorBar.Title.side` |
-/// `Scatter.Marker.ColorBar.Title.side` |
+/// `Scatter.GradientMarker.ColorBar.Title.side` |
 /// `Bar.Marker.ColorBar.Title.side` |
 /// `Heatmap.ColorBar.Title.side` |
 /// `Histogram.Marker.ColorBar.Title.side` |
 /// `Histogram2D.ColorBar.Title.side` |
 /// `Histogram2DContour.ColorBar.Title.side` |
 /// `Contour.ColorBar.Title.side` |
-/// `ScatterTernary.Marker.ColorBar.Title.side` |
+/// `ScatterTernary.GradientMarker.ColorBar.Title.side` |
 /// `Funnel.Marker.ColorBar.Title.side` |
 /// `Sunburst.Marker.ColorBar.Title.side` |
 /// `Treemap.Marker.ColorBar.Title.side` |
-/// `Scatter3D.Line.ColorBar.Title.side` |
-/// `Scatter3D.Marker.ColorBar.Title.side` |
+/// `Scatter3D.DashedColoredLine.ColorBar.Title.side` |
+/// `Scatter3D.SymbolicMarker.ColorBar.Title.side` |
 /// `Surface.ColorBar.Title.side` |
 /// `Isosurface.ColorBar.Title.side` |
 /// `Volume.ColorBar.Title.side` |
 /// `Mesh3D.ColorBar.Title.side` |
 /// `Cone.ColorBar.Title.side` |
 /// `StreamTube.ColorBar.Title.side` |
-/// `ScatterGeo.Marker.ColorBar.Title.side` |
+/// `ScatterGeo.GradientMarker.ColorBar.Title.side` |
 /// `Choropleth.ColorBar.Title.side` |
-/// `ScatterGL.Marker.ColorBar.Title.side` |
-/// `ScatterPlotMatrix.Marker.ColorBar.Title.side` |
+/// `ScatterGL.SymbolicMarker.ColorBar.Title.side` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.Title.side` |
 /// `HeatmapGL.ColorBar.Title.side` |
-/// `ParallelCoordinates.Line.ColorBar.Title.side` |
-/// `ParallelCategories.Line.ColorBar.Title.side` |
-/// `ScatterMapbox.Marker.ColorBar.Title.side` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.Title.side` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.Title.side` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.Title.side` |
 /// `ChoroplethMapbox.ColorBar.Title.side` |
 /// `DensityMapbox.ColorBar.Title.side` |
-/// `ScatterCarpet.Marker.ColorBar.Title.side` |
+/// `ScatterCarpet.GradientMarker.ColorBar.Title.side` |
 /// `ContourCarpet.ColorBar.Title.side` |
-/// `ScatterPolar.Marker.ColorBar.Title.side` |
-/// `ScatterPolarGL.Marker.ColorBar.Title.side` |
+/// `ScatterPolar.GradientMarker.ColorBar.Title.side` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.Title.side` |
 /// `BarPolar.Marker.ColorBar.Title.side` |
-public enum Side0: String, Encodable {
+public enum Side: String, Encodable {
     case right
     case top
     case bottom
@@ -977,10 +1021,39 @@ public enum Side0: String, Encodable {
 /// `ScatterPolarGL.visible` |
 /// `BarPolar.visible` |
 /// `Area.visible` |
-public enum Visible0: String, Encodable {
+public enum Visible: String, Encodable {
     case `true` = "true"
     case `false` = "false"
     case legendOnly = "legendonly"
+}
+
+/// Sets the area to fill with a solid color. 
+///
+/// Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if
+/// `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to
+/// x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and
+/// the endpoints of the trace before it, connecting those endpoints with straight lines (to make a
+/// stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*.
+/// *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into
+/// a closed shape. *tonext* fills the space between two traces if one completely encloses the other
+/// (eg consecutive contour lines), and behaves like *toself* if there is no trace before it.
+/// *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup`
+/// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
+/// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
+/// later ones will be pushed down in the drawing order.
+///
+/// # Used By
+/// `Scatter.fill` |
+/// `ScatterGL.fill` |
+/// `ScatterPolarGL.fill` |
+public enum Fill: String, Encodable {
+    case none
+    case toZeroY = "tozeroy"
+    case toZeroX = "tozerox"
+    case toNextY = "tonexty"
+    case toNextX = "tonextx"
+    case toSelf = "toself"
+    case toNext = "tonext"
 }
 
 /// Sets the marker symbol type. 
@@ -990,18 +1063,18 @@ public enum Visible0: String, Encodable {
 /// *dot-open* to a symbol name.
 ///
 /// # Used By
-/// `Scatter.Marker.symbol` |
-/// `Box.Marker.symbol` |
-/// `ScatterTernary.Marker.symbol` |
-/// `Violin.Marker.symbol` |
-/// `ScatterGeo.Marker.symbol` |
-/// `ScatterGL.Marker.symbol` |
-/// `ScatterPlotMatrix.Marker.symbol` |
-/// `ScatterCarpet.Marker.symbol` |
-/// `ScatterPolar.Marker.symbol` |
-/// `ScatterPolarGL.Marker.symbol` |
-/// `Area.Marker.symbol` |
-public enum Symbol0: String, Encodable {
+/// `Scatter.GradientMarker.symbol` |
+/// `Box.SymbolicMarker.symbol` |
+/// `ScatterTernary.GradientMarker.symbol` |
+/// `Violin.SymbolicMarker.symbol` |
+/// `ScatterGeo.GradientMarker.symbol` |
+/// `ScatterGL.SymbolicMarker.symbol` |
+/// `ScatterPlotMatrix.SymbolicMarker.symbol` |
+/// `ScatterCarpet.GradientMarker.symbol` |
+/// `ScatterPolar.GradientMarker.symbol` |
+/// `ScatterPolarGL.SymbolicMarker.symbol` |
+/// `Area.SymbolicMarker.symbol` |
+public enum Symbol: String, Encodable {
     case circle
     case circleOpen = "circle-open"
     case circleDot = "circle-dot"
@@ -1151,58 +1224,229 @@ public enum Symbol0: String, Encodable {
 /// Sets the rule for which the data in `size` is converted to pixels.
 ///
 /// # Used By
-/// `Scatter.Marker.sizeMode` |
-/// `ScatterTernary.Marker.sizeMode` |
-/// `Scatter3D.Marker.sizeMode` |
-/// `ScatterGeo.Marker.sizeMode` |
-/// `ScatterGL.Marker.sizeMode` |
-/// `ScatterPlotMatrix.Marker.sizeMode` |
-/// `ScatterMapbox.Marker.sizeMode` |
-/// `ScatterCarpet.Marker.sizeMode` |
-/// `ScatterPolar.Marker.sizeMode` |
-/// `ScatterPolarGL.Marker.sizeMode` |
-public enum SizeMode0: String, Encodable {
+/// `Scatter.GradientMarker.sizeMode` |
+/// `ScatterTernary.GradientMarker.sizeMode` |
+/// `Scatter3D.SymbolicMarker.sizeMode` |
+/// `ScatterGeo.GradientMarker.sizeMode` |
+/// `ScatterGL.SymbolicMarker.sizeMode` |
+/// `ScatterPlotMatrix.SymbolicMarker.sizeMode` |
+/// `ScatterMapbox.SymbolicMarker.sizeMode` |
+/// `ScatterCarpet.GradientMarker.sizeMode` |
+/// `ScatterPolar.GradientMarker.sizeMode` |
+/// `ScatterPolarGL.SymbolicMarker.sizeMode` |
+public enum SizeMode: String, Encodable {
     case diameter
     case area
 }
 
-/// Sets the type of gradient used to fill the markers
+/// Specifies the location of the `text`. 
+///
+/// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+/// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+/// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+/// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+/// outside.
 ///
 /// # Used By
-/// `Scatter.Marker.Gradient.type` |
-/// `ScatterTernary.Marker.Gradient.type` |
-/// `ScatterGeo.Marker.Gradient.type` |
-/// `ScatterCarpet.Marker.Gradient.type` |
-/// `ScatterPolar.Marker.Gradient.type` |
-public enum Rule0: String, Encodable {
-    case radial
-    case horizontal
-    case vertical
+/// `Bar.textPosition` |
+/// `Funnel.textPosition` |
+/// `Waterfall.textPosition` |
+/// `Pie.textPosition` |
+public enum AdjacentPosition: String, Encodable {
+    case inside
+    case outside
+    case auto
     case none
 }
 
-/// Determines the rule used to generate the error bars. 
-///
-/// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-/// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-/// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-/// the bar lengths are set with data set `array`.
+/// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
 ///
 /// # Used By
-/// `Scatter.XError.type` |
-/// `Scatter.YError.type` |
-/// `Bar.XError.type` |
-/// `Bar.YError.type` |
-/// `Histogram.XError.type` |
-/// `Histogram.YError.type` |
-/// `Scatter3D.XError.type` |
-/// `Scatter3D.YError.type` |
-/// `Scatter3D.ZError.type` |
-/// `ScatterGL.XError.type` |
-/// `ScatterGL.YError.type` |
-public enum Rule1: String, Encodable {
+/// `Bar.insideTextAnchor` |
+/// `Funnel.insideTextAnchor` |
+/// `Waterfall.insideTextAnchor` |
+public enum InsideTextAnchor: String, Encodable {
+    case end
+    case middle
+    case start
+}
+
+/// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
+///
+/// # Used By
+/// `Bar.constrainText` |
+/// `Funnel.constrainText` |
+/// `Waterfall.constrainText` |
+public enum ConstrainText: String, Encodable {
+    case inside
+    case outside
+    case both
+    case none
+}
+
+/// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). 
+///
+/// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
+/// `x` is not provided).
+///
+/// # Used By
+/// `Heatmap.xType` |
+/// `Heatmap.yType` |
+/// `Contour.xType` |
+/// `Contour.yType` |
+/// `HeatmapGL.xType` |
+/// `HeatmapGL.yType` |
+public enum AxisType: String, Encodable {
+    case array
+    case scaled
+}
+
+/// Specifies the binning function used for this histogram trace. 
+///
+/// If *count*, the histogram values are computed by counting the number of values lying inside each
+/// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
+/// average, the minimum or the maximum of the values lying inside each bin respectively.
+///
+/// # Used By
+/// `Histogram.binningFunction` |
+/// `Histogram2D.binningFunction` |
+/// `Histogram2DContour.binningFunction` |
+public enum BinningFunction: String, Encodable {
+    case count
+    case sum
+    case avg
+    case min
+    case max
+}
+
+/// Specifies the type of normalization used for this histogram trace. 
+///
+/// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
+/// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
+/// the percentage / fraction of occurrences with respect to the total number of sample points
+/// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
+/// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
+/// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
+/// the area of each bar corresponds to the probability that an event will fall into the
+/// corresponding bin (here, the sum of all bin AREAS equals 1).
+///
+/// # Used By
+/// `Histogram.normalization` |
+/// `Histogram2D.normalization` |
+/// `Histogram2DContour.normalization` |
+public enum Normalization: String, Encodable {
+    case none = ""
     case percent
-    case constant
-    case sqrt
-    case data
+    case probability
+    case density
+    case probabilityDensity = "probability density"
+}
+
+/// Sets the constraint operation. 
+///
+/// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
+/// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
+/// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
+/// intervals make no difference to constraint display, but all versions are allowed for consistency
+/// with filter transforms.
+///
+/// # Used By
+/// `Histogram2DContour.Contours.operation` |
+/// `Contour.Contours.operation` |
+/// `ContourCarpet.Contours.operation` |
+public enum Operation: String, Encodable {
+    case equalTo = "="
+    case lessThan = "<"
+    case greaterEqualThan = ">="
+    case greaterThan = ">"
+    case lessEqualThan = "<="
+    case insideInclusive = "[]"
+    case insideExclusive = "()"
+    case insideInclusiveExclusive = "[)"
+    case insideExclusiveInclusive = "(]"
+    case outsideInclusive = "]["
+    case outsideExclusive = ")("
+    case outsideInclusiveExclusive = "]("
+    case outsideExclusiveInclusive = ")["
+}
+
+/// Determines the line shape. 
+///
+/// With *spline* the lines are drawn using spline interpolation. The other available values
+/// correspond to step-wise line shapes.
+///
+/// # Used By
+/// `ScatterTernary.SplineSmoothedDashedLine.shape` |
+/// `ScatterCarpet.SplineSmoothedDashedLine.shape` |
+/// `ScatterPolar.SplineSmoothedDashedLine.shape` |
+public enum Shape: String, Encodable {
+    case linear
+    case spline
+}
+
+/// Sets the area to fill with a solid color. 
+///
+/// Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to
+/// scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has
+/// gaps) into a closed shape. *tonext* fills the space between two traces if one completely
+/// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
+/// trace before it. *tonext* should not be used if one trace does not enclose the other.
+///
+/// # Used By
+/// `ScatterTernary.fill` |
+/// `ScatterCarpet.fill` |
+/// `ScatterPolar.fill` |
+public enum AreaFill: String, Encodable {
+    case none
+    case toSelf = "toself"
+    case toNext = "tonext"
+}
+
+/// Sets the dash style of the lines.
+///
+/// # Used By
+/// `Scatter3D.DashedColoredLine.dash` |
+/// `ScatterGL.SplineDashedLine.dash` |
+/// `ScatterPolarGL.SplineDashedLine.dash` |
+public enum Dash: String, Encodable {
+    case solid
+    case dot
+    case dash
+    case longDash = "longdash"
+    case dashDot = "dashdot"
+    case longDashDot = "longdashdot"
+}
+
+/// Specifies the ordering logic for the categories in the dimension. 
+///
+/// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+/// Set `categoryorder` to *category ascending* or *category descending* if order should be
+/// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+/// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+/// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+/// mode. The unspecified categories will follow the categories in `categoryarray`.
+///
+/// # Used By
+/// `ParallelCategories.Dimension.categoryOrder` |
+/// `Carpet.AAxis.categoryOrder` |
+/// `Carpet.BAxis.categoryOrder` |
+public enum CarpetCategoryOrder: String, Encodable {
+    case trace
+    case categoryAscending = "category ascending"
+    case categoryDescending = "category descending"
+    case array
+}
+
+/// Sets the unit of input *theta* values. 
+///
+/// Has an effect only when on *linear* angular axes.
+///
+/// # Used By
+/// `ScatterPolar.thetaUnit` |
+/// `ScatterPolarGL.thetaUnit` |
+/// `BarPolar.thetaUnit` |
+public enum ThetaUnit: String, Encodable {
+    case radians
+    case degrees
+    case gradians
 }

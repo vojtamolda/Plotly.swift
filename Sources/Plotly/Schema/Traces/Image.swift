@@ -28,7 +28,7 @@ public struct Image: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#image-visible) |
     /// [Python](https://plot.ly/python/reference/#image-visible) |
     /// [R](https://plot.ly/r/reference/#image-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -97,14 +97,14 @@ public struct Image: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#image-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#image-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#image-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#image-stream) |
     /// [Python](https://plot.ly/python/reference/#image-stream) |
     /// [R](https://plot.ly/r/reference/#image-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -313,70 +313,6 @@ public struct Image: Trace {
     /// [R](https://plot.ly/r/reference/#image-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#image-idssrc) |
-    /// [R](https://plot.ly/r/reference/#image-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#image-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#image-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#image-metasrc) |
-    /// [R](https://plot.ly/r/reference/#image-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#image-zsrc) |
-    /// [R](https://plot.ly/r/reference/#image-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#image-textsrc) |
-    /// [R](https://plot.ly/r/reference/#image-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#image-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#image-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#image-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#image-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#image-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#image-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -405,17 +341,9 @@ public struct Image: Trace {
         case hoverTemplate = "hovertemplate"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case zSource = "zsrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -440,13 +368,5 @@ public struct Image: Trace {
         self.hoverTemplate = hoverTemplate
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.zSource = zSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

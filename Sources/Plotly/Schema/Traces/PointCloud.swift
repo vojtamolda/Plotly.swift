@@ -23,7 +23,7 @@ public struct PointCloud: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-visible) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-visible) |
     /// [R](https://plot.ly/r/reference/#pointcloud-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -114,21 +114,21 @@ public struct PointCloud: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#pointcloud-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#pointcloud-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-stream) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-stream) |
     /// [R](https://plot.ly/r/reference/#pointcloud-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -219,7 +219,6 @@ public struct PointCloud: Trace {
     /// [R](https://plot.ly/r/reference/#pointcloud-text)
     public var text: String?
 
-    ///
     /// # Used By
     /// `PointCloud.marker` |
     public struct Marker: Encodable {
@@ -274,7 +273,6 @@ public struct PointCloud: Trace {
         /// [R](https://plot.ly/r/reference/#pointcloud-marker-sizemax)
         public var sizeMax: Double?
     
-        ///
         /// # Used By
         /// `PointCloud.Marker.border` |
         public struct Border: Encodable {
@@ -363,94 +361,6 @@ public struct PointCloud: Trace {
     /// [R](https://plot.ly/r/reference/#pointcloud-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-idssrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-metasrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-xsrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-ysrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  xy .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xysrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-xysrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-xysrc)
-    public var xySource: String?
-
-    /// Sets the source reference on plot.ly for  indices .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-indicessrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-indicessrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-indicessrc)
-    public var indicesSource: String?
-
-    /// Sets the source reference on plot.ly for  xbounds .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xboundssrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-xboundssrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-xboundssrc)
-    public var xBoundsSource: String?
-
-    /// Sets the source reference on plot.ly for  ybounds .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-yboundssrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-yboundssrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-yboundssrc)
-    public var yBoundsSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-textsrc) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-textsrc)
-    public var textSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -478,20 +388,9 @@ public struct PointCloud: Trace {
         case marker
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case xySource = "xysrc"
-        case indicesSource = "indicessrc"
-        case xBoundsSource = "xboundssrc"
-        case yBoundsSource = "yboundssrc"
-        case textSource = "textsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: String? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, xySource: String? = nil, indicesSource: String? = nil, xBoundsSource: String? = nil, yBoundsSource: String? = nil, textSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: String? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -515,16 +414,5 @@ public struct PointCloud: Trace {
         self.marker = marker
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.xySource = xySource
-        self.indicesSource = indicesSource
-        self.xBoundsSource = xBoundsSource
-        self.yBoundsSource = yBoundsSource
-        self.textSource = textSource
     }
 }

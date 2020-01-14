@@ -25,7 +25,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-visible) |
     /// [Python](https://plot.ly/python/reference/#parcoords-visible) |
     /// [R](https://plot.ly/r/reference/#parcoords-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -86,14 +86,15 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-stream) |
     /// [Python](https://plot.ly/python/reference/#parcoords-stream) |
     /// [R](https://plot.ly/r/reference/#parcoords-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-transforms) |
-    /// [Python](https://plot.ly/python/reference/#parcoords-transforms) |
-    /// [R](https://plot.ly/r/reference/#parcoords-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#parcoords-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#parcoords-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -117,7 +118,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-domain) |
     /// [Python](https://plot.ly/python/reference/#parcoords-domain) |
     /// [R](https://plot.ly/r/reference/#parcoords-domain)
-    public var domain: Domain0?
+    public var domain: Domain?
 
     /// Sets the angle of the labels with respect to the horizontal. 
     ///
@@ -160,7 +161,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-labelfont) |
     /// [Python](https://plot.ly/python/reference/#parcoords-labelfont) |
     /// [R](https://plot.ly/r/reference/#parcoords-labelfont)
-    public var labelFont: Font0?
+    public var labelFont: Font?
 
     /// Sets the font for the `dimension` tick values.
     ///
@@ -168,7 +169,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-tickfont) |
     /// [Python](https://plot.ly/python/reference/#parcoords-tickfont) |
     /// [R](https://plot.ly/r/reference/#parcoords-tickfont)
-    public var tickFont: Font0?
+    public var tickFont: Font?
 
     /// Sets the font for the `dimension` range values.
     ///
@@ -176,234 +177,173 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-rangefont) |
     /// [Python](https://plot.ly/python/reference/#parcoords-rangefont) |
     /// [R](https://plot.ly/r/reference/#parcoords-rangefont)
-    public var rangeFont: Font0?
+    public var rangeFont: Font?
 
+    /// The dimensions (variables) of the parallel coordinates chart. 
+    ///
+    /// 2..60 dimensions are supported.
     ///
     /// # Used By
     /// `ParallelCoordinates.dimensions` |
-    public struct Dimensions: Encodable {
-        ///
-        /// # Used By
-        /// `ParallelCoordinates.Dimensions.items` |
-        public struct Items: Encodable {
-            /// The dimensions (variables) of the parallel coordinates chart. 
-            ///
-            /// 2..60 dimensions are supported.
-            ///
-            /// # Used By
-            /// `ParallelCoordinates.Dimensions.Items.dimension` |
-            public struct Dimension: Encodable {
-                /// The shown name of the dimension.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-label) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-label) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-label)
-                public var label: String?
-            
-                /// Sets the values at which ticks on this axis appear.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-tickvals) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-tickvals) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-tickvals)
-                public var tickValues: [Double]?
-            
-                /// Sets the text displayed at the ticks position via `tickvals`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-ticktext) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-ticktext) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-ticktext)
-                public var tickText: [Double]?
-            
-                /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
-                ///
-                /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-                /// And for dates see:
-                /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-                /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
-                /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-tickformat) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-tickformat) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-tickformat)
-                public var tickFormat: String?
-            
-                /// Shows the dimension when set to `true` (the default). 
-                ///
-                /// Hides the dimension for `false`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-visible) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-visible) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-visible)
-                public var visible: Bool?
-            
-                /// The domain range that represents the full, shown axis extent. 
-                ///
-                /// Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers
-                /// as elements.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-range) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-range) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-range)
-                public var range: InfoArray?
-            
-                /// The domain range to which the filter on the dimension is constrained. 
-                ///
-                /// Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is
-                /// not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-constraintrange) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-constraintrange) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-constraintrange)
-                public var constraintRange: InfoArray?
-            
-                /// Do we allow multiple selection ranges or just a single range?
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-multiselect) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-multiselect) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-multiselect)
-                public var multiSelect: Bool?
-            
-                /// Dimension values. 
-                ///
-                /// `values[n]` represents the value of the `n`th point in the dataset, therefore the `values`
-                /// vector for all dimensions must be the same (longer vectors will be truncated). Each value must
-                /// be a finite number.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-values) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-values) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-values)
-                public var values: [Double]?
-            
-                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                ///
-                /// You can modify these items in the output figure by making your own item with `templateitemname`
-                /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                /// false` to hide it). Has no effect outside of a template.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-name) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-name) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-name)
-                public var name: String?
-            
-                /// Used to refer to a named item in this array in the template. 
-                ///
-                /// Named items from the template will be created even without a matching item in the input figure,
-                /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                /// template or no matching item, this item will be hidden unless you explicitly show it with
-                /// `visible: true`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-templateitemname) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-templateitemname) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-templateitemname)
-                public var templateItemName: String?
-            
-                /// Sets the source reference on plot.ly for  tickvals .
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-tickvalssrc) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-tickvalssrc) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-tickvalssrc)
-                public var tickValuesSource: String?
-            
-                /// Sets the source reference on plot.ly for  ticktext .
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-ticktextsrc) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-ticktextsrc) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-ticktextsrc)
-                public var tickTextSource: String?
-            
-                /// Sets the source reference on plot.ly for  values .
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-valuessrc) |
-                /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-valuessrc) |
-                /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-valuessrc)
-                public var valuesSource: String?
-            
-                /// Plotly compatible property encoding
-                enum CodingKeys: String, CodingKey {
-                    case label
-                    case tickValues = "tickvals"
-                    case tickText = "ticktext"
-                    case tickFormat = "tickformat"
-                    case visible
-                    case range
-                    case constraintRange = "constraintrange"
-                    case multiSelect = "multiselect"
-                    case values
-                    case name
-                    case templateItemName = "templateitemname"
-                    case tickValuesSource = "tickvalssrc"
-                    case tickTextSource = "ticktextsrc"
-                    case valuesSource = "valuessrc"
-                }
-                
-                public init(label: String? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, tickFormat: String? = nil, visible: Bool? = nil, range: InfoArray? = nil, constraintRange: InfoArray? = nil, multiSelect: Bool? = nil, values: [Double]? = nil, name: String? = nil, templateItemName: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, valuesSource: String? = nil) {
-                    self.label = label
-                    self.tickValues = tickValues
-                    self.tickText = tickText
-                    self.tickFormat = tickFormat
-                    self.visible = visible
-                    self.range = range
-                    self.constraintRange = constraintRange
-                    self.multiSelect = multiSelect
-                    self.values = values
-                    self.name = name
-                    self.templateItemName = templateItemName
-                    self.tickValuesSource = tickValuesSource
-                    self.tickTextSource = tickTextSource
-                    self.valuesSource = valuesSource
-                }
-            }
-            /// The dimensions (variables) of the parallel coordinates chart. 
-            ///
-            /// 2..60 dimensions are supported.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension) |
-            /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension) |
-            /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension)
-            public var dimension: Dimension?
-        
-            public init(dimension: Dimension? = nil) {
-                self.dimension = dimension
-            }
-        }
+    public struct Dimension: Encodable {
+        /// The shown name of the dimension.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items) |
-        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items) |
-        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items)
-        public var items: Items?
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-label) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-label) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-label)
+        public var label: String?
     
-        public init(items: Items? = nil) {
-            self.items = items
+        /// Sets the values at which ticks on this axis appear.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-tickvals) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-tickvals) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-tickvals)
+        public var tickValues: [Double]?
+    
+        /// Sets the text displayed at the ticks position via `tickvals`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-ticktext) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-ticktext) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-ticktext)
+        public var tickText: [Double]?
+    
+        /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
+        ///
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see:
+        /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
+        /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-tickformat) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-tickformat) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-tickformat)
+        public var tickFormat: String?
+    
+        /// Shows the dimension when set to `true` (the default). 
+        ///
+        /// Hides the dimension for `false`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-visible) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-visible) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-visible)
+        public var visible: Bool?
+    
+        /// The domain range that represents the full, shown axis extent. 
+        ///
+        /// Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers
+        /// as elements.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-range) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-range) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-range)
+        public var range: InfoArray?
+    
+        /// The domain range to which the filter on the dimension is constrained. 
+        ///
+        /// Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is
+        /// not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-constraintrange) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-constraintrange) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-constraintrange)
+        public var constraintRange: InfoArray?
+    
+        /// Do we allow multiple selection ranges or just a single range?
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-multiselect) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-multiselect) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-multiselect)
+        public var multiSelect: Bool?
+    
+        /// Dimension values. 
+        ///
+        /// `values[n]` represents the value of the `n`th point in the dataset, therefore the `values`
+        /// vector for all dimensions must be the same (longer vectors will be truncated). Each value must
+        /// be a finite number.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-values) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-values) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-values)
+        public var values: [Double]?
+    
+        /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+        ///
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-name) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-name) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-name)
+        public var name: String?
+    
+        /// Used to refer to a named item in this array in the template. 
+        ///
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension-templateitemname) |
+        /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension-templateitemname) |
+        /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension-templateitemname)
+        public var templateItemName: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case label
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case tickFormat = "tickformat"
+            case visible
+            case range
+            case constraintRange = "constraintrange"
+            case multiSelect = "multiselect"
+            case values
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        public init(label: String? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, tickFormat: String? = nil, visible: Bool? = nil, range: InfoArray? = nil, constraintRange: InfoArray? = nil, multiSelect: Bool? = nil, values: [Double]? = nil, name: String? = nil, templateItemName: String? = nil) {
+            self.label = label
+            self.tickValues = tickValues
+            self.tickText = tickText
+            self.tickFormat = tickFormat
+            self.visible = visible
+            self.range = range
+            self.constraintRange = constraintRange
+            self.multiSelect = multiSelect
+            self.values = values
+            self.name = name
+            self.templateItemName = templateItemName
         }
     }
+    /// The dimensions (variables) of the parallel coordinates chart. 
+    ///
+    /// 2..60 dimensions are supported.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions) |
-    /// [Python](https://plot.ly/python/reference/#parcoords-dimensions) |
-    /// [R](https://plot.ly/r/reference/#parcoords-dimensions)
-    public var dimensions: Dimensions?
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension) |
+    /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension) |
+    /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension)
+    public var dimensions: [Dimension]?
 
-    ///
     /// # Used By
     /// `ParallelCoordinates.line` |
-    public struct Line: Encodable {
+    public struct ColoredLine: Encodable {
         /// Sets thelinecolor. 
         ///
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
@@ -513,7 +453,7 @@ public struct ParallelCoordinates: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-line-colorbar) |
         /// [Python](https://plot.ly/python/reference/#parcoords-line-colorbar) |
         /// [R](https://plot.ly/r/reference/#parcoords-line-colorbar)
-        public var colorBar: ColorBar0?
+        public var colorBar: ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -526,14 +466,6 @@ public struct ParallelCoordinates: Trace {
         /// [Python](https://plot.ly/python/reference/#parcoords-line-coloraxis) |
         /// [R](https://plot.ly/r/reference/#parcoords-line-coloraxis)
         public var colorAxis: SubPlotID?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-line-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#parcoords-line-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#parcoords-line-colorsrc)
-        public var colorSource: String?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -548,10 +480,9 @@ public struct ParallelCoordinates: Trace {
             case showScale = "showscale"
             case colorBar = "colorbar"
             case colorAxis = "coloraxis"
-            case colorSource = "colorsrc"
         }
         
-        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorSource: String? = nil) {
+        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.color = color
             self.cAuto = cAuto
             self.cMin = cMin
@@ -563,7 +494,6 @@ public struct ParallelCoordinates: Trace {
             self.showScale = showScale
             self.colorBar = colorBar
             self.colorAxis = colorAxis
-            self.colorSource = colorSource
         }
     }
     ///
@@ -571,31 +501,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-line) |
     /// [Python](https://plot.ly/python/reference/#parcoords-line) |
     /// [R](https://plot.ly/r/reference/#parcoords-line)
-    public var line: Line?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#parcoords-idssrc) |
-    /// [R](https://plot.ly/r/reference/#parcoords-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#parcoords-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#parcoords-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#parcoords-metasrc) |
-    /// [R](https://plot.ly/r/reference/#parcoords-metasrc)
-    public var metaSource: String?
+    public var line: ColoredLine?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -608,7 +514,7 @@ public struct ParallelCoordinates: Trace {
         case customData = "customdata"
         case meta
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case domain
         case labelAngle = "labelangle"
@@ -616,14 +522,11 @@ public struct ParallelCoordinates: Trace {
         case labelFont = "labelfont"
         case tickFont = "tickfont"
         case rangeFont = "rangefont"
-        case dimensions
+        case dimensions = "dimension"
         case line
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, rangeFont: Font0? = nil, dimensions: Dimensions? = nil, line: Line? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, domain: Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Font? = nil, tickFont: Font? = nil, rangeFont: Font? = nil, dimensions: [Dimension]? = nil, line: ColoredLine? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -641,8 +544,5 @@ public struct ParallelCoordinates: Trace {
         self.rangeFont = rangeFont
         self.dimensions = dimensions
         self.line = line
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
     }
 }

@@ -30,7 +30,7 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-visible) |
     /// [Python](https://plot.ly/python/reference/#box-visible) |
     /// [R](https://plot.ly/r/reference/#box-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -123,28 +123,29 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#box-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#box-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#box-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#box-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#box-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#box-stream) |
     /// [Python](https://plot.ly/python/reference/#box-stream) |
     /// [R](https://plot.ly/r/reference/#box-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-transforms) |
-    /// [Python](https://plot.ly/python/reference/#box-transforms) |
-    /// [R](https://plot.ly/r/reference/#box-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#box-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#box-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -355,7 +356,7 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-orientation) |
     /// [Python](https://plot.ly/python/reference/#box-orientation) |
     /// [R](https://plot.ly/r/reference/#box-orientation)
-    public var orientation: Orientation0?
+    public var orientation: Orientation?
 
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically selected based on the positions of other box traces in the same subplot.
     ///
@@ -365,10 +366,9 @@ public struct Box: Trace {
     /// [R](https://plot.ly/r/reference/#box-width)
     public var width: Double?
 
-    ///
     /// # Used By
     /// `Box.marker` |
-    public struct Marker: Encodable {
+    public struct SymbolicMarker: Encodable {
         /// Sets the color of the outlier sample points.
         ///
         /// # Plotly Reference
@@ -387,7 +387,7 @@ public struct Box: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#box-marker-symbol) |
         /// [Python](https://plot.ly/python/reference/#box-marker-symbol) |
         /// [R](https://plot.ly/r/reference/#box-marker-symbol)
-        public var symbol: Symbol0?
+        public var symbol: Symbol?
     
         /// Sets the marker opacity.
         ///
@@ -417,9 +417,8 @@ public struct Box: Trace {
         /// [R](https://plot.ly/r/reference/#box-marker-color)
         public var color: Color?
     
-        ///
         /// # Used By
-        /// `Box.Marker.line` |
+        /// `Box.SymbolicMarker.line` |
         public struct Line: Encodable {
             /// Sets themarker.linecolor. 
             ///
@@ -491,7 +490,7 @@ public struct Box: Trace {
             case line
         }
         
-        public init(outlierColor: Color? = nil, symbol: Symbol0? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
+        public init(outlierColor: Color? = nil, symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
             self.outlierColor = outlierColor
             self.symbol = symbol
             self.opacity = opacity
@@ -505,14 +504,14 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-marker) |
     /// [Python](https://plot.ly/python/reference/#box-marker) |
     /// [R](https://plot.ly/r/reference/#box-marker)
-    public var marker: Marker?
+    public var marker: SymbolicMarker?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#box-line) |
     /// [Python](https://plot.ly/python/reference/#box-line) |
     /// [R](https://plot.ly/r/reference/#box-line)
-    public var line: Line0?
+    public var line: Line?
 
     /// Sets the fill color. 
     ///
@@ -543,19 +542,113 @@ public struct Box: Trace {
     /// [R](https://plot.ly/r/reference/#box-alignmentgroup)
     public var alignmentGroup: String?
 
+    /// # Used By
+    /// `Box.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `Box.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#box-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#box-selected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-selected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#box-selected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#box-selected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-selected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#box-selected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#box-selected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#box-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#box-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#box-selected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#box-selected) |
     /// [Python](https://plot.ly/python/reference/#box-selected) |
     /// [R](https://plot.ly/r/reference/#box-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `Box.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `Box.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#box-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#box-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-unselected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#box-unselected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#box-unselected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#box-unselected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#box-unselected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#box-unselected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#box-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#box-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#box-unselected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#box-unselected) |
     /// [Python](https://plot.ly/python/reference/#box-unselected) |
     /// [R](https://plot.ly/r/reference/#box-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// Do the hover effects highlight individual boxes  or sample points or both?
     ///
@@ -591,7 +684,7 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#box-xcalendar) |
     /// [R](https://plot.ly/r/reference/#box-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -599,7 +692,7 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#box-ycalendar) |
     /// [R](https://plot.ly/r/reference/#box-ycalendar)
-    public var yCalendar: Calendar0?
+    public var yCalendar: Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -623,78 +716,6 @@ public struct Box: Trace {
     /// [R](https://plot.ly/r/reference/#box-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#box-idssrc) |
-    /// [R](https://plot.ly/r/reference/#box-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#box-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#box-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#box-metasrc) |
-    /// [R](https://plot.ly/r/reference/#box-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#box-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#box-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#box-ysrc) |
-    /// [R](https://plot.ly/r/reference/#box-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#box-xsrc) |
-    /// [R](https://plot.ly/r/reference/#box-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#box-textsrc) |
-    /// [R](https://plot.ly/r/reference/#box-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#box-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#box-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#box-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#box-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -711,7 +732,7 @@ public struct Box: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case y
         case x
@@ -742,18 +763,9 @@ public struct Box: Trace {
         case yCalendar = "ycalendar"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case ySource = "ysrc"
-        case xSource = "xsrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Orientation0? = nil, width: Double? = nil, marker: Marker? = nil, line: Line0? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverOn: HoverOn? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -797,14 +809,5 @@ public struct Box: Trace {
         self.yCalendar = yCalendar
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.ySource = ySource
-        self.xSource = xSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

@@ -27,12 +27,127 @@ public struct Config: Encodable {
     /// [R](https://plot.ly/r/reference/#config-editable)
     public var editable: Bool?
 
+    /// # Used By
+    /// `Config.edits` |
+    public struct Edits: Encodable {
+        /// Determines if the main anchor of the annotation is editable. 
+        ///
+        /// The main anchor corresponds to the text (if no arrow) or the arrow (which drags the whole thing
+        /// leaving the arrow length & direction unchanged).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-annotationPosition) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-annotationPosition) |
+        /// [R](https://plot.ly/r/reference/#config-edits-annotationPosition)
+        public var annotationPosition: Bool?
+    
+        /// Has only an effect for annotations with arrows. 
+        ///
+        /// Enables changing the length and direction of the arrow.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-annotationTail) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-annotationTail) |
+        /// [R](https://plot.ly/r/reference/#config-edits-annotationTail)
+        public var annotationTail: Bool?
+    
+        /// Enables editing annotation text.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-annotationText) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-annotationText) |
+        /// [R](https://plot.ly/r/reference/#config-edits-annotationText)
+        public var annotationText: Bool?
+    
+        /// Enables editing axis title text.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-axisTitleText) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-axisTitleText) |
+        /// [R](https://plot.ly/r/reference/#config-edits-axisTitleText)
+        public var axisTitleText: Bool?
+    
+        /// Enables moving colorbars.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-colorbarPosition) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-colorbarPosition) |
+        /// [R](https://plot.ly/r/reference/#config-edits-colorbarPosition)
+        public var colorBarPosition: Bool?
+    
+        /// Enables editing colorbar title text.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-colorbarTitleText) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-colorbarTitleText) |
+        /// [R](https://plot.ly/r/reference/#config-edits-colorbarTitleText)
+        public var colorBarTitleText: Bool?
+    
+        /// Enables moving the legend.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-legendPosition) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-legendPosition) |
+        /// [R](https://plot.ly/r/reference/#config-edits-legendPosition)
+        public var legendPosition: Bool?
+    
+        /// Enables editing the trace name fields from the legend
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-legendText) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-legendText) |
+        /// [R](https://plot.ly/r/reference/#config-edits-legendText)
+        public var legendText: Bool?
+    
+        /// Enables moving shapes.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-shapePosition) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-shapePosition) |
+        /// [R](https://plot.ly/r/reference/#config-edits-shapePosition)
+        public var shapePosition: Bool?
+    
+        /// Enables editing the global layout title.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-titleText) |
+        /// [Python](https://plot.ly/python/reference/#config-edits-titleText) |
+        /// [R](https://plot.ly/r/reference/#config-edits-titleText)
+        public var titleText: Bool?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case annotationPosition
+            case annotationTail
+            case annotationText
+            case axisTitleText
+            case colorBarPosition = "colorbarPosition"
+            case colorBarTitleText = "colorbarTitleText"
+            case legendPosition
+            case legendText
+            case shapePosition
+            case titleText
+        }
+        
+        public init(annotationPosition: Bool? = nil, annotationTail: Bool? = nil, annotationText: Bool? = nil, axisTitleText: Bool? = nil, colorBarPosition: Bool? = nil, colorBarTitleText: Bool? = nil, legendPosition: Bool? = nil, legendText: Bool? = nil, shapePosition: Bool? = nil, titleText: Bool? = nil) {
+            self.annotationPosition = annotationPosition
+            self.annotationTail = annotationTail
+            self.annotationText = annotationText
+            self.axisTitleText = axisTitleText
+            self.colorBarPosition = colorBarPosition
+            self.colorBarTitleText = colorBarTitleText
+            self.legendPosition = legendPosition
+            self.legendText = legendText
+            self.shapePosition = shapePosition
+            self.titleText = titleText
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#config-edits) |
     /// [Python](https://plot.ly/python/reference/#config-edits) |
     /// [R](https://plot.ly/r/reference/#config-edits)
-    public var edits: Edits0?
+    public var edits: Edits?
 
     /// Determines whether the graphs are plotted with respect to layout.autosize:true and infer its container size.
     ///
@@ -440,7 +555,7 @@ public struct Config: Encodable {
         case locales
     }
     
-    public init(staticPlot: Bool? = nil, plotlyServerURL: String? = nil, editable: Bool? = nil, edits: Edits0? = nil, autosizable: Bool? = nil, responsive: Bool? = nil, fillFrame: Bool? = nil, frameMargins: Double? = nil, scrollZoom: ScrollZoom? = nil, doubleClick: DoubleClick? = nil, doubleClickDelay: Double? = nil, showAxisDragHandles: Bool? = nil, showAxisRangeEntryBoxes: Bool? = nil, showTips: Bool? = nil, showLink: Bool? = nil, linkText: String? = nil, sendData: Bool? = nil, showSources: Anything? = nil, displayModeBar: DisplayModeBar? = nil, showSendToCloud: Bool? = nil, showEditInChartStudio: Bool? = nil, modeBarButtonsToRemove: Anything? = nil, modeBarButtonsToAdd: Anything? = nil, modeBarButtons: Anything? = nil, toImageButtonOptions: Anything? = nil, displayLogo: Bool? = nil, watermark: Bool? = nil, plotGlPixelRatio: Double? = nil, setBackground: Anything? = nil, topoJsonURL: String? = nil, mapboxAccessToken: String? = nil, logging: Bool? = nil, queueLength: Int? = nil, globalTransforms: Anything? = nil, locale: String? = nil, locales: Anything? = nil) {
+    public init(staticPlot: Bool? = nil, plotlyServerURL: String? = nil, editable: Bool? = nil, edits: Edits? = nil, autosizable: Bool? = nil, responsive: Bool? = nil, fillFrame: Bool? = nil, frameMargins: Double? = nil, scrollZoom: ScrollZoom? = nil, doubleClick: DoubleClick? = nil, doubleClickDelay: Double? = nil, showAxisDragHandles: Bool? = nil, showAxisRangeEntryBoxes: Bool? = nil, showTips: Bool? = nil, showLink: Bool? = nil, linkText: String? = nil, sendData: Bool? = nil, showSources: Anything? = nil, displayModeBar: DisplayModeBar? = nil, showSendToCloud: Bool? = nil, showEditInChartStudio: Bool? = nil, modeBarButtonsToRemove: Anything? = nil, modeBarButtonsToAdd: Anything? = nil, modeBarButtons: Anything? = nil, toImageButtonOptions: Anything? = nil, displayLogo: Bool? = nil, watermark: Bool? = nil, plotGlPixelRatio: Double? = nil, setBackground: Anything? = nil, topoJsonURL: String? = nil, mapboxAccessToken: String? = nil, logging: Bool? = nil, queueLength: Int? = nil, globalTransforms: Anything? = nil, locale: String? = nil, locales: Anything? = nil) {
         self.staticPlot = staticPlot
         self.plotlyServerURL = plotlyServerURL
         self.editable = editable

@@ -27,7 +27,7 @@ public struct Carpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-visible) |
     /// [Python](https://plot.ly/python/reference/#carpet-visible) |
     /// [R](https://plot.ly/r/reference/#carpet-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -96,7 +96,7 @@ public struct Carpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-stream) |
     /// [Python](https://plot.ly/python/reference/#carpet-stream) |
     /// [R](https://plot.ly/r/reference/#carpet-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -209,7 +209,6 @@ public struct Carpet: Trace {
     /// [R](https://plot.ly/r/reference/#carpet-cheaterslope)
     public var cheaterSlope: Double?
 
-    ///
     /// # Used By
     /// `Carpet.aAxis` |
     public struct AAxis: Encodable {
@@ -231,83 +230,44 @@ public struct Carpet: Trace {
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-smoothing)
         public var smoothing: Double?
     
-        ///
         /// # Used By
-        /// `Layout.ColorAxis.ColorBar0.title` |
-        /// `Scatter.Marker.ColorBar.title` |
-        /// `Bar.Marker.ColorBar.title` |
-        /// `Heatmap.ColorBar.title` |
-        /// `Histogram.Marker.ColorBar.title` |
-        /// `Histogram2D.ColorBar.title` |
-        /// `Histogram2DContour.ColorBar.title` |
-        /// `Contour.ColorBar.title` |
-        /// `ScatterTernary.Marker.ColorBar.title` |
-        /// `Funnel.Marker.ColorBar.title` |
-        /// `Pie.title` |
-        /// `Sunburst.Marker.ColorBar.title` |
-        /// `Treemap.Marker.ColorBar.title` |
-        /// `FunnelArea.title` |
-        /// `Scatter3D.Line.ColorBar.title` |
-        /// `Scatter3D.Marker.ColorBar.title` |
-        /// `Surface.ColorBar.title` |
-        /// `Isosurface.ColorBar.title` |
-        /// `Volume.ColorBar.title` |
-        /// `Mesh3D.ColorBar.title` |
-        /// `Cone.ColorBar.title` |
-        /// `StreamTube.ColorBar.title` |
-        /// `ScatterGeo.Marker.ColorBar.title` |
-        /// `Choropleth.ColorBar.title` |
-        /// `ScatterGL.Marker.ColorBar.title` |
-        /// `ScatterPlotMatrix.Marker.ColorBar.title` |
-        /// `HeatmapGL.ColorBar.title` |
-        /// `ParallelCoordinates.Line.ColorBar.title` |
-        /// `ParallelCategories.Line.ColorBar.title` |
-        /// `ScatterMapbox.Marker.ColorBar.title` |
-        /// `ChoroplethMapbox.ColorBar.title` |
-        /// `DensityMapbox.ColorBar.title` |
         /// `Carpet.AAxis.title` |
-        /// `Carpet.BAxis.title` |
-        /// `ScatterCarpet.Marker.ColorBar.title` |
-        /// `ContourCarpet.ColorBar.title` |
-        /// `ScatterPolar.Marker.ColorBar.title` |
-        /// `ScatterPolarGL.Marker.ColorBar.title` |
-        /// `BarPolar.Marker.ColorBar.title` |
         public struct Title: Encodable {
-            /// Sets the title of the color bar. 
+            /// Sets the title of this axis. 
             ///
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-text) |
-            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-text) |
-            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-text)
+            /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-title-text) |
+            /// [Python](https://plot.ly/python/reference/#carpet-aaxis-title-text) |
+            /// [R](https://plot.ly/r/reference/#carpet-aaxis-title-text)
             public var text: String?
         
-            /// Sets this color bar's title font. 
+            /// Sets this axis' title font. 
             ///
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-font) |
-            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-font) |
-            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-font)
-            public var font: Font0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-title-font) |
+            /// [Python](https://plot.ly/python/reference/#carpet-aaxis-title-font) |
+            /// [R](https://plot.ly/r/reference/#carpet-aaxis-title-font)
+            public var font: Font?
         
-            /// Determines the location of color bar's title with respect to the color bar. 
+            /// An additional amount by which to offset the title from the tick labels, given in pixels. 
             ///
-            /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+            /// Note that this used to be set by the now deprecated `titleoffset` attribute.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-side) |
-            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-side) |
-            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-side)
-            public var side: Side0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-title-offset) |
+            /// [Python](https://plot.ly/python/reference/#carpet-aaxis-title-offset) |
+            /// [R](https://plot.ly/r/reference/#carpet-aaxis-title-offset)
+            public var offset: Double?
         
-            public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
+            public init(text: String? = nil, font: Font? = nil, offset: Double? = nil) {
                 self.text = text
                 self.font = font
-                self.side = side
+                self.offset = offset
             }
         }
         ///
@@ -324,7 +284,7 @@ public struct Carpet: Trace {
         ///
         /// # Used By
         /// `Carpet.AAxis.type` |
-        public enum Rule: String, Encodable {
+        public enum `Type`: String, Encodable {
             case auto = "-"
             case linear
             case date
@@ -339,7 +299,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-type) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-type) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-type)
-        public var type: Rule?
+        public var type: `Type`?
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. 
         ///
@@ -349,7 +309,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-autorange) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-autorange) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-autorange)
-        public var autoRange: AutoRange0?
+        public var autoRange: AutoRange?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
@@ -360,7 +320,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-rangemode) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-rangemode) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-rangemode)
-        public var rangeMode: RangeMode0?
+        public var rangeMode: RangeMode?
     
         /// Sets the range of this axis. 
         ///
@@ -386,7 +346,6 @@ public struct Carpet: Trace {
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-fixedrange)
         public var fixedRange: Bool?
     
-        ///
         /// # Used By
         /// `Carpet.AAxis.cheaterType` |
         public enum CheaterType: String, Encodable {
@@ -400,7 +359,6 @@ public struct Carpet: Trace {
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-cheatertype)
         public var cheaterType: CheaterType?
     
-        ///
         /// # Used By
         /// `Carpet.AAxis.tickMode` |
         public enum TickMode: String, Encodable {
@@ -469,7 +427,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickfont) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickfont) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickfont)
-        public var tickFont: Font0?
+        public var tickFont: Font?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
@@ -498,7 +456,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showtickprefix) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showtickprefix) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-showtickprefix)
-        public var showTickPrefix: ShowTickPrefix0?
+        public var showTickPrefix: ShowTickPrefix?
     
         /// Sets a tick label suffix.
         ///
@@ -514,7 +472,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showticksuffix) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showticksuffix) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-showticksuffix)
-        public var showTickSuffix: ShowTickSuffix0?
+        public var showTickSuffix: ShowTickSuffix?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
@@ -525,7 +483,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showexponent) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showexponent) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-showexponent)
-        public var showExponent: ShowExponent0?
+        public var showExponent: ShowExponent?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -536,7 +494,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-exponentformat) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-exponentformat) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-exponentformat)
-        public var exponentFormat: ExponentFormat0?
+        public var exponentFormat: ExponentFormat?
     
         /// If "true", even 4-digit integers are separated
         ///
@@ -561,28 +519,11 @@ public struct Carpet: Trace {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickformatstops) |
-        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickformatstops) |
-        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickformatstops)
-        public var tickFormatStops: TickFormatStops0?
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickformatstops-items-tickformatstop) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickformatstops-items-tickformatstop) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickformatstops-items-tickformatstop)
+        public var tickFormatStops: [TickFormatStop]?
     
-        /// Specifies the ordering logic for the case of categorical variables. 
-        ///
-        /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
-        /// Set `categoryorder` to *category ascending* or *category descending* if order should be
-        /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
-        /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
-        /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
-        /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        ///
-        /// # Used By
-        /// `Carpet.AAxis.categoryOrder` |
-        public enum CategoryOrder: String, Encodable {
-            case trace
-            case categoryAscending = "category ascending"
-            case categoryDescending = "category descending"
-            case array
-        }
         /// Specifies the ordering logic for the case of categorical variables. 
         ///
         /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
@@ -596,7 +537,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-categoryorder) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-categoryorder)
-        public var categoryOrder: CategoryOrder?
+        public var categoryOrder: CarpetCategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
@@ -790,30 +731,6 @@ public struct Carpet: Trace {
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-arraydtick)
         public var arraydTick: Int?
     
-        /// Sets the source reference on plot.ly for  tickvals .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickvalssrc) |
-        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickvalssrc) |
-        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickvalssrc)
-        public var tickValuesSource: String?
-    
-        /// Sets the source reference on plot.ly for  ticktext .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-ticktextsrc) |
-        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-ticktextsrc) |
-        /// [R](https://plot.ly/r/reference/#carpet-aaxis-ticktextsrc)
-        public var tickTextSource: String?
-    
-        /// Sets the source reference on plot.ly for  categoryarray .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-categoryarraysrc) |
-        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-categoryarraysrc) |
-        /// [R](https://plot.ly/r/reference/#carpet-aaxis-categoryarraysrc)
-        public var categoryArraySource: String?
-    
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
             case color
@@ -840,7 +757,7 @@ public struct Carpet: Trace {
             case exponentFormat = "exponentformat"
             case separatethousands
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstops"
+            case tickFormatStops = "tickformatstop"
             case categoryOrder = "categoryorder"
             case categoryArray = "categoryarray"
             case labelPadding = "labelpadding"
@@ -865,12 +782,9 @@ public struct Carpet: Trace {
             case dTick = "dtick"
             case arrayTick0 = "arraytick0"
             case arraydTick = "arraydtick"
-            case tickValuesSource = "tickvalssrc"
-            case tickTextSource = "ticktextsrc"
-            case categoryArraySource = "categoryarraysrc"
         }
         
-        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: Rule? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
+        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
@@ -920,9 +834,6 @@ public struct Carpet: Trace {
             self.dTick = dTick
             self.arrayTick0 = arrayTick0
             self.arraydTick = arraydTick
-            self.tickValuesSource = tickValuesSource
-            self.tickTextSource = tickTextSource
-            self.categoryArraySource = categoryArraySource
         }
     }
     ///
@@ -932,7 +843,6 @@ public struct Carpet: Trace {
     /// [R](https://plot.ly/r/reference/#carpet-aaxis)
     public var aAxis: AAxis?
 
-    ///
     /// # Used By
     /// `Carpet.bAxis` |
     public struct BAxis: Encodable {
@@ -954,83 +864,44 @@ public struct Carpet: Trace {
         /// [R](https://plot.ly/r/reference/#carpet-baxis-smoothing)
         public var smoothing: Double?
     
-        ///
         /// # Used By
-        /// `Layout.ColorAxis.ColorBar0.title` |
-        /// `Scatter.Marker.ColorBar.title` |
-        /// `Bar.Marker.ColorBar.title` |
-        /// `Heatmap.ColorBar.title` |
-        /// `Histogram.Marker.ColorBar.title` |
-        /// `Histogram2D.ColorBar.title` |
-        /// `Histogram2DContour.ColorBar.title` |
-        /// `Contour.ColorBar.title` |
-        /// `ScatterTernary.Marker.ColorBar.title` |
-        /// `Funnel.Marker.ColorBar.title` |
-        /// `Pie.title` |
-        /// `Sunburst.Marker.ColorBar.title` |
-        /// `Treemap.Marker.ColorBar.title` |
-        /// `FunnelArea.title` |
-        /// `Scatter3D.Line.ColorBar.title` |
-        /// `Scatter3D.Marker.ColorBar.title` |
-        /// `Surface.ColorBar.title` |
-        /// `Isosurface.ColorBar.title` |
-        /// `Volume.ColorBar.title` |
-        /// `Mesh3D.ColorBar.title` |
-        /// `Cone.ColorBar.title` |
-        /// `StreamTube.ColorBar.title` |
-        /// `ScatterGeo.Marker.ColorBar.title` |
-        /// `Choropleth.ColorBar.title` |
-        /// `ScatterGL.Marker.ColorBar.title` |
-        /// `ScatterPlotMatrix.Marker.ColorBar.title` |
-        /// `HeatmapGL.ColorBar.title` |
-        /// `ParallelCoordinates.Line.ColorBar.title` |
-        /// `ParallelCategories.Line.ColorBar.title` |
-        /// `ScatterMapbox.Marker.ColorBar.title` |
-        /// `ChoroplethMapbox.ColorBar.title` |
-        /// `DensityMapbox.ColorBar.title` |
-        /// `Carpet.AAxis.title` |
         /// `Carpet.BAxis.title` |
-        /// `ScatterCarpet.Marker.ColorBar.title` |
-        /// `ContourCarpet.ColorBar.title` |
-        /// `ScatterPolar.Marker.ColorBar.title` |
-        /// `ScatterPolarGL.Marker.ColorBar.title` |
-        /// `BarPolar.Marker.ColorBar.title` |
         public struct Title: Encodable {
-            /// Sets the title of the color bar. 
+            /// Sets the title of this axis. 
             ///
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-text) |
-            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-text) |
-            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-text)
+            /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-title-text) |
+            /// [Python](https://plot.ly/python/reference/#carpet-baxis-title-text) |
+            /// [R](https://plot.ly/r/reference/#carpet-baxis-title-text)
             public var text: String?
         
-            /// Sets this color bar's title font. 
+            /// Sets this axis' title font. 
             ///
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-font) |
-            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-font) |
-            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-font)
-            public var font: Font0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-title-font) |
+            /// [Python](https://plot.ly/python/reference/#carpet-baxis-title-font) |
+            /// [R](https://plot.ly/r/reference/#carpet-baxis-title-font)
+            public var font: Font?
         
-            /// Determines the location of color bar's title with respect to the color bar. 
+            /// An additional amount by which to offset the title from the tick labels, given in pixels. 
             ///
-            /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+            /// Note that this used to be set by the now deprecated `titleoffset` attribute.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-side) |
-            /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-side) |
-            /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-side)
-            public var side: Side0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-title-offset) |
+            /// [Python](https://plot.ly/python/reference/#carpet-baxis-title-offset) |
+            /// [R](https://plot.ly/r/reference/#carpet-baxis-title-offset)
+            public var offset: Double?
         
-            public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
+            public init(text: String? = nil, font: Font? = nil, offset: Double? = nil) {
                 self.text = text
                 self.font = font
-                self.side = side
+                self.offset = offset
             }
         }
         ///
@@ -1047,7 +918,7 @@ public struct Carpet: Trace {
         ///
         /// # Used By
         /// `Carpet.BAxis.type` |
-        public enum Rule: String, Encodable {
+        public enum `Type`: String, Encodable {
             case auto = "-"
             case linear
             case date
@@ -1062,7 +933,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-type) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-type) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-type)
-        public var type: Rule?
+        public var type: `Type`?
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. 
         ///
@@ -1072,7 +943,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-autorange) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-autorange) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-autorange)
-        public var autoRange: AutoRange0?
+        public var autoRange: AutoRange?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
@@ -1083,7 +954,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-rangemode) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-rangemode) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-rangemode)
-        public var rangeMode: RangeMode0?
+        public var rangeMode: RangeMode?
     
         /// Sets the range of this axis. 
         ///
@@ -1109,7 +980,6 @@ public struct Carpet: Trace {
         /// [R](https://plot.ly/r/reference/#carpet-baxis-fixedrange)
         public var fixedRange: Bool?
     
-        ///
         /// # Used By
         /// `Carpet.BAxis.cheaterType` |
         public enum CheaterType: String, Encodable {
@@ -1123,7 +993,6 @@ public struct Carpet: Trace {
         /// [R](https://plot.ly/r/reference/#carpet-baxis-cheatertype)
         public var cheaterType: CheaterType?
     
-        ///
         /// # Used By
         /// `Carpet.BAxis.tickMode` |
         public enum TickMode: String, Encodable {
@@ -1192,7 +1061,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickfont) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickfont) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-tickfont)
-        public var tickFont: Font0?
+        public var tickFont: Font?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
@@ -1221,7 +1090,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showtickprefix) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-showtickprefix) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-showtickprefix)
-        public var showTickPrefix: ShowTickPrefix0?
+        public var showTickPrefix: ShowTickPrefix?
     
         /// Sets a tick label suffix.
         ///
@@ -1237,7 +1106,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showticksuffix) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-showticksuffix) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-showticksuffix)
-        public var showTickSuffix: ShowTickSuffix0?
+        public var showTickSuffix: ShowTickSuffix?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
@@ -1248,7 +1117,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showexponent) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-showexponent) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-showexponent)
-        public var showExponent: ShowExponent0?
+        public var showExponent: ShowExponent?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -1259,7 +1128,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-exponentformat) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-exponentformat) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-exponentformat)
-        public var exponentFormat: ExponentFormat0?
+        public var exponentFormat: ExponentFormat?
     
         /// If "true", even 4-digit integers are separated
         ///
@@ -1284,28 +1153,11 @@ public struct Carpet: Trace {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickformatstops) |
-        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickformatstops) |
-        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickformatstops)
-        public var tickFormatStops: TickFormatStops0?
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickformatstops-items-tickformatstop) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickformatstops-items-tickformatstop) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickformatstops-items-tickformatstop)
+        public var tickFormatStops: [TickFormatStop]?
     
-        /// Specifies the ordering logic for the case of categorical variables. 
-        ///
-        /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
-        /// Set `categoryorder` to *category ascending* or *category descending* if order should be
-        /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
-        /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
-        /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
-        /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        ///
-        /// # Used By
-        /// `Carpet.BAxis.categoryOrder` |
-        public enum CategoryOrder: String, Encodable {
-            case trace
-            case categoryAscending = "category ascending"
-            case categoryDescending = "category descending"
-            case array
-        }
         /// Specifies the ordering logic for the case of categorical variables. 
         ///
         /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
@@ -1319,7 +1171,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-categoryorder) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-categoryorder)
-        public var categoryOrder: CategoryOrder?
+        public var categoryOrder: CarpetCategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
@@ -1513,30 +1365,6 @@ public struct Carpet: Trace {
         /// [R](https://plot.ly/r/reference/#carpet-baxis-arraydtick)
         public var arraydTick: Int?
     
-        /// Sets the source reference on plot.ly for  tickvals .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickvalssrc) |
-        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickvalssrc) |
-        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickvalssrc)
-        public var tickValuesSource: String?
-    
-        /// Sets the source reference on plot.ly for  ticktext .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-ticktextsrc) |
-        /// [Python](https://plot.ly/python/reference/#carpet-baxis-ticktextsrc) |
-        /// [R](https://plot.ly/r/reference/#carpet-baxis-ticktextsrc)
-        public var tickTextSource: String?
-    
-        /// Sets the source reference on plot.ly for  categoryarray .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-categoryarraysrc) |
-        /// [Python](https://plot.ly/python/reference/#carpet-baxis-categoryarraysrc) |
-        /// [R](https://plot.ly/r/reference/#carpet-baxis-categoryarraysrc)
-        public var categoryArraySource: String?
-    
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
             case color
@@ -1563,7 +1391,7 @@ public struct Carpet: Trace {
             case exponentFormat = "exponentformat"
             case separatethousands
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstops"
+            case tickFormatStops = "tickformatstop"
             case categoryOrder = "categoryorder"
             case categoryArray = "categoryarray"
             case labelPadding = "labelpadding"
@@ -1588,12 +1416,9 @@ public struct Carpet: Trace {
             case dTick = "dtick"
             case arrayTick0 = "arraytick0"
             case arraydTick = "arraydtick"
-            case tickValuesSource = "tickvalssrc"
-            case tickTextSource = "ticktextsrc"
-            case categoryArraySource = "categoryarraysrc"
         }
         
-        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: Rule? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
+        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
@@ -1643,9 +1468,6 @@ public struct Carpet: Trace {
             self.dTick = dTick
             self.arrayTick0 = arrayTick0
             self.arraydTick = arraydTick
-            self.tickValuesSource = tickValuesSource
-            self.tickTextSource = tickTextSource
-            self.categoryArraySource = categoryArraySource
         }
     }
     ///
@@ -1661,7 +1483,7 @@ public struct Carpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-font) |
     /// [Python](https://plot.ly/python/reference/#carpet-font) |
     /// [R](https://plot.ly/r/reference/#carpet-font)
-    public var font: Font0?
+    public var font: Font?
 
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
     ///
@@ -1696,62 +1518,6 @@ public struct Carpet: Trace {
     /// [R](https://plot.ly/r/reference/#carpet-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#carpet-idssrc) |
-    /// [R](https://plot.ly/r/reference/#carpet-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#carpet-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#carpet-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#carpet-metasrc) |
-    /// [R](https://plot.ly/r/reference/#carpet-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#carpet-xsrc) |
-    /// [R](https://plot.ly/r/reference/#carpet-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#carpet-ysrc) |
-    /// [R](https://plot.ly/r/reference/#carpet-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  a .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-asrc) |
-    /// [Python](https://plot.ly/python/reference/#carpet-asrc) |
-    /// [R](https://plot.ly/r/reference/#carpet-asrc)
-    public var aSource: String?
-
-    /// Sets the source reference on plot.ly for  b .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-bsrc) |
-    /// [Python](https://plot.ly/python/reference/#carpet-bsrc) |
-    /// [R](https://plot.ly/r/reference/#carpet-bsrc)
-    public var bSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -1781,16 +1547,9 @@ public struct Carpet: Trace {
         case color
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case aSource = "asrc"
-        case bSource = "bsrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: [Double]? = nil, y: [Double]? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Font0? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, aSource: String? = nil, bSource: String? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: [Double]? = nil, y: [Double]? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -1816,12 +1575,5 @@ public struct Carpet: Trace {
         self.color = color
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.aSource = aSource
-        self.bSource = bSource
     }
 }

@@ -34,7 +34,7 @@ public struct Heatmap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-visible) |
     /// [Python](https://plot.ly/python/reference/#heatmap-visible) |
     /// [R](https://plot.ly/r/reference/#heatmap-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -107,28 +107,29 @@ public struct Heatmap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#heatmap-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#heatmap-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#heatmap-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#heatmap-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-stream) |
     /// [Python](https://plot.ly/python/reference/#heatmap-stream) |
     /// [R](https://plot.ly/r/reference/#heatmap-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-transforms) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-transforms) |
-    /// [R](https://plot.ly/r/reference/#heatmap-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#heatmap-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#heatmap-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -242,38 +243,19 @@ public struct Heatmap: Trace {
     /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
     /// `x` is not provided).
     ///
-    /// # Used By
-    /// `Heatmap.xType` |
-    public enum XType: String, Encodable {
-        case array
-        case scaled
-    }
-    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). 
-    ///
-    /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
-    /// `x` is not provided).
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-xtype) |
     /// [Python](https://plot.ly/python/reference/#heatmap-xtype) |
     /// [R](https://plot.ly/r/reference/#heatmap-xtype)
-    public var xType: XType?
+    public var xType: AxisType?
 
-    /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
-    ///
-    /// # Used By
-    /// `Heatmap.yType` |
-    public enum YType: String, Encodable {
-        case array
-        case scaled
-    }
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-ytype) |
     /// [Python](https://plot.ly/python/reference/#heatmap-ytype) |
     /// [R](https://plot.ly/r/reference/#heatmap-ytype)
-    public var yType: YType?
+    public var yType: AxisType?
 
     /// Picks a smoothing algorithm use to smooth `z` data.
     ///
@@ -450,7 +432,7 @@ public struct Heatmap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-colorbar) |
     /// [Python](https://plot.ly/python/reference/#heatmap-colorbar) |
     /// [R](https://plot.ly/r/reference/#heatmap-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -470,7 +452,7 @@ public struct Heatmap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#heatmap-xcalendar) |
     /// [R](https://plot.ly/r/reference/#heatmap-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -478,7 +460,7 @@ public struct Heatmap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#heatmap-ycalendar) |
     /// [R](https://plot.ly/r/reference/#heatmap-ycalendar)
-    public var yCalendar: Calendar0?
+    public var yCalendar: Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -502,86 +484,6 @@ public struct Heatmap: Trace {
     /// [R](https://plot.ly/r/reference/#heatmap-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-idssrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-metasrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-zsrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-xsrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-ysrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-textsrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#heatmap-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -596,7 +498,7 @@ public struct Heatmap: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case z
         case x
@@ -631,19 +533,9 @@ public struct Heatmap: Trace {
         case yCalendar = "ycalendar"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case zSource = "zsrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: XType? = nil, yType: YType? = nil, zSmooth: ZSmooth? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, xGap: Double? = nil, yGap: Double? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: AxisType? = nil, yType: AxisType? = nil, zSmooth: ZSmooth? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, xGap: Double? = nil, yGap: Double? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -689,15 +581,5 @@ public struct Heatmap: Trace {
         self.yCalendar = yCalendar
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.zSource = zSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

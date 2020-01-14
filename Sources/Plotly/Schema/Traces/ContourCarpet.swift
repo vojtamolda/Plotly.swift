@@ -25,7 +25,7 @@ public struct ContourCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-visible) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-visible) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -112,7 +112,7 @@ public struct ContourCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-stream) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-stream) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -301,212 +301,6 @@ public struct ContourCarpet: Trace {
     public var nContours: Int?
 
     ///
-    /// # Used By
-    /// `ContourCarpet.contours` |
-    public struct Contours: Encodable {
-        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
-        ///
-        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
-        /// specified by the `operation` and `value` parameters.
-        ///
-        /// # Used By
-        /// `ContourCarpet.Contours.type` |
-        public enum Rule: String, Encodable {
-            case levels
-            case constraint
-        }
-        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
-        ///
-        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
-        /// specified by the `operation` and `value` parameters.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-type) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-type) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-type)
-        public var type: Rule?
-    
-        /// Sets the starting contour level value. 
-        ///
-        /// Must be less than `contours.end`
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-start) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-start) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-start)
-        public var start: Double?
-    
-        /// Sets the end contour level value. 
-        ///
-        /// Must be more than `contours.start`
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-end) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-end) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-end)
-        public var end: Double?
-    
-        /// Sets the step between each contour level. 
-        ///
-        /// Must be positive.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-size) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-size) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-size)
-        public var size: Double?
-    
-        /// Determines the coloring method showing the contour values. 
-        ///
-        /// If *fill*, coloring is done evenly between each contour level If *lines*, coloring is done on
-        /// the contour lines. If *none*, no coloring is applied on this trace.
-        ///
-        /// # Used By
-        /// `ContourCarpet.Contours.coloring` |
-        public enum Coloring: String, Encodable {
-            case fill
-            case lines
-            case none
-        }
-        /// Determines the coloring method showing the contour values. 
-        ///
-        /// If *fill*, coloring is done evenly between each contour level If *lines*, coloring is done on
-        /// the contour lines. If *none*, no coloring is applied on this trace.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-coloring) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-coloring) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-coloring)
-        public var coloring: Coloring?
-    
-        /// Determines whether or not the contour lines are drawn. 
-        ///
-        /// Has an effect only if `contours.coloring` is set to *fill*.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-showlines) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-showlines) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-showlines)
-        public var showLines: Bool?
-    
-        /// Determines whether to label the contour lines with their values.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-showlabels) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-showlabels) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-showlabels)
-        public var showLabels: Bool?
-    
-        /// Sets the font used for labeling the contour levels. 
-        ///
-        /// The default color comes from the lines, if shown. The default family and size come from
-        /// `layout.font`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-labelfont) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-labelfont) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-labelfont)
-        public var labelFont: Font0?
-    
-        /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-labelformat) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-labelformat) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-labelformat)
-        public var labelFormat: String?
-    
-        /// Sets the constraint operation. 
-        ///
-        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
-        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
-        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
-        /// intervals make no difference to constraint display, but all versions are allowed for consistency
-        /// with filter transforms.
-        ///
-        /// # Used By
-        /// `ContourCarpet.Contours.operation` |
-        public enum Operation: String, Encodable {
-            case equalTo = "="
-            case lessThan = "<"
-            case greaterEqualThan = ">="
-            case greaterThan = ">"
-            case lessEqualThan = "<="
-            case insideInclusive = "[]"
-            case insideExclusive = "()"
-            case insideInclusiveExclusive = "[)"
-            case insideExclusiveInclusive = "(]"
-            case outsideInclusive = "]["
-            case outsideExclusive = ")("
-            case outsideInclusiveExclusive = "]("
-            case outsideExclusiveInclusive = ")["
-        }
-        /// Sets the constraint operation. 
-        ///
-        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
-        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
-        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
-        /// intervals make no difference to constraint display, but all versions are allowed for consistency
-        /// with filter transforms.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-operation) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-operation) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-operation)
-        public var operation: Operation?
-    
-        /// Sets the value or values of the constraint boundary. 
-        ///
-        /// When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be
-        /// a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[)
-        /// *value* is expected to be an array of two numbers where the first is the lower bound and the
-        /// second is the upper bound.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-value) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-value) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-value)
-        public var value: Anything?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours-impliedEdits) |
-        /// [Python](https://plot.ly/python/reference/#contourcarpet-contours-impliedEdits) |
-        /// [R](https://plot.ly/r/reference/#contourcarpet-contours-impliedEdits)
-        public var impliedEdits: Edits0?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case type
-            case start
-            case end
-            case size
-            case coloring
-            case showLines = "showlines"
-            case showLabels = "showlabels"
-            case labelFont = "labelfont"
-            case labelFormat = "labelformat"
-            case operation
-            case value
-            case impliedEdits
-        }
-        
-        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: Edits0? = nil) {
-            self.type = type
-            self.start = start
-            self.end = end
-            self.size = size
-            self.coloring = coloring
-            self.showLines = showLines
-            self.showLabels = showLabels
-            self.labelFont = labelFont
-            self.labelFormat = labelFormat
-            self.operation = operation
-            self.value = value
-            self.impliedEdits = impliedEdits
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-contours) |
@@ -518,7 +312,7 @@ public struct ContourCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-line) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-line) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-line)
-    public var line: Line0?
+    public var line: SmoothedDashedLine?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     ///
@@ -609,7 +403,7 @@ public struct ContourCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-colorbar) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-colorbar) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -644,70 +438,6 @@ public struct ContourCarpet: Trace {
     /// [Python](https://plot.ly/python/reference/#contourcarpet-yaxis) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-yaxis)
     public var yAxis: SubPlotID?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-idssrc) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-metasrc) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-zsrc) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  a .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-asrc) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-asrc) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-asrc)
-    public var aSource: String?
-
-    /// Sets the source reference on plot.ly for  b .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-bsrc) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-bsrc) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-bsrc)
-    public var bSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-textsrc) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-hovertextsrc)
-    public var hoverTextSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -754,17 +484,9 @@ public struct ContourCarpet: Trace {
         case colorAxis = "coloraxis"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case zSource = "zsrc"
-        case aSource = "asrc"
-        case bSource = "bsrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: [Double]? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line0? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, aSource: String? = nil, bSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: [Double]? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -806,13 +528,5 @@ public struct ContourCarpet: Trace {
         self.colorAxis = colorAxis
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.zSource = zSource
-        self.aSource = aSource
-        self.bSource = bSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
     }
 }

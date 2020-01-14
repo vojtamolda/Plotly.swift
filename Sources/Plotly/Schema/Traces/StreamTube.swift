@@ -29,7 +29,7 @@ public struct StreamTube: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-visible) |
     /// [Python](https://plot.ly/python/reference/#streamtube-visible) |
     /// [R](https://plot.ly/r/reference/#streamtube-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -90,14 +90,14 @@ public struct StreamTube: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#streamtube-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#streamtube-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-stream) |
     /// [Python](https://plot.ly/python/reference/#streamtube-stream) |
     /// [R](https://plot.ly/r/reference/#streamtube-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -164,7 +164,6 @@ public struct StreamTube: Trace {
     /// [R](https://plot.ly/r/reference/#streamtube-w)
     public var w: [Double]?
 
-    ///
     /// # Used By
     /// `StreamTube.starts` |
     public struct Starts: Encodable {
@@ -192,47 +191,10 @@ public struct StreamTube: Trace {
         /// [R](https://plot.ly/r/reference/#streamtube-starts-z)
         public var z: [Double]?
     
-        /// Sets the source reference on plot.ly for  x .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-starts-xsrc) |
-        /// [Python](https://plot.ly/python/reference/#streamtube-starts-xsrc) |
-        /// [R](https://plot.ly/r/reference/#streamtube-starts-xsrc)
-        public var xSource: String?
-    
-        /// Sets the source reference on plot.ly for  y .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-starts-ysrc) |
-        /// [Python](https://plot.ly/python/reference/#streamtube-starts-ysrc) |
-        /// [R](https://plot.ly/r/reference/#streamtube-starts-ysrc)
-        public var ySource: String?
-    
-        /// Sets the source reference on plot.ly for  z .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-starts-zsrc) |
-        /// [Python](https://plot.ly/python/reference/#streamtube-starts-zsrc) |
-        /// [R](https://plot.ly/r/reference/#streamtube-starts-zsrc)
-        public var zSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case x
-            case y
-            case z
-            case xSource = "xsrc"
-            case ySource = "ysrc"
-            case zSource = "zsrc"
-        }
-        
-        public init(x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil) {
+        public init(x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil) {
             self.x = x
             self.y = y
             self.z = z
-            self.xSource = xSource
-            self.ySource = ySource
-            self.zSource = zSource
         }
     }
     ///
@@ -392,7 +354,7 @@ public struct StreamTube: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-colorbar) |
     /// [Python](https://plot.ly/python/reference/#streamtube-colorbar) |
     /// [R](https://plot.ly/r/reference/#streamtube-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -424,14 +386,14 @@ public struct StreamTube: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-lightposition) |
     /// [Python](https://plot.ly/python/reference/#streamtube-lightposition) |
     /// [R](https://plot.ly/r/reference/#streamtube-lightposition)
-    public var lightPosition: LightPosition0?
+    public var lightPosition: LightPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-lighting) |
     /// [Python](https://plot.ly/python/reference/#streamtube-lighting) |
     /// [R](https://plot.ly/r/reference/#streamtube-lighting)
-    public var lighting: Lighting0?
+    public var lighting: Lighting?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -500,94 +462,6 @@ public struct StreamTube: Trace {
     /// [R](https://plot.ly/r/reference/#streamtube-scene)
     public var scene: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-idssrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-metasrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-xsrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-ysrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-zsrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  u .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-usrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-usrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-usrc)
-    public var uSource: String?
-
-    /// Sets the source reference on plot.ly for  v .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-vsrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-vsrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-vsrc)
-    public var vSource: String?
-
-    /// Sets the source reference on plot.ly for  w .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-wsrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-wsrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-wsrc)
-    public var wSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#streamtube-hoverinfosrc)
-    public var hoverInfoSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -628,20 +502,9 @@ public struct StreamTube: Trace {
         case lighting
         case hoverInfo = "hoverinfo"
         case scene
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case zSource = "zsrc"
-        case uSource = "usrc"
-        case vSource = "vsrc"
-        case wSource = "wsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: LightPosition0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, uSource: String? = nil, vSource: String? = nil, wSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -678,16 +541,5 @@ public struct StreamTube: Trace {
         self.lighting = lighting
         self.hoverInfo = hoverInfo
         self.scene = scene
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.zSource = zSource
-        self.uSource = uSource
-        self.vSource = vSource
-        self.wSource = wSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.hoverInfoSource = hoverInfoSource
     }
 }

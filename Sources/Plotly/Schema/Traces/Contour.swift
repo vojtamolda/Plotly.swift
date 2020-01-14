@@ -28,7 +28,7 @@ public struct Contour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-visible) |
     /// [Python](https://plot.ly/python/reference/#contour-visible) |
     /// [R](https://plot.ly/r/reference/#contour-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -119,28 +119,29 @@ public struct Contour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#contour-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#contour-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#contour-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#contour-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-stream) |
     /// [Python](https://plot.ly/python/reference/#contour-stream) |
     /// [R](https://plot.ly/r/reference/#contour-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-transforms) |
-    /// [Python](https://plot.ly/python/reference/#contour-transforms) |
-    /// [R](https://plot.ly/r/reference/#contour-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#contour-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#contour-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#contour-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -254,38 +255,19 @@ public struct Contour: Trace {
     /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
     /// `x` is not provided).
     ///
-    /// # Used By
-    /// `Contour.xType` |
-    public enum XType: String, Encodable {
-        case array
-        case scaled
-    }
-    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is provided). 
-    ///
-    /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
-    /// `x` is not provided).
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-xtype) |
     /// [Python](https://plot.ly/python/reference/#contour-xtype) |
     /// [R](https://plot.ly/r/reference/#contour-xtype)
-    public var xType: XType?
+    public var xType: AxisType?
 
-    /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
-    ///
-    /// # Used By
-    /// `Contour.yType` |
-    public enum YType: String, Encodable {
-        case array
-        case scaled
-    }
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-ytype) |
     /// [Python](https://plot.ly/python/reference/#contour-ytype) |
     /// [R](https://plot.ly/r/reference/#contour-ytype)
-    public var yType: YType?
+    public var yType: AxisType?
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
     ///
@@ -374,215 +356,6 @@ public struct Contour: Trace {
     public var nContours: Int?
 
     ///
-    /// # Used By
-    /// `Contour.contours` |
-    public struct Contours: Encodable {
-        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
-        ///
-        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
-        /// specified by the `operation` and `value` parameters.
-        ///
-        /// # Used By
-        /// `Contour.Contours.type` |
-        public enum Rule: String, Encodable {
-            case levels
-            case constraint
-        }
-        /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
-        ///
-        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
-        /// specified by the `operation` and `value` parameters.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-type) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-type) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-type)
-        public var type: Rule?
-    
-        /// Sets the starting contour level value. 
-        ///
-        /// Must be less than `contours.end`
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-start) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-start) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-start)
-        public var start: Double?
-    
-        /// Sets the end contour level value. 
-        ///
-        /// Must be more than `contours.start`
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-end) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-end) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-end)
-        public var end: Double?
-    
-        /// Sets the step between each contour level. 
-        ///
-        /// Must be positive.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-size) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-size) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-size)
-        public var size: Double?
-    
-        /// Determines the coloring method showing the contour values. 
-        ///
-        /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
-        /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
-        /// lines. If *none*, no coloring is applied on this trace.
-        ///
-        /// # Used By
-        /// `Contour.Contours.coloring` |
-        public enum Coloring: String, Encodable {
-            case fill
-            case heatmap
-            case lines
-            case none
-        }
-        /// Determines the coloring method showing the contour values. 
-        ///
-        /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
-        /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
-        /// lines. If *none*, no coloring is applied on this trace.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-coloring) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-coloring) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-coloring)
-        public var coloring: Coloring?
-    
-        /// Determines whether or not the contour lines are drawn. 
-        ///
-        /// Has an effect only if `contours.coloring` is set to *fill*.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-showlines) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-showlines) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-showlines)
-        public var showLines: Bool?
-    
-        /// Determines whether to label the contour lines with their values.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-showlabels) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-showlabels) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-showlabels)
-        public var showLabels: Bool?
-    
-        /// Sets the font used for labeling the contour levels. 
-        ///
-        /// The default color comes from the lines, if shown. The default family and size come from
-        /// `layout.font`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-labelfont) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-labelfont) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-labelfont)
-        public var labelFont: Font0?
-    
-        /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-labelformat) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-labelformat) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-labelformat)
-        public var labelFormat: String?
-    
-        /// Sets the constraint operation. 
-        ///
-        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
-        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
-        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
-        /// intervals make no difference to constraint display, but all versions are allowed for consistency
-        /// with filter transforms.
-        ///
-        /// # Used By
-        /// `Contour.Contours.operation` |
-        public enum Operation: String, Encodable {
-            case equalTo = "="
-            case lessThan = "<"
-            case greaterEqualThan = ">="
-            case greaterThan = ">"
-            case lessEqualThan = "<="
-            case insideInclusive = "[]"
-            case insideExclusive = "()"
-            case insideInclusiveExclusive = "[)"
-            case insideExclusiveInclusive = "(]"
-            case outsideInclusive = "]["
-            case outsideExclusive = ")("
-            case outsideInclusiveExclusive = "]("
-            case outsideExclusiveInclusive = ")["
-        }
-        /// Sets the constraint operation. 
-        ///
-        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
-        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
-        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
-        /// intervals make no difference to constraint display, but all versions are allowed for consistency
-        /// with filter transforms.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-operation) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-operation) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-operation)
-        public var operation: Operation?
-    
-        /// Sets the value or values of the constraint boundary. 
-        ///
-        /// When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be
-        /// a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[)
-        /// *value* is expected to be an array of two numbers where the first is the lower bound and the
-        /// second is the upper bound.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-value) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-value) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-value)
-        public var value: Anything?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours-impliedEdits) |
-        /// [Python](https://plot.ly/python/reference/#contour-contours-impliedEdits) |
-        /// [R](https://plot.ly/r/reference/#contour-contours-impliedEdits)
-        public var impliedEdits: Edits0?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case type
-            case start
-            case end
-            case size
-            case coloring
-            case showLines = "showlines"
-            case showLabels = "showlabels"
-            case labelFont = "labelfont"
-            case labelFormat = "labelformat"
-            case operation
-            case value
-            case impliedEdits
-        }
-        
-        public init(type: Rule? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font0? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil, impliedEdits: Edits0? = nil) {
-            self.type = type
-            self.start = start
-            self.end = end
-            self.size = size
-            self.coloring = coloring
-            self.showLines = showLines
-            self.showLabels = showLabels
-            self.labelFont = labelFont
-            self.labelFormat = labelFormat
-            self.operation = operation
-            self.value = value
-            self.impliedEdits = impliedEdits
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-contours) |
     /// [Python](https://plot.ly/python/reference/#contour-contours) |
@@ -594,7 +367,7 @@ public struct Contour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-line) |
     /// [Python](https://plot.ly/python/reference/#contour-line) |
     /// [R](https://plot.ly/r/reference/#contour-line)
-    public var line: Line0?
+    public var line: SmoothedDashedLine?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     ///
@@ -685,7 +458,7 @@ public struct Contour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-colorbar) |
     /// [Python](https://plot.ly/python/reference/#contour-colorbar) |
     /// [R](https://plot.ly/r/reference/#contour-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -705,7 +478,7 @@ public struct Contour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#contour-xcalendar) |
     /// [R](https://plot.ly/r/reference/#contour-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -713,7 +486,7 @@ public struct Contour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contour-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#contour-ycalendar) |
     /// [R](https://plot.ly/r/reference/#contour-ycalendar)
-    public var yCalendar: Calendar0?
+    public var yCalendar: Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -737,86 +510,6 @@ public struct Contour: Trace {
     /// [R](https://plot.ly/r/reference/#contour-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-idssrc) |
-    /// [R](https://plot.ly/r/reference/#contour-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#contour-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-metasrc) |
-    /// [R](https://plot.ly/r/reference/#contour-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#contour-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-zsrc) |
-    /// [R](https://plot.ly/r/reference/#contour-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-xsrc) |
-    /// [R](https://plot.ly/r/reference/#contour-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-ysrc) |
-    /// [R](https://plot.ly/r/reference/#contour-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-textsrc) |
-    /// [R](https://plot.ly/r/reference/#contour-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#contour-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#contour-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#contour-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -833,7 +526,7 @@ public struct Contour: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case z
         case x
@@ -870,19 +563,9 @@ public struct Contour: Trace {
         case yCalendar = "ycalendar"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case zSource = "zsrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: XType? = nil, yType: YType? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: Line0? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: AxisType? = nil, yType: AxisType? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -932,15 +615,5 @@ public struct Contour: Trace {
         self.yCalendar = yCalendar
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.zSource = zSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

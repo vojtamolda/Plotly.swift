@@ -27,7 +27,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-visible) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-visible) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -126,21 +126,22 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-stream) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-stream) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-transforms) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-transforms) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#scatterpolargl-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#scatterpolargl-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -169,7 +170,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-mode) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-mode) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-mode)
-    public var mode: Mode0?
+    public var mode: Mode?
 
     /// Sets the radial coordinates
     ///
@@ -228,17 +229,6 @@ public struct ScatterPolarGL: Trace {
     /// [R](https://plot.ly/r/reference/#scatterpolargl-dtheta)
     public var dTheta: Double?
 
-    /// Sets the unit of input *theta* values. 
-    ///
-    /// Has an effect only when on *linear* angular axes.
-    ///
-    /// # Used By
-    /// `ScatterPolarGL.thetaUnit` |
-    public enum ThetaUnit: String, Encodable {
-        case radians
-        case degrees
-        case gradians
-    }
     /// Sets the unit of input *theta* values. 
     ///
     /// Has an effect only when on *linear* angular axes.
@@ -313,12 +303,69 @@ public struct ScatterPolarGL: Trace {
     /// [R](https://plot.ly/r/reference/#scatterpolargl-hovertemplate)
     public var hoverTemplate: String?
 
+    /// # Used By
+    /// `ScatterPolarGL.line` |
+    public struct SplineDashedLine: Encodable {
+        /// Sets the line color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-line-color) |
+        /// [Python](https://plot.ly/python/reference/#scatterpolargl-line-color) |
+        /// [R](https://plot.ly/r/reference/#scatterpolargl-line-color)
+        public var color: Color?
+    
+        /// Sets the line width (in px).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-line-width) |
+        /// [Python](https://plot.ly/python/reference/#scatterpolargl-line-width) |
+        /// [R](https://plot.ly/r/reference/#scatterpolargl-line-width)
+        public var width: Double?
+    
+        /// Determines the line shape. 
+        ///
+        /// The values correspond to step-wise line shapes.
+        ///
+        /// # Used By
+        /// `ScatterPolarGL.SplineDashedLine.shape` |
+        public enum Shape: String, Encodable {
+            case linear
+            case hv
+            case vh
+            case hvh
+            case vhv
+        }
+        /// Determines the line shape. 
+        ///
+        /// The values correspond to step-wise line shapes.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-line-shape) |
+        /// [Python](https://plot.ly/python/reference/#scatterpolargl-line-shape) |
+        /// [R](https://plot.ly/r/reference/#scatterpolargl-line-shape)
+        public var shape: Shape?
+    
+        /// Sets the style of the lines.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-line-dash) |
+        /// [Python](https://plot.ly/python/reference/#scatterpolargl-line-dash) |
+        /// [R](https://plot.ly/r/reference/#scatterpolargl-line-dash)
+        public var dash: Dash?
+    
+        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Dash? = nil) {
+            self.color = color
+            self.width = width
+            self.shape = shape
+            self.dash = dash
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-line) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-line) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-line)
-    public var line: Line2?
+    public var line: SplineDashedLine?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -331,480 +378,12 @@ public struct ScatterPolarGL: Trace {
     public var connectGaps: Bool?
 
     ///
-    /// # Used By
-    /// `ScatterPolarGL.marker` |
-    public struct Marker: Encodable {
-        /// Sets themarkercolor. 
-        ///
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-color) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-color) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-color)
-        public var color: Color?
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
-        ///
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-cauto) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-cauto) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-cauto)
-        public var cAuto: Bool?
-    
-        /// Sets the lower bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-cmin) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-cmin) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-cmin)
-        public var cMin: Double?
-    
-        /// Sets the upper bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-cmax) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-cmax) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-cmax)
-        public var cMax: Double?
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-cmid) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-cmid) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-cmid)
-        public var cMiddle: Double?
-    
-        /// Sets the colorscale. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-colorscale) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-colorscale) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-colorscale)
-        public var colorScale: ColorScale?
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-autocolorscale) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-autocolorscale) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-autocolorscale)
-        public var autoColorScale: Bool?
-    
-        /// Reverses the color mapping if true. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-reversescale) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-reversescale) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-reversescale)
-        public var reverseScale: Bool?
-    
-        /// Determines whether or not a colorbar is displayed for this trace. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-showscale) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-showscale) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-showscale)
-        public var showScale: Bool?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-colorbar) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-colorbar) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-colorbar)
-        public var colorBar: ColorBar0?
-    
-        /// Sets a reference to a shared color axis. 
-        ///
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-coloraxis) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-coloraxis) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-coloraxis)
-        public var colorAxis: SubPlotID?
-    
-        /// Sets the marker symbol type. 
-        ///
-        /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
-        /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
-        /// *dot-open* to a symbol name.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-symbol) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-symbol) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-symbol)
-        public var symbol: Symbol0?
-    
-        /// Sets the marker size (in px).
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-size) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-size) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-size)
-        public var size: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
-        /// and `sizemode`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-sizeref) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-sizeref) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-sizeref)
-        public var sizeReference: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the minimum size (in px) of the rendered marker points.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-sizemin) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-sizemin) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-sizemin)
-        public var sizeMin: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the rule for which the data in `size` is converted to pixels.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-sizemode) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-sizemode) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-sizemode)
-        public var sizeMode: SizeMode0?
-    
-        /// Sets the marker opacity.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-opacity) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-opacity) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-opacity)
-        public var opacity: Double?
-    
-        ///
-        /// # Used By
-        /// `ScatterPolarGL.Marker.line` |
-        public struct Line: Encodable {
-            /// Sets themarker.linecolor. 
-            ///
-            /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-            /// relative to the max and min values of the array or relative to `marker.line.cmin` and
-            /// `marker.line.cmax` if set.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-color) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-color) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-color)
-            public var color: Color?
-        
-            /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax`  Has an effect only if in `marker.line.color`is set to a numerical array. 
-            ///
-            /// Defaults to `false` when `marker.line.cmin` and `marker.line.cmax` are set by the user.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-cauto) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-cauto) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-cauto)
-            public var cAuto: Bool?
-        
-            /// Sets the lower bound of the color domain. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-            /// same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as well.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-cmin) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-cmin) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-cmin)
-            public var cMin: Double?
-        
-            /// Sets the upper bound of the color domain. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-            /// same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as well.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-cmax) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-cmax) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-cmax)
-            public var cMax: Double?
-        
-            /// Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax` to be equidistant to this point. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-            /// same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-cmid) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-cmid) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-cmid)
-            public var cMiddle: Double?
-        
-            /// Sets the colorscale. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. The colorscale must be
-            /// an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-            /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-            /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-            /// in color space, use`marker.line.cmin` and `marker.line.cmax`. Alternatively, `colorscale` may be
-            /// a palette name string of the following list:
-            /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-colorscale) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-colorscale) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-colorscale)
-            public var colorScale: ColorScale?
-        
-            /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.line.colorscale`. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. In case `colorscale` is
-            /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-            /// numbers in the `color` array are all positive, all negative or mixed.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-autocolorscale) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-autocolorscale) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-autocolorscale)
-            public var autoColorScale: Bool?
-        
-            /// Reverses the color mapping if true. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. If true,
-            /// `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will
-            /// correspond to the first color.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-reversescale) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-reversescale) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-reversescale)
-            public var reverseScale: Bool?
-        
-            /// Sets a reference to a shared color axis. 
-            ///
-            /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-            /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-            /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-coloraxis) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-coloraxis) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-coloraxis)
-            public var colorAxis: SubPlotID?
-        
-            /// Sets the width (in px) of the lines bounding the marker points.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-width) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-width) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-width)
-            public var width: Double?
-        
-            /// Sets the source reference on plot.ly for  color .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-colorsrc) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-colorsrc) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-colorsrc)
-            public var colorSource: String?
-        
-            /// Sets the source reference on plot.ly for  width .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line-widthsrc) |
-            /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line-widthsrc) |
-            /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line-widthsrc)
-            public var widthSource: String?
-        
-            /// Plotly compatible property encoding
-            enum CodingKeys: String, CodingKey {
-                case color
-                case cAuto = "cauto"
-                case cMin = "cmin"
-                case cMax = "cmax"
-                case cMiddle = "cmid"
-                case colorScale = "colorscale"
-                case autoColorScale = "autocolorscale"
-                case reverseScale = "reversescale"
-                case colorAxis = "coloraxis"
-                case width
-                case colorSource = "colorsrc"
-                case widthSource = "widthsrc"
-            }
-            
-            public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
-                self.color = color
-                self.cAuto = cAuto
-                self.cMin = cMin
-                self.cMax = cMax
-                self.cMiddle = cMiddle
-                self.colorScale = colorScale
-                self.autoColorScale = autoColorScale
-                self.reverseScale = reverseScale
-                self.colorAxis = colorAxis
-                self.width = width
-                self.colorSource = colorSource
-                self.widthSource = widthSource
-            }
-        }
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-line) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-line) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-line)
-        public var line: Line?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-colorsrc)
-        public var colorSource: String?
-    
-        /// Sets the source reference on plot.ly for  symbol .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-symbolsrc) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-symbolsrc) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-symbolsrc)
-        public var symbolSource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-sizesrc) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-sizesrc) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-sizesrc)
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#scatterpolargl-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case color
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorBar = "colorbar"
-            case colorAxis = "coloraxis"
-            case symbol
-            case size
-            case sizeReference = "sizeref"
-            case sizeMin = "sizemin"
-            case sizeMode = "sizemode"
-            case opacity
-            case line
-            case colorSource = "colorsrc"
-            case symbolSource = "symbolsrc"
-            case sizeSource = "sizesrc"
-            case opacitySource = "opacitysrc"
-        }
-        
-        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, symbol: Symbol0? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, opacity: Double? = nil, line: Line? = nil, colorSource: String? = nil, symbolSource: String? = nil, sizeSource: String? = nil, opacitySource: String? = nil) {
-            self.color = color
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorBar = colorBar
-            self.colorAxis = colorAxis
-            self.symbol = symbol
-            self.size = size
-            self.sizeReference = sizeReference
-            self.sizeMin = sizeMin
-            self.sizeMode = sizeMode
-            self.opacity = opacity
-            self.line = line
-            self.colorSource = colorSource
-            self.symbolSource = symbolSource
-            self.sizeSource = sizeSource
-            self.opacitySource = opacitySource
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-marker)
-    public var marker: Marker?
+    public var marker: SymbolicMarker?
 
-    /// Sets the area to fill with a solid color. 
-    ///
-    /// Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if
-    /// `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to
-    /// x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and
-    /// the endpoints of the trace before it, connecting those endpoints with straight lines (to make a
-    /// stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*.
-    /// *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into
-    /// a closed shape. *tonext* fills the space between two traces if one completely encloses the other
-    /// (eg consecutive contour lines), and behaves like *toself* if there is no trace before it.
-    /// *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup`
-    /// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
-    /// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
-    /// later ones will be pushed down in the drawing order.
-    ///
-    /// # Used By
-    /// `ScatterPolarGL.fill` |
-    public enum Fill: String, Encodable {
-        case none
-        case toZeroY = "tozeroy"
-        case toZeroX = "tozerox"
-        case toNextY = "tonexty"
-        case toNextX = "tonextx"
-        case toSelf = "toself"
-        case toNext = "tonext"
-    }
     /// Sets the area to fill with a solid color. 
     ///
     /// Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if
@@ -843,7 +422,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-textposition) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-textposition) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-textposition)
-    public var textPosition: TextPosition0?
+    public var textPosition: TextPosition?
 
     /// Sets the text font.
     ///
@@ -851,41 +430,8 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-textfont) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-textfont) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
-    /// Determines which trace information appear on hover. 
-    ///
-    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-    /// click and hover events are still fired.
-    ///
-    /// # Used By
-    /// `ScatterPolarGL.hoverInfo` |
-    public struct HoverInfo: OptionSet, Encodable {
-        public let rawValue: Int
-    
-        public static let r = HoverInfo(rawValue: 1 << 0)
-        public static let theta = HoverInfo(rawValue: 1 << 1)
-        public static let text = HoverInfo(rawValue: 1 << 2)
-        public static let name = HoverInfo(rawValue: 1 << 3)
-        public static let all = HoverInfo(rawValue: 1 << 4)
-        public static let none = HoverInfo(rawValue: 1 << 5)
-        public static let skip = HoverInfo(rawValue: 1 << 6)
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["r"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["theta"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["all"] }
-            if (self.rawValue & 1 << 5) != 0 { options += ["none"] }
-            if (self.rawValue & 1 << 6) != 0 { options += ["skip"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
     /// Determines which trace information appear on hover. 
     ///
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
@@ -895,21 +441,173 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: PolarHoverInfo?
 
+    /// # Used By
+    /// `ScatterPolarGL.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `ScatterPolarGL.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#scatterpolargl-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#scatterpolargl-selected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-selected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#scatterpolargl-selected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#scatterpolargl-selected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-selected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#scatterpolargl-selected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#scatterpolargl-selected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#scatterpolargl-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#scatterpolargl-selected-marker)
+        public var marker: Marker?
+    
+        /// # Used By
+        /// `ScatterPolarGL.Selected.textFont` |
+        public struct TextFont: Encodable {
+            /// Sets the text font color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-selected-textfont-color) |
+            /// [Python](https://plot.ly/python/reference/#scatterpolargl-selected-textfont-color) |
+            /// [R](https://plot.ly/r/reference/#scatterpolargl-selected-textfont-color)
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-selected-textfont) |
+        /// [Python](https://plot.ly/python/reference/#scatterpolargl-selected-textfont) |
+        /// [R](https://plot.ly/r/reference/#scatterpolargl-selected-textfont)
+        public var textFont: TextFont?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case marker
+            case textFont = "textfont"
+        }
+        
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-selected) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-selected) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `ScatterPolarGL.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `ScatterPolarGL.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#scatterpolargl-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#scatterpolargl-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-unselected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#scatterpolargl-unselected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#scatterpolargl-unselected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-unselected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#scatterpolargl-unselected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#scatterpolargl-unselected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#scatterpolargl-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#scatterpolargl-unselected-marker)
+        public var marker: Marker?
+    
+        /// # Used By
+        /// `ScatterPolarGL.Unselected.textFont` |
+        public struct TextFont: Encodable {
+            /// Sets the text font color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-unselected-textfont-color) |
+            /// [Python](https://plot.ly/python/reference/#scatterpolargl-unselected-textfont-color) |
+            /// [R](https://plot.ly/r/reference/#scatterpolargl-unselected-textfont-color)
+            public var color: Color?
+        
+            public init(color: Color? = nil) {
+                self.color = color
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-unselected-textfont) |
+        /// [Python](https://plot.ly/python/reference/#scatterpolargl-unselected-textfont) |
+        /// [R](https://plot.ly/r/reference/#scatterpolargl-unselected-textfont)
+        public var textFont: TextFont?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case marker
+            case textFont = "textfont"
+        }
+        
+        public init(marker: Marker? = nil, textFont: TextFont? = nil) {
+            self.marker = marker
+            self.textFont = textFont
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-unselected) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-unselected) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// Sets a reference between this trace's data coordinates and a polar subplot. 
     ///
@@ -921,94 +619,6 @@ public struct ScatterPolarGL: Trace {
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-subplot) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-subplot)
     public var subPlot: SubPlotID?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-idssrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-metasrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  r .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-rsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-rsrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-rsrc)
-    public var rSource: String?
-
-    /// Sets the source reference on plot.ly for  theta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-thetasrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-thetasrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-thetasrc)
-    public var thetaSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-textsrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  textposition .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-textpositionsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-textpositionsrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-textpositionsrc)
-    public var textPositionSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-hoverinfosrc)
-    public var hoverInfoSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -1026,7 +636,7 @@ public struct ScatterPolarGL: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case mode
         case r
@@ -1051,20 +661,9 @@ public struct ScatterPolarGL: Trace {
         case selected
         case unselected
         case subPlot = "subplot"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case rSource = "rsrc"
-        case thetaSource = "thetasrc"
-        case textSource = "textsrc"
-        case textTemplateSource = "texttemplatesrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case textPositionSource = "textpositionsrc"
-        case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, mode: Mode0? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, line: Line2? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textPosition: TextPosition0? = nil, textFont: Font0? = nil, hoverInfo: HoverInfo? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, rSource: String? = nil, thetaSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, hoverInfo: PolarHoverInfo? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -1102,16 +701,5 @@ public struct ScatterPolarGL: Trace {
         self.selected = selected
         self.unselected = unselected
         self.subPlot = subPlot
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.rSource = rSource
-        self.thetaSource = thetaSource
-        self.textSource = textSource
-        self.textTemplateSource = textTemplateSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.textPositionSource = textPositionSource
-        self.hoverInfoSource = hoverInfoSource
     }
 }

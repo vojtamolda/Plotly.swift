@@ -23,7 +23,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-visible) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-visible) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -122,21 +122,22 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-stream) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-stream) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-transforms) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-transforms) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#scattermapbox-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#scattermapbox-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -180,7 +181,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-mode) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-mode) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-mode)
-    public var mode: Mode0?
+    public var mode: Mode?
 
     /// Sets text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. 
     ///
@@ -228,7 +229,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-line) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-line) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-line)
-    public var line: Line0?
+    public var line: Line?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -240,10 +241,9 @@ public struct ScatterMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#scattermapbox-connectgaps)
     public var connectGaps: Bool?
 
-    ///
     /// # Used By
     /// `ScatterMapbox.marker` |
-    public struct Marker: Encodable {
+    public struct SymbolicMarker: Encodable {
         /// Sets the marker symbol. 
         ///
         /// Full list: https://www.mapbox.com/maki-icons/ Note that the array `marker.color` and
@@ -300,7 +300,7 @@ public struct ScatterMapbox: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-sizemode) |
         /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-sizemode) |
         /// [R](https://plot.ly/r/reference/#scattermapbox-marker-sizemode)
-        public var sizeMode: SizeMode0?
+        public var sizeMode: SizeMode?
     
         /// Sets themarkercolor. 
         ///
@@ -411,7 +411,7 @@ public struct ScatterMapbox: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-colorbar) |
         /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-colorbar) |
         /// [R](https://plot.ly/r/reference/#scattermapbox-marker-colorbar)
-        public var colorBar: ColorBar0?
+        public var colorBar: ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -424,38 +424,6 @@ public struct ScatterMapbox: Trace {
         /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-coloraxis) |
         /// [R](https://plot.ly/r/reference/#scattermapbox-marker-coloraxis)
         public var colorAxis: SubPlotID?
-    
-        /// Sets the source reference on plot.ly for  symbol .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-symbolsrc) |
-        /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-symbolsrc) |
-        /// [R](https://plot.ly/r/reference/#scattermapbox-marker-symbolsrc)
-        public var symbolSource: String?
-    
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#scattermapbox-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-sizesrc) |
-        /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-sizesrc) |
-        /// [R](https://plot.ly/r/reference/#scattermapbox-marker-sizesrc)
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#scattermapbox-marker-colorsrc)
-        public var colorSource: String?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -476,13 +444,9 @@ public struct ScatterMapbox: Trace {
             case showScale = "showscale"
             case colorBar = "colorbar"
             case colorAxis = "coloraxis"
-            case symbolSource = "symbolsrc"
-            case opacitySource = "opacitysrc"
-            case sizeSource = "sizesrc"
-            case colorSource = "colorsrc"
         }
         
-        public init(symbol: String? = nil, opacity: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, opacitySource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
+        public init(symbol: String? = nil, opacity: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -500,10 +464,6 @@ public struct ScatterMapbox: Trace {
             self.showScale = showScale
             self.colorBar = colorBar
             self.colorAxis = colorAxis
-            self.symbolSource = symbolSource
-            self.opacitySource = opacitySource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
         }
     }
     ///
@@ -511,7 +471,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-marker) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-marker)
-    public var marker: Marker?
+    public var marker: SymbolicMarker?
 
     /// Sets the area to fill with a solid color. 
     ///
@@ -554,7 +514,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-textfont) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-textfont) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     ///
@@ -562,7 +522,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-textposition) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-textposition) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-textposition)
-    public var textPosition: TextPosition0?
+    public var textPosition: TextPosition?
 
     /// Determines if this scattermapbox trace's layers are to be inserted before the layer with the specified ID. 
     ///
@@ -575,19 +535,113 @@ public struct ScatterMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#scattermapbox-below)
     public var below: String?
 
+    /// # Used By
+    /// `ScatterMapbox.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `ScatterMapbox.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#scattermapbox-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#scattermapbox-selected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-selected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#scattermapbox-selected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#scattermapbox-selected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-selected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#scattermapbox-selected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#scattermapbox-selected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#scattermapbox-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#scattermapbox-selected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-selected) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-selected) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `ScatterMapbox.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `ScatterMapbox.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#scattermapbox-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#scattermapbox-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-unselected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#scattermapbox-unselected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#scattermapbox-unselected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-unselected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#scattermapbox-unselected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#scattermapbox-unselected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#scattermapbox-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#scattermapbox-unselected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-unselected) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-unselected) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -666,86 +720,6 @@ public struct ScatterMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#scattermapbox-subplot)
     public var subPlot: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-idssrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-metasrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  lon .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-lonsrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-lonsrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-lonsrc)
-    public var longitudeSource: String?
-
-    /// Sets the source reference on plot.ly for  lat .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-latsrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-latsrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-latsrc)
-    public var latitudeSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-textsrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -762,7 +736,7 @@ public struct ScatterMapbox: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case longitude = "lon"
         case latitude = "lat"
@@ -783,19 +757,9 @@ public struct ScatterMapbox: Trace {
         case hoverInfo = "hoverinfo"
         case hoverTemplate = "hovertemplate"
         case subPlot = "subplot"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case longitudeSource = "lonsrc"
-        case latitudeSource = "latsrc"
-        case textSource = "textsrc"
-        case textTemplateSource = "texttemplatesrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, mode: Mode0? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line0? = nil, connectGaps: Bool? = nil, marker: Marker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Font0? = nil, textPosition: TextPosition0? = nil, below: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, longitudeSource: String? = nil, latitudeSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, mode: Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Line? = nil, connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Font? = nil, textPosition: TextPosition? = nil, below: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -829,15 +793,5 @@ public struct ScatterMapbox: Trace {
         self.hoverInfo = hoverInfo
         self.hoverTemplate = hoverTemplate
         self.subPlot = subPlot
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.longitudeSource = longitudeSource
-        self.latitudeSource = latitudeSource
-        self.textSource = textSource
-        self.textTemplateSource = textTemplateSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

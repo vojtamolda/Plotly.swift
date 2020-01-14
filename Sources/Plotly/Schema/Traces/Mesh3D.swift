@@ -23,7 +23,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-visible) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-visible) |
     /// [R](https://plot.ly/r/reference/#mesh3d-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -84,14 +84,14 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#mesh3d-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-stream) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-stream) |
     /// [R](https://plot.ly/r/reference/#mesh3d-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -391,7 +391,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-colorbar) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-colorbar) |
     /// [R](https://plot.ly/r/reference/#mesh3d-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -427,59 +427,25 @@ public struct Mesh3D: Trace {
     public var flatShading: Bool?
 
     ///
-    /// # Used By
-    /// `Mesh3D.contour` |
-    public struct Contour: Encodable {
-        /// Sets whether or not dynamic contours are shown on hover
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour-show) |
-        /// [Python](https://plot.ly/python/reference/#mesh3d-contour-show) |
-        /// [R](https://plot.ly/r/reference/#mesh3d-contour-show)
-        public var show: Bool?
-    
-        /// Sets the color of the contour lines.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour-color) |
-        /// [Python](https://plot.ly/python/reference/#mesh3d-contour-color) |
-        /// [R](https://plot.ly/r/reference/#mesh3d-contour-color)
-        public var color: Color?
-    
-        /// Sets the width of the contour lines.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour-width) |
-        /// [Python](https://plot.ly/python/reference/#mesh3d-contour-width) |
-        /// [R](https://plot.ly/r/reference/#mesh3d-contour-width)
-        public var width: Double?
-    
-        public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
-            self.show = show
-            self.color = color
-            self.width = width
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-contour) |
     /// [R](https://plot.ly/r/reference/#mesh3d-contour)
-    public var contour: Contour?
+    public var contour: ContourHover?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-lightposition) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-lightposition) |
     /// [R](https://plot.ly/r/reference/#mesh3d-lightposition)
-    public var lightPosition: LightPosition0?
+    public var lightPosition: LightPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-lighting) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-lighting) |
     /// [R](https://plot.ly/r/reference/#mesh3d-lighting)
-    public var lighting: Lighting0?
+    public var lighting: Lighting?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -490,7 +456,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#mesh3d-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -498,7 +464,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-xcalendar) |
     /// [R](https://plot.ly/r/reference/#mesh3d-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -506,7 +472,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-ycalendar) |
     /// [R](https://plot.ly/r/reference/#mesh3d-ycalendar)
-    public var yCalendar: Calendar0?
+    public var yCalendar: Calendar?
 
     /// Sets the calendar system to use with `z` date data.
     ///
@@ -514,7 +480,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-zcalendar) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-zcalendar) |
     /// [R](https://plot.ly/r/reference/#mesh3d-zcalendar)
-    public var zCalendar: Calendar0?
+    public var zCalendar: Calendar?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -526,134 +492,6 @@ public struct Mesh3D: Trace {
     /// [Python](https://plot.ly/python/reference/#mesh3d-scene) |
     /// [R](https://plot.ly/r/reference/#mesh3d-scene)
     public var scene: SubPlotID?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-idssrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-metasrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-xsrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-ysrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-zsrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  i .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-isrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-isrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-isrc)
-    public var iSource: String?
-
-    /// Sets the source reference on plot.ly for  j .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-jsrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-jsrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-jsrc)
-    public var jSource: String?
-
-    /// Sets the source reference on plot.ly for  k .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ksrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-ksrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-ksrc)
-    public var kSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-textsrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  intensity .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-intensitysrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-intensitysrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-intensitysrc)
-    public var intensitySource: String?
-
-    /// Sets the source reference on plot.ly for  vertexcolor .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-vertexcolorsrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-vertexcolorsrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-vertexcolorsrc)
-    public var vertexColorSource: String?
-
-    /// Sets the source reference on plot.ly for  facecolor .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-facecolorsrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-facecolorsrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-facecolorsrc)
-    public var faceColorSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-hoverinfosrc)
-    public var hoverInfoSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -703,25 +541,9 @@ public struct Mesh3D: Trace {
         case yCalendar = "ycalendar"
         case zCalendar = "zcalendar"
         case scene
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case zSource = "zsrc"
-        case iSource = "isrc"
-        case jSource = "jsrc"
-        case kSource = "ksrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case intensitySource = "intensitysrc"
-        case vertexColorSource = "vertexcolorsrc"
-        case faceColorSource = "facecolorsrc"
-        case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Contour? = nil, lightPosition: LightPosition0? = nil, lighting: Lighting0? = nil, hoverInfo: HoverInfo0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, iSource: String? = nil, jSource: String? = nil, kSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, intensitySource: String? = nil, vertexColorSource: String? = nil, faceColorSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: ContourHover? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, hoverInfo: HoverInfo? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, zCalendar: Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -766,21 +588,5 @@ public struct Mesh3D: Trace {
         self.yCalendar = yCalendar
         self.zCalendar = zCalendar
         self.scene = scene
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.zSource = zSource
-        self.iSource = iSource
-        self.jSource = jSource
-        self.kSource = kSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.intensitySource = intensitySource
-        self.vertexColorSource = vertexColorSource
-        self.faceColorSource = faceColorSource
-        self.hoverInfoSource = hoverInfoSource
     }
 }

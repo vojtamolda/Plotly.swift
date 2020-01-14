@@ -29,7 +29,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-visible) |
     /// [Python](https://plot.ly/python/reference/#surface-visible) |
     /// [R](https://plot.ly/r/reference/#surface-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -90,14 +90,14 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#surface-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#surface-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-stream) |
     /// [Python](https://plot.ly/python/reference/#surface-stream) |
     /// [R](https://plot.ly/r/reference/#surface-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -288,7 +288,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-colorbar) |
     /// [Python](https://plot.ly/python/reference/#surface-colorbar) |
     /// [R](https://plot.ly/r/reference/#surface-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -302,11 +302,9 @@ public struct Surface: Trace {
     /// [R](https://plot.ly/r/reference/#surface-coloraxis)
     public var colorAxis: SubPlotID?
 
-    ///
     /// # Used By
     /// `Surface.contours` |
     public struct Contours: Encodable {
-        ///
         /// # Used By
         /// `Surface.Contours.x` |
         public struct X: Encodable {
@@ -349,54 +347,11 @@ public struct Surface: Trace {
             public var size: Double?
         
             ///
-            /// # Used By
-            /// `Surface.Contours.X.project` |
-            public struct Project: Encodable {
-                /// Determines whether or not these contour lines are projected on the x plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-x-project-x) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-x-project-x) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-x-project-x)
-                public var x: Bool?
-            
-                /// Determines whether or not these contour lines are projected on the y plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-x-project-y) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-x-project-y) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-x-project-y)
-                public var y: Bool?
-            
-                /// Determines whether or not these contour lines are projected on the z plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-x-project-z) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-x-project-z) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-x-project-z)
-                public var z: Bool?
-            
-                public init(x: Bool? = nil, y: Bool? = nil, z: Bool? = nil) {
-                    self.x = x
-                    self.y = y
-                    self.z = z
-                }
-            }
-            ///
             /// # Plotly Reference
             /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-x-project) |
             /// [Python](https://plot.ly/python/reference/#surface-contours-x-project) |
             /// [R](https://plot.ly/r/reference/#surface-contours-x-project)
-            public var project: Project?
+            public var project: Projection?
         
             /// Sets the color of the contour lines.
             ///
@@ -463,7 +418,7 @@ public struct Surface: Trace {
                 case highlightWidth = "highlightwidth"
             }
             
-            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Project? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -484,7 +439,6 @@ public struct Surface: Trace {
         /// [R](https://plot.ly/r/reference/#surface-contours-x)
         public var x: X?
     
-        ///
         /// # Used By
         /// `Surface.Contours.y` |
         public struct Y: Encodable {
@@ -527,54 +481,11 @@ public struct Surface: Trace {
             public var size: Double?
         
             ///
-            /// # Used By
-            /// `Surface.Contours.Y.project` |
-            public struct Project: Encodable {
-                /// Determines whether or not these contour lines are projected on the x plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-y-project-x) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-y-project-x) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-y-project-x)
-                public var x: Bool?
-            
-                /// Determines whether or not these contour lines are projected on the y plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-y-project-y) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-y-project-y) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-y-project-y)
-                public var y: Bool?
-            
-                /// Determines whether or not these contour lines are projected on the z plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-y-project-z) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-y-project-z) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-y-project-z)
-                public var z: Bool?
-            
-                public init(x: Bool? = nil, y: Bool? = nil, z: Bool? = nil) {
-                    self.x = x
-                    self.y = y
-                    self.z = z
-                }
-            }
-            ///
             /// # Plotly Reference
             /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-y-project) |
             /// [Python](https://plot.ly/python/reference/#surface-contours-y-project) |
             /// [R](https://plot.ly/r/reference/#surface-contours-y-project)
-            public var project: Project?
+            public var project: Projection?
         
             /// Sets the color of the contour lines.
             ///
@@ -641,7 +552,7 @@ public struct Surface: Trace {
                 case highlightWidth = "highlightwidth"
             }
             
-            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Project? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -662,7 +573,6 @@ public struct Surface: Trace {
         /// [R](https://plot.ly/r/reference/#surface-contours-y)
         public var y: Y?
     
-        ///
         /// # Used By
         /// `Surface.Contours.z` |
         public struct Z: Encodable {
@@ -705,54 +615,11 @@ public struct Surface: Trace {
             public var size: Double?
         
             ///
-            /// # Used By
-            /// `Surface.Contours.Z.project` |
-            public struct Project: Encodable {
-                /// Determines whether or not these contour lines are projected on the x plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-z-project-x) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-z-project-x) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-z-project-x)
-                public var x: Bool?
-            
-                /// Determines whether or not these contour lines are projected on the y plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-z-project-y) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-z-project-y) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-z-project-y)
-                public var y: Bool?
-            
-                /// Determines whether or not these contour lines are projected on the z plane. 
-                ///
-                /// If `highlight` is set to *true* (the default), the projected lines are shown on hover. If `show`
-                /// is set to *true*, the projected lines are shown in permanence.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-z-project-z) |
-                /// [Python](https://plot.ly/python/reference/#surface-contours-z-project-z) |
-                /// [R](https://plot.ly/r/reference/#surface-contours-z-project-z)
-                public var z: Bool?
-            
-                public init(x: Bool? = nil, y: Bool? = nil, z: Bool? = nil) {
-                    self.x = x
-                    self.y = y
-                    self.z = z
-                }
-            }
-            ///
             /// # Plotly Reference
             /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-z-project) |
             /// [Python](https://plot.ly/python/reference/#surface-contours-z-project) |
             /// [R](https://plot.ly/r/reference/#surface-contours-z-project)
-            public var project: Project?
+            public var project: Projection?
         
             /// Sets the color of the contour lines.
             ///
@@ -819,7 +686,7 @@ public struct Surface: Trace {
                 case highlightWidth = "highlightwidth"
             }
             
-            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Project? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -869,9 +736,8 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-lightposition) |
     /// [Python](https://plot.ly/python/reference/#surface-lightposition) |
     /// [R](https://plot.ly/r/reference/#surface-lightposition)
-    public var lightPosition: LightPosition0?
+    public var lightPosition: LightPosition?
 
-    ///
     /// # Used By
     /// `Surface.lighting` |
     public struct Lighting: Encodable {
@@ -955,7 +821,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#surface-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#surface-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -963,7 +829,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#surface-xcalendar) |
     /// [R](https://plot.ly/r/reference/#surface-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -971,7 +837,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#surface-ycalendar) |
     /// [R](https://plot.ly/r/reference/#surface-ycalendar)
-    public var yCalendar: Calendar0?
+    public var yCalendar: Calendar?
 
     /// Sets the calendar system to use with `z` date data.
     ///
@@ -979,7 +845,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-zcalendar) |
     /// [Python](https://plot.ly/python/reference/#surface-zcalendar) |
     /// [R](https://plot.ly/r/reference/#surface-zcalendar)
-    public var zCalendar: Calendar0?
+    public var zCalendar: Calendar?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -991,94 +857,6 @@ public struct Surface: Trace {
     /// [Python](https://plot.ly/python/reference/#surface-scene) |
     /// [R](https://plot.ly/r/reference/#surface-scene)
     public var scene: SubPlotID?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-idssrc) |
-    /// [R](https://plot.ly/r/reference/#surface-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#surface-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-metasrc) |
-    /// [R](https://plot.ly/r/reference/#surface-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-zsrc) |
-    /// [R](https://plot.ly/r/reference/#surface-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-xsrc) |
-    /// [R](https://plot.ly/r/reference/#surface-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-ysrc) |
-    /// [R](https://plot.ly/r/reference/#surface-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-textsrc) |
-    /// [R](https://plot.ly/r/reference/#surface-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#surface-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#surface-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  surfacecolor .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-surfacecolorsrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-surfacecolorsrc) |
-    /// [R](https://plot.ly/r/reference/#surface-surfacecolorsrc)
-    public var surfaceColorSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#surface-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#surface-hoverinfosrc)
-    public var hoverInfoSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -1121,20 +899,9 @@ public struct Surface: Trace {
         case yCalendar = "ycalendar"
         case zCalendar = "zcalendar"
         case scene
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case zSource = "zsrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case surfaceColorSource = "surfacecolorsrc"
-        case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: LightPosition0? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: HoverInfo0? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, zSource: String? = nil, xSource: String? = nil, ySource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, surfaceColorSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: HoverInfo? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, zCalendar: Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -1172,16 +939,5 @@ public struct Surface: Trace {
         self.yCalendar = yCalendar
         self.zCalendar = zCalendar
         self.scene = scene
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.zSource = zSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.surfaceColorSource = surfaceColorSource
-        self.hoverInfoSource = hoverInfoSource
     }
 }

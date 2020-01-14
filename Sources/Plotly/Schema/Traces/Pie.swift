@@ -25,7 +25,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-visible) |
     /// [Python](https://plot.ly/python/reference/#pie-visible) |
     /// [R](https://plot.ly/r/reference/#pie-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -112,21 +112,22 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#pie-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#pie-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-stream) |
     /// [Python](https://plot.ly/python/reference/#pie-stream) |
     /// [R](https://plot.ly/r/reference/#pie-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-transforms) |
-    /// [Python](https://plot.ly/python/reference/#pie-transforms) |
-    /// [R](https://plot.ly/r/reference/#pie-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#pie-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#pie-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -188,7 +189,6 @@ public struct Pie: Trace {
     /// [R](https://plot.ly/r/reference/#pie-values)
     public var values: [Double]?
 
-    ///
     /// # Used By
     /// `Pie.marker` |
     public struct Marker: Encodable {
@@ -207,27 +207,11 @@ public struct Pie: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-line) |
         /// [Python](https://plot.ly/python/reference/#pie-marker-line) |
         /// [R](https://plot.ly/r/reference/#pie-marker-line)
-        public var line: Line2?
+        public var line: Line?
     
-        /// Sets the source reference on plot.ly for  colors .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-colorssrc) |
-        /// [Python](https://plot.ly/python/reference/#pie-marker-colorssrc) |
-        /// [R](https://plot.ly/r/reference/#pie-marker-colorssrc)
-        public var colorsSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case colors
-            case line
-            case colorsSource = "colorssrc"
-        }
-        
-        public init(colors: [Double]? = nil, line: Line2? = nil, colorsSource: String? = nil) {
+        public init(colors: [Double]? = nil, line: Line? = nil) {
             self.colors = colors
             self.line = line
-            self.colorsSource = colorsSource
         }
     }
     ///
@@ -392,21 +376,11 @@ public struct Pie: Trace {
 
     /// Specifies the location of the `textinfo`.
     ///
-    /// # Used By
-    /// `Pie.textPosition` |
-    public enum TextPosition: String, Encodable {
-        case inside
-        case outside
-        case auto
-        case none
-    }
-    /// Specifies the location of the `textinfo`.
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-textposition) |
     /// [Python](https://plot.ly/python/reference/#pie-textposition) |
     /// [R](https://plot.ly/r/reference/#pie-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: AdjacentPosition?
 
     /// Sets the font used for `textinfo`.
     ///
@@ -414,7 +388,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-textfont) |
     /// [Python](https://plot.ly/python/reference/#pie-textfont) |
     /// [R](https://plot.ly/r/reference/#pie-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
     /// Sets the font used for `textinfo` lying inside the sector.
     ///
@@ -422,7 +396,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#pie-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#pie-insidetextfont)
-    public var insideTextFont: Font0?
+    public var insideTextFont: Font?
 
     /// Sets the font used for `textinfo` lying outside the sector.
     ///
@@ -430,7 +404,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#pie-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#pie-outsidetextfont)
-    public var outSideTextFont: Font0?
+    public var outSideTextFont: Font?
 
     /// Determines whether outside text labels can push the margins.
     ///
@@ -440,83 +414,60 @@ public struct Pie: Trace {
     /// [R](https://plot.ly/r/reference/#pie-automargin)
     public var autoMargin: Bool?
 
-    ///
     /// # Used By
-    /// `Layout.ColorAxis.ColorBar0.title` |
-    /// `Scatter.Marker.ColorBar.title` |
-    /// `Bar.Marker.ColorBar.title` |
-    /// `Heatmap.ColorBar.title` |
-    /// `Histogram.Marker.ColorBar.title` |
-    /// `Histogram2D.ColorBar.title` |
-    /// `Histogram2DContour.ColorBar.title` |
-    /// `Contour.ColorBar.title` |
-    /// `ScatterTernary.Marker.ColorBar.title` |
-    /// `Funnel.Marker.ColorBar.title` |
     /// `Pie.title` |
-    /// `Sunburst.Marker.ColorBar.title` |
-    /// `Treemap.Marker.ColorBar.title` |
-    /// `FunnelArea.title` |
-    /// `Scatter3D.Line.ColorBar.title` |
-    /// `Scatter3D.Marker.ColorBar.title` |
-    /// `Surface.ColorBar.title` |
-    /// `Isosurface.ColorBar.title` |
-    /// `Volume.ColorBar.title` |
-    /// `Mesh3D.ColorBar.title` |
-    /// `Cone.ColorBar.title` |
-    /// `StreamTube.ColorBar.title` |
-    /// `ScatterGeo.Marker.ColorBar.title` |
-    /// `Choropleth.ColorBar.title` |
-    /// `ScatterGL.Marker.ColorBar.title` |
-    /// `ScatterPlotMatrix.Marker.ColorBar.title` |
-    /// `HeatmapGL.ColorBar.title` |
-    /// `ParallelCoordinates.Line.ColorBar.title` |
-    /// `ParallelCategories.Line.ColorBar.title` |
-    /// `ScatterMapbox.Marker.ColorBar.title` |
-    /// `ChoroplethMapbox.ColorBar.title` |
-    /// `DensityMapbox.ColorBar.title` |
-    /// `Carpet.AAxis.title` |
-    /// `Carpet.BAxis.title` |
-    /// `ScatterCarpet.Marker.ColorBar.title` |
-    /// `ContourCarpet.ColorBar.title` |
-    /// `ScatterPolar.Marker.ColorBar.title` |
-    /// `ScatterPolarGL.Marker.ColorBar.title` |
-    /// `BarPolar.Marker.ColorBar.title` |
     public struct Title: Encodable {
-        /// Sets the title of the color bar. 
+        /// Sets the title of the chart. 
         ///
-        /// Note that before the existence of `title.text`, the title's contents used to be defined as the
-        /// `title` attribute itself. This behavior has been deprecated.
+        /// If it is empty, no title is displayed. Note that before the existence of `title.text`, the
+        /// title's contents used to be defined as the `title` attribute itself. This behavior has been
+        /// deprecated.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-text) |
-        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-text) |
-        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-text)
+        /// [JavaScript](https://plot.ly/javascript/reference/#pie-title-text) |
+        /// [Python](https://plot.ly/python/reference/#pie-title-text) |
+        /// [R](https://plot.ly/r/reference/#pie-title-text)
         public var text: String?
     
-        /// Sets this color bar's title font. 
+        /// Sets the font used for `title`. 
         ///
         /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-font) |
-        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-font) |
-        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-font)
-        public var font: Font0?
+        /// [JavaScript](https://plot.ly/javascript/reference/#pie-title-font) |
+        /// [Python](https://plot.ly/python/reference/#pie-title-font) |
+        /// [R](https://plot.ly/r/reference/#pie-title-font)
+        public var font: Font?
     
-        /// Determines the location of color bar's title with respect to the color bar. 
+        /// Specifies the location of the `title`. 
         ///
-        /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
+        ///
+        /// # Used By
+        /// `Pie.Title.position` |
+        public enum Position: String, Encodable {
+            case topLeft = "top left"
+            case topCenter = "top center"
+            case topRight = "top right"
+            case middleCenter = "middle center"
+            case bottomLeft = "bottom left"
+            case bottomCenter = "bottom center"
+            case bottomRight = "bottom right"
+        }
+        /// Specifies the location of the `title`. 
+        ///
+        /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-side) |
-        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-side) |
-        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-side)
-        public var side: Side0?
+        /// [JavaScript](https://plot.ly/javascript/reference/#pie-title-position) |
+        /// [Python](https://plot.ly/python/reference/#pie-title-position) |
+        /// [R](https://plot.ly/r/reference/#pie-title-position)
+        public var position: Position?
     
-        public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
+        public init(text: String? = nil, font: Font? = nil, position: Position? = nil) {
             self.text = text
             self.font = font
-            self.side = side
+            self.position = position
         }
     }
     ///
@@ -531,7 +482,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-domain) |
     /// [Python](https://plot.ly/python/reference/#pie-domain) |
     /// [R](https://plot.ly/r/reference/#pie-domain)
-    public var domain: Domain0?
+    public var domain: Domain?
 
     /// Sets the fraction of the radius to cut out of the pie. 
     ///
@@ -586,102 +537,6 @@ public struct Pie: Trace {
     /// [R](https://plot.ly/r/reference/#pie-pull)
     public var pull: Double?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-idssrc) |
-    /// [R](https://plot.ly/r/reference/#pie-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#pie-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-metasrc) |
-    /// [R](https://plot.ly/r/reference/#pie-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  labels .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-labelssrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-labelssrc) |
-    /// [R](https://plot.ly/r/reference/#pie-labelssrc)
-    public var labelsSource: String?
-
-    /// Sets the source reference on plot.ly for  values .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-valuessrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-valuessrc) |
-    /// [R](https://plot.ly/r/reference/#pie-valuessrc)
-    public var valuesSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-textsrc) |
-    /// [R](https://plot.ly/r/reference/#pie-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#pie-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#pie-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#pie-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#pie-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  textposition .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-textpositionsrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-textpositionsrc) |
-    /// [R](https://plot.ly/r/reference/#pie-textpositionsrc)
-    public var textPositionSource: String?
-
-    /// Sets the source reference on plot.ly for  pull .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-pullsrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-pullsrc) |
-    /// [R](https://plot.ly/r/reference/#pie-pullsrc)
-    public var pullSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -697,7 +552,7 @@ public struct Pie: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case labels
         case label0
@@ -723,21 +578,9 @@ public struct Pie: Trace {
         case direction
         case rotation
         case pull
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case labelsSource = "labelssrc"
-        case valuesSource = "valuessrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case textTemplateSource = "texttemplatesrc"
-        case textPositionSource = "textpositionsrc"
-        case pullSource = "pullsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Domain0? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: Double? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, labelsSource: String? = nil, valuesSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil, textTemplateSource: String? = nil, textPositionSource: String? = nil, pullSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: AdjacentPosition? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -775,17 +618,5 @@ public struct Pie: Trace {
         self.direction = direction
         self.rotation = rotation
         self.pull = pull
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.labelsSource = labelsSource
-        self.valuesSource = valuesSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.textTemplateSource = textTemplateSource
-        self.textPositionSource = textPositionSource
-        self.pullSource = pullSource
     }
 }

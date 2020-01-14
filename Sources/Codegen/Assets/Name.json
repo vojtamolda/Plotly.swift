@@ -1401,7 +1401,7 @@
     "transforms": "Transforms",
     "transition": "Transition",
     "treemap": "Treemap",
-    "type": "Rule",
+    "type": "`Type`",
     "unselected": "Unselected",
     "up": "Up",
     "updatemenu": "UpdateMenu",

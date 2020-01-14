@@ -27,7 +27,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-visible) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-visible) |
     /// [R](https://plot.ly/r/reference/#scatter3d-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -114,21 +114,22 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scatter3d-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-stream) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-stream) |
     /// [R](https://plot.ly/r/reference/#scatter3d-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-transforms) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-transforms) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -245,7 +246,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-mode) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-mode) |
     /// [R](https://plot.ly/r/reference/#scatter3d-mode)
-    public var mode: Mode0?
+    public var mode: Mode?
 
     /// If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are filled with a Delaunay surface about the x, y, z respectively.
     ///
@@ -274,139 +275,6 @@ public struct Scatter3D: Trace {
     public var surfaceColor: Color?
 
     ///
-    /// # Used By
-    /// `Scatter3D.projection` |
-    public struct Projection: Encodable {
-        ///
-        /// # Used By
-        /// `Scatter3D.Projection.x` |
-        public struct X: Encodable {
-            /// Sets whether or not projections are shown along the x axis.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-x-show) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-x-show) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-x-show)
-            public var show: Bool?
-        
-            /// Sets the projection color.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-x-opacity) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-x-opacity) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-x-opacity)
-            public var opacity: Double?
-        
-            /// Sets the scale factor determining the size of the projection marker points.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-x-scale) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-x-scale) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-x-scale)
-            public var scale: Double?
-        
-            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
-                self.show = show
-                self.opacity = opacity
-                self.scale = scale
-            }
-        }
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-x) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-x) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-projection-x)
-        public var x: X?
-    
-        ///
-        /// # Used By
-        /// `Scatter3D.Projection.y` |
-        public struct Y: Encodable {
-            /// Sets whether or not projections are shown along the y axis.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-y-show) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-y-show) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-y-show)
-            public var show: Bool?
-        
-            /// Sets the projection color.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-y-opacity) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-y-opacity) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-y-opacity)
-            public var opacity: Double?
-        
-            /// Sets the scale factor determining the size of the projection marker points.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-y-scale) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-y-scale) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-y-scale)
-            public var scale: Double?
-        
-            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
-                self.show = show
-                self.opacity = opacity
-                self.scale = scale
-            }
-        }
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-y) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-y) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-projection-y)
-        public var y: Y?
-    
-        ///
-        /// # Used By
-        /// `Scatter3D.Projection.z` |
-        public struct Z: Encodable {
-            /// Sets whether or not projections are shown along the z axis.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-z-show) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-z-show) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-z-show)
-            public var show: Bool?
-        
-            /// Sets the projection color.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-z-opacity) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-z-opacity) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-z-opacity)
-            public var opacity: Double?
-        
-            /// Sets the scale factor determining the size of the projection marker points.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-z-scale) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-projection-z-scale) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-projection-z-scale)
-            public var scale: Double?
-        
-            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
-                self.show = show
-                self.opacity = opacity
-                self.scale = scale
-            }
-        }
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-z) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-z) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-projection-z)
-        public var z: Z?
-    
-        public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
-            self.x = x
-            self.y = y
-            self.z = z
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-projection) |
@@ -423,10 +291,9 @@ public struct Scatter3D: Trace {
     /// [R](https://plot.ly/r/reference/#scatter3d-connectgaps)
     public var connectGaps: Bool?
 
-    ///
     /// # Used By
     /// `Scatter3D.line` |
-    public struct Line: Encodable {
+    public struct DashedColoredLine: Encodable {
         /// Sets the line width (in px).
         ///
         /// # Plotly Reference
@@ -435,18 +302,6 @@ public struct Scatter3D: Trace {
         /// [R](https://plot.ly/r/reference/#scatter3d-line-width)
         public var width: Double?
     
-        /// Sets the dash style of the lines.
-        ///
-        /// # Used By
-        /// `Scatter3D.Line.dash` |
-        public enum Dash: String, Encodable {
-            case solid
-            case dot
-            case dash
-            case longDash = "longdash"
-            case dashDot = "dashdot"
-            case longDashDot = "longdashdot"
-        }
         /// Sets the dash style of the lines.
         ///
         /// # Plotly Reference
@@ -564,7 +419,7 @@ public struct Scatter3D: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-line-colorbar) |
         /// [Python](https://plot.ly/python/reference/#scatter3d-line-colorbar) |
         /// [R](https://plot.ly/r/reference/#scatter3d-line-colorbar)
-        public var colorBar: ColorBar0?
+        public var colorBar: ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -577,14 +432,6 @@ public struct Scatter3D: Trace {
         /// [Python](https://plot.ly/python/reference/#scatter3d-line-coloraxis) |
         /// [R](https://plot.ly/r/reference/#scatter3d-line-coloraxis)
         public var colorAxis: SubPlotID?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-line-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-line-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-line-colorsrc)
-        public var colorSource: String?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -601,10 +448,9 @@ public struct Scatter3D: Trace {
             case showScale = "showscale"
             case colorBar = "colorbar"
             case colorAxis = "coloraxis"
-            case colorSource = "colorsrc"
         }
         
-        public init(width: Double? = nil, dash: Dash? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, colorSource: String? = nil) {
+        public init(width: Double? = nil, dash: Dash? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.width = width
             self.dash = dash
             self.color = color
@@ -618,7 +464,6 @@ public struct Scatter3D: Trace {
             self.showScale = showScale
             self.colorBar = colorBar
             self.colorAxis = colorAxis
-            self.colorSource = colorSource
         }
     }
     ///
@@ -626,450 +471,14 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-line) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-line) |
     /// [R](https://plot.ly/r/reference/#scatter3d-line)
-    public var line: Line?
+    public var line: DashedColoredLine?
 
-    ///
-    /// # Used By
-    /// `Scatter3D.marker` |
-    public struct Marker: Encodable {
-        /// Sets the marker symbol type.
-        ///
-        /// # Used By
-        /// `Scatter3D.Marker.symbol` |
-        public enum Symbol: String, Encodable {
-            case circle
-            case circleOpen = "circle-open"
-            case square
-            case squareOpen = "square-open"
-            case diamond
-            case diamondOpen = "diamond-open"
-            case cross
-            case x
-        }
-        /// Sets the marker symbol type.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-symbol) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-symbol) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-symbol)
-        public var symbol: Symbol?
-    
-        /// Sets the marker size (in px).
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-size) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-size) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-size)
-        public var size: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
-        /// and `sizemode`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-sizeref) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-sizeref) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-sizeref)
-        public var sizeReference: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the minimum size (in px) of the rendered marker points.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-sizemin) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-sizemin) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-sizemin)
-        public var sizeMin: Double?
-    
-        /// Has an effect only if `marker.size` is set to a numerical array. 
-        ///
-        /// Sets the rule for which the data in `size` is converted to pixels.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-sizemode) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-sizemode) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-sizemode)
-        public var sizeMode: SizeMode0?
-    
-        /// Sets the marker opacity. 
-        ///
-        /// Note that the marker opacity for scatter3d traces must be a scalar value for performance
-        /// reasons. To set a blending opacity value (i.e. which is not transparent), set *marker.color* to
-        /// an rgba color and use its alpha channel.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-opacity) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-opacity) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-opacity)
-        public var opacity: Double?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-colorbar) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-colorbar) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-colorbar)
-        public var colorBar: ColorBar0?
-    
-        ///
-        /// # Used By
-        /// `Scatter3D.Marker.line` |
-        public struct Line: Encodable {
-            /// Sets the width (in px) of the lines bounding the marker points.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-width) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-width) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-width)
-            public var width: Double?
-        
-            /// Sets themarker.linecolor. 
-            ///
-            /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-            /// relative to the max and min values of the array or relative to `marker.line.cmin` and
-            /// `marker.line.cmax` if set.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-color) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-color) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-color)
-            public var color: Color?
-        
-            /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax`  Has an effect only if in `marker.line.color`is set to a numerical array. 
-            ///
-            /// Defaults to `false` when `marker.line.cmin` and `marker.line.cmax` are set by the user.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-cauto) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-cauto) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-cauto)
-            public var cAuto: Bool?
-        
-            /// Sets the lower bound of the color domain. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-            /// same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as well.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-cmin) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-cmin) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-cmin)
-            public var cMin: Double?
-        
-            /// Sets the upper bound of the color domain. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-            /// same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as well.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-cmax) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-cmax) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-cmax)
-            public var cMax: Double?
-        
-            /// Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax` to be equidistant to this point. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-            /// same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-cmid) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-cmid) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-cmid)
-            public var cMiddle: Double?
-        
-            /// Sets the colorscale. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. The colorscale must be
-            /// an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-            /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-            /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-            /// in color space, use`marker.line.cmin` and `marker.line.cmax`. Alternatively, `colorscale` may be
-            /// a palette name string of the following list:
-            /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-colorscale) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-colorscale) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-colorscale)
-            public var colorScale: ColorScale?
-        
-            /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.line.colorscale`. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. In case `colorscale` is
-            /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-            /// numbers in the `color` array are all positive, all negative or mixed.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-autocolorscale) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-autocolorscale) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-autocolorscale)
-            public var autoColorScale: Bool?
-        
-            /// Reverses the color mapping if true. 
-            ///
-            /// Has an effect only if in `marker.line.color`is set to a numerical array. If true,
-            /// `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will
-            /// correspond to the first color.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-reversescale) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-reversescale) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-reversescale)
-            public var reverseScale: Bool?
-        
-            /// Sets a reference to a shared color axis. 
-            ///
-            /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-            /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-            /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-coloraxis) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-coloraxis) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-coloraxis)
-            public var colorAxis: SubPlotID?
-        
-            /// Sets the source reference on plot.ly for  color .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line-colorsrc) |
-            /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line-colorsrc) |
-            /// [R](https://plot.ly/r/reference/#scatter3d-marker-line-colorsrc)
-            public var colorSource: String?
-        
-            /// Plotly compatible property encoding
-            enum CodingKeys: String, CodingKey {
-                case width
-                case color
-                case cAuto = "cauto"
-                case cMin = "cmin"
-                case cMax = "cmax"
-                case cMiddle = "cmid"
-                case colorScale = "colorscale"
-                case autoColorScale = "autocolorscale"
-                case reverseScale = "reversescale"
-                case colorAxis = "coloraxis"
-                case colorSource = "colorsrc"
-            }
-            
-            public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil, colorSource: String? = nil) {
-                self.width = width
-                self.color = color
-                self.cAuto = cAuto
-                self.cMin = cMin
-                self.cMax = cMax
-                self.cMiddle = cMiddle
-                self.colorScale = colorScale
-                self.autoColorScale = autoColorScale
-                self.reverseScale = reverseScale
-                self.colorAxis = colorAxis
-                self.colorSource = colorSource
-            }
-        }
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-line)
-        public var line: Line?
-    
-        /// Sets themarkercolor. 
-        ///
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-color) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-color) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-color)
-        public var color: Color?
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
-        ///
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-cauto) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-cauto) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-cauto)
-        public var cAuto: Bool?
-    
-        /// Sets the lower bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-cmin) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-cmin) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-cmin)
-        public var cMin: Double?
-    
-        /// Sets the upper bound of the color domain. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-cmax) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-cmax) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-cmax)
-        public var cMax: Double?
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-cmid) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-cmid) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-cmid)
-        public var cMiddle: Double?
-    
-        /// Sets the colorscale. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-colorscale) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-colorscale) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-colorscale)
-        public var colorScale: ColorScale?
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-autocolorscale) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-autocolorscale) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-autocolorscale)
-        public var autoColorScale: Bool?
-    
-        /// Reverses the color mapping if true. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-reversescale) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-reversescale) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-reversescale)
-        public var reverseScale: Bool?
-    
-        /// Determines whether or not a colorbar is displayed for this trace. 
-        ///
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-showscale) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-showscale) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-showscale)
-        public var showScale: Bool?
-    
-        /// Sets a reference to a shared color axis. 
-        ///
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-coloraxis) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-coloraxis) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-coloraxis)
-        public var colorAxis: SubPlotID?
-    
-        /// Sets the source reference on plot.ly for  symbol .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-symbolsrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-symbolsrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-symbolsrc)
-        public var symbolSource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-sizesrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-sizesrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-sizesrc)
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-marker-colorsrc)
-        public var colorSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case symbol
-            case size
-            case sizeReference = "sizeref"
-            case sizeMin = "sizemin"
-            case sizeMode = "sizemode"
-            case opacity
-            case colorBar = "colorbar"
-            case line
-            case color
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorAxis = "coloraxis"
-            case symbolSource = "symbolsrc"
-            case sizeSource = "sizesrc"
-            case colorSource = "colorsrc"
-        }
-        
-        public init(symbol: Symbol? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode0? = nil, opacity: Double? = nil, colorBar: ColorBar0? = nil, line: Line? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil, symbolSource: String? = nil, sizeSource: String? = nil, colorSource: String? = nil) {
-            self.symbol = symbol
-            self.size = size
-            self.sizeReference = sizeReference
-            self.sizeMin = sizeMin
-            self.sizeMode = sizeMode
-            self.opacity = opacity
-            self.colorBar = colorBar
-            self.line = line
-            self.color = color
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorAxis = colorAxis
-            self.symbolSource = symbolSource
-            self.sizeSource = sizeSource
-            self.colorSource = colorSource
-        }
-    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-marker) |
     /// [R](https://plot.ly/r/reference/#scatter3d-marker)
-    public var marker: Marker?
+    public var marker: SymbolicMarker?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     ///
@@ -1077,50 +486,14 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-textposition) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-textposition) |
     /// [R](https://plot.ly/r/reference/#scatter3d-textposition)
-    public var textPosition: TextPosition0?
+    public var textPosition: TextPosition?
 
-    ///
-    /// # Used By
-    /// `Scatter.Selected0.textFont` |
-    /// `Scatter.Unselected.textFont` |
-    /// `Bar.Selected.textFont` |
-    /// `Bar.Unselected.textFont` |
-    /// `Histogram.Selected.textFont` |
-    /// `Histogram.Unselected.textFont` |
-    /// `ScatterTernary.Selected.textFont` |
-    /// `ScatterTernary.Unselected.textFont` |
-    /// `Scatter3D.textFont` |
-    /// `ScatterGeo.Selected.textFont` |
-    /// `ScatterGeo.Unselected.textFont` |
-    /// `ScatterGL.Selected.textFont` |
-    /// `ScatterGL.Unselected.textFont` |
-    /// `ScatterCarpet.Selected.textFont` |
-    /// `ScatterCarpet.Unselected.textFont` |
-    /// `ScatterPolar.Selected.textFont` |
-    /// `ScatterPolar.Unselected.textFont` |
-    /// `ScatterPolarGL.Selected.textFont` |
-    /// `ScatterPolarGL.Unselected.textFont` |
-    /// `BarPolar.Selected.textFont` |
-    /// `BarPolar.Unselected.textFont` |
-    public struct TextFont: Encodable {
-        /// Sets the text font color of selected points.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter-selected-textfont-color) |
-        /// [Python](https://plot.ly/python/reference/#scatter-selected-textfont-color) |
-        /// [R](https://plot.ly/r/reference/#scatter-selected-textfont-color)
-        public var color: Color?
-    
-        public init(color: Color? = nil) {
-            self.color = color
-        }
-    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-textfont) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-textfont) |
     /// [R](https://plot.ly/r/reference/#scatter3d-textfont)
-    public var textFont: TextFont?
+    public var textFont: Font?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -1131,514 +504,28 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#scatter3d-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
-    ///
-    /// # Used By
-    /// `Scatter3D.xError` |
-    public struct XError: Encodable {
-        /// Determines whether or not this set of error bars is visible.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-visible) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-visible) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-visible)
-        public var visible: Bool?
-    
-        /// Determines the rule used to generate the error bars. 
-        ///
-        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-        /// the bar lengths are set with data set `array`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-type) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-type) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-type)
-        public var type: Rule1?
-    
-        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-symmetric) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-symmetric) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-symmetric)
-        public var symmetric: Bool?
-    
-        /// Sets the data corresponding the length of each error bar. 
-        ///
-        /// Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-array) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-array) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-array)
-        public var array: [Double]?
-    
-        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-arrayminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-arrayminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-arrayminus)
-        public var arrayMinus: [Double]?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-value) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-value) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-value)
-        public var value: Double?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-valueminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-valueminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-valueminus)
-        public var valueMinus: Double?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-traceref) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-traceref) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-traceref)
-        public var traceReference: Int?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-tracerefminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-tracerefminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-tracerefminus)
-        public var traceReferenceMinus: Int?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-copy_zstyle) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-copy_zstyle) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-copy_zstyle)
-        public var zCopyStyle: Bool?
-    
-        /// Sets the stoke color of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-color) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-color) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-color)
-        public var color: Color?
-    
-        /// Sets the thickness (in px) of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-thickness) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-thickness) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-thickness)
-        public var thickness: Double?
-    
-        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-width) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-width) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-width)
-        public var width: Double?
-    
-        /// Sets the source reference on plot.ly for  array .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-arraysrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-arraysrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-arraysrc)
-        public var arraySource: String?
-    
-        /// Sets the source reference on plot.ly for  arrayminus .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x-arrayminussrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_x-arrayminussrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_x-arrayminussrc)
-        public var arrayMinusSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case visible
-            case type
-            case symmetric
-            case array
-            case arrayMinus = "arrayminus"
-            case value
-            case valueMinus = "valueminus"
-            case traceReference = "traceref"
-            case traceReferenceMinus = "tracerefminus"
-            case zCopyStyle = "copy_zstyle"
-            case color
-            case thickness
-            case width
-            case arraySource = "arraysrc"
-            case arrayMinusSource = "arrayminussrc"
-        }
-        
-        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, zCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
-            self.visible = visible
-            self.type = type
-            self.symmetric = symmetric
-            self.array = array
-            self.arrayMinus = arrayMinus
-            self.value = value
-            self.valueMinus = valueMinus
-            self.traceReference = traceReference
-            self.traceReferenceMinus = traceReferenceMinus
-            self.zCopyStyle = zCopyStyle
-            self.color = color
-            self.thickness = thickness
-            self.width = width
-            self.arraySource = arraySource
-            self.arrayMinusSource = arrayMinusSource
-        }
-    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-error_x) |
     /// [R](https://plot.ly/r/reference/#scatter3d-error_x)
-    public var xError: XError?
+    public var xError: Error?
 
-    ///
-    /// # Used By
-    /// `Scatter3D.yError` |
-    public struct YError: Encodable {
-        /// Determines whether or not this set of error bars is visible.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-visible) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-visible) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-visible)
-        public var visible: Bool?
-    
-        /// Determines the rule used to generate the error bars. 
-        ///
-        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-        /// the bar lengths are set with data set `array`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-type) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-type) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-type)
-        public var type: Rule1?
-    
-        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-symmetric) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-symmetric) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-symmetric)
-        public var symmetric: Bool?
-    
-        /// Sets the data corresponding the length of each error bar. 
-        ///
-        /// Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-array) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-array) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-array)
-        public var array: [Double]?
-    
-        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-arrayminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-arrayminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-arrayminus)
-        public var arrayMinus: [Double]?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-value) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-value) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-value)
-        public var value: Double?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-valueminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-valueminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-valueminus)
-        public var valueMinus: Double?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-traceref) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-traceref) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-traceref)
-        public var traceReference: Int?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-tracerefminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-tracerefminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-tracerefminus)
-        public var traceReferenceMinus: Int?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-copy_zstyle) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-copy_zstyle) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-copy_zstyle)
-        public var zCopyStyle: Bool?
-    
-        /// Sets the stoke color of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-color) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-color) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-color)
-        public var color: Color?
-    
-        /// Sets the thickness (in px) of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-thickness) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-thickness) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-thickness)
-        public var thickness: Double?
-    
-        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-width) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-width) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-width)
-        public var width: Double?
-    
-        /// Sets the source reference on plot.ly for  array .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-arraysrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-arraysrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-arraysrc)
-        public var arraySource: String?
-    
-        /// Sets the source reference on plot.ly for  arrayminus .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y-arrayminussrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_y-arrayminussrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_y-arrayminussrc)
-        public var arrayMinusSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case visible
-            case type
-            case symmetric
-            case array
-            case arrayMinus = "arrayminus"
-            case value
-            case valueMinus = "valueminus"
-            case traceReference = "traceref"
-            case traceReferenceMinus = "tracerefminus"
-            case zCopyStyle = "copy_zstyle"
-            case color
-            case thickness
-            case width
-            case arraySource = "arraysrc"
-            case arrayMinusSource = "arrayminussrc"
-        }
-        
-        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, zCopyStyle: Bool? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
-            self.visible = visible
-            self.type = type
-            self.symmetric = symmetric
-            self.array = array
-            self.arrayMinus = arrayMinus
-            self.value = value
-            self.valueMinus = valueMinus
-            self.traceReference = traceReference
-            self.traceReferenceMinus = traceReferenceMinus
-            self.zCopyStyle = zCopyStyle
-            self.color = color
-            self.thickness = thickness
-            self.width = width
-            self.arraySource = arraySource
-            self.arrayMinusSource = arrayMinusSource
-        }
-    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-error_y) |
     /// [R](https://plot.ly/r/reference/#scatter3d-error_y)
-    public var yError: YError?
+    public var yError: Error?
 
-    ///
-    /// # Used By
-    /// `Scatter3D.zError` |
-    public struct ZError: Encodable {
-        /// Determines whether or not this set of error bars is visible.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-visible) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-visible) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-visible)
-        public var visible: Bool?
-    
-        /// Determines the rule used to generate the error bars. 
-        ///
-        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-        /// the bar lengths are set with data set `array`.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-type) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-type) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-type)
-        public var type: Rule1?
-    
-        /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-symmetric) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-symmetric) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-symmetric)
-        public var symmetric: Bool?
-    
-        /// Sets the data corresponding the length of each error bar. 
-        ///
-        /// Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-array) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-array) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-array)
-        public var array: [Double]?
-    
-        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-arrayminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-arrayminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-arrayminus)
-        public var arrayMinus: [Double]?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-value) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-value) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-value)
-        public var value: Double?
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-valueminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-valueminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-valueminus)
-        public var valueMinus: Double?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-traceref) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-traceref) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-traceref)
-        public var traceReference: Int?
-    
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-tracerefminus) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-tracerefminus) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-tracerefminus)
-        public var traceReferenceMinus: Int?
-    
-        /// Sets the stoke color of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-color) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-color) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-color)
-        public var color: Color?
-    
-        /// Sets the thickness (in px) of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-thickness) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-thickness) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-thickness)
-        public var thickness: Double?
-    
-        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-width) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-width) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-width)
-        public var width: Double?
-    
-        /// Sets the source reference on plot.ly for  array .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-arraysrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-arraysrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-arraysrc)
-        public var arraySource: String?
-    
-        /// Sets the source reference on plot.ly for  arrayminus .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z-arrayminussrc) |
-        /// [Python](https://plot.ly/python/reference/#scatter3d-error_z-arrayminussrc) |
-        /// [R](https://plot.ly/r/reference/#scatter3d-error_z-arrayminussrc)
-        public var arrayMinusSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case visible
-            case type
-            case symmetric
-            case array
-            case arrayMinus = "arrayminus"
-            case value
-            case valueMinus = "valueminus"
-            case traceReference = "traceref"
-            case traceReferenceMinus = "tracerefminus"
-            case color
-            case thickness
-            case width
-            case arraySource = "arraysrc"
-            case arrayMinusSource = "arrayminussrc"
-        }
-        
-        public init(visible: Bool? = nil, type: Rule1? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil, arraySource: String? = nil, arrayMinusSource: String? = nil) {
-            self.visible = visible
-            self.type = type
-            self.symmetric = symmetric
-            self.array = array
-            self.arrayMinus = arrayMinus
-            self.value = value
-            self.valueMinus = valueMinus
-            self.traceReference = traceReference
-            self.traceReferenceMinus = traceReferenceMinus
-            self.color = color
-            self.thickness = thickness
-            self.width = width
-            self.arraySource = arraySource
-            self.arrayMinusSource = arrayMinusSource
-        }
-    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-error_z) |
     /// [R](https://plot.ly/r/reference/#scatter3d-error_z)
-    public var zError: ZError?
+    public var zError: Error?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -1646,7 +533,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-xcalendar) |
     /// [R](https://plot.ly/r/reference/#scatter3d-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -1654,7 +541,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-ycalendar) |
     /// [R](https://plot.ly/r/reference/#scatter3d-ycalendar)
-    public var yCalendar: Calendar0?
+    public var yCalendar: Calendar?
 
     /// Sets the calendar system to use with `z` date data.
     ///
@@ -1662,7 +549,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-zcalendar) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-zcalendar) |
     /// [R](https://plot.ly/r/reference/#scatter3d-zcalendar)
-    public var zCalendar: Calendar0?
+    public var zCalendar: Calendar?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -1674,102 +561,6 @@ public struct Scatter3D: Trace {
     /// [Python](https://plot.ly/python/reference/#scatter3d-scene) |
     /// [R](https://plot.ly/r/reference/#scatter3d-scene)
     public var scene: SubPlotID?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-idssrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-metasrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-xsrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-ysrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-zsrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-textsrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  textposition .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-textpositionsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-textpositionsrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-textpositionsrc)
-    public var textPositionSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-hoverinfosrc)
-    public var hoverInfoSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -1786,7 +577,7 @@ public struct Scatter3D: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case x
         case y
@@ -1812,21 +603,9 @@ public struct Scatter3D: Trace {
         case yCalendar = "ycalendar"
         case zCalendar = "zcalendar"
         case scene
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case zSource = "zsrc"
-        case textSource = "textsrc"
-        case textTemplateSource = "texttemplatesrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case textPositionSource = "textpositionsrc"
-        case hoverInfoSource = "hoverinfosrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Mode0? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Projection? = nil, connectGaps: Bool? = nil, line: Line? = nil, marker: Marker? = nil, textPosition: TextPosition0? = nil, textFont: TextFont? = nil, hoverInfo: HoverInfo0? = nil, xError: XError? = nil, yError: YError? = nil, zError: ZError? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, zCalendar: Calendar0? = nil, scene: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, textSource: String? = nil, textTemplateSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, textPositionSource: String? = nil, hoverInfoSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker: SymbolicMarker? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, hoverInfo: HoverInfo? = nil, xError: Error? = nil, yError: Error? = nil, zError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, zCalendar: Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -1864,17 +643,5 @@ public struct Scatter3D: Trace {
         self.yCalendar = yCalendar
         self.zCalendar = zCalendar
         self.scene = scene
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.zSource = zSource
-        self.textSource = textSource
-        self.textTemplateSource = textTemplateSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.textPositionSource = textPositionSource
-        self.hoverInfoSource = hoverInfoSource
     }
 }

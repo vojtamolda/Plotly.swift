@@ -25,7 +25,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-visible) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-visible) |
     /// [R](https://plot.ly/r/reference/#histogram2d-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -98,28 +98,29 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#histogram2d-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#histogram2d-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-stream) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-stream) |
     /// [R](https://plot.ly/r/reference/#histogram2d-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-transforms) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-transforms) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -162,7 +163,6 @@ public struct Histogram2D: Trace {
     /// [R](https://plot.ly/r/reference/#histogram2d-z)
     public var z: [Double]?
 
-    ///
     /// # Used By
     /// `Histogram2D.marker` |
     public struct Marker: Encodable {
@@ -174,23 +174,8 @@ public struct Histogram2D: Trace {
         /// [R](https://plot.ly/r/reference/#histogram2d-marker-color)
         public var color: [Double]?
     
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#histogram2d-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#histogram2d-marker-colorsrc)
-        public var colorSource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case color
-            case colorSource = "colorsrc"
-        }
-        
-        public init(color: [Double]? = nil, colorSource: String? = nil) {
+        public init(color: [Double]? = nil) {
             self.color = color
-            self.colorSource = colorSource
         }
     }
     ///
@@ -211,47 +196,12 @@ public struct Histogram2D: Trace {
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
     ///
-    /// # Used By
-    /// `Histogram2D.normalization` |
-    public enum Normalization: String, Encodable {
-        case none = ""
-        case percent
-        case probability
-        case density
-        case probabilityDensity = "probability density"
-    }
-    /// Specifies the type of normalization used for this histogram trace. 
-    ///
-    /// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
-    /// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
-    /// the percentage / fraction of occurrences with respect to the total number of sample points
-    /// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
-    /// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
-    /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
-    /// the area of each bar corresponds to the probability that an event will fall into the
-    /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-histnorm) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-histnorm) |
     /// [R](https://plot.ly/r/reference/#histogram2d-histnorm)
     public var normalization: Normalization?
 
-    /// Specifies the binning function used for this histogram trace. 
-    ///
-    /// If *count*, the histogram values are computed by counting the number of values lying inside each
-    /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
-    /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    ///
-    /// # Used By
-    /// `Histogram2D.binningFunction` |
-    public enum BinningFunction: String, Encodable {
-        case count
-        case sum
-        case avg
-        case min
-        case max
-    }
     /// Specifies the binning function used for this histogram trace. 
     ///
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
@@ -276,62 +226,11 @@ public struct Histogram2D: Trace {
     public var xNumBins: Int?
 
     ///
-    /// # Used By
-    /// `Histogram2D.xBins` |
-    public struct XBins: Encodable {
-        /// Sets the starting value for the x axis bins. 
-        ///
-        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
-        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
-        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
-        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
-        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
-        /// based on the category serial numbers, and defaults to -0.5. 
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins-start) |
-        /// [Python](https://plot.ly/python/reference/#histogram2d-xbins-start) |
-        /// [R](https://plot.ly/r/reference/#histogram2d-xbins-start)
-        public var start: Anything?
-    
-        /// Sets the end value for the x axis bins. 
-        ///
-        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
-        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
-        /// a date string, and for category data `end` is based on the category serial numbers.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins-end) |
-        /// [Python](https://plot.ly/python/reference/#histogram2d-xbins-end) |
-        /// [R](https://plot.ly/r/reference/#histogram2d-xbins-end)
-        public var end: Anything?
-    
-        /// Sets the size of each x axis bin. 
-        ///
-        /// Default behavior: If `nbinsx` is 0 or omitted, we choose a nice round bin size such that the
-        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsx` is
-        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
-        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
-        /// categories to bin together (always defaults to 1). 
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins-size) |
-        /// [Python](https://plot.ly/python/reference/#histogram2d-xbins-size) |
-        /// [R](https://plot.ly/r/reference/#histogram2d-xbins-size)
-        public var size: Anything?
-    
-        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
-            self.start = start
-            self.end = end
-            self.size = size
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-xbins) |
     /// [R](https://plot.ly/r/reference/#histogram2d-xbins)
-    public var xBins: XBins?
+    public var xBins: Bins?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -345,62 +244,11 @@ public struct Histogram2D: Trace {
     public var yNumBins: Int?
 
     ///
-    /// # Used By
-    /// `Histogram2D.yBins` |
-    public struct YBins: Encodable {
-        /// Sets the starting value for the y axis bins. 
-        ///
-        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
-        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
-        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
-        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
-        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
-        /// based on the category serial numbers, and defaults to -0.5. 
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins-start) |
-        /// [Python](https://plot.ly/python/reference/#histogram2d-ybins-start) |
-        /// [R](https://plot.ly/r/reference/#histogram2d-ybins-start)
-        public var start: Anything?
-    
-        /// Sets the end value for the y axis bins. 
-        ///
-        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
-        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
-        /// a date string, and for category data `end` is based on the category serial numbers.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins-end) |
-        /// [Python](https://plot.ly/python/reference/#histogram2d-ybins-end) |
-        /// [R](https://plot.ly/r/reference/#histogram2d-ybins-end)
-        public var end: Anything?
-    
-        /// Sets the size of each y axis bin. 
-        ///
-        /// Default behavior: If `nbinsy` is 0 or omitted, we choose a nice round bin size such that the
-        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsy` is
-        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
-        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
-        /// categories to bin together (always defaults to 1). 
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins-size) |
-        /// [Python](https://plot.ly/python/reference/#histogram2d-ybins-size) |
-        /// [R](https://plot.ly/r/reference/#histogram2d-ybins-size)
-        public var size: Anything?
-    
-        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
-            self.start = start
-            self.end = end
-            self.size = size
-        }
-    }
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-ybins) |
     /// [R](https://plot.ly/r/reference/#histogram2d-ybins)
-    public var yBins: YBins?
+    public var yBins: Bins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. 
     ///
@@ -610,7 +458,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-colorbar) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-colorbar) |
     /// [R](https://plot.ly/r/reference/#histogram2d-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -630,7 +478,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-xcalendar) |
     /// [R](https://plot.ly/r/reference/#histogram2d-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -638,7 +486,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-ycalendar) |
     /// [R](https://plot.ly/r/reference/#histogram2d-ycalendar)
-    public var yCalendar: Calendar0?
+    public var yCalendar: Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -662,70 +510,6 @@ public struct Histogram2D: Trace {
     /// [R](https://plot.ly/r/reference/#histogram2d-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-idssrc) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-metasrc) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-xsrc) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-ysrc) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-zsrc) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -740,7 +524,7 @@ public struct Histogram2D: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case x
         case y
@@ -776,17 +560,9 @@ public struct Histogram2D: Trace {
         case yCalendar = "ycalendar"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case zSource = "zsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: XBins? = nil, yNumBins: Int? = nil, yBins: YBins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar0? = nil, yCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, ySource: String? = nil, zSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: Bins? = nil, yNumBins: Int? = nil, yBins: Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -833,13 +609,5 @@ public struct Histogram2D: Trace {
         self.yCalendar = yCalendar
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.zSource = zSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

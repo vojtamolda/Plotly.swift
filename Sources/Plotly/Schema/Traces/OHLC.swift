@@ -28,7 +28,7 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-visible) |
     /// [Python](https://plot.ly/python/reference/#ohlc-visible) |
     /// [R](https://plot.ly/r/reference/#ohlc-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -131,21 +131,22 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#ohlc-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#ohlc-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-stream) |
     /// [Python](https://plot.ly/python/reference/#ohlc-stream) |
     /// [R](https://plot.ly/r/reference/#ohlc-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-transforms) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-transforms) |
-    /// [R](https://plot.ly/r/reference/#ohlc-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#ohlc-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#ohlc-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -206,10 +207,9 @@ public struct OHLC: Trace {
     /// [R](https://plot.ly/r/reference/#ohlc-close)
     public var close: [Double]?
 
-    ///
     /// # Used By
     /// `OHLC.line` |
-    public struct Line: Encodable {
+    public struct DashedLine: Encodable {
         /// [object Object] Note that this style setting can also be set per direction via `increasing.line.width` and `decreasing.line.width`.
         ///
         /// # Plotly Reference
@@ -240,20 +240,55 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-line) |
     /// [Python](https://plot.ly/python/reference/#ohlc-line) |
     /// [R](https://plot.ly/r/reference/#ohlc-line)
-    public var line: Line?
+    public var line: DashedLine?
 
-    ///
     /// # Used By
     /// `OHLC.increasing` |
     public struct Increasing: Encodable {
+        /// # Used By
+        /// `OHLC.Increasing.line` |
+        public struct DashedLine: Encodable {
+            /// Sets the line color.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-increasing-line-color) |
+            /// [Python](https://plot.ly/python/reference/#ohlc-increasing-line-color) |
+            /// [R](https://plot.ly/r/reference/#ohlc-increasing-line-color)
+            public var color: Color?
+        
+            /// Sets the line width (in px).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-increasing-line-width) |
+            /// [Python](https://plot.ly/python/reference/#ohlc-increasing-line-width) |
+            /// [R](https://plot.ly/r/reference/#ohlc-increasing-line-width)
+            public var width: Double?
+        
+            /// Sets the dash style of lines. 
+            ///
+            /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+            /// dash length list in px (eg *5px,10px,2px,2px*).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-increasing-line-dash) |
+            /// [Python](https://plot.ly/python/reference/#ohlc-increasing-line-dash) |
+            /// [R](https://plot.ly/r/reference/#ohlc-increasing-line-dash)
+            public var dash: String?
+        
+            public init(color: Color? = nil, width: Double? = nil, dash: String? = nil) {
+                self.color = color
+                self.width = width
+                self.dash = dash
+            }
+        }
         ///
         /// # Plotly Reference
         /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-increasing-line) |
         /// [Python](https://plot.ly/python/reference/#ohlc-increasing-line) |
         /// [R](https://plot.ly/r/reference/#ohlc-increasing-line)
-        public var line: Line0?
+        public var line: DashedLine?
     
-        public init(line: Line0? = nil) {
+        public init(line: DashedLine? = nil) {
             self.line = line
         }
     }
@@ -264,18 +299,53 @@ public struct OHLC: Trace {
     /// [R](https://plot.ly/r/reference/#ohlc-increasing)
     public var increasing: Increasing?
 
-    ///
     /// # Used By
     /// `OHLC.decreasing` |
     public struct Decreasing: Encodable {
+        /// # Used By
+        /// `OHLC.Decreasing.line` |
+        public struct DashedLine: Encodable {
+            /// Sets the line color.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-decreasing-line-color) |
+            /// [Python](https://plot.ly/python/reference/#ohlc-decreasing-line-color) |
+            /// [R](https://plot.ly/r/reference/#ohlc-decreasing-line-color)
+            public var color: Color?
+        
+            /// Sets the line width (in px).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-decreasing-line-width) |
+            /// [Python](https://plot.ly/python/reference/#ohlc-decreasing-line-width) |
+            /// [R](https://plot.ly/r/reference/#ohlc-decreasing-line-width)
+            public var width: Double?
+        
+            /// Sets the dash style of lines. 
+            ///
+            /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+            /// dash length list in px (eg *5px,10px,2px,2px*).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-decreasing-line-dash) |
+            /// [Python](https://plot.ly/python/reference/#ohlc-decreasing-line-dash) |
+            /// [R](https://plot.ly/r/reference/#ohlc-decreasing-line-dash)
+            public var dash: String?
+        
+            public init(color: Color? = nil, width: Double? = nil, dash: String? = nil) {
+                self.color = color
+                self.width = width
+                self.dash = dash
+            }
+        }
         ///
         /// # Plotly Reference
         /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-decreasing-line) |
         /// [Python](https://plot.ly/python/reference/#ohlc-decreasing-line) |
         /// [R](https://plot.ly/r/reference/#ohlc-decreasing-line)
-        public var line: Line0?
+        public var line: DashedLine?
     
-        public init(line: Line0? = nil) {
+        public init(line: DashedLine? = nil) {
             self.line = line
         }
     }
@@ -313,12 +383,88 @@ public struct OHLC: Trace {
     /// [R](https://plot.ly/r/reference/#ohlc-tickwidth)
     public var tickWidth: Double?
 
+    /// # Used By
+    /// `OHLC.hoverLabel` |
+    public struct HoverLabel: Encodable {
+        /// Sets the background color of the hover labels for this trace
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-bgcolor) |
+        /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-bgcolor) |
+        /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-bgcolor)
+        public var backgroundColor: Color?
+    
+        /// Sets the border color of the hover labels for this trace.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-bordercolor) |
+        /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-bordercolor) |
+        /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-bordercolor)
+        public var borderColor: Color?
+    
+        /// Sets the font used in hover labels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-font) |
+        /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-font) |
+        /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-font)
+        public var font: Font?
+    
+        /// Sets the horizontal alignment of the text content within hover label box. 
+        ///
+        /// Has an effect only if the hover label text spans more two or more lines
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-align) |
+        /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-align) |
+        /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-align)
+        public var align: AutoAlign?
+    
+        /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
+        ///
+        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
+        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
+        /// truncate to `namelength - 3` characters and add an ellipsis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-namelength) |
+        /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-namelength) |
+        /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-namelength)
+        public var nameLength: Int?
+    
+        /// Show hover information (open, close, high, low) in separate labels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-split) |
+        /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-split) |
+        /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-split)
+        public var split: Bool?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case font
+            case align
+            case nameLength = "namelength"
+            case split
+        }
+        
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: AutoAlign? = nil, nameLength: Int? = nil, split: Bool? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
+            self.font = font
+            self.align = align
+            self.nameLength = nameLength
+            self.split = split
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -326,7 +472,7 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#ohlc-xcalendar) |
     /// [R](https://plot.ly/r/reference/#ohlc-xcalendar)
-    public var xCalendar: Calendar0?
+    public var xCalendar: Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -350,94 +496,6 @@ public struct OHLC: Trace {
     /// [R](https://plot.ly/r/reference/#ohlc-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-idssrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-metasrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-xsrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  open .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-opensrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-opensrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-opensrc)
-    public var openSource: String?
-
-    /// Sets the source reference on plot.ly for  high .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-highsrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-highsrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-highsrc)
-    public var highSource: String?
-
-    /// Sets the source reference on plot.ly for  low .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-lowsrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-lowsrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-lowsrc)
-    public var lowSource: String?
-
-    /// Sets the source reference on plot.ly for  close .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-closesrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-closesrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-closesrc)
-    public var closeSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-textsrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#ohlc-hovertextsrc)
-    public var hoverTextSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -454,7 +512,7 @@ public struct OHLC: Trace {
         case selectedPoints = "selectedpoints"
         case hoverInfo = "hoverinfo"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case x
         case open
@@ -471,20 +529,9 @@ public struct OHLC: Trace {
         case xCalendar = "xcalendar"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case xSource = "xsrc"
-        case openSource = "opensrc"
-        case highSource = "highsrc"
-        case lowSource = "lowsrc"
-        case closeSource = "closesrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel0? = nil, xCalendar: Calendar0? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, xSource: String? = nil, openSource: String? = nil, highSource: String? = nil, lowSource: String? = nil, closeSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: DashedLine? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -514,16 +561,5 @@ public struct OHLC: Trace {
         self.xCalendar = xCalendar
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.xSource = xSource
-        self.openSource = openSource
-        self.highSource = highSource
-        self.lowSource = lowSource
-        self.closeSource = closeSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
     }
 }

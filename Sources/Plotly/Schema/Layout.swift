@@ -46,14 +46,162 @@ public struct Layout: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-font) |
     /// [Python](https://plot.ly/python/reference/#layout-font) |
     /// [R](https://plot.ly/r/reference/#layout-font)
-    public var font: Font0?
+    public var font: Font?
 
+    /// # Used By
+    /// `Layout.title` |
+    public struct Title: Encodable {
+        /// Sets the plot's title. 
+        ///
+        /// Note that before the existence of `title.text`, the title's contents used to be defined as the
+        /// `title` attribute itself. This behavior has been deprecated.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-text) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-text) |
+        /// [R](https://plot.ly/r/reference/#layout-title-text)
+        public var text: String?
+    
+        /// Sets the title font. 
+        ///
+        /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-font) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-font) |
+        /// [R](https://plot.ly/r/reference/#layout-title-font)
+        public var font: Font?
+    
+        /// Sets the container `x` refers to. 
+        ///
+        /// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
+        /// area only.
+        ///
+        /// # Used By
+        /// `Layout.Title.xReference` |
+        public enum XAxisReference: String, Encodable {
+            case container
+            case paper
+        }
+        /// Sets the container `x` refers to. 
+        ///
+        /// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
+        /// area only.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-xref) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-xref) |
+        /// [R](https://plot.ly/r/reference/#layout-title-xref)
+        public var xReference: XAxisReference?
+    
+        /// Sets the container `y` refers to. 
+        ///
+        /// *container* spans the entire `height` of the plot. *paper* refers to the height of the plotting
+        /// area only.
+        ///
+        /// # Used By
+        /// `Layout.Title.yReference` |
+        public enum YAxisReference: String, Encodable {
+            case container
+            case paper
+        }
+        /// Sets the container `y` refers to. 
+        ///
+        /// *container* spans the entire `height` of the plot. *paper* refers to the height of the plotting
+        /// area only.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-yref) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-yref) |
+        /// [R](https://plot.ly/r/reference/#layout-title-yref)
+        public var yReference: YAxisReference?
+    
+        /// Sets the x position with respect to `xref` in normalized coordinates from *0* (left) to *1* (right).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-x) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-x) |
+        /// [R](https://plot.ly/r/reference/#layout-title-x)
+        public var x: Double?
+    
+        /// Sets the y position with respect to `yref` in normalized coordinates from *0* (bottom) to *1* (top). 
+        ///
+        /// *auto* places the baseline of the title onto the vertical center of the top margin.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-y) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-y) |
+        /// [R](https://plot.ly/r/reference/#layout-title-y)
+        public var y: Double?
+    
+        /// Sets the title's horizontal alignment with respect to its x position. 
+        ///
+        /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+        /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+        /// `xanchor` value automatically based on the value of `x`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-xanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-xanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-title-xanchor)
+        public var xAnchor: XAutoAnchor?
+    
+        /// Sets the title's vertical alignment with respect to its y position. 
+        ///
+        /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+        /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+        /// calculates the `yanchor` value automatically based on the value of `y`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-yanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-yanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-title-yanchor)
+        public var yAnchor: YAutoAnchor?
+    
+        /// Sets the padding of the title. 
+        ///
+        /// Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set
+        /// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
+        /// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
+        /// respective anchor value is *middle*/*center*.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad) |
+        /// [Python](https://plot.ly/python/reference/#layout-title-pad) |
+        /// [R](https://plot.ly/r/reference/#layout-title-pad)
+        public var padding: Padding?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case text
+            case font
+            case xReference = "xref"
+            case yReference = "yref"
+            case x
+            case y
+            case xAnchor = "xanchor"
+            case yAnchor = "yanchor"
+            case padding = "pad"
+        }
+        
+        public init(text: String? = nil, font: Font? = nil, xReference: XAxisReference? = nil, yReference: YAxisReference? = nil, x: Double? = nil, y: Double? = nil, xAnchor: XAutoAnchor? = nil, yAnchor: YAutoAnchor? = nil, padding: Padding? = nil) {
+            self.text = text
+            self.font = font
+            self.xReference = xReference
+            self.yReference = yReference
+            self.x = x
+            self.y = y
+            self.xAnchor = xAnchor
+            self.yAnchor = yAnchor
+            self.padding = padding
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-title) |
     /// [Python](https://plot.ly/python/reference/#layout-title) |
     /// [R](https://plot.ly/r/reference/#layout-title)
-    public var title: Title0?
+    public var title: Title?
 
     /// Determines whether or not a layout width or height that has been left undefined by the user is initialized on each relayout. 
     ///
@@ -82,7 +230,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-height)
     public var height: Double?
 
-    ///
     /// # Used By
     /// `Layout.margin` |
     public struct Margin: Encodable {
@@ -290,7 +437,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-template)
     public var template: Anything?
 
-    ///
     /// # Used By
     /// `Layout.modeBar` |
     public struct ModeBar: Encodable {
@@ -300,7 +446,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-modebar-orientation) |
         /// [Python](https://plot.ly/python/reference/#layout-modebar-orientation) |
         /// [R](https://plot.ly/r/reference/#layout-modebar-orientation)
-        public var orientation: Orientation0?
+        public var orientation: Orientation?
     
         /// Sets the background color of the modebar.
         ///
@@ -345,7 +491,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(orientation: Orientation0? = nil, backgroundColor: Color? = nil, color: Color? = nil, activeColor: Color? = nil, uiRevision: Anything? = nil) {
+        public init(orientation: Orientation? = nil, backgroundColor: Color? = nil, color: Color? = nil, activeColor: Color? = nil, uiRevision: Anything? = nil) {
             self.orientation = orientation
             self.backgroundColor = backgroundColor
             self.color = color
@@ -600,7 +746,7 @@ public struct Layout: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#layout-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#layout-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     /// When "dragmode" is set to "select", this limits the selection of the drag to horizontal, vertical or diagonal. 
     ///
@@ -626,7 +772,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-selectdirection)
     public var selectDirection: SelectDirection?
 
-    ///
     /// # Used By
     /// `Layout.grid` |
     public struct Grid: Encodable {
@@ -749,12 +894,40 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-grid-ygap)
         public var yGap: Double?
     
+        /// # Used By
+        /// `Layout.Grid.domain` |
+        public struct Domain: Encodable {
+            /// Sets the horizontal domain of this grid subplot (in plot fraction). 
+            ///
+            /// The first and last cells end exactly at the domain edges, with no grout around the edges.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-grid-domain-x) |
+            /// [Python](https://plot.ly/python/reference/#layout-grid-domain-x) |
+            /// [R](https://plot.ly/r/reference/#layout-grid-domain-x)
+            public var x: InfoArray?
+        
+            /// Sets the vertical domain of this grid subplot (in plot fraction). 
+            ///
+            /// The first and last cells end exactly at the domain edges, with no grout around the edges.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-grid-domain-y) |
+            /// [Python](https://plot.ly/python/reference/#layout-grid-domain-y) |
+            /// [R](https://plot.ly/r/reference/#layout-grid-domain-y)
+            public var y: InfoArray?
+        
+            public init(x: InfoArray? = nil, y: InfoArray? = nil) {
+                self.x = x
+                self.y = y
+            }
+        }
         ///
         /// # Plotly Reference
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-grid-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-grid-domain) |
         /// [R](https://plot.ly/r/reference/#layout-grid-domain)
-        public var domain: Domain0?
+        public var domain: Domain?
     
         /// Sets where the x axis labels and titles go. 
         ///
@@ -820,7 +993,7 @@ public struct Layout: Encodable {
             case ySide = "yside"
         }
         
-        public init(rows: Int? = nil, rowOrder: RowOrder? = nil, columns: Int? = nil, subPlots: InfoArray? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, pattern: Pattern? = nil, xGap: Double? = nil, yGap: Double? = nil, domain: Domain0? = nil, xSide: XSide? = nil, ySide: YSide? = nil) {
+        public init(rows: Int? = nil, rowOrder: RowOrder? = nil, columns: Int? = nil, subPlots: InfoArray? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, pattern: Pattern? = nil, xGap: Double? = nil, yGap: Double? = nil, domain: Domain? = nil, xSide: XSide? = nil, ySide: YSide? = nil) {
             self.rows = rows
             self.rowOrder = rowOrder
             self.columns = columns
@@ -848,9 +1021,8 @@ public struct Layout: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-calendar) |
     /// [Python](https://plot.ly/python/reference/#layout-calendar) |
     /// [R](https://plot.ly/r/reference/#layout-calendar)
-    public var calendar: Calendar0?
+    public var calendar: Calendar?
 
-    ///
     /// # Used By
     /// `Layout.xAxis` |
     public struct XAxis: Encodable {
@@ -875,7 +1047,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-xaxis-color)
         public var color: Color?
     
-        ///
         /// # Used By
         /// `Layout.XAxis.title` |
         public struct Title: Encodable {
@@ -898,7 +1069,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-title-font) |
             /// [Python](https://plot.ly/python/reference/#layout-xaxis-title-font) |
             /// [R](https://plot.ly/r/reference/#layout-xaxis-title-font)
-            public var font: Font0?
+            public var font: Font?
         
             /// Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. 
             ///
@@ -913,7 +1084,7 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-xaxis-title-standoff)
             public var standoff: Double?
         
-            public init(text: String? = nil, font: Font0? = nil, standoff: Double? = nil) {
+            public init(text: String? = nil, font: Font? = nil, standoff: Double? = nil) {
                 self.text = text
                 self.font = font
                 self.standoff = standoff
@@ -933,7 +1104,7 @@ public struct Layout: Encodable {
         ///
         /// # Used By
         /// `Layout.XAxis.type` |
-        public enum Rule: String, Encodable {
+        public enum `Type`: String, Encodable {
             case auto = "-"
             case linear
             case log
@@ -950,7 +1121,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-type) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-type) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-type)
-        public var type: Rule?
+        public var type: `Type`?
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. 
         ///
@@ -960,7 +1131,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-autorange) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-autorange) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-autorange)
-        public var autoRange: AutoRange0?
+        public var autoRange: AutoRange?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
@@ -971,7 +1142,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangemode) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangemode) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-rangemode)
-        public var rangeMode: RangeMode0?
+        public var rangeMode: RangeMode?
     
         /// Sets the range of this axis. 
         ///
@@ -1129,7 +1300,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickmode) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickmode) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-tickmode)
-        public var tickMode: TickMode0?
+        public var tickMode: TickMode?
     
         /// Specifies the maximum number of ticks for the particular axis. 
         ///
@@ -1207,7 +1378,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-ticks) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-ticks) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-ticks)
-        public var ticks: Ticks0?
+        public var ticks: Ticks?
     
         /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels. 
         ///
@@ -1241,7 +1412,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-mirror) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-mirror) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-mirror)
-        public var mirror: Mirror0?
+        public var mirror: Mirror?
     
         /// Sets the tick length (in px).
         ///
@@ -1380,7 +1551,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickfont) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickfont) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-tickfont)
-        public var tickFont: Font0?
+        public var tickFont: Font?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
@@ -1409,7 +1580,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-showtickprefix) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-showtickprefix) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-showtickprefix)
-        public var showTickPrefix: ShowTickPrefix0?
+        public var showTickPrefix: ShowTickPrefix?
     
         /// Sets a tick label suffix.
         ///
@@ -1425,7 +1596,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-showticksuffix) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-showticksuffix) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-showticksuffix)
-        public var showTickSuffix: ShowTickSuffix0?
+        public var showTickSuffix: ShowTickSuffix?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
@@ -1436,7 +1607,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-showexponent) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-showexponent) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-showexponent)
-        public var showExponent: ShowExponent0?
+        public var showExponent: ShowExponent?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -1447,7 +1618,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-exponentformat) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-exponentformat) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-exponentformat)
-        public var exponentFormat: ExponentFormat0?
+        public var exponentFormat: ExponentFormat?
     
         /// If "true", even 4-digit integers are separated
         ///
@@ -1473,10 +1644,10 @@ public struct Layout: Encodable {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickformatstops) |
-        /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickformatstops) |
-        /// [R](https://plot.ly/r/reference/#layout-xaxis-tickformatstops)
-        public var tickFormatStops: TickFormatStops0?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickformatstops-items-tickformatstop) |
+        /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickformatstops-items-tickformatstop) |
+        /// [R](https://plot.ly/r/reference/#layout-xaxis-tickformatstops-items-tickformatstop)
+        public var tickFormatStops: [TickFormatStop]?
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
         ///
@@ -1669,7 +1840,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-layer) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-layer) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-layer)
-        public var layer: Layer0?
+        public var layer: Layer?
     
         /// Sets the domain of this axis (in plot fraction).
         ///
@@ -1705,7 +1876,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-categoryorder) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-categoryorder)
-        public var categoryOrder: CategoryOrder0?
+        public var categoryOrder: CategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
@@ -1727,7 +1898,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-xaxis-uirevision)
         public var uiRevision: Anything?
     
-        ///
         /// # Used By
         /// `Layout.XAxis.rangeSlider` |
         public struct RangeSlider: Encodable {
@@ -1797,7 +1967,6 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeslider-visible)
             public var visible: Bool?
         
-            ///
             /// # Used By
             /// `Layout.XAxis.RangeSlider.yAxis` |
             public struct YAxis: Encodable {
@@ -1880,7 +2049,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeslider)
         public var rangeSlider: RangeSlider?
     
-        ///
         /// # Used By
         /// `Layout.XAxis.rangeSelector` |
         public struct RangeSelector: Encodable {
@@ -1895,176 +2063,146 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-visible)
             public var visible: Bool?
         
+            /// Sets the specifications for each buttons. 
+            ///
+            /// By default, a range selector comes with no buttons.
             ///
             /// # Used By
             /// `Layout.XAxis.RangeSelector.buttons` |
-            public struct Buttons: Encodable {
-                ///
-                /// # Used By
-                /// `Layout.XAxis.RangeSelector.Buttons.items` |
-                public struct Items: Encodable {
-                    /// Sets the specifications for each buttons. 
-                    ///
-                    /// By default, a range selector comes with no buttons.
-                    ///
-                    /// # Used By
-                    /// `Layout.XAxis.RangeSelector.Buttons.Items.button` |
-                    public struct Button: Encodable {
-                        /// Determines whether or not this button is visible.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-visible) |
-                        /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-visible) |
-                        /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-visible)
-                        public var visible: Bool?
-                    
-                        /// The unit of measurement that the `count` value will set the range by.
-                        ///
-                        /// # Used By
-                        /// `Layout.XAxis.RangeSelector.Buttons.Items.Button.step` |
-                        public enum Step: String, Encodable {
-                            case month
-                            case year
-                            case day
-                            case hour
-                            case minute
-                            case second
-                            case all
-                        }
-                        /// The unit of measurement that the `count` value will set the range by.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-step) |
-                        /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-step) |
-                        /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-step)
-                        public var step: Step?
-                    
-                        /// Sets the range update mode. 
-                        ///
-                        /// If *backward*, the range update shifts the start of range back *count* times *step*
-                        /// milliseconds. If *todate*, the range update shifts the start of range back to the first
-                        /// timestamp from *count* times *step* milliseconds back. For example, with `step` set to *year*
-                        /// and `count` set to *1* the range update shifts the start of the range back to January 01 of the
-                        /// current year. Month and year *todate* are currently available only for the built-in (Gregorian)
-                        /// calendar.
-                        ///
-                        /// # Used By
-                        /// `Layout.XAxis.RangeSelector.Buttons.Items.Button.stepMode` |
-                        public enum StepMode: String, Encodable {
-                            case backward
-                            case todate
-                        }
-                        /// Sets the range update mode. 
-                        ///
-                        /// If *backward*, the range update shifts the start of range back *count* times *step*
-                        /// milliseconds. If *todate*, the range update shifts the start of range back to the first
-                        /// timestamp from *count* times *step* milliseconds back. For example, with `step` set to *year*
-                        /// and `count` set to *1* the range update shifts the start of the range back to January 01 of the
-                        /// current year. Month and year *todate* are currently available only for the built-in (Gregorian)
-                        /// calendar.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-stepmode) |
-                        /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-stepmode) |
-                        /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-stepmode)
-                        public var stepMode: StepMode?
-                    
-                        /// Sets the number of steps to take to update the range. 
-                        ///
-                        /// Use with `step` to specify the update interval.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-count) |
-                        /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-count) |
-                        /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-count)
-                        public var count: Double?
-                    
-                        /// Sets the text label to appear on the button.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-label) |
-                        /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-label) |
-                        /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-label)
-                        public var label: String?
-                    
-                        /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                        ///
-                        /// You can modify these items in the output figure by making your own item with `templateitemname`
-                        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                        /// false` to hide it). Has no effect outside of a template.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-name) |
-                        /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-name) |
-                        /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-name)
-                        public var name: String?
-                    
-                        /// Used to refer to a named item in this array in the template. 
-                        ///
-                        /// Named items from the template will be created even without a matching item in the input figure,
-                        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                        /// template or no matching item, this item will be hidden unless you explicitly show it with
-                        /// `visible: true`.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-templateitemname) |
-                        /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-templateitemname) |
-                        /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-templateitemname)
-                        public var templateItemName: String?
-                    
-                        /// Plotly compatible property encoding
-                        enum CodingKeys: String, CodingKey {
-                            case visible
-                            case step
-                            case stepMode = "stepmode"
-                            case count
-                            case label
-                            case name
-                            case templateItemName = "templateitemname"
-                        }
-                        
-                        public init(visible: Bool? = nil, step: Step? = nil, stepMode: StepMode? = nil, count: Double? = nil, label: String? = nil, name: String? = nil, templateItemName: String? = nil) {
-                            self.visible = visible
-                            self.step = step
-                            self.stepMode = stepMode
-                            self.count = count
-                            self.label = label
-                            self.name = name
-                            self.templateItemName = templateItemName
-                        }
-                    }
-                    /// Sets the specifications for each buttons. 
-                    ///
-                    /// By default, a range selector comes with no buttons.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button) |
-                    /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button) |
-                    /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button)
-                    public var button: Button?
-                
-                    public init(button: Button? = nil) {
-                        self.button = button
-                    }
-                }
+            public struct Button: Encodable {
+                /// Determines whether or not this button is visible.
                 ///
                 /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items) |
-                /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items) |
-                /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items)
-                public var items: Items?
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-visible) |
+                /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-visible) |
+                /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-visible)
+                public var visible: Bool?
             
-                public init(items: Items? = nil) {
-                    self.items = items
+                /// The unit of measurement that the `count` value will set the range by.
+                ///
+                /// # Used By
+                /// `Layout.XAxis.RangeSelector.Button.step` |
+                public enum Step: String, Encodable {
+                    case month
+                    case year
+                    case day
+                    case hour
+                    case minute
+                    case second
+                    case all
+                }
+                /// The unit of measurement that the `count` value will set the range by.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-step) |
+                /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-step) |
+                /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-step)
+                public var step: Step?
+            
+                /// Sets the range update mode. 
+                ///
+                /// If *backward*, the range update shifts the start of range back *count* times *step*
+                /// milliseconds. If *todate*, the range update shifts the start of range back to the first
+                /// timestamp from *count* times *step* milliseconds back. For example, with `step` set to *year*
+                /// and `count` set to *1* the range update shifts the start of the range back to January 01 of the
+                /// current year. Month and year *todate* are currently available only for the built-in (Gregorian)
+                /// calendar.
+                ///
+                /// # Used By
+                /// `Layout.XAxis.RangeSelector.Button.stepMode` |
+                public enum StepMode: String, Encodable {
+                    case backward
+                    case todate
+                }
+                /// Sets the range update mode. 
+                ///
+                /// If *backward*, the range update shifts the start of range back *count* times *step*
+                /// milliseconds. If *todate*, the range update shifts the start of range back to the first
+                /// timestamp from *count* times *step* milliseconds back. For example, with `step` set to *year*
+                /// and `count` set to *1* the range update shifts the start of the range back to January 01 of the
+                /// current year. Month and year *todate* are currently available only for the built-in (Gregorian)
+                /// calendar.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-stepmode) |
+                /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-stepmode) |
+                /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-stepmode)
+                public var stepMode: StepMode?
+            
+                /// Sets the number of steps to take to update the range. 
+                ///
+                /// Use with `step` to specify the update interval.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-count) |
+                /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-count) |
+                /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-count)
+                public var count: Double?
+            
+                /// Sets the text label to appear on the button.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-label) |
+                /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-label) |
+                /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-label)
+                public var label: String?
+            
+                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+                ///
+                /// You can modify these items in the output figure by making your own item with `templateitemname`
+                /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+                /// false` to hide it). Has no effect outside of a template.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-name) |
+                /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-name) |
+                /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-name)
+                public var name: String?
+            
+                /// Used to refer to a named item in this array in the template. 
+                ///
+                /// Named items from the template will be created even without a matching item in the input figure,
+                /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+                /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+                /// template or no matching item, this item will be hidden unless you explicitly show it with
+                /// `visible: true`.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button-templateitemname) |
+                /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button-templateitemname) |
+                /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button-templateitemname)
+                public var templateItemName: String?
+            
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case visible
+                    case step
+                    case stepMode = "stepmode"
+                    case count
+                    case label
+                    case name
+                    case templateItemName = "templateitemname"
+                }
+                
+                public init(visible: Bool? = nil, step: Step? = nil, stepMode: StepMode? = nil, count: Double? = nil, label: String? = nil, name: String? = nil, templateItemName: String? = nil) {
+                    self.visible = visible
+                    self.step = step
+                    self.stepMode = stepMode
+                    self.count = count
+                    self.label = label
+                    self.name = name
+                    self.templateItemName = templateItemName
                 }
             }
+            /// Sets the specifications for each buttons. 
+            ///
+            /// By default, a range selector comes with no buttons.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons) |
-            /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons) |
-            /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons)
-            public var buttons: Buttons?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button) |
+            /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button) |
+            /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button)
+            public var buttons: [Button]?
         
             /// Sets the x position (in normalized coordinates) of the range selector.
             ///
@@ -2074,26 +2212,6 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-x)
             public var x: Double?
         
-            /// Sets the title's horizontal alignment with respect to its x position. 
-            ///
-            /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-            /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-            /// `xanchor` value automatically based on the value of `x`.
-            ///
-            /// # Used By
-            /// `Layout.Title0.xAnchor` |
-            /// `Layout.XAxis.RangeSelector.xAnchor` |
-            /// `Layout.Scene.Annotations.Items.Annotation.xAnchor` |
-            /// `Layout.Legend.xAnchor` |
-            /// `Layout.Annotations.Items.Annotation.xAnchor` |
-            /// `Layout.UpdateMenus.Items.UpdateMenu.xAnchor` |
-            /// `Layout.Sliders.Items.Slider.xAnchor` |
-            public enum XAnchor0: String, Encodable {
-                case auto
-                case left
-                case center
-                case right
-            }
             /// Sets the range selector's horizontal position anchor. 
             ///
             /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
@@ -2102,7 +2220,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-xanchor) |
             /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-xanchor) |
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-xanchor)
-            public var xAnchor: XAnchor0?
+            public var xAnchor: XAutoAnchor?
         
             /// Sets the y position (in normalized coordinates) of the range selector.
             ///
@@ -2112,33 +2230,13 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-y)
             public var y: Double?
         
-            /// Sets the title's vertical alignment with respect to its y position. 
-            ///
-            /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-            /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-            /// calculates the `yanchor` value automatically based on the value of `y`.
-            ///
-            /// # Used By
-            /// `Layout.Title0.yAnchor` |
-            /// `Layout.XAxis.RangeSelector.yAnchor` |
-            /// `Layout.Scene.Annotations.Items.Annotation.yAnchor` |
-            /// `Layout.Legend.yAnchor` |
-            /// `Layout.Annotations.Items.Annotation.yAnchor` |
-            /// `Layout.UpdateMenus.Items.UpdateMenu.yAnchor` |
-            /// `Layout.Sliders.Items.Slider.yAnchor` |
-            public enum YAnchor0: String, Encodable {
-                case auto
-                case top
-                case middle
-                case bottom
-            }
             /// Sets the range selector's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
             ///
             /// # Plotly Reference
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-yanchor) |
             /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-yanchor) |
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-yanchor)
-            public var yAnchor: YAnchor0?
+            public var yAnchor: YAutoAnchor?
         
             /// Sets the font of the range selector button text.
             ///
@@ -2146,7 +2244,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-font) |
             /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-font) |
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-font)
-            public var font: Font0?
+            public var font: Font?
         
             /// Sets the background color of the range selector buttons.
             ///
@@ -2183,7 +2281,7 @@ public struct Layout: Encodable {
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
                 case visible
-                case buttons
+                case buttons = "button"
                 case x
                 case xAnchor = "xanchor"
                 case y
@@ -2195,7 +2293,7 @@ public struct Layout: Encodable {
                 case borderWidth = "borderwidth"
             }
             
-            public init(visible: Bool? = nil, buttons: Buttons? = nil, x: Double? = nil, xAnchor: XAnchor0? = nil, y: Double? = nil, yAnchor: YAnchor0? = nil, font: Font0? = nil, backgroundColor: Color? = nil, activeColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil) {
+            public init(visible: Bool? = nil, buttons: [Button]? = nil, x: Double? = nil, xAnchor: XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, font: Font? = nil, backgroundColor: Color? = nil, activeColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil) {
                 self.visible = visible
                 self.buttons = buttons
                 self.x = x
@@ -2225,31 +2323,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-calendar) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-calendar) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-calendar)
-        public var calendar: Calendar0?
-    
-        /// Sets the source reference on plot.ly for  tickvals .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickvalssrc) |
-        /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickvalssrc) |
-        /// [R](https://plot.ly/r/reference/#layout-xaxis-tickvalssrc)
-        public var tickValuesSource: String?
-    
-        /// Sets the source reference on plot.ly for  ticktext .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-ticktextsrc) |
-        /// [Python](https://plot.ly/python/reference/#layout-xaxis-ticktextsrc) |
-        /// [R](https://plot.ly/r/reference/#layout-xaxis-ticktextsrc)
-        public var tickTextSource: String?
-    
-        /// Sets the source reference on plot.ly for  categoryarray .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-categoryarraysrc) |
-        /// [Python](https://plot.ly/python/reference/#layout-xaxis-categoryarraysrc) |
-        /// [R](https://plot.ly/r/reference/#layout-xaxis-categoryarraysrc)
-        public var categoryArraySource: String?
+        public var calendar: Calendar?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -2296,7 +2370,7 @@ public struct Layout: Encodable {
             case exponentFormat = "exponentformat"
             case separatethousands
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstops"
+            case tickFormatStops = "tickformatstop"
             case hoverFormat = "hoverformat"
             case showLine = "showline"
             case lineColor = "linecolor"
@@ -2322,12 +2396,9 @@ public struct Layout: Encodable {
             case rangeSlider = "rangeslider"
             case rangeSelector = "rangeselector"
             case calendar
-            case tickValuesSource = "tickvalssrc"
-            case tickTextSource = "ticktextsrc"
-            case categoryArraySource = "categoryarraysrc"
         }
         
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: Rule? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, ticksOn: TicksOn? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Layer0? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
+        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar? = nil) {
             self.visible = visible
             self.color = color
             self.title = title
@@ -2397,9 +2468,6 @@ public struct Layout: Encodable {
             self.rangeSlider = rangeSlider
             self.rangeSelector = rangeSelector
             self.calendar = calendar
-            self.tickValuesSource = tickValuesSource
-            self.tickTextSource = tickTextSource
-            self.categoryArraySource = categoryArraySource
         }
     }
     ///
@@ -2409,7 +2477,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-xaxis)
     public var xAxis: XAxis?
 
-    ///
     /// # Used By
     /// `Layout.yAxis` |
     public struct YAxis: Encodable {
@@ -2434,7 +2501,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-yaxis-color)
         public var color: Color?
     
-        ///
         /// # Used By
         /// `Layout.YAxis.title` |
         public struct Title: Encodable {
@@ -2457,7 +2523,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-title-font) |
             /// [Python](https://plot.ly/python/reference/#layout-yaxis-title-font) |
             /// [R](https://plot.ly/r/reference/#layout-yaxis-title-font)
-            public var font: Font0?
+            public var font: Font?
         
             /// Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. 
             ///
@@ -2472,7 +2538,7 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-yaxis-title-standoff)
             public var standoff: Double?
         
-            public init(text: String? = nil, font: Font0? = nil, standoff: Double? = nil) {
+            public init(text: String? = nil, font: Font? = nil, standoff: Double? = nil) {
                 self.text = text
                 self.font = font
                 self.standoff = standoff
@@ -2492,7 +2558,7 @@ public struct Layout: Encodable {
         ///
         /// # Used By
         /// `Layout.YAxis.type` |
-        public enum Rule: String, Encodable {
+        public enum `Type`: String, Encodable {
             case auto = "-"
             case linear
             case log
@@ -2509,7 +2575,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-type) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-type) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-type)
-        public var type: Rule?
+        public var type: `Type`?
     
         /// Determines whether or not the range of this axis is computed in relation to the input data. 
         ///
@@ -2519,7 +2585,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-autorange) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-autorange) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-autorange)
-        public var autoRange: AutoRange0?
+        public var autoRange: AutoRange?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
@@ -2530,7 +2596,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-rangemode) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-rangemode) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-rangemode)
-        public var rangeMode: RangeMode0?
+        public var rangeMode: RangeMode?
     
         /// Sets the range of this axis. 
         ///
@@ -2688,7 +2754,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickmode) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickmode) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-tickmode)
-        public var tickMode: TickMode0?
+        public var tickMode: TickMode?
     
         /// Specifies the maximum number of ticks for the particular axis. 
         ///
@@ -2766,7 +2832,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-ticks) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-ticks) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-ticks)
-        public var ticks: Ticks0?
+        public var ticks: Ticks?
     
         /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels. 
         ///
@@ -2800,7 +2866,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-mirror) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-mirror) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-mirror)
-        public var mirror: Mirror0?
+        public var mirror: Mirror?
     
         /// Sets the tick length (in px).
         ///
@@ -2939,7 +3005,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickfont) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickfont) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-tickfont)
-        public var tickFont: Font0?
+        public var tickFont: Font?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
@@ -2968,7 +3034,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-showtickprefix) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-showtickprefix) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-showtickprefix)
-        public var showTickPrefix: ShowTickPrefix0?
+        public var showTickPrefix: ShowTickPrefix?
     
         /// Sets a tick label suffix.
         ///
@@ -2984,7 +3050,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-showticksuffix) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-showticksuffix) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-showticksuffix)
-        public var showTickSuffix: ShowTickSuffix0?
+        public var showTickSuffix: ShowTickSuffix?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
@@ -2995,7 +3061,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-showexponent) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-showexponent) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-showexponent)
-        public var showExponent: ShowExponent0?
+        public var showExponent: ShowExponent?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -3006,7 +3072,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-exponentformat) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-exponentformat) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-exponentformat)
-        public var exponentFormat: ExponentFormat0?
+        public var exponentFormat: ExponentFormat?
     
         /// If "true", even 4-digit integers are separated
         ///
@@ -3032,10 +3098,10 @@ public struct Layout: Encodable {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickformatstops) |
-        /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickformatstops) |
-        /// [R](https://plot.ly/r/reference/#layout-yaxis-tickformatstops)
-        public var tickFormatStops: TickFormatStops0?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickformatstops-items-tickformatstop) |
+        /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickformatstops-items-tickformatstop) |
+        /// [R](https://plot.ly/r/reference/#layout-yaxis-tickformatstops-items-tickformatstop)
+        public var tickFormatStops: [TickFormatStop]?
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
         ///
@@ -3228,7 +3294,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-layer) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-layer) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-layer)
-        public var layer: Layer0?
+        public var layer: Layer?
     
         /// Sets the domain of this axis (in plot fraction).
         ///
@@ -3264,7 +3330,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-categoryorder) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-categoryorder)
-        public var categoryOrder: CategoryOrder0?
+        public var categoryOrder: CategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
@@ -3295,31 +3361,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-calendar) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-calendar) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-calendar)
-        public var calendar: Calendar0?
-    
-        /// Sets the source reference on plot.ly for  tickvals .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickvalssrc) |
-        /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickvalssrc) |
-        /// [R](https://plot.ly/r/reference/#layout-yaxis-tickvalssrc)
-        public var tickValuesSource: String?
-    
-        /// Sets the source reference on plot.ly for  ticktext .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-ticktextsrc) |
-        /// [Python](https://plot.ly/python/reference/#layout-yaxis-ticktextsrc) |
-        /// [R](https://plot.ly/r/reference/#layout-yaxis-ticktextsrc)
-        public var tickTextSource: String?
-    
-        /// Sets the source reference on plot.ly for  categoryarray .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-categoryarraysrc) |
-        /// [Python](https://plot.ly/python/reference/#layout-yaxis-categoryarraysrc) |
-        /// [R](https://plot.ly/r/reference/#layout-yaxis-categoryarraysrc)
-        public var categoryArraySource: String?
+        public var calendar: Calendar?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -3366,7 +3408,7 @@ public struct Layout: Encodable {
             case exponentFormat = "exponentformat"
             case separatethousands
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstops"
+            case tickFormatStops = "tickformatstop"
             case hoverFormat = "hoverformat"
             case showLine = "showline"
             case lineColor = "linecolor"
@@ -3390,12 +3432,9 @@ public struct Layout: Encodable {
             case categoryArray = "categoryarray"
             case uiRevision = "uirevision"
             case calendar
-            case tickValuesSource = "tickvalssrc"
-            case tickTextSource = "ticktextsrc"
-            case categoryArraySource = "categoryarraysrc"
         }
         
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: Rule? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, ticksOn: TicksOn? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Layer0? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar: Calendar0? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil, categoryArraySource: String? = nil) {
+        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar: Calendar? = nil) {
             self.visible = visible
             self.color = color
             self.title = title
@@ -3463,9 +3502,6 @@ public struct Layout: Encodable {
             self.categoryArray = categoryArray
             self.uiRevision = uiRevision
             self.calendar = calendar
-            self.tickValuesSource = tickValuesSource
-            self.tickTextSource = tickTextSource
-            self.categoryArraySource = categoryArraySource
         }
     }
     ///
@@ -3475,7 +3511,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-yaxis)
     public var yAxis: YAxis?
 
-    ///
     /// # Used By
     /// `Layout.ternary` |
     public struct Ternary: Encodable {
@@ -3484,7 +3519,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-ternary-domain) |
         /// [R](https://plot.ly/r/reference/#layout-ternary-domain)
-        public var domain: Domain0?
+        public var domain: Domain?
     
         /// Set the background color of the subplot
         ///
@@ -3502,7 +3537,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-ternary-sum)
         public var sum: Double?
     
-        ///
         /// # Used By
         /// `Layout.Ternary.aAxis` |
         public struct AAxis: Encodable {
@@ -3511,7 +3545,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-title)
-            public var title: Title0?
+            public var title: Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
             ///
@@ -3536,7 +3570,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickmode)
-            public var tickMode: TickMode0?
+            public var tickMode: TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -3614,7 +3648,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-ticks)
-            public var ticks: Ticks0?
+            public var ticks: Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -3657,7 +3691,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix0?
+            public var showTickPrefix: ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -3673,7 +3707,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix0?
+            public var showTickSuffix: ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -3692,7 +3726,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-showexponent)
-            public var showExponent: ShowExponent0?
+            public var showExponent: ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -3703,7 +3737,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-exponentformat)
-            public var exponentFormat: ExponentFormat0?
+            public var exponentFormat: ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -3719,7 +3753,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickfont)
-            public var tickFont: Font0?
+            public var tickFont: Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -3747,10 +3781,10 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickformatstops) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickformatstops) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickformatstops)
-            public var tickFormatStops: TickFormatStops0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop) |
+            /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop) |
+            /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop)
+            public var tickFormatStops: [TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -3827,7 +3861,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-layer)
-            public var layer: Layer0?
+            public var layer: Layer?
         
             /// The minimum value visible on this axis. 
             ///
@@ -3849,22 +3883,6 @@ public struct Layout: Encodable {
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-uirevision) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-uirevision)
             public var uiRevision: Anything?
-        
-            /// Sets the source reference on plot.ly for  tickvals .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickvalssrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickvalssrc) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickvalssrc)
-            public var tickValuesSource: String?
-        
-            /// Sets the source reference on plot.ly for  ticktext .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-ticktextsrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-ticktextsrc) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-ticktextsrc)
-            public var tickTextSource: String?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -3891,7 +3909,7 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstops"
+                case tickFormatStops = "tickformatstop"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -3902,11 +3920,9 @@ public struct Layout: Encodable {
                 case layer
                 case min
                 case uiRevision = "uirevision"
-                case tickValuesSource = "tickvalssrc"
-                case tickTextSource = "ticktextsrc"
             }
             
-            public init(title: Title0? = nil, color: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, tickSuffix: String? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer0? = nil, min: Double? = nil, uiRevision: Anything? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -3941,8 +3957,6 @@ public struct Layout: Encodable {
                 self.layer = layer
                 self.min = min
                 self.uiRevision = uiRevision
-                self.tickValuesSource = tickValuesSource
-                self.tickTextSource = tickTextSource
             }
         }
         ///
@@ -3952,7 +3966,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis)
         public var aAxis: AAxis?
     
-        ///
         /// # Used By
         /// `Layout.Ternary.bAxis` |
         public struct BAxis: Encodable {
@@ -3961,7 +3974,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-title)
-            public var title: Title0?
+            public var title: Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
             ///
@@ -3986,7 +3999,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickmode)
-            public var tickMode: TickMode0?
+            public var tickMode: TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -4064,7 +4077,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-ticks)
-            public var ticks: Ticks0?
+            public var ticks: Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -4107,7 +4120,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix0?
+            public var showTickPrefix: ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -4123,7 +4136,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix0?
+            public var showTickSuffix: ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -4142,7 +4155,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-showexponent)
-            public var showExponent: ShowExponent0?
+            public var showExponent: ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -4153,7 +4166,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-exponentformat)
-            public var exponentFormat: ExponentFormat0?
+            public var exponentFormat: ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -4169,7 +4182,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickfont)
-            public var tickFont: Font0?
+            public var tickFont: Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -4197,10 +4210,10 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickformatstops) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickformatstops) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickformatstops)
-            public var tickFormatStops: TickFormatStops0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop) |
+            /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop) |
+            /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop)
+            public var tickFormatStops: [TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -4277,7 +4290,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-layer)
-            public var layer: Layer0?
+            public var layer: Layer?
         
             /// The minimum value visible on this axis. 
             ///
@@ -4299,22 +4312,6 @@ public struct Layout: Encodable {
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-uirevision) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-uirevision)
             public var uiRevision: Anything?
-        
-            /// Sets the source reference on plot.ly for  tickvals .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickvalssrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickvalssrc) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickvalssrc)
-            public var tickValuesSource: String?
-        
-            /// Sets the source reference on plot.ly for  ticktext .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-ticktextsrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-ticktextsrc) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-ticktextsrc)
-            public var tickTextSource: String?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -4341,7 +4338,7 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstops"
+                case tickFormatStops = "tickformatstop"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -4352,11 +4349,9 @@ public struct Layout: Encodable {
                 case layer
                 case min
                 case uiRevision = "uirevision"
-                case tickValuesSource = "tickvalssrc"
-                case tickTextSource = "ticktextsrc"
             }
             
-            public init(title: Title0? = nil, color: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, tickSuffix: String? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer0? = nil, min: Double? = nil, uiRevision: Anything? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -4391,8 +4386,6 @@ public struct Layout: Encodable {
                 self.layer = layer
                 self.min = min
                 self.uiRevision = uiRevision
-                self.tickValuesSource = tickValuesSource
-                self.tickTextSource = tickTextSource
             }
         }
         ///
@@ -4402,7 +4395,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-ternary-baxis)
         public var bAxis: BAxis?
     
-        ///
         /// # Used By
         /// `Layout.Ternary.cAxis` |
         public struct CAxis: Encodable {
@@ -4411,7 +4403,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-title)
-            public var title: Title0?
+            public var title: Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
             ///
@@ -4436,7 +4428,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickmode)
-            public var tickMode: TickMode0?
+            public var tickMode: TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -4514,7 +4506,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-ticks)
-            public var ticks: Ticks0?
+            public var ticks: Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -4557,7 +4549,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix0?
+            public var showTickPrefix: ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -4573,7 +4565,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix0?
+            public var showTickSuffix: ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -4592,7 +4584,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-showexponent)
-            public var showExponent: ShowExponent0?
+            public var showExponent: ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -4603,7 +4595,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-exponentformat)
-            public var exponentFormat: ExponentFormat0?
+            public var exponentFormat: ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -4619,7 +4611,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickfont)
-            public var tickFont: Font0?
+            public var tickFont: Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -4647,10 +4639,10 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickformatstops) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickformatstops) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickformatstops)
-            public var tickFormatStops: TickFormatStops0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop) |
+            /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop) |
+            /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop)
+            public var tickFormatStops: [TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -4727,7 +4719,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-layer)
-            public var layer: Layer0?
+            public var layer: Layer?
         
             /// The minimum value visible on this axis. 
             ///
@@ -4749,22 +4741,6 @@ public struct Layout: Encodable {
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-uirevision) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-uirevision)
             public var uiRevision: Anything?
-        
-            /// Sets the source reference on plot.ly for  tickvals .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickvalssrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickvalssrc) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickvalssrc)
-            public var tickValuesSource: String?
-        
-            /// Sets the source reference on plot.ly for  ticktext .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-ticktextsrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-ticktextsrc) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-ticktextsrc)
-            public var tickTextSource: String?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -4791,7 +4767,7 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstops"
+                case tickFormatStops = "tickformatstop"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -4802,11 +4778,9 @@ public struct Layout: Encodable {
                 case layer
                 case min
                 case uiRevision = "uirevision"
-                case tickValuesSource = "tickvalssrc"
-                case tickTextSource = "ticktextsrc"
             }
             
-            public init(title: Title0? = nil, color: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, tickSuffix: String? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer0? = nil, min: Double? = nil, uiRevision: Anything? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -4841,8 +4815,6 @@ public struct Layout: Encodable {
                 self.layer = layer
                 self.min = min
                 self.uiRevision = uiRevision
-                self.tickValuesSource = tickValuesSource
-                self.tickTextSource = tickTextSource
             }
         }
         ///
@@ -4873,7 +4845,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(domain: Domain0? = nil, backgroundColor: Color? = nil, sum: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, cAxis: CAxis? = nil, uiRevision: Anything? = nil) {
+        public init(domain: Domain? = nil, backgroundColor: Color? = nil, sum: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, cAxis: CAxis? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.backgroundColor = backgroundColor
             self.sum = sum
@@ -4890,7 +4862,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-ternary)
     public var ternary: Ternary?
 
-    ///
     /// # Used By
     /// `Layout.scene` |
     public struct Scene: Encodable {
@@ -4901,7 +4872,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-scene-bgcolor)
         public var backgroundColor: Color?
     
-        ///
         /// # Used By
         /// `Layout.Scene.camera` |
         public struct Camera: Encodable {
@@ -5039,7 +5009,6 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-scene-camera-eye)
             public var eye: Eye?
         
-            ///
             /// # Used By
             /// `Layout.Scene.Camera.projection` |
             public struct Projection: Encodable {
@@ -5050,7 +5019,7 @@ public struct Layout: Encodable {
                 ///
                 /// # Used By
                 /// `Layout.Scene.Camera.Projection.type` |
-                public enum Rule: String, Encodable {
+                public enum `Type`: String, Encodable {
                     case perspective
                     case orthographic
                 }
@@ -5063,9 +5032,9 @@ public struct Layout: Encodable {
                 /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-camera-projection-type) |
                 /// [Python](https://plot.ly/python/reference/#layout-scene-camera-projection-type) |
                 /// [R](https://plot.ly/r/reference/#layout-scene-camera-projection-type)
-                public var type: Rule?
+                public var type: `Type`?
             
-                public init(type: Rule? = nil) {
+                public init(type: `Type`? = nil) {
                     self.type = type
                 }
             }
@@ -5095,7 +5064,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-scene-domain) |
         /// [R](https://plot.ly/r/reference/#layout-scene-domain)
-        public var domain: Domain0?
+        public var domain: Domain?
     
         /// If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges. 
         ///
@@ -5153,18 +5122,10 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-scene-aspectratio-z)
             public var z: Double?
         
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-aspectratio-impliedEdits) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-aspectratio-impliedEdits) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-aspectratio-impliedEdits)
-            public var impliedEdits: Edits0?
-        
-            public init(x: Double? = nil, y: Double? = nil, z: Double? = nil, impliedEdits: Edits0? = nil) {
+            public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
                 self.x = x
                 self.y = y
                 self.z = z
-                self.impliedEdits = impliedEdits
             }
         }
         /// Sets this scene's axis aspectratio.
@@ -5175,7 +5136,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-scene-aspectratio)
         public var aspectRatio: AspectRatio?
     
-        ///
         /// # Used By
         /// `Layout.Scene.xAxis` |
         public struct XAxis: Encodable {
@@ -5272,7 +5232,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-categoryorder)
-            public var categoryOrder: CategoryOrder0?
+            public var categoryOrder: CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -5289,7 +5249,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-title)
-            public var title: Title0?
+            public var title: Title?
         
             /// Sets the axis type. 
             ///
@@ -5298,7 +5258,7 @@ public struct Layout: Encodable {
             ///
             /// # Used By
             /// `Layout.Scene.XAxis.type` |
-            public enum Rule: String, Encodable {
+            public enum `Type`: String, Encodable {
                 case auto = "-"
                 case linear
                 case log
@@ -5314,7 +5274,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-type) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-type) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-type)
-            public var type: Rule?
+            public var type: `Type`?
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
@@ -5324,7 +5284,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-autorange) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-autorange) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-autorange)
-            public var autoRange: AutoRange0?
+            public var autoRange: AutoRange?
         
             /// If *normal*, the range is computed in relation to the extrema of the input data. 
             ///
@@ -5335,7 +5295,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-rangemode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-rangemode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-rangemode)
-            public var rangeMode: RangeMode0?
+            public var rangeMode: RangeMode?
         
             /// Sets the range of this axis. 
             ///
@@ -5363,7 +5323,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickmode)
-            public var tickMode: TickMode0?
+            public var tickMode: TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -5441,7 +5401,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-ticks)
-            public var ticks: Ticks0?
+            public var ticks: Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. 
             ///
@@ -5453,7 +5413,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-mirror) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-mirror) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-mirror)
-            public var mirror: Mirror0?
+            public var mirror: Mirror?
         
             /// Sets the tick length (in px).
             ///
@@ -5493,7 +5453,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickfont)
-            public var tickFont: Font0?
+            public var tickFont: Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -5522,7 +5482,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix0?
+            public var showTickPrefix: ShowTickPrefix?
         
             /// Sets a tick label suffix.
             ///
@@ -5538,7 +5498,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix0?
+            public var showTickSuffix: ShowTickSuffix?
         
             /// If *all*, all exponents are shown besides their significands. 
             ///
@@ -5549,7 +5509,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-showexponent)
-            public var showExponent: ShowExponent0?
+            public var showExponent: ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -5560,7 +5520,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-exponentformat)
-            public var exponentFormat: ExponentFormat0?
+            public var exponentFormat: ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -5586,10 +5546,10 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickformatstops) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickformatstops) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickformatstops)
-            public var tickFormatStops: TickFormatStops0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop)
+            public var tickFormatStops: [TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -5690,31 +5650,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-calendar) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-calendar) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-calendar)
-            public var calendar: Calendar0?
-        
-            /// Sets the source reference on plot.ly for  categoryarray .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-categoryarraysrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-categoryarraysrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-categoryarraysrc)
-            public var categoryArraySource: String?
-        
-            /// Sets the source reference on plot.ly for  tickvals .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickvalssrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickvalssrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickvalssrc)
-            public var tickValuesSource: String?
-        
-            /// Sets the source reference on plot.ly for  ticktext .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-ticktextsrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-ticktextsrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-ticktextsrc)
-            public var tickTextSource: String?
+            public var calendar: Calendar?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -5756,7 +5692,7 @@ public struct Layout: Encodable {
                 case exponentFormat = "exponentformat"
                 case separatethousands
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstops"
+                case tickFormatStops = "tickformatstop"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -5768,12 +5704,9 @@ public struct Layout: Encodable {
                 case zeroLineColor = "zerolinecolor"
                 case zeroLineWidth = "zerolinewidth"
                 case calendar
-                case categoryArraySource = "categoryarraysrc"
-                case tickValuesSource = "tickvalssrc"
-                case tickTextSource = "ticktextsrc"
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, title: Title0? = nil, type: Rule? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -5824,9 +5757,6 @@ public struct Layout: Encodable {
                 self.zeroLineColor = zeroLineColor
                 self.zeroLineWidth = zeroLineWidth
                 self.calendar = calendar
-                self.categoryArraySource = categoryArraySource
-                self.tickValuesSource = tickValuesSource
-                self.tickTextSource = tickTextSource
             }
         }
         ///
@@ -5836,7 +5766,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-scene-xaxis)
         public var xAxis: XAxis?
     
-        ///
         /// # Used By
         /// `Layout.Scene.yAxis` |
         public struct YAxis: Encodable {
@@ -5933,7 +5862,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-categoryorder)
-            public var categoryOrder: CategoryOrder0?
+            public var categoryOrder: CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -5950,7 +5879,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-title)
-            public var title: Title0?
+            public var title: Title?
         
             /// Sets the axis type. 
             ///
@@ -5959,7 +5888,7 @@ public struct Layout: Encodable {
             ///
             /// # Used By
             /// `Layout.Scene.YAxis.type` |
-            public enum Rule: String, Encodable {
+            public enum `Type`: String, Encodable {
                 case auto = "-"
                 case linear
                 case log
@@ -5975,7 +5904,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-type) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-type) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-type)
-            public var type: Rule?
+            public var type: `Type`?
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
@@ -5985,7 +5914,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-autorange) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-autorange) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-autorange)
-            public var autoRange: AutoRange0?
+            public var autoRange: AutoRange?
         
             /// If *normal*, the range is computed in relation to the extrema of the input data. 
             ///
@@ -5996,7 +5925,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-rangemode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-rangemode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-rangemode)
-            public var rangeMode: RangeMode0?
+            public var rangeMode: RangeMode?
         
             /// Sets the range of this axis. 
             ///
@@ -6024,7 +5953,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickmode)
-            public var tickMode: TickMode0?
+            public var tickMode: TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -6102,7 +6031,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-ticks)
-            public var ticks: Ticks0?
+            public var ticks: Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. 
             ///
@@ -6114,7 +6043,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-mirror) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-mirror) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-mirror)
-            public var mirror: Mirror0?
+            public var mirror: Mirror?
         
             /// Sets the tick length (in px).
             ///
@@ -6154,7 +6083,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickfont)
-            public var tickFont: Font0?
+            public var tickFont: Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -6183,7 +6112,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix0?
+            public var showTickPrefix: ShowTickPrefix?
         
             /// Sets a tick label suffix.
             ///
@@ -6199,7 +6128,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix0?
+            public var showTickSuffix: ShowTickSuffix?
         
             /// If *all*, all exponents are shown besides their significands. 
             ///
@@ -6210,7 +6139,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-showexponent)
-            public var showExponent: ShowExponent0?
+            public var showExponent: ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -6221,7 +6150,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-exponentformat)
-            public var exponentFormat: ExponentFormat0?
+            public var exponentFormat: ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -6247,10 +6176,10 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickformatstops) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickformatstops) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickformatstops)
-            public var tickFormatStops: TickFormatStops0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop)
+            public var tickFormatStops: [TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -6351,31 +6280,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-calendar) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-calendar) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-calendar)
-            public var calendar: Calendar0?
-        
-            /// Sets the source reference on plot.ly for  categoryarray .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-categoryarraysrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-categoryarraysrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-categoryarraysrc)
-            public var categoryArraySource: String?
-        
-            /// Sets the source reference on plot.ly for  tickvals .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickvalssrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickvalssrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickvalssrc)
-            public var tickValuesSource: String?
-        
-            /// Sets the source reference on plot.ly for  ticktext .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-ticktextsrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-ticktextsrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-ticktextsrc)
-            public var tickTextSource: String?
+            public var calendar: Calendar?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -6417,7 +6322,7 @@ public struct Layout: Encodable {
                 case exponentFormat = "exponentformat"
                 case separatethousands
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstops"
+                case tickFormatStops = "tickformatstop"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -6429,12 +6334,9 @@ public struct Layout: Encodable {
                 case zeroLineColor = "zerolinecolor"
                 case zeroLineWidth = "zerolinewidth"
                 case calendar
-                case categoryArraySource = "categoryarraysrc"
-                case tickValuesSource = "tickvalssrc"
-                case tickTextSource = "ticktextsrc"
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, title: Title0? = nil, type: Rule? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -6485,9 +6387,6 @@ public struct Layout: Encodable {
                 self.zeroLineColor = zeroLineColor
                 self.zeroLineWidth = zeroLineWidth
                 self.calendar = calendar
-                self.categoryArraySource = categoryArraySource
-                self.tickValuesSource = tickValuesSource
-                self.tickTextSource = tickTextSource
             }
         }
         ///
@@ -6497,7 +6396,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-scene-yaxis)
         public var yAxis: YAxis?
     
-        ///
         /// # Used By
         /// `Layout.Scene.zAxis` |
         public struct ZAxis: Encodable {
@@ -6594,7 +6492,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-categoryorder)
-            public var categoryOrder: CategoryOrder0?
+            public var categoryOrder: CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -6611,7 +6509,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-title)
-            public var title: Title0?
+            public var title: Title?
         
             /// Sets the axis type. 
             ///
@@ -6620,7 +6518,7 @@ public struct Layout: Encodable {
             ///
             /// # Used By
             /// `Layout.Scene.ZAxis.type` |
-            public enum Rule: String, Encodable {
+            public enum `Type`: String, Encodable {
                 case auto = "-"
                 case linear
                 case log
@@ -6636,7 +6534,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-type) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-type) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-type)
-            public var type: Rule?
+            public var type: `Type`?
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
@@ -6646,7 +6544,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-autorange) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-autorange) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-autorange)
-            public var autoRange: AutoRange0?
+            public var autoRange: AutoRange?
         
             /// If *normal*, the range is computed in relation to the extrema of the input data. 
             ///
@@ -6657,7 +6555,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-rangemode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-rangemode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-rangemode)
-            public var rangeMode: RangeMode0?
+            public var rangeMode: RangeMode?
         
             /// Sets the range of this axis. 
             ///
@@ -6685,7 +6583,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickmode)
-            public var tickMode: TickMode0?
+            public var tickMode: TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -6763,7 +6661,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-ticks)
-            public var ticks: Ticks0?
+            public var ticks: Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. 
             ///
@@ -6775,7 +6673,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-mirror) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-mirror) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-mirror)
-            public var mirror: Mirror0?
+            public var mirror: Mirror?
         
             /// Sets the tick length (in px).
             ///
@@ -6815,7 +6713,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickfont)
-            public var tickFont: Font0?
+            public var tickFont: Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -6844,7 +6742,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix0?
+            public var showTickPrefix: ShowTickPrefix?
         
             /// Sets a tick label suffix.
             ///
@@ -6860,7 +6758,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix0?
+            public var showTickSuffix: ShowTickSuffix?
         
             /// If *all*, all exponents are shown besides their significands. 
             ///
@@ -6871,7 +6769,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-showexponent)
-            public var showExponent: ShowExponent0?
+            public var showExponent: ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -6882,7 +6780,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-exponentformat)
-            public var exponentFormat: ExponentFormat0?
+            public var exponentFormat: ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -6908,10 +6806,10 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickformatstops) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickformatstops) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickformatstops)
-            public var tickFormatStops: TickFormatStops0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop)
+            public var tickFormatStops: [TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -7012,31 +6910,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-calendar) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-calendar) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-calendar)
-            public var calendar: Calendar0?
-        
-            /// Sets the source reference on plot.ly for  categoryarray .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-categoryarraysrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-categoryarraysrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-categoryarraysrc)
-            public var categoryArraySource: String?
-        
-            /// Sets the source reference on plot.ly for  tickvals .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickvalssrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickvalssrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickvalssrc)
-            public var tickValuesSource: String?
-        
-            /// Sets the source reference on plot.ly for  ticktext .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-ticktextsrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-ticktextsrc) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-ticktextsrc)
-            public var tickTextSource: String?
+            public var calendar: Calendar?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -7078,7 +6952,7 @@ public struct Layout: Encodable {
                 case exponentFormat = "exponentformat"
                 case separatethousands
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstops"
+                case tickFormatStops = "tickformatstop"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -7090,12 +6964,9 @@ public struct Layout: Encodable {
                 case zeroLineColor = "zerolinecolor"
                 case zeroLineWidth = "zerolinewidth"
                 case calendar
-                case categoryArraySource = "categoryarraysrc"
-                case tickValuesSource = "tickvalssrc"
-                case tickTextSource = "ticktextsrc"
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, title: Title0? = nil, type: Rule? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode0? = nil, range: InfoArray? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, mirror: Mirror0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -7146,9 +7017,6 @@ public struct Layout: Encodable {
                 self.zeroLineColor = zeroLineColor
                 self.zeroLineWidth = zeroLineWidth
                 self.calendar = calendar
-                self.categoryArraySource = categoryArraySource
-                self.tickValuesSource = tickValuesSource
-                self.tickTextSource = tickTextSource
             }
         }
         ///
@@ -7203,546 +7071,510 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-scene-uirevision)
         public var uiRevision: Anything?
     
-        ///
         /// # Used By
         /// `Layout.Scene.annotations` |
-        public struct Annotations: Encodable {
+        public struct Annotation: Encodable {
+            /// Determines whether or not this annotation is visible.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-visible) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-visible) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-visible)
+            public var visible: Bool?
+        
+            /// Sets the annotation's x position.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-x) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-x) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-x)
+            public var x: Anything?
+        
+            /// Sets the annotation's y position.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-y) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-y) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-y)
+            public var y: Anything?
+        
+            /// Sets the annotation's z position.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-z) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-z) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-z)
+            public var z: Anything?
+        
+            /// Sets the x component of the arrow tail about the arrow head (in pixels).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-ax) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-ax) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-ax)
+            public var ax: Double?
+        
+            /// Sets the y component of the arrow tail about the arrow head (in pixels).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-ay) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-ay) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-ay)
+            public var ay: Double?
+        
+            /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. 
+            ///
+            /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
+            /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
+            /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
+            /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-xanchor) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-xanchor) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-xanchor)
+            public var xAnchor: XAutoAnchor?
+        
+            /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-xshift) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-xshift) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-xshift)
+            public var xShift: Double?
+        
+            /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. 
+            ///
+            /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
+            /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
+            /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
+            /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-yanchor) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-yanchor) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-yanchor)
+            public var yAnchor: YAutoAnchor?
+        
+            /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-yshift) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-yshift) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-yshift)
+            public var yShift: Double?
+        
+            /// Sets the text associated with this annotation. 
+            ///
+            /// Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics
+            /// (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-text) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-text) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-text)
+            public var text: String?
+        
+            /// Sets the angle at which the `text` is drawn with respect to the horizontal.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-textangle) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-textangle) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-textangle)
+            public var textAngle: Angle?
+        
+            /// Sets the annotation text font.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-font) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-font) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-font)
+            public var font: Font?
+        
+            /// Sets an explicit width for the text box. 
+            ///
+            /// null (default) lets the text set the box width. Wider text will be clipped. There is no
+            /// automatic wrapping; use <br> to start a new line.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-width) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-width) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-width)
+            public var width: Double?
+        
+            /// Sets an explicit height for the text box. 
+            ///
+            /// null (default) lets the text set the box height. Taller text will be clipped.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-height) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-height) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-height)
+            public var height: Double?
+        
+            /// Sets the opacity of the annotation (text + arrow).
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-opacity) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-opacity) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-opacity)
+            public var opacity: Double?
+        
+            /// Sets the horizontal alignment of the `text` within the box. 
+            ///
+            /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+            /// HTML tags) or if an explicit width is set to override the text width.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-align) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-align) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-align)
+            public var align: HorizontalAlign?
+        
+            /// Sets the vertical alignment of the `text` within the box. 
+            ///
+            /// Has an effect only if an explicit height is set to override the text height.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-valign) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-valign) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-valign)
+            public var verticalAlign: VerticalAlign?
+        
+            /// Sets the background color of the annotation.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-bgcolor) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-bgcolor) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-bgcolor)
+            public var backgroundColor: Color?
+        
+            /// Sets the color of the border enclosing the annotation `text`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-bordercolor) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-bordercolor) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-bordercolor)
+            public var borderColor: Color?
+        
+            /// Sets the padding (in px) between the `text` and the enclosing border.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-borderpad) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-borderpad) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-borderpad)
+            public var borderPadding: Double?
+        
+            /// Sets the width (in px) of the border enclosing the annotation `text`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-borderwidth) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-borderwidth) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-borderwidth)
+            public var borderWidth: Double?
+        
+            /// Determines whether or not the annotation is drawn with an arrow. 
+            ///
+            /// If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and
+            /// `y` provided.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-showarrow) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-showarrow) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-showarrow)
+            public var showArrow: Bool?
+        
+            /// Sets the color of the annotation arrow.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowcolor) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowcolor) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowcolor)
+            public var arrowColor: Color?
+        
+            /// Sets the end annotation arrow head style.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowhead) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowhead) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowhead)
+            public var arrowHead: Int?
+        
+            /// Sets the start annotation arrow head style.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-startarrowhead) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-startarrowhead) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-startarrowhead)
+            public var startArrowHead: Int?
+        
+            /// Sets the annotation arrow head position.
             ///
             /// # Used By
-            /// `Layout.Scene.Annotations.items` |
-            public struct Items: Encodable {
-                ///
-                /// # Used By
-                /// `Layout.Scene.Annotations.Items.annotation` |
-                public struct Annotation: Encodable {
-                    /// Determines whether or not this annotation is visible.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-visible) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-visible) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-visible)
-                    public var visible: Bool?
-                
-                    /// Sets the annotation's x position.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-x) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-x) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-x)
-                    public var x: Anything?
-                
-                    /// Sets the annotation's y position.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-y) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-y) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-y)
-                    public var y: Anything?
-                
-                    /// Sets the annotation's z position.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-z) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-z) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-z)
-                    public var z: Anything?
-                
-                    /// Sets the x component of the arrow tail about the arrow head (in pixels).
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-ax) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-ax) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-ax)
-                    public var ax: Double?
-                
-                    /// Sets the y component of the arrow tail about the arrow head (in pixels).
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-ay) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-ay) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-ay)
-                    public var ay: Double?
-                
-                    /// Sets the title's horizontal alignment with respect to its x position. 
-                    ///
-                    /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-                    /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-                    /// `xanchor` value automatically based on the value of `x`.
-                    ///
-                    /// # Used By
-                    /// `Layout.Title0.xAnchor` |
-                    /// `Layout.XAxis.RangeSelector.xAnchor` |
-                    /// `Layout.Scene.Annotations.Items.Annotation.xAnchor` |
-                    /// `Layout.Legend.xAnchor` |
-                    /// `Layout.Annotations.Items.Annotation.xAnchor` |
-                    /// `Layout.UpdateMenus.Items.UpdateMenu.xAnchor` |
-                    /// `Layout.Sliders.Items.Slider.xAnchor` |
-                    public enum XAnchor0: String, Encodable {
-                        case auto
-                        case left
-                        case center
-                        case right
-                    }
-                    /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. 
-                    ///
-                    /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
-                    /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
-                    /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
-                    /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-xanchor) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-xanchor) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-xanchor)
-                    public var xAnchor: XAnchor0?
-                
-                    /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-xshift) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-xshift) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-xshift)
-                    public var xShift: Double?
-                
-                    /// Sets the title's vertical alignment with respect to its y position. 
-                    ///
-                    /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-                    /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-                    /// calculates the `yanchor` value automatically based on the value of `y`.
-                    ///
-                    /// # Used By
-                    /// `Layout.Title0.yAnchor` |
-                    /// `Layout.XAxis.RangeSelector.yAnchor` |
-                    /// `Layout.Scene.Annotations.Items.Annotation.yAnchor` |
-                    /// `Layout.Legend.yAnchor` |
-                    /// `Layout.Annotations.Items.Annotation.yAnchor` |
-                    /// `Layout.UpdateMenus.Items.UpdateMenu.yAnchor` |
-                    /// `Layout.Sliders.Items.Slider.yAnchor` |
-                    public enum YAnchor0: String, Encodable {
-                        case auto
-                        case top
-                        case middle
-                        case bottom
-                    }
-                    /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. 
-                    ///
-                    /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
-                    /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
-                    /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
-                    /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-yanchor) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-yanchor) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-yanchor)
-                    public var yAnchor: YAnchor0?
-                
-                    /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-yshift) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-yshift) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-yshift)
-                    public var yShift: Double?
-                
-                    /// Sets the text associated with this annotation. 
-                    ///
-                    /// Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics
-                    /// (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-text) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-text) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-text)
-                    public var text: String?
-                
-                    /// Sets the angle at which the `text` is drawn with respect to the horizontal.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-textangle) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-textangle) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-textangle)
-                    public var textAngle: Angle?
-                
-                    /// Sets the annotation text font.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-font) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-font) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-font)
-                    public var font: Font0?
-                
-                    /// Sets an explicit width for the text box. 
-                    ///
-                    /// null (default) lets the text set the box width. Wider text will be clipped. There is no
-                    /// automatic wrapping; use <br> to start a new line.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-width) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-width) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-width)
-                    public var width: Double?
-                
-                    /// Sets an explicit height for the text box. 
-                    ///
-                    /// null (default) lets the text set the box height. Taller text will be clipped.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-height) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-height) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-height)
-                    public var height: Double?
-                
-                    /// Sets the opacity of the annotation (text + arrow).
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-opacity) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-opacity) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-opacity)
-                    public var opacity: Double?
-                
-                    /// Sets the horizontal alignment of the `text` within the box. 
-                    ///
-                    /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
-                    /// HTML tags) or if an explicit width is set to override the text width.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-align) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-align) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-align)
-                    public var align: Align1?
-                
-                    /// Sets the vertical alignment of the `text` within the box. 
-                    ///
-                    /// Has an effect only if an explicit height is set to override the text height.
-                    ///
-                    /// # Used By
-                    /// `Layout.Scene.Annotations.Items.Annotation.verticalAlign` |
-                    public enum VerticalAlign: String, Encodable {
-                        case top
-                        case middle
-                        case bottom
-                    }
-                    /// Sets the vertical alignment of the `text` within the box. 
-                    ///
-                    /// Has an effect only if an explicit height is set to override the text height.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-valign) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-valign) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-valign)
-                    public var verticalAlign: VerticalAlign?
-                
-                    /// Sets the background color of the annotation.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-bgcolor) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-bgcolor) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-bgcolor)
-                    public var backgroundColor: Color?
-                
-                    /// Sets the color of the border enclosing the annotation `text`.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-bordercolor) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-bordercolor) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-bordercolor)
-                    public var borderColor: Color?
-                
-                    /// Sets the padding (in px) between the `text` and the enclosing border.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-borderpad) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-borderpad) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-borderpad)
-                    public var borderPadding: Double?
-                
-                    /// Sets the width (in px) of the border enclosing the annotation `text`.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-borderwidth) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-borderwidth) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-borderwidth)
-                    public var borderWidth: Double?
-                
-                    /// Determines whether or not the annotation is drawn with an arrow. 
-                    ///
-                    /// If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and
-                    /// `y` provided.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-showarrow) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-showarrow) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-showarrow)
-                    public var showArrow: Bool?
-                
-                    /// Sets the color of the annotation arrow.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowcolor) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowcolor) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowcolor)
-                    public var arrowColor: Color?
-                
-                    /// Sets the end annotation arrow head style.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowhead) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowhead) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowhead)
-                    public var arrowHead: Int?
-                
-                    /// Sets the start annotation arrow head style.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-startarrowhead) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-startarrowhead) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-startarrowhead)
-                    public var startArrowHead: Int?
-                
-                    /// Sets the annotation arrow head position.
-                    ///
-                    /// # Used By
-                    /// `Layout.Scene.Annotations.Items.Annotation.arrowSide` |
-                    public struct ArrowSide: OptionSet, Encodable {
-                        public let rawValue: Int
-                    
-                        public static let end = ArrowSide(rawValue: 1 << 0)
-                        public static let start = ArrowSide(rawValue: 1 << 1)
-                        public static let none = ArrowSide(rawValue: 1 << 2)
-                    
-                        public init(rawValue: Int) { self.rawValue = rawValue }
-                    
-                        public func encode(to encoder: Encoder) throws {
-                            var options = [String]()
-                            if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
-                            if (self.rawValue & 1 << 1) != 0 { options += ["start"] }
-                            if (self.rawValue & 1 << 2) != 0 { options += ["none"] }
-                            var container = encoder.singleValueContainer()
-                            try container.encode(options.joined(separator: "+"))
-                        }
-                    }
-                    /// Sets the annotation arrow head position.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowside) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowside) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowside)
-                    public var arrowSide: ArrowSide?
-                
-                    /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. 
-                    ///
-                    /// A value of 1 (default) gives a head about 3x as wide as the line.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowsize) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowsize) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowsize)
-                    public var arrowSize: Double?
-                
-                    /// Sets the size of the start annotation arrow head, relative to `arrowwidth`. 
-                    ///
-                    /// A value of 1 (default) gives a head about 3x as wide as the line.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-startarrowsize) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-startarrowsize) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-startarrowsize)
-                    public var startArrowSize: Double?
-                
-                    /// Sets the width (in px) of annotation arrow line.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowwidth) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowwidth) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowwidth)
-                    public var arrowWidth: Double?
-                
-                    /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. 
-                    ///
-                    /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
-                    /// `yshift` which moves everything by this amount.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-standoff) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-standoff) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-standoff)
-                    public var standoff: Double?
-                
-                    /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. 
-                    ///
-                    /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
-                    /// `yshift` which moves everything by this amount.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-startstandoff) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-startstandoff) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-startstandoff)
-                    public var startStandoff: Double?
-                
-                    /// Sets text to appear when hovering over this annotation. 
-                    ///
-                    /// If omitted or blank, no hover label will appear.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-hovertext) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-hovertext) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-hovertext)
-                    public var hoverText: String?
-                
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-hoverlabel) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-hoverlabel) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-hoverlabel)
-                    public var hoverLabel: HoverLabel0?
-                
-                    /// Determines whether the annotation text box captures mouse move and click events, or allows those events to pass through to data points in the plot that may be behind the annotation. 
-                    ///
-                    /// By default `captureevents` is *false* unless `hovertext` is provided. If you use the event
-                    /// `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-captureevents) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-captureevents) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-captureevents)
-                    public var captureEvents: Bool?
-                
-                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                    ///
-                    /// You can modify these items in the output figure by making your own item with `templateitemname`
-                    /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                    /// false` to hide it). Has no effect outside of a template.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-name) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-name) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-name)
-                    public var name: String?
-                
-                    /// Used to refer to a named item in this array in the template. 
-                    ///
-                    /// Named items from the template will be created even without a matching item in the input figure,
-                    /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                    /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                    /// template or no matching item, this item will be hidden unless you explicitly show it with
-                    /// `visible: true`.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-templateitemname) |
-                    /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-templateitemname) |
-                    /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-templateitemname)
-                    public var templateItemName: String?
-                
-                    /// Plotly compatible property encoding
-                    enum CodingKeys: String, CodingKey {
-                        case visible
-                        case x
-                        case y
-                        case z
-                        case ax
-                        case ay
-                        case xAnchor = "xanchor"
-                        case xShift = "xshift"
-                        case yAnchor = "yanchor"
-                        case yShift = "yshift"
-                        case text
-                        case textAngle = "textangle"
-                        case font
-                        case width
-                        case height
-                        case opacity
-                        case align
-                        case verticalAlign = "valign"
-                        case backgroundColor = "bgcolor"
-                        case borderColor = "bordercolor"
-                        case borderPadding = "borderpad"
-                        case borderWidth = "borderwidth"
-                        case showArrow = "showarrow"
-                        case arrowColor = "arrowcolor"
-                        case arrowHead = "arrowhead"
-                        case startArrowHead = "startarrowhead"
-                        case arrowSide = "arrowside"
-                        case arrowSize = "arrowsize"
-                        case startArrowSize = "startarrowsize"
-                        case arrowWidth = "arrowwidth"
-                        case standoff
-                        case startStandoff = "startstandoff"
-                        case hoverText = "hovertext"
-                        case hoverLabel = "hoverlabel"
-                        case captureEvents = "captureevents"
-                        case name
-                        case templateItemName = "templateitemname"
-                    }
-                    
-                    public init(visible: Bool? = nil, x: Anything? = nil, y: Anything? = nil, z: Anything? = nil, ax: Double? = nil, ay: Double? = nil, xAnchor: XAnchor0? = nil, xShift: Double? = nil, yAnchor: YAnchor0? = nil, yShift: Double? = nil, text: String? = nil, textAngle: Angle? = nil, font: Font0? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: Align1? = nil, verticalAlign: VerticalAlign? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, hoverText: String? = nil, hoverLabel: HoverLabel0? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
-                        self.visible = visible
-                        self.x = x
-                        self.y = y
-                        self.z = z
-                        self.ax = ax
-                        self.ay = ay
-                        self.xAnchor = xAnchor
-                        self.xShift = xShift
-                        self.yAnchor = yAnchor
-                        self.yShift = yShift
-                        self.text = text
-                        self.textAngle = textAngle
-                        self.font = font
-                        self.width = width
-                        self.height = height
-                        self.opacity = opacity
-                        self.align = align
-                        self.verticalAlign = verticalAlign
-                        self.backgroundColor = backgroundColor
-                        self.borderColor = borderColor
-                        self.borderPadding = borderPadding
-                        self.borderWidth = borderWidth
-                        self.showArrow = showArrow
-                        self.arrowColor = arrowColor
-                        self.arrowHead = arrowHead
-                        self.startArrowHead = startArrowHead
-                        self.arrowSide = arrowSide
-                        self.arrowSize = arrowSize
-                        self.startArrowSize = startArrowSize
-                        self.arrowWidth = arrowWidth
-                        self.standoff = standoff
-                        self.startStandoff = startStandoff
-                        self.hoverText = hoverText
-                        self.hoverLabel = hoverLabel
-                        self.captureEvents = captureEvents
-                        self.name = name
-                        self.templateItemName = templateItemName
-                    }
+            /// `Layout.Scene.Annotation.arrowSide` |
+            public struct ArrowSide: OptionSet, Encodable {
+                public let rawValue: Int
+            
+                public static let end = ArrowSide(rawValue: 1 << 0)
+                public static let start = ArrowSide(rawValue: 1 << 1)
+                public static let none = ArrowSide(rawValue: 1 << 2)
+            
+                public init(rawValue: Int) { self.rawValue = rawValue }
+            
+                public func encode(to encoder: Encoder) throws {
+                    var options = [String]()
+                    if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
+                    if (self.rawValue & 1 << 1) != 0 { options += ["start"] }
+                    if (self.rawValue & 1 << 2) != 0 { options += ["none"] }
+                    var container = encoder.singleValueContainer()
+                    try container.encode(options.joined(separator: "+"))
                 }
+            }
+            /// Sets the annotation arrow head position.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowside) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowside) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowside)
+            public var arrowSide: ArrowSide?
+        
+            /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. 
+            ///
+            /// A value of 1 (default) gives a head about 3x as wide as the line.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowsize) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowsize) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowsize)
+            public var arrowSize: Double?
+        
+            /// Sets the size of the start annotation arrow head, relative to `arrowwidth`. 
+            ///
+            /// A value of 1 (default) gives a head about 3x as wide as the line.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-startarrowsize) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-startarrowsize) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-startarrowsize)
+            public var startArrowSize: Double?
+        
+            /// Sets the width (in px) of annotation arrow line.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-arrowwidth) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-arrowwidth) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-arrowwidth)
+            public var arrowWidth: Double?
+        
+            /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. 
+            ///
+            /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
+            /// `yshift` which moves everything by this amount.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-standoff) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-standoff) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-standoff)
+            public var standoff: Double?
+        
+            /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. 
+            ///
+            /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
+            /// `yshift` which moves everything by this amount.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-startstandoff) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-startstandoff) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-startstandoff)
+            public var startStandoff: Double?
+        
+            /// Sets text to appear when hovering over this annotation. 
+            ///
+            /// If omitted or blank, no hover label will appear.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-hovertext) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-hovertext) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-hovertext)
+            public var hoverText: String?
+        
+            /// # Used By
+            /// `Layout.Scene.Annotation.hoverLabel` |
+            public struct HoverLabel: Encodable {
+                /// Sets the background color of the hover label. 
+                ///
+                /// By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
                 ///
                 /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation) |
-                /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation) |
-                /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation)
-                public var annotation: Annotation?
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-hoverlabel-bgcolor) |
+                /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-hoverlabel-bgcolor) |
+                /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-hoverlabel-bgcolor)
+                public var backgroundColor: Color?
             
-                public init(annotation: Annotation? = nil) {
-                    self.annotation = annotation
+                /// Sets the border color of the hover label. 
+                ///
+                /// By default uses either dark grey or white, for maximum contrast with `hoverlabel.bgcolor`.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-hoverlabel-bordercolor) |
+                /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-hoverlabel-bordercolor) |
+                /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-hoverlabel-bordercolor)
+                public var borderColor: Color?
+            
+                /// Sets the hover label text font. 
+                ///
+                /// By default uses the global hover font and size, with color from `hoverlabel.bordercolor`.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-hoverlabel-font) |
+                /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-hoverlabel-font) |
+                /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-hoverlabel-font)
+                public var font: Font?
+            
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case backgroundColor = "bgcolor"
+                    case borderColor = "bordercolor"
+                    case font
+                }
+                
+                public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil) {
+                    self.backgroundColor = backgroundColor
+                    self.borderColor = borderColor
+                    self.font = font
                 }
             }
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items)
-            public var items: Items?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-hoverlabel) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-hoverlabel) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-hoverlabel)
+            public var hoverLabel: HoverLabel?
         
-            public init(items: Items? = nil) {
-                self.items = items
+            /// Determines whether the annotation text box captures mouse move and click events, or allows those events to pass through to data points in the plot that may be behind the annotation. 
+            ///
+            /// By default `captureevents` is *false* unless `hovertext` is provided. If you use the event
+            /// `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-captureevents) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-captureevents) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-captureevents)
+            public var captureEvents: Bool?
+        
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+            ///
+            /// You can modify these items in the output figure by making your own item with `templateitemname`
+            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+            /// false` to hide it). Has no effect outside of a template.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-name) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-name) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-name)
+            public var name: String?
+        
+            /// Used to refer to a named item in this array in the template. 
+            ///
+            /// Named items from the template will be created even without a matching item in the input figure,
+            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+            /// template or no matching item, this item will be hidden unless you explicitly show it with
+            /// `visible: true`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-templateitemname) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-templateitemname) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-templateitemname)
+            public var templateItemName: String?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case x
+                case y
+                case z
+                case ax
+                case ay
+                case xAnchor = "xanchor"
+                case xShift = "xshift"
+                case yAnchor = "yanchor"
+                case yShift = "yshift"
+                case text
+                case textAngle = "textangle"
+                case font
+                case width
+                case height
+                case opacity
+                case align
+                case verticalAlign = "valign"
+                case backgroundColor = "bgcolor"
+                case borderColor = "bordercolor"
+                case borderPadding = "borderpad"
+                case borderWidth = "borderwidth"
+                case showArrow = "showarrow"
+                case arrowColor = "arrowcolor"
+                case arrowHead = "arrowhead"
+                case startArrowHead = "startarrowhead"
+                case arrowSide = "arrowside"
+                case arrowSize = "arrowsize"
+                case startArrowSize = "startarrowsize"
+                case arrowWidth = "arrowwidth"
+                case standoff
+                case startStandoff = "startstandoff"
+                case hoverText = "hovertext"
+                case hoverLabel = "hoverlabel"
+                case captureEvents = "captureevents"
+                case name
+                case templateItemName = "templateitemname"
+            }
+            
+            public init(visible: Bool? = nil, x: Anything? = nil, y: Anything? = nil, z: Anything? = nil, ax: Double? = nil, ay: Double? = nil, xAnchor: XAutoAnchor? = nil, xShift: Double? = nil, yAnchor: YAutoAnchor? = nil, yShift: Double? = nil, text: String? = nil, textAngle: Angle? = nil, font: Font? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: HorizontalAlign? = nil, verticalAlign: VerticalAlign? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, hoverText: String? = nil, hoverLabel: HoverLabel? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
+                self.visible = visible
+                self.x = x
+                self.y = y
+                self.z = z
+                self.ax = ax
+                self.ay = ay
+                self.xAnchor = xAnchor
+                self.xShift = xShift
+                self.yAnchor = yAnchor
+                self.yShift = yShift
+                self.text = text
+                self.textAngle = textAngle
+                self.font = font
+                self.width = width
+                self.height = height
+                self.opacity = opacity
+                self.align = align
+                self.verticalAlign = verticalAlign
+                self.backgroundColor = backgroundColor
+                self.borderColor = borderColor
+                self.borderPadding = borderPadding
+                self.borderWidth = borderWidth
+                self.showArrow = showArrow
+                self.arrowColor = arrowColor
+                self.arrowHead = arrowHead
+                self.startArrowHead = startArrowHead
+                self.arrowSide = arrowSide
+                self.arrowSize = arrowSize
+                self.startArrowSize = startArrowSize
+                self.arrowWidth = arrowWidth
+                self.standoff = standoff
+                self.startStandoff = startStandoff
+                self.hoverText = hoverText
+                self.hoverLabel = hoverLabel
+                self.captureEvents = captureEvents
+                self.name = name
+                self.templateItemName = templateItemName
             }
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations) |
-        /// [Python](https://plot.ly/python/reference/#layout-scene-annotations) |
-        /// [R](https://plot.ly/r/reference/#layout-scene-annotations)
-        public var annotations: Annotations?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation) |
+        /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation) |
+        /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation)
+        public var annotations: [Annotation]?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -7757,10 +7589,10 @@ public struct Layout: Encodable {
             case dragMode = "dragmode"
             case hoverMode = "hovermode"
             case uiRevision = "uirevision"
-            case annotations
+            case annotations = "annotation"
         }
         
-        public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Domain0? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, zAxis: ZAxis? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations: Annotations? = nil) {
+        public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Domain? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, zAxis: ZAxis? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations: [Annotation]? = nil) {
             self.backgroundColor = backgroundColor
             self.camera = camera
             self.domain = domain
@@ -7782,7 +7614,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-scene)
     public var scene: Scene?
 
-    ///
     /// # Used By
     /// `Layout.geo` |
     public struct Geo: Encodable {
@@ -7791,7 +7622,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-geo-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-geo-domain) |
         /// [R](https://plot.ly/r/reference/#layout-geo-domain)
-        public var domain: Domain0?
+        public var domain: Domain?
     
         /// Sets the resolution of the base layers. 
         ///
@@ -7834,7 +7665,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-geo-scope)
         public var scope: Scope?
     
-        ///
         /// # Used By
         /// `Layout.Geo.projection` |
         public struct Projection: Encodable {
@@ -7842,7 +7672,7 @@ public struct Layout: Encodable {
             ///
             /// # Used By
             /// `Layout.Geo.Projection.type` |
-            public enum Rule: String, Encodable {
+            public enum `Type`: String, Encodable {
                 case equirectangular
                 case mercator
                 case orthographic
@@ -7872,9 +7702,8 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-geo-projection-type) |
             /// [Python](https://plot.ly/python/reference/#layout-geo-projection-type) |
             /// [R](https://plot.ly/r/reference/#layout-geo-projection-type)
-            public var type: Rule?
+            public var type: `Type`?
         
-            ///
             /// # Used By
             /// `Layout.Geo.Projection.rotation` |
             public struct Rotation: Encodable {
@@ -7944,7 +7773,7 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-geo-projection-scale)
             public var scale: Double?
         
-            public init(type: Rule? = nil, rotation: Rotation? = nil, parallels: InfoArray? = nil, scale: Double? = nil) {
+            public init(type: `Type`? = nil, rotation: Rotation? = nil, parallels: InfoArray? = nil, scale: Double? = nil) {
                 self.type = type
                 self.rotation = rotation
                 self.parallels = parallels
@@ -7958,7 +7787,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-geo-projection)
         public var projection: Projection?
     
-        ///
         /// # Used By
         /// `Layout.Geo.center` |
         public struct Center: Encodable {
@@ -8180,7 +8008,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-geo-bgcolor)
         public var backgroundColor: Color?
     
-        ///
         /// # Used By
         /// `Layout.Geo.longitudeAxis` |
         public struct LongitudeAxis: Encodable {
@@ -8258,7 +8085,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-geo-lonaxis)
         public var longitudeAxis: LongitudeAxis?
     
-        ///
         /// # Used By
         /// `Layout.Geo.latitudeAxis` |
         public struct LatitudeAxis: Encodable {
@@ -8380,7 +8206,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(domain: Domain0? = nil, resolution: Resolution? = nil, scope: Scope? = nil, projection: Projection? = nil, center: Center? = nil, showCoastLines: Bool? = nil, coastLineColor: Color? = nil, coastLineWidth: Double? = nil, showLand: Bool? = nil, landColor: Color? = nil, showOcean: Bool? = nil, oceanColor: Color? = nil, showLakes: Bool? = nil, lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor: Color? = nil, riverWidth: Double? = nil, showCountries: Bool? = nil, countryColor: Color? = nil, countryWidth: Double? = nil, showSubUnits: Bool? = nil, subUnitColor: Color? = nil, subUnitWidth: Double? = nil, showFrame: Bool? = nil, frameColor: Color? = nil, frameWidth: Double? = nil, backgroundColor: Color? = nil, longitudeAxis: LongitudeAxis? = nil, latitudeAxis: LatitudeAxis? = nil, uiRevision: Anything? = nil) {
+        public init(domain: Domain? = nil, resolution: Resolution? = nil, scope: Scope? = nil, projection: Projection? = nil, center: Center? = nil, showCoastLines: Bool? = nil, coastLineColor: Color? = nil, coastLineWidth: Double? = nil, showLand: Bool? = nil, landColor: Color? = nil, showOcean: Bool? = nil, oceanColor: Color? = nil, showLakes: Bool? = nil, lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor: Color? = nil, riverWidth: Double? = nil, showCountries: Bool? = nil, countryColor: Color? = nil, countryWidth: Double? = nil, showSubUnits: Bool? = nil, subUnitColor: Color? = nil, subUnitWidth: Double? = nil, showFrame: Bool? = nil, frameColor: Color? = nil, frameWidth: Double? = nil, backgroundColor: Color? = nil, longitudeAxis: LongitudeAxis? = nil, latitudeAxis: LatitudeAxis? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.resolution = resolution
             self.scope = scope
@@ -8420,7 +8246,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-geo)
     public var geo: Geo?
 
-    ///
     /// # Used By
     /// `Layout.mapbox` |
     public struct Mapbox: Encodable {
@@ -8429,7 +8254,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-mapbox-domain) |
         /// [R](https://plot.ly/r/reference/#layout-mapbox-domain)
-        public var domain: Domain0?
+        public var domain: Domain?
     
         /// Sets the mapbox access token to be used for this mapbox map. 
         ///
@@ -8465,7 +8290,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-mapbox-style)
         public var style: Anything?
     
-        ///
         /// # Used By
         /// `Layout.Mapbox.center` |
         public struct Center: Encodable {
@@ -8527,473 +8351,422 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-mapbox-pitch)
         public var pitch: Double?
     
-        ///
         /// # Used By
         /// `Layout.Mapbox.layers` |
-        public struct Layers: Encodable {
+        public struct Layer: Encodable {
+            /// Determines whether this layer is displayed
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-visible) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-visible) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-visible)
+            public var visible: Bool?
+        
+            /// Sets the source type for this layer, that is the type of the layer data.
             ///
             /// # Used By
-            /// `Layout.Mapbox.Layers.items` |
-            public struct Items: Encodable {
+            /// `Layout.Mapbox.Layer.sourceType` |
+            public enum SourceType: String, Encodable {
+                case geoJson = "geojson"
+                case vector
+                case raster
+                case image
+            }
+            /// Sets the source type for this layer, that is the type of the layer data.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-sourcetype) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-sourcetype) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-sourcetype)
+            public var sourceType: SourceType?
+        
+            /// Sets the source data for this layer (mapbox.layer.source). 
+            ///
+            /// When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object.
+            /// When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile
+            /// URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-source) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-source) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-source)
+            public var source: Anything?
+        
+            /// Specifies the layer to use from a vector tile source (mapbox.layer.source-layer). 
+            ///
+            /// Required for *vector* source type that supports multiple layers.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-sourcelayer) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-sourcelayer) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-sourcelayer)
+            public var sourceLayer: String?
+        
+            /// Sets the attribution for this source.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-sourceattribution) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-sourceattribution) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-sourceattribution)
+            public var sourceAttribution: String?
+        
+            /// Sets the layer type, that is the how the layer data set in `source` will be rendered With `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill* and *symbol*. 
+            ///
+            /// but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With
+            /// `sourcetype` set to *vector*, the following values are allowed: *circle*, *line*, *fill* and
+            /// *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
+            ///
+            /// # Used By
+            /// `Layout.Mapbox.Layer.type` |
+            public enum `Type`: String, Encodable {
+                case circle
+                case line
+                case fill
+                case symbol
+                case raster
+            }
+            /// Sets the layer type, that is the how the layer data set in `source` will be rendered With `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill* and *symbol*. 
+            ///
+            /// but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With
+            /// `sourcetype` set to *vector*, the following values are allowed: *circle*, *line*, *fill* and
+            /// *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-type) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-type) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-type)
+            public var type: `Type`?
+        
+            /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. 
+            ///
+            /// Only has an effect for *image* `sourcetype`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-coordinates) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-coordinates) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-coordinates)
+            public var coordinates: Anything?
+        
+            /// Determines if the layer will be inserted before the layer with the specified ID. 
+            ///
+            /// If omitted or set to '', the layer will be inserted above every existing layer.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-below) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-below) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-below)
+            public var below: String?
+        
+            /// Sets the primary layer color. 
+            ///
+            /// If `type` is *circle*, color corresponds to the circle color (mapbox.layer.paint.circle-color)
+            /// If `type` is *line*, color corresponds to the line color (mapbox.layer.paint.line-color) If
+            /// `type` is *fill*, color corresponds to the fill color (mapbox.layer.paint.fill-color) If `type`
+            /// is *symbol*, color corresponds to the icon color (mapbox.layer.paint.icon-color)
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-color) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-color) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-color)
+            public var color: Color?
+        
+            /// Sets the opacity of the layer. 
+            ///
+            /// If `type` is *circle*, opacity corresponds to the circle opacity
+            /// (mapbox.layer.paint.circle-opacity) If `type` is *line*, opacity corresponds to the line opacity
+            /// (mapbox.layer.paint.line-opacity) If `type` is *fill*, opacity corresponds to the fill opacity
+            /// (mapbox.layer.paint.fill-opacity) If `type` is *symbol*, opacity corresponds to the icon/text
+            /// opacity (mapbox.layer.paint.text-opacity)
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-opacity) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-opacity) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-opacity)
+            public var opacity: Double?
+        
+            /// Sets the minimum zoom level (mapbox.layer.minzoom). 
+            ///
+            /// At zoom levels less than the minzoom, the layer will be hidden.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-minzoom) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-minzoom) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-minzoom)
+            public var minZoom: Double?
+        
+            /// Sets the maximum zoom level (mapbox.layer.maxzoom). 
+            ///
+            /// At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-maxzoom) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-maxzoom) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-maxzoom)
+            public var maxZoom: Double?
+        
+            /// # Used By
+            /// `Layout.Mapbox.Layer.circle` |
+            public struct Circle: Encodable {
+                /// Sets the circle radius (mapbox.layer.paint.circle-radius). 
                 ///
-                /// # Used By
-                /// `Layout.Mapbox.Layers.Items.layer` |
-                public struct Layer: Encodable {
-                    /// Determines whether this layer is displayed
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-visible) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-visible) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-visible)
-                    public var visible: Bool?
-                
-                    /// Sets the source type for this layer, that is the type of the layer data.
-                    ///
-                    /// # Used By
-                    /// `Layout.Mapbox.Layers.Items.Layer.sourceType` |
-                    public enum SourceType: String, Encodable {
-                        case geoJson = "geojson"
-                        case vector
-                        case raster
-                        case image
-                    }
-                    /// Sets the source type for this layer, that is the type of the layer data.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-sourcetype) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-sourcetype) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-sourcetype)
-                    public var sourceType: SourceType?
-                
-                    /// Sets the source data for this layer (mapbox.layer.source). 
-                    ///
-                    /// When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object.
-                    /// When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile
-                    /// URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-source) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-source) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-source)
-                    public var source: Anything?
-                
-                    /// Specifies the layer to use from a vector tile source (mapbox.layer.source-layer). 
-                    ///
-                    /// Required for *vector* source type that supports multiple layers.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-sourcelayer) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-sourcelayer) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-sourcelayer)
-                    public var sourceLayer: String?
-                
-                    /// Sets the attribution for this source.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-sourceattribution) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-sourceattribution) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-sourceattribution)
-                    public var sourceAttribution: String?
-                
-                    /// Sets the layer type, that is the how the layer data set in `source` will be rendered With `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill* and *symbol*. 
-                    ///
-                    /// but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With
-                    /// `sourcetype` set to *vector*, the following values are allowed: *circle*, *line*, *fill* and
-                    /// *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
-                    ///
-                    /// # Used By
-                    /// `Layout.Mapbox.Layers.Items.Layer.type` |
-                    public enum Rule: String, Encodable {
-                        case circle
-                        case line
-                        case fill
-                        case symbol
-                        case raster
-                    }
-                    /// Sets the layer type, that is the how the layer data set in `source` will be rendered With `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill* and *symbol*. 
-                    ///
-                    /// but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With
-                    /// `sourcetype` set to *vector*, the following values are allowed: *circle*, *line*, *fill* and
-                    /// *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-type) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-type) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-type)
-                    public var type: Rule?
-                
-                    /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in clockwise order: top left, top right, bottom right, bottom left. 
-                    ///
-                    /// Only has an effect for *image* `sourcetype`.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-coordinates) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-coordinates) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-coordinates)
-                    public var coordinates: Anything?
-                
-                    /// Determines if the layer will be inserted before the layer with the specified ID. 
-                    ///
-                    /// If omitted or set to '', the layer will be inserted above every existing layer.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-below) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-below) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-below)
-                    public var below: String?
-                
-                    /// Sets the primary layer color. 
-                    ///
-                    /// If `type` is *circle*, color corresponds to the circle color (mapbox.layer.paint.circle-color)
-                    /// If `type` is *line*, color corresponds to the line color (mapbox.layer.paint.line-color) If
-                    /// `type` is *fill*, color corresponds to the fill color (mapbox.layer.paint.fill-color) If `type`
-                    /// is *symbol*, color corresponds to the icon color (mapbox.layer.paint.icon-color)
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-color) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-color) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-color)
-                    public var color: Color?
-                
-                    /// Sets the opacity of the layer. 
-                    ///
-                    /// If `type` is *circle*, opacity corresponds to the circle opacity
-                    /// (mapbox.layer.paint.circle-opacity) If `type` is *line*, opacity corresponds to the line opacity
-                    /// (mapbox.layer.paint.line-opacity) If `type` is *fill*, opacity corresponds to the fill opacity
-                    /// (mapbox.layer.paint.fill-opacity) If `type` is *symbol*, opacity corresponds to the icon/text
-                    /// opacity (mapbox.layer.paint.text-opacity)
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-opacity) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-opacity) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-opacity)
-                    public var opacity: Double?
-                
-                    /// Sets the minimum zoom level (mapbox.layer.minzoom). 
-                    ///
-                    /// At zoom levels less than the minzoom, the layer will be hidden.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-minzoom) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-minzoom) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-minzoom)
-                    public var minZoom: Double?
-                
-                    /// Sets the maximum zoom level (mapbox.layer.maxzoom). 
-                    ///
-                    /// At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-maxzoom) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-maxzoom) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-maxzoom)
-                    public var maxZoom: Double?
-                
-                    ///
-                    /// # Used By
-                    /// `Layout.Mapbox.Layers.Items.Layer.circle` |
-                    public struct Circle: Encodable {
-                        /// Sets the circle radius (mapbox.layer.paint.circle-radius). 
-                        ///
-                        /// Has an effect only when `type` is set to *circle*.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-circle-radius) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-circle-radius) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-circle-radius)
-                        public var radius: Double?
-                    
-                        public init(radius: Double? = nil) {
-                            self.radius = radius
-                        }
-                    }
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-circle) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-circle) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-circle)
-                    public var circle: Circle?
-                
-                    ///
-                    /// # Used By
-                    /// `Layout.Mapbox.Layers.Items.Layer.line` |
-                    public struct Line: Encodable {
-                        /// Sets the line width (mapbox.layer.paint.line-width). 
-                        ///
-                        /// Has an effect only when `type` is set to *line*.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-line-width) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-line-width) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-line-width)
-                        public var width: Double?
-                    
-                        /// Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray). 
-                        ///
-                        /// Has an effect only when `type` is set to *line*.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-line-dash) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-line-dash) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-line-dash)
-                        public var dash: [Double]?
-                    
-                        /// Sets the source reference on plot.ly for  dash .
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-line-dashsrc) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-line-dashsrc) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-line-dashsrc)
-                        public var dashSource: String?
-                    
-                        /// Plotly compatible property encoding
-                        enum CodingKeys: String, CodingKey {
-                            case width
-                            case dash
-                            case dashSource = "dashsrc"
-                        }
-                        
-                        public init(width: Double? = nil, dash: [Double]? = nil, dashSource: String? = nil) {
-                            self.width = width
-                            self.dash = dash
-                            self.dashSource = dashSource
-                        }
-                    }
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-line) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-line) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-line)
-                    public var line: Line?
-                
-                    ///
-                    /// # Used By
-                    /// `Layout.Mapbox.Layers.Items.Layer.fill` |
-                    public struct Fill: Encodable {
-                        /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color). 
-                        ///
-                        /// Has an effect only when `type` is set to *fill*.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-fill-outlinecolor) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-fill-outlinecolor) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-fill-outlinecolor)
-                        public var outLineColor: Color?
-                    
-                        /// Plotly compatible property encoding
-                        enum CodingKeys: String, CodingKey {
-                            case outLineColor = "outlinecolor"
-                        }
-                        
-                        public init(outLineColor: Color? = nil) {
-                            self.outLineColor = outLineColor
-                        }
-                    }
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-fill) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-fill) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-fill)
-                    public var fill: Fill?
-                
-                    ///
-                    /// # Used By
-                    /// `Layout.Mapbox.Layers.Items.Layer.symbol` |
-                    public struct Symbol: Encodable {
-                        /// Sets the symbol icon image (mapbox.layer.layout.icon-image). 
-                        ///
-                        /// Full list: https://www.mapbox.com/maki-icons/
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-icon) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-icon) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-icon)
-                        public var icon: String?
-                    
-                        /// Sets the symbol icon size (mapbox.layer.layout.icon-size). 
-                        ///
-                        /// Has an effect only when `type` is set to *symbol*.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-iconsize) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-iconsize) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-iconsize)
-                        public var iconSize: Double?
-                    
-                        /// Sets the symbol text (mapbox.layer.layout.text-field).
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-text) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-text) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-text)
-                        public var text: String?
-                    
-                        /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement). 
-                        ///
-                        /// If `placement` is *point*, the label is placed where the geometry is located If `placement` is
-                        /// *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the
-                        /// label is placed on the center of the geometry
-                        ///
-                        /// # Used By
-                        /// `Layout.Mapbox.Layers.Items.Layer.Symbol.placement` |
-                        public enum Placement: String, Encodable {
-                            case point
-                            case line
-                            case lineCenter = "line-center"
-                        }
-                        /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement). 
-                        ///
-                        /// If `placement` is *point*, the label is placed where the geometry is located If `placement` is
-                        /// *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the
-                        /// label is placed on the center of the geometry
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-placement) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-placement) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-placement)
-                        public var placement: Placement?
-                    
-                        /// Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). 
-                        ///
-                        /// Has an effect only when `type` is set to *symbol*.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-textfont) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-textfont) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-textfont)
-                        public var textFont: Font0?
-                    
-                        /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-textposition) |
-                        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-textposition) |
-                        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-textposition)
-                        public var textPosition: TextPosition0?
-                    
-                        /// Plotly compatible property encoding
-                        enum CodingKeys: String, CodingKey {
-                            case icon
-                            case iconSize = "iconsize"
-                            case text
-                            case placement
-                            case textFont = "textfont"
-                            case textPosition = "textposition"
-                        }
-                        
-                        public init(icon: String? = nil, iconSize: Double? = nil, text: String? = nil, placement: Placement? = nil, textFont: Font0? = nil, textPosition: TextPosition0? = nil) {
-                            self.icon = icon
-                            self.iconSize = iconSize
-                            self.text = text
-                            self.placement = placement
-                            self.textFont = textFont
-                            self.textPosition = textPosition
-                        }
-                    }
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol)
-                    public var symbol: Symbol?
-                
-                    /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                    ///
-                    /// You can modify these items in the output figure by making your own item with `templateitemname`
-                    /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                    /// false` to hide it). Has no effect outside of a template.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-name) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-name) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-name)
-                    public var name: String?
-                
-                    /// Used to refer to a named item in this array in the template. 
-                    ///
-                    /// Named items from the template will be created even without a matching item in the input figure,
-                    /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                    /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                    /// template or no matching item, this item will be hidden unless you explicitly show it with
-                    /// `visible: true`.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-templateitemname) |
-                    /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-templateitemname) |
-                    /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-templateitemname)
-                    public var templateItemName: String?
-                
-                    /// Plotly compatible property encoding
-                    enum CodingKeys: String, CodingKey {
-                        case visible
-                        case sourceType = "sourcetype"
-                        case source
-                        case sourceLayer = "sourcelayer"
-                        case sourceAttribution = "sourceattribution"
-                        case type
-                        case coordinates
-                        case below
-                        case color
-                        case opacity
-                        case minZoom = "minzoom"
-                        case maxZoom = "maxzoom"
-                        case circle
-                        case line
-                        case fill
-                        case symbol
-                        case name
-                        case templateItemName = "templateitemname"
-                    }
-                    
-                    public init(visible: Bool? = nil, sourceType: SourceType? = nil, source: Anything? = nil, sourceLayer: String? = nil, sourceAttribution: String? = nil, type: Rule? = nil, coordinates: Anything? = nil, below: String? = nil, color: Color? = nil, opacity: Double? = nil, minZoom: Double? = nil, maxZoom: Double? = nil, circle: Circle? = nil, line: Line? = nil, fill: Fill? = nil, symbol: Symbol? = nil, name: String? = nil, templateItemName: String? = nil) {
-                        self.visible = visible
-                        self.sourceType = sourceType
-                        self.source = source
-                        self.sourceLayer = sourceLayer
-                        self.sourceAttribution = sourceAttribution
-                        self.type = type
-                        self.coordinates = coordinates
-                        self.below = below
-                        self.color = color
-                        self.opacity = opacity
-                        self.minZoom = minZoom
-                        self.maxZoom = maxZoom
-                        self.circle = circle
-                        self.line = line
-                        self.fill = fill
-                        self.symbol = symbol
-                        self.name = name
-                        self.templateItemName = templateItemName
-                    }
-                }
+                /// Has an effect only when `type` is set to *circle*.
                 ///
                 /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer) |
-                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer) |
-                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer)
-                public var layer: Layer?
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-circle-radius) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-circle-radius) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-circle-radius)
+                public var radius: Double?
             
-                public init(layer: Layer? = nil) {
-                    self.layer = layer
+                public init(radius: Double? = nil) {
+                    self.radius = radius
                 }
             }
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items) |
-            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items) |
-            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items)
-            public var items: Items?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-circle) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-circle) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-circle)
+            public var circle: Circle?
         
-            public init(items: Items? = nil) {
-                self.items = items
+            /// # Used By
+            /// `Layout.Mapbox.Layer.line` |
+            public struct DashedLine: Encodable {
+                /// Sets the line width (mapbox.layer.paint.line-width). 
+                ///
+                /// Has an effect only when `type` is set to *line*.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-line-width) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-line-width) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-line-width)
+                public var width: Double?
+            
+                /// Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray). 
+                ///
+                /// Has an effect only when `type` is set to *line*.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-line-dash) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-line-dash) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-line-dash)
+                public var dash: [Double]?
+            
+                public init(width: Double? = nil, dash: [Double]? = nil) {
+                    self.width = width
+                    self.dash = dash
+                }
+            }
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-line) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-line) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-line)
+            public var line: DashedLine?
+        
+            /// # Used By
+            /// `Layout.Mapbox.Layer.fill` |
+            public struct Fill: Encodable {
+                /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color). 
+                ///
+                /// Has an effect only when `type` is set to *fill*.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-fill-outlinecolor) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-fill-outlinecolor) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-fill-outlinecolor)
+                public var outLineColor: Color?
+            
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case outLineColor = "outlinecolor"
+                }
+                
+                public init(outLineColor: Color? = nil) {
+                    self.outLineColor = outLineColor
+                }
+            }
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-fill) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-fill) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-fill)
+            public var fill: Fill?
+        
+            /// # Used By
+            /// `Layout.Mapbox.Layer.symbol` |
+            public struct Symbol: Encodable {
+                /// Sets the symbol icon image (mapbox.layer.layout.icon-image). 
+                ///
+                /// Full list: https://www.mapbox.com/maki-icons/
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-icon) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-icon) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-icon)
+                public var icon: String?
+            
+                /// Sets the symbol icon size (mapbox.layer.layout.icon-size). 
+                ///
+                /// Has an effect only when `type` is set to *symbol*.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-iconsize) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-iconsize) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-iconsize)
+                public var iconSize: Double?
+            
+                /// Sets the symbol text (mapbox.layer.layout.text-field).
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-text) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-text) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-text)
+                public var text: String?
+            
+                /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement). 
+                ///
+                /// If `placement` is *point*, the label is placed where the geometry is located If `placement` is
+                /// *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the
+                /// label is placed on the center of the geometry
+                ///
+                /// # Used By
+                /// `Layout.Mapbox.Layer.Symbol.placement` |
+                public enum Placement: String, Encodable {
+                    case point
+                    case line
+                    case lineCenter = "line-center"
+                }
+                /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement). 
+                ///
+                /// If `placement` is *point*, the label is placed where the geometry is located If `placement` is
+                /// *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the
+                /// label is placed on the center of the geometry
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-placement) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-placement) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-placement)
+                public var placement: Placement?
+            
+                /// Sets the icon text font (color=mapbox.layer.paint.text-color, size=mapbox.layer.layout.text-size). 
+                ///
+                /// Has an effect only when `type` is set to *symbol*.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-textfont) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-textfont) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-textfont)
+                public var textFont: Font?
+            
+                /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+                ///
+                /// # Plotly Reference
+                /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-textposition) |
+                /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-textposition) |
+                /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-textposition)
+                public var textPosition: TextPosition?
+            
+                /// Plotly compatible property encoding
+                enum CodingKeys: String, CodingKey {
+                    case icon
+                    case iconSize = "iconsize"
+                    case text
+                    case placement
+                    case textFont = "textfont"
+                    case textPosition = "textposition"
+                }
+                
+                public init(icon: String? = nil, iconSize: Double? = nil, text: String? = nil, placement: Placement? = nil, textFont: Font? = nil, textPosition: TextPosition? = nil) {
+                    self.icon = icon
+                    self.iconSize = iconSize
+                    self.text = text
+                    self.placement = placement
+                    self.textFont = textFont
+                    self.textPosition = textPosition
+                }
+            }
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol)
+            public var symbol: Symbol?
+        
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+            ///
+            /// You can modify these items in the output figure by making your own item with `templateitemname`
+            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+            /// false` to hide it). Has no effect outside of a template.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-name) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-name) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-name)
+            public var name: String?
+        
+            /// Used to refer to a named item in this array in the template. 
+            ///
+            /// Named items from the template will be created even without a matching item in the input figure,
+            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+            /// template or no matching item, this item will be hidden unless you explicitly show it with
+            /// `visible: true`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-templateitemname) |
+            /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-templateitemname) |
+            /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-templateitemname)
+            public var templateItemName: String?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case sourceType = "sourcetype"
+                case source
+                case sourceLayer = "sourcelayer"
+                case sourceAttribution = "sourceattribution"
+                case type
+                case coordinates
+                case below
+                case color
+                case opacity
+                case minZoom = "minzoom"
+                case maxZoom = "maxzoom"
+                case circle
+                case line
+                case fill
+                case symbol
+                case name
+                case templateItemName = "templateitemname"
+            }
+            
+            public init(visible: Bool? = nil, sourceType: SourceType? = nil, source: Anything? = nil, sourceLayer: String? = nil, sourceAttribution: String? = nil, type: `Type`? = nil, coordinates: Anything? = nil, below: String? = nil, color: Color? = nil, opacity: Double? = nil, minZoom: Double? = nil, maxZoom: Double? = nil, circle: Circle? = nil, line: DashedLine? = nil, fill: Fill? = nil, symbol: Symbol? = nil, name: String? = nil, templateItemName: String? = nil) {
+                self.visible = visible
+                self.sourceType = sourceType
+                self.source = source
+                self.sourceLayer = sourceLayer
+                self.sourceAttribution = sourceAttribution
+                self.type = type
+                self.coordinates = coordinates
+                self.below = below
+                self.color = color
+                self.opacity = opacity
+                self.minZoom = minZoom
+                self.maxZoom = maxZoom
+                self.circle = circle
+                self.line = line
+                self.fill = fill
+                self.symbol = symbol
+                self.name = name
+                self.templateItemName = templateItemName
             }
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers) |
-        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers) |
-        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers)
-        public var layers: Layers?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer) |
+        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer) |
+        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer)
+        public var layers: [Layer]?
     
         /// Controls persistence of user-driven changes in the view: `center`, `zoom`, `bearing`, `pitch`. 
         ///
@@ -9014,11 +8787,11 @@ public struct Layout: Encodable {
             case zoom
             case bearing
             case pitch
-            case layers
+            case layers = "layer"
             case uiRevision = "uirevision"
         }
         
-        public init(domain: Domain0? = nil, accessToken: String? = nil, style: Anything? = nil, center: Center? = nil, zoom: Double? = nil, bearing: Double? = nil, pitch: Double? = nil, layers: Layers? = nil, uiRevision: Anything? = nil) {
+        public init(domain: Domain? = nil, accessToken: String? = nil, style: Anything? = nil, center: Center? = nil, zoom: Double? = nil, bearing: Double? = nil, pitch: Double? = nil, layers: [Layer]? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.accessToken = accessToken
             self.style = style
@@ -9037,7 +8810,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-mapbox)
     public var mapbox: Mapbox?
 
-    ///
     /// # Used By
     /// `Layout.polar` |
     public struct Polar: Encodable {
@@ -9046,7 +8818,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-polar-domain) |
         /// [R](https://plot.ly/r/reference/#layout-polar-domain)
-        public var domain: Domain0?
+        public var domain: Domain?
     
         /// Sets angular span of this polar subplot with two angles (in degrees). 
         ///
@@ -9075,7 +8847,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-polar-bgcolor)
         public var backgroundColor: Color?
     
-        ///
         /// # Used By
         /// `Layout.Polar.radialAxis` |
         public struct RadialAxis: Encodable {
@@ -9096,7 +8867,7 @@ public struct Layout: Encodable {
             ///
             /// # Used By
             /// `Layout.Polar.RadialAxis.type` |
-            public enum Rule: String, Encodable {
+            public enum `Type`: String, Encodable {
                 case auto = "-"
                 case linear
                 case log
@@ -9112,7 +8883,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-type) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-type) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-type)
-            public var type: Rule?
+            public var type: `Type`?
         
             /// Determines whether or not the range of this axis is computed in relation to the input data. 
             ///
@@ -9122,7 +8893,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-autorange) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-autorange) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-autorange)
-            public var autoRange: AutoRange0?
+            public var autoRange: AutoRange?
         
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. 
             ///
@@ -9177,7 +8948,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-categoryorder)
-            public var categoryOrder: CategoryOrder0?
+            public var categoryOrder: CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -9221,7 +8992,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-title)
-            public var title: Title0?
+            public var title: Title?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -9320,7 +9091,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickmode)
-            public var tickMode: TickMode0?
+            public var tickMode: TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -9398,7 +9169,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-ticks)
-            public var ticks: Ticks0?
+            public var ticks: Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -9441,7 +9212,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix0?
+            public var showTickPrefix: ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -9457,7 +9228,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix0?
+            public var showTickSuffix: ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -9476,7 +9247,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-showexponent)
-            public var showExponent: ShowExponent0?
+            public var showExponent: ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -9487,7 +9258,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-exponentformat)
-            public var exponentFormat: ExponentFormat0?
+            public var exponentFormat: ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -9503,7 +9274,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickfont)
-            public var tickFont: Font0?
+            public var tickFont: Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -9531,10 +9302,10 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickformatstops) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickformatstops) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickformatstops)
-            public var tickFormatStops: TickFormatStops0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop) |
+            /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop) |
+            /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop)
+            public var tickFormatStops: [TickFormatStop]?
         
             /// Sets the layer on which this axis is displayed. 
             ///
@@ -9547,7 +9318,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-layer)
-            public var layer: Layer0?
+            public var layer: Layer?
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
             ///
@@ -9558,31 +9329,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-calendar) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-calendar) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-calendar)
-            public var calendar: Calendar0?
-        
-            /// Sets the source reference on plot.ly for  categoryarray .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-categoryarraysrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-categoryarraysrc) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-categoryarraysrc)
-            public var categoryArraySource: String?
-        
-            /// Sets the source reference on plot.ly for  tickvals .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickvalssrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickvalssrc) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickvalssrc)
-            public var tickValuesSource: String?
-        
-            /// Sets the source reference on plot.ly for  ticktext .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-ticktextsrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-ticktextsrc) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-ticktextsrc)
-            public var tickTextSource: String?
+            public var calendar: Calendar?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -9626,15 +9373,12 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstops"
+                case tickFormatStops = "tickformatstop"
                 case layer
                 case calendar
-                case categoryArraySource = "categoryarraysrc"
-                case tickValuesSource = "tickvalssrc"
-                case tickTextSource = "ticktextsrc"
             }
             
-            public init(visible: Bool? = nil, type: Rule? = nil, autoRange: AutoRange0? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side? = nil, title: Title0? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, tickSuffix: String? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, layer: Layer0? = nil, calendar: Calendar0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(visible: Bool? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side? = nil, title: Title? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, layer: Layer? = nil, calendar: Calendar? = nil) {
                 self.visible = visible
                 self.type = type
                 self.autoRange = autoRange
@@ -9678,9 +9422,6 @@ public struct Layout: Encodable {
                 self.tickFormatStops = tickFormatStops
                 self.layer = layer
                 self.calendar = calendar
-                self.categoryArraySource = categoryArraySource
-                self.tickValuesSource = tickValuesSource
-                self.tickTextSource = tickTextSource
             }
         }
         ///
@@ -9690,7 +9431,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis)
         public var radialAxis: RadialAxis?
     
-        ///
         /// # Used By
         /// `Layout.Polar.angularAxis` |
         public struct AngularAxis: Encodable {
@@ -9711,7 +9451,7 @@ public struct Layout: Encodable {
             ///
             /// # Used By
             /// `Layout.Polar.AngularAxis.type` |
-            public enum Rule: String, Encodable {
+            public enum `Type`: String, Encodable {
                 case auto = "-"
                 case linear
                 case category
@@ -9725,7 +9465,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-type) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-type) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-type)
-            public var type: Rule?
+            public var type: `Type`?
         
             /// Specifies the ordering logic for the case of categorical variables. 
             ///
@@ -9743,7 +9483,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-categoryorder)
-            public var categoryOrder: CategoryOrder0?
+            public var categoryOrder: CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -9909,7 +9649,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickmode)
-            public var tickMode: TickMode0?
+            public var tickMode: TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -9987,7 +9727,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-ticks)
-            public var ticks: Ticks0?
+            public var ticks: Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -10030,7 +9770,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix0?
+            public var showTickPrefix: ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -10046,7 +9786,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix0?
+            public var showTickSuffix: ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -10065,7 +9805,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-showexponent)
-            public var showExponent: ShowExponent0?
+            public var showExponent: ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -10076,7 +9816,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-exponentformat)
-            public var exponentFormat: ExponentFormat0?
+            public var exponentFormat: ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -10092,7 +9832,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickfont)
-            public var tickFont: Font0?
+            public var tickFont: Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -10120,10 +9860,10 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickformatstops) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickformatstops) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickformatstops)
-            public var tickFormatStops: TickFormatStops0?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop) |
+            /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop) |
+            /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop)
+            public var tickFormatStops: [TickFormatStop]?
         
             /// Sets the layer on which this axis is displayed. 
             ///
@@ -10136,31 +9876,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-layer)
-            public var layer: Layer0?
-        
-            /// Sets the source reference on plot.ly for  categoryarray .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-categoryarraysrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-categoryarraysrc) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-categoryarraysrc)
-            public var categoryArraySource: String?
-        
-            /// Sets the source reference on plot.ly for  tickvals .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickvalssrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickvalssrc) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickvalssrc)
-            public var tickValuesSource: String?
-        
-            /// Sets the source reference on plot.ly for  ticktext .
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-ticktextsrc) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-ticktextsrc) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-ticktextsrc)
-            public var tickTextSource: String?
+            public var layer: Layer?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -10202,14 +9918,11 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstops"
+                case tickFormatStops = "tickformatstop"
                 case layer
-                case categoryArraySource = "categoryarraysrc"
-                case tickValuesSource = "tickvalssrc"
-                case tickTextSource = "ticktextsrc"
             }
             
-            public init(visible: Bool? = nil, type: Rule? = nil, categoryOrder: CategoryOrder0? = nil, categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction: Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, tickSuffix: String? = nil, showExponent: ShowExponent0? = nil, exponentFormat: ExponentFormat0? = nil, separatethousands: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, layer: Layer0? = nil, categoryArraySource: String? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+            public init(visible: Bool? = nil, type: `Type`? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction: Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, layer: Layer? = nil) {
                 self.visible = visible
                 self.type = type
                 self.categoryOrder = categoryOrder
@@ -10250,9 +9963,6 @@ public struct Layout: Encodable {
                 self.tickFormat = tickFormat
                 self.tickFormatStops = tickFormatStops
                 self.layer = layer
-                self.categoryArraySource = categoryArraySource
-                self.tickValuesSource = tickValuesSource
-                self.tickTextSource = tickTextSource
             }
         }
         ///
@@ -10308,7 +10018,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(domain: Domain0? = nil, sector: InfoArray? = nil, hole: Double? = nil, backgroundColor: Color? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, gridShape: GridShape? = nil, uiRevision: Anything? = nil) {
+        public init(domain: Domain? = nil, sector: InfoArray? = nil, hole: Double? = nil, backgroundColor: Color? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, gridShape: GridShape? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.sector = sector
             self.hole = hole
@@ -10326,7 +10036,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-polar)
     public var polar: Polar?
 
-    ///
     /// # Used By
     /// `Layout.radialAxis` |
     public struct RadialAxis: Encodable {
@@ -10484,7 +10193,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-radialaxis)
     public var radialAxis: RadialAxis?
 
-    ///
     /// # Used By
     /// `Layout.angularAxis` |
     public struct AngularAxis: Encodable {
@@ -10660,7 +10368,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-orientation)
     public var orientation: Angle?
 
-    ///
     /// # Used By
     /// `Layout.legend` |
     public struct Legend: Encodable {
@@ -10694,7 +10401,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-font) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-font) |
         /// [R](https://plot.ly/r/reference/#layout-legend-font)
-        public var font: Font0?
+        public var font: Font?
     
         /// Sets the orientation of the legend.
         ///
@@ -10702,7 +10409,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-orientation) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-orientation) |
         /// [R](https://plot.ly/r/reference/#layout-legend-orientation)
-        public var orientation: Orientation0?
+        public var orientation: Orientation?
     
         /// Determines the order at which the legend items are displayed. 
         ///
@@ -10826,26 +10533,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-legend-x)
         public var x: Double?
     
-        /// Sets the title's horizontal alignment with respect to its x position. 
-        ///
-        /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-        /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-        /// `xanchor` value automatically based on the value of `x`.
-        ///
-        /// # Used By
-        /// `Layout.Title0.xAnchor` |
-        /// `Layout.XAxis.RangeSelector.xAnchor` |
-        /// `Layout.Scene.Annotations.Items.Annotation.xAnchor` |
-        /// `Layout.Legend.xAnchor` |
-        /// `Layout.Annotations.Items.Annotation.xAnchor` |
-        /// `Layout.UpdateMenus.Items.UpdateMenu.xAnchor` |
-        /// `Layout.Sliders.Items.Slider.xAnchor` |
-        public enum XAnchor0: String, Encodable {
-            case auto
-            case left
-            case center
-            case right
-        }
         /// Sets the legend's horizontal position anchor. 
         ///
         /// This anchor binds the `x` position to the *left*, *center* or *right* of the legend. Value
@@ -10857,7 +10544,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-xanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-xanchor) |
         /// [R](https://plot.ly/r/reference/#layout-legend-xanchor)
-        public var xAnchor: XAnchor0?
+        public var xAnchor: XAutoAnchor?
     
         /// Sets the y position (in normalized coordinates) of the legend. 
         ///
@@ -10871,26 +10558,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-legend-y)
         public var y: Double?
     
-        /// Sets the title's vertical alignment with respect to its y position. 
-        ///
-        /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-        /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-        /// calculates the `yanchor` value automatically based on the value of `y`.
-        ///
-        /// # Used By
-        /// `Layout.Title0.yAnchor` |
-        /// `Layout.XAxis.RangeSelector.yAnchor` |
-        /// `Layout.Scene.Annotations.Items.Annotation.yAnchor` |
-        /// `Layout.Legend.yAnchor` |
-        /// `Layout.Annotations.Items.Annotation.yAnchor` |
-        /// `Layout.UpdateMenus.Items.UpdateMenu.yAnchor` |
-        /// `Layout.Sliders.Items.Slider.yAnchor` |
-        public enum YAnchor0: String, Encodable {
-            case auto
-            case top
-            case middle
-            case bottom
-        }
         /// Sets the legend's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the legend. 
         ///
         /// Value *auto* anchors legends at their bottom for `y` values less than or equal to 1/3, anchors
@@ -10901,7 +10568,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-yanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-yanchor) |
         /// [R](https://plot.ly/r/reference/#layout-legend-yanchor)
-        public var yAnchor: YAnchor0?
+        public var yAnchor: YAutoAnchor?
     
         /// Controls persistence of legend-driven changes in trace and pie label visibility. 
         ///
@@ -10913,15 +10580,6 @@ public struct Layout: Encodable {
         /// [R](https://plot.ly/r/reference/#layout-legend-uirevision)
         public var uiRevision: Anything?
     
-        /// Sets the vertical alignment of the symbols with respect to their associated text.
-        ///
-        /// # Used By
-        /// `Layout.Legend.verticalAlign` |
-        public enum VerticalAlign: String, Encodable {
-            case top
-            case middle
-            case bottom
-        }
         /// Sets the vertical alignment of the symbols with respect to their associated text.
         ///
         /// # Plotly Reference
@@ -10950,7 +10608,7 @@ public struct Layout: Encodable {
             case verticalAlign = "valign"
         }
         
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, font: Font0? = nil, orientation: Orientation0? = nil, traceOrder: TraceOrder? = nil, traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemClick: ItemClick? = nil, itemDoubleClick: ItemDoubleClick? = nil, x: Double? = nil, xAnchor: XAnchor0? = nil, y: Double? = nil, yAnchor: YAnchor0? = nil, uiRevision: Anything? = nil, verticalAlign: VerticalAlign? = nil) {
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, font: Font? = nil, orientation: Orientation? = nil, traceOrder: TraceOrder? = nil, traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemClick: ItemClick? = nil, itemDoubleClick: ItemDoubleClick? = nil, x: Double? = nil, xAnchor: XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, uiRevision: Anything? = nil, verticalAlign: VerticalAlign? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.borderWidth = borderWidth
@@ -10976,2544 +10634,2072 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-legend)
     public var legend: Legend?
 
-    ///
     /// # Used By
     /// `Layout.annotations` |
-    public struct Annotations: Encodable {
-        ///
-        /// # Used By
-        /// `Layout.Annotations.items` |
-        public struct Items: Encodable {
-            ///
-            /// # Used By
-            /// `Layout.Annotations.Items.annotation` |
-            public struct Annotation: Encodable {
-                /// Determines whether or not this annotation is visible.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-visible) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-visible) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-visible)
-                public var visible: Bool?
-            
-                /// Sets the text associated with this annotation. 
-                ///
-                /// Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics
-                /// (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-text) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-text) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-text)
-                public var text: String?
-            
-                /// Sets the angle at which the `text` is drawn with respect to the horizontal.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-textangle) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-textangle) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-textangle)
-                public var textAngle: Angle?
-            
-                /// Sets the annotation text font.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-font) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-font) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-font)
-                public var font: Font0?
-            
-                /// Sets an explicit width for the text box. 
-                ///
-                /// null (default) lets the text set the box width. Wider text will be clipped. There is no
-                /// automatic wrapping; use <br> to start a new line.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-width) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-width) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-width)
-                public var width: Double?
-            
-                /// Sets an explicit height for the text box. 
-                ///
-                /// null (default) lets the text set the box height. Taller text will be clipped.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-height) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-height) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-height)
-                public var height: Double?
-            
-                /// Sets the opacity of the annotation (text + arrow).
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-opacity) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-opacity) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-opacity)
-                public var opacity: Double?
-            
-                /// Sets the horizontal alignment of the `text` within the box. 
-                ///
-                /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
-                /// HTML tags) or if an explicit width is set to override the text width.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-align) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-align) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-align)
-                public var align: Align1?
-            
-                /// Sets the vertical alignment of the `text` within the box. 
-                ///
-                /// Has an effect only if an explicit height is set to override the text height.
-                ///
-                /// # Used By
-                /// `Layout.Annotations.Items.Annotation.verticalAlign` |
-                public enum VerticalAlign: String, Encodable {
-                    case top
-                    case middle
-                    case bottom
-                }
-                /// Sets the vertical alignment of the `text` within the box. 
-                ///
-                /// Has an effect only if an explicit height is set to override the text height.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-valign) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-valign) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-valign)
-                public var verticalAlign: VerticalAlign?
-            
-                /// Sets the background color of the annotation.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-bgcolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-bgcolor) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-bgcolor)
-                public var backgroundColor: Color?
-            
-                /// Sets the color of the border enclosing the annotation `text`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-bordercolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-bordercolor) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-bordercolor)
-                public var borderColor: Color?
-            
-                /// Sets the padding (in px) between the `text` and the enclosing border.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-borderpad) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-borderpad) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-borderpad)
-                public var borderPadding: Double?
-            
-                /// Sets the width (in px) of the border enclosing the annotation `text`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-borderwidth) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-borderwidth) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-borderwidth)
-                public var borderWidth: Double?
-            
-                /// Determines whether or not the annotation is drawn with an arrow. 
-                ///
-                /// If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and
-                /// `y` provided.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-showarrow) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-showarrow) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-showarrow)
-                public var showArrow: Bool?
-            
-                /// Sets the color of the annotation arrow.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowcolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowcolor) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowcolor)
-                public var arrowColor: Color?
-            
-                /// Sets the end annotation arrow head style.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowhead) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowhead) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowhead)
-                public var arrowHead: Int?
-            
-                /// Sets the start annotation arrow head style.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-startarrowhead) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-startarrowhead) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-startarrowhead)
-                public var startArrowHead: Int?
-            
-                /// Sets the annotation arrow head position.
-                ///
-                /// # Used By
-                /// `Layout.Annotations.Items.Annotation.arrowSide` |
-                public struct ArrowSide: OptionSet, Encodable {
-                    public let rawValue: Int
-                
-                    public static let end = ArrowSide(rawValue: 1 << 0)
-                    public static let start = ArrowSide(rawValue: 1 << 1)
-                    public static let none = ArrowSide(rawValue: 1 << 2)
-                
-                    public init(rawValue: Int) { self.rawValue = rawValue }
-                
-                    public func encode(to encoder: Encoder) throws {
-                        var options = [String]()
-                        if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
-                        if (self.rawValue & 1 << 1) != 0 { options += ["start"] }
-                        if (self.rawValue & 1 << 2) != 0 { options += ["none"] }
-                        var container = encoder.singleValueContainer()
-                        try container.encode(options.joined(separator: "+"))
-                    }
-                }
-                /// Sets the annotation arrow head position.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowside) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowside) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowside)
-                public var arrowSide: ArrowSide?
-            
-                /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. 
-                ///
-                /// A value of 1 (default) gives a head about 3x as wide as the line.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowsize) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowsize) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowsize)
-                public var arrowSize: Double?
-            
-                /// Sets the size of the start annotation arrow head, relative to `arrowwidth`. 
-                ///
-                /// A value of 1 (default) gives a head about 3x as wide as the line.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-startarrowsize) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-startarrowsize) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-startarrowsize)
-                public var startArrowSize: Double?
-            
-                /// Sets the width (in px) of annotation arrow line.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowwidth) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowwidth) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowwidth)
-                public var arrowWidth: Double?
-            
-                /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. 
-                ///
-                /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
-                /// `yshift` which moves everything by this amount.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-standoff) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-standoff) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-standoff)
-                public var standoff: Double?
-            
-                /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. 
-                ///
-                /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
-                /// `yshift` which moves everything by this amount.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-startstandoff) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-startstandoff) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-startstandoff)
-                public var startStandoff: Double?
-            
-                /// Sets the x component of the arrow tail about the arrow head. 
-                ///
-                /// If `axref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from
-                /// right to left (left to right). If `axref` is an axis, this is an absolute value on that axis,
-                /// like `x`, NOT a relative value.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-ax) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-ax) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-ax)
-                public var ax: Anything?
-            
-                /// Sets the y component of the arrow tail about the arrow head. 
-                ///
-                /// If `ayref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from
-                /// bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis,
-                /// like `y`, NOT a relative value.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-ay) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-ay) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-ay)
-                public var ay: Anything?
-            
-                /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. 
-                ///
-                /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
-                /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
-                /// annotations which should continue to indicate the correct trend when zoomed.
-                ///
-                /// # Used By
-                /// `Layout.Annotations.Items.Annotation.axReference` |
-                public enum AxReference: String, Encodable {
-                    case pixel
-                    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-                }
-                /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. 
-                ///
-                /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
-                /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
-                /// annotations which should continue to indicate the correct trend when zoomed.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-axref) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-axref) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-axref)
-                public var axReference: AxReference?
-            
-                /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. 
-                ///
-                /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
-                /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
-                /// annotations which should continue to indicate the correct trend when zoomed.
-                ///
-                /// # Used By
-                /// `Layout.Annotations.Items.Annotation.ayReference` |
-                public enum AyReference: String, Encodable {
-                    case pixel
-                    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
-                }
-                /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. 
-                ///
-                /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
-                /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
-                /// annotations which should continue to indicate the correct trend when zoomed.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-ayref) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-ayref) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-ayref)
-                public var ayReference: AyReference?
-            
-                /// Sets the annotation's x coordinate axis. 
-                ///
-                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
-                /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-                /// normalized coordinates where 0 (1) corresponds to the left (right) side.
-                ///
-                /// # Used By
-                /// `Layout.Annotations.Items.Annotation.xReference` |
-                public enum XReference: String, Encodable {
-                    case paper
-                    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-                }
-                /// Sets the annotation's x coordinate axis. 
-                ///
-                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
-                /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-                /// normalized coordinates where 0 (1) corresponds to the left (right) side.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xref) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xref) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xref)
-                public var xReference: XReference?
-            
-                /// Sets the annotation's x position. 
-                ///
-                /// If the axis `type` is *log*, then you must take the log of your desired range. If the axis
-                /// `type` is *date*, it should be date strings, like date data, though Date objects and unix
-                /// milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it
-                /// should be numbers, using the scale where each category is assigned a serial number from zero in
-                /// the order it appears.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-x) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-x) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-x)
-                public var x: Anything?
-            
-                /// Sets the title's horizontal alignment with respect to its x position. 
-                ///
-                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-                /// `xanchor` value automatically based on the value of `x`.
-                ///
-                /// # Used By
-                /// `Layout.Title0.xAnchor` |
-                /// `Layout.XAxis.RangeSelector.xAnchor` |
-                /// `Layout.Scene.Annotations.Items.Annotation.xAnchor` |
-                /// `Layout.Legend.xAnchor` |
-                /// `Layout.Annotations.Items.Annotation.xAnchor` |
-                /// `Layout.UpdateMenus.Items.UpdateMenu.xAnchor` |
-                /// `Layout.Sliders.Items.Slider.xAnchor` |
-                public enum XAnchor0: String, Encodable {
-                    case auto
-                    case left
-                    case center
-                    case right
-                }
-                /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. 
-                ///
-                /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
-                /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
-                /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
-                /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xanchor)
-                public var xAnchor: XAnchor0?
-            
-                /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xshift) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xshift) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xshift)
-                public var xShift: Double?
-            
-                /// Sets the annotation's y coordinate axis. 
-                ///
-                /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
-                /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-                /// normalized coordinates where 0 (1) corresponds to the bottom (top).
-                ///
-                /// # Used By
-                /// `Layout.Annotations.Items.Annotation.yReference` |
-                public enum YReference: String, Encodable {
-                    case paper
-                    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
-                }
-                /// Sets the annotation's y coordinate axis. 
-                ///
-                /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
-                /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-                /// normalized coordinates where 0 (1) corresponds to the bottom (top).
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yref) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yref) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yref)
-                public var yReference: YReference?
-            
-                /// Sets the annotation's y position. 
-                ///
-                /// If the axis `type` is *log*, then you must take the log of your desired range. If the axis
-                /// `type` is *date*, it should be date strings, like date data, though Date objects and unix
-                /// milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it
-                /// should be numbers, using the scale where each category is assigned a serial number from zero in
-                /// the order it appears.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-y) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-y) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-y)
-                public var y: Anything?
-            
-                /// Sets the title's vertical alignment with respect to its y position. 
-                ///
-                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-                /// calculates the `yanchor` value automatically based on the value of `y`.
-                ///
-                /// # Used By
-                /// `Layout.Title0.yAnchor` |
-                /// `Layout.XAxis.RangeSelector.yAnchor` |
-                /// `Layout.Scene.Annotations.Items.Annotation.yAnchor` |
-                /// `Layout.Legend.yAnchor` |
-                /// `Layout.Annotations.Items.Annotation.yAnchor` |
-                /// `Layout.UpdateMenus.Items.UpdateMenu.yAnchor` |
-                /// `Layout.Sliders.Items.Slider.yAnchor` |
-                public enum YAnchor0: String, Encodable {
-                    case auto
-                    case top
-                    case middle
-                    case bottom
-                }
-                /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. 
-                ///
-                /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
-                /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
-                /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
-                /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yanchor)
-                public var yAnchor: YAnchor0?
-            
-                /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yshift) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yshift) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yshift)
-                public var yShift: Double?
-            
-                /// Makes this annotation respond to clicks on the plot. 
-                ///
-                /// If you click a data point that exactly matches the `x` and `y` values of this annotation, and it
-                /// is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again
-                /// to make it disappear, so if you click multiple points, you can show multiple annotations. In
-                /// *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this
-                /// annotation. If you need to show/hide this annotation in response to different `x` or `y` values,
-                /// you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To
-                /// label markers though, `standoff` is preferred over `xclick` and `yclick`.
-                ///
-                /// # Used By
-                /// `Layout.Annotations.Items.Annotation.clickToShow` |
-                public enum ClickToShow: String, Encodable {
-                    case `false` = "false"
-                    case onOff = "onoff"
-                    case onOut = "onout"
-                }
-                /// Makes this annotation respond to clicks on the plot. 
-                ///
-                /// If you click a data point that exactly matches the `x` and `y` values of this annotation, and it
-                /// is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again
-                /// to make it disappear, so if you click multiple points, you can show multiple annotations. In
-                /// *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this
-                /// annotation. If you need to show/hide this annotation in response to different `x` or `y` values,
-                /// you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To
-                /// label markers though, `standoff` is preferred over `xclick` and `yclick`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-clicktoshow) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-clicktoshow) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-clicktoshow)
-                public var clickToShow: ClickToShow?
-            
-                /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xclick) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xclick) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xclick)
-                public var xClick: Anything?
-            
-                /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yclick) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yclick) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yclick)
-                public var yClick: Anything?
-            
-                /// Sets text to appear when hovering over this annotation. 
-                ///
-                /// If omitted or blank, no hover label will appear.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-hovertext) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-hovertext) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-hovertext)
-                public var hoverText: String?
-            
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-hoverlabel) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-hoverlabel) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-hoverlabel)
-                public var hoverLabel: HoverLabel0?
-            
-                /// Determines whether the annotation text box captures mouse move and click events, or allows those events to pass through to data points in the plot that may be behind the annotation. 
-                ///
-                /// By default `captureevents` is *false* unless `hovertext` is provided. If you use the event
-                /// `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-captureevents) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-captureevents) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-captureevents)
-                public var captureEvents: Bool?
-            
-                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                ///
-                /// You can modify these items in the output figure by making your own item with `templateitemname`
-                /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                /// false` to hide it). Has no effect outside of a template.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-name) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-name) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-name)
-                public var name: String?
-            
-                /// Used to refer to a named item in this array in the template. 
-                ///
-                /// Named items from the template will be created even without a matching item in the input figure,
-                /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                /// template or no matching item, this item will be hidden unless you explicitly show it with
-                /// `visible: true`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-templateitemname) |
-                /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-templateitemname) |
-                /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-templateitemname)
-                public var templateItemName: String?
-            
-                /// Plotly compatible property encoding
-                enum CodingKeys: String, CodingKey {
-                    case visible
-                    case text
-                    case textAngle = "textangle"
-                    case font
-                    case width
-                    case height
-                    case opacity
-                    case align
-                    case verticalAlign = "valign"
-                    case backgroundColor = "bgcolor"
-                    case borderColor = "bordercolor"
-                    case borderPadding = "borderpad"
-                    case borderWidth = "borderwidth"
-                    case showArrow = "showarrow"
-                    case arrowColor = "arrowcolor"
-                    case arrowHead = "arrowhead"
-                    case startArrowHead = "startarrowhead"
-                    case arrowSide = "arrowside"
-                    case arrowSize = "arrowsize"
-                    case startArrowSize = "startarrowsize"
-                    case arrowWidth = "arrowwidth"
-                    case standoff
-                    case startStandoff = "startstandoff"
-                    case ax
-                    case ay
-                    case axReference = "axref"
-                    case ayReference = "ayref"
-                    case xReference = "xref"
-                    case x
-                    case xAnchor = "xanchor"
-                    case xShift = "xshift"
-                    case yReference = "yref"
-                    case y
-                    case yAnchor = "yanchor"
-                    case yShift = "yshift"
-                    case clickToShow = "clicktoshow"
-                    case xClick = "xclick"
-                    case yClick = "yclick"
-                    case hoverText = "hovertext"
-                    case hoverLabel = "hoverlabel"
-                    case captureEvents = "captureevents"
-                    case name
-                    case templateItemName = "templateitemname"
-                }
-                
-                public init(visible: Bool? = nil, text: String? = nil, textAngle: Angle? = nil, font: Font0? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: Align1? = nil, verticalAlign: VerticalAlign? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, ax: Anything? = nil, ay: Anything? = nil, axReference: AxReference? = nil, ayReference: AyReference? = nil, xReference: XReference? = nil, x: Anything? = nil, xAnchor: XAnchor0? = nil, xShift: Double? = nil, yReference: YReference? = nil, y: Anything? = nil, yAnchor: YAnchor0? = nil, yShift: Double? = nil, clickToShow: ClickToShow? = nil, xClick: Anything? = nil, yClick: Anything? = nil, hoverText: String? = nil, hoverLabel: HoverLabel0? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
-                    self.visible = visible
-                    self.text = text
-                    self.textAngle = textAngle
-                    self.font = font
-                    self.width = width
-                    self.height = height
-                    self.opacity = opacity
-                    self.align = align
-                    self.verticalAlign = verticalAlign
-                    self.backgroundColor = backgroundColor
-                    self.borderColor = borderColor
-                    self.borderPadding = borderPadding
-                    self.borderWidth = borderWidth
-                    self.showArrow = showArrow
-                    self.arrowColor = arrowColor
-                    self.arrowHead = arrowHead
-                    self.startArrowHead = startArrowHead
-                    self.arrowSide = arrowSide
-                    self.arrowSize = arrowSize
-                    self.startArrowSize = startArrowSize
-                    self.arrowWidth = arrowWidth
-                    self.standoff = standoff
-                    self.startStandoff = startStandoff
-                    self.ax = ax
-                    self.ay = ay
-                    self.axReference = axReference
-                    self.ayReference = ayReference
-                    self.xReference = xReference
-                    self.x = x
-                    self.xAnchor = xAnchor
-                    self.xShift = xShift
-                    self.yReference = yReference
-                    self.y = y
-                    self.yAnchor = yAnchor
-                    self.yShift = yShift
-                    self.clickToShow = clickToShow
-                    self.xClick = xClick
-                    self.yClick = yClick
-                    self.hoverText = hoverText
-                    self.hoverLabel = hoverLabel
-                    self.captureEvents = captureEvents
-                    self.name = name
-                    self.templateItemName = templateItemName
-                }
-            }
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation) |
-            /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation) |
-            /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation)
-            public var annotation: Annotation?
-        
-            public init(annotation: Annotation? = nil) {
-                self.annotation = annotation
-            }
-        }
+    public struct Annotation: Encodable {
+        /// Determines whether or not this annotation is visible.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items) |
-        /// [Python](https://plot.ly/python/reference/#layout-annotations-items) |
-        /// [R](https://plot.ly/r/reference/#layout-annotations-items)
-        public var items: Items?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-visible) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-visible) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-visible)
+        public var visible: Bool?
     
-        public init(items: Items? = nil) {
-            self.items = items
-        }
-    }
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations) |
-    /// [Python](https://plot.ly/python/reference/#layout-annotations) |
-    /// [R](https://plot.ly/r/reference/#layout-annotations)
-    public var annotations: Annotations?
-
-    ///
-    /// # Used By
-    /// `Layout.shapes` |
-    public struct Shapes: Encodable {
+        /// Sets the text associated with this annotation. 
         ///
-        /// # Used By
-        /// `Layout.Shapes.items` |
-        public struct Items: Encodable {
-            ///
-            /// # Used By
-            /// `Layout.Shapes.Items.shape` |
-            public struct Shape: Encodable {
-                /// Determines whether or not this shape is visible.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-visible) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-visible) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-visible)
-                public var visible: Bool?
-            
-                /// Specifies the shape type to be drawn. 
-                ///
-                /// If *line*, a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing
-                /// mode. If *circle*, a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius
-                /// (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If
-                /// *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`),
-                /// (`x0`,`y0`) with respect to the axes' sizing mode. If *path*, draw a custom SVG path using
-                /// `path`. with respect to the axes' sizing mode.
-                ///
-                /// # Used By
-                /// `Layout.Shapes.Items.Shape.type` |
-                public enum Rule: String, Encodable {
-                    case circle
-                    case rect
-                    case path
-                    case line
-                }
-                /// Specifies the shape type to be drawn. 
-                ///
-                /// If *line*, a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing
-                /// mode. If *circle*, a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius
-                /// (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If
-                /// *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`),
-                /// (`x0`,`y0`) with respect to the axes' sizing mode. If *path*, draw a custom SVG path using
-                /// `path`. with respect to the axes' sizing mode.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-type) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-type) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-type)
-                public var type: Rule?
-            
-                /// Specifies whether shapes are drawn below or above traces.
-                ///
-                /// # Used By
-                /// `Layout.Shapes.Items.Shape.layer` |
-                public enum Layer: String, Encodable {
-                    case below
-                    case above
-                }
-                /// Specifies whether shapes are drawn below or above traces.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-layer) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-layer) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-layer)
-                public var layer: Layer?
-            
-                /// Sets the shape's x coordinate axis. 
-                ///
-                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to
-                /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-                /// normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type`
-                /// is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then
-                /// you must convert the date to unix time in milliseconds.
-                ///
-                /// # Used By
-                /// `Layout.Shapes.Items.Shape.xReference` |
-                public enum XReference: String, Encodable {
-                    case paper
-                    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-                }
-                /// Sets the shape's x coordinate axis. 
-                ///
-                /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to
-                /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-                /// normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type`
-                /// is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then
-                /// you must convert the date to unix time in milliseconds.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-xref) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-xref) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-xref)
-                public var xReference: XReference?
-            
-                /// Sets the shapes's sizing mode along the x axis. 
-                ///
-                /// If set to *scaled*, `x0`, `x1` and x coordinates within `path` refer to data values on the x
-                /// axis or a fraction of the plot area's width (`xref` set to *paper*). If set to *pixel*,
-                /// `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x
-                /// coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed
-                /// width while maintaining a position relative to data or plot fraction.
-                ///
-                /// # Used By
-                /// `Layout.Shapes.Items.Shape.xSizeMode` |
-                public enum XSizeMode: String, Encodable {
-                    case scaled
-                    case pixel
-                }
-                /// Sets the shapes's sizing mode along the x axis. 
-                ///
-                /// If set to *scaled*, `x0`, `x1` and x coordinates within `path` refer to data values on the x
-                /// axis or a fraction of the plot area's width (`xref` set to *paper*). If set to *pixel*,
-                /// `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x
-                /// coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed
-                /// width while maintaining a position relative to data or plot fraction.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-xsizemode) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-xsizemode) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-xsizemode)
-                public var xSizeMode: XSizeMode?
-            
-                /// Only relevant in conjunction with `xsizemode` set to *pixel*. 
-                ///
-                /// Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are
-                /// relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when
-                /// `xsizemode` not set to *pixel*.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-xanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-xanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-xanchor)
-                public var xAnchor: Anything?
-            
-                /// Sets the shape's starting x position. 
-                ///
-                /// See `type` and `xsizemode` for more info.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-x0) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-x0) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-x0)
-                public var x0: Anything?
-            
-                /// Sets the shape's end x position. 
-                ///
-                /// See `type` and `xsizemode` for more info.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-x1) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-x1) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-x1)
-                public var x1: Anything?
-            
-                /// Sets the annotation's y coordinate axis. 
-                ///
-                /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
-                /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-                /// normalized coordinates where *0* (*1*) corresponds to the bottom (top).
-                ///
-                /// # Used By
-                /// `Layout.Shapes.Items.Shape.yReference` |
-                public enum YReference: String, Encodable {
-                    case paper
-                    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
-                }
-                /// Sets the annotation's y coordinate axis. 
-                ///
-                /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
-                /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-                /// normalized coordinates where *0* (*1*) corresponds to the bottom (top).
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-yref) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-yref) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-yref)
-                public var yReference: YReference?
-            
-                /// Sets the shapes's sizing mode along the y axis. 
-                ///
-                /// If set to *scaled*, `y0`, `y1` and y coordinates within `path` refer to data values on the y
-                /// axis or a fraction of the plot area's height (`yref` set to *paper*). If set to *pixel*,
-                /// `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y
-                /// coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed
-                /// height while maintaining a position relative to data or plot fraction.
-                ///
-                /// # Used By
-                /// `Layout.Shapes.Items.Shape.ySizeMode` |
-                public enum YSizeMode: String, Encodable {
-                    case scaled
-                    case pixel
-                }
-                /// Sets the shapes's sizing mode along the y axis. 
-                ///
-                /// If set to *scaled*, `y0`, `y1` and y coordinates within `path` refer to data values on the y
-                /// axis or a fraction of the plot area's height (`yref` set to *paper*). If set to *pixel*,
-                /// `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y
-                /// coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed
-                /// height while maintaining a position relative to data or plot fraction.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-ysizemode) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-ysizemode) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-ysizemode)
-                public var ySizeMode: YSizeMode?
-            
-                /// Only relevant in conjunction with `ysizemode` set to *pixel*. 
-                ///
-                /// Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are
-                /// relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when
-                /// `ysizemode` not set to *pixel*.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-yanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-yanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-yanchor)
-                public var yAnchor: Anything?
-            
-                /// Sets the shape's starting y position. 
-                ///
-                /// See `type` and `ysizemode` for more info.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-y0) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-y0) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-y0)
-                public var y0: Anything?
-            
-                /// Sets the shape's end y position. 
-                ///
-                /// See `type` and `ysizemode` for more info.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-y1) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-y1) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-y1)
-                public var y1: Anything?
-            
-                /// For `type` *path* - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode` being *scaled* and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of *pixel* size mode. 
-                ///
-                /// There are a few restrictions / quirks only absolute instructions, not relative. So the allowed
-                /// segments are: M, L, H, V, Q, C, T, S, and Z arcs (A) are not allowed because radius rx and ry
-                /// are relative. In the future we could consider supporting relative commands, but we would have to
-                /// decide on how to handle date and log axes. Note that even as is, Q and C Bezier paths that are
-                /// smooth on linear axes may not be smooth on log, and vice versa. no chained "polybezier" commands
-                /// - specify the segment type for each one. On category axes, values are numbers scaled to the
-                /// serial numbers of categories because using the categories themselves there would be no way to
-                /// describe fractional positions On data axes: because space and T are both normal components of
-                /// path strings, we can't use either to separate date from time parts. Therefore we'll use
-                /// underscore for this purpose: 2015-02-21_13:45:56.789
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-path) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-path) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-path)
-                public var path: String?
-            
-                /// Sets the opacity of the shape.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-opacity) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-opacity) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-opacity)
-                public var opacity: Double?
-            
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-line) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-line) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-line)
-                public var line: Line0?
-            
-                /// Sets the color filling the shape's interior.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-fillcolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-fillcolor) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-fillcolor)
-                public var fillColor: Color?
-            
-                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                ///
-                /// You can modify these items in the output figure by making your own item with `templateitemname`
-                /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                /// false` to hide it). Has no effect outside of a template.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-name) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-name) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-name)
-                public var name: String?
-            
-                /// Used to refer to a named item in this array in the template. 
-                ///
-                /// Named items from the template will be created even without a matching item in the input figure,
-                /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                /// template or no matching item, this item will be hidden unless you explicitly show it with
-                /// `visible: true`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-templateitemname) |
-                /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-templateitemname) |
-                /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-templateitemname)
-                public var templateItemName: String?
-            
-                /// Plotly compatible property encoding
-                enum CodingKeys: String, CodingKey {
-                    case visible
-                    case type
-                    case layer
-                    case xReference = "xref"
-                    case xSizeMode = "xsizemode"
-                    case xAnchor = "xanchor"
-                    case x0
-                    case x1
-                    case yReference = "yref"
-                    case ySizeMode = "ysizemode"
-                    case yAnchor = "yanchor"
-                    case y0
-                    case y1
-                    case path
-                    case opacity
-                    case line
-                    case fillColor = "fillcolor"
-                    case name
-                    case templateItemName = "templateitemname"
-                }
-                
-                public init(visible: Bool? = nil, type: Rule? = nil, layer: Layer? = nil, xReference: XReference? = nil, xSizeMode: XSizeMode? = nil, xAnchor: Anything? = nil, x0: Anything? = nil, x1: Anything? = nil, yReference: YReference? = nil, ySizeMode: YSizeMode? = nil, yAnchor: Anything? = nil, y0: Anything? = nil, y1: Anything? = nil, path: String? = nil, opacity: Double? = nil, line: Line0? = nil, fillColor: Color? = nil, name: String? = nil, templateItemName: String? = nil) {
-                    self.visible = visible
-                    self.type = type
-                    self.layer = layer
-                    self.xReference = xReference
-                    self.xSizeMode = xSizeMode
-                    self.xAnchor = xAnchor
-                    self.x0 = x0
-                    self.x1 = x1
-                    self.yReference = yReference
-                    self.ySizeMode = ySizeMode
-                    self.yAnchor = yAnchor
-                    self.y0 = y0
-                    self.y1 = y1
-                    self.path = path
-                    self.opacity = opacity
-                    self.line = line
-                    self.fillColor = fillColor
-                    self.name = name
-                    self.templateItemName = templateItemName
-                }
-            }
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape) |
-            /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape) |
-            /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape)
-            public var shape: Shape?
-        
-            public init(shape: Shape? = nil) {
-                self.shape = shape
-            }
-        }
+        /// Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics
+        /// (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items) |
-        /// [Python](https://plot.ly/python/reference/#layout-shapes-items) |
-        /// [R](https://plot.ly/r/reference/#layout-shapes-items)
-        public var items: Items?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-text) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-text) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-text)
+        public var text: String?
     
-        public init(items: Items? = nil) {
-            self.items = items
-        }
-    }
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes) |
-    /// [Python](https://plot.ly/python/reference/#layout-shapes) |
-    /// [R](https://plot.ly/r/reference/#layout-shapes)
-    public var shapes: Shapes?
-
-    ///
-    /// # Used By
-    /// `Layout.images` |
-    public struct Images: Encodable {
-        ///
-        /// # Used By
-        /// `Layout.Images.items` |
-        public struct Items: Encodable {
-            ///
-            /// # Used By
-            /// `Layout.Images.Items.image` |
-            public struct Image: Encodable {
-                /// Determines whether or not this image is visible.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-visible) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-visible) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-visible)
-                public var visible: Bool?
-            
-                /// Specifies the URL of the image to be used. 
-                ///
-                /// The URL must be accessible from the domain where the plot code is run, and can be either
-                /// relative or absolute.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-source) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-source) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-source)
-                public var source: String?
-            
-                /// Specifies whether images are drawn below or above traces. 
-                ///
-                /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
-                ///
-                /// # Used By
-                /// `Layout.Images.Items.Image.layer` |
-                public enum Layer: String, Encodable {
-                    case below
-                    case above
-                }
-                /// Specifies whether images are drawn below or above traces. 
-                ///
-                /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-layer) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-layer) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-layer)
-                public var layer: Layer?
-            
-                /// Sets the image container size horizontally. 
-                ///
-                /// The image will be sized based on the `position` value. When `xref` is set to `paper`, units are
-                /// sized relative to the plot width.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-sizex) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-sizex) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-sizex)
-                public var xSize: Double?
-            
-                /// Sets the image container size vertically. 
-                ///
-                /// The image will be sized based on the `position` value. When `yref` is set to `paper`, units are
-                /// sized relative to the plot height.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-sizey) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-sizey) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-sizey)
-                public var ySize: Double?
-            
-                /// Specifies which dimension of the image to constrain.
-                ///
-                /// # Used By
-                /// `Layout.Images.Items.Image.sizing` |
-                public enum Sizing: String, Encodable {
-                    case fill
-                    case contain
-                    case stretch
-                }
-                /// Specifies which dimension of the image to constrain.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-sizing) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-sizing) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-sizing)
-                public var sizing: Sizing?
-            
-                /// Sets the opacity of the image.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-opacity) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-opacity) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-opacity)
-                public var opacity: Double?
-            
-                /// Sets the image's x position. 
-                ///
-                /// When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more
-                /// info
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-x) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-x) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-x)
-                public var x: Anything?
-            
-                /// Sets the image's y position. 
-                ///
-                /// When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more
-                /// info
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-y) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-y) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-y)
-                public var y: Anything?
-            
-                /// Sets the anchor for the x position
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-xanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-xanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-xanchor)
-                public var xAnchor: XAnchor1?
-            
-                /// Sets the anchor for the y position.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-yanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-yanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-yanchor)
-                public var yAnchor: YAnchor1?
-            
-                /// Sets the images's x coordinate axis. 
-                ///
-                /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set
-                /// to *paper*, the `x` position refers to the distance from the left of plot in normalized
-                /// coordinates where *0* (*1*) corresponds to the left (right).
-                ///
-                /// # Used By
-                /// `Layout.Images.Items.Image.xReference` |
-                public enum XReference: String, Encodable {
-                    case paper
-                    case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-                }
-                /// Sets the images's x coordinate axis. 
-                ///
-                /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set
-                /// to *paper*, the `x` position refers to the distance from the left of plot in normalized
-                /// coordinates where *0* (*1*) corresponds to the left (right).
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-xref) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-xref) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-xref)
-                public var xReference: XReference?
-            
-                /// Sets the images's y coordinate axis. 
-                ///
-                /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set
-                /// to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized
-                /// coordinates where *0* (*1*) corresponds to the bottom (top).
-                ///
-                /// # Used By
-                /// `Layout.Images.Items.Image.yReference` |
-                public enum YReference: String, Encodable {
-                    case paper
-                    case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
-                }
-                /// Sets the images's y coordinate axis. 
-                ///
-                /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set
-                /// to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized
-                /// coordinates where *0* (*1*) corresponds to the bottom (top).
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-yref) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-yref) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-yref)
-                public var yReference: YReference?
-            
-                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                ///
-                /// You can modify these items in the output figure by making your own item with `templateitemname`
-                /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                /// false` to hide it). Has no effect outside of a template.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-name) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-name) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-name)
-                public var name: String?
-            
-                /// Used to refer to a named item in this array in the template. 
-                ///
-                /// Named items from the template will be created even without a matching item in the input figure,
-                /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                /// template or no matching item, this item will be hidden unless you explicitly show it with
-                /// `visible: true`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-templateitemname) |
-                /// [Python](https://plot.ly/python/reference/#layout-images-items-image-templateitemname) |
-                /// [R](https://plot.ly/r/reference/#layout-images-items-image-templateitemname)
-                public var templateItemName: String?
-            
-                /// Plotly compatible property encoding
-                enum CodingKeys: String, CodingKey {
-                    case visible
-                    case source
-                    case layer
-                    case xSize = "sizex"
-                    case ySize = "sizey"
-                    case sizing
-                    case opacity
-                    case x
-                    case y
-                    case xAnchor = "xanchor"
-                    case yAnchor = "yanchor"
-                    case xReference = "xref"
-                    case yReference = "yref"
-                    case name
-                    case templateItemName = "templateitemname"
-                }
-                
-                public init(visible: Bool? = nil, source: String? = nil, layer: Layer? = nil, xSize: Double? = nil, ySize: Double? = nil, sizing: Sizing? = nil, opacity: Double? = nil, x: Anything? = nil, y: Anything? = nil, xAnchor: XAnchor1? = nil, yAnchor: YAnchor1? = nil, xReference: XReference? = nil, yReference: YReference? = nil, name: String? = nil, templateItemName: String? = nil) {
-                    self.visible = visible
-                    self.source = source
-                    self.layer = layer
-                    self.xSize = xSize
-                    self.ySize = ySize
-                    self.sizing = sizing
-                    self.opacity = opacity
-                    self.x = x
-                    self.y = y
-                    self.xAnchor = xAnchor
-                    self.yAnchor = yAnchor
-                    self.xReference = xReference
-                    self.yReference = yReference
-                    self.name = name
-                    self.templateItemName = templateItemName
-                }
-            }
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image) |
-            /// [Python](https://plot.ly/python/reference/#layout-images-items-image) |
-            /// [R](https://plot.ly/r/reference/#layout-images-items-image)
-            public var image: Image?
-        
-            public init(image: Image? = nil) {
-                self.image = image
-            }
-        }
+        /// Sets the angle at which the `text` is drawn with respect to the horizontal.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items) |
-        /// [Python](https://plot.ly/python/reference/#layout-images-items) |
-        /// [R](https://plot.ly/r/reference/#layout-images-items)
-        public var items: Items?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-textangle) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-textangle) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-textangle)
+        public var textAngle: Angle?
     
-        public init(items: Items? = nil) {
-            self.items = items
-        }
-    }
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-images) |
-    /// [Python](https://plot.ly/python/reference/#layout-images) |
-    /// [R](https://plot.ly/r/reference/#layout-images)
-    public var images: Images?
-
-    ///
-    /// # Used By
-    /// `Layout.updateMenus` |
-    public struct UpdateMenus: Encodable {
+        /// Sets the annotation text font.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-font) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-font) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-font)
+        public var font: Font?
+    
+        /// Sets an explicit width for the text box. 
+        ///
+        /// null (default) lets the text set the box width. Wider text will be clipped. There is no
+        /// automatic wrapping; use <br> to start a new line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-width) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-width) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-width)
+        public var width: Double?
+    
+        /// Sets an explicit height for the text box. 
+        ///
+        /// null (default) lets the text set the box height. Taller text will be clipped.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-height) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-height) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-height)
+        public var height: Double?
+    
+        /// Sets the opacity of the annotation (text + arrow).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-opacity) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-opacity) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-opacity)
+        public var opacity: Double?
+    
+        /// Sets the horizontal alignment of the `text` within the box. 
+        ///
+        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
+        /// HTML tags) or if an explicit width is set to override the text width.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-align) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-align) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-align)
+        public var align: HorizontalAlign?
+    
+        /// Sets the vertical alignment of the `text` within the box. 
+        ///
+        /// Has an effect only if an explicit height is set to override the text height.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-valign) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-valign) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-valign)
+        public var verticalAlign: VerticalAlign?
+    
+        /// Sets the background color of the annotation.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-bgcolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-bgcolor) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-bgcolor)
+        public var backgroundColor: Color?
+    
+        /// Sets the color of the border enclosing the annotation `text`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-bordercolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-bordercolor) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-bordercolor)
+        public var borderColor: Color?
+    
+        /// Sets the padding (in px) between the `text` and the enclosing border.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-borderpad) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-borderpad) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-borderpad)
+        public var borderPadding: Double?
+    
+        /// Sets the width (in px) of the border enclosing the annotation `text`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-borderwidth) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-borderwidth) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-borderwidth)
+        public var borderWidth: Double?
+    
+        /// Determines whether or not the annotation is drawn with an arrow. 
+        ///
+        /// If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and
+        /// `y` provided.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-showarrow) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-showarrow) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-showarrow)
+        public var showArrow: Bool?
+    
+        /// Sets the color of the annotation arrow.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowcolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowcolor) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowcolor)
+        public var arrowColor: Color?
+    
+        /// Sets the end annotation arrow head style.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowhead) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowhead) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowhead)
+        public var arrowHead: Int?
+    
+        /// Sets the start annotation arrow head style.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-startarrowhead) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-startarrowhead) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-startarrowhead)
+        public var startArrowHead: Int?
+    
+        /// Sets the annotation arrow head position.
         ///
         /// # Used By
-        /// `Layout.UpdateMenus.items` |
-        public struct Items: Encodable {
-            ///
-            /// # Used By
-            /// `Layout.UpdateMenus.Items.updateMenu` |
-            public struct UpdateMenu: Encodable {
-                /// Determines whether or not the update menu is visible.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-visible) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-visible) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-visible)
-                public var visible: Bool?
-            
-                /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally or vertically
-                ///
-                /// # Used By
-                /// `Layout.UpdateMenus.Items.UpdateMenu.type` |
-                public enum Rule: String, Encodable {
-                    case dropDown = "dropdown"
-                    case buttons
-                }
-                /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally or vertically
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-type) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-type) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-type)
-                public var type: Rule?
-            
-                /// Determines the direction in which the buttons are laid out, whether in a dropdown menu or a row/column of buttons. 
-                ///
-                /// For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order
-                /// respectively.
-                ///
-                /// # Used By
-                /// `Layout.UpdateMenus.Items.UpdateMenu.direction` |
-                public enum Direction: String, Encodable {
-                    case left
-                    case right
-                    case up
-                    case down
-                }
-                /// Determines the direction in which the buttons are laid out, whether in a dropdown menu or a row/column of buttons. 
-                ///
-                /// For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order
-                /// respectively.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-direction) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-direction) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-direction)
-                public var direction: Direction?
-            
-                /// Determines which button (by index starting from 0) is considered active.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-active) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-active) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-active)
-                public var active: Int?
-            
-                /// Highlights active dropdown item or active button if true.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-showactive) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-showactive) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-showactive)
-                public var showActive: Bool?
-            
-                ///
-                /// # Used By
-                /// `Layout.UpdateMenus.Items.UpdateMenu.buttons` |
-                public struct Buttons: Encodable {
-                    ///
-                    /// # Used By
-                    /// `Layout.UpdateMenus.Items.UpdateMenu.Buttons.items` |
-                    public struct Items: Encodable {
-                        ///
-                        /// # Used By
-                        /// `Layout.UpdateMenus.Items.UpdateMenu.Buttons.Items.button` |
-                        public struct Button: Encodable {
-                            /// Determines whether or not this button is visible.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-visible) |
-                            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-visible) |
-                            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-visible)
-                            public var visible: Bool?
-                        
-                            /// Sets the Plotly method to be called on click. 
-                            ///
-                            /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
-                            /// calls and will not bind automatically to state updates. This may be used to create a component
-                            /// interface and attach to updatemenu events manually via JavaScript.
-                            ///
-                            /// # Used By
-                            /// `Layout.UpdateMenus.Items.UpdateMenu.Buttons.Items.Button.method` |
-                            public enum Method: String, Encodable {
-                                case restyle
-                                case relayout
-                                case animate
-                                case update
-                                case skip
-                            }
-                            /// Sets the Plotly method to be called on click. 
-                            ///
-                            /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
-                            /// calls and will not bind automatically to state updates. This may be used to create a component
-                            /// interface and attach to updatemenu events manually via JavaScript.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-method) |
-                            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-method) |
-                            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-method)
-                            public var method: Method?
-                        
-                            /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args) |
-                            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args) |
-                            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args)
-                            public var args: InfoArray?
-                        
-                            /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. 
-                            ///
-                            /// Use this to create toggle buttons.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args2) |
-                            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args2) |
-                            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args2)
-                            public var args2: InfoArray?
-                        
-                            /// Sets the text label to appear on the button.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-label) |
-                            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-label) |
-                            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-label)
-                            public var label: String?
-                        
-                            /// When true, the API method is executed. 
-                            ///
-                            /// When false, all other behaviors are the same and command execution is skipped. This may be
-                            /// useful when hooking into, for example, the `plotly_buttonclicked` method and executing the API
-                            /// command manually without losing the benefit of the updatemenu automatically binding to the state
-                            /// of the plot through the specification of `method` and `args`.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-execute) |
-                            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-execute) |
-                            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-execute)
-                            public var execute: Bool?
-                        
-                            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                            ///
-                            /// You can modify these items in the output figure by making your own item with `templateitemname`
-                            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                            /// false` to hide it). Has no effect outside of a template.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-name) |
-                            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-name) |
-                            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-name)
-                            public var name: String?
-                        
-                            /// Used to refer to a named item in this array in the template. 
-                            ///
-                            /// Named items from the template will be created even without a matching item in the input figure,
-                            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                            /// template or no matching item, this item will be hidden unless you explicitly show it with
-                            /// `visible: true`.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-templateitemname) |
-                            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-templateitemname) |
-                            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-templateitemname)
-                            public var templateItemName: String?
-                        
-                            /// Plotly compatible property encoding
-                            enum CodingKeys: String, CodingKey {
-                                case visible
-                                case method
-                                case args
-                                case args2
-                                case label
-                                case execute
-                                case name
-                                case templateItemName = "templateitemname"
-                            }
-                            
-                            public init(visible: Bool? = nil, method: Method? = nil, args: InfoArray? = nil, args2: InfoArray? = nil, label: String? = nil, execute: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
-                                self.visible = visible
-                                self.method = method
-                                self.args = args
-                                self.args2 = args2
-                                self.label = label
-                                self.execute = execute
-                                self.name = name
-                                self.templateItemName = templateItemName
-                            }
-                        }
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button) |
-                        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button) |
-                        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button)
-                        public var button: Button?
-                    
-                        public init(button: Button? = nil) {
-                            self.button = button
-                        }
-                    }
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items) |
-                    /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items) |
-                    /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items)
-                    public var items: Items?
-                
-                    public init(items: Items? = nil) {
-                        self.items = items
-                    }
-                }
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons)
-                public var buttons: Buttons?
-            
-                /// Sets the x position (in normalized coordinates) of the update menu.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-x) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-x) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-x)
-                public var x: Double?
-            
-                /// Sets the title's horizontal alignment with respect to its x position. 
-                ///
-                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-                /// `xanchor` value automatically based on the value of `x`.
-                ///
-                /// # Used By
-                /// `Layout.Title0.xAnchor` |
-                /// `Layout.XAxis.RangeSelector.xAnchor` |
-                /// `Layout.Scene.Annotations.Items.Annotation.xAnchor` |
-                /// `Layout.Legend.xAnchor` |
-                /// `Layout.Annotations.Items.Annotation.xAnchor` |
-                /// `Layout.UpdateMenus.Items.UpdateMenu.xAnchor` |
-                /// `Layout.Sliders.Items.Slider.xAnchor` |
-                public enum XAnchor0: String, Encodable {
-                    case auto
-                    case left
-                    case center
-                    case right
-                }
-                /// Sets the update menu's horizontal position anchor. 
-                ///
-                /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-xanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-xanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-xanchor)
-                public var xAnchor: XAnchor0?
-            
-                /// Sets the y position (in normalized coordinates) of the update menu.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-y) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-y) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-y)
-                public var y: Double?
-            
-                /// Sets the title's vertical alignment with respect to its y position. 
-                ///
-                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-                /// calculates the `yanchor` value automatically based on the value of `y`.
-                ///
-                /// # Used By
-                /// `Layout.Title0.yAnchor` |
-                /// `Layout.XAxis.RangeSelector.yAnchor` |
-                /// `Layout.Scene.Annotations.Items.Annotation.yAnchor` |
-                /// `Layout.Legend.yAnchor` |
-                /// `Layout.Annotations.Items.Annotation.yAnchor` |
-                /// `Layout.UpdateMenus.Items.UpdateMenu.yAnchor` |
-                /// `Layout.Sliders.Items.Slider.yAnchor` |
-                public enum YAnchor0: String, Encodable {
-                    case auto
-                    case top
-                    case middle
-                    case bottom
-                }
-                /// Sets the update menu's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-yanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-yanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-yanchor)
-                public var yAnchor: YAnchor0?
-            
-                /// Sets the padding around the buttons or dropdown menu.
-                ///
-                /// # Used By
-                /// `Layout.UpdateMenus.Items.UpdateMenu.padding` |
-                public struct Padding: Encodable {
-                    /// The amount of padding (in px) along the top of the component.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-pad-t) |
-                    /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-pad-t) |
-                    /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-pad-t)
-                    public var t: Double?
-                
-                    /// The amount of padding (in px) on the right side of the component.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-pad-r) |
-                    /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-pad-r) |
-                    /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-pad-r)
-                    public var r: Double?
-                
-                    /// The amount of padding (in px) along the bottom of the component.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-pad-b) |
-                    /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-pad-b) |
-                    /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-pad-b)
-                    public var b: Double?
-                
-                    /// The amount of padding (in px) on the left side of the component.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-pad-l) |
-                    /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-pad-l) |
-                    /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-pad-l)
-                    public var l: Double?
-                
-                    public init(t: Double? = nil, r: Double? = nil, b: Double? = nil, l: Double? = nil) {
-                        self.t = t
-                        self.r = r
-                        self.b = b
-                        self.l = l
-                    }
-                }
-                /// Sets the padding around the buttons or dropdown menu.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-pad) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-pad) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-pad)
-                public var padding: Padding?
-            
-                /// Sets the font of the update menu button text.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-font) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-font) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-font)
-                public var font: Font0?
-            
-                /// Sets the background color of the update menu buttons.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-bgcolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-bgcolor) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-bgcolor)
-                public var backgroundColor: Color?
-            
-                /// Sets the color of the border enclosing the update menu.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-bordercolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-bordercolor) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-bordercolor)
-                public var borderColor: Color?
-            
-                /// Sets the width (in px) of the border enclosing the update menu.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-borderwidth) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-borderwidth) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-borderwidth)
-                public var borderWidth: Double?
-            
-                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                ///
-                /// You can modify these items in the output figure by making your own item with `templateitemname`
-                /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                /// false` to hide it). Has no effect outside of a template.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-name) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-name) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-name)
-                public var name: String?
-            
-                /// Used to refer to a named item in this array in the template. 
-                ///
-                /// Named items from the template will be created even without a matching item in the input figure,
-                /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                /// template or no matching item, this item will be hidden unless you explicitly show it with
-                /// `visible: true`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-templateitemname) |
-                /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-templateitemname) |
-                /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-templateitemname)
-                public var templateItemName: String?
-            
-                /// Plotly compatible property encoding
-                enum CodingKeys: String, CodingKey {
-                    case visible
-                    case type
-                    case direction
-                    case active
-                    case showActive = "showactive"
-                    case buttons
-                    case x
-                    case xAnchor = "xanchor"
-                    case y
-                    case yAnchor = "yanchor"
-                    case padding = "pad"
-                    case font
-                    case backgroundColor = "bgcolor"
-                    case borderColor = "bordercolor"
-                    case borderWidth = "borderwidth"
-                    case name
-                    case templateItemName = "templateitemname"
-                }
-                
-                public init(visible: Bool? = nil, type: Rule? = nil, direction: Direction? = nil, active: Int? = nil, showActive: Bool? = nil, buttons: Buttons? = nil, x: Double? = nil, xAnchor: XAnchor0? = nil, y: Double? = nil, yAnchor: YAnchor0? = nil, padding: Padding? = nil, font: Font0? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
-                    self.visible = visible
-                    self.type = type
-                    self.direction = direction
-                    self.active = active
-                    self.showActive = showActive
-                    self.buttons = buttons
-                    self.x = x
-                    self.xAnchor = xAnchor
-                    self.y = y
-                    self.yAnchor = yAnchor
-                    self.padding = padding
-                    self.font = font
-                    self.backgroundColor = backgroundColor
-                    self.borderColor = borderColor
-                    self.borderWidth = borderWidth
-                    self.name = name
-                    self.templateItemName = templateItemName
-                }
+        /// `Layout.Annotation.arrowSide` |
+        public struct ArrowSide: OptionSet, Encodable {
+            public let rawValue: Int
+        
+            public static let end = ArrowSide(rawValue: 1 << 0)
+            public static let start = ArrowSide(rawValue: 1 << 1)
+            public static let none = ArrowSide(rawValue: 1 << 2)
+        
+            public init(rawValue: Int) { self.rawValue = rawValue }
+        
+            public func encode(to encoder: Encoder) throws {
+                var options = [String]()
+                if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
+                if (self.rawValue & 1 << 1) != 0 { options += ["start"] }
+                if (self.rawValue & 1 << 2) != 0 { options += ["none"] }
+                var container = encoder.singleValueContainer()
+                try container.encode(options.joined(separator: "+"))
             }
+        }
+        /// Sets the annotation arrow head position.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowside) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowside) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowside)
+        public var arrowSide: ArrowSide?
+    
+        /// Sets the size of the end annotation arrow head, relative to `arrowwidth`. 
+        ///
+        /// A value of 1 (default) gives a head about 3x as wide as the line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowsize) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowsize) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowsize)
+        public var arrowSize: Double?
+    
+        /// Sets the size of the start annotation arrow head, relative to `arrowwidth`. 
+        ///
+        /// A value of 1 (default) gives a head about 3x as wide as the line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-startarrowsize) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-startarrowsize) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-startarrowsize)
+        public var startArrowSize: Double?
+    
+        /// Sets the width (in px) of annotation arrow line.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-arrowwidth) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-arrowwidth) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-arrowwidth)
+        public var arrowWidth: Double?
+    
+        /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. 
+        ///
+        /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
+        /// `yshift` which moves everything by this amount.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-standoff) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-standoff) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-standoff)
+        public var standoff: Double?
+    
+        /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing at, for example to point at the edge of a marker independent of zoom. 
+        ///
+        /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
+        /// `yshift` which moves everything by this amount.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-startstandoff) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-startstandoff) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-startstandoff)
+        public var startStandoff: Double?
+    
+        /// Sets the x component of the arrow tail about the arrow head. 
+        ///
+        /// If `axref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from
+        /// right to left (left to right). If `axref` is an axis, this is an absolute value on that axis,
+        /// like `x`, NOT a relative value.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-ax) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-ax) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-ax)
+        public var ax: Anything?
+    
+        /// Sets the y component of the arrow tail about the arrow head. 
+        ///
+        /// If `ayref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from
+        /// bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis,
+        /// like `y`, NOT a relative value.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-ay) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-ay) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-ay)
+        public var ay: Anything?
+    
+        /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. 
+        ///
+        /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
+        /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
+        /// annotations which should continue to indicate the correct trend when zoomed.
+        ///
+        /// # Used By
+        /// `Layout.Annotation.axReference` |
+        public enum AxReference: String, Encodable {
+            case pixel
+            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+        }
+        /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. 
+        ///
+        /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
+        /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
+        /// annotations which should continue to indicate the correct trend when zoomed.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-axref) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-axref) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-axref)
+        public var axReference: AxReference?
+    
+        /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. 
+        ///
+        /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
+        /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
+        /// annotations which should continue to indicate the correct trend when zoomed.
+        ///
+        /// # Used By
+        /// `Layout.Annotation.ayReference` |
+        public enum AyReference: String, Encodable {
+            case pixel
+            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+        }
+        /// Indicates in what terms the tail of the annotation (ax,ay)  is specified. 
+        ///
+        /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
+        /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
+        /// annotations which should continue to indicate the correct trend when zoomed.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-ayref) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-ayref) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-ayref)
+        public var ayReference: AyReference?
+    
+        /// Sets the annotation's x coordinate axis. 
+        ///
+        /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
+        /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
+        /// normalized coordinates where 0 (1) corresponds to the left (right) side.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xref) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xref) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xref)
+        public var xReference: XAxisReference?
+    
+        /// Sets the annotation's x position. 
+        ///
+        /// If the axis `type` is *log*, then you must take the log of your desired range. If the axis
+        /// `type` is *date*, it should be date strings, like date data, though Date objects and unix
+        /// milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it
+        /// should be numbers, using the scale where each category is assigned a serial number from zero in
+        /// the order it appears.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-x) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-x) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-x)
+        public var x: Anything?
+    
+        /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*, *center* or *right* of the annotation. 
+        ///
+        /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
+        /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
+        /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
+        /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xanchor)
+        public var xAnchor: XAutoAnchor?
+    
+        /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xshift) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xshift) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xshift)
+        public var xShift: Double?
+    
+        /// Sets the annotation's y coordinate axis. 
+        ///
+        /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+        /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
+        /// normalized coordinates where 0 (1) corresponds to the bottom (top).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yref) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yref) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yref)
+        public var yReference: YAxisReference?
+    
+        /// Sets the annotation's y position. 
+        ///
+        /// If the axis `type` is *log*, then you must take the log of your desired range. If the axis
+        /// `type` is *date*, it should be date strings, like date data, though Date objects and unix
+        /// milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it
+        /// should be numbers, using the scale where each category is assigned a serial number from zero in
+        /// the order it appears.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-y) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-y) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-y)
+        public var y: Anything?
+    
+        /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the annotation. 
+        ///
+        /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
+        /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
+        /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
+        /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yanchor)
+        public var yAnchor: YAutoAnchor?
+    
+        /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yshift) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yshift) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yshift)
+        public var yShift: Double?
+    
+        /// Makes this annotation respond to clicks on the plot. 
+        ///
+        /// If you click a data point that exactly matches the `x` and `y` values of this annotation, and it
+        /// is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again
+        /// to make it disappear, so if you click multiple points, you can show multiple annotations. In
+        /// *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this
+        /// annotation. If you need to show/hide this annotation in response to different `x` or `y` values,
+        /// you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To
+        /// label markers though, `standoff` is preferred over `xclick` and `yclick`.
+        ///
+        /// # Used By
+        /// `Layout.Annotation.clickToShow` |
+        public enum ClickToShow: String, Encodable {
+            case `false` = "false"
+            case onOff = "onoff"
+            case onOut = "onout"
+        }
+        /// Makes this annotation respond to clicks on the plot. 
+        ///
+        /// If you click a data point that exactly matches the `x` and `y` values of this annotation, and it
+        /// is hidden (visible: false), it will appear. In *onoff* mode, you must click the same point again
+        /// to make it disappear, so if you click multiple points, you can show multiple annotations. In
+        /// *onout* mode, a click anywhere else in the plot (on another data point or not) will hide this
+        /// annotation. If you need to show/hide this annotation in response to different `x` or `y` values,
+        /// you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To
+        /// label markers though, `standoff` is preferred over `xclick` and `yclick`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-clicktoshow) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-clicktoshow) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-clicktoshow)
+        public var clickToShow: ClickToShow?
+    
+        /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the annotation's `x` value.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xclick) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xclick) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xclick)
+        public var xClick: Anything?
+    
+        /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the annotation's `y` value.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yclick) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yclick) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yclick)
+        public var yClick: Anything?
+    
+        /// Sets text to appear when hovering over this annotation. 
+        ///
+        /// If omitted or blank, no hover label will appear.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-hovertext) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-hovertext) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-hovertext)
+        public var hoverText: String?
+    
+        /// # Used By
+        /// `Layout.Annotation.hoverLabel` |
+        public struct HoverLabel: Encodable {
+            /// Sets the background color of the hover label. 
+            ///
+            /// By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu) |
-            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu) |
-            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu)
-            public var updateMenu: UpdateMenu?
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-hoverlabel-bgcolor) |
+            /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-hoverlabel-bgcolor) |
+            /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-hoverlabel-bgcolor)
+            public var backgroundColor: Color?
+        
+            /// Sets the border color of the hover label. 
+            ///
+            /// By default uses either dark grey or white, for maximum contrast with `hoverlabel.bgcolor`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-hoverlabel-bordercolor) |
+            /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-hoverlabel-bordercolor) |
+            /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-hoverlabel-bordercolor)
+            public var borderColor: Color?
+        
+            /// Sets the hover label text font. 
+            ///
+            /// By default uses the global hover font and size, with color from `hoverlabel.bordercolor`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-hoverlabel-font) |
+            /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-hoverlabel-font) |
+            /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-hoverlabel-font)
+            public var font: Font?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
-                case updateMenu = "updatemenu"
+                case backgroundColor = "bgcolor"
+                case borderColor = "bordercolor"
+                case font
             }
             
-            public init(updateMenu: UpdateMenu? = nil) {
-                self.updateMenu = updateMenu
+            public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil) {
+                self.backgroundColor = backgroundColor
+                self.borderColor = borderColor
+                self.font = font
             }
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items) |
-        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items) |
-        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items)
-        public var items: Items?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-hoverlabel) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-hoverlabel) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-hoverlabel)
+        public var hoverLabel: HoverLabel?
     
-        public init(items: Items? = nil) {
-            self.items = items
+        /// Determines whether the annotation text box captures mouse move and click events, or allows those events to pass through to data points in the plot that may be behind the annotation. 
+        ///
+        /// By default `captureevents` is *false* unless `hovertext` is provided. If you use the event
+        /// `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-captureevents) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-captureevents) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-captureevents)
+        public var captureEvents: Bool?
+    
+        /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+        ///
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-name) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-name) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-name)
+        public var name: String?
+    
+        /// Used to refer to a named item in this array in the template. 
+        ///
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-templateitemname) |
+        /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-templateitemname) |
+        /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-templateitemname)
+        public var templateItemName: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case text
+            case textAngle = "textangle"
+            case font
+            case width
+            case height
+            case opacity
+            case align
+            case verticalAlign = "valign"
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case borderPadding = "borderpad"
+            case borderWidth = "borderwidth"
+            case showArrow = "showarrow"
+            case arrowColor = "arrowcolor"
+            case arrowHead = "arrowhead"
+            case startArrowHead = "startarrowhead"
+            case arrowSide = "arrowside"
+            case arrowSize = "arrowsize"
+            case startArrowSize = "startarrowsize"
+            case arrowWidth = "arrowwidth"
+            case standoff
+            case startStandoff = "startstandoff"
+            case ax
+            case ay
+            case axReference = "axref"
+            case ayReference = "ayref"
+            case xReference = "xref"
+            case x
+            case xAnchor = "xanchor"
+            case xShift = "xshift"
+            case yReference = "yref"
+            case y
+            case yAnchor = "yanchor"
+            case yShift = "yshift"
+            case clickToShow = "clicktoshow"
+            case xClick = "xclick"
+            case yClick = "yclick"
+            case hoverText = "hovertext"
+            case hoverLabel = "hoverlabel"
+            case captureEvents = "captureevents"
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        public init(visible: Bool? = nil, text: String? = nil, textAngle: Angle? = nil, font: Font? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: HorizontalAlign? = nil, verticalAlign: VerticalAlign? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, ax: Anything? = nil, ay: Anything? = nil, axReference: AxReference? = nil, ayReference: AyReference? = nil, xReference: XAxisReference? = nil, x: Anything? = nil, xAnchor: XAutoAnchor? = nil, xShift: Double? = nil, yReference: YAxisReference? = nil, y: Anything? = nil, yAnchor: YAutoAnchor? = nil, yShift: Double? = nil, clickToShow: ClickToShow? = nil, xClick: Anything? = nil, yClick: Anything? = nil, hoverText: String? = nil, hoverLabel: HoverLabel? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
+            self.visible = visible
+            self.text = text
+            self.textAngle = textAngle
+            self.font = font
+            self.width = width
+            self.height = height
+            self.opacity = opacity
+            self.align = align
+            self.verticalAlign = verticalAlign
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
+            self.borderPadding = borderPadding
+            self.borderWidth = borderWidth
+            self.showArrow = showArrow
+            self.arrowColor = arrowColor
+            self.arrowHead = arrowHead
+            self.startArrowHead = startArrowHead
+            self.arrowSide = arrowSide
+            self.arrowSize = arrowSize
+            self.startArrowSize = startArrowSize
+            self.arrowWidth = arrowWidth
+            self.standoff = standoff
+            self.startStandoff = startStandoff
+            self.ax = ax
+            self.ay = ay
+            self.axReference = axReference
+            self.ayReference = ayReference
+            self.xReference = xReference
+            self.x = x
+            self.xAnchor = xAnchor
+            self.xShift = xShift
+            self.yReference = yReference
+            self.y = y
+            self.yAnchor = yAnchor
+            self.yShift = yShift
+            self.clickToShow = clickToShow
+            self.xClick = xClick
+            self.yClick = yClick
+            self.hoverText = hoverText
+            self.hoverLabel = hoverLabel
+            self.captureEvents = captureEvents
+            self.name = name
+            self.templateItemName = templateItemName
         }
     }
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus) |
-    /// [Python](https://plot.ly/python/reference/#layout-updatemenus) |
-    /// [R](https://plot.ly/r/reference/#layout-updatemenus)
-    public var updateMenus: UpdateMenus?
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation) |
+    /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation) |
+    /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation)
+    public var annotations: [Annotation]?
 
-    ///
     /// # Used By
-    /// `Layout.sliders` |
-    public struct Sliders: Encodable {
+    /// `Layout.shapes` |
+    public struct Shape: Encodable {
+        /// Determines whether or not this shape is visible.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-visible) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-visible) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-visible)
+        public var visible: Bool?
+    
+        /// Specifies the shape type to be drawn. 
+        ///
+        /// If *line*, a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing
+        /// mode. If *circle*, a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius
+        /// (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If
+        /// *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`),
+        /// (`x0`,`y0`) with respect to the axes' sizing mode. If *path*, draw a custom SVG path using
+        /// `path`. with respect to the axes' sizing mode.
         ///
         /// # Used By
-        /// `Layout.Sliders.items` |
-        public struct Items: Encodable {
-            ///
-            /// # Used By
-            /// `Layout.Sliders.Items.slider` |
-            public struct Slider: Encodable {
-                /// Determines whether or not the slider is visible.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-visible) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-visible) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-visible)
-                public var visible: Bool?
-            
-                /// Determines which button (by index starting from 0) is considered active.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-active) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-active) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-active)
-                public var active: Double?
-            
-                ///
-                /// # Used By
-                /// `Layout.Sliders.Items.Slider.steps` |
-                public struct Steps: Encodable {
-                    ///
-                    /// # Used By
-                    /// `Layout.Sliders.Items.Slider.Steps.items` |
-                    public struct Items: Encodable {
-                        ///
-                        /// # Used By
-                        /// `Layout.Sliders.Items.Slider.Steps.Items.step` |
-                        public struct Step: Encodable {
-                            /// Determines whether or not this step is included in the slider.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-visible) |
-                            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-visible) |
-                            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-visible)
-                            public var visible: Bool?
-                        
-                            /// Sets the Plotly method to be called when the slider value is changed. 
-                            ///
-                            /// If the `skip` method is used, the API slider will function as normal but will perform no API
-                            /// calls and will not bind automatically to state updates. This may be used to create a component
-                            /// interface and attach to slider events manually via JavaScript.
-                            ///
-                            /// # Used By
-                            /// `Layout.Sliders.Items.Slider.Steps.Items.Step.method` |
-                            public enum Method: String, Encodable {
-                                case restyle
-                                case relayout
-                                case animate
-                                case update
-                                case skip
-                            }
-                            /// Sets the Plotly method to be called when the slider value is changed. 
-                            ///
-                            /// If the `skip` method is used, the API slider will function as normal but will perform no API
-                            /// calls and will not bind automatically to state updates. This may be used to create a component
-                            /// interface and attach to slider events manually via JavaScript.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-method) |
-                            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-method) |
-                            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-method)
-                            public var method: Method?
-                        
-                            /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-args) |
-                            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-args) |
-                            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-args)
-                            public var args: InfoArray?
-                        
-                            /// Sets the text label to appear on the slider
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-label) |
-                            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-label) |
-                            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-label)
-                            public var label: String?
-                        
-                            /// Sets the value of the slider step, used to refer to the step programatically. 
-                            ///
-                            /// Defaults to the slider label if not provided.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-value) |
-                            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-value) |
-                            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-value)
-                            public var value: String?
-                        
-                            /// When true, the API method is executed. 
-                            ///
-                            /// When false, all other behaviors are the same and command execution is skipped. This may be
-                            /// useful when hooking into, for example, the `plotly_sliderchange` method and executing the API
-                            /// command manually without losing the benefit of the slider automatically binding to the state of
-                            /// the plot through the specification of `method` and `args`.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-execute) |
-                            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-execute) |
-                            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-execute)
-                            public var execute: Bool?
-                        
-                            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                            ///
-                            /// You can modify these items in the output figure by making your own item with `templateitemname`
-                            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                            /// false` to hide it). Has no effect outside of a template.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-name) |
-                            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-name) |
-                            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-name)
-                            public var name: String?
-                        
-                            /// Used to refer to a named item in this array in the template. 
-                            ///
-                            /// Named items from the template will be created even without a matching item in the input figure,
-                            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                            /// template or no matching item, this item will be hidden unless you explicitly show it with
-                            /// `visible: true`.
-                            ///
-                            /// # Plotly Reference
-                            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-templateitemname) |
-                            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-templateitemname) |
-                            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-templateitemname)
-                            public var templateItemName: String?
-                        
-                            /// Plotly compatible property encoding
-                            enum CodingKeys: String, CodingKey {
-                                case visible
-                                case method
-                                case args
-                                case label
-                                case value
-                                case execute
-                                case name
-                                case templateItemName = "templateitemname"
-                            }
-                            
-                            public init(visible: Bool? = nil, method: Method? = nil, args: InfoArray? = nil, label: String? = nil, value: String? = nil, execute: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
-                                self.visible = visible
-                                self.method = method
-                                self.args = args
-                                self.label = label
-                                self.value = value
-                                self.execute = execute
-                                self.name = name
-                                self.templateItemName = templateItemName
-                            }
-                        }
-                        ///
-                        /// # Plotly Reference
-                        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step) |
-                        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step) |
-                        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step)
-                        public var step: Step?
-                    
-                        public init(step: Step? = nil) {
-                            self.step = step
-                        }
-                    }
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items)
-                    public var items: Items?
-                
-                    public init(items: Items? = nil) {
-                        self.items = items
-                    }
-                }
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps)
-                public var steps: Steps?
-            
-                /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
-                ///
-                /// Use `len` to set the value.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-lenmode) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-lenmode) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-lenmode)
-                public var lengthMode: LengthMode0?
-            
-                /// Sets the length of the slider This measure excludes the padding of both ends. 
-                ///
-                /// That is, the slider's length is this length minus the padding on both ends.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-len) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-len) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-len)
-                public var length: Double?
-            
-                /// Sets the x position (in normalized coordinates) of the slider.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-x) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-x) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-x)
-                public var x: Double?
-            
-                /// Set the padding of the slider component along each side.
-                ///
-                /// # Used By
-                /// `Layout.Sliders.Items.Slider.padding` |
-                public struct Padding: Encodable {
-                    /// The amount of padding (in px) along the top of the component.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-pad-t) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-pad-t) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-pad-t)
-                    public var t: Double?
-                
-                    /// The amount of padding (in px) on the right side of the component.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-pad-r) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-pad-r) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-pad-r)
-                    public var r: Double?
-                
-                    /// The amount of padding (in px) along the bottom of the component.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-pad-b) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-pad-b) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-pad-b)
-                    public var b: Double?
-                
-                    /// The amount of padding (in px) on the left side of the component.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-pad-l) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-pad-l) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-pad-l)
-                    public var l: Double?
-                
-                    public init(t: Double? = nil, r: Double? = nil, b: Double? = nil, l: Double? = nil) {
-                        self.t = t
-                        self.r = r
-                        self.b = b
-                        self.l = l
-                    }
-                }
-                /// Set the padding of the slider component along each side.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-pad) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-pad) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-pad)
-                public var padding: Padding?
-            
-                /// Sets the title's horizontal alignment with respect to its x position. 
-                ///
-                /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-                /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-                /// `xanchor` value automatically based on the value of `x`.
-                ///
-                /// # Used By
-                /// `Layout.Title0.xAnchor` |
-                /// `Layout.XAxis.RangeSelector.xAnchor` |
-                /// `Layout.Scene.Annotations.Items.Annotation.xAnchor` |
-                /// `Layout.Legend.xAnchor` |
-                /// `Layout.Annotations.Items.Annotation.xAnchor` |
-                /// `Layout.UpdateMenus.Items.UpdateMenu.xAnchor` |
-                /// `Layout.Sliders.Items.Slider.xAnchor` |
-                public enum XAnchor0: String, Encodable {
-                    case auto
-                    case left
-                    case center
-                    case right
-                }
-                /// Sets the slider's horizontal position anchor. 
-                ///
-                /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-xanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-xanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-xanchor)
-                public var xAnchor: XAnchor0?
-            
-                /// Sets the y position (in normalized coordinates) of the slider.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-y) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-y) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-y)
-                public var y: Double?
-            
-                /// Sets the title's vertical alignment with respect to its y position. 
-                ///
-                /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-                /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-                /// calculates the `yanchor` value automatically based on the value of `y`.
-                ///
-                /// # Used By
-                /// `Layout.Title0.yAnchor` |
-                /// `Layout.XAxis.RangeSelector.yAnchor` |
-                /// `Layout.Scene.Annotations.Items.Annotation.yAnchor` |
-                /// `Layout.Legend.yAnchor` |
-                /// `Layout.Annotations.Items.Annotation.yAnchor` |
-                /// `Layout.UpdateMenus.Items.UpdateMenu.yAnchor` |
-                /// `Layout.Sliders.Items.Slider.yAnchor` |
-                public enum YAnchor0: String, Encodable {
-                    case auto
-                    case top
-                    case middle
-                    case bottom
-                }
-                /// Sets the slider's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-yanchor) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-yanchor) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-yanchor)
-                public var yAnchor: YAnchor0?
-            
-                ///
-                /// # Used By
-                /// `Layout.Sliders.Items.Slider.transition` |
-                public struct Transition: Encodable {
-                    /// Sets the duration of the slider transition
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-transition-duration) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-transition-duration) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-transition-duration)
-                    public var duration: Double?
-                
-                    /// Sets the easing function of the slider transition
-                    ///
-                    /// # Used By
-                    /// `Layout.Sliders.Items.Slider.Transition.easing` |
-                    public enum Easing: String, Encodable {
-                        case linear
-                        case quad
-                        case cubic
-                        case sin
-                        case exp
-                        case circle
-                        case elastic
-                        case back
-                        case bounce
-                        case linearIn = "linear-in"
-                        case quadIn = "quad-in"
-                        case cubicIn = "cubic-in"
-                        case sinIn = "sin-in"
-                        case expIn = "exp-in"
-                        case circleIn = "circle-in"
-                        case elasticIn = "elastic-in"
-                        case backIn = "back-in"
-                        case bounceIn = "bounce-in"
-                        case linearOut = "linear-out"
-                        case quadOut = "quad-out"
-                        case cubicOut = "cubic-out"
-                        case sinOut = "sin-out"
-                        case expOut = "exp-out"
-                        case circleOut = "circle-out"
-                        case elasticOut = "elastic-out"
-                        case backOut = "back-out"
-                        case bounceOut = "bounce-out"
-                        case linearInOut = "linear-in-out"
-                        case quadInOut = "quad-in-out"
-                        case cubicInOut = "cubic-in-out"
-                        case sinInOut = "sin-in-out"
-                        case expInOut = "exp-in-out"
-                        case circleInOut = "circle-in-out"
-                        case elasticInOut = "elastic-in-out"
-                        case backInOut = "back-in-out"
-                        case bounceInOut = "bounce-in-out"
-                    }
-                    /// Sets the easing function of the slider transition
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-transition-easing) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-transition-easing) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-transition-easing)
-                    public var easing: Easing?
-                
-                    public init(duration: Double? = nil, easing: Easing? = nil) {
-                        self.duration = duration
-                        self.easing = easing
-                    }
-                }
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-transition) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-transition) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-transition)
-                public var transition: Transition?
-            
-                ///
-                /// # Used By
-                /// `Layout.Sliders.Items.Slider.currentValue` |
-                public struct CurrentValue: Encodable {
-                    /// Shows the currently-selected value above the slider.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-visible) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-visible) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-visible)
-                    public var visible: Bool?
-                
-                    /// The alignment of the value readout relative to the length of the slider.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-xanchor) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-xanchor) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-xanchor)
-                    public var xAnchor: XAnchor1?
-                
-                    /// The amount of space, in pixels, between the current value label and the slider.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-offset) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-offset) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-offset)
-                    public var offset: Double?
-                
-                    /// When currentvalue.visible is true, this sets the prefix of the label.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-prefix) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-prefix) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-prefix)
-                    public var prefix: String?
-                
-                    /// When currentvalue.visible is true, this sets the suffix of the label.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-suffix) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-suffix) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-suffix)
-                    public var suffix: String?
-                
-                    /// Sets the font of the current value label text.
-                    ///
-                    /// # Plotly Reference
-                    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-font) |
-                    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-font) |
-                    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-font)
-                    public var font: Font0?
-                
-                    /// Plotly compatible property encoding
-                    enum CodingKeys: String, CodingKey {
-                        case visible
-                        case xAnchor = "xanchor"
-                        case offset
-                        case prefix
-                        case suffix
-                        case font
-                    }
-                    
-                    public init(visible: Bool? = nil, xAnchor: XAnchor1? = nil, offset: Double? = nil, prefix: String? = nil, suffix: String? = nil, font: Font0? = nil) {
-                        self.visible = visible
-                        self.xAnchor = xAnchor
-                        self.offset = offset
-                        self.prefix = prefix
-                        self.suffix = suffix
-                        self.font = font
-                    }
-                }
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue)
-                public var currentValue: CurrentValue?
-            
-                /// Sets the font of the slider step labels.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-font) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-font) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-font)
-                public var font: Font0?
-            
-                /// Sets the background color of the slider grip while dragging.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-activebgcolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-activebgcolor) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-activebgcolor)
-                public var activeBackgroundColor: Color?
-            
-                /// Sets the background color of the slider.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-bgcolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-bgcolor) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-bgcolor)
-                public var backgroundColor: Color?
-            
-                /// Sets the color of the border enclosing the slider.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-bordercolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-bordercolor) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-bordercolor)
-                public var borderColor: Color?
-            
-                /// Sets the width (in px) of the border enclosing the slider.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-borderwidth) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-borderwidth) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-borderwidth)
-                public var borderWidth: Double?
-            
-                /// Sets the length in pixels of step tick marks
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-ticklen) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-ticklen) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-ticklen)
-                public var tickLength: Double?
-            
-                /// Sets the color of the border enclosing the slider.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-tickcolor) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-tickcolor) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-tickcolor)
-                public var tickColor: Color?
-            
-                /// Sets the tick width (in px).
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-tickwidth) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-tickwidth) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-tickwidth)
-                public var tickWidth: Double?
-            
-                /// Sets the length in pixels of minor step tick marks
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-minorticklen) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-minorticklen) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-minorticklen)
-                public var minorTickLength: Double?
-            
-                /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
-                ///
-                /// You can modify these items in the output figure by making your own item with `templateitemname`
-                /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
-                /// false` to hide it). Has no effect outside of a template.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-name) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-name) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-name)
-                public var name: String?
-            
-                /// Used to refer to a named item in this array in the template. 
-                ///
-                /// Named items from the template will be created even without a matching item in the input figure,
-                /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
-                /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
-                /// template or no matching item, this item will be hidden unless you explicitly show it with
-                /// `visible: true`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-templateitemname) |
-                /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-templateitemname) |
-                /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-templateitemname)
-                public var templateItemName: String?
-            
-                /// Plotly compatible property encoding
-                enum CodingKeys: String, CodingKey {
-                    case visible
-                    case active
-                    case steps
-                    case lengthMode = "lenmode"
-                    case length = "len"
-                    case x
-                    case padding = "pad"
-                    case xAnchor = "xanchor"
-                    case y
-                    case yAnchor = "yanchor"
-                    case transition
-                    case currentValue = "currentvalue"
-                    case font
-                    case activeBackgroundColor = "activebgcolor"
-                    case backgroundColor = "bgcolor"
-                    case borderColor = "bordercolor"
-                    case borderWidth = "borderwidth"
-                    case tickLength = "ticklen"
-                    case tickColor = "tickcolor"
-                    case tickWidth = "tickwidth"
-                    case minorTickLength = "minorticklen"
-                    case name
-                    case templateItemName = "templateitemname"
-                }
-                
-                public init(visible: Bool? = nil, active: Double? = nil, steps: Steps? = nil, lengthMode: LengthMode0? = nil, length: Double? = nil, x: Double? = nil, padding: Padding? = nil, xAnchor: XAnchor0? = nil, y: Double? = nil, yAnchor: YAnchor0? = nil, transition: Transition? = nil, currentValue: CurrentValue? = nil, font: Font0? = nil, activeBackgroundColor: Color? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, tickLength: Double? = nil, tickColor: Color? = nil, tickWidth: Double? = nil, minorTickLength: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
-                    self.visible = visible
-                    self.active = active
-                    self.steps = steps
-                    self.lengthMode = lengthMode
-                    self.length = length
-                    self.x = x
-                    self.padding = padding
-                    self.xAnchor = xAnchor
-                    self.y = y
-                    self.yAnchor = yAnchor
-                    self.transition = transition
-                    self.currentValue = currentValue
-                    self.font = font
-                    self.activeBackgroundColor = activeBackgroundColor
-                    self.backgroundColor = backgroundColor
-                    self.borderColor = borderColor
-                    self.borderWidth = borderWidth
-                    self.tickLength = tickLength
-                    self.tickColor = tickColor
-                    self.tickWidth = tickWidth
-                    self.minorTickLength = minorTickLength
-                    self.name = name
-                    self.templateItemName = templateItemName
-                }
-            }
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider) |
-            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider) |
-            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider)
-            public var slider: Slider?
-        
-            public init(slider: Slider? = nil) {
-                self.slider = slider
-            }
+        /// `Layout.Shape.type` |
+        public enum `Type`: String, Encodable {
+            case circle
+            case rect
+            case path
+            case line
         }
+        /// Specifies the shape type to be drawn. 
+        ///
+        /// If *line*, a line is drawn from (`x0`,`y0`) to (`x1`,`y1`) with respect to the axes' sizing
+        /// mode. If *circle*, a circle is drawn from ((`x0`+`x1`)/2, (`y0`+`y1`)/2)) with radius
+        /// (|(`x0`+`x1`)/2 - `x0`|, |(`y0`+`y1`)/2 -`y0`)|) with respect to the axes' sizing mode. If
+        /// *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`),
+        /// (`x0`,`y0`) with respect to the axes' sizing mode. If *path*, draw a custom SVG path using
+        /// `path`. with respect to the axes' sizing mode.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items) |
-        /// [Python](https://plot.ly/python/reference/#layout-sliders-items) |
-        /// [R](https://plot.ly/r/reference/#layout-sliders-items)
-        public var items: Items?
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-type) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-type) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-type)
+        public var type: `Type`?
     
-        public init(items: Items? = nil) {
-            self.items = items
+        /// Specifies whether shapes are drawn below or above traces.
+        ///
+        /// # Used By
+        /// `Layout.Shape.layer` |
+        public enum Layer: String, Encodable {
+            case below
+            case above
+        }
+        /// Specifies whether shapes are drawn below or above traces.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-layer) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-layer) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-layer)
+        public var layer: Layer?
+    
+        /// Sets the shape's x coordinate axis. 
+        ///
+        /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to
+        /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type`
+        /// is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then
+        /// you must convert the date to unix time in milliseconds.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-xref) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-xref) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-xref)
+        public var xReference: XAxisReference?
+    
+        /// Sets the shapes's sizing mode along the x axis. 
+        ///
+        /// If set to *scaled*, `x0`, `x1` and x coordinates within `path` refer to data values on the x
+        /// axis or a fraction of the plot area's width (`xref` set to *paper*). If set to *pixel*,
+        /// `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x
+        /// coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed
+        /// width while maintaining a position relative to data or plot fraction.
+        ///
+        /// # Used By
+        /// `Layout.Shape.xSizeMode` |
+        public enum XSizeMode: String, Encodable {
+            case scaled
+            case pixel
+        }
+        /// Sets the shapes's sizing mode along the x axis. 
+        ///
+        /// If set to *scaled*, `x0`, `x1` and x coordinates within `path` refer to data values on the x
+        /// axis or a fraction of the plot area's width (`xref` set to *paper*). If set to *pixel*,
+        /// `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x
+        /// coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed
+        /// width while maintaining a position relative to data or plot fraction.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-xsizemode) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-xsizemode) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-xsizemode)
+        public var xSizeMode: XSizeMode?
+    
+        /// Only relevant in conjunction with `xsizemode` set to *pixel*. 
+        ///
+        /// Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are
+        /// relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when
+        /// `xsizemode` not set to *pixel*.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-xanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-xanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-xanchor)
+        public var xAnchor: Anything?
+    
+        /// Sets the shape's starting x position. 
+        ///
+        /// See `type` and `xsizemode` for more info.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-x0) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-x0) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-x0)
+        public var x0: Anything?
+    
+        /// Sets the shape's end x position. 
+        ///
+        /// See `type` and `xsizemode` for more info.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-x1) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-x1) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-x1)
+        public var x1: Anything?
+    
+        /// Sets the annotation's y coordinate axis. 
+        ///
+        /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+        /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the bottom (top).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-yref) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-yref) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-yref)
+        public var yReference: YAxisReference?
+    
+        /// Sets the shapes's sizing mode along the y axis. 
+        ///
+        /// If set to *scaled*, `y0`, `y1` and y coordinates within `path` refer to data values on the y
+        /// axis or a fraction of the plot area's height (`yref` set to *paper*). If set to *pixel*,
+        /// `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y
+        /// coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed
+        /// height while maintaining a position relative to data or plot fraction.
+        ///
+        /// # Used By
+        /// `Layout.Shape.ySizeMode` |
+        public enum YSizeMode: String, Encodable {
+            case scaled
+            case pixel
+        }
+        /// Sets the shapes's sizing mode along the y axis. 
+        ///
+        /// If set to *scaled*, `y0`, `y1` and y coordinates within `path` refer to data values on the y
+        /// axis or a fraction of the plot area's height (`yref` set to *paper*). If set to *pixel*,
+        /// `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y
+        /// coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed
+        /// height while maintaining a position relative to data or plot fraction.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-ysizemode) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-ysizemode) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-ysizemode)
+        public var ySizeMode: YSizeMode?
+    
+        /// Only relevant in conjunction with `ysizemode` set to *pixel*. 
+        ///
+        /// Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are
+        /// relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when
+        /// `ysizemode` not set to *pixel*.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-yanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-yanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-yanchor)
+        public var yAnchor: Anything?
+    
+        /// Sets the shape's starting y position. 
+        ///
+        /// See `type` and `ysizemode` for more info.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-y0) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-y0) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-y0)
+        public var y0: Anything?
+    
+        /// Sets the shape's end y position. 
+        ///
+        /// See `type` and `ysizemode` for more info.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-y1) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-y1) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-y1)
+        public var y1: Anything?
+    
+        /// For `type` *path* - a valid SVG path with the pixel values replaced by data values in `xsizemode`/`ysizemode` being *scaled* and taken unmodified as pixels relative to `xanchor` and `yanchor` in case of *pixel* size mode. 
+        ///
+        /// There are a few restrictions / quirks only absolute instructions, not relative. So the allowed
+        /// segments are: M, L, H, V, Q, C, T, S, and Z arcs (A) are not allowed because radius rx and ry
+        /// are relative. In the future we could consider supporting relative commands, but we would have to
+        /// decide on how to handle date and log axes. Note that even as is, Q and C Bezier paths that are
+        /// smooth on linear axes may not be smooth on log, and vice versa. no chained "polybezier" commands
+        /// - specify the segment type for each one. On category axes, values are numbers scaled to the
+        /// serial numbers of categories because using the categories themselves there would be no way to
+        /// describe fractional positions On data axes: because space and T are both normal components of
+        /// path strings, we can't use either to separate date from time parts. Therefore we'll use
+        /// underscore for this purpose: 2015-02-21_13:45:56.789
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-path) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-path) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-path)
+        public var path: String?
+    
+        /// Sets the opacity of the shape.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-opacity) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-opacity) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-opacity)
+        public var opacity: Double?
+    
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-line) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-line) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-line)
+        public var line: DashedLine?
+    
+        /// Sets the color filling the shape's interior.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-fillcolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-fillcolor) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-fillcolor)
+        public var fillColor: Color?
+    
+        /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+        ///
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-name) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-name) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-name)
+        public var name: String?
+    
+        /// Used to refer to a named item in this array in the template. 
+        ///
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-templateitemname) |
+        /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-templateitemname) |
+        /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-templateitemname)
+        public var templateItemName: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case type
+            case layer
+            case xReference = "xref"
+            case xSizeMode = "xsizemode"
+            case xAnchor = "xanchor"
+            case x0
+            case x1
+            case yReference = "yref"
+            case ySizeMode = "ysizemode"
+            case yAnchor = "yanchor"
+            case y0
+            case y1
+            case path
+            case opacity
+            case line
+            case fillColor = "fillcolor"
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        public init(visible: Bool? = nil, type: `Type`? = nil, layer: Layer? = nil, xReference: XAxisReference? = nil, xSizeMode: XSizeMode? = nil, xAnchor: Anything? = nil, x0: Anything? = nil, x1: Anything? = nil, yReference: YAxisReference? = nil, ySizeMode: YSizeMode? = nil, yAnchor: Anything? = nil, y0: Anything? = nil, y1: Anything? = nil, path: String? = nil, opacity: Double? = nil, line: DashedLine? = nil, fillColor: Color? = nil, name: String? = nil, templateItemName: String? = nil) {
+            self.visible = visible
+            self.type = type
+            self.layer = layer
+            self.xReference = xReference
+            self.xSizeMode = xSizeMode
+            self.xAnchor = xAnchor
+            self.x0 = x0
+            self.x1 = x1
+            self.yReference = yReference
+            self.ySizeMode = ySizeMode
+            self.yAnchor = yAnchor
+            self.y0 = y0
+            self.y1 = y1
+            self.path = path
+            self.opacity = opacity
+            self.line = line
+            self.fillColor = fillColor
+            self.name = name
+            self.templateItemName = templateItemName
         }
     }
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders) |
-    /// [Python](https://plot.ly/python/reference/#layout-sliders) |
-    /// [R](https://plot.ly/r/reference/#layout-sliders)
-    public var sliders: Sliders?
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape) |
+    /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape) |
+    /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape)
+    public var shapes: [Shape]?
 
+    /// # Used By
+    /// `Layout.images` |
+    public struct Image: Encodable {
+        /// Determines whether or not this image is visible.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-visible) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-visible) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-visible)
+        public var visible: Bool?
+    
+        /// Specifies the URL of the image to be used. 
+        ///
+        /// The URL must be accessible from the domain where the plot code is run, and can be either
+        /// relative or absolute.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-source) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-source) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-source)
+        public var source: String?
+    
+        /// Specifies whether images are drawn below or above traces. 
+        ///
+        /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
+        ///
+        /// # Used By
+        /// `Layout.Image.layer` |
+        public enum Layer: String, Encodable {
+            case below
+            case above
+        }
+        /// Specifies whether images are drawn below or above traces. 
+        ///
+        /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-layer) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-layer) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-layer)
+        public var layer: Layer?
+    
+        /// Sets the image container size horizontally. 
+        ///
+        /// The image will be sized based on the `position` value. When `xref` is set to `paper`, units are
+        /// sized relative to the plot width.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-sizex) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-sizex) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-sizex)
+        public var xSize: Double?
+    
+        /// Sets the image container size vertically. 
+        ///
+        /// The image will be sized based on the `position` value. When `yref` is set to `paper`, units are
+        /// sized relative to the plot height.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-sizey) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-sizey) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-sizey)
+        public var ySize: Double?
+    
+        /// Specifies which dimension of the image to constrain.
+        ///
+        /// # Used By
+        /// `Layout.Image.sizing` |
+        public enum Sizing: String, Encodable {
+            case fill
+            case contain
+            case stretch
+        }
+        /// Specifies which dimension of the image to constrain.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-sizing) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-sizing) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-sizing)
+        public var sizing: Sizing?
+    
+        /// Sets the opacity of the image.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-opacity) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-opacity) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-opacity)
+        public var opacity: Double?
+    
+        /// Sets the image's x position. 
+        ///
+        /// When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more
+        /// info
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-x) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-x) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-x)
+        public var x: Anything?
+    
+        /// Sets the image's y position. 
+        ///
+        /// When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more
+        /// info
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-y) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-y) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-y)
+        public var y: Anything?
+    
+        /// Sets the anchor for the x position
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-xanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-xanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-xanchor)
+        public var xAnchor: XAnchor?
+    
+        /// Sets the anchor for the y position.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-yanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-yanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-yanchor)
+        public var yAnchor: YAnchor?
+    
+        /// Sets the images's x coordinate axis. 
+        ///
+        /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set
+        /// to *paper*, the `x` position refers to the distance from the left of plot in normalized
+        /// coordinates where *0* (*1*) corresponds to the left (right).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-xref) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-xref) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-xref)
+        public var xReference: XAxisReference?
+    
+        /// Sets the images's y coordinate axis. 
+        ///
+        /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set
+        /// to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized
+        /// coordinates where *0* (*1*) corresponds to the bottom (top).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-yref) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-yref) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-yref)
+        public var yReference: YAxisReference?
+    
+        /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+        ///
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-name) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-name) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-name)
+        public var name: String?
+    
+        /// Used to refer to a named item in this array in the template. 
+        ///
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-templateitemname) |
+        /// [Python](https://plot.ly/python/reference/#layout-images-items-image-templateitemname) |
+        /// [R](https://plot.ly/r/reference/#layout-images-items-image-templateitemname)
+        public var templateItemName: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case source
+            case layer
+            case xSize = "sizex"
+            case ySize = "sizey"
+            case sizing
+            case opacity
+            case x
+            case y
+            case xAnchor = "xanchor"
+            case yAnchor = "yanchor"
+            case xReference = "xref"
+            case yReference = "yref"
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        public init(visible: Bool? = nil, source: String? = nil, layer: Layer? = nil, xSize: Double? = nil, ySize: Double? = nil, sizing: Sizing? = nil, opacity: Double? = nil, x: Anything? = nil, y: Anything? = nil, xAnchor: XAnchor? = nil, yAnchor: YAnchor? = nil, xReference: XAxisReference? = nil, yReference: YAxisReference? = nil, name: String? = nil, templateItemName: String? = nil) {
+            self.visible = visible
+            self.source = source
+            self.layer = layer
+            self.xSize = xSize
+            self.ySize = ySize
+            self.sizing = sizing
+            self.opacity = opacity
+            self.x = x
+            self.y = y
+            self.xAnchor = xAnchor
+            self.yAnchor = yAnchor
+            self.xReference = xReference
+            self.yReference = yReference
+            self.name = name
+            self.templateItemName = templateItemName
+        }
+    }
     ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image) |
+    /// [Python](https://plot.ly/python/reference/#layout-images-items-image) |
+    /// [R](https://plot.ly/r/reference/#layout-images-items-image)
+    public var images: [Image]?
+
+    /// # Used By
+    /// `Layout.updateMenus` |
+    public struct UpdateMenu: Encodable {
+        /// Determines whether or not the update menu is visible.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-visible) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-visible) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-visible)
+        public var visible: Bool?
+    
+        /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally or vertically
+        ///
+        /// # Used By
+        /// `Layout.UpdateMenu.type` |
+        public enum `Type`: String, Encodable {
+            case dropDown = "dropdown"
+            case buttons
+        }
+        /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are stacked horizontally or vertically
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-type) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-type) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-type)
+        public var type: `Type`?
+    
+        /// Determines the direction in which the buttons are laid out, whether in a dropdown menu or a row/column of buttons. 
+        ///
+        /// For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order
+        /// respectively.
+        ///
+        /// # Used By
+        /// `Layout.UpdateMenu.direction` |
+        public enum Direction: String, Encodable {
+            case left
+            case right
+            case up
+            case down
+        }
+        /// Determines the direction in which the buttons are laid out, whether in a dropdown menu or a row/column of buttons. 
+        ///
+        /// For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order
+        /// respectively.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-direction) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-direction) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-direction)
+        public var direction: Direction?
+    
+        /// Determines which button (by index starting from 0) is considered active.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-active) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-active) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-active)
+        public var active: Int?
+    
+        /// Highlights active dropdown item or active button if true.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-showactive) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-showactive) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-showactive)
+        public var showActive: Bool?
+    
+        /// # Used By
+        /// `Layout.UpdateMenu.buttons` |
+        public struct Button: Encodable {
+            /// Determines whether or not this button is visible.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-visible) |
+            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-visible) |
+            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-visible)
+            public var visible: Bool?
+        
+            /// Sets the Plotly method to be called on click. 
+            ///
+            /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
+            /// calls and will not bind automatically to state updates. This may be used to create a component
+            /// interface and attach to updatemenu events manually via JavaScript.
+            ///
+            /// # Used By
+            /// `Layout.UpdateMenu.Button.method` |
+            public enum Method: String, Encodable {
+                case restyle
+                case relayout
+                case animate
+                case update
+                case skip
+            }
+            /// Sets the Plotly method to be called on click. 
+            ///
+            /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
+            /// calls and will not bind automatically to state updates. This may be used to create a component
+            /// interface and attach to updatemenu events manually via JavaScript.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-method) |
+            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-method) |
+            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-method)
+            public var method: Method?
+        
+            /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args) |
+            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args) |
+            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args)
+            public var args: InfoArray?
+        
+            /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method` when clicking this button while in the active state. 
+            ///
+            /// Use this to create toggle buttons.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args2) |
+            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args2) |
+            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-args2)
+            public var args2: InfoArray?
+        
+            /// Sets the text label to appear on the button.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-label) |
+            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-label) |
+            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-label)
+            public var label: String?
+        
+            /// When true, the API method is executed. 
+            ///
+            /// When false, all other behaviors are the same and command execution is skipped. This may be
+            /// useful when hooking into, for example, the `plotly_buttonclicked` method and executing the API
+            /// command manually without losing the benefit of the updatemenu automatically binding to the state
+            /// of the plot through the specification of `method` and `args`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-execute) |
+            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-execute) |
+            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-execute)
+            public var execute: Bool?
+        
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+            ///
+            /// You can modify these items in the output figure by making your own item with `templateitemname`
+            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+            /// false` to hide it). Has no effect outside of a template.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-name) |
+            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-name) |
+            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-name)
+            public var name: String?
+        
+            /// Used to refer to a named item in this array in the template. 
+            ///
+            /// Named items from the template will be created even without a matching item in the input figure,
+            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+            /// template or no matching item, this item will be hidden unless you explicitly show it with
+            /// `visible: true`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-templateitemname) |
+            /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-templateitemname) |
+            /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button-templateitemname)
+            public var templateItemName: String?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case method
+                case args
+                case args2
+                case label
+                case execute
+                case name
+                case templateItemName = "templateitemname"
+            }
+            
+            public init(visible: Bool? = nil, method: Method? = nil, args: InfoArray? = nil, args2: InfoArray? = nil, label: String? = nil, execute: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
+                self.visible = visible
+                self.method = method
+                self.args = args
+                self.args2 = args2
+                self.label = label
+                self.execute = execute
+                self.name = name
+                self.templateItemName = templateItemName
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button)
+        public var buttons: [Button]?
+    
+        /// Sets the x position (in normalized coordinates) of the update menu.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-x) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-x) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-x)
+        public var x: Double?
+    
+        /// Sets the update menu's horizontal position anchor. 
+        ///
+        /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-xanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-xanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-xanchor)
+        public var xAnchor: XAutoAnchor?
+    
+        /// Sets the y position (in normalized coordinates) of the update menu.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-y) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-y) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-y)
+        public var y: Double?
+    
+        /// Sets the update menu's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-yanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-yanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-yanchor)
+        public var yAnchor: YAutoAnchor?
+    
+        /// Sets the padding around the buttons or dropdown menu.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-pad) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-pad) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-pad)
+        public var padding: Padding?
+    
+        /// Sets the font of the update menu button text.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-font) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-font) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-font)
+        public var font: Font?
+    
+        /// Sets the background color of the update menu buttons.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-bgcolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-bgcolor) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-bgcolor)
+        public var backgroundColor: Color?
+    
+        /// Sets the color of the border enclosing the update menu.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-bordercolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-bordercolor) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-bordercolor)
+        public var borderColor: Color?
+    
+        /// Sets the width (in px) of the border enclosing the update menu.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-borderwidth) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-borderwidth) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-borderwidth)
+        public var borderWidth: Double?
+    
+        /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+        ///
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-name) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-name) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-name)
+        public var name: String?
+    
+        /// Used to refer to a named item in this array in the template. 
+        ///
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-templateitemname) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-templateitemname) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-templateitemname)
+        public var templateItemName: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case type
+            case direction
+            case active
+            case showActive = "showactive"
+            case buttons = "button"
+            case x
+            case xAnchor = "xanchor"
+            case y
+            case yAnchor = "yanchor"
+            case padding = "pad"
+            case font
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case borderWidth = "borderwidth"
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        public init(visible: Bool? = nil, type: `Type`? = nil, direction: Direction? = nil, active: Int? = nil, showActive: Bool? = nil, buttons: [Button]? = nil, x: Double? = nil, xAnchor: XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, padding: Padding? = nil, font: Font? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
+            self.visible = visible
+            self.type = type
+            self.direction = direction
+            self.active = active
+            self.showActive = showActive
+            self.buttons = buttons
+            self.x = x
+            self.xAnchor = xAnchor
+            self.y = y
+            self.yAnchor = yAnchor
+            self.padding = padding
+            self.font = font
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
+            self.borderWidth = borderWidth
+            self.name = name
+            self.templateItemName = templateItemName
+        }
+    }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu) |
+    /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu) |
+    /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu)
+    public var updateMenus: [UpdateMenu]?
+
+    /// # Used By
+    /// `Layout.sliders` |
+    public struct Slider: Encodable {
+        /// Determines whether or not the slider is visible.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-visible) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-visible) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-visible)
+        public var visible: Bool?
+    
+        /// Determines which button (by index starting from 0) is considered active.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-active) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-active) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-active)
+        public var active: Double?
+    
+        /// # Used By
+        /// `Layout.Slider.steps` |
+        public struct Step: Encodable {
+            /// Determines whether or not this step is included in the slider.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-visible) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-visible) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-visible)
+            public var visible: Bool?
+        
+            /// Sets the Plotly method to be called when the slider value is changed. 
+            ///
+            /// If the `skip` method is used, the API slider will function as normal but will perform no API
+            /// calls and will not bind automatically to state updates. This may be used to create a component
+            /// interface and attach to slider events manually via JavaScript.
+            ///
+            /// # Used By
+            /// `Layout.Slider.Step.method` |
+            public enum Method: String, Encodable {
+                case restyle
+                case relayout
+                case animate
+                case update
+                case skip
+            }
+            /// Sets the Plotly method to be called when the slider value is changed. 
+            ///
+            /// If the `skip` method is used, the API slider will function as normal but will perform no API
+            /// calls and will not bind automatically to state updates. This may be used to create a component
+            /// interface and attach to slider events manually via JavaScript.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-method) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-method) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-method)
+            public var method: Method?
+        
+            /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-args) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-args) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-args)
+            public var args: InfoArray?
+        
+            /// Sets the text label to appear on the slider
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-label) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-label) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-label)
+            public var label: String?
+        
+            /// Sets the value of the slider step, used to refer to the step programatically. 
+            ///
+            /// Defaults to the slider label if not provided.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-value) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-value) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-value)
+            public var value: String?
+        
+            /// When true, the API method is executed. 
+            ///
+            /// When false, all other behaviors are the same and command execution is skipped. This may be
+            /// useful when hooking into, for example, the `plotly_sliderchange` method and executing the API
+            /// command manually without losing the benefit of the slider automatically binding to the state of
+            /// the plot through the specification of `method` and `args`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-execute) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-execute) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-execute)
+            public var execute: Bool?
+        
+            /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+            ///
+            /// You can modify these items in the output figure by making your own item with `templateitemname`
+            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+            /// false` to hide it). Has no effect outside of a template.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-name) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-name) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-name)
+            public var name: String?
+        
+            /// Used to refer to a named item in this array in the template. 
+            ///
+            /// Named items from the template will be created even without a matching item in the input figure,
+            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+            /// template or no matching item, this item will be hidden unless you explicitly show it with
+            /// `visible: true`.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step-templateitemname) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step-templateitemname) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step-templateitemname)
+            public var templateItemName: String?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case method
+                case args
+                case label
+                case value
+                case execute
+                case name
+                case templateItemName = "templateitemname"
+            }
+            
+            public init(visible: Bool? = nil, method: Method? = nil, args: InfoArray? = nil, label: String? = nil, value: String? = nil, execute: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
+                self.visible = visible
+                self.method = method
+                self.args = args
+                self.label = label
+                self.value = value
+                self.execute = execute
+                self.name = name
+                self.templateItemName = templateItemName
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step)
+        public var steps: [Step]?
+    
+        /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
+        ///
+        /// Use `len` to set the value.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-lenmode) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-lenmode) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-lenmode)
+        public var lengthMode: LengthMode?
+    
+        /// Sets the length of the slider This measure excludes the padding of both ends. 
+        ///
+        /// That is, the slider's length is this length minus the padding on both ends.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-len) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-len) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-len)
+        public var length: Double?
+    
+        /// Sets the x position (in normalized coordinates) of the slider.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-x) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-x) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-x)
+        public var x: Double?
+    
+        /// Set the padding of the slider component along each side.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-pad) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-pad) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-pad)
+        public var padding: Padding?
+    
+        /// Sets the slider's horizontal position anchor. 
+        ///
+        /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-xanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-xanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-xanchor)
+        public var xAnchor: XAutoAnchor?
+    
+        /// Sets the y position (in normalized coordinates) of the slider.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-y) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-y) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-y)
+        public var y: Double?
+    
+        /// Sets the slider's vertical position anchor This anchor binds the `y` position to the *top*, *middle* or *bottom* of the range selector.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-yanchor) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-yanchor) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-yanchor)
+        public var yAnchor: YAutoAnchor?
+    
+        /// # Used By
+        /// `Layout.Slider.transition` |
+        public struct Transition: Encodable {
+            /// Sets the duration of the slider transition
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-transition-duration) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-transition-duration) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-transition-duration)
+            public var duration: Double?
+        
+            /// Sets the easing function of the slider transition
+            ///
+            /// # Used By
+            /// `Layout.Slider.Transition.easing` |
+            public enum Easing: String, Encodable {
+                case linear
+                case quad
+                case cubic
+                case sin
+                case exp
+                case circle
+                case elastic
+                case back
+                case bounce
+                case linearIn = "linear-in"
+                case quadIn = "quad-in"
+                case cubicIn = "cubic-in"
+                case sinIn = "sin-in"
+                case expIn = "exp-in"
+                case circleIn = "circle-in"
+                case elasticIn = "elastic-in"
+                case backIn = "back-in"
+                case bounceIn = "bounce-in"
+                case linearOut = "linear-out"
+                case quadOut = "quad-out"
+                case cubicOut = "cubic-out"
+                case sinOut = "sin-out"
+                case expOut = "exp-out"
+                case circleOut = "circle-out"
+                case elasticOut = "elastic-out"
+                case backOut = "back-out"
+                case bounceOut = "bounce-out"
+                case linearInOut = "linear-in-out"
+                case quadInOut = "quad-in-out"
+                case cubicInOut = "cubic-in-out"
+                case sinInOut = "sin-in-out"
+                case expInOut = "exp-in-out"
+                case circleInOut = "circle-in-out"
+                case elasticInOut = "elastic-in-out"
+                case backInOut = "back-in-out"
+                case bounceInOut = "bounce-in-out"
+            }
+            /// Sets the easing function of the slider transition
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-transition-easing) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-transition-easing) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-transition-easing)
+            public var easing: Easing?
+        
+            public init(duration: Double? = nil, easing: Easing? = nil) {
+                self.duration = duration
+                self.easing = easing
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-transition) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-transition) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-transition)
+        public var transition: Transition?
+    
+        /// # Used By
+        /// `Layout.Slider.currentValue` |
+        public struct CurrentValue: Encodable {
+            /// Shows the currently-selected value above the slider.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-visible) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-visible) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-visible)
+            public var visible: Bool?
+        
+            /// The alignment of the value readout relative to the length of the slider.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-xanchor) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-xanchor) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-xanchor)
+            public var xAnchor: XAnchor?
+        
+            /// The amount of space, in pixels, between the current value label and the slider.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-offset) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-offset) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-offset)
+            public var offset: Double?
+        
+            /// When currentvalue.visible is true, this sets the prefix of the label.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-prefix) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-prefix) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-prefix)
+            public var prefix: String?
+        
+            /// When currentvalue.visible is true, this sets the suffix of the label.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-suffix) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-suffix) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-suffix)
+            public var suffix: String?
+        
+            /// Sets the font of the current value label text.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-font) |
+            /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-font) |
+            /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-font)
+            public var font: Font?
+        
+            /// Plotly compatible property encoding
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case xAnchor = "xanchor"
+                case offset
+                case prefix
+                case suffix
+                case font
+            }
+            
+            public init(visible: Bool? = nil, xAnchor: XAnchor? = nil, offset: Double? = nil, prefix: String? = nil, suffix: String? = nil, font: Font? = nil) {
+                self.visible = visible
+                self.xAnchor = xAnchor
+                self.offset = offset
+                self.prefix = prefix
+                self.suffix = suffix
+                self.font = font
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue)
+        public var currentValue: CurrentValue?
+    
+        /// Sets the font of the slider step labels.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-font) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-font) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-font)
+        public var font: Font?
+    
+        /// Sets the background color of the slider grip while dragging.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-activebgcolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-activebgcolor) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-activebgcolor)
+        public var activeBackgroundColor: Color?
+    
+        /// Sets the background color of the slider.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-bgcolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-bgcolor) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-bgcolor)
+        public var backgroundColor: Color?
+    
+        /// Sets the color of the border enclosing the slider.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-bordercolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-bordercolor) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-bordercolor)
+        public var borderColor: Color?
+    
+        /// Sets the width (in px) of the border enclosing the slider.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-borderwidth) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-borderwidth) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-borderwidth)
+        public var borderWidth: Double?
+    
+        /// Sets the length in pixels of step tick marks
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-ticklen) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-ticklen) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-ticklen)
+        public var tickLength: Double?
+    
+        /// Sets the color of the border enclosing the slider.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-tickcolor) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-tickcolor) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-tickcolor)
+        public var tickColor: Color?
+    
+        /// Sets the tick width (in px).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-tickwidth) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-tickwidth) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-tickwidth)
+        public var tickWidth: Double?
+    
+        /// Sets the length in pixels of minor step tick marks
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-minorticklen) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-minorticklen) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-minorticklen)
+        public var minorTickLength: Double?
+    
+        /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
+        ///
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-name) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-name) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-name)
+        public var name: String?
+    
+        /// Used to refer to a named item in this array in the template. 
+        ///
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-templateitemname) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-templateitemname) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-templateitemname)
+        public var templateItemName: String?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case active
+            case steps = "step"
+            case lengthMode = "lenmode"
+            case length = "len"
+            case x
+            case padding = "pad"
+            case xAnchor = "xanchor"
+            case y
+            case yAnchor = "yanchor"
+            case transition
+            case currentValue = "currentvalue"
+            case font
+            case activeBackgroundColor = "activebgcolor"
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case borderWidth = "borderwidth"
+            case tickLength = "ticklen"
+            case tickColor = "tickcolor"
+            case tickWidth = "tickwidth"
+            case minorTickLength = "minorticklen"
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        public init(visible: Bool? = nil, active: Double? = nil, steps: [Step]? = nil, lengthMode: LengthMode? = nil, length: Double? = nil, x: Double? = nil, padding: Padding? = nil, xAnchor: XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, transition: Transition? = nil, currentValue: CurrentValue? = nil, font: Font? = nil, activeBackgroundColor: Color? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, tickLength: Double? = nil, tickColor: Color? = nil, tickWidth: Double? = nil, minorTickLength: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
+            self.visible = visible
+            self.active = active
+            self.steps = steps
+            self.lengthMode = lengthMode
+            self.length = length
+            self.x = x
+            self.padding = padding
+            self.xAnchor = xAnchor
+            self.y = y
+            self.yAnchor = yAnchor
+            self.transition = transition
+            self.currentValue = currentValue
+            self.font = font
+            self.activeBackgroundColor = activeBackgroundColor
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
+            self.borderWidth = borderWidth
+            self.tickLength = tickLength
+            self.tickColor = tickColor
+            self.tickWidth = tickWidth
+            self.minorTickLength = minorTickLength
+            self.name = name
+            self.templateItemName = templateItemName
+        }
+    }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider) |
+    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider) |
+    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider)
+    public var sliders: [Slider]?
+
     /// # Used By
     /// `Layout.colorScale` |
     public struct ColorMap: Encodable {
@@ -13567,7 +12753,6 @@ public struct Layout: Encodable {
     /// [R](https://plot.ly/r/reference/#layout-colorscale)
     public var colorScale: ColorMap?
 
-    ///
     /// # Used By
     /// `Layout.colorAxis` |
     public struct ColorAxis: Encodable {
@@ -13663,7 +12848,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar) |
         /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar) |
         /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar)
-        public var colorBar: ColorBar0?
+        public var colorBar: ColorBar?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -13678,7 +12863,7 @@ public struct Layout: Encodable {
             case colorBar = "colorbar"
         }
         
-        public init(cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil) {
+        public init(cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil) {
             self.cAuto = cAuto
             self.cMin = cMin
             self.cMax = cMax
@@ -13696,14 +12881,6 @@ public struct Layout: Encodable {
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis)
     public var colorAxis: ColorAxis?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#layout-metasrc) |
-    /// [R](https://plot.ly/r/reference/#layout-metasrc)
-    public var metaSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -13748,17 +12925,16 @@ public struct Layout: Encodable {
         case direction
         case orientation
         case legend
-        case annotations
-        case shapes
-        case images
-        case updateMenus = "updatemenus"
-        case sliders
+        case annotations = "annotation"
+        case shapes = "shape"
+        case images = "image"
+        case updateMenus = "updatemenu"
+        case sliders = "slider"
         case colorScale = "colorscale"
         case colorAxis = "coloraxis"
-        case metaSource = "metasrc"
     }
     
-    public init(font: Font0? = nil, title: Title0? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel0? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar0? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: Annotations? = nil, shapes: Shapes? = nil, images: Images? = nil, updateMenus: UpdateMenus? = nil, sliders: Sliders? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil, metaSource: String? = nil) {
+    public init(font: Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: [Annotation]? = nil, shapes: [Shape]? = nil, images: [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders: [Slider]? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil) {
         self.font = font
         self.title = title
         self.autoSize = autoSize
@@ -13807,6 +12983,5 @@ public struct Layout: Encodable {
         self.sliders = sliders
         self.colorScale = colorScale
         self.colorAxis = colorAxis
-        self.metaSource = metaSource
     }
 }

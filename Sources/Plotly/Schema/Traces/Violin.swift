@@ -27,7 +27,7 @@ public struct Violin: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-visible) |
     /// [Python](https://plot.ly/python/reference/#violin-visible) |
     /// [R](https://plot.ly/r/reference/#violin-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -120,28 +120,29 @@ public struct Violin: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#violin-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#violin-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#violin-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#violin-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-stream) |
     /// [Python](https://plot.ly/python/reference/#violin-stream) |
     /// [R](https://plot.ly/r/reference/#violin-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-transforms) |
-    /// [Python](https://plot.ly/python/reference/#violin-transforms) |
-    /// [R](https://plot.ly/r/reference/#violin-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#violin-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#violin-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#violin-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -221,7 +222,7 @@ public struct Violin: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-orientation) |
     /// [Python](https://plot.ly/python/reference/#violin-orientation) |
     /// [R](https://plot.ly/r/reference/#violin-orientation)
-    public var orientation: Orientation0?
+    public var orientation: Orientation?
 
     /// Sets the bandwidth used to compute the kernel density estimate. 
     ///
@@ -300,7 +301,7 @@ public struct Violin: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-line) |
     /// [Python](https://plot.ly/python/reference/#violin-line) |
     /// [R](https://plot.ly/r/reference/#violin-line)
-    public var line: Line0?
+    public var line: Line?
 
     /// Sets the fill color. 
     ///
@@ -365,10 +366,9 @@ public struct Violin: Trace {
     /// [R](https://plot.ly/r/reference/#violin-width)
     public var width: Double?
 
-    ///
     /// # Used By
     /// `Violin.marker` |
-    public struct Marker: Encodable {
+    public struct SymbolicMarker: Encodable {
         /// Sets the color of the outlier sample points.
         ///
         /// # Plotly Reference
@@ -387,7 +387,7 @@ public struct Violin: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#violin-marker-symbol) |
         /// [Python](https://plot.ly/python/reference/#violin-marker-symbol) |
         /// [R](https://plot.ly/r/reference/#violin-marker-symbol)
-        public var symbol: Symbol0?
+        public var symbol: Symbol?
     
         /// Sets the marker opacity.
         ///
@@ -417,9 +417,8 @@ public struct Violin: Trace {
         /// [R](https://plot.ly/r/reference/#violin-marker-color)
         public var color: Color?
     
-        ///
         /// # Used By
-        /// `Violin.Marker.line` |
+        /// `Violin.SymbolicMarker.line` |
         public struct Line: Encodable {
             /// Sets themarker.linecolor. 
             ///
@@ -491,7 +490,7 @@ public struct Violin: Trace {
             case line
         }
         
-        public init(outlierColor: Color? = nil, symbol: Symbol0? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
+        public init(outlierColor: Color? = nil, symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, color: Color? = nil, line: Line? = nil) {
             self.outlierColor = outlierColor
             self.symbol = symbol
             self.opacity = opacity
@@ -505,7 +504,7 @@ public struct Violin: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-marker) |
     /// [Python](https://plot.ly/python/reference/#violin-marker) |
     /// [R](https://plot.ly/r/reference/#violin-marker)
-    public var marker: Marker?
+    public var marker: SymbolicMarker?
 
     /// Sets the text elements associated with each sample value. 
     ///
@@ -549,7 +548,6 @@ public struct Violin: Trace {
     /// [R](https://plot.ly/r/reference/#violin-hovertemplate)
     public var hoverTemplate: String?
 
-    ///
     /// # Used By
     /// `Violin.box` |
     public struct Box: Encodable {
@@ -584,7 +582,7 @@ public struct Violin: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#violin-box-line) |
         /// [Python](https://plot.ly/python/reference/#violin-box-line) |
         /// [R](https://plot.ly/r/reference/#violin-box-line)
-        public var line: Line0?
+        public var line: Line?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -594,7 +592,7 @@ public struct Violin: Trace {
             case line
         }
         
-        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line: Line0? = nil) {
+        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line: Line? = nil) {
             self.visible = visible
             self.width = width
             self.fillColor = fillColor
@@ -608,7 +606,6 @@ public struct Violin: Trace {
     /// [R](https://plot.ly/r/reference/#violin-box)
     public var box: Box?
 
-    ///
     /// # Used By
     /// `Violin.meanLine` |
     public struct MeanLine: Encodable {
@@ -693,19 +690,113 @@ public struct Violin: Trace {
     /// [R](https://plot.ly/r/reference/#violin-alignmentgroup)
     public var alignmentGroup: String?
 
+    /// # Used By
+    /// `Violin.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `Violin.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#violin-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#violin-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#violin-selected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#violin-selected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#violin-selected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#violin-selected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#violin-selected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#violin-selected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#violin-selected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#violin-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#violin-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#violin-selected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-selected) |
     /// [Python](https://plot.ly/python/reference/#violin-selected) |
     /// [R](https://plot.ly/r/reference/#violin-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `Violin.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `Violin.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#violin-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#violin-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#violin-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            /// Sets the marker color of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#violin-unselected-marker-color) |
+            /// [Python](https://plot.ly/python/reference/#violin-unselected-marker-color) |
+            /// [R](https://plot.ly/r/reference/#violin-unselected-marker-color)
+            public var color: Color?
+        
+            /// Sets the marker size of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#violin-unselected-marker-size) |
+            /// [Python](https://plot.ly/python/reference/#violin-unselected-marker-size) |
+            /// [R](https://plot.ly/r/reference/#violin-unselected-marker-size)
+            public var size: Double?
+        
+            public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
+                self.opacity = opacity
+                self.color = color
+                self.size = size
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#violin-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#violin-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#violin-unselected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-unselected) |
     /// [Python](https://plot.ly/python/reference/#violin-unselected) |
     /// [R](https://plot.ly/r/reference/#violin-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// Do the hover effects highlight individual violins or sample points or the kernel density estimate or any combination of them?
     ///
@@ -761,78 +852,6 @@ public struct Violin: Trace {
     /// [R](https://plot.ly/r/reference/#violin-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-idssrc) |
-    /// [R](https://plot.ly/r/reference/#violin-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#violin-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-metasrc) |
-    /// [R](https://plot.ly/r/reference/#violin-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#violin-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-ysrc) |
-    /// [R](https://plot.ly/r/reference/#violin-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-xsrc) |
-    /// [R](https://plot.ly/r/reference/#violin-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-textsrc) |
-    /// [R](https://plot.ly/r/reference/#violin-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#violin-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#violin-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#violin-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -849,7 +868,7 @@ public struct Violin: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case y
         case x
@@ -882,18 +901,9 @@ public struct Violin: Trace {
         case hoverOn = "hoveron"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case ySource = "ysrc"
-        case xSource = "xsrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Orientation0? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Line0? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: Marker? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, ySource: String? = nil, xSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Orientation? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Line? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -939,14 +949,5 @@ public struct Violin: Trace {
         self.hoverOn = hoverOn
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.ySource = ySource
-        self.xSource = xSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

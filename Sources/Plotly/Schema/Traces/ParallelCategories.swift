@@ -23,7 +23,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-visible) |
     /// [Python](https://plot.ly/python/reference/#parcats-visible) |
     /// [R](https://plot.ly/r/reference/#parcats-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -62,14 +62,15 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-stream) |
     /// [Python](https://plot.ly/python/reference/#parcats-stream) |
     /// [R](https://plot.ly/r/reference/#parcats-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-transforms) |
-    /// [Python](https://plot.ly/python/reference/#parcats-transforms) |
-    /// [R](https://plot.ly/r/reference/#parcats-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#parcats-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#parcats-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -93,7 +94,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-domain) |
     /// [Python](https://plot.ly/python/reference/#parcats-domain) |
     /// [R](https://plot.ly/r/reference/#parcats-domain)
-    public var domain: Domain0?
+    public var domain: Domain?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -244,7 +245,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-labelfont) |
     /// [Python](https://plot.ly/python/reference/#parcats-labelfont) |
     /// [R](https://plot.ly/r/reference/#parcats-labelfont)
-    public var labelFont: Font0?
+    public var labelFont: Font?
 
     /// Sets the font for the `category` labels.
     ///
@@ -252,196 +253,118 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-tickfont) |
     /// [Python](https://plot.ly/python/reference/#parcats-tickfont) |
     /// [R](https://plot.ly/r/reference/#parcats-tickfont)
-    public var tickFont: Font0?
+    public var tickFont: Font?
 
+    /// The dimensions (variables) of the parallel categories diagram.
     ///
     /// # Used By
     /// `ParallelCategories.dimensions` |
-    public struct Dimensions: Encodable {
-        ///
-        /// # Used By
-        /// `ParallelCategories.Dimensions.items` |
-        public struct Items: Encodable {
-            /// The dimensions (variables) of the parallel categories diagram.
-            ///
-            /// # Used By
-            /// `ParallelCategories.Dimensions.Items.dimension` |
-            public struct Dimension: Encodable {
-                /// The shown name of the dimension.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-label) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-label) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-label)
-                public var label: String?
-            
-                /// Specifies the ordering logic for the categories in the dimension. 
-                ///
-                /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
-                /// Set `categoryorder` to *category ascending* or *category descending* if order should be
-                /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
-                /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
-                /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
-                /// mode. The unspecified categories will follow the categories in `categoryarray`.
-                ///
-                /// # Used By
-                /// `ParallelCategories.Dimensions.Items.Dimension.categoryOrder` |
-                public enum CategoryOrder: String, Encodable {
-                    case trace
-                    case categoryAscending = "category ascending"
-                    case categoryDescending = "category descending"
-                    case array
-                }
-                /// Specifies the ordering logic for the categories in the dimension. 
-                ///
-                /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
-                /// Set `categoryorder` to *category ascending* or *category descending* if order should be
-                /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
-                /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
-                /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
-                /// mode. The unspecified categories will follow the categories in `categoryarray`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryorder) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryorder) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryorder)
-                public var categoryOrder: CategoryOrder?
-            
-                /// Sets the order in which categories in this dimension appear. 
-                ///
-                /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryarray) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryarray) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryarray)
-                public var categoryArray: [Double]?
-            
-                /// Sets alternative tick labels for the categories in this dimension. 
-                ///
-                /// Only has an effect if `categoryorder` is set to *array*. Should be an array the same length as
-                /// `categoryarray` Used with `categoryorder`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-ticktext) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-ticktext) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-ticktext)
-                public var tickText: [Double]?
-            
-                /// Dimension values. 
-                ///
-                /// `values[n]` represents the category value of the `n`th point in the dataset, therefore the
-                /// `values` vector for all dimensions must be the same (longer vectors will be truncated).
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-values) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-values) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-values)
-                public var values: [Double]?
-            
-                /// The display index of dimension, from left to right, zero indexed, defaults to dimension index.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-displayindex) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-displayindex) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-displayindex)
-                public var displayIndex: Int?
-            
-                /// Shows the dimension when set to `true` (the default). 
-                ///
-                /// Hides the dimension for `false`.
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-visible) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-visible) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-visible)
-                public var visible: Bool?
-            
-                /// Sets the source reference on plot.ly for  categoryarray .
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryarraysrc) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryarraysrc) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryarraysrc)
-                public var categoryArraySource: String?
-            
-                /// Sets the source reference on plot.ly for  ticktext .
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-ticktextsrc) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-ticktextsrc) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-ticktextsrc)
-                public var tickTextSource: String?
-            
-                /// Sets the source reference on plot.ly for  values .
-                ///
-                /// # Plotly Reference
-                /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-valuessrc) |
-                /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-valuessrc) |
-                /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-valuessrc)
-                public var valuesSource: String?
-            
-                /// Plotly compatible property encoding
-                enum CodingKeys: String, CodingKey {
-                    case label
-                    case categoryOrder = "categoryorder"
-                    case categoryArray = "categoryarray"
-                    case tickText = "ticktext"
-                    case values
-                    case displayIndex = "displayindex"
-                    case visible
-                    case categoryArraySource = "categoryarraysrc"
-                    case tickTextSource = "ticktextsrc"
-                    case valuesSource = "valuessrc"
-                }
-                
-                public init(label: String? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, tickText: [Double]? = nil, values: [Double]? = nil, displayIndex: Int? = nil, visible: Bool? = nil, categoryArraySource: String? = nil, tickTextSource: String? = nil, valuesSource: String? = nil) {
-                    self.label = label
-                    self.categoryOrder = categoryOrder
-                    self.categoryArray = categoryArray
-                    self.tickText = tickText
-                    self.values = values
-                    self.displayIndex = displayIndex
-                    self.visible = visible
-                    self.categoryArraySource = categoryArraySource
-                    self.tickTextSource = tickTextSource
-                    self.valuesSource = valuesSource
-                }
-            }
-            /// The dimensions (variables) of the parallel categories diagram.
-            ///
-            /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension) |
-            /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension) |
-            /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension)
-            public var dimension: Dimension?
-        
-            public init(dimension: Dimension? = nil) {
-                self.dimension = dimension
-            }
-        }
+    public struct Dimension: Encodable {
+        /// The shown name of the dimension.
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items) |
-        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items) |
-        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items)
-        public var items: Items?
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-label) |
+        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-label) |
+        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-label)
+        public var label: String?
     
-        public init(items: Items? = nil) {
-            self.items = items
+        /// Specifies the ordering logic for the categories in the dimension. 
+        ///
+        /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+        /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+        /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+        /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+        /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+        /// mode. The unspecified categories will follow the categories in `categoryarray`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryorder) |
+        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryorder) |
+        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryorder)
+        public var categoryOrder: CarpetCategoryOrder?
+    
+        /// Sets the order in which categories in this dimension appear. 
+        ///
+        /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryarray) |
+        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryarray) |
+        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryarray)
+        public var categoryArray: [Double]?
+    
+        /// Sets alternative tick labels for the categories in this dimension. 
+        ///
+        /// Only has an effect if `categoryorder` is set to *array*. Should be an array the same length as
+        /// `categoryarray` Used with `categoryorder`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-ticktext) |
+        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-ticktext) |
+        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-ticktext)
+        public var tickText: [Double]?
+    
+        /// Dimension values. 
+        ///
+        /// `values[n]` represents the category value of the `n`th point in the dataset, therefore the
+        /// `values` vector for all dimensions must be the same (longer vectors will be truncated).
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-values) |
+        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-values) |
+        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-values)
+        public var values: [Double]?
+    
+        /// The display index of dimension, from left to right, zero indexed, defaults to dimension index.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-displayindex) |
+        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-displayindex) |
+        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-displayindex)
+        public var displayIndex: Int?
+    
+        /// Shows the dimension when set to `true` (the default). 
+        ///
+        /// Hides the dimension for `false`.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-visible) |
+        /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-visible) |
+        /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-visible)
+        public var visible: Bool?
+    
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case label
+            case categoryOrder = "categoryorder"
+            case categoryArray = "categoryarray"
+            case tickText = "ticktext"
+            case values
+            case displayIndex = "displayindex"
+            case visible
+        }
+        
+        public init(label: String? = nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, tickText: [Double]? = nil, values: [Double]? = nil, displayIndex: Int? = nil, visible: Bool? = nil) {
+            self.label = label
+            self.categoryOrder = categoryOrder
+            self.categoryArray = categoryArray
+            self.tickText = tickText
+            self.values = values
+            self.displayIndex = displayIndex
+            self.visible = visible
         }
     }
+    /// The dimensions (variables) of the parallel categories diagram.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions) |
-    /// [Python](https://plot.ly/python/reference/#parcats-dimensions) |
-    /// [R](https://plot.ly/r/reference/#parcats-dimensions)
-    public var dimensions: Dimensions?
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension) |
+    /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension) |
+    /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension)
+    public var dimensions: [Dimension]?
 
-    ///
     /// # Used By
     /// `ParallelCategories.line` |
-    public struct Line: Encodable {
+    public struct SplineColoredLine: Encodable {
         /// Sets thelinecolor. 
         ///
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
@@ -551,7 +474,7 @@ public struct ParallelCategories: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-colorbar) |
         /// [Python](https://plot.ly/python/reference/#parcats-line-colorbar) |
         /// [R](https://plot.ly/r/reference/#parcats-line-colorbar)
-        public var colorBar: ColorBar0?
+        public var colorBar: ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -571,7 +494,7 @@ public struct ParallelCategories: Trace {
         /// horizontal curved splines
         ///
         /// # Used By
-        /// `ParallelCategories.Line.shape` |
+        /// `ParallelCategories.SplineColoredLine.shape` |
         public enum Shape: String, Encodable {
             case linear
             case hspline
@@ -609,14 +532,6 @@ public struct ParallelCategories: Trace {
         /// [R](https://plot.ly/r/reference/#parcats-line-hovertemplate)
         public var hoverTemplate: String?
     
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#parcats-line-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#parcats-line-colorsrc)
-        public var colorSource: String?
-    
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
             case color
@@ -632,10 +547,9 @@ public struct ParallelCategories: Trace {
             case colorAxis = "coloraxis"
             case shape
             case hoverTemplate = "hovertemplate"
-            case colorSource = "colorsrc"
         }
         
-        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil, colorSource: String? = nil) {
+        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil) {
             self.color = color
             self.cAuto = cAuto
             self.cMin = cMin
@@ -649,7 +563,6 @@ public struct ParallelCategories: Trace {
             self.colorAxis = colorAxis
             self.shape = shape
             self.hoverTemplate = hoverTemplate
-            self.colorSource = colorSource
         }
     }
     ///
@@ -657,7 +570,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line) |
     /// [Python](https://plot.ly/python/reference/#parcats-line) |
     /// [R](https://plot.ly/r/reference/#parcats-line)
-    public var line: Line?
+    public var line: SplineColoredLine?
 
     /// The number of observations represented by each state. 
     ///
@@ -669,22 +582,6 @@ public struct ParallelCategories: Trace {
     /// [R](https://plot.ly/r/reference/#parcats-counts)
     public var counts: Double?
 
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#parcats-metasrc) |
-    /// [R](https://plot.ly/r/reference/#parcats-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  counts .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-countssrc) |
-    /// [Python](https://plot.ly/python/reference/#parcats-countssrc) |
-    /// [R](https://plot.ly/r/reference/#parcats-countssrc)
-    public var countsSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -694,7 +591,7 @@ public struct ParallelCategories: Trace {
         case uid
         case meta
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case domain
         case hoverInfo = "hoverinfo"
@@ -705,14 +602,12 @@ public struct ParallelCategories: Trace {
         case sortPaths = "sortpaths"
         case labelFont = "labelfont"
         case tickFont = "tickfont"
-        case dimensions
+        case dimensions = "dimension"
         case line
         case counts
-        case metaSource = "metasrc"
-        case countsSource = "countssrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, domain: Domain0? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Font0? = nil, tickFont: Font0? = nil, dimensions: Dimensions? = nil, line: Line? = nil, counts: Double? = nil, metaSource: String? = nil, countsSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, domain: Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Font? = nil, tickFont: Font? = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: Double? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -732,7 +627,5 @@ public struct ParallelCategories: Trace {
         self.dimensions = dimensions
         self.line = line
         self.counts = counts
-        self.metaSource = metaSource
-        self.countsSource = countsSource
     }
 }

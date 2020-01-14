@@ -27,7 +27,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-visible) |
     /// [Python](https://plot.ly/python/reference/#waterfall-visible) |
     /// [R](https://plot.ly/r/reference/#waterfall-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -126,21 +126,22 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#waterfall-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#waterfall-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-stream) |
     /// [Python](https://plot.ly/python/reference/#waterfall-stream) |
     /// [R](https://plot.ly/r/reference/#waterfall-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-transforms) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-transforms) |
-    /// [R](https://plot.ly/r/reference/#waterfall-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#waterfall-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -399,37 +400,12 @@ public struct Waterfall: Trace {
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
     ///
-    /// # Used By
-    /// `Waterfall.textPosition` |
-    public enum TextPosition: String, Encodable {
-        case inside
-        case outside
-        case auto
-        case none
-    }
-    /// Specifies the location of the `text`. 
-    ///
-    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
-    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
-    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
-    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
-    /// outside.
-    ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-textposition) |
     /// [Python](https://plot.ly/python/reference/#waterfall-textposition) |
     /// [R](https://plot.ly/r/reference/#waterfall-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: AdjacentPosition?
 
-    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    ///
-    /// # Used By
-    /// `Waterfall.insideTextAnchor` |
-    public enum InsideTextAnchor: String, Encodable {
-        case end
-        case middle
-        case start
-    }
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
     ///
     /// # Plotly Reference
@@ -455,7 +431,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-textfont) |
     /// [Python](https://plot.ly/python/reference/#waterfall-textfont) |
     /// [R](https://plot.ly/r/reference/#waterfall-textfont)
-    public var textFont: Font0?
+    public var textFont: Font?
 
     /// Sets the font used for `text` lying inside the bar.
     ///
@@ -463,7 +439,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#waterfall-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#waterfall-insidetextfont)
-    public var insideTextFont: Font0?
+    public var insideTextFont: Font?
 
     /// Sets the font used for `text` lying outside the bar.
     ///
@@ -471,18 +447,8 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#waterfall-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#waterfall-outsidetextfont)
-    public var outSideTextFont: Font0?
+    public var outSideTextFont: Font?
 
-    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    ///
-    /// # Used By
-    /// `Waterfall.constrainText` |
-    public enum ConstrainText: String, Encodable {
-        case inside
-        case outside
-        case both
-        case none
-    }
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     ///
     /// # Plotly Reference
@@ -510,7 +476,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-orientation) |
     /// [Python](https://plot.ly/python/reference/#waterfall-orientation) |
     /// [R](https://plot.ly/r/reference/#waterfall-orientation)
-    public var orientation: Orientation0?
+    public var orientation: Orientation?
 
     /// Shifts the position where the bar is drawn (in position axis units). 
     ///
@@ -531,11 +497,9 @@ public struct Waterfall: Trace {
     /// [R](https://plot.ly/r/reference/#waterfall-width)
     public var width: Double?
 
-    ///
     /// # Used By
     /// `Waterfall.increasing` |
     public struct Increasing: Encodable {
-        ///
         /// # Used By
         /// `Waterfall.Increasing.marker` |
         public struct Marker: Encodable {
@@ -552,9 +516,9 @@ public struct Waterfall: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-increasing-marker-line) |
             /// [Python](https://plot.ly/python/reference/#waterfall-increasing-marker-line) |
             /// [R](https://plot.ly/r/reference/#waterfall-increasing-marker-line)
-            public var line: Line0?
+            public var line: Line?
         
-            public init(color: Color? = nil, line: Line0? = nil) {
+            public init(color: Color? = nil, line: Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -577,11 +541,9 @@ public struct Waterfall: Trace {
     /// [R](https://plot.ly/r/reference/#waterfall-increasing)
     public var increasing: Increasing?
 
-    ///
     /// # Used By
     /// `Waterfall.decreasing` |
     public struct Decreasing: Encodable {
-        ///
         /// # Used By
         /// `Waterfall.Decreasing.marker` |
         public struct Marker: Encodable {
@@ -598,9 +560,9 @@ public struct Waterfall: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-decreasing-marker-line) |
             /// [Python](https://plot.ly/python/reference/#waterfall-decreasing-marker-line) |
             /// [R](https://plot.ly/r/reference/#waterfall-decreasing-marker-line)
-            public var line: Line0?
+            public var line: Line?
         
-            public init(color: Color? = nil, line: Line0? = nil) {
+            public init(color: Color? = nil, line: Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -623,11 +585,9 @@ public struct Waterfall: Trace {
     /// [R](https://plot.ly/r/reference/#waterfall-decreasing)
     public var decreasing: Decreasing?
 
-    ///
     /// # Used By
     /// `Waterfall.totals` |
     public struct Totals: Encodable {
-        ///
         /// # Used By
         /// `Waterfall.Totals.marker` |
         public struct Marker: Encodable {
@@ -644,9 +604,9 @@ public struct Waterfall: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-totals-marker-line) |
             /// [Python](https://plot.ly/python/reference/#waterfall-totals-marker-line) |
             /// [R](https://plot.ly/r/reference/#waterfall-totals-marker-line)
-            public var line: Line0?
+            public var line: Line?
         
-            public init(color: Color? = nil, line: Line0? = nil) {
+            public init(color: Color? = nil, line: Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -669,7 +629,6 @@ public struct Waterfall: Trace {
     /// [R](https://plot.ly/r/reference/#waterfall-totals)
     public var totals: Totals?
 
-    ///
     /// # Used By
     /// `Waterfall.connector` |
     public struct Connector: Encodable {
@@ -678,7 +637,7 @@ public struct Waterfall: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-connector-line) |
         /// [Python](https://plot.ly/python/reference/#waterfall-connector-line) |
         /// [R](https://plot.ly/r/reference/#waterfall-connector-line)
-        public var line: Line0?
+        public var line: DashedLine?
     
         /// Sets the shape of connector lines.
         ///
@@ -704,7 +663,7 @@ public struct Waterfall: Trace {
         /// [R](https://plot.ly/r/reference/#waterfall-connector-visible)
         public var visible: Bool?
     
-        public init(line: Line0? = nil, mode: Mode? = nil, visible: Bool? = nil) {
+        public init(line: DashedLine? = nil, mode: Mode? = nil, visible: Bool? = nil) {
             self.line = line
             self.mode = mode
             self.visible = visible
@@ -757,118 +716,6 @@ public struct Waterfall: Trace {
     /// [R](https://plot.ly/r/reference/#waterfall-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-idssrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-metasrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  measure .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-measuresrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-measuresrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-measuresrc)
-    public var measureSource: String?
-
-    /// Sets the source reference on plot.ly for  x .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-xsrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-xsrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-xsrc)
-    public var xSource: String?
-
-    /// Sets the source reference on plot.ly for  y .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-ysrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-ysrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-ysrc)
-    public var ySource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  texttemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-texttemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-texttemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-texttemplatesrc)
-    public var textTemplateSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-textsrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  textposition .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-textpositionsrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-textpositionsrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-textpositionsrc)
-    public var textPositionSource: String?
-
-    /// Sets the source reference on plot.ly for  offset .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-offsetsrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-offsetsrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-offsetsrc)
-    public var offsetSource: String?
-
-    /// Sets the source reference on plot.ly for  width .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-widthsrc) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-widthsrc) |
-    /// [R](https://plot.ly/r/reference/#waterfall-widthsrc)
-    public var widthSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -885,7 +732,7 @@ public struct Waterfall: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case measure
         case base
@@ -920,23 +767,9 @@ public struct Waterfall: Trace {
         case alignmentGroup = "alignmentgroup"
         case xAxis = "xaxis"
         case yAxis = "yaxis"
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case measureSource = "measuresrc"
-        case xSource = "xsrc"
-        case ySource = "ysrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverTemplateSource = "hovertemplatesrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case textTemplateSource = "texttemplatesrc"
-        case textSource = "textsrc"
-        case textPositionSource = "textpositionsrc"
-        case offsetSource = "offsetsrc"
-        case widthSource = "widthsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: TextPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font0? = nil, insideTextFont: Font0? = nil, outSideTextFont: Font0? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation0? = nil, offset: Double? = nil, width: Double? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, measureSource: String? = nil, xSource: String? = nil, ySource: String? = nil, hoverTextSource: String? = nil, hoverTemplateSource: String? = nil, hoverInfoSource: String? = nil, textTemplateSource: String? = nil, textSource: String? = nil, textPositionSource: String? = nil, offsetSource: String? = nil, widthSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, offset: Double? = nil, width: Double? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -984,19 +817,5 @@ public struct Waterfall: Trace {
         self.alignmentGroup = alignmentGroup
         self.xAxis = xAxis
         self.yAxis = yAxis
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.measureSource = measureSource
-        self.xSource = xSource
-        self.ySource = ySource
-        self.hoverTextSource = hoverTextSource
-        self.hoverTemplateSource = hoverTemplateSource
-        self.hoverInfoSource = hoverInfoSource
-        self.textTemplateSource = textTemplateSource
-        self.textSource = textSource
-        self.textPositionSource = textPositionSource
-        self.offsetSource = offsetSource
-        self.widthSource = widthSource
     }
 }

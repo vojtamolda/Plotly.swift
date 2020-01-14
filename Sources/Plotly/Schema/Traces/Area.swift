@@ -22,7 +22,7 @@ public struct Area: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#area-visible) |
     /// [Python](https://plot.ly/python/reference/#area-visible) |
     /// [R](https://plot.ly/r/reference/#area-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -113,28 +113,29 @@ public struct Area: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#area-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#area-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#area-hoverinfo)
-    public var hoverInfo: HoverInfo0?
+    public var hoverInfo: HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#area-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#area-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#area-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#area-stream) |
     /// [Python](https://plot.ly/python/reference/#area-stream) |
     /// [R](https://plot.ly/r/reference/#area-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#area-transforms) |
-    /// [Python](https://plot.ly/python/reference/#area-transforms) |
-    /// [R](https://plot.ly/r/reference/#area-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#area-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#area-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#area-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -173,10 +174,9 @@ public struct Area: Trace {
     /// [R](https://plot.ly/r/reference/#area-t)
     public var t: [Double]?
 
-    ///
     /// # Used By
     /// `Area.marker` |
-    public struct Marker: Encodable {
+    public struct SymbolicMarker: Encodable {
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
         ///
         /// Sets themarkercolor. It accepts either a specific color or an array of numbers that are mapped
@@ -209,7 +209,7 @@ public struct Area: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-symbol) |
         /// [Python](https://plot.ly/python/reference/#area-marker-symbol) |
         /// [R](https://plot.ly/r/reference/#area-marker-symbol)
-        public var symbol: Symbol0?
+        public var symbol: Symbol?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
         ///
@@ -221,59 +221,11 @@ public struct Area: Trace {
         /// [R](https://plot.ly/r/reference/#area-marker-opacity)
         public var opacity: Double?
     
-        /// Sets the source reference on plot.ly for  color .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-colorsrc) |
-        /// [Python](https://plot.ly/python/reference/#area-marker-colorsrc) |
-        /// [R](https://plot.ly/r/reference/#area-marker-colorsrc)
-        public var colorSource: String?
-    
-        /// Sets the source reference on plot.ly for  size .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-sizesrc) |
-        /// [Python](https://plot.ly/python/reference/#area-marker-sizesrc) |
-        /// [R](https://plot.ly/r/reference/#area-marker-sizesrc)
-        public var sizeSource: String?
-    
-        /// Sets the source reference on plot.ly for  symbol .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-symbolsrc) |
-        /// [Python](https://plot.ly/python/reference/#area-marker-symbolsrc) |
-        /// [R](https://plot.ly/r/reference/#area-marker-symbolsrc)
-        public var symbolSource: String?
-    
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#area-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#area-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case color
-            case size
-            case symbol
-            case opacity
-            case colorSource = "colorsrc"
-            case sizeSource = "sizesrc"
-            case symbolSource = "symbolsrc"
-            case opacitySource = "opacitysrc"
-        }
-        
-        public init(color: Color? = nil, size: Double? = nil, symbol: Symbol0? = nil, opacity: Double? = nil, colorSource: String? = nil, sizeSource: String? = nil, symbolSource: String? = nil, opacitySource: String? = nil) {
+        public init(color: Color? = nil, size: Double? = nil, symbol: Symbol? = nil, opacity: Double? = nil) {
             self.color = color
             self.size = size
             self.symbol = symbol
             self.opacity = opacity
-            self.colorSource = colorSource
-            self.sizeSource = sizeSource
-            self.symbolSource = symbolSource
-            self.opacitySource = opacitySource
         }
     }
     ///
@@ -281,55 +233,7 @@ public struct Area: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#area-marker) |
     /// [Python](https://plot.ly/python/reference/#area-marker) |
     /// [R](https://plot.ly/r/reference/#area-marker)
-    public var marker: Marker?
-
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#area-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#area-idssrc) |
-    /// [R](https://plot.ly/r/reference/#area-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#area-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#area-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#area-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#area-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#area-metasrc) |
-    /// [R](https://plot.ly/r/reference/#area-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#area-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#area-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#area-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  r .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#area-rsrc) |
-    /// [Python](https://plot.ly/python/reference/#area-rsrc) |
-    /// [R](https://plot.ly/r/reference/#area-rsrc)
-    public var rSource: String?
-
-    /// Sets the source reference on plot.ly for  t .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#area-tsrc) |
-    /// [Python](https://plot.ly/python/reference/#area-tsrc) |
-    /// [R](https://plot.ly/r/reference/#area-tsrc)
-    public var tSource: String?
+    public var marker: SymbolicMarker?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -347,20 +251,14 @@ public struct Area: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case r
         case t
         case marker
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case rSource = "rsrc"
-        case tSource = "tsrc"
     }
     
-    public init(visible: Visible0? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo0? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, t: [Double]? = nil, marker: Marker? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, hoverInfoSource: String? = nil, rSource: String? = nil, tSource: String? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, t: [Double]? = nil, marker: SymbolicMarker? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -378,11 +276,5 @@ public struct Area: Trace {
         self.r = r
         self.t = t
         self.marker = marker
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.hoverInfoSource = hoverInfoSource
-        self.rSource = rSource
-        self.tSource = tSource
     }
 }

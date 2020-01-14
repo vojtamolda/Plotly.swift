@@ -25,7 +25,7 @@ public struct Choropleth: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-visible) |
     /// [Python](https://plot.ly/python/reference/#choropleth-visible) |
     /// [R](https://plot.ly/r/reference/#choropleth-visible)
-    public var visible: Visible0?
+    public var visible: Visible?
 
     /// Sets the trace name. 
     ///
@@ -98,21 +98,22 @@ public struct Choropleth: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#choropleth-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#choropleth-hoverlabel)
-    public var hoverLabel: HoverLabel0?
+    public var hoverLabel: HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-stream) |
     /// [Python](https://plot.ly/python/reference/#choropleth-stream) |
     /// [R](https://plot.ly/r/reference/#choropleth-stream)
-    public var stream: Stream0?
+    public var stream: Stream?
 
+    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-transforms) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-transforms) |
-    /// [R](https://plot.ly/r/reference/#choropleth-transforms)
-    public var transforms: Transforms0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-transforms-items-transform) |
+    /// [Python](https://plot.ly/python/reference/#choropleth-transforms-items-transform) |
+    /// [R](https://plot.ly/r/reference/#choropleth-transforms-items-transform)
+    public var transforms: [Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -182,7 +183,6 @@ public struct Choropleth: Trace {
     /// [R](https://plot.ly/r/reference/#choropleth-hovertext)
     public var hoverText: String?
 
-    ///
     /// # Used By
     /// `Choropleth.marker` |
     public struct Marker: Encodable {
@@ -191,7 +191,7 @@ public struct Choropleth: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-marker-line) |
         /// [Python](https://plot.ly/python/reference/#choropleth-marker-line) |
         /// [R](https://plot.ly/r/reference/#choropleth-marker-line)
-        public var line: Line2?
+        public var line: Line?
     
         /// Sets the opacity of the locations.
         ///
@@ -201,25 +201,9 @@ public struct Choropleth: Trace {
         /// [R](https://plot.ly/r/reference/#choropleth-marker-opacity)
         public var opacity: Double?
     
-        /// Sets the source reference on plot.ly for  opacity .
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-marker-opacitysrc) |
-        /// [Python](https://plot.ly/python/reference/#choropleth-marker-opacitysrc) |
-        /// [R](https://plot.ly/r/reference/#choropleth-marker-opacitysrc)
-        public var opacitySource: String?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case line
-            case opacity
-            case opacitySource = "opacitysrc"
-        }
-        
-        public init(line: Line2? = nil, opacity: Double? = nil, opacitySource: String? = nil) {
+        public init(line: Line? = nil, opacity: Double? = nil) {
             self.line = line
             self.opacity = opacity
-            self.opacitySource = opacitySource
         }
     }
     ///
@@ -229,19 +213,77 @@ public struct Choropleth: Trace {
     /// [R](https://plot.ly/r/reference/#choropleth-marker)
     public var marker: Marker?
 
+    /// # Used By
+    /// `Choropleth.selected` |
+    public struct Selected: Encodable {
+        /// # Used By
+        /// `Choropleth.Selected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of selected points.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-selected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#choropleth-selected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#choropleth-selected-marker-opacity)
+            public var opacity: Double?
+        
+            public init(opacity: Double? = nil) {
+                self.opacity = opacity
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-selected-marker) |
+        /// [Python](https://plot.ly/python/reference/#choropleth-selected-marker) |
+        /// [R](https://plot.ly/r/reference/#choropleth-selected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-selected) |
     /// [Python](https://plot.ly/python/reference/#choropleth-selected) |
     /// [R](https://plot.ly/r/reference/#choropleth-selected)
-    public var selected: Selected0?
+    public var selected: Selected?
 
+    /// # Used By
+    /// `Choropleth.unselected` |
+    public struct Unselected: Encodable {
+        /// # Used By
+        /// `Choropleth.Unselected.marker` |
+        public struct Marker: Encodable {
+            /// Sets the marker opacity of unselected points, applied only when a selection exists.
+            ///
+            /// # Plotly Reference
+            /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-unselected-marker-opacity) |
+            /// [Python](https://plot.ly/python/reference/#choropleth-unselected-marker-opacity) |
+            /// [R](https://plot.ly/r/reference/#choropleth-unselected-marker-opacity)
+            public var opacity: Double?
+        
+            public init(opacity: Double? = nil) {
+                self.opacity = opacity
+            }
+        }
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-unselected-marker) |
+        /// [Python](https://plot.ly/python/reference/#choropleth-unselected-marker) |
+        /// [R](https://plot.ly/r/reference/#choropleth-unselected-marker)
+        public var marker: Marker?
+    
+        public init(marker: Marker? = nil) {
+            self.marker = marker
+        }
+    }
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-unselected) |
     /// [Python](https://plot.ly/python/reference/#choropleth-unselected) |
     /// [R](https://plot.ly/r/reference/#choropleth-unselected)
-    public var unselected: Selected0?
+    public var unselected: Unselected?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -398,7 +440,7 @@ public struct Choropleth: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-colorbar) |
     /// [Python](https://plot.ly/python/reference/#choropleth-colorbar) |
     /// [R](https://plot.ly/r/reference/#choropleth-colorbar)
-    public var colorBar: ColorBar0?
+    public var colorBar: ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -423,78 +465,6 @@ public struct Choropleth: Trace {
     /// [R](https://plot.ly/r/reference/#choropleth-geo)
     public var geo: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  ids .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-idssrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-idssrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-idssrc)
-    public var idsSource: String?
-
-    /// Sets the source reference on plot.ly for  customdata .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-customdatasrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-customdatasrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-customdatasrc)
-    public var customDataSource: String?
-
-    /// Sets the source reference on plot.ly for  meta .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-metasrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-metasrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-metasrc)
-    public var metaSource: String?
-
-    /// Sets the source reference on plot.ly for  locations .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-locationssrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-locationssrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-locationssrc)
-    public var locationsSource: String?
-
-    /// Sets the source reference on plot.ly for  z .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-zsrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-zsrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-zsrc)
-    public var zSource: String?
-
-    /// Sets the source reference on plot.ly for  text .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-textsrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-textsrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-textsrc)
-    public var textSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-hovertextsrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-hovertextsrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-hovertextsrc)
-    public var hoverTextSource: String?
-
-    /// Sets the source reference on plot.ly for  hoverinfo .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-hoverinfosrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-hoverinfosrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-hoverinfosrc)
-    public var hoverInfoSource: String?
-
-    /// Sets the source reference on plot.ly for  hovertemplate .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-hovertemplatesrc) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-hovertemplatesrc) |
-    /// [R](https://plot.ly/r/reference/#choropleth-hovertemplatesrc)
-    public var hoverTemplateSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case type
@@ -508,7 +478,7 @@ public struct Choropleth: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms
+        case transforms = "transform"
         case uiRevision = "uirevision"
         case locations
         case locationMode = "locationmode"
@@ -531,18 +501,9 @@ public struct Choropleth: Trace {
         case colorBar = "colorbar"
         case colorAxis = "coloraxis"
         case geo
-        case idsSource = "idssrc"
-        case customDataSource = "customdatasrc"
-        case metaSource = "metasrc"
-        case locationsSource = "locationssrc"
-        case zSource = "zsrc"
-        case textSource = "textsrc"
-        case hoverTextSource = "hovertextsrc"
-        case hoverInfoSource = "hoverinfosrc"
-        case hoverTemplateSource = "hovertemplatesrc"
     }
     
-    public init(visible: Visible0? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel0? = nil, stream: Stream0? = nil, transforms: Transforms0? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, z: [Double]? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected0? = nil, unselected: Selected0? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar0? = nil, colorAxis: SubPlotID? = nil, geo: SubPlotID? = nil, idsSource: String? = nil, customDataSource: String? = nil, metaSource: String? = nil, locationsSource: String? = nil, zSource: String? = nil, textSource: String? = nil, hoverTextSource: String? = nil, hoverInfoSource: String? = nil, hoverTemplateSource: String? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, z: [Double]? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, geo: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -575,14 +536,5 @@ public struct Choropleth: Trace {
         self.colorBar = colorBar
         self.colorAxis = colorAxis
         self.geo = geo
-        self.idsSource = idsSource
-        self.customDataSource = customDataSource
-        self.metaSource = metaSource
-        self.locationsSource = locationsSource
-        self.zSource = zSource
-        self.textSource = textSource
-        self.hoverTextSource = hoverTextSource
-        self.hoverInfoSource = hoverInfoSource
-        self.hoverTemplateSource = hoverTemplateSource
     }
 }

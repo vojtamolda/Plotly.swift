@@ -1,124 +1,3 @@
-///
-/// # Used By
-/// `Config.edits` |
-/// `Layout.Scene.AspectRatio.impliedEdits` |
-/// `Histogram2DContour.Contours.impliedEdits` |
-/// `Contour.Contours.impliedEdits` |
-/// `ContourCarpet.Contours.impliedEdits` |
-public struct Edits0: Encodable {
-    /// Determines if the main anchor of the annotation is editable. 
-    ///
-    /// The main anchor corresponds to the text (if no arrow) or the arrow (which drags the whole thing
-    /// leaving the arrow length & direction unchanged).
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-annotationPosition) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-annotationPosition) |
-    /// [R](https://plot.ly/r/reference/#config-edits-annotationPosition)
-    public var annotationPosition: Bool?
-
-    /// Has only an effect for annotations with arrows. 
-    ///
-    /// Enables changing the length and direction of the arrow.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-annotationTail) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-annotationTail) |
-    /// [R](https://plot.ly/r/reference/#config-edits-annotationTail)
-    public var annotationTail: Bool?
-
-    /// Enables editing annotation text.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-annotationText) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-annotationText) |
-    /// [R](https://plot.ly/r/reference/#config-edits-annotationText)
-    public var annotationText: Bool?
-
-    /// Enables editing axis title text.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-axisTitleText) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-axisTitleText) |
-    /// [R](https://plot.ly/r/reference/#config-edits-axisTitleText)
-    public var axisTitleText: Bool?
-
-    /// Enables moving colorbars.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-colorbarPosition) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-colorbarPosition) |
-    /// [R](https://plot.ly/r/reference/#config-edits-colorbarPosition)
-    public var colorBarPosition: Bool?
-
-    /// Enables editing colorbar title text.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-colorbarTitleText) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-colorbarTitleText) |
-    /// [R](https://plot.ly/r/reference/#config-edits-colorbarTitleText)
-    public var colorBarTitleText: Bool?
-
-    /// Enables moving the legend.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-legendPosition) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-legendPosition) |
-    /// [R](https://plot.ly/r/reference/#config-edits-legendPosition)
-    public var legendPosition: Bool?
-
-    /// Enables editing the trace name fields from the legend
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-legendText) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-legendText) |
-    /// [R](https://plot.ly/r/reference/#config-edits-legendText)
-    public var legendText: Bool?
-
-    /// Enables moving shapes.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-shapePosition) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-shapePosition) |
-    /// [R](https://plot.ly/r/reference/#config-edits-shapePosition)
-    public var shapePosition: Bool?
-
-    /// Enables editing the global layout title.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#config-edits-titleText) |
-    /// [Python](https://plot.ly/python/reference/#config-edits-titleText) |
-    /// [R](https://plot.ly/r/reference/#config-edits-titleText)
-    public var titleText: Bool?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case annotationPosition
-        case annotationTail
-        case annotationText
-        case axisTitleText
-        case colorBarPosition = "colorbarPosition"
-        case colorBarTitleText = "colorbarTitleText"
-        case legendPosition
-        case legendText
-        case shapePosition
-        case titleText
-    }
-    
-    public init(annotationPosition: Bool? = nil, annotationTail: Bool? = nil, annotationText: Bool? = nil, axisTitleText: Bool? = nil, colorBarPosition: Bool? = nil, colorBarTitleText: Bool? = nil, legendPosition: Bool? = nil, legendText: Bool? = nil, shapePosition: Bool? = nil, titleText: Bool? = nil) {
-        self.annotationPosition = annotationPosition
-        self.annotationTail = annotationTail
-        self.annotationText = annotationText
-        self.axisTitleText = axisTitleText
-        self.colorBarPosition = colorBarPosition
-        self.colorBarTitleText = colorBarTitleText
-        self.legendPosition = legendPosition
-        self.legendText = legendText
-        self.shapePosition = shapePosition
-        self.titleText = titleText
-    }
-}
-
 /// Sets the global font. 
 ///
 /// Note that fonts used in traces and other layout components inherit from the global font.
@@ -144,23 +23,23 @@ public struct Edits0: Encodable {
 /// `Layout.Scene.YAxis.tickFont` |
 /// `Layout.Scene.ZAxis.Title.font` |
 /// `Layout.Scene.ZAxis.tickFont` |
-/// `Layout.Scene.Annotations.Items.Annotation.font` |
-/// `Layout.Scene.Annotations.Items.Annotation.HoverLabel.font` |
-/// `Layout.Mapbox.Layers.Items.Layer.Symbol.textFont` |
+/// `Layout.Scene.Annotation.font` |
+/// `Layout.Scene.Annotation.HoverLabel.font` |
+/// `Layout.Mapbox.Layer.Symbol.textFont` |
 /// `Layout.Polar.RadialAxis.Title.font` |
 /// `Layout.Polar.RadialAxis.tickFont` |
 /// `Layout.Polar.AngularAxis.tickFont` |
 /// `Layout.Legend.font` |
-/// `Layout.Annotations.Items.Annotation.font` |
-/// `Layout.Annotations.Items.Annotation.HoverLabel.font` |
-/// `Layout.UpdateMenus.Items.UpdateMenu.font` |
-/// `Layout.Sliders.Items.Slider.CurrentValue.font` |
-/// `Layout.Sliders.Items.Slider.font` |
+/// `Layout.Annotation.font` |
+/// `Layout.Annotation.HoverLabel.font` |
+/// `Layout.UpdateMenu.font` |
+/// `Layout.Slider.CurrentValue.font` |
+/// `Layout.Slider.font` |
 /// `Layout.ColorAxis.ColorBar.tickFont` |
 /// `Layout.ColorAxis.ColorBar.Title.font` |
 /// `Scatter.HoverLabel.font` |
-/// `Scatter.Marker.ColorBar.tickFont` |
-/// `Scatter.Marker.ColorBar.Title.font` |
+/// `Scatter.GradientMarker.ColorBar.tickFont` |
+/// `Scatter.GradientMarker.ColorBar.Title.font` |
 /// `Scatter.textFont` |
 /// `Bar.HoverLabel.font` |
 /// `Bar.textFont` |
@@ -187,8 +66,8 @@ public struct Edits0: Encodable {
 /// `Contour.ColorBar.tickFont` |
 /// `Contour.ColorBar.Title.font` |
 /// `ScatterTernary.HoverLabel.font` |
-/// `ScatterTernary.Marker.ColorBar.tickFont` |
-/// `ScatterTernary.Marker.ColorBar.Title.font` |
+/// `ScatterTernary.GradientMarker.ColorBar.tickFont` |
+/// `ScatterTernary.GradientMarker.ColorBar.Title.font` |
 /// `ScatterTernary.textFont` |
 /// `Violin.HoverLabel.font` |
 /// `Funnel.HoverLabel.font` |
@@ -225,10 +104,11 @@ public struct Edits0: Encodable {
 /// `FunnelArea.insideTextFont` |
 /// `FunnelArea.Title.font` |
 /// `Scatter3D.HoverLabel.font` |
-/// `Scatter3D.Line.ColorBar.tickFont` |
-/// `Scatter3D.Line.ColorBar.Title.font` |
-/// `Scatter3D.Marker.ColorBar.tickFont` |
-/// `Scatter3D.Marker.ColorBar.Title.font` |
+/// `Scatter3D.DashedColoredLine.ColorBar.tickFont` |
+/// `Scatter3D.DashedColoredLine.ColorBar.Title.font` |
+/// `Scatter3D.SymbolicMarker.ColorBar.tickFont` |
+/// `Scatter3D.SymbolicMarker.ColorBar.Title.font` |
+/// `Scatter3D.textFont` |
 /// `Surface.HoverLabel.font` |
 /// `Surface.ColorBar.tickFont` |
 /// `Surface.ColorBar.Title.font` |
@@ -249,18 +129,18 @@ public struct Edits0: Encodable {
 /// `StreamTube.ColorBar.Title.font` |
 /// `ScatterGeo.HoverLabel.font` |
 /// `ScatterGeo.textFont` |
-/// `ScatterGeo.Marker.ColorBar.tickFont` |
-/// `ScatterGeo.Marker.ColorBar.Title.font` |
+/// `ScatterGeo.GradientMarker.ColorBar.tickFont` |
+/// `ScatterGeo.GradientMarker.ColorBar.Title.font` |
 /// `Choropleth.HoverLabel.font` |
 /// `Choropleth.ColorBar.tickFont` |
 /// `Choropleth.ColorBar.Title.font` |
 /// `ScatterGL.HoverLabel.font` |
 /// `ScatterGL.textFont` |
-/// `ScatterGL.Marker.ColorBar.tickFont` |
-/// `ScatterGL.Marker.ColorBar.Title.font` |
+/// `ScatterGL.SymbolicMarker.ColorBar.tickFont` |
+/// `ScatterGL.SymbolicMarker.ColorBar.Title.font` |
 /// `ScatterPlotMatrix.HoverLabel.font` |
-/// `ScatterPlotMatrix.Marker.ColorBar.tickFont` |
-/// `ScatterPlotMatrix.Marker.ColorBar.Title.font` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFont` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.Title.font` |
 /// `PointCloud.HoverLabel.font` |
 /// `HeatmapGL.HoverLabel.font` |
 /// `HeatmapGL.ColorBar.tickFont` |
@@ -268,15 +148,15 @@ public struct Edits0: Encodable {
 /// `ParallelCoordinates.labelFont` |
 /// `ParallelCoordinates.tickFont` |
 /// `ParallelCoordinates.rangeFont` |
-/// `ParallelCoordinates.Line.ColorBar.tickFont` |
-/// `ParallelCoordinates.Line.ColorBar.Title.font` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.tickFont` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.Title.font` |
 /// `ParallelCategories.labelFont` |
 /// `ParallelCategories.tickFont` |
-/// `ParallelCategories.Line.ColorBar.tickFont` |
-/// `ParallelCategories.Line.ColorBar.Title.font` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.tickFont` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.Title.font` |
 /// `ScatterMapbox.HoverLabel.font` |
-/// `ScatterMapbox.Marker.ColorBar.tickFont` |
-/// `ScatterMapbox.Marker.ColorBar.Title.font` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.tickFont` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.Title.font` |
 /// `ScatterMapbox.textFont` |
 /// `ChoroplethMapbox.HoverLabel.font` |
 /// `ChoroplethMapbox.ColorBar.tickFont` |
@@ -301,8 +181,8 @@ public struct Edits0: Encodable {
 /// `Carpet.BAxis.tickFont` |
 /// `Carpet.font` |
 /// `ScatterCarpet.HoverLabel.font` |
-/// `ScatterCarpet.Marker.ColorBar.tickFont` |
-/// `ScatterCarpet.Marker.ColorBar.Title.font` |
+/// `ScatterCarpet.GradientMarker.ColorBar.tickFont` |
+/// `ScatterCarpet.GradientMarker.ColorBar.Title.font` |
 /// `ScatterCarpet.textFont` |
 /// `ContourCarpet.Contours.labelFont` |
 /// `ContourCarpet.ColorBar.tickFont` |
@@ -310,18 +190,18 @@ public struct Edits0: Encodable {
 /// `OHLC.HoverLabel.font` |
 /// `Candlestick.HoverLabel.font` |
 /// `ScatterPolar.HoverLabel.font` |
-/// `ScatterPolar.Marker.ColorBar.tickFont` |
-/// `ScatterPolar.Marker.ColorBar.Title.font` |
+/// `ScatterPolar.GradientMarker.ColorBar.tickFont` |
+/// `ScatterPolar.GradientMarker.ColorBar.Title.font` |
 /// `ScatterPolar.textFont` |
 /// `ScatterPolarGL.HoverLabel.font` |
-/// `ScatterPolarGL.Marker.ColorBar.tickFont` |
-/// `ScatterPolarGL.Marker.ColorBar.Title.font` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.tickFont` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.Title.font` |
 /// `ScatterPolarGL.textFont` |
 /// `BarPolar.HoverLabel.font` |
 /// `BarPolar.Marker.ColorBar.tickFont` |
 /// `BarPolar.Marker.ColorBar.Title.font` |
 /// `Area.HoverLabel.font` |
-public struct Font0: Encodable {
+public struct Font: Encodable {
     /// HTML font family - the typeface that will be applied by the web browser. 
     ///
     /// The web browser will only be able to apply a font if it is available on the system which it
@@ -359,257 +239,61 @@ public struct Font0: Encodable {
     }
 }
 
+/// Sets the padding of the title. 
+///
+/// Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set
+/// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
+/// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
+/// respective anchor value is *middle*/*center*.
 ///
 /// # Used By
-/// `Layout.title` |
-/// `Layout.Ternary.AAxis.title` |
-/// `Layout.Ternary.BAxis.title` |
-/// `Layout.Ternary.CAxis.title` |
-/// `Layout.Scene.XAxis.title` |
-/// `Layout.Scene.YAxis.title` |
-/// `Layout.Scene.ZAxis.title` |
-/// `Layout.Polar.RadialAxis.title` |
-public struct Title0: Encodable {
-    /// Sets the plot's title. 
-    ///
-    /// Note that before the existence of `title.text`, the title's contents used to be defined as the
-    /// `title` attribute itself. This behavior has been deprecated.
+/// `Layout.Title.padding` |
+/// `Layout.UpdateMenu.padding` |
+/// `Layout.Slider.padding` |
+/// `Treemap.Marker.padding` |
+public struct Padding: Encodable {
+    /// The amount of padding (in px) along the top of the component.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-text) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-text) |
-    /// [R](https://plot.ly/r/reference/#layout-title-text)
-    public var text: String?
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad-t) |
+    /// [Python](https://plot.ly/python/reference/#layout-title-pad-t) |
+    /// [R](https://plot.ly/r/reference/#layout-title-pad-t)
+    public var t: Double?
 
-    /// Sets the title font. 
-    ///
-    /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+    /// The amount of padding (in px) on the right side of the component.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-font) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-font) |
-    /// [R](https://plot.ly/r/reference/#layout-title-font)
-    public var font: Font0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad-r) |
+    /// [Python](https://plot.ly/python/reference/#layout-title-pad-r) |
+    /// [R](https://plot.ly/r/reference/#layout-title-pad-r)
+    public var r: Double?
 
-    /// Sets the container `x` refers to. 
-    ///
-    /// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
-    /// area only.
-    ///
-    /// # Used By
-    /// `Layout.Title0.xReference` |
-    public enum XReference: String, Encodable {
-        case container
-        case paper
-    }
-    /// Sets the container `x` refers to. 
-    ///
-    /// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
-    /// area only.
+    /// The amount of padding (in px) along the bottom of the component.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-xref) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-xref) |
-    /// [R](https://plot.ly/r/reference/#layout-title-xref)
-    public var xReference: XReference?
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad-b) |
+    /// [Python](https://plot.ly/python/reference/#layout-title-pad-b) |
+    /// [R](https://plot.ly/r/reference/#layout-title-pad-b)
+    public var b: Double?
 
-    /// Sets the container `y` refers to. 
-    ///
-    /// *container* spans the entire `height` of the plot. *paper* refers to the height of the plotting
-    /// area only.
-    ///
-    /// # Used By
-    /// `Layout.Title0.yReference` |
-    public enum YReference: String, Encodable {
-        case container
-        case paper
-    }
-    /// Sets the container `y` refers to. 
-    ///
-    /// *container* spans the entire `height` of the plot. *paper* refers to the height of the plotting
-    /// area only.
+    /// The amount of padding (in px) on the left side of the component.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-yref) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-yref) |
-    /// [R](https://plot.ly/r/reference/#layout-title-yref)
-    public var yReference: YReference?
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad-l) |
+    /// [Python](https://plot.ly/python/reference/#layout-title-pad-l) |
+    /// [R](https://plot.ly/r/reference/#layout-title-pad-l)
+    public var l: Double?
 
-    /// Sets the x position with respect to `xref` in normalized coordinates from *0* (left) to *1* (right).
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-x) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-x) |
-    /// [R](https://plot.ly/r/reference/#layout-title-x)
-    public var x: Double?
-
-    /// Sets the y position with respect to `yref` in normalized coordinates from *0* (bottom) to *1* (top). 
-    ///
-    /// *auto* places the baseline of the title onto the vertical center of the top margin.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-y) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-y) |
-    /// [R](https://plot.ly/r/reference/#layout-title-y)
-    public var y: Double?
-
-    /// Sets the title's horizontal alignment with respect to its x position. 
-    ///
-    /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-    /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-    /// `xanchor` value automatically based on the value of `x`.
-    ///
-    /// # Used By
-    /// `Layout.Title0.xAnchor` |
-    /// `Layout.XAxis.RangeSelector.xAnchor` |
-    /// `Layout.Scene.Annotations.Items.Annotation.xAnchor` |
-    /// `Layout.Legend.xAnchor` |
-    /// `Layout.Annotations.Items.Annotation.xAnchor` |
-    /// `Layout.UpdateMenus.Items.UpdateMenu.xAnchor` |
-    /// `Layout.Sliders.Items.Slider.xAnchor` |
-    public enum XAnchor0: String, Encodable {
-        case auto
-        case left
-        case center
-        case right
-    }
-    /// Sets the title's horizontal alignment with respect to its x position. 
-    ///
-    /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-    /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-    /// `xanchor` value automatically based on the value of `x`.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-xanchor) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-xanchor) |
-    /// [R](https://plot.ly/r/reference/#layout-title-xanchor)
-    public var xAnchor: XAnchor0?
-
-    /// Sets the title's vertical alignment with respect to its y position. 
-    ///
-    /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-    /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-    /// calculates the `yanchor` value automatically based on the value of `y`.
-    ///
-    /// # Used By
-    /// `Layout.Title0.yAnchor` |
-    /// `Layout.XAxis.RangeSelector.yAnchor` |
-    /// `Layout.Scene.Annotations.Items.Annotation.yAnchor` |
-    /// `Layout.Legend.yAnchor` |
-    /// `Layout.Annotations.Items.Annotation.yAnchor` |
-    /// `Layout.UpdateMenus.Items.UpdateMenu.yAnchor` |
-    /// `Layout.Sliders.Items.Slider.yAnchor` |
-    public enum YAnchor0: String, Encodable {
-        case auto
-        case top
-        case middle
-        case bottom
-    }
-    /// Sets the title's vertical alignment with respect to its y position. 
-    ///
-    /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-    /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-    /// calculates the `yanchor` value automatically based on the value of `y`.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-yanchor) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-yanchor) |
-    /// [R](https://plot.ly/r/reference/#layout-title-yanchor)
-    public var yAnchor: YAnchor0?
-
-    /// Sets the padding of the title. 
-    ///
-    /// Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set
-    /// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
-    /// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
-    /// respective anchor value is *middle*/*center*.
-    ///
-    /// # Used By
-    /// `Layout.Title0.padding` |
-    public struct Padding: Encodable {
-        /// The amount of padding (in px) along the top of the component.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad-t) |
-        /// [Python](https://plot.ly/python/reference/#layout-title-pad-t) |
-        /// [R](https://plot.ly/r/reference/#layout-title-pad-t)
-        public var t: Double?
-    
-        /// The amount of padding (in px) on the right side of the component.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad-r) |
-        /// [Python](https://plot.ly/python/reference/#layout-title-pad-r) |
-        /// [R](https://plot.ly/r/reference/#layout-title-pad-r)
-        public var r: Double?
-    
-        /// The amount of padding (in px) along the bottom of the component.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad-b) |
-        /// [Python](https://plot.ly/python/reference/#layout-title-pad-b) |
-        /// [R](https://plot.ly/r/reference/#layout-title-pad-b)
-        public var b: Double?
-    
-        /// The amount of padding (in px) on the left side of the component.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad-l) |
-        /// [Python](https://plot.ly/python/reference/#layout-title-pad-l) |
-        /// [R](https://plot.ly/r/reference/#layout-title-pad-l)
-        public var l: Double?
-    
-        public init(t: Double? = nil, r: Double? = nil, b: Double? = nil, l: Double? = nil) {
-            self.t = t
-            self.r = r
-            self.b = b
-            self.l = l
-        }
-    }
-    /// Sets the padding of the title. 
-    ///
-    /// Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set
-    /// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
-    /// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
-    /// respective anchor value is *middle*/*center*.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad) |
-    /// [Python](https://plot.ly/python/reference/#layout-title-pad) |
-    /// [R](https://plot.ly/r/reference/#layout-title-pad)
-    public var padding: Padding?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case text
-        case font
-        case xReference = "xref"
-        case yReference = "yref"
-        case x
-        case y
-        case xAnchor = "xanchor"
-        case yAnchor = "yanchor"
-        case padding = "pad"
-    }
-    
-    public init(text: String? = nil, font: Font0? = nil, xReference: XReference? = nil, yReference: YReference? = nil, x: Double? = nil, y: Double? = nil, xAnchor: XAnchor0? = nil, yAnchor: YAnchor0? = nil, padding: Padding? = nil) {
-        self.text = text
-        self.font = font
-        self.xReference = xReference
-        self.yReference = yReference
-        self.x = x
-        self.y = y
-        self.xAnchor = xAnchor
-        self.yAnchor = yAnchor
-        self.padding = padding
+    public init(t: Double? = nil, r: Double? = nil, b: Double? = nil, l: Double? = nil) {
+        self.t = t
+        self.r = r
+        self.b = b
+        self.l = l
     }
 }
 
-///
 /// # Used By
 /// `Layout.hoverLabel` |
-/// `Layout.Scene.Annotations.Items.Annotation.hoverLabel` |
-/// `Layout.Annotations.Items.Annotation.hoverLabel` |
 /// `Scatter.hoverLabel` |
 /// `Bar.hoverLabel` |
 /// `Box.hoverLabel` |
@@ -648,13 +332,11 @@ public struct Title0: Encodable {
 /// `Sankey.Link.hoverLabel` |
 /// `Table.hoverLabel` |
 /// `ScatterCarpet.hoverLabel` |
-/// `OHLC.hoverLabel` |
-/// `Candlestick.hoverLabel` |
 /// `ScatterPolar.hoverLabel` |
 /// `ScatterPolarGL.hoverLabel` |
 /// `BarPolar.hoverLabel` |
 /// `Area.hoverLabel` |
-public struct HoverLabel0: Encodable {
+public struct HoverLabel: Encodable {
     /// Sets the background color of all hover labels on graph
     ///
     /// # Plotly Reference
@@ -677,63 +359,8 @@ public struct HoverLabel0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-hoverlabel-font) |
     /// [Python](https://plot.ly/python/reference/#layout-hoverlabel-font) |
     /// [R](https://plot.ly/r/reference/#layout-hoverlabel-font)
-    public var font: Font0?
+    public var font: Font?
 
-    /// Sets the horizontal alignment of the text content within hover label box. 
-    ///
-    /// Has an effect only if the hover label text spans more two or more lines
-    ///
-    /// # Used By
-    /// `Layout.HoverLabel0.align` |
-    /// `Scatter.HoverLabel.align` |
-    /// `Bar.HoverLabel.align` |
-    /// `Box.HoverLabel.align` |
-    /// `Heatmap.HoverLabel.align` |
-    /// `Histogram.HoverLabel.align` |
-    /// `Histogram2D.HoverLabel.align` |
-    /// `Histogram2DContour.HoverLabel.align` |
-    /// `Contour.HoverLabel.align` |
-    /// `ScatterTernary.HoverLabel.align` |
-    /// `Violin.HoverLabel.align` |
-    /// `Funnel.HoverLabel.align` |
-    /// `Waterfall.HoverLabel.align` |
-    /// `Image.HoverLabel.align` |
-    /// `Pie.HoverLabel.align` |
-    /// `Sunburst.HoverLabel.align` |
-    /// `Treemap.HoverLabel.align` |
-    /// `FunnelArea.HoverLabel.align` |
-    /// `Scatter3D.HoverLabel.align` |
-    /// `Surface.HoverLabel.align` |
-    /// `Isosurface.HoverLabel.align` |
-    /// `Volume.HoverLabel.align` |
-    /// `Mesh3D.HoverLabel.align` |
-    /// `Cone.HoverLabel.align` |
-    /// `StreamTube.HoverLabel.align` |
-    /// `ScatterGeo.HoverLabel.align` |
-    /// `Choropleth.HoverLabel.align` |
-    /// `ScatterGL.HoverLabel.align` |
-    /// `ScatterPlotMatrix.HoverLabel.align` |
-    /// `PointCloud.HoverLabel.align` |
-    /// `HeatmapGL.HoverLabel.align` |
-    /// `ScatterMapbox.HoverLabel.align` |
-    /// `ChoroplethMapbox.HoverLabel.align` |
-    /// `DensityMapbox.HoverLabel.align` |
-    /// `Sankey.HoverLabel.align` |
-    /// `Sankey.Node.HoverLabel.align` |
-    /// `Sankey.Link.HoverLabel.align` |
-    /// `Table.HoverLabel.align` |
-    /// `ScatterCarpet.HoverLabel.align` |
-    /// `OHLC.HoverLabel.align` |
-    /// `Candlestick.HoverLabel.align` |
-    /// `ScatterPolar.HoverLabel.align` |
-    /// `ScatterPolarGL.HoverLabel.align` |
-    /// `BarPolar.HoverLabel.align` |
-    /// `Area.HoverLabel.align` |
-    public enum Align0: String, Encodable {
-        case left
-        case right
-        case auto
-    }
     /// Sets the horizontal alignment of the text content within hover label box. 
     ///
     /// Has an effect only if the hover label text spans more two or more lines
@@ -742,7 +369,7 @@ public struct HoverLabel0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-hoverlabel-align) |
     /// [Python](https://plot.ly/python/reference/#layout-hoverlabel-align) |
     /// [R](https://plot.ly/r/reference/#layout-hoverlabel-align)
-    public var align: Align0?
+    public var align: AutoAlign?
 
     /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
     ///
@@ -765,7 +392,7 @@ public struct HoverLabel0: Encodable {
         case nameLength = "namelength"
     }
     
-    public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font0? = nil, align: Align0? = nil, nameLength: Int? = nil) {
+    public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: AutoAlign? = nil, nameLength: Int? = nil) {
         self.backgroundColor = backgroundColor
         self.borderColor = borderColor
         self.font = font
@@ -774,51 +401,6 @@ public struct HoverLabel0: Encodable {
     }
 }
 
-///
-/// # Used By
-/// `Layout.Grid.domain` |
-/// `Layout.Ternary.domain` |
-/// `Layout.Scene.domain` |
-/// `Layout.Geo.domain` |
-/// `Layout.Mapbox.domain` |
-/// `Layout.Polar.domain` |
-/// `Pie.domain` |
-/// `Sunburst.domain` |
-/// `Treemap.domain` |
-/// `FunnelArea.domain` |
-/// `ParallelCoordinates.domain` |
-/// `ParallelCategories.domain` |
-/// `Sankey.domain` |
-/// `Indicator.domain` |
-/// `Table.domain` |
-public struct Domain0: Encodable {
-    /// Sets the horizontal domain of this grid subplot (in plot fraction). 
-    ///
-    /// The first and last cells end exactly at the domain edges, with no grout around the edges.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-grid-domain-x) |
-    /// [Python](https://plot.ly/python/reference/#layout-grid-domain-x) |
-    /// [R](https://plot.ly/r/reference/#layout-grid-domain-x)
-    public var x: InfoArray?
-
-    /// Sets the vertical domain of this grid subplot (in plot fraction). 
-    ///
-    /// The first and last cells end exactly at the domain edges, with no grout around the edges.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-grid-domain-y) |
-    /// [Python](https://plot.ly/python/reference/#layout-grid-domain-y) |
-    /// [R](https://plot.ly/r/reference/#layout-grid-domain-y)
-    public var y: InfoArray?
-
-    public init(x: InfoArray? = nil, y: InfoArray? = nil) {
-        self.x = x
-        self.y = y
-    }
-}
-
-///
 /// # Used By
 /// `Layout.XAxis.tickFormatStops` |
 /// `Layout.YAxis.tickFormatStops` |
@@ -831,174 +413,44 @@ public struct Domain0: Encodable {
 /// `Layout.Polar.RadialAxis.tickFormatStops` |
 /// `Layout.Polar.AngularAxis.tickFormatStops` |
 /// `Layout.ColorAxis.ColorBar.tickFormatStops` |
-/// `Scatter.Marker.ColorBar.tickFormatStops` |
+/// `Scatter.GradientMarker.ColorBar.tickFormatStops` |
 /// `Bar.Marker.ColorBar.tickFormatStops` |
 /// `Heatmap.ColorBar.tickFormatStops` |
 /// `Histogram.Marker.ColorBar.tickFormatStops` |
 /// `Histogram2D.ColorBar.tickFormatStops` |
 /// `Histogram2DContour.ColorBar.tickFormatStops` |
 /// `Contour.ColorBar.tickFormatStops` |
-/// `ScatterTernary.Marker.ColorBar.tickFormatStops` |
+/// `ScatterTernary.GradientMarker.ColorBar.tickFormatStops` |
 /// `Funnel.Marker.ColorBar.tickFormatStops` |
 /// `Sunburst.Marker.ColorBar.tickFormatStops` |
 /// `Treemap.Marker.ColorBar.tickFormatStops` |
-/// `Scatter3D.Line.ColorBar.tickFormatStops` |
-/// `Scatter3D.Marker.ColorBar.tickFormatStops` |
+/// `Scatter3D.DashedColoredLine.ColorBar.tickFormatStops` |
+/// `Scatter3D.SymbolicMarker.ColorBar.tickFormatStops` |
 /// `Surface.ColorBar.tickFormatStops` |
 /// `Isosurface.ColorBar.tickFormatStops` |
 /// `Volume.ColorBar.tickFormatStops` |
 /// `Mesh3D.ColorBar.tickFormatStops` |
 /// `Cone.ColorBar.tickFormatStops` |
 /// `StreamTube.ColorBar.tickFormatStops` |
-/// `ScatterGeo.Marker.ColorBar.tickFormatStops` |
+/// `ScatterGeo.GradientMarker.ColorBar.tickFormatStops` |
 /// `Choropleth.ColorBar.tickFormatStops` |
-/// `ScatterGL.Marker.ColorBar.tickFormatStops` |
-/// `ScatterPlotMatrix.Marker.ColorBar.tickFormatStops` |
+/// `ScatterGL.SymbolicMarker.ColorBar.tickFormatStops` |
+/// `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFormatStops` |
 /// `HeatmapGL.ColorBar.tickFormatStops` |
-/// `ParallelCoordinates.Line.ColorBar.tickFormatStops` |
-/// `ParallelCategories.Line.ColorBar.tickFormatStops` |
-/// `ScatterMapbox.Marker.ColorBar.tickFormatStops` |
+/// `ParallelCoordinates.ColoredLine.ColorBar.tickFormatStops` |
+/// `ParallelCategories.SplineColoredLine.ColorBar.tickFormatStops` |
+/// `ScatterMapbox.SymbolicMarker.ColorBar.tickFormatStops` |
 /// `ChoroplethMapbox.ColorBar.tickFormatStops` |
 /// `DensityMapbox.ColorBar.tickFormatStops` |
 /// `Indicator.Gauge.Axis.tickFormatStops` |
 /// `Carpet.AAxis.tickFormatStops` |
 /// `Carpet.BAxis.tickFormatStops` |
-/// `ScatterCarpet.Marker.ColorBar.tickFormatStops` |
+/// `ScatterCarpet.GradientMarker.ColorBar.tickFormatStops` |
 /// `ContourCarpet.ColorBar.tickFormatStops` |
-/// `ScatterPolar.Marker.ColorBar.tickFormatStops` |
-/// `ScatterPolarGL.Marker.ColorBar.tickFormatStops` |
+/// `ScatterPolar.GradientMarker.ColorBar.tickFormatStops` |
+/// `ScatterPolarGL.SymbolicMarker.ColorBar.tickFormatStops` |
 /// `BarPolar.Marker.ColorBar.tickFormatStops` |
-public struct TickFormatStops0: Encodable {
-    ///
-    /// # Used By
-    /// `Layout.XAxis.TickFormatStops0.items` |
-    /// `Layout.YAxis.TickFormatStops.items` |
-    /// `Layout.Ternary.AAxis.TickFormatStops.items` |
-    /// `Layout.Ternary.BAxis.TickFormatStops.items` |
-    /// `Layout.Ternary.CAxis.TickFormatStops.items` |
-    /// `Layout.Scene.XAxis.TickFormatStops.items` |
-    /// `Layout.Scene.YAxis.TickFormatStops.items` |
-    /// `Layout.Scene.ZAxis.TickFormatStops.items` |
-    /// `Layout.Polar.RadialAxis.TickFormatStops.items` |
-    /// `Layout.Polar.AngularAxis.TickFormatStops.items` |
-    /// `Layout.ColorAxis.ColorBar.TickFormatStops.items` |
-    /// `Scatter.Marker.ColorBar.TickFormatStops.items` |
-    /// `Bar.Marker.ColorBar.TickFormatStops.items` |
-    /// `Heatmap.ColorBar.TickFormatStops.items` |
-    /// `Histogram.Marker.ColorBar.TickFormatStops.items` |
-    /// `Histogram2D.ColorBar.TickFormatStops.items` |
-    /// `Histogram2DContour.ColorBar.TickFormatStops.items` |
-    /// `Contour.ColorBar.TickFormatStops.items` |
-    /// `ScatterTernary.Marker.ColorBar.TickFormatStops.items` |
-    /// `Funnel.Marker.ColorBar.TickFormatStops.items` |
-    /// `Sunburst.Marker.ColorBar.TickFormatStops.items` |
-    /// `Treemap.Marker.ColorBar.TickFormatStops.items` |
-    /// `Scatter3D.Line.ColorBar.TickFormatStops.items` |
-    /// `Scatter3D.Marker.ColorBar.TickFormatStops.items` |
-    /// `Surface.ColorBar.TickFormatStops.items` |
-    /// `Isosurface.ColorBar.TickFormatStops.items` |
-    /// `Volume.ColorBar.TickFormatStops.items` |
-    /// `Mesh3D.ColorBar.TickFormatStops.items` |
-    /// `Cone.ColorBar.TickFormatStops.items` |
-    /// `StreamTube.ColorBar.TickFormatStops.items` |
-    /// `ScatterGeo.Marker.ColorBar.TickFormatStops.items` |
-    /// `Choropleth.ColorBar.TickFormatStops.items` |
-    /// `ScatterGL.Marker.ColorBar.TickFormatStops.items` |
-    /// `ScatterPlotMatrix.Marker.ColorBar.TickFormatStops.items` |
-    /// `HeatmapGL.ColorBar.TickFormatStops.items` |
-    /// `ParallelCoordinates.Line.ColorBar.TickFormatStops.items` |
-    /// `ParallelCategories.Line.ColorBar.TickFormatStops.items` |
-    /// `ScatterMapbox.Marker.ColorBar.TickFormatStops.items` |
-    /// `ChoroplethMapbox.ColorBar.TickFormatStops.items` |
-    /// `DensityMapbox.ColorBar.TickFormatStops.items` |
-    /// `Indicator.Gauge.Axis.TickFormatStops.items` |
-    /// `Carpet.AAxis.TickFormatStops.items` |
-    /// `Carpet.BAxis.TickFormatStops.items` |
-    /// `ScatterCarpet.Marker.ColorBar.TickFormatStops.items` |
-    /// `ContourCarpet.ColorBar.TickFormatStops.items` |
-    /// `ScatterPolar.Marker.ColorBar.TickFormatStops.items` |
-    /// `ScatterPolarGL.Marker.ColorBar.TickFormatStops.items` |
-    /// `BarPolar.Marker.ColorBar.TickFormatStops.items` |
-    public struct Items: Encodable {
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickformatstops-items-tickformatstop) |
-        /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickformatstops-items-tickformatstop) |
-        /// [R](https://plot.ly/r/reference/#layout-xaxis-tickformatstops-items-tickformatstop)
-        public var tickFormatStop: TickFormatStop?
-    
-        /// Plotly compatible property encoding
-        enum CodingKeys: String, CodingKey {
-            case tickFormatStop = "tickformatstop"
-        }
-        
-        public init(tickFormatStop: TickFormatStop? = nil) {
-            self.tickFormatStop = tickFormatStop
-        }
-    }
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickformatstops-items) |
-    /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickformatstops-items) |
-    /// [R](https://plot.ly/r/reference/#layout-xaxis-tickformatstops-items)
-    public var items: Items?
-
-    public init(items: Items? = nil) {
-        self.items = items
-    }
-}
-
-///
-/// # Used By
-/// `Layout.XAxis.TickFormatStops0.Items.tickFormatStop` |
-/// `Layout.YAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.Ternary.AAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.Ternary.BAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.Ternary.CAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.Scene.XAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.Scene.YAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.Scene.ZAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.Polar.RadialAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.Polar.AngularAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Layout.ColorAxis.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Scatter.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Bar.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Heatmap.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Histogram.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Histogram2D.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Histogram2DContour.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Contour.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ScatterTernary.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Funnel.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Sunburst.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Treemap.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Scatter3D.Line.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Scatter3D.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Surface.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Isosurface.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Volume.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Mesh3D.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Cone.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `StreamTube.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ScatterGeo.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Choropleth.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ScatterGL.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ScatterPlotMatrix.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `HeatmapGL.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ParallelCoordinates.Line.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ParallelCategories.Line.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ScatterMapbox.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ChoroplethMapbox.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `DensityMapbox.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `Indicator.Gauge.Axis.TickFormatStops.Items.tickFormatStop` |
-/// `Carpet.AAxis.TickFormatStops.Items.tickFormatStop` |
-/// `Carpet.BAxis.TickFormatStops.Items.tickFormatStop` |
-/// `ScatterCarpet.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ContourCarpet.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ScatterPolar.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `ScatterPolarGL.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-/// `BarPolar.Marker.ColorBar.TickFormatStops.Items.tickFormatStop` |
-public struct TickFormatStop0: Encodable {
+public struct TickFormatStop: Encodable {
     /// Determines whether or not this stop is used. 
     ///
     /// If `false`, this stop is ignored even within its `dtickrange`.
@@ -1069,33 +521,104 @@ public struct TickFormatStop0: Encodable {
     }
 }
 
-///
 /// # Used By
-/// `Layout.Shapes.Items.Shape.line` |
-/// `Box.line` |
-/// `Histogram2DContour.line` |
-/// `Contour.line` |
-/// `ScatterTernary.line` |
-/// `Violin.line` |
-/// `Violin.Box.line` |
+/// `Layout.Ternary.domain` |
+/// `Layout.Scene.domain` |
+/// `Layout.Geo.domain` |
+/// `Layout.Mapbox.domain` |
+/// `Layout.Polar.domain` |
+/// `Pie.domain` |
+/// `Sunburst.domain` |
+/// `Treemap.domain` |
+/// `FunnelArea.domain` |
+/// `ParallelCoordinates.domain` |
+/// `ParallelCategories.domain` |
+/// `Sankey.domain` |
+/// `Indicator.domain` |
+/// `Table.domain` |
+public struct Domain: Encodable {
+    /// Sets the horizontal domain of this ternary subplot (in plot fraction).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-domain-x) |
+    /// [Python](https://plot.ly/python/reference/#layout-ternary-domain-x) |
+    /// [R](https://plot.ly/r/reference/#layout-ternary-domain-x)
+    public var x: InfoArray?
+
+    /// Sets the vertical domain of this ternary subplot (in plot fraction).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-domain-y) |
+    /// [Python](https://plot.ly/python/reference/#layout-ternary-domain-y) |
+    /// [R](https://plot.ly/r/reference/#layout-ternary-domain-y)
+    public var y: InfoArray?
+
+    /// If there is a layout grid, use the domain for this row in the grid for this ternary subplot .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-domain-row) |
+    /// [Python](https://plot.ly/python/reference/#layout-ternary-domain-row) |
+    /// [R](https://plot.ly/r/reference/#layout-ternary-domain-row)
+    public var row: Int?
+
+    /// If there is a layout grid, use the domain for this column in the grid for this ternary subplot .
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-domain-column) |
+    /// [Python](https://plot.ly/python/reference/#layout-ternary-domain-column) |
+    /// [R](https://plot.ly/r/reference/#layout-ternary-domain-column)
+    public var column: Int?
+
+    public init(x: InfoArray? = nil, y: InfoArray? = nil, row: Int? = nil, column: Int? = nil) {
+        self.x = x
+        self.y = y
+        self.row = row
+        self.column = column
+    }
+}
+
+/// # Used By
+/// `Layout.Ternary.AAxis.title` |
+/// `Layout.Ternary.BAxis.title` |
+/// `Layout.Ternary.CAxis.title` |
+/// `Layout.Scene.XAxis.title` |
+/// `Layout.Scene.YAxis.title` |
+/// `Layout.Scene.ZAxis.title` |
+/// `Layout.Polar.RadialAxis.title` |
+public struct Title: Encodable {
+    /// Sets the title of this axis. 
+    ///
+    /// Note that before the existence of `title.text`, the title's contents used to be defined as the
+    /// `title` attribute itself. This behavior has been deprecated.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-title-text) |
+    /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-title-text) |
+    /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-title-text)
+    public var text: String?
+
+    /// Sets this axis' title font. 
+    ///
+    /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-title-font) |
+    /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-title-font) |
+    /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-title-font)
+    public var font: Font?
+
+    public init(text: String? = nil, font: Font? = nil) {
+        self.text = text
+        self.font = font
+    }
+}
+
+/// # Used By
+/// `Layout.Shape.line` |
 /// `Funnel.Connector.line` |
-/// `Waterfall.Increasing.Marker.line` |
-/// `Waterfall.Decreasing.Marker.line` |
-/// `Waterfall.Totals.Marker.line` |
 /// `Waterfall.Connector.line` |
 /// `ScatterGeo.line` |
-/// `ScatterMapbox.line` |
-/// `Indicator.Gauge.Bar.line` |
-/// `Indicator.Gauge.Steps.Items.Step.line` |
-/// `Indicator.Gauge.Threshold.line` |
-/// `ScatterCarpet.line` |
-/// `ContourCarpet.line` |
-/// `OHLC.Increasing.line` |
-/// `OHLC.Decreasing.line` |
-/// `Candlestick.Increasing.line` |
-/// `Candlestick.Decreasing.line` |
-/// `ScatterPolar.line` |
-public struct Line0: Encodable {
+public struct DashedLine: Encodable {
     /// Sets the line color.
     ///
     /// # Plotly Reference
@@ -1130,89 +653,43 @@ public struct Line0: Encodable {
     }
 }
 
-///
 /// # Used By
 /// `Layout.ColorAxis.colorBar` |
-/// `Scatter.Marker.colorBar` |
+/// `Scatter.GradientMarker.colorBar` |
 /// `Bar.Marker.colorBar` |
 /// `Heatmap.colorBar` |
 /// `Histogram.Marker.colorBar` |
 /// `Histogram2D.colorBar` |
 /// `Histogram2DContour.colorBar` |
 /// `Contour.colorBar` |
-/// `ScatterTernary.Marker.colorBar` |
+/// `ScatterTernary.GradientMarker.colorBar` |
 /// `Funnel.Marker.colorBar` |
 /// `Sunburst.Marker.colorBar` |
 /// `Treemap.Marker.colorBar` |
-/// `Scatter3D.Line.colorBar` |
-/// `Scatter3D.Marker.colorBar` |
+/// `Scatter3D.DashedColoredLine.colorBar` |
+/// `Scatter3D.SymbolicMarker.colorBar` |
 /// `Surface.colorBar` |
 /// `Isosurface.colorBar` |
 /// `Volume.colorBar` |
 /// `Mesh3D.colorBar` |
 /// `Cone.colorBar` |
 /// `StreamTube.colorBar` |
-/// `ScatterGeo.Marker.colorBar` |
+/// `ScatterGeo.GradientMarker.colorBar` |
 /// `Choropleth.colorBar` |
-/// `ScatterGL.Marker.colorBar` |
-/// `ScatterPlotMatrix.Marker.colorBar` |
+/// `ScatterGL.SymbolicMarker.colorBar` |
+/// `ScatterPlotMatrix.SymbolicMarker.colorBar` |
 /// `HeatmapGL.colorBar` |
-/// `ParallelCoordinates.Line.colorBar` |
-/// `ParallelCategories.Line.colorBar` |
-/// `ScatterMapbox.Marker.colorBar` |
+/// `ParallelCoordinates.ColoredLine.colorBar` |
+/// `ParallelCategories.SplineColoredLine.colorBar` |
+/// `ScatterMapbox.SymbolicMarker.colorBar` |
 /// `ChoroplethMapbox.colorBar` |
 /// `DensityMapbox.colorBar` |
-/// `ScatterCarpet.Marker.colorBar` |
+/// `ScatterCarpet.GradientMarker.colorBar` |
 /// `ContourCarpet.colorBar` |
-/// `ScatterPolar.Marker.colorBar` |
-/// `ScatterPolarGL.Marker.colorBar` |
+/// `ScatterPolar.GradientMarker.colorBar` |
+/// `ScatterPolarGL.SymbolicMarker.colorBar` |
 /// `BarPolar.Marker.colorBar` |
-public struct ColorBar0: Encodable {
-    /// Determines whether this color bar's thickness (i.e. 
-    ///
-    /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
-    /// Use `thickness` to set the value.
-    ///
-    /// # Used By
-    /// `Layout.ColorAxis.ColorBar0.thicknessMode` |
-    /// `Scatter.Marker.ColorBar.thicknessMode` |
-    /// `Bar.Marker.ColorBar.thicknessMode` |
-    /// `Heatmap.ColorBar.thicknessMode` |
-    /// `Histogram.Marker.ColorBar.thicknessMode` |
-    /// `Histogram2D.ColorBar.thicknessMode` |
-    /// `Histogram2DContour.ColorBar.thicknessMode` |
-    /// `Contour.ColorBar.thicknessMode` |
-    /// `ScatterTernary.Marker.ColorBar.thicknessMode` |
-    /// `Funnel.Marker.ColorBar.thicknessMode` |
-    /// `Sunburst.Marker.ColorBar.thicknessMode` |
-    /// `Treemap.Marker.ColorBar.thicknessMode` |
-    /// `Scatter3D.Line.ColorBar.thicknessMode` |
-    /// `Scatter3D.Marker.ColorBar.thicknessMode` |
-    /// `Surface.ColorBar.thicknessMode` |
-    /// `Isosurface.ColorBar.thicknessMode` |
-    /// `Volume.ColorBar.thicknessMode` |
-    /// `Mesh3D.ColorBar.thicknessMode` |
-    /// `Cone.ColorBar.thicknessMode` |
-    /// `StreamTube.ColorBar.thicknessMode` |
-    /// `ScatterGeo.Marker.ColorBar.thicknessMode` |
-    /// `Choropleth.ColorBar.thicknessMode` |
-    /// `ScatterGL.Marker.ColorBar.thicknessMode` |
-    /// `ScatterPlotMatrix.Marker.ColorBar.thicknessMode` |
-    /// `HeatmapGL.ColorBar.thicknessMode` |
-    /// `ParallelCoordinates.Line.ColorBar.thicknessMode` |
-    /// `ParallelCategories.Line.ColorBar.thicknessMode` |
-    /// `ScatterMapbox.Marker.ColorBar.thicknessMode` |
-    /// `ChoroplethMapbox.ColorBar.thicknessMode` |
-    /// `DensityMapbox.ColorBar.thicknessMode` |
-    /// `ScatterCarpet.Marker.ColorBar.thicknessMode` |
-    /// `ContourCarpet.ColorBar.thicknessMode` |
-    /// `ScatterPolar.Marker.ColorBar.thicknessMode` |
-    /// `ScatterPolarGL.Marker.ColorBar.thicknessMode` |
-    /// `BarPolar.Marker.ColorBar.thicknessMode` |
-    public enum ThicknessMode0: String, Encodable {
-        case fraction
-        case pixels
-    }
+public struct ColorBar: Encodable {
     /// Determines whether this color bar's thickness (i.e. 
     ///
     /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
@@ -1222,7 +699,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-thicknessmode) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-thicknessmode) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-thicknessmode)
-    public var thicknessMode: ThicknessMode0?
+    public var thicknessMode: ThicknessMode?
 
     /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and labels.
     ///
@@ -1241,7 +718,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-lenmode) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-lenmode) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-lenmode)
-    public var lengthMode: LengthMode0?
+    public var lengthMode: LengthMode?
 
     /// Sets the length of the color bar This measure excludes the padding of both ends. 
     ///
@@ -1269,7 +746,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-xanchor) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-xanchor) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-xanchor)
-    public var xAnchor: XAnchor1?
+    public var xAnchor: XAnchor?
 
     /// Sets the amount of padding (in px) along the x direction.
     ///
@@ -1293,7 +770,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-yanchor) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-yanchor) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-yanchor)
-    public var yAnchor: YAnchor1?
+    public var yAnchor: YAnchor?
 
     /// Sets the amount of padding (in px) along the y direction.
     ///
@@ -1355,7 +832,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-tickmode) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-tickmode) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-tickmode)
-    public var tickMode: TickMode0?
+    public var tickMode: TickMode?
 
     /// Specifies the maximum number of ticks for the particular axis. 
     ///
@@ -1433,7 +910,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-ticks) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-ticks) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-ticks)
-    public var ticks: Ticks0?
+    public var ticks: Ticks?
 
     /// Sets the tick length (in px).
     ///
@@ -1473,7 +950,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-tickfont) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-tickfont) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-tickfont)
-    public var tickFont: Font0?
+    public var tickFont: Font?
 
     /// Sets the angle of the tick labels with respect to the horizontal. 
     ///
@@ -1501,10 +978,10 @@ public struct ColorBar0: Encodable {
 
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-tickformatstops) |
-    /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-tickformatstops) |
-    /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-tickformatstops)
-    public var tickFormatStops: TickFormatStops0?
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-tickformatstops-items-tickformatstop) |
+    /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-tickformatstops-items-tickformatstop) |
+    /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-tickformatstops-items-tickformatstop)
+    public var tickFormatStops: [TickFormatStop]?
 
     /// Sets a tick label prefix.
     ///
@@ -1523,7 +1000,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-showtickprefix) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-showtickprefix) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-showtickprefix)
-    public var showTickPrefix: ShowTickPrefix0?
+    public var showTickPrefix: ShowTickPrefix?
 
     /// Sets a tick label suffix.
     ///
@@ -1539,7 +1016,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-showticksuffix) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-showticksuffix) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-showticksuffix)
-    public var showTickSuffix: ShowTickSuffix0?
+    public var showTickSuffix: ShowTickSuffix?
 
     /// If "true", even 4-digit integers are separated
     ///
@@ -1558,7 +1035,7 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-exponentformat) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-exponentformat) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-exponentformat)
-    public var exponentFormat: ExponentFormat0?
+    public var exponentFormat: ExponentFormat?
 
     /// If *all*, all exponents are shown besides their significands. 
     ///
@@ -1569,49 +1046,10 @@ public struct ColorBar0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-showexponent) |
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-showexponent) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-showexponent)
-    public var showExponent: ShowExponent0?
+    public var showExponent: ShowExponent?
 
-    ///
     /// # Used By
-    /// `Layout.ColorAxis.ColorBar0.title` |
-    /// `Scatter.Marker.ColorBar.title` |
-    /// `Bar.Marker.ColorBar.title` |
-    /// `Heatmap.ColorBar.title` |
-    /// `Histogram.Marker.ColorBar.title` |
-    /// `Histogram2D.ColorBar.title` |
-    /// `Histogram2DContour.ColorBar.title` |
-    /// `Contour.ColorBar.title` |
-    /// `ScatterTernary.Marker.ColorBar.title` |
-    /// `Funnel.Marker.ColorBar.title` |
-    /// `Pie.title` |
-    /// `Sunburst.Marker.ColorBar.title` |
-    /// `Treemap.Marker.ColorBar.title` |
-    /// `FunnelArea.title` |
-    /// `Scatter3D.Line.ColorBar.title` |
-    /// `Scatter3D.Marker.ColorBar.title` |
-    /// `Surface.ColorBar.title` |
-    /// `Isosurface.ColorBar.title` |
-    /// `Volume.ColorBar.title` |
-    /// `Mesh3D.ColorBar.title` |
-    /// `Cone.ColorBar.title` |
-    /// `StreamTube.ColorBar.title` |
-    /// `ScatterGeo.Marker.ColorBar.title` |
-    /// `Choropleth.ColorBar.title` |
-    /// `ScatterGL.Marker.ColorBar.title` |
-    /// `ScatterPlotMatrix.Marker.ColorBar.title` |
-    /// `HeatmapGL.ColorBar.title` |
-    /// `ParallelCoordinates.Line.ColorBar.title` |
-    /// `ParallelCategories.Line.ColorBar.title` |
-    /// `ScatterMapbox.Marker.ColorBar.title` |
-    /// `ChoroplethMapbox.ColorBar.title` |
-    /// `DensityMapbox.ColorBar.title` |
-    /// `Carpet.AAxis.title` |
-    /// `Carpet.BAxis.title` |
-    /// `ScatterCarpet.Marker.ColorBar.title` |
-    /// `ContourCarpet.ColorBar.title` |
-    /// `ScatterPolar.Marker.ColorBar.title` |
-    /// `ScatterPolarGL.Marker.ColorBar.title` |
-    /// `BarPolar.Marker.ColorBar.title` |
+    /// `Layout.ColorAxis.ColorBar.title` |
     public struct Title: Encodable {
         /// Sets the title of the color bar. 
         ///
@@ -1632,7 +1070,7 @@ public struct ColorBar0: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-font) |
         /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-font) |
         /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-font)
-        public var font: Font0?
+        public var font: Font?
     
         /// Determines the location of color bar's title with respect to the color bar. 
         ///
@@ -1642,9 +1080,9 @@ public struct ColorBar0: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-title-side) |
         /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title-side) |
         /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title-side)
-        public var side: Side0?
+        public var side: Side?
     
-        public init(text: String? = nil, font: Font0? = nil, side: Side0? = nil) {
+        public init(text: String? = nil, font: Font? = nil, side: Side? = nil) {
             self.text = text
             self.font = font
             self.side = side
@@ -1656,22 +1094,6 @@ public struct ColorBar0: Encodable {
     /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-title) |
     /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-title)
     public var title: Title?
-
-    /// Sets the source reference on plot.ly for  tickvals .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-tickvalssrc) |
-    /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-tickvalssrc) |
-    /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-tickvalssrc)
-    public var tickValuesSource: String?
-
-    /// Sets the source reference on plot.ly for  ticktext .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-ticktextsrc) |
-    /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-ticktextsrc) |
-    /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-ticktextsrc)
-    public var tickTextSource: String?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -1704,7 +1126,7 @@ public struct ColorBar0: Encodable {
         case tickFont = "tickfont"
         case tickAngle = "tickangle"
         case tickFormat = "tickformat"
-        case tickFormatStops = "tickformatstops"
+        case tickFormatStops = "tickformatstop"
         case tickPrefix = "tickprefix"
         case showTickPrefix = "showtickprefix"
         case tickSuffix = "ticksuffix"
@@ -1713,11 +1135,9 @@ public struct ColorBar0: Encodable {
         case exponentFormat = "exponentformat"
         case showExponent = "showexponent"
         case title
-        case tickValuesSource = "tickvalssrc"
-        case tickTextSource = "ticktextsrc"
     }
     
-    public init(thicknessMode: ThicknessMode0? = nil, thickness: Double? = nil, lengthMode: LengthMode0? = nil, length: Double? = nil, x: Double? = nil, xAnchor: XAnchor1? = nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: YAnchor1? = nil, yPading: Double? = nil, outLineColor: Color? = nil, outLineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: TickMode0? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks0? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font0? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: TickFormatStops0? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix0? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix0? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat0? = nil, showExponent: ShowExponent0? = nil, title: Title? = nil, tickValuesSource: String? = nil, tickTextSource: String? = nil) {
+    public init(thicknessMode: ThicknessMode? = nil, thickness: Double? = nil, lengthMode: LengthMode? = nil, length: Double? = nil, x: Double? = nil, xAnchor: XAnchor? = nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: YAnchor? = nil, yPading: Double? = nil, outLineColor: Color? = nil, outLineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat? = nil, showExponent: ShowExponent? = nil, title: Title? = nil) {
         self.thicknessMode = thicknessMode
         self.thickness = thickness
         self.lengthMode = lengthMode
@@ -1756,12 +1176,9 @@ public struct ColorBar0: Encodable {
         self.exponentFormat = exponentFormat
         self.showExponent = showExponent
         self.title = title
-        self.tickValuesSource = tickValuesSource
-        self.tickTextSource = tickTextSource
     }
 }
 
-///
 /// # Used By
 /// `Scatter.stream` |
 /// `Bar.stream` |
@@ -1810,7 +1227,7 @@ public struct ColorBar0: Encodable {
 /// `ScatterPolarGL.stream` |
 /// `BarPolar.stream` |
 /// `Area.stream` |
-public struct Stream0: Encodable {
+public struct Stream: Encodable {
     /// The stream id number links a data trace on a plot with a stream. 
     ///
     /// See https://plot.ly/settings for more details.
@@ -1843,153 +1260,324 @@ public struct Stream0: Encodable {
     }
 }
 
+/// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
 ///
 /// # Used By
 /// `Scatter.transforms` |
-/// `Scatter.Transforms0.Items.transform` |
 /// `Bar.transforms` |
-/// `Bar.Transforms.Items.transform` |
 /// `Box.transforms` |
-/// `Box.Transforms.Items.transform` |
 /// `Heatmap.transforms` |
-/// `Heatmap.Transforms.Items.transform` |
 /// `Histogram.transforms` |
-/// `Histogram.Transforms.Items.transform` |
 /// `Histogram2D.transforms` |
-/// `Histogram2D.Transforms.Items.transform` |
 /// `Histogram2DContour.transforms` |
-/// `Histogram2DContour.Transforms.Items.transform` |
 /// `Contour.transforms` |
-/// `Contour.Transforms.Items.transform` |
 /// `ScatterTernary.transforms` |
-/// `ScatterTernary.Transforms.Items.transform` |
 /// `Violin.transforms` |
-/// `Violin.Transforms.Items.transform` |
 /// `Funnel.transforms` |
-/// `Funnel.Transforms.Items.transform` |
 /// `Waterfall.transforms` |
-/// `Waterfall.Transforms.Items.transform` |
 /// `Pie.transforms` |
-/// `Pie.Transforms.Items.transform` |
 /// `Sunburst.transforms` |
-/// `Sunburst.Transforms.Items.transform` |
 /// `Treemap.transforms` |
-/// `Treemap.Transforms.Items.transform` |
 /// `FunnelArea.transforms` |
-/// `FunnelArea.Transforms.Items.transform` |
 /// `Scatter3D.transforms` |
-/// `Scatter3D.Transforms.Items.transform` |
 /// `ScatterGeo.transforms` |
-/// `ScatterGeo.Transforms.Items.transform` |
 /// `Choropleth.transforms` |
-/// `Choropleth.Transforms.Items.transform` |
 /// `ScatterGL.transforms` |
-/// `ScatterGL.Transforms.Items.transform` |
 /// `ScatterPlotMatrix.transforms` |
-/// `ScatterPlotMatrix.Transforms.Items.transform` |
 /// `HeatmapGL.transforms` |
-/// `HeatmapGL.Transforms.Items.transform` |
 /// `ParallelCoordinates.transforms` |
-/// `ParallelCoordinates.Transforms.Items.transform` |
 /// `ParallelCategories.transforms` |
-/// `ParallelCategories.Transforms.Items.transform` |
 /// `ScatterMapbox.transforms` |
-/// `ScatterMapbox.Transforms.Items.transform` |
 /// `ChoroplethMapbox.transforms` |
-/// `ChoroplethMapbox.Transforms.Items.transform` |
 /// `DensityMapbox.transforms` |
-/// `DensityMapbox.Transforms.Items.transform` |
 /// `Indicator.transforms` |
-/// `Indicator.Transforms.Items.transform` |
 /// `ScatterCarpet.transforms` |
-/// `ScatterCarpet.Transforms.Items.transform` |
 /// `OHLC.transforms` |
-/// `OHLC.Transforms.Items.transform` |
 /// `Candlestick.transforms` |
-/// `Candlestick.Transforms.Items.transform` |
 /// `ScatterPolar.transforms` |
-/// `ScatterPolar.Transforms.Items.transform` |
 /// `ScatterPolarGL.transforms` |
-/// `ScatterPolarGL.Transforms.Items.transform` |
 /// `BarPolar.transforms` |
-/// `BarPolar.Transforms.Items.transform` |
 /// `Area.transforms` |
-/// `Area.Transforms.Items.transform` |
-public struct Transforms0: Encodable {
-    ///
-    /// # Used By
-    /// `Scatter.Transforms0.items` |
-    /// `Bar.Transforms.items` |
-    /// `Box.Transforms.items` |
-    /// `Heatmap.Transforms.items` |
-    /// `Histogram.Transforms.items` |
-    /// `Histogram2D.Transforms.items` |
-    /// `Histogram2DContour.Transforms.items` |
-    /// `Contour.Transforms.items` |
-    /// `ScatterTernary.Transforms.items` |
-    /// `Violin.Transforms.items` |
-    /// `Funnel.Transforms.items` |
-    /// `Waterfall.Transforms.items` |
-    /// `Pie.Transforms.items` |
-    /// `Sunburst.Transforms.items` |
-    /// `Treemap.Transforms.items` |
-    /// `FunnelArea.Transforms.items` |
-    /// `Scatter3D.Transforms.items` |
-    /// `ScatterGeo.Transforms.items` |
-    /// `Choropleth.Transforms.items` |
-    /// `ScatterGL.Transforms.items` |
-    /// `ScatterPlotMatrix.Transforms.items` |
-    /// `HeatmapGL.Transforms.items` |
-    /// `ParallelCoordinates.Transforms.items` |
-    /// `ParallelCategories.Transforms.items` |
-    /// `ScatterMapbox.Transforms.items` |
-    /// `ChoroplethMapbox.Transforms.items` |
-    /// `DensityMapbox.Transforms.items` |
-    /// `Indicator.Transforms.items` |
-    /// `ScatterCarpet.Transforms.items` |
-    /// `OHLC.Transforms.items` |
-    /// `Candlestick.Transforms.items` |
-    /// `ScatterPolar.Transforms.items` |
-    /// `ScatterPolarGL.Transforms.items` |
-    /// `BarPolar.Transforms.items` |
-    /// `Area.Transforms.items` |
-    public struct Items: Encodable {
-        /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter-transforms-items-transform) |
-        /// [Python](https://plot.ly/python/reference/#scatter-transforms-items-transform) |
-        /// [R](https://plot.ly/r/reference/#scatter-transforms-items-transform)
-        public var transform: Transforms0?
-    
-        public init(transform: Transforms0? = nil) {
-            self.transform = transform
-        }
-    }
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-transforms-items) |
-    /// [Python](https://plot.ly/python/reference/#scatter-transforms-items) |
-    /// [R](https://plot.ly/r/reference/#scatter-transforms-items)
-    public var items: Items?
-
-    public init(items: Items? = nil) {
-        self.items = items
+public struct Transform: Encodable {
+    public init() {
     }
 }
 
-///
 /// # Used By
-/// `Scatter.Marker.line` |
+/// `Scatter.marker` |
+/// `ScatterTernary.marker` |
+/// `ScatterCarpet.marker` |
+/// `ScatterPolar.marker` |
+public struct GradientMarker: Encodable {
+    /// Sets the marker symbol type. 
+    ///
+    /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
+    /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
+    /// *dot-open* to a symbol name.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-symbol) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-symbol) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-symbol)
+    public var symbol: Symbol?
+
+    /// Sets the marker opacity.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-opacity) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-opacity) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-opacity)
+    public var opacity: Double?
+
+    /// Sets the marker size (in px).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-size) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-size) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-size)
+    public var size: Double?
+
+    /// Sets a maximum number of points to be drawn on the graph. 
+    ///
+    /// *0* corresponds to no limit.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-maxdisplayed) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-maxdisplayed) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-maxdisplayed)
+    public var maxDisplayed: Double?
+
+    /// Has an effect only if `marker.size` is set to a numerical array. 
+    ///
+    /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
+    /// and `sizemode`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-sizeref) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-sizeref) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-sizeref)
+    public var sizeReference: Double?
+
+    /// Has an effect only if `marker.size` is set to a numerical array. 
+    ///
+    /// Sets the minimum size (in px) of the rendered marker points.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-sizemin) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-sizemin) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-sizemin)
+    public var sizeMin: Double?
+
+    /// Has an effect only if `marker.size` is set to a numerical array. 
+    ///
+    /// Sets the rule for which the data in `size` is converted to pixels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-sizemode) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-sizemode) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-sizemode)
+    public var sizeMode: SizeMode?
+
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-line) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-line) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-line)
+    public var line: ColoredLine?
+
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-gradient) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-gradient) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-gradient)
+    public var gradient: Gradient?
+
+    /// Sets themarkercolor. 
+    ///
+    /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+    /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+    /// if set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-color) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-color) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-color)
+    public var color: Color?
+
+    /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
+    ///
+    /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-cauto) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-cauto) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-cauto)
+    public var cAuto: Bool?
+
+    /// Sets the lower bound of the color domain. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-cmin) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-cmin) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-cmin)
+    public var cMin: Double?
+
+    /// Sets the upper bound of the color domain. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-cmax) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-cmax) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-cmax)
+    public var cMax: Double?
+
+    /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-cmid) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-cmid) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-cmid)
+    public var cMiddle: Double?
+
+    /// Sets the colorscale. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
+    /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+    /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+    /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+    /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
+    /// name string of the following list:
+    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-colorscale) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-colorscale) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-colorscale)
+    public var colorScale: ColorScale?
+
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
+    /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+    /// numbers in the `color` array are all positive, all negative or mixed.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-autocolorscale) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-autocolorscale) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-autocolorscale)
+    public var autoColorScale: Bool?
+
+    /// Reverses the color mapping if true. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
+    /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-reversescale) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-reversescale) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-reversescale)
+    public var reverseScale: Bool?
+
+    /// Determines whether or not a colorbar is displayed for this trace. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-showscale) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-showscale) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-showscale)
+    public var showScale: Bool?
+
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-colorbar) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-colorbar) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-colorbar)
+    public var colorBar: ColorBar?
+
+    /// Sets a reference to a shared color axis. 
+    ///
+    /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+    /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+    /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-coloraxis) |
+    /// [Python](https://plot.ly/python/reference/#scatter-marker-coloraxis) |
+    /// [R](https://plot.ly/r/reference/#scatter-marker-coloraxis)
+    public var colorAxis: SubPlotID?
+
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case symbol
+        case opacity
+        case size
+        case maxDisplayed = "maxdisplayed"
+        case sizeReference = "sizeref"
+        case sizeMin = "sizemin"
+        case sizeMode = "sizemode"
+        case line
+        case gradient
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+    }
+    
+    public init(symbol: Symbol? = nil, opacity: Double? = nil, size: Double? = nil, maxDisplayed: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, line: ColoredLine? = nil, gradient: Gradient? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        self.symbol = symbol
+        self.opacity = opacity
+        self.size = size
+        self.maxDisplayed = maxDisplayed
+        self.sizeReference = sizeReference
+        self.sizeMin = sizeMin
+        self.sizeMode = sizeMode
+        self.line = line
+        self.gradient = gradient
+        self.color = color
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
+        self.colorScale = colorScale
+        self.autoColorScale = autoColorScale
+        self.reverseScale = reverseScale
+        self.showScale = showScale
+        self.colorBar = colorBar
+        self.colorAxis = colorAxis
+    }
+}
+
+/// # Used By
+/// `Scatter.GradientMarker.line` |
 /// `Bar.Marker.line` |
 /// `Histogram.Marker.line` |
-/// `ScatterTernary.Marker.line` |
+/// `ScatterTernary.GradientMarker.line` |
 /// `Funnel.Marker.line` |
-/// `ScatterGeo.Marker.line` |
-/// `ScatterCarpet.Marker.line` |
-/// `ScatterPolar.Marker.line` |
+/// `Scatter3D.SymbolicMarker.line` |
+/// `ScatterGeo.GradientMarker.line` |
+/// `ScatterGL.SymbolicMarker.line` |
+/// `ScatterPlotMatrix.SymbolicMarker.line` |
+/// `ScatterCarpet.GradientMarker.line` |
+/// `ScatterPolar.GradientMarker.line` |
+/// `ScatterPolarGL.SymbolicMarker.line` |
 /// `BarPolar.Marker.line` |
-public struct Line1: Encodable {
+public struct ColoredLine: Encodable {
     /// Sets the width (in px) of the lines bounding the marker points.
     ///
     /// # Plotly Reference
@@ -2105,22 +1693,6 @@ public struct Line1: Encodable {
     /// [R](https://plot.ly/r/reference/#scatter-marker-line-coloraxis)
     public var colorAxis: SubPlotID?
 
-    /// Sets the source reference on plot.ly for  width .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-line-widthsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter-marker-line-widthsrc) |
-    /// [R](https://plot.ly/r/reference/#scatter-marker-line-widthsrc)
-    public var widthSource: String?
-
-    /// Sets the source reference on plot.ly for  color .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-line-colorsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter-marker-line-colorsrc) |
-    /// [R](https://plot.ly/r/reference/#scatter-marker-line-colorsrc)
-    public var colorSource: String?
-
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
         case width
@@ -2133,11 +1705,9 @@ public struct Line1: Encodable {
         case autoColorScale = "autocolorscale"
         case reverseScale = "reversescale"
         case colorAxis = "coloraxis"
-        case widthSource = "widthsrc"
-        case colorSource = "colorsrc"
     }
     
-    public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil, widthSource: String? = nil, colorSource: String? = nil) {
+    public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
         self.width = width
         self.color = color
         self.cAuto = cAuto
@@ -2148,28 +1718,21 @@ public struct Line1: Encodable {
         self.autoColorScale = autoColorScale
         self.reverseScale = reverseScale
         self.colorAxis = colorAxis
-        self.widthSource = widthSource
-        self.colorSource = colorSource
     }
 }
 
-///
 /// # Used By
-/// `Scatter.Marker.gradient` |
-/// `ScatterTernary.Marker.gradient` |
-/// `ScatterGeo.Marker.gradient` |
-/// `ScatterCarpet.Marker.gradient` |
-/// `ScatterPolar.Marker.gradient` |
-public struct Gradient0: Encodable {
+/// `Scatter.GradientMarker.gradient` |
+/// `ScatterTernary.GradientMarker.gradient` |
+/// `ScatterGeo.GradientMarker.gradient` |
+/// `ScatterCarpet.GradientMarker.gradient` |
+/// `ScatterPolar.GradientMarker.gradient` |
+public struct Gradient: Encodable {
     /// Sets the type of gradient used to fill the markers
     ///
     /// # Used By
-    /// `Scatter.Marker.Gradient0.type` |
-    /// `ScatterTernary.Marker.Gradient.type` |
-    /// `ScatterGeo.Marker.Gradient.type` |
-    /// `ScatterCarpet.Marker.Gradient.type` |
-    /// `ScatterPolar.Marker.Gradient.type` |
-    public enum Rule0: String, Encodable {
+    /// `Scatter.GradientMarker.Gradient.type` |
+    public enum `Type`: String, Encodable {
         case radial
         case horizontal
         case vertical
@@ -2181,7 +1744,7 @@ public struct Gradient0: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-gradient-type) |
     /// [Python](https://plot.ly/python/reference/#scatter-marker-gradient-type) |
     /// [R](https://plot.ly/r/reference/#scatter-marker-gradient-type)
-    public var type: Rule0?
+    public var type: `Type`?
 
     /// Sets the final color of the gradient fill: the center color for radial, the right for horizontal, or the bottom for vertical.
     ///
@@ -2191,262 +1754,1130 @@ public struct Gradient0: Encodable {
     /// [R](https://plot.ly/r/reference/#scatter-marker-gradient-color)
     public var color: Color?
 
-    /// Sets the source reference on plot.ly for  type .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-gradient-typesrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter-marker-gradient-typesrc) |
-    /// [R](https://plot.ly/r/reference/#scatter-marker-gradient-typesrc)
-    public var typeSource: String?
-
-    /// Sets the source reference on plot.ly for  color .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-gradient-colorsrc) |
-    /// [Python](https://plot.ly/python/reference/#scatter-marker-gradient-colorsrc) |
-    /// [R](https://plot.ly/r/reference/#scatter-marker-gradient-colorsrc)
-    public var colorSource: String?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case type
-        case color
-        case typeSource = "typesrc"
-        case colorSource = "colorsrc"
-    }
-    
-    public init(type: Rule0? = nil, color: Color? = nil, typeSource: String? = nil, colorSource: String? = nil) {
+    public init(type: `Type`? = nil, color: Color? = nil) {
         self.type = type
         self.color = color
-        self.typeSource = typeSource
-        self.colorSource = colorSource
     }
 }
 
-///
 /// # Used By
-/// `Scatter.selected` |
-/// `Scatter.unselected` |
-/// `Bar.selected` |
-/// `Bar.unselected` |
-/// `Box.selected` |
-/// `Box.unselected` |
-/// `Histogram.selected` |
-/// `Histogram.unselected` |
-/// `ScatterTernary.selected` |
-/// `ScatterTernary.unselected` |
-/// `Violin.selected` |
-/// `Violin.unselected` |
-/// `ScatterGeo.selected` |
-/// `ScatterGeo.unselected` |
-/// `Choropleth.selected` |
-/// `Choropleth.unselected` |
-/// `ScatterGL.selected` |
-/// `ScatterGL.unselected` |
-/// `ScatterPlotMatrix.selected` |
-/// `ScatterPlotMatrix.unselected` |
-/// `ScatterMapbox.selected` |
-/// `ScatterMapbox.unselected` |
-/// `ChoroplethMapbox.selected` |
-/// `ChoroplethMapbox.unselected` |
-/// `ScatterCarpet.selected` |
-/// `ScatterCarpet.unselected` |
-/// `ScatterPolar.selected` |
-/// `ScatterPolar.unselected` |
-/// `ScatterPolarGL.selected` |
-/// `ScatterPolarGL.unselected` |
-/// `BarPolar.selected` |
-/// `BarPolar.unselected` |
-public struct Selected0: Encodable {
-    ///
-    /// # Used By
-    /// `Scatter.Selected0.marker` |
-    /// `Scatter.Unselected.marker` |
-    /// `Bar.Selected.marker` |
-    /// `Bar.Unselected.marker` |
-    /// `Box.Selected.marker` |
-    /// `Box.Unselected.marker` |
-    /// `Histogram.Selected.marker` |
-    /// `Histogram.Unselected.marker` |
-    /// `ScatterTernary.Selected.marker` |
-    /// `ScatterTernary.Unselected.marker` |
-    /// `Violin.Selected.marker` |
-    /// `Violin.Unselected.marker` |
-    /// `ScatterGeo.Selected.marker` |
-    /// `ScatterGeo.Unselected.marker` |
-    /// `Choropleth.Selected.marker` |
-    /// `Choropleth.Unselected.marker` |
-    /// `ScatterGL.Selected.marker` |
-    /// `ScatterGL.Unselected.marker` |
-    /// `ScatterPlotMatrix.Selected.marker` |
-    /// `ScatterPlotMatrix.Unselected.marker` |
-    /// `ScatterMapbox.Selected.marker` |
-    /// `ScatterMapbox.Unselected.marker` |
-    /// `ChoroplethMapbox.Selected.marker` |
-    /// `ChoroplethMapbox.Unselected.marker` |
-    /// `ScatterCarpet.Selected.marker` |
-    /// `ScatterCarpet.Unselected.marker` |
-    /// `ScatterPolar.Selected.marker` |
-    /// `ScatterPolar.Unselected.marker` |
-    /// `ScatterPolarGL.Selected.marker` |
-    /// `ScatterPolarGL.Unselected.marker` |
-    /// `BarPolar.Selected.marker` |
-    /// `BarPolar.Unselected.marker` |
-    public struct Marker: Encodable {
-        /// Sets the marker opacity of selected points.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter-selected-marker-opacity) |
-        /// [Python](https://plot.ly/python/reference/#scatter-selected-marker-opacity) |
-        /// [R](https://plot.ly/r/reference/#scatter-selected-marker-opacity)
-        public var opacity: Double?
-    
-        /// Sets the marker color of selected points.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter-selected-marker-color) |
-        /// [Python](https://plot.ly/python/reference/#scatter-selected-marker-color) |
-        /// [R](https://plot.ly/r/reference/#scatter-selected-marker-color)
-        public var color: Color?
-    
-        /// Sets the marker size of selected points.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter-selected-marker-size) |
-        /// [Python](https://plot.ly/python/reference/#scatter-selected-marker-size) |
-        /// [R](https://plot.ly/r/reference/#scatter-selected-marker-size)
-        public var size: Double?
-    
-        public init(opacity: Double? = nil, color: Color? = nil, size: Double? = nil) {
-            self.opacity = opacity
-            self.color = color
-            self.size = size
-        }
-    }
+/// `Scatter.xError` |
+/// `Scatter.yError` |
+/// `Bar.xError` |
+/// `Bar.yError` |
+/// `Histogram.xError` |
+/// `Histogram.yError` |
+/// `Scatter3D.xError` |
+/// `Scatter3D.yError` |
+/// `Scatter3D.zError` |
+/// `ScatterGL.xError` |
+/// `ScatterGL.yError` |
+public struct Error: Encodable {
+    /// Determines whether or not this set of error bars is visible.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-selected-marker) |
-    /// [Python](https://plot.ly/python/reference/#scatter-selected-marker) |
-    /// [R](https://plot.ly/r/reference/#scatter-selected-marker)
-    public var marker: Marker?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-visible) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-visible) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-visible)
+    public var visible: Bool?
+
+    /// Determines the rule used to generate the error bars. 
+    ///
+    /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
+    /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
+    /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+    /// the bar lengths are set with data set `array`.
+    ///
+    /// # Used By
+    /// `Scatter.Error.type` |
+    public enum `Type`: String, Encodable {
+        case percent
+        case constant
+        case sqrt
+        case data
+    }
+    /// Determines the rule used to generate the error bars. 
+    ///
+    /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
+    /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
+    /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+    /// the bar lengths are set with data set `array`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-type) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-type) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-type)
+    public var type: `Type`?
+
+    /// Determines whether or not the error bars have the same length in both direction (top/bottom for vertical bars, left/right for horizontal bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-symmetric) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-symmetric) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-symmetric)
+    public var symmetric: Bool?
+
+    /// Sets the data corresponding the length of each error bar. 
+    ///
+    /// Values are plotted relative to the underlying data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-array) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-array) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-array)
+    public var array: [Double]?
+
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-arrayminus) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-arrayminus) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-arrayminus)
+    public var arrayMinus: [Double]?
+
+    /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-value) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-value) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-value)
+    public var value: Double?
+
+    /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left) direction for vertical (horizontal) bars
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-valueminus) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-valueminus) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-valueminus)
+    public var valueMinus: Double?
 
     ///
-    /// # Used By
-    /// `Scatter.Selected0.textFont` |
-    /// `Scatter.Unselected.textFont` |
-    /// `Bar.Selected.textFont` |
-    /// `Bar.Unselected.textFont` |
-    /// `Histogram.Selected.textFont` |
-    /// `Histogram.Unselected.textFont` |
-    /// `ScatterTernary.Selected.textFont` |
-    /// `ScatterTernary.Unselected.textFont` |
-    /// `Scatter3D.textFont` |
-    /// `ScatterGeo.Selected.textFont` |
-    /// `ScatterGeo.Unselected.textFont` |
-    /// `ScatterGL.Selected.textFont` |
-    /// `ScatterGL.Unselected.textFont` |
-    /// `ScatterCarpet.Selected.textFont` |
-    /// `ScatterCarpet.Unselected.textFont` |
-    /// `ScatterPolar.Selected.textFont` |
-    /// `ScatterPolar.Unselected.textFont` |
-    /// `ScatterPolarGL.Selected.textFont` |
-    /// `ScatterPolarGL.Unselected.textFont` |
-    /// `BarPolar.Selected.textFont` |
-    /// `BarPolar.Unselected.textFont` |
-    public struct TextFont: Encodable {
-        /// Sets the text font color of selected points.
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#scatter-selected-textfont-color) |
-        /// [Python](https://plot.ly/python/reference/#scatter-selected-textfont-color) |
-        /// [R](https://plot.ly/r/reference/#scatter-selected-textfont-color)
-        public var color: Color?
-    
-        public init(color: Color? = nil) {
-            self.color = color
-        }
-    }
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-traceref) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-traceref) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-traceref)
+    public var traceReference: Int?
+
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-selected-textfont) |
-    /// [Python](https://plot.ly/python/reference/#scatter-selected-textfont) |
-    /// [R](https://plot.ly/r/reference/#scatter-selected-textfont)
-    public var textFont: TextFont?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-tracerefminus) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-tracerefminus) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-tracerefminus)
+    public var traceReferenceMinus: Int?
+
+    /// Sets the stoke color of the error bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-color) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-color) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-color)
+    public var color: Color?
+
+    /// Sets the thickness (in px) of the error bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-thickness) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-thickness) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-thickness)
+    public var thickness: Double?
+
+    /// Sets the width (in px) of the cross-bar at both ends of the error bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x-width) |
+    /// [Python](https://plot.ly/python/reference/#scatter-error_x-width) |
+    /// [R](https://plot.ly/r/reference/#scatter-error_x-width)
+    public var width: Double?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
-        case marker
-        case textFont = "textfont"
+        case visible
+        case type
+        case symmetric
+        case array
+        case arrayMinus = "arrayminus"
+        case value
+        case valueMinus = "valueminus"
+        case traceReference = "traceref"
+        case traceReferenceMinus = "tracerefminus"
+        case color
+        case thickness
+        case width
     }
     
-    public init(marker: Marker? = nil, textFont: TextFont? = nil) {
-        self.marker = marker
-        self.textFont = textFont
+    public init(visible: Bool? = nil, type: `Type`? = nil, symmetric: Bool? = nil, array: [Double]? = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil, traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness: Double? = nil, width: Double? = nil) {
+        self.visible = visible
+        self.type = type
+        self.symmetric = symmetric
+        self.array = array
+        self.arrayMinus = arrayMinus
+        self.value = value
+        self.valueMinus = valueMinus
+        self.traceReference = traceReference
+        self.traceReferenceMinus = traceReferenceMinus
+        self.color = color
+        self.thickness = thickness
+        self.width = width
     }
 }
 
-///
 /// # Used By
+/// `Bar.marker` |
+/// `Histogram.marker` |
+/// `Funnel.marker` |
+/// `BarPolar.marker` |
+public struct Marker: Encodable {
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-line) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-line) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-line)
+    public var line: ColoredLine?
+
+    /// Sets themarkercolor. 
+    ///
+    /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+    /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+    /// if set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-color) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-color) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-color)
+    public var color: Color?
+
+    /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
+    ///
+    /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-cauto) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-cauto) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-cauto)
+    public var cAuto: Bool?
+
+    /// Sets the lower bound of the color domain. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-cmin) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-cmin) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-cmin)
+    public var cMin: Double?
+
+    /// Sets the upper bound of the color domain. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-cmax) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-cmax) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-cmax)
+    public var cMax: Double?
+
+    /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-cmid) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-cmid) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-cmid)
+    public var cMiddle: Double?
+
+    /// Sets the colorscale. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
+    /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+    /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+    /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+    /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
+    /// name string of the following list:
+    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-colorscale) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-colorscale) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-colorscale)
+    public var colorScale: ColorScale?
+
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
+    /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+    /// numbers in the `color` array are all positive, all negative or mixed.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-autocolorscale) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-autocolorscale) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-autocolorscale)
+    public var autoColorScale: Bool?
+
+    /// Reverses the color mapping if true. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
+    /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-reversescale) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-reversescale) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-reversescale)
+    public var reverseScale: Bool?
+
+    /// Determines whether or not a colorbar is displayed for this trace. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-showscale) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-showscale) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-showscale)
+    public var showScale: Bool?
+
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-colorbar) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-colorbar) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-colorbar)
+    public var colorBar: ColorBar?
+
+    /// Sets a reference to a shared color axis. 
+    ///
+    /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+    /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+    /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-coloraxis) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-coloraxis) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-coloraxis)
+    public var colorAxis: SubPlotID?
+
+    /// Sets the opacity of the bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-opacity) |
+    /// [Python](https://plot.ly/python/reference/#bar-marker-opacity) |
+    /// [R](https://plot.ly/r/reference/#bar-marker-opacity)
+    public var opacity: Double?
+
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case line
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case opacity
+    }
+    
+    public init(line: ColoredLine? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil) {
+        self.line = line
+        self.color = color
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
+        self.colorScale = colorScale
+        self.autoColorScale = autoColorScale
+        self.reverseScale = reverseScale
+        self.showScale = showScale
+        self.colorBar = colorBar
+        self.colorAxis = colorAxis
+        self.opacity = opacity
+    }
+}
+
+/// # Used By
+/// `Box.line` |
+/// `Violin.line` |
+/// `Violin.Box.line` |
+/// `Waterfall.Increasing.Marker.line` |
+/// `Waterfall.Decreasing.Marker.line` |
+/// `Waterfall.Totals.Marker.line` |
 /// `Pie.Marker.line` |
 /// `Sunburst.Marker.line` |
 /// `Treemap.Marker.line` |
 /// `FunnelArea.Marker.line` |
 /// `Choropleth.Marker.line` |
-/// `ScatterGL.line` |
+/// `ScatterMapbox.line` |
 /// `ChoroplethMapbox.Marker.line` |
 /// `Sankey.Node.line` |
 /// `Sankey.Link.line` |
-/// `ScatterPolarGL.line` |
-public struct Line2: Encodable {
-    /// Sets the color of the line enclosing each sector.
+/// `Indicator.Gauge.Bar.line` |
+/// `Indicator.Gauge.Step.line` |
+/// `Indicator.Gauge.Threshold.line` |
+/// `Table.Header.line` |
+/// `Table.Cells.line` |
+public struct Line: Encodable {
+    /// Sets the color of line bounding the box(es).
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-line-color) |
-    /// [Python](https://plot.ly/python/reference/#pie-marker-line-color) |
-    /// [R](https://plot.ly/r/reference/#pie-marker-line-color)
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-line-color) |
+    /// [Python](https://plot.ly/python/reference/#box-line-color) |
+    /// [R](https://plot.ly/r/reference/#box-line-color)
     public var color: Color?
 
-    /// Sets the width (in px) of the line enclosing each sector.
+    /// Sets the width (in px) of line bounding the box(es).
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-line-width) |
-    /// [Python](https://plot.ly/python/reference/#pie-marker-line-width) |
-    /// [R](https://plot.ly/r/reference/#pie-marker-line-width)
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-line-width) |
+    /// [Python](https://plot.ly/python/reference/#box-line-width) |
+    /// [R](https://plot.ly/r/reference/#box-line-width)
     public var width: Double?
 
-    /// Sets the source reference on plot.ly for  color .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-line-colorsrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-marker-line-colorsrc) |
-    /// [R](https://plot.ly/r/reference/#pie-marker-line-colorsrc)
-    public var colorSource: String?
-
-    /// Sets the source reference on plot.ly for  width .
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-line-widthsrc) |
-    /// [Python](https://plot.ly/python/reference/#pie-marker-line-widthsrc) |
-    /// [R](https://plot.ly/r/reference/#pie-marker-line-widthsrc)
-    public var widthSource: String?
-
-    /// Plotly compatible property encoding
-    enum CodingKeys: String, CodingKey {
-        case color
-        case width
-        case colorSource = "colorsrc"
-        case widthSource = "widthsrc"
-    }
-    
-    public init(color: Color? = nil, width: Double? = nil, colorSource: String? = nil, widthSource: String? = nil) {
+    public init(color: Color? = nil, width: Double? = nil) {
         self.color = color
         self.width = width
-        self.colorSource = colorSource
-        self.widthSource = widthSource
     }
 }
 
-///
+/// # Used By
+/// `Histogram.xBins` |
+/// `Histogram.yBins` |
+/// `Histogram2D.xBins` |
+/// `Histogram2D.yBins` |
+/// `Histogram2DContour.xBins` |
+/// `Histogram2DContour.yBins` |
+public struct Bins: Encodable {
+    /// Sets the starting value for the x axis bins. 
+    ///
+    /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
+    /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
+    /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
+    /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
+    /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
+    /// based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying
+    /// histograms share a subplot, the first explicit `start` is used exactly and all others are
+    /// shifted down (if necessary) to differ from that one by an integer number of bins.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-xbins-start) |
+    /// [Python](https://plot.ly/python/reference/#histogram-xbins-start) |
+    /// [R](https://plot.ly/r/reference/#histogram-xbins-start)
+    public var start: Anything?
+
+    /// Sets the end value for the x axis bins. 
+    ///
+    /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
+    /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
+    /// a date string, and for category data `end` is based on the category serial numbers.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-xbins-end) |
+    /// [Python](https://plot.ly/python/reference/#histogram-xbins-end) |
+    /// [R](https://plot.ly/r/reference/#histogram-xbins-end)
+    public var end: Anything?
+
+    /// Sets the size of each x axis bin. 
+    ///
+    /// Default behavior: If `nbinsx` is 0 or omitted, we choose a nice round bin size such that the
+    /// number of bins is about the same as the typical number of samples in each bin. If `nbinsx` is
+    /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
+    /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
+    /// categories to bin together (always defaults to 1). If multiple non-overlaying histograms share a
+    /// subplot, the first explicit `size` is used and all others discarded. If no `size` is
+    /// provided,the sample data from all traces is combined to determine `size` as described above.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-xbins-size) |
+    /// [Python](https://plot.ly/python/reference/#histogram-xbins-size) |
+    /// [R](https://plot.ly/r/reference/#histogram-xbins-size)
+    public var size: Anything?
+
+    public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
+        self.start = start
+        self.end = end
+        self.size = size
+    }
+}
+
+/// # Used By
+/// `Histogram2DContour.contours` |
+/// `Contour.contours` |
+/// `ContourCarpet.contours` |
+public struct Contours: Encodable {
+    /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
+    ///
+    /// If `constraint`, the data is represented as constraints with the invalid region shaded as
+    /// specified by the `operation` and `value` parameters.
+    ///
+    /// # Used By
+    /// `Histogram2DContour.Contours.type` |
+    public enum `Type`: String, Encodable {
+        case levels
+        case constraint
+    }
+    /// If `levels`, the data is represented as a contour plot with multiple levels displayed. 
+    ///
+    /// If `constraint`, the data is represented as constraints with the invalid region shaded as
+    /// specified by the `operation` and `value` parameters.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-type) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-type) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-type)
+    public var type: `Type`?
+
+    /// Sets the starting contour level value. 
+    ///
+    /// Must be less than `contours.end`
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-start) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-start) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-start)
+    public var start: Double?
+
+    /// Sets the end contour level value. 
+    ///
+    /// Must be more than `contours.start`
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-end) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-end) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-end)
+    public var end: Double?
+
+    /// Sets the step between each contour level. 
+    ///
+    /// Must be positive.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-size) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-size) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-size)
+    public var size: Double?
+
+    /// Determines the coloring method showing the contour values. 
+    ///
+    /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
+    /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
+    /// lines. If *none*, no coloring is applied on this trace.
+    ///
+    /// # Used By
+    /// `Histogram2DContour.Contours.coloring` |
+    public enum Coloring: String, Encodable {
+        case fill
+        case heatmap
+        case lines
+        case none
+    }
+    /// Determines the coloring method showing the contour values. 
+    ///
+    /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
+    /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
+    /// lines. If *none*, no coloring is applied on this trace.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-coloring) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-coloring) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-coloring)
+    public var coloring: Coloring?
+
+    /// Determines whether or not the contour lines are drawn. 
+    ///
+    /// Has an effect only if `contours.coloring` is set to *fill*.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-showlines) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-showlines) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-showlines)
+    public var showLines: Bool?
+
+    /// Determines whether to label the contour lines with their values.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-showlabels) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-showlabels) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-showlabels)
+    public var showLabels: Bool?
+
+    /// Sets the font used for labeling the contour levels. 
+    ///
+    /// The default color comes from the lines, if shown. The default family and size come from
+    /// `layout.font`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-labelfont) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-labelfont) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-labelfont)
+    public var labelFont: Font?
+
+    /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-labelformat) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-labelformat) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-labelformat)
+    public var labelFormat: String?
+
+    /// Sets the constraint operation. 
+    ///
+    /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
+    /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
+    /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
+    /// intervals make no difference to constraint display, but all versions are allowed for consistency
+    /// with filter transforms.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-operation) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-operation) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-operation)
+    public var operation: Operation?
+
+    /// Sets the value or values of the constraint boundary. 
+    ///
+    /// When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be
+    /// a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[)
+    /// *value* is expected to be an array of two numbers where the first is the lower bound and the
+    /// second is the upper bound.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours-value) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours-value) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours-value)
+    public var value: Anything?
+
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case type
+        case start
+        case end
+        case size
+        case coloring
+        case showLines = "showlines"
+        case showLabels = "showlabels"
+        case labelFont = "labelfont"
+        case labelFormat = "labelformat"
+        case operation
+        case value
+    }
+    
+    public init(type: `Type`? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font? = nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil) {
+        self.type = type
+        self.start = start
+        self.end = end
+        self.size = size
+        self.coloring = coloring
+        self.showLines = showLines
+        self.showLabels = showLabels
+        self.labelFont = labelFont
+        self.labelFormat = labelFormat
+        self.operation = operation
+        self.value = value
+    }
+}
+
+/// # Used By
+/// `Histogram2DContour.line` |
+/// `Contour.line` |
+/// `ContourCarpet.line` |
+public struct SmoothedDashedLine: Encodable {
+    /// Sets the color of the contour level. 
+    ///
+    /// Has no effect if `contours.coloring` is set to *lines*.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-line-color) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-line-color) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-line-color)
+    public var color: Color?
+
+    /// Sets the contour line width in (in px)
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-line-width) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-line-width) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-line-width)
+    public var width: Double?
+
+    /// Sets the dash style of lines. 
+    ///
+    /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+    /// dash length list in px (eg *5px,10px,2px,2px*).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-line-dash) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-line-dash) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-line-dash)
+    public var dash: String?
+
+    /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-line-smoothing) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-line-smoothing) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-line-smoothing)
+    public var smoothing: Double?
+
+    public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, smoothing: Double? = nil) {
+        self.color = color
+        self.width = width
+        self.dash = dash
+        self.smoothing = smoothing
+    }
+}
+
+/// # Used By
+/// `ScatterTernary.line` |
+/// `ScatterCarpet.line` |
+/// `ScatterPolar.line` |
+public struct SplineSmoothedDashedLine: Encodable {
+    /// Sets the line color.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-line-color) |
+    /// [Python](https://plot.ly/python/reference/#scatterternary-line-color) |
+    /// [R](https://plot.ly/r/reference/#scatterternary-line-color)
+    public var color: Color?
+
+    /// Sets the line width (in px).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-line-width) |
+    /// [Python](https://plot.ly/python/reference/#scatterternary-line-width) |
+    /// [R](https://plot.ly/r/reference/#scatterternary-line-width)
+    public var width: Double?
+
+    /// Sets the dash style of lines. 
+    ///
+    /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+    /// dash length list in px (eg *5px,10px,2px,2px*).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-line-dash) |
+    /// [Python](https://plot.ly/python/reference/#scatterternary-line-dash) |
+    /// [R](https://plot.ly/r/reference/#scatterternary-line-dash)
+    public var dash: String?
+
+    /// Determines the line shape. 
+    ///
+    /// With *spline* the lines are drawn using spline interpolation. The other available values
+    /// correspond to step-wise line shapes.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-line-shape) |
+    /// [Python](https://plot.ly/python/reference/#scatterternary-line-shape) |
+    /// [R](https://plot.ly/r/reference/#scatterternary-line-shape)
+    public var shape: Shape?
+
+    /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing. 
+    ///
+    /// *0* corresponds to no smoothing (equivalent to a *linear* shape).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-line-smoothing) |
+    /// [Python](https://plot.ly/python/reference/#scatterternary-line-smoothing) |
+    /// [R](https://plot.ly/r/reference/#scatterternary-line-smoothing)
+    public var smoothing: Double?
+
+    public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, shape: Shape? = nil, smoothing: Double? = nil) {
+        self.color = color
+        self.width = width
+        self.dash = dash
+        self.shape = shape
+        self.smoothing = smoothing
+    }
+}
+
+/// # Used By
+/// `Scatter3D.projection` |
+/// `Surface.Contours.X.project` |
+/// `Surface.Contours.Y.project` |
+/// `Surface.Contours.Z.project` |
+public struct Projection: Encodable {
+    /// # Used By
+    /// `Scatter3D.Projection.x` |
+    public struct X: Encodable {
+        /// Sets whether or not projections are shown along the x axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-x-show) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-x-show) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-x-show)
+        public var show: Bool?
+    
+        /// Sets the projection color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-x-opacity) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-x-opacity) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-x-opacity)
+        public var opacity: Double?
+    
+        /// Sets the scale factor determining the size of the projection marker points.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-x-scale) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-x-scale) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-x-scale)
+        public var scale: Double?
+    
+        public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+            self.show = show
+            self.opacity = opacity
+            self.scale = scale
+        }
+    }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-x) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-projection-x) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-projection-x)
+    public var x: X?
+
+    /// # Used By
+    /// `Scatter3D.Projection.y` |
+    public struct Y: Encodable {
+        /// Sets whether or not projections are shown along the y axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-y-show) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-y-show) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-y-show)
+        public var show: Bool?
+    
+        /// Sets the projection color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-y-opacity) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-y-opacity) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-y-opacity)
+        public var opacity: Double?
+    
+        /// Sets the scale factor determining the size of the projection marker points.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-y-scale) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-y-scale) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-y-scale)
+        public var scale: Double?
+    
+        public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+            self.show = show
+            self.opacity = opacity
+            self.scale = scale
+        }
+    }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-y) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-projection-y) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-projection-y)
+    public var y: Y?
+
+    /// # Used By
+    /// `Scatter3D.Projection.z` |
+    public struct Z: Encodable {
+        /// Sets whether or not projections are shown along the z axis.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-z-show) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-z-show) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-z-show)
+        public var show: Bool?
+    
+        /// Sets the projection color.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-z-opacity) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-z-opacity) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-z-opacity)
+        public var opacity: Double?
+    
+        /// Sets the scale factor determining the size of the projection marker points.
+        ///
+        /// # Plotly Reference
+        /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-z-scale) |
+        /// [Python](https://plot.ly/python/reference/#scatter3d-projection-z-scale) |
+        /// [R](https://plot.ly/r/reference/#scatter3d-projection-z-scale)
+        public var scale: Double?
+    
+        public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+            self.show = show
+            self.opacity = opacity
+            self.scale = scale
+        }
+    }
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection-z) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-projection-z) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-projection-z)
+    public var z: Z?
+
+    public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+}
+
+/// # Used By
+/// `Scatter3D.marker` |
+/// `ScatterGL.marker` |
+/// `ScatterPlotMatrix.marker` |
+/// `ScatterPolarGL.marker` |
+public struct SymbolicMarker: Encodable {
+    /// Sets the marker symbol type.
+    ///
+    /// # Used By
+    /// `Scatter3D.SymbolicMarker.symbol` |
+    public enum Symbol: String, Encodable {
+        case circle
+        case circleOpen = "circle-open"
+        case square
+        case squareOpen = "square-open"
+        case diamond
+        case diamondOpen = "diamond-open"
+        case cross
+        case x
+    }
+    /// Sets the marker symbol type.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-symbol) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-symbol) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-symbol)
+    public var symbol: Symbol?
+
+    /// Sets the marker size (in px).
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-size) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-size) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-size)
+    public var size: Double?
+
+    /// Has an effect only if `marker.size` is set to a numerical array. 
+    ///
+    /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
+    /// and `sizemode`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-sizeref) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-sizeref) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-sizeref)
+    public var sizeReference: Double?
+
+    /// Has an effect only if `marker.size` is set to a numerical array. 
+    ///
+    /// Sets the minimum size (in px) of the rendered marker points.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-sizemin) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-sizemin) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-sizemin)
+    public var sizeMin: Double?
+
+    /// Has an effect only if `marker.size` is set to a numerical array. 
+    ///
+    /// Sets the rule for which the data in `size` is converted to pixels.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-sizemode) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-sizemode) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-sizemode)
+    public var sizeMode: SizeMode?
+
+    /// Sets the marker opacity. 
+    ///
+    /// Note that the marker opacity for scatter3d traces must be a scalar value for performance
+    /// reasons. To set a blending opacity value (i.e. which is not transparent), set *marker.color* to
+    /// an rgba color and use its alpha channel.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-opacity) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-opacity) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-opacity)
+    public var opacity: Double?
+
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-colorbar) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-colorbar) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-colorbar)
+    public var colorBar: ColorBar?
+
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-line) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-line) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-line)
+    public var line: ColoredLine?
+
+    /// Sets themarkercolor. 
+    ///
+    /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+    /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+    /// if set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-color) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-color) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-color)
+    public var color: Color?
+
+    /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
+    ///
+    /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-cauto) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-cauto) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-cauto)
+    public var cAuto: Bool?
+
+    /// Sets the lower bound of the color domain. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-cmin) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-cmin) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-cmin)
+    public var cMin: Double?
+
+    /// Sets the upper bound of the color domain. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-cmax) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-cmax) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-cmax)
+    public var cMax: Double?
+
+    /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be equidistant to this point. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-cmid) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-cmid) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-cmid)
+    public var cMiddle: Double?
+
+    /// Sets the colorscale. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
+    /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+    /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+    /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+    /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
+    /// name string of the following list:
+    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-colorscale) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-colorscale) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-colorscale)
+    public var colorScale: ColorScale?
+
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `marker.colorscale`. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
+    /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+    /// numbers in the `color` array are all positive, all negative or mixed.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-autocolorscale) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-autocolorscale) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-autocolorscale)
+    public var autoColorScale: Bool?
+
+    /// Reverses the color mapping if true. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
+    /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-reversescale) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-reversescale) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-reversescale)
+    public var reverseScale: Bool?
+
+    /// Determines whether or not a colorbar is displayed for this trace. 
+    ///
+    /// Has an effect only if in `marker.color`is set to a numerical array.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-showscale) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-showscale) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-showscale)
+    public var showScale: Bool?
+
+    /// Sets a reference to a shared color axis. 
+    ///
+    /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+    /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+    /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-coloraxis) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-marker-coloraxis) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-marker-coloraxis)
+    public var colorAxis: SubPlotID?
+
+    /// Plotly compatible property encoding
+    enum CodingKeys: String, CodingKey {
+        case symbol
+        case size
+        case sizeReference = "sizeref"
+        case sizeMin = "sizemin"
+        case sizeMode = "sizemode"
+        case opacity
+        case colorBar = "colorbar"
+        case line
+        case color
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorAxis = "coloraxis"
+    }
+    
+    public init(symbol: Symbol? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, opacity: Double? = nil, colorBar: ColorBar? = nil, line: ColoredLine? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
+        self.symbol = symbol
+        self.size = size
+        self.sizeReference = sizeReference
+        self.sizeMin = sizeMin
+        self.sizeMode = sizeMode
+        self.opacity = opacity
+        self.colorBar = colorBar
+        self.line = line
+        self.color = color
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
+        self.colorScale = colorScale
+        self.autoColorScale = autoColorScale
+        self.reverseScale = reverseScale
+        self.showScale = showScale
+        self.colorAxis = colorAxis
+    }
+}
+
 /// # Used By
 /// `Surface.lightPosition` |
 /// `Isosurface.lightPosition` |
@@ -2454,7 +2885,7 @@ public struct Line2: Encodable {
 /// `Mesh3D.lightPosition` |
 /// `Cone.lightPosition` |
 /// `StreamTube.lightPosition` |
-public struct LightPosition0: Encodable {
+public struct LightPosition: Encodable {
     /// Numeric vector, representing the X coordinate for each vertex.
     ///
     /// # Plotly Reference
@@ -2486,14 +2917,13 @@ public struct LightPosition0: Encodable {
     }
 }
 
-///
 /// # Used By
 /// `Isosurface.lighting` |
 /// `Volume.lighting` |
 /// `Mesh3D.lighting` |
 /// `Cone.lighting` |
 /// `StreamTube.lighting` |
-public struct Lighting0: Encodable {
+public struct Lighting: Encodable {
     /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
     ///
     /// # Plotly Reference
@@ -2572,5 +3002,41 @@ public struct Lighting0: Encodable {
         self.specular = specular
         self.roughness = roughness
         self.fresnel = fresnel
+    }
+}
+
+/// # Used By
+/// `Isosurface.contour` |
+/// `Volume.contour` |
+/// `Mesh3D.contour` |
+public struct ContourHover: Encodable {
+    /// Sets whether or not dynamic contours are shown on hover
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-contour-show) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-contour-show) |
+    /// [R](https://plot.ly/r/reference/#isosurface-contour-show)
+    public var show: Bool?
+
+    /// Sets the color of the contour lines.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-contour-color) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-contour-color) |
+    /// [R](https://plot.ly/r/reference/#isosurface-contour-color)
+    public var color: Color?
+
+    /// Sets the width of the contour lines.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-contour-width) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-contour-width) |
+    /// [R](https://plot.ly/r/reference/#isosurface-contour-width)
+    public var width: Double?
+
+    public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
+        self.show = show
+        self.color = color
+        self.width = width
     }
 }
