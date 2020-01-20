@@ -519,9 +519,9 @@ public struct Carpet: Trace {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickformatstops-items-tickformatstop) |
-        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickformatstops-items-tickformatstop) |
-        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickformatstops-items-tickformatstop)
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickformatstops) |
+        /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickformatstops) |
+        /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickformatstops)
         public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Specifies the ordering logic for the case of categorical variables. 
@@ -757,7 +757,7 @@ public struct Carpet: Trace {
             case exponentFormat = "exponentformat"
             case separatethousands
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstop"
+            case tickFormatStops = "tickformatstops"
             case categoryOrder = "categoryorder"
             case categoryArray = "categoryarray"
             case labelPadding = "labelpadding"
@@ -1153,9 +1153,9 @@ public struct Carpet: Trace {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickformatstops-items-tickformatstop) |
-        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickformatstops-items-tickformatstop) |
-        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickformatstops-items-tickformatstop)
+        /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickformatstops) |
+        /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickformatstops) |
+        /// [R](https://plot.ly/r/reference/#carpet-baxis-tickformatstops)
         public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Specifies the ordering logic for the case of categorical variables. 
@@ -1391,7 +1391,7 @@ public struct Carpet: Trace {
             case exponentFormat = "exponentformat"
             case separatethousands
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstop"
+            case tickFormatStops = "tickformatstops"
             case categoryOrder = "categoryorder"
             case categoryArray = "categoryarray"
             case labelPadding = "labelpadding"

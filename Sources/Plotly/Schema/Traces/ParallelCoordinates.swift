@@ -88,12 +88,11 @@ public struct ParallelCoordinates: Trace {
     /// [R](https://plot.ly/r/reference/#parcoords-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#parcoords-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#parcoords-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-transforms) |
+    /// [Python](https://plot.ly/python/reference/#parcoords-transforms) |
+    /// [R](https://plot.ly/r/reference/#parcoords-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -331,14 +330,11 @@ public struct ParallelCoordinates: Trace {
             self.templateItemName = templateItemName
         }
     }
-    /// The dimensions (variables) of the parallel coordinates chart. 
-    ///
-    /// 2..60 dimensions are supported.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions-items-dimension) |
-    /// [Python](https://plot.ly/python/reference/#parcoords-dimensions-items-dimension) |
-    /// [R](https://plot.ly/r/reference/#parcoords-dimensions-items-dimension)
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-dimensions) |
+    /// [Python](https://plot.ly/python/reference/#parcoords-dimensions) |
+    /// [R](https://plot.ly/r/reference/#parcoords-dimensions)
     public var dimensions: [Dimension]?
 
     /// # Used By
@@ -354,7 +350,7 @@ public struct ParallelCoordinates: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-line-color) |
         /// [Python](https://plot.ly/python/reference/#parcoords-line-color) |
         /// [R](https://plot.ly/r/reference/#parcoords-line-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax`  Has an effect only if in `line.color`is set to a numerical array. 
         ///
@@ -482,7 +478,7 @@ public struct ParallelCoordinates: Trace {
             case colorAxis = "coloraxis"
         }
         
-        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        public init(color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.color = color
             self.cAuto = cAuto
             self.cMin = cMin
@@ -514,7 +510,7 @@ public struct ParallelCoordinates: Trace {
         case customData = "customdata"
         case meta
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case domain
         case labelAngle = "labelangle"
@@ -522,7 +518,7 @@ public struct ParallelCoordinates: Trace {
         case labelFont = "labelfont"
         case tickFont = "tickfont"
         case rangeFont = "rangefont"
-        case dimensions = "dimension"
+        case dimensions
         case line
     }
     

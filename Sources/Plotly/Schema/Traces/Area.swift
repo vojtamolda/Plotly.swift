@@ -129,12 +129,11 @@ public struct Area: Trace {
     /// [R](https://plot.ly/r/reference/#area-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#area-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#area-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#area-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#area-transforms) |
+    /// [Python](https://plot.ly/python/reference/#area-transforms) |
+    /// [R](https://plot.ly/r/reference/#area-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -187,7 +186,7 @@ public struct Area: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-color) |
         /// [Python](https://plot.ly/python/reference/#area-marker-color) |
         /// [R](https://plot.ly/r/reference/#area-marker-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
         ///
@@ -197,7 +196,7 @@ public struct Area: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-size) |
         /// [Python](https://plot.ly/python/reference/#area-marker-size) |
         /// [R](https://plot.ly/r/reference/#area-marker-size)
-        public var size: Double?
+        public var size: ArrayOrDouble?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
         ///
@@ -219,9 +218,9 @@ public struct Area: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-opacity) |
         /// [Python](https://plot.ly/python/reference/#area-marker-opacity) |
         /// [R](https://plot.ly/r/reference/#area-marker-opacity)
-        public var opacity: Double?
+        public var opacity: ArrayOrDouble?
     
-        public init(color: Color? = nil, size: Double? = nil, symbol: Shared.Symbol? = nil, opacity: Double? = nil) {
+        public init(color: ArrayOrColor? = nil, size: ArrayOrDouble? = nil, symbol: Shared.Symbol? = nil, opacity: ArrayOrDouble? = nil) {
             self.color = color
             self.size = size
             self.symbol = symbol
@@ -251,7 +250,7 @@ public struct Area: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case r
         case t

@@ -131,12 +131,11 @@ public struct ScatterGeo: Trace {
     /// [R](https://plot.ly/r/reference/#scattergeo-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#scattergeo-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#scattergeo-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-transforms) |
+    /// [Python](https://plot.ly/python/reference/#scattergeo-transforms) |
+    /// [R](https://plot.ly/r/reference/#scattergeo-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -222,7 +221,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-text) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-text) |
     /// [R](https://plot.ly/r/reference/#scattergeo-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -240,7 +239,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-texttemplate) |
     /// [R](https://plot.ly/r/reference/#scattergeo-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each (lon,lat) pair or item in `locations`. 
     ///
@@ -252,7 +251,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hovertext) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-hovertext) |
     /// [R](https://plot.ly/r/reference/#scattergeo-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Sets the text font.
     ///
@@ -308,7 +307,7 @@ public struct ScatterGeo: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-opacity) |
         /// [Python](https://plot.ly/python/reference/#scattergeo-marker-opacity) |
         /// [R](https://plot.ly/r/reference/#scattergeo-marker-opacity)
-        public var opacity: Double?
+        public var opacity: ArrayOrDouble?
     
         /// Sets the marker size (in px).
         ///
@@ -316,7 +315,7 @@ public struct ScatterGeo: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-size) |
         /// [Python](https://plot.ly/python/reference/#scattergeo-marker-size) |
         /// [R](https://plot.ly/r/reference/#scattergeo-marker-size)
-        public var size: Double?
+        public var size: ArrayOrDouble?
     
         /// Has an effect only if `marker.size` is set to a numerical array. 
         ///
@@ -380,7 +379,7 @@ public struct ScatterGeo: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-marker-color) |
         /// [Python](https://plot.ly/python/reference/#scattergeo-marker-color) |
         /// [R](https://plot.ly/r/reference/#scattergeo-marker-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
         ///
@@ -509,7 +508,7 @@ public struct ScatterGeo: Trace {
             case colorAxis = "coloraxis"
         }
         
-        public init(symbol: Shared.Symbol? = nil, opacity: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, colorBar: Shared.ColorBar? = nil, line: Shared.ColoredLine? = nil, gradient: Shared.Gradient? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
+        public init(symbol: Shared.Symbol? = nil, opacity: ArrayOrDouble? = nil, size: ArrayOrDouble? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, colorBar: Shared.ColorBar? = nil, line: Shared.ColoredLine? = nil, gradient: Shared.Gradient? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -803,7 +802,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#scattergeo-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Sets a reference between this trace's geospatial coordinates and a geographic map. 
     ///
@@ -832,7 +831,7 @@ public struct ScatterGeo: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case longitude = "lon"
         case latitude = "lat"
@@ -856,7 +855,7 @@ public struct ScatterGeo: Trace {
         case geo
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, mode: Shared.Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, geo: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, geo: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

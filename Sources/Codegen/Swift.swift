@@ -78,8 +78,8 @@ extension SwiftSharedType {
     }
 
     /// Default implementation for shared types that keeps track of instances.
-    func instance(named: String, array: Bool = false) -> Instance<Self> {
-        let instance = Instance(of: self, named: named, array: array)
+    func instance(named: String, array: Bool = false, schemaOverride: Origin? = nil) -> Instance<Self> {
+        let instance = Instance(of: self, named: named, array: array, schemaOverride: schemaOverride)
         instances.append(instance)
         return instance
     }
@@ -174,8 +174,9 @@ struct Swift {
                     case let Schema.Entry.object(typeSchema) = itemsSchema.entries[0].entry else {
                     fatalError()
                 }
-                let type = Swift.Object(named: typeSchema.name, parent: parent, schema: typeSchema)!
-                parent.members.append(type.instance(named: name, array: true))
+                let arrayElementType = Swift.Object(named: typeSchema.name, parent: parent, schema: typeSchema)!
+                let arrayInstance = arrayElementType.instance(named: name, array: true, schemaOverride: object)
+                parent.members.append(arrayInstance)
                 return nil
             }
             Self.existing.append(self)
@@ -447,14 +448,14 @@ struct Swift {
 
     /// Plotly `number` data type represented as a Swift `Double`.
     struct Number: SwiftType {
-        let name: String = "Double"
+        var name: String { (schema.arrayOk ?? false) ? "ArrayOrDouble" : "Double" }
         let parent: Swift.Object?
         var schema: Schema.Number
     }
 
     /// Plotly `integer` data type represented as a Swift `Int`.
     struct Integer: SwiftType {
-        let name: String = "Int"
+        var name: String { (schema.arrayOk ?? false) ? "ArrayOrInt" : "Int" }
         let parent: Swift.Object?
         var schema: Schema.Integer
     }
@@ -462,14 +463,14 @@ struct Swift {
     /// Plotly `string` data type represented as a Swift `String`.
     /// - Note: Appended underscore prevents collision with the Swift built-in type.
     struct String_: SwiftType {
-        let name: String = "String"
+        var name: String { (schema.arrayOk ?? false) ? "ArrayOrString" : "String" }
         let parent: Swift.Object?
         var schema: Schema.String_
     }
 
     /// Plotly `color` data type is manually re-implemented in Swift.
     struct Color: SwiftType {
-        let name: String = "Color"
+        var name: String { (schema.arrayOk ?? false) ? "ArrayOrColor" : "Color" }
         let parent: Swift.Object?
         var schema: Schema.Color
     }

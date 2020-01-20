@@ -103,12 +103,11 @@ public struct Sunburst: Trace {
     /// [R](https://plot.ly/r/reference/#sunburst-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#sunburst-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#sunburst-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-transforms) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-transforms) |
+    /// [R](https://plot.ly/r/reference/#sunburst-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -493,7 +492,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#sunburst-texttemplate) |
     /// [R](https://plot.ly/r/reference/#sunburst-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each sector. 
     ///
@@ -505,7 +504,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hovertext) |
     /// [Python](https://plot.ly/python/reference/#sunburst-hovertext) |
     /// [R](https://plot.ly/r/reference/#sunburst-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -580,7 +579,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#sunburst-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#sunburst-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Sets the font used for `textinfo`.
     ///
@@ -626,7 +625,7 @@ public struct Sunburst: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case labels
         case parents
@@ -649,7 +648,7 @@ public struct Sunburst: Trace {
         case domain
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, domain: Shared.Domain? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

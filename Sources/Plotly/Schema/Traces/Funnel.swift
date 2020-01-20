@@ -136,12 +136,11 @@ public struct Funnel: Trace {
     /// [R](https://plot.ly/r/reference/#funnel-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#funnel-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#funnel-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-transforms) |
+    /// [Python](https://plot.ly/python/reference/#funnel-transforms) |
+    /// [R](https://plot.ly/r/reference/#funnel-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -229,7 +228,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-hovertext) |
     /// [Python](https://plot.ly/python/reference/#funnel-hovertext) |
     /// [R](https://plot.ly/r/reference/#funnel-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -252,7 +251,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#funnel-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#funnel-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -365,7 +364,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#funnel-texttemplate) |
     /// [R](https://plot.ly/r/reference/#funnel-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets text elements associated with each (x,y) pair. 
     ///
@@ -377,7 +376,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-text) |
     /// [Python](https://plot.ly/python/reference/#funnel-text) |
     /// [R](https://plot.ly/r/reference/#funnel-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Specifies the location of the `text`. 
     ///
@@ -596,7 +595,7 @@ public struct Funnel: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case x
         case x0
@@ -629,7 +628,7 @@ public struct Funnel: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width: Double? = nil, marker: Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, text: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width: Double? = nil, marker: Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

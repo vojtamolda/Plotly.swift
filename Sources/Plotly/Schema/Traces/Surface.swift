@@ -149,7 +149,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-text) |
     /// [Python](https://plot.ly/python/reference/#surface-text) |
     /// [R](https://plot.ly/r/reference/#surface-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -157,7 +157,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-hovertext) |
     /// [Python](https://plot.ly/python/reference/#surface-hovertext) |
     /// [R](https://plot.ly/r/reference/#surface-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -179,7 +179,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#surface-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#surface-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -901,7 +901,7 @@ public struct Surface: Trace {
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

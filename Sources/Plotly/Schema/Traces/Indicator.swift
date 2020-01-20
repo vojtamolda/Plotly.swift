@@ -89,12 +89,11 @@ public struct Indicator: Trace {
     /// [R](https://plot.ly/r/reference/#indicator-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#indicator-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#indicator-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#indicator-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#indicator-transforms) |
+    /// [Python](https://plot.ly/python/reference/#indicator-transforms) |
+    /// [R](https://plot.ly/r/reference/#indicator-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -690,9 +689,9 @@ public struct Indicator: Trace {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets a tick label prefix.
@@ -778,7 +777,7 @@ public struct Indicator: Trace {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case tickPrefix = "tickprefix"
                 case showTickPrefix = "showtickprefix"
                 case tickSuffix = "ticksuffix"
@@ -903,9 +902,9 @@ public struct Indicator: Trace {
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-steps-items-step) |
-        /// [Python](https://plot.ly/python/reference/#indicator-gauge-steps-items-step) |
-        /// [R](https://plot.ly/r/reference/#indicator-gauge-steps-items-step)
+        /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-steps) |
+        /// [Python](https://plot.ly/python/reference/#indicator-gauge-steps) |
+        /// [R](https://plot.ly/r/reference/#indicator-gauge-steps)
         public var steps: [Step]?
     
         /// # Used By
@@ -955,7 +954,7 @@ public struct Indicator: Trace {
             case borderColor = "bordercolor"
             case borderWidth = "borderwidth"
             case axis
-            case steps = "step"
+            case steps
             case threshold
         }
         
@@ -989,7 +988,7 @@ public struct Indicator: Trace {
         case customData = "customdata"
         case meta
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case mode
         case value

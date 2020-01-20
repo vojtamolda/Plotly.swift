@@ -144,12 +144,11 @@ public struct Histogram: Trace {
     /// [R](https://plot.ly/r/reference/#histogram-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#histogram-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#histogram-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-transforms) |
+    /// [Python](https://plot.ly/python/reference/#histogram-transforms) |
+    /// [R](https://plot.ly/r/reference/#histogram-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -194,7 +193,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-text) |
     /// [Python](https://plot.ly/python/reference/#histogram-text) |
     /// [R](https://plot.ly/r/reference/#histogram-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -202,7 +201,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-hovertext) |
     /// [Python](https://plot.ly/python/reference/#histogram-hovertext) |
     /// [R](https://plot.ly/r/reference/#histogram-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Sets the orientation of the bars. 
     ///
@@ -412,7 +411,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#histogram-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#histogram-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     ///
     /// # Plotly Reference
@@ -656,7 +655,7 @@ public struct Histogram: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case x
         case y
@@ -687,7 +686,7 @@ public struct Histogram: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, orientation: Shared.Orientation? = nil, binningFunction: Shared.BinningFunction? = nil, normalization: Shared.Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: String? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, orientation: Shared.Orientation? = nil, binningFunction: Shared.BinningFunction? = nil, normalization: Shared.Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: ArrayOrString? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -1644,9 +1644,9 @@ public struct Layout: Encodable {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickformatstops-items-tickformatstop) |
-        /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickformatstops-items-tickformatstop) |
-        /// [R](https://plot.ly/r/reference/#layout-xaxis-tickformatstops-items-tickformatstop)
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickformatstops) |
+        /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickformatstops) |
+        /// [R](https://plot.ly/r/reference/#layout-xaxis-tickformatstops)
         public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -2194,14 +2194,11 @@ public struct Layout: Encodable {
                     self.templateItemName = templateItemName
                 }
             }
-            /// Sets the specifications for each buttons. 
-            ///
-            /// By default, a range selector comes with no buttons.
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons-items-button) |
-            /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons-items-button) |
-            /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons-items-button)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-buttons) |
+            /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-buttons) |
+            /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-buttons)
             public var buttons: [Button]?
         
             /// Sets the x position (in normalized coordinates) of the range selector.
@@ -2281,7 +2278,7 @@ public struct Layout: Encodable {
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
                 case visible
-                case buttons = "button"
+                case buttons
                 case x
                 case xAnchor = "xanchor"
                 case y
@@ -2370,7 +2367,7 @@ public struct Layout: Encodable {
             case exponentFormat = "exponentformat"
             case separatethousands
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstop"
+            case tickFormatStops = "tickformatstops"
             case hoverFormat = "hoverformat"
             case showLine = "showline"
             case lineColor = "linecolor"
@@ -3098,9 +3095,9 @@ public struct Layout: Encodable {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickformatstops-items-tickformatstop) |
-        /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickformatstops-items-tickformatstop) |
-        /// [R](https://plot.ly/r/reference/#layout-yaxis-tickformatstops-items-tickformatstop)
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickformatstops) |
+        /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickformatstops) |
+        /// [R](https://plot.ly/r/reference/#layout-yaxis-tickformatstops)
         public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -3408,7 +3405,7 @@ public struct Layout: Encodable {
             case exponentFormat = "exponentformat"
             case separatethousands
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstop"
+            case tickFormatStops = "tickformatstops"
             case hoverFormat = "hoverformat"
             case showLine = "showline"
             case lineColor = "linecolor"
@@ -3781,9 +3778,9 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -3909,7 +3906,7 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -4210,9 +4207,9 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -4338,7 +4335,7 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -4639,9 +4636,9 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -4767,7 +4764,7 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -5546,9 +5543,9 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -5692,7 +5689,7 @@ public struct Layout: Encodable {
                 case exponentFormat = "exponentformat"
                 case separatethousands
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -6176,9 +6173,9 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -6322,7 +6319,7 @@ public struct Layout: Encodable {
                 case exponentFormat = "exponentformat"
                 case separatethousands
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -6806,9 +6803,9 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
@@ -6952,7 +6949,7 @@ public struct Layout: Encodable {
                 case exponentFormat = "exponentformat"
                 case separatethousands
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
                 case showLine = "showline"
                 case lineColor = "linecolor"
@@ -7571,9 +7568,9 @@ public struct Layout: Encodable {
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation) |
-        /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation) |
-        /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation)
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations) |
+        /// [Python](https://plot.ly/python/reference/#layout-scene-annotations) |
+        /// [R](https://plot.ly/r/reference/#layout-scene-annotations)
         public var annotations: [Annotation]?
     
         /// Plotly compatible property encoding
@@ -7589,7 +7586,7 @@ public struct Layout: Encodable {
             case dragMode = "dragmode"
             case hoverMode = "hovermode"
             case uiRevision = "uirevision"
-            case annotations = "annotation"
+            case annotations
         }
         
         public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Shared.Domain? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, zAxis: ZAxis? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations: [Annotation]? = nil) {
@@ -8763,9 +8760,9 @@ public struct Layout: Encodable {
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer) |
-        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer) |
-        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer)
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers) |
+        /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers) |
+        /// [R](https://plot.ly/r/reference/#layout-mapbox-layers)
         public var layers: [Layer]?
     
         /// Controls persistence of user-driven changes in the view: `center`, `zoom`, `bearing`, `pitch`. 
@@ -8787,7 +8784,7 @@ public struct Layout: Encodable {
             case zoom
             case bearing
             case pitch
-            case layers = "layer"
+            case layers
             case uiRevision = "uirevision"
         }
         
@@ -9302,9 +9299,9 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the layer on which this axis is displayed. 
@@ -9373,7 +9370,7 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case layer
                 case calendar
             }
@@ -9860,9 +9857,9 @@ public struct Layout: Encodable {
         
             ///
             /// # Plotly Reference
-            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop) |
-            /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop) |
-            /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop)
+            /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickformatstops) |
+            /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickformatstops) |
+            /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickformatstops)
             public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the layer on which this axis is displayed. 
@@ -9918,7 +9915,7 @@ public struct Layout: Encodable {
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
-                case tickFormatStops = "tickformatstop"
+                case tickFormatStops = "tickformatstops"
                 case layer
             }
             
@@ -11279,9 +11276,9 @@ public struct Layout: Encodable {
     }
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation) |
-    /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation) |
-    /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation)
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations) |
+    /// [Python](https://plot.ly/python/reference/#layout-annotations) |
+    /// [R](https://plot.ly/r/reference/#layout-annotations)
     public var annotations: [Annotation]?
 
     /// # Used By
@@ -11604,9 +11601,9 @@ public struct Layout: Encodable {
     }
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape) |
-    /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape) |
-    /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape)
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes) |
+    /// [Python](https://plot.ly/python/reference/#layout-shapes) |
+    /// [R](https://plot.ly/r/reference/#layout-shapes)
     public var shapes: [Shape]?
 
     /// # Used By
@@ -11825,9 +11822,9 @@ public struct Layout: Encodable {
     }
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image) |
-    /// [Python](https://plot.ly/python/reference/#layout-images-items-image) |
-    /// [R](https://plot.ly/r/reference/#layout-images-items-image)
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-images) |
+    /// [Python](https://plot.ly/python/reference/#layout-images) |
+    /// [R](https://plot.ly/r/reference/#layout-images)
     public var images: [Image]?
 
     /// # Used By
@@ -12025,9 +12022,9 @@ public struct Layout: Encodable {
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons-items-button) |
-        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons-items-button) |
-        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons-items-button)
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-buttons) |
+        /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-buttons) |
+        /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-buttons)
         public var buttons: [Button]?
     
         /// Sets the x position (in normalized coordinates) of the update menu.
@@ -12137,7 +12134,7 @@ public struct Layout: Encodable {
             case direction
             case active
             case showActive = "showactive"
-            case buttons = "button"
+            case buttons
             case x
             case xAnchor = "xanchor"
             case y
@@ -12173,9 +12170,9 @@ public struct Layout: Encodable {
     }
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu) |
-    /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu) |
-    /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu)
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus) |
+    /// [Python](https://plot.ly/python/reference/#layout-updatemenus) |
+    /// [R](https://plot.ly/r/reference/#layout-updatemenus)
     public var updateMenus: [UpdateMenu]?
 
     /// # Used By
@@ -12325,9 +12322,9 @@ public struct Layout: Encodable {
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps-items-step) |
-        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps-items-step) |
-        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps-items-step)
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-steps) |
+        /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-steps) |
+        /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-steps)
         public var steps: [Step]?
     
         /// Determines whether this slider length is set in units of plot *fraction* or in *pixels. 
@@ -12644,7 +12641,7 @@ public struct Layout: Encodable {
         enum CodingKeys: String, CodingKey {
             case visible
             case active
-            case steps = "step"
+            case steps
             case lengthMode = "lenmode"
             case length = "len"
             case x
@@ -12695,9 +12692,9 @@ public struct Layout: Encodable {
     }
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider) |
-    /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider) |
-    /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider)
+    /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders) |
+    /// [Python](https://plot.ly/python/reference/#layout-sliders) |
+    /// [R](https://plot.ly/r/reference/#layout-sliders)
     public var sliders: [Slider]?
 
     /// # Used By
@@ -12925,11 +12922,11 @@ public struct Layout: Encodable {
         case direction
         case orientation
         case legend
-        case annotations = "annotation"
-        case shapes = "shape"
-        case images = "image"
-        case updateMenus = "updatemenu"
-        case sliders = "slider"
+        case annotations
+        case shapes
+        case images
+        case updateMenus = "updatemenus"
+        case sliders
         case colorScale = "colorscale"
         case colorAxis = "coloraxis"
     }

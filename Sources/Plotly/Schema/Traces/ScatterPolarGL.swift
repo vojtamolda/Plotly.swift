@@ -135,12 +135,11 @@ public struct ScatterPolarGL: Trace {
     /// [R](https://plot.ly/r/reference/#scatterpolargl-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-transforms) |
+    /// [Python](https://plot.ly/python/reference/#scatterpolargl-transforms) |
+    /// [R](https://plot.ly/r/reference/#scatterpolargl-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -249,7 +248,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-text) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-text) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -267,7 +266,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-texttemplate) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each (x,y) pair. 
     ///
@@ -279,7 +278,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hovertext) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-hovertext) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -301,7 +300,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// # Used By
     /// `ScatterPolarGL.line` |
@@ -636,7 +635,7 @@ public struct ScatterPolarGL: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case mode
         case r
@@ -663,7 +662,7 @@ public struct ScatterPolarGL: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

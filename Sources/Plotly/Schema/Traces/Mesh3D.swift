@@ -194,7 +194,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-text) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-text) |
     /// [R](https://plot.ly/r/reference/#mesh3d-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -202,7 +202,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hovertext) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-hovertext) |
     /// [R](https://plot.ly/r/reference/#mesh3d-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -224,7 +224,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#mesh3d-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay triangulation. 
     ///
@@ -543,7 +543,7 @@ public struct Mesh3D: Trace {
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -140,12 +140,11 @@ public struct Candlestick: Trace {
     /// [R](https://plot.ly/r/reference/#candlestick-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#candlestick-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-transforms) |
+    /// [Python](https://plot.ly/python/reference/#candlestick-transforms) |
+    /// [R](https://plot.ly/r/reference/#candlestick-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -367,7 +366,7 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-text) |
     /// [Python](https://plot.ly/python/reference/#candlestick-text) |
     /// [R](https://plot.ly/r/reference/#candlestick-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -375,7 +374,7 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hovertext) |
     /// [Python](https://plot.ly/python/reference/#candlestick-hovertext) |
     /// [R](https://plot.ly/r/reference/#candlestick-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Sets the width of the whiskers relative to the box' width. 
     ///
@@ -396,7 +395,7 @@ public struct Candlestick: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-bgcolor) |
         /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-bgcolor) |
         /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-bgcolor)
-        public var backgroundColor: Color?
+        public var backgroundColor: ArrayOrColor?
     
         /// Sets the border color of the hover labels for this trace.
         ///
@@ -404,7 +403,7 @@ public struct Candlestick: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-bordercolor) |
         /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-bordercolor) |
         /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-bordercolor)
-        public var borderColor: Color?
+        public var borderColor: ArrayOrColor?
     
         /// Sets the font used in hover labels.
         ///
@@ -434,7 +433,7 @@ public struct Candlestick: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-namelength) |
         /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-namelength) |
         /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-namelength)
-        public var nameLength: Int?
+        public var nameLength: ArrayOrInt?
     
         /// Show hover information (open, close, high, low) in separate labels.
         ///
@@ -454,7 +453,7 @@ public struct Candlestick: Trace {
             case split
         }
         
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Shared.Font? = nil, align: Shared.AutoAlign? = nil, nameLength: Int? = nil, split: Bool? = nil) {
+        public init(backgroundColor: ArrayOrColor? = nil, borderColor: ArrayOrColor? = nil, font: Shared.Font? = nil, align: Shared.AutoAlign? = nil, nameLength: ArrayOrInt? = nil, split: Bool? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.font = font
@@ -516,7 +515,7 @@ public struct Candlestick: Trace {
         case selectedPoints = "selectedpoints"
         case hoverInfo = "hoverinfo"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case x
         case open
@@ -535,7 +534,7 @@ public struct Candlestick: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

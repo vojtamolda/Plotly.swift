@@ -131,12 +131,11 @@ public struct ScatterCarpet: Trace {
     /// [R](https://plot.ly/r/reference/#scattercarpet-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#scattercarpet-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#scattercarpet-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-transforms) |
+    /// [Python](https://plot.ly/python/reference/#scattercarpet-transforms) |
+    /// [R](https://plot.ly/r/reference/#scattercarpet-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -202,7 +201,7 @@ public struct ScatterCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-text) |
     /// [Python](https://plot.ly/python/reference/#scattercarpet-text) |
     /// [R](https://plot.ly/r/reference/#scattercarpet-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -220,7 +219,7 @@ public struct ScatterCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#scattercarpet-texttemplate) |
     /// [R](https://plot.ly/r/reference/#scattercarpet-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each (a,b) point. 
     ///
@@ -232,7 +231,7 @@ public struct ScatterCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-hovertext) |
     /// [Python](https://plot.ly/python/reference/#scattercarpet-hovertext) |
     /// [R](https://plot.ly/r/reference/#scattercarpet-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     ///
     /// # Plotly Reference
@@ -537,7 +536,7 @@ public struct ScatterCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#scattercarpet-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#scattercarpet-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -577,7 +576,7 @@ public struct ScatterCarpet: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case carpet
         case a
@@ -602,7 +601,7 @@ public struct ScatterCarpet: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, carpet: String? = nil, a: [Double]? = nil, b: [Double]? = nil, mode: Shared.Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, carpet: String? = nil, a: [Double]? = nil, b: [Double]? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

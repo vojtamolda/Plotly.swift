@@ -140,12 +140,11 @@ public struct OHLC: Trace {
     /// [R](https://plot.ly/r/reference/#ohlc-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#ohlc-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-transforms) |
+    /// [Python](https://plot.ly/python/reference/#ohlc-transforms) |
+    /// [R](https://plot.ly/r/reference/#ohlc-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -365,7 +364,7 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-text) |
     /// [Python](https://plot.ly/python/reference/#ohlc-text) |
     /// [R](https://plot.ly/r/reference/#ohlc-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -373,7 +372,7 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hovertext) |
     /// [Python](https://plot.ly/python/reference/#ohlc-hovertext) |
     /// [R](https://plot.ly/r/reference/#ohlc-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Sets the width of the open/close tick marks relative to the *x* minimal interval.
     ///
@@ -392,7 +391,7 @@ public struct OHLC: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-bgcolor) |
         /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-bgcolor) |
         /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-bgcolor)
-        public var backgroundColor: Color?
+        public var backgroundColor: ArrayOrColor?
     
         /// Sets the border color of the hover labels for this trace.
         ///
@@ -400,7 +399,7 @@ public struct OHLC: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-bordercolor) |
         /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-bordercolor) |
         /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-bordercolor)
-        public var borderColor: Color?
+        public var borderColor: ArrayOrColor?
     
         /// Sets the font used in hover labels.
         ///
@@ -430,7 +429,7 @@ public struct OHLC: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-namelength) |
         /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-namelength) |
         /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-namelength)
-        public var nameLength: Int?
+        public var nameLength: ArrayOrInt?
     
         /// Show hover information (open, close, high, low) in separate labels.
         ///
@@ -450,7 +449,7 @@ public struct OHLC: Trace {
             case split
         }
         
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Shared.Font? = nil, align: Shared.AutoAlign? = nil, nameLength: Int? = nil, split: Bool? = nil) {
+        public init(backgroundColor: ArrayOrColor? = nil, borderColor: ArrayOrColor? = nil, font: Shared.Font? = nil, align: Shared.AutoAlign? = nil, nameLength: ArrayOrInt? = nil, split: Bool? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.font = font
@@ -512,7 +511,7 @@ public struct OHLC: Trace {
         case selectedPoints = "selectedpoints"
         case hoverInfo = "hoverinfo"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case x
         case open
@@ -531,7 +530,7 @@ public struct OHLC: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: DashedLine? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: DashedLine? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -139,12 +139,11 @@ public struct Box: Trace {
     /// [R](https://plot.ly/r/reference/#box-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#box-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#box-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-transforms) |
+    /// [Python](https://plot.ly/python/reference/#box-transforms) |
+    /// [R](https://plot.ly/r/reference/#box-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -226,7 +225,7 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-text) |
     /// [Python](https://plot.ly/python/reference/#box-text) |
     /// [R](https://plot.ly/r/reference/#box-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -234,7 +233,7 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-hovertext) |
     /// [Python](https://plot.ly/python/reference/#box-hovertext) |
     /// [R](https://plot.ly/r/reference/#box-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -256,7 +255,7 @@ public struct Box: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#box-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#box-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#box-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Sets the width of the whiskers relative to the box' width. 
     ///
@@ -732,7 +731,7 @@ public struct Box: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case y
         case x
@@ -765,7 +764,7 @@ public struct Box: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

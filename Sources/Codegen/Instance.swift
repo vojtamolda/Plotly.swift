@@ -57,9 +57,9 @@ class Instance<Type>: Instantiable where Type: SwiftType {
         }
     }
 
-    init(of type: Type, named name: String, array: Bool = false) {
+    init(of type: Type, named name: String, array: Bool = false, schemaOverride: Type.Origin? = nil) {
         self.type = type
-        self.schema = type.schema
+        self.schema = schemaOverride ?? type.schema
         self.parent = type.parent
 
         self.name = Swift.name!.camelCased(name)

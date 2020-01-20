@@ -2595,9 +2595,9 @@ public struct Shared {
     
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-tickformatstops-items-tickformatstop) |
-        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-tickformatstops-items-tickformatstop) |
-        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-tickformatstops-items-tickformatstop)
+        /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-tickformatstops) |
+        /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-tickformatstops) |
+        /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-tickformatstops)
         public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Sets a tick label prefix.
@@ -2743,7 +2743,7 @@ public struct Shared {
             case tickFont = "tickfont"
             case tickAngle = "tickangle"
             case tickFormat = "tickformat"
-            case tickFormatStops = "tickformatstop"
+            case tickFormatStops = "tickformatstops"
             case tickPrefix = "tickprefix"
             case showTickPrefix = "showtickprefix"
             case tickSuffix = "ticksuffix"
@@ -2944,7 +2944,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-opacity) |
         /// [Python](https://plot.ly/python/reference/#scatter-marker-opacity) |
         /// [R](https://plot.ly/r/reference/#scatter-marker-opacity)
-        public var opacity: Double?
+        public var opacity: ArrayOrDouble?
     
         /// Sets the marker size (in px).
         ///
@@ -2952,7 +2952,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-size) |
         /// [Python](https://plot.ly/python/reference/#scatter-marker-size) |
         /// [R](https://plot.ly/r/reference/#scatter-marker-size)
-        public var size: Double?
+        public var size: ArrayOrDouble?
     
         /// Sets a maximum number of points to be drawn on the graph. 
         ///
@@ -3019,7 +3019,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-color) |
         /// [Python](https://plot.ly/python/reference/#scatter-marker-color) |
         /// [R](https://plot.ly/r/reference/#scatter-marker-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
         ///
@@ -3156,7 +3156,7 @@ public struct Shared {
             case colorAxis = "coloraxis"
         }
         
-        public init(symbol: Shared.Symbol? = nil, opacity: Double? = nil, size: Double? = nil, maxDisplayed: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, line: Shared.ColoredLine? = nil, gradient: Shared.Gradient? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        public init(symbol: Shared.Symbol? = nil, opacity: ArrayOrDouble? = nil, size: ArrayOrDouble? = nil, maxDisplayed: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, line: Shared.ColoredLine? = nil, gradient: Shared.Gradient? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -3201,7 +3201,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-line-width) |
         /// [Python](https://plot.ly/python/reference/#scatter-marker-line-width) |
         /// [R](https://plot.ly/r/reference/#scatter-marker-line-width)
-        public var width: Double?
+        public var width: ArrayOrDouble?
     
         /// Sets themarker.linecolor. 
         ///
@@ -3213,7 +3213,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-line-color) |
         /// [Python](https://plot.ly/python/reference/#scatter-marker-line-color) |
         /// [R](https://plot.ly/r/reference/#scatter-marker-line-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax`  Has an effect only if in `marker.line.color`is set to a numerical array. 
         ///
@@ -3324,7 +3324,7 @@ public struct Shared {
             case colorAxis = "coloraxis"
         }
         
-        public init(width: Double? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
+        public init(width: ArrayOrDouble? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
             self.width = width
             self.color = color
             self.cAuto = cAuto
@@ -3369,9 +3369,9 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker-gradient-color) |
         /// [Python](https://plot.ly/python/reference/#scatter-marker-gradient-color) |
         /// [R](https://plot.ly/r/reference/#scatter-marker-gradient-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
-        public init(type: `Type`? = nil, color: Color? = nil) {
+        public init(type: `Type`? = nil, color: ArrayOrColor? = nil) {
             self.type = type
             self.color = color
         }
@@ -3561,7 +3561,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-color) |
         /// [Python](https://plot.ly/python/reference/#bar-marker-color) |
         /// [R](https://plot.ly/r/reference/#bar-marker-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
         ///
@@ -3680,7 +3680,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker-opacity) |
         /// [Python](https://plot.ly/python/reference/#bar-marker-opacity) |
         /// [R](https://plot.ly/r/reference/#bar-marker-opacity)
-        public var opacity: Double?
+        public var opacity: ArrayOrDouble?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -3699,7 +3699,7 @@ public struct Shared {
             case opacity
         }
         
-        public init(line: Shared.ColoredLine? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil) {
+        public init(line: Shared.ColoredLine? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: ArrayOrDouble? = nil) {
             self.line = line
             self.color = color
             self.cAuto = cAuto
@@ -4276,7 +4276,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-size) |
         /// [Python](https://plot.ly/python/reference/#scatter3d-marker-size) |
         /// [R](https://plot.ly/r/reference/#scatter3d-marker-size)
-        public var size: Double?
+        public var size: ArrayOrDouble?
     
         /// Has an effect only if `marker.size` is set to a numerical array. 
         ///
@@ -4345,7 +4345,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker-color) |
         /// [Python](https://plot.ly/python/reference/#scatter3d-marker-color) |
         /// [R](https://plot.ly/r/reference/#scatter3d-marker-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
         ///
@@ -4473,7 +4473,7 @@ public struct Shared {
             case colorAxis = "coloraxis"
         }
         
-        public init(symbol: Symbol? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, opacity: Double? = nil, colorBar: Shared.ColorBar? = nil, line: Shared.ColoredLine? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
+        public init(symbol: Symbol? = nil, size: ArrayOrDouble? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, opacity: Double? = nil, colorBar: Shared.ColorBar? = nil, line: Shared.ColoredLine? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
             self.symbol = symbol
             self.size = size
             self.sizeReference = sizeReference

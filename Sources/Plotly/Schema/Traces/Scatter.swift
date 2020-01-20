@@ -146,12 +146,11 @@ public struct Scatter: Trace {
     /// [R](https://plot.ly/r/reference/#scatter-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#scatter-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#scatter-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-transforms) |
+    /// [Python](https://plot.ly/python/reference/#scatter-transforms) |
+    /// [R](https://plot.ly/r/reference/#scatter-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -316,7 +315,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-text) |
     /// [Python](https://plot.ly/python/reference/#scatter-text) |
     /// [R](https://plot.ly/r/reference/#scatter-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -334,7 +333,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#scatter-texttemplate) |
     /// [R](https://plot.ly/r/reference/#scatter-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each (x,y) pair. 
     ///
@@ -346,7 +345,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-hovertext) |
     /// [Python](https://plot.ly/python/reference/#scatter-hovertext) |
     /// [R](https://plot.ly/r/reference/#scatter-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Determines the drawing mode for this scatter trace. 
     ///
@@ -388,7 +387,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#scatter-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#scatter-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// # Used By
     /// `Scatter.line` |
@@ -810,7 +809,7 @@ public struct Scatter: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case x
         case x0
@@ -848,7 +847,7 @@ public struct Scatter: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, mode: Shared.Mode? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: String? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, mode: Shared.Mode? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -131,12 +131,11 @@ public struct ScatterMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#scattermapbox-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#scattermapbox-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#scattermapbox-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-transforms) |
+    /// [Python](https://plot.ly/python/reference/#scattermapbox-transforms) |
+    /// [R](https://plot.ly/r/reference/#scattermapbox-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -193,7 +192,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-text) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-text) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -211,7 +210,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-texttemplate) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. 
     ///
@@ -222,7 +221,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-hovertext) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-hovertext) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     ///
     /// # Plotly Reference
@@ -253,7 +252,7 @@ public struct ScatterMapbox: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-symbol) |
         /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-symbol) |
         /// [R](https://plot.ly/r/reference/#scattermapbox-marker-symbol)
-        public var symbol: String?
+        public var symbol: ArrayOrString?
     
         /// Sets the marker opacity.
         ///
@@ -261,7 +260,7 @@ public struct ScatterMapbox: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-opacity) |
         /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-opacity) |
         /// [R](https://plot.ly/r/reference/#scattermapbox-marker-opacity)
-        public var opacity: Double?
+        public var opacity: ArrayOrDouble?
     
         /// Sets the marker size (in px).
         ///
@@ -269,7 +268,7 @@ public struct ScatterMapbox: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-size) |
         /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-size) |
         /// [R](https://plot.ly/r/reference/#scattermapbox-marker-size)
-        public var size: Double?
+        public var size: ArrayOrDouble?
     
         /// Has an effect only if `marker.size` is set to a numerical array. 
         ///
@@ -312,7 +311,7 @@ public struct ScatterMapbox: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-marker-color) |
         /// [Python](https://plot.ly/python/reference/#scattermapbox-marker-color) |
         /// [R](https://plot.ly/r/reference/#scattermapbox-marker-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if in `marker.color`is set to a numerical array. 
         ///
@@ -446,7 +445,7 @@ public struct ScatterMapbox: Trace {
             case colorAxis = "coloraxis"
         }
         
-        public init(symbol: String? = nil, opacity: Double? = nil, size: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        public init(symbol: ArrayOrString? = nil, opacity: ArrayOrDouble? = nil, size: ArrayOrDouble? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -707,7 +706,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Sets a reference between this trace's data coordinates and a mapbox subplot. 
     ///
@@ -736,7 +735,7 @@ public struct ScatterMapbox: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case longitude = "lon"
         case latitude = "lat"
@@ -759,7 +758,7 @@ public struct ScatterMapbox: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, mode: Shared.Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Shared.Line? = nil, connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, below: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.Line? = nil, connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, below: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

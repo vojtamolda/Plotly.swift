@@ -139,12 +139,11 @@ public struct ScatterPlotMatrix: Trace {
     /// [R](https://plot.ly/r/reference/#splom-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#splom-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#splom-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#splom-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#splom-transforms) |
+    /// [Python](https://plot.ly/python/reference/#splom-transforms) |
+    /// [R](https://plot.ly/r/reference/#splom-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -288,9 +287,9 @@ public struct ScatterPlotMatrix: Trace {
     }
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#splom-dimensions-items-dimension) |
-    /// [Python](https://plot.ly/python/reference/#splom-dimensions-items-dimension) |
-    /// [R](https://plot.ly/r/reference/#splom-dimensions-items-dimension)
+    /// [JavaScript](https://plot.ly/javascript/reference/#splom-dimensions) |
+    /// [Python](https://plot.ly/python/reference/#splom-dimensions) |
+    /// [R](https://plot.ly/r/reference/#splom-dimensions)
     public var dimensions: [Dimension]?
 
     /// Sets text elements associated with each (x,y) pair to appear on hover. 
@@ -302,7 +301,7 @@ public struct ScatterPlotMatrix: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-text) |
     /// [Python](https://plot.ly/python/reference/#splom-text) |
     /// [R](https://plot.ly/r/reference/#splom-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -310,7 +309,7 @@ public struct ScatterPlotMatrix: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-hovertext) |
     /// [Python](https://plot.ly/python/reference/#splom-hovertext) |
     /// [R](https://plot.ly/r/reference/#splom-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -332,7 +331,7 @@ public struct ScatterPlotMatrix: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#splom-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#splom-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     ///
     /// # Plotly Reference
@@ -535,9 +534,9 @@ public struct ScatterPlotMatrix: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
-        case dimensions = "dimension"
+        case dimensions
         case text
         case hoverText = "hovertext"
         case hoverTemplate = "hovertemplate"
@@ -552,7 +551,7 @@ public struct ScatterPlotMatrix: Trace {
         case opacity
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, dimensions: [Dimension]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, marker: Shared.SymbolicMarker? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, diagonal: Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, dimensions: [Dimension]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, marker: Shared.SymbolicMarker? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, diagonal: Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

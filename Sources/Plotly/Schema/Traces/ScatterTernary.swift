@@ -133,12 +133,11 @@ public struct ScatterTernary: Trace {
     /// [R](https://plot.ly/r/reference/#scatterternary-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#scatterternary-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#scatterternary-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-transforms) |
+    /// [Python](https://plot.ly/python/reference/#scatterternary-transforms) |
+    /// [R](https://plot.ly/r/reference/#scatterternary-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -224,7 +223,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-text) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-text) |
     /// [R](https://plot.ly/r/reference/#scatterternary-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -242,7 +241,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-texttemplate) |
     /// [R](https://plot.ly/r/reference/#scatterternary-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each (a,b,c) point. 
     ///
@@ -254,7 +253,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-hovertext) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-hovertext) |
     /// [R](https://plot.ly/r/reference/#scatterternary-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     ///
     /// # Plotly Reference
@@ -572,7 +571,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#scatterternary-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Sets a reference between this trace's data coordinates and a ternary subplot. 
     ///
@@ -601,7 +600,7 @@ public struct ScatterTernary: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case a
         case b
@@ -627,7 +626,7 @@ public struct ScatterTernary: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, a: [Double]? = nil, b: [Double]? = nil, c: [Double]? = nil, sum: Double? = nil, mode: Shared.Mode? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: String? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, a: [Double]? = nil, b: [Double]? = nil, c: [Double]? = nil, sum: Double? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

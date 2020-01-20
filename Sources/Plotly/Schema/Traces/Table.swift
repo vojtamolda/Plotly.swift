@@ -140,7 +140,7 @@ public struct Table: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#table-columnwidth) |
     /// [Python](https://plot.ly/python/reference/#table-columnwidth) |
     /// [R](https://plot.ly/r/reference/#table-columnwidth)
-    public var columnWidth: Double?
+    public var columnWidth: ArrayOrDouble?
 
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means that column index `0` in the data will be rendered as the third column, as columns have an index base of zero.
     ///
@@ -181,7 +181,7 @@ public struct Table: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#table-header-prefix) |
         /// [Python](https://plot.ly/python/reference/#table-header-prefix) |
         /// [R](https://plot.ly/r/reference/#table-header-prefix)
-        public var prefix: String?
+        public var prefix: ArrayOrString?
     
         /// Suffix for cell values.
         ///
@@ -189,7 +189,7 @@ public struct Table: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#table-header-suffix) |
         /// [Python](https://plot.ly/python/reference/#table-header-suffix) |
         /// [R](https://plot.ly/r/reference/#table-header-suffix)
-        public var suffix: String?
+        public var suffix: ArrayOrString?
     
         /// The height of cells.
         ///
@@ -228,9 +228,9 @@ public struct Table: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#table-header-fill-color) |
             /// [Python](https://plot.ly/python/reference/#table-header-fill-color) |
             /// [R](https://plot.ly/r/reference/#table-header-fill-color)
-            public var color: Color?
+            public var color: ArrayOrColor?
         
-            public init(color: Color? = nil) {
+            public init(color: ArrayOrColor? = nil) {
                 self.color = color
             }
         }
@@ -248,7 +248,7 @@ public struct Table: Trace {
         /// [R](https://plot.ly/r/reference/#table-header-font)
         public var font: Shared.Font?
     
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line: Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: ArrayOrString? = nil, suffix: ArrayOrString? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line: Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -298,7 +298,7 @@ public struct Table: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#table-cells-prefix) |
         /// [Python](https://plot.ly/python/reference/#table-cells-prefix) |
         /// [R](https://plot.ly/r/reference/#table-cells-prefix)
-        public var prefix: String?
+        public var prefix: ArrayOrString?
     
         /// Suffix for cell values.
         ///
@@ -306,7 +306,7 @@ public struct Table: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#table-cells-suffix) |
         /// [Python](https://plot.ly/python/reference/#table-cells-suffix) |
         /// [R](https://plot.ly/r/reference/#table-cells-suffix)
-        public var suffix: String?
+        public var suffix: ArrayOrString?
     
         /// The height of cells.
         ///
@@ -345,9 +345,9 @@ public struct Table: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#table-cells-fill-color) |
             /// [Python](https://plot.ly/python/reference/#table-cells-fill-color) |
             /// [R](https://plot.ly/r/reference/#table-cells-fill-color)
-            public var color: Color?
+            public var color: ArrayOrColor?
         
-            public init(color: Color? = nil) {
+            public init(color: ArrayOrColor? = nil) {
                 self.color = color
             }
         }
@@ -365,7 +365,7 @@ public struct Table: Trace {
         /// [R](https://plot.ly/r/reference/#table-cells-font)
         public var font: Shared.Font?
     
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line: Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: ArrayOrString? = nil, suffix: ArrayOrString? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line: Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -405,7 +405,7 @@ public struct Table: Trace {
         case cells
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: Double? = nil, columnOrder: [Double]? = nil, header: Header? = nil, cells: Cells? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: ArrayOrDouble? = nil, columnOrder: [Double]? = nil, header: Header? = nil, cells: Cells? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

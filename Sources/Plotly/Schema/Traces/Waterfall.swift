@@ -135,12 +135,11 @@ public struct Waterfall: Trace {
     /// [R](https://plot.ly/r/reference/#waterfall-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#waterfall-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-transforms) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-transforms) |
+    /// [R](https://plot.ly/r/reference/#waterfall-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -248,7 +247,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-hovertext) |
     /// [Python](https://plot.ly/python/reference/#waterfall-hovertext) |
     /// [R](https://plot.ly/r/reference/#waterfall-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -270,7 +269,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#waterfall-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#waterfall-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -378,7 +377,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#waterfall-texttemplate) |
     /// [R](https://plot.ly/r/reference/#waterfall-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets text elements associated with each (x,y) pair. 
     ///
@@ -390,7 +389,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-text) |
     /// [Python](https://plot.ly/python/reference/#waterfall-text) |
     /// [R](https://plot.ly/r/reference/#waterfall-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Specifies the location of the `text`. 
     ///
@@ -487,7 +486,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-offset) |
     /// [Python](https://plot.ly/python/reference/#waterfall-offset) |
     /// [R](https://plot.ly/r/reference/#waterfall-offset)
-    public var offset: Double?
+    public var offset: ArrayOrDouble?
 
     /// Sets the bar width (in position axis units).
     ///
@@ -495,7 +494,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-width) |
     /// [Python](https://plot.ly/python/reference/#waterfall-width) |
     /// [R](https://plot.ly/r/reference/#waterfall-width)
-    public var width: Double?
+    public var width: ArrayOrDouble?
 
     /// # Used By
     /// `Waterfall.increasing` |
@@ -732,7 +731,7 @@ public struct Waterfall: Trace {
         case selectedPoints = "selectedpoints"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case measure
         case base
@@ -769,7 +768,7 @@ public struct Waterfall: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width: Double? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, text: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: ArrayOrDouble? = nil, width: ArrayOrDouble? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

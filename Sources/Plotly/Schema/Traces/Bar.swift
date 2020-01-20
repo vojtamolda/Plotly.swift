@@ -144,12 +144,11 @@ public struct Bar: Trace {
     /// [R](https://plot.ly/r/reference/#bar-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#bar-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#bar-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-transforms) |
+    /// [Python](https://plot.ly/python/reference/#bar-transforms) |
+    /// [R](https://plot.ly/r/reference/#bar-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -237,7 +236,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-text) |
     /// [Python](https://plot.ly/python/reference/#bar-text) |
     /// [R](https://plot.ly/r/reference/#bar-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -255,7 +254,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#bar-texttemplate) |
     /// [R](https://plot.ly/r/reference/#bar-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each (x,y) pair. 
     ///
@@ -267,7 +266,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-hovertext) |
     /// [Python](https://plot.ly/python/reference/#bar-hovertext) |
     /// [R](https://plot.ly/r/reference/#bar-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -289,7 +288,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#bar-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#bar-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Specifies the location of the `text`. 
     ///
@@ -397,7 +396,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-offset) |
     /// [Python](https://plot.ly/python/reference/#bar-offset) |
     /// [R](https://plot.ly/r/reference/#bar-offset)
-    public var offset: Double?
+    public var offset: ArrayOrDouble?
 
     /// Sets the bar width (in position axis units).
     ///
@@ -405,7 +404,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-width) |
     /// [Python](https://plot.ly/python/reference/#bar-width) |
     /// [R](https://plot.ly/r/reference/#bar-width)
-    public var width: Double?
+    public var width: ArrayOrDouble?
 
     ///
     /// # Plotly Reference
@@ -665,7 +664,7 @@ public struct Bar: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case x
         case x0
@@ -704,7 +703,7 @@ public struct Bar: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, base: Anything? = nil, offset: ArrayOrDouble? = nil, width: ArrayOrDouble? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

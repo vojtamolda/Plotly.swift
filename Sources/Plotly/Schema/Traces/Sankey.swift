@@ -283,7 +283,7 @@ public struct Sankey: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-color) |
         /// [Python](https://plot.ly/python/reference/#sankey-node-color) |
         /// [R](https://plot.ly/r/reference/#sankey-node-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         ///
         /// # Plotly Reference
@@ -358,7 +358,7 @@ public struct Sankey: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-hovertemplate) |
         /// [Python](https://plot.ly/python/reference/#sankey-node-hovertemplate) |
         /// [R](https://plot.ly/r/reference/#sankey-node-hovertemplate)
-        public var hoverTemplate: String?
+        public var hoverTemplate: ArrayOrString?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -375,7 +375,7 @@ public struct Sankey: Trace {
             case hoverTemplate = "hovertemplate"
         }
         
-        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Shared.Line? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: String? = nil) {
+        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: ArrayOrColor? = nil, line: Shared.Line? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: ArrayOrString? = nil) {
             self.label = label
             self.groups = groups
             self.x = x
@@ -419,7 +419,7 @@ public struct Sankey: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-color) |
         /// [Python](https://plot.ly/python/reference/#sankey-link-color) |
         /// [R](https://plot.ly/r/reference/#sankey-link-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         ///
         /// # Plotly Reference
@@ -502,7 +502,7 @@ public struct Sankey: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-hovertemplate) |
         /// [Python](https://plot.ly/python/reference/#sankey-link-hovertemplate) |
         /// [R](https://plot.ly/r/reference/#sankey-link-hovertemplate)
-        public var hoverTemplate: String?
+        public var hoverTemplate: ArrayOrString?
     
         /// # Used By
         /// `Sankey.Link.colorScales` |
@@ -593,9 +593,9 @@ public struct Sankey: Trace {
         }
         ///
         /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales-items-concentrationscales) |
-        /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales-items-concentrationscales) |
-        /// [R](https://plot.ly/r/reference/#sankey-link-colorscales-items-concentrationscales)
+        /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-colorscales) |
+        /// [Python](https://plot.ly/python/reference/#sankey-link-colorscales) |
+        /// [R](https://plot.ly/r/reference/#sankey-link-colorscales)
         public var colorScales: [ConcentrationScales]?
     
         /// Plotly compatible property encoding
@@ -609,10 +609,10 @@ public struct Sankey: Trace {
             case hoverInfo = "hoverinfo"
             case hoverLabel = "hoverlabel"
             case hoverTemplate = "hovertemplate"
-            case colorScales = "concentrationscales"
+            case colorScales = "colorscales"
         }
         
-        public init(label: [Double]? = nil, color: Color? = nil, line: Shared.Line? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: String? = nil, colorScales: [ConcentrationScales]? = nil) {
+        public init(label: [Double]? = nil, color: ArrayOrColor? = nil, line: Shared.Line? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: ArrayOrString? = nil, colorScales: [ConcentrationScales]? = nil) {
             self.label = label
             self.color = color
             self.line = line

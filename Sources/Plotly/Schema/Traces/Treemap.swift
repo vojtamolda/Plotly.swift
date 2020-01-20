@@ -103,12 +103,11 @@ public struct Treemap: Trace {
     /// [R](https://plot.ly/r/reference/#treemap-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#treemap-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#treemap-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-transforms) |
+    /// [Python](https://plot.ly/python/reference/#treemap-transforms) |
+    /// [R](https://plot.ly/r/reference/#treemap-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -696,7 +695,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#treemap-texttemplate) |
     /// [R](https://plot.ly/r/reference/#treemap-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Sets hover text elements associated with each sector. 
     ///
@@ -708,7 +707,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hovertext) |
     /// [Python](https://plot.ly/python/reference/#treemap-hovertext) |
     /// [R](https://plot.ly/r/reference/#treemap-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -783,7 +782,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#treemap-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#treemap-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Sets the font used for `textinfo`.
     ///
@@ -837,7 +836,7 @@ public struct Treemap: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case labels
         case parents
@@ -862,7 +861,7 @@ public struct Treemap: Trace {
         case domain
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, domain: Shared.Domain? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

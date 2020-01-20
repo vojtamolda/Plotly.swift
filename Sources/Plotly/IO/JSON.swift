@@ -9,7 +9,9 @@ struct JSON {
         throws -> String {
         let encoder = JSONEncoder()
         encoder.outputFormatting = formatting
-        
+        encoder.nonConformingFloatEncodingStrategy = .convertToString(
+            positiveInfinity: "null", negativeInfinity: "null", nan: "null")
+
         let figureEncoded = try encoder.encode(figure)
         let figureJson = String(data: figureEncoded, encoding: .utf8)!
 

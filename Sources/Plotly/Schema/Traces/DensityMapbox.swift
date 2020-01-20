@@ -101,12 +101,11 @@ public struct DensityMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#densitymapbox-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-transforms) |
+    /// [Python](https://plot.ly/python/reference/#densitymapbox-transforms) |
+    /// [R](https://plot.ly/r/reference/#densitymapbox-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -160,7 +159,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-radius) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-radius) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-radius)
-    public var radius: Double?
+    public var radius: ArrayOrDouble?
 
     /// Determines if the densitymapbox trace will be inserted before the layer with the specified ID. 
     ///
@@ -183,7 +182,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-text) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-text) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Sets hover text elements associated with each (lon,lat) pair If a single string, the same string appears over all the data points. 
     ///
@@ -194,7 +193,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-hovertext) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-hovertext) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -262,7 +261,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     ///
@@ -391,7 +390,7 @@ public struct DensityMapbox: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case longitude = "lon"
         case latitude = "lat"
@@ -415,7 +414,7 @@ public struct DensityMapbox: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: [Double]? = nil, radius: Double? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: [Double]? = nil, radius: ArrayOrDouble? = nil, below: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

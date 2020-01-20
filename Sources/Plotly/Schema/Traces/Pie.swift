@@ -121,12 +121,11 @@ public struct Pie: Trace {
     /// [R](https://plot.ly/r/reference/#pie-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pie-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#pie-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#pie-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-transforms) |
+    /// [Python](https://plot.ly/python/reference/#pie-transforms) |
+    /// [R](https://plot.ly/r/reference/#pie-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -243,7 +242,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-hovertext) |
     /// [Python](https://plot.ly/python/reference/#pie-hovertext) |
     /// [R](https://plot.ly/r/reference/#pie-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// If there are multiple pie charts that should be sized according to their totals, link them by providing a non-empty group id here shared by every trace in the same group.
     ///
@@ -354,7 +353,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-hovertemplate) |
     /// [Python](https://plot.ly/python/reference/#pie-hovertemplate) |
     /// [R](https://plot.ly/r/reference/#pie-hovertemplate)
-    public var hoverTemplate: String?
+    public var hoverTemplate: ArrayOrString?
 
     /// Template string used for rendering the information text that appear on points. 
     ///
@@ -372,7 +371,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-texttemplate) |
     /// [Python](https://plot.ly/python/reference/#pie-texttemplate) |
     /// [R](https://plot.ly/r/reference/#pie-texttemplate)
-    public var textTemplate: String?
+    public var textTemplate: ArrayOrString?
 
     /// Specifies the location of the `textinfo`.
     ///
@@ -535,7 +534,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-pull) |
     /// [Python](https://plot.ly/python/reference/#pie-pull) |
     /// [R](https://plot.ly/r/reference/#pie-pull)
-    public var pull: Double?
+    public var pull: ArrayOrDouble?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -552,7 +551,7 @@ public struct Pie: Trace {
         case meta
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case labels
         case label0
@@ -580,7 +579,7 @@ public struct Pie: Trace {
         case pull
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: Shared.AdjacentPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: Double? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: ArrayOrString? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: ArrayOrDouble? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

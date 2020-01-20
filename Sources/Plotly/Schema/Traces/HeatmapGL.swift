@@ -112,12 +112,11 @@ public struct HeatmapGL: Trace {
     /// [R](https://plot.ly/r/reference/#heatmapgl-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#heatmapgl-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#heatmapgl-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-transforms) |
+    /// [Python](https://plot.ly/python/reference/#heatmapgl-transforms) |
+    /// [R](https://plot.ly/r/reference/#heatmapgl-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -377,7 +376,7 @@ public struct HeatmapGL: Trace {
         case hoverInfo = "hoverinfo"
         case hoverLabel = "hoverlabel"
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case z
         case x

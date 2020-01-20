@@ -2,7 +2,7 @@ import XCTest
 import Plotly
 
 
-final class PlotlyTests: XCTestCase {
+final class FigureTests: XCTestCase {
 
     static var allTests = [
         ("testShow", testShow),

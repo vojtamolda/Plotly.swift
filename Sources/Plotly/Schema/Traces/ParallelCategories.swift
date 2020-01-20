@@ -64,12 +64,11 @@ public struct ParallelCategories: Trace {
     /// [R](https://plot.ly/r/reference/#parcats-stream)
     public var stream: Shared.Stream?
 
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-transforms-items-transform) |
-    /// [Python](https://plot.ly/python/reference/#parcats-transforms-items-transform) |
-    /// [R](https://plot.ly/r/reference/#parcats-transforms-items-transform)
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-transforms) |
+    /// [Python](https://plot.ly/python/reference/#parcats-transforms) |
+    /// [R](https://plot.ly/r/reference/#parcats-transforms)
     public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
@@ -354,12 +353,11 @@ public struct ParallelCategories: Trace {
             self.visible = visible
         }
     }
-    /// The dimensions (variables) of the parallel categories diagram.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension) |
-    /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension) |
-    /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension)
+    /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions) |
+    /// [Python](https://plot.ly/python/reference/#parcats-dimensions) |
+    /// [R](https://plot.ly/r/reference/#parcats-dimensions)
     public var dimensions: [Dimension]?
 
     /// # Used By
@@ -375,7 +373,7 @@ public struct ParallelCategories: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-color) |
         /// [Python](https://plot.ly/python/reference/#parcats-line-color) |
         /// [R](https://plot.ly/r/reference/#parcats-line-color)
-        public var color: Color?
+        public var color: ArrayOrColor?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax`  Has an effect only if in `line.color`is set to a numerical array. 
         ///
@@ -549,7 +547,7 @@ public struct ParallelCategories: Trace {
             case hoverTemplate = "hovertemplate"
         }
         
-        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil) {
+        public init(color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil) {
             self.color = color
             self.cAuto = cAuto
             self.cMin = cMin
@@ -580,7 +578,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-counts) |
     /// [Python](https://plot.ly/python/reference/#parcats-counts) |
     /// [R](https://plot.ly/r/reference/#parcats-counts)
-    public var counts: Double?
+    public var counts: ArrayOrDouble?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -591,7 +589,7 @@ public struct ParallelCategories: Trace {
         case uid
         case meta
         case stream
-        case transforms = "transform"
+        case transforms
         case uiRevision = "uirevision"
         case domain
         case hoverInfo = "hoverinfo"
@@ -602,12 +600,12 @@ public struct ParallelCategories: Trace {
         case sortPaths = "sortpaths"
         case labelFont = "labelfont"
         case tickFont = "tickfont"
-        case dimensions = "dimension"
+        case dimensions
         case line
         case counts
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: Double? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: ArrayOrDouble? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
