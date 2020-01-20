@@ -25,7 +25,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-visible) |
     /// [Python](https://plot.ly/python/reference/#parcoords-visible) |
     /// [R](https://plot.ly/r/reference/#parcoords-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -86,7 +86,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-stream) |
     /// [Python](https://plot.ly/python/reference/#parcoords-stream) |
     /// [R](https://plot.ly/r/reference/#parcoords-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -94,7 +94,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#parcoords-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#parcoords-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -118,7 +118,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-domain) |
     /// [Python](https://plot.ly/python/reference/#parcoords-domain) |
     /// [R](https://plot.ly/r/reference/#parcoords-domain)
-    public var domain: Domain?
+    public var domain: Shared.Domain?
 
     /// Sets the angle of the labels with respect to the horizontal. 
     ///
@@ -161,7 +161,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-labelfont) |
     /// [Python](https://plot.ly/python/reference/#parcoords-labelfont) |
     /// [R](https://plot.ly/r/reference/#parcoords-labelfont)
-    public var labelFont: Font?
+    public var labelFont: Shared.Font?
 
     /// Sets the font for the `dimension` tick values.
     ///
@@ -169,7 +169,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-tickfont) |
     /// [Python](https://plot.ly/python/reference/#parcoords-tickfont) |
     /// [R](https://plot.ly/r/reference/#parcoords-tickfont)
-    public var tickFont: Font?
+    public var tickFont: Shared.Font?
 
     /// Sets the font for the `dimension` range values.
     ///
@@ -177,7 +177,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-rangefont) |
     /// [Python](https://plot.ly/python/reference/#parcoords-rangefont) |
     /// [R](https://plot.ly/r/reference/#parcoords-rangefont)
-    public var rangeFont: Font?
+    public var rangeFont: Shared.Font?
 
     /// The dimensions (variables) of the parallel coordinates chart. 
     ///
@@ -453,7 +453,7 @@ public struct ParallelCoordinates: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-line-colorbar) |
         /// [Python](https://plot.ly/python/reference/#parcoords-line-colorbar) |
         /// [R](https://plot.ly/r/reference/#parcoords-line-colorbar)
-        public var colorBar: ColorBar?
+        public var colorBar: Shared.ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -482,7 +482,7 @@ public struct ParallelCoordinates: Trace {
             case colorAxis = "coloraxis"
         }
         
-        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.color = color
             self.cAuto = cAuto
             self.cMin = cMin
@@ -526,7 +526,7 @@ public struct ParallelCoordinates: Trace {
         case line
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, domain: Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Font? = nil, tickFont: Font? = nil, rangeFont: Font? = nil, dimensions: [Dimension]? = nil, line: ColoredLine? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil, rangeFont: Shared.Font? = nil, dimensions: [Dimension]? = nil, line: ColoredLine? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

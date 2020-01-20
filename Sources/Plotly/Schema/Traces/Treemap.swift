@@ -25,7 +25,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-visible) |
     /// [Python](https://plot.ly/python/reference/#treemap-visible) |
     /// [R](https://plot.ly/r/reference/#treemap-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -94,14 +94,14 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#treemap-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#treemap-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-stream) |
     /// [Python](https://plot.ly/python/reference/#treemap-stream) |
     /// [R](https://plot.ly/r/reference/#treemap-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -109,7 +109,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#treemap-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#treemap-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -338,7 +338,7 @@ public struct Treemap: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-pad) |
         /// [Python](https://plot.ly/python/reference/#treemap-marker-pad) |
         /// [R](https://plot.ly/r/reference/#treemap-marker-pad)
-        public var padding: Padding?
+        public var padding: Shared.Padding?
     
         /// Sets the color of each sector of this trace. 
         ///
@@ -382,7 +382,7 @@ public struct Treemap: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-line) |
         /// [Python](https://plot.ly/python/reference/#treemap-marker-line) |
         /// [R](https://plot.ly/r/reference/#treemap-marker-line)
-        public var line: Line?
+        public var line: Shared.Line?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here colors) or the bounds set in `marker.cmin` and `marker.cmax`  Has an effect only if colorsis set to a numerical array. 
         ///
@@ -481,7 +481,7 @@ public struct Treemap: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#treemap-marker-colorbar) |
         /// [Python](https://plot.ly/python/reference/#treemap-marker-colorbar) |
         /// [R](https://plot.ly/r/reference/#treemap-marker-colorbar)
-        public var colorBar: ColorBar?
+        public var colorBar: Shared.ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -513,7 +513,7 @@ public struct Treemap: Trace {
             case colorAxis = "coloraxis"
         }
         
-        public init(padding: Padding? = nil, colors: [Double]? = nil, depthFade: DepthFade? = nil, line: Line? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        public init(padding: Shared.Padding? = nil, colors: [Double]? = nil, depthFade: DepthFade? = nil, line: Shared.Line? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.padding = padding
             self.colors = colors
             self.depthFade = depthFade
@@ -601,7 +601,7 @@ public struct Treemap: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#treemap-pathbar-textfont) |
         /// [Python](https://plot.ly/python/reference/#treemap-pathbar-textfont) |
         /// [R](https://plot.ly/r/reference/#treemap-pathbar-textfont)
-        public var textFont: Font?
+        public var textFont: Shared.Font?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -612,7 +612,7 @@ public struct Treemap: Trace {
             case textFont = "textfont"
         }
         
-        public init(visible: Bool? = nil, side: Side? = nil, edgeShape: EdgeShape? = nil, thickness: Double? = nil, textFont: Font? = nil) {
+        public init(visible: Bool? = nil, side: Side? = nil, edgeShape: EdgeShape? = nil, thickness: Double? = nil, textFont: Shared.Font? = nil) {
             self.visible = visible
             self.side = side
             self.edgeShape = edgeShape
@@ -791,7 +791,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-textfont) |
     /// [Python](https://plot.ly/python/reference/#treemap-textfont) |
     /// [R](https://plot.ly/r/reference/#treemap-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Sets the font used for `textinfo` lying inside the sector.
     ///
@@ -799,7 +799,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#treemap-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#treemap-insidetextfont)
-    public var insideTextFont: Font?
+    public var insideTextFont: Shared.Font?
 
     /// Sets the font used for `textinfo` lying outside the sector.
     ///
@@ -807,7 +807,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#treemap-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#treemap-outsidetextfont)
-    public var outSideTextFont: Font?
+    public var outSideTextFont: Shared.Font?
 
     /// Sets the positions of the `text` elements.
     ///
@@ -815,14 +815,14 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-textposition) |
     /// [Python](https://plot.ly/python/reference/#treemap-textposition) |
     /// [R](https://plot.ly/r/reference/#treemap-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: Shared.TextPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-domain) |
     /// [Python](https://plot.ly/python/reference/#treemap-domain) |
     /// [R](https://plot.ly/r/reference/#treemap-domain)
-    public var domain: Domain?
+    public var domain: Shared.Domain?
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
@@ -862,7 +862,7 @@ public struct Treemap: Trace {
         case domain
     }
     
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, textPosition: TextPosition? = nil, domain: Domain? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

@@ -1,7 +1,7 @@
 
 /// Dictionary containing a translated identifier for each object of the Plotly schema hierarchy
 struct Name: Decodable {
-    let object: [String: String]
+    var object: [String: String]
     let attribute: [String: String]
     let primitive: [String: String]
 

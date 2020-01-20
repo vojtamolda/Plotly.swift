@@ -27,7 +27,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-visible) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-visible) |
     /// [R](https://plot.ly/r/reference/#scatter3d-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -114,14 +114,14 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scatter3d-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-stream) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-stream) |
     /// [R](https://plot.ly/r/reference/#scatter3d-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -129,7 +129,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#scatter3d-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -246,7 +246,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-mode) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-mode) |
     /// [R](https://plot.ly/r/reference/#scatter3d-mode)
-    public var mode: Mode?
+    public var mode: Shared.Mode?
 
     /// If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are filled with a Delaunay surface about the x, y, z respectively.
     ///
@@ -279,7 +279,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-projection) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-projection) |
     /// [R](https://plot.ly/r/reference/#scatter3d-projection)
-    public var projection: Projection?
+    public var projection: Shared.Projection?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -308,7 +308,7 @@ public struct Scatter3D: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-line-dash) |
         /// [Python](https://plot.ly/python/reference/#scatter3d-line-dash) |
         /// [R](https://plot.ly/r/reference/#scatter3d-line-dash)
-        public var dash: Dash?
+        public var dash: Shared.Dash?
     
         /// Sets thelinecolor. 
         ///
@@ -419,7 +419,7 @@ public struct Scatter3D: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-line-colorbar) |
         /// [Python](https://plot.ly/python/reference/#scatter3d-line-colorbar) |
         /// [R](https://plot.ly/r/reference/#scatter3d-line-colorbar)
-        public var colorBar: ColorBar?
+        public var colorBar: Shared.ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -450,7 +450,7 @@ public struct Scatter3D: Trace {
             case colorAxis = "coloraxis"
         }
         
-        public init(width: Double? = nil, dash: Dash? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        public init(width: Double? = nil, dash: Shared.Dash? = nil, color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.width = width
             self.dash = dash
             self.color = color
@@ -478,7 +478,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-marker) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-marker) |
     /// [R](https://plot.ly/r/reference/#scatter3d-marker)
-    public var marker: SymbolicMarker?
+    public var marker: Shared.SymbolicMarker?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     ///
@@ -486,14 +486,14 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-textposition) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-textposition) |
     /// [R](https://plot.ly/r/reference/#scatter3d-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: Shared.TextPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-textfont) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-textfont) |
     /// [R](https://plot.ly/r/reference/#scatter3d-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -504,28 +504,28 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#scatter3d-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_x) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-error_x) |
     /// [R](https://plot.ly/r/reference/#scatter3d-error_x)
-    public var xError: Error?
+    public var xError: Shared.Error?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_y) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-error_y) |
     /// [R](https://plot.ly/r/reference/#scatter3d-error_y)
-    public var yError: Error?
+    public var yError: Shared.Error?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-error_z) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-error_z) |
     /// [R](https://plot.ly/r/reference/#scatter3d-error_z)
-    public var zError: Error?
+    public var zError: Shared.Error?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -533,7 +533,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-xcalendar) |
     /// [R](https://plot.ly/r/reference/#scatter3d-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -541,7 +541,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-ycalendar) |
     /// [R](https://plot.ly/r/reference/#scatter3d-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `z` date data.
     ///
@@ -549,7 +549,7 @@ public struct Scatter3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-zcalendar) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-zcalendar) |
     /// [R](https://plot.ly/r/reference/#scatter3d-zcalendar)
-    public var zCalendar: Calendar?
+    public var zCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -605,7 +605,7 @@ public struct Scatter3D: Trace {
         case scene
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker: SymbolicMarker? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, hoverInfo: HoverInfo? = nil, xError: Error? = nil, yError: Error? = nil, zError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, zCalendar: Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, mode: Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker: Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

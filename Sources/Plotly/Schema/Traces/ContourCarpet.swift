@@ -25,7 +25,7 @@ public struct ContourCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-visible) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-visible) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -112,7 +112,7 @@ public struct ContourCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-stream) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-stream) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -305,14 +305,14 @@ public struct ContourCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-contours) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-contours) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-contours)
-    public var contours: Contours?
+    public var contours: Shared.Contours?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-line) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-line) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-line)
-    public var line: SmoothedDashedLine?
+    public var line: Shared.SmoothedDashedLine?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     ///
@@ -403,7 +403,7 @@ public struct ContourCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-colorbar) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-colorbar) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -486,7 +486,7 @@ public struct ContourCarpet: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: [Double]? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: [Double]? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

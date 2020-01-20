@@ -23,7 +23,7 @@ public struct PointCloud: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-visible) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-visible) |
     /// [R](https://plot.ly/r/reference/#pointcloud-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -114,21 +114,21 @@ public struct PointCloud: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#pointcloud-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#pointcloud-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-stream) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-stream) |
     /// [R](https://plot.ly/r/reference/#pointcloud-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -390,7 +390,7 @@ public struct PointCloud: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: String? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: String? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

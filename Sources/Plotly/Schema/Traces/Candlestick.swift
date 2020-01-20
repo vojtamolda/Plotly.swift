@@ -28,7 +28,7 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-visible) |
     /// [Python](https://plot.ly/python/reference/#candlestick-visible) |
     /// [R](https://plot.ly/r/reference/#candlestick-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -131,14 +131,14 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#candlestick-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#candlestick-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-stream) |
     /// [Python](https://plot.ly/python/reference/#candlestick-stream) |
     /// [R](https://plot.ly/r/reference/#candlestick-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -146,7 +146,7 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#candlestick-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#candlestick-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -412,7 +412,7 @@ public struct Candlestick: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-font) |
         /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-font) |
         /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
@@ -422,7 +422,7 @@ public struct Candlestick: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-hoverlabel-align) |
         /// [Python](https://plot.ly/python/reference/#candlestick-hoverlabel-align) |
         /// [R](https://plot.ly/r/reference/#candlestick-hoverlabel-align)
-        public var align: AutoAlign?
+        public var align: Shared.AutoAlign?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
         ///
@@ -454,7 +454,7 @@ public struct Candlestick: Trace {
             case split
         }
         
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: AutoAlign? = nil, nameLength: Int? = nil, split: Bool? = nil) {
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Shared.Font? = nil, align: Shared.AutoAlign? = nil, nameLength: Int? = nil, split: Bool? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.font = font
@@ -476,7 +476,7 @@ public struct Candlestick: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#candlestick-xcalendar) |
     /// [R](https://plot.ly/r/reference/#candlestick-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -535,7 +535,7 @@ public struct Candlestick: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

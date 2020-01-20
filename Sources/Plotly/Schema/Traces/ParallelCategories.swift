@@ -23,7 +23,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-visible) |
     /// [Python](https://plot.ly/python/reference/#parcats-visible) |
     /// [R](https://plot.ly/r/reference/#parcats-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -62,7 +62,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-stream) |
     /// [Python](https://plot.ly/python/reference/#parcats-stream) |
     /// [R](https://plot.ly/r/reference/#parcats-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -70,7 +70,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#parcats-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#parcats-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -94,7 +94,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-domain) |
     /// [Python](https://plot.ly/python/reference/#parcats-domain) |
     /// [R](https://plot.ly/r/reference/#parcats-domain)
-    public var domain: Domain?
+    public var domain: Shared.Domain?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -245,7 +245,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-labelfont) |
     /// [Python](https://plot.ly/python/reference/#parcats-labelfont) |
     /// [R](https://plot.ly/r/reference/#parcats-labelfont)
-    public var labelFont: Font?
+    public var labelFont: Shared.Font?
 
     /// Sets the font for the `category` labels.
     ///
@@ -253,7 +253,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-tickfont) |
     /// [Python](https://plot.ly/python/reference/#parcats-tickfont) |
     /// [R](https://plot.ly/r/reference/#parcats-tickfont)
-    public var tickFont: Font?
+    public var tickFont: Shared.Font?
 
     /// The dimensions (variables) of the parallel categories diagram.
     ///
@@ -281,7 +281,7 @@ public struct ParallelCategories: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#parcats-dimensions-items-dimension-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#parcats-dimensions-items-dimension-categoryorder) |
         /// [R](https://plot.ly/r/reference/#parcats-dimensions-items-dimension-categoryorder)
-        public var categoryOrder: CarpetCategoryOrder?
+        public var categoryOrder: Shared.CarpetCategoryOrder?
     
         /// Sets the order in which categories in this dimension appear. 
         ///
@@ -344,7 +344,7 @@ public struct ParallelCategories: Trace {
             case visible
         }
         
-        public init(label: String? = nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, tickText: [Double]? = nil, values: [Double]? = nil, displayIndex: Int? = nil, visible: Bool? = nil) {
+        public init(label: String? = nil, categoryOrder: Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, tickText: [Double]? = nil, values: [Double]? = nil, displayIndex: Int? = nil, visible: Bool? = nil) {
             self.label = label
             self.categoryOrder = categoryOrder
             self.categoryArray = categoryArray
@@ -474,7 +474,7 @@ public struct ParallelCategories: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#parcats-line-colorbar) |
         /// [Python](https://plot.ly/python/reference/#parcats-line-colorbar) |
         /// [R](https://plot.ly/r/reference/#parcats-line-colorbar)
-        public var colorBar: ColorBar?
+        public var colorBar: Shared.ColorBar?
     
         /// Sets a reference to a shared color axis. 
         ///
@@ -549,7 +549,7 @@ public struct ParallelCategories: Trace {
             case hoverTemplate = "hovertemplate"
         }
         
-        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil) {
+        public init(color: Color? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil) {
             self.color = color
             self.cAuto = cAuto
             self.cMin = cMin
@@ -607,7 +607,7 @@ public struct ParallelCategories: Trace {
         case counts
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, domain: Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Font? = nil, tickFont: Font? = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: Double? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: Double? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

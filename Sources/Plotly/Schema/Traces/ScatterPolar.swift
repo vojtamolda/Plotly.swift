@@ -27,7 +27,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-visible) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-visible) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -126,14 +126,14 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-stream) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-stream) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -141,7 +141,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -170,7 +170,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-mode) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-mode) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-mode)
-    public var mode: Mode?
+    public var mode: Shared.Mode?
 
     /// Sets the radial coordinates
     ///
@@ -237,7 +237,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-thetaunit) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-thetaunit) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-thetaunit)
-    public var thetaUnit: ThetaUnit?
+    public var thetaUnit: Shared.ThetaUnit?
 
     /// Sets text elements associated with each (x,y) pair. 
     ///
@@ -286,7 +286,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-line) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-line) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-line)
-    public var line: SplineSmoothedDashedLine?
+    public var line: Shared.SplineSmoothedDashedLine?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -303,7 +303,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-marker) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-marker) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-marker)
-    public var marker: GradientMarker?
+    public var marker: Shared.GradientMarker?
 
     /// Determines whether or not markers and text nodes are clipped about the subplot axes. 
     ///
@@ -322,7 +322,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-textposition) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-textposition) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: Shared.TextPosition?
 
     /// Sets the text font.
     ///
@@ -330,7 +330,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-textfont) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-textfont) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Sets the area to fill with a solid color. 
     ///
@@ -344,7 +344,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-fill) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-fill) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-fill)
-    public var fill: AreaFill?
+    public var fill: Shared.AreaFill?
 
     /// Sets the fill color. 
     ///
@@ -366,7 +366,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-hoverinfo)
-    public var hoverInfo: PolarHoverInfo?
+    public var hoverInfo: Shared.PolarHoverInfo?
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
     ///
@@ -374,7 +374,7 @@ public struct ScatterPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolar-hoveron) |
     /// [Python](https://plot.ly/python/reference/#scatterpolar-hoveron) |
     /// [R](https://plot.ly/r/reference/#scatterpolar-hoveron)
-    public var hoverOn: HoverOn?
+    public var hoverOn: Shared.HoverOn?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -620,7 +620,7 @@ public struct ScatterPolar: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, clipOnAxis: Bool? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, fill: AreaFill? = nil, fillColor: Color? = nil, hoverInfo: PolarHoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.GradientMarker? = nil, clipOnAxis: Bool? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

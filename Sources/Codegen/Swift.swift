@@ -57,6 +57,7 @@ extension Definable {
 protocol SwiftSharedType: SwiftType, Definable, AnyObject {
     var name: String { get set }
     var shared: Bool { get set }
+    var parent: Swift.Object? { get set }
     var access: Swift.Access { get set }
     var priority: Int { get }
     var instances: [Instance<Self>] { get set }
@@ -64,9 +65,6 @@ protocol SwiftSharedType: SwiftType, Definable, AnyObject {
 
     /// Checks whether the data type can by represented by `other` without loss of functionality and therefore shared.
     func shareable(as other: Self) -> Bool
-
-    /// Writes Swift code that defines the data type to a URL and avoids identifier collisions thanks to shared `existing` dict.
-    static func write(to url: URL)
 }
 extension SwiftSharedType {
     var documentation: [String] {
@@ -95,51 +93,13 @@ extension SwiftSharedType {
             return shared ? documentation + definition : []
         }
     }
-
-    /// Identifies shareable data types and re-associates their instances to a single shared type.
-    static func share() {
-        var visited = Set<Int>()
-        let prioritizedTypes = Self.existing.sorted{ $0.priority > $1.priority }.enumerated()
-
-        for sharedType in prioritizedTypes where !visited.contains(sharedType.offset) {
-            visited.insert(sharedType.offset)
-            let shareableTypes = prioritizedTypes.filter { type in
-                !visited.contains(type.offset) && type.element.shareable(as: sharedType.element)
-            }
-
-            let hasNonParentalInstances = (sharedType.element.parent?.instances.count ?? 0) <= shareableTypes.count
-            if hasNonParentalInstances && shareableTypes.count > 1 {
-                sharedType.element.shared = true
-                for type in shareableTypes where !type.element.instances.isEmpty {
-                    let instance = type.element.instances.removeLast()
-                    instance.type = sharedType.element
-                    sharedType.element.instances.append(instance)
-                }
-            }
-
-            shareableTypes.forEach { type in
-                visited.insert(type.offset)
-            }
-        }
-    }
-
-    /// Writes Swift code that defines the shared data types to a URL.
-    static func write(to url: URL)  {
-        var lines = [String]()
-        for type in Self.existing.filter({ $0.shared }) {
-            lines += type.define(as: .shared)
-            lines += [""]
-        }
-        let contents = lines.joined(separator: "\n")
-        try! contents.write(to: url, atomically: true, encoding: .utf8)
-    }
 }
 
 
 // MARK: - Swift Plotly Schema Equivalents
 
 /// Container for Swift data types that map to corresponding values in the Plotly JSON schema hierarchy.
-class Swift {
+struct Swift {
     /// Storage of Plotly mangledtogethernames translated to Swift camelCaseNames for each identifier in the schema.
     static var name: Name? = nil
 
@@ -280,7 +240,7 @@ class Swift {
             workarounds()
         }
 
-        // TODO: Docs
+        /// Post-processing hacks that avoid name collisions.
         private func workarounds() {
             let properties = members.compactMap { $0 as? Instantiable }
             switch name {
@@ -440,7 +400,7 @@ class Swift {
             }
         }
 
-        // TODO: Docs
+        /// Post-processing hacks that avoid name collisions.
         private func workarounds() {
             switch name {
             case "Align":
@@ -607,7 +567,7 @@ class Swift {
             return Option(label: sanitized, rawValue: string.escaped())
         }
 
-        // TODO: Docs
+        /// Post-processing hacks that avoid name collisions.
         private func workarounds() {
             switch name {
             case "HoverInfo":

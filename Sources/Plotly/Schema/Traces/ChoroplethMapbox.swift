@@ -23,7 +23,7 @@ public struct ChoroplethMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-visible) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-visible) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -96,14 +96,14 @@ public struct ChoroplethMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-stream) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-stream) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -111,7 +111,7 @@ public struct ChoroplethMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -192,7 +192,7 @@ public struct ChoroplethMapbox: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-marker-line) |
         /// [Python](https://plot.ly/python/reference/#choroplethmapbox-marker-line) |
         /// [R](https://plot.ly/r/reference/#choroplethmapbox-marker-line)
-        public var line: Line?
+        public var line: Shared.Line?
     
         /// Sets the opacity of the locations.
         ///
@@ -202,7 +202,7 @@ public struct ChoroplethMapbox: Trace {
         /// [R](https://plot.ly/r/reference/#choroplethmapbox-marker-opacity)
         public var opacity: Double?
     
-        public init(line: Line? = nil, opacity: Double? = nil) {
+        public init(line: Shared.Line? = nil, opacity: Double? = nil) {
             self.line = line
             self.opacity = opacity
         }
@@ -441,7 +441,7 @@ public struct ChoroplethMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-colorbar) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-colorbar) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -505,7 +505,7 @@ public struct ChoroplethMapbox: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, z: [Double]? = nil, geoJson: Anything? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, z: [Double]? = nil, geoJson: Anything? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -26,7 +26,7 @@ public struct Sankey: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sankey-visible) |
     /// [Python](https://plot.ly/python/reference/#sankey-visible) |
     /// [R](https://plot.ly/r/reference/#sankey-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -99,7 +99,7 @@ public struct Sankey: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sankey-stream) |
     /// [Python](https://plot.ly/python/reference/#sankey-stream) |
     /// [R](https://plot.ly/r/reference/#sankey-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -161,14 +161,14 @@ public struct Sankey: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sankey-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#sankey-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#sankey-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#sankey-domain) |
     /// [Python](https://plot.ly/python/reference/#sankey-domain) |
     /// [R](https://plot.ly/r/reference/#sankey-domain)
-    public var domain: Domain?
+    public var domain: Shared.Domain?
 
     /// Sets the orientation of the Sankey diagram.
     ///
@@ -176,7 +176,7 @@ public struct Sankey: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sankey-orientation) |
     /// [Python](https://plot.ly/python/reference/#sankey-orientation) |
     /// [R](https://plot.ly/r/reference/#sankey-orientation)
-    public var orientation: Orientation?
+    public var orientation: Shared.Orientation?
 
     /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of Python. 
     ///
@@ -230,7 +230,7 @@ public struct Sankey: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sankey-textfont) |
     /// [Python](https://plot.ly/python/reference/#sankey-textfont) |
     /// [R](https://plot.ly/r/reference/#sankey-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// The nodes of the Sankey plot.
     ///
@@ -290,7 +290,7 @@ public struct Sankey: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-line) |
         /// [Python](https://plot.ly/python/reference/#sankey-node-line) |
         /// [R](https://plot.ly/r/reference/#sankey-node-line)
-        public var line: Line?
+        public var line: Shared.Line?
     
         /// Sets the padding (in px) between the `nodes`.
         ///
@@ -336,7 +336,7 @@ public struct Sankey: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sankey-node-hoverlabel) |
         /// [Python](https://plot.ly/python/reference/#sankey-node-hoverlabel) |
         /// [R](https://plot.ly/r/reference/#sankey-node-hoverlabel)
-        public var hoverLabel: HoverLabel?
+        public var hoverLabel: Shared.HoverLabel?
     
         /// Template string used for rendering the information that appear on hover box. 
         ///
@@ -375,7 +375,7 @@ public struct Sankey: Trace {
             case hoverTemplate = "hovertemplate"
         }
         
-        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Line? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, hoverTemplate: String? = nil) {
+        public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? = nil, color: Color? = nil, line: Shared.Line? = nil, padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: String? = nil) {
             self.label = label
             self.groups = groups
             self.x = x
@@ -426,7 +426,7 @@ public struct Sankey: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-line) |
         /// [Python](https://plot.ly/python/reference/#sankey-link-line) |
         /// [R](https://plot.ly/r/reference/#sankey-link-line)
-        public var line: Line?
+        public var line: Shared.Line?
     
         /// An integer number `[0..nodes.length - 1]` that represents the source node.
         ///
@@ -480,7 +480,7 @@ public struct Sankey: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#sankey-link-hoverlabel) |
         /// [Python](https://plot.ly/python/reference/#sankey-link-hoverlabel) |
         /// [R](https://plot.ly/r/reference/#sankey-link-hoverlabel)
-        public var hoverLabel: HoverLabel?
+        public var hoverLabel: Shared.HoverLabel?
     
         /// Template string used for rendering the information that appear on hover box. 
         ///
@@ -612,7 +612,7 @@ public struct Sankey: Trace {
             case colorScales = "concentrationscales"
         }
         
-        public init(label: [Double]? = nil, color: Color? = nil, line: Line? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, hoverTemplate: String? = nil, colorScales: [ConcentrationScales]? = nil) {
+        public init(label: [Double]? = nil, color: Color? = nil, line: Shared.Line? = nil, source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: String? = nil, colorScales: [ConcentrationScales]? = nil) {
             self.label = label
             self.color = color
             self.line = line
@@ -658,7 +658,7 @@ public struct Sankey: Trace {
         case link
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, domain: Domain? = nil, orientation: Orientation? = nil, valueFormat: String? = nil, valueSuffix: String? = nil, arrangement: Arrangement? = nil, textFont: Font? = nil, node: Node? = nil, link: Link? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, domain: Shared.Domain? = nil, orientation: Shared.Orientation? = nil, valueFormat: String? = nil, valueSuffix: String? = nil, arrangement: Arrangement? = nil, textFont: Shared.Font? = nil, node: Node? = nil, link: Link? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

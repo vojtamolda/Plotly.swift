@@ -25,7 +25,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-visible) |
     /// [Python](https://plot.ly/python/reference/#scattergl-visible) |
     /// [R](https://plot.ly/r/reference/#scattergl-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -120,21 +120,21 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#scattergl-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#scattergl-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scattergl-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scattergl-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-stream) |
     /// [Python](https://plot.ly/python/reference/#scattergl-stream) |
     /// [R](https://plot.ly/r/reference/#scattergl-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -142,7 +142,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#scattergl-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#scattergl-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -249,7 +249,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-textposition) |
     /// [Python](https://plot.ly/python/reference/#scattergl-textposition) |
     /// [R](https://plot.ly/r/reference/#scattergl-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: Shared.TextPosition?
 
     /// Sets the text font.
     ///
@@ -257,7 +257,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-textfont) |
     /// [Python](https://plot.ly/python/reference/#scattergl-textfont) |
     /// [R](https://plot.ly/r/reference/#scattergl-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Determines the drawing mode for this scatter trace.
     ///
@@ -265,7 +265,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-mode) |
     /// [Python](https://plot.ly/python/reference/#scattergl-mode) |
     /// [R](https://plot.ly/r/reference/#scattergl-mode)
-    public var mode: Mode?
+    public var mode: Shared.Mode?
 
     /// # Used By
     /// `ScatterGL.line` |
@@ -315,9 +315,9 @@ public struct ScatterGL: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-line-dash) |
         /// [Python](https://plot.ly/python/reference/#scattergl-line-dash) |
         /// [R](https://plot.ly/r/reference/#scattergl-line-dash)
-        public var dash: Dash?
+        public var dash: Shared.Dash?
     
-        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Dash? = nil) {
+        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Shared.Dash? = nil) {
             self.color = color
             self.width = width
             self.shape = shape
@@ -336,7 +336,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-marker) |
     /// [Python](https://plot.ly/python/reference/#scattergl-marker) |
     /// [R](https://plot.ly/r/reference/#scattergl-marker)
-    public var marker: SymbolicMarker?
+    public var marker: Shared.SymbolicMarker?
 
     /// Determines whether or not gaps (i.e. 
     ///
@@ -367,7 +367,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-fill) |
     /// [Python](https://plot.ly/python/reference/#scattergl-fill) |
     /// [R](https://plot.ly/r/reference/#scattergl-fill)
-    public var fill: Fill?
+    public var fill: Shared.Fill?
 
     /// Sets the fill color. 
     ///
@@ -599,14 +599,14 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-error_x) |
     /// [Python](https://plot.ly/python/reference/#scattergl-error_x) |
     /// [R](https://plot.ly/r/reference/#scattergl-error_x)
-    public var xError: Error?
+    public var xError: Shared.Error?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-error_y) |
     /// [Python](https://plot.ly/python/reference/#scattergl-error_y) |
     /// [R](https://plot.ly/r/reference/#scattergl-error_y)
-    public var yError: Error?
+    public var yError: Shared.Error?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -614,7 +614,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#scattergl-xcalendar) |
     /// [R](https://plot.ly/r/reference/#scattergl-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -622,7 +622,7 @@ public struct ScatterGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#scattergl-ycalendar) |
     /// [R](https://plot.ly/r/reference/#scattergl-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -693,7 +693,7 @@ public struct ScatterGL: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, hoverText: String? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, mode: Mode? = nil, line: SplineDashedLine? = nil, marker: SymbolicMarker? = nil, connectGaps: Bool? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, xError: Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, hoverText: String? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, mode: Shared.Mode? = nil, line: SplineDashedLine? = nil, marker: Shared.SymbolicMarker? = nil, connectGaps: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

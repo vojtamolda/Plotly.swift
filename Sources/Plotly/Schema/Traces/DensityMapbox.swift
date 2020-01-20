@@ -23,7 +23,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-visible) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-visible) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -92,14 +92,14 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-stream) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-stream) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -107,7 +107,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -353,7 +353,7 @@ public struct DensityMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-colorbar) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-colorbar) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -415,7 +415,7 @@ public struct DensityMapbox: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: [Double]? = nil, radius: Double? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: [Double]? = nil, radius: Double? = nil, below: String? = nil, text: String? = nil, hoverText: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

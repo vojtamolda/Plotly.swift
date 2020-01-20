@@ -26,7 +26,7 @@ public struct Indicator: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#indicator-visible) |
     /// [Python](https://plot.ly/python/reference/#indicator-visible) |
     /// [R](https://plot.ly/r/reference/#indicator-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -87,7 +87,7 @@ public struct Indicator: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#indicator-stream) |
     /// [Python](https://plot.ly/python/reference/#indicator-stream) |
     /// [R](https://plot.ly/r/reference/#indicator-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -95,7 +95,7 @@ public struct Indicator: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#indicator-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#indicator-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#indicator-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -167,14 +167,14 @@ public struct Indicator: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#indicator-align) |
     /// [Python](https://plot.ly/python/reference/#indicator-align) |
     /// [R](https://plot.ly/r/reference/#indicator-align)
-    public var align: HorizontalAlign?
+    public var align: Shared.HorizontalAlign?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#indicator-domain) |
     /// [Python](https://plot.ly/python/reference/#indicator-domain) |
     /// [R](https://plot.ly/r/reference/#indicator-domain)
-    public var domain: Domain?
+    public var domain: Shared.Domain?
 
     /// # Used By
     /// `Indicator.title` |
@@ -195,7 +195,7 @@ public struct Indicator: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#indicator-title-align) |
         /// [Python](https://plot.ly/python/reference/#indicator-title-align) |
         /// [R](https://plot.ly/r/reference/#indicator-title-align)
-        public var align: HorizontalAlign?
+        public var align: Shared.HorizontalAlign?
     
         /// Set the font used to display the title
         ///
@@ -203,9 +203,9 @@ public struct Indicator: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#indicator-title-font) |
         /// [Python](https://plot.ly/python/reference/#indicator-title-font) |
         /// [R](https://plot.ly/r/reference/#indicator-title-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
-        public init(text: String? = nil, align: HorizontalAlign? = nil, font: Font? = nil) {
+        public init(text: String? = nil, align: Shared.HorizontalAlign? = nil, font: Shared.Font? = nil) {
             self.text = text
             self.align = align
             self.font = font
@@ -237,7 +237,7 @@ public struct Indicator: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#indicator-number-font) |
         /// [Python](https://plot.ly/python/reference/#indicator-number-font) |
         /// [R](https://plot.ly/r/reference/#indicator-number-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Sets a prefix appearing before the number.
         ///
@@ -263,7 +263,7 @@ public struct Indicator: Trace {
             case suffix
         }
         
-        public init(valueFormat: String? = nil, font: Font? = nil, prefix: String? = nil, suffix: String? = nil) {
+        public init(valueFormat: String? = nil, font: Shared.Font? = nil, prefix: String? = nil, suffix: String? = nil) {
             self.valueFormat = valueFormat
             self.font = font
             self.prefix = prefix
@@ -394,7 +394,7 @@ public struct Indicator: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#indicator-delta-font) |
         /// [Python](https://plot.ly/python/reference/#indicator-delta-font) |
         /// [R](https://plot.ly/r/reference/#indicator-delta-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -407,7 +407,7 @@ public struct Indicator: Trace {
             case font
         }
         
-        public init(reference: Double? = nil, position: Position? = nil, relative: Bool? = nil, valueFormat: String? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, font: Font? = nil) {
+        public init(reference: Double? = nil, position: Position? = nil, relative: Bool? = nil, valueFormat: String? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, font: Shared.Font? = nil) {
             self.reference = reference
             self.position = position
             self.relative = relative
@@ -463,7 +463,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-bar-line) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-bar-line) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-bar-line)
-            public var line: Line?
+            public var line: Shared.Line?
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
             ///
@@ -473,7 +473,7 @@ public struct Indicator: Trace {
             /// [R](https://plot.ly/r/reference/#indicator-gauge-bar-thickness)
             public var thickness: Double?
         
-            public init(color: Color? = nil, line: Line? = nil, thickness: Double? = nil) {
+            public init(color: Color? = nil, line: Shared.Line? = nil, thickness: Double? = nil) {
                 self.color = color
                 self.line = line
                 self.thickness = thickness
@@ -544,7 +544,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-tickmode) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -622,7 +622,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-ticks) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-ticks) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -662,7 +662,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-tickfont) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -693,7 +693,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets a tick label prefix.
             ///
@@ -712,7 +712,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label suffix.
             ///
@@ -728,7 +728,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -747,7 +747,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If *all*, all exponents are shown besides their significands. 
             ///
@@ -758,7 +758,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-showexponent) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -788,7 +788,7 @@ public struct Indicator: Trace {
                 case showExponent = "showexponent"
             }
             
-            public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, separatethousands: Bool? = nil, exponentFormat: ExponentFormat? = nil, showExponent: ShowExponent? = nil) {
+            public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, separatethousands: Bool? = nil, exponentFormat: Shared.ExponentFormat? = nil, showExponent: Shared.ShowExponent? = nil) {
                 self.range = range
                 self.visible = visible
                 self.tickMode = tickMode
@@ -838,7 +838,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-steps-items-step-line) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-steps-items-step-line) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-steps-items-step-line)
-            public var line: Line?
+            public var line: Shared.Line?
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
             ///
@@ -892,7 +892,7 @@ public struct Indicator: Trace {
                 case templateItemName = "templateitemname"
             }
             
-            public init(color: Color? = nil, line: Line? = nil, thickness: Double? = nil, range: InfoArray? = nil, name: String? = nil, templateItemName: String? = nil) {
+            public init(color: Color? = nil, line: Shared.Line? = nil, thickness: Double? = nil, range: InfoArray? = nil, name: String? = nil, templateItemName: String? = nil) {
                 self.color = color
                 self.line = line
                 self.thickness = thickness
@@ -916,7 +916,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-threshold-line) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-threshold-line) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-threshold-line)
-            public var line: Line?
+            public var line: Shared.Line?
         
             /// Sets the thickness of the threshold line as a fraction of the thickness of the gauge.
             ///
@@ -934,7 +934,7 @@ public struct Indicator: Trace {
             /// [R](https://plot.ly/r/reference/#indicator-gauge-threshold-value)
             public var value: Double?
         
-            public init(line: Line? = nil, thickness: Double? = nil, value: Double? = nil) {
+            public init(line: Shared.Line? = nil, thickness: Double? = nil, value: Double? = nil) {
                 self.line = line
                 self.thickness = thickness
                 self.value = value
@@ -1001,7 +1001,7 @@ public struct Indicator: Trace {
         case gauge
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: HorizontalAlign? = nil, domain: Domain? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Shared.HorizontalAlign? = nil, domain: Shared.Domain? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

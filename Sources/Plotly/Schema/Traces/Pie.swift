@@ -25,7 +25,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-visible) |
     /// [Python](https://plot.ly/python/reference/#pie-visible) |
     /// [R](https://plot.ly/r/reference/#pie-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -112,14 +112,14 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#pie-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#pie-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-stream) |
     /// [Python](https://plot.ly/python/reference/#pie-stream) |
     /// [R](https://plot.ly/r/reference/#pie-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -127,7 +127,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#pie-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#pie-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -207,9 +207,9 @@ public struct Pie: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-line) |
         /// [Python](https://plot.ly/python/reference/#pie-marker-line) |
         /// [R](https://plot.ly/r/reference/#pie-marker-line)
-        public var line: Line?
+        public var line: Shared.Line?
     
-        public init(colors: [Double]? = nil, line: Line? = nil) {
+        public init(colors: [Double]? = nil, line: Shared.Line? = nil) {
             self.colors = colors
             self.line = line
         }
@@ -380,7 +380,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-textposition) |
     /// [Python](https://plot.ly/python/reference/#pie-textposition) |
     /// [R](https://plot.ly/r/reference/#pie-textposition)
-    public var textPosition: AdjacentPosition?
+    public var textPosition: Shared.AdjacentPosition?
 
     /// Sets the font used for `textinfo`.
     ///
@@ -388,7 +388,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-textfont) |
     /// [Python](https://plot.ly/python/reference/#pie-textfont) |
     /// [R](https://plot.ly/r/reference/#pie-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Sets the font used for `textinfo` lying inside the sector.
     ///
@@ -396,7 +396,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#pie-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#pie-insidetextfont)
-    public var insideTextFont: Font?
+    public var insideTextFont: Shared.Font?
 
     /// Sets the font used for `textinfo` lying outside the sector.
     ///
@@ -404,7 +404,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#pie-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#pie-outsidetextfont)
-    public var outSideTextFont: Font?
+    public var outSideTextFont: Shared.Font?
 
     /// Determines whether outside text labels can push the margins.
     ///
@@ -437,7 +437,7 @@ public struct Pie: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#pie-title-font) |
         /// [Python](https://plot.ly/python/reference/#pie-title-font) |
         /// [R](https://plot.ly/r/reference/#pie-title-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Specifies the location of the `title`. 
         ///
@@ -464,7 +464,7 @@ public struct Pie: Trace {
         /// [R](https://plot.ly/r/reference/#pie-title-position)
         public var position: Position?
     
-        public init(text: String? = nil, font: Font? = nil, position: Position? = nil) {
+        public init(text: String? = nil, font: Shared.Font? = nil, position: Position? = nil) {
             self.text = text
             self.font = font
             self.position = position
@@ -482,7 +482,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-domain) |
     /// [Python](https://plot.ly/python/reference/#pie-domain) |
     /// [R](https://plot.ly/r/reference/#pie-domain)
-    public var domain: Domain?
+    public var domain: Shared.Domain?
 
     /// Sets the fraction of the radius to cut out of the pie. 
     ///
@@ -580,7 +580,7 @@ public struct Pie: Trace {
         case pull
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: AdjacentPosition? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: Double? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textTemplate: String? = nil, textPosition: Shared.AdjacentPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

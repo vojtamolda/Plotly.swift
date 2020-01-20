@@ -27,7 +27,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-visible) |
     /// [Python](https://plot.ly/python/reference/#scatter-visible) |
     /// [R](https://plot.ly/r/reference/#scatter-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -130,21 +130,21 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#scatter-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#scatter-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scatter-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scatter-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-stream) |
     /// [Python](https://plot.ly/python/reference/#scatter-stream) |
     /// [R](https://plot.ly/r/reference/#scatter-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -152,7 +152,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#scatter-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#scatter-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -253,7 +253,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-orientation) |
     /// [Python](https://plot.ly/python/reference/#scatter-orientation) |
     /// [R](https://plot.ly/r/reference/#scatter-orientation)
-    public var orientation: Orientation?
+    public var orientation: Shared.Orientation?
 
     /// Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`. 
     ///
@@ -358,7 +358,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-mode) |
     /// [Python](https://plot.ly/python/reference/#scatter-mode) |
     /// [R](https://plot.ly/r/reference/#scatter-mode)
-    public var mode: Mode?
+    public var mode: Shared.Mode?
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the default is *fills*, otherwise it is *points*.
     ///
@@ -366,7 +366,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-hoveron) |
     /// [Python](https://plot.ly/python/reference/#scatter-hoveron) |
     /// [R](https://plot.ly/r/reference/#scatter-hoveron)
-    public var hoverOn: HoverOn?
+    public var hoverOn: Shared.HoverOn?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -523,7 +523,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-fill) |
     /// [Python](https://plot.ly/python/reference/#scatter-fill) |
     /// [R](https://plot.ly/r/reference/#scatter-fill)
-    public var fill: Fill?
+    public var fill: Shared.Fill?
 
     /// Sets the fill color. 
     ///
@@ -541,7 +541,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-marker) |
     /// [Python](https://plot.ly/python/reference/#scatter-marker) |
     /// [R](https://plot.ly/r/reference/#scatter-marker)
-    public var marker: GradientMarker?
+    public var marker: Shared.GradientMarker?
 
     /// # Used By
     /// `Scatter.selected` |
@@ -715,7 +715,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-textposition) |
     /// [Python](https://plot.ly/python/reference/#scatter-textposition) |
     /// [R](https://plot.ly/r/reference/#scatter-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: Shared.TextPosition?
 
     /// Sets the text font.
     ///
@@ -723,7 +723,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-textfont) |
     /// [Python](https://plot.ly/python/reference/#scatter-textfont) |
     /// [R](https://plot.ly/r/reference/#scatter-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
     ///
@@ -746,14 +746,14 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x) |
     /// [Python](https://plot.ly/python/reference/#scatter-error_x) |
     /// [R](https://plot.ly/r/reference/#scatter-error_x)
-    public var xError: Error?
+    public var xError: Shared.Error?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_y) |
     /// [Python](https://plot.ly/python/reference/#scatter-error_y) |
     /// [R](https://plot.ly/r/reference/#scatter-error_y)
-    public var yError: Error?
+    public var yError: Shared.Error?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -761,7 +761,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#scatter-xcalendar) |
     /// [R](https://plot.ly/r/reference/#scatter-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -769,7 +769,7 @@ public struct Scatter: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#scatter-ycalendar) |
     /// [R](https://plot.ly/r/reference/#scatter-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -848,7 +848,7 @@ public struct Scatter: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil, orientation: Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, mode: Mode? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Fill? = nil, fillColor: Color? = nil, marker: GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, mode: Shared.Mode? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: String? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

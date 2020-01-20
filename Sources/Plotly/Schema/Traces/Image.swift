@@ -28,7 +28,7 @@ public struct Image: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#image-visible) |
     /// [Python](https://plot.ly/python/reference/#image-visible) |
     /// [R](https://plot.ly/r/reference/#image-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -97,14 +97,14 @@ public struct Image: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#image-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#image-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#image-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#image-stream) |
     /// [Python](https://plot.ly/python/reference/#image-stream) |
     /// [R](https://plot.ly/r/reference/#image-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -343,7 +343,7 @@ public struct Image: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

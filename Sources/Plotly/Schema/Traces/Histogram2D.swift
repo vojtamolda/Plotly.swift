@@ -25,7 +25,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-visible) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-visible) |
     /// [R](https://plot.ly/r/reference/#histogram2d-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -98,21 +98,21 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#histogram2d-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#histogram2d-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-stream) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-stream) |
     /// [R](https://plot.ly/r/reference/#histogram2d-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -120,7 +120,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#histogram2d-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -200,7 +200,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-histnorm) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-histnorm) |
     /// [R](https://plot.ly/r/reference/#histogram2d-histnorm)
-    public var normalization: Normalization?
+    public var normalization: Shared.Normalization?
 
     /// Specifies the binning function used for this histogram trace. 
     ///
@@ -212,7 +212,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-histfunc) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-histfunc) |
     /// [R](https://plot.ly/r/reference/#histogram2d-histfunc)
-    public var binningFunction: BinningFunction?
+    public var binningFunction: Shared.BinningFunction?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -230,7 +230,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xbins) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-xbins) |
     /// [R](https://plot.ly/r/reference/#histogram2d-xbins)
-    public var xBins: Bins?
+    public var xBins: Shared.Bins?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -248,7 +248,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ybins) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-ybins) |
     /// [R](https://plot.ly/r/reference/#histogram2d-ybins)
-    public var yBins: Bins?
+    public var yBins: Shared.Bins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. 
     ///
@@ -458,7 +458,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-colorbar) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-colorbar) |
     /// [R](https://plot.ly/r/reference/#histogram2d-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -478,7 +478,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-xcalendar) |
     /// [R](https://plot.ly/r/reference/#histogram2d-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -486,7 +486,7 @@ public struct Histogram2D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#histogram2d-ycalendar) |
     /// [R](https://plot.ly/r/reference/#histogram2d-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -562,7 +562,7 @@ public struct Histogram2D: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: Bins? = nil, yNumBins: Int? = nil, yBins: Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Shared.Normalization? = nil, binningFunction: Shared.BinningFunction? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

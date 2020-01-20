@@ -279,6 +279,12 @@ struct Schema: Decodable {
 
             Schema.order?.sorted(entries: &entries, at: decoder.codingPath)
         }
+
+        init() {
+            description = nil
+            editType = nil
+            role = nil
+        }
     }
 
 

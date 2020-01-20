@@ -23,7 +23,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-visible) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-visible) |
     /// [R](https://plot.ly/r/reference/#mesh3d-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -84,14 +84,14 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#mesh3d-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-stream) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-stream) |
     /// [R](https://plot.ly/r/reference/#mesh3d-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -391,7 +391,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-colorbar) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-colorbar) |
     /// [R](https://plot.ly/r/reference/#mesh3d-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -431,21 +431,21 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-contour) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-contour) |
     /// [R](https://plot.ly/r/reference/#mesh3d-contour)
-    public var contour: ContourHover?
+    public var contour: Shared.ContourHover?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-lightposition) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-lightposition) |
     /// [R](https://plot.ly/r/reference/#mesh3d-lightposition)
-    public var lightPosition: LightPosition?
+    public var lightPosition: Shared.LightPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-lighting) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-lighting) |
     /// [R](https://plot.ly/r/reference/#mesh3d-lighting)
-    public var lighting: Lighting?
+    public var lighting: Shared.Lighting?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -456,7 +456,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#mesh3d-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -464,7 +464,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-xcalendar) |
     /// [R](https://plot.ly/r/reference/#mesh3d-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -472,7 +472,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-ycalendar) |
     /// [R](https://plot.ly/r/reference/#mesh3d-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `z` date data.
     ///
@@ -480,7 +480,7 @@ public struct Mesh3D: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-zcalendar) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-zcalendar) |
     /// [R](https://plot.ly/r/reference/#mesh3d-zcalendar)
-    public var zCalendar: Calendar?
+    public var zCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -543,7 +543,7 @@ public struct Mesh3D: Trace {
         case scene
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: ContourHover? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, hoverInfo: HoverInfo? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, zCalendar: Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -29,7 +29,7 @@ public struct StreamTube: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-visible) |
     /// [Python](https://plot.ly/python/reference/#streamtube-visible) |
     /// [R](https://plot.ly/r/reference/#streamtube-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -90,14 +90,14 @@ public struct StreamTube: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#streamtube-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#streamtube-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-stream) |
     /// [Python](https://plot.ly/python/reference/#streamtube-stream) |
     /// [R](https://plot.ly/r/reference/#streamtube-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -354,7 +354,7 @@ public struct StreamTube: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-colorbar) |
     /// [Python](https://plot.ly/python/reference/#streamtube-colorbar) |
     /// [R](https://plot.ly/r/reference/#streamtube-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -386,14 +386,14 @@ public struct StreamTube: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-lightposition) |
     /// [Python](https://plot.ly/python/reference/#streamtube-lightposition) |
     /// [R](https://plot.ly/r/reference/#streamtube-lightposition)
-    public var lightPosition: LightPosition?
+    public var lightPosition: Shared.LightPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-lighting) |
     /// [Python](https://plot.ly/python/reference/#streamtube-lighting) |
     /// [R](https://plot.ly/r/reference/#streamtube-lighting)
-    public var lighting: Lighting?
+    public var lighting: Shared.Lighting?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -504,7 +504,7 @@ public struct StreamTube: Trace {
         case scene
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -25,7 +25,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-visible) |
     /// [Python](https://plot.ly/python/reference/#histogram-visible) |
     /// [R](https://plot.ly/r/reference/#histogram-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -128,21 +128,21 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#histogram-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#histogram-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#histogram-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#histogram-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-stream) |
     /// [Python](https://plot.ly/python/reference/#histogram-stream) |
     /// [R](https://plot.ly/r/reference/#histogram-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -150,7 +150,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#histogram-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#histogram-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -212,7 +212,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-orientation) |
     /// [Python](https://plot.ly/python/reference/#histogram-orientation) |
     /// [R](https://plot.ly/r/reference/#histogram-orientation)
-    public var orientation: Orientation?
+    public var orientation: Shared.Orientation?
 
     /// Specifies the binning function used for this histogram trace. 
     ///
@@ -224,7 +224,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-histfunc) |
     /// [Python](https://plot.ly/python/reference/#histogram-histfunc) |
     /// [R](https://plot.ly/r/reference/#histogram-histfunc)
-    public var binningFunction: BinningFunction?
+    public var binningFunction: Shared.BinningFunction?
 
     /// Specifies the type of normalization used for this histogram trace. 
     ///
@@ -241,7 +241,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-histnorm) |
     /// [Python](https://plot.ly/python/reference/#histogram-histnorm) |
     /// [R](https://plot.ly/r/reference/#histogram-histnorm)
-    public var normalization: Normalization?
+    public var normalization: Shared.Normalization?
 
     /// # Used By
     /// `Histogram.cumulative` |
@@ -337,7 +337,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-xbins) |
     /// [Python](https://plot.ly/python/reference/#histogram-xbins) |
     /// [R](https://plot.ly/r/reference/#histogram-xbins)
-    public var xBins: Bins?
+    public var xBins: Shared.Bins?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -355,7 +355,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-ybins) |
     /// [Python](https://plot.ly/python/reference/#histogram-ybins) |
     /// [R](https://plot.ly/r/reference/#histogram-ybins)
-    public var yBins: Bins?
+    public var yBins: Shared.Bins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. 
     ///
@@ -419,7 +419,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-marker) |
     /// [Python](https://plot.ly/python/reference/#histogram-marker) |
     /// [R](https://plot.ly/r/reference/#histogram-marker)
-    public var marker: Marker?
+    public var marker: Shared.Marker?
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
     ///
@@ -592,14 +592,14 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-error_x) |
     /// [Python](https://plot.ly/python/reference/#histogram-error_x) |
     /// [R](https://plot.ly/r/reference/#histogram-error_x)
-    public var xError: Error?
+    public var xError: Shared.Error?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-error_y) |
     /// [Python](https://plot.ly/python/reference/#histogram-error_y) |
     /// [R](https://plot.ly/r/reference/#histogram-error_y)
-    public var yError: Error?
+    public var yError: Shared.Error?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -607,7 +607,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#histogram-xcalendar) |
     /// [R](https://plot.ly/r/reference/#histogram-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -615,7 +615,7 @@ public struct Histogram: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#histogram-ycalendar) |
     /// [R](https://plot.ly/r/reference/#histogram-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -687,7 +687,7 @@ public struct Histogram: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, orientation: Orientation? = nil, binningFunction: BinningFunction? = nil, normalization: Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Bins? = nil, yNumBins: Int? = nil, yBins: Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: String? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, orientation: Shared.Orientation? = nil, binningFunction: Shared.BinningFunction? = nil, normalization: Shared.Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: String? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

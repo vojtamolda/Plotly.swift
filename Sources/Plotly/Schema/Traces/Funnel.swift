@@ -28,7 +28,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-visible) |
     /// [Python](https://plot.ly/python/reference/#funnel-visible) |
     /// [R](https://plot.ly/r/reference/#funnel-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -127,14 +127,14 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#funnel-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#funnel-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-stream) |
     /// [Python](https://plot.ly/python/reference/#funnel-stream) |
     /// [R](https://plot.ly/r/reference/#funnel-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -142,7 +142,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#funnel-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#funnel-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -391,7 +391,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-textposition) |
     /// [Python](https://plot.ly/python/reference/#funnel-textposition) |
     /// [R](https://plot.ly/r/reference/#funnel-textposition)
-    public var textPosition: AdjacentPosition?
+    public var textPosition: Shared.AdjacentPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
     ///
@@ -399,7 +399,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-insidetextanchor) |
     /// [Python](https://plot.ly/python/reference/#funnel-insidetextanchor) |
     /// [R](https://plot.ly/r/reference/#funnel-insidetextanchor)
-    public var insideTextAnchor: InsideTextAnchor?
+    public var insideTextAnchor: Shared.InsideTextAnchor?
 
     /// Sets the angle of the tick labels with respect to the bar. 
     ///
@@ -418,7 +418,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-textfont) |
     /// [Python](https://plot.ly/python/reference/#funnel-textfont) |
     /// [R](https://plot.ly/r/reference/#funnel-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Sets the font used for `text` lying inside the bar.
     ///
@@ -426,7 +426,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#funnel-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#funnel-insidetextfont)
-    public var insideTextFont: Font?
+    public var insideTextFont: Shared.Font?
 
     /// Sets the font used for `text` lying outside the bar.
     ///
@@ -434,7 +434,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#funnel-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#funnel-outsidetextfont)
-    public var outSideTextFont: Font?
+    public var outSideTextFont: Shared.Font?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     ///
@@ -442,7 +442,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-constraintext) |
     /// [Python](https://plot.ly/python/reference/#funnel-constraintext) |
     /// [R](https://plot.ly/r/reference/#funnel-constraintext)
-    public var constrainText: ConstrainText?
+    public var constrainText: Shared.ConstrainText?
 
     /// Determines whether the text nodes are clipped about the subplot axes. 
     ///
@@ -466,7 +466,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-orientation) |
     /// [Python](https://plot.ly/python/reference/#funnel-orientation) |
     /// [R](https://plot.ly/r/reference/#funnel-orientation)
-    public var orientation: Orientation?
+    public var orientation: Shared.Orientation?
 
     /// Shifts the position where the bar is drawn (in position axis units). 
     ///
@@ -492,7 +492,7 @@ public struct Funnel: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-marker) |
     /// [Python](https://plot.ly/python/reference/#funnel-marker) |
     /// [R](https://plot.ly/r/reference/#funnel-marker)
-    public var marker: Marker?
+    public var marker: Shared.Marker?
 
     /// # Used By
     /// `Funnel.connector` |
@@ -510,7 +510,7 @@ public struct Funnel: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#funnel-connector-line) |
         /// [Python](https://plot.ly/python/reference/#funnel-connector-line) |
         /// [R](https://plot.ly/r/reference/#funnel-connector-line)
-        public var line: DashedLine?
+        public var line: Shared.DashedLine?
     
         /// Determines if connector regions and lines are drawn.
         ///
@@ -527,7 +527,7 @@ public struct Funnel: Trace {
             case visible
         }
         
-        public init(fillColor: Color? = nil, line: DashedLine? = nil, visible: Bool? = nil) {
+        public init(fillColor: Color? = nil, line: Shared.DashedLine? = nil, visible: Bool? = nil) {
             self.fillColor = fillColor
             self.line = line
             self.visible = visible
@@ -629,7 +629,7 @@ public struct Funnel: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width: Double? = nil, marker: Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

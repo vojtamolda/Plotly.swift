@@ -23,7 +23,7 @@ public struct HeatmapGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-visible) |
     /// [Python](https://plot.ly/python/reference/#heatmapgl-visible) |
     /// [R](https://plot.ly/r/reference/#heatmapgl-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -96,21 +96,21 @@ public struct HeatmapGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#heatmapgl-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#heatmapgl-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#heatmapgl-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#heatmapgl-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-stream) |
     /// [Python](https://plot.ly/python/reference/#heatmapgl-stream) |
     /// [R](https://plot.ly/r/reference/#heatmapgl-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -118,7 +118,7 @@ public struct HeatmapGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#heatmapgl-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#heatmapgl-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -228,7 +228,7 @@ public struct HeatmapGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-xtype) |
     /// [Python](https://plot.ly/python/reference/#heatmapgl-xtype) |
     /// [R](https://plot.ly/r/reference/#heatmapgl-xtype)
-    public var xType: AxisType?
+    public var xType: Shared.AxisType?
 
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default behavior when `y` is not provided)
     ///
@@ -236,7 +236,7 @@ public struct HeatmapGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-ytype) |
     /// [Python](https://plot.ly/python/reference/#heatmapgl-ytype) |
     /// [R](https://plot.ly/r/reference/#heatmapgl-ytype)
-    public var yType: AxisType?
+    public var yType: Shared.AxisType?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in `z`) or the bounds set in `zmin` and `zmax`  Defaults to `false` when `zmin` and `zmax` are set by the user.
     ///
@@ -327,7 +327,7 @@ public struct HeatmapGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-colorbar) |
     /// [Python](https://plot.ly/python/reference/#heatmapgl-colorbar) |
     /// [R](https://plot.ly/r/reference/#heatmapgl-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -404,7 +404,7 @@ public struct HeatmapGL: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, transpose: Bool? = nil, xType: AxisType? = nil, yType: AxisType? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil, yType: Shared.AxisType? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

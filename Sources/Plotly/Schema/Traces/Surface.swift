@@ -29,7 +29,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-visible) |
     /// [Python](https://plot.ly/python/reference/#surface-visible) |
     /// [R](https://plot.ly/r/reference/#surface-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -90,14 +90,14 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#surface-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#surface-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-stream) |
     /// [Python](https://plot.ly/python/reference/#surface-stream) |
     /// [R](https://plot.ly/r/reference/#surface-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -288,7 +288,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-colorbar) |
     /// [Python](https://plot.ly/python/reference/#surface-colorbar) |
     /// [R](https://plot.ly/r/reference/#surface-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -351,7 +351,7 @@ public struct Surface: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-x-project) |
             /// [Python](https://plot.ly/python/reference/#surface-contours-x-project) |
             /// [R](https://plot.ly/r/reference/#surface-contours-x-project)
-            public var project: Projection?
+            public var project: Shared.Projection?
         
             /// Sets the color of the contour lines.
             ///
@@ -418,7 +418,7 @@ public struct Surface: Trace {
                 case highlightWidth = "highlightwidth"
             }
             
-            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Shared.Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -485,7 +485,7 @@ public struct Surface: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-y-project) |
             /// [Python](https://plot.ly/python/reference/#surface-contours-y-project) |
             /// [R](https://plot.ly/r/reference/#surface-contours-y-project)
-            public var project: Projection?
+            public var project: Shared.Projection?
         
             /// Sets the color of the contour lines.
             ///
@@ -552,7 +552,7 @@ public struct Surface: Trace {
                 case highlightWidth = "highlightwidth"
             }
             
-            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Shared.Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -619,7 +619,7 @@ public struct Surface: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#surface-contours-z-project) |
             /// [Python](https://plot.ly/python/reference/#surface-contours-z-project) |
             /// [R](https://plot.ly/r/reference/#surface-contours-z-project)
-            public var project: Projection?
+            public var project: Shared.Projection?
         
             /// Sets the color of the contour lines.
             ///
@@ -686,7 +686,7 @@ public struct Surface: Trace {
                 case highlightWidth = "highlightwidth"
             }
             
-            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+            public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil, project: Shared.Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -736,7 +736,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-lightposition) |
     /// [Python](https://plot.ly/python/reference/#surface-lightposition) |
     /// [R](https://plot.ly/r/reference/#surface-lightposition)
-    public var lightPosition: LightPosition?
+    public var lightPosition: Shared.LightPosition?
 
     /// # Used By
     /// `Surface.lighting` |
@@ -821,7 +821,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#surface-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#surface-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -829,7 +829,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#surface-xcalendar) |
     /// [R](https://plot.ly/r/reference/#surface-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -837,7 +837,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#surface-ycalendar) |
     /// [R](https://plot.ly/r/reference/#surface-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `z` date data.
     ///
@@ -845,7 +845,7 @@ public struct Surface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#surface-zcalendar) |
     /// [Python](https://plot.ly/python/reference/#surface-zcalendar) |
     /// [R](https://plot.ly/r/reference/#surface-zcalendar)
-    public var zCalendar: Calendar?
+    public var zCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -901,7 +901,7 @@ public struct Surface: Trace {
         case scene
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: HoverInfo? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, zCalendar: Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

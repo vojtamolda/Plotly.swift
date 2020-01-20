@@ -28,7 +28,7 @@ public struct ScatterPlotMatrix: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-visible) |
     /// [Python](https://plot.ly/python/reference/#splom-visible) |
     /// [R](https://plot.ly/r/reference/#splom-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -123,21 +123,21 @@ public struct ScatterPlotMatrix: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#splom-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#splom-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#splom-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#splom-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-stream) |
     /// [Python](https://plot.ly/python/reference/#splom-stream) |
     /// [R](https://plot.ly/r/reference/#splom-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -145,7 +145,7 @@ public struct ScatterPlotMatrix: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#splom-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#splom-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -339,7 +339,7 @@ public struct ScatterPlotMatrix: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#splom-marker) |
     /// [Python](https://plot.ly/python/reference/#splom-marker) |
     /// [R](https://plot.ly/r/reference/#splom-marker)
-    public var marker: SymbolicMarker?
+    public var marker: Shared.SymbolicMarker?
 
     /// Sets the list of x axes corresponding to dimensions of this splom trace. 
     ///
@@ -552,7 +552,7 @@ public struct ScatterPlotMatrix: Trace {
         case opacity
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, dimensions: [Dimension]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, marker: SymbolicMarker? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, diagonal: Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, dimensions: [Dimension]? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, marker: Shared.SymbolicMarker? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, diagonal: Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -22,7 +22,7 @@ public struct Area: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#area-visible) |
     /// [Python](https://plot.ly/python/reference/#area-visible) |
     /// [R](https://plot.ly/r/reference/#area-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -113,21 +113,21 @@ public struct Area: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#area-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#area-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#area-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#area-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#area-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#area-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#area-stream) |
     /// [Python](https://plot.ly/python/reference/#area-stream) |
     /// [R](https://plot.ly/r/reference/#area-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -135,7 +135,7 @@ public struct Area: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#area-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#area-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#area-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -209,7 +209,7 @@ public struct Area: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#area-marker-symbol) |
         /// [Python](https://plot.ly/python/reference/#area-marker-symbol) |
         /// [R](https://plot.ly/r/reference/#area-marker-symbol)
-        public var symbol: Symbol?
+        public var symbol: Shared.Symbol?
     
         /// Area traces are deprecated! Please switch to the *barpolar* trace type. 
         ///
@@ -221,7 +221,7 @@ public struct Area: Trace {
         /// [R](https://plot.ly/r/reference/#area-marker-opacity)
         public var opacity: Double?
     
-        public init(color: Color? = nil, size: Double? = nil, symbol: Symbol? = nil, opacity: Double? = nil) {
+        public init(color: Color? = nil, size: Double? = nil, symbol: Shared.Symbol? = nil, opacity: Double? = nil) {
             self.color = color
             self.size = size
             self.symbol = symbol
@@ -258,7 +258,7 @@ public struct Area: Trace {
         case marker
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, t: [Double]? = nil, marker: SymbolicMarker? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, t: [Double]? = nil, marker: SymbolicMarker? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

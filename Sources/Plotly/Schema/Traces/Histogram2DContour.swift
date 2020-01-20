@@ -25,7 +25,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-visible) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-visible) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -116,21 +116,21 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-stream) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-stream) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -138,7 +138,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -218,7 +218,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-histnorm) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-histnorm) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-histnorm)
-    public var normalization: Normalization?
+    public var normalization: Shared.Normalization?
 
     /// Specifies the binning function used for this histogram trace. 
     ///
@@ -230,7 +230,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-histfunc) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-histfunc) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-histfunc)
-    public var binningFunction: BinningFunction?
+    public var binningFunction: Shared.BinningFunction?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -248,7 +248,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-xbins) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-xbins) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-xbins)
-    public var xBins: Bins?
+    public var xBins: Shared.Bins?
 
     /// Specifies the maximum number of desired bins. 
     ///
@@ -266,7 +266,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-ybins) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-ybins) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-ybins)
-    public var yBins: Bins?
+    public var yBins: Shared.Bins?
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not needed. 
     ///
@@ -349,14 +349,14 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-contours) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-contours) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-contours)
-    public var contours: Contours?
+    public var contours: Shared.Contours?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-line) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-line) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-line)
-    public var line: SmoothedDashedLine?
+    public var line: Shared.SmoothedDashedLine?
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
     ///
@@ -479,7 +479,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-colorbar) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-colorbar) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -499,7 +499,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-xcalendar) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -507,7 +507,7 @@ public struct Histogram2DContour: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#histogram2dcontour-ycalendar) |
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -586,7 +586,7 @@ public struct Histogram2DContour: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? = nil, xBins: Bins? = nil, yNumBins: Int? = nil, yBins: Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line: SmoothedDashedLine? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, marker: Marker? = nil, normalization: Shared.Normalization? = nil, binningFunction: Shared.BinningFunction? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zHoverFormat: String? = nil, hoverTemplate: String? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

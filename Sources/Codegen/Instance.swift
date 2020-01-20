@@ -27,9 +27,11 @@ class Instance<Type>: Instantiable where Type: SwiftType {
 
     var path: String { (parent?.path ?? "") + "." + name }
     var argument: String {
-        let optionality = self.optional ? "?" : ""
-        let dataType = self.array ? "[\(type.name)]" : type.name
-        return "\(name): \(dataType)\(optionality)" }
+        var dataType = (type.parent?.name == self.parent?.name) ? type.name : "Shared.\(type.name)"
+        dataType = self.array ? "[\(dataType)]" : dataType
+        dataType = self.optional ? "\(dataType)?" : dataType
+        return "\(name): \(dataType)"
+    }
     var documentation: [String] {
         var link = schema.path
         link = link.replacingOccurrences(of: "/", with: "-")

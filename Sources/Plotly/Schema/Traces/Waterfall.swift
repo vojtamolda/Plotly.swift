@@ -27,7 +27,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-visible) |
     /// [Python](https://plot.ly/python/reference/#waterfall-visible) |
     /// [R](https://plot.ly/r/reference/#waterfall-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -126,14 +126,14 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#waterfall-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#waterfall-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-stream) |
     /// [Python](https://plot.ly/python/reference/#waterfall-stream) |
     /// [R](https://plot.ly/r/reference/#waterfall-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -141,7 +141,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#waterfall-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#waterfall-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -404,7 +404,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-textposition) |
     /// [Python](https://plot.ly/python/reference/#waterfall-textposition) |
     /// [R](https://plot.ly/r/reference/#waterfall-textposition)
-    public var textPosition: AdjacentPosition?
+    public var textPosition: Shared.AdjacentPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
     ///
@@ -412,7 +412,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-insidetextanchor) |
     /// [Python](https://plot.ly/python/reference/#waterfall-insidetextanchor) |
     /// [R](https://plot.ly/r/reference/#waterfall-insidetextanchor)
-    public var insideTextAnchor: InsideTextAnchor?
+    public var insideTextAnchor: Shared.InsideTextAnchor?
 
     /// Sets the angle of the tick labels with respect to the bar. 
     ///
@@ -431,7 +431,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-textfont) |
     /// [Python](https://plot.ly/python/reference/#waterfall-textfont) |
     /// [R](https://plot.ly/r/reference/#waterfall-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Sets the font used for `text` lying inside the bar.
     ///
@@ -439,7 +439,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#waterfall-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#waterfall-insidetextfont)
-    public var insideTextFont: Font?
+    public var insideTextFont: Shared.Font?
 
     /// Sets the font used for `text` lying outside the bar.
     ///
@@ -447,7 +447,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#waterfall-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#waterfall-outsidetextfont)
-    public var outSideTextFont: Font?
+    public var outSideTextFont: Shared.Font?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     ///
@@ -455,7 +455,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-constraintext) |
     /// [Python](https://plot.ly/python/reference/#waterfall-constraintext) |
     /// [R](https://plot.ly/r/reference/#waterfall-constraintext)
-    public var constrainText: ConstrainText?
+    public var constrainText: Shared.ConstrainText?
 
     /// Determines whether the text nodes are clipped about the subplot axes. 
     ///
@@ -476,7 +476,7 @@ public struct Waterfall: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-orientation) |
     /// [Python](https://plot.ly/python/reference/#waterfall-orientation) |
     /// [R](https://plot.ly/r/reference/#waterfall-orientation)
-    public var orientation: Orientation?
+    public var orientation: Shared.Orientation?
 
     /// Shifts the position where the bar is drawn (in position axis units). 
     ///
@@ -516,9 +516,9 @@ public struct Waterfall: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-increasing-marker-line) |
             /// [Python](https://plot.ly/python/reference/#waterfall-increasing-marker-line) |
             /// [R](https://plot.ly/r/reference/#waterfall-increasing-marker-line)
-            public var line: Line?
+            public var line: Shared.Line?
         
-            public init(color: Color? = nil, line: Line? = nil) {
+            public init(color: Color? = nil, line: Shared.Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -560,9 +560,9 @@ public struct Waterfall: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-decreasing-marker-line) |
             /// [Python](https://plot.ly/python/reference/#waterfall-decreasing-marker-line) |
             /// [R](https://plot.ly/r/reference/#waterfall-decreasing-marker-line)
-            public var line: Line?
+            public var line: Shared.Line?
         
-            public init(color: Color? = nil, line: Line? = nil) {
+            public init(color: Color? = nil, line: Shared.Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -604,9 +604,9 @@ public struct Waterfall: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-totals-marker-line) |
             /// [Python](https://plot.ly/python/reference/#waterfall-totals-marker-line) |
             /// [R](https://plot.ly/r/reference/#waterfall-totals-marker-line)
-            public var line: Line?
+            public var line: Shared.Line?
         
-            public init(color: Color? = nil, line: Line? = nil) {
+            public init(color: Color? = nil, line: Shared.Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -637,7 +637,7 @@ public struct Waterfall: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-connector-line) |
         /// [Python](https://plot.ly/python/reference/#waterfall-connector-line) |
         /// [R](https://plot.ly/r/reference/#waterfall-connector-line)
-        public var line: DashedLine?
+        public var line: Shared.DashedLine?
     
         /// Sets the shape of connector lines.
         ///
@@ -663,7 +663,7 @@ public struct Waterfall: Trace {
         /// [R](https://plot.ly/r/reference/#waterfall-connector-visible)
         public var visible: Bool?
     
-        public init(line: DashedLine? = nil, mode: Mode? = nil, visible: Bool? = nil) {
+        public init(line: Shared.DashedLine? = nil, mode: Mode? = nil, visible: Bool? = nil) {
             self.line = line
             self.mode = mode
             self.visible = visible
@@ -769,7 +769,7 @@ public struct Waterfall: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, offset: Double? = nil, width: Double? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, text: String? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width: Double? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

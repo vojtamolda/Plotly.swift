@@ -28,7 +28,7 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-visible) |
     /// [Python](https://plot.ly/python/reference/#ohlc-visible) |
     /// [R](https://plot.ly/r/reference/#ohlc-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -131,14 +131,14 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#ohlc-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#ohlc-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-stream) |
     /// [Python](https://plot.ly/python/reference/#ohlc-stream) |
     /// [R](https://plot.ly/r/reference/#ohlc-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -146,7 +146,7 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#ohlc-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#ohlc-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -408,7 +408,7 @@ public struct OHLC: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-font) |
         /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-font) |
         /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Sets the horizontal alignment of the text content within hover label box. 
         ///
@@ -418,7 +418,7 @@ public struct OHLC: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-hoverlabel-align) |
         /// [Python](https://plot.ly/python/reference/#ohlc-hoverlabel-align) |
         /// [R](https://plot.ly/r/reference/#ohlc-hoverlabel-align)
-        public var align: AutoAlign?
+        public var align: Shared.AutoAlign?
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all traces. 
         ///
@@ -450,7 +450,7 @@ public struct OHLC: Trace {
             case split
         }
         
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align: AutoAlign? = nil, nameLength: Int? = nil, split: Bool? = nil) {
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Shared.Font? = nil, align: Shared.AutoAlign? = nil, nameLength: Int? = nil, split: Bool? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.font = font
@@ -472,7 +472,7 @@ public struct OHLC: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#ohlc-xcalendar) |
     /// [R](https://plot.ly/r/reference/#ohlc-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -531,7 +531,7 @@ public struct OHLC: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: DashedLine? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: DashedLine? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: String? = nil, hoverText: String? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

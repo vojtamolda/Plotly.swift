@@ -25,7 +25,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-visible) |
     /// [Python](https://plot.ly/python/reference/#bar-visible) |
     /// [R](https://plot.ly/r/reference/#bar-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -128,21 +128,21 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#bar-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#bar-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#bar-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#bar-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-stream) |
     /// [Python](https://plot.ly/python/reference/#bar-stream) |
     /// [R](https://plot.ly/r/reference/#bar-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -150,7 +150,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#bar-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#bar-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -303,7 +303,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-textposition) |
     /// [Python](https://plot.ly/python/reference/#bar-textposition) |
     /// [R](https://plot.ly/r/reference/#bar-textposition)
-    public var textPosition: AdjacentPosition?
+    public var textPosition: Shared.AdjacentPosition?
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
     ///
@@ -311,7 +311,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-insidetextanchor) |
     /// [Python](https://plot.ly/python/reference/#bar-insidetextanchor) |
     /// [R](https://plot.ly/r/reference/#bar-insidetextanchor)
-    public var insideTextAnchor: InsideTextAnchor?
+    public var insideTextAnchor: Shared.InsideTextAnchor?
 
     /// Sets the angle of the tick labels with respect to the bar. 
     ///
@@ -330,7 +330,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-textfont) |
     /// [Python](https://plot.ly/python/reference/#bar-textfont) |
     /// [R](https://plot.ly/r/reference/#bar-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Sets the font used for `text` lying inside the bar.
     ///
@@ -338,7 +338,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#bar-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#bar-insidetextfont)
-    public var insideTextFont: Font?
+    public var insideTextFont: Shared.Font?
 
     /// Sets the font used for `text` lying outside the bar.
     ///
@@ -346,7 +346,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-outsidetextfont) |
     /// [Python](https://plot.ly/python/reference/#bar-outsidetextfont) |
     /// [R](https://plot.ly/r/reference/#bar-outsidetextfont)
-    public var outSideTextFont: Font?
+    public var outSideTextFont: Shared.Font?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     ///
@@ -354,7 +354,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-constraintext) |
     /// [Python](https://plot.ly/python/reference/#bar-constraintext) |
     /// [R](https://plot.ly/r/reference/#bar-constraintext)
-    public var constrainText: ConstrainText?
+    public var constrainText: Shared.ConstrainText?
 
     /// Determines whether the text nodes are clipped about the subplot axes. 
     ///
@@ -375,7 +375,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-orientation) |
     /// [Python](https://plot.ly/python/reference/#bar-orientation) |
     /// [R](https://plot.ly/r/reference/#bar-orientation)
-    public var orientation: Orientation?
+    public var orientation: Shared.Orientation?
 
     /// Sets where the bar base is drawn (in position axis units). 
     ///
@@ -412,7 +412,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-marker) |
     /// [Python](https://plot.ly/python/reference/#bar-marker) |
     /// [R](https://plot.ly/r/reference/#bar-marker)
-    public var marker: Marker?
+    public var marker: Shared.Marker?
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup where bars of the same position coordinate will line up.
     ///
@@ -601,14 +601,14 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_x) |
     /// [Python](https://plot.ly/python/reference/#bar-error_x) |
     /// [R](https://plot.ly/r/reference/#bar-error_x)
-    public var xError: Error?
+    public var xError: Shared.Error?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-error_y) |
     /// [Python](https://plot.ly/python/reference/#bar-error_y) |
     /// [R](https://plot.ly/r/reference/#bar-error_y)
-    public var yError: Error?
+    public var yError: Shared.Error?
 
     /// Sets the calendar system to use with `x` date data.
     ///
@@ -616,7 +616,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-xcalendar) |
     /// [Python](https://plot.ly/python/reference/#bar-xcalendar) |
     /// [R](https://plot.ly/r/reference/#bar-xcalendar)
-    public var xCalendar: Calendar?
+    public var xCalendar: Shared.Calendar?
 
     /// Sets the calendar system to use with `y` date data.
     ///
@@ -624,7 +624,7 @@ public struct Bar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#bar-ycalendar) |
     /// [Python](https://plot.ly/python/reference/#bar-ycalendar) |
     /// [R](https://plot.ly/r/reference/#bar-ycalendar)
-    public var yCalendar: Calendar?
+    public var yCalendar: Shared.Calendar?
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
     ///
@@ -704,7 +704,7 @@ public struct Bar: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, outSideTextFont: Font? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -46,7 +46,7 @@ public struct Layout: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-font) |
     /// [Python](https://plot.ly/python/reference/#layout-font) |
     /// [R](https://plot.ly/r/reference/#layout-font)
-    public var font: Font?
+    public var font: Shared.Font?
 
     /// # Used By
     /// `Layout.title` |
@@ -70,7 +70,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-font) |
         /// [Python](https://plot.ly/python/reference/#layout-title-font) |
         /// [R](https://plot.ly/r/reference/#layout-title-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Sets the container `x` refers to. 
         ///
@@ -144,7 +144,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-xanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-title-xanchor) |
         /// [R](https://plot.ly/r/reference/#layout-title-xanchor)
-        public var xAnchor: XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor?
     
         /// Sets the title's vertical alignment with respect to its y position. 
         ///
@@ -156,7 +156,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-yanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-title-yanchor) |
         /// [R](https://plot.ly/r/reference/#layout-title-yanchor)
-        public var yAnchor: YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor?
     
         /// Sets the padding of the title. 
         ///
@@ -169,7 +169,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-title-pad) |
         /// [Python](https://plot.ly/python/reference/#layout-title-pad) |
         /// [R](https://plot.ly/r/reference/#layout-title-pad)
-        public var padding: Padding?
+        public var padding: Shared.Padding?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -184,7 +184,7 @@ public struct Layout: Encodable {
             case padding = "pad"
         }
         
-        public init(text: String? = nil, font: Font? = nil, xReference: XAxisReference? = nil, yReference: YAxisReference? = nil, x: Double? = nil, y: Double? = nil, xAnchor: XAutoAnchor? = nil, yAnchor: YAutoAnchor? = nil, padding: Padding? = nil) {
+        public init(text: String? = nil, font: Shared.Font? = nil, xReference: XAxisReference? = nil, yReference: YAxisReference? = nil, x: Double? = nil, y: Double? = nil, xAnchor: Shared.XAutoAnchor? = nil, yAnchor: Shared.YAutoAnchor? = nil, padding: Shared.Padding? = nil) {
             self.text = text
             self.font = font
             self.xReference = xReference
@@ -446,7 +446,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-modebar-orientation) |
         /// [Python](https://plot.ly/python/reference/#layout-modebar-orientation) |
         /// [R](https://plot.ly/r/reference/#layout-modebar-orientation)
-        public var orientation: Orientation?
+        public var orientation: Shared.Orientation?
     
         /// Sets the background color of the modebar.
         ///
@@ -491,7 +491,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(orientation: Orientation? = nil, backgroundColor: Color? = nil, color: Color? = nil, activeColor: Color? = nil, uiRevision: Anything? = nil) {
+        public init(orientation: Shared.Orientation? = nil, backgroundColor: Color? = nil, color: Color? = nil, activeColor: Color? = nil, uiRevision: Anything? = nil) {
             self.orientation = orientation
             self.backgroundColor = backgroundColor
             self.color = color
@@ -746,7 +746,7 @@ public struct Layout: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#layout-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#layout-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     /// When "dragmode" is set to "select", this limits the selection of the drag to horizontal, vertical or diagonal. 
     ///
@@ -1021,7 +1021,7 @@ public struct Layout: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-calendar) |
     /// [Python](https://plot.ly/python/reference/#layout-calendar) |
     /// [R](https://plot.ly/r/reference/#layout-calendar)
-    public var calendar: Calendar?
+    public var calendar: Shared.Calendar?
 
     /// # Used By
     /// `Layout.xAxis` |
@@ -1069,7 +1069,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-title-font) |
             /// [Python](https://plot.ly/python/reference/#layout-xaxis-title-font) |
             /// [R](https://plot.ly/r/reference/#layout-xaxis-title-font)
-            public var font: Font?
+            public var font: Shared.Font?
         
             /// Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. 
             ///
@@ -1084,7 +1084,7 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-xaxis-title-standoff)
             public var standoff: Double?
         
-            public init(text: String? = nil, font: Font? = nil, standoff: Double? = nil) {
+            public init(text: String? = nil, font: Shared.Font? = nil, standoff: Double? = nil) {
                 self.text = text
                 self.font = font
                 self.standoff = standoff
@@ -1131,7 +1131,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-autorange) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-autorange) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-autorange)
-        public var autoRange: AutoRange?
+        public var autoRange: Shared.AutoRange?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
@@ -1142,7 +1142,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangemode) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangemode) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-rangemode)
-        public var rangeMode: RangeMode?
+        public var rangeMode: Shared.RangeMode?
     
         /// Sets the range of this axis. 
         ///
@@ -1300,7 +1300,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickmode) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickmode) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-tickmode)
-        public var tickMode: TickMode?
+        public var tickMode: Shared.TickMode?
     
         /// Specifies the maximum number of ticks for the particular axis. 
         ///
@@ -1378,7 +1378,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-ticks) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-ticks) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-ticks)
-        public var ticks: Ticks?
+        public var ticks: Shared.Ticks?
     
         /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels. 
         ///
@@ -1412,7 +1412,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-mirror) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-mirror) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-mirror)
-        public var mirror: Mirror?
+        public var mirror: Shared.Mirror?
     
         /// Sets the tick length (in px).
         ///
@@ -1551,7 +1551,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickfont) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickfont) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-tickfont)
-        public var tickFont: Font?
+        public var tickFont: Shared.Font?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
@@ -1580,7 +1580,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-showtickprefix) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-showtickprefix) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-showtickprefix)
-        public var showTickPrefix: ShowTickPrefix?
+        public var showTickPrefix: Shared.ShowTickPrefix?
     
         /// Sets a tick label suffix.
         ///
@@ -1596,7 +1596,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-showticksuffix) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-showticksuffix) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-showticksuffix)
-        public var showTickSuffix: ShowTickSuffix?
+        public var showTickSuffix: Shared.ShowTickSuffix?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
@@ -1607,7 +1607,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-showexponent) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-showexponent) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-showexponent)
-        public var showExponent: ShowExponent?
+        public var showExponent: Shared.ShowExponent?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -1618,7 +1618,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-exponentformat) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-exponentformat) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-exponentformat)
-        public var exponentFormat: ExponentFormat?
+        public var exponentFormat: Shared.ExponentFormat?
     
         /// If "true", even 4-digit integers are separated
         ///
@@ -1647,7 +1647,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-tickformatstops-items-tickformatstop) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-tickformatstops-items-tickformatstop) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-tickformatstops-items-tickformatstop)
-        public var tickFormatStops: [TickFormatStop]?
+        public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
         ///
@@ -1840,7 +1840,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-layer) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-layer) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-layer)
-        public var layer: Layer?
+        public var layer: Shared.Layer?
     
         /// Sets the domain of this axis (in plot fraction).
         ///
@@ -1876,7 +1876,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-categoryorder) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-categoryorder)
-        public var categoryOrder: CategoryOrder?
+        public var categoryOrder: Shared.CategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
@@ -2220,7 +2220,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-xanchor) |
             /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-xanchor) |
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-xanchor)
-            public var xAnchor: XAutoAnchor?
+            public var xAnchor: Shared.XAutoAnchor?
         
             /// Sets the y position (in normalized coordinates) of the range selector.
             ///
@@ -2236,7 +2236,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-yanchor) |
             /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-yanchor) |
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-yanchor)
-            public var yAnchor: YAutoAnchor?
+            public var yAnchor: Shared.YAutoAnchor?
         
             /// Sets the font of the range selector button text.
             ///
@@ -2244,7 +2244,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-rangeselector-font) |
             /// [Python](https://plot.ly/python/reference/#layout-xaxis-rangeselector-font) |
             /// [R](https://plot.ly/r/reference/#layout-xaxis-rangeselector-font)
-            public var font: Font?
+            public var font: Shared.Font?
         
             /// Sets the background color of the range selector buttons.
             ///
@@ -2293,7 +2293,7 @@ public struct Layout: Encodable {
                 case borderWidth = "borderwidth"
             }
             
-            public init(visible: Bool? = nil, buttons: [Button]? = nil, x: Double? = nil, xAnchor: XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, font: Font? = nil, backgroundColor: Color? = nil, activeColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil) {
+            public init(visible: Bool? = nil, buttons: [Button]? = nil, x: Double? = nil, xAnchor: Shared.XAutoAnchor? = nil, y: Double? = nil, yAnchor: Shared.YAutoAnchor? = nil, font: Shared.Font? = nil, backgroundColor: Color? = nil, activeColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil) {
                 self.visible = visible
                 self.buttons = buttons
                 self.x = x
@@ -2323,7 +2323,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-calendar) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-calendar) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-calendar)
-        public var calendar: Calendar?
+        public var calendar: Shared.Calendar?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -2398,7 +2398,7 @@ public struct Layout: Encodable {
             case calendar
         }
         
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar? = nil) {
+        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Shared.Calendar? = nil) {
             self.visible = visible
             self.color = color
             self.title = title
@@ -2523,7 +2523,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-title-font) |
             /// [Python](https://plot.ly/python/reference/#layout-yaxis-title-font) |
             /// [R](https://plot.ly/r/reference/#layout-yaxis-title-font)
-            public var font: Font?
+            public var font: Shared.Font?
         
             /// Sets the standoff distance (in px) between the axis labels and the title text The default value is a function of the axis tick labels, the title `font.size` and the axis `linewidth`. 
             ///
@@ -2538,7 +2538,7 @@ public struct Layout: Encodable {
             /// [R](https://plot.ly/r/reference/#layout-yaxis-title-standoff)
             public var standoff: Double?
         
-            public init(text: String? = nil, font: Font? = nil, standoff: Double? = nil) {
+            public init(text: String? = nil, font: Shared.Font? = nil, standoff: Double? = nil) {
                 self.text = text
                 self.font = font
                 self.standoff = standoff
@@ -2585,7 +2585,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-autorange) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-autorange) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-autorange)
-        public var autoRange: AutoRange?
+        public var autoRange: Shared.AutoRange?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
@@ -2596,7 +2596,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-rangemode) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-rangemode) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-rangemode)
-        public var rangeMode: RangeMode?
+        public var rangeMode: Shared.RangeMode?
     
         /// Sets the range of this axis. 
         ///
@@ -2754,7 +2754,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickmode) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickmode) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-tickmode)
-        public var tickMode: TickMode?
+        public var tickMode: Shared.TickMode?
     
         /// Specifies the maximum number of ticks for the particular axis. 
         ///
@@ -2832,7 +2832,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-ticks) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-ticks) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-ticks)
-        public var ticks: Ticks?
+        public var ticks: Shared.Ticks?
     
         /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels. 
         ///
@@ -2866,7 +2866,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-mirror) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-mirror) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-mirror)
-        public var mirror: Mirror?
+        public var mirror: Shared.Mirror?
     
         /// Sets the tick length (in px).
         ///
@@ -3005,7 +3005,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickfont) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickfont) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-tickfont)
-        public var tickFont: Font?
+        public var tickFont: Shared.Font?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
@@ -3034,7 +3034,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-showtickprefix) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-showtickprefix) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-showtickprefix)
-        public var showTickPrefix: ShowTickPrefix?
+        public var showTickPrefix: Shared.ShowTickPrefix?
     
         /// Sets a tick label suffix.
         ///
@@ -3050,7 +3050,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-showticksuffix) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-showticksuffix) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-showticksuffix)
-        public var showTickSuffix: ShowTickSuffix?
+        public var showTickSuffix: Shared.ShowTickSuffix?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
@@ -3061,7 +3061,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-showexponent) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-showexponent) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-showexponent)
-        public var showExponent: ShowExponent?
+        public var showExponent: Shared.ShowExponent?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -3072,7 +3072,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-exponentformat) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-exponentformat) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-exponentformat)
-        public var exponentFormat: ExponentFormat?
+        public var exponentFormat: Shared.ExponentFormat?
     
         /// If "true", even 4-digit integers are separated
         ///
@@ -3101,7 +3101,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-tickformatstops-items-tickformatstop) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-tickformatstops-items-tickformatstop) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-tickformatstops-items-tickformatstop)
-        public var tickFormatStops: [TickFormatStop]?
+        public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
         ///
@@ -3294,7 +3294,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-layer) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-layer) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-layer)
-        public var layer: Layer?
+        public var layer: Shared.Layer?
     
         /// Sets the domain of this axis (in plot fraction).
         ///
@@ -3330,7 +3330,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-categoryorder) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-categoryorder)
-        public var categoryOrder: CategoryOrder?
+        public var categoryOrder: Shared.CategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
@@ -3361,7 +3361,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-calendar) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-calendar) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-calendar)
-        public var calendar: Calendar?
+        public var calendar: Shared.Calendar?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -3434,7 +3434,7 @@ public struct Layout: Encodable {
             case calendar
         }
         
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar: Calendar? = nil) {
+        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar: Shared.Calendar? = nil) {
             self.visible = visible
             self.color = color
             self.title = title
@@ -3519,7 +3519,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-ternary-domain) |
         /// [R](https://plot.ly/r/reference/#layout-ternary-domain)
-        public var domain: Domain?
+        public var domain: Shared.Domain?
     
         /// Set the background color of the subplot
         ///
@@ -3545,7 +3545,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-title)
-            public var title: Title?
+            public var title: Shared.Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
             ///
@@ -3570,7 +3570,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -3648,7 +3648,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -3691,7 +3691,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -3707,7 +3707,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -3726,7 +3726,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -3737,7 +3737,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -3753,7 +3753,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -3784,7 +3784,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -3861,7 +3861,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-layer)
-            public var layer: Layer?
+            public var layer: Shared.Layer?
         
             /// The minimum value visible on this axis. 
             ///
@@ -3922,7 +3922,7 @@ public struct Layout: Encodable {
                 case uiRevision = "uirevision"
             }
             
-            public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -3974,7 +3974,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-title)
-            public var title: Title?
+            public var title: Shared.Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
             ///
@@ -3999,7 +3999,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -4077,7 +4077,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -4120,7 +4120,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -4136,7 +4136,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -4155,7 +4155,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -4166,7 +4166,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -4182,7 +4182,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -4213,7 +4213,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -4290,7 +4290,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-layer)
-            public var layer: Layer?
+            public var layer: Shared.Layer?
         
             /// The minimum value visible on this axis. 
             ///
@@ -4351,7 +4351,7 @@ public struct Layout: Encodable {
                 case uiRevision = "uirevision"
             }
             
-            public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -4403,7 +4403,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-title)
-            public var title: Title?
+            public var title: Shared.Title?
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
             ///
@@ -4428,7 +4428,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -4506,7 +4506,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -4549,7 +4549,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -4565,7 +4565,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -4584,7 +4584,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -4595,7 +4595,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -4611,7 +4611,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -4642,7 +4642,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -4719,7 +4719,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-layer)
-            public var layer: Layer?
+            public var layer: Shared.Layer?
         
             /// The minimum value visible on this axis. 
             ///
@@ -4780,7 +4780,7 @@ public struct Layout: Encodable {
                 case uiRevision = "uirevision"
             }
             
-            public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -4845,7 +4845,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(domain: Domain? = nil, backgroundColor: Color? = nil, sum: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, cAxis: CAxis? = nil, uiRevision: Anything? = nil) {
+        public init(domain: Shared.Domain? = nil, backgroundColor: Color? = nil, sum: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, cAxis: CAxis? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.backgroundColor = backgroundColor
             self.sum = sum
@@ -5064,7 +5064,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-scene-domain) |
         /// [R](https://plot.ly/r/reference/#layout-scene-domain)
-        public var domain: Domain?
+        public var domain: Shared.Domain?
     
         /// If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges. 
         ///
@@ -5232,7 +5232,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-categoryorder)
-            public var categoryOrder: CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -5249,7 +5249,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-title)
-            public var title: Title?
+            public var title: Shared.Title?
         
             /// Sets the axis type. 
             ///
@@ -5284,7 +5284,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-autorange) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-autorange) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-autorange)
-            public var autoRange: AutoRange?
+            public var autoRange: Shared.AutoRange?
         
             /// If *normal*, the range is computed in relation to the extrema of the input data. 
             ///
@@ -5295,7 +5295,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-rangemode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-rangemode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-rangemode)
-            public var rangeMode: RangeMode?
+            public var rangeMode: Shared.RangeMode?
         
             /// Sets the range of this axis. 
             ///
@@ -5323,7 +5323,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -5401,7 +5401,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. 
             ///
@@ -5413,7 +5413,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-mirror) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-mirror) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-mirror)
-            public var mirror: Mirror?
+            public var mirror: Shared.Mirror?
         
             /// Sets the tick length (in px).
             ///
@@ -5453,7 +5453,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -5482,7 +5482,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label suffix.
             ///
@@ -5498,7 +5498,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// If *all*, all exponents are shown besides their significands. 
             ///
@@ -5509,7 +5509,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -5520,7 +5520,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -5549,7 +5549,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -5650,7 +5650,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-calendar) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-calendar) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-calendar)
-            public var calendar: Calendar?
+            public var calendar: Shared.Calendar?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -5706,7 +5706,7 @@ public struct Layout: Encodable {
                 case calendar
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -5862,7 +5862,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-categoryorder)
-            public var categoryOrder: CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -5879,7 +5879,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-title)
-            public var title: Title?
+            public var title: Shared.Title?
         
             /// Sets the axis type. 
             ///
@@ -5914,7 +5914,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-autorange) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-autorange) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-autorange)
-            public var autoRange: AutoRange?
+            public var autoRange: Shared.AutoRange?
         
             /// If *normal*, the range is computed in relation to the extrema of the input data. 
             ///
@@ -5925,7 +5925,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-rangemode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-rangemode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-rangemode)
-            public var rangeMode: RangeMode?
+            public var rangeMode: Shared.RangeMode?
         
             /// Sets the range of this axis. 
             ///
@@ -5953,7 +5953,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -6031,7 +6031,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. 
             ///
@@ -6043,7 +6043,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-mirror) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-mirror) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-mirror)
-            public var mirror: Mirror?
+            public var mirror: Shared.Mirror?
         
             /// Sets the tick length (in px).
             ///
@@ -6083,7 +6083,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -6112,7 +6112,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label suffix.
             ///
@@ -6128,7 +6128,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// If *all*, all exponents are shown besides their significands. 
             ///
@@ -6139,7 +6139,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -6150,7 +6150,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -6179,7 +6179,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -6280,7 +6280,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-calendar) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-calendar) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-calendar)
-            public var calendar: Calendar?
+            public var calendar: Shared.Calendar?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -6336,7 +6336,7 @@ public struct Layout: Encodable {
                 case calendar
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -6492,7 +6492,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-categoryorder)
-            public var categoryOrder: CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -6509,7 +6509,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-title)
-            public var title: Title?
+            public var title: Shared.Title?
         
             /// Sets the axis type. 
             ///
@@ -6544,7 +6544,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-autorange) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-autorange) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-autorange)
-            public var autoRange: AutoRange?
+            public var autoRange: Shared.AutoRange?
         
             /// If *normal*, the range is computed in relation to the extrema of the input data. 
             ///
@@ -6555,7 +6555,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-rangemode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-rangemode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-rangemode)
-            public var rangeMode: RangeMode?
+            public var rangeMode: Shared.RangeMode?
         
             /// Sets the range of this axis. 
             ///
@@ -6583,7 +6583,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -6661,7 +6661,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting area. 
             ///
@@ -6673,7 +6673,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-mirror) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-mirror) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-mirror)
-            public var mirror: Mirror?
+            public var mirror: Shared.Mirror?
         
             /// Sets the tick length (in px).
             ///
@@ -6713,7 +6713,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -6742,7 +6742,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label suffix.
             ///
@@ -6758,7 +6758,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// If *all*, all exponents are shown besides their significands. 
             ///
@@ -6769,7 +6769,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -6780,7 +6780,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -6809,7 +6809,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -6910,7 +6910,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-calendar) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-calendar) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-calendar)
-            public var calendar: Calendar?
+            public var calendar: Shared.Calendar?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -6966,7 +6966,7 @@ public struct Layout: Encodable {
                 case calendar
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -7133,7 +7133,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-xanchor) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-xanchor) |
             /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-xanchor)
-            public var xAnchor: XAutoAnchor?
+            public var xAnchor: Shared.XAutoAnchor?
         
             /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
             ///
@@ -7154,7 +7154,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-yanchor) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-yanchor) |
             /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-yanchor)
-            public var yAnchor: YAutoAnchor?
+            public var yAnchor: Shared.YAutoAnchor?
         
             /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
             ///
@@ -7189,7 +7189,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-font) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-font) |
             /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-font)
-            public var font: Font?
+            public var font: Shared.Font?
         
             /// Sets an explicit width for the text box. 
             ///
@@ -7229,7 +7229,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-align) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-align) |
             /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-align)
-            public var align: HorizontalAlign?
+            public var align: Shared.HorizontalAlign?
         
             /// Sets the vertical alignment of the `text` within the box. 
             ///
@@ -7239,7 +7239,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-valign) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-valign) |
             /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-valign)
-            public var verticalAlign: VerticalAlign?
+            public var verticalAlign: Shared.VerticalAlign?
         
             /// Sets the background color of the annotation.
             ///
@@ -7429,7 +7429,7 @@ public struct Layout: Encodable {
                 /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-annotations-items-annotation-hoverlabel-font) |
                 /// [Python](https://plot.ly/python/reference/#layout-scene-annotations-items-annotation-hoverlabel-font) |
                 /// [R](https://plot.ly/r/reference/#layout-scene-annotations-items-annotation-hoverlabel-font)
-                public var font: Font?
+                public var font: Shared.Font?
             
                 /// Plotly compatible property encoding
                 enum CodingKeys: String, CodingKey {
@@ -7438,7 +7438,7 @@ public struct Layout: Encodable {
                     case font
                 }
                 
-                public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil) {
+                public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Shared.Font? = nil) {
                     self.backgroundColor = backgroundColor
                     self.borderColor = borderColor
                     self.font = font
@@ -7529,7 +7529,7 @@ public struct Layout: Encodable {
                 case templateItemName = "templateitemname"
             }
             
-            public init(visible: Bool? = nil, x: Anything? = nil, y: Anything? = nil, z: Anything? = nil, ax: Double? = nil, ay: Double? = nil, xAnchor: XAutoAnchor? = nil, xShift: Double? = nil, yAnchor: YAutoAnchor? = nil, yShift: Double? = nil, text: String? = nil, textAngle: Angle? = nil, font: Font? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: HorizontalAlign? = nil, verticalAlign: VerticalAlign? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, hoverText: String? = nil, hoverLabel: HoverLabel? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
+            public init(visible: Bool? = nil, x: Anything? = nil, y: Anything? = nil, z: Anything? = nil, ax: Double? = nil, ay: Double? = nil, xAnchor: Shared.XAutoAnchor? = nil, xShift: Double? = nil, yAnchor: Shared.YAutoAnchor? = nil, yShift: Double? = nil, text: String? = nil, textAngle: Angle? = nil, font: Shared.Font? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: Shared.HorizontalAlign? = nil, verticalAlign: Shared.VerticalAlign? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, hoverText: String? = nil, hoverLabel: HoverLabel? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
                 self.visible = visible
                 self.x = x
                 self.y = y
@@ -7592,7 +7592,7 @@ public struct Layout: Encodable {
             case annotations = "annotation"
         }
         
-        public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Domain? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, zAxis: ZAxis? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations: [Annotation]? = nil) {
+        public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Shared.Domain? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, zAxis: ZAxis? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations: [Annotation]? = nil) {
             self.backgroundColor = backgroundColor
             self.camera = camera
             self.domain = domain
@@ -7622,7 +7622,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-geo-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-geo-domain) |
         /// [R](https://plot.ly/r/reference/#layout-geo-domain)
-        public var domain: Domain?
+        public var domain: Shared.Domain?
     
         /// Sets the resolution of the base layers. 
         ///
@@ -8206,7 +8206,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(domain: Domain? = nil, resolution: Resolution? = nil, scope: Scope? = nil, projection: Projection? = nil, center: Center? = nil, showCoastLines: Bool? = nil, coastLineColor: Color? = nil, coastLineWidth: Double? = nil, showLand: Bool? = nil, landColor: Color? = nil, showOcean: Bool? = nil, oceanColor: Color? = nil, showLakes: Bool? = nil, lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor: Color? = nil, riverWidth: Double? = nil, showCountries: Bool? = nil, countryColor: Color? = nil, countryWidth: Double? = nil, showSubUnits: Bool? = nil, subUnitColor: Color? = nil, subUnitWidth: Double? = nil, showFrame: Bool? = nil, frameColor: Color? = nil, frameWidth: Double? = nil, backgroundColor: Color? = nil, longitudeAxis: LongitudeAxis? = nil, latitudeAxis: LatitudeAxis? = nil, uiRevision: Anything? = nil) {
+        public init(domain: Shared.Domain? = nil, resolution: Resolution? = nil, scope: Scope? = nil, projection: Projection? = nil, center: Center? = nil, showCoastLines: Bool? = nil, coastLineColor: Color? = nil, coastLineWidth: Double? = nil, showLand: Bool? = nil, landColor: Color? = nil, showOcean: Bool? = nil, oceanColor: Color? = nil, showLakes: Bool? = nil, lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor: Color? = nil, riverWidth: Double? = nil, showCountries: Bool? = nil, countryColor: Color? = nil, countryWidth: Double? = nil, showSubUnits: Bool? = nil, subUnitColor: Color? = nil, subUnitWidth: Double? = nil, showFrame: Bool? = nil, frameColor: Color? = nil, frameWidth: Double? = nil, backgroundColor: Color? = nil, longitudeAxis: LongitudeAxis? = nil, latitudeAxis: LatitudeAxis? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.resolution = resolution
             self.scope = scope
@@ -8254,7 +8254,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-mapbox-domain) |
         /// [R](https://plot.ly/r/reference/#layout-mapbox-domain)
-        public var domain: Domain?
+        public var domain: Shared.Domain?
     
         /// Sets the mapbox access token to be used for this mapbox map. 
         ///
@@ -8656,7 +8656,7 @@ public struct Layout: Encodable {
                 /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-textfont) |
                 /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-textfont) |
                 /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-textfont)
-                public var textFont: Font?
+                public var textFont: Shared.Font?
             
                 /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
                 ///
@@ -8664,7 +8664,7 @@ public struct Layout: Encodable {
                 /// [JavaScript](https://plot.ly/javascript/reference/#layout-mapbox-layers-items-layer-symbol-textposition) |
                 /// [Python](https://plot.ly/python/reference/#layout-mapbox-layers-items-layer-symbol-textposition) |
                 /// [R](https://plot.ly/r/reference/#layout-mapbox-layers-items-layer-symbol-textposition)
-                public var textPosition: TextPosition?
+                public var textPosition: Shared.TextPosition?
             
                 /// Plotly compatible property encoding
                 enum CodingKeys: String, CodingKey {
@@ -8676,7 +8676,7 @@ public struct Layout: Encodable {
                     case textPosition = "textposition"
                 }
                 
-                public init(icon: String? = nil, iconSize: Double? = nil, text: String? = nil, placement: Placement? = nil, textFont: Font? = nil, textPosition: TextPosition? = nil) {
+                public init(icon: String? = nil, iconSize: Double? = nil, text: String? = nil, placement: Placement? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil) {
                     self.icon = icon
                     self.iconSize = iconSize
                     self.text = text
@@ -8791,7 +8791,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(domain: Domain? = nil, accessToken: String? = nil, style: Anything? = nil, center: Center? = nil, zoom: Double? = nil, bearing: Double? = nil, pitch: Double? = nil, layers: [Layer]? = nil, uiRevision: Anything? = nil) {
+        public init(domain: Shared.Domain? = nil, accessToken: String? = nil, style: Anything? = nil, center: Center? = nil, zoom: Double? = nil, bearing: Double? = nil, pitch: Double? = nil, layers: [Layer]? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.accessToken = accessToken
             self.style = style
@@ -8818,7 +8818,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-domain) |
         /// [Python](https://plot.ly/python/reference/#layout-polar-domain) |
         /// [R](https://plot.ly/r/reference/#layout-polar-domain)
-        public var domain: Domain?
+        public var domain: Shared.Domain?
     
         /// Sets angular span of this polar subplot with two angles (in degrees). 
         ///
@@ -8893,7 +8893,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-autorange) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-autorange) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-autorange)
-            public var autoRange: AutoRange?
+            public var autoRange: Shared.AutoRange?
         
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range is non-negative, regardless of the input data. 
             ///
@@ -8948,7 +8948,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-categoryorder)
-            public var categoryOrder: CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -8992,7 +8992,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-title) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-title) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-title)
-            public var title: Title?
+            public var title: Shared.Title?
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -9091,7 +9091,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -9169,7 +9169,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -9212,7 +9212,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -9228,7 +9228,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -9247,7 +9247,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -9258,7 +9258,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -9274,7 +9274,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -9305,7 +9305,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the layer on which this axis is displayed. 
             ///
@@ -9318,7 +9318,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-layer)
-            public var layer: Layer?
+            public var layer: Shared.Layer?
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis. 
             ///
@@ -9329,7 +9329,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-calendar) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-calendar) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-calendar)
-            public var calendar: Calendar?
+            public var calendar: Shared.Calendar?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -9378,7 +9378,7 @@ public struct Layout: Encodable {
                 case calendar
             }
             
-            public init(visible: Bool? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side? = nil, title: Title? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, layer: Layer? = nil, calendar: Calendar? = nil) {
+            public init(visible: Bool? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side? = nil, title: Shared.Title? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, layer: Shared.Layer? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.type = type
                 self.autoRange = autoRange
@@ -9483,7 +9483,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-categoryorder) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-categoryorder) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-categoryorder)
-            public var categoryOrder: CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder?
         
             /// Sets the order in which categories on this axis appear. 
             ///
@@ -9649,7 +9649,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickmode) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickmode) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickmode)
-            public var tickMode: TickMode?
+            public var tickMode: Shared.TickMode?
         
             /// Specifies the maximum number of ticks for the particular axis. 
             ///
@@ -9727,7 +9727,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-ticks) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-ticks) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-ticks)
-            public var ticks: Ticks?
+            public var ticks: Shared.Ticks?
         
             /// Sets the tick length (in px).
             ///
@@ -9770,7 +9770,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-showtickprefix) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-showtickprefix) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-showtickprefix)
-            public var showTickPrefix: ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix?
         
             /// Sets a tick label prefix.
             ///
@@ -9786,7 +9786,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-showticksuffix) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-showticksuffix) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-showticksuffix)
-            public var showTickSuffix: ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix?
         
             /// Sets a tick label suffix.
             ///
@@ -9805,7 +9805,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-showexponent) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-showexponent) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-showexponent)
-            public var showExponent: ShowExponent?
+            public var showExponent: Shared.ShowExponent?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -9816,7 +9816,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-exponentformat) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-exponentformat) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-exponentformat)
-            public var exponentFormat: ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat?
         
             /// If "true", even 4-digit integers are separated
             ///
@@ -9832,7 +9832,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickfont) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickfont) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickfont)
-            public var tickFont: Font?
+            public var tickFont: Shared.Font?
         
             /// Sets the angle of the tick labels with respect to the horizontal. 
             ///
@@ -9863,7 +9863,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-tickformatstops-items-tickformatstop)
-            public var tickFormatStops: [TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]?
         
             /// Sets the layer on which this axis is displayed. 
             ///
@@ -9876,7 +9876,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-layer) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-layer) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-layer)
-            public var layer: Layer?
+            public var layer: Shared.Layer?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -9922,7 +9922,7 @@ public struct Layout: Encodable {
                 case layer
             }
             
-            public init(visible: Bool? = nil, type: `Type`? = nil, categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction: Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, layer: Layer? = nil) {
+            public init(visible: Bool? = nil, type: `Type`? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction: Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, layer: Shared.Layer? = nil) {
                 self.visible = visible
                 self.type = type
                 self.categoryOrder = categoryOrder
@@ -10018,7 +10018,7 @@ public struct Layout: Encodable {
             case uiRevision = "uirevision"
         }
         
-        public init(domain: Domain? = nil, sector: InfoArray? = nil, hole: Double? = nil, backgroundColor: Color? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, gridShape: GridShape? = nil, uiRevision: Anything? = nil) {
+        public init(domain: Shared.Domain? = nil, sector: InfoArray? = nil, hole: Double? = nil, backgroundColor: Color? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, gridShape: GridShape? = nil, uiRevision: Anything? = nil) {
             self.domain = domain
             self.sector = sector
             self.hole = hole
@@ -10401,7 +10401,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-font) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-font) |
         /// [R](https://plot.ly/r/reference/#layout-legend-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Sets the orientation of the legend.
         ///
@@ -10409,7 +10409,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-orientation) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-orientation) |
         /// [R](https://plot.ly/r/reference/#layout-legend-orientation)
-        public var orientation: Orientation?
+        public var orientation: Shared.Orientation?
     
         /// Determines the order at which the legend items are displayed. 
         ///
@@ -10544,7 +10544,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-xanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-xanchor) |
         /// [R](https://plot.ly/r/reference/#layout-legend-xanchor)
-        public var xAnchor: XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor?
     
         /// Sets the y position (in normalized coordinates) of the legend. 
         ///
@@ -10568,7 +10568,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-yanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-yanchor) |
         /// [R](https://plot.ly/r/reference/#layout-legend-yanchor)
-        public var yAnchor: YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor?
     
         /// Controls persistence of legend-driven changes in trace and pie label visibility. 
         ///
@@ -10586,7 +10586,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-legend-valign) |
         /// [Python](https://plot.ly/python/reference/#layout-legend-valign) |
         /// [R](https://plot.ly/r/reference/#layout-legend-valign)
-        public var verticalAlign: VerticalAlign?
+        public var verticalAlign: Shared.VerticalAlign?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -10608,7 +10608,7 @@ public struct Layout: Encodable {
             case verticalAlign = "valign"
         }
         
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, font: Font? = nil, orientation: Orientation? = nil, traceOrder: TraceOrder? = nil, traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemClick: ItemClick? = nil, itemDoubleClick: ItemDoubleClick? = nil, x: Double? = nil, xAnchor: XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, uiRevision: Anything? = nil, verticalAlign: VerticalAlign? = nil) {
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, font: Shared.Font? = nil, orientation: Shared.Orientation? = nil, traceOrder: TraceOrder? = nil, traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemClick: ItemClick? = nil, itemDoubleClick: ItemDoubleClick? = nil, x: Double? = nil, xAnchor: Shared.XAutoAnchor? = nil, y: Double? = nil, yAnchor: Shared.YAutoAnchor? = nil, uiRevision: Anything? = nil, verticalAlign: Shared.VerticalAlign? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.borderWidth = borderWidth
@@ -10670,7 +10670,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-font) |
         /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-font) |
         /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Sets an explicit width for the text box. 
         ///
@@ -10710,7 +10710,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-align) |
         /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-align) |
         /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-align)
-        public var align: HorizontalAlign?
+        public var align: Shared.HorizontalAlign?
     
         /// Sets the vertical alignment of the `text` within the box. 
         ///
@@ -10720,7 +10720,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-valign) |
         /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-valign) |
         /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-valign)
-        public var verticalAlign: VerticalAlign?
+        public var verticalAlign: Shared.VerticalAlign?
     
         /// Sets the background color of the annotation.
         ///
@@ -10951,7 +10951,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xref) |
         /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xref) |
         /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xref)
-        public var xReference: XAxisReference?
+        public var xReference: Shared.XAxisReference?
     
         /// Sets the annotation's x position. 
         ///
@@ -10978,7 +10978,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-xanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-xanchor) |
         /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-xanchor)
-        public var xAnchor: XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor?
     
         /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative) by this many pixels.
         ///
@@ -10998,7 +10998,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yref) |
         /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yref) |
         /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yref)
-        public var yReference: YAxisReference?
+        public var yReference: Shared.YAxisReference?
     
         /// Sets the annotation's y position. 
         ///
@@ -11025,7 +11025,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-yanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-yanchor) |
         /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-yanchor)
-        public var yAnchor: YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor?
     
         /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this many pixels.
         ///
@@ -11125,7 +11125,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-annotations-items-annotation-hoverlabel-font) |
             /// [Python](https://plot.ly/python/reference/#layout-annotations-items-annotation-hoverlabel-font) |
             /// [R](https://plot.ly/r/reference/#layout-annotations-items-annotation-hoverlabel-font)
-            public var font: Font?
+            public var font: Shared.Font?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -11134,7 +11134,7 @@ public struct Layout: Encodable {
                 case font
             }
             
-            public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil) {
+            public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Shared.Font? = nil) {
                 self.backgroundColor = backgroundColor
                 self.borderColor = borderColor
                 self.font = font
@@ -11231,7 +11231,7 @@ public struct Layout: Encodable {
             case templateItemName = "templateitemname"
         }
         
-        public init(visible: Bool? = nil, text: String? = nil, textAngle: Angle? = nil, font: Font? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: HorizontalAlign? = nil, verticalAlign: VerticalAlign? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, ax: Anything? = nil, ay: Anything? = nil, axReference: AxReference? = nil, ayReference: AyReference? = nil, xReference: XAxisReference? = nil, x: Anything? = nil, xAnchor: XAutoAnchor? = nil, xShift: Double? = nil, yReference: YAxisReference? = nil, y: Anything? = nil, yAnchor: YAutoAnchor? = nil, yShift: Double? = nil, clickToShow: ClickToShow? = nil, xClick: Anything? = nil, yClick: Anything? = nil, hoverText: String? = nil, hoverLabel: HoverLabel? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
+        public init(visible: Bool? = nil, text: String? = nil, textAngle: Angle? = nil, font: Shared.Font? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil, align: Shared.HorizontalAlign? = nil, verticalAlign: Shared.VerticalAlign? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil, showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? = nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil, arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, ax: Anything? = nil, ay: Anything? = nil, axReference: AxReference? = nil, ayReference: AyReference? = nil, xReference: Shared.XAxisReference? = nil, x: Anything? = nil, xAnchor: Shared.XAutoAnchor? = nil, xShift: Double? = nil, yReference: Shared.YAxisReference? = nil, y: Anything? = nil, yAnchor: Shared.YAutoAnchor? = nil, yShift: Double? = nil, clickToShow: ClickToShow? = nil, xClick: Anything? = nil, yClick: Anything? = nil, hoverText: String? = nil, hoverLabel: HoverLabel? = nil, captureEvents: Bool? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.text = text
             self.textAngle = textAngle
@@ -11355,7 +11355,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-xref) |
         /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-xref) |
         /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-xref)
-        public var xReference: XAxisReference?
+        public var xReference: Shared.XAxisReference?
     
         /// Sets the shapes's sizing mode along the x axis. 
         ///
@@ -11427,7 +11427,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-yref) |
         /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-yref) |
         /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-yref)
-        public var yReference: YAxisReference?
+        public var yReference: Shared.YAxisReference?
     
         /// Sets the shapes's sizing mode along the y axis. 
         ///
@@ -11521,7 +11521,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-shapes-items-shape-line) |
         /// [Python](https://plot.ly/python/reference/#layout-shapes-items-shape-line) |
         /// [R](https://plot.ly/r/reference/#layout-shapes-items-shape-line)
-        public var line: DashedLine?
+        public var line: Shared.DashedLine?
     
         /// Sets the color filling the shape's interior.
         ///
@@ -11580,7 +11580,7 @@ public struct Layout: Encodable {
             case templateItemName = "templateitemname"
         }
         
-        public init(visible: Bool? = nil, type: `Type`? = nil, layer: Layer? = nil, xReference: XAxisReference? = nil, xSizeMode: XSizeMode? = nil, xAnchor: Anything? = nil, x0: Anything? = nil, x1: Anything? = nil, yReference: YAxisReference? = nil, ySizeMode: YSizeMode? = nil, yAnchor: Anything? = nil, y0: Anything? = nil, y1: Anything? = nil, path: String? = nil, opacity: Double? = nil, line: DashedLine? = nil, fillColor: Color? = nil, name: String? = nil, templateItemName: String? = nil) {
+        public init(visible: Bool? = nil, type: `Type`? = nil, layer: Layer? = nil, xReference: Shared.XAxisReference? = nil, xSizeMode: XSizeMode? = nil, xAnchor: Anything? = nil, x0: Anything? = nil, x1: Anything? = nil, yReference: Shared.YAxisReference? = nil, ySizeMode: YSizeMode? = nil, yAnchor: Anything? = nil, y0: Anything? = nil, y1: Anything? = nil, path: String? = nil, opacity: Double? = nil, line: Shared.DashedLine? = nil, fillColor: Color? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.type = type
             self.layer = layer
@@ -11726,7 +11726,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-xanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-images-items-image-xanchor) |
         /// [R](https://plot.ly/r/reference/#layout-images-items-image-xanchor)
-        public var xAnchor: XAnchor?
+        public var xAnchor: Shared.XAnchor?
     
         /// Sets the anchor for the y position.
         ///
@@ -11734,7 +11734,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-yanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-images-items-image-yanchor) |
         /// [R](https://plot.ly/r/reference/#layout-images-items-image-yanchor)
-        public var yAnchor: YAnchor?
+        public var yAnchor: Shared.YAnchor?
     
         /// Sets the images's x coordinate axis. 
         ///
@@ -11746,7 +11746,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-xref) |
         /// [Python](https://plot.ly/python/reference/#layout-images-items-image-xref) |
         /// [R](https://plot.ly/r/reference/#layout-images-items-image-xref)
-        public var xReference: XAxisReference?
+        public var xReference: Shared.XAxisReference?
     
         /// Sets the images's y coordinate axis. 
         ///
@@ -11758,7 +11758,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-images-items-image-yref) |
         /// [Python](https://plot.ly/python/reference/#layout-images-items-image-yref) |
         /// [R](https://plot.ly/r/reference/#layout-images-items-image-yref)
-        public var yReference: YAxisReference?
+        public var yReference: Shared.YAxisReference?
     
         /// When used in a template, named items are created in the output figure in addition to any items the figure already has in this array. 
         ///
@@ -11805,7 +11805,7 @@ public struct Layout: Encodable {
             case templateItemName = "templateitemname"
         }
         
-        public init(visible: Bool? = nil, source: String? = nil, layer: Layer? = nil, xSize: Double? = nil, ySize: Double? = nil, sizing: Sizing? = nil, opacity: Double? = nil, x: Anything? = nil, y: Anything? = nil, xAnchor: XAnchor? = nil, yAnchor: YAnchor? = nil, xReference: XAxisReference? = nil, yReference: YAxisReference? = nil, name: String? = nil, templateItemName: String? = nil) {
+        public init(visible: Bool? = nil, source: String? = nil, layer: Layer? = nil, xSize: Double? = nil, ySize: Double? = nil, sizing: Sizing? = nil, opacity: Double? = nil, x: Anything? = nil, y: Anything? = nil, xAnchor: Shared.XAnchor? = nil, yAnchor: Shared.YAnchor? = nil, xReference: Shared.XAxisReference? = nil, yReference: Shared.YAxisReference? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.source = source
             self.layer = layer
@@ -12046,7 +12046,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-xanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-xanchor) |
         /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-xanchor)
-        public var xAnchor: XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor?
     
         /// Sets the y position (in normalized coordinates) of the update menu.
         ///
@@ -12062,7 +12062,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-yanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-yanchor) |
         /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-yanchor)
-        public var yAnchor: YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor?
     
         /// Sets the padding around the buttons or dropdown menu.
         ///
@@ -12070,7 +12070,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-pad) |
         /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-pad) |
         /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-pad)
-        public var padding: Padding?
+        public var padding: Shared.Padding?
     
         /// Sets the font of the update menu button text.
         ///
@@ -12078,7 +12078,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-updatemenus-items-updatemenu-font) |
         /// [Python](https://plot.ly/python/reference/#layout-updatemenus-items-updatemenu-font) |
         /// [R](https://plot.ly/r/reference/#layout-updatemenus-items-updatemenu-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Sets the background color of the update menu buttons.
         ///
@@ -12151,7 +12151,7 @@ public struct Layout: Encodable {
             case templateItemName = "templateitemname"
         }
         
-        public init(visible: Bool? = nil, type: `Type`? = nil, direction: Direction? = nil, active: Int? = nil, showActive: Bool? = nil, buttons: [Button]? = nil, x: Double? = nil, xAnchor: XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, padding: Padding? = nil, font: Font? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
+        public init(visible: Bool? = nil, type: `Type`? = nil, direction: Direction? = nil, active: Int? = nil, showActive: Bool? = nil, buttons: [Button]? = nil, x: Double? = nil, xAnchor: Shared.XAutoAnchor? = nil, y: Double? = nil, yAnchor: Shared.YAutoAnchor? = nil, padding: Shared.Padding? = nil, font: Shared.Font? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.type = type
             self.direction = direction
@@ -12338,7 +12338,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-lenmode) |
         /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-lenmode) |
         /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-lenmode)
-        public var lengthMode: LengthMode?
+        public var lengthMode: Shared.LengthMode?
     
         /// Sets the length of the slider This measure excludes the padding of both ends. 
         ///
@@ -12364,7 +12364,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-pad) |
         /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-pad) |
         /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-pad)
-        public var padding: Padding?
+        public var padding: Shared.Padding?
     
         /// Sets the slider's horizontal position anchor. 
         ///
@@ -12374,7 +12374,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-xanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-xanchor) |
         /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-xanchor)
-        public var xAnchor: XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor?
     
         /// Sets the y position (in normalized coordinates) of the slider.
         ///
@@ -12390,7 +12390,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-yanchor) |
         /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-yanchor) |
         /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-yanchor)
-        public var yAnchor: YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor?
     
         /// # Used By
         /// `Layout.Slider.transition` |
@@ -12482,7 +12482,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-xanchor) |
             /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-xanchor) |
             /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-xanchor)
-            public var xAnchor: XAnchor?
+            public var xAnchor: Shared.XAnchor?
         
             /// The amount of space, in pixels, between the current value label and the slider.
             ///
@@ -12514,7 +12514,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-currentvalue-font) |
             /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-currentvalue-font) |
             /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-currentvalue-font)
-            public var font: Font?
+            public var font: Shared.Font?
         
             /// Plotly compatible property encoding
             enum CodingKeys: String, CodingKey {
@@ -12526,7 +12526,7 @@ public struct Layout: Encodable {
                 case font
             }
             
-            public init(visible: Bool? = nil, xAnchor: XAnchor? = nil, offset: Double? = nil, prefix: String? = nil, suffix: String? = nil, font: Font? = nil) {
+            public init(visible: Bool? = nil, xAnchor: Shared.XAnchor? = nil, offset: Double? = nil, prefix: String? = nil, suffix: String? = nil, font: Shared.Font? = nil) {
                 self.visible = visible
                 self.xAnchor = xAnchor
                 self.offset = offset
@@ -12548,7 +12548,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-sliders-items-slider-font) |
         /// [Python](https://plot.ly/python/reference/#layout-sliders-items-slider-font) |
         /// [R](https://plot.ly/r/reference/#layout-sliders-items-slider-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Sets the background color of the slider grip while dragging.
         ///
@@ -12667,7 +12667,7 @@ public struct Layout: Encodable {
             case templateItemName = "templateitemname"
         }
         
-        public init(visible: Bool? = nil, active: Double? = nil, steps: [Step]? = nil, lengthMode: LengthMode? = nil, length: Double? = nil, x: Double? = nil, padding: Padding? = nil, xAnchor: XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, transition: Transition? = nil, currentValue: CurrentValue? = nil, font: Font? = nil, activeBackgroundColor: Color? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, tickLength: Double? = nil, tickColor: Color? = nil, tickWidth: Double? = nil, minorTickLength: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
+        public init(visible: Bool? = nil, active: Double? = nil, steps: [Step]? = nil, lengthMode: Shared.LengthMode? = nil, length: Double? = nil, x: Double? = nil, padding: Shared.Padding? = nil, xAnchor: Shared.XAutoAnchor? = nil, y: Double? = nil, yAnchor: Shared.YAutoAnchor? = nil, transition: Transition? = nil, currentValue: CurrentValue? = nil, font: Shared.Font? = nil, activeBackgroundColor: Color? = nil, backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, tickLength: Double? = nil, tickColor: Color? = nil, tickWidth: Double? = nil, minorTickLength: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.active = active
             self.steps = steps
@@ -12848,7 +12848,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar) |
         /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar) |
         /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar)
-        public var colorBar: ColorBar?
+        public var colorBar: Shared.ColorBar?
     
         /// Plotly compatible property encoding
         enum CodingKeys: String, CodingKey {
@@ -12863,7 +12863,7 @@ public struct Layout: Encodable {
             case colorBar = "colorbar"
         }
         
-        public init(cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil) {
+        public init(cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil) {
             self.cAuto = cAuto
             self.cMin = cMin
             self.cMax = cMax
@@ -12934,7 +12934,7 @@ public struct Layout: Encodable {
         case colorAxis = "coloraxis"
     }
     
-    public init(font: Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: [Annotation]? = nil, shapes: [Shape]? = nil, images: [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders: [Slider]? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil) {
+    public init(font: Shared.Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: Shared.HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Shared.Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil, direction: Direction? = nil, orientation: Angle? = nil, legend: Legend? = nil, annotations: [Annotation]? = nil, shapes: [Shape]? = nil, images: [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders: [Slider]? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil) {
         self.font = font
         self.title = title
         self.autoSize = autoSize

@@ -26,7 +26,7 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-visible) |
     /// [Python](https://plot.ly/python/reference/#isosurface-visible) |
     /// [R](https://plot.ly/r/reference/#isosurface-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -87,14 +87,14 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#isosurface-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#isosurface-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-stream) |
     /// [Python](https://plot.ly/python/reference/#isosurface-stream) |
     /// [R](https://plot.ly/r/reference/#isosurface-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -712,7 +712,7 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-colorbar) |
     /// [Python](https://plot.ly/python/reference/#isosurface-colorbar) |
     /// [R](https://plot.ly/r/reference/#isosurface-colorbar)
-    public var colorBar: ColorBar?
+    public var colorBar: Shared.ColorBar?
 
     /// Sets a reference to a shared color axis. 
     ///
@@ -744,14 +744,14 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-lightposition) |
     /// [Python](https://plot.ly/python/reference/#isosurface-lightposition) |
     /// [R](https://plot.ly/r/reference/#isosurface-lightposition)
-    public var lightPosition: LightPosition?
+    public var lightPosition: Shared.LightPosition?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-lighting) |
     /// [Python](https://plot.ly/python/reference/#isosurface-lighting) |
     /// [R](https://plot.ly/r/reference/#isosurface-lighting)
-    public var lighting: Lighting?
+    public var lighting: Shared.Lighting?
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an angular, low-poly look via flat reflections.
     ///
@@ -766,7 +766,7 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-contour) |
     /// [Python](https://plot.ly/python/reference/#isosurface-contour) |
     /// [R](https://plot.ly/r/reference/#isosurface-contour)
-    public var contour: ContourHover?
+    public var contour: Shared.ContourHover?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -777,7 +777,7 @@ public struct Isosurface: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#isosurface-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#isosurface-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
     ///
@@ -835,7 +835,7 @@ public struct Isosurface: Trace {
         case scene
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, flatShading: Bool? = nil, contour: ContourHover? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

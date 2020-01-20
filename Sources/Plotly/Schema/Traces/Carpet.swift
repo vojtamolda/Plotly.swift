@@ -27,7 +27,7 @@ public struct Carpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-visible) |
     /// [Python](https://plot.ly/python/reference/#carpet-visible) |
     /// [R](https://plot.ly/r/reference/#carpet-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the opacity of the trace.
     ///
@@ -96,7 +96,7 @@ public struct Carpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-stream) |
     /// [Python](https://plot.ly/python/reference/#carpet-stream) |
     /// [R](https://plot.ly/r/reference/#carpet-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -252,7 +252,7 @@ public struct Carpet: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-title-font) |
             /// [Python](https://plot.ly/python/reference/#carpet-aaxis-title-font) |
             /// [R](https://plot.ly/r/reference/#carpet-aaxis-title-font)
-            public var font: Font?
+            public var font: Shared.Font?
         
             /// An additional amount by which to offset the title from the tick labels, given in pixels. 
             ///
@@ -264,7 +264,7 @@ public struct Carpet: Trace {
             /// [R](https://plot.ly/r/reference/#carpet-aaxis-title-offset)
             public var offset: Double?
         
-            public init(text: String? = nil, font: Font? = nil, offset: Double? = nil) {
+            public init(text: String? = nil, font: Shared.Font? = nil, offset: Double? = nil) {
                 self.text = text
                 self.font = font
                 self.offset = offset
@@ -309,7 +309,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-autorange) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-autorange) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-autorange)
-        public var autoRange: AutoRange?
+        public var autoRange: Shared.AutoRange?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
@@ -320,7 +320,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-rangemode) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-rangemode) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-rangemode)
-        public var rangeMode: RangeMode?
+        public var rangeMode: Shared.RangeMode?
     
         /// Sets the range of this axis. 
         ///
@@ -427,7 +427,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickfont) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickfont) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickfont)
-        public var tickFont: Font?
+        public var tickFont: Shared.Font?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
@@ -456,7 +456,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showtickprefix) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showtickprefix) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-showtickprefix)
-        public var showTickPrefix: ShowTickPrefix?
+        public var showTickPrefix: Shared.ShowTickPrefix?
     
         /// Sets a tick label suffix.
         ///
@@ -472,7 +472,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showticksuffix) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showticksuffix) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-showticksuffix)
-        public var showTickSuffix: ShowTickSuffix?
+        public var showTickSuffix: Shared.ShowTickSuffix?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
@@ -483,7 +483,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-showexponent) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-showexponent) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-showexponent)
-        public var showExponent: ShowExponent?
+        public var showExponent: Shared.ShowExponent?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -494,7 +494,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-exponentformat) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-exponentformat) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-exponentformat)
-        public var exponentFormat: ExponentFormat?
+        public var exponentFormat: Shared.ExponentFormat?
     
         /// If "true", even 4-digit integers are separated
         ///
@@ -522,7 +522,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-tickformatstops-items-tickformatstop) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-tickformatstops-items-tickformatstop) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-tickformatstops-items-tickformatstop)
-        public var tickFormatStops: [TickFormatStop]?
+        public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Specifies the ordering logic for the case of categorical variables. 
         ///
@@ -537,7 +537,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-categoryorder) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-categoryorder)
-        public var categoryOrder: CarpetCategoryOrder?
+        public var categoryOrder: Shared.CarpetCategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
@@ -784,7 +784,7 @@ public struct Carpet: Trace {
             case arraydTick = "arraydtick"
         }
         
-        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
+        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, categoryOrder: Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
@@ -886,7 +886,7 @@ public struct Carpet: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-title-font) |
             /// [Python](https://plot.ly/python/reference/#carpet-baxis-title-font) |
             /// [R](https://plot.ly/r/reference/#carpet-baxis-title-font)
-            public var font: Font?
+            public var font: Shared.Font?
         
             /// An additional amount by which to offset the title from the tick labels, given in pixels. 
             ///
@@ -898,7 +898,7 @@ public struct Carpet: Trace {
             /// [R](https://plot.ly/r/reference/#carpet-baxis-title-offset)
             public var offset: Double?
         
-            public init(text: String? = nil, font: Font? = nil, offset: Double? = nil) {
+            public init(text: String? = nil, font: Shared.Font? = nil, offset: Double? = nil) {
                 self.text = text
                 self.font = font
                 self.offset = offset
@@ -943,7 +943,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-autorange) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-autorange) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-autorange)
-        public var autoRange: AutoRange?
+        public var autoRange: Shared.AutoRange?
     
         /// If *normal*, the range is computed in relation to the extrema of the input data. 
         ///
@@ -954,7 +954,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-rangemode) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-rangemode) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-rangemode)
-        public var rangeMode: RangeMode?
+        public var rangeMode: Shared.RangeMode?
     
         /// Sets the range of this axis. 
         ///
@@ -1061,7 +1061,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickfont) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickfont) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-tickfont)
-        public var tickFont: Font?
+        public var tickFont: Shared.Font?
     
         /// Sets the angle of the tick labels with respect to the horizontal. 
         ///
@@ -1090,7 +1090,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showtickprefix) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-showtickprefix) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-showtickprefix)
-        public var showTickPrefix: ShowTickPrefix?
+        public var showTickPrefix: Shared.ShowTickPrefix?
     
         /// Sets a tick label suffix.
         ///
@@ -1106,7 +1106,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showticksuffix) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-showticksuffix) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-showticksuffix)
-        public var showTickSuffix: ShowTickSuffix?
+        public var showTickSuffix: Shared.ShowTickSuffix?
     
         /// If *all*, all exponents are shown besides their significands. 
         ///
@@ -1117,7 +1117,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-showexponent) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-showexponent) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-showexponent)
-        public var showExponent: ShowExponent?
+        public var showExponent: Shared.ShowExponent?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -1128,7 +1128,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-exponentformat) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-exponentformat) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-exponentformat)
-        public var exponentFormat: ExponentFormat?
+        public var exponentFormat: Shared.ExponentFormat?
     
         /// If "true", even 4-digit integers are separated
         ///
@@ -1156,7 +1156,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-tickformatstops-items-tickformatstop) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-tickformatstops-items-tickformatstop) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-tickformatstops-items-tickformatstop)
-        public var tickFormatStops: [TickFormatStop]?
+        public var tickFormatStops: [Shared.TickFormatStop]?
     
         /// Specifies the ordering logic for the case of categorical variables. 
         ///
@@ -1171,7 +1171,7 @@ public struct Carpet: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-categoryorder) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-categoryorder) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-categoryorder)
-        public var categoryOrder: CarpetCategoryOrder?
+        public var categoryOrder: Shared.CarpetCategoryOrder?
     
         /// Sets the order in which categories on this axis appear. 
         ///
@@ -1418,7 +1418,7 @@ public struct Carpet: Trace {
             case arraydTick = "arraydtick"
         }
         
-        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
+        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, categoryOrder: Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
@@ -1483,7 +1483,7 @@ public struct Carpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-font) |
     /// [Python](https://plot.ly/python/reference/#carpet-font) |
     /// [R](https://plot.ly/r/reference/#carpet-font)
-    public var font: Font?
+    public var font: Shared.Font?
 
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid colors. 
     ///
@@ -1549,7 +1549,7 @@ public struct Carpet: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: [Double]? = nil, y: [Double]? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: [Double]? = nil, y: [Double]? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Shared.Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

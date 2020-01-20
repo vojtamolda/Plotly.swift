@@ -23,7 +23,7 @@ public struct BarPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-visible) |
     /// [Python](https://plot.ly/python/reference/#barpolar-visible) |
     /// [R](https://plot.ly/r/reference/#barpolar-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -122,14 +122,14 @@ public struct BarPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#barpolar-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#barpolar-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-stream) |
     /// [Python](https://plot.ly/python/reference/#barpolar-stream) |
     /// [R](https://plot.ly/r/reference/#barpolar-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -137,7 +137,7 @@ public struct BarPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#barpolar-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#barpolar-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -221,7 +221,7 @@ public struct BarPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-thetaunit) |
     /// [Python](https://plot.ly/python/reference/#barpolar-thetaunit) |
     /// [R](https://plot.ly/r/reference/#barpolar-thetaunit)
-    public var thetaUnit: ThetaUnit?
+    public var thetaUnit: Shared.ThetaUnit?
 
     /// Sets where the bar base is drawn (in radial axis units). 
     ///
@@ -273,7 +273,7 @@ public struct BarPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-marker) |
     /// [Python](https://plot.ly/python/reference/#barpolar-marker) |
     /// [R](https://plot.ly/r/reference/#barpolar-marker)
-    public var marker: Marker?
+    public var marker: Shared.Marker?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -284,7 +284,7 @@ public struct BarPolar: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#barpolar-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#barpolar-hoverinfo)
-    public var hoverInfo: PolarHoverInfo?
+    public var hoverInfo: Shared.PolarHoverInfo?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -505,7 +505,7 @@ public struct BarPolar: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, text: String? = nil, hoverText: String? = nil, marker: Marker? = nil, hoverInfo: PolarHoverInfo? = nil, hoverTemplate: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, base: Anything? = nil, offset: Double? = nil, width: Double? = nil, text: String? = nil, hoverText: String? = nil, marker: Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

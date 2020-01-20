@@ -27,7 +27,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-visible) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-visible) |
     /// [R](https://plot.ly/r/reference/#funnelarea-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -114,14 +114,14 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#funnelarea-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-stream) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-stream) |
     /// [R](https://plot.ly/r/reference/#funnelarea-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -129,7 +129,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#funnelarea-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -209,9 +209,9 @@ public struct FunnelArea: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-marker-line) |
         /// [Python](https://plot.ly/python/reference/#funnelarea-marker-line) |
         /// [R](https://plot.ly/r/reference/#funnelarea-marker-line)
-        public var line: Line?
+        public var line: Shared.Line?
     
-        public init(colors: [Double]? = nil, line: Line? = nil) {
+        public init(colors: [Double]? = nil, line: Shared.Line? = nil) {
             self.colors = colors
             self.line = line
         }
@@ -398,7 +398,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-textfont) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-textfont) |
     /// [R](https://plot.ly/r/reference/#funnelarea-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Sets the font used for `textinfo` lying inside the sector.
     ///
@@ -406,7 +406,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-insidetextfont) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-insidetextfont) |
     /// [R](https://plot.ly/r/reference/#funnelarea-insidetextfont)
-    public var insideTextFont: Font?
+    public var insideTextFont: Shared.Font?
 
     /// # Used By
     /// `FunnelArea.title` |
@@ -431,7 +431,7 @@ public struct FunnelArea: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-title-font) |
         /// [Python](https://plot.ly/python/reference/#funnelarea-title-font) |
         /// [R](https://plot.ly/r/reference/#funnelarea-title-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
         /// Specifies the location of the `title`. 
         ///
@@ -454,7 +454,7 @@ public struct FunnelArea: Trace {
         /// [R](https://plot.ly/r/reference/#funnelarea-title-position)
         public var position: Position?
     
-        public init(text: String? = nil, font: Font? = nil, position: Position? = nil) {
+        public init(text: String? = nil, font: Shared.Font? = nil, position: Position? = nil) {
             self.text = text
             self.font = font
             self.position = position
@@ -472,7 +472,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-domain) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-domain) |
     /// [R](https://plot.ly/r/reference/#funnelarea-domain)
-    public var domain: Domain?
+    public var domain: Shared.Domain?
 
     /// Sets the ratio between height and width
     ///
@@ -528,7 +528,7 @@ public struct FunnelArea: Trace {
         case baseRatio = "baseratio"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, insideTextFont: Font? = nil, title: Title? = nil, domain: Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: String? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: String? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: String? = nil, textPosition: TextPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, title: Title? = nil, domain: Shared.Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

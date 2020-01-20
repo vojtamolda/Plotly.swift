@@ -27,7 +27,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-visible) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-visible) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     ///
@@ -126,14 +126,14 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-stream) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-stream) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
     ///
@@ -141,7 +141,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-transforms-items-transform) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-transforms-items-transform) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-transforms-items-transform)
-    public var transforms: [Transform]?
+    public var transforms: [Shared.Transform]?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -170,7 +170,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-mode) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-mode) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-mode)
-    public var mode: Mode?
+    public var mode: Shared.Mode?
 
     /// Sets the radial coordinates
     ///
@@ -237,7 +237,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-thetaunit) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-thetaunit) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-thetaunit)
-    public var thetaUnit: ThetaUnit?
+    public var thetaUnit: Shared.ThetaUnit?
 
     /// Sets text elements associated with each (x,y) pair. 
     ///
@@ -351,9 +351,9 @@ public struct ScatterPolarGL: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-line-dash) |
         /// [Python](https://plot.ly/python/reference/#scatterpolargl-line-dash) |
         /// [R](https://plot.ly/r/reference/#scatterpolargl-line-dash)
-        public var dash: Dash?
+        public var dash: Shared.Dash?
     
-        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Dash? = nil) {
+        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Shared.Dash? = nil) {
             self.color = color
             self.width = width
             self.shape = shape
@@ -382,7 +382,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-marker) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-marker) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-marker)
-    public var marker: SymbolicMarker?
+    public var marker: Shared.SymbolicMarker?
 
     /// Sets the area to fill with a solid color. 
     ///
@@ -403,7 +403,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-fill) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-fill) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-fill)
-    public var fill: Fill?
+    public var fill: Shared.Fill?
 
     /// Sets the fill color. 
     ///
@@ -422,7 +422,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-textposition) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-textposition) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-textposition)
-    public var textPosition: TextPosition?
+    public var textPosition: Shared.TextPosition?
 
     /// Sets the text font.
     ///
@@ -430,7 +430,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-textfont) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-textfont) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-textfont)
-    public var textFont: Font?
+    public var textFont: Shared.Font?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -441,7 +441,7 @@ public struct ScatterPolarGL: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#scatterpolargl-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#scatterpolargl-hoverinfo)
-    public var hoverInfo: PolarHoverInfo?
+    public var hoverInfo: Shared.PolarHoverInfo?
 
     /// # Used By
     /// `ScatterPolarGL.selected` |
@@ -663,7 +663,7 @@ public struct ScatterPolarGL: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textPosition: TextPosition? = nil, textFont: Font? = nil, hoverInfo: PolarHoverInfo? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: String? = nil, textTemplate: String? = nil, hoverText: String? = nil, hoverTemplate: String? = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

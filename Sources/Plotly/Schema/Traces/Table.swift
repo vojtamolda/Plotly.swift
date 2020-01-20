@@ -27,7 +27,7 @@ public struct Table: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#table-visible) |
     /// [Python](https://plot.ly/python/reference/#table-visible) |
     /// [R](https://plot.ly/r/reference/#table-visible)
-    public var visible: Visible?
+    public var visible: Shared.Visible?
 
     /// Sets the trace name. 
     ///
@@ -92,21 +92,21 @@ public struct Table: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#table-hoverinfo) |
     /// [Python](https://plot.ly/python/reference/#table-hoverinfo) |
     /// [R](https://plot.ly/r/reference/#table-hoverinfo)
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: Shared.HoverInfo?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#table-hoverlabel) |
     /// [Python](https://plot.ly/python/reference/#table-hoverlabel) |
     /// [R](https://plot.ly/r/reference/#table-hoverlabel)
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: Shared.HoverLabel?
 
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#table-stream) |
     /// [Python](https://plot.ly/python/reference/#table-stream) |
     /// [R](https://plot.ly/r/reference/#table-stream)
-    public var stream: Stream?
+    public var stream: Shared.Stream?
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
     ///
@@ -130,7 +130,7 @@ public struct Table: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#table-domain) |
     /// [Python](https://plot.ly/python/reference/#table-domain) |
     /// [R](https://plot.ly/r/reference/#table-domain)
-    public var domain: Domain?
+    public var domain: Shared.Domain?
 
     /// The width of columns expressed as a ratio. 
     ///
@@ -208,14 +208,14 @@ public struct Table: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#table-header-align) |
         /// [Python](https://plot.ly/python/reference/#table-header-align) |
         /// [R](https://plot.ly/r/reference/#table-header-align)
-        public var align: HorizontalAlign?
+        public var align: Shared.HorizontalAlign?
     
         ///
         /// # Plotly Reference
         /// [JavaScript](https://plot.ly/javascript/reference/#table-header-line) |
         /// [Python](https://plot.ly/python/reference/#table-header-line) |
         /// [R](https://plot.ly/r/reference/#table-header-line)
-        public var line: Line?
+        public var line: Shared.Line?
     
         /// # Used By
         /// `Table.Header.fill` |
@@ -246,9 +246,9 @@ public struct Table: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#table-header-font) |
         /// [Python](https://plot.ly/python/reference/#table-header-font) |
         /// [R](https://plot.ly/r/reference/#table-header-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: HorizontalAlign? = nil, line: Line? = nil, fill: Fill? = nil, font: Font? = nil) {
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line: Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -325,14 +325,14 @@ public struct Table: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#table-cells-align) |
         /// [Python](https://plot.ly/python/reference/#table-cells-align) |
         /// [R](https://plot.ly/r/reference/#table-cells-align)
-        public var align: HorizontalAlign?
+        public var align: Shared.HorizontalAlign?
     
         ///
         /// # Plotly Reference
         /// [JavaScript](https://plot.ly/javascript/reference/#table-cells-line) |
         /// [Python](https://plot.ly/python/reference/#table-cells-line) |
         /// [R](https://plot.ly/r/reference/#table-cells-line)
-        public var line: Line?
+        public var line: Shared.Line?
     
         /// # Used By
         /// `Table.Cells.fill` |
@@ -363,9 +363,9 @@ public struct Table: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#table-cells-font) |
         /// [Python](https://plot.ly/python/reference/#table-cells-font) |
         /// [R](https://plot.ly/r/reference/#table-cells-font)
-        public var font: Font?
+        public var font: Shared.Font?
     
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: HorizontalAlign? = nil, line: Line? = nil, fill: Fill? = nil, font: Font? = nil) {
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: String? = nil, suffix: String? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line: Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -405,7 +405,7 @@ public struct Table: Trace {
         case cells
     }
     
-    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, domain: Domain? = nil, columnWidth: Double? = nil, columnOrder: [Double]? = nil, header: Header? = nil, cells: Cells? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: Double? = nil, columnOrder: [Double]? = nil, header: Header? = nil, cells: Cells? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
