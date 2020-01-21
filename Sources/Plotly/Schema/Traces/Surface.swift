@@ -5,7 +5,7 @@
 /// coordinates are assumed to be linear starting at 0 with a unit step. The color scale corresponds
 /// to the `z` values by default. For custom color scales, use `surfacecolor` which should be a {2D
 /// array}, where its bounds can be controlled using `cmin` and `cmax`.
-public struct Surface: Trace {
+public struct Surface<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -116,29 +116,26 @@ public struct Surface: Trace {
     /// [R](https://plot.ly/r/reference/#surface-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the z coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-z) |
-    /// [Python](https://plot.ly/python/reference/#surface-z) |
-    /// [R](https://plot.ly/r/reference/#surface-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#surface-attributes) |
+    /// [Python](https://plot.ly/python/reference/#surface-attributes) |
+    /// [R](https://plot.ly/r/reference/#surface-attributes)
+    public var z: ZData?
 
-    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-x) |
-    /// [Python](https://plot.ly/python/reference/#surface-x) |
-    /// [R](https://plot.ly/r/reference/#surface-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#surface-attributes) |
+    /// [Python](https://plot.ly/python/reference/#surface-attributes) |
+    /// [R](https://plot.ly/r/reference/#surface-attributes)
+    public var x: XData?
 
-    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-y) |
-    /// [Python](https://plot.ly/python/reference/#surface-y) |
-    /// [R](https://plot.ly/r/reference/#surface-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#surface-attributes) |
+    /// [Python](https://plot.ly/python/reference/#surface-attributes) |
+    /// [R](https://plot.ly/r/reference/#surface-attributes)
+    public var y: YData?
 
     /// Sets the text elements associated with each z value. 
     ///
@@ -871,9 +868,9 @@ public struct Surface: Trace {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case z
-        case x
-        case y
+        case z = "attributes"
+        case x = "attributes"
+        case y = "attributes"
         case text
         case hoverText = "hovertext"
         case hoverTemplate = "hovertemplate"
@@ -901,7 +898,7 @@ public struct Surface: Trace {
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, y: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: ZData? = nil, x: XData? = nil, y: YData? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -3,7 +3,7 @@
 /// Text (appearing either on the chart or on hover only) is via `text`. Bubble charts are achieved
 /// by setting `marker.size` and/or `marker.color` Projections are achieved via `projection`.
 /// Surface fills are achieved via `surfaceaxis`.
-public struct Scatter3D: Trace {
+public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -147,29 +147,26 @@ public struct Scatter3D: Trace {
     /// [R](https://plot.ly/r/reference/#scatter3d-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-x) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-x) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-attributes) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-attributes) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-attributes)
+    public var x: XData?
 
-    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-y) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-y) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-attributes) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-attributes) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-attributes)
+    public var y: YData?
 
-    /// Sets the z coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-z) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-z) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-attributes) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-attributes) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-attributes)
+    public var z: ZData?
 
     /// Sets text elements associated with each (x,y,z) triplet. 
     ///
@@ -578,9 +575,9 @@ public struct Scatter3D: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x
-        case y
-        case z
+        case x = "attributes"
+        case y = "attributes"
+        case z = "attributes"
         case text
         case textTemplate = "texttemplate"
         case hoverText = "hovertext"
@@ -604,7 +601,7 @@ public struct Scatter3D: Trace {
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, mode: Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker: Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, mode: Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker: Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

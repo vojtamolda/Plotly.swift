@@ -13,5 +13,15 @@ struct Layout: Definable {
         
         let sectionMark = Mark(label: "General")
         layoutAttributes.members.insert(sectionMark, at: 0)
+
+        workarounds()
+    }
+
+    /// Post-processing hacks to remove obsolete members.
+    private func workarounds() {
+        layoutAttributes.members = layoutAttributes.members.filter { ($0 as? Instantiable)?.name != "radialAxis" }
+        layoutAttributes.members = layoutAttributes.members.filter { ($0 as? Instantiable)?.name != "angularAxis" }
+        layoutAttributes.members = layoutAttributes.members.filter { ($0 as? Instantiable)?.name != "orientation" }
+        layoutAttributes.members = layoutAttributes.members.filter { ($0 as? Instantiable)?.name != "direction" }
     }
 }

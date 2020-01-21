@@ -112,19 +112,24 @@ struct Swift {
         var access: Swift.Access = .public
         var priority: Int { members.count }
         var protocols: [String] = ["Encodable"]
+        var generics: [String] = []
+        var constraints: [String] = []
 
         var instances: [Instance<Swift.Object>] = []
         static var existing: [Swift.Object] = []
 
         var members: [Definable]
+        var properties: [Instantiable] { members.compactMap { $0 as? Instantiable } }
         var primitives: [String: Schema.Primitive]
 
         static private let ignored: [String] = ["_deprecated", "src", "impliedEdits"]
 
         var definition: [String] {
             var lines = [String]()
-            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += ["\(access)struct \(name)\(protocols) {"]
+            let generics = self.generics.isEmpty ? "" : "<\(self.generics.joined(separator: ", "))>"
+            let protocols = self.protocols.isEmpty ? "" : ": \(self.protocols.joined(separator: ", "))"
+            let constraints = self.constraints.isEmpty ? "" : " where \(self.constraints.joined(separator: ", "))"
+            lines += ["\(access)struct \(name)\(generics)\(protocols)\(constraints) {"]
 
             for member in members {
                 lines += member.define(as: .inlined).indented()
@@ -132,7 +137,7 @@ struct Swift {
             }
             lines += codingKeys.indented()
 
-            let variables = members.compactMap { $0 as? Instantiable }.filter { $0.constant == nil }
+            let variables = properties.filter { $0.constant == nil }
             let arguments = variables.map { $0.argument + " = nil" }.joined(separator: ", ")
             lines += ["\(access)init(\(arguments)) {"].indented()
             lines += variables.map { "self.\($0.name) = \($0.name)" }.indented(2)
@@ -143,7 +148,6 @@ struct Swift {
         }
 
         private var codingKeys: [String] {
-            let properties = members.compactMap { $0 as? Instantiable }
             if properties.filter({ $0.name != $0.schemaName }).isEmpty { return [] }
 
             var lines = [String]()
@@ -243,7 +247,6 @@ struct Swift {
 
         /// Post-processing hacks that avoid name collisions.
         private func workarounds() {
-            let properties = members.compactMap { $0 as? Instantiable }
             switch name {
             case "Line":
                 if properties.contains(where: { $0.name == "colorScale" }) { name = "Colored" + name }
@@ -600,6 +603,22 @@ struct Swift {
         let name: String = "InfoArray"
         let parent: Swift.Object?
         var schema: Schema.InfoArray
+    }
+
+    // TODO: Docs
+    struct Generic: SwiftType {
+        let name: String
+        let parent: Swift.Object?
+        let schema: Schema.Object
+
+        init(name: String, parent: Swift.Object, constraint: String?) {
+            self.name = name
+            self.parent = parent
+            self.schema = parent.schema
+
+            parent.generics.append(name)
+            if constraint != nil { parent.constraints.append("\(name): \(constraint!)") }
+        }
     }
 
 

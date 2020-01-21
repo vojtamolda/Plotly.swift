@@ -3,7 +3,7 @@
 /// If only `y` is present, `x` the plot is interpreted as a cheater plot and is filled in using the
 /// `y` values. `x` and `y` may either be 2D arrays matching with each dimension matching that of
 /// `a` and `b`, or they may be 1D arrays with total length equal to that of `a` and `b`.
-public struct Carpet: Trace {
+public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -123,23 +123,19 @@ public struct Carpet: Trace {
     /// [R](https://plot.ly/r/reference/#carpet-carpet)
     public var carpet: String?
 
-    /// A two dimensional array of x coordinates at each carpet point. 
-    ///
-    /// If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-x) |
-    /// [Python](https://plot.ly/python/reference/#carpet-x) |
-    /// [R](https://plot.ly/r/reference/#carpet-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-attributes) |
+    /// [Python](https://plot.ly/python/reference/#carpet-attributes) |
+    /// [R](https://plot.ly/r/reference/#carpet-attributes)
+    public var x: XData?
 
-    /// A two dimensional array of y coordinates at each carpet point.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-y) |
-    /// [Python](https://plot.ly/python/reference/#carpet-y) |
-    /// [R](https://plot.ly/r/reference/#carpet-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-attributes) |
+    /// [Python](https://plot.ly/python/reference/#carpet-attributes) |
+    /// [R](https://plot.ly/r/reference/#carpet-attributes)
+    public var y: YData?
 
     /// An array containing values of the first parameter value
     ///
@@ -1532,8 +1528,8 @@ public struct Carpet: Trace {
         case stream
         case uiRevision = "uirevision"
         case carpet
-        case x
-        case y
+        case x = "attributes"
+        case y = "attributes"
         case a
         case a0
         case da
@@ -1549,7 +1545,7 @@ public struct Carpet: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: [Double]? = nil, y: [Double]? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Shared.Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: XData? = nil, y: YData? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Shared.Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

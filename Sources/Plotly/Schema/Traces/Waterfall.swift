@@ -3,7 +3,7 @@
 /// The data visualized by the span of the bars is set in `y` if `orientation` is set th *v* (the
 /// default) and the labels are set in `x`. By setting `orientation` to *h*, the roles are
 /// interchanged.
-public struct Waterfall: Trace {
+public struct Waterfall<XData, YData>: Trace where XData: Encodable, YData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -179,13 +179,12 @@ public struct Waterfall: Trace {
     /// [R](https://plot.ly/r/reference/#waterfall-base)
     public var base: Double?
 
-    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-x) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-x) |
-    /// [R](https://plot.ly/r/reference/#waterfall-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-attributes) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-attributes) |
+    /// [R](https://plot.ly/r/reference/#waterfall-attributes)
+    public var x: XData?
 
     /// Alternate to `x`. 
     ///
@@ -208,13 +207,12 @@ public struct Waterfall: Trace {
     /// [R](https://plot.ly/r/reference/#waterfall-dx)
     public var dx: Double?
 
-    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-y) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-y) |
-    /// [R](https://plot.ly/r/reference/#waterfall-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-attributes) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-attributes) |
+    /// [R](https://plot.ly/r/reference/#waterfall-attributes)
+    public var y: YData?
 
     /// Alternate to `y`. 
     ///
@@ -735,10 +733,10 @@ public struct Waterfall: Trace {
         case uiRevision = "uirevision"
         case measure
         case base
-        case x
+        case x = "attributes"
         case x0
         case dx
-        case y
+        case y = "attributes"
         case y0
         case dy
         case hoverText = "hovertext"
@@ -768,7 +766,7 @@ public struct Waterfall: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, text: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: ArrayOrDouble? = nil, width: ArrayOrDouble? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, measure: [Double]? = nil, base: Double? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, text: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: ArrayOrDouble? = nil, width: ArrayOrDouble? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

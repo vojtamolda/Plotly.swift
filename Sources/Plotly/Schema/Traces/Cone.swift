@@ -3,7 +3,7 @@
 /// Specify a vector field using 6 1D arrays, 3 position arrays `x`, `y` and `z` and 3 vector
 /// component arrays `u`, `v`, `w`. The cones are drawn exactly at the positions given by `x`, `y`
 /// and `z`.
-public struct Cone: Trace {
+public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -114,29 +114,26 @@ public struct Cone: Trace {
     /// [R](https://plot.ly/r/reference/#cone-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the x coordinates of the vector field and of the displayed cones.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#cone-x) |
-    /// [Python](https://plot.ly/python/reference/#cone-x) |
-    /// [R](https://plot.ly/r/reference/#cone-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-attributes) |
+    /// [Python](https://plot.ly/python/reference/#cone-attributes) |
+    /// [R](https://plot.ly/r/reference/#cone-attributes)
+    public var x: XData?
 
-    /// Sets the y coordinates of the vector field and of the displayed cones.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#cone-y) |
-    /// [Python](https://plot.ly/python/reference/#cone-y) |
-    /// [R](https://plot.ly/r/reference/#cone-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-attributes) |
+    /// [Python](https://plot.ly/python/reference/#cone-attributes) |
+    /// [R](https://plot.ly/r/reference/#cone-attributes)
+    public var y: YData?
 
-    /// Sets the z coordinates of the vector field and of the displayed cones.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#cone-z) |
-    /// [Python](https://plot.ly/python/reference/#cone-z) |
-    /// [R](https://plot.ly/r/reference/#cone-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-attributes) |
+    /// [Python](https://plot.ly/python/reference/#cone-attributes) |
+    /// [R](https://plot.ly/r/reference/#cone-attributes)
+    public var z: ZData?
 
     /// Sets the x components of the vector field.
     ///
@@ -464,9 +461,9 @@ public struct Cone: Trace {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x
-        case y
-        case z
+        case x = "attributes"
+        case y = "attributes"
+        case z = "attributes"
         case u
         case v
         case w
@@ -493,7 +490,7 @@ public struct Cone: Trace {
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -3,7 +3,7 @@
 /// The data visualized as scatter point or lines is set in `x` and `y`. Text (appearing either on
 /// the chart or on hover only) is via `text`. Bubble charts are achieved by setting `marker.size`
 /// and/or `marker.color` to numerical arrays.
-public struct Scatter: Trace {
+public struct Scatter<XData, YData, RData>: Trace where XData: Encodable, YData: Encodable, RData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -170,13 +170,12 @@ public struct Scatter: Trace {
     /// [R](https://plot.ly/r/reference/#scatter-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-x) |
-    /// [Python](https://plot.ly/python/reference/#scatter-x) |
-    /// [R](https://plot.ly/r/reference/#scatter-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-attributes) |
+    /// [Python](https://plot.ly/python/reference/#scatter-attributes) |
+    /// [R](https://plot.ly/r/reference/#scatter-attributes)
+    public var x: XData?
 
     /// Alternate to `x`. 
     ///
@@ -199,13 +198,12 @@ public struct Scatter: Trace {
     /// [R](https://plot.ly/r/reference/#scatter-dx)
     public var dx: Double?
 
-    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-y) |
-    /// [Python](https://plot.ly/python/reference/#scatter-y) |
-    /// [R](https://plot.ly/r/reference/#scatter-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-attributes) |
+    /// [Python](https://plot.ly/python/reference/#scatter-attributes) |
+    /// [R](https://plot.ly/r/reference/#scatter-attributes)
+    public var y: YData?
 
     /// Alternate to `y`. 
     ///
@@ -724,22 +722,6 @@ public struct Scatter: Trace {
     /// [R](https://plot.ly/r/reference/#scatter-textfont)
     public var textFont: Shared.Font?
 
-    /// r coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the radial coordinatesfor legacy polar chart only.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-r) |
-    /// [Python](https://plot.ly/python/reference/#scatter-r) |
-    /// [R](https://plot.ly/r/reference/#scatter-r)
-    public var r: [Double]?
-
-    /// t coordinates in scatter traces are deprecated!Please switch to the *scatterpolar* trace type.Sets the angular coordinatesfor legacy polar chart only.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-t) |
-    /// [Python](https://plot.ly/python/reference/#scatter-t) |
-    /// [R](https://plot.ly/r/reference/#scatter-t)
-    public var t: [Double]?
-
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-error_x) |
@@ -811,10 +793,10 @@ public struct Scatter: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x
+        case x = "attributes"
         case x0
         case dx
-        case y
+        case y = "attributes"
         case y0
         case dy
         case stackGroup = "stackgroup"
@@ -837,8 +819,6 @@ public struct Scatter: Trace {
         case unselected
         case textPosition = "textposition"
         case textFont = "textfont"
-        case r
-        case t
         case xError = "error_x"
         case yError = "error_y"
         case xCalendar = "xcalendar"
@@ -847,7 +827,7 @@ public struct Scatter: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, mode: Shared.Mode? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, r: [Double]? = nil, t: [Double]? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, mode: Shared.Mode? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -889,8 +869,6 @@ public struct Scatter: Trace {
         self.unselected = unselected
         self.textPosition = textPosition
         self.textFont = textFont
-        self.r = r
-        self.t = t
         self.xError = xError
         self.yError = yError
         self.xCalendar = xCalendar

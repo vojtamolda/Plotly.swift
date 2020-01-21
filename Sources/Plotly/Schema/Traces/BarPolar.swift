@@ -1,5 +1,5 @@
 /// The data visualized by the radial span of the bars is set in `r`
-public struct BarPolar: Trace {
+public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -155,21 +155,19 @@ public struct BarPolar: Trace {
     /// [R](https://plot.ly/r/reference/#barpolar-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the radial coordinates
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-r) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-r) |
-    /// [R](https://plot.ly/r/reference/#barpolar-r)
-    public var r: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-attributes) |
+    /// [Python](https://plot.ly/python/reference/#barpolar-attributes) |
+    /// [R](https://plot.ly/r/reference/#barpolar-attributes)
+    public var r: RData?
 
-    /// Sets the angular coordinates
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-theta) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-theta) |
-    /// [R](https://plot.ly/r/reference/#barpolar-theta)
-    public var theta: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-attributes) |
+    /// [Python](https://plot.ly/python/reference/#barpolar-attributes) |
+    /// [R](https://plot.ly/r/reference/#barpolar-attributes)
+    public var theta: ThetaData?
 
     /// Alternate to `r`. 
     ///
@@ -484,8 +482,8 @@ public struct BarPolar: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case r
-        case theta
+        case r = "attributes"
+        case theta = "attributes"
         case r0
         case dr
         case theta0
@@ -504,7 +502,7 @@ public struct BarPolar: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, base: Anything? = nil, offset: ArrayOrDouble? = nil, width: ArrayOrDouble? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, r: RData? = nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, base: Anything? = nil, offset: ArrayOrDouble? = nil, width: ArrayOrDouble? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

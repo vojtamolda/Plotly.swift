@@ -6,10 +6,11 @@ struct Trace: Definable {
     let schema: Schema.Trace
     let attributes: Swift.Object
 
-    var documentation: [String] {  schema.meta["description"]?.documentation() ?? [] }
+    var documentation: [String] { schema.meta["description"]?.documentation() ?? [] }
     var definition: [String] { attributes.definition }
 
-    init(identifier: String, schema: Schema.Trace, layout: inout Layout) {
+    init?(identifier: String, schema: Schema.Trace, layout: inout Layout) {
+        if identifier == "area" { return nil }
         self.schema = schema
 
         attributes = Swift.Object(named: identifier, schema: schema.attributes)!
@@ -32,12 +33,44 @@ struct Trace: Definable {
         animatableConst.optional = false
         attributes.members.insert(animatableConst, at: 1)
 
+        workarounds()
+
         if let entries = schema.layoutAttributes {
             let sectionMark = Mark(label: "\(attributes.name) Trace")
             layout.layoutAttributes.members.insert(sectionMark, at: 0)
 
             let layoutAttributes = Swift.Object(named: "layout", schema: entries)
             //layout.layoutAttributes.members.insert(contentsOf: layoutAttributes.members, at: 1)
+        }
+    }
+
+    /// Post-processing hacks that introduce generics and remove obsolete members.
+    private func workarounds() {
+        changeAttributeToGeneric(name: "x")
+        changeAttributeToGeneric(name: "y")
+        changeAttributeToGeneric(name: "z")
+
+        changeAttributeToGeneric(name: "r")
+        changeAttributeToGeneric(name: "theta")
+
+        switch attributes.name {
+        case "Bar":
+            attributes.members = attributes.members.filter { ($0 as? Instantiable)?.name != "r" }
+            attributes.members = attributes.members.filter { ($0 as? Instantiable)?.name != "t" }
+        case "Scatter":
+            attributes.members = attributes.members.filter { ($0 as? Instantiable)?.name != "r" }
+            attributes.members = attributes.members.filter { ($0 as? Instantiable)?.name != "t" }
+        case "Volume":
+            changeAttributeToGeneric(name: "value")    
+        default:
+            return
+        }
+    }
+
+    private func changeAttributeToGeneric(name: String) {
+        if let idx = attributes.members.firstIndex(where: { ($0 as? Instantiable)?.name == name }) {
+            let generic = Swift.Generic(name: "\(name.capitalized)Data", parent: attributes, constraint: "Encodable")
+            attributes.members[idx] = generic.instance(named: name)
         }
     }
 }

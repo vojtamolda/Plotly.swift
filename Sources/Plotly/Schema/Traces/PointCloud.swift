@@ -1,5 +1,5 @@
 /// The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
-public struct PointCloud: Trace {
+public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -147,21 +147,19 @@ public struct PointCloud: Trace {
     /// [R](https://plot.ly/r/reference/#pointcloud-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-x) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-x) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-attributes) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-attributes) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-attributes)
+    public var x: XData?
 
-    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-y) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-y) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-attributes) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-attributes) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-attributes)
+    public var y: YData?
 
     /// Faster alternative to specifying `x` and `y` separately. 
     ///
@@ -378,8 +376,8 @@ public struct PointCloud: Trace {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x
-        case y
+        case x = "attributes"
+        case y = "attributes"
         case xy
         case indices
         case xBounds = "xbounds"
@@ -390,7 +388,7 @@ public struct PointCloud: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: ArrayOrString? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: ArrayOrString? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

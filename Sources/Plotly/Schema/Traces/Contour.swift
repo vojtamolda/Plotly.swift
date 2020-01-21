@@ -4,7 +4,7 @@
 /// default, these N rows correspond to N y coordinates (set in `y` or auto-generated) and the M
 /// columns correspond to M x coordinates (set in `x` or auto-generated). By setting `transpose` to
 /// *true*, the above behavior is flipped.
-public struct Contour: Trace {
+public struct Contour<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -159,21 +159,19 @@ public struct Contour: Trace {
     /// [R](https://plot.ly/r/reference/#contour-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the z data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-z) |
-    /// [Python](https://plot.ly/python/reference/#contour-z) |
-    /// [R](https://plot.ly/r/reference/#contour-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#contour-attributes) |
+    /// [Python](https://plot.ly/python/reference/#contour-attributes) |
+    /// [R](https://plot.ly/r/reference/#contour-attributes)
+    public var z: ZData?
 
-    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-x) |
-    /// [Python](https://plot.ly/python/reference/#contour-x) |
-    /// [R](https://plot.ly/r/reference/#contour-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#contour-attributes) |
+    /// [Python](https://plot.ly/python/reference/#contour-attributes) |
+    /// [R](https://plot.ly/r/reference/#contour-attributes)
+    public var x: XData?
 
     /// Alternate to `x`. 
     ///
@@ -196,13 +194,12 @@ public struct Contour: Trace {
     /// [R](https://plot.ly/r/reference/#contour-dx)
     public var dx: Double?
 
-    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-y) |
-    /// [Python](https://plot.ly/python/reference/#contour-y) |
-    /// [R](https://plot.ly/r/reference/#contour-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#contour-attributes) |
+    /// [Python](https://plot.ly/python/reference/#contour-attributes) |
+    /// [R](https://plot.ly/r/reference/#contour-attributes)
+    public var y: YData?
 
     /// Alternate to `y`. 
     ///
@@ -527,11 +524,11 @@ public struct Contour: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case z
-        case x
+        case z = "attributes"
+        case x = "attributes"
         case x0
         case dx
-        case y
+        case y = "attributes"
         case y0
         case dy
         case text
@@ -564,7 +561,7 @@ public struct Contour: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil, yType: Shared.AxisType? = nil, zHoverFormat: String? = nil, hoverTemplate: ArrayOrString? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, z: ZData? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil, yType: Shared.AxisType? = nil, zHoverFormat: String? = nil, hoverTemplate: ArrayOrString? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

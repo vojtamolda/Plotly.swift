@@ -1,5 +1,5 @@
 /// Draws sets of triangles with coordinates given by three 1-dimensional arrays in `x`, `y`, `z` and (1) a sets of `i`, `j`, `k` indices (2) Delaunay triangulation or (3) the Alpha-shape algorithm or (4) the Convex-hull algorithm
-public struct Mesh3D: Trace {
+public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -110,38 +110,26 @@ public struct Mesh3D: Trace {
     /// [R](https://plot.ly/r/reference/#mesh3d-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the X coordinates of the vertices. 
-    ///
-    /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
-    /// nth vertex.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-x) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-x) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-attributes) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-attributes) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-attributes)
+    public var x: XData?
 
-    /// Sets the Y coordinates of the vertices. 
-    ///
-    /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
-    /// nth vertex.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-y) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-y) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-attributes) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-attributes) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-attributes)
+    public var y: YData?
 
-    /// Sets the Z coordinates of the vertices. 
-    ///
-    /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
-    /// nth vertex.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-z) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-z) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-attributes) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-attributes) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-attributes)
+    public var z: ZData?
 
     /// A vector of vertex indices, i.e. 
     ///
@@ -506,9 +494,9 @@ public struct Mesh3D: Trace {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x
-        case y
-        case z
+        case x = "attributes"
+        case y = "attributes"
+        case z = "attributes"
         case i
         case j
         case k
@@ -543,7 +531,7 @@ public struct Mesh3D: Trace {
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

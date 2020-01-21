@@ -4,7 +4,7 @@
 /// spread between the `low` and `high` values Sample points where the close value is higher (lower)
 /// then the open value are called increasing (decreasing). By default, increasing candles are drawn
 /// in green whereas decreasing are drawn in red.
-public struct Candlestick: Trace {
+public struct Candlestick<XData>: Trace where XData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -164,15 +164,12 @@ public struct Candlestick: Trace {
     /// [R](https://plot.ly/r/reference/#candlestick-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the x coordinates. 
-    ///
-    /// If absent, linear coordinate will be generated.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-x) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-x) |
-    /// [R](https://plot.ly/r/reference/#candlestick-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-attributes) |
+    /// [Python](https://plot.ly/python/reference/#candlestick-attributes) |
+    /// [R](https://plot.ly/r/reference/#candlestick-attributes)
+    public var x: XData?
 
     /// Sets the open values.
     ///
@@ -517,7 +514,7 @@ public struct Candlestick: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x
+        case x = "attributes"
         case open
         case high
         case low
@@ -534,7 +531,7 @@ public struct Candlestick: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

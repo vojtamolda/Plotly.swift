@@ -111,7 +111,6 @@ public struct Shared {
     /// `ScatterPolar.HoverLabel.align` |
     /// `ScatterPolarGL.HoverLabel.align` |
     /// `BarPolar.HoverLabel.align` |
-    /// `Area.HoverLabel.align` |
     public enum AutoAlign: String, Encodable {
         case left
         case right
@@ -1024,7 +1023,6 @@ public struct Shared {
     /// `ScatterPolar.visible` |
     /// `ScatterPolarGL.visible` |
     /// `BarPolar.visible` |
-    /// `Area.visible` |
     public enum Visible: String, Encodable {
         case `true` = "true"
         case `false` = "false"
@@ -1077,7 +1075,6 @@ public struct Shared {
     /// `ScatterCarpet.GradientMarker.symbol` |
     /// `ScatterPolar.GradientMarker.symbol` |
     /// `ScatterPolarGL.SymbolicMarker.symbol` |
-    /// `Area.SymbolicMarker.symbol` |
     public enum Symbol: String, Encodable {
         case circle
         case circleOpen = "circle-open"
@@ -1485,7 +1482,6 @@ public struct Shared {
     /// `Table.hoverInfo` |
     /// `OHLC.hoverInfo` |
     /// `Candlestick.hoverInfo` |
-    /// `Area.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -1817,7 +1813,6 @@ public struct Shared {
     /// `BarPolar.HoverLabel.font` |
     /// `BarPolar.Marker.ColorBar.tickFont` |
     /// `BarPolar.Marker.ColorBar.Title.font` |
-    /// `Area.HoverLabel.font` |
     public struct Font: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser. 
         ///
@@ -1952,7 +1947,6 @@ public struct Shared {
     /// `ScatterPolar.hoverLabel` |
     /// `ScatterPolarGL.hoverLabel` |
     /// `BarPolar.hoverLabel` |
-    /// `Area.hoverLabel` |
     public struct HoverLabel: Encodable {
         /// Sets the background color of all hover labels on graph
         ///
@@ -2843,7 +2837,6 @@ public struct Shared {
     /// `ScatterPolar.stream` |
     /// `ScatterPolarGL.stream` |
     /// `BarPolar.stream` |
-    /// `Area.stream` |
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream. 
         ///
@@ -2914,7 +2907,6 @@ public struct Shared {
     /// `ScatterPolar.transforms` |
     /// `ScatterPolarGL.transforms` |
     /// `BarPolar.transforms` |
-    /// `Area.transforms` |
     public struct Transform: Encodable {
         public init() {
         }

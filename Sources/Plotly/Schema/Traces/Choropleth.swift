@@ -1,7 +1,7 @@
 /// The data that describes the choropleth value-to-color mapping is set in `z`. 
 ///
 /// The geographic locations corresponding to each value in `z` are set in `locations`.
-public struct Choropleth: Trace {
+public struct Choropleth<ZData>: Trace where ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -158,13 +158,12 @@ public struct Choropleth: Trace {
     /// [R](https://plot.ly/r/reference/#choropleth-locationmode)
     public var locationMode: LocationMode?
 
-    /// Sets the color values.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-z) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-z) |
-    /// [R](https://plot.ly/r/reference/#choropleth-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-attributes) |
+    /// [Python](https://plot.ly/python/reference/#choropleth-attributes) |
+    /// [R](https://plot.ly/r/reference/#choropleth-attributes)
+    public var z: ZData?
 
     /// Sets the text elements associated with each location.
     ///
@@ -481,7 +480,7 @@ public struct Choropleth: Trace {
         case uiRevision = "uirevision"
         case locations
         case locationMode = "locationmode"
-        case z
+        case z = "attributes"
         case text
         case hoverText = "hovertext"
         case marker
@@ -502,7 +501,7 @@ public struct Choropleth: Trace {
         case geo
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, z: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, geo: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, z: ZData? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, geo: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

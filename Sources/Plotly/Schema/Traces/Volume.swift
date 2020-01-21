@@ -2,7 +2,7 @@
 ///
 /// Horizontal or vertical slices, caps as well as spaceframe between iso-min and iso-max values
 /// could also be drawn using this trace.
-public struct Volume: Trace {
+public struct Volume<XData, YData, ZData, ValueData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable, ValueData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -113,37 +113,33 @@ public struct Volume: Trace {
     /// [R](https://plot.ly/r/reference/#volume-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the X coordinates of the vertices on X axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-x) |
-    /// [Python](https://plot.ly/python/reference/#volume-x) |
-    /// [R](https://plot.ly/r/reference/#volume-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#volume-attributes) |
+    /// [Python](https://plot.ly/python/reference/#volume-attributes) |
+    /// [R](https://plot.ly/r/reference/#volume-attributes)
+    public var x: XData?
 
-    /// Sets the Y coordinates of the vertices on Y axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-y) |
-    /// [Python](https://plot.ly/python/reference/#volume-y) |
-    /// [R](https://plot.ly/r/reference/#volume-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#volume-attributes) |
+    /// [Python](https://plot.ly/python/reference/#volume-attributes) |
+    /// [R](https://plot.ly/r/reference/#volume-attributes)
+    public var y: YData?
 
-    /// Sets the Z coordinates of the vertices on Z axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-z) |
-    /// [Python](https://plot.ly/python/reference/#volume-z) |
-    /// [R](https://plot.ly/r/reference/#volume-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#volume-attributes) |
+    /// [Python](https://plot.ly/python/reference/#volume-attributes) |
+    /// [R](https://plot.ly/r/reference/#volume-attributes)
+    public var z: ZData?
 
-    /// Sets the 4th dimension (value) of the vertices.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-value) |
-    /// [Python](https://plot.ly/python/reference/#volume-value) |
-    /// [R](https://plot.ly/r/reference/#volume-value)
-    public var value: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#volume-attributes) |
+    /// [Python](https://plot.ly/python/reference/#volume-attributes) |
+    /// [R](https://plot.ly/r/reference/#volume-attributes)
+    public var value: ValueData?
 
     /// Sets the minimum boundary for iso-surface plot.
     ///
@@ -817,10 +813,10 @@ public struct Volume: Trace {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x
-        case y
-        case z
-        case value
+        case x = "attributes"
+        case y = "attributes"
+        case z = "attributes"
+        case value = "attributes"
         case isoMin = "isomin"
         case isoMax = "isomax"
         case surface
@@ -850,7 +846,7 @@ public struct Volume: Trace {
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, value: ValueData? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

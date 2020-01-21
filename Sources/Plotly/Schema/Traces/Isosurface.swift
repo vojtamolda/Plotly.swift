@@ -2,7 +2,7 @@
 ///
 /// Horizontal or vertical slices, caps as well as spaceframe between iso-min and iso-max values
 /// could also be drawn using this trace.
-public struct Isosurface: Trace {
+public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -113,29 +113,26 @@ public struct Isosurface: Trace {
     /// [R](https://plot.ly/r/reference/#isosurface-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the X coordinates of the vertices on X axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-x) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-x) |
-    /// [R](https://plot.ly/r/reference/#isosurface-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-attributes) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-attributes) |
+    /// [R](https://plot.ly/r/reference/#isosurface-attributes)
+    public var x: XData?
 
-    /// Sets the Y coordinates of the vertices on Y axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-y) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-y) |
-    /// [R](https://plot.ly/r/reference/#isosurface-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-attributes) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-attributes) |
+    /// [R](https://plot.ly/r/reference/#isosurface-attributes)
+    public var y: YData?
 
-    /// Sets the Z coordinates of the vertices on Z axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-z) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-z) |
-    /// [R](https://plot.ly/r/reference/#isosurface-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-attributes) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-attributes) |
+    /// [R](https://plot.ly/r/reference/#isosurface-attributes)
+    public var z: ZData?
 
     /// Sets the 4th dimension (value) of the vertices.
     ///
@@ -803,9 +800,9 @@ public struct Isosurface: Trace {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x
-        case y
-        case z
+        case x = "attributes"
+        case y = "attributes"
+        case z = "attributes"
         case value
         case isoMin = "isomin"
         case isoMax = "isomax"
@@ -835,7 +832,7 @@ public struct Isosurface: Trace {
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

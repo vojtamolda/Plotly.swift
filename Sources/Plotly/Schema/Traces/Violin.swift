@@ -3,7 +3,7 @@
 /// By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`)
 /// {array} is provided, a single violin is drawn. That violin position is then positioned with with
 /// `name` or with `x0` (`y0`) if provided.
-public struct Violin: Trace {
+public struct Violin<XData, YData>: Trace where XData: Encodable, YData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -160,25 +160,19 @@ public struct Violin: Trace {
     /// [R](https://plot.ly/r/reference/#violin-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the y sample data or coordinates. 
-    ///
-    /// See overview for more info.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-y) |
-    /// [Python](https://plot.ly/python/reference/#violin-y) |
-    /// [R](https://plot.ly/r/reference/#violin-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#violin-attributes) |
+    /// [Python](https://plot.ly/python/reference/#violin-attributes) |
+    /// [R](https://plot.ly/r/reference/#violin-attributes)
+    public var y: YData?
 
-    /// Sets the x sample data or coordinates. 
-    ///
-    /// See overview for more info.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-x) |
-    /// [Python](https://plot.ly/python/reference/#violin-x) |
-    /// [R](https://plot.ly/r/reference/#violin-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#violin-attributes) |
+    /// [Python](https://plot.ly/python/reference/#violin-attributes) |
+    /// [R](https://plot.ly/r/reference/#violin-attributes)
+    public var x: XData?
 
     /// Sets the x coordinate of the box. 
     ///
@@ -869,8 +863,8 @@ public struct Violin: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case y
-        case x
+        case y = "attributes"
+        case x = "attributes"
         case x0
         case y0
         case name
@@ -902,7 +896,7 @@ public struct Violin: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Shared.Orientation? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Shared.Orientation? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -1,7 +1,7 @@
 /// Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. 
 ///
 /// Data `z` is interpreted as matching that of the corresponding carpet axis.
-public struct ContourCarpet: Trace {
+public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -139,13 +139,12 @@ public struct ContourCarpet: Trace {
     /// [R](https://plot.ly/r/reference/#contourcarpet-carpet)
     public var carpet: String?
 
-    /// Sets the z data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-z) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-z) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-attributes) |
+    /// [Python](https://plot.ly/python/reference/#contourcarpet-attributes) |
+    /// [R](https://plot.ly/r/reference/#contourcarpet-attributes)
+    public var z: ZData?
 
     /// Sets the x coordinates.
     ///
@@ -455,7 +454,7 @@ public struct ContourCarpet: Trace {
         case stream
         case uiRevision = "uirevision"
         case carpet
-        case z
+        case z = "attributes"
         case a
         case a0
         case da
@@ -486,7 +485,7 @@ public struct ContourCarpet: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: [Double]? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: ZData? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

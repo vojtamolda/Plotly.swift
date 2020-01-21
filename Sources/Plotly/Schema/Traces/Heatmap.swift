@@ -10,7 +10,7 @@
 /// center of the heatmap cells and the cells have equal width. If M+1 (N+1), then the coordinates
 /// correspond to the edges of the heatmap cells. In the case where `z` is a 1D {array}, the x and y
 /// coordinates must be provided in `x` and `y` respectively to form data triplets.
-public struct Heatmap: Trace {
+public struct Heatmap<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -147,21 +147,19 @@ public struct Heatmap: Trace {
     /// [R](https://plot.ly/r/reference/#heatmap-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the z data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-z) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-z) |
-    /// [R](https://plot.ly/r/reference/#heatmap-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-attributes) |
+    /// [Python](https://plot.ly/python/reference/#heatmap-attributes) |
+    /// [R](https://plot.ly/r/reference/#heatmap-attributes)
+    public var z: ZData?
 
-    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-x) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-x) |
-    /// [R](https://plot.ly/r/reference/#heatmap-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-attributes) |
+    /// [Python](https://plot.ly/python/reference/#heatmap-attributes) |
+    /// [R](https://plot.ly/r/reference/#heatmap-attributes)
+    public var x: XData?
 
     /// Alternate to `x`. 
     ///
@@ -184,13 +182,12 @@ public struct Heatmap: Trace {
     /// [R](https://plot.ly/r/reference/#heatmap-dx)
     public var dx: Double?
 
-    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-y) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-y) |
-    /// [R](https://plot.ly/r/reference/#heatmap-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-attributes) |
+    /// [Python](https://plot.ly/python/reference/#heatmap-attributes) |
+    /// [R](https://plot.ly/r/reference/#heatmap-attributes)
+    public var y: YData?
 
     /// Alternate to `y`. 
     ///
@@ -499,11 +496,11 @@ public struct Heatmap: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case z
-        case x
+        case z = "attributes"
+        case x = "attributes"
         case x0
         case dx
-        case y
+        case y = "attributes"
         case y0
         case dy
         case text
@@ -534,7 +531,7 @@ public struct Heatmap: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, dx: Double? = nil, y: [Double]? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil, yType: Shared.AxisType? = nil, zSmooth: ZSmooth? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, xGap: Double? = nil, yGap: Double? = nil, zHoverFormat: String? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, z: ZData? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil, yType: Shared.AxisType? = nil, zSmooth: ZSmooth? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, xGap: Double? = nil, yGap: Double? = nil, zHoverFormat: String? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

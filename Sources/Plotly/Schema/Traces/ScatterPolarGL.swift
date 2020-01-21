@@ -3,7 +3,7 @@
 /// The data visualized as scatter point or lines is set in `r` (radial) and `theta` (angular)
 /// coordinates Bubble charts are achieved by setting `marker.size` and/or `marker.color` to
 /// numerical arrays.
-public struct ScatterPolarGL: Trace {
+public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, ThetaData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -171,21 +171,19 @@ public struct ScatterPolarGL: Trace {
     /// [R](https://plot.ly/r/reference/#scatterpolargl-mode)
     public var mode: Shared.Mode?
 
-    /// Sets the radial coordinates
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-r) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-r) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-r)
-    public var r: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-attributes) |
+    /// [Python](https://plot.ly/python/reference/#scatterpolargl-attributes) |
+    /// [R](https://plot.ly/r/reference/#scatterpolargl-attributes)
+    public var r: RData?
 
-    /// Sets the angular coordinates
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-theta) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-theta) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-theta)
-    public var theta: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-attributes) |
+    /// [Python](https://plot.ly/python/reference/#scatterpolargl-attributes) |
+    /// [R](https://plot.ly/r/reference/#scatterpolargl-attributes)
+    public var theta: ThetaData?
 
     /// Alternate to `r`. 
     ///
@@ -638,8 +636,8 @@ public struct ScatterPolarGL: Trace {
         case transforms
         case uiRevision = "uirevision"
         case mode
-        case r
-        case theta
+        case r = "attributes"
+        case theta = "attributes"
         case r0
         case dr
         case theta0
@@ -662,7 +660,7 @@ public struct ScatterPolarGL: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: [Double]? = nil, theta: [Double]? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: RData? = nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

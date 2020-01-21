@@ -16,7 +16,7 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     var layout = Layout(schema: schema.layout)
     var traces = [Trace]()
     for (identifier, schema) in schema.traces.all {
-        traces += [Trace(identifier: identifier, schema: schema, layout: &layout)]
+        if let trace = Trace(identifier: identifier, schema: schema, layout: &layout) { traces += [trace] }
     }
     let shared = Shared()
 

@@ -4,7 +4,7 @@
 /// will be reversed (ie. `autorange: 'reversed'`), constrained to the domain (ie. `constrain:
 /// 'domain'`) and it will have the same scale as its x axis (ie. `scaleanchor: 'x,`) in order for
 /// pixels to be rendered as squares.
-public struct Image: Trace {
+public struct Image<ZData>: Trace where ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -123,13 +123,12 @@ public struct Image: Trace {
     /// [R](https://plot.ly/r/reference/#image-uirevision)
     public var uiRevision: Anything?
 
-    /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-z) |
-    /// [Python](https://plot.ly/python/reference/#image-z) |
-    /// [R](https://plot.ly/r/reference/#image-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#image-attributes) |
+    /// [Python](https://plot.ly/python/reference/#image-attributes) |
+    /// [R](https://plot.ly/r/reference/#image-attributes)
+    public var z: ZData?
 
     /// Color model used to map the numerical color components described in `z` into colors.
     ///
@@ -327,7 +326,7 @@ public struct Image: Trace {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case z
+        case z = "attributes"
         case colorModel = "colormodel"
         case zMin = "zmin"
         case zMax = "zmax"
@@ -343,7 +342,7 @@ public struct Image: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: [Double]? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

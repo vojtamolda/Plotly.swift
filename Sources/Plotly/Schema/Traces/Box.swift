@@ -6,7 +6,7 @@
 /// The second quartile (Q2) is marked by a line inside the box. By default, the whiskers correspond
 /// to the box' edges +/- 1.5 times the interquartile range (IQR: Q3-Q1), see *boxpoints* for other
 /// options.
-public struct Box: Trace {
+public struct Box<XData, YData>: Trace where XData: Encodable, YData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -163,25 +163,19 @@ public struct Box: Trace {
     /// [R](https://plot.ly/r/reference/#box-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the y sample data or coordinates. 
-    ///
-    /// See overview for more info.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-y) |
-    /// [Python](https://plot.ly/python/reference/#box-y) |
-    /// [R](https://plot.ly/r/reference/#box-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-attributes) |
+    /// [Python](https://plot.ly/python/reference/#box-attributes) |
+    /// [R](https://plot.ly/r/reference/#box-attributes)
+    public var y: YData?
 
-    /// Sets the x sample data or coordinates. 
-    ///
-    /// See overview for more info.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-x) |
-    /// [Python](https://plot.ly/python/reference/#box-x) |
-    /// [R](https://plot.ly/r/reference/#box-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-attributes) |
+    /// [Python](https://plot.ly/python/reference/#box-attributes) |
+    /// [R](https://plot.ly/r/reference/#box-attributes)
+    public var x: XData?
 
     /// Sets the x coordinate of the box. 
     ///
@@ -733,8 +727,8 @@ public struct Box: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case y
-        case x
+        case y = "attributes"
+        case x = "attributes"
         case x0
         case y0
         case name
@@ -764,7 +758,7 @@ public struct Box: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: [Double]? = nil, x: [Double]? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

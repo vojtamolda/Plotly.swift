@@ -1,5 +1,5 @@
 /// Draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
-public struct DensityMapbox: Trace {
+public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -141,15 +141,12 @@ public struct DensityMapbox: Trace {
     /// [R](https://plot.ly/r/reference/#densitymapbox-lat)
     public var latitude: [Double]?
 
-    /// Sets the points' weight. 
-    ///
-    /// For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-z) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-z) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-z)
-    public var z: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-attributes) |
+    /// [Python](https://plot.ly/python/reference/#densitymapbox-attributes) |
+    /// [R](https://plot.ly/r/reference/#densitymapbox-attributes)
+    public var z: ZData?
 
     /// Sets the radius of influence of one `lon` / `lat` point in pixels. 
     ///
@@ -394,7 +391,7 @@ public struct DensityMapbox: Trace {
         case uiRevision = "uirevision"
         case longitude = "lon"
         case latitude = "lat"
-        case z
+        case z = "attributes"
         case radius
         case below
         case text
@@ -414,7 +411,7 @@ public struct DensityMapbox: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: [Double]? = nil, radius: ArrayOrDouble? = nil, below: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: ZData? = nil, radius: ArrayOrDouble? = nil, below: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

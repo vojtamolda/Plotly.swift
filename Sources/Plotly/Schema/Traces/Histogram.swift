@@ -1,7 +1,7 @@
 /// The sample data from which statistics are computed is set in `x` for vertically spanning histograms and in `y` for horizontally spanning histograms. 
 ///
 /// Binning options are set `xbins` and `ybins` respectively if no aggregation data is provided.
-public struct Histogram: Trace {
+public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -168,21 +168,19 @@ public struct Histogram: Trace {
     /// [R](https://plot.ly/r/reference/#histogram-uirevision)
     public var uiRevision: Anything?
 
-    /// Sets the sample data to be binned on the x axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-x) |
-    /// [Python](https://plot.ly/python/reference/#histogram-x) |
-    /// [R](https://plot.ly/r/reference/#histogram-x)
-    public var x: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-attributes) |
+    /// [Python](https://plot.ly/python/reference/#histogram-attributes) |
+    /// [R](https://plot.ly/r/reference/#histogram-attributes)
+    public var x: XData?
 
-    /// Sets the sample data to be binned on the y axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-y) |
-    /// [Python](https://plot.ly/python/reference/#histogram-y) |
-    /// [R](https://plot.ly/r/reference/#histogram-y)
-    public var y: [Double]?
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-attributes) |
+    /// [Python](https://plot.ly/python/reference/#histogram-attributes) |
+    /// [R](https://plot.ly/r/reference/#histogram-attributes)
+    public var y: YData?
 
     /// Sets hover text elements associated with each bar. 
     ///
@@ -657,8 +655,8 @@ public struct Histogram: Trace {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x
-        case y
+        case x = "attributes"
+        case y = "attributes"
         case text
         case hoverText = "hovertext"
         case orientation
@@ -686,7 +684,7 @@ public struct Histogram: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: [Double]? = nil, y: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, orientation: Shared.Orientation? = nil, binningFunction: Shared.BinningFunction? = nil, normalization: Shared.Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: ArrayOrString? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, orientation: Shared.Orientation? = nil, binningFunction: Shared.BinningFunction? = nil, normalization: Shared.Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: ArrayOrString? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
