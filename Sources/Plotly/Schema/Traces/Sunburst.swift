@@ -188,8 +188,8 @@ public struct Sunburst: Trace {
     public struct Count: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let branches = Count(rawValue: 1 << 0)
-        public static let leaves = Count(rawValue: 1 << 1)
+        public static var branches: Count { Count(rawValue: 1 << 0) }
+        public static var leaves: Count { Count(rawValue: 1 << 1) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -442,14 +442,14 @@ public struct Sunburst: Trace {
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let label = TextInfo(rawValue: 1 << 0)
-        public static let text = TextInfo(rawValue: 1 << 1)
-        public static let value = TextInfo(rawValue: 1 << 2)
-        public static let currentPath = TextInfo(rawValue: 1 << 3)
-        public static let percentRoot = TextInfo(rawValue: 1 << 4)
-        public static let percentEntry = TextInfo(rawValue: 1 << 5)
-        public static let percentParent = TextInfo(rawValue: 1 << 6)
-        public static let none = TextInfo(rawValue: 1 << 7)
+        public static var label: TextInfo { TextInfo(rawValue: 1 << 0) }
+        public static var text: TextInfo { TextInfo(rawValue: 1 << 1) }
+        public static var value: TextInfo { TextInfo(rawValue: 1 << 2) }
+        public static var currentPath: TextInfo { TextInfo(rawValue: 1 << 3) }
+        public static var percentRoot: TextInfo { TextInfo(rawValue: 1 << 4) }
+        public static var percentEntry: TextInfo { TextInfo(rawValue: 1 << 5) }
+        public static var percentParent: TextInfo { TextInfo(rawValue: 1 << 6) }
+        public static var none: TextInfo { TextInfo(rawValue: 1 << 7) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -516,17 +516,17 @@ public struct Sunburst: Trace {
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let label = HoverInfo(rawValue: 1 << 0)
-        public static let text = HoverInfo(rawValue: 1 << 1)
-        public static let value = HoverInfo(rawValue: 1 << 2)
-        public static let name = HoverInfo(rawValue: 1 << 3)
-        public static let currentPath = HoverInfo(rawValue: 1 << 4)
-        public static let percentRoot = HoverInfo(rawValue: 1 << 5)
-        public static let percentEntry = HoverInfo(rawValue: 1 << 6)
-        public static let percentParent = HoverInfo(rawValue: 1 << 7)
-        public static let all = HoverInfo(rawValue: 1 << 8)
-        public static let none = HoverInfo(rawValue: 1 << 9)
-        public static let skip = HoverInfo(rawValue: 1 << 10)
+        public static var label: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var value: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var currentPath: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var percentRoot: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var percentEntry: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+        public static var percentParent: HoverInfo { HoverInfo(rawValue: 1 << 7) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 8) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 9) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 10) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     

@@ -652,13 +652,13 @@ public struct ScatterMapbox: Trace {
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let longitude = HoverInfo(rawValue: 1 << 0)
-        public static let latitude = HoverInfo(rawValue: 1 << 1)
-        public static let text = HoverInfo(rawValue: 1 << 2)
-        public static let name = HoverInfo(rawValue: 1 << 3)
-        public static let all = HoverInfo(rawValue: 1 << 4)
-        public static let none = HoverInfo(rawValue: 1 << 5)
-        public static let skip = HoverInfo(rawValue: 1 << 6)
+        public static var longitude: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var latitude: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 6) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     

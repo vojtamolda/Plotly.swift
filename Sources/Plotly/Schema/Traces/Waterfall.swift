@@ -179,11 +179,12 @@ public struct Waterfall<XData, YData>: Trace where XData: Encodable, YData: Enco
     /// [R](https://plot.ly/r/reference/#waterfall-base)
     public var base: Double?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-attributes) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-attributes) |
-    /// [R](https://plot.ly/r/reference/#waterfall-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-x) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-x) |
+    /// [R](https://plot.ly/r/reference/#waterfall-x)
     public var x: XData?
 
     /// Alternate to `x`. 
@@ -207,11 +208,12 @@ public struct Waterfall<XData, YData>: Trace where XData: Encodable, YData: Enco
     /// [R](https://plot.ly/r/reference/#waterfall-dx)
     public var dx: Double?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-attributes) |
-    /// [Python](https://plot.ly/python/reference/#waterfall-attributes) |
-    /// [R](https://plot.ly/r/reference/#waterfall-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-y) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-y) |
+    /// [R](https://plot.ly/r/reference/#waterfall-y)
     public var y: YData?
 
     /// Alternate to `y`. 
@@ -279,16 +281,16 @@ public struct Waterfall<XData, YData>: Trace where XData: Encodable, YData: Enco
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let name = HoverInfo(rawValue: 1 << 0)
-        public static let x = HoverInfo(rawValue: 1 << 1)
-        public static let y = HoverInfo(rawValue: 1 << 2)
-        public static let text = HoverInfo(rawValue: 1 << 3)
-        public static let initial = HoverInfo(rawValue: 1 << 4)
-        public static let delta = HoverInfo(rawValue: 1 << 5)
-        public static let final = HoverInfo(rawValue: 1 << 6)
-        public static let all = HoverInfo(rawValue: 1 << 7)
-        public static let none = HoverInfo(rawValue: 1 << 8)
-        public static let skip = HoverInfo(rawValue: 1 << 9)
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var x: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var y: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var initial: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var delta: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var final: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 7) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 8) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 9) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -328,12 +330,12 @@ public struct Waterfall<XData, YData>: Trace where XData: Encodable, YData: Enco
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let label = TextInfo(rawValue: 1 << 0)
-        public static let text = TextInfo(rawValue: 1 << 1)
-        public static let initial = TextInfo(rawValue: 1 << 2)
-        public static let delta = TextInfo(rawValue: 1 << 3)
-        public static let final = TextInfo(rawValue: 1 << 4)
-        public static let none = TextInfo(rawValue: 1 << 5)
+        public static var label: TextInfo { TextInfo(rawValue: 1 << 0) }
+        public static var text: TextInfo { TextInfo(rawValue: 1 << 1) }
+        public static var initial: TextInfo { TextInfo(rawValue: 1 << 2) }
+        public static var delta: TextInfo { TextInfo(rawValue: 1 << 3) }
+        public static var final: TextInfo { TextInfo(rawValue: 1 << 4) }
+        public static var none: TextInfo { TextInfo(rawValue: 1 << 5) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -733,10 +735,10 @@ public struct Waterfall<XData, YData>: Trace where XData: Encodable, YData: Enco
         case uiRevision = "uirevision"
         case measure
         case base
-        case x = "attributes"
+        case x
         case x0
         case dx
-        case y = "attributes"
+        case y
         case y0
         case dy
         case hoverText = "hovertext"

@@ -156,25 +156,28 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Encoda
     /// [R](https://plot.ly/r/reference/#histogram2dcontour-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the sample data to be binned on the x axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-attributes) |
-    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-attributes) |
-    /// [R](https://plot.ly/r/reference/#histogram2dcontour-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-x) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-x) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-x)
     public var x: XData?
 
+    /// Sets the sample data to be binned on the y axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-attributes) |
-    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-attributes) |
-    /// [R](https://plot.ly/r/reference/#histogram2dcontour-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-y) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-y) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-y)
     public var y: YData?
 
+    /// Sets the aggregation data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-attributes) |
-    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-attributes) |
-    /// [R](https://plot.ly/r/reference/#histogram2dcontour-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour-z) |
+    /// [Python](https://plot.ly/python/reference/#histogram2dcontour-z) |
+    /// [R](https://plot.ly/r/reference/#histogram2dcontour-z)
     public var z: ZData?
 
     /// # Used By
@@ -545,9 +548,9 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Encoda
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
-        case z = "attributes"
+        case x
+        case y
+        case z
         case marker
         case normalization = "histnorm"
         case binningFunction = "histfunc"

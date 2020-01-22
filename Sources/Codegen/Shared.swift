@@ -39,7 +39,7 @@ struct Shared: Definable {
 extension SwiftSharedType {
     static var existingShared: [Self] { Self.existing.filter { $0.shared } }
 
-    /// Identifies shareable data types and re-associates their instances to a single shared type.
+    /// Identifies shareable data types and re-associates their instances to a single shared parent type.
     static func share(parent: Swift.Object) {
         var visited = Set<Int>()
         let prioritizedTypes = Self.existing.sorted{ $0.priority > $1.priority }.enumerated()

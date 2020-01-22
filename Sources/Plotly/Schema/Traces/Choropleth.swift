@@ -158,11 +158,12 @@ public struct Choropleth<ZData>: Trace where ZData: Encodable {
     /// [R](https://plot.ly/r/reference/#choropleth-locationmode)
     public var locationMode: LocationMode?
 
+    /// Sets the color values.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-attributes) |
-    /// [Python](https://plot.ly/python/reference/#choropleth-attributes) |
-    /// [R](https://plot.ly/r/reference/#choropleth-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#choropleth-z) |
+    /// [Python](https://plot.ly/python/reference/#choropleth-z) |
+    /// [R](https://plot.ly/r/reference/#choropleth-z)
     public var z: ZData?
 
     /// Sets the text elements associated with each location.
@@ -293,13 +294,13 @@ public struct Choropleth<ZData>: Trace where ZData: Encodable {
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let location = HoverInfo(rawValue: 1 << 0)
-        public static let z = HoverInfo(rawValue: 1 << 1)
-        public static let text = HoverInfo(rawValue: 1 << 2)
-        public static let name = HoverInfo(rawValue: 1 << 3)
-        public static let all = HoverInfo(rawValue: 1 << 4)
-        public static let none = HoverInfo(rawValue: 1 << 5)
-        public static let skip = HoverInfo(rawValue: 1 << 6)
+        public static var location: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var z: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 6) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -480,7 +481,7 @@ public struct Choropleth<ZData>: Trace where ZData: Encodable {
         case uiRevision = "uirevision"
         case locations
         case locationMode = "locationmode"
-        case z = "attributes"
+        case z
         case text
         case hoverText = "hovertext"
         case marker

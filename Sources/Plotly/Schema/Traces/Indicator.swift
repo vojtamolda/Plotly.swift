@@ -123,9 +123,9 @@ public struct Indicator: Trace {
     public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let number = Mode(rawValue: 1 << 0)
-        public static let delta = Mode(rawValue: 1 << 1)
-        public static let gauge = Mode(rawValue: 1 << 2)
+        public static var number: Mode { Mode(rawValue: 1 << 0) }
+        public static var delta: Mode { Mode(rawValue: 1 << 1) }
+        public static var gauge: Mode { Mode(rawValue: 1 << 2) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     

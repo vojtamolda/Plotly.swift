@@ -171,18 +171,20 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
     /// [R](https://plot.ly/r/reference/#scatterpolargl-mode)
     public var mode: Shared.Mode?
 
+    /// Sets the radial coordinates
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-attributes) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-r) |
+    /// [Python](https://plot.ly/python/reference/#scatterpolargl-r) |
+    /// [R](https://plot.ly/r/reference/#scatterpolargl-r)
     public var r: RData?
 
+    /// Sets the angular coordinates
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scatterpolargl-attributes) |
-    /// [R](https://plot.ly/r/reference/#scatterpolargl-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl-theta) |
+    /// [Python](https://plot.ly/python/reference/#scatterpolargl-theta) |
+    /// [R](https://plot.ly/r/reference/#scatterpolargl-theta)
     public var theta: ThetaData?
 
     /// Alternate to `r`. 
@@ -636,8 +638,8 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
         case transforms
         case uiRevision = "uirevision"
         case mode
-        case r = "attributes"
-        case theta = "attributes"
+        case r
+        case theta
         case r0
         case dr
         case theta0

@@ -98,6 +98,7 @@ final class ScatterPlots: XCTestCase {
     /// https://plot.ly/javascript/line-and-scatter/#scatter-plot-with-a-color-dimension
     func testScatterPlotWithAColorDimension() {
         let trace1 = Scatter(
+            x: nil as [Int]?,
             y: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
                 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
             mode: .markers,

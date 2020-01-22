@@ -46,31 +46,32 @@ struct Trace: Definable {
 
     /// Post-processing hacks that introduce generics and remove obsolete members.
     private func workarounds() {
+        switch attributes.name {
+        case "Bar":
+            let obsolete: Set = ["t", "r"]
+            attributes.members = attributes.members.removedInstances(named: obsolete)
+        case "Scatter":
+            let obsolete: Set = ["t", "r"]
+            attributes.members = attributes.members.removedInstances(named: obsolete)
+        case "Volume":
+            changeAttributeToGeneric(name: "value")    
+        default:
+            break
+        }
         changeAttributeToGeneric(name: "x")
         changeAttributeToGeneric(name: "y")
         changeAttributeToGeneric(name: "z")
 
         changeAttributeToGeneric(name: "r")
         changeAttributeToGeneric(name: "theta")
-
-        switch attributes.name {
-        case "Bar":
-            attributes.members = attributes.members.filter { ($0 as? Instantiable)?.name != "r" }
-            attributes.members = attributes.members.filter { ($0 as? Instantiable)?.name != "t" }
-        case "Scatter":
-            attributes.members = attributes.members.filter { ($0 as? Instantiable)?.name != "r" }
-            attributes.members = attributes.members.filter { ($0 as? Instantiable)?.name != "t" }
-        case "Volume":
-            changeAttributeToGeneric(name: "value")    
-        default:
-            return
-        }
     }
 
     private func changeAttributeToGeneric(name: String) {
-        if let idx = attributes.members.firstIndex(where: { ($0 as? Instantiable)?.name == name }) {
-            let generic = Swift.Generic(name: "\(name.capitalized)Data", parent: attributes, constraint: "Encodable")
-            attributes.members[idx] = generic.instance(named: name)
+        if let idx = attributes.members.firstIndex(where: { ($0 as? Instance)?.name == name }) {
+            let replaced = attributes.members[idx] as! Instance
+            let generic = Swift.Generic(name: "\(replaced.name.capitalized)Data",
+                parent: attributes, origin: replaced.origin, constraint: "Encodable")
+            attributes.members[idx] = generic.instance(named: replaced.name)
         }
     }
 }

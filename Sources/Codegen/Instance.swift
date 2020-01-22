@@ -1,29 +1,15 @@
 
-protocol Instantiable: Definable {
-    var name: String { get }
-    var array: Bool { get }
-    var schemaName: String { get }
-    var constant: String? { get set }
-    var optional: Bool { get set }
-    var access: Swift.Access { get set }
-
-    var path: String { get }
-    var argument: String { get }
-}
-
-
-/// Instantiation of a variable or property with an associated Swift data type and Plotly schema type.
-class Instance<Type>: Instantiable where Type: SwiftType {
-    var type: Type
-    let schema: Type.Origin
-    let parent: Swift.Object?
-
+/// Instantiation of a variable or property with an associated Swift data type and origin Plotly schema type.
+class Instance: Definable {
     let name: String
     var array: Bool
-    var schemaName: String { schema.name }
     var constant: String? =  nil
     var optional: Bool = true
     var access: Swift.Access = .public
+
+    var type: SwiftType
+    let origin: SchemaType
+    let parent: Swift.Object?
 
     var path: String { (parent?.path ?? "") + "." + name }
     var argument: String {
@@ -33,7 +19,7 @@ class Instance<Type>: Instantiable where Type: SwiftType {
         return "\(name): \(dataType)"
     }
     var documentation: [String] {
-        var link = schema.path
+        var link = origin.path
         link = link.replacingOccurrences(of: "/", with: "-")
         link = link.replacingOccurrences(of: "traces-", with: "")
         link = link.replacingOccurrences(of: "attributes-", with: "")
@@ -46,7 +32,7 @@ class Instance<Type>: Instantiable where Type: SwiftType {
             "/// [R](https://plot.ly/r/reference/#\(link))",
 
         ]
-        let documentation = schema.description?.documentation() ?? []
+        let documentation = origin.description?.documentation() ?? []
         return documentation + reference
     }
     var definition: [String] {
@@ -57,13 +43,21 @@ class Instance<Type>: Instantiable where Type: SwiftType {
         }
     }
 
-    init(of type: Type, named name: String, array: Bool = false, schemaOverride: Type.Origin? = nil) {
-        self.type = type
-        self.schema = schemaOverride ?? type.schema
-        self.parent = type.parent
-
+    init(of type: SwiftType, named name: String, array: Bool = false, origin: SchemaType? = nil) {
         self.name = Swift.name!.camelCased(name)
         self.array = array
+
+        self.type = type
+        self.origin = origin ?? type.origin
+        self.parent = type.parent
+    }
+
+    func shareable(as other: Instance) -> Bool {
+        let nameEqual = self.name == other.name
+        let constantEqual = self.constant == other.constant
+        let optionalEqual = self.optional == other.optional
+        let accessEqual = self.access == other.access
+        return nameEqual && constantEqual && optionalEqual && accessEqual
     }
 
     func define(as context: Swift.Context) -> [String] {

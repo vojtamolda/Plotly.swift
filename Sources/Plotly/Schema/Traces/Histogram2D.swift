@@ -138,25 +138,28 @@ public struct Histogram2D<XData, YData, ZData>: Trace where XData: Encodable, YD
     /// [R](https://plot.ly/r/reference/#histogram2d-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the sample data to be binned on the x axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-attributes) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-x) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-x) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-x)
     public var x: XData?
 
+    /// Sets the sample data to be binned on the y axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-attributes) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-y) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-y) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-y)
     public var y: YData?
 
+    /// Sets the aggregation data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#histogram2d-attributes) |
-    /// [R](https://plot.ly/r/reference/#histogram2d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram2d-z) |
+    /// [Python](https://plot.ly/python/reference/#histogram2d-z) |
+    /// [R](https://plot.ly/r/reference/#histogram2d-z)
     public var z: ZData?
 
     /// # Used By
@@ -522,9 +525,9 @@ public struct Histogram2D<XData, YData, ZData>: Trace where XData: Encodable, YD
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
-        case z = "attributes"
+        case x
+        case y
+        case z
         case marker
         case normalization = "histnorm"
         case binningFunction = "histfunc"

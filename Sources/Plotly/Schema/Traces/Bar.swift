@@ -1,7 +1,7 @@
 /// The data visualized by the span of the bars is set in `y` if `orientation` is set th *v* (the default) and the labels are set in `x`. 
 ///
 /// By setting `orientation` to *h*, the roles are interchanged.
-public struct Bar<XData, YData, RData>: Trace where XData: Encodable, YData: Encodable, RData: Encodable {
+public struct Bar<XData, YData>: Trace where XData: Encodable, YData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -168,11 +168,12 @@ public struct Bar<XData, YData, RData>: Trace where XData: Encodable, YData: Enc
     /// [R](https://plot.ly/r/reference/#bar-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-attributes) |
-    /// [Python](https://plot.ly/python/reference/#bar-attributes) |
-    /// [R](https://plot.ly/r/reference/#bar-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-x) |
+    /// [Python](https://plot.ly/python/reference/#bar-x) |
+    /// [R](https://plot.ly/r/reference/#bar-x)
     public var x: XData?
 
     /// Alternate to `x`. 
@@ -196,11 +197,12 @@ public struct Bar<XData, YData, RData>: Trace where XData: Encodable, YData: Enc
     /// [R](https://plot.ly/r/reference/#bar-dx)
     public var dx: Double?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#bar-attributes) |
-    /// [Python](https://plot.ly/python/reference/#bar-attributes) |
-    /// [R](https://plot.ly/r/reference/#bar-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-y) |
+    /// [Python](https://plot.ly/python/reference/#bar-y) |
+    /// [R](https://plot.ly/r/reference/#bar-y)
     public var y: YData?
 
     /// Alternate to `y`. 
@@ -648,10 +650,10 @@ public struct Bar<XData, YData, RData>: Trace where XData: Encodable, YData: Enc
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
+        case x
         case x0
         case dx
-        case y = "attributes"
+        case y
         case y0
         case dy
         case text

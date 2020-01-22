@@ -2,7 +2,7 @@
 ///
 /// Horizontal or vertical slices, caps as well as spaceframe between iso-min and iso-max values
 /// could also be drawn using this trace.
-public struct Volume<XData, YData, ZData, ValueData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable, ValueData: Encodable {
+public struct Volume<ValueData, XData, YData, ZData>: Trace where ValueData: Encodable, XData: Encodable, YData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -113,32 +113,36 @@ public struct Volume<XData, YData, ZData, ValueData>: Trace where XData: Encodab
     /// [R](https://plot.ly/r/reference/#volume-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the X coordinates of the vertices on X axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-attributes) |
-    /// [Python](https://plot.ly/python/reference/#volume-attributes) |
-    /// [R](https://plot.ly/r/reference/#volume-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#volume-x) |
+    /// [Python](https://plot.ly/python/reference/#volume-x) |
+    /// [R](https://plot.ly/r/reference/#volume-x)
     public var x: XData?
 
+    /// Sets the Y coordinates of the vertices on Y axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-attributes) |
-    /// [Python](https://plot.ly/python/reference/#volume-attributes) |
-    /// [R](https://plot.ly/r/reference/#volume-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#volume-y) |
+    /// [Python](https://plot.ly/python/reference/#volume-y) |
+    /// [R](https://plot.ly/r/reference/#volume-y)
     public var y: YData?
 
+    /// Sets the Z coordinates of the vertices on Z axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-attributes) |
-    /// [Python](https://plot.ly/python/reference/#volume-attributes) |
-    /// [R](https://plot.ly/r/reference/#volume-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#volume-z) |
+    /// [Python](https://plot.ly/python/reference/#volume-z) |
+    /// [R](https://plot.ly/r/reference/#volume-z)
     public var z: ZData?
 
+    /// Sets the 4th dimension (value) of the vertices.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#volume-attributes) |
-    /// [Python](https://plot.ly/python/reference/#volume-attributes) |
-    /// [R](https://plot.ly/r/reference/#volume-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#volume-value) |
+    /// [Python](https://plot.ly/python/reference/#volume-value) |
+    /// [R](https://plot.ly/r/reference/#volume-value)
     public var value: ValueData?
 
     /// Sets the minimum boundary for iso-surface plot.
@@ -202,14 +206,14 @@ public struct Volume<XData, YData, ZData, ValueData>: Trace where XData: Encodab
         public struct Pattern: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let a = Pattern(rawValue: 1 << 0)
-            public static let b = Pattern(rawValue: 1 << 1)
-            public static let c = Pattern(rawValue: 1 << 2)
-            public static let d = Pattern(rawValue: 1 << 3)
-            public static let e = Pattern(rawValue: 1 << 4)
-            public static let all = Pattern(rawValue: 1 << 5)
-            public static let odd = Pattern(rawValue: 1 << 6)
-            public static let even = Pattern(rawValue: 1 << 7)
+            public static var a: Pattern { Pattern(rawValue: 1 << 0) }
+            public static var b: Pattern { Pattern(rawValue: 1 << 1) }
+            public static var c: Pattern { Pattern(rawValue: 1 << 2) }
+            public static var d: Pattern { Pattern(rawValue: 1 << 3) }
+            public static var e: Pattern { Pattern(rawValue: 1 << 4) }
+            public static var all: Pattern { Pattern(rawValue: 1 << 5) }
+            public static var odd: Pattern { Pattern(rawValue: 1 << 6) }
+            public static var even: Pattern { Pattern(rawValue: 1 << 7) }
         
             public init(rawValue: Int) { self.rawValue = rawValue }
         
@@ -813,10 +817,10 @@ public struct Volume<XData, YData, ZData, ValueData>: Trace where XData: Encodab
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
-        case z = "attributes"
-        case value = "attributes"
+        case x
+        case y
+        case z
+        case value
         case isoMin = "isomin"
         case isoMax = "isomax"
         case surface

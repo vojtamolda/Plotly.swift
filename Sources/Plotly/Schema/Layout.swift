@@ -631,9 +631,9 @@ public struct Layout: Encodable {
     public struct ClickMode: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let event = ClickMode(rawValue: 1 << 0)
-        public static let select = ClickMode(rawValue: 1 << 1)
-        public static let none = ClickMode(rawValue: 1 << 2)
+        public static var event: ClickMode { ClickMode(rawValue: 1 << 0) }
+        public static var select: ClickMode { ClickMode(rawValue: 1 << 1) }
+        public static var none: ClickMode { ClickMode(rawValue: 1 << 2) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -1503,9 +1503,9 @@ public struct Layout: Encodable {
         public struct SpikeMode: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let toAxis = SpikeMode(rawValue: 1 << 0)
-            public static let across = SpikeMode(rawValue: 1 << 1)
-            public static let marker = SpikeMode(rawValue: 1 << 2)
+            public static var toAxis: SpikeMode { SpikeMode(rawValue: 1 << 0) }
+            public static var across: SpikeMode { SpikeMode(rawValue: 1 << 1) }
+            public static var marker: SpikeMode { SpikeMode(rawValue: 1 << 2) }
         
             public init(rawValue: Int) { self.rawValue = rawValue }
         
@@ -2954,9 +2954,9 @@ public struct Layout: Encodable {
         public struct SpikeMode: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let toAxis = SpikeMode(rawValue: 1 << 0)
-            public static let across = SpikeMode(rawValue: 1 << 1)
-            public static let marker = SpikeMode(rawValue: 1 << 2)
+            public static var toAxis: SpikeMode { SpikeMode(rawValue: 1 << 0) }
+            public static var across: SpikeMode { SpikeMode(rawValue: 1 << 1) }
+            public static var marker: SpikeMode { SpikeMode(rawValue: 1 << 2) }
         
             public init(rawValue: Int) { self.rawValue = rawValue }
         
@@ -7312,9 +7312,9 @@ public struct Layout: Encodable {
             public struct ArrowSide: OptionSet, Encodable {
                 public let rawValue: Int
             
-                public static let end = ArrowSide(rawValue: 1 << 0)
-                public static let start = ArrowSide(rawValue: 1 << 1)
-                public static let none = ArrowSide(rawValue: 1 << 2)
+                public static var end: ArrowSide { ArrowSide(rawValue: 1 << 0) }
+                public static var start: ArrowSide { ArrowSide(rawValue: 1 << 1) }
+                public static var none: ArrowSide { ArrowSide(rawValue: 1 << 2) }
             
                 public init(rawValue: Int) { self.rawValue = rawValue }
             
@@ -10088,9 +10088,9 @@ public struct Layout: Encodable {
         public struct TraceOrder: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let reversed = TraceOrder(rawValue: 1 << 0)
-            public static let grouped = TraceOrder(rawValue: 1 << 1)
-            public static let normal = TraceOrder(rawValue: 1 << 2)
+            public static var reversed: TraceOrder { TraceOrder(rawValue: 1 << 0) }
+            public static var grouped: TraceOrder { TraceOrder(rawValue: 1 << 1) }
+            public static var normal: TraceOrder { TraceOrder(rawValue: 1 << 2) }
         
             public init(rawValue: Int) { self.rawValue = rawValue }
         
@@ -10461,9 +10461,9 @@ public struct Layout: Encodable {
         public struct ArrowSide: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let end = ArrowSide(rawValue: 1 << 0)
-            public static let start = ArrowSide(rawValue: 1 << 1)
-            public static let none = ArrowSide(rawValue: 1 << 2)
+            public static var end: ArrowSide { ArrowSide(rawValue: 1 << 0) }
+            public static var start: ArrowSide { ArrowSide(rawValue: 1 << 1) }
+            public static var none: ArrowSide { ArrowSide(rawValue: 1 << 2) }
         
             public init(rawValue: Int) { self.rawValue = rawValue }
         

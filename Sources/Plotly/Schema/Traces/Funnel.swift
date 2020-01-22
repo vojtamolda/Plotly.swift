@@ -160,11 +160,12 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [R](https://plot.ly/r/reference/#funnel-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-attributes) |
-    /// [Python](https://plot.ly/python/reference/#funnel-attributes) |
-    /// [R](https://plot.ly/r/reference/#funnel-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-x) |
+    /// [Python](https://plot.ly/python/reference/#funnel-x) |
+    /// [R](https://plot.ly/r/reference/#funnel-x)
     public var x: XData?
 
     /// Alternate to `x`. 
@@ -188,11 +189,12 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [R](https://plot.ly/r/reference/#funnel-dx)
     public var dx: Double?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-attributes) |
-    /// [Python](https://plot.ly/python/reference/#funnel-attributes) |
-    /// [R](https://plot.ly/r/reference/#funnel-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-y) |
+    /// [Python](https://plot.ly/python/reference/#funnel-y) |
+    /// [R](https://plot.ly/r/reference/#funnel-y)
     public var y: YData?
 
     /// Alternate to `y`. 
@@ -261,16 +263,16 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let name = HoverInfo(rawValue: 1 << 0)
-        public static let x = HoverInfo(rawValue: 1 << 1)
-        public static let y = HoverInfo(rawValue: 1 << 2)
-        public static let text = HoverInfo(rawValue: 1 << 3)
-        public static let percentInitial = HoverInfo(rawValue: 1 << 4)
-        public static let percentPrevious = HoverInfo(rawValue: 1 << 5)
-        public static let percentTotal = HoverInfo(rawValue: 1 << 6)
-        public static let all = HoverInfo(rawValue: 1 << 7)
-        public static let none = HoverInfo(rawValue: 1 << 8)
-        public static let skip = HoverInfo(rawValue: 1 << 9)
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var x: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var y: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var percentInitial: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var percentPrevious: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var percentTotal: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 7) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 8) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 9) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -311,13 +313,13 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let label = TextInfo(rawValue: 1 << 0)
-        public static let text = TextInfo(rawValue: 1 << 1)
-        public static let percentInitial = TextInfo(rawValue: 1 << 2)
-        public static let percentPrevious = TextInfo(rawValue: 1 << 3)
-        public static let percentTotal = TextInfo(rawValue: 1 << 4)
-        public static let value = TextInfo(rawValue: 1 << 5)
-        public static let none = TextInfo(rawValue: 1 << 6)
+        public static var label: TextInfo { TextInfo(rawValue: 1 << 0) }
+        public static var text: TextInfo { TextInfo(rawValue: 1 << 1) }
+        public static var percentInitial: TextInfo { TextInfo(rawValue: 1 << 2) }
+        public static var percentPrevious: TextInfo { TextInfo(rawValue: 1 << 3) }
+        public static var percentTotal: TextInfo { TextInfo(rawValue: 1 << 4) }
+        public static var value: TextInfo { TextInfo(rawValue: 1 << 5) }
+        public static var none: TextInfo { TextInfo(rawValue: 1 << 6) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -595,10 +597,10 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
+        case x
         case x0
         case dx
-        case y = "attributes"
+        case y
         case y0
         case dy
         case hoverText = "hovertext"

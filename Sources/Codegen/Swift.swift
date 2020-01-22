@@ -3,15 +3,14 @@ import Foundation
 
 // MARK: Swift Data Type Protocols
 
-/// A Swift data type that originates from some Plotly schema origin data type.
-protocol SwiftType where Origin: SchemaType {
-    associatedtype Origin
+/// A Swift data type that originates from some Plotly schema data type.
+protocol SwiftType {
     var name: String { get }
     var parent: Swift.Object? { get }
-    var schema: Origin { get }
+    var origin: SchemaType { get }
 
     /// Creates instance of the Swift data type with the specified name.
-    func instance(named: String, array: Bool) -> Instance<Self>
+    func instance(named: String, array: Bool) -> Instance
 }
 extension SwiftType {
     var path: String {
@@ -26,7 +25,7 @@ extension SwiftType {
     }
 
     /// Default implementation for non-shared types.
-    func instance(named: String, array: Bool = false) -> Instance<Self> {
+    func instance(named: String, array: Bool = false) -> Instance {
         return Instance(of: self, named: named, array: array)
     }
 }
@@ -60,7 +59,7 @@ protocol SwiftSharedType: SwiftType, Definable, AnyObject {
     var parent: Swift.Object? { get set }
     var access: Swift.Access { get set }
     var priority: Int { get }
-    var instances: [Instance<Self>] { get set }
+    var instances: [Instance] { get set }
     static var existing: [Self] { get }
 
     /// Checks whether the data type can by represented by `other` without loss of functionality and therefore shared.
@@ -68,7 +67,7 @@ protocol SwiftSharedType: SwiftType, Definable, AnyObject {
 }
 extension SwiftSharedType {
     var documentation: [String] {
-        var lines = schema.description?.documentation() ?? []
+        var lines = origin.description?.documentation() ?? []
         if !lines.isEmpty { lines += ["///"] }
         lines += ["/// # Used By"]
         for instance in instances {
@@ -78,8 +77,9 @@ extension SwiftSharedType {
     }
 
     /// Default implementation for shared types that keeps track of instances.
-    func instance(named: String, array: Bool = false, schemaOverride: Origin? = nil) -> Instance<Self> {
-        let instance = Instance(of: self, named: named, array: array, schemaOverride: schemaOverride)
+    @discardableResult
+    func instance(named: String, array: Bool = false, origin: SchemaType? = nil) -> Instance {
+        let instance = Instance(of: self, named: named, array: array, origin: origin)
         instances.append(instance)
         return instance
     }
@@ -108,18 +108,19 @@ struct Swift {
         var name: String
         var shared: Bool = false
         var parent: Swift.Object?
-        var schema: Schema.Object
+        let schema: Schema.Object
+        var origin: SchemaType { schema as SchemaType }
         var access: Swift.Access = .public
         var priority: Int { members.count }
         var protocols: [String] = ["Encodable"]
         var generics: [String] = []
         var constraints: [String] = []
 
-        var instances: [Instance<Swift.Object>] = []
+        var instances: [Instance] = []
         static var existing: [Swift.Object] = []
 
         var members: [Definable]
-        var properties: [Instantiable] { members.compactMap { $0 as? Instantiable } }
+        var properties: [Instance] { members.compactMap { $0 as? Instance } }
         var primitives: [String: Schema.Primitive]
 
         static private let ignored: [String] = ["_deprecated", "src", "impliedEdits"]
@@ -148,16 +149,16 @@ struct Swift {
         }
 
         private var codingKeys: [String] {
-            if properties.filter({ $0.name != $0.schemaName }).isEmpty { return [] }
+            if properties.filter({ $0.name != $0.origin.name }).isEmpty { return [] }
 
             var lines = [String]()
             lines += ["/// Plotly compatible property encoding"]
             lines += ["enum CodingKeys: String, CodingKey {"]
             for prop in properties {
-                if prop.name == prop.schemaName {
+                if prop.name == prop.origin.name {
                     lines += ["case \(prop.name)"].indented()
                 } else {
-                    lines += ["case \(prop.name) = \(prop.schemaName.escaped())"].indented()
+                    lines += ["case \(prop.name) = \(prop.origin.name.escaped())"].indented()
                 }
             }
             lines += ["}", ""]
@@ -175,12 +176,12 @@ struct Swift {
             if let itemsEntry = object.entries.first(where: { $0.identifier == "items" }) {
                 guard case let parent = parent!,
                     case let Schema.Entry.object(itemsSchema) = itemsEntry.entry,
-                    case let Schema.Entry.object(typeSchema) = itemsSchema.entries[0].entry else {
+                    case let Schema.Entry.object(itemSchema) = itemsSchema.entries[0].entry else {
                     fatalError()
                 }
-                let arrayElementType = Swift.Object(named: typeSchema.name, parent: parent, schema: typeSchema)!
-                let arrayInstance = arrayElementType.instance(named: name, array: true, schemaOverride: object)
-                parent.members.append(arrayInstance)
+                let itemType = Swift.Object(named: itemSchema.name, parent: parent, schema: itemSchema)!
+                let itemsArray = itemType.instance(named: name, array: true, origin: object)
+                parent.members.append(itemsArray)
                 return nil
             }
             Self.existing.append(self)
@@ -268,8 +269,8 @@ struct Swift {
                 fallthrough
             case "ZError":
                 name = "Error"
-                members = members.filter { ($0 as? Instantiable)?.name != "yCopyStyle" }
-                members = members.filter { ($0 as? Instantiable)?.name != "zCopyStyle" }
+                let useless: Set = ["yCopyStyle", "zCopyStyle"]
+                members = members.removedInstances(named: useless)
             default:
                 return
             }
@@ -286,24 +287,19 @@ struct Swift {
             return self.members.allSatisfy { selfMember in
                 other.members.contains { otherMember in
                     if let selfNestedObject = selfMember as? Swift.Object,
-                       let otherNestedObject = otherMember as? Swift.Object {
+                        let otherNestedObject = otherMember as? Swift.Object {
                         return selfNestedObject.shareable(as: otherNestedObject)
                     } else if let selfEnumerated = selfMember as? Swift.Enumerated,
-                              let otherEnumerated = otherMember as? Swift.Enumerated {
-                           return selfEnumerated.shareable(as: otherEnumerated)
+                        let otherEnumerated = otherMember as? Swift.Enumerated {
+                        return selfEnumerated.shareable(as: otherEnumerated)
                     } else if let selfFlagList = selfMember as? Swift.FlagList,
-                              let otherFlagList = otherMember as? Swift.FlagList {
+                        let otherFlagList = otherMember as? Swift.FlagList {
                         return selfFlagList.shareable(as: otherFlagList)
-                    } else if let selfInstance = selfMember as? Instantiable,
-                              let otherInstance = otherMember as? Instantiable {
-                        if selfInstance.name != otherInstance.name { return false }
-                        if selfInstance.constant != otherInstance.constant { return false }
-                        if selfInstance.optional != otherInstance.optional { return false }
-                        if selfInstance.access != otherInstance.access { return false }
-                        return true
-                    } else {
-                        return false
+                    } else if let selfInstance = selfMember as? Instance,
+                        let otherInstance = otherMember as? Instance {
+                        return selfInstance.shareable(as: otherInstance)
                     }
+                    return false
                 }
             }
         }
@@ -316,7 +312,8 @@ struct Swift {
     struct DataArray: SwiftType {
         let name: String = "[Double]"
         let parent: Swift.Object?
-        var schema: Schema.DataArray
+        let schema: Schema.DataArray
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Data type that maps Plotly `enumerated` to Swift `enum`.
@@ -324,12 +321,13 @@ struct Swift {
         var name: String
         var shared: Bool = false
         var parent: Swift.Object?
-        var schema: Schema.Enumerated
+        let schema: Schema.Enumerated
+        var origin: SchemaType { schema as SchemaType }
         var access: Swift.Access = .public
         var priority: Int { cases.count }
         var protocols: [String] = ["String", "Encodable"]
 
-        var instances: [Instance<Swift.Enumerated>] = []
+        var instances: [Instance] = []
         static var existing: [Swift.Enumerated] = []
 
         struct Case: Equatable {
@@ -446,21 +444,24 @@ struct Swift {
     struct Boolean: SwiftType {
         let name: String = "Bool"
         let parent: Swift.Object?
-        var schema: Schema.Boolean
+        let schema: Schema.Boolean
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `number` data type represented as a Swift `Double`.
     struct Number: SwiftType {
         var name: String { (schema.arrayOk ?? false) ? "ArrayOrDouble" : "Double" }
         let parent: Swift.Object?
-        var schema: Schema.Number
+        let schema: Schema.Number
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `integer` data type represented as a Swift `Int`.
     struct Integer: SwiftType {
         var name: String { (schema.arrayOk ?? false) ? "ArrayOrInt" : "Int" }
         let parent: Swift.Object?
-        var schema: Schema.Integer
+        let schema: Schema.Integer
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `string` data type represented as a Swift `String`.
@@ -468,21 +469,24 @@ struct Swift {
     struct String_: SwiftType {
         var name: String { (schema.arrayOk ?? false) ? "ArrayOrString" : "String" }
         let parent: Swift.Object?
-        var schema: Schema.String_
+        let schema: Schema.String_
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `color` data type is manually re-implemented in Swift.
     struct Color: SwiftType {
         var name: String { (schema.arrayOk ?? false) ? "ArrayOrColor" : "Color" }
         let parent: Swift.Object?
-        var schema: Schema.Color
+        let schema: Schema.Color
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `colorlist` data type is manually re-implemented in Swift.
     struct ColorList: SwiftType {
         let name: String = "ColorList"
         let parent: Swift.Object?
-        var schema: Schema.ColorList
+        let schema: Schema.ColorList
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `colorscale` data type is manually re-implemented in Swift.
@@ -490,21 +494,24 @@ struct Swift {
     struct ColorScale: SwiftType {
         let name: String = "ColorScale"
         let parent: Swift.Object?
-        var schema: Schema.ColorScale
+        let schema: Schema.ColorScale
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `Angle` data type represented as a Swift `Double`.
     struct Angle: SwiftType {
         let name: String = "Angle"
         let parent: Swift.Object?
-        var schema: Schema.Angle
+        let schema: Schema.Angle
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `subplotid` data type is manually re-implemented in Swift.
     struct SubPlotID: SwiftType {
         let name: String = "SubPlotID"
         let parent: Swift.Object?
-        var schema: Schema.SubPlotID
+        let schema: Schema.SubPlotID
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Data type that maps Plotly `flaglist` to `OptionSet` from the Swift standard library.
@@ -512,12 +519,13 @@ struct Swift {
         var name: String
         var shared: Bool = false
         var parent: Swift.Object?
-        var schema: Schema.FlagList
+        let schema: Schema.FlagList
+        var origin: SchemaType { schema as SchemaType }
         var access: Swift.Access = .public
         var priority: Int { options.count }
         let protocols: [String] = []
 
-        var instances: [Instance<Swift.FlagList>] = []
+        var instances: [Instance] = []
         static var existing: [Swift.FlagList] = []
 
         struct Option: Equatable {
@@ -533,8 +541,9 @@ struct Swift {
             lines += ["\(access)let rawValue: Int"].indented()
             lines += [""]
             for (i, option) in options.enumerated() {
-                let label = option.label
-                lines += ["\(access)static let \(label) = \(name)(rawValue: 1 << \(i))"].indented()
+                let property = "\(access)static var \(option.label): \(name)"
+                let calculated = "\(name)(rawValue: 1 << \(i))"
+                lines += ["\(property) { \(calculated) }"].indented()
             }
             lines += [""]
             lines += ["\(access)init(rawValue: Int) { self.rawValue = rawValue }"].indented()
@@ -595,7 +604,8 @@ struct Swift {
     struct Any_: SwiftType {
         let name: String = "Anything"
         let parent: Swift.Object?
-        var schema: Schema.Any_
+        let schema: Schema.Any_
+        var origin: SchemaType { schema as SchemaType }
     }
 
     /// Plotly `any` data type is manually re-implemented in Swift.
@@ -603,18 +613,19 @@ struct Swift {
         let name: String = "InfoArray"
         let parent: Swift.Object?
         var schema: Schema.InfoArray
+        var origin: SchemaType { schema as SchemaType }
     }
 
     // TODO: Docs
     struct Generic: SwiftType {
         let name: String
         let parent: Swift.Object?
-        let schema: Schema.Object
+        let origin: SchemaType
 
-        init(name: String, parent: Swift.Object, constraint: String?) {
+        init(name: String, parent: Swift.Object, origin: SchemaType, constraint: String? = nil) {
             self.name = name
             self.parent = parent
-            self.schema = parent.schema
+            self.origin = origin
 
             parent.generics.append(name)
             if constraint != nil { parent.constraints.append("\(name): \(constraint!)") }

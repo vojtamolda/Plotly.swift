@@ -1485,14 +1485,14 @@ public struct Shared {
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let x = HoverInfo(rawValue: 1 << 0)
-        public static let y = HoverInfo(rawValue: 1 << 1)
-        public static let z = HoverInfo(rawValue: 1 << 2)
-        public static let text = HoverInfo(rawValue: 1 << 3)
-        public static let name = HoverInfo(rawValue: 1 << 4)
-        public static let all = HoverInfo(rawValue: 1 << 5)
-        public static let none = HoverInfo(rawValue: 1 << 6)
-        public static let skip = HoverInfo(rawValue: 1 << 7)
+        public static var x: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var y: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 7) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -1530,10 +1530,10 @@ public struct Shared {
     public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let lines = Mode(rawValue: 1 << 0)
-        public static let markers = Mode(rawValue: 1 << 1)
-        public static let text = Mode(rawValue: 1 << 2)
-        public static let none = Mode(rawValue: 1 << 3)
+        public static var lines: Mode { Mode(rawValue: 1 << 0) }
+        public static var markers: Mode { Mode(rawValue: 1 << 1) }
+        public static var text: Mode { Mode(rawValue: 1 << 2) }
+        public static var none: Mode { Mode(rawValue: 1 << 3) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -1558,8 +1558,8 @@ public struct Shared {
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let points = HoverOn(rawValue: 1 << 0)
-        public static let fills = HoverOn(rawValue: 1 << 1)
+        public static var points: HoverOn { HoverOn(rawValue: 1 << 0) }
+        public static var fills: HoverOn { HoverOn(rawValue: 1 << 1) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -1584,13 +1584,13 @@ public struct Shared {
     public struct PolarHoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let r = PolarHoverInfo(rawValue: 1 << 0)
-        public static let theta = PolarHoverInfo(rawValue: 1 << 1)
-        public static let text = PolarHoverInfo(rawValue: 1 << 2)
-        public static let name = PolarHoverInfo(rawValue: 1 << 3)
-        public static let all = PolarHoverInfo(rawValue: 1 << 4)
-        public static let none = PolarHoverInfo(rawValue: 1 << 5)
-        public static let skip = PolarHoverInfo(rawValue: 1 << 6)
+        public static var r: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 0) }
+        public static var theta: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 1) }
+        public static var text: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 2) }
+        public static var name: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 3) }
+        public static var all: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 4) }
+        public static var none: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 5) }
+        public static var skip: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 6) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     

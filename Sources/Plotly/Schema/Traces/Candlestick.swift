@@ -164,11 +164,14 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
     /// [R](https://plot.ly/r/reference/#candlestick-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates. 
+    ///
+    /// If absent, linear coordinate will be generated.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-attributes) |
-    /// [Python](https://plot.ly/python/reference/#candlestick-attributes) |
-    /// [R](https://plot.ly/r/reference/#candlestick-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-x) |
+    /// [Python](https://plot.ly/python/reference/#candlestick-x) |
+    /// [R](https://plot.ly/r/reference/#candlestick-x)
     public var x: XData?
 
     /// Sets the open values.
@@ -514,7 +517,7 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
+        case x
         case open
         case high
         case low

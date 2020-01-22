@@ -123,18 +123,22 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [R](https://plot.ly/r/reference/#carpet-carpet)
     public var carpet: String?
 
+    /// A two dimensional array of x coordinates at each carpet point. 
+    ///
+    /// If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-attributes) |
-    /// [Python](https://plot.ly/python/reference/#carpet-attributes) |
-    /// [R](https://plot.ly/r/reference/#carpet-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-x) |
+    /// [Python](https://plot.ly/python/reference/#carpet-x) |
+    /// [R](https://plot.ly/r/reference/#carpet-x)
     public var x: XData?
 
+    /// A two dimensional array of y coordinates at each carpet point.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-attributes) |
-    /// [Python](https://plot.ly/python/reference/#carpet-attributes) |
-    /// [R](https://plot.ly/r/reference/#carpet-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#carpet-y) |
+    /// [Python](https://plot.ly/python/reference/#carpet-y) |
+    /// [R](https://plot.ly/r/reference/#carpet-y)
     public var y: YData?
 
     /// An array containing values of the first parameter value
@@ -1528,8 +1532,8 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
         case stream
         case uiRevision = "uirevision"
         case carpet
-        case x = "attributes"
-        case y = "attributes"
+        case x
+        case y
         case a
         case a0
         case da

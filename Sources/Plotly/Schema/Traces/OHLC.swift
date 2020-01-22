@@ -164,11 +164,14 @@ public struct OHLC<XData>: Trace where XData: Encodable {
     /// [R](https://plot.ly/r/reference/#ohlc-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates. 
+    ///
+    /// If absent, linear coordinate will be generated.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-attributes) |
-    /// [Python](https://plot.ly/python/reference/#ohlc-attributes) |
-    /// [R](https://plot.ly/r/reference/#ohlc-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-x) |
+    /// [Python](https://plot.ly/python/reference/#ohlc-x) |
+    /// [R](https://plot.ly/r/reference/#ohlc-x)
     public var x: XData?
 
     /// Sets the open values.
@@ -510,7 +513,7 @@ public struct OHLC<XData>: Trace where XData: Encodable {
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
+        case x
         case open
         case high
         case low

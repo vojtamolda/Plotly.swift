@@ -116,25 +116,28 @@ public struct Surface<XData, YData, ZData>: Trace where XData: Encodable, YData:
     /// [R](https://plot.ly/r/reference/#surface-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the z coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-attributes) |
-    /// [Python](https://plot.ly/python/reference/#surface-attributes) |
-    /// [R](https://plot.ly/r/reference/#surface-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#surface-z) |
+    /// [Python](https://plot.ly/python/reference/#surface-z) |
+    /// [R](https://plot.ly/r/reference/#surface-z)
     public var z: ZData?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-attributes) |
-    /// [Python](https://plot.ly/python/reference/#surface-attributes) |
-    /// [R](https://plot.ly/r/reference/#surface-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#surface-x) |
+    /// [Python](https://plot.ly/python/reference/#surface-x) |
+    /// [R](https://plot.ly/r/reference/#surface-x)
     public var x: XData?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#surface-attributes) |
-    /// [Python](https://plot.ly/python/reference/#surface-attributes) |
-    /// [R](https://plot.ly/r/reference/#surface-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#surface-y) |
+    /// [Python](https://plot.ly/python/reference/#surface-y) |
+    /// [R](https://plot.ly/r/reference/#surface-y)
     public var y: YData?
 
     /// Sets the text elements associated with each z value. 
@@ -868,9 +871,9 @@ public struct Surface<XData, YData, ZData>: Trace where XData: Encodable, YData:
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case z = "attributes"
-        case x = "attributes"
-        case y = "attributes"
+        case z
+        case x
+        case y
         case text
         case hoverText = "hovertext"
         case hoverTemplate = "hovertemplate"

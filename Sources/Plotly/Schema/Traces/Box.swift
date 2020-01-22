@@ -163,18 +163,24 @@ public struct Box<XData, YData>: Trace where XData: Encodable, YData: Encodable 
     /// [R](https://plot.ly/r/reference/#box-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the y sample data or coordinates. 
+    ///
+    /// See overview for more info.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-attributes) |
-    /// [Python](https://plot.ly/python/reference/#box-attributes) |
-    /// [R](https://plot.ly/r/reference/#box-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-y) |
+    /// [Python](https://plot.ly/python/reference/#box-y) |
+    /// [R](https://plot.ly/r/reference/#box-y)
     public var y: YData?
 
+    /// Sets the x sample data or coordinates. 
+    ///
+    /// See overview for more info.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-attributes) |
-    /// [Python](https://plot.ly/python/reference/#box-attributes) |
-    /// [R](https://plot.ly/r/reference/#box-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-x) |
+    /// [Python](https://plot.ly/python/reference/#box-x) |
+    /// [R](https://plot.ly/r/reference/#box-x)
     public var x: XData?
 
     /// Sets the x coordinate of the box. 
@@ -650,8 +656,8 @@ public struct Box<XData, YData>: Trace where XData: Encodable, YData: Encodable 
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let boxes = HoverOn(rawValue: 1 << 0)
-        public static let points = HoverOn(rawValue: 1 << 1)
+        public static var boxes: HoverOn { HoverOn(rawValue: 1 << 0) }
+        public static var points: HoverOn { HoverOn(rawValue: 1 << 1) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -727,8 +733,8 @@ public struct Box<XData, YData>: Trace where XData: Encodable, YData: Encodable 
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case y = "attributes"
-        case x = "attributes"
+        case y
+        case x
         case x0
         case y0
         case name

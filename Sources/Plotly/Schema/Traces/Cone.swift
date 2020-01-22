@@ -114,25 +114,28 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [R](https://plot.ly/r/reference/#cone-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates of the vector field and of the displayed cones.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#cone-attributes) |
-    /// [Python](https://plot.ly/python/reference/#cone-attributes) |
-    /// [R](https://plot.ly/r/reference/#cone-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-x) |
+    /// [Python](https://plot.ly/python/reference/#cone-x) |
+    /// [R](https://plot.ly/r/reference/#cone-x)
     public var x: XData?
 
+    /// Sets the y coordinates of the vector field and of the displayed cones.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#cone-attributes) |
-    /// [Python](https://plot.ly/python/reference/#cone-attributes) |
-    /// [R](https://plot.ly/r/reference/#cone-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-y) |
+    /// [Python](https://plot.ly/python/reference/#cone-y) |
+    /// [R](https://plot.ly/r/reference/#cone-y)
     public var y: YData?
 
+    /// Sets the z coordinates of the vector field and of the displayed cones.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#cone-attributes) |
-    /// [Python](https://plot.ly/python/reference/#cone-attributes) |
-    /// [R](https://plot.ly/r/reference/#cone-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#cone-z) |
+    /// [Python](https://plot.ly/python/reference/#cone-z) |
+    /// [R](https://plot.ly/r/reference/#cone-z)
     public var z: ZData?
 
     /// Sets the x components of the vector field.
@@ -393,18 +396,18 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let x = HoverInfo(rawValue: 1 << 0)
-        public static let y = HoverInfo(rawValue: 1 << 1)
-        public static let z = HoverInfo(rawValue: 1 << 2)
-        public static let u = HoverInfo(rawValue: 1 << 3)
-        public static let v = HoverInfo(rawValue: 1 << 4)
-        public static let w = HoverInfo(rawValue: 1 << 5)
-        public static let norm = HoverInfo(rawValue: 1 << 6)
-        public static let text = HoverInfo(rawValue: 1 << 7)
-        public static let name = HoverInfo(rawValue: 1 << 8)
-        public static let all = HoverInfo(rawValue: 1 << 9)
-        public static let none = HoverInfo(rawValue: 1 << 10)
-        public static let skip = HoverInfo(rawValue: 1 << 11)
+        public static var x: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var y: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var u: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var v: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var w: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var norm: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 7) }
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 8) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 9) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 10) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 11) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -461,9 +464,9 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
-        case z = "attributes"
+        case x
+        case y
+        case z
         case u
         case v
         case w

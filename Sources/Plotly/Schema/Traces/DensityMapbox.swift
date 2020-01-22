@@ -141,11 +141,14 @@ public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
     /// [R](https://plot.ly/r/reference/#densitymapbox-lat)
     public var latitude: [Double]?
 
+    /// Sets the points' weight. 
+    ///
+    /// For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-attributes) |
-    /// [Python](https://plot.ly/python/reference/#densitymapbox-attributes) |
-    /// [R](https://plot.ly/r/reference/#densitymapbox-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-z) |
+    /// [Python](https://plot.ly/python/reference/#densitymapbox-z) |
+    /// [R](https://plot.ly/r/reference/#densitymapbox-z)
     public var z: ZData?
 
     /// Sets the radius of influence of one `lon` / `lat` point in pixels. 
@@ -202,14 +205,14 @@ public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let longitude = HoverInfo(rawValue: 1 << 0)
-        public static let latitude = HoverInfo(rawValue: 1 << 1)
-        public static let z = HoverInfo(rawValue: 1 << 2)
-        public static let text = HoverInfo(rawValue: 1 << 3)
-        public static let name = HoverInfo(rawValue: 1 << 4)
-        public static let all = HoverInfo(rawValue: 1 << 5)
-        public static let none = HoverInfo(rawValue: 1 << 6)
-        public static let skip = HoverInfo(rawValue: 1 << 7)
+        public static var longitude: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var latitude: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 7) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -391,7 +394,7 @@ public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
         case uiRevision = "uirevision"
         case longitude = "lon"
         case latitude = "lat"
-        case z = "attributes"
+        case z
         case radius
         case below
         case text

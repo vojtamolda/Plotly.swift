@@ -261,11 +261,11 @@ public struct FunnelArea: Trace {
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let label = TextInfo(rawValue: 1 << 0)
-        public static let text = TextInfo(rawValue: 1 << 1)
-        public static let value = TextInfo(rawValue: 1 << 2)
-        public static let percent = TextInfo(rawValue: 1 << 3)
-        public static let none = TextInfo(rawValue: 1 << 4)
+        public static var label: TextInfo { TextInfo(rawValue: 1 << 0) }
+        public static var text: TextInfo { TextInfo(rawValue: 1 << 1) }
+        public static var value: TextInfo { TextInfo(rawValue: 1 << 2) }
+        public static var percent: TextInfo { TextInfo(rawValue: 1 << 3) }
+        public static var none: TextInfo { TextInfo(rawValue: 1 << 4) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -316,14 +316,14 @@ public struct FunnelArea: Trace {
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let label = HoverInfo(rawValue: 1 << 0)
-        public static let text = HoverInfo(rawValue: 1 << 1)
-        public static let value = HoverInfo(rawValue: 1 << 2)
-        public static let percent = HoverInfo(rawValue: 1 << 3)
-        public static let name = HoverInfo(rawValue: 1 << 4)
-        public static let all = HoverInfo(rawValue: 1 << 5)
-        public static let none = HoverInfo(rawValue: 1 << 6)
-        public static let skip = HoverInfo(rawValue: 1 << 7)
+        public static var label: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var value: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var percent: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 7) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     

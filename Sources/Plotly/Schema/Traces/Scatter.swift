@@ -3,7 +3,7 @@
 /// The data visualized as scatter point or lines is set in `x` and `y`. Text (appearing either on
 /// the chart or on hover only) is via `text`. Bubble charts are achieved by setting `marker.size`
 /// and/or `marker.color` to numerical arrays.
-public struct Scatter<XData, YData, RData>: Trace where XData: Encodable, YData: Encodable, RData: Encodable {
+public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -170,11 +170,12 @@ public struct Scatter<XData, YData, RData>: Trace where XData: Encodable, YData:
     /// [R](https://plot.ly/r/reference/#scatter-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scatter-attributes) |
-    /// [R](https://plot.ly/r/reference/#scatter-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-x) |
+    /// [Python](https://plot.ly/python/reference/#scatter-x) |
+    /// [R](https://plot.ly/r/reference/#scatter-x)
     public var x: XData?
 
     /// Alternate to `x`. 
@@ -198,11 +199,12 @@ public struct Scatter<XData, YData, RData>: Trace where XData: Encodable, YData:
     /// [R](https://plot.ly/r/reference/#scatter-dx)
     public var dx: Double?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scatter-attributes) |
-    /// [R](https://plot.ly/r/reference/#scatter-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter-y) |
+    /// [Python](https://plot.ly/python/reference/#scatter-y) |
+    /// [R](https://plot.ly/r/reference/#scatter-y)
     public var y: YData?
 
     /// Alternate to `y`. 
@@ -793,10 +795,10 @@ public struct Scatter<XData, YData, RData>: Trace where XData: Encodable, YData:
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
+        case x
         case x0
         case dx
-        case y = "attributes"
+        case y
         case y0
         case dy
         case stackGroup = "stackgroup"

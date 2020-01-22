@@ -139,11 +139,12 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
     /// [R](https://plot.ly/r/reference/#contourcarpet-carpet)
     public var carpet: String?
 
+    /// Sets the z data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-attributes) |
-    /// [Python](https://plot.ly/python/reference/#contourcarpet-attributes) |
-    /// [R](https://plot.ly/r/reference/#contourcarpet-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-z) |
+    /// [Python](https://plot.ly/python/reference/#contourcarpet-z) |
+    /// [R](https://plot.ly/r/reference/#contourcarpet-z)
     public var z: ZData?
 
     /// Sets the x coordinates.
@@ -454,7 +455,7 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
         case stream
         case uiRevision = "uirevision"
         case carpet
-        case z = "attributes"
+        case z
         case a
         case a0
         case da

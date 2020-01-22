@@ -147,25 +147,28 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YDat
     /// [R](https://plot.ly/r/reference/#scatter3d-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-attributes) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-x) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-x) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-x)
     public var x: XData?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-attributes) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-y) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-y) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-y)
     public var y: YData?
 
+    /// Sets the z coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scatter3d-attributes) |
-    /// [R](https://plot.ly/r/reference/#scatter3d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-z) |
+    /// [Python](https://plot.ly/python/reference/#scatter3d-z) |
+    /// [R](https://plot.ly/r/reference/#scatter3d-z)
     public var z: ZData?
 
     /// Sets text elements associated with each (x,y,z) triplet. 
@@ -575,9 +578,9 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YDat
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
-        case z = "attributes"
+        case x
+        case y
+        case z
         case text
         case textTemplate = "texttemplate"
         case hoverText = "hovertext"

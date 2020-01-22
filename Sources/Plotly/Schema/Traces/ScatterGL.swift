@@ -160,11 +160,12 @@ public struct ScatterGL<XData, YData>: Trace where XData: Encodable, YData: Enco
     /// [R](https://plot.ly/r/reference/#scattergl-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scattergl-attributes) |
-    /// [R](https://plot.ly/r/reference/#scattergl-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-x) |
+    /// [Python](https://plot.ly/python/reference/#scattergl-x) |
+    /// [R](https://plot.ly/r/reference/#scattergl-x)
     public var x: XData?
 
     /// Alternate to `x`. 
@@ -188,11 +189,12 @@ public struct ScatterGL<XData, YData>: Trace where XData: Encodable, YData: Enco
     /// [R](https://plot.ly/r/reference/#scattergl-dx)
     public var dx: Double?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-attributes) |
-    /// [Python](https://plot.ly/python/reference/#scattergl-attributes) |
-    /// [R](https://plot.ly/r/reference/#scattergl-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#scattergl-y) |
+    /// [Python](https://plot.ly/python/reference/#scattergl-y) |
+    /// [R](https://plot.ly/r/reference/#scattergl-y)
     public var y: YData?
 
     /// Alternate to `y`. 
@@ -661,10 +663,10 @@ public struct ScatterGL<XData, YData>: Trace where XData: Encodable, YData: Enco
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
+        case x
         case x0
         case dx
-        case y = "attributes"
+        case y
         case y0
         case dy
         case text

@@ -110,25 +110,37 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [R](https://plot.ly/r/reference/#mesh3d-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the X coordinates of the vertices. 
+    ///
+    /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
+    /// nth vertex.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-attributes) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-x) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-x) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-x)
     public var x: XData?
 
+    /// Sets the Y coordinates of the vertices. 
+    ///
+    /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
+    /// nth vertex.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-attributes) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-y) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-y) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-y)
     public var y: YData?
 
+    /// Sets the Z coordinates of the vertices. 
+    ///
+    /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
+    /// nth vertex.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-attributes) |
-    /// [Python](https://plot.ly/python/reference/#mesh3d-attributes) |
-    /// [R](https://plot.ly/r/reference/#mesh3d-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-z) |
+    /// [Python](https://plot.ly/python/reference/#mesh3d-z) |
+    /// [R](https://plot.ly/r/reference/#mesh3d-z)
     public var z: ZData?
 
     /// A vector of vertex indices, i.e. 
@@ -494,9 +506,9 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
-        case z = "attributes"
+        case x
+        case y
+        case z
         case i
         case j
         case k

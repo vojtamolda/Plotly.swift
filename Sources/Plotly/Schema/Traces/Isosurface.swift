@@ -113,25 +113,28 @@ public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [R](https://plot.ly/r/reference/#isosurface-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the X coordinates of the vertices on X axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-attributes) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-attributes) |
-    /// [R](https://plot.ly/r/reference/#isosurface-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-x) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-x) |
+    /// [R](https://plot.ly/r/reference/#isosurface-x)
     public var x: XData?
 
+    /// Sets the Y coordinates of the vertices on Y axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-attributes) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-attributes) |
-    /// [R](https://plot.ly/r/reference/#isosurface-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-y) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-y) |
+    /// [R](https://plot.ly/r/reference/#isosurface-y)
     public var y: YData?
 
+    /// Sets the Z coordinates of the vertices on Z axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-attributes) |
-    /// [Python](https://plot.ly/python/reference/#isosurface-attributes) |
-    /// [R](https://plot.ly/r/reference/#isosurface-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-z) |
+    /// [Python](https://plot.ly/python/reference/#isosurface-z) |
+    /// [R](https://plot.ly/r/reference/#isosurface-z)
     public var z: ZData?
 
     /// Sets the 4th dimension (value) of the vertices.
@@ -203,14 +206,14 @@ public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YDa
         public struct Pattern: OptionSet, Encodable {
             public let rawValue: Int
         
-            public static let a = Pattern(rawValue: 1 << 0)
-            public static let b = Pattern(rawValue: 1 << 1)
-            public static let c = Pattern(rawValue: 1 << 2)
-            public static let d = Pattern(rawValue: 1 << 3)
-            public static let e = Pattern(rawValue: 1 << 4)
-            public static let all = Pattern(rawValue: 1 << 5)
-            public static let odd = Pattern(rawValue: 1 << 6)
-            public static let even = Pattern(rawValue: 1 << 7)
+            public static var a: Pattern { Pattern(rawValue: 1 << 0) }
+            public static var b: Pattern { Pattern(rawValue: 1 << 1) }
+            public static var c: Pattern { Pattern(rawValue: 1 << 2) }
+            public static var d: Pattern { Pattern(rawValue: 1 << 3) }
+            public static var e: Pattern { Pattern(rawValue: 1 << 4) }
+            public static var all: Pattern { Pattern(rawValue: 1 << 5) }
+            public static var odd: Pattern { Pattern(rawValue: 1 << 6) }
+            public static var even: Pattern { Pattern(rawValue: 1 << 7) }
         
             public init(rawValue: Int) { self.rawValue = rawValue }
         
@@ -800,9 +803,9 @@ public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YDa
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
-        case z = "attributes"
+        case x
+        case y
+        case z
         case value
         case isoMin = "isomin"
         case isoMax = "isomax"

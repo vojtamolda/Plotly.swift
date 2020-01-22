@@ -155,18 +155,20 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
     /// [R](https://plot.ly/r/reference/#barpolar-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the radial coordinates
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-attributes) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-attributes) |
-    /// [R](https://plot.ly/r/reference/#barpolar-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-r) |
+    /// [Python](https://plot.ly/python/reference/#barpolar-r) |
+    /// [R](https://plot.ly/r/reference/#barpolar-r)
     public var r: RData?
 
+    /// Sets the angular coordinates
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-attributes) |
-    /// [Python](https://plot.ly/python/reference/#barpolar-attributes) |
-    /// [R](https://plot.ly/r/reference/#barpolar-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-theta) |
+    /// [Python](https://plot.ly/python/reference/#barpolar-theta) |
+    /// [R](https://plot.ly/r/reference/#barpolar-theta)
     public var theta: ThetaData?
 
     /// Alternate to `r`. 
@@ -482,8 +484,8 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case r = "attributes"
-        case theta = "attributes"
+        case r
+        case theta
         case r0
         case dr
         case theta0

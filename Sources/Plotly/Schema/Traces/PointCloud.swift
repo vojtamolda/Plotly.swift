@@ -147,18 +147,20 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
     /// [R](https://plot.ly/r/reference/#pointcloud-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-attributes) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-attributes) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-x) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-x) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-x)
     public var x: XData?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-attributes) |
-    /// [Python](https://plot.ly/python/reference/#pointcloud-attributes) |
-    /// [R](https://plot.ly/r/reference/#pointcloud-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-y) |
+    /// [Python](https://plot.ly/python/reference/#pointcloud-y) |
+    /// [R](https://plot.ly/r/reference/#pointcloud-y)
     public var y: YData?
 
     /// Faster alternative to specifying `x` and `y` separately. 
@@ -376,8 +378,8 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
+        case x
+        case y
         case xy
         case indices
         case xBounds = "xbounds"

@@ -129,9 +129,9 @@ public struct Sankey: Trace {
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let all = HoverInfo(rawValue: 1 << 0)
-        public static let none = HoverInfo(rawValue: 1 << 1)
-        public static let skip = HoverInfo(rawValue: 1 << 2)
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 2) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     

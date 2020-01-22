@@ -159,18 +159,20 @@ public struct Contour<XData, YData, ZData>: Trace where XData: Encodable, YData:
     /// [R](https://plot.ly/r/reference/#contour-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the z data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-attributes) |
-    /// [Python](https://plot.ly/python/reference/#contour-attributes) |
-    /// [R](https://plot.ly/r/reference/#contour-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#contour-z) |
+    /// [Python](https://plot.ly/python/reference/#contour-z) |
+    /// [R](https://plot.ly/r/reference/#contour-z)
     public var z: ZData?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-attributes) |
-    /// [Python](https://plot.ly/python/reference/#contour-attributes) |
-    /// [R](https://plot.ly/r/reference/#contour-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#contour-x) |
+    /// [Python](https://plot.ly/python/reference/#contour-x) |
+    /// [R](https://plot.ly/r/reference/#contour-x)
     public var x: XData?
 
     /// Alternate to `x`. 
@@ -194,11 +196,12 @@ public struct Contour<XData, YData, ZData>: Trace where XData: Encodable, YData:
     /// [R](https://plot.ly/r/reference/#contour-dx)
     public var dx: Double?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#contour-attributes) |
-    /// [Python](https://plot.ly/python/reference/#contour-attributes) |
-    /// [R](https://plot.ly/r/reference/#contour-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#contour-y) |
+    /// [Python](https://plot.ly/python/reference/#contour-y) |
+    /// [R](https://plot.ly/r/reference/#contour-y)
     public var y: YData?
 
     /// Alternate to `y`. 
@@ -524,11 +527,11 @@ public struct Contour<XData, YData, ZData>: Trace where XData: Encodable, YData:
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case z = "attributes"
-        case x = "attributes"
+        case z
+        case x
         case x0
         case dx
-        case y = "attributes"
+        case y
         case y0
         case dy
         case text

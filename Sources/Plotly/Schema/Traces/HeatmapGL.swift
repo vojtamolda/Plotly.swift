@@ -136,18 +136,20 @@ public struct HeatmapGL<XData, YData, ZData>: Trace where XData: Encodable, YDat
     /// [R](https://plot.ly/r/reference/#heatmapgl-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the z data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-attributes) |
-    /// [Python](https://plot.ly/python/reference/#heatmapgl-attributes) |
-    /// [R](https://plot.ly/r/reference/#heatmapgl-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-z) |
+    /// [Python](https://plot.ly/python/reference/#heatmapgl-z) |
+    /// [R](https://plot.ly/r/reference/#heatmapgl-z)
     public var z: ZData?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-attributes) |
-    /// [Python](https://plot.ly/python/reference/#heatmapgl-attributes) |
-    /// [R](https://plot.ly/r/reference/#heatmapgl-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-x) |
+    /// [Python](https://plot.ly/python/reference/#heatmapgl-x) |
+    /// [R](https://plot.ly/r/reference/#heatmapgl-x)
     public var x: XData?
 
     /// Alternate to `x`. 
@@ -171,11 +173,12 @@ public struct HeatmapGL<XData, YData, ZData>: Trace where XData: Encodable, YDat
     /// [R](https://plot.ly/r/reference/#heatmapgl-dx)
     public var dx: Double?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-attributes) |
-    /// [Python](https://plot.ly/python/reference/#heatmapgl-attributes) |
-    /// [R](https://plot.ly/r/reference/#heatmapgl-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmapgl-y) |
+    /// [Python](https://plot.ly/python/reference/#heatmapgl-y) |
+    /// [R](https://plot.ly/r/reference/#heatmapgl-y)
     public var y: YData?
 
     /// Alternate to `y`. 
@@ -375,11 +378,11 @@ public struct HeatmapGL<XData, YData, ZData>: Trace where XData: Encodable, YDat
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case z = "attributes"
-        case x = "attributes"
+        case z
+        case x
         case x0
         case dx
-        case y = "attributes"
+        case y
         case y0
         case dy
         case text

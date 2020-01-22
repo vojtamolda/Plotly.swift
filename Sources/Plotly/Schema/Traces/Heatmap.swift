@@ -147,18 +147,20 @@ public struct Heatmap<XData, YData, ZData>: Trace where XData: Encodable, YData:
     /// [R](https://plot.ly/r/reference/#heatmap-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the z data.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-attributes) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-attributes) |
-    /// [R](https://plot.ly/r/reference/#heatmap-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-z) |
+    /// [Python](https://plot.ly/python/reference/#heatmap-z) |
+    /// [R](https://plot.ly/r/reference/#heatmap-z)
     public var z: ZData?
 
+    /// Sets the x coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-attributes) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-attributes) |
-    /// [R](https://plot.ly/r/reference/#heatmap-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-x) |
+    /// [Python](https://plot.ly/python/reference/#heatmap-x) |
+    /// [R](https://plot.ly/r/reference/#heatmap-x)
     public var x: XData?
 
     /// Alternate to `x`. 
@@ -182,11 +184,12 @@ public struct Heatmap<XData, YData, ZData>: Trace where XData: Encodable, YData:
     /// [R](https://plot.ly/r/reference/#heatmap-dx)
     public var dx: Double?
 
+    /// Sets the y coordinates.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-attributes) |
-    /// [Python](https://plot.ly/python/reference/#heatmap-attributes) |
-    /// [R](https://plot.ly/r/reference/#heatmap-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#heatmap-y) |
+    /// [Python](https://plot.ly/python/reference/#heatmap-y) |
+    /// [R](https://plot.ly/r/reference/#heatmap-y)
     public var y: YData?
 
     /// Alternate to `y`. 
@@ -496,11 +499,11 @@ public struct Heatmap<XData, YData, ZData>: Trace where XData: Encodable, YData:
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case z = "attributes"
-        case x = "attributes"
+        case z
+        case x
         case x0
         case dx
-        case y = "attributes"
+        case y
         case y0
         case dy
         case text

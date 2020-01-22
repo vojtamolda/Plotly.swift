@@ -168,18 +168,20 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
     /// [R](https://plot.ly/r/reference/#histogram-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the sample data to be binned on the x axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-attributes) |
-    /// [Python](https://plot.ly/python/reference/#histogram-attributes) |
-    /// [R](https://plot.ly/r/reference/#histogram-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-x) |
+    /// [Python](https://plot.ly/python/reference/#histogram-x) |
+    /// [R](https://plot.ly/r/reference/#histogram-x)
     public var x: XData?
 
+    /// Sets the sample data to be binned on the y axis.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-attributes) |
-    /// [Python](https://plot.ly/python/reference/#histogram-attributes) |
-    /// [R](https://plot.ly/r/reference/#histogram-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#histogram-y) |
+    /// [Python](https://plot.ly/python/reference/#histogram-y) |
+    /// [R](https://plot.ly/r/reference/#histogram-y)
     public var y: YData?
 
     /// Sets hover text elements associated with each bar. 
@@ -655,8 +657,8 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case x = "attributes"
-        case y = "attributes"
+        case x
+        case y
         case text
         case hoverText = "hovertext"
         case orientation

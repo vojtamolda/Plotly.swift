@@ -160,18 +160,24 @@ public struct Violin<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [R](https://plot.ly/r/reference/#violin-uirevision)
     public var uiRevision: Anything?
 
+    /// Sets the y sample data or coordinates. 
+    ///
+    /// See overview for more info.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-attributes) |
-    /// [Python](https://plot.ly/python/reference/#violin-attributes) |
-    /// [R](https://plot.ly/r/reference/#violin-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#violin-y) |
+    /// [Python](https://plot.ly/python/reference/#violin-y) |
+    /// [R](https://plot.ly/r/reference/#violin-y)
     public var y: YData?
 
+    /// Sets the x sample data or coordinates. 
+    ///
+    /// See overview for more info.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#violin-attributes) |
-    /// [Python](https://plot.ly/python/reference/#violin-attributes) |
-    /// [R](https://plot.ly/r/reference/#violin-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#violin-x) |
+    /// [Python](https://plot.ly/python/reference/#violin-x) |
+    /// [R](https://plot.ly/r/reference/#violin-x)
     public var x: XData?
 
     /// Sets the x coordinate of the box. 
@@ -798,10 +804,10 @@ public struct Violin<XData, YData>: Trace where XData: Encodable, YData: Encodab
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let violins = HoverOn(rawValue: 1 << 0)
-        public static let points = HoverOn(rawValue: 1 << 1)
-        public static let kde = HoverOn(rawValue: 1 << 2)
-        public static let all = HoverOn(rawValue: 1 << 3)
+        public static var violins: HoverOn { HoverOn(rawValue: 1 << 0) }
+        public static var points: HoverOn { HoverOn(rawValue: 1 << 1) }
+        public static var kde: HoverOn { HoverOn(rawValue: 1 << 2) }
+        public static var all: HoverOn { HoverOn(rawValue: 1 << 3) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -863,8 +869,8 @@ public struct Violin<XData, YData>: Trace where XData: Encodable, YData: Encodab
         case stream
         case transforms
         case uiRevision = "uirevision"
-        case y = "attributes"
-        case x = "attributes"
+        case y
+        case x
         case x0
         case y0
         case name

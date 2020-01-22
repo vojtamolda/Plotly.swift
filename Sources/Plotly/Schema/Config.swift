@@ -194,12 +194,12 @@ public struct Config: Encodable {
     public struct ScrollZoom: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let cartesian = ScrollZoom(rawValue: 1 << 0)
-        public static let GL3D = ScrollZoom(rawValue: 1 << 1)
-        public static let geo = ScrollZoom(rawValue: 1 << 2)
-        public static let mapbox = ScrollZoom(rawValue: 1 << 3)
-        public static let `true` = ScrollZoom(rawValue: 1 << 4)
-        public static let `false` = ScrollZoom(rawValue: 1 << 5)
+        public static var cartesian: ScrollZoom { ScrollZoom(rawValue: 1 << 0) }
+        public static var GL3D: ScrollZoom { ScrollZoom(rawValue: 1 << 1) }
+        public static var geo: ScrollZoom { ScrollZoom(rawValue: 1 << 2) }
+        public static var mapbox: ScrollZoom { ScrollZoom(rawValue: 1 << 3) }
+        public static var `true`: ScrollZoom { ScrollZoom(rawValue: 1 << 4) }
+        public static var `false`: ScrollZoom { ScrollZoom(rawValue: 1 << 5) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     

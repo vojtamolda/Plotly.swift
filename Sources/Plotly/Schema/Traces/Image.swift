@@ -123,11 +123,12 @@ public struct Image<ZData>: Trace where ZData: Encodable {
     /// [R](https://plot.ly/r/reference/#image-uirevision)
     public var uiRevision: Anything?
 
+    /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     ///
     /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-attributes) |
-    /// [Python](https://plot.ly/python/reference/#image-attributes) |
-    /// [R](https://plot.ly/r/reference/#image-attributes)
+    /// [JavaScript](https://plot.ly/javascript/reference/#image-z) |
+    /// [Python](https://plot.ly/python/reference/#image-z) |
+    /// [R](https://plot.ly/r/reference/#image-z)
     public var z: ZData?
 
     /// Color model used to map the numerical color components described in `z` into colors.
@@ -230,15 +231,15 @@ public struct Image<ZData>: Trace where ZData: Encodable {
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
-        public static let x = HoverInfo(rawValue: 1 << 0)
-        public static let y = HoverInfo(rawValue: 1 << 1)
-        public static let z = HoverInfo(rawValue: 1 << 2)
-        public static let color = HoverInfo(rawValue: 1 << 3)
-        public static let name = HoverInfo(rawValue: 1 << 4)
-        public static let text = HoverInfo(rawValue: 1 << 5)
-        public static let all = HoverInfo(rawValue: 1 << 6)
-        public static let none = HoverInfo(rawValue: 1 << 7)
-        public static let skip = HoverInfo(rawValue: 1 << 8)
+        public static var x: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+        public static var y: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+        public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+        public static var color: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 7) }
+        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 8) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -326,7 +327,7 @@ public struct Image<ZData>: Trace where ZData: Encodable {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
-        case z = "attributes"
+        case z
         case colorModel = "colormodel"
         case zMin = "zmin"
         case zMax = "zmax"
