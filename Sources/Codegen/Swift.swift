@@ -77,7 +77,6 @@ extension SwiftSharedType {
     }
 
     /// Default implementation for shared types that keeps track of instances.
-    @discardableResult
     func instance(named: String, array: Bool = false, origin: SchemaType? = nil) -> Instance {
         let instance = Instance(of: self, named: named, array: array, origin: origin)
         instances.append(instance)
@@ -120,9 +119,10 @@ struct Swift {
         static var existing: [Swift.Object] = []
 
         var members: [Definable]
-        var properties: [Instance] { members.compactMap { $0 as? Instance } }
         var primitives: [String: Schema.Primitive]
 
+        private var shareable = true
+        private var properties: [Instance] { members.compactMap { $0 as? Instance } }
         static private let ignored: [String] = ["_deprecated", "src", "impliedEdits"]
 
         var definition: [String] {
@@ -246,19 +246,19 @@ struct Swift {
             workarounds()
         }
 
-        /// Post-processing hacks that avoid name collisions.
+        /// Post-processing hacks that avoid name collisions and disable sharing of some types.
         private func workarounds() {
             switch name {
             case "Line":
-                if properties.contains(where: { $0.name == "colorScale" }) { name = "Colored" + name }
-                if properties.contains(where: { $0.name == "dash" }) { name = "Dashed" + name }
-                if properties.contains(where: { $0.name == "smoothing" }) { name = "Smoothed" + name }
-                if properties.contains(where: { $0.name == "shape" }) { name = "Spline" + name }
+                if members.containsInstance(named: "colorScale") { name = "Colored\(name)" }
+                if members.containsInstance(named: "dash") { name = "Dashed\(name)" }
+                if members.containsInstance(named: "smoothing") { name = "Smoothed\(name)" }
+                if members.containsInstance(named: "shape") { name = "Spline\(name)" }
             case "Marker":
-                if properties.contains(where: { $0.name == "symbol" }) { name = "SymbolicMarker" }
-                if properties.contains(where: { $0.name == "gradient" }) { name = "GradientMarker" }
+                if members.containsInstance(named: "symbol") { name = "SymbolicMarker" }
+                if members.containsInstance(named: "gradient") { name = "GradientMarker" }
             case "Contour":
-                if properties.count == 3 { name = "ContourHover"}
+                if members.count == 3 { name = "ContourHover"}
             case "XBins":
                 fallthrough
             case "YBins":
@@ -269,34 +269,35 @@ struct Swift {
                 fallthrough
             case "ZError":
                 name = "Error"
-                let useless: Set = ["yCopyStyle", "zCopyStyle"]
-                members = members.removedInstances(named: useless)
+                members = members.removedInstances(named: ["yCopyStyle", "zCopyStyle"])
             default:
-                return
+                break
+            }
+
+            let disableSharing: Set = ["Selected", "Unselected", "Increasing", "Decreasing"]
+            if disableSharing.contains(self.name) || disableSharing.contains(self.parent?.name ?? "") {
+                shareable = false
             }
         }
 
         /// Recursively compares objects and checks whether `other` consist of a superset of members.
         func shareable(as other: Swift.Object) -> Bool {
+            if !self.shareable || !other.shareable { return false }
             if !self.name.almostEqual(to: other.name) { return false }
-            if other.members.count != self.members.count { return false }
-            if self.name == "Unselected" || self.name == "Selected" { return false }
-            if self.parent?.name == "Selected" || self.parent?.name == "Unselected" { return false }
-            if self.parent?.name == "Increasing" || self.parent?.name == "Decreasing" { return false }
+            if self.members.count != other.members.count { return false }
 
             return self.members.allSatisfy { selfMember in
                 other.members.contains { otherMember in
-                    if let selfNestedObject = selfMember as? Swift.Object,
-                        let otherNestedObject = otherMember as? Swift.Object {
+                    if let selfNestedObject = selfMember as? Object, let otherNestedObject = otherMember as? Object {
                         return selfNestedObject.shareable(as: otherNestedObject)
-                    } else if let selfEnumerated = selfMember as? Swift.Enumerated,
-                        let otherEnumerated = otherMember as? Swift.Enumerated {
-                        return selfEnumerated.shareable(as: otherEnumerated)
-                    } else if let selfFlagList = selfMember as? Swift.FlagList,
-                        let otherFlagList = otherMember as? Swift.FlagList {
+                    }
+                    if let selfEnum = selfMember as? Enumerated, let otherEnum = otherMember as? Enumerated {
+                        return selfEnum.shareable(as: otherEnum)
+                    }
+                    if let selfFlagList = selfMember as? FlagList, let otherFlagList = otherMember as? FlagList {
                         return selfFlagList.shareable(as: otherFlagList)
-                    } else if let selfInstance = selfMember as? Instance,
-                        let otherInstance = otherMember as? Instance {
+                    }
+                    if let selfInstance = selfMember as? Instance, let otherInstance = otherMember as? Instance {
                         return selfInstance.shareable(as: otherInstance)
                     }
                     return false
@@ -406,14 +407,14 @@ struct Swift {
         private func workarounds() {
             switch name {
             case "Align":
-                if cases.contains(where: { $0.label == "auto" }) { name = "AutoAlign"}
-                if cases.contains(where: { $0.label == "center" }) { name = "HorizontalAlign"}
+                if cases.containsCase(labeled: "auto") { name = "AutoAlign" }
+                if cases.containsCase(labeled: "center") { name = "HorizontalAlign" }
             case "XAnchor":
-                if cases.contains(where: { $0.label == "auto" }) { name = "XAutoAnchor"}
+                if cases.containsCase(labeled: "auto") { name = "XAutoAnchor" }
             case "YAnchor":
-                if cases.contains(where: { $0.label == "auto" }) { name = "YAutoAnchor"}
+                if cases.containsCase(labeled: "auto") { name = "YAutoAnchor" }
             case "TextPosition":
-                if cases.contains(where: { $0.label == "auto" }) { name = "AdjacentPosition"}
+                if cases.containsCase(labeled: "auto") { name = "AdjacentPosition" }
             case "CategoryOrder":
                 if cases.count == 4 { name = "CarpetCategoryOrder"}
             case "Fill":
@@ -584,7 +585,7 @@ struct Swift {
         private func workarounds() {
             switch name {
             case "HoverInfo":
-                if options.contains(where: { $0.label == "theta" }) { name = "PolarHoverInfo" }
+                if options.containsOption(labeled: "theta") { name = "PolarHoverInfo" }
             default:
                 return
             }
@@ -602,7 +603,7 @@ struct Swift {
     /// - Note: Appended underscore prevents collision with the Swift built-in type.
     /// - Note: Name `Anything` prevents collision with the Swift built-in type `Any`.
     struct Any_: SwiftType {
-        let name: String = "Anything"
+        var name: String { (schema.arrayOk ?? false) ? "ArrayOrAnything" : "Anything" }
         let parent: Swift.Object?
         let schema: Schema.Any_
         var origin: SchemaType { schema as SchemaType }
@@ -647,5 +648,27 @@ struct Swift {
         case `private` = "private "
         case `public` = "public "
         case `default` = ""
+    }
+}
+
+
+fileprivate extension Collection where Iterator.Element == Definable {
+    /// Checks whether the collection contains an `Instance` object with the specified name.
+    func containsInstance(named name: String) -> Bool {
+        self.contains { ($0 as? Instance)?.name == name }
+    }
+}
+
+fileprivate extension Collection where Iterator.Element == Swift.Enumerated.Case {
+    /// Checks whether the collection contains a `Case` object with the specified label.
+    func containsCase(labeled label: String) -> Bool {
+        self.contains { $0.label == label }
+    }
+}
+
+fileprivate extension Collection where Iterator.Element == Swift.FlagList.Option {
+    /// Checks whether the collection contains an `Option` object with the specified label.
+    func containsOption(labeled label: String) -> Bool {
+        self.contains { $0.label == label }
     }
 }

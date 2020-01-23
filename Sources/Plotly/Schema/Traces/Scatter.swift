@@ -107,7 +107,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter-meta) |
     /// [Python](https://plot.ly/python/reference/#scatter-meta) |
     /// [R](https://plot.ly/r/reference/#scatter-meta)
-    public var meta: Anything?
+    public var meta: ArrayOrAnything?
 
     /// Array containing integer indices of selected points. 
     ///
@@ -829,7 +829,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, mode: Shared.Mode? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, mode: Shared.Mode? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, line: SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

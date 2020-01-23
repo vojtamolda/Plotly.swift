@@ -1140,7 +1140,7 @@
     "bar": "Bar",
     "bardir": "Bardir",
     "barmode": "BarMode",
-    "barnorm": "Barnorm",
+    "barnorm": "BarNormalization",
     "barpolar": "BarPolar",
     "baxis": "BAxis",
     "boolean": "Boolean",

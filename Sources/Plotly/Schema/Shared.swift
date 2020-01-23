@@ -3813,6 +3813,12 @@ public struct Shared {
     }
 
     /// # Used By
+    public struct Layout: Encodable {
+        public init() {
+        }
+    }
+
+    /// # Used By
     /// `Histogram2DContour.contours` |
     /// `Contour.contours` |
     /// `ContourCarpet.contours` |

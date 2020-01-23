@@ -55,7 +55,7 @@ public struct ParallelCategories: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcats-meta) |
     /// [Python](https://plot.ly/python/reference/#parcats-meta) |
     /// [R](https://plot.ly/r/reference/#parcats-meta)
-    public var meta: Anything?
+    public var meta: ArrayOrAnything?
 
     ///
     /// # Plotly Reference
@@ -605,7 +605,7 @@ public struct ParallelCategories: Trace {
         case counts
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: ArrayOrDouble? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: ArrayOrDouble? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -81,7 +81,7 @@ public struct Table: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#table-meta) |
     /// [Python](https://plot.ly/python/reference/#table-meta) |
     /// [R](https://plot.ly/r/reference/#table-meta)
-    public var meta: Anything?
+    public var meta: ArrayOrAnything?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -405,7 +405,7 @@ public struct Table: Trace {
         case cells
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: ArrayOrDouble? = nil, columnOrder: [Double]? = nil, header: Header? = nil, cells: Cells? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: ArrayOrDouble? = nil, columnOrder: [Double]? = nil, header: Header? = nil, cells: Cells? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

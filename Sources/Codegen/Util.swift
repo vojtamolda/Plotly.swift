@@ -57,7 +57,7 @@ extension Collection where Iterator.Element == String {
 }
 
 extension Collection where Iterator.Element == Definable {
-    /// Collection where `Instance`s with specified name are removed.
+    /// Returns a collection where `Instance`s with specified name are removed.
     func removedInstances(named names: Set<String>) -> [Self.Element] {
         return self.filter { element in
             if let instance = element as? Instance {

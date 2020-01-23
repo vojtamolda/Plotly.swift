@@ -89,7 +89,7 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-meta) |
     /// [Python](https://plot.ly/python/reference/#carpet-meta) |
     /// [R](https://plot.ly/r/reference/#carpet-meta)
-    public var meta: Anything?
+    public var meta: ArrayOrAnything?
 
     ///
     /// # Plotly Reference
@@ -1549,7 +1549,7 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: XData? = nil, y: YData? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Shared.Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: XData? = nil, y: YData? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Shared.Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

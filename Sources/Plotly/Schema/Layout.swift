@@ -1,39 +1,366 @@
 public struct Layout: Encodable {
     
-    // MARK: - BarPolar Trace
-
-    
-    // MARK: - Candlestick Trace
-
-    
     // MARK: - FunnelArea Trace
+
+    /// Sets the default funnelarea slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendfunnelareacolors`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-funnelareacolorway) |
+    /// [Python](https://plot.ly/python/reference/#funnelarea-funnelareacolorway) |
+    /// [R](https://plot.ly/r/reference/#funnelarea-funnelareacolorway)
+    public var funnelAreaColorWay: ColorList?
+
+    /// If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-extendfunnelareacolors) |
+    /// [Python](https://plot.ly/python/reference/#funnelarea-extendfunnelareacolors) |
+    /// [R](https://plot.ly/r/reference/#funnelarea-extendfunnelareacolors)
+    public var extendFunnelAreaColors: Bool?
 
     
     // MARK: - Treemap Trace
 
+    /// Sets the default treemap slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendtreemapcolors`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-treemapcolorway) |
+    /// [Python](https://plot.ly/python/reference/#treemap-treemapcolorway) |
+    /// [R](https://plot.ly/r/reference/#treemap-treemapcolorway)
+    public var treemapColorWay: ColorList?
+
+    /// If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#treemap-extendtreemapcolors) |
+    /// [Python](https://plot.ly/python/reference/#treemap-extendtreemapcolors) |
+    /// [R](https://plot.ly/r/reference/#treemap-extendtreemapcolors)
+    public var extendTreemapColors: Bool?
+
     
     // MARK: - Sunburst Trace
+
+    /// Sets the default sunburst slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendsunburstcolors`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-sunburstcolorway) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-sunburstcolorway) |
+    /// [R](https://plot.ly/r/reference/#sunburst-sunburstcolorway)
+    public var sunburstColorWay: ColorList?
+
+    /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-extendsunburstcolors) |
+    /// [Python](https://plot.ly/python/reference/#sunburst-extendsunburstcolors) |
+    /// [R](https://plot.ly/r/reference/#sunburst-extendsunburstcolors)
+    public var extendSunburstColors: Bool?
 
     
     // MARK: - Pie Trace
 
+    /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-hiddenlabels) |
+    /// [Python](https://plot.ly/python/reference/#pie-hiddenlabels) |
+    /// [R](https://plot.ly/r/reference/#pie-hiddenlabels)
+    public var hiddenLabels: [Double]?
+
+    /// Sets the default pie slice colors. 
+    ///
+    /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
+    /// still be extended with lighter and darker colors, see `extendpiecolors`.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-piecolorway) |
+    /// [Python](https://plot.ly/python/reference/#pie-piecolorway) |
+    /// [R](https://plot.ly/r/reference/#pie-piecolorway)
+    public var pieColorWay: ColorList?
+
+    /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`) will be extended to three times its original length by first repeating every color 20% lighter then each color 20% darker. 
+    ///
+    /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
+    /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
+    /// never extended.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#pie-extendpiecolors) |
+    /// [Python](https://plot.ly/python/reference/#pie-extendpiecolors) |
+    /// [R](https://plot.ly/r/reference/#pie-extendpiecolors)
+    public var extendPieColors: Bool?
+
     
     // MARK: - Waterfall Trace
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *group*, the bars are plotted next to one another centered around the shared location. With
+    /// *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple
+    /// bars.
+    ///
+    /// # Used By
+    /// `Layout.waterfallMode` |
+    public enum WaterfallMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *group*, the bars are plotted next to one another centered around the shared location. With
+    /// *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple
+    /// bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-waterfallmode) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-waterfallmode) |
+    /// [R](https://plot.ly/r/reference/#waterfall-waterfallmode)
+    public var waterfallMode: WaterfallMode?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-waterfallgap) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-waterfallgap) |
+    /// [R](https://plot.ly/r/reference/#waterfall-waterfallgap)
+    public var waterfallGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#waterfall-waterfallgroupgap) |
+    /// [Python](https://plot.ly/python/reference/#waterfall-waterfallgroupgap) |
+    /// [R](https://plot.ly/r/reference/#waterfall-waterfallgroupgap)
+    public var waterfallGroupGap: Double?
 
     
     // MARK: - Funnel Trace
 
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next
+    /// to one another centered around the shared location. With *overlay*, the bars are plotted over
+    /// one another, you might need to an *opacity* to see multiple bars.
+    ///
+    /// # Used By
+    /// `Layout.funnelMode` |
+    public enum FunnelMode: String, Encodable {
+        case stack
+        case group
+        case overlay
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next
+    /// to one another centered around the shared location. With *overlay*, the bars are plotted over
+    /// one another, you might need to an *opacity* to see multiple bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-funnelmode) |
+    /// [Python](https://plot.ly/python/reference/#funnel-funnelmode) |
+    /// [R](https://plot.ly/r/reference/#funnel-funnelmode)
+    public var funnelMode: FunnelMode?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-funnelgap) |
+    /// [Python](https://plot.ly/python/reference/#funnel-funnelgap) |
+    /// [R](https://plot.ly/r/reference/#funnel-funnelgap)
+    public var funnelGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#funnel-funnelgroupgap) |
+    /// [Python](https://plot.ly/python/reference/#funnel-funnelgroupgap) |
+    /// [R](https://plot.ly/r/reference/#funnel-funnelgroupgap)
+    public var funnelGroupGap: Double?
+
     
     // MARK: - Violin Trace
 
-    
-    // MARK: - Histogram Trace
+    /// Determines how violins at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the violins are plotted next to one another centered around the shared location. If
+    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
+    /// multiple violins. Has no effect on traces that have *width* set.
+    ///
+    /// # Used By
+    /// `Layout.violinMode` |
+    public enum ViolinMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how violins at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the violins are plotted next to one another centered around the shared location. If
+    /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
+    /// multiple violins. Has no effect on traces that have *width* set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#violin-violinmode) |
+    /// [Python](https://plot.ly/python/reference/#violin-violinmode) |
+    /// [R](https://plot.ly/r/reference/#violin-violinmode)
+    public var violinMode: ViolinMode?
+
+    /// Sets the gap (in plot fraction) between violins of adjacent location coordinates. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#violin-violingap) |
+    /// [Python](https://plot.ly/python/reference/#violin-violingap) |
+    /// [R](https://plot.ly/r/reference/#violin-violingap)
+    public var violinGap: Double?
+
+    /// Sets the gap (in plot fraction) between violins of the same location coordinate. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#violin-violingroupgap) |
+    /// [Python](https://plot.ly/python/reference/#violin-violingroupgap) |
+    /// [R](https://plot.ly/r/reference/#violin-violingroupgap)
+    public var violinGroupGap: Double?
 
     
-    // MARK: - Box Trace
+    // MARK: - Box and Candlestick Traces
+
+    /// Determines how boxes at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
+    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
+    /// multiple boxes. Has no effect on traces that have *width* set.
+    ///
+    /// # Used By
+    /// `Layout.boxMode` |
+    public enum BoxMode: String, Encodable {
+        case group
+        case overlay
+    }
+    /// Determines how boxes at the same location coordinate are displayed on the graph. 
+    ///
+    /// If *group*, the boxes are plotted next to one another centered around the shared location. If
+    /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
+    /// multiple boxes. Has no effect on traces that have *width* set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-boxmode) |
+    /// [Python](https://plot.ly/python/reference/#box-boxmode) |
+    /// [R](https://plot.ly/r/reference/#box-boxmode)
+    public var boxMode: BoxMode?
+
+    /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-boxgap) |
+    /// [Python](https://plot.ly/python/reference/#box-boxgap) |
+    /// [R](https://plot.ly/r/reference/#box-boxgap)
+    public var boxGap: Double?
+
+    /// Sets the gap (in plot fraction) between boxes of the same location coordinate. 
+    ///
+    /// Has no effect on traces that have *width* set.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-boxgroupgap) |
+    /// [Python](https://plot.ly/python/reference/#box-boxgroupgap) |
+    /// [R](https://plot.ly/r/reference/#box-boxgroupgap)
+    public var boxGroupGap: Double?
 
     
-    // MARK: - Bar Trace
+    // MARK: - Bar, BarPolar and Histogram Traces
+
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    ///
+    /// # Used By
+    /// `Layout.barMode` |
+    public enum BarMode: String, Encodable {
+        case stack
+        case group
+        case overlay
+        case relative
+    }
+    /// Determines how bars at the same location coordinate are displayed on the graph. 
+    ///
+    /// With *stack*, the bars are stacked on top of one another With *relative*, the bars are stacked
+    /// on top of one another, with negative values below the axis, positive values above With *group*,
+    /// the bars are plotted next to one another centered around the shared location. With *overlay*,
+    /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-barmode) |
+    /// [Python](https://plot.ly/python/reference/#bar-barmode) |
+    /// [R](https://plot.ly/r/reference/#bar-barmode)
+    public var barMode: BarMode?
+
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    ///
+    /// # Used By
+    /// `Layout.barNormalization` |
+    public enum BarNormalization: String, Encodable {
+        case none = ""
+        case fraction
+        case percent
+    }
+    /// Sets the normalization for bar traces on the graph. 
+    ///
+    /// With *fraction*, the value of each bar is divided by the sum of all values at that location
+    /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-barnorm) |
+    /// [Python](https://plot.ly/python/reference/#bar-barnorm) |
+    /// [R](https://plot.ly/r/reference/#bar-barnorm)
+    public var barNormalization: BarNormalization?
+
+    /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-bargap) |
+    /// [Python](https://plot.ly/python/reference/#bar-bargap) |
+    /// [R](https://plot.ly/r/reference/#bar-bargap)
+    public var barGap: Double?
+
+    /// Sets the gap (in plot fraction) between bars of the same location coordinate.
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#bar-bargroupgap) |
+    /// [Python](https://plot.ly/python/reference/#bar-bargroupgap) |
+    /// [R](https://plot.ly/r/reference/#bar-bargroupgap)
+    public var barGroupGap: Double?
 
     
     // MARK: - General
@@ -518,7 +845,7 @@ public struct Layout: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#layout-meta) |
     /// [Python](https://plot.ly/python/reference/#layout-meta) |
     /// [R](https://plot.ly/r/reference/#layout-meta)
-    public var meta: Anything?
+    public var meta: ArrayOrAnything?
 
     /// Sets transition options used during Plotly.react updates.
     ///
@@ -12549,6 +12876,31 @@ public struct Layout: Encodable {
 
     /// Plotly compatible property encoding
     enum CodingKeys: String, CodingKey {
+        case funnelAreaColorWay = "funnelareacolorway"
+        case extendFunnelAreaColors = "extendfunnelareacolors"
+        case treemapColorWay = "treemapcolorway"
+        case extendTreemapColors = "extendtreemapcolors"
+        case sunburstColorWay = "sunburstcolorway"
+        case extendSunburstColors = "extendsunburstcolors"
+        case hiddenLabels = "hiddenlabels"
+        case pieColorWay = "piecolorway"
+        case extendPieColors = "extendpiecolors"
+        case waterfallMode = "waterfallmode"
+        case waterfallGap = "waterfallgap"
+        case waterfallGroupGap = "waterfallgroupgap"
+        case funnelMode = "funnelmode"
+        case funnelGap = "funnelgap"
+        case funnelGroupGap = "funnelgroupgap"
+        case violinMode = "violinmode"
+        case violinGap = "violingap"
+        case violinGroupGap = "violingroupgap"
+        case boxMode = "boxmode"
+        case boxGap = "boxgap"
+        case boxGroupGap = "boxgroupgap"
+        case barMode = "barmode"
+        case barNormalization = "barnorm"
+        case barGap = "bargap"
+        case barGroupGap = "bargroupgap"
         case font
         case title
         case autoSize = "autosize"
@@ -12595,7 +12947,32 @@ public struct Layout: Encodable {
         case colorAxis = "coloraxis"
     }
     
-    public init(font: Shared.Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: Anything? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: Shared.HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Shared.Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, legend: Legend? = nil, annotations: [Annotation]? = nil, shapes: [Shape]? = nil, images: [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders: [Slider]? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil) {
+    public init(funnelAreaColorWay: ColorList? = nil, extendFunnelAreaColors: Bool? = nil, treemapColorWay: ColorList? = nil, extendTreemapColors: Bool? = nil, sunburstColorWay: ColorList? = nil, extendSunburstColors: Bool? = nil, hiddenLabels: [Double]? = nil, pieColorWay: ColorList? = nil, extendPieColors: Bool? = nil, waterfallMode: WaterfallMode? = nil, waterfallGap: Double? = nil, waterfallGroupGap: Double? = nil, funnelMode: FunnelMode? = nil, funnelGap: Double? = nil, funnelGroupGap: Double? = nil, violinMode: ViolinMode? = nil, violinGap: Double? = nil, violinGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap: Double? = nil, boxGroupGap: Double? = nil, barMode: BarMode? = nil, barNormalization: BarNormalization? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, font: Shared.Font? = nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar: ModeBar? = nil, meta: ArrayOrAnything? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? = nil, hoverLabel: Shared.HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil, calendar: Shared.Calendar? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox: Mapbox? = nil, polar: Polar? = nil, legend: Legend? = nil, annotations: [Annotation]? = nil, shapes: [Shape]? = nil, images: [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders: [Slider]? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil) {
+        self.funnelAreaColorWay = funnelAreaColorWay
+        self.extendFunnelAreaColors = extendFunnelAreaColors
+        self.treemapColorWay = treemapColorWay
+        self.extendTreemapColors = extendTreemapColors
+        self.sunburstColorWay = sunburstColorWay
+        self.extendSunburstColors = extendSunburstColors
+        self.hiddenLabels = hiddenLabels
+        self.pieColorWay = pieColorWay
+        self.extendPieColors = extendPieColors
+        self.waterfallMode = waterfallMode
+        self.waterfallGap = waterfallGap
+        self.waterfallGroupGap = waterfallGroupGap
+        self.funnelMode = funnelMode
+        self.funnelGap = funnelGap
+        self.funnelGroupGap = funnelGroupGap
+        self.violinMode = violinMode
+        self.violinGap = violinGap
+        self.violinGroupGap = violinGroupGap
+        self.boxMode = boxMode
+        self.boxGap = boxGap
+        self.boxGroupGap = boxGroupGap
+        self.barMode = barMode
+        self.barNormalization = barNormalization
+        self.barGap = barGap
+        self.barGroupGap = barGroupGap
         self.font = font
         self.title = title
         self.autoSize = autoSize

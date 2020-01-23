@@ -125,6 +125,7 @@ public enum Color: Encodable {
 public enum ArrayOrColor: Encodable {
     case value(Color)
     case array([Double])
+    case colors([Color])
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -133,6 +134,8 @@ public enum ArrayOrColor: Encodable {
             try container.encode(value)
         case .array(let array):
             try container.encode(array)
+        case .colors(let colors):
+            try container.encode(colors)
         }
     }
 }
@@ -253,6 +256,21 @@ extension Anything: ExpressibleByStringLiteral {
     }
 }
 
+// TODO: Docs
+public enum ArrayOrAnything: Encodable {
+    case value(Anything)
+    case array([Anything])
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .value(let value):
+            try container.encode(value)
+        case .array(let array):
+            try container.encode(array)
+        }
+    }
+}
 
 // TODO: Docs
 public enum InfoArray: Encodable {

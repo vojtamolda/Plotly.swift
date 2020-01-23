@@ -80,7 +80,7 @@ public struct Indicator: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#indicator-meta) |
     /// [Python](https://plot.ly/python/reference/#indicator-meta) |
     /// [R](https://plot.ly/r/reference/#indicator-meta)
-    public var meta: Anything?
+    public var meta: ArrayOrAnything?
 
     ///
     /// # Plotly Reference
@@ -1000,7 +1000,7 @@ public struct Indicator: Trace {
         case gauge
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: Anything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Shared.HorizontalAlign? = nil, domain: Shared.Domain? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Shared.HorizontalAlign? = nil, domain: Shared.Domain? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

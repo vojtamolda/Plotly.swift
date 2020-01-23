@@ -48,6 +48,7 @@ class Object(CamelCased):
         "arrangement": "Arrangement",
         "axref": "AxReference",
         "ayref": "AyReference",
+        "barnorm": "BarNormalization",
         "border": "Border",
         "candlestick": "Candlestick",
         "clicktoshow": "ClickToShow",

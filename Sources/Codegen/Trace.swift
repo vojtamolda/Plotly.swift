@@ -36,11 +36,32 @@ struct Trace: Definable {
         workarounds()
 
         if let entries = schema.layoutAttributes {
-            let sectionMark = Mark(label: "\(attributes.name) Trace")
-            layout.layoutAttributes.members.insert(sectionMark, at: 0)
+            var sectionMark: Mark? = nil
+            let layoutAttributes = Swift.Object(named: "layout", schema: entries)!
 
-            let layoutAttributes = Swift.Object(named: "layout", schema: entries)
-            //layout.layoutAttributes.members.insert(contentsOf: layoutAttributes.members, at: 1)
+            switch attributes.name {
+            case "Bar":
+                sectionMark = Mark(label: "Bar, BarPolar and Histogram Traces")
+            case "BarPolar":
+                fallthrough
+            case "Histogram":
+                let duplicates: Set = ["barMode", "barNormalization", "barGap", "barGroupGap"]
+                layoutAttributes.members = layoutAttributes.members.removedInstances(named: duplicates)
+            case "Box":
+                sectionMark = Mark(label: "Box and Candlestick Traces")
+            case "Candlestick":
+                let duplicates: Set = ["boxMode", "boxGap", "boxGroupGap"]
+                layoutAttributes.members = layoutAttributes.members.removedInstances(named: duplicates)
+            case "FunnelArea":
+                sectionMark = Mark(label: "FunnelArea Trace")
+                let duplicates: Set = ["hiddenLabels"]
+                layoutAttributes.members = layoutAttributes.members.removedInstances(named: duplicates)
+            default:
+                sectionMark = Mark(label: "\(attributes.name) Trace")
+            }
+
+            if sectionMark != nil { layout.layoutAttributes.members.insert(sectionMark!, at: 0) }
+            layout.layoutAttributes.members.insert(contentsOf: layoutAttributes.members, at: 1)
         }
     }
 
