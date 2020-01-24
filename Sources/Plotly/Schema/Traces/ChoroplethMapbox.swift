@@ -1,5 +1,5 @@
 /// GeoJSON features to be filled are set in `geojson` The data that describes the choropleth value-to-color mapping is set in `locations` and `z`.
-public struct ChoroplethMapbox<ZData>: Trace where ZData: Encodable {
+public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -52,7 +52,7 @@ public struct ChoroplethMapbox<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-ids) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-ids) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -63,7 +63,7 @@ public struct ChoroplethMapbox<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-customdata) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-customdata) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -135,7 +135,7 @@ public struct ChoroplethMapbox<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox-locations) |
     /// [Python](https://plot.ly/python/reference/#choroplethmapbox-locations) |
     /// [R](https://plot.ly/r/reference/#choroplethmapbox-locations)
-    public var locations: [Double]?
+    public var locations: LocationsData?
 
     /// Sets the color values.
     ///
@@ -504,7 +504,7 @@ public struct ChoroplethMapbox<ZData>: Trace where ZData: Encodable {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, locations: [Double]? = nil, z: ZData? = nil, geoJson: Anything? = nil, below: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, locations: LocationsData? = nil, z: ZData? = nil, geoJson: Anything? = nil, below: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

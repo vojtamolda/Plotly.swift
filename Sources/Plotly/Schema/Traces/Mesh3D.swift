@@ -1,5 +1,5 @@
 /// Draws sets of triangles with coordinates given by three 1-dimensional arrays in `x`, `y`, `z` and (1) a sets of `i`, `j`, `k` indices (2) Delaunay triangulation or (3) the Alpha-shape algorithm or (4) the Convex-hull algorithm
-public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
+public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable, IntensityData: Encodable, VertexcolorData: Encodable, FacecolorData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -52,7 +52,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-ids) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-ids) |
     /// [R](https://plot.ly/r/reference/#mesh3d-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -63,7 +63,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-customdata) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-customdata) |
     /// [R](https://plot.ly/r/reference/#mesh3d-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -155,7 +155,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-i) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-i) |
     /// [R](https://plot.ly/r/reference/#mesh3d-i)
-    public var i: [Double]?
+    public var i: [Int]?
 
     /// A vector of vertex indices, i.e. 
     ///
@@ -169,7 +169,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-j) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-j) |
     /// [R](https://plot.ly/r/reference/#mesh3d-j)
-    public var j: [Double]?
+    public var j: [Int]?
 
     /// A vector of vertex indices, i.e. 
     ///
@@ -183,7 +183,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-k) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-k) |
     /// [R](https://plot.ly/r/reference/#mesh3d-k)
-    public var k: [Double]?
+    public var k: [Int]?
 
     /// Sets the text elements associated with the vertices. 
     ///
@@ -273,7 +273,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-intensity) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-intensity) |
     /// [R](https://plot.ly/r/reference/#mesh3d-intensity)
-    public var intensity: [Double]?
+    public var intensity: IntensityData?
 
     /// Sets the color of the whole mesh
     ///
@@ -292,7 +292,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-vertexcolor) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-vertexcolor) |
     /// [R](https://plot.ly/r/reference/#mesh3d-vertexcolor)
-    public var vertexColor: [Double]?
+    public var vertexColor: VertexcolorData?
 
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
     ///
@@ -300,7 +300,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
     /// [JavaScript](https://plot.ly/javascript/reference/#mesh3d-facecolor) |
     /// [Python](https://plot.ly/python/reference/#mesh3d-facecolor) |
     /// [R](https://plot.ly/r/reference/#mesh3d-facecolor)
-    public var faceColor: [Double]?
+    public var faceColor: FacecolorData?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here `intensity`) or the bounds set in `cmin` and `cmax`  Defaults to `false` when `cmin` and `cmax` are set by the user.
     ///
@@ -543,7 +543,7 @@ public struct Mesh3D<XData, YData, ZData>: Trace where XData: Encodable, YData: 
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, i: [Double]? = nil, j: [Double]? = nil, k: [Double]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: [Double]? = nil, color: Color? = nil, vertexColor: [Double]? = nil, faceColor: [Double]? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, i: [Int]? = nil, j: [Int]? = nil, k: [Int]? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: IntensityData? = nil, color: Color? = nil, vertexColor: VertexcolorData? = nil, faceColor: FacecolorData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

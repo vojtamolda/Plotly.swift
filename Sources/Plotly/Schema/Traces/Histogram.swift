@@ -80,7 +80,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-ids) |
     /// [Python](https://plot.ly/python/reference/#histogram-ids) |
     /// [R](https://plot.ly/r/reference/#histogram-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -91,7 +91,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
     /// [JavaScript](https://plot.ly/javascript/reference/#histogram-customdata) |
     /// [Python](https://plot.ly/python/reference/#histogram-customdata) |
     /// [R](https://plot.ly/r/reference/#histogram-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -686,7 +686,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, orientation: Shared.Orientation? = nil, binningFunction: Shared.BinningFunction? = nil, normalization: Shared.Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: ArrayOrString? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, orientation: Shared.Orientation? = nil, binningFunction: Shared.BinningFunction? = nil, normalization: Shared.Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: ArrayOrString? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

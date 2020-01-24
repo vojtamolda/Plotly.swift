@@ -4,7 +4,7 @@
 /// spread between the `low` and `high` values Sample points where the close value is higher (lower)
 /// then the open value are called increasing (decreasing). By default, increasing candles are drawn
 /// in green whereas decreasing are drawn in red.
-public struct Candlestick<XData>: Trace where XData: Encodable {
+public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace where XData: Encodable, OpenData: Encodable, HighData: Encodable, LowData: Encodable, CloseData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -83,7 +83,7 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-ids) |
     /// [Python](https://plot.ly/python/reference/#candlestick-ids) |
     /// [R](https://plot.ly/r/reference/#candlestick-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -94,7 +94,7 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-customdata) |
     /// [Python](https://plot.ly/python/reference/#candlestick-customdata) |
     /// [R](https://plot.ly/r/reference/#candlestick-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -180,7 +180,7 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-open) |
     /// [Python](https://plot.ly/python/reference/#candlestick-open) |
     /// [R](https://plot.ly/r/reference/#candlestick-open)
-    public var open: [Double]?
+    public var open: OpenData?
 
     /// Sets the high values.
     ///
@@ -188,7 +188,7 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-high) |
     /// [Python](https://plot.ly/python/reference/#candlestick-high) |
     /// [R](https://plot.ly/r/reference/#candlestick-high)
-    public var high: [Double]?
+    public var high: HighData?
 
     /// Sets the low values.
     ///
@@ -196,7 +196,7 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-low) |
     /// [Python](https://plot.ly/python/reference/#candlestick-low) |
     /// [R](https://plot.ly/r/reference/#candlestick-low)
-    public var low: [Double]?
+    public var low: LowData?
 
     /// Sets the close values.
     ///
@@ -204,7 +204,7 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#candlestick-close) |
     /// [Python](https://plot.ly/python/reference/#candlestick-close) |
     /// [R](https://plot.ly/r/reference/#candlestick-close)
-    public var close: [Double]?
+    public var close: CloseData?
 
     /// # Used By
     /// `Candlestick.line` |
@@ -534,7 +534,7 @@ public struct Candlestick<XData>: Trace where XData: Encodable {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, open: OpenData? = nil, high: HighData? = nil, low: LowData? = nil, close: CloseData? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

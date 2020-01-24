@@ -78,7 +78,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-ids) |
     /// [Python](https://plot.ly/python/reference/#barpolar-ids) |
     /// [R](https://plot.ly/r/reference/#barpolar-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -89,7 +89,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
     /// [JavaScript](https://plot.ly/javascript/reference/#barpolar-customdata) |
     /// [Python](https://plot.ly/python/reference/#barpolar-customdata) |
     /// [R](https://plot.ly/r/reference/#barpolar-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -504,7 +504,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, r: RData? = nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, base: ArrayOrAnything? = nil, offset: ArrayOrDouble? = nil, width: ArrayOrDouble? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, r: RData? = nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, base: ArrayOrAnything? = nil, offset: ArrayOrDouble? = nil, width: ArrayOrDouble? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

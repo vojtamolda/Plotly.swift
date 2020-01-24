@@ -82,7 +82,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YDat
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-ids) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-ids) |
     /// [R](https://plot.ly/r/reference/#scatter3d-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -93,7 +93,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YDat
     /// [JavaScript](https://plot.ly/javascript/reference/#scatter3d-customdata) |
     /// [Python](https://plot.ly/python/reference/#scatter3d-customdata) |
     /// [R](https://plot.ly/r/reference/#scatter3d-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -604,7 +604,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YDat
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, mode: Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker: Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, mode: Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker: Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

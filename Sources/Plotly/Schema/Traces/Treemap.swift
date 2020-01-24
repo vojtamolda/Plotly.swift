@@ -1,7 +1,7 @@
 /// Visualize hierarchal data from leaves (and/or outer branches) towards root with rectangles. 
 ///
 /// The treemap sectors are determined by the entries in *labels* or *ids* and in *parents*.
-public struct Treemap: Trace {
+public struct Treemap<ValuesData>: Trace where ValuesData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -62,7 +62,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-ids) |
     /// [Python](https://plot.ly/python/reference/#treemap-ids) |
     /// [R](https://plot.ly/r/reference/#treemap-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -73,7 +73,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-customdata) |
     /// [Python](https://plot.ly/python/reference/#treemap-customdata) |
     /// [R](https://plot.ly/r/reference/#treemap-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -133,7 +133,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-labels) |
     /// [Python](https://plot.ly/python/reference/#treemap-labels) |
     /// [R](https://plot.ly/r/reference/#treemap-labels)
-    public var labels: [Double]?
+    public var labels: [String]?
 
     /// Sets the parent sectors for each of the sectors. 
     ///
@@ -145,7 +145,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-parents) |
     /// [Python](https://plot.ly/python/reference/#treemap-parents) |
     /// [R](https://plot.ly/r/reference/#treemap-parents)
-    public var parents: [Double]?
+    public var parents: [String]?
 
     /// Sets the values associated with each of the sectors. 
     ///
@@ -155,7 +155,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-values) |
     /// [Python](https://plot.ly/python/reference/#treemap-values) |
     /// [R](https://plot.ly/r/reference/#treemap-values)
-    public var values: [Double]?
+    public var values: ValuesData?
 
     /// Determines how the items in `values` are summed. 
     ///
@@ -636,7 +636,7 @@ public struct Treemap: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#treemap-text) |
     /// [Python](https://plot.ly/python/reference/#treemap-text) |
     /// [R](https://plot.ly/r/reference/#treemap-text)
-    public var text: [Double]?
+    public var text: ArrayOrString?
 
     /// Determines which trace information appear on the graph.
     ///
@@ -861,7 +861,7 @@ public struct Treemap: Trace {
         case domain
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, domain: Shared.Domain? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [String]? = nil, parents: [String]? = nil, values: ValuesData? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: ArrayOrString? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

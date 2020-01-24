@@ -1,5 +1,5 @@
 /// Draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
-public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
+public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: Encodable, ZData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -60,7 +60,7 @@ public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-ids) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-ids) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -71,7 +71,7 @@ public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-customdata) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-customdata) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -131,7 +131,7 @@ public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-lon) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-lon) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-lon)
-    public var longitude: [Double]?
+    public var longitude: CoordinateData?
 
     /// Sets the latitude coordinates (in degrees North).
     ///
@@ -139,7 +139,7 @@ public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#densitymapbox-lat) |
     /// [Python](https://plot.ly/python/reference/#densitymapbox-lat) |
     /// [R](https://plot.ly/r/reference/#densitymapbox-lat)
-    public var latitude: [Double]?
+    public var latitude: CoordinateData?
 
     /// Sets the points' weight. 
     ///
@@ -414,7 +414,7 @@ public struct DensityMapbox<ZData>: Trace where ZData: Encodable {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, z: ZData? = nil, radius: ArrayOrDouble? = nil, below: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? = nil, z: ZData? = nil, radius: ArrayOrDouble? = nil, below: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

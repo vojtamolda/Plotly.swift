@@ -3,7 +3,7 @@
 /// This trace can be used to show data in a part-to-whole representation similar to a "pie" trace,
 /// wherein each item appears in a single stage. See also the "funnel" trace type for a different
 /// approach to visualizing funnel data.
-public struct FunnelArea: Trace {
+public struct FunnelArea<LabelsData, ValuesData>: Trace where LabelsData: Encodable, ValuesData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -82,7 +82,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-ids) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-ids) |
     /// [R](https://plot.ly/r/reference/#funnelarea-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -93,7 +93,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-customdata) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-customdata) |
     /// [R](https://plot.ly/r/reference/#funnelarea-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -157,7 +157,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-labels) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-labels) |
     /// [R](https://plot.ly/r/reference/#funnelarea-labels)
-    public var labels: [Double]?
+    public var labels: LabelsData?
 
     /// Alternate to `labels`. 
     ///
@@ -188,7 +188,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-values) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-values) |
     /// [R](https://plot.ly/r/reference/#funnelarea-values)
-    public var values: [Double]?
+    public var values: ValuesData?
 
     /// # Used By
     /// `FunnelArea.marker` |
@@ -232,7 +232,7 @@ public struct FunnelArea: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#funnelarea-text) |
     /// [Python](https://plot.ly/python/reference/#funnelarea-text) |
     /// [R](https://plot.ly/r/reference/#funnelarea-text)
-    public var text: [Double]?
+    public var text: ArrayOrString?
 
     /// Sets hover text elements associated with each sector. 
     ///
@@ -527,7 +527,7 @@ public struct FunnelArea: Trace {
         case baseRatio = "baseratio"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: ArrayOrString? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textPosition: TextPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, title: Title? = nil, domain: Shared.Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: LabelsData? = nil, label0: Double? = nil, dLabel: Double? = nil, values: ValuesData? = nil, marker: Marker? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textPosition: TextPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, title: Title? = nil, domain: Shared.Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

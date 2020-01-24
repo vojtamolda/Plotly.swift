@@ -1,5 +1,5 @@
 /// The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
-public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Encodable {
+public struct PointCloud<XYData>: Trace where XYData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -78,7 +78,7 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-ids) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-ids) |
     /// [R](https://plot.ly/r/reference/#pointcloud-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -89,7 +89,7 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-customdata) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-customdata) |
     /// [R](https://plot.ly/r/reference/#pointcloud-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -153,7 +153,7 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-x) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-x) |
     /// [R](https://plot.ly/r/reference/#pointcloud-x)
-    public var x: XData?
+    public var x: XYData?
 
     /// Sets the y coordinates.
     ///
@@ -161,7 +161,7 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-y) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-y) |
     /// [R](https://plot.ly/r/reference/#pointcloud-y)
-    public var y: YData?
+    public var y: XYData?
 
     /// Faster alternative to specifying `x` and `y` separately. 
     ///
@@ -172,7 +172,7 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-xy) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-xy) |
     /// [R](https://plot.ly/r/reference/#pointcloud-xy)
-    public var xy: [Double]?
+    public var xy: XYData?
 
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting. 
     ///
@@ -185,7 +185,7 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
     /// [JavaScript](https://plot.ly/javascript/reference/#pointcloud-indices) |
     /// [Python](https://plot.ly/python/reference/#pointcloud-indices) |
     /// [R](https://plot.ly/r/reference/#pointcloud-indices)
-    public var indices: [Double]?
+    public var indices: [Int]?
 
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array. 
     ///
@@ -390,7 +390,7 @@ public struct PointCloud<XData, YData>: Trace where XData: Encodable, YData: Enc
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, xy: [Double]? = nil, indices: [Double]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: ArrayOrString? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XYData? = nil, y: XYData? = nil, xy: XYData? = nil, indices: [Int]? = nil, xBounds: [Double]? = nil, yBounds: [Double]? = nil, text: ArrayOrString? = nil, marker: Marker? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

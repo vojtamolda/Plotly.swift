@@ -3,7 +3,7 @@
 /// If only `y` is present, `x` the plot is interpreted as a cheater plot and is filled in using the
 /// `y` values. `x` and `y` may either be 2D arrays matching with each dimension matching that of
 /// `a` and `b`, or they may be 1D arrays with total length equal to that of `a` and `b`.
-public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodable {
+public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, YData: Encodable, AData: Encodable, BData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -64,7 +64,7 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-ids) |
     /// [Python](https://plot.ly/python/reference/#carpet-ids) |
     /// [R](https://plot.ly/r/reference/#carpet-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -75,7 +75,7 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-customdata) |
     /// [Python](https://plot.ly/python/reference/#carpet-customdata) |
     /// [R](https://plot.ly/r/reference/#carpet-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -147,7 +147,7 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-a) |
     /// [Python](https://plot.ly/python/reference/#carpet-a) |
     /// [R](https://plot.ly/r/reference/#carpet-a)
-    public var a: [Double]?
+    public var a: AData?
 
     /// Alternate to `a`. 
     ///
@@ -176,7 +176,7 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#carpet-b) |
     /// [Python](https://plot.ly/python/reference/#carpet-b) |
     /// [R](https://plot.ly/r/reference/#carpet-b)
-    public var b: [Double]?
+    public var b: BData?
 
     /// Alternate to `b`. 
     ///
@@ -1549,7 +1549,7 @@ public struct Carpet<XData, YData>: Trace where XData: Encodable, YData: Encodab
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: XData? = nil, y: YData? = nil, a: [Double]? = nil, a0: Double? = nil, da: Double? = nil, b: [Double]? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Shared.Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: XData? = nil, y: YData? = nil, a: AData? = nil, a0: Double? = nil, da: Double? = nil, b: BData? = nil, b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font: Shared.Font? = nil, color: Color? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

@@ -1,5 +1,5 @@
 /// Plots a scatter trace on either the first carpet axis or the carpet axis with a matching `carpet` attribute.
-public struct ScatterCarpet: Trace {
+public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -78,7 +78,7 @@ public struct ScatterCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-ids) |
     /// [Python](https://plot.ly/python/reference/#scattercarpet-ids) |
     /// [R](https://plot.ly/r/reference/#scattercarpet-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -89,7 +89,7 @@ public struct ScatterCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-customdata) |
     /// [Python](https://plot.ly/python/reference/#scattercarpet-customdata) |
     /// [R](https://plot.ly/r/reference/#scattercarpet-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -169,7 +169,7 @@ public struct ScatterCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-a) |
     /// [Python](https://plot.ly/python/reference/#scattercarpet-a) |
     /// [R](https://plot.ly/r/reference/#scattercarpet-a)
-    public var a: [Double]?
+    public var a: AData?
 
     /// Sets the b-axis coordinates.
     ///
@@ -177,7 +177,7 @@ public struct ScatterCarpet: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattercarpet-b) |
     /// [Python](https://plot.ly/python/reference/#scattercarpet-b) |
     /// [R](https://plot.ly/r/reference/#scattercarpet-b)
-    public var b: [Double]?
+    public var b: BData?
 
     /// Determines the drawing mode for this scatter trace. 
     ///
@@ -601,7 +601,7 @@ public struct ScatterCarpet: Trace {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, carpet: String? = nil, a: [Double]? = nil, b: [Double]? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, carpet: String? = nil, a: AData? = nil, b: BData? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

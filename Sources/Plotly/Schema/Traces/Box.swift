@@ -6,7 +6,7 @@
 /// The second quartile (Q2) is marked by a line inside the box. By default, the whiskers correspond
 /// to the box' edges +/- 1.5 times the interquartile range (IQR: Q3-Q1), see *boxpoints* for other
 /// options.
-public struct Box<XData, YData>: Trace where XData: Encodable, YData: Encodable {
+public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -75,7 +75,7 @@ public struct Box<XData, YData>: Trace where XData: Encodable, YData: Encodable 
     /// [JavaScript](https://plot.ly/javascript/reference/#box-ids) |
     /// [Python](https://plot.ly/python/reference/#box-ids) |
     /// [R](https://plot.ly/r/reference/#box-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -86,7 +86,7 @@ public struct Box<XData, YData>: Trace where XData: Encodable, YData: Encodable 
     /// [JavaScript](https://plot.ly/javascript/reference/#box-customdata) |
     /// [Python](https://plot.ly/python/reference/#box-customdata) |
     /// [R](https://plot.ly/r/reference/#box-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -764,7 +764,7 @@ public struct Box<XData, YData>: Trace where XData: Encodable, YData: Encodable 
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

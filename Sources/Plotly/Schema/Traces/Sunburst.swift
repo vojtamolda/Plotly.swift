@@ -1,7 +1,7 @@
 /// Visualize hierarchal data spanning outward radially from root to leaves. 
 ///
 /// The sunburst sectors are determined by the entries in *labels* or *ids* and in *parents*.
-public struct Sunburst: Trace {
+public struct Sunburst<ValuesData>: Trace where ValuesData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -62,7 +62,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-ids) |
     /// [Python](https://plot.ly/python/reference/#sunburst-ids) |
     /// [R](https://plot.ly/r/reference/#sunburst-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -73,7 +73,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-customdata) |
     /// [Python](https://plot.ly/python/reference/#sunburst-customdata) |
     /// [R](https://plot.ly/r/reference/#sunburst-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -133,7 +133,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-labels) |
     /// [Python](https://plot.ly/python/reference/#sunburst-labels) |
     /// [R](https://plot.ly/r/reference/#sunburst-labels)
-    public var labels: [Double]?
+    public var labels: [String]?
 
     /// Sets the parent sectors for each of the sectors. 
     ///
@@ -145,7 +145,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-parents) |
     /// [Python](https://plot.ly/python/reference/#sunburst-parents) |
     /// [R](https://plot.ly/r/reference/#sunburst-parents)
-    public var parents: [Double]?
+    public var parents: [String]?
 
     /// Sets the values associated with each of the sectors. 
     ///
@@ -155,7 +155,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-values) |
     /// [Python](https://plot.ly/python/reference/#sunburst-values) |
     /// [R](https://plot.ly/r/reference/#sunburst-values)
-    public var values: [Double]?
+    public var values: ValuesData?
 
     /// Determines how the items in `values` are summed. 
     ///
@@ -433,7 +433,7 @@ public struct Sunburst: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sunburst-text) |
     /// [Python](https://plot.ly/python/reference/#sunburst-text) |
     /// [R](https://plot.ly/r/reference/#sunburst-text)
-    public var text: [Double]?
+    public var text: ArrayOrString?
 
     /// Determines which trace information appear on the graph.
     ///
@@ -648,7 +648,7 @@ public struct Sunburst: Trace {
         case domain
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, parents: [Double]? = nil, values: [Double]? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: [Double]? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, domain: Shared.Domain? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [String]? = nil, parents: [String]? = nil, values: ValuesData? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: ArrayOrString? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

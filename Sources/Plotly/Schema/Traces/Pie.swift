@@ -1,7 +1,7 @@
 /// A data visualized by the sectors of the pie is set in `values`. 
 ///
 /// The sector labels are set in `labels`. The sector colors are set in `marker.colors`
-public struct Pie: Trace {
+public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Encodable, ValuesData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -80,7 +80,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-ids) |
     /// [Python](https://plot.ly/python/reference/#pie-ids) |
     /// [R](https://plot.ly/r/reference/#pie-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -91,7 +91,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-customdata) |
     /// [Python](https://plot.ly/python/reference/#pie-customdata) |
     /// [R](https://plot.ly/r/reference/#pie-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -155,7 +155,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-labels) |
     /// [Python](https://plot.ly/python/reference/#pie-labels) |
     /// [R](https://plot.ly/r/reference/#pie-labels)
-    public var labels: [Double]?
+    public var labels: LabelsData?
 
     /// Alternate to `labels`. 
     ///
@@ -186,7 +186,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-values) |
     /// [Python](https://plot.ly/python/reference/#pie-values) |
     /// [R](https://plot.ly/r/reference/#pie-values)
-    public var values: [Double]?
+    public var values: ValuesData?
 
     /// # Used By
     /// `Pie.marker` |
@@ -199,7 +199,7 @@ public struct Pie: Trace {
         /// [JavaScript](https://plot.ly/javascript/reference/#pie-marker-colors) |
         /// [Python](https://plot.ly/python/reference/#pie-marker-colors) |
         /// [R](https://plot.ly/r/reference/#pie-marker-colors)
-        public var colors: [Double]?
+        public var colors: ArrayOrColor?
     
         ///
         /// # Plotly Reference
@@ -208,7 +208,7 @@ public struct Pie: Trace {
         /// [R](https://plot.ly/r/reference/#pie-marker-line)
         public var line: Shared.Line?
     
-        public init(colors: [Double]? = nil, line: Shared.Line? = nil) {
+        public init(colors: ArrayOrColor? = nil, line: Shared.Line? = nil) {
             self.colors = colors
             self.line = line
         }
@@ -230,7 +230,7 @@ public struct Pie: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#pie-text) |
     /// [Python](https://plot.ly/python/reference/#pie-text) |
     /// [R](https://plot.ly/r/reference/#pie-text)
-    public var text: [Double]?
+    public var text: ArrayOrString?
 
     /// Sets hover text elements associated with each sector. 
     ///
@@ -579,7 +579,7 @@ public struct Pie: Trace {
         case pull
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [Double]? = nil, label0: Double? = nil, dLabel: Double? = nil, values: [Double]? = nil, marker: Marker? = nil, text: [Double]? = nil, hoverText: ArrayOrString? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: ArrayOrDouble? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: LabelsData? = nil, label0: Double? = nil, dLabel: Double? = nil, values: ValuesData? = nil, marker: Marker? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: ArrayOrDouble? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

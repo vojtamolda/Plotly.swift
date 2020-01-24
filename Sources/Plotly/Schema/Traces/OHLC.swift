@@ -4,7 +4,7 @@
 /// the `open` and `close` values. Sample points where the close value is higher (lower) then the
 /// open value are called increasing (decreasing). By default, increasing items are drawn in green
 /// whereas decreasing are drawn in red.
-public struct OHLC<XData>: Trace where XData: Encodable {
+public struct OHLC<XData, OpenData, HighData, LowData, CloseData>: Trace where XData: Encodable, OpenData: Encodable, HighData: Encodable, LowData: Encodable, CloseData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -83,7 +83,7 @@ public struct OHLC<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-ids) |
     /// [Python](https://plot.ly/python/reference/#ohlc-ids) |
     /// [R](https://plot.ly/r/reference/#ohlc-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -94,7 +94,7 @@ public struct OHLC<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-customdata) |
     /// [Python](https://plot.ly/python/reference/#ohlc-customdata) |
     /// [R](https://plot.ly/r/reference/#ohlc-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -180,7 +180,7 @@ public struct OHLC<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-open) |
     /// [Python](https://plot.ly/python/reference/#ohlc-open) |
     /// [R](https://plot.ly/r/reference/#ohlc-open)
-    public var open: [Double]?
+    public var open: OpenData?
 
     /// Sets the high values.
     ///
@@ -188,7 +188,7 @@ public struct OHLC<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-high) |
     /// [Python](https://plot.ly/python/reference/#ohlc-high) |
     /// [R](https://plot.ly/r/reference/#ohlc-high)
-    public var high: [Double]?
+    public var high: HighData?
 
     /// Sets the low values.
     ///
@@ -196,7 +196,7 @@ public struct OHLC<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-low) |
     /// [Python](https://plot.ly/python/reference/#ohlc-low) |
     /// [R](https://plot.ly/r/reference/#ohlc-low)
-    public var low: [Double]?
+    public var low: LowData?
 
     /// Sets the close values.
     ///
@@ -204,7 +204,7 @@ public struct OHLC<XData>: Trace where XData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#ohlc-close) |
     /// [Python](https://plot.ly/python/reference/#ohlc-close) |
     /// [R](https://plot.ly/r/reference/#ohlc-close)
-    public var close: [Double]?
+    public var close: CloseData?
 
     /// # Used By
     /// `OHLC.line` |
@@ -530,7 +530,7 @@ public struct OHLC<XData>: Trace where XData: Encodable {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, open: [Double]? = nil, high: [Double]? = nil, low: [Double]? = nil, close: [Double]? = nil, line: DashedLine? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, open: OpenData? = nil, high: HighData? = nil, low: LowData? = nil, close: CloseData? = nil, line: DashedLine? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

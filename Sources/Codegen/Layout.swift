@@ -19,7 +19,7 @@ struct Layout: Definable {
 
     /// Post-processing hacks to remove obsolete members.
     private func workarounds() {
-        let obsolete: Set = ["radialAxis", "angularAxis", "orientation", "direction"]
-        layoutAttributes.members = layoutAttributes.members.removedInstances(named: obsolete)
+        let obsolete = ["radialAxis", "angularAxis", "orientation", "direction"]
+        layoutAttributes.members.removeAllInstances(named: obsolete)
     }
 }

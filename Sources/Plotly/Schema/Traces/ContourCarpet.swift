@@ -1,7 +1,7 @@
 /// Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. 
 ///
 /// Data `z` is interpreted as matching that of the corresponding carpet axis.
-public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
+public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Encodable, AData: Encodable, BData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -80,7 +80,7 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-ids) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-ids) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -91,7 +91,7 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-customdata) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-customdata) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -153,7 +153,7 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-a) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-a) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-a)
-    public var a: [Double]?
+    public var a: AData?
 
     /// Alternate to `x`. 
     ///
@@ -182,7 +182,7 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-b) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-b) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-b)
-    public var b: [Double]?
+    public var b: BData?
 
     /// Alternate to `y`. 
     ///
@@ -211,7 +211,7 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-text) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-text) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-text)
-    public var text: [Double]?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -219,7 +219,7 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#contourcarpet-hovertext) |
     /// [Python](https://plot.ly/python/reference/#contourcarpet-hovertext) |
     /// [R](https://plot.ly/r/reference/#contourcarpet-hovertext)
-    public var hoverText: [Double]?
+    public var hoverText: ArrayOrString?
 
     /// Transposes the z data.
     ///
@@ -486,7 +486,7 @@ public struct ContourCarpet<ZData>: Trace where ZData: Encodable {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: ZData? = nil, a: [Double]? = nil, a0: Anything? = nil, da: Double? = nil, b: [Double]? = nil, b0: Anything? = nil, db: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, z: ZData? = nil, a: AData? = nil, a0: Anything? = nil, da: Double? = nil, b: BData? = nil, b0: Anything? = nil, db: Double? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, transpose: Bool? = nil, aType: AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

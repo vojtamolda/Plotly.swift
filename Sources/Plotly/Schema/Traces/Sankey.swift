@@ -55,7 +55,7 @@ public struct Sankey: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sankey-ids) |
     /// [Python](https://plot.ly/python/reference/#sankey-ids) |
     /// [R](https://plot.ly/r/reference/#sankey-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -66,7 +66,7 @@ public struct Sankey: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#sankey-customdata) |
     /// [Python](https://plot.ly/python/reference/#sankey-customdata) |
     /// [R](https://plot.ly/r/reference/#sankey-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -658,7 +658,7 @@ public struct Sankey: Trace {
         case link
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, domain: Shared.Domain? = nil, orientation: Shared.Orientation? = nil, valueFormat: String? = nil, valueSuffix: String? = nil, arrangement: Arrangement? = nil, textFont: Shared.Font? = nil, node: Node? = nil, link: Link? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, domain: Shared.Domain? = nil, orientation: Shared.Orientation? = nil, valueFormat: String? = nil, valueSuffix: String? = nil, arrangement: Arrangement? = nil, textFont: Shared.Font? = nil, node: Node? = nil, link: Link? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

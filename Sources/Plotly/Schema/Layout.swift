@@ -1,6 +1,6 @@
 public struct Layout: Encodable {
     
-    // MARK: - FunnelArea Trace
+    // MARK: - FunnelArea
 
     /// Sets the default funnelarea slice colors. 
     ///
@@ -26,7 +26,7 @@ public struct Layout: Encodable {
     public var extendFunnelAreaColors: Bool?
 
     
-    // MARK: - Treemap Trace
+    // MARK: - Treemap
 
     /// Sets the default treemap slice colors. 
     ///
@@ -52,7 +52,7 @@ public struct Layout: Encodable {
     public var extendTreemapColors: Bool?
 
     
-    // MARK: - Sunburst Trace
+    // MARK: - Sunburst
 
     /// Sets the default sunburst slice colors. 
     ///
@@ -78,7 +78,7 @@ public struct Layout: Encodable {
     public var extendSunburstColors: Bool?
 
     
-    // MARK: - Pie Trace
+    // MARK: - Pie
 
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain many labels, and can simultaneously hide slices from several pies/funnelarea charts
     ///
@@ -112,7 +112,7 @@ public struct Layout: Encodable {
     public var extendPieColors: Bool?
 
     
-    // MARK: - Waterfall Trace
+    // MARK: - Waterfall
 
     /// Determines how bars at the same location coordinate are displayed on the graph. 
     ///
@@ -155,7 +155,7 @@ public struct Layout: Encodable {
     public var waterfallGroupGap: Double?
 
     
-    // MARK: - Funnel Trace
+    // MARK: - Funnel
 
     /// Determines how bars at the same location coordinate are displayed on the graph. 
     ///
@@ -199,7 +199,7 @@ public struct Layout: Encodable {
     public var funnelGroupGap: Double?
 
     
-    // MARK: - Violin Trace
+    // MARK: - Violin
 
     /// Determines how violins at the same location coordinate are displayed on the graph. 
     ///
@@ -246,7 +246,7 @@ public struct Layout: Encodable {
     public var violinGroupGap: Double?
 
     
-    // MARK: - Box and Candlestick Traces
+    // MARK: - Box and Candlestick
 
     /// Determines how boxes at the same location coordinate are displayed on the graph. 
     ///
@@ -293,7 +293,7 @@ public struct Layout: Encodable {
     public var boxGroupGap: Double?
 
     
-    // MARK: - Bar, BarPolar and Histogram Traces
+    // MARK: - Bar, BarPolar and Histogram
 
     /// Determines how bars at the same location coordinate are displayed on the graph. 
     ///

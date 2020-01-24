@@ -254,28 +254,34 @@ struct Swift {
                 if members.containsInstance(named: "dash") { name = "Dashed\(name)" }
                 if members.containsInstance(named: "smoothing") { name = "Smoothed\(name)" }
                 if members.containsInstance(named: "shape") { name = "Spline\(name)" }
+
             case "Marker":
                 if members.containsInstance(named: "symbol") { name = "SymbolicMarker" }
                 if members.containsInstance(named: "gradient") { name = "GradientMarker" }
+
             case "Contour":
                 if members.count == 3 { name = "ContourHover"}
+
             case "XBins":
                 fallthrough
             case "YBins":
                 name = "Bins"
+
             case "XError":
                 fallthrough
             case "YError":
                 fallthrough
             case "ZError":
                 name = "Error"
-                members = members.removedInstances(named: ["yCopyStyle", "zCopyStyle"])
+                let useless = ["yCopyStyle", "zCopyStyle"]
+                members.removeAllInstances(named: useless)
+
             default:
                 break
             }
 
-            let disableSharing: Set = ["Selected", "Unselected", "Increasing", "Decreasing"]
-            if disableSharing.contains(self.name) || disableSharing.contains(self.parent?.name ?? "") {
+            let disabledSharing = ["Selected", "Unselected", "Increasing", "Decreasing"]
+            if disabledSharing.contains(self.name) || disabledSharing.contains(self.parent?.name ?? "") {
                 shareable = false
             }
         }
@@ -428,7 +434,7 @@ struct Swift {
             case "YType":
                 name = "AxisType"
             default:
-                return
+                break
             }
         }
 
@@ -587,7 +593,7 @@ struct Swift {
             case "HoverInfo":
                 if options.containsOption(labeled: "theta") { name = "PolarHoverInfo" }
             default:
-                return
+                break
             }
         }
 
@@ -633,6 +639,20 @@ struct Swift {
         }
     }
 
+    // TODO: Docs
+    struct Override: SwiftType {
+        let servant: SwiftType
+
+        let name: String
+        var parent: Swift.Object? { servant.parent }
+        var origin: SchemaType { servant.origin }
+
+        init(of type: SwiftType, as name: String) {
+            self.name = name
+            servant = type
+        }
+    }
+
 
     // MARK: - Utilities
 
@@ -652,23 +672,23 @@ struct Swift {
 }
 
 
-fileprivate extension Collection where Iterator.Element == Definable {
+fileprivate extension Array where Iterator.Element == Definable {
     /// Checks whether the collection contains an `Instance` object with the specified name.
     func containsInstance(named name: String) -> Bool {
-        self.contains { ($0 as? Instance)?.name == name }
+        firstInstance(named: name) != nil
     }
 }
 
-fileprivate extension Collection where Iterator.Element == Swift.Enumerated.Case {
+fileprivate extension Array where Iterator.Element == Swift.Enumerated.Case {
     /// Checks whether the collection contains a `Case` object with the specified label.
     func containsCase(labeled label: String) -> Bool {
-        self.contains { $0.label == label }
+        contains { $0.label == label }
     }
 }
 
-fileprivate extension Collection where Iterator.Element == Swift.FlagList.Option {
+fileprivate extension Array where Iterator.Element == Swift.FlagList.Option {
     /// Checks whether the collection contains an `Option` object with the specified label.
     func containsOption(labeled label: String) -> Bool {
-        self.contains { $0.label == label }
+        contains { $0.label == label }
     }
 }

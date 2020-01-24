@@ -3,7 +3,7 @@
 /// By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`)
 /// {array} is provided, a single violin is drawn. That violin position is then positioned with with
 /// `name` or with `x0` (`y0`) if provided.
-public struct Violin<XData, YData>: Trace where XData: Encodable, YData: Encodable {
+public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -72,7 +72,7 @@ public struct Violin<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-ids) |
     /// [Python](https://plot.ly/python/reference/#violin-ids) |
     /// [R](https://plot.ly/r/reference/#violin-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -83,7 +83,7 @@ public struct Violin<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#violin-customdata) |
     /// [Python](https://plot.ly/python/reference/#violin-customdata) |
     /// [R](https://plot.ly/r/reference/#violin-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -902,7 +902,7 @@ public struct Violin<XData, YData>: Trace where XData: Encodable, YData: Encodab
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Shared.Orientation? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Shared.Orientation? = nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

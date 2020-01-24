@@ -56,7 +56,7 @@ public struct Table: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#table-ids) |
     /// [Python](https://plot.ly/python/reference/#table-ids) |
     /// [R](https://plot.ly/r/reference/#table-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -67,7 +67,7 @@ public struct Table: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#table-customdata) |
     /// [Python](https://plot.ly/python/reference/#table-customdata) |
     /// [R](https://plot.ly/r/reference/#table-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -148,7 +148,7 @@ public struct Table: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#table-columnorder) |
     /// [Python](https://plot.ly/python/reference/#table-columnorder) |
     /// [R](https://plot.ly/r/reference/#table-columnorder)
-    public var columnOrder: [Double]?
+    public var columnOrder: [Int]?
 
     /// # Used By
     /// `Table.header` |
@@ -405,7 +405,7 @@ public struct Table: Trace {
         case cells
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: ArrayOrDouble? = nil, columnOrder: [Double]? = nil, header: Header? = nil, cells: Cells? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: ArrayOrDouble? = nil, columnOrder: [Int]? = nil, header: Header? = nil, cells: Cells? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

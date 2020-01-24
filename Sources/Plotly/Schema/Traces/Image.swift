@@ -65,7 +65,7 @@ public struct Image<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#image-ids) |
     /// [Python](https://plot.ly/python/reference/#image-ids) |
     /// [R](https://plot.ly/r/reference/#image-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -76,7 +76,7 @@ public struct Image<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#image-customdata) |
     /// [Python](https://plot.ly/python/reference/#image-customdata) |
     /// [R](https://plot.ly/r/reference/#image-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -211,7 +211,7 @@ public struct Image<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#image-text) |
     /// [Python](https://plot.ly/python/reference/#image-text) |
     /// [R](https://plot.ly/r/reference/#image-text)
-    public var text: [Double]?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -219,7 +219,7 @@ public struct Image<ZData>: Trace where ZData: Encodable {
     /// [JavaScript](https://plot.ly/javascript/reference/#image-hovertext) |
     /// [Python](https://plot.ly/python/reference/#image-hovertext) |
     /// [R](https://plot.ly/r/reference/#image-hovertext)
-    public var hoverText: [Double]?
+    public var hoverText: ArrayOrString?
 
     /// Determines which trace information appear on hover. 
     ///
@@ -343,7 +343,7 @@ public struct Image<ZData>: Trace where ZData: Encodable {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: [Double]? = nil, hoverText: [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

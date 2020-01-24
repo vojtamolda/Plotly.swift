@@ -1,5 +1,5 @@
 /// The data visualized as scatter point, lines or marker symbols on a Mapbox GL geographic map is provided by longitude/latitude pairs in `lon` and `lat`.
-public struct ScatterMapbox: Trace {
+public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -78,7 +78,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-ids) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-ids) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -89,7 +89,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-customdata) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-customdata) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -161,7 +161,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-lon) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-lon) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-lon)
-    public var longitude: [Double]?
+    public var longitude: CoordinateData?
 
     /// Sets the latitude coordinates (in degrees North).
     ///
@@ -169,7 +169,7 @@ public struct ScatterMapbox: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattermapbox-lat) |
     /// [Python](https://plot.ly/python/reference/#scattermapbox-lat) |
     /// [R](https://plot.ly/r/reference/#scattermapbox-lat)
-    public var latitude: [Double]?
+    public var latitude: CoordinateData?
 
     /// Determines the drawing mode for this scatter trace. 
     ///
@@ -758,7 +758,7 @@ public struct ScatterMapbox: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.Line? = nil, connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, below: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.Line? = nil, connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, below: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

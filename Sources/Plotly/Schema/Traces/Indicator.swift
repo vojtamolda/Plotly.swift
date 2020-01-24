@@ -55,7 +55,7 @@ public struct Indicator: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#indicator-ids) |
     /// [Python](https://plot.ly/python/reference/#indicator-ids) |
     /// [R](https://plot.ly/r/reference/#indicator-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -66,7 +66,7 @@ public struct Indicator: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#indicator-customdata) |
     /// [Python](https://plot.ly/python/reference/#indicator-customdata) |
     /// [R](https://plot.ly/r/reference/#indicator-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -1000,7 +1000,7 @@ public struct Indicator: Trace {
         case gauge
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Shared.HorizontalAlign? = nil, domain: Shared.Domain? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? = nil, align: Shared.HorizontalAlign? = nil, domain: Shared.Domain? = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

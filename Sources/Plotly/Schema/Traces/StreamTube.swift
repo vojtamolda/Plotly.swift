@@ -5,7 +5,7 @@
 /// cut from the vector field's x-z plane at its minimum y value. To specify your own starting
 /// position, use attributes `starts.x`, `starts.y` and `starts.z`. The color is encoded by the norm
 /// of (u, v, w), and the local radius by the divergence of (u, v, w).
-public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
+public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Encodable, UVWData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -58,7 +58,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-ids) |
     /// [Python](https://plot.ly/python/reference/#streamtube-ids) |
     /// [R](https://plot.ly/r/reference/#streamtube-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -69,7 +69,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-customdata) |
     /// [Python](https://plot.ly/python/reference/#streamtube-customdata) |
     /// [R](https://plot.ly/r/reference/#streamtube-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -122,7 +122,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-x) |
     /// [Python](https://plot.ly/python/reference/#streamtube-x) |
     /// [R](https://plot.ly/r/reference/#streamtube-x)
-    public var x: XData?
+    public var x: XYZData?
 
     /// Sets the y coordinates of the vector field.
     ///
@@ -130,7 +130,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-y) |
     /// [Python](https://plot.ly/python/reference/#streamtube-y) |
     /// [R](https://plot.ly/r/reference/#streamtube-y)
-    public var y: YData?
+    public var y: XYZData?
 
     /// Sets the z coordinates of the vector field.
     ///
@@ -138,7 +138,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-z) |
     /// [Python](https://plot.ly/python/reference/#streamtube-z) |
     /// [R](https://plot.ly/r/reference/#streamtube-z)
-    public var z: ZData?
+    public var z: XYZData?
 
     /// Sets the x components of the vector field.
     ///
@@ -146,7 +146,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-u) |
     /// [Python](https://plot.ly/python/reference/#streamtube-u) |
     /// [R](https://plot.ly/r/reference/#streamtube-u)
-    public var u: [Double]?
+    public var u: UVWData?
 
     /// Sets the y components of the vector field.
     ///
@@ -154,7 +154,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-v) |
     /// [Python](https://plot.ly/python/reference/#streamtube-v) |
     /// [R](https://plot.ly/r/reference/#streamtube-v)
-    public var v: [Double]?
+    public var v: UVWData?
 
     /// Sets the z components of the vector field.
     ///
@@ -162,7 +162,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-w) |
     /// [Python](https://plot.ly/python/reference/#streamtube-w) |
     /// [R](https://plot.ly/r/reference/#streamtube-w)
-    public var w: [Double]?
+    public var w: UVWData?
 
     /// # Used By
     /// `StreamTube.starts` |
@@ -232,7 +232,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-text) |
     /// [Python](https://plot.ly/python/reference/#streamtube-text) |
     /// [R](https://plot.ly/r/reference/#streamtube-text)
-    public var text: String?
+    public var text: ArrayOrString?
 
     /// Same as `text`.
     ///
@@ -240,7 +240,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hovertext) |
     /// [Python](https://plot.ly/python/reference/#streamtube-hovertext) |
     /// [R](https://plot.ly/r/reference/#streamtube-hovertext)
-    public var hoverText: String?
+    public var hoverText: ArrayOrString?
 
     /// Template string used for rendering the information that appear on hover box. 
     ///
@@ -504,7 +504,7 @@ public struct StreamTube<XData, YData, ZData>: Trace where XData: Encodable, YDa
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: String? = nil, hoverText: String? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? = nil, w: UVWData? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

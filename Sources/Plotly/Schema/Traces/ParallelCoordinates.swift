@@ -54,7 +54,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-ids) |
     /// [Python](https://plot.ly/python/reference/#parcoords-ids) |
     /// [R](https://plot.ly/r/reference/#parcoords-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -65,7 +65,7 @@ public struct ParallelCoordinates: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#parcoords-customdata) |
     /// [Python](https://plot.ly/python/reference/#parcoords-customdata) |
     /// [R](https://plot.ly/r/reference/#parcoords-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -522,7 +522,7 @@ public struct ParallelCoordinates: Trace {
         case line
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil, rangeFont: Shared.Font? = nil, dimensions: [Dimension]? = nil, line: ColoredLine? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, domain: Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil, rangeFont: Shared.Font? = nil, dimensions: [Dimension]? = nil, line: ColoredLine? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

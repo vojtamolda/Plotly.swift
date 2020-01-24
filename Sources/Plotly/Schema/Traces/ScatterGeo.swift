@@ -1,5 +1,5 @@
 /// The data visualized as scatter point or lines on a geographic map is provided either by longitude/latitude pairs in `lon` and `lat` respectively or by geographic location IDs or names in `locations`.
-public struct ScatterGeo: Trace {
+public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateData: Encodable, LocationsData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -78,7 +78,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-ids) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-ids) |
     /// [R](https://plot.ly/r/reference/#scattergeo-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -89,7 +89,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-customdata) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-customdata) |
     /// [R](https://plot.ly/r/reference/#scattergeo-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -161,7 +161,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-lon) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-lon) |
     /// [R](https://plot.ly/r/reference/#scattergeo-lon)
-    public var longitude: [Double]?
+    public var longitude: CoordinateData?
 
     /// Sets the latitude coordinates (in degrees North).
     ///
@@ -169,7 +169,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-lat) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-lat) |
     /// [R](https://plot.ly/r/reference/#scattergeo-lat)
-    public var latitude: [Double]?
+    public var latitude: CoordinateData?
 
     /// Sets the coordinates via location IDs or names. 
     ///
@@ -179,7 +179,7 @@ public struct ScatterGeo: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scattergeo-locations) |
     /// [Python](https://plot.ly/python/reference/#scattergeo-locations) |
     /// [R](https://plot.ly/r/reference/#scattergeo-locations)
-    public var locations: [Double]?
+    public var locations: LocationsData?
 
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
     ///
@@ -855,7 +855,7 @@ public struct ScatterGeo: Trace {
         case geo
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: [Double]? = nil, latitude: [Double]? = nil, locations: [Double]? = nil, locationMode: LocationMode? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, geo: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? = nil, locations: LocationsData? = nil, locationMode: LocationMode? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, geo: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -49,22 +49,25 @@ extension String {
 }
 
 
-extension Collection where Iterator.Element == String {
+extension Array where Iterator.Element == String {
     /// Prepends each element with `indentation` repeated `count`-times.
     func indented(_ count: Int = 1, indentation: String = "    ") -> [Self.Element] {
-        return self.map { $0.indented(count, indentation: indentation) }
+        return map { $0.indented(count, indentation: indentation) }
     }
 }
 
-extension Collection where Iterator.Element == Definable {
-    /// Returns a collection where `Instance`s with specified name are removed.
-    func removedInstances(named names: Set<String>) -> [Self.Element] {
-        return self.filter { element in
-            if let instance = element as? Instance {
-                return !names.contains(instance.name)
-            } else {
-                return true
-            }
+extension Array where Iterator.Element == Definable {
+    /// Finds and returns the first `Instance` object with the specified name.
+    func firstInstance(named name: String) -> Instance? {
+        let instances = compactMap { $0 as? Instance }
+        return instances.first { $0.name == name }
+    }
+
+    /// Removes `Instance`s matching the specified names from the collection.
+    mutating func removeAllInstances(named names: [String]) {
+        removeAll { element in
+            if let instance = element as? Instance { return names.contains(instance.name) }
+            return false
         }
     }
 }

@@ -83,7 +83,7 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-ids) |
     /// [Python](https://plot.ly/python/reference/#funnel-ids) |
     /// [R](https://plot.ly/r/reference/#funnel-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -94,7 +94,7 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
     /// [JavaScript](https://plot.ly/javascript/reference/#funnel-customdata) |
     /// [Python](https://plot.ly/python/reference/#funnel-customdata) |
     /// [R](https://plot.ly/r/reference/#funnel-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -628,7 +628,7 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, text: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width: Double? = nil, marker: Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: ArrayOrString? = nil, text: ArrayOrString? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width: Double? = nil, marker: Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

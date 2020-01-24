@@ -278,7 +278,7 @@ public enum InfoArray: Encodable {
     case string([String])
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
+        var container = encoder.singleValueContainer()
         switch self {
         case .numeric(let numerals):
             try container.encode(numerals)

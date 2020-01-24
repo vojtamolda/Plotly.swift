@@ -3,7 +3,7 @@
 /// Specify a vector field using 6 1D arrays, 3 position arrays `x`, `y` and `z` and 3 vector
 /// component arrays `u`, `v`, `w`. The cones are drawn exactly at the positions given by `x`, `y`
 /// and `z`.
-public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
+public struct Cone<XYZData, UVWData>: Trace where XYZData: Encodable, UVWData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -56,7 +56,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [JavaScript](https://plot.ly/javascript/reference/#cone-ids) |
     /// [Python](https://plot.ly/python/reference/#cone-ids) |
     /// [R](https://plot.ly/r/reference/#cone-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -67,7 +67,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [JavaScript](https://plot.ly/javascript/reference/#cone-customdata) |
     /// [Python](https://plot.ly/python/reference/#cone-customdata) |
     /// [R](https://plot.ly/r/reference/#cone-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -120,7 +120,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [JavaScript](https://plot.ly/javascript/reference/#cone-x) |
     /// [Python](https://plot.ly/python/reference/#cone-x) |
     /// [R](https://plot.ly/r/reference/#cone-x)
-    public var x: XData?
+    public var x: XYZData?
 
     /// Sets the y coordinates of the vector field and of the displayed cones.
     ///
@@ -128,7 +128,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [JavaScript](https://plot.ly/javascript/reference/#cone-y) |
     /// [Python](https://plot.ly/python/reference/#cone-y) |
     /// [R](https://plot.ly/r/reference/#cone-y)
-    public var y: YData?
+    public var y: XYZData?
 
     /// Sets the z coordinates of the vector field and of the displayed cones.
     ///
@@ -136,7 +136,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [JavaScript](https://plot.ly/javascript/reference/#cone-z) |
     /// [Python](https://plot.ly/python/reference/#cone-z) |
     /// [R](https://plot.ly/r/reference/#cone-z)
-    public var z: ZData?
+    public var z: XYZData?
 
     /// Sets the x components of the vector field.
     ///
@@ -144,7 +144,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [JavaScript](https://plot.ly/javascript/reference/#cone-u) |
     /// [Python](https://plot.ly/python/reference/#cone-u) |
     /// [R](https://plot.ly/r/reference/#cone-u)
-    public var u: [Double]?
+    public var u: UVWData?
 
     /// Sets the y components of the vector field.
     ///
@@ -152,7 +152,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [JavaScript](https://plot.ly/javascript/reference/#cone-v) |
     /// [Python](https://plot.ly/python/reference/#cone-v) |
     /// [R](https://plot.ly/r/reference/#cone-v)
-    public var v: [Double]?
+    public var v: UVWData?
 
     /// Sets the z components of the vector field.
     ///
@@ -160,7 +160,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
     /// [JavaScript](https://plot.ly/javascript/reference/#cone-w) |
     /// [Python](https://plot.ly/python/reference/#cone-w) |
     /// [R](https://plot.ly/r/reference/#cone-w)
-    public var w: [Double]?
+    public var w: UVWData?
 
     /// Determines whether `sizeref` is set as a *scaled* (i.e unitless) scalar (normalized by the max u/v/w norm in the vector field) or as *absolute* value (in the same units as the vector field).
     ///
@@ -493,7 +493,7 @@ public struct Cone<XData, YData, ZData>: Trace where XData: Encodable, YData: En
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, u: [Double]? = nil, v: [Double]? = nil, w: [Double]? = nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? = nil, w: UVWData? = nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

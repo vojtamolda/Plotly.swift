@@ -1,7 +1,7 @@
 /// Provides similar functionality to the *scatter* type but on a ternary phase diagram. 
 ///
 /// The data is provided by at least two arrays out of `a`, `b`, `c` triplets.
-public struct ScatterTernary: Trace {
+public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable, BData: Encodable, CData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -80,7 +80,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-ids) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-ids) |
     /// [R](https://plot.ly/r/reference/#scatterternary-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -91,7 +91,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-customdata) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-customdata) |
     /// [R](https://plot.ly/r/reference/#scatterternary-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -166,7 +166,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-a) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-a) |
     /// [R](https://plot.ly/r/reference/#scatterternary-a)
-    public var a: [Double]?
+    public var a: AData?
 
     /// Sets the quantity of component `a` in each data point. 
     ///
@@ -177,7 +177,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-b) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-b) |
     /// [R](https://plot.ly/r/reference/#scatterternary-b)
-    public var b: [Double]?
+    public var b: BData?
 
     /// Sets the quantity of component `a` in each data point. 
     ///
@@ -188,7 +188,7 @@ public struct ScatterTernary: Trace {
     /// [JavaScript](https://plot.ly/javascript/reference/#scatterternary-c) |
     /// [Python](https://plot.ly/python/reference/#scatterternary-c) |
     /// [R](https://plot.ly/r/reference/#scatterternary-c)
-    public var c: [Double]?
+    public var c: CData?
 
     /// The number each triplet should sum to, if only two of `a`, `b`, and `c` are provided. 
     ///
@@ -626,7 +626,7 @@ public struct ScatterTernary: Trace {
         case subPlot = "subplot"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, a: [Double]? = nil, b: [Double]? = nil, c: [Double]? = nil, sum: Double? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, subPlot: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, a: AData? = nil, b: BData? = nil, c: CData? = nil, sum: Double? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

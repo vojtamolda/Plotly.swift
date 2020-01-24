@@ -2,7 +2,7 @@
 ///
 /// Horizontal or vertical slices, caps as well as spaceframe between iso-min and iso-max values
 /// could also be drawn using this trace.
-public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
+public struct Isosurface<XData, YData, ZData, ValueData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable, ValueData: Encodable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -55,7 +55,7 @@ public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-ids) |
     /// [Python](https://plot.ly/python/reference/#isosurface-ids) |
     /// [R](https://plot.ly/r/reference/#isosurface-ids)
-    public var ids: [Double]?
+    public var ids: [String]?
 
     /// Assigns extra data each datum. 
     ///
@@ -66,7 +66,7 @@ public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-customdata) |
     /// [Python](https://plot.ly/python/reference/#isosurface-customdata) |
     /// [R](https://plot.ly/r/reference/#isosurface-customdata)
-    public var customData: [Double]?
+    public var customData: [String]?
 
     /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
     ///
@@ -143,7 +143,7 @@ public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YDa
     /// [JavaScript](https://plot.ly/javascript/reference/#isosurface-value) |
     /// [Python](https://plot.ly/python/reference/#isosurface-value) |
     /// [R](https://plot.ly/r/reference/#isosurface-value)
-    public var value: [Double]?
+    public var value: ValueData?
 
     /// Sets the minimum boundary for iso-surface plot.
     ///
@@ -835,7 +835,7 @@ public struct Isosurface<XData, YData, ZData>: Trace where XData: Encodable, YDa
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [Double]? = nil, customData: [Double]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, value: [Double]? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, value: ValueData? = nil, isoMin: Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? = nil, caps: Caps? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
