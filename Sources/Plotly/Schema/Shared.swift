@@ -188,10 +188,22 @@ public struct Shared {
     /// `Layout.Polar.RadialAxis.autoRange` |
     /// `Carpet.AAxis.autoRange` |
     /// `Carpet.BAxis.autoRange` |
-    public enum AutoRange: String, Encodable {
-        case `true` = "true"
-        case `false` = "false"
+    public enum AutoRange: Encodable {
+        case `true`
+        case `false`
         case reversed
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .`true`:
+                try container.encode(true)
+            case .`false`:
+                try container.encode(false)
+            case .reversed:
+                try container.encode("reversed")
+            }
+        }
     }
 
     /// If *normal*, the range is computed in relation to the extrema of the input data. 
@@ -344,12 +356,28 @@ public struct Shared {
     /// `Layout.Scene.XAxis.mirror` |
     /// `Layout.Scene.YAxis.mirror` |
     /// `Layout.Scene.ZAxis.mirror` |
-    public enum Mirror: String, Encodable {
-        case `true` = "true"
+    public enum Mirror: Encodable {
+        case `true`
         case ticks
-        case `false` = "false"
+        case `false`
         case all
-        case allTicks = "allticks"
+        case allTicks
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .`true`:
+                try container.encode(true)
+            case .ticks:
+                try container.encode("ticks")
+            case .`false`:
+                try container.encode(false)
+            case .all:
+                try container.encode("all")
+            case .allTicks:
+                try container.encode("allticks")
+            }
+        }
     }
 
     /// If *all*, all tick labels are displayed with a prefix. 
@@ -1023,10 +1051,22 @@ public struct Shared {
     /// `ScatterPolar.visible` |
     /// `ScatterPolarGL.visible` |
     /// `BarPolar.visible` |
-    public enum Visible: String, Encodable {
-        case `true` = "true"
-        case `false` = "false"
-        case legendOnly = "legendonly"
+    public enum Visible: Encodable {
+        case `true`
+        case `false`
+        case legendOnly
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .`true`:
+                try container.encode(true)
+            case .`false`:
+                try container.encode(false)
+            case .legendOnly:
+                try container.encode("legendonly")
+            }
+        }
     }
 
     /// Sets the area to fill with a solid color. 

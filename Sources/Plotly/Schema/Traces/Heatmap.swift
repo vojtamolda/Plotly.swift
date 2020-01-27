@@ -260,10 +260,22 @@ public struct Heatmap<ZData, XYData>: Trace where ZData: Encodable, XYData: Enco
     ///
     /// # Used By
     /// `Heatmap.zSmooth` |
-    public enum ZSmooth: String, Encodable {
+    public enum ZSmooth: Encodable {
         case fast
         case best
-        case `false` = "false"
+        case `false`
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .fast:
+                try container.encode("fast")
+            case .best:
+                try container.encode("best")
+            case .`false`:
+                try container.encode(false)
+            }
+        }
     }
     /// Picks a smoothing algorithm use to smooth `z` data.
     ///

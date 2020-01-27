@@ -317,11 +317,25 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
     ///
     /// # Used By
     /// `Violin.points` |
-    public enum Points: String, Encodable {
+    public enum Points: Encodable {
         case all
         case outliers
-        case suspectedOutliers = "suspectedoutliers"
-        case `false` = "false"
+        case suspectedOutliers
+        case `false`
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .all:
+                try container.encode("all")
+            case .outliers:
+                try container.encode("outliers")
+            case .suspectedOutliers:
+                try container.encode("suspectedoutliers")
+            case .`false`:
+                try container.encode(false)
+            }
+        }
     }
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the violins are shown with no sample points
     ///

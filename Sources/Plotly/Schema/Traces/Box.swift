@@ -58,6 +58,18 @@ public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable 
     /// [R](https://plot.ly/r/reference/#box-opacity)
     public var opacity: Double?
 
+    /// Sets the trace name. 
+    ///
+    /// The trace name appear as the legend item and on hover. For box traces, the name will also be
+    /// used for the position coordinate, if `x` and `x0` (`y` and `y0` if horizontal) are missing and
+    /// the position axis is categorical
+    ///
+    /// # Plotly Reference
+    /// [JavaScript](https://plot.ly/javascript/reference/#box-name) |
+    /// [Python](https://plot.ly/python/reference/#box-name) |
+    /// [R](https://plot.ly/r/reference/#box-name)
+    public var name: String?
+
     /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
     ///
     /// # Plotly Reference
@@ -203,18 +215,6 @@ public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable 
     /// [R](https://plot.ly/r/reference/#box-y0)
     public var y0: Anything?
 
-    /// Sets the trace name. 
-    ///
-    /// The trace name appear as the legend item and on hover. For box traces, the name will also be
-    /// used for the position coordinate, if `x` and `x0` (`y` and `y0` if horizontal) are missing and
-    /// the position axis is categorical
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#box-name) |
-    /// [Python](https://plot.ly/python/reference/#box-name) |
-    /// [R](https://plot.ly/r/reference/#box-name)
-    public var name: String?
-
     /// Sets the text elements associated with each sample value. 
     ///
     /// If a single string, the same string appears over all the data points. If an array of string, the
@@ -289,11 +289,25 @@ public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable 
     ///
     /// # Used By
     /// `Box.boxPoints` |
-    public enum BoxPoints: String, Encodable {
+    public enum BoxPoints: Encodable {
         case all
         case outliers
-        case suspectedOutliers = "suspectedoutliers"
-        case `false` = "false"
+        case suspectedOutliers
+        case `false`
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .all:
+                try container.encode("all")
+            case .outliers:
+                try container.encode("outliers")
+            case .suspectedOutliers:
+                try container.encode("suspectedoutliers")
+            case .`false`:
+                try container.encode(false)
+            }
+        }
     }
     /// If *outliers*, only the sample points lying outside the whiskers are shown If *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are shown If *false*, only the box(es) are shown with no sample points
     ///
@@ -309,10 +323,22 @@ public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable 
     ///
     /// # Used By
     /// `Box.boxMean` |
-    public enum BoxMean: String, Encodable {
-        case `true` = "true"
+    public enum BoxMean: Encodable {
+        case `true`
         case sd
-        case `false` = "false"
+        case `false`
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .`true`:
+                try container.encode(true)
+            case .sd:
+                try container.encode("sd")
+            case .`false`:
+                try container.encode(false)
+            }
+        }
     }
     /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the box(es). 
     ///
@@ -723,6 +749,7 @@ public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable 
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
         case opacity
+        case name
         case uid
         case ids
         case customData = "customdata"
@@ -737,7 +764,6 @@ public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable 
         case x
         case x0
         case y0
-        case name
         case text
         case hoverText = "hovertext"
         case hoverTemplate = "hovertemplate"
@@ -764,11 +790,12 @@ public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable 
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil, name: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, whiskerWidth: Double? = nil, notched: Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil, jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
         self.opacity = opacity
+        self.name = name
         self.uid = uid
         self.ids = ids
         self.customData = customData
@@ -783,7 +810,6 @@ public struct Box<YData, XData>: Trace where YData: Encodable, XData: Encodable 
         self.x = x
         self.x0 = x0
         self.y0 = y0
-        self.name = name
         self.text = text
         self.hoverText = hoverText
         self.hoverTemplate = hoverTemplate

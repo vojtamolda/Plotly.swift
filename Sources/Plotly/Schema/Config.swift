@@ -237,11 +237,25 @@ public struct Config: Encodable {
     ///
     /// # Used By
     /// `Config.doubleClick` |
-    public enum DoubleClick: String, Encodable {
-        case `false` = "false"
+    public enum DoubleClick: Encodable {
+        case `false`
         case reset
-        case autoSize = "autosize"
-        case resetAndAutoSize = "reset+autosize"
+        case autoSize
+        case resetAndAutoSize
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .`false`:
+                try container.encode(false)
+            case .reset:
+                try container.encode("reset")
+            case .autoSize:
+                try container.encode("autosize")
+            case .resetAndAutoSize:
+                try container.encode("reset+autosize")
+            }
+        }
     }
     /// Sets the double click interaction mode. 
     ///
@@ -334,10 +348,22 @@ public struct Config: Encodable {
     ///
     /// # Used By
     /// `Config.displayModeBar` |
-    public enum DisplayModeBar: String, Encodable {
+    public enum DisplayModeBar: Encodable {
         case hover
-        case `true` = "true"
-        case `false` = "false"
+        case `true`
+        case `false`
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .hover:
+                try container.encode("hover")
+            case .`true`:
+                try container.encode(true)
+            case .`false`:
+                try container.encode(false)
+            }
+        }
     }
     /// Determines the mode bar display mode. 
     ///

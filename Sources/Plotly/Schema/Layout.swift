@@ -997,14 +997,34 @@ public struct Layout: Encodable {
     ///
     /// # Used By
     /// `Layout.dragMode` |
-    public enum DragMode: String, Encodable {
+    public enum DragMode: Encodable {
         case zoom
         case pan
         case select
         case lasso
         case orbit
         case turntable
-        case `false` = "false"
+        case `false`
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .zoom:
+                try container.encode("zoom")
+            case .pan:
+                try container.encode("pan")
+            case .select:
+                try container.encode("select")
+            case .lasso:
+                try container.encode("lasso")
+            case .orbit:
+                try container.encode("orbit")
+            case .turntable:
+                try container.encode("turntable")
+            case .`false`:
+                try container.encode(false)
+            }
+        }
     }
     /// Determines the mode of drag interactions. 
     ///
@@ -1026,11 +1046,25 @@ public struct Layout: Encodable {
     ///
     /// # Used By
     /// `Layout.hoverMode` |
-    public enum HoverMode: String, Encodable {
+    public enum HoverMode: Encodable {
         case x
         case y
         case closest
-        case `false` = "false"
+        case `false`
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .x:
+                try container.encode("x")
+            case .y:
+                try container.encode("y")
+            case .closest:
+                try container.encode("closest")
+            case .`false`:
+                try container.encode(false)
+            }
+        }
     }
     /// Determines the mode of hover interactions. 
     ///
@@ -7354,12 +7388,28 @@ public struct Layout: Encodable {
         ///
         /// # Used By
         /// `Layout.Scene.dragMode` |
-        public enum DragMode: String, Encodable {
+        public enum DragMode: Encodable {
             case orbit
             case turntable
             case zoom
             case pan
-            case `false` = "false"
+            case `false`
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .orbit:
+                    try container.encode("orbit")
+                case .turntable:
+                    try container.encode("turntable")
+                case .zoom:
+                    try container.encode("zoom")
+                case .pan:
+                    try container.encode("pan")
+                case .`false`:
+                    try container.encode(false)
+                }
+            }
         }
         /// Determines the mode of drag interactions for this scene.
         ///
@@ -7373,9 +7423,19 @@ public struct Layout: Encodable {
         ///
         /// # Used By
         /// `Layout.Scene.hoverMode` |
-        public enum HoverMode: String, Encodable {
+        public enum HoverMode: Encodable {
             case closest
-            case `false` = "false"
+            case `false`
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .closest:
+                    try container.encode("closest")
+                case .`false`:
+                    try container.encode(false)
+                }
+            }
         }
         /// Determines the mode of hover interactions for this scene.
         ///
@@ -10474,10 +10534,22 @@ public struct Layout: Encodable {
         ///
         /// # Used By
         /// `Layout.Legend.itemClick` |
-        public enum ItemClick: String, Encodable {
+        public enum ItemClick: Encodable {
             case toggle
-            case toggleOthers = "toggleothers"
-            case `false` = "false"
+            case toggleOthers
+            case `false`
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .toggle:
+                    try container.encode("toggle")
+                case .toggleOthers:
+                    try container.encode("toggleothers")
+                case .`false`:
+                    try container.encode(false)
+                }
+            }
         }
         /// Determines the behavior on legend item click. 
         ///
@@ -10498,10 +10570,22 @@ public struct Layout: Encodable {
         ///
         /// # Used By
         /// `Layout.Legend.itemDoubleClick` |
-        public enum ItemDoubleClick: String, Encodable {
+        public enum ItemDoubleClick: Encodable {
             case toggle
-            case toggleOthers = "toggleothers"
-            case `false` = "false"
+            case toggleOthers
+            case `false`
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .toggle:
+                    try container.encode("toggle")
+                case .toggleOthers:
+                    try container.encode("toggleothers")
+                case .`false`:
+                    try container.encode(false)
+                }
+            }
         }
         /// Determines the behavior on legend item double-click. 
         ///
@@ -11039,10 +11123,22 @@ public struct Layout: Encodable {
         ///
         /// # Used By
         /// `Layout.Annotation.clickToShow` |
-        public enum ClickToShow: String, Encodable {
-            case `false` = "false"
-            case onOff = "onoff"
-            case onOut = "onout"
+        public enum ClickToShow: Encodable {
+            case `false`
+            case onOff
+            case onOut
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .`false`:
+                    try container.encode(false)
+                case .onOff:
+                    try container.encode("onoff")
+                case .onOut:
+                    try container.encode("onout")
+                }
+            }
         }
         /// Makes this annotation respond to clicks on the plot. 
         ///

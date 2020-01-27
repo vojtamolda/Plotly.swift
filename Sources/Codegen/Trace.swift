@@ -45,6 +45,12 @@ struct Trace: Definable {
             let obsolete = ["t", "r"]
             attributes.members.removeAllInstances(named: obsolete)
 
+        case "Box":
+            let nameIndex = attributes.members.firstIndex{ ($0 as? Instance)?.name == "name" }!
+            let opacityIndex = attributes.members.firstIndex{ ($0 as? Instance)?.name == "opacity" }!
+            let name = attributes.members.remove(at: nameIndex)
+            attributes.members.insert(name, at: opacityIndex + 1)
+
         case "Cone":
             fallthrough
         case"StreamTube":

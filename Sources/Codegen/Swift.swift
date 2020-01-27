@@ -332,7 +332,7 @@ struct Swift {
         var origin: SchemaType { schema as SchemaType }
         var access: Swift.Access = .public
         var priority: Int { cases.count }
-        var protocols: [String] = ["String", "Encodable"]
+        var protocols: [String] = ["Encodable"]
 
         var instances: [Instance] = []
         static var existing: [Swift.Enumerated] = []
@@ -349,9 +349,36 @@ struct Swift {
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
             lines += ["\(access)enum \(name)\(protocols) {"]
             for `case` in cases {
-                let rawValue = (`case`.rawValue != nil) ? " = \(`case`.rawValue!)" : ""
+                let rawValue = (hasRawType && (`case`.rawValue != nil)) ? " = \(`case`.rawValue!)" : ""    
                 lines += ["case \(`case`.label)\(rawValue)"].indented()
             }
+
+            lines += customEncoding.indented()
+            lines += ["}"]
+            return lines
+        }
+
+        private var hasRawType: Bool {
+            !schema.values.contains { if case Schema.Primitive.bool = $0 { return true } else { return false } }
+        }
+
+        private var customEncoding: [String] {
+            if hasRawType { return [] }
+
+            var lines = [String]()
+            lines += [""]
+            lines += ["\(access)func encode(to encoder: Encoder) throws {"]
+
+            lines += ["var container = encoder.singleValueContainer()"].indented()
+            lines += ["switch self {"].indented()
+
+            for `case` in cases {
+                let value = `case`.rawValue ?? `case`.label.escaped()
+                lines += ["case .\(`case`.label):"].indented()
+                lines += ["try container.encode(\(value))"].indented(2)
+            }
+
+            lines += ["}"].indented()
             lines += ["}"]
             return lines
         }
@@ -364,6 +391,7 @@ struct Swift {
 
             // Workaround for numerical values of Marker Symbols
             if schema.path.hasSuffix("marker/symbol") {
+                protocols.insert("String", at: 0)
                 let onlyStrings = schema.values.filter {
                     if case Schema.Primitive.string = $0 { return true } else { return false }
                 }
@@ -372,7 +400,7 @@ struct Swift {
             }
             // Workaround for numerical values of Geo Resolution
             if schema.path.hasSuffix("geo/resolution") {
-                protocols[0] = "Int"
+                protocols.insert("Int", at: 0)
                 cases = schema.values.map { primitive -> Case in
                     guard case let Schema.Primitive.int(int) = primitive else {
                         fatalError("Unsupported Geo Resolution value in '\(schema.path)'")
@@ -383,12 +411,13 @@ struct Swift {
             }
             // Improvement of meaningless numerical values of SurfaceAxis
             if schema.path.hasSuffix("surfaceaxis") {
-                protocols[0] = "Int"
+                protocols.insert("Int", at: 0)
                 cases = [Case(label: "none", rawValue: "-1"), Case(label: "x", rawValue: "0"),
                          Case(label: "y", rawValue: "1"), Case(label: "z", rawValue: "2")]
                 return
             }
 
+            if hasRawType { protocols.insert("String", at: 0) }
             cases = schema.values.map { sanitized($0) }
             workarounds()
         }
@@ -399,7 +428,7 @@ struct Swift {
             case .bool(let bool):
                 let string = "\(bool)"
                 let sanitized = Swift.name!.enumerated[string]!
-                return Case(label: sanitized, rawValue: string.escaped())
+                return Case(label: sanitized, rawValue: string)
             case .string(let string):
                 let sanitized = Swift.name!.enumerated[string]!
                 let rawValue = (sanitized == string) ? nil : string.escaped()

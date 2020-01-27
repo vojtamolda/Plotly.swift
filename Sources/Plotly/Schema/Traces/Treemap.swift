@@ -358,10 +358,22 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Encodable {
         ///
         /// # Used By
         /// `Treemap.Marker.depthFade` |
-        public enum DepthFade: String, Encodable {
-            case `true` = "true"
-            case `false` = "false"
+        public enum DepthFade: Encodable {
+            case `true`
+            case `false`
             case reversed
+            
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .`true`:
+                    try container.encode(true)
+                case .`false`:
+                    try container.encode(false)
+                case .reversed:
+                    try container.encode("reversed")
+                }
+            }
         }
         /// Determines if the sector colors are faded towards the background from the leaves up to the headers. 
         ///

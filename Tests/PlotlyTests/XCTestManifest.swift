@@ -1,7 +1,7 @@
 import XCTest
 
 
-#if !canImport(ObjectiveC)
+#if os(Linux)
 public func allTests() -> [XCTestCaseEntry] {
     [
         // https://plot.ly/javascript/basic-charts/
@@ -12,6 +12,7 @@ public func allTests() -> [XCTestCaseEntry] {
 
         // https://plot.ly/javascript/statistical-charts/
         testCase(ErrorBars.allTests),
+        testCase(BoxPlots.allTests),
 
         testCase(FigureTests.allTests)
     ]
