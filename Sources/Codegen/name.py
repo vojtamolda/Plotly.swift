@@ -54,6 +54,7 @@ class Object(CamelCased):
         "clicktoshow": "ClickToShow",
         "colorscale": "ColorMap",
         "concentrationscales": "ConcentrationScales",
+        "currentbin": "CurrentBin",
         "error_x": "XError",
         "error_y": "YError",
         "error_z": "ZError",

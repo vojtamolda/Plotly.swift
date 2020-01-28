@@ -13,6 +13,7 @@ public func allTests() -> [XCTestCaseEntry] {
         // https://plot.ly/javascript/statistical-charts/
         testCase(ErrorBars.allTests),
         testCase(BoxPlots.allTests),
+        testCase(Histograms.allTests),
 
         testCase(FigureTests.allTests)
     ]

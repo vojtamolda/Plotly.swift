@@ -288,8 +288,8 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
         /// bias, and *half* removes it.
         ///
         /// # Used By
-        /// `Histogram.Cumulative.currentbin` |
-        public enum Currentbin: String, Encodable {
+        /// `Histogram.Cumulative.currentBin` |
+        public enum CurrentBin: String, Encodable {
             case include
             case exclude
             case half
@@ -305,12 +305,19 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
         /// [JavaScript](https://plot.ly/javascript/reference/#histogram-cumulative-currentbin) |
         /// [Python](https://plot.ly/python/reference/#histogram-cumulative-currentbin) |
         /// [R](https://plot.ly/r/reference/#histogram-cumulative-currentbin)
-        public var currentbin: Currentbin?
+        public var currentBin: CurrentBin?
     
-        public init(enabled: Bool? = nil, direction: Direction? = nil, currentbin: Currentbin? = nil) {
+        /// Plotly compatible property encoding
+        enum CodingKeys: String, CodingKey {
+            case enabled
+            case direction
+            case currentBin = "currentbin"
+        }
+        
+        public init(enabled: Bool? = nil, direction: Direction? = nil, currentBin: CurrentBin? = nil) {
             self.enabled = enabled
             self.direction = direction
-            self.currentbin = currentbin
+            self.currentBin = currentBin
         }
     }
     ///

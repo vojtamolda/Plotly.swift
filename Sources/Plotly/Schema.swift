@@ -248,6 +248,13 @@ extension Anything: ExpressibleByFloatLiteral {
         self = .numeric(floatLiteral)
     }
 }
+extension Anything: ExpressibleByIntegerLiteral {
+    public typealias IntegerLiteralElement = Int
+
+    public init(integerLiteral: Int) {
+        self = .numeric(Double(integerLiteral))
+    }
+}
 extension Anything: ExpressibleByStringLiteral {
     public typealias StringLiteralElement = String
 
