@@ -15,6 +15,9 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(BoxPlots.allTests),
         testCase(Histograms.allTests),
 
+        // https://plot.ly/javascript/scientific-charts/
+        testCase(Heatmaps.allTests),
+
         testCase(FigureTests.allTests)
     ]
 }

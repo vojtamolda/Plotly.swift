@@ -213,7 +213,12 @@ public enum ColorScale: Encodable {
         case .cividis:
             try container.encode("Cividis")
         case .custom(let colorMap):
-            try container.encode(colorMap)
+            var container = encoder.unkeyedContainer()
+            for (value, color) in colorMap.sorted(by: { $0.key < $1.key }) {
+                var nestedContainer = container.nestedUnkeyedContainer()
+                try nestedContainer.encode(value)
+                try nestedContainer.encode(color)
+            }
         }
     }
 }
