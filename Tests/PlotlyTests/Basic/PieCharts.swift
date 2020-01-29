@@ -4,7 +4,6 @@ import Plotly
 
 /// https://plot.ly/javascript/pie-charts/
 final class PieCharts: XCTestCase {
-
     static var allTests = [
         ("testBasicPieChart", testBasicPieChart),
         ("testPieChartSubplots", testPieChartSubplots),
@@ -19,7 +18,7 @@ final class PieCharts: XCTestCase {
             values: [19, 26, 55]
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "basicPieChart.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/pie-charts/#pie-chart-subplots
@@ -105,7 +104,7 @@ final class PieCharts: XCTestCase {
         )
 
         let figure = Figure(data: [topLeft, bottomLeft, topRight, bottomRight], layout: layout)
-        figure.write(toFile: "pieChartSubplots.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/pie-charts/#donut-chart
@@ -159,7 +158,7 @@ final class PieCharts: XCTestCase {
         )
 
         let figure = Figure(data: [leftDonut, rightDonut], layout: layout)
-        figure.write(toFile: "donutChart.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/pie-charts/#automatically-adjust-margins
@@ -180,6 +179,6 @@ final class PieCharts: XCTestCase {
             showLegend: false
         )
         let figure = Figure(data: [pie], layout: layout)
-        figure.write(toFile: "automaticallyAdjustMargins.html", as: .HTML)
+        output(figure)
     }
 }

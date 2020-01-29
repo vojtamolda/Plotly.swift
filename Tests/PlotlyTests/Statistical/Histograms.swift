@@ -4,7 +4,6 @@ import Plotly
 
 /// https://plot.ly/javascript/histograms/
 final class Histograms: XCTestCase {
-
     static var allTests = [
         ("testBasicHistogram", testBasicHistogram),
         ("testHorizontalHistogram", testHorizontalHistogram),
@@ -22,7 +21,7 @@ final class Histograms: XCTestCase {
             x: (0...500).map { _ in Double.random(in: 0...1) }
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "basicHistogram.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/histograms/#horizontal-histogram
@@ -34,7 +33,7 @@ final class Histograms: XCTestCase {
             )
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "horizontalHistogram.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/histograms/#overlaid-histgram
@@ -57,7 +56,7 @@ final class Histograms: XCTestCase {
             barMode: .overlay
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "overlaidHistograms.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/histograms/#stacked-histograms
@@ -72,7 +71,7 @@ final class Histograms: XCTestCase {
             barMode: .stack
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "stackedHistograms.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/histograms/#colored-and-styled-histograms
@@ -137,7 +136,7 @@ final class Histograms: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "coloredAndStyledHistograms.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/histograms/#cumulative-histogram
@@ -149,7 +148,7 @@ final class Histograms: XCTestCase {
             )
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "cumulativeHistogram.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/histograms/#normalized-histogram
@@ -162,7 +161,7 @@ final class Histograms: XCTestCase {
             )
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "normalizedHistogram.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/histograms/#specify-binning-function
@@ -183,6 +182,6 @@ final class Histograms: XCTestCase {
             binningFunction: .sum
         )
         let figure = Figure(data: [count, sum])
-        figure.write(toFile: "specifyBinningFunction.html", as: .HTML)
+        output(figure)
     }
 }

@@ -4,7 +4,6 @@ import Plotly
 
 /// https://plot.ly/javascript/heatmaps/
 final class Heatmaps: XCTestCase {
-
     static var allTests = [
         ("testBasicHeatmap", testBasicHeatmap),
         ("testHeatmapWithCategoricalAxisLabels", testHeatmapWithCategoricalAxisLabels),
@@ -18,7 +17,7 @@ final class Heatmaps: XCTestCase {
             z: [[1, 20, 30], [20, 1, 60], [30, 60, 1]]
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "basicHeatmap.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/heatmaps/#heatmap-with-categorical-axis-labels
@@ -30,7 +29,7 @@ final class Heatmaps: XCTestCase {
             hoverOnGaps: false
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "heatmapWithCategoricalAxisLabels.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/heatmaps/#annotated-heatmap
@@ -89,7 +88,7 @@ final class Heatmaps: XCTestCase {
         )
 
         let figure = Figure(data: [trace], layout: layout)
-        figure.write(toFile: "annotatedHeatmap.html", as: .HTML) 
+        output(figure)
     }
 
     /// https://plot.ly/javascript/heatmaps/#heatmap-with-unequal-block-sizes
@@ -149,6 +148,6 @@ final class Heatmaps: XCTestCase {
         // FIXME: It's not possible to set layout.xAxis = layout.yAxis even though they are identical structs.
 
         let figure = Figure(data: [spiral, heatmap], layout: layout)
-        figure.write(toFile: "heatmapWithUnequalBlockSizes.html", as: .HTML)
+        output(figure)
     }
 }

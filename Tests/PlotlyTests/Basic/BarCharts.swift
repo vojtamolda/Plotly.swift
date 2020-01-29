@@ -4,7 +4,6 @@ import Plotly
 
 /// https://plot.ly/javascript/bar-charts/
 final class BarCharts: XCTestCase {
-
     static var allTests = [
         ("testBasicBarChart", testBasicBarChart),
         ("testGroupedBarChart", testGroupedBarChart),
@@ -28,7 +27,7 @@ final class BarCharts: XCTestCase {
             y: [20, 14, 23]
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "basicBarChart.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#grouped-bar-chart
@@ -47,7 +46,7 @@ final class BarCharts: XCTestCase {
             barMode: .group
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "groupedBarChart.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#stacked-bar-chart
@@ -66,7 +65,7 @@ final class BarCharts: XCTestCase {
             barMode: .stack
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "stackedBarChart.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#bar-chart-with-hover-text
@@ -94,7 +93,7 @@ final class BarCharts: XCTestCase {
             )
         )
         let figure = Figure(data: [trace], layout: layout)
-        figure.write(toFile: "barChartWithHoverText.html", as: .HTML)
+        output(figure)
     }
     
     /// https://plot.ly/javascript/bar-charts/#bar-chart-with-direct-labels
@@ -122,7 +121,7 @@ final class BarCharts: XCTestCase {
             title: "January 2013 Sales Report"
         )
         let figure = Figure(data: [trace], layout: layout)
-        figure.write(toFile: "barChartWithDirectLabels.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#grouped-bar-chart-with-direct-labels
@@ -164,7 +163,7 @@ final class BarCharts: XCTestCase {
             title: "January 2013 Sales Report"
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "groupedBarChartWithDirectLabels.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#bar-chart-with-rotated-labels
@@ -194,7 +193,7 @@ final class BarCharts: XCTestCase {
             )
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "barChartWithRotatedLabels.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#customizing-individual-bar-colors
@@ -211,7 +210,7 @@ final class BarCharts: XCTestCase {
             title: "Last Used Feature"
         )
         let figure = Figure(data: [trace], layout: layout)
-        figure.write(toFile: "customizingIndividualBarColors.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#customizing-individual-bar-widths
@@ -222,7 +221,7 @@ final class BarCharts: XCTestCase {
             width: [0.8, 0.8, 0.8, 3.5, 4]
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "customizingIndividualBarWidths.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#customizing-individual-bar-base
@@ -247,7 +246,7 @@ final class BarCharts: XCTestCase {
             )
         )
         let figure = Figure(data: [trace1, trace2])
-        figure.write(toFile: "customizingIndividualBarBase.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#colored-and-styled-bar-chart
@@ -305,7 +304,7 @@ final class BarCharts: XCTestCase {
             )
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "coloredAndStyledBarChart.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#waterfall-bar-chart
@@ -390,7 +389,7 @@ final class BarCharts: XCTestCase {
         }
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)
-        figure.write(toFile: "waterfallBarChart.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/bar-charts/#bar-chart-with-relative-barmode
@@ -424,6 +423,6 @@ final class BarCharts: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)
-        figure.write(toFile: "barChartWithRelativeBarmode.html", as: .HTML)
+        output(figure)
     }
 }

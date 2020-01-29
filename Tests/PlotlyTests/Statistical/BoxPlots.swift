@@ -4,7 +4,6 @@ import Plotly
 
 /// https://plot.ly/javascript/box-plots/
 final class BoxPlots: XCTestCase {
-
     static var allTests = [
         ("testBasicBoxPlot", testBasicBoxPlot),
         ("testBoxPlotThatDisplaysTheUnderlyingData", testBoxPlotThatDisplaysTheUnderlyingData),
@@ -28,7 +27,7 @@ final class BoxPlots: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2])
-        figure.write(toFile: "basicBoxPlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#box-plot-that-displays-the-underlying-data
@@ -41,7 +40,7 @@ final class BoxPlots: XCTestCase {
         )
 
         let figure = Figure(data: [trace])
-        figure.write(toFile: "boxPlotThatDisplaysTheUnderlyingData.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#horizontal-box-plot
@@ -59,7 +58,7 @@ final class BoxPlots: XCTestCase {
             title: "Horizontal Box Plot"
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "horizontalBoxPlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#grouped-box-plot
@@ -103,7 +102,7 @@ final class BoxPlots: XCTestCase {
             )
         )
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
-        figure.write(toFile: "groupedBoxPlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#box-plot-styling-outliers
@@ -155,7 +154,7 @@ final class BoxPlots: XCTestCase {
             title: "Box Plot Styling Outliers"
         )
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)
-        figure.write(toFile: "boxPlotStylingOutliers.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#box-plot-styling-mean-and-standard-deviation
@@ -185,7 +184,7 @@ final class BoxPlots: XCTestCase {
             title: "Box Plot Styling Mean and Standard Deviation"
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "boxPlotStylingMeanAndStandardDeviation.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#grouped-horizontal-box-plot
@@ -236,7 +235,7 @@ final class BoxPlots: XCTestCase {
             )
         )
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
-        figure.write(toFile: "groupedHorizontalBoxPlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#colored-box-plot
@@ -261,7 +260,7 @@ final class BoxPlots: XCTestCase {
             title: "Colored Box Plot"
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "coloredBoxPlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#fully-styled-box-plot
@@ -329,7 +328,7 @@ final class BoxPlots: XCTestCase {
         )
 
         let figure = Figure(data: traces, layout: layout)
-        figure.write(toFile: "fullyStyledBoxPlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/box-plots/#rainbow-box-plot
@@ -378,6 +377,6 @@ final class BoxPlots: XCTestCase {
         )
 
         let figure = Figure(data: traces, layout: layout)
-        figure.write(toFile: "rainbowBoxPlot.html", as: .HTML)
+        output(figure)
     }
 }

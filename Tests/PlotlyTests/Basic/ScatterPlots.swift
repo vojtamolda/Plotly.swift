@@ -4,7 +4,6 @@ import Plotly
 
 /// https://plot.ly/javascript/line-charts/
 final class ScatterPlots: XCTestCase {
-
     static var allTests = [
         ("testLineAndScatterPlot", testLineAndScatterPlot),
         ("testDataLabelsHover", testDataLabelsHover),
@@ -30,7 +29,7 @@ final class ScatterPlots: XCTestCase {
             mode: [.lines, .markers]
         )
         let figure = Figure(data: [trace1, trace2, trace3])
-        figure.write(toFile: "lineAndScatterPlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-and-scatter/#data-labels-hover
@@ -57,7 +56,7 @@ final class ScatterPlots: XCTestCase {
             yAxis: Layout.YAxis(range: [0, 8])
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "dataLabelsOnHover.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-and-scatter/#data-labels-on-the-plot
@@ -92,7 +91,7 @@ final class ScatterPlots: XCTestCase {
             )
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "dataLabelsOnThePlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-and-scatter/#scatter-plot-with-a-color-dimension
@@ -110,6 +109,6 @@ final class ScatterPlots: XCTestCase {
         )
         let layout = Layout(title: "Scatter Plot with a Color Dimension")
         let figure = Figure(data: [trace1], layout: layout)
-        figure.write(toFile: "scatterPlotWithAColorDimension.html", as: .HTML)
+        output(figure)
     }
 }

@@ -4,7 +4,6 @@ import Plotly
 
 /// https://plot.ly/javascript/line-and-scatter/
 final class LineCharts: XCTestCase {
-    
     static var allTests = [
         ("testBasicLinePlot", testBasicLinePlot),
         ("testLineAndScatterPlot", testLineAndScatterPlot),
@@ -30,7 +29,7 @@ final class LineCharts: XCTestCase {
             y: [16, 5, 11, 9]
         )
         let figure = Figure(data: [trace1, trace2])
-        figure.write(toFile: "basicLinePlot.html", as: .HTML)
+        output(figure)
     }
     
     /// https://plot.ly/javascript/line-charts/#line-and-scatter-plot
@@ -52,7 +51,7 @@ final class LineCharts: XCTestCase {
         )
         let layout = Layout(title: "Line and Scatter Plot")
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
-        figure.write(toFile: "lineAndScatterPlot.html", as: .HTML)
+        output(figure)
     }
     
     /// https://plot.ly/javascript/line-charts/#adding-names-to-line-and-scatter-plot
@@ -77,7 +76,7 @@ final class LineCharts: XCTestCase {
         )
         let layout = Layout(title: "Adding Names to Line and Scatter Plot")
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
-        figure.write(toFile: "addingNamesToLineAndScatterPlot.html", as: .HTML)
+        output(figure)
     }
     
     /// https://plot.ly/javascript/line-charts/#line-and-scatter-styling
@@ -115,7 +114,7 @@ final class LineCharts: XCTestCase {
         )
         let layout = Layout(title: "Line and Scatter Styling")
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
-        figure.write(toFile: "lineAndScatterStyling.html", as: .HTML)
+        output(figure)
     }
     
     /// https://plot.ly/javascript/line-charts/#styling-line-plot
@@ -142,7 +141,7 @@ final class LineCharts: XCTestCase {
         )
         let layout = Layout(width: 500, height: 500)
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "stylingLinePlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-charts/#colored-and-styled-scatter-plot
@@ -205,7 +204,7 @@ final class LineCharts: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)
-        figure.write(toFile: "coloredAndStyledScatterPlot.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-charts/#line-shape-options-for-interpolation
@@ -262,7 +261,7 @@ final class LineCharts: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4, trace5, trace6], layout: layout)
-        figure.write(toFile: "lineShapeOptionsForInterpolation.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-charts/#graph-and-axes-titles
@@ -293,7 +292,7 @@ final class LineCharts: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
-        figure.write(toFile: "graphAndAxesTitles.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-charts/#line-dash
@@ -352,7 +351,7 @@ final class LineCharts: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)
-        figure.write(toFile: "lineDash.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-charts/#connect-gaps-between-data
@@ -378,7 +377,7 @@ final class LineCharts: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2], layout: layout)
-        figure.write(toFile: "connectGapsBetweenData.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/line-charts/#labelling-lines-with-annotations
@@ -507,6 +506,6 @@ final class LineCharts: XCTestCase {
         }
 
         let figure = Figure(data: traces, layout: layout)
-        figure.write(toFile: "labelingLinesWithAnnotations.html", as: .HTML)
+        output(figure)
     }
 }

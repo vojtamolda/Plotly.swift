@@ -21,10 +21,10 @@ final class FigureTests: XCTestCase {
         let y = [10.0, 15.0, 13.0, 17.0]
         let figure = Figure(data: [Scatter(x: x, y: y), Bar(x: x, y: y)])
 
-        figure.write(toFile: "export.json", as: .JSON)
+        output(figure)
 
-        figure.write(toFile: "included.html", as: .HTML, javaScript: .included)
-        figure.write(toFile: "online.html", as: .HTML, javaScript: .online)
-        figure.write(toFile: "directory.html", as: .HTML, javaScript: .directory)
+        output(figure)
+        output(figure)
+        output(figure)
     }
 }

@@ -4,7 +4,6 @@ import Plotly
 
 /// https://plot.ly/javascript/error-bars/
 final class ErrorBars: XCTestCase {
-
     static var allTests = [
         ("testBasicSymmetricErrorBars", testBasicSymmetricErrorBars),
         ("testBarChartWithErrorBars", testBarChartWithErrorBars),
@@ -28,7 +27,7 @@ final class ErrorBars: XCTestCase {
             )
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "basicSymmetricErrorBars.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/error-bars/#bar-chart-with-error-bars
@@ -55,7 +54,7 @@ final class ErrorBars: XCTestCase {
         )
 
         let figure = Figure(data: [trace1, trace2])
-        figure.write(toFile: "barChartWithErrorBars.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/error-bars/#horizontal-error-bars
@@ -69,7 +68,7 @@ final class ErrorBars: XCTestCase {
             )
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "horizontalErrorBars.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/error-bars/#asymmetric-error-bars
@@ -85,7 +84,7 @@ final class ErrorBars: XCTestCase {
             )
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "asymmetricErrorBars.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/error-bars/#colored-and-styled-error-bars
@@ -124,7 +123,7 @@ final class ErrorBars: XCTestCase {
         )
 
         let figure = Figure(data: [precise, measured])
-        figure.write(toFile: "coloredAndStyledErrorBars.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/error-bars/#error-bars-as-a-percentage-of-the-y-value
@@ -139,7 +138,7 @@ final class ErrorBars: XCTestCase {
             )
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "errorBarsAsAPercentageOfTheYValue.html", as: .HTML)
+        output(figure)
     }
 
     /// https://plot.ly/javascript/error-bars/#asymmetric-error-bars-with-a-constant-offset
@@ -155,6 +154,6 @@ final class ErrorBars: XCTestCase {
             )
         )
         let figure = Figure(data: [trace])
-        figure.write(toFile: "asymmetricErrorBarsWithAConstantOffset.html", as: .HTML)
+        output(figure)
     }
 }
