@@ -1987,7 +1987,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-xaxis-separatethousands) |
         /// [Python](https://plot.ly/python/reference/#layout-xaxis-separatethousands) |
         /// [R](https://plot.ly/r/reference/#layout-xaxis-separatethousands)
-        public var separatethousands: Bool?
+        public var separateThousands: Bool?
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
         ///
@@ -2726,7 +2726,7 @@ public struct Layout: Encodable {
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
-            case separatethousands
+            case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
             case hoverFormat = "hoverformat"
@@ -2756,7 +2756,7 @@ public struct Layout: Encodable {
             case calendar
         }
         
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Shared.Calendar? = nil) {
+        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Shared.Calendar? = nil) {
             self.visible = visible
             self.color = color
             self.title = title
@@ -2798,7 +2798,7 @@ public struct Layout: Encodable {
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
-            self.separatethousands = separatethousands
+            self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
             self.hoverFormat = hoverFormat
@@ -3438,7 +3438,7 @@ public struct Layout: Encodable {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-yaxis-separatethousands) |
         /// [Python](https://plot.ly/python/reference/#layout-yaxis-separatethousands) |
         /// [R](https://plot.ly/r/reference/#layout-yaxis-separatethousands)
-        public var separatethousands: Bool?
+        public var separateThousands: Bool?
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
         ///
@@ -3764,7 +3764,7 @@ public struct Layout: Encodable {
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
-            case separatethousands
+            case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
             case hoverFormat = "hoverformat"
@@ -3792,7 +3792,7 @@ public struct Layout: Encodable {
             case calendar
         }
         
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar: Shared.Calendar? = nil) {
+        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? = nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar: Shared.Calendar? = nil) {
             self.visible = visible
             self.color = color
             self.title = title
@@ -3834,7 +3834,7 @@ public struct Layout: Encodable {
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
-            self.separatethousands = separatethousands
+            self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
             self.hoverFormat = hoverFormat
@@ -4103,7 +4103,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-aaxis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-aaxis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-aaxis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Sets the tick font.
             ///
@@ -4263,7 +4263,7 @@ public struct Layout: Encodable {
                 case tickSuffix = "ticksuffix"
                 case showExponent = "showexponent"
                 case exponentFormat = "exponentformat"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
@@ -4280,7 +4280,7 @@ public struct Layout: Encodable {
                 case uiRevision = "uirevision"
             }
             
-            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -4300,7 +4300,7 @@ public struct Layout: Encodable {
                 self.tickSuffix = tickSuffix
                 self.showExponent = showExponent
                 self.exponentFormat = exponentFormat
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.tickFont = tickFont
                 self.tickAngle = tickAngle
                 self.tickFormat = tickFormat
@@ -4532,7 +4532,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-baxis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-baxis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-baxis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Sets the tick font.
             ///
@@ -4692,7 +4692,7 @@ public struct Layout: Encodable {
                 case tickSuffix = "ticksuffix"
                 case showExponent = "showexponent"
                 case exponentFormat = "exponentformat"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
@@ -4709,7 +4709,7 @@ public struct Layout: Encodable {
                 case uiRevision = "uirevision"
             }
             
-            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -4729,7 +4729,7 @@ public struct Layout: Encodable {
                 self.tickSuffix = tickSuffix
                 self.showExponent = showExponent
                 self.exponentFormat = exponentFormat
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.tickFont = tickFont
                 self.tickAngle = tickAngle
                 self.tickFormat = tickFormat
@@ -4961,7 +4961,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-ternary-caxis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#layout-ternary-caxis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#layout-ternary-caxis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Sets the tick font.
             ///
@@ -5121,7 +5121,7 @@ public struct Layout: Encodable {
                 case tickSuffix = "ticksuffix"
                 case showExponent = "showexponent"
                 case exponentFormat = "exponentformat"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
@@ -5138,7 +5138,7 @@ public struct Layout: Encodable {
                 case uiRevision = "uirevision"
             }
             
-            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+            public init(title: Shared.Title? = nil, color: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer: Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -5158,7 +5158,7 @@ public struct Layout: Encodable {
                 self.tickSuffix = tickSuffix
                 self.showExponent = showExponent
                 self.exponentFormat = exponentFormat
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.tickFont = tickFont
                 self.tickAngle = tickAngle
                 self.tickFormat = tickFormat
@@ -5886,7 +5886,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-xaxis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-xaxis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#layout-scene-xaxis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -6048,7 +6048,7 @@ public struct Layout: Encodable {
                 case showTickSuffix = "showticksuffix"
                 case showExponent = "showexponent"
                 case exponentFormat = "exponentformat"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case tickFormat = "tickformat"
                 case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
@@ -6064,7 +6064,7 @@ public struct Layout: Encodable {
                 case calendar
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -6101,7 +6101,7 @@ public struct Layout: Encodable {
                 self.showTickSuffix = showTickSuffix
                 self.showExponent = showExponent
                 self.exponentFormat = exponentFormat
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.tickFormat = tickFormat
                 self.tickFormatStops = tickFormatStops
                 self.hoverFormat = hoverFormat
@@ -6516,7 +6516,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-yaxis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-yaxis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#layout-scene-yaxis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -6678,7 +6678,7 @@ public struct Layout: Encodable {
                 case showTickSuffix = "showticksuffix"
                 case showExponent = "showexponent"
                 case exponentFormat = "exponentformat"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case tickFormat = "tickformat"
                 case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
@@ -6694,7 +6694,7 @@ public struct Layout: Encodable {
                 case calendar
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -6731,7 +6731,7 @@ public struct Layout: Encodable {
                 self.showTickSuffix = showTickSuffix
                 self.showExponent = showExponent
                 self.exponentFormat = exponentFormat
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.tickFormat = tickFormat
                 self.tickFormatStops = tickFormatStops
                 self.hoverFormat = hoverFormat
@@ -7146,7 +7146,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-scene-zaxis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#layout-scene-zaxis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#layout-scene-zaxis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
             ///
@@ -7308,7 +7308,7 @@ public struct Layout: Encodable {
                 case showTickSuffix = "showticksuffix"
                 case showExponent = "showexponent"
                 case exponentFormat = "exponentformat"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case tickFormat = "tickformat"
                 case tickFormatStops = "tickformatstops"
                 case hoverFormat = "hoverformat"
@@ -7324,7 +7324,7 @@ public struct Layout: Encodable {
                 case calendar
             }
             
-            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
+            public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil, spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil, backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Shared.Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.showSpikes = showSpikes
                 self.spikeSides = spikeSides
@@ -7361,7 +7361,7 @@ public struct Layout: Encodable {
                 self.showTickSuffix = showTickSuffix
                 self.showExponent = showExponent
                 self.exponentFormat = exponentFormat
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.tickFormat = tickFormat
                 self.tickFormatStops = tickFormatStops
                 self.hoverFormat = hoverFormat
@@ -9650,7 +9650,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-radialaxis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-radialaxis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#layout-polar-radialaxis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Sets the tick font.
             ///
@@ -9753,7 +9753,7 @@ public struct Layout: Encodable {
                 case tickSuffix = "ticksuffix"
                 case showExponent = "showexponent"
                 case exponentFormat = "exponentformat"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
@@ -9762,7 +9762,7 @@ public struct Layout: Encodable {
                 case calendar
             }
             
-            public init(visible: Bool? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side? = nil, title: Shared.Title? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, layer: Shared.Layer? = nil, calendar: Shared.Calendar? = nil) {
+            public init(visible: Bool? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side: Side? = nil, title: Shared.Title? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, layer: Shared.Layer? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.type = type
                 self.autoRange = autoRange
@@ -9799,7 +9799,7 @@ public struct Layout: Encodable {
                 self.tickSuffix = tickSuffix
                 self.showExponent = showExponent
                 self.exponentFormat = exponentFormat
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.tickFont = tickFont
                 self.tickAngle = tickAngle
                 self.tickFormat = tickFormat
@@ -10208,7 +10208,7 @@ public struct Layout: Encodable {
             /// [JavaScript](https://plot.ly/javascript/reference/#layout-polar-angularaxis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#layout-polar-angularaxis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#layout-polar-angularaxis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Sets the tick font.
             ///
@@ -10298,7 +10298,7 @@ public struct Layout: Encodable {
                 case tickSuffix = "ticksuffix"
                 case showExponent = "showexponent"
                 case exponentFormat = "exponentformat"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case tickFont = "tickfont"
                 case tickAngle = "tickangle"
                 case tickFormat = "tickformat"
@@ -10306,7 +10306,7 @@ public struct Layout: Encodable {
                 case layer
             }
             
-            public init(visible: Bool? = nil, type: `Type`? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction: Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, layer: Shared.Layer? = nil) {
+            public init(visible: Bool? = nil, type: `Type`? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction: Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, layer: Shared.Layer? = nil) {
                 self.visible = visible
                 self.type = type
                 self.categoryOrder = categoryOrder
@@ -10341,7 +10341,7 @@ public struct Layout: Encodable {
                 self.tickSuffix = tickSuffix
                 self.showExponent = showExponent
                 self.exponentFormat = exponentFormat
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.tickFont = tickFont
                 self.tickAngle = tickAngle
                 self.tickFormat = tickFormat

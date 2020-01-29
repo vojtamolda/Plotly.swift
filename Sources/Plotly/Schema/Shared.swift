@@ -2675,7 +2675,7 @@ public struct Shared {
         /// [JavaScript](https://plot.ly/javascript/reference/#layout-coloraxis-colorbar-separatethousands) |
         /// [Python](https://plot.ly/python/reference/#layout-coloraxis-colorbar-separatethousands) |
         /// [R](https://plot.ly/r/reference/#layout-coloraxis-colorbar-separatethousands)
-        public var separatethousands: Bool?
+        public var separateThousands: Bool?
     
         /// Determines a formatting rule for the tick exponents. 
         ///
@@ -2782,13 +2782,13 @@ public struct Shared {
             case showTickPrefix = "showtickprefix"
             case tickSuffix = "ticksuffix"
             case showTickSuffix = "showticksuffix"
-            case separatethousands
+            case separateThousands = "separatethousands"
             case exponentFormat = "exponentformat"
             case showExponent = "showexponent"
             case title
         }
         
-        public init(thicknessMode: Shared.ThicknessMode? = nil, thickness: Double? = nil, lengthMode: Shared.LengthMode? = nil, length: Double? = nil, x: Double? = nil, xAnchor: Shared.XAnchor? = nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: Shared.YAnchor? = nil, yPading: Double? = nil, outLineColor: Color? = nil, outLineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, separatethousands: Bool? = nil, exponentFormat: Shared.ExponentFormat? = nil, showExponent: Shared.ShowExponent? = nil, title: Title? = nil) {
+        public init(thicknessMode: Shared.ThicknessMode? = nil, thickness: Double? = nil, lengthMode: Shared.LengthMode? = nil, length: Double? = nil, x: Double? = nil, xAnchor: Shared.XAnchor? = nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: Shared.YAnchor? = nil, yPading: Double? = nil, outLineColor: Color? = nil, outLineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, separateThousands: Bool? = nil, exponentFormat: Shared.ExponentFormat? = nil, showExponent: Shared.ShowExponent? = nil, title: Title? = nil) {
             self.thicknessMode = thicknessMode
             self.thickness = thickness
             self.lengthMode = lengthMode
@@ -2823,7 +2823,7 @@ public struct Shared {
             self.showTickPrefix = showTickPrefix
             self.tickSuffix = tickSuffix
             self.showTickSuffix = showTickSuffix
-            self.separatethousands = separatethousands
+            self.separateThousands = separateThousands
             self.exponentFormat = exponentFormat
             self.showExponent = showExponent
             self.title = title

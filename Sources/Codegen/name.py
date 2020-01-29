@@ -171,8 +171,8 @@ class Attribute(CamelCased):
         "ratio", "rivers", "scales", "selection", "selector", "shading", "shape", "shift",
         "show", "side", "size", "sizing", "slider", "slope", "smooth", "snap", "source",
         "spike", "spikes", "standoff", "stop", "suffix", "sunburst", "surface", "template",
-        "theta", "thickness", "tick", "token", "toward", "trace", "treemap", "tube", "type",
-        "unit", "upper", "value", "vertex", "waterfall", "way", "width", "zoom"
+        "theta", "thickness", "thousands", "tick", "token", "toward", "trace", "treemap", "tube",
+        "type", "unit", "upper", "value", "vertex", "waterfall", "way", "width", "zoom"
     }
 
 

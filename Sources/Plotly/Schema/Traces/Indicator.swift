@@ -735,7 +735,7 @@ public struct Indicator: Trace {
             /// [JavaScript](https://plot.ly/javascript/reference/#indicator-gauge-axis-separatethousands) |
             /// [Python](https://plot.ly/python/reference/#indicator-gauge-axis-separatethousands) |
             /// [R](https://plot.ly/r/reference/#indicator-gauge-axis-separatethousands)
-            public var separatethousands: Bool?
+            public var separateThousands: Bool?
         
             /// Determines a formatting rule for the tick exponents. 
             ///
@@ -782,12 +782,12 @@ public struct Indicator: Trace {
                 case showTickPrefix = "showtickprefix"
                 case tickSuffix = "ticksuffix"
                 case showTickSuffix = "showticksuffix"
-                case separatethousands
+                case separateThousands = "separatethousands"
                 case exponentFormat = "exponentformat"
                 case showExponent = "showexponent"
             }
             
-            public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, separatethousands: Bool? = nil, exponentFormat: Shared.ExponentFormat? = nil, showExponent: Shared.ShowExponent? = nil) {
+            public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, separateThousands: Bool? = nil, exponentFormat: Shared.ExponentFormat? = nil, showExponent: Shared.ShowExponent? = nil) {
                 self.range = range
                 self.visible = visible
                 self.tickMode = tickMode
@@ -809,7 +809,7 @@ public struct Indicator: Trace {
                 self.showTickPrefix = showTickPrefix
                 self.tickSuffix = tickSuffix
                 self.showTickSuffix = showTickSuffix
-                self.separatethousands = separatethousands
+                self.separateThousands = separateThousands
                 self.exponentFormat = exponentFormat
                 self.showExponent = showExponent
             }

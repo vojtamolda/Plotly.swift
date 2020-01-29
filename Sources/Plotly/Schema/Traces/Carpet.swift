@@ -502,7 +502,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-aaxis-separatethousands) |
         /// [Python](https://plot.ly/python/reference/#carpet-aaxis-separatethousands) |
         /// [R](https://plot.ly/r/reference/#carpet-aaxis-separatethousands)
-        public var separatethousands: Bool?
+        public var separateThousands: Bool?
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
         ///
@@ -755,7 +755,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
-            case separatethousands
+            case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
             case categoryOrder = "categoryorder"
@@ -784,7 +784,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
             case arraydTick = "arraydtick"
         }
         
-        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, categoryOrder: Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
+        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, categoryOrder: Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
@@ -807,7 +807,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
-            self.separatethousands = separatethousands
+            self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
             self.categoryOrder = categoryOrder
@@ -1136,7 +1136,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
         /// [JavaScript](https://plot.ly/javascript/reference/#carpet-baxis-separatethousands) |
         /// [Python](https://plot.ly/python/reference/#carpet-baxis-separatethousands) |
         /// [R](https://plot.ly/r/reference/#carpet-baxis-separatethousands)
-        public var separatethousands: Bool?
+        public var separateThousands: Bool?
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to those in Python. 
         ///
@@ -1389,7 +1389,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
-            case separatethousands
+            case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
             case categoryOrder = "categoryorder"
@@ -1418,7 +1418,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
             case arraydTick = "arraydtick"
         }
         
-        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separatethousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, categoryOrder: Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
+        public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, categoryOrder: Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
@@ -1441,7 +1441,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
-            self.separatethousands = separatethousands
+            self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
             self.categoryOrder = categoryOrder
