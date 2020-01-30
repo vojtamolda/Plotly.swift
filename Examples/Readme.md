@@ -22,6 +22,10 @@ Getting Plotly working in an XCode playground requires an extra step because as 
 
 ## Google Colab - [`Colab.ipynb`](Colab.ipynb)
 
+<a target="_blank" href="https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Bar%20Charts.ipynb"><img src="https://www.tensorflow.org/images/colab_logo_32px.png" />Run in Google Colab</a>
+<a target="_blank" href="https://github.com/vojtamolda/Plotly.swift/blob/master/Examples/Bar%20Charts.ipynb"><img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />View source on GitHub</a>
+
+
 No luck there so far... Getting this to work should be easier than XCode Playground at least in principle. Jupyter Notebook is basically a HTML webpage. So passing a `<div>` to the server and rendering it should be a simple thing. The problem seems to be something general caused by incorrect message format sent to the Jupyter server from Swift.
 
 Empty Colab notebook with Swift kernel can be started from [here](https://colab.research.google.com/github/tensorflow/swift/blob/master/notebooks/blank_swift.ipynb) and the following code snippet imports and builds the latest version of the package:
