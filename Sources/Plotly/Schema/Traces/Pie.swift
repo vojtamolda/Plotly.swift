@@ -1,7 +1,7 @@
 /// A data visualized by the sectors of the pie is set in `values`. 
 ///
 /// The sector labels are set in `labels`. The sector colors are set in `marker.colors`
-public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Encodable, ValuesData: Encodable {
+public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, ValuesData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -212,6 +212,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Encodable, Va
             self.colors = colors
             self.line = line
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -468,6 +469,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Encodable, Va
             self.font = font
             self.position = position
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -618,4 +620,56 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Encodable, Va
         self.rotation = rotation
         self.pull = pull
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(label0, forKey: .label0)
+        try container.encodeIfPresent(dLabel, forKey: .dLabel)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(scaleGroup, forKey: .scaleGroup)
+        try container.encodeIfPresent(textInfo, forKey: .textInfo)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
+        try container.encodeIfPresent(textPosition, forKey: .textPosition)
+        try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
+        try container.encodeIfPresent(outSideTextFont, forKey: .outSideTextFont)
+        try container.encodeIfPresent(autoMargin, forKey: .autoMargin)
+        try container.encodeIfPresent(title, forKey: .title)
+        try container.encodeIfPresent(domain, forKey: .domain)
+        try container.encodeIfPresent(hole, forKey: .hole)
+        try container.encodeIfPresent(sort, forKey: .sort)
+        try container.encodeIfPresent(direction, forKey: .direction)
+        try container.encodeIfPresent(rotation, forKey: .rotation)
+        try container.encodeIfPresent(pull, forKey: .pull)
+    
+        if let labels = self.labels {
+            let labelsEncoder = container.superEncoder(forKey: .labels)
+            try labels.encode(toPlotly: labelsEncoder)
+        }
+    
+        if let values = self.values {
+            let valuesEncoder = container.superEncoder(forKey: .values)
+            try values.encode(toPlotly: valuesEncoder)
+        }
+    }
+    
 }

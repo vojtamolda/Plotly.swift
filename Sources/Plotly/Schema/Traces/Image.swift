@@ -4,7 +4,7 @@
 /// will be reversed (ie. `autorange: 'reversed'`), constrained to the domain (ie. `constrain:
 /// 'domain'`) and it will have the same scale as its x axis (ie. `scaleanchor: 'x,`) in order for
 /// pixels to be rendered as squares.
-public struct Image<ZData>: Trace where ZData: Encodable {
+public struct Image<ZData>: Trace where ZData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -369,4 +369,39 @@ public struct Image<ZData>: Trace where ZData: Encodable {
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(colorModel, forKey: .colorModel)
+        try container.encodeIfPresent(zMin, forKey: .zMin)
+        try container.encodeIfPresent(zMax, forKey: .zMax)
+        try container.encodeIfPresent(x0, forKey: .x0)
+        try container.encodeIfPresent(y0, forKey: .y0)
+        try container.encodeIfPresent(dx, forKey: .dx)
+        try container.encodeIfPresent(dy, forKey: .dy)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    }
+    
 }

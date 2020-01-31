@@ -1,7 +1,7 @@
 /// The sample data from which statistics are computed is set in `x` and `y` (where `x` and `y` represent marginal distributions, binning is set in `xbins` and `ybins` in this case) or `z` (where `z` represent the 2D distribution and binning set, binning is set by `x` and `y` in this case). 
 ///
 /// The resulting distribution is visualized as a contour plot.
-public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
+public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Plotable, YData: Plotable, ZData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -194,6 +194,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Encoda
         public init(color: [Double]? = nil) {
             self.color = color
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -636,4 +637,72 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Encoda
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(normalization, forKey: .normalization)
+        try container.encodeIfPresent(binningFunction, forKey: .binningFunction)
+        try container.encodeIfPresent(xNumBins, forKey: .xNumBins)
+        try container.encodeIfPresent(xBins, forKey: .xBins)
+        try container.encodeIfPresent(yNumBins, forKey: .yNumBins)
+        try container.encodeIfPresent(yBins, forKey: .yBins)
+        try container.encodeIfPresent(xAutoBin, forKey: .xAutoBin)
+        try container.encodeIfPresent(yAutoBin, forKey: .yAutoBin)
+        try container.encodeIfPresent(binGroup, forKey: .binGroup)
+        try container.encodeIfPresent(xBinGroup, forKey: .xBinGroup)
+        try container.encodeIfPresent(yBinGroup, forKey: .yBinGroup)
+        try container.encodeIfPresent(autoContour, forKey: .autoContour)
+        try container.encodeIfPresent(nContours, forKey: .nContours)
+        try container.encodeIfPresent(contours, forKey: .contours)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(zHoverFormat, forKey: .zHoverFormat)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(zAuto, forKey: .zAuto)
+        try container.encodeIfPresent(zMin, forKey: .zMin)
+        try container.encodeIfPresent(zMax, forKey: .zMax)
+        try container.encodeIfPresent(zMiddle, forKey: .zMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
+        try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    }
+    
 }

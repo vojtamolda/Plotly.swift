@@ -4,7 +4,7 @@
 /// spread between the `low` and `high` values Sample points where the close value is higher (lower)
 /// then the open value are called increasing (decreasing). By default, increasing candles are drawn
 /// in green whereas decreasing are drawn in red.
-public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace where XData: Encodable, OpenData: Encodable, HighData: Encodable, LowData: Encodable, CloseData: Encodable {
+public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace where XData: Plotable, OpenData: Plotable, HighData: Plotable, LowData: Plotable, CloseData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -223,6 +223,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         public init(width: Double? = nil) {
             self.width = width
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -257,6 +258,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
                 self.color = color
                 self.width = width
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -286,6 +288,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
             self.line = line
             self.fillColor = fillColor
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -320,6 +323,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
                 self.color = color
                 self.width = width
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -349,6 +353,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
             self.line = line
             self.fillColor = fillColor
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -461,6 +466,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
             self.nameLength = nameLength
             self.split = split
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -565,4 +571,60 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(increasing, forKey: .increasing)
+        try container.encodeIfPresent(decreasing, forKey: .decreasing)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(whiskerWidth, forKey: .whiskerWidth)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let open = self.open {
+            let openEncoder = container.superEncoder(forKey: .open)
+            try open.encode(toPlotly: openEncoder)
+        }
+    
+        if let high = self.high {
+            let highEncoder = container.superEncoder(forKey: .high)
+            try high.encode(toPlotly: highEncoder)
+        }
+    
+        if let low = self.low {
+            let lowEncoder = container.superEncoder(forKey: .low)
+            try low.encode(toPlotly: lowEncoder)
+        }
+    
+        if let close = self.close {
+            let closeEncoder = container.superEncoder(forKey: .close)
+            try close.encode(toPlotly: closeEncoder)
+        }
+    }
+    
 }

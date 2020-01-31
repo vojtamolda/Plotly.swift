@@ -232,6 +232,7 @@ public struct ScatterPlotMatrix: Trace {
                 self.type = type
                 self.matches = matches
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -284,6 +285,7 @@ public struct ScatterPlotMatrix: Trace {
             self.name = name
             self.templateItemName = templateItemName
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -378,6 +380,7 @@ public struct ScatterPlotMatrix: Trace {
         public init(visible: Bool? = nil) {
             self.visible = visible
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -437,6 +440,7 @@ public struct ScatterPlotMatrix: Trace {
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -448,6 +452,7 @@ public struct ScatterPlotMatrix: Trace {
         public init(marker: Marker? = nil) {
             self.marker = marker
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -491,6 +496,7 @@ public struct ScatterPlotMatrix: Trace {
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -502,6 +508,7 @@ public struct ScatterPlotMatrix: Trace {
         public init(marker: Marker? = nil) {
             self.marker = marker
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -580,4 +587,5 @@ public struct ScatterPlotMatrix: Trace {
         self.unselected = unselected
         self.opacity = opacity
     }
+    
 }

@@ -388,6 +388,7 @@ public struct Sankey: Trace {
             self.hoverLabel = hoverLabel
             self.hoverTemplate = hoverTemplate
         }
+        
     }
     /// The nodes of the Sankey plot.
     ///
@@ -590,6 +591,7 @@ public struct Sankey: Trace {
                 self.name = name
                 self.templateItemName = templateItemName
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -624,6 +626,7 @@ public struct Sankey: Trace {
             self.hoverTemplate = hoverTemplate
             self.colorScales = colorScales
         }
+        
     }
     /// The links of the Sankey plot.
     ///
@@ -679,4 +682,5 @@ public struct Sankey: Trace {
         self.node = node
         self.link = link
     }
+    
 }

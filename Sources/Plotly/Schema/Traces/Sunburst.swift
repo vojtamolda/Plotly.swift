@@ -1,7 +1,7 @@
 /// Visualize hierarchal data spanning outward radially from root to leaves. 
 ///
 /// The sunburst sectors are determined by the entries in *labels* or *ids* and in *parents*.
-public struct Sunburst<ValuesData>: Trace where ValuesData: Encodable {
+public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -391,6 +391,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Encodable {
             self.colorBar = colorBar
             self.colorAxis = colorAxis
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -415,6 +416,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Encodable {
         public init(opacity: Double? = nil) {
             self.opacity = opacity
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -680,4 +682,45 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Encodable {
         self.outSideTextFont = outSideTextFont
         self.domain = domain
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(labels, forKey: .labels)
+        try container.encodeIfPresent(parents, forKey: .parents)
+        try container.encodeIfPresent(branchValues, forKey: .branchValues)
+        try container.encodeIfPresent(count, forKey: .count)
+        try container.encodeIfPresent(level, forKey: .level)
+        try container.encodeIfPresent(maxDepth, forKey: .maxDepth)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(leaf, forKey: .leaf)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(textInfo, forKey: .textInfo)
+        try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
+        try container.encodeIfPresent(outSideTextFont, forKey: .outSideTextFont)
+        try container.encodeIfPresent(domain, forKey: .domain)
+    
+        if let values = self.values {
+            let valuesEncoder = container.superEncoder(forKey: .values)
+            try values.encode(toPlotly: valuesEncoder)
+        }
+    }
+    
 }

@@ -2,7 +2,7 @@
 ///
 /// Horizontal or vertical slices, caps as well as spaceframe between iso-min and iso-max values
 /// could also be drawn using this trace.
-public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueData: Encodable {
+public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -250,6 +250,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
             self.fill = fill
             self.pattern = pattern
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -286,6 +287,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
             self.show = show
             self.fill = fill
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -335,6 +337,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
                 self.locations = locations
                 self.fill = fill
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -381,6 +384,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
                 self.locations = locations
                 self.fill = fill
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -427,6 +431,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
                 self.locations = locations
                 self.fill = fill
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -440,6 +445,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
             self.y = y
             self.z = z
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -482,6 +488,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
                 self.show = show
                 self.fill = fill
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -521,6 +528,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
                 self.show = show
                 self.fill = fill
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -560,6 +568,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
                 self.show = show
                 self.fill = fill
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -573,6 +582,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
             self.y = y
             self.z = z
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -892,4 +902,67 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Encodable, ValueD
         self.hoverInfo = hoverInfo
         self.scene = scene
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(isoMin, forKey: .isoMin)
+        try container.encodeIfPresent(isoMax, forKey: .isoMax)
+        try container.encodeIfPresent(surface, forKey: .surface)
+        try container.encodeIfPresent(spaceFrame, forKey: .spaceFrame)
+        try container.encodeIfPresent(slices, forKey: .slices)
+        try container.encodeIfPresent(caps, forKey: .caps)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(cAuto, forKey: .cAuto)
+        try container.encodeIfPresent(cMin, forKey: .cMin)
+        try container.encodeIfPresent(cMax, forKey: .cMax)
+        try container.encodeIfPresent(cMiddle, forKey: .cMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(opacityScale, forKey: .opacityScale)
+        try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
+        try container.encodeIfPresent(lighting, forKey: .lighting)
+        try container.encodeIfPresent(flatShading, forKey: .flatShading)
+        try container.encodeIfPresent(contour, forKey: .contour)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(scene, forKey: .scene)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    
+        if let value = self.value {
+            let valueEncoder = container.superEncoder(forKey: .value)
+            try value.encode(toPlotly: valueEncoder)
+        }
+    }
+    
 }

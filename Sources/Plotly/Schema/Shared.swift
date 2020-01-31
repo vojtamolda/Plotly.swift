@@ -1889,6 +1889,7 @@ public struct Shared {
             self.size = size
             self.color = color
         }
+        
     }
 
     /// Sets the padding of the title. 
@@ -1942,6 +1943,7 @@ public struct Shared {
             self.b = b
             self.l = l
         }
+        
     }
 
     /// # Used By
@@ -2050,6 +2052,7 @@ public struct Shared {
             self.align = align
             self.nameLength = nameLength
         }
+        
     }
 
     /// # Used By
@@ -2170,6 +2173,7 @@ public struct Shared {
             self.name = name
             self.templateItemName = templateItemName
         }
+        
     }
 
     /// # Used By
@@ -2226,6 +2230,7 @@ public struct Shared {
             self.row = row
             self.column = column
         }
+        
     }
 
     /// # Used By
@@ -2262,6 +2267,7 @@ public struct Shared {
             self.text = text
             self.font = font
         }
+        
     }
 
     /// # Used By
@@ -2302,6 +2308,7 @@ public struct Shared {
             self.width = width
             self.dash = dash
         }
+        
     }
 
     /// # Used By
@@ -2738,6 +2745,7 @@ public struct Shared {
                 self.font = font
                 self.side = side
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -2828,6 +2836,7 @@ public struct Shared {
             self.showExponent = showExponent
             self.title = title
         }
+        
     }
 
     /// # Used By
@@ -2908,6 +2917,7 @@ public struct Shared {
             self.token = token
             self.maxPoints = maxPoints
         }
+        
     }
 
     /// An array of operations that manipulate the trace data, for example filtering or sorting the data arrays.
@@ -2950,6 +2960,7 @@ public struct Shared {
     public struct Transform: Encodable {
         public init() {
         }
+        
     }
 
     /// # Used By
@@ -3210,6 +3221,7 @@ public struct Shared {
             self.colorBar = colorBar
             self.colorAxis = colorAxis
         }
+        
     }
 
     /// # Used By
@@ -3368,6 +3380,7 @@ public struct Shared {
             self.reverseScale = reverseScale
             self.colorAxis = colorAxis
         }
+        
     }
 
     /// # Used By
@@ -3407,6 +3420,7 @@ public struct Shared {
             self.type = type
             self.color = color
         }
+        
     }
 
     /// # Used By
@@ -3568,6 +3582,7 @@ public struct Shared {
             self.thickness = thickness
             self.width = width
         }
+        
     }
 
     /// # Used By
@@ -3746,6 +3761,7 @@ public struct Shared {
             self.colorAxis = colorAxis
             self.opacity = opacity
         }
+        
     }
 
     /// # Used By
@@ -3790,6 +3806,7 @@ public struct Shared {
             self.color = color
             self.width = width
         }
+        
     }
 
     /// # Used By
@@ -3850,12 +3867,14 @@ public struct Shared {
             self.end = end
             self.size = size
         }
+        
     }
 
     /// # Used By
     public struct Layout: Encodable {
         public init() {
         }
+        
     }
 
     /// # Used By
@@ -4033,6 +4052,7 @@ public struct Shared {
             self.operation = operation
             self.value = value
         }
+        
     }
 
     /// # Used By
@@ -4083,6 +4103,7 @@ public struct Shared {
             self.dash = dash
             self.smoothing = smoothing
         }
+        
     }
 
     /// # Used By
@@ -4145,6 +4166,7 @@ public struct Shared {
             self.shape = shape
             self.smoothing = smoothing
         }
+        
     }
 
     /// # Used By
@@ -4185,6 +4207,7 @@ public struct Shared {
                 self.opacity = opacity
                 self.scale = scale
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -4225,6 +4248,7 @@ public struct Shared {
                 self.opacity = opacity
                 self.scale = scale
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -4265,6 +4289,7 @@ public struct Shared {
                 self.opacity = opacity
                 self.scale = scale
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -4278,6 +4303,7 @@ public struct Shared {
             self.y = y
             self.z = z
         }
+        
     }
 
     /// # Used By
@@ -4531,6 +4557,7 @@ public struct Shared {
             self.showScale = showScale
             self.colorAxis = colorAxis
         }
+        
     }
 
     /// # Used By
@@ -4570,6 +4597,7 @@ public struct Shared {
             self.y = y
             self.z = z
         }
+        
     }
 
     /// # Used By
@@ -4658,6 +4686,7 @@ public struct Shared {
             self.roughness = roughness
             self.fresnel = fresnel
         }
+        
     }
 
     /// # Used By
@@ -4694,6 +4723,7 @@ public struct Shared {
             self.color = color
             self.width = width
         }
+        
     }
 
 }

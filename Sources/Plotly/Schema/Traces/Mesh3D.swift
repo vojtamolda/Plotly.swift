@@ -1,5 +1,5 @@
 /// Draws sets of triangles with coordinates given by three 1-dimensional arrays in `x`, `y`, `z` and (1) a sets of `i`, `j`, `k` indices (2) Delaunay triangulation or (3) the Alpha-shape algorithm or (4) the Convex-hull algorithm
-public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable, IntensityData: Encodable, VertexcolorData: Encodable, FacecolorData: Encodable {
+public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>: Trace where XData: Plotable, YData: Plotable, ZData: Plotable, IntensityData: Plotable, VertexcolorData: Plotable, FacecolorData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -589,4 +589,79 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         self.zCalendar = zCalendar
         self.scene = scene
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(i, forKey: .i)
+        try container.encodeIfPresent(j, forKey: .j)
+        try container.encodeIfPresent(k, forKey: .k)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(delaunayAxis, forKey: .delaunayAxis)
+        try container.encodeIfPresent(alphaHull, forKey: .alphaHull)
+        try container.encodeIfPresent(color, forKey: .color)
+        try container.encodeIfPresent(cAuto, forKey: .cAuto)
+        try container.encodeIfPresent(cMin, forKey: .cMin)
+        try container.encodeIfPresent(cMax, forKey: .cMax)
+        try container.encodeIfPresent(cMiddle, forKey: .cMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(flatShading, forKey: .flatShading)
+        try container.encodeIfPresent(contour, forKey: .contour)
+        try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
+        try container.encodeIfPresent(lighting, forKey: .lighting)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
+        try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
+        try container.encodeIfPresent(zCalendar, forKey: .zCalendar)
+        try container.encodeIfPresent(scene, forKey: .scene)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    
+        if let intensity = self.intensity {
+            let intensityEncoder = container.superEncoder(forKey: .intensity)
+            try intensity.encode(toPlotly: intensityEncoder)
+        }
+    
+        if let vertexColor = self.vertexColor {
+            let vertexColorEncoder = container.superEncoder(forKey: .vertexColor)
+            try vertexColor.encode(toPlotly: vertexColorEncoder)
+        }
+    
+        if let faceColor = self.faceColor {
+            let faceColorEncoder = container.superEncoder(forKey: .faceColor)
+            try faceColor.encode(toPlotly: faceColorEncoder)
+        }
+    }
+    
 }

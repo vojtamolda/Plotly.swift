@@ -352,6 +352,7 @@ public struct ParallelCategories: Trace {
             self.displayIndex = displayIndex
             self.visible = visible
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -562,6 +563,7 @@ public struct ParallelCategories: Trace {
             self.shape = shape
             self.hoverTemplate = hoverTemplate
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -626,4 +628,5 @@ public struct ParallelCategories: Trace {
         self.line = line
         self.counts = counts
     }
+    
 }

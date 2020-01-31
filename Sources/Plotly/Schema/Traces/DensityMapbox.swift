@@ -1,5 +1,5 @@
 /// Draws a bivariate kernel density estimation with a Gaussian kernel from `lon` and `lat` coordinates and optional `z` values using a colorscale.
-public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: Encodable, ZData: Encodable {
+public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: Plotable, ZData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -447,4 +447,54 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
         self.colorAxis = colorAxis
         self.subPlot = subPlot
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(radius, forKey: .radius)
+        try container.encodeIfPresent(below, forKey: .below)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(zAuto, forKey: .zAuto)
+        try container.encodeIfPresent(zMin, forKey: .zMin)
+        try container.encodeIfPresent(zMax, forKey: .zMax)
+        try container.encodeIfPresent(zMiddle, forKey: .zMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(subPlot, forKey: .subPlot)
+    
+        if let longitude = self.longitude {
+            let longitudeEncoder = container.superEncoder(forKey: .longitude)
+            try longitude.encode(toPlotly: longitudeEncoder)
+        }
+    
+        if let latitude = self.latitude {
+            let latitudeEncoder = container.superEncoder(forKey: .latitude)
+            try latitude.encode(toPlotly: latitudeEncoder)
+        }
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    }
+    
 }

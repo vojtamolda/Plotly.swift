@@ -5,7 +5,7 @@
 /// coordinates are assumed to be linear starting at 0 with a unit step. The color scale corresponds
 /// to the `z` values by default. For custom color scales, use `surfacecolor` which should be a {2D
 /// array}, where its bounds can be controlled using `cmin` and `cmax`.
-public struct Surface<ZData, XYData>: Trace where ZData: Encodable, XYData: Encodable {
+public struct Surface<ZData, XYData>: Trace where ZData: Plotable, XYData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -431,6 +431,7 @@ public struct Surface<ZData, XYData>: Trace where ZData: Encodable, XYData: Enco
                 self.highlightColor = highlightColor
                 self.highlightWidth = highlightWidth
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -565,6 +566,7 @@ public struct Surface<ZData, XYData>: Trace where ZData: Encodable, XYData: Enco
                 self.highlightColor = highlightColor
                 self.highlightWidth = highlightWidth
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -699,6 +701,7 @@ public struct Surface<ZData, XYData>: Trace where ZData: Encodable, XYData: Enco
                 self.highlightColor = highlightColor
                 self.highlightWidth = highlightWidth
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -712,6 +715,7 @@ public struct Surface<ZData, XYData>: Trace where ZData: Encodable, XYData: Enco
             self.y = y
             self.z = z
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -791,6 +795,7 @@ public struct Surface<ZData, XYData>: Trace where ZData: Encodable, XYData: Enco
             self.roughness = roughness
             self.fresnel = fresnel
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -940,4 +945,60 @@ public struct Surface<ZData, XYData>: Trace where ZData: Encodable, XYData: Enco
         self.zCalendar = zCalendar
         self.scene = scene
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
+        try container.encodeIfPresent(surfaceColor, forKey: .surfaceColor)
+        try container.encodeIfPresent(cAuto, forKey: .cAuto)
+        try container.encodeIfPresent(cMin, forKey: .cMin)
+        try container.encodeIfPresent(cMax, forKey: .cMax)
+        try container.encodeIfPresent(cMiddle, forKey: .cMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(contours, forKey: .contours)
+        try container.encodeIfPresent(hideSurface, forKey: .hideSurface)
+        try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
+        try container.encodeIfPresent(lighting, forKey: .lighting)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
+        try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
+        try container.encodeIfPresent(zCalendar, forKey: .zCalendar)
+        try container.encodeIfPresent(scene, forKey: .scene)
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    }
+    
 }

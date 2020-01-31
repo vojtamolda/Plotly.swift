@@ -17,7 +17,7 @@ final class Histograms: XCTestCase {
 
     /// https://plot.ly/javascript/histograms/#basic-histogram
     func testBasicHistogram() {
-        let trace = Histogram<[Double], [Int]?>(
+        let trace = Histogram<[Double], [Int]>(
             x: (0...500).map { _ in Double.random(in: 0...1) }
         )
         let figure = Figure(data: [trace])
@@ -26,7 +26,7 @@ final class Histograms: XCTestCase {
 
     /// https://plot.ly/javascript/histograms/#horizontal-histogram
     func testHorizontalHistogram() {
-        let trace = Histogram<[Int]?, [Double]>(
+        let trace = Histogram<[Int], [Double]>(
             y: (0...500).map { _ in Double.random(in: 0...1) },
             marker: .init(
                 color: .value(.named("pink"))
@@ -38,14 +38,14 @@ final class Histograms: XCTestCase {
 
     /// https://plot.ly/javascript/histograms/#overlaid-histgram
     func testOverlaidHistograms() {
-        let trace1 = Histogram<[Double], [Int]?>(
+        let trace1 = Histogram<[Double], [Int]>(
             opacity: 0.5,
             x: (0...500).map { _ in Double.random(in: 1.0 ... 2.0) },
             marker: .init(
                 color: .value(.named("green"))
             )
         )
-        let trace2 = Histogram<[Double], [Int]?>(
+        let trace2 = Histogram<[Double], [Int]>(
             opacity: 0.6,
             x: (0...500).map { _ in Double.random(in: 1.1 ... 2.1) },
             marker: .init(
@@ -61,10 +61,10 @@ final class Histograms: XCTestCase {
 
     /// https://plot.ly/javascript/histograms/#stacked-histograms
     func testStackedHistograms() {
-        let trace1 = Histogram<[Double], [Int]?>(
+        let trace1 = Histogram<[Double], [Int]>(
             x: (0...500).map { _ in Double.random(in: 0...1) }
         )
-        let trace2 = Histogram<[Double], [Int]?>(
+        let trace2 = Histogram<[Double], [Int]>(
             x: (0...500).map { _ in Double.random(in: 0...1) }
         )
         let layout = Layout(
@@ -141,7 +141,7 @@ final class Histograms: XCTestCase {
 
     /// https://plot.ly/javascript/histograms/#cumulative-histogram
     func testCumulativeHistogram() {
-        let trace = Histogram<[Double], [Int]?>(
+        let trace = Histogram<[Double], [Int]>(
             x: (0...500).map { _ in Double.random(in: 0...1) },
             cumulative: .init(
                 enabled: true
@@ -153,7 +153,7 @@ final class Histograms: XCTestCase {
 
     /// https://plot.ly/javascript/histograms/#normalized-histogram
     func testNormalizedHistogram() {
-        let trace = Histogram<[Double], [Int]?>(
+        let trace = Histogram<[Double], [Int]>(
             x: (0...500).map { _ in Double.random(in: 0...1) },
             normalization: .probability,
             marker: .init(

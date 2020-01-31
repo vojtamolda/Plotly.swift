@@ -10,7 +10,7 @@
 /// center of the heatmap cells and the cells have equal width. If M+1 (N+1), then the coordinates
 /// correspond to the edges of the heatmap cells. In the case where `z` is a 1D {array}, the x and y
 /// coordinates must be provided in `x` and `y` respectively to form data triplets.
-public struct Heatmap<ZData, XYData>: Trace where ZData: Encodable, XYData: Encodable {
+public struct Heatmap<ZData, XYData>: Trace where ZData: Plotable, XYData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -593,4 +593,68 @@ public struct Heatmap<ZData, XYData>: Trace where ZData: Encodable, XYData: Enco
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(x0, forKey: .x0)
+        try container.encodeIfPresent(dx, forKey: .dx)
+        try container.encodeIfPresent(y0, forKey: .y0)
+        try container.encodeIfPresent(dy, forKey: .dy)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(transpose, forKey: .transpose)
+        try container.encodeIfPresent(xType, forKey: .xType)
+        try container.encodeIfPresent(yType, forKey: .yType)
+        try container.encodeIfPresent(zSmooth, forKey: .zSmooth)
+        try container.encodeIfPresent(hoverOnGaps, forKey: .hoverOnGaps)
+        try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
+        try container.encodeIfPresent(xGap, forKey: .xGap)
+        try container.encodeIfPresent(yGap, forKey: .yGap)
+        try container.encodeIfPresent(zHoverFormat, forKey: .zHoverFormat)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(zAuto, forKey: .zAuto)
+        try container.encodeIfPresent(zMin, forKey: .zMin)
+        try container.encodeIfPresent(zMax, forKey: .zMax)
+        try container.encodeIfPresent(zMiddle, forKey: .zMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
+        try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    }
+    
 }

@@ -1,7 +1,7 @@
 /// Plots contours on either the first carpet axis or the carpet axis with a matching `carpet` attribute. 
 ///
 /// Data `z` is interpreted as matching that of the corresponding carpet axis.
-public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Encodable, AData: Encodable, BData: Encodable {
+public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, AData: Plotable, BData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -529,4 +529,64 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Encodable, 
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(carpet, forKey: .carpet)
+        try container.encodeIfPresent(a0, forKey: .a0)
+        try container.encodeIfPresent(da, forKey: .da)
+        try container.encodeIfPresent(b0, forKey: .b0)
+        try container.encodeIfPresent(db, forKey: .db)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(transpose, forKey: .transpose)
+        try container.encodeIfPresent(aType, forKey: .aType)
+        try container.encodeIfPresent(bType, forKey: .bType)
+        try container.encodeIfPresent(fillColor, forKey: .fillColor)
+        try container.encodeIfPresent(autoContour, forKey: .autoContour)
+        try container.encodeIfPresent(nContours, forKey: .nContours)
+        try container.encodeIfPresent(contours, forKey: .contours)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(zAuto, forKey: .zAuto)
+        try container.encodeIfPresent(zMin, forKey: .zMin)
+        try container.encodeIfPresent(zMax, forKey: .zMax)
+        try container.encodeIfPresent(zMiddle, forKey: .zMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    
+        if let a = self.a {
+            let aEncoder = container.superEncoder(forKey: .a)
+            try a.encode(toPlotly: aEncoder)
+        }
+    
+        if let b = self.b {
+            let bEncoder = container.superEncoder(forKey: .b)
+            try b.encode(toPlotly: bEncoder)
+        }
+    }
+    
 }

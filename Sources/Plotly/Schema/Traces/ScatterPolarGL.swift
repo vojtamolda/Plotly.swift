@@ -3,7 +3,7 @@
 /// The data visualized as scatter point or lines is set in `r` (radial) and `theta` (angular)
 /// coordinates Bubble charts are achieved by setting `marker.size` and/or `marker.color` to
 /// numerical arrays.
-public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, ThetaData: Encodable {
+public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, ThetaData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -358,6 +358,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
             self.shape = shape
             self.dash = dash
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -477,6 +478,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -499,6 +501,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -517,6 +520,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -560,6 +564,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -582,6 +587,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -600,6 +606,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -701,4 +708,56 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Encodable, Th
         self.unselected = unselected
         self.subPlot = subPlot
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(mode, forKey: .mode)
+        try container.encodeIfPresent(r0, forKey: .r0)
+        try container.encodeIfPresent(dr, forKey: .dr)
+        try container.encodeIfPresent(theta0, forKey: .theta0)
+        try container.encodeIfPresent(dTheta, forKey: .dTheta)
+        try container.encodeIfPresent(thetaUnit, forKey: .thetaUnit)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(fill, forKey: .fill)
+        try container.encodeIfPresent(fillColor, forKey: .fillColor)
+        try container.encodeIfPresent(textPosition, forKey: .textPosition)
+        try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(subPlot, forKey: .subPlot)
+    
+        if let r = self.r {
+            let rEncoder = container.superEncoder(forKey: .r)
+            try r.encode(toPlotly: rEncoder)
+        }
+    
+        if let theta = self.theta {
+            let thetaEncoder = container.superEncoder(forKey: .theta)
+            try theta.encode(toPlotly: thetaEncoder)
+        }
+    }
+    
 }

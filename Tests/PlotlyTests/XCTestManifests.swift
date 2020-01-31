@@ -20,7 +20,8 @@ public func allTests() -> [XCTestCaseEntry] {
         // https://plot.ly/javascript/scientific-charts/
         testCase(Heatmaps.allTests),
 
-        testCase(FigureTests.allTests)
+        testCase(FigureTests.allTests),
+        testCase(PlotableTests.allTests)
     ]
 }
 #endif

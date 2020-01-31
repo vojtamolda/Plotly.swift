@@ -136,13 +136,10 @@ struct Swift {
                 lines += member.define(as: .inlined).indented()
                 lines += [""]
             }
-            lines += codingKeys.indented()
 
-            let variables = properties.filter { $0.constant == nil }
-            let arguments = variables.map { $0.argument + " = nil" }.joined(separator: ", ")
-            lines += ["\(access)init(\(arguments)) {"].indented()
-            lines += variables.map { "self.\($0.name) = \($0.name)" }.indented(2)
-            lines += ["}"].indented()
+            lines += codingKeys.indented()
+            lines += initFunction.indented()
+            lines += encodeFunction.indented()
 
             lines += ["}"]
             return lines
@@ -160,6 +157,37 @@ struct Swift {
                 } else {
                     lines += ["case \(prop.name) = \(prop.origin.name.escaped())"].indented()
                 }
+            }
+            lines += ["}", ""]
+            return lines
+        }
+
+        private var initFunction: [String] {
+            let variables = properties.filter { $0.constant == nil }
+            let arguments = variables.map { $0.argument + " = nil" }.joined(separator: ", ")
+
+            var lines = [String]()
+            lines += ["\(access)init(\(arguments)) {"]
+            lines += variables.map { "self.\($0.name) = \($0.name)" }.indented()
+            lines += ["}", ""]
+            return lines
+        }
+
+        private var encodeFunction: [String] {
+            if self.generics.isEmpty { return [] }
+
+            var lines = [String]()
+            lines += ["\(access)func encode(to encoder: Encoder) throws {"]
+            lines += ["var container = encoder.container(keyedBy: CodingKeys.self)"].indented()
+            for prop in properties where !generics.contains(prop.type.name) {
+                lines += ["try container.encodeIfPresent(\(prop.name), forKey: .\(prop.name))"].indented()
+            }
+            for prop in properties where generics.contains(prop.type.name) {
+                lines += [""]
+                lines += ["if let \(prop.name) = self.\(prop.name) {"].indented()
+                lines += ["let \(prop.name)Encoder = container.superEncoder(forKey: .\(prop.name))"].indented(2)
+                lines += ["try \(prop.name).encode(toPlotly: \(prop.name)Encoder)"].indented(2)
+                lines += ["}"].indented()
             }
             lines += ["}", ""]
             return lines

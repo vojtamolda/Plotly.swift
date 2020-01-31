@@ -13,7 +13,7 @@ final class Heatmaps: XCTestCase {
 
     /// https://plot.ly/javascript/heatmaps/#basic-heatmap
     func testBasicHeatmap() {
-        let trace = Heatmap<[[Double]], [Int]?>(
+        let trace = Heatmap<[[Double]], [Int]>(
             z: [[1, 20, 30], [20, 1, 60], [30, 60, 1]]
         )
         let figure = Figure(data: [trace])

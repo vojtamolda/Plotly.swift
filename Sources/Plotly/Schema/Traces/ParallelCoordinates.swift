@@ -329,6 +329,7 @@ public struct ParallelCoordinates: Trace {
             self.name = name
             self.templateItemName = templateItemName
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -491,6 +492,7 @@ public struct ParallelCoordinates: Trace {
             self.colorBar = colorBar
             self.colorAxis = colorAxis
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -541,4 +543,5 @@ public struct ParallelCoordinates: Trace {
         self.dimensions = dimensions
         self.line = line
     }
+    
 }

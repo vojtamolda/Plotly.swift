@@ -59,7 +59,7 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let z = attributes.members.firstInstance(named: "z")!
             let xyzData = Swift.Generic(name: "XYZData", parent: attributes,
-                    origin: x.origin, constraint: "Encodable")
+                    origin: x.origin, constraint: "Plotable")
             x.type = Swift.Override(of: x.type, as: xyzData.name)
             y.type = Swift.Override(of: y.type, as: xyzData.name)
             z.type = Swift.Override(of: z.type, as: xyzData.name)
@@ -67,7 +67,7 @@ struct Trace: Definable {
             let v = attributes.members.firstInstance(named: "v")!
             let w = attributes.members.firstInstance(named: "w")!
             let uvwData = Swift.Generic(name: "UVWData", parent: attributes,
-                    origin: u.origin, constraint: "Encodable")
+                    origin: u.origin, constraint: "Plotable")
             u.type = Swift.Override(of: u.type, as: uvwData.name)
             v.type = Swift.Override(of: v.type, as: uvwData.name)
             w.type = Swift.Override(of: w.type, as: uvwData.name)
@@ -78,12 +78,12 @@ struct Trace: Definable {
             disabledGenerics += ["z", "x", "y"]
             let z = attributes.members.firstInstance(named: "z")!
             let zData = Swift.Generic(name: "ZData", parent: attributes,
-                    origin: z.origin, constraint: "Encodable")
+                    origin: z.origin, constraint: "Plotable")
             z.type = Swift.Override(of: z.type, as: zData.name)
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let xyData = Swift.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, constraint: "Encodable")
+                    origin: x.origin, constraint: "Plotable")
             x.type = Swift.Override(of: x.type, as: xyData.name)
             y.type = Swift.Override(of: y.type, as: xyData.name)
 
@@ -111,7 +111,7 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let xy = attributes.members.firstInstance(named: "xy")!
             let xyData = Swift.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, constraint: "Encodable")
+                    origin: x.origin, constraint: "Plotable")
             x.type = Swift.Override(of: x.type, as: xyData.name)
             y.type = Swift.Override(of: y.type, as: xyData.name)
             xy.type = Swift.Override(of: xy.type, as: xyData.name)
@@ -132,13 +132,13 @@ struct Trace: Definable {
             let z = attributes.members.firstInstance(named: "z")!
             let surfaceColor = attributes.members.firstInstance(named: "z")!
             let zData = Swift.Generic(name: "ZData", parent: attributes,
-                    origin: z.origin, constraint: "Encodable")
+                    origin: z.origin, constraint: "Plotable")
             z.type = Swift.Override(of: z.type, as: zData.name)
             surfaceColor.type = Swift.Override(of: surfaceColor.type, as: zData.name)
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let xyData = Swift.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, constraint: "Encodable")
+                    origin: x.origin, constraint: "Plotable")
             x.type = Swift.Override(of: x.type, as: xyData.name)
             y.type = Swift.Override(of: y.type, as: xyData.name)
 
@@ -153,7 +153,7 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let z = attributes.members.firstInstance(named: "z")!
             let xyzData = Swift.Generic(name: "XYZData", parent: attributes,
-                    origin: x.origin, constraint: "Encodable")
+                    origin: x.origin, constraint: "Plotable")
             x.type = Swift.Override(of: x.type, as: xyzData.name)
             y.type = Swift.Override(of: y.type, as: xyzData.name)
             z.type = Swift.Override(of: z.type, as: xyzData.name)
@@ -187,7 +187,7 @@ struct Trace: Definable {
            let longitude = attributes.members.firstInstance(named: "longitude") {
             disabledGenerics += ["latitude", "longitude"]
             let coordinateData = Swift.Generic(name: "CoordinateData", parent: attributes,
-                    origin: latitude.origin, constraint: "Encodable")
+                    origin: latitude.origin, constraint: "Plotable")
             latitude.type = Swift.Override(of: latitude.type, as: coordinateData.name)
             longitude.type = Swift.Override(of: longitude.type, as: coordinateData.name)
         }
@@ -195,7 +195,7 @@ struct Trace: Definable {
         for instance in attributes.members.compactMap( { $0 as? Instance } ) where instance.origin.role == "data" {
             if disabledGenerics.contains(instance.name) { continue }
             let generic = Swift.Generic(name: "\(instance.name.capitalized)Data",
-                    parent: attributes, origin: instance.origin, constraint: "Encodable")
+                    parent: attributes, origin: instance.origin, constraint: "Plotable")
             instance.type = generic
         }
     }

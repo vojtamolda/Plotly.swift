@@ -1,5 +1,5 @@
 /// The data visualized as a point cloud set in `x` and `y` using the WebGl plotting engine.
-public struct PointCloud<XYData>: Trace where XYData: Encodable {
+public struct PointCloud<XYData>: Trace where XYData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -305,6 +305,7 @@ public struct PointCloud<XYData>: Trace where XYData: Encodable {
                 self.color = color
                 self.areaRatio = areaRatio
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -331,6 +332,7 @@ public struct PointCloud<XYData>: Trace where XYData: Encodable {
             self.sizeMax = sizeMax
             self.border = border
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -415,4 +417,46 @@ public struct PointCloud<XYData>: Trace where XYData: Encodable {
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(indices, forKey: .indices)
+        try container.encodeIfPresent(xBounds, forKey: .xBounds)
+        try container.encodeIfPresent(yBounds, forKey: .yBounds)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let xy = self.xy {
+            let xyEncoder = container.superEncoder(forKey: .xy)
+            try xy.encode(toPlotly: xyEncoder)
+        }
+    }
+    
 }

@@ -5,7 +5,7 @@
 /// cut from the vector field's x-z plane at its minimum y value. To specify your own starting
 /// position, use attributes `starts.x`, `starts.y` and `starts.z`. The color is encoded by the norm
 /// of (u, v, w), and the local radius by the divergence of (u, v, w).
-public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Encodable, UVWData: Encodable {
+public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -196,6 +196,7 @@ public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Encodable, UVWD
             self.y = y
             self.z = z
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -542,4 +543,71 @@ public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Encodable, UVWD
         self.hoverInfo = hoverInfo
         self.scene = scene
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(starts, forKey: .starts)
+        try container.encodeIfPresent(maxDisplayed, forKey: .maxDisplayed)
+        try container.encodeIfPresent(sizeReference, forKey: .sizeReference)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(cAuto, forKey: .cAuto)
+        try container.encodeIfPresent(cMin, forKey: .cMin)
+        try container.encodeIfPresent(cMax, forKey: .cMax)
+        try container.encodeIfPresent(cMiddle, forKey: .cMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
+        try container.encodeIfPresent(lighting, forKey: .lighting)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(scene, forKey: .scene)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    
+        if let u = self.u {
+            let uEncoder = container.superEncoder(forKey: .u)
+            try u.encode(toPlotly: uEncoder)
+        }
+    
+        if let v = self.v {
+            let vEncoder = container.superEncoder(forKey: .v)
+            try v.encode(toPlotly: vEncoder)
+        }
+    
+        if let w = self.w {
+            let wEncoder = container.superEncoder(forKey: .w)
+            try w.encode(toPlotly: wEncoder)
+        }
+    }
+    
 }

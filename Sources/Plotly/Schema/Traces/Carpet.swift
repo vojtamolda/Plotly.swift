@@ -3,7 +3,7 @@
 /// If only `y` is present, `x` the plot is interpreted as a cheater plot and is filled in using the
 /// `y` values. `x` and `y` may either be 2D arrays matching with each dimension matching that of
 /// `a` and `b`, or they may be 1D arrays with total length equal to that of `a` and `b`.
-public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, YData: Encodable, AData: Encodable, BData: Encodable {
+public struct Carpet<XData, YData, AData, BData>: Trace where XData: Plotable, YData: Plotable, AData: Plotable, BData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -269,6 +269,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
                 self.font = font
                 self.offset = offset
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -835,6 +836,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
             self.arrayTick0 = arrayTick0
             self.arraydTick = arraydTick
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -903,6 +905,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
                 self.font = font
                 self.offset = offset
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -1469,6 +1472,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
             self.arrayTick0 = arrayTick0
             self.arraydTick = arraydTick
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -1576,4 +1580,52 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Encodable, 
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(carpet, forKey: .carpet)
+        try container.encodeIfPresent(a0, forKey: .a0)
+        try container.encodeIfPresent(da, forKey: .da)
+        try container.encodeIfPresent(b0, forKey: .b0)
+        try container.encodeIfPresent(db, forKey: .db)
+        try container.encodeIfPresent(cheaterSlope, forKey: .cheaterSlope)
+        try container.encodeIfPresent(aAxis, forKey: .aAxis)
+        try container.encodeIfPresent(bAxis, forKey: .bAxis)
+        try container.encodeIfPresent(font, forKey: .font)
+        try container.encodeIfPresent(color, forKey: .color)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let a = self.a {
+            let aEncoder = container.superEncoder(forKey: .a)
+            try a.encode(toPlotly: aEncoder)
+        }
+    
+        if let b = self.b {
+            let bEncoder = container.superEncoder(forKey: .b)
+            try b.encode(toPlotly: bEncoder)
+        }
+    }
+    
 }

@@ -141,6 +141,7 @@ public struct Config: Encodable {
             self.shapePosition = shapePosition
             self.titleText = titleText
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -619,4 +620,5 @@ public struct Config: Encodable {
         self.locale = locale
         self.locales = locales
     }
+    
 }

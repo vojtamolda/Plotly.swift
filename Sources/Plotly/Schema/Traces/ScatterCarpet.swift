@@ -1,5 +1,5 @@
 /// Plots a scatter trace on either the first carpet axis or the carpet axis with a matching `carpet` attribute.
-public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: Encodable {
+public struct ScatterCarpet<AData, BData>: Trace where AData: Plotable, BData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -333,6 +333,7 @@ public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: 
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -355,6 +356,7 @@ public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: 
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -373,6 +375,7 @@ public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: 
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -416,6 +419,7 @@ public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: 
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -438,6 +442,7 @@ public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: 
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -456,6 +461,7 @@ public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: 
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -638,4 +644,54 @@ public struct ScatterCarpet<AData, BData>: Trace where AData: Encodable, BData: 
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(carpet, forKey: .carpet)
+        try container.encodeIfPresent(mode, forKey: .mode)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
+        try container.encodeIfPresent(fill, forKey: .fill)
+        try container.encodeIfPresent(fillColor, forKey: .fillColor)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(textPosition, forKey: .textPosition)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverOn, forKey: .hoverOn)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let a = self.a {
+            let aEncoder = container.superEncoder(forKey: .a)
+            try a.encode(toPlotly: aEncoder)
+        }
+    
+        if let b = self.b {
+            let bEncoder = container.superEncoder(forKey: .b)
+            try b.encode(toPlotly: bEncoder)
+        }
+    }
+    
 }

@@ -3,7 +3,6 @@ import Plotly
 
 
 final class FigureTests: XCTestCase {
-
     static var allTests = [
         ("testShow", testShow),
         ("testExport", testExport),

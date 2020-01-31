@@ -3,7 +3,7 @@
 /// Text (appearing either on the chart or on hover only) is via `text`. Bubble charts are achieved
 /// by setting `marker.size` and/or `marker.color` Projections are achieved via `projection`.
 /// Surface fills are achieved via `surfaceaxis`.
-public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YData: Encodable, ZData: Encodable {
+public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData: Plotable, ZData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -464,6 +464,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YDat
             self.colorBar = colorBar
             self.colorAxis = colorAxis
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -643,4 +644,60 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Encodable, YDat
         self.zCalendar = zCalendar
         self.scene = scene
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(mode, forKey: .mode)
+        try container.encodeIfPresent(surfaceAxis, forKey: .surfaceAxis)
+        try container.encodeIfPresent(surfaceColor, forKey: .surfaceColor)
+        try container.encodeIfPresent(projection, forKey: .projection)
+        try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(textPosition, forKey: .textPosition)
+        try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(xError, forKey: .xError)
+        try container.encodeIfPresent(yError, forKey: .yError)
+        try container.encodeIfPresent(zError, forKey: .zError)
+        try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
+        try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
+        try container.encodeIfPresent(zCalendar, forKey: .zCalendar)
+        try container.encodeIfPresent(scene, forKey: .scene)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    }
+    
 }

@@ -3,7 +3,7 @@
 /// By supplying an `x` (`y`) array, one violin per distinct x (y) value is drawn If no `x` (`y`)
 /// {array} is provided, a single violin is drawn. That violin position is then positioned with with
 /// `name` or with `x0` (`y0`) if provided.
-public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodable {
+public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -485,6 +485,7 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
                 self.outlierColor = outlierColor
                 self.outlierWidth = outlierWidth
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -511,6 +512,7 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
             self.color = color
             self.line = line
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -611,6 +613,7 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
             self.fillColor = fillColor
             self.line = line
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -654,6 +657,7 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
             self.color = color
             self.width = width
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -738,6 +742,7 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -749,6 +754,7 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
         public init(marker: Marker? = nil) {
             self.marker = marker
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -792,6 +798,7 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -803,6 +810,7 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
         public init(marker: Marker? = nil) {
             self.marker = marker
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -963,4 +971,64 @@ public struct Violin<YData, XData>: Trace where YData: Encodable, XData: Encodab
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(x0, forKey: .x0)
+        try container.encodeIfPresent(y0, forKey: .y0)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(orientation, forKey: .orientation)
+        try container.encodeIfPresent(bandwidth, forKey: .bandwidth)
+        try container.encodeIfPresent(scaleGroup, forKey: .scaleGroup)
+        try container.encodeIfPresent(scaleMode, forKey: .scaleMode)
+        try container.encodeIfPresent(spanMode, forKey: .spanMode)
+        try container.encodeIfPresent(span, forKey: .span)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(fillColor, forKey: .fillColor)
+        try container.encodeIfPresent(points, forKey: .points)
+        try container.encodeIfPresent(jitter, forKey: .jitter)
+        try container.encodeIfPresent(pointPosition, forKey: .pointPosition)
+        try container.encodeIfPresent(width, forKey: .width)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(box, forKey: .box)
+        try container.encodeIfPresent(meanLine, forKey: .meanLine)
+        try container.encodeIfPresent(side, forKey: .side)
+        try container.encodeIfPresent(offsetGroup, forKey: .offsetGroup)
+        try container.encodeIfPresent(alignmentGroup, forKey: .alignmentGroup)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(hoverOn, forKey: .hoverOn)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    }
+    
 }

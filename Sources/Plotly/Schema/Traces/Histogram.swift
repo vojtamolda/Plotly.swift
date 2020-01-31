@@ -1,7 +1,7 @@
 /// The sample data from which statistics are computed is set in `x` for vertically spanning histograms and in `y` for horizontally spanning histograms. 
 ///
 /// Binning options are set `xbins` and `ybins` respectively if no aggregation data is provided.
-public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Encodable {
+public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -319,6 +319,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
             self.direction = direction
             self.currentBin = currentBin
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -471,6 +472,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
                 self.opacity = opacity
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -493,6 +495,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -511,6 +514,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -545,6 +549,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
                 self.opacity = opacity
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -567,6 +572,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -585,6 +591,7 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -737,4 +744,61 @@ public struct Histogram<XData, YData>: Trace where XData: Encodable, YData: Enco
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(orientation, forKey: .orientation)
+        try container.encodeIfPresent(binningFunction, forKey: .binningFunction)
+        try container.encodeIfPresent(normalization, forKey: .normalization)
+        try container.encodeIfPresent(cumulative, forKey: .cumulative)
+        try container.encodeIfPresent(xNumBins, forKey: .xNumBins)
+        try container.encodeIfPresent(xBins, forKey: .xBins)
+        try container.encodeIfPresent(yNumBins, forKey: .yNumBins)
+        try container.encodeIfPresent(yBins, forKey: .yBins)
+        try container.encodeIfPresent(xAutoBin, forKey: .xAutoBin)
+        try container.encodeIfPresent(yAutoBin, forKey: .yAutoBin)
+        try container.encodeIfPresent(binGroup, forKey: .binGroup)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(offsetGroup, forKey: .offsetGroup)
+        try container.encodeIfPresent(alignmentGroup, forKey: .alignmentGroup)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(xError, forKey: .xError)
+        try container.encodeIfPresent(yError, forKey: .yError)
+        try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
+        try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    }
+    
 }

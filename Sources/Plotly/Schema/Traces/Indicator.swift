@@ -209,6 +209,7 @@ public struct Indicator: Trace {
             self.align = align
             self.font = font
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -268,6 +269,7 @@ public struct Indicator: Trace {
             self.prefix = prefix
             self.suffix = suffix
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -348,6 +350,7 @@ public struct Indicator: Trace {
                 self.symbol = symbol
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -379,6 +382,7 @@ public struct Indicator: Trace {
                 self.symbol = symbol
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -415,6 +419,7 @@ public struct Indicator: Trace {
             self.decreasing = decreasing
             self.font = font
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -477,6 +482,7 @@ public struct Indicator: Trace {
                 self.line = line
                 self.thickness = thickness
             }
+            
         }
         /// Set the appearance of the gauge's value
         ///
@@ -813,6 +819,7 @@ public struct Indicator: Trace {
                 self.exponentFormat = exponentFormat
                 self.showExponent = showExponent
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -899,6 +906,7 @@ public struct Indicator: Trace {
                 self.name = name
                 self.templateItemName = templateItemName
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -938,6 +946,7 @@ public struct Indicator: Trace {
                 self.thickness = thickness
                 self.value = value
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -968,6 +977,7 @@ public struct Indicator: Trace {
             self.steps = steps
             self.threshold = threshold
         }
+        
     }
     /// The gauge of the Indicator plot.
     ///
@@ -1019,4 +1029,5 @@ public struct Indicator: Trace {
         self.delta = delta
         self.gauge = gauge
     }
+    
 }

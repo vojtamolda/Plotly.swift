@@ -233,6 +233,7 @@ public struct Table: Trace {
             public init(color: ArrayOrColor? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -259,6 +260,7 @@ public struct Table: Trace {
             self.fill = fill
             self.font = font
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -350,6 +352,7 @@ public struct Table: Trace {
             public init(color: ArrayOrColor? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -376,6 +379,7 @@ public struct Table: Trace {
             self.fill = fill
             self.font = font
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -422,4 +426,5 @@ public struct Table: Trace {
         self.header = header
         self.cells = cells
     }
+    
 }

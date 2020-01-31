@@ -1,7 +1,7 @@
 /// The data that describes the choropleth value-to-color mapping is set in `z`. 
 ///
 /// The geographic locations corresponding to each value in `z` are set in `locations`.
-public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Encodable, ZData: Encodable {
+public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Plotable, ZData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -204,6 +204,7 @@ public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Encod
             self.line = line
             self.opacity = opacity
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -229,6 +230,7 @@ public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Encod
             public init(opacity: Double? = nil) {
                 self.opacity = opacity
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -240,6 +242,7 @@ public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Encod
         public init(marker: Marker? = nil) {
             self.marker = marker
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -265,6 +268,7 @@ public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Encod
             public init(opacity: Double? = nil) {
                 self.opacity = opacity
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -276,6 +280,7 @@ public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Encod
         public init(marker: Marker? = nil) {
             self.marker = marker
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -536,4 +541,51 @@ public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Encod
         self.colorAxis = colorAxis
         self.geo = geo
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(locationMode, forKey: .locationMode)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(zAuto, forKey: .zAuto)
+        try container.encodeIfPresent(zMin, forKey: .zMin)
+        try container.encodeIfPresent(zMax, forKey: .zMax)
+        try container.encodeIfPresent(zMiddle, forKey: .zMiddle)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        try container.encodeIfPresent(autoColorScale, forKey: .autoColorScale)
+        try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
+        try container.encodeIfPresent(showScale, forKey: .showScale)
+        try container.encodeIfPresent(colorBar, forKey: .colorBar)
+        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encodeIfPresent(geo, forKey: .geo)
+    
+        if let locations = self.locations {
+            let locationsEncoder = container.superEncoder(forKey: .locations)
+            try locations.encode(toPlotly: locationsEncoder)
+        }
+    
+        if let z = self.z {
+            let zEncoder = container.superEncoder(forKey: .z)
+            try z.encode(toPlotly: zEncoder)
+        }
+    }
+    
 }

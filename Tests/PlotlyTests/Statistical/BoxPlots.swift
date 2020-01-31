@@ -19,10 +19,10 @@ final class BoxPlots: XCTestCase {
 
     /// https://plot.ly/javascript/box-plots/#basic-box-plot
     func testBasicBoxPlot() {
-        let trace1 = Box<[Double], [Int]?>(
+        let trace1 = Box<[Double], [Int]>(
             y: (1...50).map { _ in Double.random(in: 0...1) }
         )
-        let trace2 = Box<[Double], [Int]?>(
+        let trace2 = Box<[Double], [Int]>(
             y: (1...50).map { _ in Double.random(in: 1...2) }
         )
 
@@ -32,7 +32,7 @@ final class BoxPlots: XCTestCase {
 
     /// https://plot.ly/javascript/box-plots/#box-plot-that-displays-the-underlying-data
     func testBoxPlotThatDisplaysTheUnderlyingData() {
-        let trace = Box<[Int], [Int]?>(
+        let trace = Box<[Int], [Int]>(
             y: [0, 1, 1, 2, 3, 5, 8, 13, 21],
             boxPoints: .all,
             jitter: 0.3,
@@ -45,11 +45,11 @@ final class BoxPlots: XCTestCase {
 
     /// https://plot.ly/javascript/box-plots/#horizontal-box-plot
     func testHorizontalBoxPlot() {
-        let trace1 = Box<[Int]?, [Int]>(
+        let trace1 = Box<[Int], [Int]>(
             name: "Set 1",
             x: [1, 2, 3, 4, 4, 4, 8, 9, 10]
         )
-        let trace2 = Box<[Double]?, [Int]>(
+        let trace2 = Box<[Double], [Int]>(
             name: "Set 2",
             x: [2, 3, 3, 3, 3, 5, 6, 6, 7]
         )
@@ -110,7 +110,7 @@ final class BoxPlots: XCTestCase {
         let y = [0.75, 5.25, 5.5, 6, 6.2, 6.6, 6.80, 7.0, 7.2, 7.5, 7.5, 7.75, 8.15,
                  8.15, 8.65, 8.93, 9.2, 9.5, 10, 10.25, 11.5, 12, 16, 20.90, 22.3, 23.25]
 
-        let trace1 = Box<[Double], [Int]?>(
+        let trace1 = Box<[Double], [Int]>(
             name: "All Points",
             y: y,
             boxPoints: .all,
@@ -120,7 +120,7 @@ final class BoxPlots: XCTestCase {
                 color: .RGB(7, 40, 89)
             )
         )
-        let trace2 = Box<[Double], [Int]?>(
+        let trace2 = Box<[Double], [Int]>(
             name: "Only Whiskers",
             y: y,
             boxPoints: .false,
@@ -128,7 +128,7 @@ final class BoxPlots: XCTestCase {
                 color: .RGB(9, 56, 125)
             )
         )
-        let trace3 = Box<[Double], [Int]?>(
+        let trace3 = Box<[Double], [Int]>(
             name: "Suspected Outlier",
             y: y,
             boxPoints: .suspectedOutliers,
@@ -141,7 +141,7 @@ final class BoxPlots: XCTestCase {
                 )
             )
         )
-        let trace4 = Box<[Double], [Int]?>(
+        let trace4 = Box<[Double], [Int]>(
             name: "Whiskers and Outliers",
             y: y,
             boxPoints: .outliers,
@@ -162,7 +162,7 @@ final class BoxPlots: XCTestCase {
         let y = [2.37, 2.16, 4.82, 1.73, 1.04, 0.23, 1.32, 2.91, 0.11, 4.51,
                  0.51, 3.75, 1.35, 2.98, 4.50, 0.18, 4.66, 1.30, 2.06, 1.19]
 
-        let trace1 = Box<[Double], [Int]?>(
+        let trace1 = Box<[Double], [Int]>(
             name: "Only Mean",
             y: y,
             boxMean: .true,
@@ -171,7 +171,7 @@ final class BoxPlots: XCTestCase {
             )
         )
 
-        let trace2 = Box<[Double], [Int]?>(
+        let trace2 = Box<[Double], [Int]>(
             name: "Mean and Standard Deviation",
             y: y,
             boxMean: .sd,
@@ -240,7 +240,7 @@ final class BoxPlots: XCTestCase {
 
     /// https://plot.ly/javascript/box-plots/#colored-box-plot
     func testColoredBoxPlot() {
-        let trace1 = Box<[Double], [Int]?>(
+        let trace1 = Box<[Double], [Int]>(
             name: "Sample A",
             y: [1, 2, 3, 4, 4, 4, 8, 9, 10],
             marker: .init(
@@ -248,7 +248,7 @@ final class BoxPlots: XCTestCase {
             )
         )
 
-        let trace2 = Box<[Double], [Int]?>(
+        let trace2 = Box<[Double], [Int]>(
             name: "Sample B",
             y: [2, 3, 3, 3, 3, 5, 6, 6, 7],
             marker: .init(
@@ -289,7 +289,7 @@ final class BoxPlots: XCTestCase {
 
         var traces = [Trace]()
         for i in 0..<x.count {
-            let trace = Box<[Double], [Int]?>(
+            let trace = Box<[Double], [Int]>(
                 name: x[i],
                 y: y[i],
                 whiskerWidth: 0.2,
@@ -350,7 +350,7 @@ final class BoxPlots: XCTestCase {
 
         var traces = [Trace]()
         for i in 0..<boxNumber {
-            let trace = Box<[Double], [Int]?>(
+            let trace = Box<[Double], [Int]>(
                 y: y[i],
                 marker: .init(
                     color: colors[i]

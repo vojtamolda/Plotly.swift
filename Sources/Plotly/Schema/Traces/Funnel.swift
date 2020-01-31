@@ -4,7 +4,7 @@
 /// appears in a single stage, or in a "drop-off" representation wherein each item appears in each
 /// stage it traversed. See also the "funnelarea" trace type for a different approach to visualizing
 /// funnel data.
-public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodable {
+public struct Funnel<XData, YData>: Trace where XData: Plotable, YData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -531,6 +531,7 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
             self.line = line
             self.visible = visible
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -673,4 +674,62 @@ public struct Funnel<XData, YData>: Trace where XData: Encodable, YData: Encodab
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(x0, forKey: .x0)
+        try container.encodeIfPresent(dx, forKey: .dx)
+        try container.encodeIfPresent(y0, forKey: .y0)
+        try container.encodeIfPresent(dy, forKey: .dy)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(textInfo, forKey: .textInfo)
+        try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(textPosition, forKey: .textPosition)
+        try container.encodeIfPresent(insideTextAnchor, forKey: .insideTextAnchor)
+        try container.encodeIfPresent(textAngle, forKey: .textAngle)
+        try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
+        try container.encodeIfPresent(outSideTextFont, forKey: .outSideTextFont)
+        try container.encodeIfPresent(constrainText, forKey: .constrainText)
+        try container.encodeIfPresent(clipOnAxis, forKey: .clipOnAxis)
+        try container.encodeIfPresent(orientation, forKey: .orientation)
+        try container.encodeIfPresent(offset, forKey: .offset)
+        try container.encodeIfPresent(width, forKey: .width)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(connector, forKey: .connector)
+        try container.encodeIfPresent(offsetGroup, forKey: .offsetGroup)
+        try container.encodeIfPresent(alignmentGroup, forKey: .alignmentGroup)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    }
+    
 }

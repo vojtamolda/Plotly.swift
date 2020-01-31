@@ -1,7 +1,7 @@
 /// Provides similar functionality to the *scatter* type but on a ternary phase diagram. 
 ///
 /// The data is provided by at least two arrays out of `a`, `b`, `c` triplets.
-public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable, BData: Encodable, CData: Encodable {
+public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, BData: Plotable, CData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -366,6 +366,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable,
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -388,6 +389,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable,
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -406,6 +408,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable,
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -449,6 +452,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable,
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -471,6 +475,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable,
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -489,6 +494,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable,
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -664,4 +670,59 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Encodable,
         self.hoverTemplate = hoverTemplate
         self.subPlot = subPlot
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(sum, forKey: .sum)
+        try container.encodeIfPresent(mode, forKey: .mode)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
+        try container.encodeIfPresent(clipOnAxis, forKey: .clipOnAxis)
+        try container.encodeIfPresent(fill, forKey: .fill)
+        try container.encodeIfPresent(fillColor, forKey: .fillColor)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(textPosition, forKey: .textPosition)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverOn, forKey: .hoverOn)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(subPlot, forKey: .subPlot)
+    
+        if let a = self.a {
+            let aEncoder = container.superEncoder(forKey: .a)
+            try a.encode(toPlotly: aEncoder)
+        }
+    
+        if let b = self.b {
+            let bEncoder = container.superEncoder(forKey: .b)
+            try b.encode(toPlotly: bEncoder)
+        }
+    
+        if let c = self.c {
+            let cEncoder = container.superEncoder(forKey: .c)
+            try c.encode(toPlotly: cEncoder)
+        }
+    }
+    
 }

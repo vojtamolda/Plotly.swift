@@ -1,5 +1,5 @@
 /// The data visualized by the radial span of the bars is set in `r`
-public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaData: Encodable {
+public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -333,6 +333,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
                 self.opacity = opacity
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -355,6 +356,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -373,6 +375,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -407,6 +410,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
                 self.opacity = opacity
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -429,6 +433,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -447,6 +452,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -538,4 +544,51 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Encodable, ThetaDat
         self.unselected = unselected
         self.subPlot = subPlot
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(r0, forKey: .r0)
+        try container.encodeIfPresent(dr, forKey: .dr)
+        try container.encodeIfPresent(theta0, forKey: .theta0)
+        try container.encodeIfPresent(dTheta, forKey: .dTheta)
+        try container.encodeIfPresent(thetaUnit, forKey: .thetaUnit)
+        try container.encodeIfPresent(base, forKey: .base)
+        try container.encodeIfPresent(offset, forKey: .offset)
+        try container.encodeIfPresent(width, forKey: .width)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(subPlot, forKey: .subPlot)
+    
+        if let r = self.r {
+            let rEncoder = container.superEncoder(forKey: .r)
+            try r.encode(toPlotly: rEncoder)
+        }
+    
+        if let theta = self.theta {
+            let thetaEncoder = container.superEncoder(forKey: .theta)
+            try theta.encode(toPlotly: thetaEncoder)
+        }
+    }
+    
 }

@@ -3,7 +3,7 @@
 /// The data visualized as scatter point or lines is set in `x` and `y`. Text (appearing either on
 /// the chart or on hover only) is via `text`. Bubble charts are achieved by setting `marker.size`
 /// and/or `marker.color` to numerical arrays.
-public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encodable {
+public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotable {
     ///
     /// # Plotly Reference
     /// [JavaScript](https://plot.ly/javascript/reference/#type) |
@@ -474,6 +474,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
             self.dash = dash
             self.simplify = simplify
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -577,6 +578,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -599,6 +601,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -617,6 +620,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -660,6 +664,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
                 self.color = color
                 self.size = size
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -682,6 +687,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
             public init(color: Color? = nil) {
                 self.color = color
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -700,6 +706,7 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
             self.marker = marker
             self.textFont = textFont
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -878,4 +885,66 @@ public struct Scatter<XData, YData>: Trace where XData: Encodable, YData: Encoda
         self.xAxis = xAxis
         self.yAxis = yAxis
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(transforms, forKey: .transforms)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(x0, forKey: .x0)
+        try container.encodeIfPresent(dx, forKey: .dx)
+        try container.encodeIfPresent(y0, forKey: .y0)
+        try container.encodeIfPresent(dy, forKey: .dy)
+        try container.encodeIfPresent(stackGroup, forKey: .stackGroup)
+        try container.encodeIfPresent(orientation, forKey: .orientation)
+        try container.encodeIfPresent(groupNormalization, forKey: .groupNormalization)
+        try container.encodeIfPresent(stackGaps, forKey: .stackGaps)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(mode, forKey: .mode)
+        try container.encodeIfPresent(hoverOn, forKey: .hoverOn)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
+        try container.encodeIfPresent(clipOnAxis, forKey: .clipOnAxis)
+        try container.encodeIfPresent(fill, forKey: .fill)
+        try container.encodeIfPresent(fillColor, forKey: .fillColor)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(textPosition, forKey: .textPosition)
+        try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(xError, forKey: .xError)
+        try container.encodeIfPresent(yError, forKey: .yError)
+        try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
+        try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
+        try container.encodeIfPresent(xAxis, forKey: .xAxis)
+        try container.encodeIfPresent(yAxis, forKey: .yAxis)
+    
+        if let x = self.x {
+            let xEncoder = container.superEncoder(forKey: .x)
+            try x.encode(toPlotly: xEncoder)
+        }
+    
+        if let y = self.y {
+            let yEncoder = container.superEncoder(forKey: .y)
+            try y.encode(toPlotly: yEncoder)
+        }
+    }
+    
 }

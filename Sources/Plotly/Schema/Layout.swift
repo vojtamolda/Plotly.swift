@@ -522,6 +522,7 @@ public struct Layout: Encodable {
             self.yAnchor = yAnchor
             self.padding = padding
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -629,6 +630,7 @@ public struct Layout: Encodable {
             self.padding = padding
             self.autoExpand = autoExpand
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -825,6 +827,7 @@ public struct Layout: Encodable {
             self.activeColor = activeColor
             self.uiRevision = uiRevision
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -933,6 +936,7 @@ public struct Layout: Encodable {
             self.easing = easing
             self.ordering = ordering
         }
+        
     }
     /// Sets transition options used during Plotly.react updates.
     ///
@@ -1282,6 +1286,7 @@ public struct Layout: Encodable {
                 self.x = x
                 self.y = y
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -1368,6 +1373,7 @@ public struct Layout: Encodable {
             self.xSide = xSide
             self.ySide = ySide
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -1450,6 +1456,7 @@ public struct Layout: Encodable {
                 self.font = font
                 self.standoff = standoff
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -2372,6 +2379,7 @@ public struct Layout: Encodable {
                     self.rangeMode = rangeMode
                     self.range = range
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -2402,6 +2410,7 @@ public struct Layout: Encodable {
                 self.visible = visible
                 self.yAxis = yAxis
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -2554,6 +2563,7 @@ public struct Layout: Encodable {
                     self.name = name
                     self.templateItemName = templateItemName
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -2664,6 +2674,7 @@ public struct Layout: Encodable {
                 self.borderColor = borderColor
                 self.borderWidth = borderWidth
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -2827,6 +2838,7 @@ public struct Layout: Encodable {
             self.rangeSelector = rangeSelector
             self.calendar = calendar
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -2901,6 +2913,7 @@ public struct Layout: Encodable {
                 self.font = font
                 self.standoff = standoff
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -3861,6 +3874,7 @@ public struct Layout: Encodable {
             self.uiRevision = uiRevision
             self.calendar = calendar
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -4316,6 +4330,7 @@ public struct Layout: Encodable {
                 self.min = min
                 self.uiRevision = uiRevision
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -4745,6 +4760,7 @@ public struct Layout: Encodable {
                 self.min = min
                 self.uiRevision = uiRevision
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -5174,6 +5190,7 @@ public struct Layout: Encodable {
                 self.min = min
                 self.uiRevision = uiRevision
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -5212,6 +5229,7 @@ public struct Layout: Encodable {
             self.cAxis = cAxis
             self.uiRevision = uiRevision
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -5267,6 +5285,7 @@ public struct Layout: Encodable {
                     self.y = y
                     self.z = z
                 }
+                
             }
             /// Sets the (x,y,z) components of the 'up' camera vector. 
             ///
@@ -5312,6 +5331,7 @@ public struct Layout: Encodable {
                     self.y = y
                     self.z = z
                 }
+                
             }
             /// Sets the (x,y,z) components of the 'center' camera vector This vector determines the translation (x,y,z) space about the center of this scene. 
             ///
@@ -5356,6 +5376,7 @@ public struct Layout: Encodable {
                     self.y = y
                     self.z = z
                 }
+                
             }
             /// Sets the (x,y,z) components of the 'eye' camera vector. 
             ///
@@ -5395,6 +5416,7 @@ public struct Layout: Encodable {
                 public init(type: `Type`? = nil) {
                     self.type = type
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -5409,6 +5431,7 @@ public struct Layout: Encodable {
                 self.eye = eye
                 self.projection = projection
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -5485,6 +5508,7 @@ public struct Layout: Encodable {
                 self.y = y
                 self.z = z
             }
+            
         }
         /// Sets this scene's axis aspectratio.
         ///
@@ -6116,6 +6140,7 @@ public struct Layout: Encodable {
                 self.zeroLineWidth = zeroLineWidth
                 self.calendar = calendar
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -6746,6 +6771,7 @@ public struct Layout: Encodable {
                 self.zeroLineWidth = zeroLineWidth
                 self.calendar = calendar
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -7376,6 +7402,7 @@ public struct Layout: Encodable {
                 self.zeroLineWidth = zeroLineWidth
                 self.calendar = calendar
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -7827,6 +7854,7 @@ public struct Layout: Encodable {
                     self.borderColor = borderColor
                     self.font = font
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -7952,6 +7980,7 @@ public struct Layout: Encodable {
                 self.name = name
                 self.templateItemName = templateItemName
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -7990,6 +8019,7 @@ public struct Layout: Encodable {
             self.uiRevision = uiRevision
             self.annotations = annotations
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -8129,6 +8159,7 @@ public struct Layout: Encodable {
                     self.latitude = latitude
                     self.roll = roll
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -8163,6 +8194,7 @@ public struct Layout: Encodable {
                 self.parallels = parallels
                 self.scale = scale
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -8206,6 +8238,7 @@ public struct Layout: Encodable {
                 self.longitude = longitude
                 self.latitude = latitude
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -8461,6 +8494,7 @@ public struct Layout: Encodable {
                 self.gridColor = gridColor
                 self.gridWidth = gridWidth
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -8538,6 +8572,7 @@ public struct Layout: Encodable {
                 self.gridColor = gridColor
                 self.gridWidth = gridWidth
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -8622,6 +8657,7 @@ public struct Layout: Encodable {
             self.latitudeAxis = latitudeAxis
             self.uiRevision = uiRevision
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -8703,6 +8739,7 @@ public struct Layout: Encodable {
                 self.longitude = longitude
                 self.latitude = latitude
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -8904,6 +8941,7 @@ public struct Layout: Encodable {
                 public init(radius: Double? = nil) {
                     self.radius = radius
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -8939,6 +8977,7 @@ public struct Layout: Encodable {
                     self.width = width
                     self.dash = dash
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -8968,6 +9007,7 @@ public struct Layout: Encodable {
                 public init(outLineColor: Color? = nil) {
                     self.outLineColor = outLineColor
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -9068,6 +9108,7 @@ public struct Layout: Encodable {
                     self.textFont = textFont
                     self.textPosition = textPosition
                 }
+                
             }
             ///
             /// # Plotly Reference
@@ -9144,6 +9185,7 @@ public struct Layout: Encodable {
                 self.name = name
                 self.templateItemName = templateItemName
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -9186,6 +9228,7 @@ public struct Layout: Encodable {
             self.layers = layers
             self.uiRevision = uiRevision
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -9807,6 +9850,7 @@ public struct Layout: Encodable {
                 self.layer = layer
                 self.calendar = calendar
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -10348,6 +10392,7 @@ public struct Layout: Encodable {
                 self.tickFormatStops = tickFormatStops
                 self.layer = layer
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -10412,6 +10457,7 @@ public struct Layout: Encodable {
             self.gridShape = gridShape
             self.uiRevision = uiRevision
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -10702,6 +10748,7 @@ public struct Layout: Encodable {
             self.uiRevision = uiRevision
             self.verticalAlign = verticalAlign
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -11227,6 +11274,7 @@ public struct Layout: Encodable {
                 self.borderColor = borderColor
                 self.font = font
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -11364,6 +11412,7 @@ public struct Layout: Encodable {
             self.name = name
             self.templateItemName = templateItemName
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -11689,6 +11738,7 @@ public struct Layout: Encodable {
             self.name = name
             self.templateItemName = templateItemName
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -11910,6 +11960,7 @@ public struct Layout: Encodable {
             self.name = name
             self.templateItemName = templateItemName
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -12110,6 +12161,7 @@ public struct Layout: Encodable {
                 self.name = name
                 self.templateItemName = templateItemName
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -12258,6 +12310,7 @@ public struct Layout: Encodable {
             self.name = name
             self.templateItemName = templateItemName
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -12410,6 +12463,7 @@ public struct Layout: Encodable {
                 self.name = name
                 self.templateItemName = templateItemName
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -12545,6 +12599,7 @@ public struct Layout: Encodable {
                 self.duration = duration
                 self.easing = easing
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -12622,6 +12677,7 @@ public struct Layout: Encodable {
                 self.suffix = suffix
                 self.font = font
             }
+            
         }
         ///
         /// # Plotly Reference
@@ -12780,6 +12836,7 @@ public struct Layout: Encodable {
             self.name = name
             self.templateItemName = templateItemName
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -12833,6 +12890,7 @@ public struct Layout: Encodable {
             self.sequentialMinus = sequentialMinus
             self.diverging = diverging
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -12962,6 +13020,7 @@ public struct Layout: Encodable {
             self.showScale = showScale
             self.colorBar = colorBar
         }
+        
     }
     ///
     /// # Plotly Reference
@@ -13114,4 +13173,5 @@ public struct Layout: Encodable {
         self.colorScale = colorScale
         self.colorAxis = colorAxis
     }
+    
 }
