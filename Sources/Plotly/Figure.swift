@@ -21,24 +21,24 @@ public protocol Trace: Encodable {
 /// heatmap, ...).
 ///
 /// Here is a simple example of a Scatter plot chart:
-/// ```
+/// ```swift
 /// let data = [
 ///     Scatter(
 ///         name: "Example scatter plot",
-///         mode: [.lines, .markers]),
 ///         x: [1, 2, 3],
-///         y: [3, 1, 6])
+///         y: [3, 1, 6],
+///         mode: [.lines, .markers])
 /// ]
 /// ```
 /// Here is the equivalent _Plotly.js_ JSON serialization:
 /// ```javascript
-/// data = [
+/// var data = [
 ///    {
 ///        type: 'scatter',
+///        name: 'Example scatter plot',
 ///        x: [1, 2, 3],
 ///        y: [3, 1, 6],
-///        mode: 'lines+markers',
-///        name: 'Example scatter plot',
+///        mode: 'lines+markers'
 ///    }
 /// ];
 /// ```

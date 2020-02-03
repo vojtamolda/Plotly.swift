@@ -61,40 +61,44 @@ public struct HTML {
                               plotly: JavaScriptBundleOption = .included,
                               mathJax: JavaScriptBundleOption = .included,
                               document: Bool = false) throws -> String {
-
         let plotlyScript = plotly.scriptTag(
             library: "plotly.min.js",
-            CDN: URL(string: "https://cdn.plot.ly/plotly-latest.min.js")!)
+            CDN: URL(string: "https://cdn.plot.ly/plotly-latest.min.js")!
+        )
         let mathJaxScript = mathJax.scriptTag(
             library: "MathJax.js",
-            CDN: URL(string: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG")!)
+            CDN: URL(string: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG")!
+        )
 
-        let figureJson = try JSON.create(
-            from: figure, formatting: [.prettyPrinted, .sortedKeys])
+        let figureUuid = UUID()
+        let figureJson = try JSON.create(from: figure)
 
-        let div = """
-            <div>
-                \(plotlyScript)
-                \(mathJaxScript)
-                <div id='figure' class='plotly-graph-div'></div>
-                <script type='text/javascript'>
-                    if (document.getElementById('figure')) {{
-                        Plotly.react('figure', \(figureJson))
-                    }}
-                </script>
-            </div>
+        let figureDiv = """
+        <div id='\(figureUuid)'></div>
+        \(plotlyScript)
+        \(mathJaxScript)
+        <script>
+          Plotly.react('\(figureUuid)',
+            \(figureJson)
+          )
+        </script>
         """
-        
+
         if document {
             return """
-                <html>
-                <head><meta charset="utf-8" /></head>
-                <body>
-                    \(div)
-                </body>
+            <!doctype html>
+            <html>
+            <head>
+              <meta charset='utf-8' />
+            <title>\(figure.layout?.title?.text ?? "")</title>
+            </head>
+            <body>
+              \(figureDiv)
+            </body>
+            </html>
             """
         } else {
-            return div
+            return figureDiv
         }
     }
 }
