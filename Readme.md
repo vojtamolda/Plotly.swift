@@ -1,15 +1,38 @@
 <div align="center">
+<br />
 <img alt="Plotly" src="https://images.plot.ly/logo/new-branding/plotly-logomark.png" width="158">
 
 
-# Plotly.swift
+<h1>Plotly.swift</h1>
 
-### Beautiful, interactive plotting library for Swift built on top of [Plotly](https://plot.ly).
 
-[![BuildBadge]][Build]  [![VersionBadge]][Version]  [![ContributionsBadge]][Contributions] [![LicenseBadge]][License] [![SwiftBadge]][Swift]
+<h3>Interactive chart library for Swift built on top of <a href="https://plot.ly">Plotly</a>.</h3>
 
-[Usage](#usage) • [Internals](#internals) • [License](#license)
+<div>
+  <a href="https://github.com/vojtamolda/Plotly.swift/actions">
+    <img alt="Build Status" src="https://img.shields.io/github/workflow/status/vojtamolda/Plotly.swift/Swift%20Package.svg">
+  </a>
+  <a href="https://github.com/vojtamolda/Plotly.swift/release">
+    <img alt="Release" src="https://img.shields.io/github/v/release/vojtamolda/Plotly.swift.svg?color=lightgrey">
+   </a>
+  <a href="https://en.wikipedia.org/wiki/MIT_License">
+    <img alt="MIT License" src="https://img.shields.io/github/license/vojtamolda/Plotly.swift.svg?color=blue">
+  </a>
+  <a href="https://github.com/vojtamolda/Plotly.swift/issues">
+    <img alt="Contributions Welcome" src="https://img.shields.io/badge/contributions-welcome-blueviolet.svg">
+  </a>
+  <a href="https://developer.apple.com/swift/">
+    <img alt="Swift 5" src="https://img.shields.io/badge/swift-5-orange.svg">
+  </a>
 </div>
+
+<div>
+  <a href="#usage">Usage</a> • 
+  <a href="#internals">Internals</a> • 
+  <a href="#license">License</a>
+</div>
+</div>
+
 
 Library that brings interactive [Plotly](https://plot.ly/javascript/) charts to [Swift](https://swift.org/). It is designed to be simple and easy to use thanks to the interface that follows the [Swift API design guidelines](https://swift.org/documentation/api-design-guidelines/).
 
@@ -64,22 +87,3 @@ Internal infrastructure of the library is built on top of [Plotly.js](https://gi
 # License
 
 Library is licensed under the MIT license. See [the text](License.txt) for more details.
-
-
-
-
-
-[Build]: https://github.com/vojtamolda/Plotly.swift/actions
-[BuildBadge]: https://img.shields.io/github/workflow/status/vojtamolda/Plotly.swift/Swift%20Package.svg "Build Status"
-
-[Version]: https://github.com/vojtamolda/Plotly.swift/tags
-[VersionBadge]: https://img.shields.io/github/v/tag/vojtamolda/Plotly.swift.svg?label=version&color=lightgrey "Latest Version"
-
-[License]: https://en.wikipedia.org/wiki/MIT_License
-[LicenseBadge]: https://img.shields.io/github/license/vojtamolda/Plotly.swift.svg?color=blue "MIT License"
-
-[Contributions]: https://github.com/vojtamolda/Plotly.swift/pulls
-[ContributionsBadge]: https://img.shields.io/badge/contributions-welcome-blueviolet.svg "Contributions Welcome"
-
-[Swift]: https://developer.apple.com/swift/
-[SwiftBadge]: https://img.shields.io/badge/swift-5.1-orange.svg "Swift 5"

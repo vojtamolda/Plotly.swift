@@ -1,0 +1,90 @@
+module: Plotly
+module_version: 0.1.0
+title: Plotly.swift - Interactive Chart Library (0.1.0)
+theme: apple
+
+author: Vojta Molda
+author_url: http://github.com/vojtamolda
+github_url: https://github.com/vojtamolda/Plotly.swift
+root_url: https://vojtamolda.github.io/Plotly.swift
+
+clean: true
+readme: "Readme.md"
+hide_documentation_coverage: true
+
+custom_categories:
+  - name: Basic Traces
+    children:
+      - Scatter
+      - ScatterGL
+      - Bar
+      - Pie
+      - Sunburst
+      - Sankey
+      - Treemap
+      - Image
+      - Table
+
+  - name: Statistical Traces
+    children:
+      - Box
+      - Histogram
+      - Histogram2D
+      - Histogram2DContour
+      - Violin
+      - ParallelCategories
+      - ScatterPlotMatrix
+      - PointCloud
+
+  - name: Scientific Traces
+    children:
+      - Contour
+      - Carpet
+      - ContourCarpet
+      - BarPolar
+      - Heatmap
+      - HeatmapGL
+      - ParallelCoordinates
+      - ScatterPolar
+      - ScatterCarpet
+      - ScatterPolarGL
+      - ScatterTernary
+      - Indicator
+
+  - name: Financial Traces
+    children:
+      - Waterfall
+      - Candlestick
+      - FunnelArea
+      - Funnel
+      - OHLC
+
+  - name: Map Traces
+    children:
+      - Choropleth
+      - ChoroplethMapbox
+      - ScatterGeo
+      - ScatterMapbox
+      - DensityMapbox
+
+  - name: 3D Traces
+    children:
+      - Scatter3D
+      - Surface
+      - Isosurface
+      - Volume
+      - StreamTube
+      - Mesh3D
+      - Cone
+
+  - name: Shared
+    children:
+      - Trace
+      - Plotable
+      - Shared
+
+  - name: Figure
+    children:
+      - Figure
+      - Config
+      - Layout
