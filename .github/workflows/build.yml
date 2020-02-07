@@ -1,0 +1,32 @@
+name: Package
+
+on: [push, pull_request]
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        os: [macOS-latest, ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install swift
+        # Download Swift compiler, install it and update PATH
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          wget https://swift.org/builds/swift-5.1.4-release/ubuntu1804/swift-5.1.4-RELEASE/swift-5.1.4-RELEASE-ubuntu18.04.tar.gz
+          tar xzf swift-5.1.4-RELEASE-ubuntu18.04.tar.gz
+          echo "::add-path::$(pwd)/swift-5.1.4-RELEASE-ubuntu18.04/usr/bin"
+
+      - name: Build package
+        # Build SPM package
+        run: swift build
+
+      - name: Execute tests
+        # Run all unit tests
+        run: swift test
