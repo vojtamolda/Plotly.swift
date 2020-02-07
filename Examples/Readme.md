@@ -4,6 +4,7 @@
 ## Jupyter Notebooks
  
 - ### [`Showcase.ipynb`](Notebooks/Showcase.ipynb) [![ColabBadge]](https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Showcase.ipynb)
+- ### [`Machine Learning.ipynb`](Notebooks/Machine%20Learning.ipynb) [![ColabBadge]](https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Machine%20Learning.ipynb)
 
 [ColabBadge]: https://colab.research.google.com/assets/colab-badge.svg "Run in Google Colab"
 
