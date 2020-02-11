@@ -14,33 +14,6 @@ extension String {
         return "\"\(escaped)\""
     }
 
-    /// Wraps the string with newlines so to not exceed the `width` characters  and formats the text as documentation markup.
-    func documentation(columns: Int = 100) -> [String] {
-        if self == "" { return [] }
-
-        var text = [String]()
-        let scanner = Scanner(string: self)
-
-        if var firstSentence = scanner.scanUpToString(". ") {
-            if let dot = scanner.scanString(". ") { firstSentence += dot }
-            text += ["/// \(firstSentence)"]
-        }
-        if scanner.isAtEnd { return text }
-        text += ["///"]
-
-        var line = "///"
-        while let word = scanner.scanUpToCharacters(from: CharacterSet.whitespacesAndNewlines) {
-            if line.count + word.count + 1 > columns {
-                text += [line]
-                line = "///"
-            }
-            line += " \(word)"
-        }
-        text += [line + scanner.string.suffix(from: scanner.currentIndex)]
-
-        return text
-    }
-
     /// Compares two string by checking whether one contains the other lowercased or vice versa.
     func almostEqual(to other: String) -> Bool {
         let (lowerSelf, lowerOther) = (self.lowercased(), other.lowercased())
@@ -54,8 +27,13 @@ extension Array where Iterator.Element == String {
     func indented(_ count: Int = 1, indentation: String = "    ") -> [Self.Element] {
         return map { $0.indented(count, indentation: indentation) }
     }
-}
 
+    /// Prepends all but the first line with `indentation` repeated `count`-times.
+    func hanginglyIndented(_ count: Int = 1, indentation: String = "    ") -> [Self.Element] {
+        if count <= 1 { return self }
+        return self.prefix(1) + self.suffix(from: 1).map { $0.indented(count, indentation: indentation) }
+    }
+}
 extension Array where Iterator.Element == Definable {
     /// Finds and returns the first `Instance` object with the specified name.
     func firstInstance(named name: String) -> Instance? {
@@ -71,6 +49,7 @@ extension Array where Iterator.Element == Definable {
         }
     }
 }
+
 
 extension KeyedDecodingContainer: CustomDebugStringConvertible {
     /// Visualization of the container as a sequence of coding path keys separated with slashes.

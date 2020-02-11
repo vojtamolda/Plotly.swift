@@ -6,7 +6,11 @@ struct Trace: Definable {
     let schema: Schema.Trace
     let attributes: Swift.Object
 
-    var documentation: [String] { schema.meta["description"]?.documentation() ?? [] }
+    var documentation: Markup {
+        var markup = Markup(parse: schema.meta["description"])
+        markup.addCallout(seeAlso: schema.attributes.path)
+        return markup
+    }
     var definition: [String] { attributes.definition }
 
     init?(identifier: String, schema: Schema.Trace, layout: inout Layout) {
@@ -39,6 +43,9 @@ struct Trace: Definable {
     /// Post-processing hacks that introduce generics and remove obsolete members.
     private func workarounds() {
         var disabledGenerics: [String] = []
+        attributes.frequentProperties = [
+            "name", "line", "marker", "mode", "text", "hoverText", "colorScale", "reverseScale"
+        ]
 
         switch attributes.name {
         case "Bar":

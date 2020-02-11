@@ -1,113 +1,67 @@
-/// Display an image, i.e. 
-///
+/// Display an image, i.e.
+/// 
 /// data on a 2D regular raster. By default, when an image is displayed in a subplot, its y axis
 /// will be reversed (ie. `autorange: 'reversed'`), constrained to the domain (ie. `constrain:
 /// 'domain'`) and it will have the same scale as its x axis (ie. `scaleanchor: 'x,`) in order for
 /// pixels to be rendered as squares.
+/// 
+/// - SeeAlso:
+///   Documentation for 
+///   [Python](https://plot.ly/python/reference/#image), 
+///   [JavaScript](https://plot.ly/javascript/reference/#image) or 
+///   [R](https://plot.ly/r/reference/#image)
 public struct Image<ZData>: Trace where ZData: Plotable {
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
-    /// [Python](https://plot.ly/python/reference/#type) |
-    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "image"
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
-    /// [Python](https://plot.ly/python/reference/#animatable) |
-    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
-    /// Determines whether or not this trace is visible. 
-    ///
+    /// Determines whether or not this trace is visible.
+    /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-visible) |
-    /// [Python](https://plot.ly/python/reference/#image-visible) |
-    /// [R](https://plot.ly/r/reference/#image-visible)
     public var visible: Shared.Visible?
 
     /// Sets the opacity of the trace.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-opacity) |
-    /// [Python](https://plot.ly/python/reference/#image-opacity) |
-    /// [R](https://plot.ly/r/reference/#image-opacity)
     public var opacity: Double?
 
-    /// Sets the trace name. 
-    ///
+    /// Sets the trace name.
+    /// 
     /// The trace name appear as the legend item and on hover.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-name) |
-    /// [Python](https://plot.ly/python/reference/#image-name) |
-    /// [R](https://plot.ly/r/reference/#image-name)
     public var name: String?
 
-    /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-uid) |
-    /// [Python](https://plot.ly/python/reference/#image-uid) |
-    /// [R](https://plot.ly/r/reference/#image-uid)
+    /// Assign an id to this trace, Use this to provide object constancy between traces during
+    /// animations and transitions.
     public var uid: String?
 
-    /// Assigns id labels to each datum. 
-    ///
+    /// Assigns id labels to each datum.
+    /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-ids) |
-    /// [Python](https://plot.ly/python/reference/#image-ids) |
-    /// [R](https://plot.ly/r/reference/#image-ids)
     public var ids: [String]?
 
-    /// Assigns extra data each datum. 
-    ///
+    /// Assigns extra data each datum.
+    /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-customdata) |
-    /// [Python](https://plot.ly/python/reference/#image-customdata) |
-    /// [R](https://plot.ly/r/reference/#image-customdata)
     public var customData: [String]?
 
-    /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
-    ///
+    /// Assigns extra meta information associated with this trace that can be used in various text
+    /// attributes.
+    /// 
     /// Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text`
     /// `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-meta) |
-    /// [Python](https://plot.ly/python/reference/#image-meta) |
-    /// [R](https://plot.ly/r/reference/#image-meta)
     public var meta: ArrayOrAnything?
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-hoverlabel) |
-    /// [Python](https://plot.ly/python/reference/#image-hoverlabel) |
-    /// [R](https://plot.ly/r/reference/#image-hoverlabel)
     public var hoverLabel: Shared.HoverLabel?
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-stream) |
-    /// [Python](https://plot.ly/python/reference/#image-stream) |
-    /// [R](https://plot.ly/r/reference/#image-stream)
     public var stream: Shared.Stream?
 
-    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
-    ///
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
+    /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
+    /// 
     /// Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are
     /// controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`,
     /// `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible
@@ -116,25 +70,12 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-uirevision) |
-    /// [Python](https://plot.ly/python/reference/#image-uirevision) |
-    /// [R](https://plot.ly/r/reference/#image-uirevision)
     public var uiRevision: Anything?
 
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-z) |
-    /// [Python](https://plot.ly/python/reference/#image-z) |
-    /// [R](https://plot.ly/r/reference/#image-z)
     public var z: ZData?
 
     /// Color model used to map the numerical color components described in `z` into colors.
-    ///
-    /// # Used By
-    /// `Image.colorModel` |
     public enum ColorModel: String, Encodable {
         case RGB = "rgb"
         case RGBA = "rgba"
@@ -142,92 +83,44 @@ public struct Image<ZData>: Trace where ZData: Plotable {
         case HSLA = "hsla"
     }
     /// Color model used to map the numerical color components described in `z` into colors.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-colormodel) |
-    /// [Python](https://plot.ly/python/reference/#image-colormodel) |
-    /// [R](https://plot.ly/r/reference/#image-colormodel)
     public var colorModel: ColorModel?
 
-    /// Array defining the lower bound for each color component. 
-    ///
+    /// Array defining the lower bound for each color component.
+    /// 
     /// Note that the default value will depend on the colormodel. For the `rgb` colormodel, it is [0,
     /// 0, 0]. For the `rgba` colormodel, it is [0, 0, 0, 0]. For the `hsl` colormodel, it is [0, 0, 0].
     /// For the `hsla` colormodel, it is [0, 0, 0, 0].
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-zmin) |
-    /// [Python](https://plot.ly/python/reference/#image-zmin) |
-    /// [R](https://plot.ly/r/reference/#image-zmin)
     public var zMin: InfoArray?
 
-    /// Array defining the higher bound for each color component. 
-    ///
+    /// Array defining the higher bound for each color component.
+    /// 
     /// Note that the default value will depend on the colormodel. For the `rgb` colormodel, it is [255,
     /// 255, 255]. For the `rgba` colormodel, it is [255, 255, 255, 1]. For the `hsl` colormodel, it is
     /// [360, 100, 100]. For the `hsla` colormodel, it is [360, 100, 100, 1].
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-zmax) |
-    /// [Python](https://plot.ly/python/reference/#image-zmax) |
-    /// [R](https://plot.ly/r/reference/#image-zmax)
     public var zMax: InfoArray?
 
     /// Set the image's x position.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-x0) |
-    /// [Python](https://plot.ly/python/reference/#image-x0) |
-    /// [R](https://plot.ly/r/reference/#image-x0)
     public var x0: Anything?
 
     /// Set the image's y position.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-y0) |
-    /// [Python](https://plot.ly/python/reference/#image-y0) |
-    /// [R](https://plot.ly/r/reference/#image-y0)
     public var y0: Anything?
 
     /// Set the pixel's horizontal size.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-dx) |
-    /// [Python](https://plot.ly/python/reference/#image-dx) |
-    /// [R](https://plot.ly/r/reference/#image-dx)
     public var dx: Double?
 
     /// Set the pixel's vertical size
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-dy) |
-    /// [Python](https://plot.ly/python/reference/#image-dy) |
-    /// [R](https://plot.ly/r/reference/#image-dy)
     public var dy: Double?
 
     /// Sets the text elements associated with each z value.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-text) |
-    /// [Python](https://plot.ly/python/reference/#image-text) |
-    /// [R](https://plot.ly/r/reference/#image-text)
     public var text: ArrayOrString?
 
     /// Same as `text`.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-hovertext) |
-    /// [Python](https://plot.ly/python/reference/#image-hovertext) |
-    /// [R](https://plot.ly/r/reference/#image-hovertext)
     public var hoverText: ArrayOrString?
 
-    /// Determines which trace information appear on hover. 
-    ///
+    /// Determines which trace information appear on hover.
+    /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    ///
-    /// # Used By
-    /// `Image.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -258,19 +151,14 @@ public struct Image<ZData>: Trace where ZData: Plotable {
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines which trace information appear on hover. 
-    ///
+    /// Determines which trace information appear on hover.
+    /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-hoverinfo) |
-    /// [Python](https://plot.ly/python/reference/#image-hoverinfo) |
-    /// [R](https://plot.ly/r/reference/#image-hoverinfo)
     public var hoverInfo: HoverInfo?
 
-    /// Template string used for rendering the information that appear on hover box. 
-    ///
+    /// Template string used for rendering the information that appear on hover box.
+    /// 
     /// Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example
     /// "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example
     /// "Price: %{y:$.2f}".
@@ -284,36 +172,21 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// true`) are available. variables `z`, `color` and `colormodel`. Anything contained in tag
     /// `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To
     /// hide the secondary box completely, use an empty tag `<extra></extra>`.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-hovertemplate) |
-    /// [Python](https://plot.ly/python/reference/#image-hovertemplate) |
-    /// [R](https://plot.ly/r/reference/#image-hovertemplate)
     public var hoverTemplate: ArrayOrString?
 
-    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis. 
-    ///
+    /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
+    /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-xaxis) |
-    /// [Python](https://plot.ly/python/reference/#image-xaxis) |
-    /// [R](https://plot.ly/r/reference/#image-xaxis)
     public var xAxis: SubPlotID?
 
-    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis. 
-    ///
+    /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
+    /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#image-yaxis) |
-    /// [Python](https://plot.ly/python/reference/#image-yaxis) |
-    /// [R](https://plot.ly/r/reference/#image-yaxis)
     public var yAxis: SubPlotID?
 
-    /// Plotly compatible property encoding
+    /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
         case animatable
@@ -343,7 +216,62 @@ public struct Image<ZData>: Trace where ZData: Plotable {
         case yAxis = "yaxis"
     }
     
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+    /// Creates `Image` object from the most frequently used properties.
+    /// 
+    /// - Parameters:
+    ///   - name: Sets the trace name.
+    ///   - z: A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a
+    ///   color.
+    ///   - text: Sets the text elements associated with each z value.
+    ///   - hoverText: Same as `text`.
+    public init(name: String? = nil, z: ZData? = nil, text: ArrayOrString? = nil, hoverText:
+            ArrayOrString? = nil) {
+        self.name = name
+        self.z = z
+        self.text = text
+        self.hoverText = hoverText
+    }
+    
+    /// Creates `Image` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - visible: Determines whether or not this trace is visible.
+    ///   - opacity: Sets the opacity of the trace.
+    ///   - name: Sets the trace name.
+    ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
+    ///   animations and transitions.
+    ///   - ids: Assigns id labels to each datum.
+    ///   - customData: Assigns extra data each datum.
+    ///   - meta: Assigns extra meta information associated with this trace that can be used in various
+    ///   text attributes.
+    ///   - hoverLabel:
+    ///   - stream:
+    ///   - uiRevision: Controls persistence of some user-driven changes to the trace: `constraintrange`
+    ///   in `parcoords` traces, as well as some `editable: true` modifications such as `name` and
+    ///   `colorbar.title`.
+    ///   - z: A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a
+    ///   color.
+    ///   - colorModel: Color model used to map the numerical color components described in `z` into
+    ///   colors.
+    ///   - zMin: Array defining the lower bound for each color component.
+    ///   - zMax: Array defining the higher bound for each color component.
+    ///   - x0: Set the image's x position.
+    ///   - y0: Set the image's y position.
+    ///   - dx: Set the pixel's horizontal size.
+    ///   - dy: Set the pixel's vertical size
+    ///   - text: Sets the text elements associated with each z value.
+    ///   - hoverText: Same as `text`.
+    ///   - hoverInfo: Determines which trace information appear on hover.
+    ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
+    ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
+    ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
+    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil,
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil,
+            z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil,
+            x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text:
+            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: ArrayOrString? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -370,6 +298,7 @@ public struct Image<ZData>: Trace where ZData: Plotable {
         self.yAxis = yAxis
     }
     
+    /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(type, forKey: .type)

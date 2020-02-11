@@ -3,7 +3,7 @@ import Foundation
 
 /// Container for all shared Swift data types.
 struct Shared: Definable {
-    var documentation: [String] = []
+    var documentation = Markup()
     var definition: [String] {
         var lines = [String]()
         lines += ["public struct Shared {"]

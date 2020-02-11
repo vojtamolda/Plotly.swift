@@ -32,7 +32,7 @@ extension SwiftType {
 
 /// Object that can return lines of Swift code with it's own documentation and definition.
 protocol Definable {
-    var documentation: [String] { get }
+    var documentation: Markup { get }
     var definition: [String] { get }
 
     /// Definition of the data type (including the nested inline structs) within a specific context.
@@ -41,7 +41,7 @@ protocol Definable {
 extension Definable {
     /// Default implementation that ignores context and is useful for simple non-shared objects.
     func define(as context: Swift.Context) -> [String] {
-        return documentation + definition
+        return documentation.text() + definition
     }
 
     /// Default implementation that writes Swift code that defines the data type to a URL.
@@ -66,14 +66,10 @@ protocol SwiftSharedType: SwiftType, Definable, AnyObject {
     func shareable(as other: Self) -> Bool
 }
 extension SwiftSharedType {
-    var documentation: [String] {
-        var lines = origin.description?.documentation() ?? []
-        if !lines.isEmpty { lines += ["///"] }
-        lines += ["/// # Used By"]
-        for instance in instances {
-            lines += ["/// `\(instance.path)` |"]
-        }
-        return lines
+    var documentation: Markup {
+        var markup = Markup(parse: origin.description)
+        markup.addCallout(note: instances)
+        return markup
     }
 
     /// Default implementation for shared types that keeps track of instances.
@@ -87,9 +83,9 @@ extension SwiftSharedType {
     func define(as context: Swift.Context) -> [String] {
         switch context {
         case .inlined:
-            return shared ? [] : documentation + definition
+            return shared ? [] : documentation.text() + definition
         case .shared:
-            return shared ? documentation + definition : []
+            return shared ? documentation.text() + definition : []
         }
     }
 }
@@ -121,9 +117,11 @@ struct Swift {
         var members: [Definable]
         var primitives: [String: Schema.Primitive]
 
-        private var shareable = true
-        private var properties: [Instance] { members.compactMap { $0 as? Instance } }
+        var frequentProperties: [String] = []
+        var properties: [Instance] { members.compactMap { $0 as? Instance } }
+
         static private let ignored: [String] = ["_deprecated", "src", "impliedEdits"]
+        private var shareable = true
 
         var definition: [String] {
             var lines = [String]()
@@ -138,7 +136,8 @@ struct Swift {
             }
 
             lines += codingKeys.indented()
-            lines += initFunction.indented()
+            lines += frequentInitFunction.indented()
+            lines += fullInitFunction.indented()
             lines += encodeFunction.indented()
 
             lines += ["}"]
@@ -149,7 +148,7 @@ struct Swift {
             if properties.filter({ $0.name != $0.origin.name }).isEmpty { return [] }
 
             var lines = [String]()
-            lines += ["/// Plotly compatible property encoding"]
+            lines += ["/// Decoding and encoding keys compatible with Plotly schema."]
             lines += ["enum CodingKeys: String, CodingKey {"]
             for prop in properties {
                 if prop.name == prop.origin.name {
@@ -162,12 +161,35 @@ struct Swift {
             return lines
         }
 
-        private var initFunction: [String] {
-            let variables = properties.filter { $0.constant == nil }
-            let arguments = variables.map { $0.argument + " = nil" }.joined(separator: ", ")
+        private var frequentInitFunction: [String] {
+            if members.count < 10 { return [] }
+            let frequentVariables = properties.filter {
+                if self.generics.contains($0.type.name) { return true }
+                if frequentProperties.contains($0.name) { return true }
+                return false
+            }
+            if frequentVariables.count < 2 { return [] }
 
-            var lines = [String]()
-            lines += ["\(access)init(\(arguments)) {"]
+            var markup = Markup(summary: "Creates `\(name)` object from the most frequently used properties.")
+            markup.addCallout(parameters: frequentVariables)
+
+            var lines = markup.text()
+            let frequentArguments = frequentVariables.map { $0.argument + " = nil" }.joined(separator: ", ")
+            lines += "\(access)init(\(frequentArguments)) {".wrapped(at: Markup.width).hanginglyIndented(2)
+            lines += frequentVariables.map { "self.\($0.name) = \($0.name)" }.indented()
+            lines += ["}", ""]
+            return lines
+        }
+
+        private var fullInitFunction: [String] {
+            let variables = properties.filter { $0.constant == nil }
+
+            var markup = Markup(summary: "Creates `\(name)` object with specified properties.")
+            markup.addCallout(parameters: variables)
+
+            var lines = markup.text()
+            let arguments = variables.map { $0.argument + " = nil" }.joined(separator: ", ")
+            lines += "\(access)init(\(arguments)) {".wrapped(at: Markup.width).hanginglyIndented(2)
             lines += variables.map { "self.\($0.name) = \($0.name)" }.indented()
             lines += ["}", ""]
             return lines
@@ -177,6 +199,7 @@ struct Swift {
             if self.generics.isEmpty { return [] }
 
             var lines = [String]()
+            lines += ["/// Encodes the object in a format compatible with Plotly."]
             lines += ["\(access)func encode(to encoder: Encoder) throws {"]
             lines += ["var container = encoder.container(keyedBy: CodingKeys.self)"].indented()
             for prop in properties where !generics.contains(prop.type.name) {

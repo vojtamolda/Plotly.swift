@@ -5,7 +5,11 @@ import Foundation
 struct Layout: Definable {
     var layoutAttributes: Swift.Object
 
-    var documentation: [String] = []
+    var documentation: Markup {
+        var markup = Markup(summary: "Specification of element arrangement on a `Figure` that applies to all traces.")
+        markup.addCallout(seeAlso: layoutAttributes.path)
+        return markup
+    }
     var definition: [String] { layoutAttributes.definition }
 
     init(schema: Schema.Layout) {

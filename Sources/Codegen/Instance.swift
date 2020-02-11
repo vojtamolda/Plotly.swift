@@ -12,29 +12,16 @@ class Instance: Definable {
     let parent: Swift.Object?
 
     var path: String { (parent?.path ?? "") + "." + name }
+
     var argument: String {
         var dataType = (type.parent?.name == self.parent?.name) ? type.name : "Shared.\(type.name)"
         dataType = self.array ? "[\(dataType)]" : dataType
         dataType = self.optional ? "\(dataType)?" : dataType
         return "\(name): \(dataType)"
     }
-    var documentation: [String] {
-        var link = origin.path
-        link = link.replacingOccurrences(of: "/", with: "-")
-        link = link.replacingOccurrences(of: "traces-", with: "")
-        link = link.replacingOccurrences(of: "attributes-", with: "")
-        link = link.replacingOccurrences(of: "layoutAttributes-", with: "")
-        let reference = [
-            "///",
-            "/// # Plotly Reference",
-            "/// [JavaScript](https://plot.ly/javascript/reference/#\(link)) |",
-            "/// [Python](https://plot.ly/python/reference/#\(link)) |",
-            "/// [R](https://plot.ly/r/reference/#\(link))",
 
-        ]
-        let documentation = origin.description?.documentation() ?? []
-        return documentation + reference
-    }
+    var documentation: Markup { Markup(parse: origin.description) }
+
     var definition: [String] {
         if let const = self.constant {
             return ["\(access)let \(argument) = \(const)"]
@@ -62,9 +49,9 @@ class Instance: Definable {
 
     func define(as context: Swift.Context) -> [String] {
         if let definable = type as? Definable {
-            return definable.define(as: .inlined) + documentation + definition
+            return definable.define(as: .inlined) + documentation.text() + definition
         } else {
-            return documentation + definition
+            return documentation.text() + definition
         }
     }
 }
@@ -75,6 +62,6 @@ struct Mark: Definable {
     var label: String
     var separator = true
 
-    var documentation: [String] = []
+    var documentation = Markup()
     var definition: [String] { ["", "// MARK: \(separator ? "-" : "") \(label)"] }
 }

@@ -1,106 +1,65 @@
-/// Use a streamtube trace to visualize flow in a vector field. 
-///
+/// Use a streamtube trace to visualize flow in a vector field.
+/// 
 /// Specify a vector field using 6 1D arrays of equal length, 3 position arrays `x`, `y` and `z` and
 /// 3 vector component arrays `u`, `v`, and `w`. By default, the tubes' starting positions will be
 /// cut from the vector field's x-z plane at its minimum y value. To specify your own starting
 /// position, use attributes `starts.x`, `starts.y` and `starts.z`. The color is encoded by the norm
 /// of (u, v, w), and the local radius by the divergence of (u, v, w).
+/// 
+/// - SeeAlso:
+///   Documentation for 
+///   [Python](https://plot.ly/python/reference/#streamtube), 
+///   [JavaScript](https://plot.ly/javascript/reference/#streamtube) or 
+///   [R](https://plot.ly/r/reference/#streamtube)
 public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Plotable {
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#type) |
-    /// [Python](https://plot.ly/python/reference/#type) |
-    /// [R](https://plot.ly/r/reference/#type)
     public let type: String = "streamtube"
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#animatable) |
-    /// [Python](https://plot.ly/python/reference/#animatable) |
-    /// [R](https://plot.ly/r/reference/#animatable)
     public let animatable: Bool = false
 
-    /// Determines whether or not this trace is visible. 
-    ///
+    /// Determines whether or not this trace is visible.
+    /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-visible) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-visible) |
-    /// [R](https://plot.ly/r/reference/#streamtube-visible)
     public var visible: Shared.Visible?
 
-    /// Sets the trace name. 
-    ///
+    /// Sets the trace name.
+    /// 
     /// The trace name appear as the legend item and on hover.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-name) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-name) |
-    /// [R](https://plot.ly/r/reference/#streamtube-name)
     public var name: String?
 
-    /// Assign an id to this trace, Use this to provide object constancy between traces during animations and transitions.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-uid) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-uid) |
-    /// [R](https://plot.ly/r/reference/#streamtube-uid)
+    /// Assign an id to this trace, Use this to provide object constancy between traces during
+    /// animations and transitions.
     public var uid: String?
 
-    /// Assigns id labels to each datum. 
-    ///
+    /// Assigns id labels to each datum.
+    /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-ids) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-ids) |
-    /// [R](https://plot.ly/r/reference/#streamtube-ids)
     public var ids: [String]?
 
-    /// Assigns extra data each datum. 
-    ///
+    /// Assigns extra data each datum.
+    /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-customdata) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-customdata) |
-    /// [R](https://plot.ly/r/reference/#streamtube-customdata)
     public var customData: [String]?
 
-    /// Assigns extra meta information associated with this trace that can be used in various text attributes. 
-    ///
+    /// Assigns extra meta information associated with this trace that can be used in various text
+    /// attributes.
+    /// 
     /// Attributes such as trace `name`, graph, axis and colorbar `title.text`, annotation `text`
     /// `rangeselector`, `updatemenues` and `sliders` `label` text all support `meta`. To access the
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-meta) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-meta) |
-    /// [R](https://plot.ly/r/reference/#streamtube-meta)
     public var meta: ArrayOrAnything?
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hoverlabel) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-hoverlabel) |
-    /// [R](https://plot.ly/r/reference/#streamtube-hoverlabel)
     public var hoverLabel: Shared.HoverLabel?
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-stream) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-stream) |
-    /// [R](https://plot.ly/r/reference/#streamtube-stream)
     public var stream: Shared.Stream?
 
-    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. 
-    ///
+    /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
+    /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
+    /// 
     /// Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are
     /// controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`,
     /// `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible
@@ -109,88 +68,42 @@ public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Plotable, UVWDa
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-uirevision) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-uirevision) |
-    /// [R](https://plot.ly/r/reference/#streamtube-uirevision)
     public var uiRevision: Anything?
 
     /// Sets the x coordinates of the vector field.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-x) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-x) |
-    /// [R](https://plot.ly/r/reference/#streamtube-x)
     public var x: XYZData?
 
     /// Sets the y coordinates of the vector field.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-y) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-y) |
-    /// [R](https://plot.ly/r/reference/#streamtube-y)
     public var y: XYZData?
 
     /// Sets the z coordinates of the vector field.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-z) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-z) |
-    /// [R](https://plot.ly/r/reference/#streamtube-z)
     public var z: XYZData?
 
     /// Sets the x components of the vector field.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-u) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-u) |
-    /// [R](https://plot.ly/r/reference/#streamtube-u)
     public var u: UVWData?
 
     /// Sets the y components of the vector field.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-v) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-v) |
-    /// [R](https://plot.ly/r/reference/#streamtube-v)
     public var v: UVWData?
 
     /// Sets the z components of the vector field.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-w) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-w) |
-    /// [R](https://plot.ly/r/reference/#streamtube-w)
     public var w: UVWData?
 
-    /// # Used By
-    /// `StreamTube.starts` |
     public struct Starts: Encodable {
         /// Sets the x components of the starting position of the streamtubes
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-starts-x) |
-        /// [Python](https://plot.ly/python/reference/#streamtube-starts-x) |
-        /// [R](https://plot.ly/r/reference/#streamtube-starts-x)
         public var x: [Double]?
     
         /// Sets the y components of the starting position of the streamtubes
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-starts-y) |
-        /// [Python](https://plot.ly/python/reference/#streamtube-starts-y) |
-        /// [R](https://plot.ly/r/reference/#streamtube-starts-y)
         public var y: [Double]?
     
         /// Sets the z components of the starting position of the streamtubes
-        ///
-        /// # Plotly Reference
-        /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-starts-z) |
-        /// [Python](https://plot.ly/python/reference/#streamtube-starts-z) |
-        /// [R](https://plot.ly/r/reference/#streamtube-starts-z)
         public var z: [Double]?
     
+        /// Creates `Starts` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - x: Sets the x components of the starting position of the streamtubes
+        ///   - y: Sets the y components of the starting position of the streamtubes
+        ///   - z: Sets the z components of the starting position of the streamtubes
         public init(x: [Double]? = nil, y: [Double]? = nil, z: [Double]? = nil) {
             self.x = x
             self.y = y
@@ -198,53 +111,28 @@ public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Plotable, UVWDa
         }
         
     }
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-starts) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-starts) |
-    /// [R](https://plot.ly/r/reference/#streamtube-starts)
     public var starts: Starts?
 
     /// The maximum number of displayed segments in a streamtube.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-maxdisplayed) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-maxdisplayed) |
-    /// [R](https://plot.ly/r/reference/#streamtube-maxdisplayed)
     public var maxDisplayed: Int?
 
-    /// The scaling factor for the streamtubes. 
-    ///
+    /// The scaling factor for the streamtubes.
+    /// 
     /// The default is 1, which avoids two max divergence tubes from touching at adjacent starting
     /// positions.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-sizeref) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-sizeref) |
-    /// [R](https://plot.ly/r/reference/#streamtube-sizeref)
     public var sizeReference: Double?
 
-    /// Sets a text element associated with this trace. 
-    ///
+    /// Sets a text element associated with this trace.
+    /// 
     /// If trace `hoverinfo` contains a *text* flag, this text element will be seen in all hover labels.
     /// Note that streamtube traces do not support array `text` values.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-text) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-text) |
-    /// [R](https://plot.ly/r/reference/#streamtube-text)
     public var text: ArrayOrString?
 
     /// Same as `text`.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hovertext) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-hovertext) |
-    /// [R](https://plot.ly/r/reference/#streamtube-hovertext)
     public var hoverText: ArrayOrString?
 
-    /// Template string used for rendering the information that appear on hover box. 
-    ///
+    /// Template string used for rendering the information that appear on hover box.
+    /// 
     /// Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example
     /// "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example
     /// "Price: %{y:$.2f}".
@@ -259,150 +147,81 @@ public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Plotable, UVWDa
     /// `divergence`. Anything contained in tag `<extra>` is displayed in the secondary box, for example
     /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hovertemplate) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-hovertemplate) |
-    /// [R](https://plot.ly/r/reference/#streamtube-hovertemplate)
     public var hoverTemplate: ArrayOrString?
 
-    /// Determines whether or not the color domain is computed with respect to the input data (here u/v/w norm) or the bounds set in `cmin` and `cmax`  Defaults to `false` when `cmin` and `cmax` are set by the user.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-cauto) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-cauto) |
-    /// [R](https://plot.ly/r/reference/#streamtube-cauto)
+    /// Determines whether or not the color domain is computed with respect to the input data (here
+    /// u/v/w norm) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax`
+    /// are set by the user.
     public var cAuto: Bool?
 
-    /// Sets the lower bound of the color domain. 
-    ///
+    /// Sets the lower bound of the color domain.
+    /// 
     /// Value should have the same units as u/v/w norm and if set, `cmax` must be set as well.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-cmin) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-cmin) |
-    /// [R](https://plot.ly/r/reference/#streamtube-cmin)
     public var cMin: Double?
 
-    /// Sets the upper bound of the color domain. 
-    ///
+    /// Sets the upper bound of the color domain.
+    /// 
     /// Value should have the same units as u/v/w norm and if set, `cmin` must be set as well.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-cmax) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-cmax) |
-    /// [R](https://plot.ly/r/reference/#streamtube-cmax)
     public var cMax: Double?
 
-    /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this point. 
-    ///
+    /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this
+    /// point.
+    /// 
     /// Value should have the same units as u/v/w norm. Has no effect when `cauto` is `false`.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-cmid) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-cmid) |
-    /// [R](https://plot.ly/r/reference/#streamtube-cmid)
     public var cMiddle: Double?
 
-    /// Sets the colorscale. 
-    ///
+    /// Sets the colorscale.
+    /// 
     /// The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba,
     /// hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1)
     /// values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the
     /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-colorscale) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-colorscale) |
-    /// [R](https://plot.ly/r/reference/#streamtube-colorscale)
     public var colorScale: ColorScale?
 
-    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette determined by `colorscale`. 
-    ///
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
+    /// determined by `colorscale`.
+    /// 
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-autocolorscale) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-autocolorscale) |
-    /// [R](https://plot.ly/r/reference/#streamtube-autocolorscale)
     public var autoColorScale: Bool?
 
-    /// Reverses the color mapping if true. 
-    ///
+    /// Reverses the color mapping if true.
+    /// 
     /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
     /// first color.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-reversescale) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-reversescale) |
-    /// [R](https://plot.ly/r/reference/#streamtube-reversescale)
     public var reverseScale: Bool?
 
     /// Determines whether or not a colorbar is displayed for this trace.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-showscale) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-showscale) |
-    /// [R](https://plot.ly/r/reference/#streamtube-showscale)
     public var showScale: Bool?
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-colorbar) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-colorbar) |
-    /// [R](https://plot.ly/r/reference/#streamtube-colorbar)
     public var colorBar: Shared.ColorBar?
 
-    /// Sets a reference to a shared color axis. 
-    ///
+    /// Sets a reference to a shared color axis.
+    /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-coloraxis) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-coloraxis) |
-    /// [R](https://plot.ly/r/reference/#streamtube-coloraxis)
     public var colorAxis: SubPlotID?
 
-    /// Sets the opacity of the surface. 
-    ///
+    /// Sets the opacity of the surface.
+    /// 
     /// Please note that in the case of using high `opacity` values for example a value greater than or
     /// equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent
     /// surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in
     /// the near future and is subject to change.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-opacity) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-opacity) |
-    /// [R](https://plot.ly/r/reference/#streamtube-opacity)
     public var opacity: Double?
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-lightposition) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-lightposition) |
-    /// [R](https://plot.ly/r/reference/#streamtube-lightposition)
     public var lightPosition: Shared.LightPosition?
 
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-lighting) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-lighting) |
-    /// [R](https://plot.ly/r/reference/#streamtube-lighting)
     public var lighting: Shared.Lighting?
 
-    /// Determines which trace information appear on hover. 
-    ///
+    /// Determines which trace information appear on hover.
+    /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    ///
-    /// # Used By
-    /// `StreamTube.hoverInfo` |
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -441,29 +260,19 @@ public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Plotable, UVWDa
             try container.encode(options.joined(separator: "+"))
         }
     }
-    /// Determines which trace information appear on hover. 
-    ///
+    /// Determines which trace information appear on hover.
+    /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-hoverinfo) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-hoverinfo) |
-    /// [R](https://plot.ly/r/reference/#streamtube-hoverinfo)
     public var hoverInfo: HoverInfo?
 
-    /// Sets a reference between this trace's 3D coordinate system and a 3D scene. 
-    ///
+    /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
+    /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    ///
-    /// # Plotly Reference
-    /// [JavaScript](https://plot.ly/javascript/reference/#streamtube-scene) |
-    /// [Python](https://plot.ly/python/reference/#streamtube-scene) |
-    /// [R](https://plot.ly/r/reference/#streamtube-scene)
     public var scene: SubPlotID?
 
-    /// Plotly compatible property encoding
+    /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
         case animatable
@@ -505,7 +314,94 @@ public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Plotable, UVWDa
         case scene
     }
     
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? = nil, w: UVWData? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
+    /// Creates `StreamTube` object from the most frequently used properties.
+    /// 
+    /// - Parameters:
+    ///   - name: Sets the trace name.
+    ///   - x: Sets the x coordinates of the vector field.
+    ///   - y: Sets the y coordinates of the vector field.
+    ///   - z: Sets the z coordinates of the vector field.
+    ///   - u: Sets the x components of the vector field.
+    ///   - v: Sets the y components of the vector field.
+    ///   - w: Sets the z components of the vector field.
+    ///   - text: Sets a text element associated with this trace.
+    ///   - hoverText: Same as `text`.
+    ///   - colorScale: Sets the colorscale.
+    ///   - reverseScale: Reverses the color mapping if true.
+    public init(name: String? = nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, u:
+            UVWData? = nil, v: UVWData? = nil, w: UVWData? = nil, text: ArrayOrString? = nil, hoverText:
+            ArrayOrString? = nil, colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
+        self.name = name
+        self.x = x
+        self.y = y
+        self.z = z
+        self.u = u
+        self.v = v
+        self.w = w
+        self.text = text
+        self.hoverText = hoverText
+        self.colorScale = colorScale
+        self.reverseScale = reverseScale
+    }
+    
+    /// Creates `StreamTube` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - visible: Determines whether or not this trace is visible.
+    ///   - name: Sets the trace name.
+    ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
+    ///   animations and transitions.
+    ///   - ids: Assigns id labels to each datum.
+    ///   - customData: Assigns extra data each datum.
+    ///   - meta: Assigns extra meta information associated with this trace that can be used in various
+    ///   text attributes.
+    ///   - hoverLabel:
+    ///   - stream:
+    ///   - uiRevision: Controls persistence of some user-driven changes to the trace: `constraintrange`
+    ///   in `parcoords` traces, as well as some `editable: true` modifications such as `name` and
+    ///   `colorbar.title`.
+    ///   - x: Sets the x coordinates of the vector field.
+    ///   - y: Sets the y coordinates of the vector field.
+    ///   - z: Sets the z coordinates of the vector field.
+    ///   - u: Sets the x components of the vector field.
+    ///   - v: Sets the y components of the vector field.
+    ///   - w: Sets the z components of the vector field.
+    ///   - starts:
+    ///   - maxDisplayed: The maximum number of displayed segments in a streamtube.
+    ///   - sizeReference: The scaling factor for the streamtubes.
+    ///   - text: Sets a text element associated with this trace.
+    ///   - hoverText: Same as `text`.
+    ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
+    ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
+    ///   (here u/v/w norm) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and
+    ///   `cmax` are set by the user.
+    ///   - cMin: Sets the lower bound of the color domain.
+    ///   - cMax: Sets the upper bound of the color domain.
+    ///   - cMiddle: Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be
+    ///   equidistant to this point.
+    ///   - colorScale: Sets the colorscale.
+    ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
+    ///   true`) or the palette determined by `colorscale`.
+    ///   - reverseScale: Reverses the color mapping if true.
+    ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
+    ///   - colorBar:
+    ///   - colorAxis: Sets a reference to a shared color axis.
+    ///   - opacity: Sets the opacity of the surface.
+    ///   - lightPosition:
+    ///   - lighting:
+    ///   - hoverInfo: Determines which trace information appear on hover.
+    ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
+    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
+            [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel:
+            Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XYZData?
+            = nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? = nil, w: UVWData? =
+            nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text:
+            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil,
+            cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil,
+            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
+            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity:
+            Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil,
+            hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -544,6 +440,7 @@ public struct StreamTube<XYZData, UVWData>: Trace where XYZData: Plotable, UVWDa
         self.scene = scene
     }
     
+    /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(type, forKey: .type)
