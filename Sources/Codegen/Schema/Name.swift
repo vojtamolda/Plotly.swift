@@ -1,5 +1,5 @@
 
-/// Dictionary containing a translated identifier for each object of the Plotly schema hierarchy
+/// Container for dictionaries with translated identifiers for each object of the Plotly schema hierarchy.
 struct Name: Decodable {
     var object: [String: String]
     let attribute: [String: String]
@@ -8,7 +8,7 @@ struct Name: Decodable {
     let enumerated: [String: String]
     let flaglist: [String: String]
 
-    /// Returns `identifier` translated from Plotly schema mangledtogether to Swift camelCased convention.
+    /// Returns `identifier` translated from Plotly's mangledtogether to Swift's camelCased convention.
     func camelCased(_ identifier: String) -> String {
         if let camelCased = self.primitive[identifier] {
             return camelCased
@@ -23,7 +23,7 @@ struct Name: Decodable {
         }
     }
 
-    /// Returns `identifier` translated from Plotly schema mangledtogether to Swift PascalCased convention.
+    /// Returns `identifier` translated from Plotly's mangledtogether to Swift's PascalCased convention.
     func pascalCased(_ identifier: String) -> String {
         if let pascalCased = self.object[identifier] {
             return pascalCased

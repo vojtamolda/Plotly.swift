@@ -1,10 +1,8 @@
-import Foundation
 
-
-/// Swift struct corresponding to a Plotly `trace`.
+/// Generated struct corresponding to one of Plotly `trace`s.
 struct Trace: Definable {
     let schema: Schema.Trace
-    let attributes: Swift.Object
+    let attributes: Generated.Object
 
     var documentation: Markup {
         var markup = Markup(parse: schema.meta["description"])
@@ -17,21 +15,21 @@ struct Trace: Definable {
         if identifier == "area" { return nil }
         self.schema = schema
 
-        attributes = Swift.Object(named: identifier, schema: schema.attributes)!
+        attributes = Generated.Object(named: identifier, schema: schema.attributes)!
         attributes.protocols = ["Trace"]
 
-        let stringSchema = Schema.String_(codingPath: [Schema.Keys("type")], valType: "string", description: nil,
+        let predefinedString = Predefined.String_(codingPath: [Schema.Keys("type")], valType: "string", description: nil,
                 editType: nil, role: nil, dflt: nil, noBlank: nil, strict: nil, values: nil, arrayOk: nil)
-        let stringType = Swift.String_(parent: attributes, schema: stringSchema)
-        let typeConst = Instance(of: stringType, named: "type")
+        let generatedString = Generated.String_(parent: attributes, schema: predefinedString)
+        let typeConst = Instance(of: generatedString, named: "type")
         typeConst.constant = schema.type.escaped()
         typeConst.optional = false
         attributes.members.insert(typeConst, at: 0)
 
-        let boolSchema = Schema.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool", description: nil,
+        let predefinedBol = Predefined.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool", description: nil,
                 editType: nil, role: nil)
-        let boolType = Swift.Boolean(parent: attributes, schema: boolSchema)
-        let animatableConst = Instance(of: boolType, named: "animatable")
+        let generatedBool = Generated.Boolean(parent: attributes, schema: predefinedBol)
+        let animatableConst = Instance(of: generatedBool, named: "animatable")
         animatableConst.constant = String(schema.animatable)
         animatableConst.optional = false
         attributes.members.insert(animatableConst, at: 1)
@@ -40,7 +38,7 @@ struct Trace: Definable {
         layoutWorkarounds(schema: schema, layout: &layout)
     }
 
-    /// Post-processing hacks that introduce generics and remove obsolete members.
+    /// Post-processing to introduce generics and remove obsolete members.
     private func workarounds() {
         var disabledGenerics: [String] = []
         attributes.frequentProperties = [
@@ -65,43 +63,43 @@ struct Trace: Definable {
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let z = attributes.members.firstInstance(named: "z")!
-            let xyzData = Swift.Generic(name: "XYZData", parent: attributes,
+            let xyzData = Generated.Generic(name: "XYZData", parent: attributes,
                     origin: x.origin, constraint: "Plotable")
-            x.type = Swift.Override(of: x.type, as: xyzData.name)
-            y.type = Swift.Override(of: y.type, as: xyzData.name)
-            z.type = Swift.Override(of: z.type, as: xyzData.name)
+            x.type = Generated.Override(of: x.type, as: xyzData.name)
+            y.type = Generated.Override(of: y.type, as: xyzData.name)
+            z.type = Generated.Override(of: z.type, as: xyzData.name)
             let u = attributes.members.firstInstance(named: "u")!
             let v = attributes.members.firstInstance(named: "v")!
             let w = attributes.members.firstInstance(named: "w")!
-            let uvwData = Swift.Generic(name: "UVWData", parent: attributes,
+            let uvwData = Generated.Generic(name: "UVWData", parent: attributes,
                     origin: u.origin, constraint: "Plotable")
-            u.type = Swift.Override(of: u.type, as: uvwData.name)
-            v.type = Swift.Override(of: v.type, as: uvwData.name)
-            w.type = Swift.Override(of: w.type, as: uvwData.name)
+            u.type = Generated.Override(of: u.type, as: uvwData.name)
+            v.type = Generated.Override(of: v.type, as: uvwData.name)
+            w.type = Generated.Override(of: w.type, as: uvwData.name)
 
         case "Heatmap":
             fallthrough
         case "HeatmapGL":
             disabledGenerics += ["z", "x", "y"]
             let z = attributes.members.firstInstance(named: "z")!
-            let zData = Swift.Generic(name: "ZData", parent: attributes,
+            let zData = Generated.Generic(name: "ZData", parent: attributes,
                     origin: z.origin, constraint: "Plotable")
-            z.type = Swift.Override(of: z.type, as: zData.name)
+            z.type = Generated.Override(of: z.type, as: zData.name)
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
-            let xyData = Swift.Generic(name: "XYData", parent: attributes,
+            let xyData = Generated.Generic(name: "XYData", parent: attributes,
                     origin: x.origin, constraint: "Plotable")
-            x.type = Swift.Override(of: x.type, as: xyData.name)
-            y.type = Swift.Override(of: y.type, as: xyData.name)
+            x.type = Generated.Override(of: x.type, as: xyData.name)
+            y.type = Generated.Override(of: y.type, as: xyData.name)
 
         case "Mesh3D":
             disabledGenerics += ["i", "j", "k"]
             let i = attributes.members.firstInstance(named: "i")!
-            i.type = Swift.Override(of: i.type, as: "[Int]")
+            i.type = Generated.Override(of: i.type, as: "[Int]")
             let j = attributes.members.firstInstance(named: "j")!
-            j.type = Swift.Override(of: j.type, as: "[Int]")
+            j.type = Generated.Override(of: j.type, as: "[Int]")
             let k = attributes.members.firstInstance(named: "k")!
-            k.type = Swift.Override(of: k.type, as: "[Int]")
+            k.type = Generated.Override(of: k.type, as: "[Int]")
 
         case "Scatter":
             let obsolete = ["t", "r"]
@@ -109,66 +107,66 @@ struct Trace: Definable {
 
         case "Pie":
             let marker = attributes.members.firstInstance(named: "marker")!
-            let markerColors = (marker.type as! Swift.Object).members.firstInstance(named: "colors")!
-            markerColors.type = Swift.Override(of: markerColors.type, as: "ArrayOrColor")
+            let markerColors = (marker.type as! Generated.Object).members.firstInstance(named: "colors")!
+            markerColors.type = Generated.Override(of: markerColors.type, as: "ArrayOrColor")
 
         case "PointCloud":
             disabledGenerics += ["x", "y", "xy", "xBounds", "yBounds", "indices"]
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let xy = attributes.members.firstInstance(named: "xy")!
-            let xyData = Swift.Generic(name: "XYData", parent: attributes,
+            let xyData = Generated.Generic(name: "XYData", parent: attributes,
                     origin: x.origin, constraint: "Plotable")
-            x.type = Swift.Override(of: x.type, as: xyData.name)
-            y.type = Swift.Override(of: y.type, as: xyData.name)
-            xy.type = Swift.Override(of: xy.type, as: xyData.name)
+            x.type = Generated.Override(of: x.type, as: xyData.name)
+            y.type = Generated.Override(of: y.type, as: xyData.name)
+            xy.type = Generated.Override(of: xy.type, as: xyData.name)
             let indices = attributes.members.firstInstance(named: "indices")!
-            indices.type = Swift.Override(of: indices.type, as: "[Int]")
+            indices.type = Generated.Override(of: indices.type, as: "[Int]")
 
         case "Sunburst":
             fallthrough
         case "Treemap":
             disabledGenerics += ["parents", "labels"]
             let parents = attributes.members.firstInstance(named: "parents")!
-            parents.type = Swift.Override(of: parents.type, as: "[String]")
+            parents.type = Generated.Override(of: parents.type, as: "[String]")
             let labels = attributes.members.firstInstance(named: "labels")!
-            labels.type = Swift.Override(of: labels.type, as: "[String]")
+            labels.type = Generated.Override(of: labels.type, as: "[String]")
 
         case "Surface":
             disabledGenerics += ["z", "x", "y", "surfaceColor"]
             let z = attributes.members.firstInstance(named: "z")!
             let surfaceColor = attributes.members.firstInstance(named: "z")!
-            let zData = Swift.Generic(name: "ZData", parent: attributes,
+            let zData = Generated.Generic(name: "ZData", parent: attributes,
                     origin: z.origin, constraint: "Plotable")
-            z.type = Swift.Override(of: z.type, as: zData.name)
-            surfaceColor.type = Swift.Override(of: surfaceColor.type, as: zData.name)
+            z.type = Generated.Override(of: z.type, as: zData.name)
+            surfaceColor.type = Generated.Override(of: surfaceColor.type, as: zData.name)
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
-            let xyData = Swift.Generic(name: "XYData", parent: attributes,
+            let xyData = Generated.Generic(name: "XYData", parent: attributes,
                     origin: x.origin, constraint: "Plotable")
-            x.type = Swift.Override(of: x.type, as: xyData.name)
-            y.type = Swift.Override(of: y.type, as: xyData.name)
+            x.type = Generated.Override(of: x.type, as: xyData.name)
+            y.type = Generated.Override(of: y.type, as: xyData.name)
 
         case "Table":
             disabledGenerics += ["columnOrder"]
             let columnOrder = attributes.members.firstInstance(named: "columnOrder")!
-            columnOrder.type = Swift.Override(of: columnOrder.type, as: "[Int]")
+            columnOrder.type = Generated.Override(of: columnOrder.type, as: "[Int]")
 
         case "Volume":
             disabledGenerics += ["x", "y", "z"]
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let z = attributes.members.firstInstance(named: "z")!
-            let xyzData = Swift.Generic(name: "XYZData", parent: attributes,
+            let xyzData = Generated.Generic(name: "XYZData", parent: attributes,
                     origin: x.origin, constraint: "Plotable")
-            x.type = Swift.Override(of: x.type, as: xyzData.name)
-            y.type = Swift.Override(of: y.type, as: xyzData.name)
-            z.type = Swift.Override(of: z.type, as: xyzData.name)
+            x.type = Generated.Override(of: x.type, as: xyzData.name)
+            y.type = Generated.Override(of: y.type, as: xyzData.name)
+            z.type = Generated.Override(of: z.type, as: xyzData.name)
 
         case "Waterfall":
             disabledGenerics += ["measure"]
             let measure = attributes.members.firstInstance(named: "measure")!
-            measure.type = Swift.Override(of: measure.type, as: "[String]")
+            measure.type = Generated.Override(of: measure.type, as: "[String]")
 
         default:
             break
@@ -176,41 +174,41 @@ struct Trace: Definable {
 
         if let ids = attributes.members.firstInstance(named: "ids") {
             disabledGenerics += ["ids"]
-            ids.type = Swift.Override(of: ids.type, as: "[String]")
+            ids.type = Generated.Override(of: ids.type, as: "[String]")
         }
         if let customData = attributes.members.firstInstance(named: "customData") {
             disabledGenerics += ["customData"]
-            customData.type = Swift.Override(of: customData.type, as: "[String]")
+            customData.type = Generated.Override(of: customData.type, as: "[String]")
         }
         if let text = attributes.members.firstInstance(named: "text") {
             disabledGenerics += ["text"]
-            text.type = Swift.Override(of: text.type, as: "ArrayOrString")
+            text.type = Generated.Override(of: text.type, as: "ArrayOrString")
         }
         if let hoverText = attributes.members.firstInstance(named: "hoverText") {
             disabledGenerics += ["hoverText"]
-            hoverText.type = Swift.Override(of: hoverText.type, as: "ArrayOrString")
+            hoverText.type = Generated.Override(of: hoverText.type, as: "ArrayOrString")
         }
         if let latitude = attributes.members.firstInstance(named: "latitude"),
            let longitude = attributes.members.firstInstance(named: "longitude") {
             disabledGenerics += ["latitude", "longitude"]
-            let coordinateData = Swift.Generic(name: "CoordinateData", parent: attributes,
+            let coordinateData = Generated.Generic(name: "CoordinateData", parent: attributes,
                     origin: latitude.origin, constraint: "Plotable")
-            latitude.type = Swift.Override(of: latitude.type, as: coordinateData.name)
-            longitude.type = Swift.Override(of: longitude.type, as: coordinateData.name)
+            latitude.type = Generated.Override(of: latitude.type, as: coordinateData.name)
+            longitude.type = Generated.Override(of: longitude.type, as: coordinateData.name)
         }
 
         for instance in attributes.members.compactMap( { $0 as? Instance } ) where instance.origin.role == "data" {
             if disabledGenerics.contains(instance.name) { continue }
-            let generic = Swift.Generic(name: "\(instance.name.capitalized)Data",
+            let generic = Generated.Generic(name: "\(instance.name.capitalized)Data",
                     parent: attributes, origin: instance.origin, constraint: "Plotable")
             instance.type = generic
         }
     }
 
-    /// Post-processing hacks that resolves collisions identical of layoutAttributes of different traces.
+    /// Post-processing that resolves collisions of identical layoutAttributes of different traces.
     private func layoutWorkarounds(schema: Schema.Trace, layout: inout Layout) {
         guard let entries = schema.layoutAttributes else { return }
-        let layoutAttributes = Swift.Object(named: "layout", schema: entries)!
+        let layoutAttributes = Generated.Object(named: "layout", schema: entries)!
         var sectionMark: Mark? = nil
 
         switch attributes.name {
@@ -241,5 +239,38 @@ struct Trace: Definable {
 
         if sectionMark != nil { layout.layoutAttributes.members.insert(sectionMark!, at: 0) }
         layout.layoutAttributes.members.insert(contentsOf: layoutAttributes.members, at: 1)
+    }
+}
+
+
+extension Generated {
+    /// Generated data type that implements Swift generics.
+    struct Generic: GeneratedType {
+        let name: String
+        let parent: Generated.Object?
+        let origin: PredefinedType
+
+        init(name: String, parent: Generated.Object, origin: PredefinedType, constraint: String? = nil) {
+            self.name = name
+            self.parent = parent
+            self.origin = origin
+
+            parent.generics.append(name)
+            if constraint != nil { parent.constraints.append("\(name): \(constraint!)") }
+        }
+    }
+
+    /// Generated data type that manually overrides the `servant` data type with a string.
+    struct Override: GeneratedType {
+        let servant: GeneratedType
+
+        let name: String
+        var parent: Generated.Object? { servant.parent }
+        var origin: PredefinedType { servant.origin }
+
+        init(of servant: GeneratedType, as name: String) {
+            self.name = name
+            self.servant = servant
+        }
     }
 }

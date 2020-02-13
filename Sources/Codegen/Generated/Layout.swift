@@ -1,9 +1,7 @@
-import Foundation
 
-
-/// Swift struct corresponding to Plotly `layout`.
+/// Generated struct corresponding to Plotly `layout`.
 struct Layout: Definable {
-    var layoutAttributes: Swift.Object
+    var layoutAttributes: Generated.Object
 
     var documentation: Markup {
         var markup = Markup(summary: "Specification of element arrangement on a `Figure` that applies to all traces.")
@@ -13,7 +11,7 @@ struct Layout: Definable {
     var definition: [String] { layoutAttributes.definition }
 
     init(schema: Schema.Layout) {
-        layoutAttributes = Swift.Object(named: "layout", schema: schema.layoutAttributes)!
+        layoutAttributes = Generated.Object(named: "layout", schema: schema.layoutAttributes)!
         
         let sectionMark = Mark(label: "General")
         layoutAttributes.members.insert(sectionMark, at: 0)
@@ -21,7 +19,7 @@ struct Layout: Definable {
         workarounds()
     }
 
-    /// Post-processing hacks to remove obsolete members.
+    /// Post-processing to remove obsolete members.
     private func workarounds() {
         let obsolete = ["radialAxis", "angularAxis", "orientation", "direction"]
         layoutAttributes.members.removeAllInstances(named: obsolete)

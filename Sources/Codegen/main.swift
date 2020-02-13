@@ -7,7 +7,7 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     Schema.order = try! JSONDecoder().decode(Order.self, from: orderData)
 
     let nameData = try! Data(contentsOf: nameFile)
-    Swift.name = try! JSONDecoder().decode(Name.self, from: nameData)
+    Schema.name = try! JSONDecoder().decode(Name.self, from: nameData)
 
     let schemaData = try! Data(contentsOf: schemaFile)
     let schema = try! JSONDecoder().decode(Schema.self, from: schemaData)

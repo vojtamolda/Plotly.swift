@@ -1,5 +1,3 @@
-import Foundation
-
 
 extension String {
     /// Prepends the string with `indentation` repeated `count`-times.
@@ -34,6 +32,8 @@ extension Array where Iterator.Element == String {
         return self.prefix(1) + self.suffix(from: 1).map { $0.indented(count, indentation: indentation) }
     }
 }
+
+
 extension Array where Iterator.Element == Definable {
     /// Finds and returns the first `Instance` object with the specified name.
     func firstInstance(named name: String) -> Instance? {

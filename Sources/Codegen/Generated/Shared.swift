@@ -1,8 +1,8 @@
-import Foundation
 
-
-/// Container for all shared Swift data types.
+/// Container struct that holds all multiply referenced (i.e. shared) generated Swift data types.
 struct Shared: Definable {
+    let shared: Generated.Object
+
     var documentation = Markup()
     var definition: [String] {
         var lines = [String]()
@@ -15,32 +15,32 @@ struct Shared: Definable {
         return lines
     }
 
-    let shared: Swift.Object
-
     init() {
-        Swift.name?.object["shared"] = "Shared"
-        shared = Swift.Object(named: "shared", schema: Schema.Object())!
+        Schema.name?.object["shared"] = "Shared"
+        shared = Generated.Object(named: "shared", schema: Predefined.Object())!
 
-        Swift.Enumerated.share(parent: shared)
+        Generated.Enumerated.share(parent: shared)
         shared.members.append(Mark(label: "Enums"))
-        shared.members.append(contentsOf: Swift.Enumerated.existingShared)
+        shared.members.append(contentsOf: Generated.Enumerated.existingShared)
 
-        Swift.FlagList.share(parent: shared)
+        Generated.FlagList.share(parent: shared)
         shared.members.append(Mark(label: "FlagLists"))
-        shared.members.append(contentsOf: Swift.FlagList.existingShared)
+        shared.members.append(contentsOf: Generated.FlagList.existingShared)
 
-        Swift.Object.share(parent: shared)
+        Generated.Object.share(parent: shared)
         shared.members.append(Mark(label: "Objects"))
-        shared.members.append(contentsOf: Swift.Object.existingShared)
+        shared.members.append(contentsOf: Generated.Object.existingShared)
     }
 }
 
-
-extension SwiftSharedType {
+extension SharedGeneratedType {
     static var existingShared: [Self] { Self.existing.filter { $0.shared } }
 
-    /// Identifies shareable data types and re-associates their instances to a single shared parent type.
-    static func share(parent: Swift.Object) {
+    /// Identifies multiply-referenced and therefore shareable data types.
+    ///
+    /// All shared types have their instances re-associates their instances to a single
+    /// multiply-referenced parent data type.
+    static func share(parent: Generated.Object) {
         var visited = Set<Int>()
         let prioritizedTypes = Self.existing.sorted{ $0.priority > $1.priority }.enumerated()
 
@@ -67,3 +67,5 @@ extension SwiftSharedType {
         }
     }
 }
+
+
