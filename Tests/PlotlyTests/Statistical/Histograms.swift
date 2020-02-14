@@ -29,7 +29,7 @@ final class Histograms: XCTestCase {
         let trace = Histogram<[Int], [Double]>(
             y: (0...500).map { _ in Double.random(in: 0...1) },
             marker: .init(
-                color: .value(.named("pink"))
+                color: .value(.pink)
             )
         )
         let figure = Figure(data: [trace])
@@ -42,14 +42,14 @@ final class Histograms: XCTestCase {
             opacity: 0.5,
             x: (0...500).map { _ in Double.random(in: 1.0 ... 2.0) },
             marker: .init(
-                color: .value(.named("green"))
+                color: .value(.green)
             )
         )
         let trace2 = Histogram<[Double], [Int]>(
             opacity: 0.6,
             x: (0...500).map { _ in Double.random(in: 1.1 ... 2.1) },
             marker: .init(
-                color: .value(.named("red"))
+                color: .value(.red)
             )
         )
         let layout = Layout(

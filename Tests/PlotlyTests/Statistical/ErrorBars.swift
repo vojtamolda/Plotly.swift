@@ -104,19 +104,19 @@ final class ErrorBars: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 8,
-                color: .value(.named("#85144B"))
+                color: .value(0x85144B)
             ),
             xError: Shared.Error(
                 type: .constant,
                 value: 0.2,
-                color: .named("#85144B"),
+                color: 0x85144B,
                 thickness: 1.5,
                 width: 3
             ),
             yError: Shared.Error(
                 type: .constant,
                 value: 0.1,
-                color: .named("#85144B"),
+                color: 0x85144B,
                 thickness: 1.5,
                 width: 3
             )

@@ -72,7 +72,7 @@ final class BoxPlots: XCTestCase {
                 0.2, 0.7, 0.9, 0.1, 0.5, 0.3],
             x: x,
             marker: .init(
-                color: .named("#3D9970")
+                color: 0xD9970
             )
         )
         let trace2 = Box(
@@ -81,7 +81,7 @@ final class BoxPlots: XCTestCase {
                 0.7, 0.9, 0.5, 0.8, 0.7, 0.2],
             x: x,
             marker: .init(
-                color: .named("#FF4136")
+                color: 0xFF4136
             )
         )
         let trace3 = Box(
@@ -90,7 +90,7 @@ final class BoxPlots: XCTestCase {
                 0.9, 1.0, 0.3, 0.6, 0.8, 0.5],
             x: x,
             marker: .init(
-                color: .named("#FF851B")
+                color: 0xFF851B
             )
         )
 
@@ -200,7 +200,7 @@ final class BoxPlots: XCTestCase {
             boxMean: .false,
             orientation: .h,
             marker: .init(
-                color: .named("#3D9970")
+                color: 0x3D9970
             )
         )
         let trace2 = Box(
@@ -211,7 +211,7 @@ final class BoxPlots: XCTestCase {
             boxMean: .false,
             orientation: .h,
             marker: .init(
-                color: .named("#FF4136")
+                color: 0xFF4136
             )
         )
         let trace3 = Box(
@@ -222,7 +222,7 @@ final class BoxPlots: XCTestCase {
             boxMean: .false,
             orientation: .h,
             marker: .init(
-                color: .named("#FF851B")
+                color: 0xFF851B
             )
         )
 
@@ -371,7 +371,7 @@ final class BoxPlots: XCTestCase {
                 zeroLine: false
             ),
             yAxis: .init(
-                gridColor: .named("white"),
+                gridColor: .white,
                 zeroLine: false
             )
         )

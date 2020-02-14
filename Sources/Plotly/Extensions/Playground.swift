@@ -17,14 +17,20 @@ extension Figure: CustomPlaygroundDisplayConvertible {
 extension Color: CustomPlaygroundDisplayConvertible {
     public var playgroundDescription: Any {
         switch self {
-        case .RGB(let r, let g, let b, let alpha):
-            return NSColor(red: CGFloat(r), green: CGFloat(g),
-                           blue: CGFloat(b), alpha: CGFloat(alpha))
-        case .HSL(let h, let s, let l, let alpha):
-            return NSColor(hue: CGFloat(h), saturation: CGFloat(s),
-                           brightness: CGFloat(l), alpha: CGFloat(alpha))
-        case .named(let name):
-            return NSString(string: name)
+        case .value(let value):
+            let red   = UInt8((value & 0xff0000) >> 16)
+            let green = UInt8((value & 0x00ff00) >> 8)
+            let blue  = UInt8((value & 0x0000ff) >> 0)
+            return NSColor(red: CGFloat(red) / 255, green: CGFloat(green) / 255,
+                           blue: CGFloat(blue) / 255, alpha: CGFloat(1))
+        case .RGB(let red, let green, let blue, let alpha):
+            return NSColor(red: CGFloat(red) / 255, green: CGFloat(green) / 255,
+                           blue: CGFloat(blue) / 255, alpha: CGFloat(alpha ?? 1))
+        case .HSL(let hue, let saturation, let lightness, let alpha):
+            return NSColor(hue: CGFloat(hue) / 360, saturation: CGFloat(saturation) / 100,
+                           brightness: CGFloat(lightness) / 100, alpha: CGFloat(alpha ?? 1))
+        case .CSS(let name, _):
+            return NSColor(named: name) ?? NSColor.white
         }
     }
 }

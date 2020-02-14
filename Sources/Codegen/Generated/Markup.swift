@@ -80,7 +80,7 @@ struct Markup {
     mutating func addCallout(note references: [Instance]) {
         if references.count <= 1 { return }
 
-        let paths = references.map { "`\($0.path)`" }.joined(separator: ", ")
+        let paths = references.map { "`\($0.path)`" }.joined(separator: ",")
         let content = "Used by \(paths)."
         addCallout(named: "Note", content: content.wrapped(at: Self.width))
     }

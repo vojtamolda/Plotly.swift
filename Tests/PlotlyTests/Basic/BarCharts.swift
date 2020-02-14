@@ -233,7 +233,7 @@ final class BarCharts: XCTestCase {
             hoverTemplate: "%{base}",
             base: .array([-500.0, -600.0, -700.0]),
             marker: Shared.Marker(
-                color: .value(.named("red"))
+                color: .value(.red)
             )
         )
         let trace2 = Bar(
@@ -242,7 +242,7 @@ final class BarCharts: XCTestCase {
             y: [300, 400, 700],
             base: .value(0.0),
             marker: Shared.Marker(
-                color: .value(.named("blue"))
+                color: .value(.blue)
             )
         )
         let figure = Figure(data: [trace1, trace2])

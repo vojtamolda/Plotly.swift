@@ -43,9 +43,8 @@ final class Heatmaps: XCTestCase {
             [0.00, 0.00, 0.00, 0.75, 0.00]
         ]
         let colorMap = [
-            1.0: Color.named("#001f3f"),
-            0.0: Color.named("#3D9970")
-
+            1.0: Color(0x001f3f),
+            0.0: Color(0x3D9970)
         ]
 
         let trace = Heatmap(
@@ -76,7 +75,7 @@ final class Heatmaps: XCTestCase {
                         font: Shared.Font(
                             family: "Arial",
                             size: 12,
-                            color: (z[y.offset][x.offset] == 0.0) ? .named("black") : .named("white")
+                            color: (z[y.offset][x.offset] == 0.0) ? .black : .white
                         ),
                         showArrow: false,
                         x: .string(x.element),
@@ -102,7 +101,7 @@ final class Heatmaps: XCTestCase {
             x: x.map { x.first! - $0 },
             y: y.map { $0 - y.first! },
             line: .init(
-                color: .named("white"),
+                color: .white,
                 width: 3
             )
         )

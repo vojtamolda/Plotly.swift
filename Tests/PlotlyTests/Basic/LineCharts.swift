@@ -154,7 +154,8 @@ final class LineCharts: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 12,
-                line: Shared.ColoredLine(width: 0.5, color: .value(.named("white")))
+                line: Shared.ColoredLine(width: 0.5, color: .value(.white)),
+                color: .value(.RGB(164, 194, 244))
             )
         )
         let trace2 = Scatter(
@@ -484,7 +485,7 @@ final class LineCharts: XCTestCase {
                 font: Shared.Font(
                     family: "Arial",
                     size: 16,
-                    color: .named("black")
+                    color: .black
                 ),
                 showArrow: false,
                 xReference: .paper, x: 0.05, xAnchor: .right,
@@ -495,7 +496,7 @@ final class LineCharts: XCTestCase {
                 font: Shared.Font(
                     family: "Arial",
                     size: 16,
-                    color: .named("black")
+                    color: .black
                 ),
                 showArrow: false,
                 xReference: .paper, x: 0.95, xAnchor: .left,
