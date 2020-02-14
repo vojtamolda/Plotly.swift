@@ -64,18 +64,18 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let z = attributes.members.firstInstance(named: "z")!
             let xyzData = Generated.Generic(name: "XYZData", parent: attributes,
-                    origin: x.origin, constraint: "Plotable")
-            x.type = Generated.Override(of: x.type, as: xyzData.name)
-            y.type = Generated.Override(of: y.type, as: xyzData.name)
-            z.type = Generated.Override(of: z.type, as: xyzData.name)
+                    origin: x.origin, protocol: "Plotable")
+            x.type = xyzData
+            y.type = xyzData
+            z.type = xyzData
             let u = attributes.members.firstInstance(named: "u")!
             let v = attributes.members.firstInstance(named: "v")!
             let w = attributes.members.firstInstance(named: "w")!
             let uvwData = Generated.Generic(name: "UVWData", parent: attributes,
-                    origin: u.origin, constraint: "Plotable")
-            u.type = Generated.Override(of: u.type, as: uvwData.name)
-            v.type = Generated.Override(of: v.type, as: uvwData.name)
-            w.type = Generated.Override(of: w.type, as: uvwData.name)
+                    origin: u.origin, protocol: "Plotable")
+            u.type = uvwData
+            v.type = uvwData
+            w.type = uvwData
 
         case "Heatmap":
             fallthrough
@@ -83,14 +83,14 @@ struct Trace: Definable {
             disabledGenerics += ["z", "x", "y"]
             let z = attributes.members.firstInstance(named: "z")!
             let zData = Generated.Generic(name: "ZData", parent: attributes,
-                    origin: z.origin, constraint: "Plotable")
-            z.type = Generated.Override(of: z.type, as: zData.name)
+                    origin: z.origin, protocol: "Plotable")
+            z.type = zData
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let xyData = Generated.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, constraint: "Plotable")
-            x.type = Generated.Override(of: x.type, as: xyData.name)
-            y.type = Generated.Override(of: y.type, as: xyData.name)
+                    origin: x.origin, protocol: "Plotable")
+            x.type = xyData
+            y.type = xyData
 
         case "Mesh3D":
             disabledGenerics += ["i", "j", "k"]
@@ -116,10 +116,10 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let xy = attributes.members.firstInstance(named: "xy")!
             let xyData = Generated.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, constraint: "Plotable")
-            x.type = Generated.Override(of: x.type, as: xyData.name)
-            y.type = Generated.Override(of: y.type, as: xyData.name)
-            xy.type = Generated.Override(of: xy.type, as: xyData.name)
+                    origin: x.origin, protocol: "Plotable")
+            x.type = xyData
+            y.type = xyData
+            xy.type = xyData
             let indices = attributes.members.firstInstance(named: "indices")!
             indices.type = Generated.Override(of: indices.type, as: "[Int]")
 
@@ -135,17 +135,17 @@ struct Trace: Definable {
         case "Surface":
             disabledGenerics += ["z", "x", "y", "surfaceColor"]
             let z = attributes.members.firstInstance(named: "z")!
-            let surfaceColor = attributes.members.firstInstance(named: "z")!
-            let zData = Generated.Generic(name: "ZData", parent: attributes,
-                    origin: z.origin, constraint: "Plotable")
-            z.type = Generated.Override(of: z.type, as: zData.name)
-            surfaceColor.type = Generated.Override(of: surfaceColor.type, as: zData.name)
+            let surfaceColor = attributes.members.firstInstance(named: "surfaceColor")!
+            let zSurfaceData = Generated.Generic(name: "ZSurfaceData", parent: attributes,
+                    origin: z.origin, protocol: "Plotable")
+            z.type = zSurfaceData
+            surfaceColor.type = zSurfaceData
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let xyData = Generated.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, constraint: "Plotable")
-            x.type = Generated.Override(of: x.type, as: xyData.name)
-            y.type = Generated.Override(of: y.type, as: xyData.name)
+                    origin: x.origin, protocol: "Plotable")
+            x.type = xyData
+            y.type = xyData
 
         case "Table":
             disabledGenerics += ["columnOrder"]
@@ -158,10 +158,10 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let z = attributes.members.firstInstance(named: "z")!
             let xyzData = Generated.Generic(name: "XYZData", parent: attributes,
-                    origin: x.origin, constraint: "Plotable")
-            x.type = Generated.Override(of: x.type, as: xyzData.name)
-            y.type = Generated.Override(of: y.type, as: xyzData.name)
-            z.type = Generated.Override(of: z.type, as: xyzData.name)
+                    origin: x.origin, protocol: "Plotable")
+            x.type = xyzData
+            y.type = xyzData
+            z.type = xyzData
 
         case "Waterfall":
             disabledGenerics += ["measure"]
@@ -192,15 +192,15 @@ struct Trace: Definable {
            let longitude = attributes.members.firstInstance(named: "longitude") {
             disabledGenerics += ["latitude", "longitude"]
             let coordinateData = Generated.Generic(name: "CoordinateData", parent: attributes,
-                    origin: latitude.origin, constraint: "Plotable")
-            latitude.type = Generated.Override(of: latitude.type, as: coordinateData.name)
-            longitude.type = Generated.Override(of: longitude.type, as: coordinateData.name)
+                    origin: latitude.origin, protocol: "Plotable")
+            latitude.type = coordinateData
+            longitude.type = coordinateData
         }
 
         for instance in attributes.members.compactMap( { $0 as? Instance } ) where instance.origin.role == "data" {
             if disabledGenerics.contains(instance.name) { continue }
             let generic = Generated.Generic(name: "\(instance.name.capitalized)Data",
-                    parent: attributes, origin: instance.origin, constraint: "Plotable")
+                    parent: attributes, origin: instance.origin, protocol: "Plotable")
             instance.type = generic
         }
     }
@@ -239,38 +239,5 @@ struct Trace: Definable {
 
         if sectionMark != nil { layout.layoutAttributes.members.insert(sectionMark!, at: 0) }
         layout.layoutAttributes.members.insert(contentsOf: layoutAttributes.members, at: 1)
-    }
-}
-
-
-extension Generated {
-    /// Generated data type that implements Swift generics.
-    struct Generic: GeneratedType {
-        let name: String
-        let parent: Generated.Object?
-        let origin: PredefinedType
-
-        init(name: String, parent: Generated.Object, origin: PredefinedType, constraint: String? = nil) {
-            self.name = name
-            self.parent = parent
-            self.origin = origin
-
-            parent.generics.append(name)
-            if constraint != nil { parent.constraints.append("\(name): \(constraint!)") }
-        }
-    }
-
-    /// Generated data type that manually overrides the `servant` data type with a string.
-    struct Override: GeneratedType {
-        let servant: GeneratedType
-
-        let name: String
-        var parent: Generated.Object? { servant.parent }
-        var origin: PredefinedType { servant.origin }
-
-        init(of servant: GeneratedType, as name: String) {
-            self.name = name
-            self.servant = servant
-        }
     }
 }

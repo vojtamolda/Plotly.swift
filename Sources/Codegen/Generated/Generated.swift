@@ -18,8 +18,7 @@ enum Generated {
         var access: Access = .public
         var priority: Int { members.count }
         var protocols: [String] = ["Encodable"]
-        var generics: [String] = []
-        var constraints: [String] = []
+        var generics: [Generated.Generic] = []
 
         var instances: [Instance] = []
         static var existing: [Generated.Object] = []
@@ -35,9 +34,15 @@ enum Generated {
 
         var definition: [String] {
             var lines = [String]()
-            let generics = self.generics.isEmpty ? "" : "<\(self.generics.joined(separator: ", "))>"
-            let protocols = self.protocols.isEmpty ? "" : ": \(self.protocols.joined(separator: ", "))"
-            let constraints = self.constraints.isEmpty ? "" : " where \(self.constraints.joined(separator: ", "))"
+
+            var protocols = self.protocols.joined(separator: ", ")
+            if !protocols.isEmpty { protocols = ": \(protocols)" }
+
+            var generics = self.generics.map { $0.name }.joined(separator: ", ")
+            if !generics.isEmpty { generics = "<\(generics)>" }
+            var constraints = self.generics.compactMap { $0.constraint }.joined(separator: ", ")
+            if !constraints.isEmpty { constraints = " where \(constraints)" }
+
             lines += ["\(access)struct \(name)\(generics)\(protocols)\(constraints) {"]
 
             for member in members {
@@ -73,9 +78,9 @@ enum Generated {
 
         private var frequentInitFunction: [String] {
             if members.count < 10 { return [] }
-            let frequentVariables = properties.filter {
-                if self.generics.contains($0.type.name) { return true }
-                if frequentProperties.contains($0.name) { return true }
+            let frequentVariables = properties.filter { property in
+                if property.type is Generated.Generic { return true }
+                if frequentProperties.contains(property.name) { return true }
                 return false
             }
             if frequentVariables.count < 2 { return [] }
@@ -106,16 +111,16 @@ enum Generated {
         }
 
         private var encodeFunction: [String] {
-            if self.generics.isEmpty { return [] }
+            if generics.isEmpty { return [] }
 
             var lines = [String]()
             lines += ["/// Encodes the object in a format compatible with Plotly."]
             lines += ["\(access)func encode(to encoder: Encoder) throws {"]
             lines += ["var container = encoder.container(keyedBy: CodingKeys.self)"].indented()
-            for prop in properties where !generics.contains(prop.type.name) {
+            for prop in properties where !(prop.type is Generated.Generic) {
                 lines += ["try container.encodeIfPresent(\(prop.name), forKey: .\(prop.name))"].indented()
             }
-            for prop in properties where generics.contains(prop.type.name) {
+            for prop in properties where (prop.type is Generated.Generic) {
                 lines += [""]
                 lines += ["if let \(prop.name) = self.\(prop.name) {"].indented()
                 lines += ["let \(prop.name)Encoder = container.superEncoder(forKey: .\(prop.name))"].indented(2)
@@ -615,6 +620,42 @@ enum Generated {
         let parent: Generated.Object?
         var schema: Predefined.InfoArray
         var origin: PredefinedType { schema as PredefinedType }
+    }
+}
+
+
+extension Generated {
+    /// Generated data type that implements Swift generics (i.e. the `T` in `var a: Something<T>`)
+    struct Generic: GeneratedType {
+        let name: String
+        let parent: Generated.Object?
+        let origin: PredefinedType
+        let `protocol`: String?
+
+        var constraint: String? { (`protocol` != nil) ? "\(name): \(`protocol`!)" : nil }
+
+        init(name: String, parent: Generated.Object, origin: PredefinedType, protocol: String? = nil) {
+            self.name = name
+            self.parent = parent
+            self.origin = origin
+            self.protocol = `protocol`
+
+            parent.generics.append(self)
+        }
+    }
+
+    /// Generated data type that manually overrides the `servant` data type with a string.
+    struct Override: GeneratedType {
+        let name: String
+        let servant: GeneratedType
+
+        var parent: Generated.Object? { servant.parent }
+        var origin: PredefinedType { servant.origin }
+
+        init(of servant: GeneratedType, as name: String) {
+            self.name = name
+            self.servant = servant
+        }
     }
 }
 

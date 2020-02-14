@@ -11,7 +11,7 @@
 ///   [Python](https://plot.ly/python/reference/#surface), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#surface) or 
 ///   [R](https://plot.ly/r/reference/#surface)
-public struct Surface<ZData, XYData>: Trace where ZData: Plotable, XYData: Plotable {
+public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable, XYData: Plotable {
     public let type: String = "surface"
 
     public let animatable: Bool = false
@@ -71,7 +71,7 @@ public struct Surface<ZData, XYData>: Trace where ZData: Plotable, XYData: Plota
     public var uiRevision: Anything?
 
     /// Sets the z coordinates.
-    public var z: ZData?
+    public var z: ZSurfaceData?
 
     /// Sets the x coordinates.
     public var x: XYData?
@@ -111,7 +111,7 @@ public struct Surface<ZData, XYData>: Trace where ZData: Plotable, XYData: Plota
     public var connectGaps: Bool?
 
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    public var surfaceColor: [Double]?
+    public var surfaceColor: ZSurfaceData?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here z or
     /// surfacecolor) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax`
@@ -581,17 +581,20 @@ public struct Surface<ZData, XYData>: Trace where ZData: Plotable, XYData: Plota
     ///   - y: Sets the y coordinates.
     ///   - text: Sets the text elements associated with each z value.
     ///   - hoverText: Same as `text`.
+    ///   - surfaceColor: Sets the surface color values, used for setting a color scale independent of
+    ///   `z`.
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
-    public init(name: String? = nil, z: ZData? = nil, x: XYData? = nil, y: XYData? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, colorScale: ColorScale? = nil,
-            reverseScale: Bool? = nil) {
+    public init(name: String? = nil, z: ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil,
+            text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, surfaceColor: ZSurfaceData? = nil,
+            colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
         self.x = x
         self.y = y
         self.text = text
         self.hoverText = hoverText
+        self.surfaceColor = surfaceColor
         self.colorScale = colorScale
         self.reverseScale = reverseScale
     }
@@ -647,16 +650,16 @@ public struct Surface<ZData, XYData>: Trace where ZData: Plotable, XYData: Plota
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
             [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel:
-            Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z: ZData? =
-            nil, x: XYData? = nil, y: XYData? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? =
-            nil, hoverTemplate: ArrayOrString? = nil, connectGaps: Bool? = nil, surfaceColor: [Double]? =
-            nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil,
-            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
-            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, contours:
-            Contours? = nil, hideSurface: Bool? = nil, lightPosition: Shared.LightPosition? = nil, lighting:
-            Lighting? = nil, opacity: Double? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar:
-            Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil,
-            scene: SubPlotID? = nil) {
+            Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z:
+            ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil, text: ArrayOrString? = nil, hoverText:
+            ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, connectGaps: Bool? = nil,
+            surfaceColor: ZSurfaceData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
+            cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
+            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
+            SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition:
+            Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo:
+            Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,
+            zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -714,7 +717,6 @@ public struct Surface<ZData, XYData>: Trace where ZData: Plotable, XYData: Plota
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
         try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
-        try container.encodeIfPresent(surfaceColor, forKey: .surfaceColor)
         try container.encodeIfPresent(cAuto, forKey: .cAuto)
         try container.encodeIfPresent(cMin, forKey: .cMin)
         try container.encodeIfPresent(cMax, forKey: .cMax)
@@ -749,6 +751,11 @@ public struct Surface<ZData, XYData>: Trace where ZData: Plotable, XYData: Plota
         if let y = self.y {
             let yEncoder = container.superEncoder(forKey: .y)
             try y.encode(toPlotly: yEncoder)
+        }
+    
+        if let surfaceColor = self.surfaceColor {
+            let surfaceColorEncoder = container.superEncoder(forKey: .surfaceColor)
+            try surfaceColor.encode(toPlotly: surfaceColorEncoder)
         }
     }
     
