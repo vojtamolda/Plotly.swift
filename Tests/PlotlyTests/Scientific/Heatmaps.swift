@@ -42,16 +42,16 @@ final class Heatmaps: XCTestCase {
             [0.75, 0.75, 0.75, 0.75, 0.75],
             [0.00, 0.00, 0.00, 0.75, 0.00]
         ]
-        let colorMap = [
+        let colorScale: ColorScale = [
             1.0: Color(0x001f3f),
-            0.0: Color(0x3D9970)
+            0.0: Color(0x3d9970)
         ]
 
         let trace = Heatmap(
             z: z,
             x: x,
             y: y,
-            colorScale: .custom(colorMap: colorMap),
+            colorScale: colorScale,
             showScale: false
         )
 
@@ -144,7 +144,6 @@ final class Heatmaps: XCTestCase {
                 zeroLine: false
             )
         )
-        // FIXME: It's not possible to set layout.xAxis = layout.yAxis even though they are identical structs.
 
         let figure = Figure(data: [spiral, heatmap], layout: layout)
         output(figure)

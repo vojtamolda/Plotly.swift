@@ -21,6 +21,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(Heatmaps.allTests),
 
         testCase(FigureTests.allTests),
+        testCase(SwatchTests.allTests),
         testCase(PlotableTests.allTests)
     ]
 }

@@ -2,13 +2,15 @@
 
 
 ## Jupyter Notebooks
- 
+
+- ### [`Blank.ipynb`](Notebooks/Blank.ipynb) [![ColabBadge]](https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Blank.ipynb)
 - ### [`Showcase.ipynb`](Notebooks/Showcase.ipynb) [![ColabBadge]](https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Showcase.ipynb)
+- ### [`Color Scales.ipynb`](Notebooks/Color%20Scales.ipynb) [![ColabBadge]](https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Color%20Scales.ipynb)
 - ### [`Machine Learning.ipynb`](Notebooks/Machine%20Learning.ipynb) [![ColabBadge]](https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Machine%20Learning.ipynb)
 
 [ColabBadge]: https://colab.research.google.com/assets/colab-badge.svg "Run in Google Colab"
 
-By far the quickest way to get started is to open an empty [Google Collaboratory](https://colab.research.google.com/) notebook via the link [here](https://colab.research.google.com/github/tensorflow/swift/blob/master/notebooks/blank_swift.ipynb) or the buttons above.
+By far the quickest way to get started is to open an example [Google Collaboratory](https://colab.research.google.com/) notebook with a Swift kernel via one of the buttons above.
 
 ![Google Colab](Notebooks.png)
  
