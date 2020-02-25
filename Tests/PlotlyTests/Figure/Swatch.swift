@@ -10,7 +10,8 @@ final class SwatchTests: XCTestCase {
         ("testPlotly", testPlotly),
         ("testSequential", testSequential),
         ("testDiverging", testDiverging),
-        ("testCyclical", testCyclical)
+        ("testCyclical", testCyclical),
+        ("testColorList", testColorList)
     ]
 
     func testFrequent() {
@@ -50,6 +51,11 @@ final class SwatchTests: XCTestCase {
 
     func testCyclical() {
         let figure = ColorScale.Cyclical.swatch()
+        output(figure)
+    }
+
+    func testColorList() {
+        let figure = ColorList.swatch()
         output(figure)
     }
 }
