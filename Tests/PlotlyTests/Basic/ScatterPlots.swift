@@ -86,7 +86,7 @@ final class ScatterPlots: XCTestCase {
             xAxis: Layout.XAxis(range: [0.75, 5.25]),
             yAxis: Layout.YAxis(range: [0, 8]),
             legend: Layout.Legend(
-                font: Shared.Font(family: "Arial, sans-serif", size: 20, color: .grey),
+                font: Shared.Font(family: "Arial, sans-serif", size: 20, color: .gray),
                 y: 0.5
             )
         )
