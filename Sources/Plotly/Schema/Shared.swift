@@ -9,8 +9,9 @@ public struct Shared {
     /// `xanchor` value automatically based on the value of `x`.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Title.xAnchor`,`Layout.XAxis.RangeSelector.xAnchor`,`Layout.Scene.Annotation.xAnchor`,`Layout.Legend.xAnchor`,`Layout.Annotation.xAnchor`,`Layout.UpdateMenu.xAnchor`,`Layout.Slider.xAnchor`.
+    ///   Used by `Layout.Title.xAnchor`, `Layout.XAxis.RangeSelector.xAnchor`,
+    ///   `Layout.Scene.Annotation.xAnchor`, `Layout.Legend.xAnchor`, `Layout.Annotation.xAnchor`,
+    ///   `Layout.UpdateMenu.xAnchor`, `Layout.Slider.xAnchor`.
     public enum XAutoAnchor: String, Encodable {
         case auto
         case left
@@ -25,8 +26,9 @@ public struct Shared {
     /// calculates the `yanchor` value automatically based on the value of `y`.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Title.yAnchor`,`Layout.XAxis.RangeSelector.yAnchor`,`Layout.Scene.Annotation.yAnchor`,`Layout.Legend.yAnchor`,`Layout.Annotation.yAnchor`,`Layout.UpdateMenu.yAnchor`,`Layout.Slider.yAnchor`.
+    ///   Used by `Layout.Title.yAnchor`, `Layout.XAxis.RangeSelector.yAnchor`,
+    ///   `Layout.Scene.Annotation.yAnchor`, `Layout.Legend.yAnchor`, `Layout.Annotation.yAnchor`,
+    ///   `Layout.UpdateMenu.yAnchor`, `Layout.Slider.yAnchor`.
     public enum YAutoAnchor: String, Encodable {
         case auto
         case top
@@ -37,8 +39,9 @@ public struct Shared {
     /// Sets the orientation of the modebar.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.ModeBar.orientation`,`Layout.Legend.orientation`,`Scatter.orientation`,`Bar.orientation`,`Box.orientation`,`Histogram.orientation`,`Violin.orientation`,`Funnel.orientation`,`Waterfall.orientation`,`Sankey.orientation`.
+    ///   Used by `Layout.ModeBar.orientation`, `Layout.Legend.orientation`, `Scatter.orientation`,
+    ///   `Bar.orientation`, `Box.orientation`, `Histogram.orientation`, `Violin.orientation`,
+    ///   `Funnel.orientation`, `Waterfall.orientation`, `Sankey.orientation`.
     public enum Orientation: String, Encodable {
         case v
         case h
@@ -49,8 +52,23 @@ public struct Shared {
     /// Has an effect only if the hover label text spans more two or more lines
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Shared.HoverLabel.align`,`Scatter.HoverLabel.align`,`Bar.HoverLabel.align`,`Box.HoverLabel.align`,`Heatmap.HoverLabel.align`,`Histogram.HoverLabel.align`,`Histogram2D.HoverLabel.align`,`Histogram2DContour.HoverLabel.align`,`Contour.HoverLabel.align`,`ScatterTernary.HoverLabel.align`,`Violin.HoverLabel.align`,`Funnel.HoverLabel.align`,`Waterfall.HoverLabel.align`,`Image.HoverLabel.align`,`Pie.HoverLabel.align`,`Sunburst.HoverLabel.align`,`Treemap.HoverLabel.align`,`FunnelArea.HoverLabel.align`,`Scatter3D.HoverLabel.align`,`Surface.HoverLabel.align`,`Isosurface.HoverLabel.align`,`Volume.HoverLabel.align`,`Mesh3D.HoverLabel.align`,`Cone.HoverLabel.align`,`StreamTube.HoverLabel.align`,`ScatterGeo.HoverLabel.align`,`Choropleth.HoverLabel.align`,`ScatterGL.HoverLabel.align`,`ScatterPlotMatrix.HoverLabel.align`,`PointCloud.HoverLabel.align`,`HeatmapGL.HoverLabel.align`,`ScatterMapbox.HoverLabel.align`,`ChoroplethMapbox.HoverLabel.align`,`DensityMapbox.HoverLabel.align`,`Sankey.HoverLabel.align`,`Sankey.Node.HoverLabel.align`,`Sankey.Link.HoverLabel.align`,`Table.HoverLabel.align`,`ScatterCarpet.HoverLabel.align`,`OHLC.HoverLabel.align`,`Candlestick.HoverLabel.align`,`ScatterPolar.HoverLabel.align`,`ScatterPolarGL.HoverLabel.align`,`BarPolar.HoverLabel.align`.
+    ///   Used by `Shared.HoverLabel.align`, `Scatter.HoverLabel.align`, `Bar.HoverLabel.align`,
+    ///   `Box.HoverLabel.align`, `Heatmap.HoverLabel.align`, `Histogram.HoverLabel.align`,
+    ///   `Histogram2D.HoverLabel.align`, `Histogram2DContour.HoverLabel.align`,
+    ///   `Contour.HoverLabel.align`, `ScatterTernary.HoverLabel.align`, `Violin.HoverLabel.align`,
+    ///   `Funnel.HoverLabel.align`, `Waterfall.HoverLabel.align`, `Image.HoverLabel.align`,
+    ///   `Pie.HoverLabel.align`, `Sunburst.HoverLabel.align`, `Treemap.HoverLabel.align`,
+    ///   `FunnelArea.HoverLabel.align`, `Scatter3D.HoverLabel.align`, `Surface.HoverLabel.align`,
+    ///   `Isosurface.HoverLabel.align`, `Volume.HoverLabel.align`, `Mesh3D.HoverLabel.align`,
+    ///   `Cone.HoverLabel.align`, `StreamTube.HoverLabel.align`, `ScatterGeo.HoverLabel.align`,
+    ///   `Choropleth.HoverLabel.align`, `ScatterGL.HoverLabel.align`,
+    ///   `ScatterPlotMatrix.HoverLabel.align`, `PointCloud.HoverLabel.align`,
+    ///   `HeatmapGL.HoverLabel.align`, `ScatterMapbox.HoverLabel.align`,
+    ///   `ChoroplethMapbox.HoverLabel.align`, `DensityMapbox.HoverLabel.align`,
+    ///   `Sankey.HoverLabel.align`, `Sankey.Node.HoverLabel.align`, `Sankey.Link.HoverLabel.align`,
+    ///   `Table.HoverLabel.align`, `ScatterCarpet.HoverLabel.align`, `OHLC.HoverLabel.align`,
+    ///   `Candlestick.HoverLabel.align`, `ScatterPolar.HoverLabel.align`,
+    ///   `ScatterPolarGL.HoverLabel.align`, `BarPolar.HoverLabel.align`.
     public enum AutoAlign: String, Encodable {
         case left
         case right
@@ -61,8 +79,16 @@ public struct Shared {
     /// plot.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.calendar`,`Layout.XAxis.calendar`,`Layout.YAxis.calendar`,`Layout.Scene.XAxis.calendar`,`Layout.Scene.YAxis.calendar`,`Layout.Scene.ZAxis.calendar`,`Layout.Polar.RadialAxis.calendar`,`Scatter.xCalendar`,`Scatter.yCalendar`,`Bar.xCalendar`,`Bar.yCalendar`,`Box.xCalendar`,`Box.yCalendar`,`Heatmap.xCalendar`,`Heatmap.yCalendar`,`Histogram.xCalendar`,`Histogram.yCalendar`,`Histogram2D.xCalendar`,`Histogram2D.yCalendar`,`Histogram2DContour.xCalendar`,`Histogram2DContour.yCalendar`,`Contour.xCalendar`,`Contour.yCalendar`,`Scatter3D.xCalendar`,`Scatter3D.yCalendar`,`Scatter3D.zCalendar`,`Surface.xCalendar`,`Surface.yCalendar`,`Surface.zCalendar`,`Mesh3D.xCalendar`,`Mesh3D.yCalendar`,`Mesh3D.zCalendar`,`ScatterGL.xCalendar`,`ScatterGL.yCalendar`,`OHLC.xCalendar`,`Candlestick.xCalendar`.
+    ///   Used by `Layout.calendar`, `Layout.XAxis.calendar`, `Layout.YAxis.calendar`,
+    ///   `Layout.Scene.XAxis.calendar`, `Layout.Scene.YAxis.calendar`, `Layout.Scene.ZAxis.calendar`,
+    ///   `Layout.Polar.RadialAxis.calendar`, `Scatter.xCalendar`, `Scatter.yCalendar`, `Bar.xCalendar`,
+    ///   `Bar.yCalendar`, `Box.xCalendar`, `Box.yCalendar`, `Heatmap.xCalendar`, `Heatmap.yCalendar`,
+    ///   `Histogram.xCalendar`, `Histogram.yCalendar`, `Histogram2D.xCalendar`, `Histogram2D.yCalendar`,
+    ///   `Histogram2DContour.xCalendar`, `Histogram2DContour.yCalendar`, `Contour.xCalendar`,
+    ///   `Contour.yCalendar`, `Scatter3D.xCalendar`, `Scatter3D.yCalendar`, `Scatter3D.zCalendar`,
+    ///   `Surface.xCalendar`, `Surface.yCalendar`, `Surface.zCalendar`, `Mesh3D.xCalendar`,
+    ///   `Mesh3D.yCalendar`, `Mesh3D.zCalendar`, `ScatterGL.xCalendar`, `ScatterGL.yCalendar`,
+    ///   `OHLC.xCalendar`, `Candlestick.xCalendar`.
     public enum Calendar: String, Encodable {
         case gregorian
         case chinese
@@ -87,8 +113,9 @@ public struct Shared {
     /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.autoRange`,`Layout.YAxis.autoRange`,`Layout.Scene.XAxis.autoRange`,`Layout.Scene.YAxis.autoRange`,`Layout.Scene.ZAxis.autoRange`,`Layout.Polar.RadialAxis.autoRange`,`Carpet.AAxis.autoRange`,`Carpet.BAxis.autoRange`.
+    ///   Used by `Layout.XAxis.autoRange`, `Layout.YAxis.autoRange`, `Layout.Scene.XAxis.autoRange`,
+    ///   `Layout.Scene.YAxis.autoRange`, `Layout.Scene.ZAxis.autoRange`,
+    ///   `Layout.Polar.RadialAxis.autoRange`, `Carpet.AAxis.autoRange`, `Carpet.BAxis.autoRange`.
     public enum AutoRange: Encodable {
         case `true`
         case `false`
@@ -113,8 +140,9 @@ public struct Shared {
     /// is non-negative, regardless of the input data. Applies only to linear axes.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.rangeMode`,`Layout.YAxis.rangeMode`,`Layout.Scene.XAxis.rangeMode`,`Layout.Scene.YAxis.rangeMode`,`Layout.Scene.ZAxis.rangeMode`,`Carpet.AAxis.rangeMode`,`Carpet.BAxis.rangeMode`.
+    ///   Used by `Layout.XAxis.rangeMode`, `Layout.YAxis.rangeMode`, `Layout.Scene.XAxis.rangeMode`,
+    ///   `Layout.Scene.YAxis.rangeMode`, `Layout.Scene.ZAxis.rangeMode`, `Carpet.AAxis.rangeMode`,
+    ///   `Carpet.BAxis.rangeMode`.
     public enum RangeMode: String, Encodable {
         case normal
         case toZero = "tozero"
@@ -130,8 +158,29 @@ public struct Shared {
     /// provided).
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.tickMode`,`Layout.YAxis.tickMode`,`Layout.Ternary.AAxis.tickMode`,`Layout.Ternary.BAxis.tickMode`,`Layout.Ternary.CAxis.tickMode`,`Layout.Scene.XAxis.tickMode`,`Layout.Scene.YAxis.tickMode`,`Layout.Scene.ZAxis.tickMode`,`Layout.Polar.RadialAxis.tickMode`,`Layout.Polar.AngularAxis.tickMode`,`Shared.ColorBar.tickMode`,`Shared.GradientMarker.ColorBar.tickMode`,`Shared.Marker.ColorBar.tickMode`,`Heatmap.ColorBar.tickMode`,`Histogram.Marker.ColorBar.tickMode`,`Histogram2D.ColorBar.tickMode`,`Histogram2DContour.ColorBar.tickMode`,`Contour.ColorBar.tickMode`,`ScatterTernary.GradientMarker.ColorBar.tickMode`,`Funnel.Marker.ColorBar.tickMode`,`Sunburst.Marker.ColorBar.tickMode`,`Treemap.Marker.ColorBar.tickMode`,`Scatter3D.DashedMarkerLine.ColorBar.tickMode`,`Shared.SymbolicMarker.ColorBar.tickMode`,`Surface.ColorBar.tickMode`,`Isosurface.ColorBar.tickMode`,`Volume.ColorBar.tickMode`,`Mesh3D.ColorBar.tickMode`,`Cone.ColorBar.tickMode`,`StreamTube.ColorBar.tickMode`,`ScatterGeo.GradientMarker.ColorBar.tickMode`,`Choropleth.ColorBar.tickMode`,`ScatterGL.SymbolicMarker.ColorBar.tickMode`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.tickMode`,`HeatmapGL.ColorBar.tickMode`,`ParallelCoordinates.MarkerLine.ColorBar.tickMode`,`ParallelCategories.ShapedMarkerLine.ColorBar.tickMode`,`ScatterMapbox.SymbolicMarker.ColorBar.tickMode`,`ChoroplethMapbox.ColorBar.tickMode`,`DensityMapbox.ColorBar.tickMode`,`Indicator.Gauge.Axis.tickMode`,`ScatterCarpet.GradientMarker.ColorBar.tickMode`,`ContourCarpet.ColorBar.tickMode`,`ScatterPolar.GradientMarker.ColorBar.tickMode`,`ScatterPolarGL.SymbolicMarker.ColorBar.tickMode`,`BarPolar.Marker.ColorBar.tickMode`.
+    ///   Used by `Layout.XAxis.tickMode`, `Layout.YAxis.tickMode`, `Layout.Ternary.AAxis.tickMode`,
+    ///   `Layout.Ternary.BAxis.tickMode`, `Layout.Ternary.CAxis.tickMode`, `Layout.Scene.XAxis.tickMode`,
+    ///   `Layout.Scene.YAxis.tickMode`, `Layout.Scene.ZAxis.tickMode`,
+    ///   `Layout.Polar.RadialAxis.tickMode`, `Layout.Polar.AngularAxis.tickMode`,
+    ///   `Shared.ColorBar.tickMode`, `Shared.GradientMarker.ColorBar.tickMode`,
+    ///   `Shared.Marker.ColorBar.tickMode`, `Heatmap.ColorBar.tickMode`,
+    ///   `Histogram.Marker.ColorBar.tickMode`, `Histogram2D.ColorBar.tickMode`,
+    ///   `Histogram2DContour.ColorBar.tickMode`, `Contour.ColorBar.tickMode`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.tickMode`, `Funnel.Marker.ColorBar.tickMode`,
+    ///   `Sunburst.Marker.ColorBar.tickMode`, `Treemap.Marker.ColorBar.tickMode`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.tickMode`, `Shared.SymbolicMarker.ColorBar.tickMode`,
+    ///   `Surface.ColorBar.tickMode`, `Isosurface.ColorBar.tickMode`, `Volume.ColorBar.tickMode`,
+    ///   `Mesh3D.ColorBar.tickMode`, `Cone.ColorBar.tickMode`, `StreamTube.ColorBar.tickMode`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.tickMode`, `Choropleth.ColorBar.tickMode`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.tickMode`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickMode`, `HeatmapGL.ColorBar.tickMode`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.tickMode`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.tickMode`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.tickMode`, `ChoroplethMapbox.ColorBar.tickMode`,
+    ///   `DensityMapbox.ColorBar.tickMode`, `Indicator.Gauge.Axis.tickMode`,
+    ///   `ScatterCarpet.GradientMarker.ColorBar.tickMode`, `ContourCarpet.ColorBar.tickMode`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.tickMode`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.tickMode`, `BarPolar.Marker.ColorBar.tickMode`.
     public enum TickMode: String, Encodable {
         case auto
         case linear
@@ -144,8 +193,27 @@ public struct Shared {
     /// (inside) the axis lines.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.ticks`,`Layout.YAxis.ticks`,`Layout.Ternary.AAxis.ticks`,`Layout.Ternary.BAxis.ticks`,`Layout.Ternary.CAxis.ticks`,`Layout.Scene.XAxis.ticks`,`Layout.Scene.YAxis.ticks`,`Layout.Scene.ZAxis.ticks`,`Layout.Polar.RadialAxis.ticks`,`Layout.Polar.AngularAxis.ticks`,`Shared.ColorBar.ticks`,`Shared.GradientMarker.ColorBar.ticks`,`Shared.Marker.ColorBar.ticks`,`Heatmap.ColorBar.ticks`,`Histogram.Marker.ColorBar.ticks`,`Histogram2D.ColorBar.ticks`,`Histogram2DContour.ColorBar.ticks`,`Contour.ColorBar.ticks`,`ScatterTernary.GradientMarker.ColorBar.ticks`,`Funnel.Marker.ColorBar.ticks`,`Sunburst.Marker.ColorBar.ticks`,`Treemap.Marker.ColorBar.ticks`,`Scatter3D.DashedMarkerLine.ColorBar.ticks`,`Shared.SymbolicMarker.ColorBar.ticks`,`Surface.ColorBar.ticks`,`Isosurface.ColorBar.ticks`,`Volume.ColorBar.ticks`,`Mesh3D.ColorBar.ticks`,`Cone.ColorBar.ticks`,`StreamTube.ColorBar.ticks`,`ScatterGeo.GradientMarker.ColorBar.ticks`,`Choropleth.ColorBar.ticks`,`ScatterGL.SymbolicMarker.ColorBar.ticks`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.ticks`,`HeatmapGL.ColorBar.ticks`,`ParallelCoordinates.MarkerLine.ColorBar.ticks`,`ParallelCategories.ShapedMarkerLine.ColorBar.ticks`,`ScatterMapbox.SymbolicMarker.ColorBar.ticks`,`ChoroplethMapbox.ColorBar.ticks`,`DensityMapbox.ColorBar.ticks`,`Indicator.Gauge.Axis.ticks`,`ScatterCarpet.GradientMarker.ColorBar.ticks`,`ContourCarpet.ColorBar.ticks`,`ScatterPolar.GradientMarker.ColorBar.ticks`,`ScatterPolarGL.SymbolicMarker.ColorBar.ticks`,`BarPolar.Marker.ColorBar.ticks`.
+    ///   Used by `Layout.XAxis.ticks`, `Layout.YAxis.ticks`, `Layout.Ternary.AAxis.ticks`,
+    ///   `Layout.Ternary.BAxis.ticks`, `Layout.Ternary.CAxis.ticks`, `Layout.Scene.XAxis.ticks`,
+    ///   `Layout.Scene.YAxis.ticks`, `Layout.Scene.ZAxis.ticks`, `Layout.Polar.RadialAxis.ticks`,
+    ///   `Layout.Polar.AngularAxis.ticks`, `Shared.ColorBar.ticks`,
+    ///   `Shared.GradientMarker.ColorBar.ticks`, `Shared.Marker.ColorBar.ticks`,
+    ///   `Heatmap.ColorBar.ticks`, `Histogram.Marker.ColorBar.ticks`, `Histogram2D.ColorBar.ticks`,
+    ///   `Histogram2DContour.ColorBar.ticks`, `Contour.ColorBar.ticks`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.ticks`, `Funnel.Marker.ColorBar.ticks`,
+    ///   `Sunburst.Marker.ColorBar.ticks`, `Treemap.Marker.ColorBar.ticks`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.ticks`, `Shared.SymbolicMarker.ColorBar.ticks`,
+    ///   `Surface.ColorBar.ticks`, `Isosurface.ColorBar.ticks`, `Volume.ColorBar.ticks`,
+    ///   `Mesh3D.ColorBar.ticks`, `Cone.ColorBar.ticks`, `StreamTube.ColorBar.ticks`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.ticks`, `Choropleth.ColorBar.ticks`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.ticks`, `ScatterPlotMatrix.SymbolicMarker.ColorBar.ticks`,
+    ///   `HeatmapGL.ColorBar.ticks`, `ParallelCoordinates.MarkerLine.ColorBar.ticks`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.ticks`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.ticks`, `ChoroplethMapbox.ColorBar.ticks`,
+    ///   `DensityMapbox.ColorBar.ticks`, `Indicator.Gauge.Axis.ticks`,
+    ///   `ScatterCarpet.GradientMarker.ColorBar.ticks`, `ContourCarpet.ColorBar.ticks`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.ticks`, `ScatterPolarGL.SymbolicMarker.ColorBar.ticks`,
+    ///   `BarPolar.Marker.ColorBar.ticks`.
     public enum Ticks: String, Encodable {
         case outside
         case inside
@@ -160,8 +228,8 @@ public struct Shared {
     /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.mirror`,`Layout.YAxis.mirror`,`Layout.Scene.XAxis.mirror`,`Layout.Scene.YAxis.mirror`,`Layout.Scene.ZAxis.mirror`.
+    ///   Used by `Layout.XAxis.mirror`, `Layout.YAxis.mirror`, `Layout.Scene.XAxis.mirror`,
+    ///   `Layout.Scene.YAxis.mirror`, `Layout.Scene.ZAxis.mirror`.
     public enum Mirror: Encodable {
         case `true`
         case ticks
@@ -192,8 +260,33 @@ public struct Shared {
     /// displayed with a suffix. If *none*, tick prefixes are hidden.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.showTickPrefix`,`Layout.YAxis.showTickPrefix`,`Layout.Ternary.AAxis.showTickPrefix`,`Layout.Ternary.BAxis.showTickPrefix`,`Layout.Ternary.CAxis.showTickPrefix`,`Layout.Scene.XAxis.showTickPrefix`,`Layout.Scene.YAxis.showTickPrefix`,`Layout.Scene.ZAxis.showTickPrefix`,`Layout.Polar.RadialAxis.showTickPrefix`,`Layout.Polar.AngularAxis.showTickPrefix`,`Shared.ColorBar.showTickPrefix`,`Shared.GradientMarker.ColorBar.showTickPrefix`,`Shared.Marker.ColorBar.showTickPrefix`,`Heatmap.ColorBar.showTickPrefix`,`Histogram.Marker.ColorBar.showTickPrefix`,`Histogram2D.ColorBar.showTickPrefix`,`Histogram2DContour.ColorBar.showTickPrefix`,`Contour.ColorBar.showTickPrefix`,`ScatterTernary.GradientMarker.ColorBar.showTickPrefix`,`Funnel.Marker.ColorBar.showTickPrefix`,`Sunburst.Marker.ColorBar.showTickPrefix`,`Treemap.Marker.ColorBar.showTickPrefix`,`Scatter3D.DashedMarkerLine.ColorBar.showTickPrefix`,`Shared.SymbolicMarker.ColorBar.showTickPrefix`,`Surface.ColorBar.showTickPrefix`,`Isosurface.ColorBar.showTickPrefix`,`Volume.ColorBar.showTickPrefix`,`Mesh3D.ColorBar.showTickPrefix`,`Cone.ColorBar.showTickPrefix`,`StreamTube.ColorBar.showTickPrefix`,`ScatterGeo.GradientMarker.ColorBar.showTickPrefix`,`Choropleth.ColorBar.showTickPrefix`,`ScatterGL.SymbolicMarker.ColorBar.showTickPrefix`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickPrefix`,`HeatmapGL.ColorBar.showTickPrefix`,`ParallelCoordinates.MarkerLine.ColorBar.showTickPrefix`,`ParallelCategories.ShapedMarkerLine.ColorBar.showTickPrefix`,`ScatterMapbox.SymbolicMarker.ColorBar.showTickPrefix`,`ChoroplethMapbox.ColorBar.showTickPrefix`,`DensityMapbox.ColorBar.showTickPrefix`,`Indicator.Gauge.Axis.showTickPrefix`,`Carpet.AAxis.showTickPrefix`,`Carpet.BAxis.showTickPrefix`,`ScatterCarpet.GradientMarker.ColorBar.showTickPrefix`,`ContourCarpet.ColorBar.showTickPrefix`,`ScatterPolar.GradientMarker.ColorBar.showTickPrefix`,`ScatterPolarGL.SymbolicMarker.ColorBar.showTickPrefix`,`BarPolar.Marker.ColorBar.showTickPrefix`.
+    ///   Used by `Layout.XAxis.showTickPrefix`, `Layout.YAxis.showTickPrefix`,
+    ///   `Layout.Ternary.AAxis.showTickPrefix`, `Layout.Ternary.BAxis.showTickPrefix`,
+    ///   `Layout.Ternary.CAxis.showTickPrefix`, `Layout.Scene.XAxis.showTickPrefix`,
+    ///   `Layout.Scene.YAxis.showTickPrefix`, `Layout.Scene.ZAxis.showTickPrefix`,
+    ///   `Layout.Polar.RadialAxis.showTickPrefix`, `Layout.Polar.AngularAxis.showTickPrefix`,
+    ///   `Shared.ColorBar.showTickPrefix`, `Shared.GradientMarker.ColorBar.showTickPrefix`,
+    ///   `Shared.Marker.ColorBar.showTickPrefix`, `Heatmap.ColorBar.showTickPrefix`,
+    ///   `Histogram.Marker.ColorBar.showTickPrefix`, `Histogram2D.ColorBar.showTickPrefix`,
+    ///   `Histogram2DContour.ColorBar.showTickPrefix`, `Contour.ColorBar.showTickPrefix`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.showTickPrefix`,
+    ///   `Funnel.Marker.ColorBar.showTickPrefix`, `Sunburst.Marker.ColorBar.showTickPrefix`,
+    ///   `Treemap.Marker.ColorBar.showTickPrefix`, `Scatter3D.DashedMarkerLine.ColorBar.showTickPrefix`,
+    ///   `Shared.SymbolicMarker.ColorBar.showTickPrefix`, `Surface.ColorBar.showTickPrefix`,
+    ///   `Isosurface.ColorBar.showTickPrefix`, `Volume.ColorBar.showTickPrefix`,
+    ///   `Mesh3D.ColorBar.showTickPrefix`, `Cone.ColorBar.showTickPrefix`,
+    ///   `StreamTube.ColorBar.showTickPrefix`, `ScatterGeo.GradientMarker.ColorBar.showTickPrefix`,
+    ///   `Choropleth.ColorBar.showTickPrefix`, `ScatterGL.SymbolicMarker.ColorBar.showTickPrefix`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickPrefix`, `HeatmapGL.ColorBar.showTickPrefix`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.showTickPrefix`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.showTickPrefix`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.showTickPrefix`,
+    ///   `ChoroplethMapbox.ColorBar.showTickPrefix`, `DensityMapbox.ColorBar.showTickPrefix`,
+    ///   `Indicator.Gauge.Axis.showTickPrefix`, `Carpet.AAxis.showTickPrefix`,
+    ///   `Carpet.BAxis.showTickPrefix`, `ScatterCarpet.GradientMarker.ColorBar.showTickPrefix`,
+    ///   `ContourCarpet.ColorBar.showTickPrefix`, `ScatterPolar.GradientMarker.ColorBar.showTickPrefix`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.showTickPrefix`,
+    ///   `BarPolar.Marker.ColorBar.showTickPrefix`.
     public enum ShowTickPrefix: String, Encodable {
         case all
         case first
@@ -204,8 +297,33 @@ public struct Shared {
     /// Same as `showtickprefix` but for tick suffixes.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.showTickSuffix`,`Layout.YAxis.showTickSuffix`,`Layout.Ternary.AAxis.showTickSuffix`,`Layout.Ternary.BAxis.showTickSuffix`,`Layout.Ternary.CAxis.showTickSuffix`,`Layout.Scene.XAxis.showTickSuffix`,`Layout.Scene.YAxis.showTickSuffix`,`Layout.Scene.ZAxis.showTickSuffix`,`Layout.Polar.RadialAxis.showTickSuffix`,`Layout.Polar.AngularAxis.showTickSuffix`,`Shared.ColorBar.showTickSuffix`,`Shared.GradientMarker.ColorBar.showTickSuffix`,`Shared.Marker.ColorBar.showTickSuffix`,`Heatmap.ColorBar.showTickSuffix`,`Histogram.Marker.ColorBar.showTickSuffix`,`Histogram2D.ColorBar.showTickSuffix`,`Histogram2DContour.ColorBar.showTickSuffix`,`Contour.ColorBar.showTickSuffix`,`ScatterTernary.GradientMarker.ColorBar.showTickSuffix`,`Funnel.Marker.ColorBar.showTickSuffix`,`Sunburst.Marker.ColorBar.showTickSuffix`,`Treemap.Marker.ColorBar.showTickSuffix`,`Scatter3D.DashedMarkerLine.ColorBar.showTickSuffix`,`Shared.SymbolicMarker.ColorBar.showTickSuffix`,`Surface.ColorBar.showTickSuffix`,`Isosurface.ColorBar.showTickSuffix`,`Volume.ColorBar.showTickSuffix`,`Mesh3D.ColorBar.showTickSuffix`,`Cone.ColorBar.showTickSuffix`,`StreamTube.ColorBar.showTickSuffix`,`ScatterGeo.GradientMarker.ColorBar.showTickSuffix`,`Choropleth.ColorBar.showTickSuffix`,`ScatterGL.SymbolicMarker.ColorBar.showTickSuffix`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickSuffix`,`HeatmapGL.ColorBar.showTickSuffix`,`ParallelCoordinates.MarkerLine.ColorBar.showTickSuffix`,`ParallelCategories.ShapedMarkerLine.ColorBar.showTickSuffix`,`ScatterMapbox.SymbolicMarker.ColorBar.showTickSuffix`,`ChoroplethMapbox.ColorBar.showTickSuffix`,`DensityMapbox.ColorBar.showTickSuffix`,`Indicator.Gauge.Axis.showTickSuffix`,`Carpet.AAxis.showTickSuffix`,`Carpet.BAxis.showTickSuffix`,`ScatterCarpet.GradientMarker.ColorBar.showTickSuffix`,`ContourCarpet.ColorBar.showTickSuffix`,`ScatterPolar.GradientMarker.ColorBar.showTickSuffix`,`ScatterPolarGL.SymbolicMarker.ColorBar.showTickSuffix`,`BarPolar.Marker.ColorBar.showTickSuffix`.
+    ///   Used by `Layout.XAxis.showTickSuffix`, `Layout.YAxis.showTickSuffix`,
+    ///   `Layout.Ternary.AAxis.showTickSuffix`, `Layout.Ternary.BAxis.showTickSuffix`,
+    ///   `Layout.Ternary.CAxis.showTickSuffix`, `Layout.Scene.XAxis.showTickSuffix`,
+    ///   `Layout.Scene.YAxis.showTickSuffix`, `Layout.Scene.ZAxis.showTickSuffix`,
+    ///   `Layout.Polar.RadialAxis.showTickSuffix`, `Layout.Polar.AngularAxis.showTickSuffix`,
+    ///   `Shared.ColorBar.showTickSuffix`, `Shared.GradientMarker.ColorBar.showTickSuffix`,
+    ///   `Shared.Marker.ColorBar.showTickSuffix`, `Heatmap.ColorBar.showTickSuffix`,
+    ///   `Histogram.Marker.ColorBar.showTickSuffix`, `Histogram2D.ColorBar.showTickSuffix`,
+    ///   `Histogram2DContour.ColorBar.showTickSuffix`, `Contour.ColorBar.showTickSuffix`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.showTickSuffix`,
+    ///   `Funnel.Marker.ColorBar.showTickSuffix`, `Sunburst.Marker.ColorBar.showTickSuffix`,
+    ///   `Treemap.Marker.ColorBar.showTickSuffix`, `Scatter3D.DashedMarkerLine.ColorBar.showTickSuffix`,
+    ///   `Shared.SymbolicMarker.ColorBar.showTickSuffix`, `Surface.ColorBar.showTickSuffix`,
+    ///   `Isosurface.ColorBar.showTickSuffix`, `Volume.ColorBar.showTickSuffix`,
+    ///   `Mesh3D.ColorBar.showTickSuffix`, `Cone.ColorBar.showTickSuffix`,
+    ///   `StreamTube.ColorBar.showTickSuffix`, `ScatterGeo.GradientMarker.ColorBar.showTickSuffix`,
+    ///   `Choropleth.ColorBar.showTickSuffix`, `ScatterGL.SymbolicMarker.ColorBar.showTickSuffix`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickSuffix`, `HeatmapGL.ColorBar.showTickSuffix`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.showTickSuffix`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.showTickSuffix`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.showTickSuffix`,
+    ///   `ChoroplethMapbox.ColorBar.showTickSuffix`, `DensityMapbox.ColorBar.showTickSuffix`,
+    ///   `Indicator.Gauge.Axis.showTickSuffix`, `Carpet.AAxis.showTickSuffix`,
+    ///   `Carpet.BAxis.showTickSuffix`, `ScatterCarpet.GradientMarker.ColorBar.showTickSuffix`,
+    ///   `ContourCarpet.ColorBar.showTickSuffix`, `ScatterPolar.GradientMarker.ColorBar.showTickSuffix`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.showTickSuffix`,
+    ///   `BarPolar.Marker.ColorBar.showTickSuffix`.
     public enum ShowTickSuffix: String, Encodable {
         case all
         case first
@@ -219,8 +337,32 @@ public struct Shared {
     /// last tick is shown. If *none*, no exponents appear.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.showExponent`,`Layout.YAxis.showExponent`,`Layout.Ternary.AAxis.showExponent`,`Layout.Ternary.BAxis.showExponent`,`Layout.Ternary.CAxis.showExponent`,`Layout.Scene.XAxis.showExponent`,`Layout.Scene.YAxis.showExponent`,`Layout.Scene.ZAxis.showExponent`,`Layout.Polar.RadialAxis.showExponent`,`Layout.Polar.AngularAxis.showExponent`,`Shared.ColorBar.showExponent`,`Shared.GradientMarker.ColorBar.showExponent`,`Shared.Marker.ColorBar.showExponent`,`Heatmap.ColorBar.showExponent`,`Histogram.Marker.ColorBar.showExponent`,`Histogram2D.ColorBar.showExponent`,`Histogram2DContour.ColorBar.showExponent`,`Contour.ColorBar.showExponent`,`ScatterTernary.GradientMarker.ColorBar.showExponent`,`Funnel.Marker.ColorBar.showExponent`,`Sunburst.Marker.ColorBar.showExponent`,`Treemap.Marker.ColorBar.showExponent`,`Scatter3D.DashedMarkerLine.ColorBar.showExponent`,`Shared.SymbolicMarker.ColorBar.showExponent`,`Surface.ColorBar.showExponent`,`Isosurface.ColorBar.showExponent`,`Volume.ColorBar.showExponent`,`Mesh3D.ColorBar.showExponent`,`Cone.ColorBar.showExponent`,`StreamTube.ColorBar.showExponent`,`ScatterGeo.GradientMarker.ColorBar.showExponent`,`Choropleth.ColorBar.showExponent`,`ScatterGL.SymbolicMarker.ColorBar.showExponent`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.showExponent`,`HeatmapGL.ColorBar.showExponent`,`ParallelCoordinates.MarkerLine.ColorBar.showExponent`,`ParallelCategories.ShapedMarkerLine.ColorBar.showExponent`,`ScatterMapbox.SymbolicMarker.ColorBar.showExponent`,`ChoroplethMapbox.ColorBar.showExponent`,`DensityMapbox.ColorBar.showExponent`,`Indicator.Gauge.Axis.showExponent`,`Carpet.AAxis.showExponent`,`Carpet.BAxis.showExponent`,`ScatterCarpet.GradientMarker.ColorBar.showExponent`,`ContourCarpet.ColorBar.showExponent`,`ScatterPolar.GradientMarker.ColorBar.showExponent`,`ScatterPolarGL.SymbolicMarker.ColorBar.showExponent`,`BarPolar.Marker.ColorBar.showExponent`.
+    ///   Used by `Layout.XAxis.showExponent`, `Layout.YAxis.showExponent`,
+    ///   `Layout.Ternary.AAxis.showExponent`, `Layout.Ternary.BAxis.showExponent`,
+    ///   `Layout.Ternary.CAxis.showExponent`, `Layout.Scene.XAxis.showExponent`,
+    ///   `Layout.Scene.YAxis.showExponent`, `Layout.Scene.ZAxis.showExponent`,
+    ///   `Layout.Polar.RadialAxis.showExponent`, `Layout.Polar.AngularAxis.showExponent`,
+    ///   `Shared.ColorBar.showExponent`, `Shared.GradientMarker.ColorBar.showExponent`,
+    ///   `Shared.Marker.ColorBar.showExponent`, `Heatmap.ColorBar.showExponent`,
+    ///   `Histogram.Marker.ColorBar.showExponent`, `Histogram2D.ColorBar.showExponent`,
+    ///   `Histogram2DContour.ColorBar.showExponent`, `Contour.ColorBar.showExponent`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.showExponent`, `Funnel.Marker.ColorBar.showExponent`,
+    ///   `Sunburst.Marker.ColorBar.showExponent`, `Treemap.Marker.ColorBar.showExponent`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.showExponent`,
+    ///   `Shared.SymbolicMarker.ColorBar.showExponent`, `Surface.ColorBar.showExponent`,
+    ///   `Isosurface.ColorBar.showExponent`, `Volume.ColorBar.showExponent`,
+    ///   `Mesh3D.ColorBar.showExponent`, `Cone.ColorBar.showExponent`,
+    ///   `StreamTube.ColorBar.showExponent`, `ScatterGeo.GradientMarker.ColorBar.showExponent`,
+    ///   `Choropleth.ColorBar.showExponent`, `ScatterGL.SymbolicMarker.ColorBar.showExponent`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showExponent`, `HeatmapGL.ColorBar.showExponent`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.showExponent`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.showExponent`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.showExponent`, `ChoroplethMapbox.ColorBar.showExponent`,
+    ///   `DensityMapbox.ColorBar.showExponent`, `Indicator.Gauge.Axis.showExponent`,
+    ///   `Carpet.AAxis.showExponent`, `Carpet.BAxis.showExponent`,
+    ///   `ScatterCarpet.GradientMarker.ColorBar.showExponent`, `ContourCarpet.ColorBar.showExponent`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.showExponent`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.showExponent`, `BarPolar.Marker.ColorBar.showExponent`.
     public enum ShowExponent: String, Encodable {
         case all
         case first
@@ -234,8 +376,33 @@ public struct Shared {
     /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.exponentFormat`,`Layout.YAxis.exponentFormat`,`Layout.Ternary.AAxis.exponentFormat`,`Layout.Ternary.BAxis.exponentFormat`,`Layout.Ternary.CAxis.exponentFormat`,`Layout.Scene.XAxis.exponentFormat`,`Layout.Scene.YAxis.exponentFormat`,`Layout.Scene.ZAxis.exponentFormat`,`Layout.Polar.RadialAxis.exponentFormat`,`Layout.Polar.AngularAxis.exponentFormat`,`Shared.ColorBar.exponentFormat`,`Shared.GradientMarker.ColorBar.exponentFormat`,`Shared.Marker.ColorBar.exponentFormat`,`Heatmap.ColorBar.exponentFormat`,`Histogram.Marker.ColorBar.exponentFormat`,`Histogram2D.ColorBar.exponentFormat`,`Histogram2DContour.ColorBar.exponentFormat`,`Contour.ColorBar.exponentFormat`,`ScatterTernary.GradientMarker.ColorBar.exponentFormat`,`Funnel.Marker.ColorBar.exponentFormat`,`Sunburst.Marker.ColorBar.exponentFormat`,`Treemap.Marker.ColorBar.exponentFormat`,`Scatter3D.DashedMarkerLine.ColorBar.exponentFormat`,`Shared.SymbolicMarker.ColorBar.exponentFormat`,`Surface.ColorBar.exponentFormat`,`Isosurface.ColorBar.exponentFormat`,`Volume.ColorBar.exponentFormat`,`Mesh3D.ColorBar.exponentFormat`,`Cone.ColorBar.exponentFormat`,`StreamTube.ColorBar.exponentFormat`,`ScatterGeo.GradientMarker.ColorBar.exponentFormat`,`Choropleth.ColorBar.exponentFormat`,`ScatterGL.SymbolicMarker.ColorBar.exponentFormat`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.exponentFormat`,`HeatmapGL.ColorBar.exponentFormat`,`ParallelCoordinates.MarkerLine.ColorBar.exponentFormat`,`ParallelCategories.ShapedMarkerLine.ColorBar.exponentFormat`,`ScatterMapbox.SymbolicMarker.ColorBar.exponentFormat`,`ChoroplethMapbox.ColorBar.exponentFormat`,`DensityMapbox.ColorBar.exponentFormat`,`Indicator.Gauge.Axis.exponentFormat`,`Carpet.AAxis.exponentFormat`,`Carpet.BAxis.exponentFormat`,`ScatterCarpet.GradientMarker.ColorBar.exponentFormat`,`ContourCarpet.ColorBar.exponentFormat`,`ScatterPolar.GradientMarker.ColorBar.exponentFormat`,`ScatterPolarGL.SymbolicMarker.ColorBar.exponentFormat`,`BarPolar.Marker.ColorBar.exponentFormat`.
+    ///   Used by `Layout.XAxis.exponentFormat`, `Layout.YAxis.exponentFormat`,
+    ///   `Layout.Ternary.AAxis.exponentFormat`, `Layout.Ternary.BAxis.exponentFormat`,
+    ///   `Layout.Ternary.CAxis.exponentFormat`, `Layout.Scene.XAxis.exponentFormat`,
+    ///   `Layout.Scene.YAxis.exponentFormat`, `Layout.Scene.ZAxis.exponentFormat`,
+    ///   `Layout.Polar.RadialAxis.exponentFormat`, `Layout.Polar.AngularAxis.exponentFormat`,
+    ///   `Shared.ColorBar.exponentFormat`, `Shared.GradientMarker.ColorBar.exponentFormat`,
+    ///   `Shared.Marker.ColorBar.exponentFormat`, `Heatmap.ColorBar.exponentFormat`,
+    ///   `Histogram.Marker.ColorBar.exponentFormat`, `Histogram2D.ColorBar.exponentFormat`,
+    ///   `Histogram2DContour.ColorBar.exponentFormat`, `Contour.ColorBar.exponentFormat`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.exponentFormat`,
+    ///   `Funnel.Marker.ColorBar.exponentFormat`, `Sunburst.Marker.ColorBar.exponentFormat`,
+    ///   `Treemap.Marker.ColorBar.exponentFormat`, `Scatter3D.DashedMarkerLine.ColorBar.exponentFormat`,
+    ///   `Shared.SymbolicMarker.ColorBar.exponentFormat`, `Surface.ColorBar.exponentFormat`,
+    ///   `Isosurface.ColorBar.exponentFormat`, `Volume.ColorBar.exponentFormat`,
+    ///   `Mesh3D.ColorBar.exponentFormat`, `Cone.ColorBar.exponentFormat`,
+    ///   `StreamTube.ColorBar.exponentFormat`, `ScatterGeo.GradientMarker.ColorBar.exponentFormat`,
+    ///   `Choropleth.ColorBar.exponentFormat`, `ScatterGL.SymbolicMarker.ColorBar.exponentFormat`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.exponentFormat`, `HeatmapGL.ColorBar.exponentFormat`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.exponentFormat`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.exponentFormat`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.exponentFormat`,
+    ///   `ChoroplethMapbox.ColorBar.exponentFormat`, `DensityMapbox.ColorBar.exponentFormat`,
+    ///   `Indicator.Gauge.Axis.exponentFormat`, `Carpet.AAxis.exponentFormat`,
+    ///   `Carpet.BAxis.exponentFormat`, `ScatterCarpet.GradientMarker.ColorBar.exponentFormat`,
+    ///   `ContourCarpet.ColorBar.exponentFormat`, `ScatterPolar.GradientMarker.ColorBar.exponentFormat`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.exponentFormat`,
+    ///   `BarPolar.Marker.ColorBar.exponentFormat`.
     public enum ExponentFormat: String, Encodable {
         case none
         case e
@@ -253,8 +420,9 @@ public struct Shared {
     /// nodes above this axis.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.layer`,`Layout.YAxis.layer`,`Layout.Ternary.AAxis.layer`,`Layout.Ternary.BAxis.layer`,`Layout.Ternary.CAxis.layer`,`Layout.Polar.RadialAxis.layer`,`Layout.Polar.AngularAxis.layer`.
+    ///   Used by `Layout.XAxis.layer`, `Layout.YAxis.layer`, `Layout.Ternary.AAxis.layer`,
+    ///   `Layout.Ternary.BAxis.layer`, `Layout.Ternary.CAxis.layer`, `Layout.Polar.RadialAxis.layer`,
+    ///   `Layout.Polar.AngularAxis.layer`.
     public enum Layer: String, Encodable {
         case aboveTraces = "above traces"
         case belowTraces = "below traces"
@@ -273,8 +441,10 @@ public struct Shared {
     /// or median of all the values.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.categoryOrder`,`Layout.YAxis.categoryOrder`,`Layout.Scene.XAxis.categoryOrder`,`Layout.Scene.YAxis.categoryOrder`,`Layout.Scene.ZAxis.categoryOrder`,`Layout.Polar.RadialAxis.categoryOrder`,`Layout.Polar.AngularAxis.categoryOrder`.
+    ///   Used by `Layout.XAxis.categoryOrder`, `Layout.YAxis.categoryOrder`,
+    ///   `Layout.Scene.XAxis.categoryOrder`, `Layout.Scene.YAxis.categoryOrder`,
+    ///   `Layout.Scene.ZAxis.categoryOrder`, `Layout.Polar.RadialAxis.categoryOrder`,
+    ///   `Layout.Polar.AngularAxis.categoryOrder`.
     public enum CategoryOrder: String, Encodable {
         case trace
         case categoryAscending = "category ascending"
@@ -300,8 +470,8 @@ public struct Shared {
     /// HTML tags) or if an explicit width is set to override the text width.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Scene.Annotation.align`,`Layout.Annotation.align`,`Indicator.align`,`Indicator.Title.align`,`Table.Header.align`,`Table.Cells.align`.
+    ///   Used by `Layout.Scene.Annotation.align`, `Layout.Annotation.align`, `Indicator.align`,
+    ///   `Indicator.Title.align`, `Table.Header.align`, `Table.Cells.align`.
     public enum HorizontalAlign: String, Encodable {
         case left
         case center
@@ -313,8 +483,8 @@ public struct Shared {
     /// Has an effect only if an explicit height is set to override the text height.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Scene.Annotation.verticalAlign`,`Layout.Legend.verticalAlign`,`Layout.Annotation.verticalAlign`.
+    ///   Used by `Layout.Scene.Annotation.verticalAlign`, `Layout.Legend.verticalAlign`,
+    ///   `Layout.Annotation.verticalAlign`.
     public enum VerticalAlign: String, Encodable {
         case top
         case middle
@@ -324,8 +494,10 @@ public struct Shared {
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Mapbox.Layer.Symbol.textPosition`,`Scatter.textPosition`,`ScatterTernary.textPosition`,`Treemap.textPosition`,`Scatter3D.textPosition`,`ScatterGeo.textPosition`,`ScatterGL.textPosition`,`ScatterMapbox.textPosition`,`ScatterCarpet.textPosition`,`ScatterPolar.textPosition`,`ScatterPolarGL.textPosition`.
+    ///   Used by `Layout.Mapbox.Layer.Symbol.textPosition`, `Scatter.textPosition`,
+    ///   `ScatterTernary.textPosition`, `Treemap.textPosition`, `Scatter3D.textPosition`,
+    ///   `ScatterGeo.textPosition`, `ScatterGL.textPosition`, `ScatterMapbox.textPosition`,
+    ///   `ScatterCarpet.textPosition`, `ScatterPolar.textPosition`, `ScatterPolarGL.textPosition`.
     public enum TextPosition: String, Encodable {
         case topLeft = "top left"
         case topCenter = "top center"
@@ -345,7 +517,7 @@ public struct Shared {
     /// normalized coordinates where 0 (1) corresponds to the left (right) side.
     /// 
     /// - Note:
-    ///   Used by `Layout.Annotation.xReference`,`Layout.Shape.xReference`,`Layout.Image.xReference`.
+    ///   Used by `Layout.Annotation.xReference`, `Layout.Shape.xReference`, `Layout.Image.xReference`.
     public enum XAxisReference: String, Encodable {
         case paper
         case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
@@ -358,7 +530,7 @@ public struct Shared {
     /// normalized coordinates where 0 (1) corresponds to the bottom (top).
     /// 
     /// - Note:
-    ///   Used by `Layout.Annotation.yReference`,`Layout.Shape.yReference`,`Layout.Image.yReference`.
+    ///   Used by `Layout.Annotation.yReference`, `Layout.Shape.yReference`, `Layout.Image.yReference`.
     public enum YAxisReference: String, Encodable {
         case paper
         case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
@@ -367,8 +539,24 @@ public struct Shared {
     /// Sets the anchor for the x position
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Image.xAnchor`,`Layout.Slider.CurrentValue.xAnchor`,`Shared.ColorBar.xAnchor`,`Shared.GradientMarker.ColorBar.xAnchor`,`Shared.Marker.ColorBar.xAnchor`,`Heatmap.ColorBar.xAnchor`,`Histogram.Marker.ColorBar.xAnchor`,`Histogram2D.ColorBar.xAnchor`,`Histogram2DContour.ColorBar.xAnchor`,`Contour.ColorBar.xAnchor`,`ScatterTernary.GradientMarker.ColorBar.xAnchor`,`Funnel.Marker.ColorBar.xAnchor`,`Sunburst.Marker.ColorBar.xAnchor`,`Treemap.Marker.ColorBar.xAnchor`,`Scatter3D.DashedMarkerLine.ColorBar.xAnchor`,`Shared.SymbolicMarker.ColorBar.xAnchor`,`Surface.ColorBar.xAnchor`,`Isosurface.ColorBar.xAnchor`,`Volume.ColorBar.xAnchor`,`Mesh3D.ColorBar.xAnchor`,`Cone.ColorBar.xAnchor`,`StreamTube.ColorBar.xAnchor`,`ScatterGeo.GradientMarker.ColorBar.xAnchor`,`Choropleth.ColorBar.xAnchor`,`ScatterGL.SymbolicMarker.ColorBar.xAnchor`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.xAnchor`,`HeatmapGL.ColorBar.xAnchor`,`ParallelCoordinates.MarkerLine.ColorBar.xAnchor`,`ParallelCategories.ShapedMarkerLine.ColorBar.xAnchor`,`ScatterMapbox.SymbolicMarker.ColorBar.xAnchor`,`ChoroplethMapbox.ColorBar.xAnchor`,`DensityMapbox.ColorBar.xAnchor`,`ScatterCarpet.GradientMarker.ColorBar.xAnchor`,`ContourCarpet.ColorBar.xAnchor`,`ScatterPolar.GradientMarker.ColorBar.xAnchor`,`ScatterPolarGL.SymbolicMarker.ColorBar.xAnchor`,`BarPolar.Marker.ColorBar.xAnchor`.
+    ///   Used by `Layout.Image.xAnchor`, `Layout.Slider.CurrentValue.xAnchor`, `Shared.ColorBar.xAnchor`,
+    ///   `Shared.GradientMarker.ColorBar.xAnchor`, `Shared.Marker.ColorBar.xAnchor`,
+    ///   `Heatmap.ColorBar.xAnchor`, `Histogram.Marker.ColorBar.xAnchor`, `Histogram2D.ColorBar.xAnchor`,
+    ///   `Histogram2DContour.ColorBar.xAnchor`, `Contour.ColorBar.xAnchor`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.xAnchor`, `Funnel.Marker.ColorBar.xAnchor`,
+    ///   `Sunburst.Marker.ColorBar.xAnchor`, `Treemap.Marker.ColorBar.xAnchor`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.xAnchor`, `Shared.SymbolicMarker.ColorBar.xAnchor`,
+    ///   `Surface.ColorBar.xAnchor`, `Isosurface.ColorBar.xAnchor`, `Volume.ColorBar.xAnchor`,
+    ///   `Mesh3D.ColorBar.xAnchor`, `Cone.ColorBar.xAnchor`, `StreamTube.ColorBar.xAnchor`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.xAnchor`, `Choropleth.ColorBar.xAnchor`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.xAnchor`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.xAnchor`, `HeatmapGL.ColorBar.xAnchor`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.xAnchor`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.xAnchor`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.xAnchor`, `ChoroplethMapbox.ColorBar.xAnchor`,
+    ///   `DensityMapbox.ColorBar.xAnchor`, `ScatterCarpet.GradientMarker.ColorBar.xAnchor`,
+    ///   `ContourCarpet.ColorBar.xAnchor`, `ScatterPolar.GradientMarker.ColorBar.xAnchor`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.xAnchor`, `BarPolar.Marker.ColorBar.xAnchor`.
     public enum XAnchor: String, Encodable {
         case left
         case center
@@ -378,8 +566,24 @@ public struct Shared {
     /// Sets the anchor for the y position.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Image.yAnchor`,`Shared.ColorBar.yAnchor`,`Shared.GradientMarker.ColorBar.yAnchor`,`Shared.Marker.ColorBar.yAnchor`,`Heatmap.ColorBar.yAnchor`,`Histogram.Marker.ColorBar.yAnchor`,`Histogram2D.ColorBar.yAnchor`,`Histogram2DContour.ColorBar.yAnchor`,`Contour.ColorBar.yAnchor`,`ScatterTernary.GradientMarker.ColorBar.yAnchor`,`Funnel.Marker.ColorBar.yAnchor`,`Sunburst.Marker.ColorBar.yAnchor`,`Treemap.Marker.ColorBar.yAnchor`,`Scatter3D.DashedMarkerLine.ColorBar.yAnchor`,`Shared.SymbolicMarker.ColorBar.yAnchor`,`Surface.ColorBar.yAnchor`,`Isosurface.ColorBar.yAnchor`,`Volume.ColorBar.yAnchor`,`Mesh3D.ColorBar.yAnchor`,`Cone.ColorBar.yAnchor`,`StreamTube.ColorBar.yAnchor`,`ScatterGeo.GradientMarker.ColorBar.yAnchor`,`Choropleth.ColorBar.yAnchor`,`ScatterGL.SymbolicMarker.ColorBar.yAnchor`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.yAnchor`,`HeatmapGL.ColorBar.yAnchor`,`ParallelCoordinates.MarkerLine.ColorBar.yAnchor`,`ParallelCategories.ShapedMarkerLine.ColorBar.yAnchor`,`ScatterMapbox.SymbolicMarker.ColorBar.yAnchor`,`ChoroplethMapbox.ColorBar.yAnchor`,`DensityMapbox.ColorBar.yAnchor`,`ScatterCarpet.GradientMarker.ColorBar.yAnchor`,`ContourCarpet.ColorBar.yAnchor`,`ScatterPolar.GradientMarker.ColorBar.yAnchor`,`ScatterPolarGL.SymbolicMarker.ColorBar.yAnchor`,`BarPolar.Marker.ColorBar.yAnchor`.
+    ///   Used by `Layout.Image.yAnchor`, `Shared.ColorBar.yAnchor`,
+    ///   `Shared.GradientMarker.ColorBar.yAnchor`, `Shared.Marker.ColorBar.yAnchor`,
+    ///   `Heatmap.ColorBar.yAnchor`, `Histogram.Marker.ColorBar.yAnchor`, `Histogram2D.ColorBar.yAnchor`,
+    ///   `Histogram2DContour.ColorBar.yAnchor`, `Contour.ColorBar.yAnchor`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.yAnchor`, `Funnel.Marker.ColorBar.yAnchor`,
+    ///   `Sunburst.Marker.ColorBar.yAnchor`, `Treemap.Marker.ColorBar.yAnchor`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.yAnchor`, `Shared.SymbolicMarker.ColorBar.yAnchor`,
+    ///   `Surface.ColorBar.yAnchor`, `Isosurface.ColorBar.yAnchor`, `Volume.ColorBar.yAnchor`,
+    ///   `Mesh3D.ColorBar.yAnchor`, `Cone.ColorBar.yAnchor`, `StreamTube.ColorBar.yAnchor`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.yAnchor`, `Choropleth.ColorBar.yAnchor`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.yAnchor`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.yAnchor`, `HeatmapGL.ColorBar.yAnchor`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.yAnchor`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.yAnchor`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.yAnchor`, `ChoroplethMapbox.ColorBar.yAnchor`,
+    ///   `DensityMapbox.ColorBar.yAnchor`, `ScatterCarpet.GradientMarker.ColorBar.yAnchor`,
+    ///   `ContourCarpet.ColorBar.yAnchor`, `ScatterPolar.GradientMarker.ColorBar.yAnchor`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.yAnchor`, `BarPolar.Marker.ColorBar.yAnchor`.
     public enum YAnchor: String, Encodable {
         case top
         case middle
@@ -391,8 +595,25 @@ public struct Shared {
     /// Use `len` to set the value.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Slider.lengthMode`,`Shared.ColorBar.lengthMode`,`Shared.GradientMarker.ColorBar.lengthMode`,`Shared.Marker.ColorBar.lengthMode`,`Heatmap.ColorBar.lengthMode`,`Histogram.Marker.ColorBar.lengthMode`,`Histogram2D.ColorBar.lengthMode`,`Histogram2DContour.ColorBar.lengthMode`,`Contour.ColorBar.lengthMode`,`ScatterTernary.GradientMarker.ColorBar.lengthMode`,`Funnel.Marker.ColorBar.lengthMode`,`Sunburst.Marker.ColorBar.lengthMode`,`Treemap.Marker.ColorBar.lengthMode`,`Scatter3D.DashedMarkerLine.ColorBar.lengthMode`,`Shared.SymbolicMarker.ColorBar.lengthMode`,`Surface.ColorBar.lengthMode`,`Isosurface.ColorBar.lengthMode`,`Volume.ColorBar.lengthMode`,`Mesh3D.ColorBar.lengthMode`,`Cone.ColorBar.lengthMode`,`StreamTube.ColorBar.lengthMode`,`ScatterGeo.GradientMarker.ColorBar.lengthMode`,`Choropleth.ColorBar.lengthMode`,`ScatterGL.SymbolicMarker.ColorBar.lengthMode`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.lengthMode`,`HeatmapGL.ColorBar.lengthMode`,`ParallelCoordinates.MarkerLine.ColorBar.lengthMode`,`ParallelCategories.ShapedMarkerLine.ColorBar.lengthMode`,`ScatterMapbox.SymbolicMarker.ColorBar.lengthMode`,`ChoroplethMapbox.ColorBar.lengthMode`,`DensityMapbox.ColorBar.lengthMode`,`ScatterCarpet.GradientMarker.ColorBar.lengthMode`,`ContourCarpet.ColorBar.lengthMode`,`ScatterPolar.GradientMarker.ColorBar.lengthMode`,`ScatterPolarGL.SymbolicMarker.ColorBar.lengthMode`,`BarPolar.Marker.ColorBar.lengthMode`.
+    ///   Used by `Layout.Slider.lengthMode`, `Shared.ColorBar.lengthMode`,
+    ///   `Shared.GradientMarker.ColorBar.lengthMode`, `Shared.Marker.ColorBar.lengthMode`,
+    ///   `Heatmap.ColorBar.lengthMode`, `Histogram.Marker.ColorBar.lengthMode`,
+    ///   `Histogram2D.ColorBar.lengthMode`, `Histogram2DContour.ColorBar.lengthMode`,
+    ///   `Contour.ColorBar.lengthMode`, `ScatterTernary.GradientMarker.ColorBar.lengthMode`,
+    ///   `Funnel.Marker.ColorBar.lengthMode`, `Sunburst.Marker.ColorBar.lengthMode`,
+    ///   `Treemap.Marker.ColorBar.lengthMode`, `Scatter3D.DashedMarkerLine.ColorBar.lengthMode`,
+    ///   `Shared.SymbolicMarker.ColorBar.lengthMode`, `Surface.ColorBar.lengthMode`,
+    ///   `Isosurface.ColorBar.lengthMode`, `Volume.ColorBar.lengthMode`, `Mesh3D.ColorBar.lengthMode`,
+    ///   `Cone.ColorBar.lengthMode`, `StreamTube.ColorBar.lengthMode`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.lengthMode`, `Choropleth.ColorBar.lengthMode`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.lengthMode`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.lengthMode`, `HeatmapGL.ColorBar.lengthMode`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.lengthMode`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.lengthMode`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.lengthMode`, `ChoroplethMapbox.ColorBar.lengthMode`,
+    ///   `DensityMapbox.ColorBar.lengthMode`, `ScatterCarpet.GradientMarker.ColorBar.lengthMode`,
+    ///   `ContourCarpet.ColorBar.lengthMode`, `ScatterPolar.GradientMarker.ColorBar.lengthMode`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.lengthMode`, `BarPolar.Marker.ColorBar.lengthMode`.
     public enum LengthMode: String, Encodable {
         case fraction
         case pixels
@@ -404,8 +625,27 @@ public struct Shared {
     /// Use `thickness` to set the value.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Shared.ColorBar.thicknessMode`,`Shared.GradientMarker.ColorBar.thicknessMode`,`Shared.Marker.ColorBar.thicknessMode`,`Heatmap.ColorBar.thicknessMode`,`Histogram.Marker.ColorBar.thicknessMode`,`Histogram2D.ColorBar.thicknessMode`,`Histogram2DContour.ColorBar.thicknessMode`,`Contour.ColorBar.thicknessMode`,`ScatterTernary.GradientMarker.ColorBar.thicknessMode`,`Funnel.Marker.ColorBar.thicknessMode`,`Sunburst.Marker.ColorBar.thicknessMode`,`Treemap.Marker.ColorBar.thicknessMode`,`Scatter3D.DashedMarkerLine.ColorBar.thicknessMode`,`Shared.SymbolicMarker.ColorBar.thicknessMode`,`Surface.ColorBar.thicknessMode`,`Isosurface.ColorBar.thicknessMode`,`Volume.ColorBar.thicknessMode`,`Mesh3D.ColorBar.thicknessMode`,`Cone.ColorBar.thicknessMode`,`StreamTube.ColorBar.thicknessMode`,`ScatterGeo.GradientMarker.ColorBar.thicknessMode`,`Choropleth.ColorBar.thicknessMode`,`ScatterGL.SymbolicMarker.ColorBar.thicknessMode`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.thicknessMode`,`HeatmapGL.ColorBar.thicknessMode`,`ParallelCoordinates.MarkerLine.ColorBar.thicknessMode`,`ParallelCategories.ShapedMarkerLine.ColorBar.thicknessMode`,`ScatterMapbox.SymbolicMarker.ColorBar.thicknessMode`,`ChoroplethMapbox.ColorBar.thicknessMode`,`DensityMapbox.ColorBar.thicknessMode`,`ScatterCarpet.GradientMarker.ColorBar.thicknessMode`,`ContourCarpet.ColorBar.thicknessMode`,`ScatterPolar.GradientMarker.ColorBar.thicknessMode`,`ScatterPolarGL.SymbolicMarker.ColorBar.thicknessMode`,`BarPolar.Marker.ColorBar.thicknessMode`.
+    ///   Used by `Shared.ColorBar.thicknessMode`, `Shared.GradientMarker.ColorBar.thicknessMode`,
+    ///   `Shared.Marker.ColorBar.thicknessMode`, `Heatmap.ColorBar.thicknessMode`,
+    ///   `Histogram.Marker.ColorBar.thicknessMode`, `Histogram2D.ColorBar.thicknessMode`,
+    ///   `Histogram2DContour.ColorBar.thicknessMode`, `Contour.ColorBar.thicknessMode`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.thicknessMode`, `Funnel.Marker.ColorBar.thicknessMode`,
+    ///   `Sunburst.Marker.ColorBar.thicknessMode`, `Treemap.Marker.ColorBar.thicknessMode`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.thicknessMode`,
+    ///   `Shared.SymbolicMarker.ColorBar.thicknessMode`, `Surface.ColorBar.thicknessMode`,
+    ///   `Isosurface.ColorBar.thicknessMode`, `Volume.ColorBar.thicknessMode`,
+    ///   `Mesh3D.ColorBar.thicknessMode`, `Cone.ColorBar.thicknessMode`,
+    ///   `StreamTube.ColorBar.thicknessMode`, `ScatterGeo.GradientMarker.ColorBar.thicknessMode`,
+    ///   `Choropleth.ColorBar.thicknessMode`, `ScatterGL.SymbolicMarker.ColorBar.thicknessMode`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.thicknessMode`, `HeatmapGL.ColorBar.thicknessMode`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.thicknessMode`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.thicknessMode`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.thicknessMode`,
+    ///   `ChoroplethMapbox.ColorBar.thicknessMode`, `DensityMapbox.ColorBar.thicknessMode`,
+    ///   `ScatterCarpet.GradientMarker.ColorBar.thicknessMode`, `ContourCarpet.ColorBar.thicknessMode`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.thicknessMode`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.thicknessMode`,
+    ///   `BarPolar.Marker.ColorBar.thicknessMode`.
     public enum ThicknessMode: String, Encodable {
         case fraction
         case pixels
@@ -416,8 +656,24 @@ public struct Shared {
     /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Shared.ColorBar.Title.side`,`Shared.GradientMarker.ColorBar.Title.side`,`Shared.Marker.ColorBar.Title.side`,`Heatmap.ColorBar.Title.side`,`Histogram.Marker.ColorBar.Title.side`,`Histogram2D.ColorBar.Title.side`,`Histogram2DContour.ColorBar.Title.side`,`Contour.ColorBar.Title.side`,`ScatterTernary.GradientMarker.ColorBar.Title.side`,`Funnel.Marker.ColorBar.Title.side`,`Sunburst.Marker.ColorBar.Title.side`,`Treemap.Marker.ColorBar.Title.side`,`Scatter3D.DashedMarkerLine.ColorBar.Title.side`,`Shared.SymbolicMarker.ColorBar.Title.side`,`Surface.ColorBar.Title.side`,`Isosurface.ColorBar.Title.side`,`Volume.ColorBar.Title.side`,`Mesh3D.ColorBar.Title.side`,`Cone.ColorBar.Title.side`,`StreamTube.ColorBar.Title.side`,`ScatterGeo.GradientMarker.ColorBar.Title.side`,`Choropleth.ColorBar.Title.side`,`ScatterGL.SymbolicMarker.ColorBar.Title.side`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.Title.side`,`HeatmapGL.ColorBar.Title.side`,`ParallelCoordinates.MarkerLine.ColorBar.Title.side`,`ParallelCategories.ShapedMarkerLine.ColorBar.Title.side`,`ScatterMapbox.SymbolicMarker.ColorBar.Title.side`,`ChoroplethMapbox.ColorBar.Title.side`,`DensityMapbox.ColorBar.Title.side`,`ScatterCarpet.GradientMarker.ColorBar.Title.side`,`ContourCarpet.ColorBar.Title.side`,`ScatterPolar.GradientMarker.ColorBar.Title.side`,`ScatterPolarGL.SymbolicMarker.ColorBar.Title.side`,`BarPolar.Marker.ColorBar.Title.side`.
+    ///   Used by `Shared.ColorBar.Title.side`, `Shared.GradientMarker.ColorBar.Title.side`,
+    ///   `Shared.Marker.ColorBar.Title.side`, `Heatmap.ColorBar.Title.side`,
+    ///   `Histogram.Marker.ColorBar.Title.side`, `Histogram2D.ColorBar.Title.side`,
+    ///   `Histogram2DContour.ColorBar.Title.side`, `Contour.ColorBar.Title.side`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.Title.side`, `Funnel.Marker.ColorBar.Title.side`,
+    ///   `Sunburst.Marker.ColorBar.Title.side`, `Treemap.Marker.ColorBar.Title.side`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.Title.side`, `Shared.SymbolicMarker.ColorBar.Title.side`,
+    ///   `Surface.ColorBar.Title.side`, `Isosurface.ColorBar.Title.side`, `Volume.ColorBar.Title.side`,
+    ///   `Mesh3D.ColorBar.Title.side`, `Cone.ColorBar.Title.side`, `StreamTube.ColorBar.Title.side`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.Title.side`, `Choropleth.ColorBar.Title.side`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.Title.side`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.Title.side`, `HeatmapGL.ColorBar.Title.side`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.Title.side`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.Title.side`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.Title.side`, `ChoroplethMapbox.ColorBar.Title.side`,
+    ///   `DensityMapbox.ColorBar.Title.side`, `ScatterCarpet.GradientMarker.ColorBar.Title.side`,
+    ///   `ContourCarpet.ColorBar.Title.side`, `ScatterPolar.GradientMarker.ColorBar.Title.side`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.Title.side`, `BarPolar.Marker.ColorBar.Title.side`.
     public enum Side: String, Encodable {
         case right
         case top
@@ -430,8 +686,18 @@ public struct Shared {
     /// legend itself is visible).
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Scatter.visible`,`Bar.visible`,`Box.visible`,`Heatmap.visible`,`Histogram.visible`,`Histogram2D.visible`,`Histogram2DContour.visible`,`Contour.visible`,`ScatterTernary.visible`,`Violin.visible`,`Funnel.visible`,`Waterfall.visible`,`Image.visible`,`Pie.visible`,`Sunburst.visible`,`Treemap.visible`,`FunnelArea.visible`,`Scatter3D.visible`,`Surface.visible`,`Isosurface.visible`,`Volume.visible`,`Mesh3D.visible`,`Cone.visible`,`StreamTube.visible`,`ScatterGeo.visible`,`Choropleth.visible`,`ScatterGL.visible`,`ScatterPlotMatrix.visible`,`PointCloud.visible`,`HeatmapGL.visible`,`ParallelCoordinates.visible`,`ParallelCategories.visible`,`ScatterMapbox.visible`,`ChoroplethMapbox.visible`,`DensityMapbox.visible`,`Sankey.visible`,`Indicator.visible`,`Table.visible`,`Carpet.visible`,`ScatterCarpet.visible`,`ContourCarpet.visible`,`OHLC.visible`,`Candlestick.visible`,`ScatterPolar.visible`,`ScatterPolarGL.visible`,`BarPolar.visible`.
+    ///   Used by `Scatter.visible`, `Bar.visible`, `Box.visible`, `Heatmap.visible`, `Histogram.visible`,
+    ///   `Histogram2D.visible`, `Histogram2DContour.visible`, `Contour.visible`,
+    ///   `ScatterTernary.visible`, `Violin.visible`, `Funnel.visible`, `Waterfall.visible`,
+    ///   `Image.visible`, `Pie.visible`, `Sunburst.visible`, `Treemap.visible`, `FunnelArea.visible`,
+    ///   `Scatter3D.visible`, `Surface.visible`, `Isosurface.visible`, `Volume.visible`,
+    ///   `Mesh3D.visible`, `Cone.visible`, `StreamTube.visible`, `ScatterGeo.visible`,
+    ///   `Choropleth.visible`, `ScatterGL.visible`, `ScatterPlotMatrix.visible`, `PointCloud.visible`,
+    ///   `HeatmapGL.visible`, `ParallelCoordinates.visible`, `ParallelCategories.visible`,
+    ///   `ScatterMapbox.visible`, `ChoroplethMapbox.visible`, `DensityMapbox.visible`, `Sankey.visible`,
+    ///   `Indicator.visible`, `Table.visible`, `Carpet.visible`, `ScatterCarpet.visible`,
+    ///   `ContourCarpet.visible`, `OHLC.visible`, `Candlestick.visible`, `ScatterPolar.visible`,
+    ///   `ScatterPolarGL.visible`, `BarPolar.visible`.
     public enum Visible: Encodable {
         case `true`
         case `false`
@@ -466,7 +732,7 @@ public struct Shared {
     /// later ones will be pushed down in the drawing order.
     /// 
     /// - Note:
-    ///   Used by `Scatter.fill`,`ScatterGL.fill`,`ScatterPolarGL.fill`.
+    ///   Used by `Scatter.fill`, `ScatterGL.fill`, `ScatterPolarGL.fill`.
     public enum Fill: String, Encodable {
         case none
         case toZeroY = "tozeroy"
@@ -484,8 +750,11 @@ public struct Shared {
     /// *dot-open* to a symbol name.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Shared.GradientMarker.symbol`,`Box.SymbolicMarker.symbol`,`ScatterTernary.GradientMarker.symbol`,`Violin.SymbolicMarker.symbol`,`ScatterGeo.GradientMarker.symbol`,`ScatterGL.SymbolicMarker.symbol`,`ScatterPlotMatrix.SymbolicMarker.symbol`,`ScatterCarpet.GradientMarker.symbol`,`ScatterPolar.GradientMarker.symbol`,`ScatterPolarGL.SymbolicMarker.symbol`.
+    ///   Used by `Shared.GradientMarker.symbol`, `Box.SymbolicMarker.symbol`,
+    ///   `ScatterTernary.GradientMarker.symbol`, `Violin.SymbolicMarker.symbol`,
+    ///   `ScatterGeo.GradientMarker.symbol`, `ScatterGL.SymbolicMarker.symbol`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.symbol`, `ScatterCarpet.GradientMarker.symbol`,
+    ///   `ScatterPolar.GradientMarker.symbol`, `ScatterPolarGL.SymbolicMarker.symbol`.
     public enum Symbol: String, Encodable {
         case circle
         case circleOpen = "circle-open"
@@ -636,8 +905,11 @@ public struct Shared {
     /// Sets the rule for which the data in `size` is converted to pixels.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Shared.GradientMarker.sizeMode`,`ScatterTernary.GradientMarker.sizeMode`,`Shared.SymbolicMarker.sizeMode`,`ScatterGeo.GradientMarker.sizeMode`,`ScatterGL.SymbolicMarker.sizeMode`,`ScatterPlotMatrix.SymbolicMarker.sizeMode`,`ScatterMapbox.SymbolicMarker.sizeMode`,`ScatterCarpet.GradientMarker.sizeMode`,`ScatterPolar.GradientMarker.sizeMode`,`ScatterPolarGL.SymbolicMarker.sizeMode`.
+    ///   Used by `Shared.GradientMarker.sizeMode`, `ScatterTernary.GradientMarker.sizeMode`,
+    ///   `Shared.SymbolicMarker.sizeMode`, `ScatterGeo.GradientMarker.sizeMode`,
+    ///   `ScatterGL.SymbolicMarker.sizeMode`, `ScatterPlotMatrix.SymbolicMarker.sizeMode`,
+    ///   `ScatterMapbox.SymbolicMarker.sizeMode`, `ScatterCarpet.GradientMarker.sizeMode`,
+    ///   `ScatterPolar.GradientMarker.sizeMode`, `ScatterPolarGL.SymbolicMarker.sizeMode`.
     public enum SizeMode: String, Encodable {
         case diameter
         case area
@@ -652,7 +924,7 @@ public struct Shared {
     /// outside.
     /// 
     /// - Note:
-    ///   Used by `Bar.textPosition`,`Funnel.textPosition`,`Waterfall.textPosition`,`Pie.textPosition`.
+    ///   Used by `Bar.textPosition`, `Funnel.textPosition`, `Waterfall.textPosition`, `Pie.textPosition`.
     public enum AdjacentPosition: String, Encodable {
         case inside
         case outside
@@ -663,7 +935,7 @@ public struct Shared {
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
     /// 
     /// - Note:
-    ///   Used by `Bar.insideTextAnchor`,`Funnel.insideTextAnchor`,`Waterfall.insideTextAnchor`.
+    ///   Used by `Bar.insideTextAnchor`, `Funnel.insideTextAnchor`, `Waterfall.insideTextAnchor`.
     public enum InsideTextAnchor: String, Encodable {
         case end
         case middle
@@ -673,7 +945,7 @@ public struct Shared {
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     /// 
     /// - Note:
-    ///   Used by `Bar.constrainText`,`Funnel.constrainText`,`Waterfall.constrainText`.
+    ///   Used by `Bar.constrainText`, `Funnel.constrainText`, `Waterfall.constrainText`.
     public enum ConstrainText: String, Encodable {
         case inside
         case outside
@@ -688,8 +960,8 @@ public struct Shared {
     /// `x` is not provided).
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Heatmap.xType`,`Heatmap.yType`,`Contour.xType`,`Contour.yType`,`HeatmapGL.xType`,`HeatmapGL.yType`.
+    ///   Used by `Heatmap.xType`, `Heatmap.yType`, `Contour.xType`, `Contour.yType`, `HeatmapGL.xType`,
+    ///   `HeatmapGL.yType`.
     public enum AxisType: String, Encodable {
         case array
         case scaled
@@ -702,8 +974,8 @@ public struct Shared {
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Histogram.binningFunction`,`Histogram2D.binningFunction`,`Histogram2DContour.binningFunction`.
+    ///   Used by `Histogram.binningFunction`, `Histogram2D.binningFunction`,
+    ///   `Histogram2DContour.binningFunction`.
     public enum BinningFunction: String, Encodable {
         case count
         case sum
@@ -724,8 +996,8 @@ public struct Shared {
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Histogram.normalization`,`Histogram2D.normalization`,`Histogram2DContour.normalization`.
+    ///   Used by `Histogram.normalization`, `Histogram2D.normalization`,
+    ///   `Histogram2DContour.normalization`.
     public enum Normalization: String, Encodable {
         case none = ""
         case percent
@@ -743,8 +1015,8 @@ public struct Shared {
     /// with filter transforms.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Shared.Contours.operation`,`Contour.Contours.operation`,`ContourCarpet.Contours.operation`.
+    ///   Used by `Shared.Contours.operation`, `Contour.Contours.operation`,
+    ///   `ContourCarpet.Contours.operation`.
     public enum Operation: String, Encodable {
         case equalTo = "="
         case lessThan = "<"
@@ -767,8 +1039,8 @@ public struct Shared {
     /// correspond to step-wise line shapes.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Shared.ShapedSmoothDashedLine.shape`,`ScatterCarpet.ShapedSmoothDashedLine.shape`,`ScatterPolar.ShapedSmoothDashedLine.shape`.
+    ///   Used by `Shared.ShapedSmoothDashedLine.shape`, `ScatterCarpet.ShapedSmoothDashedLine.shape`,
+    ///   `ScatterPolar.ShapedSmoothDashedLine.shape`.
     public enum Shape: String, Encodable {
         case linear
         case spline
@@ -783,7 +1055,7 @@ public struct Shared {
     /// trace before it. *tonext* should not be used if one trace does not enclose the other.
     /// 
     /// - Note:
-    ///   Used by `ScatterTernary.fill`,`ScatterCarpet.fill`,`ScatterPolar.fill`.
+    ///   Used by `ScatterTernary.fill`, `ScatterCarpet.fill`, `ScatterPolar.fill`.
     public enum AreaFill: String, Encodable {
         case none
         case toSelf = "toself"
@@ -793,8 +1065,8 @@ public struct Shared {
     /// Sets the dash style of the lines.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Scatter3D.DashedMarkerLine.dash`,`ScatterGL.ShapedDashedLine.dash`,`ScatterPolarGL.ShapedDashedLine.dash`.
+    ///   Used by `Scatter3D.DashedMarkerLine.dash`, `ScatterGL.ShapedDashedLine.dash`,
+    ///   `ScatterPolarGL.ShapedDashedLine.dash`.
     public enum Dash: String, Encodable {
         case solid
         case dot
@@ -814,8 +1086,8 @@ public struct Shared {
     /// mode. The unspecified categories will follow the categories in `categoryarray`.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `ParallelCategories.Dimension.categoryOrder`,`Carpet.AAxis.categoryOrder`,`Carpet.BAxis.categoryOrder`.
+    ///   Used by `ParallelCategories.Dimension.categoryOrder`, `Carpet.AAxis.categoryOrder`,
+    ///   `Carpet.BAxis.categoryOrder`.
     public enum CarpetCategoryOrder: String, Encodable {
         case trace
         case categoryAscending = "category ascending"
@@ -828,7 +1100,7 @@ public struct Shared {
     /// Has an effect only when on *linear* angular axes.
     /// 
     /// - Note:
-    ///   Used by `ScatterPolar.thetaUnit`,`ScatterPolarGL.thetaUnit`,`BarPolar.thetaUnit`.
+    ///   Used by `ScatterPolar.thetaUnit`, `ScatterPolarGL.thetaUnit`, `BarPolar.thetaUnit`.
     public enum ThetaUnit: String, Encodable {
         case radians
         case degrees
@@ -844,8 +1116,12 @@ public struct Shared {
     /// click and hover events are still fired.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Scatter.hoverInfo`,`Bar.hoverInfo`,`Box.hoverInfo`,`Heatmap.hoverInfo`,`Histogram.hoverInfo`,`Histogram2D.hoverInfo`,`Histogram2DContour.hoverInfo`,`Contour.hoverInfo`,`Violin.hoverInfo`,`Scatter3D.hoverInfo`,`Surface.hoverInfo`,`Isosurface.hoverInfo`,`Volume.hoverInfo`,`Mesh3D.hoverInfo`,`ScatterGL.hoverInfo`,`ScatterPlotMatrix.hoverInfo`,`PointCloud.hoverInfo`,`HeatmapGL.hoverInfo`,`Table.hoverInfo`,`OHLC.hoverInfo`,`Candlestick.hoverInfo`.
+    ///   Used by `Scatter.hoverInfo`, `Bar.hoverInfo`, `Box.hoverInfo`, `Heatmap.hoverInfo`,
+    ///   `Histogram.hoverInfo`, `Histogram2D.hoverInfo`, `Histogram2DContour.hoverInfo`,
+    ///   `Contour.hoverInfo`, `Violin.hoverInfo`, `Scatter3D.hoverInfo`, `Surface.hoverInfo`,
+    ///   `Isosurface.hoverInfo`, `Volume.hoverInfo`, `Mesh3D.hoverInfo`, `ScatterGL.hoverInfo`,
+    ///   `ScatterPlotMatrix.hoverInfo`, `PointCloud.hoverInfo`, `HeatmapGL.hoverInfo`, `Table.hoverInfo`,
+    ///   `OHLC.hoverInfo`, `Candlestick.hoverInfo`.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -882,8 +1158,9 @@ public struct Shared {
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Scatter.mode`,`ScatterTernary.mode`,`Scatter3D.mode`,`ScatterGeo.mode`,`ScatterGL.mode`,`ScatterMapbox.mode`,`ScatterCarpet.mode`,`ScatterPolar.mode`,`ScatterPolarGL.mode`.
+    ///   Used by `Scatter.mode`, `ScatterTernary.mode`, `Scatter3D.mode`, `ScatterGeo.mode`,
+    ///   `ScatterGL.mode`, `ScatterMapbox.mode`, `ScatterCarpet.mode`, `ScatterPolar.mode`,
+    ///   `ScatterPolarGL.mode`.
     public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -910,8 +1187,8 @@ public struct Shared {
     /// default is *fills*, otherwise it is *points*.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Scatter.hoverOn`,`ScatterTernary.hoverOn`,`ScatterCarpet.hoverOn`,`ScatterPolar.hoverOn`.
+    ///   Used by `Scatter.hoverOn`, `ScatterTernary.hoverOn`, `ScatterCarpet.hoverOn`,
+    ///   `ScatterPolar.hoverOn`.
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -935,7 +1212,7 @@ public struct Shared {
     /// click and hover events are still fired.
     /// 
     /// - Note:
-    ///   Used by `ScatterPolar.hoverInfo`,`ScatterPolarGL.hoverInfo`,`BarPolar.hoverInfo`.
+    ///   Used by `ScatterPolar.hoverInfo`, `ScatterPolarGL.hoverInfo`, `BarPolar.hoverInfo`.
     public struct PolarHoverInfo: OptionSet, Encodable {
         public let rawValue: Int
     
@@ -971,8 +1248,62 @@ public struct Shared {
     /// Note that fonts used in traces and other layout components inherit from the global font.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.font`,`Layout.Title.font`,`Shared.HoverLabel.font`,`Layout.XAxis.Title.font`,`Layout.XAxis.tickFont`,`Layout.XAxis.RangeSelector.font`,`Layout.YAxis.Title.font`,`Layout.YAxis.tickFont`,`Shared.Title.font`,`Layout.Ternary.AAxis.tickFont`,`Layout.Ternary.BAxis.Title.font`,`Layout.Ternary.BAxis.tickFont`,`Layout.Ternary.CAxis.Title.font`,`Layout.Ternary.CAxis.tickFont`,`Layout.Scene.XAxis.Title.font`,`Layout.Scene.XAxis.tickFont`,`Layout.Scene.YAxis.Title.font`,`Layout.Scene.YAxis.tickFont`,`Layout.Scene.ZAxis.Title.font`,`Layout.Scene.ZAxis.tickFont`,`Layout.Scene.Annotation.font`,`Layout.Scene.Annotation.HoverLabel.font`,`Layout.Mapbox.Layer.Symbol.textFont`,`Layout.Polar.RadialAxis.Title.font`,`Layout.Polar.RadialAxis.tickFont`,`Layout.Polar.AngularAxis.tickFont`,`Layout.Legend.font`,`Layout.Annotation.font`,`Layout.Annotation.HoverLabel.font`,`Layout.UpdateMenu.font`,`Layout.Slider.CurrentValue.font`,`Layout.Slider.font`,`Shared.ColorBar.tickFont`,`Shared.ColorBar.Title.font`,`Shared.GradientMarker.ColorBar.tickFont`,`Shared.GradientMarker.ColorBar.Title.font`,`Shared.Marker.ColorBar.tickFont`,`Shared.Marker.ColorBar.Title.font`,`Heatmap.ColorBar.tickFont`,`Heatmap.ColorBar.Title.font`,`Histogram.Marker.ColorBar.tickFont`,`Histogram.Marker.ColorBar.Title.font`,`Histogram2D.ColorBar.tickFont`,`Histogram2D.ColorBar.Title.font`,`Shared.Contours.labelFont`,`Histogram2DContour.ColorBar.tickFont`,`Histogram2DContour.ColorBar.Title.font`,`Contour.Contours.labelFont`,`Contour.ColorBar.tickFont`,`Contour.ColorBar.Title.font`,`ScatterTernary.GradientMarker.ColorBar.tickFont`,`ScatterTernary.GradientMarker.ColorBar.Title.font`,`Funnel.Marker.ColorBar.tickFont`,`Funnel.Marker.ColorBar.Title.font`,`Sunburst.Marker.ColorBar.tickFont`,`Sunburst.Marker.ColorBar.Title.font`,`Treemap.Marker.ColorBar.tickFont`,`Treemap.Marker.ColorBar.Title.font`,`Scatter3D.DashedMarkerLine.ColorBar.tickFont`,`Scatter3D.DashedMarkerLine.ColorBar.Title.font`,`Shared.SymbolicMarker.ColorBar.tickFont`,`Shared.SymbolicMarker.ColorBar.Title.font`,`Surface.ColorBar.tickFont`,`Surface.ColorBar.Title.font`,`Isosurface.ColorBar.tickFont`,`Isosurface.ColorBar.Title.font`,`Volume.ColorBar.tickFont`,`Volume.ColorBar.Title.font`,`Mesh3D.ColorBar.tickFont`,`Mesh3D.ColorBar.Title.font`,`Cone.ColorBar.tickFont`,`Cone.ColorBar.Title.font`,`StreamTube.ColorBar.tickFont`,`StreamTube.ColorBar.Title.font`,`ScatterGeo.GradientMarker.ColorBar.tickFont`,`ScatterGeo.GradientMarker.ColorBar.Title.font`,`Choropleth.ColorBar.tickFont`,`Choropleth.ColorBar.Title.font`,`ScatterGL.SymbolicMarker.ColorBar.tickFont`,`ScatterGL.SymbolicMarker.ColorBar.Title.font`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFont`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.Title.font`,`HeatmapGL.ColorBar.tickFont`,`HeatmapGL.ColorBar.Title.font`,`ParallelCoordinates.labelFont`,`ParallelCoordinates.tickFont`,`ParallelCoordinates.rangeFont`,`ParallelCoordinates.MarkerLine.ColorBar.tickFont`,`ParallelCoordinates.MarkerLine.ColorBar.Title.font`,`ParallelCategories.labelFont`,`ParallelCategories.tickFont`,`ParallelCategories.ShapedMarkerLine.ColorBar.tickFont`,`ParallelCategories.ShapedMarkerLine.ColorBar.Title.font`,`ScatterMapbox.SymbolicMarker.ColorBar.tickFont`,`ScatterMapbox.SymbolicMarker.ColorBar.Title.font`,`ScatterMapbox.textFont`,`ChoroplethMapbox.ColorBar.tickFont`,`ChoroplethMapbox.ColorBar.Title.font`,`DensityMapbox.ColorBar.tickFont`,`DensityMapbox.ColorBar.Title.font`,`Sankey.textFont`,`Indicator.Title.font`,`Indicator.Number.font`,`Indicator.Delta.font`,`Indicator.Gauge.Axis.tickFont`,`Carpet.AAxis.Title.font`,`Carpet.AAxis.tickFont`,`Carpet.BAxis.Title.font`,`Carpet.BAxis.tickFont`,`Carpet.font`,`ScatterCarpet.GradientMarker.ColorBar.tickFont`,`ScatterCarpet.GradientMarker.ColorBar.Title.font`,`ContourCarpet.Contours.labelFont`,`ContourCarpet.ColorBar.tickFont`,`ContourCarpet.ColorBar.Title.font`,`ScatterPolar.GradientMarker.ColorBar.tickFont`,`ScatterPolar.GradientMarker.ColorBar.Title.font`,`ScatterPolarGL.SymbolicMarker.ColorBar.tickFont`,`ScatterPolarGL.SymbolicMarker.ColorBar.Title.font`,`BarPolar.Marker.ColorBar.tickFont`,`BarPolar.Marker.ColorBar.Title.font`.
+    ///   Used by `Layout.font`, `Layout.Title.font`, `Shared.HoverLabel.font`, `Layout.XAxis.Title.font`,
+    ///   `Layout.XAxis.tickFont`, `Layout.XAxis.RangeSelector.font`, `Layout.YAxis.Title.font`,
+    ///   `Layout.YAxis.tickFont`, `Shared.Title.font`, `Layout.Ternary.AAxis.tickFont`,
+    ///   `Layout.Ternary.BAxis.Title.font`, `Layout.Ternary.BAxis.tickFont`,
+    ///   `Layout.Ternary.CAxis.Title.font`, `Layout.Ternary.CAxis.tickFont`,
+    ///   `Layout.Scene.XAxis.Title.font`, `Layout.Scene.XAxis.tickFont`, `Layout.Scene.YAxis.Title.font`,
+    ///   `Layout.Scene.YAxis.tickFont`, `Layout.Scene.ZAxis.Title.font`, `Layout.Scene.ZAxis.tickFont`,
+    ///   `Layout.Scene.Annotation.font`, `Layout.Scene.Annotation.HoverLabel.font`,
+    ///   `Layout.Mapbox.Layer.Symbol.textFont`, `Layout.Polar.RadialAxis.Title.font`,
+    ///   `Layout.Polar.RadialAxis.tickFont`, `Layout.Polar.AngularAxis.tickFont`, `Layout.Legend.font`,
+    ///   `Layout.Annotation.font`, `Layout.Annotation.HoverLabel.font`, `Layout.UpdateMenu.font`,
+    ///   `Layout.Slider.CurrentValue.font`, `Layout.Slider.font`, `Shared.ColorBar.tickFont`,
+    ///   `Shared.ColorBar.Title.font`, `Shared.GradientMarker.ColorBar.tickFont`,
+    ///   `Shared.GradientMarker.ColorBar.Title.font`, `Shared.Marker.ColorBar.tickFont`,
+    ///   `Shared.Marker.ColorBar.Title.font`, `Heatmap.ColorBar.tickFont`, `Heatmap.ColorBar.Title.font`,
+    ///   `Histogram.Marker.ColorBar.tickFont`, `Histogram.Marker.ColorBar.Title.font`,
+    ///   `Histogram2D.ColorBar.tickFont`, `Histogram2D.ColorBar.Title.font`, `Shared.Contours.labelFont`,
+    ///   `Histogram2DContour.ColorBar.tickFont`, `Histogram2DContour.ColorBar.Title.font`,
+    ///   `Contour.Contours.labelFont`, `Contour.ColorBar.tickFont`, `Contour.ColorBar.Title.font`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.tickFont`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.Title.font`, `Funnel.Marker.ColorBar.tickFont`,
+    ///   `Funnel.Marker.ColorBar.Title.font`, `Sunburst.Marker.ColorBar.tickFont`,
+    ///   `Sunburst.Marker.ColorBar.Title.font`, `Treemap.Marker.ColorBar.tickFont`,
+    ///   `Treemap.Marker.ColorBar.Title.font`, `Scatter3D.DashedMarkerLine.ColorBar.tickFont`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.Title.font`, `Shared.SymbolicMarker.ColorBar.tickFont`,
+    ///   `Shared.SymbolicMarker.ColorBar.Title.font`, `Surface.ColorBar.tickFont`,
+    ///   `Surface.ColorBar.Title.font`, `Isosurface.ColorBar.tickFont`, `Isosurface.ColorBar.Title.font`,
+    ///   `Volume.ColorBar.tickFont`, `Volume.ColorBar.Title.font`, `Mesh3D.ColorBar.tickFont`,
+    ///   `Mesh3D.ColorBar.Title.font`, `Cone.ColorBar.tickFont`, `Cone.ColorBar.Title.font`,
+    ///   `StreamTube.ColorBar.tickFont`, `StreamTube.ColorBar.Title.font`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.tickFont`, `ScatterGeo.GradientMarker.ColorBar.Title.font`,
+    ///   `Choropleth.ColorBar.tickFont`, `Choropleth.ColorBar.Title.font`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.tickFont`, `ScatterGL.SymbolicMarker.ColorBar.Title.font`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFont`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.Title.font`, `HeatmapGL.ColorBar.tickFont`,
+    ///   `HeatmapGL.ColorBar.Title.font`, `ParallelCoordinates.labelFont`,
+    ///   `ParallelCoordinates.tickFont`, `ParallelCoordinates.rangeFont`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.tickFont`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.Title.font`, `ParallelCategories.labelFont`,
+    ///   `ParallelCategories.tickFont`, `ParallelCategories.ShapedMarkerLine.ColorBar.tickFont`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.Title.font`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.tickFont`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.Title.font`, `ScatterMapbox.textFont`,
+    ///   `ChoroplethMapbox.ColorBar.tickFont`, `ChoroplethMapbox.ColorBar.Title.font`,
+    ///   `DensityMapbox.ColorBar.tickFont`, `DensityMapbox.ColorBar.Title.font`, `Sankey.textFont`,
+    ///   `Indicator.Title.font`, `Indicator.Number.font`, `Indicator.Delta.font`,
+    ///   `Indicator.Gauge.Axis.tickFont`, `Carpet.AAxis.Title.font`, `Carpet.AAxis.tickFont`,
+    ///   `Carpet.BAxis.Title.font`, `Carpet.BAxis.tickFont`, `Carpet.font`,
+    ///   `ScatterCarpet.GradientMarker.ColorBar.tickFont`,
+    ///   `ScatterCarpet.GradientMarker.ColorBar.Title.font`, `ContourCarpet.Contours.labelFont`,
+    ///   `ContourCarpet.ColorBar.tickFont`, `ContourCarpet.ColorBar.Title.font`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.tickFont`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.Title.font`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.tickFont`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.Title.font`, `BarPolar.Marker.ColorBar.tickFont`,
+    ///   `BarPolar.Marker.ColorBar.Title.font`.
     public struct Font: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser.
         /// 
@@ -1011,8 +1342,8 @@ public struct Shared {
     /// respective anchor value is *middle*/*center*.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Title.padding`,`Layout.UpdateMenu.padding`,`Layout.Slider.padding`,`Treemap.Marker.padding`.
+    ///   Used by `Layout.Title.padding`, `Layout.UpdateMenu.padding`, `Layout.Slider.padding`,
+    ///   `Treemap.Marker.padding`.
     public struct Padding: Encodable {
         /// The amount of padding (in px) along the top of the component.
         public var t: Double?
@@ -1043,8 +1374,19 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Layout.hoverLabel`,`Scatter.hoverLabel`,`Bar.hoverLabel`,`Box.hoverLabel`,`Heatmap.hoverLabel`,`Histogram.hoverLabel`,`Histogram2D.hoverLabel`,`Histogram2DContour.hoverLabel`,`Contour.hoverLabel`,`ScatterTernary.hoverLabel`,`Violin.hoverLabel`,`Funnel.hoverLabel`,`Waterfall.hoverLabel`,`Image.hoverLabel`,`Pie.hoverLabel`,`Sunburst.hoverLabel`,`Treemap.hoverLabel`,`FunnelArea.hoverLabel`,`Scatter3D.hoverLabel`,`Surface.hoverLabel`,`Isosurface.hoverLabel`,`Volume.hoverLabel`,`Mesh3D.hoverLabel`,`Cone.hoverLabel`,`StreamTube.hoverLabel`,`ScatterGeo.hoverLabel`,`Choropleth.hoverLabel`,`ScatterGL.hoverLabel`,`ScatterPlotMatrix.hoverLabel`,`PointCloud.hoverLabel`,`HeatmapGL.hoverLabel`,`ScatterMapbox.hoverLabel`,`ChoroplethMapbox.hoverLabel`,`DensityMapbox.hoverLabel`,`Sankey.hoverLabel`,`Sankey.Node.hoverLabel`,`Sankey.Link.hoverLabel`,`Table.hoverLabel`,`ScatterCarpet.hoverLabel`,`ScatterPolar.hoverLabel`,`ScatterPolarGL.hoverLabel`,`BarPolar.hoverLabel`.
+    ///   Used by `Layout.hoverLabel`, `Scatter.hoverLabel`, `Bar.hoverLabel`, `Box.hoverLabel`,
+    ///   `Heatmap.hoverLabel`, `Histogram.hoverLabel`, `Histogram2D.hoverLabel`,
+    ///   `Histogram2DContour.hoverLabel`, `Contour.hoverLabel`, `ScatterTernary.hoverLabel`,
+    ///   `Violin.hoverLabel`, `Funnel.hoverLabel`, `Waterfall.hoverLabel`, `Image.hoverLabel`,
+    ///   `Pie.hoverLabel`, `Sunburst.hoverLabel`, `Treemap.hoverLabel`, `FunnelArea.hoverLabel`,
+    ///   `Scatter3D.hoverLabel`, `Surface.hoverLabel`, `Isosurface.hoverLabel`, `Volume.hoverLabel`,
+    ///   `Mesh3D.hoverLabel`, `Cone.hoverLabel`, `StreamTube.hoverLabel`, `ScatterGeo.hoverLabel`,
+    ///   `Choropleth.hoverLabel`, `ScatterGL.hoverLabel`, `ScatterPlotMatrix.hoverLabel`,
+    ///   `PointCloud.hoverLabel`, `HeatmapGL.hoverLabel`, `ScatterMapbox.hoverLabel`,
+    ///   `ChoroplethMapbox.hoverLabel`, `DensityMapbox.hoverLabel`, `Sankey.hoverLabel`,
+    ///   `Sankey.Node.hoverLabel`, `Sankey.Link.hoverLabel`, `Table.hoverLabel`,
+    ///   `ScatterCarpet.hoverLabel`, `ScatterPolar.hoverLabel`, `ScatterPolarGL.hoverLabel`,
+    ///   `BarPolar.hoverLabel`.
     public struct HoverLabel: Encodable {
         /// Sets the background color of all hover labels on graph
         public var backgroundColor: Color?
@@ -1098,8 +1440,35 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Layout.XAxis.tickFormatStops`,`Layout.YAxis.tickFormatStops`,`Layout.Ternary.AAxis.tickFormatStops`,`Layout.Ternary.BAxis.tickFormatStops`,`Layout.Ternary.CAxis.tickFormatStops`,`Layout.Scene.XAxis.tickFormatStops`,`Layout.Scene.YAxis.tickFormatStops`,`Layout.Scene.ZAxis.tickFormatStops`,`Layout.Polar.RadialAxis.tickFormatStops`,`Layout.Polar.AngularAxis.tickFormatStops`,`Shared.ColorBar.tickFormatStops`,`Shared.GradientMarker.ColorBar.tickFormatStops`,`Shared.Marker.ColorBar.tickFormatStops`,`Heatmap.ColorBar.tickFormatStops`,`Histogram.Marker.ColorBar.tickFormatStops`,`Histogram2D.ColorBar.tickFormatStops`,`Histogram2DContour.ColorBar.tickFormatStops`,`Contour.ColorBar.tickFormatStops`,`ScatterTernary.GradientMarker.ColorBar.tickFormatStops`,`Funnel.Marker.ColorBar.tickFormatStops`,`Sunburst.Marker.ColorBar.tickFormatStops`,`Treemap.Marker.ColorBar.tickFormatStops`,`Scatter3D.DashedMarkerLine.ColorBar.tickFormatStops`,`Shared.SymbolicMarker.ColorBar.tickFormatStops`,`Surface.ColorBar.tickFormatStops`,`Isosurface.ColorBar.tickFormatStops`,`Volume.ColorBar.tickFormatStops`,`Mesh3D.ColorBar.tickFormatStops`,`Cone.ColorBar.tickFormatStops`,`StreamTube.ColorBar.tickFormatStops`,`ScatterGeo.GradientMarker.ColorBar.tickFormatStops`,`Choropleth.ColorBar.tickFormatStops`,`ScatterGL.SymbolicMarker.ColorBar.tickFormatStops`,`ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFormatStops`,`HeatmapGL.ColorBar.tickFormatStops`,`ParallelCoordinates.MarkerLine.ColorBar.tickFormatStops`,`ParallelCategories.ShapedMarkerLine.ColorBar.tickFormatStops`,`ScatterMapbox.SymbolicMarker.ColorBar.tickFormatStops`,`ChoroplethMapbox.ColorBar.tickFormatStops`,`DensityMapbox.ColorBar.tickFormatStops`,`Indicator.Gauge.Axis.tickFormatStops`,`Carpet.AAxis.tickFormatStops`,`Carpet.BAxis.tickFormatStops`,`ScatterCarpet.GradientMarker.ColorBar.tickFormatStops`,`ContourCarpet.ColorBar.tickFormatStops`,`ScatterPolar.GradientMarker.ColorBar.tickFormatStops`,`ScatterPolarGL.SymbolicMarker.ColorBar.tickFormatStops`,`BarPolar.Marker.ColorBar.tickFormatStops`.
+    ///   Used by `Layout.XAxis.tickFormatStops`, `Layout.YAxis.tickFormatStops`,
+    ///   `Layout.Ternary.AAxis.tickFormatStops`, `Layout.Ternary.BAxis.tickFormatStops`,
+    ///   `Layout.Ternary.CAxis.tickFormatStops`, `Layout.Scene.XAxis.tickFormatStops`,
+    ///   `Layout.Scene.YAxis.tickFormatStops`, `Layout.Scene.ZAxis.tickFormatStops`,
+    ///   `Layout.Polar.RadialAxis.tickFormatStops`, `Layout.Polar.AngularAxis.tickFormatStops`,
+    ///   `Shared.ColorBar.tickFormatStops`, `Shared.GradientMarker.ColorBar.tickFormatStops`,
+    ///   `Shared.Marker.ColorBar.tickFormatStops`, `Heatmap.ColorBar.tickFormatStops`,
+    ///   `Histogram.Marker.ColorBar.tickFormatStops`, `Histogram2D.ColorBar.tickFormatStops`,
+    ///   `Histogram2DContour.ColorBar.tickFormatStops`, `Contour.ColorBar.tickFormatStops`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.tickFormatStops`,
+    ///   `Funnel.Marker.ColorBar.tickFormatStops`, `Sunburst.Marker.ColorBar.tickFormatStops`,
+    ///   `Treemap.Marker.ColorBar.tickFormatStops`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.tickFormatStops`,
+    ///   `Shared.SymbolicMarker.ColorBar.tickFormatStops`, `Surface.ColorBar.tickFormatStops`,
+    ///   `Isosurface.ColorBar.tickFormatStops`, `Volume.ColorBar.tickFormatStops`,
+    ///   `Mesh3D.ColorBar.tickFormatStops`, `Cone.ColorBar.tickFormatStops`,
+    ///   `StreamTube.ColorBar.tickFormatStops`, `ScatterGeo.GradientMarker.ColorBar.tickFormatStops`,
+    ///   `Choropleth.ColorBar.tickFormatStops`, `ScatterGL.SymbolicMarker.ColorBar.tickFormatStops`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFormatStops`,
+    ///   `HeatmapGL.ColorBar.tickFormatStops`, `ParallelCoordinates.MarkerLine.ColorBar.tickFormatStops`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.tickFormatStops`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.tickFormatStops`,
+    ///   `ChoroplethMapbox.ColorBar.tickFormatStops`, `DensityMapbox.ColorBar.tickFormatStops`,
+    ///   `Indicator.Gauge.Axis.tickFormatStops`, `Carpet.AAxis.tickFormatStops`,
+    ///   `Carpet.BAxis.tickFormatStops`, `ScatterCarpet.GradientMarker.ColorBar.tickFormatStops`,
+    ///   `ContourCarpet.ColorBar.tickFormatStops`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.tickFormatStops`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.tickFormatStops`,
+    ///   `BarPolar.Marker.ColorBar.tickFormatStops`.
     public struct TickFormatStop: Encodable {
         /// Determines whether or not this stop is used.
         /// 
@@ -1161,8 +1530,10 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Ternary.domain`,`Layout.Scene.domain`,`Layout.Geo.domain`,`Layout.Mapbox.domain`,`Layout.Polar.domain`,`Pie.domain`,`Sunburst.domain`,`Treemap.domain`,`FunnelArea.domain`,`ParallelCoordinates.domain`,`ParallelCategories.domain`,`Sankey.domain`,`Indicator.domain`,`Table.domain`.
+    ///   Used by `Layout.Ternary.domain`, `Layout.Scene.domain`, `Layout.Geo.domain`,
+    ///   `Layout.Mapbox.domain`, `Layout.Polar.domain`, `Pie.domain`, `Sunburst.domain`,
+    ///   `Treemap.domain`, `FunnelArea.domain`, `ParallelCoordinates.domain`,
+    ///   `ParallelCategories.domain`, `Sankey.domain`, `Indicator.domain`, `Table.domain`.
     public struct Domain: Encodable {
         /// Sets the horizontal domain of this ternary subplot (in plot fraction).
         public var x: InfoArray?
@@ -1195,8 +1566,9 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Ternary.AAxis.title`,`Layout.Ternary.BAxis.title`,`Layout.Ternary.CAxis.title`,`Layout.Scene.XAxis.title`,`Layout.Scene.YAxis.title`,`Layout.Scene.ZAxis.title`,`Layout.Polar.RadialAxis.title`.
+    ///   Used by `Layout.Ternary.AAxis.title`, `Layout.Ternary.BAxis.title`,
+    ///   `Layout.Ternary.CAxis.title`, `Layout.Scene.XAxis.title`, `Layout.Scene.YAxis.title`,
+    ///   `Layout.Scene.ZAxis.title`, `Layout.Polar.RadialAxis.title`.
     public struct Title: Encodable {
         /// Sets the title of this axis.
         /// 
@@ -1222,8 +1594,8 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Layout.Shape.line`,`Funnel.Connector.line`,`Waterfall.Connector.line`,`ScatterGeo.line`.
+    ///   Used by `Layout.Shape.line`, `Funnel.Connector.line`, `Waterfall.Connector.line`,
+    ///   `ScatterGeo.line`.
     public struct DashedLine: Encodable {
         /// Sets the line color.
         public var color: Color?
@@ -1252,8 +1624,19 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Layout.ColorAxis.colorBar`,`Shared.GradientMarker.colorBar`,`Shared.Marker.colorBar`,`Heatmap.colorBar`,`Histogram.Marker.colorBar`,`Histogram2D.colorBar`,`Histogram2DContour.colorBar`,`Contour.colorBar`,`ScatterTernary.GradientMarker.colorBar`,`Funnel.Marker.colorBar`,`Sunburst.Marker.colorBar`,`Treemap.Marker.colorBar`,`Scatter3D.DashedMarkerLine.colorBar`,`Shared.SymbolicMarker.colorBar`,`Surface.colorBar`,`Isosurface.colorBar`,`Volume.colorBar`,`Mesh3D.colorBar`,`Cone.colorBar`,`StreamTube.colorBar`,`ScatterGeo.GradientMarker.colorBar`,`Choropleth.colorBar`,`ScatterGL.SymbolicMarker.colorBar`,`ScatterPlotMatrix.SymbolicMarker.colorBar`,`HeatmapGL.colorBar`,`ParallelCoordinates.MarkerLine.colorBar`,`ParallelCategories.ShapedMarkerLine.colorBar`,`ScatterMapbox.SymbolicMarker.colorBar`,`ChoroplethMapbox.colorBar`,`DensityMapbox.colorBar`,`ScatterCarpet.GradientMarker.colorBar`,`ContourCarpet.colorBar`,`ScatterPolar.GradientMarker.colorBar`,`ScatterPolarGL.SymbolicMarker.colorBar`,`BarPolar.Marker.colorBar`.
+    ///   Used by `Layout.ColorAxis.colorBar`, `Shared.GradientMarker.colorBar`, `Shared.Marker.colorBar`,
+    ///   `Heatmap.colorBar`, `Histogram.Marker.colorBar`, `Histogram2D.colorBar`,
+    ///   `Histogram2DContour.colorBar`, `Contour.colorBar`, `ScatterTernary.GradientMarker.colorBar`,
+    ///   `Funnel.Marker.colorBar`, `Sunburst.Marker.colorBar`, `Treemap.Marker.colorBar`,
+    ///   `Scatter3D.DashedMarkerLine.colorBar`, `Shared.SymbolicMarker.colorBar`, `Surface.colorBar`,
+    ///   `Isosurface.colorBar`, `Volume.colorBar`, `Mesh3D.colorBar`, `Cone.colorBar`,
+    ///   `StreamTube.colorBar`, `ScatterGeo.GradientMarker.colorBar`, `Choropleth.colorBar`,
+    ///   `ScatterGL.SymbolicMarker.colorBar`, `ScatterPlotMatrix.SymbolicMarker.colorBar`,
+    ///   `HeatmapGL.colorBar`, `ParallelCoordinates.MarkerLine.colorBar`,
+    ///   `ParallelCategories.ShapedMarkerLine.colorBar`, `ScatterMapbox.SymbolicMarker.colorBar`,
+    ///   `ChoroplethMapbox.colorBar`, `DensityMapbox.colorBar`, `ScatterCarpet.GradientMarker.colorBar`,
+    ///   `ContourCarpet.colorBar`, `ScatterPolar.GradientMarker.colorBar`,
+    ///   `ScatterPolarGL.SymbolicMarker.colorBar`, `BarPolar.Marker.colorBar`.
     public struct ColorBar: Encodable {
         /// Determines whether this color bar's thickness (i.e.
         /// 
@@ -1607,8 +1990,31 @@ public struct Shared {
     /// Sets the font used in hover labels.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Scatter.HoverLabel.font`,`Scatter.textFont`,`Bar.HoverLabel.font`,`Bar.textFont`,`Bar.insideTextFont`,`Bar.outSideTextFont`,`Box.HoverLabel.font`,`Heatmap.HoverLabel.font`,`Histogram.HoverLabel.font`,`Histogram2D.HoverLabel.font`,`Histogram2DContour.HoverLabel.font`,`Contour.HoverLabel.font`,`ScatterTernary.HoverLabel.font`,`ScatterTernary.textFont`,`Violin.HoverLabel.font`,`Funnel.HoverLabel.font`,`Funnel.textFont`,`Funnel.insideTextFont`,`Funnel.outSideTextFont`,`Waterfall.HoverLabel.font`,`Waterfall.textFont`,`Waterfall.insideTextFont`,`Waterfall.outSideTextFont`,`Image.HoverLabel.font`,`Pie.HoverLabel.font`,`Pie.textFont`,`Pie.insideTextFont`,`Pie.outSideTextFont`,`Pie.Title.font`,`Sunburst.HoverLabel.font`,`Sunburst.textFont`,`Sunburst.insideTextFont`,`Sunburst.outSideTextFont`,`Treemap.HoverLabel.font`,`Treemap.PathBar.textFont`,`Treemap.textFont`,`Treemap.insideTextFont`,`Treemap.outSideTextFont`,`FunnelArea.HoverLabel.font`,`FunnelArea.textFont`,`FunnelArea.insideTextFont`,`FunnelArea.Title.font`,`Scatter3D.HoverLabel.font`,`Scatter3D.textFont`,`Surface.HoverLabel.font`,`Isosurface.HoverLabel.font`,`Volume.HoverLabel.font`,`Mesh3D.HoverLabel.font`,`Cone.HoverLabel.font`,`StreamTube.HoverLabel.font`,`ScatterGeo.HoverLabel.font`,`ScatterGeo.textFont`,`Choropleth.HoverLabel.font`,`ScatterGL.HoverLabel.font`,`ScatterGL.textFont`,`ScatterPlotMatrix.HoverLabel.font`,`PointCloud.HoverLabel.font`,`HeatmapGL.HoverLabel.font`,`ScatterMapbox.HoverLabel.font`,`ChoroplethMapbox.HoverLabel.font`,`DensityMapbox.HoverLabel.font`,`Sankey.HoverLabel.font`,`Sankey.Node.HoverLabel.font`,`Sankey.Link.HoverLabel.font`,`Table.HoverLabel.font`,`Table.Header.font`,`Table.Cells.font`,`ScatterCarpet.HoverLabel.font`,`ScatterCarpet.textFont`,`OHLC.HoverLabel.font`,`Candlestick.HoverLabel.font`,`ScatterPolar.HoverLabel.font`,`ScatterPolar.textFont`,`ScatterPolarGL.HoverLabel.font`,`ScatterPolarGL.textFont`,`BarPolar.HoverLabel.font`.
+    ///   Used by `Scatter.HoverLabel.font`, `Scatter.textFont`, `Bar.HoverLabel.font`, `Bar.textFont`,
+    ///   `Bar.insideTextFont`, `Bar.outSideTextFont`, `Box.HoverLabel.font`, `Heatmap.HoverLabel.font`,
+    ///   `Histogram.HoverLabel.font`, `Histogram2D.HoverLabel.font`,
+    ///   `Histogram2DContour.HoverLabel.font`, `Contour.HoverLabel.font`,
+    ///   `ScatterTernary.HoverLabel.font`, `ScatterTernary.textFont`, `Violin.HoverLabel.font`,
+    ///   `Funnel.HoverLabel.font`, `Funnel.textFont`, `Funnel.insideTextFont`, `Funnel.outSideTextFont`,
+    ///   `Waterfall.HoverLabel.font`, `Waterfall.textFont`, `Waterfall.insideTextFont`,
+    ///   `Waterfall.outSideTextFont`, `Image.HoverLabel.font`, `Pie.HoverLabel.font`, `Pie.textFont`,
+    ///   `Pie.insideTextFont`, `Pie.outSideTextFont`, `Pie.Title.font`, `Sunburst.HoverLabel.font`,
+    ///   `Sunburst.textFont`, `Sunburst.insideTextFont`, `Sunburst.outSideTextFont`,
+    ///   `Treemap.HoverLabel.font`, `Treemap.PathBar.textFont`, `Treemap.textFont`,
+    ///   `Treemap.insideTextFont`, `Treemap.outSideTextFont`, `FunnelArea.HoverLabel.font`,
+    ///   `FunnelArea.textFont`, `FunnelArea.insideTextFont`, `FunnelArea.Title.font`,
+    ///   `Scatter3D.HoverLabel.font`, `Scatter3D.textFont`, `Surface.HoverLabel.font`,
+    ///   `Isosurface.HoverLabel.font`, `Volume.HoverLabel.font`, `Mesh3D.HoverLabel.font`,
+    ///   `Cone.HoverLabel.font`, `StreamTube.HoverLabel.font`, `ScatterGeo.HoverLabel.font`,
+    ///   `ScatterGeo.textFont`, `Choropleth.HoverLabel.font`, `ScatterGL.HoverLabel.font`,
+    ///   `ScatterGL.textFont`, `ScatterPlotMatrix.HoverLabel.font`, `PointCloud.HoverLabel.font`,
+    ///   `HeatmapGL.HoverLabel.font`, `ScatterMapbox.HoverLabel.font`,
+    ///   `ChoroplethMapbox.HoverLabel.font`, `DensityMapbox.HoverLabel.font`, `Sankey.HoverLabel.font`,
+    ///   `Sankey.Node.HoverLabel.font`, `Sankey.Link.HoverLabel.font`, `Table.HoverLabel.font`,
+    ///   `Table.Header.font`, `Table.Cells.font`, `ScatterCarpet.HoverLabel.font`,
+    ///   `ScatterCarpet.textFont`, `OHLC.HoverLabel.font`, `Candlestick.HoverLabel.font`,
+    ///   `ScatterPolar.HoverLabel.font`, `ScatterPolar.textFont`, `ScatterPolarGL.HoverLabel.font`,
+    ///   `ScatterPolarGL.textFont`, `BarPolar.HoverLabel.font`.
     public struct VariableFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser.
         /// 
@@ -1647,8 +2053,17 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Scatter.stream`,`Bar.stream`,`Box.stream`,`Heatmap.stream`,`Histogram.stream`,`Histogram2D.stream`,`Histogram2DContour.stream`,`Contour.stream`,`ScatterTernary.stream`,`Violin.stream`,`Funnel.stream`,`Waterfall.stream`,`Image.stream`,`Pie.stream`,`Sunburst.stream`,`Treemap.stream`,`FunnelArea.stream`,`Scatter3D.stream`,`Surface.stream`,`Isosurface.stream`,`Volume.stream`,`Mesh3D.stream`,`Cone.stream`,`StreamTube.stream`,`ScatterGeo.stream`,`Choropleth.stream`,`ScatterGL.stream`,`ScatterPlotMatrix.stream`,`PointCloud.stream`,`HeatmapGL.stream`,`ParallelCoordinates.stream`,`ParallelCategories.stream`,`ScatterMapbox.stream`,`ChoroplethMapbox.stream`,`DensityMapbox.stream`,`Sankey.stream`,`Indicator.stream`,`Table.stream`,`Carpet.stream`,`ScatterCarpet.stream`,`ContourCarpet.stream`,`OHLC.stream`,`Candlestick.stream`,`ScatterPolar.stream`,`ScatterPolarGL.stream`,`BarPolar.stream`.
+    ///   Used by `Scatter.stream`, `Bar.stream`, `Box.stream`, `Heatmap.stream`, `Histogram.stream`,
+    ///   `Histogram2D.stream`, `Histogram2DContour.stream`, `Contour.stream`, `ScatterTernary.stream`,
+    ///   `Violin.stream`, `Funnel.stream`, `Waterfall.stream`, `Image.stream`, `Pie.stream`,
+    ///   `Sunburst.stream`, `Treemap.stream`, `FunnelArea.stream`, `Scatter3D.stream`, `Surface.stream`,
+    ///   `Isosurface.stream`, `Volume.stream`, `Mesh3D.stream`, `Cone.stream`, `StreamTube.stream`,
+    ///   `ScatterGeo.stream`, `Choropleth.stream`, `ScatterGL.stream`, `ScatterPlotMatrix.stream`,
+    ///   `PointCloud.stream`, `HeatmapGL.stream`, `ParallelCoordinates.stream`,
+    ///   `ParallelCategories.stream`, `ScatterMapbox.stream`, `ChoroplethMapbox.stream`,
+    ///   `DensityMapbox.stream`, `Sankey.stream`, `Indicator.stream`, `Table.stream`, `Carpet.stream`,
+    ///   `ScatterCarpet.stream`, `ContourCarpet.stream`, `OHLC.stream`, `Candlestick.stream`,
+    ///   `ScatterPolar.stream`, `ScatterPolarGL.stream`, `BarPolar.stream`.
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream.
         /// 
@@ -1682,8 +2097,16 @@ public struct Shared {
     /// arrays.
     /// 
     /// - Note:
-    ///   Used by
-    ///   `Scatter.transforms`,`Bar.transforms`,`Box.transforms`,`Heatmap.transforms`,`Histogram.transforms`,`Histogram2D.transforms`,`Histogram2DContour.transforms`,`Contour.transforms`,`ScatterTernary.transforms`,`Violin.transforms`,`Funnel.transforms`,`Waterfall.transforms`,`Pie.transforms`,`Sunburst.transforms`,`Treemap.transforms`,`FunnelArea.transforms`,`Scatter3D.transforms`,`ScatterGeo.transforms`,`Choropleth.transforms`,`ScatterGL.transforms`,`ScatterPlotMatrix.transforms`,`HeatmapGL.transforms`,`ParallelCoordinates.transforms`,`ParallelCategories.transforms`,`ScatterMapbox.transforms`,`ChoroplethMapbox.transforms`,`DensityMapbox.transforms`,`Indicator.transforms`,`ScatterCarpet.transforms`,`OHLC.transforms`,`Candlestick.transforms`,`ScatterPolar.transforms`,`ScatterPolarGL.transforms`,`BarPolar.transforms`.
+    ///   Used by `Scatter.transforms`, `Bar.transforms`, `Box.transforms`, `Heatmap.transforms`,
+    ///   `Histogram.transforms`, `Histogram2D.transforms`, `Histogram2DContour.transforms`,
+    ///   `Contour.transforms`, `ScatterTernary.transforms`, `Violin.transforms`, `Funnel.transforms`,
+    ///   `Waterfall.transforms`, `Pie.transforms`, `Sunburst.transforms`, `Treemap.transforms`,
+    ///   `FunnelArea.transforms`, `Scatter3D.transforms`, `ScatterGeo.transforms`,
+    ///   `Choropleth.transforms`, `ScatterGL.transforms`, `ScatterPlotMatrix.transforms`,
+    ///   `HeatmapGL.transforms`, `ParallelCoordinates.transforms`, `ParallelCategories.transforms`,
+    ///   `ScatterMapbox.transforms`, `ChoroplethMapbox.transforms`, `DensityMapbox.transforms`,
+    ///   `Indicator.transforms`, `ScatterCarpet.transforms`, `OHLC.transforms`, `Candlestick.transforms`,
+    ///   `ScatterPolar.transforms`, `ScatterPolarGL.transforms`, `BarPolar.transforms`.
     public struct Transform: Encodable {
         /// Creates `Transform` object with specified properties.
         public init() {
@@ -1692,7 +2115,8 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by `Scatter.marker`,`ScatterTernary.marker`,`ScatterCarpet.marker`,`ScatterPolar.marker`.
+    ///   Used by `Scatter.marker`, `ScatterTernary.marker`, `ScatterCarpet.marker`,
+    ///   `ScatterPolar.marker`.
     public struct GradientMarker: Encodable {
         /// Sets the marker symbol type.
         /// 
@@ -1887,8 +2311,12 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Shared.GradientMarker.line`,`Shared.Marker.line`,`Histogram.Marker.line`,`ScatterTernary.GradientMarker.line`,`Funnel.Marker.line`,`Shared.SymbolicMarker.line`,`ScatterGeo.GradientMarker.line`,`ScatterGL.SymbolicMarker.line`,`ScatterPlotMatrix.SymbolicMarker.line`,`ScatterCarpet.GradientMarker.line`,`ScatterPolar.GradientMarker.line`,`ScatterPolarGL.SymbolicMarker.line`,`BarPolar.Marker.line`.
+    ///   Used by `Shared.GradientMarker.line`, `Shared.Marker.line`, `Histogram.Marker.line`,
+    ///   `ScatterTernary.GradientMarker.line`, `Funnel.Marker.line`, `Shared.SymbolicMarker.line`,
+    ///   `ScatterGeo.GradientMarker.line`, `ScatterGL.SymbolicMarker.line`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.line`, `ScatterCarpet.GradientMarker.line`,
+    ///   `ScatterPolar.GradientMarker.line`, `ScatterPolarGL.SymbolicMarker.line`,
+    ///   `BarPolar.Marker.line`.
     public struct MarkerLine: Encodable {
         /// Sets the width (in px) of the lines bounding the marker points.
         public var width: Data<Double>?
@@ -2008,8 +2436,9 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Shared.GradientMarker.gradient`,`ScatterTernary.GradientMarker.gradient`,`ScatterGeo.GradientMarker.gradient`,`ScatterCarpet.GradientMarker.gradient`,`ScatterPolar.GradientMarker.gradient`.
+    ///   Used by `Shared.GradientMarker.gradient`, `ScatterTernary.GradientMarker.gradient`,
+    ///   `ScatterGeo.GradientMarker.gradient`, `ScatterCarpet.GradientMarker.gradient`,
+    ///   `ScatterPolar.GradientMarker.gradient`.
     public struct Gradient: Encodable {
         /// Sets the type of gradient used to fill the markers
         public enum `Type`: String, Encodable {
@@ -2045,8 +2474,9 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Scatter.xError`,`Scatter.yError`,`Bar.xError`,`Bar.yError`,`Histogram.xError`,`Histogram.yError`,`Scatter3D.xError`,`Scatter3D.yError`,`Scatter3D.zError`,`ScatterGL.xError`,`ScatterGL.yError`.
+    ///   Used by `Scatter.xError`, `Scatter.yError`, `Bar.xError`, `Bar.yError`, `Histogram.xError`,
+    ///   `Histogram.yError`, `Scatter3D.xError`, `Scatter3D.yError`, `Scatter3D.zError`,
+    ///   `ScatterGL.xError`, `ScatterGL.yError`.
     public struct Error: Encodable {
         /// Determines whether or not this set of error bars is visible.
         public var visible: Bool?
@@ -2163,7 +2593,7 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by `Bar.marker`,`Histogram.marker`,`Funnel.marker`,`BarPolar.marker`.
+    ///   Used by `Bar.marker`, `Histogram.marker`, `Funnel.marker`, `BarPolar.marker`.
     public struct Marker: Encodable {
         public var line: Shared.MarkerLine?
     
@@ -2301,8 +2731,9 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Box.line`,`Violin.line`,`Violin.Box.line`,`Waterfall.Increasing.Marker.line`,`Waterfall.Decreasing.Marker.line`,`Waterfall.Totals.Marker.line`,`ScatterMapbox.line`,`Indicator.Gauge.Bar.line`,`Indicator.Gauge.Step.line`,`Indicator.Gauge.Threshold.line`.
+    ///   Used by `Box.line`, `Violin.line`, `Violin.Box.line`, `Waterfall.Increasing.Marker.line`,
+    ///   `Waterfall.Decreasing.Marker.line`, `Waterfall.Totals.Marker.line`, `ScatterMapbox.line`,
+    ///   `Indicator.Gauge.Bar.line`, `Indicator.Gauge.Step.line`, `Indicator.Gauge.Threshold.line`.
     public struct Line: Encodable {
         /// Sets the color of line bounding the box(es).
         public var color: Color?
@@ -2323,8 +2754,8 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Histogram.xBins`,`Histogram.yBins`,`Histogram2D.xBins`,`Histogram2D.yBins`,`Histogram2DContour.xBins`,`Histogram2DContour.yBins`.
+    ///   Used by `Histogram.xBins`, `Histogram.yBins`, `Histogram2D.xBins`, `Histogram2D.yBins`,
+    ///   `Histogram2DContour.xBins`, `Histogram2DContour.yBins`.
     public struct Bins: Encodable {
         /// Sets the starting value for the x axis bins.
         /// 
@@ -2378,7 +2809,7 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by `Histogram2DContour.contours`,`Contour.contours`,`ContourCarpet.contours`.
+    ///   Used by `Histogram2DContour.contours`, `Contour.contours`, `ContourCarpet.contours`.
     public struct Contours: Encodable {
         /// If `levels`, the data is represented as a contour plot with multiple levels displayed.
         /// 
@@ -2513,7 +2944,7 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by `Histogram2DContour.line`,`Contour.line`,`ContourCarpet.line`.
+    ///   Used by `Histogram2DContour.line`, `Contour.line`, `ContourCarpet.line`.
     public struct SmoothDashedLine: Encodable {
         /// Sets the color of the contour level.
         /// 
@@ -2551,7 +2982,7 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by `ScatterTernary.line`,`ScatterCarpet.line`,`ScatterPolar.line`.
+    ///   Used by `ScatterTernary.line`, `ScatterCarpet.line`, `ScatterPolar.line`.
     public struct ShapedSmoothDashedLine: Encodable {
         /// Sets the line color.
         public var color: Color?
@@ -2596,8 +3027,9 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Pie.Marker.line`,`Sunburst.Marker.line`,`Treemap.Marker.line`,`FunnelArea.Marker.line`,`Choropleth.Marker.line`,`ChoroplethMapbox.Marker.line`,`Sankey.Node.line`,`Sankey.Link.line`,`Table.Header.line`,`Table.Cells.line`.
+    ///   Used by `Pie.Marker.line`, `Sunburst.Marker.line`, `Treemap.Marker.line`,
+    ///   `FunnelArea.Marker.line`, `Choropleth.Marker.line`, `ChoroplethMapbox.Marker.line`,
+    ///   `Sankey.Node.line`, `Sankey.Link.line`, `Table.Header.line`, `Table.Cells.line`.
     public struct VariableLine: Encodable {
         /// Sets the color of the line enclosing each sector.
         public var coloring: Coloring?
@@ -2624,8 +3056,8 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Scatter3D.projection`,`Surface.Contours.X.project`,`Surface.Contours.Y.project`,`Surface.Contours.Z.project`.
+    ///   Used by `Scatter3D.projection`, `Surface.Contours.X.project`, `Surface.Contours.Y.project`,
+    ///   `Surface.Contours.Z.project`.
     public struct Projection: Encodable {
         public struct X: Encodable {
             /// Sets whether or not projections are shown along the x axis.
@@ -2712,8 +3144,8 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Scatter3D.marker`,`ScatterGL.marker`,`ScatterPlotMatrix.marker`,`ScatterPolarGL.marker`.
+    ///   Used by `Scatter3D.marker`, `ScatterGL.marker`, `ScatterPlotMatrix.marker`,
+    ///   `ScatterPolarGL.marker`.
     public struct SymbolicMarker: Encodable {
         /// Sets the marker symbol type.
         public enum Symbol: String, Encodable {
@@ -2905,8 +3337,8 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Surface.lightPosition`,`Isosurface.lightPosition`,`Volume.lightPosition`,`Mesh3D.lightPosition`,`Cone.lightPosition`,`StreamTube.lightPosition`.
+    ///   Used by `Surface.lightPosition`, `Isosurface.lightPosition`, `Volume.lightPosition`,
+    ///   `Mesh3D.lightPosition`, `Cone.lightPosition`, `StreamTube.lightPosition`.
     public struct LightPosition: Encodable {
         /// Numeric vector, representing the X coordinate for each vertex.
         public var x: Double?
@@ -2932,8 +3364,8 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by
-    ///   `Isosurface.lighting`,`Volume.lighting`,`Mesh3D.lighting`,`Cone.lighting`,`StreamTube.lighting`.
+    ///   Used by `Isosurface.lighting`, `Volume.lighting`, `Mesh3D.lighting`, `Cone.lighting`,
+    ///   `StreamTube.lighting`.
     public struct Lighting: Encodable {
         /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
         public var vertexNormalsEpsilon: Double?
@@ -2999,7 +3431,7 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by `Isosurface.contour`,`Volume.contour`,`Mesh3D.contour`.
+    ///   Used by `Isosurface.contour`, `Volume.contour`, `Mesh3D.contour`.
     public struct ContourHover: Encodable {
         /// Sets whether or not dynamic contours are shown on hover
         public var show: Bool?
