@@ -270,7 +270,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     public var insideTextFont: Shared.VariableFont?
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outSideTextFont: Shared.VariableFont?
+    public var outsideTextFont: Shared.OutsideTextFont?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     public var constrainText: Shared.ConstrainText?
@@ -466,7 +466,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         case textAngle = "textangle"
         case textFont = "textfont"
         case insideTextFont = "insidetextfont"
-        case outSideTextFont = "outsidetextfont"
+        case outsideTextFont = "outsidetextfont"
         case constrainText = "constraintext"
         case clipOnAxis = "cliponaxis"
         case orientation
@@ -541,7 +541,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     ///   - textAngle: Sets the angle of the tick labels with respect to the bar.
     ///   - textFont: Sets the font used for `text`.
     ///   - insideTextFont: Sets the font used for `text` lying inside the bar.
-    ///   - outSideTextFont: Sets the font used for `text` lying outside the bar.
+    ///   - outsideTextFont: Sets the font used for `text` lying outside the bar.
     ///   - constrainText: Constrain the size of text inside or outside a bar to be no larger than the bar
     ///   itself.
     ///   - clipOnAxis: Determines whether the text nodes are clipped about the subplot axes.
@@ -568,7 +568,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
             hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, text:
             Data<String>? = nil, textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor:
             Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: Shared.VariableFont? = nil,
-            insideTextFont: Shared.VariableFont? = nil, outSideTextFont: Shared.VariableFont? = nil,
+            insideTextFont: Shared.VariableFont? = nil, outsideTextFont: Shared.OutsideTextFont? = nil,
             constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation:
             Shared.Orientation? = nil, offset: Data<Double>? = nil, width: Data<Double>? = nil, increasing:
             Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? =
@@ -607,7 +607,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         self.textAngle = textAngle
         self.textFont = textFont
         self.insideTextFont = insideTextFont
-        self.outSideTextFont = outSideTextFont
+        self.outsideTextFont = outsideTextFont
         self.constrainText = constrainText
         self.clipOnAxis = clipOnAxis
         self.orientation = orientation
@@ -659,7 +659,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         try container.encodeIfPresent(textAngle, forKey: .textAngle)
         try container.encodeIfPresent(textFont, forKey: .textFont)
         try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
-        try container.encodeIfPresent(outSideTextFont, forKey: .outSideTextFont)
+        try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
         try container.encodeIfPresent(constrainText, forKey: .constrainText)
         try container.encodeIfPresent(clipOnAxis, forKey: .clipOnAxis)
         try container.encodeIfPresent(orientation, forKey: .orientation)

@@ -1991,30 +1991,28 @@ public struct Shared {
     /// 
     /// - Note:
     ///   Used by `Scatter.HoverLabel.font`, `Scatter.textFont`, `Bar.HoverLabel.font`, `Bar.textFont`,
-    ///   `Bar.insideTextFont`, `Bar.outSideTextFont`, `Box.HoverLabel.font`, `Heatmap.HoverLabel.font`,
+    ///   `Bar.insideTextFont`, `Box.HoverLabel.font`, `Heatmap.HoverLabel.font`,
     ///   `Histogram.HoverLabel.font`, `Histogram2D.HoverLabel.font`,
     ///   `Histogram2DContour.HoverLabel.font`, `Contour.HoverLabel.font`,
     ///   `ScatterTernary.HoverLabel.font`, `ScatterTernary.textFont`, `Violin.HoverLabel.font`,
-    ///   `Funnel.HoverLabel.font`, `Funnel.textFont`, `Funnel.insideTextFont`, `Funnel.outSideTextFont`,
+    ///   `Funnel.HoverLabel.font`, `Funnel.textFont`, `Funnel.insideTextFont`,
     ///   `Waterfall.HoverLabel.font`, `Waterfall.textFont`, `Waterfall.insideTextFont`,
-    ///   `Waterfall.outSideTextFont`, `Image.HoverLabel.font`, `Pie.HoverLabel.font`, `Pie.textFont`,
-    ///   `Pie.insideTextFont`, `Pie.outSideTextFont`, `Pie.Title.font`, `Sunburst.HoverLabel.font`,
-    ///   `Sunburst.textFont`, `Sunburst.insideTextFont`, `Sunburst.outSideTextFont`,
+    ///   `Image.HoverLabel.font`, `Pie.HoverLabel.font`, `Pie.textFont`, `Pie.insideTextFont`,
+    ///   `Pie.Title.font`, `Sunburst.HoverLabel.font`, `Sunburst.textFont`, `Sunburst.insideTextFont`,
     ///   `Treemap.HoverLabel.font`, `Treemap.PathBar.textFont`, `Treemap.textFont`,
-    ///   `Treemap.insideTextFont`, `Treemap.outSideTextFont`, `FunnelArea.HoverLabel.font`,
-    ///   `FunnelArea.textFont`, `FunnelArea.insideTextFont`, `FunnelArea.Title.font`,
-    ///   `Scatter3D.HoverLabel.font`, `Scatter3D.textFont`, `Surface.HoverLabel.font`,
-    ///   `Isosurface.HoverLabel.font`, `Volume.HoverLabel.font`, `Mesh3D.HoverLabel.font`,
-    ///   `Cone.HoverLabel.font`, `StreamTube.HoverLabel.font`, `ScatterGeo.HoverLabel.font`,
-    ///   `ScatterGeo.textFont`, `Choropleth.HoverLabel.font`, `ScatterGL.HoverLabel.font`,
-    ///   `ScatterGL.textFont`, `ScatterPlotMatrix.HoverLabel.font`, `PointCloud.HoverLabel.font`,
-    ///   `HeatmapGL.HoverLabel.font`, `ScatterMapbox.HoverLabel.font`,
-    ///   `ChoroplethMapbox.HoverLabel.font`, `DensityMapbox.HoverLabel.font`, `Sankey.HoverLabel.font`,
-    ///   `Sankey.Node.HoverLabel.font`, `Sankey.Link.HoverLabel.font`, `Table.HoverLabel.font`,
-    ///   `Table.Header.font`, `Table.Cells.font`, `ScatterCarpet.HoverLabel.font`,
-    ///   `ScatterCarpet.textFont`, `OHLC.HoverLabel.font`, `Candlestick.HoverLabel.font`,
-    ///   `ScatterPolar.HoverLabel.font`, `ScatterPolar.textFont`, `ScatterPolarGL.HoverLabel.font`,
-    ///   `ScatterPolarGL.textFont`, `BarPolar.HoverLabel.font`.
+    ///   `Treemap.insideTextFont`, `FunnelArea.HoverLabel.font`, `FunnelArea.textFont`,
+    ///   `FunnelArea.insideTextFont`, `FunnelArea.Title.font`, `Scatter3D.HoverLabel.font`,
+    ///   `Scatter3D.textFont`, `Surface.HoverLabel.font`, `Isosurface.HoverLabel.font`,
+    ///   `Volume.HoverLabel.font`, `Mesh3D.HoverLabel.font`, `Cone.HoverLabel.font`,
+    ///   `StreamTube.HoverLabel.font`, `ScatterGeo.HoverLabel.font`, `ScatterGeo.textFont`,
+    ///   `Choropleth.HoverLabel.font`, `ScatterGL.HoverLabel.font`, `ScatterGL.textFont`,
+    ///   `ScatterPlotMatrix.HoverLabel.font`, `PointCloud.HoverLabel.font`, `HeatmapGL.HoverLabel.font`,
+    ///   `ScatterMapbox.HoverLabel.font`, `ChoroplethMapbox.HoverLabel.font`,
+    ///   `DensityMapbox.HoverLabel.font`, `Sankey.HoverLabel.font`, `Sankey.Node.HoverLabel.font`,
+    ///   `Sankey.Link.HoverLabel.font`, `Table.HoverLabel.font`, `Table.Header.font`, `Table.Cells.font`,
+    ///   `ScatterCarpet.HoverLabel.font`, `ScatterCarpet.textFont`, `OHLC.HoverLabel.font`,
+    ///   `Candlestick.HoverLabel.font`, `ScatterPolar.HoverLabel.font`, `ScatterPolar.textFont`,
+    ///   `ScatterPolarGL.HoverLabel.font`, `ScatterPolarGL.textFont`, `BarPolar.HoverLabel.font`.
     public struct VariableFont: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser.
         /// 
@@ -2588,6 +2586,48 @@ public struct Shared {
             self.color = color
             self.thickness = thickness
             self.width = width
+        }
+        
+    }
+
+    /// Sets the font used for `text` lying outside the bar.
+    /// 
+    /// - Note:
+    ///   Used by `Bar.outsideTextFont`, `Funnel.outsideTextFont`, `Waterfall.outsideTextFont`,
+    ///   `Pie.outsideTextFont`, `Sunburst.outsideTextFont`, `Treemap.outsideTextFont`.
+    public struct OutsideTextFont: Encodable {
+        /// HTML font family - the typeface that will be applied by the web browser.
+        /// 
+        /// The web browser will only be able to apply a font if it is available on the system which it
+        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+        /// which to apply fonts if they aren't available on the system. The plotly service (at
+        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
+        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
+        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
+        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+        public var family: Data<String>?
+    
+        public var size: Data<Double>?
+    
+        public var coloring: Coloring?
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case family
+            case size
+            case coloring = "color"
+        }
+        
+        /// Creates `OutsideTextFont` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - family: HTML font family - the typeface that will be applied by the web browser.
+        ///   - size:
+        ///   - coloring:
+        public init(family: Data<String>? = nil, size: Data<Double>? = nil, coloring: Coloring? = nil) {
+            self.family = family
+            self.size = size
+            self.coloring = coloring
         }
         
     }

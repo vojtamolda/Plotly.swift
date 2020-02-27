@@ -246,7 +246,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     public var insideTextFont: Shared.VariableFont?
 
     /// Sets the font used for `textinfo` lying outside the sector.
-    public var outSideTextFont: Shared.VariableFont?
+    public var outsideTextFont: Shared.OutsideTextFont?
 
     /// Determines whether outside text labels can push the margins.
     public var autoMargin: Bool?
@@ -355,7 +355,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         case textPosition = "textposition"
         case textFont = "textfont"
         case insideTextFont = "insidetextfont"
-        case outSideTextFont = "outsidetextfont"
+        case outsideTextFont = "outsidetextfont"
         case autoMargin = "automargin"
         case title
         case domain
@@ -422,7 +422,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     ///   - textPosition: Specifies the location of the `textinfo`.
     ///   - textFont: Sets the font used for `textinfo`.
     ///   - insideTextFont: Sets the font used for `textinfo` lying inside the sector.
-    ///   - outSideTextFont: Sets the font used for `textinfo` lying outside the sector.
+    ///   - outsideTextFont: Sets the font used for `textinfo` lying outside the sector.
     ///   - autoMargin: Determines whether outside text labels can push the margins.
     ///   - title:
     ///   - domain:
@@ -440,7 +440,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
             nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil,
             hoverTemplate: Data<String>? = nil, textTemplate: Data<String>? = nil, textPosition:
             Shared.AdjacentPosition? = nil, textFont: Shared.VariableFont? = nil, insideTextFont:
-            Shared.VariableFont? = nil, outSideTextFont: Shared.VariableFont? = nil, autoMargin: Bool? =
+            Shared.VariableFont? = nil, outsideTextFont: Shared.OutsideTextFont? = nil, autoMargin: Bool? =
             nil, title: Title? = nil, domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil,
             direction: Direction? = nil, rotation: Double? = nil, pull: Data<Double>? = nil) {
         self.visible = visible
@@ -471,7 +471,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         self.textPosition = textPosition
         self.textFont = textFont
         self.insideTextFont = insideTextFont
-        self.outSideTextFont = outSideTextFont
+        self.outsideTextFont = outsideTextFont
         self.autoMargin = autoMargin
         self.title = title
         self.domain = domain
@@ -513,7 +513,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         try container.encodeIfPresent(textPosition, forKey: .textPosition)
         try container.encodeIfPresent(textFont, forKey: .textFont)
         try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
-        try container.encodeIfPresent(outSideTextFont, forKey: .outSideTextFont)
+        try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
         try container.encodeIfPresent(autoMargin, forKey: .autoMargin)
         try container.encodeIfPresent(title, forKey: .title)
         try container.encodeIfPresent(domain, forKey: .domain)

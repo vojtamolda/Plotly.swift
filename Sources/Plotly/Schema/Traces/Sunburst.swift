@@ -410,7 +410,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
     public var insideTextFont: Shared.VariableFont?
 
     /// Sets the font used for `textinfo` lying outside the sector.
-    public var outSideTextFont: Shared.VariableFont?
+    public var outsideTextFont: Shared.OutsideTextFont?
 
     public var domain: Shared.Domain?
 
@@ -446,7 +446,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
         case hoverTemplate = "hovertemplate"
         case textFont = "textfont"
         case insideTextFont = "insidetextfont"
-        case outSideTextFont = "outsidetextfont"
+        case outsideTextFont = "outsidetextfont"
         case domain
     }
     
@@ -503,7 +503,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
     ///   - textFont: Sets the font used for `textinfo`.
     ///   - insideTextFont: Sets the font used for `textinfo` lying inside the sector.
-    ///   - outSideTextFont: Sets the font used for `textinfo` lying outside the sector.
+    ///   - outsideTextFont: Sets the font used for `textinfo` lying outside the sector.
     ///   - domain:
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
             String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
@@ -514,7 +514,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
             text: Data<String>? = nil, textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil,
             hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil,
             textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil,
-            outSideTextFont: Shared.VariableFont? = nil, domain: Shared.Domain? = nil) {
+            outsideTextFont: Shared.OutsideTextFont? = nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -543,7 +543,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
         self.hoverTemplate = hoverTemplate
         self.textFont = textFont
         self.insideTextFont = insideTextFont
-        self.outSideTextFont = outSideTextFont
+        self.outsideTextFont = outsideTextFont
         self.domain = domain
     }
     
@@ -579,7 +579,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
         try container.encodeIfPresent(textFont, forKey: .textFont)
         try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
-        try container.encodeIfPresent(outSideTextFont, forKey: .outSideTextFont)
+        try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
         try container.encodeIfPresent(domain, forKey: .domain)
     
         if let values = self.values {

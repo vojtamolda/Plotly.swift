@@ -190,7 +190,7 @@ public struct Bar<XData, YData>: Trace where XData: Plotable, YData: Plotable {
     public var insideTextFont: Shared.VariableFont?
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outSideTextFont: Shared.VariableFont?
+    public var outsideTextFont: Shared.OutsideTextFont?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     public var constrainText: Shared.ConstrainText?
@@ -390,7 +390,7 @@ public struct Bar<XData, YData>: Trace where XData: Plotable, YData: Plotable {
         case textAngle = "textangle"
         case textFont = "textfont"
         case insideTextFont = "insidetextfont"
-        case outSideTextFont = "outsidetextfont"
+        case outsideTextFont = "outsidetextfont"
         case constrainText = "constraintext"
         case clipOnAxis = "cliponaxis"
         case orientation
@@ -468,7 +468,7 @@ public struct Bar<XData, YData>: Trace where XData: Plotable, YData: Plotable {
     ///   - textAngle: Sets the angle of the tick labels with respect to the bar.
     ///   - textFont: Sets the font used for `text`.
     ///   - insideTextFont: Sets the font used for `text` lying inside the bar.
-    ///   - outSideTextFont: Sets the font used for `text` lying outside the bar.
+    ///   - outsideTextFont: Sets the font used for `text` lying outside the bar.
     ///   - constrainText: Constrain the size of text inside or outside a bar to be no larger than the bar
     ///   itself.
     ///   - clipOnAxis: Determines whether the text nodes are clipped about the subplot axes.
@@ -498,10 +498,10 @@ public struct Bar<XData, YData>: Trace where XData: Plotable, YData: Plotable {
             text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
             hoverTemplate: Data<String>? = nil, textPosition: Shared.AdjacentPosition? = nil,
             insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont:
-            Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil, outSideTextFont:
-            Shared.VariableFont? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil,
-            orientation: Shared.Orientation? = nil, base: Data<Anything>? = nil, offset: Data<Double>? =
-            nil, width: Data<Double>? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil,
+            Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil, outsideTextFont:
+            Shared.OutsideTextFont? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? =
+            nil, orientation: Shared.Orientation? = nil, base: Data<Anything>? = nil, offset: Data<Double>?
+            = nil, width: Data<Double>? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil,
             alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError:
             Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar:
             Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
@@ -535,7 +535,7 @@ public struct Bar<XData, YData>: Trace where XData: Plotable, YData: Plotable {
         self.textAngle = textAngle
         self.textFont = textFont
         self.insideTextFont = insideTextFont
-        self.outSideTextFont = outSideTextFont
+        self.outsideTextFont = outsideTextFont
         self.constrainText = constrainText
         self.clipOnAxis = clipOnAxis
         self.orientation = orientation
@@ -588,7 +588,7 @@ public struct Bar<XData, YData>: Trace where XData: Plotable, YData: Plotable {
         try container.encodeIfPresent(textAngle, forKey: .textAngle)
         try container.encodeIfPresent(textFont, forKey: .textFont)
         try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
-        try container.encodeIfPresent(outSideTextFont, forKey: .outSideTextFont)
+        try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
         try container.encodeIfPresent(constrainText, forKey: .constrainText)
         try container.encodeIfPresent(clipOnAxis, forKey: .clipOnAxis)
         try container.encodeIfPresent(orientation, forKey: .orientation)
