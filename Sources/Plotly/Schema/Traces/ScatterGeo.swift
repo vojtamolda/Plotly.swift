@@ -142,7 +142,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     public var hoverText: Data<String>?
 
     /// Sets the text font.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: Shared.TextPosition?
@@ -186,7 +186,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     
         public var colorBar: Shared.ColorBar?
     
-        public var line: Shared.ColoredLine?
+        public var line: Shared.MarkerColorLine?
     
         public var gradient: Shared.Gradient?
     
@@ -195,7 +195,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
-        public var color: Coloring?
+        public var coloring: Coloring?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
@@ -271,7 +271,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
             case colorBar = "colorbar"
             case line
             case gradient
-            case color
+            case coloring = "color"
             case cAuto = "cauto"
             case cMin = "cmin"
             case cMax = "cmax"
@@ -295,7 +295,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
         ///   - colorBar:
         ///   - line:
         ///   - gradient:
-        ///   - color: Sets themarkercolor.
+        ///   - coloring: Sets themarkercolor.
         ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
         ///   (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only
         ///   if in `marker.color`is set to a numerical array.
@@ -311,10 +311,10 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
         ///   - colorAxis: Sets a reference to a shared color axis.
         public init(symbol: Shared.Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? =
                 nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil,
-                colorBar: Shared.ColorBar? = nil, line: Shared.ColoredLine? = nil, gradient: Shared.Gradient? =
-                nil, color: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
-                cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-                reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
+                colorBar: Shared.ColorBar? = nil, line: Shared.MarkerColorLine? = nil, gradient:
+                Shared.Gradient? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil,
+                cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+                Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -324,7 +324,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
             self.colorBar = colorBar
             self.line = line
             self.gradient = gradient
-            self.color = color
+            self.coloring = coloring
             self.cAuto = cAuto
             self.cMin = cMin
             self.cMax = cMax
@@ -651,10 +651,11 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: CoordinateData? = nil,
             latitude: CoordinateData? = nil, locations: LocationsData? = nil, locationMode: LocationMode? =
             nil, mode: Shared.Mode? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil,
-            hoverText: Data<String>? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition?
-            = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil,
-            fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? =
-            nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, geo: SubPlotID? = nil) {
+            hoverText: Data<String>? = nil, textFont: Shared.VariableFont? = nil, textPosition:
+            Shared.TextPosition? = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker:
+            GradientMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil,
+            unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil,
+            geo: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

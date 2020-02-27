@@ -166,9 +166,9 @@ public struct Sankey: Trace {
         /// omitted, then the default `Plotly` color palette will be cycled through to have a variety of
         /// colors. These defaults are not fully opaque, to allow some visibility of what is beneath the
         /// node.
-        public var color: Coloring?
+        public var coloring: Coloring?
     
-        public var line: Shared.Line?
+        public var line: Shared.ColorLine?
     
         /// Sets the padding (in px) between the `nodes`.
         public var padding: Double?
@@ -216,7 +216,7 @@ public struct Sankey: Trace {
             case groups
             case x
             case y
-            case color
+            case coloring = "color"
             case line
             case padding = "pad"
             case thickness
@@ -232,7 +232,7 @@ public struct Sankey: Trace {
         ///   - groups: Groups of nodes.
         ///   - x: The normalized horizontal position of the node.
         ///   - y: The normalized vertical position of the node.
-        ///   - color: Sets the `node` color.
+        ///   - coloring: Sets the `node` color.
         ///   - line:
         ///   - padding: Sets the padding (in px) between the `nodes`.
         ///   - thickness: Sets the thickness (in px) of the `nodes`.
@@ -240,14 +240,14 @@ public struct Sankey: Trace {
         ///   - hoverLabel:
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? =
-                nil, color: Coloring? = nil, line: Shared.Line? = nil, padding: Double? = nil, thickness:
-                Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate:
-                Data<String>? = nil) {
+                nil, coloring: Coloring? = nil, line: Shared.ColorLine? = nil, padding: Double? = nil,
+                thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil,
+                hoverTemplate: Data<String>? = nil) {
             self.label = label
             self.groups = groups
             self.x = x
             self.y = y
-            self.color = color
+            self.coloring = coloring
             self.line = line
             self.padding = padding
             self.thickness = thickness
@@ -269,9 +269,9 @@ public struct Sankey: Trace {
         /// 
         /// It can be a single value, or an array for specifying color for each `link`. If `link.color` is
         /// omitted, then by default, a translucent grey link will be used.
-        public var color: Coloring?
+        public var coloring: Coloring?
     
-        public var line: Shared.Line?
+        public var line: Shared.ColorLine?
     
         /// An integer number `[0..nodes.length - 1]` that represents the source node.
         public var source: [Double]?
@@ -389,7 +389,7 @@ public struct Sankey: Trace {
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case label
-            case color
+            case coloring = "color"
             case line
             case source
             case target
@@ -404,7 +404,7 @@ public struct Sankey: Trace {
         /// 
         /// - Parameters:
         ///   - label: The shown name of the link.
-        ///   - color: Sets the `link` color.
+        ///   - coloring: Sets the `link` color.
         ///   - line:
         ///   - source: An integer number `[0..nodes.length - 1]` that represents the source node.
         ///   - target: An integer number `[0..nodes.length - 1]` that represents the target node.
@@ -413,12 +413,12 @@ public struct Sankey: Trace {
         ///   - hoverLabel:
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         ///   - colorScales:
-        public init(label: [Double]? = nil, color: Coloring? = nil, line: Shared.Line? = nil, source:
-                [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil,
-                hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: Data<String>? = nil, colorScales:
+        public init(label: [Double]? = nil, coloring: Coloring? = nil, line: Shared.ColorLine? = nil,
+                source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo?
+                = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: Data<String>? = nil, colorScales:
                 [ConcentrationScales]? = nil) {
             self.label = label
-            self.color = color
+            self.coloring = coloring
             self.line = line
             self.source = source
             self.target = target

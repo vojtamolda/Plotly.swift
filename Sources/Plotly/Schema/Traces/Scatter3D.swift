@@ -163,7 +163,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// {nan} or missing values) in the provided data arrays are connected.
     public var connectGaps: Bool?
 
-    public struct DashedColoredLine: Encodable {
+    public struct DashedMarkerColorLine: Encodable {
         /// Sets the line width (in px).
         public var width: Double?
     
@@ -175,7 +175,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if
         /// set.
-        public var color: Coloring?
+        public var coloring: Coloring?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in
@@ -246,7 +246,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         enum CodingKeys: String, CodingKey {
             case width
             case dash
-            case color
+            case coloring = "color"
             case cAuto = "cauto"
             case cMin = "cmin"
             case cMax = "cmax"
@@ -259,12 +259,12 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
             case colorAxis = "coloraxis"
         }
         
-        /// Creates `DashedColoredLine` object with specified properties.
+        /// Creates `DashedMarkerColorLine` object with specified properties.
         /// 
         /// - Parameters:
         ///   - width: Sets the line width (in px).
         ///   - dash: Sets the dash style of the lines.
-        ///   - color: Sets thelinecolor.
+        ///   - coloring: Sets thelinecolor.
         ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
         ///   (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in
         ///   `line.color`is set to a numerical array.
@@ -279,13 +279,13 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(width: Double? = nil, dash: Shared.Dash? = nil, color: Coloring? = nil, cAuto: Bool?
-                = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale?
-                = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-                Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        public init(width: Double? = nil, dash: Shared.Dash? = nil, coloring: Coloring? = nil, cAuto:
+                Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:
+                ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
+                nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.width = width
             self.dash = dash
-            self.color = color
+            self.coloring = coloring
             self.cAuto = cAuto
             self.cMin = cMin
             self.cMax = cMax
@@ -299,14 +299,14 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         }
         
     }
-    public var line: DashedColoredLine?
+    public var line: DashedMarkerColorLine?
 
     public var marker: Shared.SymbolicMarker?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: Shared.TextPosition?
 
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -392,7 +392,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text:
             Data<String>? = nil, hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line:
-            DashedColoredLine? = nil, marker: Shared.SymbolicMarker? = nil) {
+            DashedMarkerColorLine? = nil, marker: Shared.SymbolicMarker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -458,11 +458,11 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
             nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text: Data<String>? = nil, textTemplate:
             Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, mode:
             Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection:
-            Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker:
-            Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? =
-            nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil, yError: Shared.Error? =
-            nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar?
-            = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+            Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedMarkerColorLine? = nil, marker:
+            Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont:
+            Shared.VariableFont? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil,
+            yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil,
+            yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

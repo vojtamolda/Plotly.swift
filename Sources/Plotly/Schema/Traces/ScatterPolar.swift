@@ -174,7 +174,7 @@ public struct ScatterPolar<RData, ThetaData>: Trace where RData: Plotable, Theta
     public var textPosition: Shared.TextPosition?
 
     /// Sets the text font.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Sets the area to fill with a solid color.
     /// 
@@ -466,10 +466,10 @@ public struct ScatterPolar<RData, ThetaData>: Trace where RData: Plotable, Theta
             dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: Data<String>? = nil,
             textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, line:
             Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.GradientMarker?
-            = nil, clipOnAxis: Bool? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font?
-            = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, hoverInfo: Shared.PolarHoverInfo?
-            = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: Data<String>? = nil, selected: Selected? =
-            nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+            = nil, clipOnAxis: Bool? = nil, textPosition: Shared.TextPosition? = nil, textFont:
+            Shared.VariableFont? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, hoverInfo:
+            Shared.PolarHoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: Data<String>? =
+            nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

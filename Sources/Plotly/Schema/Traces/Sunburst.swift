@@ -141,7 +141,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
-        public var line: Shared.Line?
+        public var line: Shared.ColorLine?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here
         /// colors) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if colorsis set
@@ -243,8 +243,8 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(colors: [Double]? = nil, line: Shared.Line? = nil, cAuto: Bool? = nil, cMin: Double?
-                = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
+        public init(colors: [Double]? = nil, line: Shared.ColorLine? = nil, cAuto: Bool? = nil, cMin:
+                Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
                 Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.colors = colors
@@ -404,13 +404,13 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
     public var hoverTemplate: Data<String>?
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Shared.Font?
+    public var insideTextFont: Shared.VariableFont?
 
     /// Sets the font used for `textinfo` lying outside the sector.
-    public var outSideTextFont: Shared.Font?
+    public var outSideTextFont: Shared.VariableFont?
 
     public var domain: Shared.Domain?
 
@@ -513,8 +513,8 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
             nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil,
             text: Data<String>? = nil, textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil,
             hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil,
-            textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont: Shared.Font?
-            = nil, domain: Shared.Domain? = nil) {
+            textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil,
+            outSideTextFont: Shared.VariableFont? = nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

@@ -427,7 +427,9 @@ fileprivate extension ColorList {
             y: [[String](repeating: category, count: self.count),
                 [String](repeating: name, count: self.count)],
             orientation: .h,
-            marker: Shared.Marker(color: .variable(self))
+            marker: Shared.Marker(
+                coloring: .variable(self)
+            )
         )
         return bar
     }

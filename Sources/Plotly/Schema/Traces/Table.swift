@@ -115,26 +115,31 @@ public struct Table: Trace {
         /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Shared.HorizontalAlign?
     
-        public var line: Shared.Line?
+        public var line: Shared.ColorLine?
     
         public struct Fill: Encodable {
             /// Sets the cell fill color.
             /// 
             /// It accepts either a specific color or an array of colors or a 2D array of colors.
-            public var color: Coloring?
+            public var coloring: Coloring?
         
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case coloring = "color"
+            }
+            
             /// Creates `Fill` object with specified properties.
             /// 
             /// - Parameters:
-            ///   - color: Sets the cell fill color.
-            public init(color: Coloring? = nil) {
-                self.color = color
+            ///   - coloring: Sets the cell fill color.
+            public init(coloring: Coloring? = nil) {
+                self.coloring = coloring
             }
             
         }
         public var fill: Fill?
     
-        public var font: Shared.Font?
+        public var font: Shared.VariableFont?
     
         /// Creates `Header` object with specified properties.
         /// 
@@ -151,7 +156,7 @@ public struct Table: Trace {
         ///   - font:
         public init(values: [Double]? = nil, format: [Double]? = nil, prefix: Data<String>? = nil,
                 suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
-                Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
+                Shared.ColorLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -195,26 +200,31 @@ public struct Table: Trace {
         /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Shared.HorizontalAlign?
     
-        public var line: Shared.Line?
+        public var line: Shared.ColorLine?
     
         public struct Fill: Encodable {
             /// Sets the cell fill color.
             /// 
             /// It accepts either a specific color or an array of colors or a 2D array of colors.
-            public var color: Coloring?
+            public var coloring: Coloring?
         
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case coloring = "color"
+            }
+            
             /// Creates `Fill` object with specified properties.
             /// 
             /// - Parameters:
-            ///   - color: Sets the cell fill color.
-            public init(color: Coloring? = nil) {
-                self.color = color
+            ///   - coloring: Sets the cell fill color.
+            public init(coloring: Coloring? = nil) {
+                self.coloring = coloring
             }
             
         }
         public var fill: Fill?
     
-        public var font: Shared.Font?
+        public var font: Shared.VariableFont?
     
         /// Creates `Cells` object with specified properties.
         /// 
@@ -231,7 +241,7 @@ public struct Table: Trace {
         ///   - font:
         public init(values: [Double]? = nil, format: [Double]? = nil, prefix: Data<String>? = nil,
                 suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
-                Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
+                Shared.ColorLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix

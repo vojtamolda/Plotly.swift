@@ -450,7 +450,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     public var textPosition: Shared.TextPosition?
 
     /// Sets the text font.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     public var xError: Shared.Error?
 
@@ -628,9 +628,9 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
             Shared.HoverOn? = nil, hoverTemplate: Data<String>? = nil, line: SplineSmoothedDashedLine? =
             nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor:
             Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected:
-            Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil,
-            xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil,
-            yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+            Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.VariableFont? =
+            nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? =
+            nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -175,7 +175,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     public var marker: Shared.GradientMarker?
 
     /// Sets the text font.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
     public var textPosition: Shared.TextPosition?
@@ -483,7 +483,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
             textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, line:
             Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill:
             Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont:
-            Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil,
+            Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil,
             unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil,
             hoverTemplate: Data<String>? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible

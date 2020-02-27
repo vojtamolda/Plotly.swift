@@ -136,7 +136,7 @@ public struct ScatterGL<XData, YData>: Trace where XData: Plotable, YData: Plota
     public var textPosition: Shared.TextPosition?
 
     /// Sets the text font.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Determines the drawing mode for this scatter trace.
     public var mode: Shared.Mode?
@@ -508,7 +508,7 @@ public struct ScatterGL<XData, YData>: Trace where XData: Plotable, YData: Plota
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil,
             dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>?
             = nil, hoverText: Data<String>? = nil, textPosition: Shared.TextPosition? = nil, textFont:
-            Shared.Font? = nil, mode: Shared.Mode? = nil, line: SplineDashedLine? = nil, marker:
+            Shared.VariableFont? = nil, mode: Shared.Mode? = nil, line: SplineDashedLine? = nil, marker:
             Shared.SymbolicMarker? = nil, connectGaps: Bool? = nil, fill: Shared.Fill? = nil, fillColor:
             Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil,
             hoverTemplate: Data<String>? = nil, textTemplate: Data<String>? = nil, xError: Shared.Error? =

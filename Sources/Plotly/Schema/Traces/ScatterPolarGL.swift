@@ -248,7 +248,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     public var textPosition: Shared.TextPosition?
 
     /// Sets the text font.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -497,8 +497,8 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
             textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>?
             = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? =
             nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition: Shared.TextPosition? =
-            nil, textFont: Shared.Font? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected?
-            = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+            nil, textFont: Shared.VariableFont? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected:
+            Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

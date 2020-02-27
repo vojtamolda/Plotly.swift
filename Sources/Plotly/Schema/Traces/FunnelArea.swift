@@ -110,14 +110,14 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace where LabelsData: Plotab
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
-        public var line: Shared.Line?
+        public var line: Shared.ColorLine?
     
         /// Creates `Marker` object with specified properties.
         /// 
         /// - Parameters:
         ///   - colors: Sets the color of each sector.
         ///   - line:
-        public init(colors: [Double]? = nil, line: Shared.Line? = nil) {
+        public init(colors: [Double]? = nil, line: Shared.ColorLine? = nil) {
             self.colors = colors
             self.line = line
         }
@@ -247,10 +247,10 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace where LabelsData: Plotab
     public var textPosition: TextPosition?
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Shared.Font?
+    public var insideTextFont: Shared.VariableFont?
 
     public struct Title: Encodable {
         /// Sets the title of the chart.
@@ -263,7 +263,7 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace where LabelsData: Plotab
         /// Sets the font used for `title`.
         /// 
         /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-        public var font: Shared.Font?
+        public var font: Shared.VariableFont?
     
         /// Specifies the location of the `title`.
         /// 
@@ -284,7 +284,7 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace where LabelsData: Plotab
         ///   - text: Sets the title of the chart.
         ///   - font: Sets the font used for `title`.
         ///   - position: Specifies the location of the `title`.
-        public init(text: String? = nil, font: Shared.Font? = nil, position: Position? = nil) {
+        public init(text: String? = nil, font: Shared.VariableFont? = nil, position: Position? = nil) {
             self.text = text
             self.font = font
             self.position = position
@@ -407,8 +407,9 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace where LabelsData: Plotab
             ValuesData? = nil, marker: Marker? = nil, text: Data<String>? = nil, hoverText: Data<String>? =
             nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil,
             hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, textPosition: TextPosition? =
-            nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, title: Title? = nil,
-            domain: Shared.Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil) {
+            nil, textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil, title:
+            Title? = nil, domain: Shared.Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? =
+            nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

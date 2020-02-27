@@ -217,13 +217,13 @@ public struct ParallelCoordinates: Trace {
     }
     public var dimensions: [Dimension]?
 
-    public struct ColoredLine: Encodable {
+    public struct MarkerColorLine: Encodable {
         /// Sets thelinecolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if
         /// set.
-        public var color: Coloring?
+        public var coloring: Coloring?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in
@@ -292,7 +292,7 @@ public struct ParallelCoordinates: Trace {
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
-            case color
+            case coloring = "color"
             case cAuto = "cauto"
             case cMin = "cmin"
             case cMax = "cmax"
@@ -305,10 +305,10 @@ public struct ParallelCoordinates: Trace {
             case colorAxis = "coloraxis"
         }
         
-        /// Creates `ColoredLine` object with specified properties.
+        /// Creates `MarkerColorLine` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - color: Sets thelinecolor.
+        ///   - coloring: Sets thelinecolor.
         ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
         ///   (here in `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in
         ///   `line.color`is set to a numerical array.
@@ -323,11 +323,11 @@ public struct ParallelCoordinates: Trace {
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(color: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
+        public init(coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
                 nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
                 SubPlotID? = nil) {
-            self.color = color
+            self.coloring = coloring
             self.cAuto = cAuto
             self.cMin = cMin
             self.cMax = cMax
@@ -341,7 +341,7 @@ public struct ParallelCoordinates: Trace {
         }
         
     }
-    public var line: ColoredLine?
+    public var line: MarkerColorLine?
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -371,7 +371,7 @@ public struct ParallelCoordinates: Trace {
     /// - Parameters:
     ///   - name: Sets the trace name.
     ///   - line:
-    public init(name: String? = nil, line: ColoredLine? = nil) {
+    public init(name: String? = nil, line: MarkerColorLine? = nil) {
         self.name = name
         self.line = line
     }
@@ -405,7 +405,7 @@ public struct ParallelCoordinates: Trace {
             Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil,
             domain: Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont:
             Shared.Font? = nil, tickFont: Shared.Font? = nil, rangeFont: Shared.Font? = nil, dimensions:
-            [Dimension]? = nil, line: ColoredLine? = nil) {
+            [Dimension]? = nil, line: MarkerColorLine? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

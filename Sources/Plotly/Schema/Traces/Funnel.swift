@@ -260,13 +260,13 @@ public struct Funnel<XData, YData>: Trace where XData: Plotable, YData: Plotable
     public var textAngle: Angle?
 
     /// Sets the font used for `text`.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: Shared.Font?
+    public var insideTextFont: Shared.VariableFont?
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outSideTextFont: Shared.Font?
+    public var outSideTextFont: Shared.VariableFont?
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
     public var constrainText: Shared.ConstrainText?
@@ -480,11 +480,11 @@ public struct Funnel<XData, YData>: Trace where XData: Plotable, YData: Plotable
             Data<String>? = nil, hoverTemplate: Data<String>? = nil, hoverInfo: HoverInfo? = nil, textInfo:
             TextInfo? = nil, textTemplate: Data<String>? = nil, text: Data<String>? = nil, textPosition:
             Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle:
-            Angle? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil, outSideTextFont:
-            Shared.Font? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil,
-            orientation: Shared.Orientation? = nil, offset: Double? = nil, width: Double? = nil, marker:
-            Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil, alignmentGroup:
-            String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+            Angle? = nil, textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil,
+            outSideTextFont: Shared.VariableFont? = nil, constrainText: Shared.ConstrainText? = nil,
+            clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width:
+            Double? = nil, marker: Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? =
+            nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

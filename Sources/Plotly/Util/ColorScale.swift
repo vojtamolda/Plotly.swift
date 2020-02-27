@@ -2237,7 +2237,7 @@ fileprivate extension ColorScale {
                 [String](repeating: name, count: resolution)],
             orientation: .h,
             marker: Shared.Marker(
-                color: .colorScale([Double](stride(from: 0.0, to: Double(resolution), by: 1.0))),
+                coloring: .colorScale([Double](stride(from: 0.0, to: Double(resolution), by: 1.0))),
                 colorScale: self
             )
         )
@@ -2269,7 +2269,7 @@ fileprivate extension ColorScale {
             base: .constant(0.75),
             width: .constant(360.0 / resolution),
             marker: .init(
-                color: .colorScale([Double](stride(from: 0.0, to: resolution, by: 1.0))),
+                coloring: .colorScale([Double](stride(from: 0.0, to: resolution, by: 1.0))),
                 colorScale: self
             ),
             hoverTemplate: .constant(name),

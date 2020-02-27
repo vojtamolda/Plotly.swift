@@ -4,7 +4,7 @@
 /// It keeps a reference to the associated Swift data type and also the Plotly schema type
 /// it originates from.
 class Instance: Definable {
-    let name: String
+    var name: String
     var array: Bool
     var constant: String? =  nil
     var optional: Bool = true
@@ -35,7 +35,7 @@ class Instance: Definable {
         }
     }
 
-    /// Creates an instance of a `type` accesible under the specified `name`.
+    /// Creates an instance of a `type` accessible under the specified `name`.
     init(of type: GeneratedType, named name: String, array: Bool = false, origin: PredefinedType? = nil) {
         self.name = Schema.name!.camelCased(name)
         self.array = array
@@ -43,6 +43,18 @@ class Instance: Definable {
         self.type = type
         self.origin = origin ?? type.origin
         self.parent = type.parent
+
+        workarounds()
+    }
+
+    /// Post-processing doing some ad-hoc improvements.
+    private func workarounds() {
+        switch name {
+        case "color":
+            if type.name == "Coloring" { name = "coloring" }
+        default:
+            break
+        }
     }
 
     /// Checks for share-ability by comparing the key fields to `other` instance.
@@ -65,7 +77,7 @@ class Instance: Definable {
 }
 
 
-/// Formated comment that creates a section in IDEs like XCode or VS Code.
+/// Formatted comment that creates a section in IDEs like XCode or VS Code.
 ///
 /// Marks are  particularly useful for navigating around very long files.
 struct Mark: Definable {

@@ -243,7 +243,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         public var borderColor: Coloring?
     
         /// Sets the font used in hover labels.
-        public var font: Shared.Font?
+        public var font: Shared.VariableFont?
     
         /// Sets the horizontal alignment of the text content within hover label box.
         /// 
@@ -281,8 +281,9 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         ///   - nameLength: Sets the default length (in number of characters) of the trace name in the hover
         ///   labels for all traces.
         ///   - split: Show hover information (open, close, high, low) in separate labels.
-        public init(backgroundColor: Coloring? = nil, borderColor: Coloring? = nil, font: Shared.Font? =
-                nil, align: Shared.AutoAlign? = nil, nameLength: Data<Int>? = nil, split: Bool? = nil) {
+        public init(backgroundColor: Coloring? = nil, borderColor: Coloring? = nil, font:
+                Shared.VariableFont? = nil, align: Shared.AutoAlign? = nil, nameLength: Data<Int>? = nil, split:
+                Bool? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.font = font

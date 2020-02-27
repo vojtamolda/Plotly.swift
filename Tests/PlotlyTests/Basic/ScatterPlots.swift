@@ -69,7 +69,7 @@ final class ScatterPlots: XCTestCase {
             mode: [.markers, .text],
             marker: Shared.GradientMarker(size: 12),
             textPosition: .bottomCenter,
-            textFont: Shared.Font(family: "Raleway, sans-serif")
+            textFont: Shared.VariableFont(family: .constant("Times New Roman"))
         )
         let trace2 = Scatter(
             name: "Team B",
@@ -79,7 +79,7 @@ final class ScatterPlots: XCTestCase {
             mode: [.markers, .text],
             marker: Shared.GradientMarker(size: 12),
             textPosition: .bottomCenter,
-            textFont: Shared.Font(family: "Times New Roman")
+            textFont: Shared.VariableFont(family: .constant("Times New Roman"))
         )
         let layout = Layout(
             title: "Data Labels on the Plot",
@@ -103,8 +103,8 @@ final class ScatterPlots: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 40,
-                color: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-                        21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+                coloring: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+                           21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
             )
         )
         let layout = Layout(title: "Scatter Plot with a Color Dimension")

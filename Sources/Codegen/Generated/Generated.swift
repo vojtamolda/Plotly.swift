@@ -215,8 +215,18 @@ enum Generated {
         /// Post-processing to avoid name collisions and disable sharing of some types where it's not desirable.
         private func workarounds() {
             switch name {
+            case "Font":
+                fallthrough
+            case "TextFont":
+                fallthrough
+            case "InsideTextFont":
+                fallthrough
+            case "OutSideTextFont":
+                if members.containsInstance(named: "coloring") { name = "VariableFont" }
+
             case "Line":
-                if members.containsInstance(named: "colorScale") { name = "Colored\(name)" }
+                if members.containsInstance(named: "coloring") { name = "Color\(name)" }
+                if members.containsInstance(named: "colorScale") { name = "Marker\(name)" }
                 if members.containsInstance(named: "dash") { name = "Dashed\(name)" }
                 if members.containsInstance(named: "smoothing") { name = "Smoothed\(name)" }
                 if members.containsInstance(named: "shape") { name = "Spline\(name)" }

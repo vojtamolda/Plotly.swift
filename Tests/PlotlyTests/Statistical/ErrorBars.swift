@@ -104,7 +104,7 @@ final class ErrorBars: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 8,
-                color: 0x85144B
+                coloring: 0x85144B
             ),
             xError: Shared.Error(
                 type: .constant,

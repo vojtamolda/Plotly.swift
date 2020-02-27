@@ -255,7 +255,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         /// colors while the leaves are faded towards the background color.
         public var depthFade: DepthFade?
     
-        public var line: Shared.Line?
+        public var line: Shared.ColorLine?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here
         /// colors) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if colorsis set
@@ -363,8 +363,8 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
         public init(padding: Shared.Padding? = nil, colors: [Double]? = nil, depthFade: DepthFade? =
-                nil, line: Shared.Line? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
-                cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
+                nil, line: Shared.ColorLine? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
+                nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
                 SubPlotID? = nil) {
             self.padding = padding
@@ -417,7 +417,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         public var thickness: Double?
     
         /// Sets the font used inside `pathbar`.
-        public var textFont: Shared.Font?
+        public var textFont: Shared.VariableFont?
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -437,7 +437,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         ///   - thickness: Sets the thickness of `pathbar` (in px).
         ///   - textFont: Sets the font used inside `pathbar`.
         public init(visible: Bool? = nil, side: Side? = nil, edgeShape: EdgeShape? = nil, thickness:
-                Double? = nil, textFont: Shared.Font? = nil) {
+                Double? = nil, textFont: Shared.VariableFont? = nil) {
             self.visible = visible
             self.side = side
             self.edgeShape = edgeShape
@@ -571,13 +571,13 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     public var hoverTemplate: Data<String>?
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.VariableFont?
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Shared.Font?
+    public var insideTextFont: Shared.VariableFont?
 
     /// Sets the font used for `textinfo` lying outside the sector.
-    public var outSideTextFont: Shared.Font?
+    public var outSideTextFont: Shared.VariableFont?
 
     /// Sets the positions of the `text` elements.
     public var textPosition: Shared.TextPosition?
@@ -687,9 +687,9 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
             nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil,
             pathBar: PathBar? = nil, text: Data<String>? = nil, textInfo: TextInfo? = nil, textTemplate:
             Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate:
-            Data<String>? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil,
-            outSideTextFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, domain:
-            Shared.Domain? = nil) {
+            Data<String>? = nil, textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont?
+            = nil, outSideTextFont: Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil,
+            domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

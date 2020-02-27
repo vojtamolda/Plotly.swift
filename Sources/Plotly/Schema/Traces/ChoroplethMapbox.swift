@@ -99,7 +99,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData:
     public var hoverText: Data<String>?
 
     public struct Marker: Encodable {
-        public var line: Shared.Line?
+        public var line: Shared.ColorLine?
     
         /// Sets the opacity of the locations.
         public var opacity: Data<Double>?
@@ -109,7 +109,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData:
         /// - Parameters:
         ///   - line:
         ///   - opacity: Sets the opacity of the locations.
-        public init(line: Shared.Line? = nil, opacity: Data<Double>? = nil) {
+        public init(line: Shared.ColorLine? = nil, opacity: Data<Double>? = nil) {
             self.line = line
             self.opacity = opacity
         }
