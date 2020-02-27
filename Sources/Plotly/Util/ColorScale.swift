@@ -2099,6 +2099,19 @@ public struct ColorScale: Encodable {
             data: swatchBars)
     }
 
+    /// Ordered collection of normalized, non-decreasing scale values and corresponding colors.
+    public let scalesColors: [(Double, Color)]
+
+    /// Ordered collection containing just normalized, non-decreasing scale values.
+    public var scales: [Double] {
+        scalesColors.map { $0.0 }
+    }
+
+    /// Ordered collection containing just the colors.
+    public var colors: [Color] {
+        scalesColors.map { $0.1 }
+    }
+
     /// Creates color scale from a list of colors.
     ///
     /// The colors in the list are placed at a constant distance from each other and the values
@@ -2113,7 +2126,7 @@ public struct ColorScale: Encodable {
     /// - Precondition: Collection `scalesColors` has to contain at least 2 items.
     public init(interpolate colors: [Color]) {
         precondition(colors.count > 1)
-        let scales = [Double](stride(from: 0, through: 1, by: Double(1) / Double(colors.count - 1)))
+        let scales = [Double](stride(from: 0.0, through: 1.0, by: 1.0 / Double(colors.count - 1)))
         scalesColors = zip(scales, colors).map { $0 }
     }
 
@@ -2158,19 +2171,6 @@ public struct ColorScale: Encodable {
     public init(interpolate scalesColors: [(Double, Color)]) {
         precondition(scalesColors.count > 1)
         self.scalesColors = scalesColors
-    }
-
-    /// Ordered collection of normalized, non-decreasing scale values and corresponding colors.
-    public let scalesColors: [(Double, Color)]
-
-    /// Ordered collection containing just normalized, non-decreasing scale values.
-    public var scales: [Double] {
-        scalesColors.map { $0.0 }
-    }
-
-    /// Ordered collection containing just the colors.
-    public var colors: [Color] {
-        scalesColors.map { $0.1 }
     }
 
     /// Returns the color scale flipped around the center point.
@@ -2220,7 +2220,7 @@ extension ColorScale: ExpressibleByDictionaryLiteral {
     /// - Warning: There's no validation. In particular, nothing prevents scale values outside of the [0,1]
     /// range or other degenerated corner cases.
     public init(dictionaryLiteral scalesColors: (Double, Color)...) {
-        self.init(interpolate: scalesColors)
+        self.init(interpolate: Dictionary(uniqueKeysWithValues: scalesColors))
     }
 }
 
