@@ -61,7 +61,7 @@ public struct Contour<ZData, XData, YData>: Trace where ZData: Plotable, XData: 
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -120,10 +120,10 @@ public struct Contour<ZData, XData, YData>: Trace where ZData: Plotable, XData: 
     public var dy: Double?
 
     /// Sets the text elements associated with each z value.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Transposes the z data.
     public var transpose: Bool?
@@ -161,7 +161,7 @@ public struct Contour<ZData, XData, YData>: Trace where ZData: Plotable, XData: 
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -339,7 +339,7 @@ public struct Contour<ZData, XData, YData>: Trace where ZData: Plotable, XData: 
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, z: ZData? = nil, x: XData? = nil, y: YData? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.SmoothedDashedLine? = nil,
+            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.SmoothedDashedLine? = nil,
             colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
@@ -420,13 +420,13 @@ public struct Contour<ZData, XData, YData>: Trace where ZData: Plotable, XData: 
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverInfo: Shared.HoverInfo? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, z: ZData? = nil, x: XData? = nil, x0:
             Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil,
-            text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, transpose: Bool? = nil, xType:
+            text: Data<String>? = nil, hoverText: Data<String>? = nil, transpose: Bool? = nil, xType:
             Shared.AxisType? = nil, yType: Shared.AxisType? = nil, zHoverFormat: String? = nil,
-            hoverTemplate: ArrayOrString? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil,
+            hoverTemplate: Data<String>? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil,
             fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours:
             Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin:
             Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,

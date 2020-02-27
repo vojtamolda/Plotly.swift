@@ -47,7 +47,7 @@ public struct ParallelCoordinates: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var stream: Shared.Stream?
 
@@ -401,7 +401,7 @@ public struct ParallelCoordinates: Trace {
     ///   - dimensions:
     ///   - line:
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, stream:
+            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, stream:
             Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil,
             domain: Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont:
             Shared.Font? = nil, tickFont: Shared.Font? = nil, rangeFont: Shared.Font? = nil, dimensions:

@@ -33,7 +33,7 @@ public struct ParallelCategories: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var stream: Shared.Stream?
 
@@ -404,7 +404,7 @@ public struct ParallelCategories: Trace {
     /// The number of observations represented by each state.
     /// 
     /// Defaults to 1 so that each state represents one observation
-    public var counts: ArrayOrDouble?
+    public var counts: Data<Double>?
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -468,11 +468,11 @@ public struct ParallelCategories: Trace {
     ///   - line:
     ///   - counts: The number of observations represented by each state.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, meta:
-            ArrayOrAnything? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil,
+            Data<Anything>? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil,
             uiRevision: Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn:
             HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors:
             Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font?
-            = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: ArrayOrDouble? =
+            = nil, dimensions: [Dimension]? = nil, line: SplineColoredLine? = nil, counts: Data<Double>? =
             nil) {
         self.visible = visible
         self.name = name

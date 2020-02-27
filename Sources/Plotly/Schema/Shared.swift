@@ -1660,10 +1660,10 @@ public struct Shared {
         public var symbol: Shared.Symbol?
     
         /// Sets the marker opacity.
-        public var opacity: ArrayOrDouble?
+        public var opacity: Data<Double>?
     
         /// Sets the marker size (in px).
-        public var size: ArrayOrDouble?
+        public var size: Data<Double>?
     
         /// Sets a maximum number of points to be drawn on the graph.
         /// 
@@ -1813,7 +1813,7 @@ public struct Shared {
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(symbol: Shared.Symbol? = nil, opacity: ArrayOrDouble? = nil, size: ArrayOrDouble? =
+        public init(symbol: Shared.Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? =
                 nil, maxDisplayed: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil,
                 sizeMode: Shared.SizeMode? = nil, line: Shared.ColoredLine? = nil, gradient: Shared.Gradient? =
                 nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
@@ -1849,7 +1849,7 @@ public struct Shared {
     ///   `Shared.GradientMarker.line`,`Shared.Marker.line`,`Histogram.Marker.line`,`ScatterTernary.GradientMarker.line`,`Funnel.Marker.line`,`Shared.SymbolicMarker.line`,`ScatterGeo.GradientMarker.line`,`ScatterGL.SymbolicMarker.line`,`ScatterPlotMatrix.SymbolicMarker.line`,`ScatterCarpet.GradientMarker.line`,`ScatterPolar.GradientMarker.line`,`ScatterPolarGL.SymbolicMarker.line`,`BarPolar.Marker.line`.
     public struct ColoredLine: Encodable {
         /// Sets the width (in px) of the lines bounding the marker points.
-        public var width: ArrayOrDouble?
+        public var width: Data<Double>?
     
         /// Sets themarker.linecolor.
         /// 
@@ -1948,7 +1948,7 @@ public struct Shared {
         ///   true`) or the palette determined by `marker.line.colorscale`.
         ///   - reverseScale: Reverses the color mapping if true.
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(width: ArrayOrDouble? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin:
+        public init(width: Data<Double>? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin:
                 Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
             self.width = width
@@ -2192,7 +2192,7 @@ public struct Shared {
         public var colorAxis: SubPlotID?
     
         /// Sets the opacity of the bars.
-        public var opacity: ArrayOrDouble?
+        public var opacity: Data<Double>?
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2234,7 +2234,7 @@ public struct Shared {
         public init(line: Shared.ColoredLine? = nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil,
                 cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-                Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: ArrayOrDouble? = nil) {
+                Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Data<Double>? = nil) {
             self.line = line
             self.color = color
             self.cAuto = cAuto
@@ -2654,7 +2654,7 @@ public struct Shared {
         public var symbol: Symbol?
     
         /// Sets the marker size (in px).
-        public var size: ArrayOrDouble?
+        public var size: Data<Double>?
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
@@ -2800,7 +2800,7 @@ public struct Shared {
         ///   - reverseScale: Reverses the color mapping if true.
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(symbol: Symbol? = nil, size: ArrayOrDouble? = nil, sizeReference: Double? = nil,
+        public init(symbol: Symbol? = nil, size: Data<Double>? = nil, sizeReference: Double? = nil,
                 sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, opacity: Double? = nil, colorBar:
                 Shared.ColorBar? = nil, line: Shared.ColoredLine? = nil, color: ArrayOrColor? = nil, cAuto:
                 Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:

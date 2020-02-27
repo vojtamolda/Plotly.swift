@@ -59,7 +59,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -103,10 +103,10 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// 
     /// If a single string, the same string appears over all bars. If an array of string, the items are
     /// mapped in order to the this trace's coordinates.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Sets the orientation of the bars.
     /// 
@@ -249,7 +249,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in
     /// the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     public var marker: Shared.Marker?
 
@@ -443,8 +443,8 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     ///   - text: Sets hover text elements associated with each bar.
     ///   - hoverText: Same as `text`.
     ///   - marker:
-    public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: ArrayOrString? = nil,
-            hoverText: ArrayOrString? = nil, marker: Shared.Marker? = nil) {
+    public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, marker: Shared.Marker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -509,14 +509,14 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
             = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y:
-            YData? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, orientation:
+            YData? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, orientation:
             Shared.Orientation? = nil, binningFunction: Shared.BinningFunction? = nil, normalization:
             Shared.Normalization? = nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins:
             Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil,
-            yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: ArrayOrString? = nil, marker:
+            yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate: Data<String>? = nil, marker:
             Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected:
             Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError:
             Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,

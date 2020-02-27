@@ -2262,19 +2262,18 @@ fileprivate extension ColorScale {
     /// Constructs `BarPolar` trace that displays the cyclical scale range.
     func crateSwatchCircle(name: String, subPlot: Int) -> BarPolar<[Int], [Double]> {
         let resolution = 360.0
-        let barPolar = BarPolar(
+        return BarPolar(
             name: name,
             r: [Int](repeating: 1, count: Int(resolution)),
             theta: [Double](stride(from: 0.0, through: 360.0, by: 360.0 / resolution)),
-            base: .value(0.75),
-            width: .value(360.0 / resolution),
+            base: .constant(0.75),
+            width: .constant(360.0 / resolution),
             marker: .init(
                 color: .array([Double](stride(from: 0.0, to: resolution, by: 1.0))),
                 colorScale: self
             ),
-            hoverTemplate: .value(name),
+            hoverTemplate: .constant(name),
             subPlot: "polar\(subPlot)"
         )
-        return barPolar
     }
 }

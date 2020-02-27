@@ -61,7 +61,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Plotab
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -216,7 +216,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Plotab
     /// true`) are available. variable `z` Anything contained in tag `<extra>` is displayed in the
     /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -440,7 +440,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Plotab
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverInfo: Shared.HoverInfo? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z:
             ZData? = nil, marker: Marker? = nil, normalization: Shared.Normalization? = nil,
@@ -448,7 +448,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Plotab
             yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil,
             binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool?
             = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine?
-            = nil, zHoverFormat: String? = nil, hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil,
+            = nil, zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil,
             zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
             autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
             Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil,

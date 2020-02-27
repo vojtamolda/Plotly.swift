@@ -52,7 +52,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Plotable, Y
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var stream: Shared.Stream?
 
@@ -1097,7 +1097,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace where XData: Plotable, Y
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil,
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
             stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: XData? =
             nil, y: YData? = nil, a: AData? = nil, a0: Double? = nil, da: Double? = nil, b: BData? = nil,
             b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis:

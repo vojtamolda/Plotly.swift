@@ -59,7 +59,7 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var stream: Shared.Stream?
 
@@ -111,10 +111,10 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     public var db: Double?
 
     /// Sets the text elements associated with each z value.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Transposes the z data.
     public var transpose: Bool?
@@ -298,7 +298,7 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, z: ZData? = nil, a: AData? = nil, b: BData? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: Shared.SmoothedDashedLine? = nil,
+            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.SmoothedDashedLine? = nil,
             colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
@@ -370,16 +370,16 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, stream: Shared.Stream? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, stream: Shared.Stream? = nil,
             uiRevision: Anything? = nil, carpet: String? = nil, z: ZData? = nil, a: AData? = nil, a0:
             Anything? = nil, da: Double? = nil, b: BData? = nil, b0: Anything? = nil, db: Double? = nil,
-            text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, transpose: Bool? = nil, aType:
-            AType? = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours:
-            Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto:
-            Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale:
-            ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
-            nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil,
-            yAxis: SubPlotID? = nil) {
+            text: Data<String>? = nil, hoverText: Data<String>? = nil, transpose: Bool? = nil, aType: AType?
+            = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? =
+            nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? =
+            nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? =
+            nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+            Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID?
+            = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

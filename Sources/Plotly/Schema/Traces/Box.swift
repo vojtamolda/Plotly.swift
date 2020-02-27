@@ -65,7 +65,7 @@ public struct Box<YData, XData>: Trace where YData: Plotable, XData: Plotable {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -124,10 +124,10 @@ public struct Box<YData, XData>: Trace where YData: Plotable, XData: Plotable {
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -144,7 +144,7 @@ public struct Box<YData, XData>: Trace where YData: Plotable, XData: Plotable {
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Sets the width of the whiskers relative to the box' width.
     /// 
@@ -521,8 +521,8 @@ public struct Box<YData, XData>: Trace where YData: Plotable, XData: Plotable {
     ///   - hoverText: Same as `text`.
     ///   - marker:
     ///   - line:
-    public init(name: String? = nil, y: YData? = nil, x: XData? = nil, text: ArrayOrString? = nil,
-            hoverText: ArrayOrString? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil) {
+    public init(name: String? = nil, y: YData? = nil, x: XData? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil) {
         self.name = name
         self.y = y
         self.x = x
@@ -592,11 +592,11 @@ public struct Box<YData, XData>: Trace where YData: Plotable, XData: Plotable {
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
             = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x:
-            XData? = nil, x0: Anything? = nil, y0: Anything? = nil, text: ArrayOrString? = nil, hoverText:
-            ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, whiskerWidth: Double? = nil, notched:
+            XData? = nil, x0: Anything? = nil, y0: Anything? = nil, text: Data<String>? = nil, hoverText:
+            Data<String>? = nil, hoverTemplate: Data<String>? = nil, whiskerWidth: Double? = nil, notched:
             Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil,
             jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil,
             width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color?

@@ -58,7 +58,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var hoverLabel: Shared.HoverLabel?
 
@@ -128,14 +128,14 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Sets hover text elements associated with each sector.
     /// 
     /// If a single string, the same string appears for all data points. If an array of string, the
     /// items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a
     /// *text* flag.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// If there are multiple pie charts that should be sized according to their totals, link them by
     /// providing a non-empty group id here shared by every trace in the same group.
@@ -221,7 +221,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// contained in tag `<extra>` is displayed in the secondary box, for example
     /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -234,7 +234,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`.
-    public var textTemplate: ArrayOrString?
+    public var textTemplate: Data<String>?
 
     /// Specifies the location of the `textinfo`.
     public var textPosition: Shared.AdjacentPosition?
@@ -321,7 +321,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// 
     /// This can be a constant to pull all slices apart from each other equally or an array to highlight
     /// one or more slices.
-    public var pull: ArrayOrDouble?
+    public var pull: Data<Double>?
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -376,7 +376,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     ///   - text: Sets text elements associated with each sector.
     ///   - hoverText: Sets hover text elements associated with each sector.
     public init(name: String? = nil, labels: LabelsData? = nil, values: ValuesData? = nil, marker:
-            Marker? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil) {
+            Marker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil) {
         self.name = name
         self.labels = labels
         self.values = values
@@ -433,16 +433,16 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     ///   - pull: Sets the fraction of larger radius to pull the sectors out from the center.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel: Shared.HoverLabel? = nil,
             stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? =
             nil, labels: LabelsData? = nil, label0: Double? = nil, dLabel: Double? = nil, values:
-            ValuesData? = nil, marker: Marker? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString?
-            = nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil,
-            hoverTemplate: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil, textPosition:
+            ValuesData? = nil, marker: Marker? = nil, text: Data<String>? = nil, hoverText: Data<String>? =
+            nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: Data<String>? = nil, textTemplate: Data<String>? = nil, textPosition:
             Shared.AdjacentPosition? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? =
             nil, outSideTextFont: Shared.Font? = nil, autoMargin: Bool? = nil, title: Title? = nil, domain:
             Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? = nil,
-            rotation: Double? = nil, pull: ArrayOrDouble? = nil) {
+            rotation: Double? = nil, pull: Data<Double>? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

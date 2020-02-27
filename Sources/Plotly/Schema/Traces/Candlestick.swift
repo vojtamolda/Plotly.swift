@@ -62,7 +62,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -225,10 +225,10 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to this trace's sample points.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Sets the width of the whiskers relative to the box' width.
     /// 
@@ -256,7 +256,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
         /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
         /// truncate to `namelength - 3` characters and add an ellipsis.
-        public var nameLength: ArrayOrInt?
+        public var nameLength: Data<Int>?
     
         /// Show hover information (open, close, high, low) in separate labels.
         public var split: Bool?
@@ -282,8 +282,8 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         ///   labels for all traces.
         ///   - split: Show hover information (open, close, high, low) in separate labels.
         public init(backgroundColor: ArrayOrColor? = nil, borderColor: ArrayOrColor? = nil, font:
-                Shared.Font? = nil, align: Shared.AutoAlign? = nil, nameLength: ArrayOrInt? = nil, split: Bool?
-                = nil) {
+                Shared.Font? = nil, align: Shared.AutoAlign? = nil, nameLength: Data<Int>? = nil, split: Bool? =
+                nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.font = font
@@ -358,8 +358,8 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
     ///   - text: Sets hover text elements associated with each sample point.
     ///   - hoverText: Same as `text`.
     public init(name: String? = nil, x: XData? = nil, open: OpenData? = nil, high: HighData? = nil,
-            low: LowData? = nil, close: CloseData? = nil, line: Line? = nil, text: ArrayOrString? = nil,
-            hoverText: ArrayOrString? = nil) {
+            low: LowData? = nil, close: CloseData? = nil, line: Line? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil) {
         self.name = name
         self.x = x
         self.open = open
@@ -410,12 +410,12 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, open: OpenData? = nil,
             high: HighData? = nil, low: LowData? = nil, close: CloseData? = nil, line: Line? = nil,
-            increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: ArrayOrString? = nil,
-            hoverText: ArrayOrString? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil,
+            increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil,
             xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend

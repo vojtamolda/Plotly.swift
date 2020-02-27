@@ -56,7 +56,7 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -116,7 +116,7 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     public struct Marker: Encodable {
         /// Sets the marker fill color.
@@ -261,7 +261,7 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     ///   - text: Sets text elements associated with each (x,y) pair.
     ///   - marker:
     public init(name: String? = nil, x: XYData? = nil, y: XYData? = nil, xy: XYData? = nil, text:
-            ArrayOrString? = nil, marker: Marker? = nil) {
+            Data<String>? = nil, marker: Marker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -305,10 +305,10 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverInfo: Shared.HoverInfo? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil,
             x: XYData? = nil, y: XYData? = nil, xy: XYData? = nil, indices: [Int]? = nil, xBounds: [Double]?
-            = nil, yBounds: [Double]? = nil, text: ArrayOrString? = nil, marker: Marker? = nil, xAxis:
+            = nil, yBounds: [Double]? = nil, text: Data<String>? = nil, marker: Marker? = nil, xAxis:
             SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend

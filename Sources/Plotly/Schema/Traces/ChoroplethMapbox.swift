@@ -46,7 +46,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData:
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -93,23 +93,23 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData:
     public var below: String?
 
     /// Sets the text elements associated with each location.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     public struct Marker: Encodable {
         public var line: Shared.Line?
     
         /// Sets the opacity of the locations.
-        public var opacity: ArrayOrDouble?
+        public var opacity: Data<Double>?
     
         /// Creates `Marker` object with specified properties.
         /// 
         /// - Parameters:
         ///   - line:
         ///   - opacity: Sets the opacity of the locations.
-        public init(line: Shared.Line? = nil, opacity: ArrayOrDouble? = nil) {
+        public init(line: Shared.Line? = nil, opacity: Data<Double>? = nil) {
             self.line = line
             self.opacity = opacity
         }
@@ -216,7 +216,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData:
     /// true`) are available. variable `properties` Anything contained in tag `<extra>` is displayed in
     /// the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -332,7 +332,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData:
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, locations: LocationsData? = nil, z: ZData? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, marker: Marker? = nil, colorScale:
+            Data<String>? = nil, hoverText: Data<String>? = nil, marker: Marker? = nil, colorScale:
             ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.locations = locations
@@ -390,15 +390,15 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData:
     ///   - colorAxis: Sets a reference to a shared color axis.
     ///   - subPlot: Sets a reference between this trace's data coordinates and a mapbox subplot.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints:
+            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints:
             Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, locations: LocationsData? = nil, z:
-            ZData? = nil, geoJson: Anything? = nil, below: String? = nil, text: ArrayOrString? = nil,
-            hoverText: ArrayOrString? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected:
-            Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil, zAuto:
-            Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale:
-            ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
-            nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
+            ZData? = nil, geoJson: Anything? = nil, below: String? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected:
+            Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool?
+            = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale?
+            = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+            Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

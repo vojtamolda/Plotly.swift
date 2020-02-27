@@ -557,7 +557,7 @@ public struct Layout: Encodable {
     /// can access `meta` fields using template strings: `%{meta[i]}` where `i` is the index of the
     /// `meta` item in question. `meta` can also be an object for example `{key: value}` which can be
     /// accessed %{meta[key]}.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Sets transition options used during Plotly.react updates.
     public struct Transition: Encodable {
@@ -9663,7 +9663,7 @@ public struct Layout: Encodable {
             separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay:
             ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision:
             Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar:
-            ModeBar? = nil, meta: ArrayOrAnything? = nil, transition: Transition? = nil, clickMode:
+            ModeBar? = nil, meta: Data<Anything>? = nil, transition: Transition? = nil, clickMode:
             ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? =
             nil, spikeDistance: Int? = nil, hoverLabel: Shared.HoverLabel? = nil, selectDirection:
             SelectDirection? = nil, grid: Grid? = nil, calendar: Shared.Calendar? = nil, xAxis: XAxis? =

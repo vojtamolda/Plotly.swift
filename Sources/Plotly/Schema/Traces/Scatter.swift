@@ -60,7 +60,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -184,7 +184,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -197,14 +197,14 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available.
-    public var textTemplate: ArrayOrString?
+    public var textTemplate: Data<String>?
 
     /// Sets hover text elements associated with each (x,y) pair.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Determines the drawing mode for this scatter trace.
     /// 
@@ -233,7 +233,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     public struct SplineSmoothedDashedLine: Encodable {
         /// Sets the line color.
@@ -538,9 +538,9 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     ///   - mode: Determines the drawing mode for this scatter trace.
     ///   - line:
     ///   - marker:
-    public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: ArrayOrString? = nil,
-            hoverText: ArrayOrString? = nil, mode: Shared.Mode? = nil, line: SplineSmoothedDashedLine? =
-            nil, marker: Shared.GradientMarker? = nil) {
+    public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line: SplineSmoothedDashedLine? = nil,
+            marker: Shared.GradientMarker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -618,20 +618,19 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
             = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0:
             Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil,
             stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization:
-            GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: ArrayOrString? = nil,
-            textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, mode: Shared.Mode? = nil,
-            hoverOn: Shared.HoverOn? = nil, hoverTemplate: ArrayOrString? = nil, line:
-            SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill:
-            Shared.Fill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, selected:
-            Selected? = nil, unselected: Unselected? = nil, textPosition: Shared.TextPosition? = nil,
-            textFont: Shared.Font? = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil,
-            xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil,
-            yAxis: SubPlotID? = nil) {
+            GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: Data<String>? = nil, textTemplate:
+            Data<String>? = nil, hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, hoverOn:
+            Shared.HoverOn? = nil, hoverTemplate: Data<String>? = nil, line: SplineSmoothedDashedLine? =
+            nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor:
+            Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected:
+            Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? = nil,
+            xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil,
+            yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

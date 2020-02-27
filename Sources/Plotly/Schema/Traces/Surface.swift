@@ -51,7 +51,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var hoverLabel: Shared.HoverLabel?
 
@@ -83,10 +83,10 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// 
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -103,7 +103,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -586,7 +586,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, z: ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil,
-            text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, surfaceColor: ZSurfaceData? = nil,
+            text: Data<String>? = nil, hoverText: Data<String>? = nil, surfaceColor: ZSurfaceData? = nil,
             colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
@@ -649,17 +649,17 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     ///   - zCalendar: Sets the calendar system to use with `z` date data.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel:
+            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
             Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z:
-            ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil, text: ArrayOrString? = nil, hoverText:
-            ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil, connectGaps: Bool? = nil,
-            surfaceColor: ZSurfaceData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
-            cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-            SubPlotID? = nil, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition:
-            Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo:
-            Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,
-            zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+            ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil, text: Data<String>? = nil, hoverText:
+            Data<String>? = nil, hoverTemplate: Data<String>? = nil, connectGaps: Bool? = nil, surfaceColor:
+            ZSurfaceData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle:
+            Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
+            nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil,
+            contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: Shared.LightPosition? = nil,
+            lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: Shared.HoverInfo? = nil,
+            xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar:
+            Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

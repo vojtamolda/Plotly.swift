@@ -47,7 +47,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var hoverLabel: Shared.HoverLabel?
 
@@ -115,10 +115,10 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// 
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -135,7 +135,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay
     /// triangulation.
@@ -344,7 +344,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, intensity: IntensityData? = nil,
+            Data<String>? = nil, hoverText: Data<String>? = nil, intensity: IntensityData? = nil,
             vertexColor: VertexcolorData? = nil, faceColor: FacecolorData? = nil, colorScale: ColorScale? =
             nil, reverseScale: Bool? = nil) {
         self.name = name
@@ -420,10 +420,10 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     ///   - zCalendar: Sets the calendar system to use with `z` date data.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel:
+            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
             Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? =
             nil, y: YData? = nil, z: ZData? = nil, i: [Int]? = nil, j: [Int]? = nil, k: [Int]? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil,
+            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil,
             delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: IntensityData? = nil,
             color: Color? = nil, vertexColor: VertexcolorData? = nil, faceColor: FacecolorData? = nil,
             cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil,

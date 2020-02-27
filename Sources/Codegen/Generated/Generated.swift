@@ -453,7 +453,7 @@ enum Generated {
 
     /// Plotly `number` data type represented as a Swift `Double`.
     struct Number: GeneratedType {
-        var name: String { (schema.arrayOk ?? false) ? "ArrayOrDouble" : "Double" }
+        var name: String { (schema.arrayOk ?? false) ? "Data<Double>" : "Double" }
         let parent: Generated.Object?
         let schema: Predefined.Number
         var origin: PredefinedType { schema as PredefinedType }
@@ -461,7 +461,7 @@ enum Generated {
 
     /// Plotly `integer` data type represented as a Swift `Int`.
     struct Integer: GeneratedType {
-        var name: String { (schema.arrayOk ?? false) ? "ArrayOrInt" : "Int" }
+        var name: String { (schema.arrayOk ?? false) ? "Data<Int>" : "Int" }
         let parent: Generated.Object?
         let schema: Predefined.Integer
         var origin: PredefinedType { schema as PredefinedType }
@@ -471,7 +471,7 @@ enum Generated {
     ///
     /// - Note: Appended underscore prevents collision with the Swift built-in type.
     struct String_: GeneratedType {
-        var name: String { (schema.arrayOk ?? false) ? "ArrayOrString" : "String" }
+        var name: String { (schema.arrayOk ?? false) ? "Data<String>" : "String" }
         let parent: Generated.Object?
         let schema: Predefined.String_
         var origin: PredefinedType { schema as PredefinedType }
@@ -608,7 +608,7 @@ enum Generated {
     /// - Note: Appended underscore and renaming to `Anything` prevents collision with
     /// the Swift built-in type.
     struct Any_: GeneratedType {
-        var name: String { (schema.arrayOk ?? false) ? "ArrayOrAnything" : "Anything" }
+        var name: String { (schema.arrayOk ?? false) ? "Data<Anything>" : "Anything" }
         let parent: Generated.Object?
         let schema: Predefined.Any_
         var origin: PredefinedType { schema as PredefinedType }

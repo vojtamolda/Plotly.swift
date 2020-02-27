@@ -60,7 +60,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var hoverLabel: Shared.HoverLabel?
 
@@ -95,7 +95,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains
     /// a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -108,14 +108,14 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available.
-    public var textTemplate: ArrayOrString?
+    public var textTemplate: Data<String>?
 
     /// Sets text elements associated with each (x,y,z) triplet.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y,z) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -132,7 +132,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Determines the drawing mode for this scatter trace.
     /// 
@@ -391,7 +391,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, mode: Shared.Mode? = nil, line:
+            Data<String>? = nil, hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line:
             DashedColoredLine? = nil, marker: Shared.SymbolicMarker? = nil) {
         self.name = name
         self.x = x
@@ -453,17 +453,16 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel: Shared.HoverLabel? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel: Shared.HoverLabel? = nil,
             stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? =
-            nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text: ArrayOrString? = nil,
-            textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate:
-            ArrayOrString? = nil, mode: Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor:
-            Color? = nil, projection: Shared.Projection? = nil, connectGaps: Bool? = nil, line:
-            DashedColoredLine? = nil, marker: Shared.SymbolicMarker? = nil, textPosition:
-            Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.HoverInfo? = nil,
-            xError: Shared.Error? = nil, yError: Shared.Error? = nil, zError: Shared.Error? = nil,
-            xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar:
-            Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+            nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text: Data<String>? = nil, textTemplate:
+            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, mode:
+            Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection:
+            Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedColoredLine? = nil, marker:
+            Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.Font? =
+            nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil, yError: Shared.Error? =
+            nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar?
+            = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

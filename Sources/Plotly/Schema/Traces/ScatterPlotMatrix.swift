@@ -58,7 +58,7 @@ public struct ScatterPlotMatrix: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -192,10 +192,10 @@ public struct ScatterPlotMatrix: Trace {
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -212,7 +212,7 @@ public struct ScatterPlotMatrix: Trace {
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     public var marker: Shared.SymbolicMarker?
 
@@ -362,7 +362,7 @@ public struct ScatterPlotMatrix: Trace {
     ///   - text: Sets text elements associated with each (x,y) pair to appear on hover.
     ///   - hoverText: Same as `text`.
     ///   - marker:
-    public init(name: String? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil,
+    public init(name: String? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
             marker: Shared.SymbolicMarker? = nil) {
         self.name = name
         self.text = text
@@ -409,13 +409,13 @@ public struct ScatterPlotMatrix: Trace {
     ///   - opacity: Sets the opacity of the trace.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil,
-            meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? =
+            meta: Data<Anything>? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? =
             nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, dimensions: [Dimension]? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil,
-            marker: Shared.SymbolicMarker? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil,
-            diagonal: Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected:
-            Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil) {
+            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, marker:
+            Shared.SymbolicMarker? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, diagonal:
+            Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected: Selected? =
+            nil, unselected: Unselected? = nil, opacity: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

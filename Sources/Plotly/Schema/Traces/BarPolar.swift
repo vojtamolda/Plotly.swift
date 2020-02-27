@@ -56,7 +56,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -119,22 +119,22 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     /// Sets where the bar base is drawn (in radial axis units).
     /// 
     /// In *stack* barmode, traces that set *base* will be excluded and drawn in *overlay* mode instead.
-    public var base: ArrayOrAnything?
+    public var base: Data<Anything>?
 
     /// Shifts the angular position where the bar is drawn (in *thetatunit* units).
-    public var offset: ArrayOrDouble?
+    public var offset: Data<Double>?
 
     /// Sets the bar angular width (in *thetaunit* units).
-    public var width: ArrayOrDouble?
+    public var width: Data<Double>?
 
     /// Sets hover text elements associated with each bar.
     /// 
     /// If a single string, the same string appears over all bars. If an array of string, the items are
     /// mapped in order to the this trace's coordinates.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     public var marker: Shared.Marker?
 
@@ -159,7 +159,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
@@ -316,8 +316,8 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     ///   - text: Sets hover text elements associated with each bar.
     ///   - hoverText: Same as `text`.
     ///   - marker:
-    public init(name: String? = nil, r: RData? = nil, theta: ThetaData? = nil, text: ArrayOrString?
-            = nil, hoverText: ArrayOrString? = nil, marker: Shared.Marker? = nil) {
+    public init(name: String? = nil, r: RData? = nil, theta: ThetaData? = nil, text: Data<String>? =
+            nil, hoverText: Data<String>? = nil, marker: Shared.Marker? = nil) {
         self.name = name
         self.r = r
         self.theta = theta
@@ -368,15 +368,14 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     ///   - subPlot: Sets a reference between this trace's data coordinates and a polar subplot.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, r: RData? = nil, theta: ThetaData? =
             nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil,
-            thetaUnit: Shared.ThetaUnit? = nil, base: ArrayOrAnything? = nil, offset: ArrayOrDouble? = nil,
-            width: ArrayOrDouble? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil,
-            marker: Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate:
-            ArrayOrString? = nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot:
-            SubPlotID? = nil) {
+            thetaUnit: Shared.ThetaUnit? = nil, base: Data<Anything>? = nil, offset: Data<Double>? = nil,
+            width: Data<Double>? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, marker:
+            Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: Data<String>? =
+            nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

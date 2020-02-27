@@ -58,7 +58,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -119,7 +119,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     /// items are mapped in order to the this trace's (lon,lat) or `locations` coordinates. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -132,14 +132,14 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `lat`, `lon`, `location` and `text`.
-    public var textTemplate: ArrayOrString?
+    public var textTemplate: Data<String>?
 
     /// Sets hover text elements associated with each (lon,lat) pair or item in `locations`.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (lon,lat) or `locations` coordinates. To be seen,
     /// trace `hoverinfo` must contain a *text* flag.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Sets the text font.
     public var textFont: Shared.Font?
@@ -163,10 +163,10 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
         public var symbol: Shared.Symbol?
     
         /// Sets the marker opacity.
-        public var opacity: ArrayOrDouble?
+        public var opacity: Data<Double>?
     
         /// Sets the marker size (in px).
-        public var size: ArrayOrDouble?
+        public var size: Data<Double>?
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
@@ -309,7 +309,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
         ///   - reverseScale: Reverses the color mapping if true.
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(symbol: Shared.Symbol? = nil, opacity: ArrayOrDouble? = nil, size: ArrayOrDouble? =
+        public init(symbol: Shared.Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? =
                 nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil,
                 colorBar: Shared.ColorBar? = nil, line: Shared.ColoredLine? = nil, gradient: Shared.Gradient? =
                 nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
@@ -524,7 +524,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Sets a reference between this trace's geospatial coordinates and a geographic map.
     /// 
@@ -586,9 +586,8 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
-            nil, locations: LocationsData? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil,
-            hoverText: ArrayOrString? = nil, line: Shared.DashedLine? = nil, marker: GradientMarker? = nil)
-            {
+            nil, locations: LocationsData? = nil, mode: Shared.Mode? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, line: Shared.DashedLine? = nil, marker: GradientMarker? = nil) {
         self.name = name
         self.longitude = longitude
         self.latitude = latitude
@@ -647,16 +646,15 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     ///   - geo: Sets a reference between this trace's geospatial coordinates and a geographic map.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: CoordinateData? = nil,
             latitude: CoordinateData? = nil, locations: LocationsData? = nil, locationMode: LocationMode? =
-            nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil, textTemplate: ArrayOrString? = nil,
-            hoverText: ArrayOrString? = nil, textFont: Shared.Font? = nil, textPosition:
-            Shared.TextPosition? = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker:
-            GradientMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil,
-            unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: ArrayOrString? = nil,
-            geo: SubPlotID? = nil) {
+            nil, mode: Shared.Mode? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil,
+            hoverText: Data<String>? = nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition?
+            = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil,
+            fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? =
+            nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, geo: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

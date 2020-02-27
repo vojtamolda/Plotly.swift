@@ -182,11 +182,11 @@ struct Trace: Definable {
         }
         if let text = attributes.members.firstInstance(named: "text") {
             disabledGenerics += ["text"]
-            text.type = Generated.Override(of: text.type, as: "ArrayOrString")
+            text.type = Generated.Override(of: text.type, as: "Data<String>")
         }
         if let hoverText = attributes.members.firstInstance(named: "hoverText") {
             disabledGenerics += ["hoverText"]
-            hoverText.type = Generated.Override(of: hoverText.type, as: "ArrayOrString")
+            hoverText.type = Generated.Override(of: hoverText.type, as: "Data<String>")
         }
         if let latitude = attributes.members.firstInstance(named: "latitude"),
            let longitude = attributes.members.firstInstance(named: "longitude") {

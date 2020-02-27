@@ -105,7 +105,7 @@ final class BarCharts: XCTestCase {
             hoverInfo: Shared.HoverInfo.none,
             x: xValue,
             y: yValue,
-            text: .array(yValue.map { String($0) }),
+            text: .variable(yValue.map { String($0) }),
             textPosition: .auto,
             marker: Shared.Marker(
                 line: Shared.ColoredLine(
@@ -134,7 +134,7 @@ final class BarCharts: XCTestCase {
             hoverInfo: Shared.HoverInfo.none,
             x: xValue,
             y: yValue1,
-            text: .array(yValue1.map { String($0) }),
+            text: .variable(yValue1.map { String($0) }),
             textPosition: .auto,
             marker: Shared.Marker(
                 line: Shared.ColoredLine(
@@ -149,7 +149,7 @@ final class BarCharts: XCTestCase {
             hoverInfo: Shared.HoverInfo.none,
             x: xValue,
             y: yValue2,
-            text: .array(yValue2.map { String($0) }),
+            text: .variable(yValue2.map { String($0) }),
             textPosition: .auto,
             marker: Shared.Marker(
                 line: Shared.ColoredLine(
@@ -231,7 +231,7 @@ final class BarCharts: XCTestCase {
             x: ["2016", "2017", "2018"],
             y: [500, 600, 700],
             hoverTemplate: "%{base}",
-            base: .array([-500.0, -600.0, -700.0]),
+            base: [-500.0, -600.0, -700.0],
             marker: Shared.Marker(
                 color: .value(.red)
             )
@@ -240,7 +240,7 @@ final class BarCharts: XCTestCase {
             name: "revenue",
             x: ["2016", "2017", "2018"],
             y: [300, 400, 700],
-            base: .value(0.0),
+            base: 0.0,
             marker: Shared.Marker(
                 color: .value(.blue)
             )

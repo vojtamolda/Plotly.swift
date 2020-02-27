@@ -49,7 +49,7 @@ public struct Table: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -79,7 +79,7 @@ public struct Table: Trace {
     /// The width of columns expressed as a ratio.
     /// 
     /// Columns fill the available width in proportion of their specified column widths.
-    public var columnWidth: ArrayOrDouble?
+    public var columnWidth: Data<Double>?
 
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means
     /// that column index `0` in the data will be rendered as the third column, as columns have an index
@@ -101,10 +101,10 @@ public struct Table: Trace {
         public var format: [Double]?
     
         /// Prefix for cell values.
-        public var prefix: ArrayOrString?
+        public var prefix: Data<String>?
     
         /// Suffix for cell values.
-        public var suffix: ArrayOrString?
+        public var suffix: Data<String>?
     
         /// The height of cells.
         public var height: Double?
@@ -149,8 +149,8 @@ public struct Table: Trace {
         ///   - line:
         ///   - fill:
         ///   - font:
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: ArrayOrString? = nil,
-                suffix: ArrayOrString? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: Data<String>? = nil,
+                suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
                 Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
             self.values = values
             self.format = format
@@ -181,10 +181,10 @@ public struct Table: Trace {
         public var format: [Double]?
     
         /// Prefix for cell values.
-        public var prefix: ArrayOrString?
+        public var prefix: Data<String>?
     
         /// Suffix for cell values.
-        public var suffix: ArrayOrString?
+        public var suffix: Data<String>?
     
         /// The height of cells.
         public var height: Double?
@@ -229,8 +229,8 @@ public struct Table: Trace {
         ///   - line:
         ///   - fill:
         ///   - font:
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: ArrayOrString? = nil,
-                suffix: ArrayOrString? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
+        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: Data<String>? = nil,
+                suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
                 Shared.Line? = nil, fill: Fill? = nil, font: Shared.Font? = nil) {
             self.values = values
             self.format = format
@@ -292,9 +292,9 @@ public struct Table: Trace {
     ///   - header:
     ///   - cells:
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverInfo:
+            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo:
             Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil,
-            uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: ArrayOrDouble? = nil,
+            uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: Data<Double>? = nil,
             columnOrder: [Int]? = nil, header: Header? = nil, cells: Cells? = nil) {
         self.visible = visible
         self.name = name

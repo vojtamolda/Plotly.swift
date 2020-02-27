@@ -26,22 +26,22 @@ public enum Anything: Encodable {
 extension Anything: ExpressibleByFloatLiteral {
     public typealias FloatLiteralElement = Double
 
-    public init(floatLiteral: Double) {
-        self = .numeric(floatLiteral)
+    public init(floatLiteral float: Double) {
+        self = .numeric(float)
     }
 }
 extension Anything: ExpressibleByIntegerLiteral {
     public typealias IntegerLiteralElement = Int
 
-    public init(integerLiteral: Int) {
-        self = .numeric(Double(integerLiteral))
+    public init(integerLiteral integer: Int) {
+        self = .numeric(Double(integer))
     }
 }
 extension Anything: ExpressibleByStringLiteral {
     public typealias StringLiteralElement = String
 
-    public init(stringLiteral: String) {
-        self = .string(stringLiteral)
+    public init(stringLiteral string: String) {
+        self = .string(string)
     }
 }
 
@@ -64,7 +64,7 @@ public enum InfoArray: Encodable {
 extension InfoArray: ExpressibleByArrayLiteral {
     public typealias ArrayLiteralElement = Double
 
-    public init(arrayLiteral: Double...) {
-        self = .numeric(arrayLiteral)
+    public init(arrayLiteral array: Double...) {
+        self = .numeric(array)
     }
 }

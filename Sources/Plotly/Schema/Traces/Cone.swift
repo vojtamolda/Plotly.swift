@@ -49,7 +49,7 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var hoverLabel: Shared.HoverLabel?
 
@@ -124,10 +124,10 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// 
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Same as `text`.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -144,7 +144,7 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the
     /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here
     /// u/v/w norm) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax`
@@ -324,8 +324,8 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, u:
-            UVWData? = nil, v: UVWData? = nil, w: UVWData? = nil, text: ArrayOrString? = nil, hoverText:
-            ArrayOrString? = nil, colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
+            UVWData? = nil, v: UVWData? = nil, w: UVWData? = nil, text: Data<String>? = nil, hoverText:
+            Data<String>? = nil, colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -389,16 +389,16 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, hoverLabel:
+            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
             Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XYZData?
             = nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? = nil, w: UVWData? =
             nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate: ArrayOrString? = nil,
-            cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil,
-            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
-            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity:
-            Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil,
-            hoverInfo: HoverInfo? = nil, scene: SubPlotID? = nil) {
+            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, cAuto:
+            Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:
+            ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
+            nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil,
+            lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo:
+            HoverInfo? = nil, scene: SubPlotID? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

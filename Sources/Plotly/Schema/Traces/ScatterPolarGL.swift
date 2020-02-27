@@ -61,7 +61,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -133,7 +133,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -146,14 +146,14 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `r`, `theta` and `text`.
-    public var textTemplate: ArrayOrString?
+    public var textTemplate: Data<String>?
 
     /// Sets hover text elements associated with each (x,y) pair.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -170,7 +170,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     public struct SplineDashedLine: Encodable {
         /// Sets the line color.
@@ -429,7 +429,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, mode: Shared.Mode? = nil, r: RData? = nil, theta: ThetaData? =
-            nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line: SplineDashedLine? = nil,
+            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line: SplineDashedLine? = nil,
             marker: Shared.SymbolicMarker? = nil) {
         self.name = name
         self.mode = mode
@@ -489,16 +489,16 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     ///   - subPlot: Sets a reference between this trace's data coordinates and a polar subplot.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: RData? =
             nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil,
-            dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: ArrayOrString? = nil,
-            textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverTemplate:
-            ArrayOrString? = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker:
-            Shared.SymbolicMarker? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition:
-            Shared.TextPosition? = nil, textFont: Shared.Font? = nil, hoverInfo: Shared.PolarHoverInfo? =
-            nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+            dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: Data<String>? = nil,
+            textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>?
+            = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? =
+            nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition: Shared.TextPosition? =
+            nil, textFont: Shared.Font? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected?
+            = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -58,7 +58,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -122,7 +122,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     /// If a single string, the same string appears over all the data points. If an array of strings,
     /// the items are mapped in order to the the data points in (a,b,c). If trace `hoverinfo` contains a
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -135,14 +135,14 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `a`, `b`, `c` and `text`.
-    public var textTemplate: ArrayOrString?
+    public var textTemplate: Data<String>?
 
     /// Sets hover text elements associated with each (a,b,c) point.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of strings,
     /// the items are mapped in order to the the data points in (a,b,c). To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     public var line: Shared.SplineSmoothedDashedLine?
 
@@ -350,7 +350,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Sets a reference between this trace's data coordinates and a ternary subplot.
     /// 
@@ -413,7 +413,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, a: AData? = nil, b: BData? = nil, c: CData? = nil, mode:
-            Shared.Mode? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line:
+            Shared.Mode? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line:
             Shared.SplineSmoothedDashedLine? = nil, marker: Shared.GradientMarker? = nil) {
         self.name = name
         self.a = a
@@ -476,16 +476,16 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     ///   - subPlot: Sets a reference between this trace's data coordinates and a ternary subplot.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints: Anything? = nil,
+            customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, a: AData? = nil, b: BData? = nil, c:
-            CData? = nil, sum: Double? = nil, mode: Shared.Mode? = nil, text: ArrayOrString? = nil,
-            textTemplate: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, line:
+            CData? = nil, sum: Double? = nil, mode: Shared.Mode? = nil, text: Data<String>? = nil,
+            textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, line:
             Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill:
             Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont:
             Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil,
             unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil,
-            hoverTemplate: ArrayOrString? = nil, subPlot: SubPlotID? = nil) {
+            hoverTemplate: Data<String>? = nil, subPlot: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

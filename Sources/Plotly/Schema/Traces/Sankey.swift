@@ -48,7 +48,7 @@ public struct Sankey: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Array containing integer indices of selected points.
     /// 
@@ -208,7 +208,7 @@ public struct Sankey: Trace {
         /// true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is
         /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
         /// secondary box completely, use an empty tag `<extra></extra>`.
-        public var hoverTemplate: ArrayOrString?
+        public var hoverTemplate: Data<String>?
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -242,7 +242,7 @@ public struct Sankey: Trace {
         public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? =
                 nil, color: ArrayOrColor? = nil, line: Shared.Line? = nil, padding: Double? = nil, thickness:
                 Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate:
-                ArrayOrString? = nil) {
+                Data<String>? = nil) {
             self.label = label
             self.groups = groups
             self.x = x
@@ -314,7 +314,7 @@ public struct Sankey: Trace {
         /// true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is
         /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
         /// secondary box completely, use an empty tag `<extra></extra>`.
-        public var hoverTemplate: ArrayOrString?
+        public var hoverTemplate: Data<String>?
     
         public struct ConcentrationScales: Encodable {
             /// The label of the links to color based on their concentration within a flow.
@@ -415,7 +415,7 @@ public struct Sankey: Trace {
         ///   - colorScales:
         public init(label: [Double]? = nil, color: ArrayOrColor? = nil, line: Shared.Line? = nil,
                 source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo?
-                = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: ArrayOrString? = nil, colorScales:
+                = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: Data<String>? = nil, colorScales:
                 [ConcentrationScales]? = nil) {
             self.label = label
             self.color = color
@@ -487,7 +487,7 @@ public struct Sankey: Trace {
     ///   - node: The nodes of the Sankey plot.
     ///   - link: The links of the Sankey plot.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil, selectedPoints:
+            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints:
             Anything? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, hoverInfo:
             HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, domain: Shared.Domain? = nil,
             orientation: Shared.Orientation? = nil, valueFormat: String? = nil, valueSuffix: String? = nil,

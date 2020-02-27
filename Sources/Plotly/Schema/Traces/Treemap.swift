@@ -50,7 +50,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var hoverLabel: Shared.HoverLabel?
 
@@ -453,7 +453,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Determines which trace information appear on the graph.
     public struct TextInfo: OptionSet, Encodable {
@@ -499,14 +499,14 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`,
     /// `percentEntry`, `percentParent`, `label` and `value`.
-    public var textTemplate: ArrayOrString?
+    public var textTemplate: Data<String>?
 
     /// Sets hover text elements associated with each sector.
     /// 
     /// If a single string, the same string appears for all data points. If an array of string, the
     /// items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a
     /// *text* flag.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -568,7 +568,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Sets the font used for `textinfo`.
     public var textFont: Shared.Font?
@@ -631,7 +631,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     ///   - text: Sets text elements associated with each sector.
     ///   - hoverText: Sets hover text elements associated with each sector.
     public init(name: String? = nil, values: ValuesData? = nil, marker: Marker? = nil, text:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil) {
+            Data<String>? = nil, hoverText: Data<String>? = nil) {
         self.name = name
         self.values = values
         self.marker = marker
@@ -680,15 +680,15 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     ///   - textPosition: Sets the positions of the `text` elements.
     ///   - domain:
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil,
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [String]? = nil, parents:
             [String]? = nil, values: ValuesData? = nil, branchValues: BranchValues? = nil, count: Count? =
             nil, level: Anything? = nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil,
-            pathBar: PathBar? = nil, text: ArrayOrString? = nil, textInfo: TextInfo? = nil, textTemplate:
-            ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil,
-            hoverTemplate: ArrayOrString? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font?
-            = nil, outSideTextFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, domain:
+            pathBar: PathBar? = nil, text: Data<String>? = nil, textInfo: TextInfo? = nil, textTemplate:
+            Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate:
+            Data<String>? = nil, textFont: Shared.Font? = nil, insideTextFont: Shared.Font? = nil,
+            outSideTextFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, domain:
             Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity

@@ -48,7 +48,7 @@ public struct HeatmapGL<ZData, XYData>: Trace where ZData: Plotable, XYData: Plo
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -107,7 +107,7 @@ public struct HeatmapGL<ZData, XYData>: Trace where ZData: Plotable, XYData: Plo
     public var dy: Double?
 
     /// Sets the text elements associated with each z value.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Transposes the z data.
     public var transpose: Bool?
@@ -245,7 +245,7 @@ public struct HeatmapGL<ZData, XYData>: Trace where ZData: Plotable, XYData: Plo
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, z: ZData? = nil, x: XYData? = nil, y: XYData? = nil, text:
-            ArrayOrString? = nil, colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
+            Data<String>? = nil, colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
         self.x = x
@@ -305,11 +305,11 @@ public struct HeatmapGL<ZData, XYData>: Trace where ZData: Plotable, XYData: Plo
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil,
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
             hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
             = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, z: ZData? = nil, x:
             XYData? = nil, x0: Anything? = nil, dx: Double? = nil, y: XYData? = nil, y0: Anything? = nil,
-            dy: Double? = nil, text: ArrayOrString? = nil, transpose: Bool? = nil, xType: Shared.AxisType? =
+            dy: Double? = nil, text: Data<String>? = nil, transpose: Bool? = nil, xType: Shared.AxisType? =
             nil, yType: Shared.AxisType? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? =
             nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
             reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:

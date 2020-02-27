@@ -49,7 +49,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: ArrayOrAnything?
+    public var meta: Data<Anything>?
 
     public var hoverLabel: Shared.HoverLabel?
 
@@ -84,7 +84,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// Sets the radius of influence of one `lon` / `lat` point in pixels.
     /// 
     /// Increasing the value makes the densitymapbox trace smoother, but less detailed.
-    public var radius: ArrayOrDouble?
+    public var radius: Data<Double>?
 
     /// Determines if the densitymapbox trace will be inserted before the layer with the specified ID.
     /// 
@@ -98,14 +98,14 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: ArrayOrString?
+    public var text: Data<String>?
 
     /// Sets hover text elements associated with each (lon,lat) pair If a single string, the same string
     /// appears over all the data points.
     /// 
     /// If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.
     /// To be seen, trace `hoverinfo` must contain a *text* flag.
-    public var hoverText: ArrayOrString?
+    public var hoverText: Data<String>?
 
     /// Determines which trace information appear on hover.
     /// 
@@ -160,7 +160,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: ArrayOrString?
+    public var hoverTemplate: Data<String>?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -276,7 +276,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
-            nil, z: ZData? = nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, colorScale:
+            nil, z: ZData? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, colorScale:
             ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.longitude = longitude
@@ -334,12 +334,12 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     ///   - colorAxis: Sets a reference to a shared color axis.
     ///   - subPlot: Sets a reference between this trace's data coordinates and a mapbox subplot.
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: ArrayOrAnything? = nil,
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: CoordinateData? = nil,
-            latitude: CoordinateData? = nil, z: ZData? = nil, radius: ArrayOrDouble? = nil, below: String? =
-            nil, text: ArrayOrString? = nil, hoverText: ArrayOrString? = nil, hoverInfo: HoverInfo? = nil,
-            hoverTemplate: ArrayOrString? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? =
+            latitude: CoordinateData? = nil, z: ZData? = nil, radius: Data<Double>? = nil, below: String? =
+            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? =
             nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
             reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
             SubPlotID? = nil, subPlot: SubPlotID? = nil) {
