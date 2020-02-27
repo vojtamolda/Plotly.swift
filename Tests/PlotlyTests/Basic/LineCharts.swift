@@ -87,7 +87,7 @@ final class LineCharts: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 12,
-                color: .value(.RGB(219, 64, 82))
+                color: .constant(.RGB(219, 64, 82))
             )
         )
         let trace2 = Scatter(
@@ -109,7 +109,7 @@ final class LineCharts: XCTestCase {
             ),
             marker: Shared.GradientMarker(
                 size: 8,
-                color: .value(.RGB(128, 0, 128))
+                color: .constant(.RGB(128, 0, 128))
             )
         )
         let layout = Layout(title: "Line and Scatter Styling")
@@ -154,8 +154,8 @@ final class LineCharts: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 12,
-                line: Shared.ColoredLine(width: 0.5, color: .value(.white)),
-                color: .value(.RGB(164, 194, 244))
+                line: Shared.ColoredLine(width: 0.5, color: .constant(.white)),
+                color: .constant(.RGB(164, 194, 244))
             )
         )
         let trace2 = Scatter(
@@ -167,7 +167,7 @@ final class LineCharts: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 12,
-                color: .value(.RGB(255, 217, 102))
+                color: .constant(.RGB(255, 217, 102))
             )
         )
         let trace3 = Scatter(
@@ -179,7 +179,7 @@ final class LineCharts: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 12,
-                color: .value(.RGB(234, 153, 153))
+                color: .constant(.RGB(234, 153, 153))
             )
         )
         let trace4 = Scatter(
@@ -191,7 +191,7 @@ final class LineCharts: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 12,
-                color: .value(.RGB(142, 124, 195))
+                color: .constant(.RGB(142, 124, 195))
             )
         )
 
@@ -416,7 +416,7 @@ final class LineCharts: XCTestCase {
                 mode: .markers,
                 marker: Shared.GradientMarker(
                     size: 12,
-                    color: .value(colors[i])
+                    color: .constant(colors[i])
                 )
             )
             traces.append(lineTrace)

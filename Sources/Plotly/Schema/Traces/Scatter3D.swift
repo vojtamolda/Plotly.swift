@@ -175,7 +175,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if
         /// set.
-        public var color: ArrayOrColor?
+        public var color: Coloring?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in
@@ -279,10 +279,10 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(width: Double? = nil, dash: Shared.Dash? = nil, color: ArrayOrColor? = nil, cAuto:
-                Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:
-                ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
-                nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+        public init(width: Double? = nil, dash: Shared.Dash? = nil, color: Coloring? = nil, cAuto: Bool?
+                = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale?
+                = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+                Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
             self.width = width
             self.dash = dash
             self.color = color

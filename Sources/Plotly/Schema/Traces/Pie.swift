@@ -106,7 +106,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         /// Sets the color of each sector.
         /// 
         /// If not specified, the default trace color set is used to pick the sector colors.
-        public var colors: ArrayOrColor?
+        public var colors: ColorList?
     
         public var line: Shared.Line?
     
@@ -115,7 +115,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         /// - Parameters:
         ///   - colors: Sets the color of each sector.
         ///   - line:
-        public init(colors: ArrayOrColor? = nil, line: Shared.Line? = nil) {
+        public init(colors: ColorList? = nil, line: Shared.Line? = nil) {
             self.colors = colors
             self.line = line
         }

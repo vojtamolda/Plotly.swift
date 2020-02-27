@@ -479,7 +479,7 @@ enum Generated {
 
     /// Plotly `color` data type equivalent generated in Swift.
     struct Color: GeneratedType {
-        var name: String { (schema.arrayOk ?? false) ? "ArrayOrColor" : "Color" }
+        var name: String { (schema.arrayOk ?? false) ? "Coloring" : "Color" }
         let parent: Generated.Object?
         let schema: Predefined.Color
         var origin: PredefinedType { schema as PredefinedType }

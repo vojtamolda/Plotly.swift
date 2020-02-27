@@ -108,7 +108,7 @@ struct Trace: Definable {
         case "Pie":
             let marker = attributes.members.firstInstance(named: "marker")!
             let markerColors = (marker.type as! Generated.Object).members.firstInstance(named: "colors")!
-            markerColors.type = Generated.Override(of: markerColors.type, as: "ArrayOrColor")
+            markerColors.type = Generated.Override(of: markerColors.type, as: "ColorList")
 
         case "PointCloud":
             disabledGenerics += ["x", "y", "xy", "xBounds", "yBounds", "indices"]

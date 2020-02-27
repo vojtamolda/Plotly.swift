@@ -378,7 +378,7 @@ public enum Color: Encodable {
 extension Color: ExpressibleByIntegerLiteral {
     public typealias IntegerLiteralType = UInt32
 
-    public init(integerLiteral value: UInt32) {
-        self = .value(value)
+    public init(integerLiteral integer: UInt32) {
+        self = .value(integer)
     }
 }

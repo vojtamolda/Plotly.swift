@@ -63,37 +63,3 @@ extension Data: ExpressibleByArrayLiteral {
         self = .variable(elements)
     }
 }
-
-
-// TODO: Docs
-public enum ArrayOrColor: Encodable {
-    case value(Color)
-    case array([Double])
-    case colors([Color])
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        switch self {
-        case .value(let value):
-            try container.encode(value)
-        case .array(let array):
-            try container.encode(array)
-        case .colors(let colors):
-            try container.encode(colors)
-        }
-    }
-}
-extension ArrayOrColor: ExpressibleByArrayLiteral {
-    public typealias ArrayLiteralElement = Double
-
-    public init(arrayLiteral: Double...) {
-        self = .array(arrayLiteral)
-    }
-}
-extension ArrayOrColor: ExpressibleByIntegerLiteral {
-    public typealias IntegerLiteralType = UInt32
-
-    public init(integerLiteral value: UInt32) {
-        self = .value(.value(value))
-    }
-}

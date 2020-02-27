@@ -166,7 +166,7 @@ public struct Sankey: Trace {
         /// omitted, then the default `Plotly` color palette will be cycled through to have a variety of
         /// colors. These defaults are not fully opaque, to allow some visibility of what is beneath the
         /// node.
-        public var color: ArrayOrColor?
+        public var color: Coloring?
     
         public var line: Shared.Line?
     
@@ -240,7 +240,7 @@ public struct Sankey: Trace {
         ///   - hoverLabel:
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? =
-                nil, color: ArrayOrColor? = nil, line: Shared.Line? = nil, padding: Double? = nil, thickness:
+                nil, color: Coloring? = nil, line: Shared.Line? = nil, padding: Double? = nil, thickness:
                 Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate:
                 Data<String>? = nil) {
             self.label = label
@@ -269,7 +269,7 @@ public struct Sankey: Trace {
         /// 
         /// It can be a single value, or an array for specifying color for each `link`. If `link.color` is
         /// omitted, then by default, a translucent grey link will be used.
-        public var color: ArrayOrColor?
+        public var color: Coloring?
     
         public var line: Shared.Line?
     
@@ -413,9 +413,9 @@ public struct Sankey: Trace {
         ///   - hoverLabel:
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         ///   - colorScales:
-        public init(label: [Double]? = nil, color: ArrayOrColor? = nil, line: Shared.Line? = nil,
-                source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo?
-                = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: Data<String>? = nil, colorScales:
+        public init(label: [Double]? = nil, color: Coloring? = nil, line: Shared.Line? = nil, source:
+                [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo? = nil,
+                hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: Data<String>? = nil, colorScales:
                 [ConcentrationScales]? = nil) {
             self.label = label
             self.color = color

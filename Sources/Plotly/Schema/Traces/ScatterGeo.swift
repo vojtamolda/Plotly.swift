@@ -195,7 +195,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
-        public var color: ArrayOrColor?
+        public var color: Coloring?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
@@ -312,7 +312,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
         public init(symbol: Shared.Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? =
                 nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil,
                 colorBar: Shared.ColorBar? = nil, line: Shared.ColoredLine? = nil, gradient: Shared.Gradient? =
-                nil, color: ArrayOrColor? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
+                nil, color: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
                 cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
             self.symbol = symbol

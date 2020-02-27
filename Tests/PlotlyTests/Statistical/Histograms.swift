@@ -29,7 +29,7 @@ final class Histograms: XCTestCase {
         let trace = Histogram<[Int], [Double]>(
             y: (0...500).map { _ in Double.random(in: 0...1) },
             marker: .init(
-                color: .value(.pink)
+                color: .constant(.pink)
             )
         )
         let figure = Figure(data: [trace])
@@ -42,14 +42,14 @@ final class Histograms: XCTestCase {
             opacity: 0.5,
             x: (0...500).map { _ in Double.random(in: 1.0 ... 2.0) },
             marker: .init(
-                color: .value(.green)
+                color: .constant(.green)
             )
         )
         let trace2 = Histogram<[Double], [Int]>(
             opacity: 0.6,
             x: (0...500).map { _ in Double.random(in: 1.1 ... 2.1) },
             marker: .init(
-                color: .value(.red)
+                color: .constant(.red)
             )
         )
         let layout = Layout(
@@ -96,9 +96,9 @@ final class Histograms: XCTestCase {
             marker: Shared.Marker(
                 line: .init(
                     width: 1,
-                    color: .value(.RGB(255, 100, 102, 1))
+                    color: .constant(.RGB(255, 100, 102, 1))
                 ),
-                color: .value(.RGB(255, 100, 102, 0.7))
+                color: .constant(.RGB(255, 100, 102, 0.7))
             )
         )
 
@@ -116,9 +116,9 @@ final class Histograms: XCTestCase {
             marker: Shared.Marker(
                 line: .init(
                     width: 1,
-                    color: .value(.RGB(100, 200, 102, 1))
+                    color: .constant(.RGB(100, 200, 102, 1))
                 ),
-                color: .value(.RGB(100, 200, 102, 0.7))
+                color: .constant(.RGB(100, 200, 102, 0.7))
             )
         )
 
@@ -157,7 +157,7 @@ final class Histograms: XCTestCase {
             x: (0...500).map { _ in Double.random(in: 0...1) },
             normalization: .probability,
             marker: .init(
-                color: .value(.RGB(255, 255, 100))
+                color: .constant(.RGB(255, 255, 100))
             )
         )
         let figure = Figure(data: [trace])

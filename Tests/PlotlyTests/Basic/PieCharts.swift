@@ -42,7 +42,7 @@ final class PieCharts: XCTestCase {
             labels: allLabels,
             values: allValues[0],
             marker: Pie.Marker(
-                colors: .colors(ultimateColors[0])
+                colors: ultimateColors[0]
             ),
             textInfo: Pie<[String], [Int]>.TextInfo.none,
             hoverInfo: [.name, .label, .percent],
@@ -56,7 +56,7 @@ final class PieCharts: XCTestCase {
             labels: allLabels,
             values: allValues[1],
             marker: Pie.Marker(
-                colors: .colors(ultimateColors[1])
+                colors: ultimateColors[1]
             ),
             textInfo: Pie<[String], [Int]>.TextInfo.none,
             hoverInfo: [.name, .label, .percent],
@@ -70,7 +70,7 @@ final class PieCharts: XCTestCase {
             labels: allLabels,
             values: allValues[2],
             marker: Pie.Marker(
-                colors: .colors(ultimateColors[2])
+                colors: ultimateColors[2]
             ),
             textInfo: Pie<[String], [Int]>.TextInfo.none,
             hoverInfo: [.name, .label, .percent],
@@ -84,7 +84,7 @@ final class PieCharts: XCTestCase {
             labels: allLabels,
             values: allValues[3],
             marker: Pie.Marker(
-                colors: .colors(ultimateColors[3])
+                colors: ultimateColors[3]
             ),
             textInfo: Pie<[String], [Int]>.TextInfo.none,
             hoverInfo: [.name, .label, .percent],

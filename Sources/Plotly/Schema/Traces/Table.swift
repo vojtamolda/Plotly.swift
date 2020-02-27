@@ -121,13 +121,13 @@ public struct Table: Trace {
             /// Sets the cell fill color.
             /// 
             /// It accepts either a specific color or an array of colors or a 2D array of colors.
-            public var color: ArrayOrColor?
+            public var color: Coloring?
         
             /// Creates `Fill` object with specified properties.
             /// 
             /// - Parameters:
             ///   - color: Sets the cell fill color.
-            public init(color: ArrayOrColor? = nil) {
+            public init(color: Coloring? = nil) {
                 self.color = color
             }
             
@@ -201,13 +201,13 @@ public struct Table: Trace {
             /// Sets the cell fill color.
             /// 
             /// It accepts either a specific color or an array of colors or a 2D array of colors.
-            public var color: ArrayOrColor?
+            public var color: Coloring?
         
             /// Creates `Fill` object with specified properties.
             /// 
             /// - Parameters:
             ///   - color: Sets the cell fill color.
-            public init(color: ArrayOrColor? = nil) {
+            public init(color: Coloring? = nil) {
                 self.color = color
             }
             
