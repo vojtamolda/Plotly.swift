@@ -194,7 +194,7 @@ public struct Contour<ZData, XData, YData>: Trace where ZData: Plotable, XData: 
 
     public var contours: Shared.Contours?
 
-    public var line: Shared.SmoothedDashedLine?
+    public var line: Shared.SmoothDashedLine?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -339,7 +339,7 @@ public struct Contour<ZData, XData, YData>: Trace where ZData: Plotable, XData: 
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, z: ZData? = nil, x: XData? = nil, y: YData? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.SmoothedDashedLine? = nil,
+            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.SmoothDashedLine? = nil,
             colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
@@ -428,8 +428,8 @@ public struct Contour<ZData, XData, YData>: Trace where ZData: Plotable, XData: 
             Shared.AxisType? = nil, yType: Shared.AxisType? = nil, zHoverFormat: String? = nil,
             hoverTemplate: Data<String>? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil,
             fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours:
-            Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? = nil, zMin:
-            Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
+            Shared.Contours? = nil, line: Shared.SmoothDashedLine? = nil, zAuto: Bool? = nil, zMin: Double?
+            = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
             autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
             Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil,
             yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {

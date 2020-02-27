@@ -217,7 +217,7 @@ public struct ParallelCoordinates: Trace {
     }
     public var dimensions: [Dimension]?
 
-    public struct MarkerColorLine: Encodable {
+    public struct MarkerLine: Encodable {
         /// Sets thelinecolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
@@ -305,7 +305,7 @@ public struct ParallelCoordinates: Trace {
             case colorAxis = "coloraxis"
         }
         
-        /// Creates `MarkerColorLine` object with specified properties.
+        /// Creates `MarkerLine` object with specified properties.
         /// 
         /// - Parameters:
         ///   - coloring: Sets thelinecolor.
@@ -341,7 +341,7 @@ public struct ParallelCoordinates: Trace {
         }
         
     }
-    public var line: MarkerColorLine?
+    public var line: MarkerLine?
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -371,7 +371,7 @@ public struct ParallelCoordinates: Trace {
     /// - Parameters:
     ///   - name: Sets the trace name.
     ///   - line:
-    public init(name: String? = nil, line: MarkerColorLine? = nil) {
+    public init(name: String? = nil, line: MarkerLine? = nil) {
         self.name = name
         self.line = line
     }
@@ -405,7 +405,7 @@ public struct ParallelCoordinates: Trace {
             Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil,
             domain: Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont:
             Shared.Font? = nil, tickFont: Shared.Font? = nil, rangeFont: Shared.Font? = nil, dimensions:
-            [Dimension]? = nil, line: MarkerColorLine? = nil) {
+            [Dimension]? = nil, line: MarkerLine? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

@@ -110,14 +110,14 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace where LabelsData: Plotab
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
-        public var line: Shared.ColorLine?
+        public var line: Shared.VariableLine?
     
         /// Creates `Marker` object with specified properties.
         /// 
         /// - Parameters:
         ///   - colors: Sets the color of each sector.
         ///   - line:
-        public init(colors: [Double]? = nil, line: Shared.ColorLine? = nil) {
+        public init(colors: [Double]? = nil, line: Shared.VariableLine? = nil) {
             self.colors = colors
             self.line = line
         }

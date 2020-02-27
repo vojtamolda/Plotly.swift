@@ -144,7 +144,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     /// must contain a *text* flag.
     public var hoverText: Data<String>?
 
-    public var line: Shared.SplineSmoothedDashedLine?
+    public var line: Shared.ShapedSmoothDashedLine?
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -414,7 +414,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
     ///   - marker:
     public init(name: String? = nil, a: AData? = nil, b: BData? = nil, c: CData? = nil, mode:
             Shared.Mode? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line:
-            Shared.SplineSmoothedDashedLine? = nil, marker: Shared.GradientMarker? = nil) {
+            Shared.ShapedSmoothDashedLine? = nil, marker: Shared.GradientMarker? = nil) {
         self.name = name
         self.a = a
         self.b = b
@@ -481,7 +481,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, 
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, a: AData? = nil, b: BData? = nil, c:
             CData? = nil, sum: Double? = nil, mode: Shared.Mode? = nil, text: Data<String>? = nil,
             textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, line:
-            Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill:
+            Shared.ShapedSmoothDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill:
             Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont:
             Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil,
             unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil,

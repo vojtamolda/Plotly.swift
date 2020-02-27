@@ -141,7 +141,7 @@ public struct ScatterGL<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// Determines the drawing mode for this scatter trace.
     public var mode: Shared.Mode?
 
-    public struct SplineDashedLine: Encodable {
+    public struct ShapedDashedLine: Encodable {
         /// Sets the line color.
         public var color: Color?
     
@@ -166,7 +166,7 @@ public struct ScatterGL<XData, YData>: Trace where XData: Plotable, YData: Plota
         /// Sets the style of the lines.
         public var dash: Shared.Dash?
     
-        /// Creates `SplineDashedLine` object with specified properties.
+        /// Creates `ShapedDashedLine` object with specified properties.
         /// 
         /// - Parameters:
         ///   - color: Sets the line color.
@@ -182,7 +182,7 @@ public struct ScatterGL<XData, YData>: Trace where XData: Plotable, YData: Plota
         }
         
     }
-    public var line: SplineDashedLine?
+    public var line: ShapedDashedLine?
 
     public var marker: Shared.SymbolicMarker?
 
@@ -439,7 +439,7 @@ public struct ScatterGL<XData, YData>: Trace where XData: Plotable, YData: Plota
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line: SplineDashedLine? = nil, marker:
+            hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line: ShapedDashedLine? = nil, marker:
             Shared.SymbolicMarker? = nil) {
         self.name = name
         self.x = x
@@ -508,7 +508,7 @@ public struct ScatterGL<XData, YData>: Trace where XData: Plotable, YData: Plota
             [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil,
             dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>?
             = nil, hoverText: Data<String>? = nil, textPosition: Shared.TextPosition? = nil, textFont:
-            Shared.VariableFont? = nil, mode: Shared.Mode? = nil, line: SplineDashedLine? = nil, marker:
+            Shared.VariableFont? = nil, mode: Shared.Mode? = nil, line: ShapedDashedLine? = nil, marker:
             Shared.SymbolicMarker? = nil, connectGaps: Bool? = nil, fill: Shared.Fill? = nil, fillColor:
             Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil,
             hoverTemplate: Data<String>? = nil, textTemplate: Data<String>? = nil, xError: Shared.Error? =

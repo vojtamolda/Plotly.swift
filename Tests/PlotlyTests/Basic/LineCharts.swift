@@ -94,7 +94,7 @@ final class LineCharts: XCTestCase {
             x: [2, 3, 4, 5],
             y: [16, 5, 11, 9],
             mode: .lines,
-            line: Scatter.SplineSmoothedDashedLine(
+            line: Scatter.ShapedSmoothDashedLine(
                 color: .RGB(55, 128, 191),
                 width: 3
             )
@@ -103,7 +103,7 @@ final class LineCharts: XCTestCase {
             x: [1, 2, 3, 4],
             y: [12, 9, 15, 12],
             mode: [.lines, .markers],
-            line: Scatter.SplineSmoothedDashedLine(
+            line: Scatter.ShapedSmoothDashedLine(
                 color: .RGB(128, 0, 128),
                 width: 1
             ),
@@ -124,7 +124,7 @@ final class LineCharts: XCTestCase {
             x: [1, 2, 3, 4],
             y: [10, 15, 13, 17],
             mode: .lines,
-            line: Scatter.SplineSmoothedDashedLine(
+            line: Scatter.ShapedSmoothDashedLine(
                 color: .RGB(219, 64, 82),
                 width: 3
             )
@@ -134,7 +134,7 @@ final class LineCharts: XCTestCase {
             x: [2, 3, 4, 5],
             y: [12, 9, 15, 12],
             mode: .lines,
-            line: Scatter.SplineSmoothedDashedLine(
+            line: Scatter.ShapedSmoothDashedLine(
                 color: .RGB(55, 128, 191),
                 width: 1
             )
@@ -154,7 +154,7 @@ final class LineCharts: XCTestCase {
             mode: .markers,
             marker: Shared.GradientMarker(
                 size: 12,
-                line: Shared.MarkerColorLine(
+                line: Shared.MarkerLine(
                     width: 0.5,
                     coloring: .constant(.white)),
                 coloring: .constant(.RGB(164, 194, 244))
@@ -217,42 +217,42 @@ final class LineCharts: XCTestCase {
             x: [1, 2, 3, 4, 5],
             y: [1, 3, 2, 3, 1],
             mode: [.lines, .markers],
-            line: Scatter.SplineSmoothedDashedLine(shape: .linear)
+            line: Scatter.ShapedSmoothDashedLine(shape: .linear)
         )
         let trace2 = Scatter(
             name: "spline",
             x: [1, 2, 3, 4, 5],
             y: [6, 8, 7, 8, 6],
             mode: [.lines, .markers],
-            line: Scatter.SplineSmoothedDashedLine(shape: .spline, smoothing: 5)
+            line: Scatter.ShapedSmoothDashedLine(shape: .spline, smoothing: 5)
         )
         let trace3 = Scatter(
             name: "vhv",
             x: [1, 2, 3, 4, 5],
             y: [11, 13, 12, 13, 11],
             mode: [.lines, .markers],
-            line: Scatter.SplineSmoothedDashedLine(shape: .vhv)
+            line: Scatter.ShapedSmoothDashedLine(shape: .vhv)
         )
         let trace4 = Scatter(
             name: "hvh",
             x: [1, 2, 3, 4, 5],
             y: [16, 18, 17, 18, 16],
             mode: [.lines, .markers],
-            line: Scatter.SplineSmoothedDashedLine(shape: .hvh)
+            line: Scatter.ShapedSmoothDashedLine(shape: .hvh)
         )
         let trace5 = Scatter(
             name: "vh",
             x: [1, 2, 3, 4, 5],
             y: [21, 23, 22, 23, 21],
             mode: [.lines, .markers],
-            line: Scatter.SplineSmoothedDashedLine(shape: .vh)
+            line: Scatter.ShapedSmoothDashedLine(shape: .vh)
         )
         let trace6 = Scatter(
             name: "hv",
             x: [1, 2, 3, 4, 5],
             y: [26, 28, 27, 28, 26],
             mode: [.lines, .markers],
-            line: Scatter.SplineSmoothedDashedLine(shape: .hv)
+            line: Scatter.ShapedSmoothDashedLine(shape: .hv)
         )
 
         let layout = Layout(
@@ -305,7 +305,7 @@ final class LineCharts: XCTestCase {
             x: [1, 2, 3, 4, 5],
             y: [1, 3, 2, 3, 1],
             mode: .lines,
-            line: Scatter.SplineSmoothedDashedLine(
+            line: Scatter.ShapedSmoothDashedLine(
                 width: 4,
                 dash: "solid"
             )
@@ -315,7 +315,7 @@ final class LineCharts: XCTestCase {
             x: [1, 2, 3, 4, 5],
             y: [6, 8, 7, 8, 6],
             mode: .lines,
-            line: Scatter.SplineSmoothedDashedLine(
+            line: Scatter.ShapedSmoothDashedLine(
                 width: 4,
                 dash: "dashdot"
             )
@@ -325,7 +325,7 @@ final class LineCharts: XCTestCase {
             x: [1, 2, 3, 4, 5],
             y: [11, 13, 12, 13, 11],
             mode: .lines,
-            line: Scatter.SplineSmoothedDashedLine(
+            line: Scatter.ShapedSmoothDashedLine(
                 width: 4,
                 dash: "solid"
             )
@@ -335,7 +335,7 @@ final class LineCharts: XCTestCase {
             x: [1, 2, 3, 4, 5],
             y: [16, 18, 17, 18, 16],
             mode: .lines,
-            line: Scatter.SplineSmoothedDashedLine(
+            line: Scatter.ShapedSmoothDashedLine(
                 width: 4,
                 dash: "dot"
             )
@@ -407,7 +407,7 @@ final class LineCharts: XCTestCase {
             let lineTrace = Scatter(
                 x: xData[i], y: yData[i],
                 mode: .lines,
-                line: Scatter.SplineSmoothedDashedLine(
+                line: Scatter.ShapedSmoothDashedLine(
                     color: colors[i],
                     width: lineSize[i]
                 )

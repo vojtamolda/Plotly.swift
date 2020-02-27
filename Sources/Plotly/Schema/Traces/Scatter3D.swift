@@ -163,7 +163,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// {nan} or missing values) in the provided data arrays are connected.
     public var connectGaps: Bool?
 
-    public struct DashedMarkerColorLine: Encodable {
+    public struct DashedMarkerLine: Encodable {
         /// Sets the line width (in px).
         public var width: Double?
     
@@ -259,7 +259,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
             case colorAxis = "coloraxis"
         }
         
-        /// Creates `DashedMarkerColorLine` object with specified properties.
+        /// Creates `DashedMarkerLine` object with specified properties.
         /// 
         /// - Parameters:
         ///   - width: Sets the line width (in px).
@@ -299,7 +299,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         }
         
     }
-    public var line: DashedMarkerColorLine?
+    public var line: DashedMarkerLine?
 
     public var marker: Shared.SymbolicMarker?
 
@@ -392,7 +392,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text:
             Data<String>? = nil, hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line:
-            DashedMarkerColorLine? = nil, marker: Shared.SymbolicMarker? = nil) {
+            DashedMarkerLine? = nil, marker: Shared.SymbolicMarker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -458,7 +458,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
             nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text: Data<String>? = nil, textTemplate:
             Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, mode:
             Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection:
-            Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedMarkerColorLine? = nil, marker:
+            Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedMarkerLine? = nil, marker:
             Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont:
             Shared.VariableFont? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil,
             yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil,

@@ -235,7 +235,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>?
 
-    public struct SplineSmoothedDashedLine: Encodable {
+    public struct ShapedSmoothDashedLine: Encodable {
         /// Sets the line color.
         public var color: Color?
     
@@ -277,7 +277,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
         /// the resulting SVG path is unaffected.
         public var simplify: Bool?
     
-        /// Creates `SplineSmoothedDashedLine` object with specified properties.
+        /// Creates `ShapedSmoothDashedLine` object with specified properties.
         /// 
         /// - Parameters:
         ///   - color: Sets the line color.
@@ -297,7 +297,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
         }
         
     }
-    public var line: SplineSmoothedDashedLine?
+    public var line: ShapedSmoothDashedLine?
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -539,7 +539,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line: SplineSmoothedDashedLine? = nil,
+            hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line: ShapedSmoothDashedLine? = nil,
             marker: Shared.GradientMarker? = nil) {
         self.name = name
         self.x = x
@@ -625,12 +625,12 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
             stackGroup: String? = nil, orientation: Shared.Orientation? = nil, groupNormalization:
             GroupNormalization? = nil, stackGaps: StackGaps? = nil, text: Data<String>? = nil, textTemplate:
             Data<String>? = nil, hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, hoverOn:
-            Shared.HoverOn? = nil, hoverTemplate: Data<String>? = nil, line: SplineSmoothedDashedLine? =
-            nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor:
-            Color? = nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected:
-            Unselected? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.VariableFont? =
-            nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? =
-            nil, yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+            Shared.HoverOn? = nil, hoverTemplate: Data<String>? = nil, line: ShapedSmoothDashedLine? = nil,
+            connectGaps: Bool? = nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? =
+            nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? =
+            nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.VariableFont? = nil, xError:
+            Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar:
+            Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

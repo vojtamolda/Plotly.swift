@@ -99,7 +99,7 @@ public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Plota
     public var hoverText: Data<String>?
 
     public struct Marker: Encodable {
-        public var line: Shared.ColorLine?
+        public var line: Shared.VariableLine?
     
         /// Sets the opacity of the locations.
         public var opacity: Data<Double>?
@@ -109,7 +109,7 @@ public struct Choropleth<LocationsData, ZData>: Trace where LocationsData: Plota
         /// - Parameters:
         ///   - line:
         ///   - opacity: Sets the opacity of the locations.
-        public init(line: Shared.ColorLine? = nil, opacity: Data<Double>? = nil) {
+        public init(line: Shared.VariableLine? = nil, opacity: Data<Double>? = nil) {
             self.line = line
             self.opacity = opacity
         }

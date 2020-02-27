@@ -168,7 +168,7 @@ public struct Sankey: Trace {
         /// node.
         public var coloring: Coloring?
     
-        public var line: Shared.ColorLine?
+        public var line: Shared.VariableLine?
     
         /// Sets the padding (in px) between the `nodes`.
         public var padding: Double?
@@ -240,7 +240,7 @@ public struct Sankey: Trace {
         ///   - hoverLabel:
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? =
-                nil, coloring: Coloring? = nil, line: Shared.ColorLine? = nil, padding: Double? = nil,
+                nil, coloring: Coloring? = nil, line: Shared.VariableLine? = nil, padding: Double? = nil,
                 thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil,
                 hoverTemplate: Data<String>? = nil) {
             self.label = label
@@ -271,7 +271,7 @@ public struct Sankey: Trace {
         /// omitted, then by default, a translucent grey link will be used.
         public var coloring: Coloring?
     
-        public var line: Shared.ColorLine?
+        public var line: Shared.VariableLine?
     
         /// An integer number `[0..nodes.length - 1]` that represents the source node.
         public var source: [Double]?
@@ -413,7 +413,7 @@ public struct Sankey: Trace {
         ///   - hoverLabel:
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         ///   - colorScales:
-        public init(label: [Double]? = nil, coloring: Coloring? = nil, line: Shared.ColorLine? = nil,
+        public init(label: [Double]? = nil, coloring: Coloring? = nil, line: Shared.VariableLine? = nil,
                 source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo?
                 = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: Data<String>? = nil, colorScales:
                 [ConcentrationScales]? = nil) {

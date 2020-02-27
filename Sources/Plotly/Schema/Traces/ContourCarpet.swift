@@ -167,7 +167,7 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
 
     public var contours: Shared.Contours?
 
-    public var line: Shared.SmoothedDashedLine?
+    public var line: Shared.SmoothDashedLine?
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -298,7 +298,7 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, z: ZData? = nil, a: AData? = nil, b: BData? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.SmoothedDashedLine? = nil,
+            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.SmoothDashedLine? = nil,
             colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
@@ -375,9 +375,9 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
             Anything? = nil, da: Double? = nil, b: BData? = nil, b0: Anything? = nil, db: Double? = nil,
             text: Data<String>? = nil, hoverText: Data<String>? = nil, transpose: Bool? = nil, aType: AType?
             = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? =
-            nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine? = nil, zAuto: Bool? =
-            nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? =
-            nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+            nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? = nil, zAuto: Bool? = nil,
+            zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
+            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
             Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID?
             = nil) {
         self.visible = visible

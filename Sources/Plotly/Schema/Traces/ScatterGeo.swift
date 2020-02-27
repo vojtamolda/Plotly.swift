@@ -186,7 +186,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
     
         public var colorBar: Shared.ColorBar?
     
-        public var line: Shared.MarkerColorLine?
+        public var line: Shared.MarkerLine?
     
         public var gradient: Shared.Gradient?
     
@@ -311,10 +311,10 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace where CoordinateD
         ///   - colorAxis: Sets a reference to a shared color axis.
         public init(symbol: Shared.Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? =
                 nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil,
-                colorBar: Shared.ColorBar? = nil, line: Shared.MarkerColorLine? = nil, gradient:
-                Shared.Gradient? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil,
-                cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
-                Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
+                colorBar: Shared.ColorBar? = nil, line: Shared.MarkerLine? = nil, gradient: Shared.Gradient? =
+                nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
+                cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
+                reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size

@@ -172,7 +172,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>?
 
-    public struct SplineDashedLine: Encodable {
+    public struct ShapedDashedLine: Encodable {
         /// Sets the line color.
         public var color: Color?
     
@@ -197,7 +197,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
         /// Sets the style of the lines.
         public var dash: Shared.Dash?
     
-        /// Creates `SplineDashedLine` object with specified properties.
+        /// Creates `ShapedDashedLine` object with specified properties.
         /// 
         /// - Parameters:
         ///   - color: Sets the line color.
@@ -213,7 +213,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
         }
         
     }
-    public var line: SplineDashedLine?
+    public var line: ShapedDashedLine?
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -429,7 +429,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, mode: Shared.Mode? = nil, r: RData? = nil, theta: ThetaData? =
-            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line: SplineDashedLine? = nil,
+            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line: ShapedDashedLine? = nil,
             marker: Shared.SymbolicMarker? = nil) {
         self.name = name
         self.mode = mode
@@ -495,7 +495,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, The
             nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil,
             dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: Data<String>? = nil,
             textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>?
-            = nil, line: SplineDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? =
+            = nil, line: ShapedDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? =
             nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, textPosition: Shared.TextPosition? =
             nil, textFont: Shared.VariableFont? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected:
             Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {

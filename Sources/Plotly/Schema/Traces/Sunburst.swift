@@ -141,7 +141,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]?
     
-        public var line: Shared.ColorLine?
+        public var line: Shared.VariableLine?
     
         /// Determines whether or not the color domain is computed with respect to the input data (here
         /// colors) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if colorsis set
@@ -243,7 +243,7 @@ public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(colors: [Double]? = nil, line: Shared.ColorLine? = nil, cAuto: Bool? = nil, cMin:
+        public init(colors: [Double]? = nil, line: Shared.VariableLine? = nil, cAuto: Bool? = nil, cMin:
                 Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
                 Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {

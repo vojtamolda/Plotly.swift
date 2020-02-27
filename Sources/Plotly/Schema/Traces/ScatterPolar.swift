@@ -155,7 +155,7 @@ public struct ScatterPolar<RData, ThetaData>: Trace where RData: Plotable, Theta
     /// must contain a *text* flag.
     public var hoverText: Data<String>?
 
-    public var line: Shared.SplineSmoothedDashedLine?
+    public var line: Shared.ShapedSmoothDashedLine?
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -395,7 +395,7 @@ public struct ScatterPolar<RData, ThetaData>: Trace where RData: Plotable, Theta
     ///   - marker:
     public init(name: String? = nil, mode: Shared.Mode? = nil, r: RData? = nil, theta: ThetaData? =
             nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line:
-            Shared.SplineSmoothedDashedLine? = nil, marker: Shared.GradientMarker? = nil) {
+            Shared.ShapedSmoothDashedLine? = nil, marker: Shared.GradientMarker? = nil) {
         self.name = name
         self.mode = mode
         self.r = r
@@ -465,8 +465,8 @@ public struct ScatterPolar<RData, ThetaData>: Trace where RData: Plotable, Theta
             nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil,
             dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: Data<String>? = nil,
             textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, line:
-            Shared.SplineSmoothedDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.GradientMarker?
-            = nil, clipOnAxis: Bool? = nil, textPosition: Shared.TextPosition? = nil, textFont:
+            Shared.ShapedSmoothDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.GradientMarker? =
+            nil, clipOnAxis: Bool? = nil, textPosition: Shared.TextPosition? = nil, textFont:
             Shared.VariableFont? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, hoverInfo:
             Shared.PolarHoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: Data<String>? =
             nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {

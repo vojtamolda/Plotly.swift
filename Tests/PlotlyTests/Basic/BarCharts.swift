@@ -108,7 +108,7 @@ final class BarCharts: XCTestCase {
             text: .variable(yValue.map { String($0) }),
             textPosition: .auto,
             marker: Shared.Marker(
-                line: Shared.MarkerColorLine(
+                line: Shared.MarkerLine(
                     width: 1.5,
                     coloring: .constant(.RGB(8, 48, 107))
                 ),
@@ -137,7 +137,7 @@ final class BarCharts: XCTestCase {
             text: .variable(yValue1.map { String($0) }),
             textPosition: .auto,
             marker: Shared.Marker(
-                line: Shared.MarkerColorLine(
+                line: Shared.MarkerLine(
                     width: 1.5,
                     coloring: .constant(.RGB(8, 48, 107))
                 ),
@@ -152,7 +152,7 @@ final class BarCharts: XCTestCase {
             text: .variable(yValue2.map { String($0) }),
             textPosition: .auto,
             marker: Shared.Marker(
-                line: Shared.MarkerColorLine(
+                line: Shared.MarkerLine(
                     width: 1.5,
                     coloring: .constant(.RGB(8, 48, 107))
                 ),
@@ -329,7 +329,7 @@ final class BarCharts: XCTestCase {
             x: xData,
             y: [430, 260, 690, 0, 0, 0, 0],
             marker: Shared.Marker(
-                line: Shared.MarkerColorLine(
+                line: Shared.MarkerLine(
                     width: 2,
                     coloring: .constant(.RGB(55, 128, 191, 1.0))
                 ),
@@ -342,7 +342,7 @@ final class BarCharts: XCTestCase {
             x: xData,
             y: [0, 0, 0, 120, 200, 320, 0],
             marker: Shared.Marker(
-                line: Shared.MarkerColorLine(
+                line: Shared.MarkerLine(
                     width: 2,
                     coloring: .constant(.RGB(219, 64, 82, 1.0))
                 ),
@@ -355,7 +355,7 @@ final class BarCharts: XCTestCase {
             x: xData,
             y: [0, 0, 0, 0, 0, 0, 370],
             marker: Shared.Marker(
-                line: Shared.MarkerColorLine(
+                line: Shared.MarkerLine(
                     width: 2,
                     coloring: .constant(.RGB(50, 171, 96, 1.0))
                 ),

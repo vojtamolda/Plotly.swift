@@ -115,7 +115,7 @@ public struct Table: Trace {
         /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Shared.HorizontalAlign?
     
-        public var line: Shared.ColorLine?
+        public var line: Shared.VariableLine?
     
         public struct Fill: Encodable {
             /// Sets the cell fill color.
@@ -156,7 +156,7 @@ public struct Table: Trace {
         ///   - font:
         public init(values: [Double]? = nil, format: [Double]? = nil, prefix: Data<String>? = nil,
                 suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
-                Shared.ColorLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
+                Shared.VariableLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -200,7 +200,7 @@ public struct Table: Trace {
         /// HTML tags) or if an explicit width is set to override the text width.
         public var align: Shared.HorizontalAlign?
     
-        public var line: Shared.ColorLine?
+        public var line: Shared.VariableLine?
     
         public struct Fill: Encodable {
             /// Sets the cell fill color.
@@ -241,7 +241,7 @@ public struct Table: Trace {
         ///   - font:
         public init(values: [Double]? = nil, format: [Double]? = nil, prefix: Data<String>? = nil,
                 suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
-                Shared.ColorLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
+                Shared.VariableLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix

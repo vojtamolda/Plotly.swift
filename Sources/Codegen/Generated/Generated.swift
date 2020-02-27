@@ -225,11 +225,14 @@ enum Generated {
                 if members.containsInstance(named: "coloring") { name = "VariableFont" }
 
             case "Line":
-                if members.containsInstance(named: "coloring") { name = "Color\(name)" }
-                if members.containsInstance(named: "colorScale") { name = "Marker\(name)" }
+                if members.containsInstance(named: "colorScale") {
+                    name = "MarkerLine"
+                } else if members.containsInstance(named: "coloring") {
+                    name = "VariableLine"
+                }
                 if members.containsInstance(named: "dash") { name = "Dashed\(name)" }
-                if members.containsInstance(named: "smoothing") { name = "Smoothed\(name)" }
-                if members.containsInstance(named: "shape") { name = "Spline\(name)" }
+                if members.containsInstance(named: "smoothing") { name = "Smooth\(name)" }
+                if members.containsInstance(named: "shape") { name = "Shaped\(name)" }
 
             case "Marker":
                 if members.containsInstance(named: "symbol") { name = "SymbolicMarker" }

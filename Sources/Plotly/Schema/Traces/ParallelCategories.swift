@@ -238,7 +238,7 @@ public struct ParallelCategories: Trace {
     }
     public var dimensions: [Dimension]?
 
-    public struct SplineMarkerColorLine: Encodable {
+    public struct ShapedMarkerLine: Encodable {
         /// Sets thelinecolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
@@ -359,7 +359,7 @@ public struct ParallelCategories: Trace {
             case hoverTemplate = "hovertemplate"
         }
         
-        /// Creates `SplineMarkerColorLine` object with specified properties.
+        /// Creates `ShapedMarkerLine` object with specified properties.
         /// 
         /// - Parameters:
         ///   - coloring: Sets thelinecolor.
@@ -399,7 +399,7 @@ public struct ParallelCategories: Trace {
         }
         
     }
-    public var line: SplineMarkerColorLine?
+    public var line: ShapedMarkerLine?
 
     /// The number of observations represented by each state.
     /// 
@@ -436,7 +436,7 @@ public struct ParallelCategories: Trace {
     /// - Parameters:
     ///   - name: Sets the trace name.
     ///   - line:
-    public init(name: String? = nil, line: SplineMarkerColorLine? = nil) {
+    public init(name: String? = nil, line: ShapedMarkerLine? = nil) {
         self.name = name
         self.line = line
     }
@@ -472,8 +472,8 @@ public struct ParallelCategories: Trace {
             uiRevision: Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn:
             HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors:
             Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font?
-            = nil, dimensions: [Dimension]? = nil, line: SplineMarkerColorLine? = nil, counts: Data<Double>?
-            = nil) {
+            = nil, dimensions: [Dimension]? = nil, line: ShapedMarkerLine? = nil, counts: Data<Double>? =
+            nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

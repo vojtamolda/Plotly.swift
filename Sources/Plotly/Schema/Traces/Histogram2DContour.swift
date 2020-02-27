@@ -193,7 +193,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Plotab
 
     public var contours: Shared.Contours?
 
-    public var line: Shared.SmoothedDashedLine?
+    public var line: Shared.SmoothDashedLine?
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
     /// those in Python.
@@ -360,7 +360,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Plotab
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, marker:
-            Marker? = nil, line: Shared.SmoothedDashedLine? = nil, colorScale: ColorScale? = nil,
+            Marker? = nil, line: Shared.SmoothDashedLine? = nil, colorScale: ColorScale? = nil,
             reverseScale: Bool? = nil) {
         self.name = name
         self.x = x
@@ -447,9 +447,9 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace where XData: Plotab
             binningFunction: Shared.BinningFunction? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil,
             yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil,
             binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool?
-            = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothedDashedLine?
-            = nil, zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil,
-            zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
+            = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? =
+            nil, zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin:
+            Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
             autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
             Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xCalendar: Shared.Calendar? = nil,
             yCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
