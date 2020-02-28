@@ -18,6 +18,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(Histograms.allTests),
 
         // https://plot.ly/javascript/scientific-charts/
+        testCase(ContourPlots.allTests),
         testCase(Heatmaps.allTests),
 
         testCase(FigureTests.allTests),
