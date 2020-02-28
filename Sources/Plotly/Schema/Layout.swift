@@ -6448,19 +6448,19 @@ public struct Layout: Encodable {
                 /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color).
                 /// 
                 /// Has an effect only when `type` is set to *fill*.
-                public var outLineColor: Color?
+                public var outlineColor: Color?
             
                 /// Decoding and encoding keys compatible with Plotly schema.
                 enum CodingKeys: String, CodingKey {
-                    case outLineColor = "outlinecolor"
+                    case outlineColor = "outlinecolor"
                 }
                 
                 /// Creates `Fill` object with specified properties.
                 /// 
                 /// - Parameters:
-                ///   - outLineColor: Sets the fill outline color (mapbox.layer.paint.fill-outline-color).
-                public init(outLineColor: Color? = nil) {
-                    self.outLineColor = outLineColor
+                ///   - outlineColor: Sets the fill outline color (mapbox.layer.paint.fill-outline-color).
+                public init(outlineColor: Color? = nil) {
+                    self.outlineColor = outlineColor
                 }
                 
             }

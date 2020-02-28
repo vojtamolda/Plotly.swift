@@ -1681,10 +1681,10 @@ public struct Shared {
         public var yPading: Double?
     
         /// Sets the axis line color.
-        public var outLineColor: Color?
+        public var outlineColor: Color?
     
         /// Sets the width (in px) of the axis line.
-        public var outLineWidth: Double?
+        public var outlineWidth: Double?
     
         /// Sets the axis line color.
         public var borderColor: Color?
@@ -1858,8 +1858,8 @@ public struct Shared {
             case y
             case yAnchor = "yanchor"
             case yPading = "ypad"
-            case outLineColor = "outlinecolor"
-            case outLineWidth = "outlinewidth"
+            case outlineColor = "outlinecolor"
+            case outlineWidth = "outlinewidth"
             case borderColor = "bordercolor"
             case borderWidth = "borderwidth"
             case backgroundColor = "bgcolor"
@@ -1903,8 +1903,8 @@ public struct Shared {
         ///   - yAnchor: Sets this color bar's vertical position anchor This anchor binds the `y` position to
         ///   the *top*, *middle* or *bottom* of the color bar.
         ///   - yPading: Sets the amount of padding (in px) along the y direction.
-        ///   - outLineColor: Sets the axis line color.
-        ///   - outLineWidth: Sets the width (in px) of the axis line.
+        ///   - outlineColor: Sets the axis line color.
+        ///   - outlineWidth: Sets the width (in px) of the axis line.
         ///   - borderColor: Sets the axis line color.
         ///   - borderWidth: Sets the width (in px) or the border enclosing this color bar.
         ///   - backgroundColor: Sets the color of padded area.
@@ -1935,7 +1935,7 @@ public struct Shared {
         public init(thicknessMode: Shared.ThicknessMode? = nil, thickness: Double? = nil, lengthMode:
                 Shared.LengthMode? = nil, length: Double? = nil, x: Double? = nil, xAnchor: Shared.XAnchor? =
                 nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: Shared.YAnchor? = nil, yPading: Double?
-                = nil, outLineColor: Color? = nil, outLineWidth: Double? = nil, borderColor: Color? = nil,
+                = nil, outlineColor: Color? = nil, outlineWidth: Double? = nil, borderColor: Color? = nil,
                 borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: Shared.TickMode? = nil,
                 numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? =
                 nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil,
@@ -1955,8 +1955,8 @@ public struct Shared {
             self.y = y
             self.yAnchor = yAnchor
             self.yPading = yPading
-            self.outLineColor = outLineColor
-            self.outLineWidth = outLineWidth
+            self.outlineColor = outlineColor
+            self.outlineWidth = outlineWidth
             self.borderColor = borderColor
             self.borderWidth = borderWidth
             self.backgroundColor = backgroundColor

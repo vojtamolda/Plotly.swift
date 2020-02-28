@@ -135,6 +135,8 @@ class Attribute(CamelCased):
         "nbinsx": "xNumBins",
         "nbinsy": "yNumBins",
         "nticks": "numTicks",
+        "outlinecolor": "outlineColor",
+        "outlinewidth": "outlineWidth",
         "outsidetextfont": "outsideTextFont",
         "pad": "padding",
         "pointpos": "pointPosition",
