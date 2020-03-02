@@ -213,7 +213,7 @@ struct Trace: Definable {
 
         switch attributes.name {
         case "Bar":
-            sectionMark = Mark(label: "Bar, BarPolar and Histogram")
+            sectionMark = Mark(label: "Bar, BarPolar and Histogram", separator: false)
         case "BarPolar":
             fallthrough
         case "Histogram":
@@ -222,19 +222,19 @@ struct Trace: Definable {
             layoutAttributes.members.removeAllInstances(named: duplicates)
 
         case "Box":
-            sectionMark = Mark(label: "Box and Candlestick")
+            sectionMark = Mark(label: "Box and Candlestick", separator: false)
         case "Candlestick":
             sectionMark = nil
             let duplicates = ["boxMode", "boxGap", "boxGroupGap"]
             layoutAttributes.members.removeAllInstances(named: duplicates)
 
         case "FunnelArea":
-            sectionMark = Mark(label: "FunnelArea")
+            sectionMark = Mark(label: "FunnelArea", separator: false)
             let duplicates = ["hiddenLabels"]
             layoutAttributes.members.removeAllInstances(named: duplicates)
 
         default:
-            sectionMark = Mark(label: "\(attributes.name)")
+            sectionMark = Mark(label: "\(attributes.name)", separator: false)
         }
 
         if sectionMark != nil { layout.layoutAttributes.members.insert(sectionMark!, at: 0) }

@@ -85,5 +85,5 @@ struct Mark: Definable {
     var separator = true
 
     var documentation = Markup()
-    var definition: [String] { ["", "// MARK: \(separator ? "-" : "") \(label)"] }
+    var definition: [String] { ["", "// MARK: \(separator ? "- " : "")\(label)"] }
 }

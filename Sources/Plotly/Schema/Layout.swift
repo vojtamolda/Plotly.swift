@@ -7,7 +7,7 @@
 ///   [R](https://plot.ly/r/reference/#layout)
 public struct Layout: Encodable {
     
-    // MARK: - FunnelArea
+    // MARK: FunnelArea
 
     /// Sets the default funnelarea slice colors.
     /// 
@@ -25,7 +25,7 @@ public struct Layout: Encodable {
     public var extendFunnelAreaColors: Bool?
 
     
-    // MARK: - Treemap
+    // MARK: Treemap
 
     /// Sets the default treemap slice colors.
     /// 
@@ -43,7 +43,7 @@ public struct Layout: Encodable {
     public var extendTreemapColors: Bool?
 
     
-    // MARK: - Sunburst
+    // MARK: Sunburst
 
     /// Sets the default sunburst slice colors.
     /// 
@@ -61,7 +61,7 @@ public struct Layout: Encodable {
     public var extendSunburstColors: Bool?
 
     
-    // MARK: - Pie
+    // MARK: Pie
 
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain
     /// many labels, and can simultaneously hide slices from several pies/funnelarea charts
@@ -83,7 +83,7 @@ public struct Layout: Encodable {
     public var extendPieColors: Bool?
 
     
-    // MARK: - Waterfall
+    // MARK: Waterfall
 
     /// Determines how bars at the same location coordinate are displayed on the graph.
     /// 
@@ -108,7 +108,7 @@ public struct Layout: Encodable {
     public var waterfallGroupGap: Double?
 
     
-    // MARK: - Funnel
+    // MARK: Funnel
 
     /// Determines how bars at the same location coordinate are displayed on the graph.
     /// 
@@ -134,7 +134,7 @@ public struct Layout: Encodable {
     public var funnelGroupGap: Double?
 
     
-    // MARK: - Violin
+    // MARK: Violin
 
     /// Determines how violins at the same location coordinate are displayed on the graph.
     /// 
@@ -163,7 +163,7 @@ public struct Layout: Encodable {
     public var violinGroupGap: Double?
 
     
-    // MARK: - Box and Candlestick
+    // MARK: Box and Candlestick
 
     /// Determines how boxes at the same location coordinate are displayed on the graph.
     /// 
@@ -192,7 +192,7 @@ public struct Layout: Encodable {
     public var boxGroupGap: Double?
 
     
-    // MARK: - Bar, BarPolar and Histogram
+    // MARK: Bar, BarPolar and Histogram
 
     /// Determines how bars at the same location coordinate are displayed on the graph.
     /// 
@@ -236,7 +236,7 @@ public struct Layout: Encodable {
     public var barGroupGap: Double?
 
     
-    // MARK: - General
+    // MARK: - Design, Look and Feel
 
     /// Sets the global font.
     /// 
@@ -452,6 +452,9 @@ public struct Layout: Encodable {
     /// explicitly given with `showlegend: true`.
     public var showLegend: Bool?
 
+    
+    // MARK: - Templating and Events
+
     /// Sets the default trace colors.
     public var colorWay: ColorList?
 
@@ -485,6 +488,9 @@ public struct Layout: Encodable {
 
     /// Controls persistence of user-driven changes in selected points from all traces.
     public var selectionRevision: Anything?
+
+    
+    // MARK: - User Interface
 
     /// Default attributes to be applied to the plot.
     /// 
@@ -558,6 +564,9 @@ public struct Layout: Encodable {
     /// `meta` item in question. `meta` can also be an object for example `{key: value}` which can be
     /// accessed %{meta[key]}.
     public var meta: Data<Anything>?
+
+    
+    // MARK: - User Interaction
 
     /// Sets transition options used during Plotly.react updates.
     public struct Transition: Encodable {
@@ -764,6 +773,9 @@ public struct Layout: Encodable {
     public var spikeDistance: Int?
 
     public var hoverLabel: Shared.HoverLabel?
+
+    
+    // MARK: - Subplots and Axes
 
     /// When "dragmode" is set to "select", this limits the selection of the drag to horizontal,
     /// vertical or diagonal.
@@ -7802,6 +7814,9 @@ public struct Layout: Encodable {
     }
     public var legend: Legend?
 
+    
+    // MARK: - Labels and Shapes
+
     public struct Annotation: Encodable {
         /// Determines whether or not this annotation is visible.
         public var visible: Bool?
@@ -8963,6 +8978,9 @@ public struct Layout: Encodable {
         
     }
     public var updateMenus: [UpdateMenu]?
+
+    
+    // MARK: - Color Visualization
 
     public struct Slider: Encodable {
         /// Determines whether or not the slider is visible.

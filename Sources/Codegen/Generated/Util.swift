@@ -20,7 +20,7 @@ extension String {
 }
 
 
-extension Array where Iterator.Element == String {
+extension Array where Element == String {
     /// Prepends each element with `indentation` repeated `count`-times.
     func indented(_ count: Int = 1, indentation: String = "    ") -> [Self.Element] {
         return map { $0.indented(count, indentation: indentation) }
@@ -34,7 +34,7 @@ extension Array where Iterator.Element == String {
 }
 
 
-extension Array where Iterator.Element == Definable {
+extension Array where Element == Definable {
     /// Finds and returns the first `Instance` object with the specified name.
     func firstInstance(named name: String) -> Instance? {
         let instances = compactMap { $0 as? Instance }
