@@ -94,6 +94,7 @@ public struct Figure {
     }
 }
 
+
 extension Figure: Encodable {
     enum CodingKeys: String, CodingKey {
         case data
@@ -112,3 +113,30 @@ extension Figure: Encodable {
         try container.encode(config, forKey: .config)
     }
 }
+
+
+#if os(Linux) && canImport(Python)
+import Python
+
+extension Figure {
+    /// Displays interactive figure in Jupyter notebook.
+    ///
+    /// Prior to calling this method, the following Jupyter notebook magic
+    /// has to be executed:
+    /// ```
+    /// %include "EnableIPythonDisplay.swift"
+    /// ```
+    ///
+    /// - Bug: Google Colab seems to be a bit broken. I wasn't able to figure out
+    /// a Swift-only communication with the Jupyter kernel. There's more details
+    /// in the `Workaround.ipynb` notebook. A Swift only solution that works
+    /// locally in Jupyter breaks in the Colab environment. To make the displaying
+    /// work, the communication with the kernel has to be routed via the Python
+    /// bridge.
+    public func display() {
+        let htmlContent = try! HTML.create(from: self, plotly: .online, mathJax: .online, document: false)
+        let iPythonDisplay = Python.import("IPython.display")
+        iPythonDisplay[dynamicMember: "display"](iPythonDisplay.HTML(htmlContent))
+    }
+}
+#endif
