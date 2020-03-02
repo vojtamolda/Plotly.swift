@@ -63,3 +63,7 @@ extension Data: ExpressibleByArrayLiteral {
         self = .variable(elements)
     }
 }
+
+
+/// Not yet implemented.
+public typealias SubPlotID = String
