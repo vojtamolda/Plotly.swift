@@ -61,11 +61,11 @@ final class Heatmaps: XCTestCase {
             width: 700,
             height: 700,
             xAxis: .init(
-                ticks: Shared.Ticks.none,
+                ticks: .off,
                 side: .top
             ),
             yAxis: .init(
-                ticks: Shared.Ticks.none,
+                ticks: .off,
                 tickSuffix: .none
             ),
             annotations: x.enumerated().flatMap { x in
@@ -128,17 +128,17 @@ final class Heatmaps: XCTestCase {
             ),
             showLegend: false,
             xAxis: Layout.XAxis(
-                autoRange: .false,
+                autoRange: .off,
                 range: [0, phi],
-                ticks: Shared.Ticks.none,
+                ticks: .off,
                 showTickLabels: false,
                 showGrid: false,
                 zeroLine: false
             ),
             yAxis: Layout.YAxis(
-                autoRange: .false,
+                autoRange: .off,
                 range: [0, 1],
-                ticks: Shared.Ticks.none,
+                ticks: .off,
                 showTickLabels: false,
                 showGrid: false,
                 zeroLine: false

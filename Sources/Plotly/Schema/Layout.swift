@@ -219,7 +219,7 @@ public struct Layout: Encodable {
     /// With *fraction*, the value of each bar is divided by the sum of all values at that location
     /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
     public enum BarNormalization: String, Encodable {
-        case none = ""
+        case off = ""
         case fraction
         case percent
     }
@@ -695,7 +695,7 @@ public struct Layout: Encodable {
         case lasso
         case orbit
         case turntable
-        case `false`
+        case off
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
@@ -712,7 +712,7 @@ public struct Layout: Encodable {
                 try container.encode("orbit")
             case .turntable:
                 try container.encode("turntable")
-            case .`false`:
+            case .off:
                 try container.encode(false)
             }
         }
@@ -733,7 +733,7 @@ public struct Layout: Encodable {
         case x
         case y
         case closest
-        case `false`
+        case off
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
@@ -744,7 +744,7 @@ public struct Layout: Encodable {
                 try container.encode("y")
             case .closest:
                 try container.encode("closest")
-            case .`false`:
+            case .off:
                 try container.encode(false)
             }
         }
@@ -5358,7 +5358,7 @@ public struct Layout: Encodable {
             case turntable
             case zoom
             case pan
-            case `false`
+            case off
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
@@ -5371,7 +5371,7 @@ public struct Layout: Encodable {
                     try container.encode("zoom")
                 case .pan:
                     try container.encode("pan")
-                case .`false`:
+                case .off:
                     try container.encode(false)
                 }
             }
@@ -5382,14 +5382,14 @@ public struct Layout: Encodable {
         /// Determines the mode of hover interactions for this scene.
         public enum HoverMode: Encodable {
             case closest
-            case `false`
+            case off
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
                 case .closest:
                     try container.encode("closest")
-                case .`false`:
+                case .off:
                     try container.encode(false)
                 }
             }
@@ -7660,7 +7660,7 @@ public struct Layout: Encodable {
         public enum ItemClick: Encodable {
             case toggle
             case toggleOthers
-            case `false`
+            case off
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
@@ -7669,7 +7669,7 @@ public struct Layout: Encodable {
                     try container.encode("toggle")
                 case .toggleOthers:
                     try container.encode("toggleothers")
-                case .`false`:
+                case .off:
                     try container.encode(false)
                 }
             }
@@ -7688,7 +7688,7 @@ public struct Layout: Encodable {
         public enum ItemDoubleClick: Encodable {
             case toggle
             case toggleOthers
-            case `false`
+            case off
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
@@ -7697,7 +7697,7 @@ public struct Layout: Encodable {
                     try container.encode("toggle")
                 case .toggleOthers:
                     try container.encode("toggleothers")
-                case .`false`:
+                case .off:
                     try container.encode(false)
                 }
             }
@@ -8048,14 +8048,14 @@ public struct Layout: Encodable {
         /// you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To
         /// label markers though, `standoff` is preferred over `xclick` and `yclick`.
         public enum ClickToShow: Encodable {
-            case `false`
+            case off
             case onOff
             case onOut
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
-                case .`false`:
+                case .off:
                     try container.encode(false)
                 case .onOff:
                     try container.encode("onoff")

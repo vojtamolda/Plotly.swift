@@ -230,16 +230,16 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         /// direction is inverted, that is the top elements within hierarchy are drawn with fully saturated
         /// colors while the leaves are faded towards the background color.
         public enum DepthFade: Encodable {
-            case `true`
-            case `false`
+            case on
+            case off
             case reversed
             
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
-                case .`true`:
+                case .on:
                     try container.encode(true)
-                case .`false`:
+                case .off:
                     try container.encode(false)
                 case .reversed:
                     try container.encode("reversed")

@@ -185,7 +185,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         case all
         case outliers
         case suspectedOutliers
-        case `false`
+        case off
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
@@ -196,7 +196,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
                 try container.encode("outliers")
             case .suspectedOutliers:
                 try container.encode("suspectedoutliers")
-            case .`false`:
+            case .off:
                 try container.encode(false)
             }
         }

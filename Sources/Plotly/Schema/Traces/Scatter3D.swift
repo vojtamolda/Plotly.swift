@@ -144,7 +144,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are
     /// filled with a Delaunay surface about the x, y, z respectively.
     public enum SurfaceAxis: Int, Encodable {
-        case none = -1
+        case off = -1
         case x = 0
         case y = 1
         case z = 2

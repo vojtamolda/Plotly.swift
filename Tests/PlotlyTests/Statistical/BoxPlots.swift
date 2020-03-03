@@ -123,7 +123,7 @@ final class BoxPlots: XCTestCase {
         let trace2 = Box<[Double], [Int]>(
             name: "Only Whiskers",
             y: y,
-            boxPoints: .false,
+            boxPoints: .off,
             marker: .init(
                 color: .RGB(9, 56, 125)
             )
@@ -165,7 +165,7 @@ final class BoxPlots: XCTestCase {
         let trace1 = Box<[Double], [Int]>(
             name: "Only Mean",
             y: y,
-            boxMean: .true,
+            boxMean: .off,
             marker: .init(
                 color: .RGB(8, 81, 156)
             )
@@ -197,7 +197,7 @@ final class BoxPlots: XCTestCase {
             y: y,
             x: [0.2, 0.2, 0.6, 1.0, 0.5, 0.4,
                 0.2, 0.7, 0.9, 0.1, 0.5, 0.3],
-            boxMean: .false,
+            boxMean: .off,
             orientation: .h,
             marker: .init(
                 color: 0x3D9970
@@ -208,7 +208,7 @@ final class BoxPlots: XCTestCase {
             y: y,
             x: [0.6, 0.7, 0.3, 0.6, 0.0, 0.5,
                 0.7, 0.9, 0.5, 0.8, 0.7, 0.2],
-            boxMean: .false,
+            boxMean: .off,
             orientation: .h,
             marker: .init(
                 color: 0xFF4136
@@ -219,7 +219,7 @@ final class BoxPlots: XCTestCase {
             y: y,
             x: [0.1, 0.3, 0.1, 0.9, 0.6, 0.6,
                 0.9, 1.0, 0.3, 0.6, 0.8, 0.5],
-            boxMean: .false,
+            boxMean: .off,
             orientation: .h,
             marker: .init(
                 color: 0xFF851B
@@ -316,7 +316,7 @@ final class BoxPlots: XCTestCase {
             plotBackgroundColor: .RGB(243, 243, 243),
             showLegend: false,
             yAxis: .init(
-                autoRange: .true,
+                autoRange: .off,
                 dTick: .numeric(5),
                 showGrid: true,
                 gridColor: .RGB(255, 255, 255),
@@ -364,7 +364,7 @@ final class BoxPlots: XCTestCase {
             plotBackgroundColor: .RGB(233, 233, 233),
             showLegend: false,
             xAxis: .init(
-                autoRange: .true,
+                autoRange: .off,
                 showTickLabels: false,
                 tickAngle: 90,
                 showGrid: false,

@@ -142,7 +142,7 @@ public struct Heatmap<ZData, XYData>: Trace where ZData: Plotable, XYData: Plota
     public enum ZSmooth: Encodable {
         case fast
         case best
-        case `false`
+        case off
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
@@ -151,7 +151,7 @@ public struct Heatmap<ZData, XYData>: Trace where ZData: Plotable, XYData: Plota
                 try container.encode("fast")
             case .best:
                 try container.encode("best")
-            case .`false`:
+            case .off:
                 try container.encode(false)
             }
         }

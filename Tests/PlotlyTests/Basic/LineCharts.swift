@@ -343,11 +343,11 @@ final class LineCharts: XCTestCase {
 
         let layout = Layout(
             xAxis: Layout.XAxis(
-                autoRange: .false,
+                autoRange: .off,
                 range: [0.75, 5.25]
             ),
             yAxis: Layout.YAxis(
-                autoRange: .false,
+                autoRange: .off,
                 range: [0, 18.5]
             ),
             legend: Layout.Legend(font: Shared.Font(size: 16), traceOrder: .reversed, y: 0.5)

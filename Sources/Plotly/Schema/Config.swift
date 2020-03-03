@@ -130,8 +130,8 @@ public struct Config: Encodable {
         public static var GL3D: ScrollZoom { ScrollZoom(rawValue: 1 << 1) }
         public static var geo: ScrollZoom { ScrollZoom(rawValue: 1 << 2) }
         public static var mapbox: ScrollZoom { ScrollZoom(rawValue: 1 << 3) }
-        public static var `true`: ScrollZoom { ScrollZoom(rawValue: 1 << 4) }
-        public static var `false`: ScrollZoom { ScrollZoom(rawValue: 1 << 5) }
+        public static var on: ScrollZoom { ScrollZoom(rawValue: 1 << 4) }
+        public static var off: ScrollZoom { ScrollZoom(rawValue: 1 << 5) }
     
         public init(rawValue: Int) { self.rawValue = rawValue }
     
@@ -162,7 +162,7 @@ public struct Config: Encodable {
     /// ranges to their initial values and even double clicks set the axis ranges to their autorange
     /// values.
     public enum DoubleClick: Encodable {
-        case `false`
+        case off
         case reset
         case autoSize
         case resetAndAutoSize
@@ -170,7 +170,7 @@ public struct Config: Encodable {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .`false`:
+            case .off:
                 try container.encode(false)
             case .reset:
                 try container.encode("reset")
@@ -228,17 +228,17 @@ public struct Config: Encodable {
     /// *hover*, the mode bar is visible while the mouse cursor is on the graph container.
     public enum DisplayModeBar: Encodable {
         case hover
-        case `true`
-        case `false`
+        case on
+        case off
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
             case .hover:
                 try container.encode("hover")
-            case .`true`:
+            case .on:
                 try container.encode(true)
-            case .`false`:
+            case .off:
                 try container.encode(false)
             }
         }

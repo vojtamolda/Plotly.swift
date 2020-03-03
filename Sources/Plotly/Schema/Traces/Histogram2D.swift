@@ -181,7 +181,7 @@ public struct Histogram2D<XData, YData, ZData>: Trace where XData: Plotable, YDa
     public enum ZSmooth: Encodable {
         case fast
         case best
-        case `false`
+        case off
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
@@ -190,7 +190,7 @@ public struct Histogram2D<XData, YData, ZData>: Trace where XData: Plotable, YDa
                 try container.encode("fast")
             case .best:
                 try container.encode("best")
-            case .`false`:
+            case .off:
                 try container.encode(false)
             }
         }

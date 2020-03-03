@@ -148,7 +148,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// the same but multiplied by 100 to show percentages. If there are multiple subplots, or multiple
     /// `stackgroup`s on one subplot, each will be normalized within its own set.
     public enum GroupNormalization: String, Encodable {
-        case none = ""
+        case off = ""
         case fraction
         case percent
     }

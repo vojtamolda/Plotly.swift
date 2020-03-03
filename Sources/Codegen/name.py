@@ -192,7 +192,7 @@ class Enumerated(CamelCased):
     container = {}
 
     override = {
-        "": "none",
+        "": "off",
         "-": "auto",
         "afterall": "afterAll",
         "B": "B",
@@ -204,7 +204,7 @@ class Enumerated(CamelCased):
         "bottom to top": "bottomToTop",
         "bowtie": "bowTie",
         "bowtie-open": "bowTieOpen",
-        "false": "`false`",
+        "false": "off",
         "hsl": "HSL",
         "hsla": "HSLA",
         "onoff": "onOff",
@@ -219,7 +219,7 @@ class Enumerated(CamelCased):
         "toself": "toSelf",
         "tozerox": "toZeroX",
         "tozeroy": "toZeroY",
-        "true": "`true`",
+        "true": "on",
         # Contour Operations (*/contours/operation)
         "=": "equalTo", "!=": "notEqualTo",
         "<": "lessThan", "<=": "lessEqualThan",
@@ -281,11 +281,11 @@ class FlagList(CamelCased):
     container = {}
 
     override = {
-        "false": "`false`",
+        "false": "off",
         "gl3d": "GL3D",
         "lat": "latitude",
         "lon": "longitude",
-        "true": "`true`"
+        "true": "on"
     }
     capitalize = {
         "axis", "bar", "bars", "color", "current", "draw", "entry", "initial", "layout", "path",

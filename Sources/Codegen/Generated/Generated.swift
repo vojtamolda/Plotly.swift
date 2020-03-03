@@ -392,7 +392,7 @@ enum Generated {
             // Improvement of meaningless numerical values of `SurfaceAxis`
             if schema.path.hasSuffix("surfaceaxis") {
                 protocols.insert("Int", at: 0)
-                cases = [Case(label: "none", rawValue: "-1"), Case(label: "x", rawValue: "0"),
+                cases = [Case(label: "off", rawValue: "-1"), Case(label: "x", rawValue: "0"),
                          Case(label: "y", rawValue: "1"), Case(label: "z", rawValue: "2")]
                 return
             }

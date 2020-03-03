@@ -167,7 +167,7 @@ public struct Box<YData, XData>: Trace where YData: Plotable, XData: Plotable {
         case all
         case outliers
         case suspectedOutliers
-        case `false`
+        case off
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
@@ -178,7 +178,7 @@ public struct Box<YData, XData>: Trace where YData: Plotable, XData: Plotable {
                 try container.encode("outliers")
             case .suspectedOutliers:
                 try container.encode("suspectedoutliers")
-            case .`false`:
+            case .off:
                 try container.encode(false)
             }
         }
@@ -194,18 +194,18 @@ public struct Box<YData, XData>: Trace where YData: Plotable, XData: Plotable {
     /// 
     /// If *sd* the standard deviation is also drawn.
     public enum BoxMean: Encodable {
-        case `true`
+        case on
         case sd
-        case `false`
+        case off
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .`true`:
+            case .on:
                 try container.encode(true)
             case .sd:
                 try container.encode("sd")
-            case .`false`:
+            case .off:
                 try container.encode(false)
             }
         }

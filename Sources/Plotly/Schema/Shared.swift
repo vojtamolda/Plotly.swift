@@ -117,16 +117,16 @@ public struct Shared {
     ///   `Layout.Scene.YAxis.autoRange`, `Layout.Scene.ZAxis.autoRange`,
     ///   `Layout.Polar.RadialAxis.autoRange`, `Carpet.AAxis.autoRange`, `Carpet.BAxis.autoRange`.
     public enum AutoRange: Encodable {
-        case `true`
-        case `false`
+        case on
+        case off
         case reversed
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .`true`:
+            case .on:
                 try container.encode(true)
-            case .`false`:
+            case .off:
                 try container.encode(false)
             case .reversed:
                 try container.encode("reversed")
@@ -217,7 +217,7 @@ public struct Shared {
     public enum Ticks: String, Encodable {
         case outside
         case inside
-        case none = ""
+        case off = ""
     }
 
     /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
@@ -231,20 +231,20 @@ public struct Shared {
     ///   Used by `Layout.XAxis.mirror`, `Layout.YAxis.mirror`, `Layout.Scene.XAxis.mirror`,
     ///   `Layout.Scene.YAxis.mirror`, `Layout.Scene.ZAxis.mirror`.
     public enum Mirror: Encodable {
-        case `true`
+        case on
         case ticks
-        case `false`
+        case off
         case all
         case allTicks
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .`true`:
+            case .on:
                 try container.encode(true)
             case .ticks:
                 try container.encode("ticks")
-            case .`false`:
+            case .off:
                 try container.encode(false)
             case .all:
                 try container.encode("all")
@@ -699,16 +699,16 @@ public struct Shared {
     ///   `ContourCarpet.visible`, `OHLC.visible`, `Candlestick.visible`, `ScatterPolar.visible`,
     ///   `ScatterPolarGL.visible`, `BarPolar.visible`.
     public enum Visible: Encodable {
-        case `true`
-        case `false`
+        case on
+        case off
         case legendOnly
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .`true`:
+            case .on:
                 try container.encode(true)
-            case .`false`:
+            case .off:
                 try container.encode(false)
             case .legendOnly:
                 try container.encode("legendonly")
@@ -999,7 +999,7 @@ public struct Shared {
     ///   Used by `Histogram.normalization`, `Histogram2D.normalization`,
     ///   `Histogram2DContour.normalization`.
     public enum Normalization: String, Encodable {
-        case none = ""
+        case off = ""
         case percent
         case probability
         case density
