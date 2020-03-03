@@ -127,12 +127,8 @@ final class Histograms: XCTestCase {
             barGap: 0.05,
             barGroupGap: 0.2,
             title: "Sampled Results",
-            xAxis: .init(
-                title: "Value"
-            ),
-            yAxis: .init(
-                title: "Count"
-            )
+            xAxis: [.init(title: "Value")],
+            yAxis: [.init(title: "Count")]
         )
 
         let figure = Figure(data: [trace1, trace2], layout: layout)

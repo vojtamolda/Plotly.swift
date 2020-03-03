@@ -9,7 +9,7 @@
 ///   [Python](https://plot.ly/python/reference/#violin), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#violin) or 
 ///   [R](https://plot.ly/r/reference/#violin)
-public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable {
+public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: Plotable {
     public let type: String = "violin"
 
     public let animatable: Bool = false
@@ -18,34 +18,34 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -55,26 +55,26 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -87,27 +87,27 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the y sample data or coordinates.
     /// 
     /// See overview for more info.
-    public var y: YData?
+    public var y: YData? = nil
 
     /// Sets the x sample data or coordinates.
     /// 
     /// See overview for more info.
-    public var x: XData?
+    public var x: XData? = nil
 
     /// Sets the x coordinate of the box.
     /// 
     /// See overview for more info.
-    public var x0: Anything?
+    public var x0: Anything? = nil
 
     /// Sets the y coordinate of the box.
     /// 
     /// See overview for more info.
-    public var y0: Anything?
+    public var y0: Anything? = nil
 
     /// Sets the trace name.
     /// 
@@ -115,17 +115,17 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// used for the position coordinate, if `x` and `x0` (`y` and `y0` if horizontal) are missing and
     /// the position axis is categorical. Note that the trace name is also used as a default value for
     /// attribute `scalegroup` (please see its description for details).
-    public var name: String?
+    public var name: String? = nil
 
     /// Sets the orientation of the violin(s).
     /// 
     /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
-    public var orientation: Shared.Orientation?
+    public var orientation: Shared.Orientation? = nil
 
     /// Sets the bandwidth used to compute the kernel density estimate.
     /// 
     /// By default, the bandwidth is determined by Silverman's rule of thumb.
-    public var bandwidth: Double?
+    public var bandwidth: Double? = nil
 
     /// If there are multiple violins that should be sized according to to some metric (see
     /// `scalemode`), link them by providing a non-empty group id here shared by every trace in the same
@@ -133,7 +133,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// 
     /// If a violin's `width` is undefined, `scalegroup` will default to the trace's name. In this case,
     /// violins with the same names will be linked together
-    public var scaleGroup: String?
+    public var scaleGroup: String? = nil
 
     /// Sets the metric by which the width of each violin is determined.*width* means each violin has
     /// the same (max) width*count* means the violins are scaled by the number of sample points makingup
@@ -145,7 +145,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// Sets the metric by which the width of each violin is determined.*width* means each violin has
     /// the same (max) width*count* means the violins are scaled by the number of sample points makingup
     /// each violin.
-    public var scaleMode: ScaleMode?
+    public var scaleMode: ScaleMode? = nil
 
     /// Sets the method by which the span in data space where the density function will be computed.
     /// 
@@ -162,20 +162,20 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// *soft* means the span goes from the sample's minimum value minus two bandwidths to the sample's
     /// maximum value plus two bandwidths. *hard* means the span goes from the sample's minimum to its
     /// maximum value. For custom span settings, use mode *manual* and fill in the `span` attribute.
-    public var spanMode: SpanMode?
+    public var spanMode: SpanMode? = nil
 
     /// Sets the span in data space for which the density function will be computed.
     /// 
     /// Has an effect only when `spanmode` is set to *manual*.
-    public var span: InfoArray?
+    public var span: InfoArray? = nil
 
-    public var line: Shared.Line?
+    public var line: Shared.Line? = nil
 
     /// Sets the fill color.
     /// 
     /// Defaults to a half-transparent variant of the line color, marker color, or marker line color,
     /// whichever is available.
-    public var fillColor: Color?
+    public var fillColor: Color? = nil
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If
     /// *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
@@ -186,7 +186,6 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         case outliers
         case suspectedOutliers
         case off
-        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -205,50 +204,50 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
     /// greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are
     /// shown If *false*, only the violins are shown with no sample points
-    public var points: Points?
+    public var points: Points? = nil
 
     /// Sets the amount of jitter in the sample points drawn.
     /// 
     /// If *0*, the sample points align along the distribution axis. If *1*, the sample points are drawn
     /// in a random jitter of width equal to the width of the violins.
-    public var jitter: Double?
+    public var jitter: Double? = nil
 
     /// Sets the position of the sample points in relation to the violins.
     /// 
     /// If *0*, the sample points are places over the center of the violins. Positive (negative) values
     /// correspond to positions to the right (left) for vertical violins and above (below) for
     /// horizontal violins.
-    public var pointPosition: Double?
+    public var pointPosition: Double? = nil
 
     /// Sets the width of the violin in data coordinates.
     /// 
     /// If *0* (default value) the width is automatically selected based on the positions of other
     /// violin traces in the same subplot.
-    public var width: Double?
+    public var width: Double? = nil
 
     public struct SymbolicMarker: Encodable {
         /// Sets the color of the outlier sample points.
-        public var outlierColor: Color?
+        public var outlierColor: Color? = nil
     
         /// Sets the marker symbol type.
         /// 
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
-        public var symbol: Shared.Symbol?
+        public var symbol: Shared.Symbol? = nil
     
         /// Sets the marker opacity.
-        public var opacity: Double?
+        public var opacity: Double? = nil
     
         /// Sets the marker size (in px).
-        public var size: Double?
+        public var size: Double? = nil
     
         /// Sets themarkercolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
-        public var color: Color?
+        public var color: Color? = nil
     
         public struct Line: Encodable {
             /// Sets themarker.linecolor.
@@ -256,18 +255,18 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
             /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
             /// relative to the max and min values of the array or relative to `marker.line.cmin` and
             /// `marker.line.cmax` if set.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the width (in px) of the lines bounding the marker points.
-            public var width: Double?
+            public var width: Double? = nil
         
             /// Sets the border line color of the outlier sample points.
             /// 
             /// Defaults to marker.color
-            public var outlierColor: Color?
+            public var outlierColor: Color? = nil
         
             /// Sets the border line width (in px) of the outlier sample points.
-            public var outlierWidth: Double?
+            public var outlierWidth: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -293,7 +292,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
             }
             
         }
-        public var line: Line?
+        public var line: Line? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -325,17 +324,17 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         }
         
     }
-    public var marker: SymbolicMarker?
+    public var marker: SymbolicMarker? = nil
 
     /// Sets the text elements associated with each sample value.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -352,21 +351,21 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     public struct Box: Encodable {
         /// Determines if an miniature box plot is drawn inside the violins.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Sets the width of the inner box plots relative to the violins' width.
         /// 
         /// For example, with 1, the inner box plots are as wide as the violins.
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Sets the inner box plot fill color.
-        public var fillColor: Color?
+        public var fillColor: Color? = nil
     
-        public var line: Shared.Line?
+        public var line: Shared.Line? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -392,20 +391,20 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         }
         
     }
-    public var box: Box?
+    public var box: Box? = nil
 
     public struct MeanLine: Encodable {
         /// Determines if a line corresponding to the sample's mean is shown inside the violins.
         /// 
         /// If `box.visible` is turned on, the mean line is drawn inside the inner box. Otherwise, the mean
         /// line is drawn from one side of the violin to other.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Sets the mean line color.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the mean line width.
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Creates `MeanLine` object with specified properties.
         /// 
@@ -420,7 +419,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         }
         
     }
-    public var meanLine: MeanLine?
+    public var meanLine: MeanLine? = nil
 
     /// Determines on which side of the position value the density function making up one half of a
     /// violin is plotted.
@@ -437,27 +436,27 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// 
     /// Useful when comparing two violin traces under *overlay* mode, where one trace has `side` set to
     /// *positive* and the other to *negative*.
-    public var side: Side?
+    public var side: Side? = nil
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup
     /// where bars of the same position coordinate will line up.
-    public var offsetGroup: String?
+    public var offsetGroup: String? = nil
 
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup.
     /// 
     /// This controls whether bars compute their positional range dependently or independently.
-    public var alignmentGroup: String?
+    public var alignmentGroup: String? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the marker size of selected points.
-            public var size: Double?
+            public var size: Double? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -472,7 +471,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Selected` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -480,18 +479,18 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         }
         
     }
-    public var selected: Selected?
+    public var selected: Selected? = nil
 
     public struct Unselected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the marker size of unselected points, applied only when a selection exists.
-            public var size: Double?
+            public var size: Double? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -506,7 +505,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Unselected` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -514,20 +513,21 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         }
         
     }
-    public var unselected: Unselected?
+    public var unselected: Unselected? = nil
 
     /// Do the hover effects highlight individual violins or sample points or the kernel density
     /// estimate or any combination of them?
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var violins: HoverOn { HoverOn(rawValue: 1 << 0) }
         public static var points: HoverOn { HoverOn(rawValue: 1 << 1) }
         public static var kde: HoverOn { HoverOn(rawValue: 1 << 2) }
         public static var all: HoverOn { HoverOn(rawValue: 1 << 3) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["violins"] }
@@ -540,24 +540,23 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     }
     /// Do the hover effects highlight individual violins or sample points or the kernel density
     /// estimate or any combination of them?
-    public var hoverOn: HoverOn?
+    public var hoverOn: HoverOn? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubPlotID?
+    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubPlotID?
+    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -703,8 +702,8 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
             nil, marker: SymbolicMarker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
             hoverTemplate: Data<String>? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? =
             nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil,
-            unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: SubPlotID? = nil, yAxis:
-            SubPlotID? = nil) {
+            unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid:
+            1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -755,8 +754,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -771,6 +769,12 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
         try container.encodeIfPresent(x0, forKey: .x0)
         try container.encodeIfPresent(y0, forKey: .y0)
         try container.encodeIfPresent(name, forKey: .name)
@@ -798,18 +802,7 @@ public struct Violin<YData, XData>: Trace where YData: Plotable, XData: Plotable
         try container.encodeIfPresent(selected, forKey: .selected)
         try container.encodeIfPresent(unselected, forKey: .unselected)
         try container.encodeIfPresent(hoverOn, forKey: .hoverOn)
-        try container.encodeIfPresent(xAxis, forKey: .xAxis)
-        try container.encodeIfPresent(yAxis, forKey: .yAxis)
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
+        try container.encode("x\(xAxis.uid)", forKey: .xAxis)
+        try container.encode("y\(yAxis.uid)", forKey: .yAxis)
     }
-    
 }

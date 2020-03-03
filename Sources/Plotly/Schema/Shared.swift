@@ -120,7 +120,6 @@ public struct Shared {
         case on
         case off
         case reversed
-        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -236,7 +235,6 @@ public struct Shared {
         case off
         case all
         case allTicks
-        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -520,7 +518,7 @@ public struct Shared {
     ///   Used by `Layout.Annotation.xReference`, `Layout.Shape.xReference`, `Layout.Image.xReference`.
     public enum XAxisReference: String, Encodable {
         case paper
-        case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+        case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
     }
 
     /// Sets the annotation's y coordinate axis.
@@ -533,7 +531,7 @@ public struct Shared {
     ///   Used by `Layout.Annotation.yReference`, `Layout.Shape.yReference`, `Layout.Image.yReference`.
     public enum YAxisReference: String, Encodable {
         case paper
-        case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+        case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
     }
 
     /// Sets the anchor for the x position
@@ -702,7 +700,6 @@ public struct Shared {
         case on
         case off
         case legendOnly
-        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -1124,7 +1121,6 @@ public struct Shared {
     ///   `OHLC.hoverInfo`, `Candlestick.hoverInfo`.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var x: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var y: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
@@ -1133,9 +1129,11 @@ public struct Shared {
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 5) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 6) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 7) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
@@ -1163,14 +1161,15 @@ public struct Shared {
     ///   `ScatterPolarGL.mode`.
     public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var lines: Mode { Mode(rawValue: 1 << 0) }
         public static var markers: Mode { Mode(rawValue: 1 << 1) }
         public static var text: Mode { Mode(rawValue: 1 << 2) }
         public static var none: Mode { Mode(rawValue: 1 << 3) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["lines"] }
@@ -1191,12 +1190,13 @@ public struct Shared {
     ///   `ScatterPolar.hoverOn`.
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var points: HoverOn { HoverOn(rawValue: 1 << 0) }
         public static var fills: HoverOn { HoverOn(rawValue: 1 << 1) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["points"] }
@@ -1215,7 +1215,6 @@ public struct Shared {
     ///   Used by `ScatterPolar.hoverInfo`, `ScatterPolarGL.hoverInfo`, `BarPolar.hoverInfo`.
     public struct PolarHoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var r: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 0) }
         public static var theta: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 1) }
         public static var text: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 2) }
@@ -1223,9 +1222,11 @@ public struct Shared {
         public static var all: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 4) }
         public static var none: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 5) }
         public static var skip: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 6) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["r"] }
@@ -1314,11 +1315,11 @@ public struct Shared {
         /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
         /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
         /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String?
+        public var family: String? = nil
     
-        public var size: Double?
+        public var size: Double? = nil
     
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Creates `Font` object with specified properties.
         /// 
@@ -1346,16 +1347,16 @@ public struct Shared {
     ///   `Treemap.Marker.padding`.
     public struct Padding: Encodable {
         /// The amount of padding (in px) along the top of the component.
-        public var t: Double?
+        public var t: Double? = nil
     
         /// The amount of padding (in px) on the right side of the component.
-        public var r: Double?
+        public var r: Double? = nil
     
         /// The amount of padding (in px) along the bottom of the component.
-        public var b: Double?
+        public var b: Double? = nil
     
         /// The amount of padding (in px) on the left side of the component.
-        public var l: Double?
+        public var l: Double? = nil
     
         /// Creates `Padding` object with specified properties.
         /// 
@@ -1389,18 +1390,18 @@ public struct Shared {
     ///   `BarPolar.hoverLabel`.
     public struct HoverLabel: Encodable {
         /// Sets the background color of all hover labels on graph
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// Sets the border color of all hover labels on graph.
-        public var borderColor: Color?
+        public var borderColor: Color? = nil
     
         /// Sets the default hover label font used by all traces on the graph.
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Sets the horizontal alignment of the text content within hover label box.
         /// 
         /// Has an effect only if the hover label text spans more two or more lines
-        public var align: Shared.AutoAlign?
+        public var align: Shared.AutoAlign? = nil
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all
         /// traces.
@@ -1408,7 +1409,7 @@ public struct Shared {
         /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
         /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
         /// truncate to `namelength - 3` characters and add an ellipsis.
-        public var nameLength: Int?
+        public var nameLength: Int? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -1473,14 +1474,14 @@ public struct Shared {
         /// Determines whether or not this stop is used.
         /// 
         /// If `false`, this stop is ignored even within its `dtickrange`.
-        public var enabled: Bool?
+        public var enabled: Bool? = nil
     
         /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is
         /// possible to omit *min* or *max* value by passing *null*
-        public var dTickRange: InfoArray?
+        public var dTickRange: InfoArray? = nil
     
         /// string - dtickformat for described zoom level, the same as *tickformat*
-        public var value: String?
+        public var value: String? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -1488,7 +1489,7 @@ public struct Shared {
         /// You can modify these items in the output figure by making your own item with `templateitemname`
         /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
         /// false` to hide it). Has no effect outside of a template.
-        public var name: String?
+        public var name: String? = nil
     
         /// Used to refer to a named item in this array in the template.
         /// 
@@ -1497,7 +1498,7 @@ public struct Shared {
         /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
         /// template or no matching item, this item will be hidden unless you explicitly show it with
         /// `visible: true`.
-        public var templateItemName: String?
+        public var templateItemName: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -1536,16 +1537,16 @@ public struct Shared {
     ///   `ParallelCategories.domain`, `Sankey.domain`, `Indicator.domain`, `Table.domain`.
     public struct Domain: Encodable {
         /// Sets the horizontal domain of this ternary subplot (in plot fraction).
-        public var x: InfoArray?
+        public var x: InfoArray? = nil
     
         /// Sets the vertical domain of this ternary subplot (in plot fraction).
-        public var y: InfoArray?
+        public var y: InfoArray? = nil
     
         /// If there is a layout grid, use the domain for this row in the grid for this ternary subplot .
-        public var row: Int?
+        public var row: Int? = nil
     
         /// If there is a layout grid, use the domain for this column in the grid for this ternary subplot .
-        public var column: Int?
+        public var column: Int? = nil
     
         /// Creates `Domain` object with specified properties.
         /// 
@@ -1574,12 +1575,12 @@ public struct Shared {
         /// 
         /// Note that before the existence of `title.text`, the title's contents used to be defined as the
         /// `title` attribute itself. This behavior has been deprecated.
-        public var text: String?
+        public var text: String? = nil
     
         /// Sets this axis' title font.
         /// 
         /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Creates `Title` object with specified properties.
         /// 
@@ -1598,16 +1599,16 @@ public struct Shared {
     ///   `ScatterGeo.line`.
     public struct DashedLine: Encodable {
         /// Sets the line color.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the line width (in px).
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Sets the dash style of lines.
         /// 
         /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
         /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
+        public var dash: String? = nil
     
         /// Creates `DashedLine` object with specified properties.
         /// 
@@ -1642,58 +1643,58 @@ public struct Shared {
         /// 
         /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
         /// Use `thickness` to set the value.
-        public var thicknessMode: Shared.ThicknessMode?
+        public var thicknessMode: Shared.ThicknessMode? = nil
     
         /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and
         /// labels.
-        public var thickness: Double?
+        public var thickness: Double? = nil
     
         /// Determines whether this color bar's length (i.e.
         /// 
         /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
         /// Use `len` to set the value.
-        public var lengthMode: Shared.LengthMode?
+        public var lengthMode: Shared.LengthMode? = nil
     
         /// Sets the length of the color bar This measure excludes the padding of both ends.
         /// 
         /// That is, the color bar length is this length minus the padding on both ends.
-        public var length: Double?
+        public var length: Double? = nil
     
         /// Sets the x position of the color bar (in plot fraction).
-        public var x: Double?
+        public var x: Double? = nil
     
         /// Sets this color bar's horizontal position anchor.
         /// 
         /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
-        public var xAnchor: Shared.XAnchor?
+        public var xAnchor: Shared.XAnchor? = nil
     
         /// Sets the amount of padding (in px) along the x direction.
-        public var xPadding: Double?
+        public var xPadding: Double? = nil
     
         /// Sets the y position of the color bar (in plot fraction).
-        public var y: Double?
+        public var y: Double? = nil
     
         /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*,
         /// *middle* or *bottom* of the color bar.
-        public var yAnchor: Shared.YAnchor?
+        public var yAnchor: Shared.YAnchor? = nil
     
         /// Sets the amount of padding (in px) along the y direction.
-        public var yPading: Double?
+        public var yPading: Double? = nil
     
         /// Sets the axis line color.
-        public var outlineColor: Color?
+        public var outlineColor: Color? = nil
     
         /// Sets the width (in px) of the axis line.
-        public var outlineWidth: Double?
+        public var outlineWidth: Double? = nil
     
         /// Sets the axis line color.
-        public var borderColor: Color?
+        public var borderColor: Color? = nil
     
         /// Sets the width (in px) or the border enclosing this color bar.
-        public var borderWidth: Double?
+        public var borderWidth: Double? = nil
     
         /// Sets the color of padded area.
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// Sets the tick mode for this axis.
         /// 
@@ -1702,13 +1703,13 @@ public struct Shared {
         /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
         /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
         /// provided).
-        public var tickMode: Shared.TickMode?
+        public var tickMode: Shared.TickMode? = nil
     
         /// Specifies the maximum number of ticks for the particular axis.
         /// 
         /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
         /// Has an effect only if `tickmode` is set to *auto*.
-        public var numTicks: Int?
+        public var numTicks: Int? = nil
     
         /// Sets the placement of the first tick on this axis.
         /// 
@@ -1717,7 +1718,7 @@ public struct Shared {
         /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
         /// data. If the axis `type` is *category*, it should be a number, using the scale where each
         /// category is assigned a serial number from zero in the order it appears.
-        public var tick0: Anything?
+        public var tick0: Anything? = nil
     
         /// Sets the step in-between ticks on this axis.
         /// 
@@ -1734,43 +1735,43 @@ public struct Shared {
         /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
         /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
         /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-        public var dTick: Anything?
+        public var dTick: Anything? = nil
     
         /// Sets the values at which ticks on this axis appear.
         /// 
         /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-        public var tickValues: [Double]?
+        public var tickValues: [Double]? = nil
     
         /// Sets the text displayed at the ticks position via `tickvals`.
         /// 
         /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-        public var tickText: [Double]?
+        public var tickText: [Double]? = nil
     
         /// Determines whether ticks are drawn or not.
         /// 
         /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
         /// (inside) the axis lines.
-        public var ticks: Shared.Ticks?
+        public var ticks: Shared.Ticks? = nil
     
         /// Sets the tick length (in px).
-        public var tickLength: Double?
+        public var tickLength: Double? = nil
     
         /// Sets the tick width (in px).
-        public var tickWidth: Double?
+        public var tickWidth: Double? = nil
     
         /// Sets the tick color.
-        public var tickColor: Color?
+        public var tickColor: Color? = nil
     
         /// Determines whether or not the tick labels are drawn.
-        public var showTickLabels: Bool?
+        public var showTickLabels: Bool? = nil
     
         /// Sets the color bar's tick label font
-        public var tickFont: Shared.Font?
+        public var tickFont: Shared.Font? = nil
     
         /// Sets the angle of the tick labels with respect to the horizontal.
         /// 
         /// For example, a `tickangle` of -90 draws the tick labels vertically.
-        public var tickAngle: Angle?
+        public var tickAngle: Angle? = nil
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
         /// those in Python.
@@ -1780,56 +1781,56 @@ public struct Shared {
         /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
         /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-        public var tickFormat: String?
+        public var tickFormat: String? = nil
     
-        public var tickFormatStops: [Shared.TickFormatStop]?
+        public var tickFormatStops: [Shared.TickFormatStop]? = nil
     
         /// Sets a tick label prefix.
-        public var tickPrefix: String?
+        public var tickPrefix: String? = nil
     
         /// If *all*, all tick labels are displayed with a prefix.
         /// 
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
-        public var showTickPrefix: Shared.ShowTickPrefix?
+        public var showTickPrefix: Shared.ShowTickPrefix? = nil
     
         /// Sets a tick label suffix.
-        public var tickSuffix: String?
+        public var tickSuffix: String? = nil
     
         /// Same as `showtickprefix` but for tick suffixes.
-        public var showTickSuffix: Shared.ShowTickSuffix?
+        public var showTickSuffix: Shared.ShowTickSuffix? = nil
     
         /// If "true", even 4-digit integers are separated
-        public var separateThousands: Bool?
+        public var separateThousands: Bool? = nil
     
         /// Determines a formatting rule for the tick exponents.
         /// 
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-        public var exponentFormat: Shared.ExponentFormat?
+        public var exponentFormat: Shared.ExponentFormat? = nil
     
         /// If *all*, all exponents are shown besides their significands.
         /// 
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
-        public var showExponent: Shared.ShowExponent?
+        public var showExponent: Shared.ShowExponent? = nil
     
         public struct Title: Encodable {
             /// Sets the title of the color bar.
             /// 
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
-            public var text: String?
+            public var text: String? = nil
         
             /// Sets this color bar's title font.
             /// 
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-            public var font: Shared.Font?
+            public var font: Shared.Font? = nil
         
             /// Determines the location of color bar's title with respect to the color bar.
             /// 
             /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
-            public var side: Shared.Side?
+            public var side: Shared.Side? = nil
         
             /// Creates `Title` object with specified properties.
             /// 
@@ -1844,7 +1845,7 @@ public struct Shared {
             }
             
         }
-        public var title: Title?
+        public var title: Title? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2023,11 +2024,11 @@ public struct Shared {
         /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
         /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
         /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: Data<String>?
+        public var family: Data<String>? = nil
     
-        public var size: Data<Double>?
+        public var size: Data<Double>? = nil
     
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2066,12 +2067,12 @@ public struct Shared {
         /// The stream id number links a data trace on a plot with a stream.
         /// 
         /// See https://plot.ly/settings for more details.
-        public var token: String?
+        public var token: String? = nil
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream.
         /// 
         /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxPoints: Double?
+        public var maxPoints: Double? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2121,71 +2122,71 @@ public struct Shared {
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
-        public var symbol: Shared.Symbol?
+        public var symbol: Shared.Symbol? = nil
     
         /// Sets the marker opacity.
-        public var opacity: Data<Double>?
+        public var opacity: Data<Double>? = nil
     
         /// Sets the marker size (in px).
-        public var size: Data<Double>?
+        public var size: Data<Double>? = nil
     
         /// Sets a maximum number of points to be drawn on the graph.
         /// 
         /// *0* corresponds to no limit.
-        public var maxDisplayed: Double?
+        public var maxDisplayed: Double? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
         /// and `sizemode`.
-        public var sizeReference: Double?
+        public var sizeReference: Double? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the minimum size (in px) of the rendered marker points.
-        public var sizeMin: Double?
+        public var sizeMin: Double? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the rule for which the data in `size` is converted to pixels.
-        public var sizeMode: Shared.SizeMode?
+        public var sizeMode: Shared.SizeMode? = nil
     
-        public var line: Shared.MarkerLine?
+        public var line: Shared.MarkerLine? = nil
     
-        public var gradient: Shared.Gradient?
+        public var gradient: Shared.Gradient? = nil
     
         /// Sets themarkercolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
         /// `marker.color`is set to a numerical array.
         /// 
         /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
         /// equidistant to this point.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -2196,7 +2197,7 @@ public struct Shared {
         /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `marker.colorscale`.
@@ -2204,27 +2205,27 @@ public struct Shared {
         /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
         /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2283,7 +2284,7 @@ public struct Shared {
                 nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
                 cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                SubPlotID? = nil) {
+                Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -2317,40 +2318,40 @@ public struct Shared {
     ///   `BarPolar.Marker.line`.
     public struct MarkerLine: Encodable {
         /// Sets the width (in px) of the lines bounding the marker points.
-        public var width: Data<Double>?
+        public var width: Data<Double>? = nil
     
         /// Sets themarker.linecolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.line.cmin` and
         /// `marker.line.cmax` if set.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax` Has an
         /// effect only if in `marker.line.color`is set to a numerical array.
         /// 
         /// Defaults to `false` when `marker.line.cmin` and `marker.line.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
         /// same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
         /// same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax`
         /// to be equidistant to this point.
         /// 
         /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
         /// same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -2361,7 +2362,7 @@ public struct Shared {
         /// in color space, use`marker.line.cmin` and `marker.line.cmax`. Alternatively, `colorscale` may be
         /// a palette name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `marker.line.colorscale`.
@@ -2369,21 +2370,21 @@ public struct Shared {
         /// Has an effect only if in `marker.line.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if in `marker.line.color`is set to a numerical array. If true,
         /// `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will
         /// correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2418,7 +2419,8 @@ public struct Shared {
         ///   - colorAxis: Sets a reference to a shared color axis.
         public init(width: Data<Double>? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin:
                 Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
-                autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: SubPlotID? = nil) {
+                autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: Layout.ColorAxis =
+                Layout.ColorAxis(uid: 1)) {
             self.width = width
             self.coloring = coloring
             self.cAuto = cAuto
@@ -2446,11 +2448,11 @@ public struct Shared {
             case none
         }
         /// Sets the type of gradient used to fill the markers
-        public var type: `Type`?
+        public var type: `Type`? = nil
     
         /// Sets the final color of the gradient fill: the center color for radial, the right for
         /// horizontal, or the bottom for vertical.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2477,7 +2479,7 @@ public struct Shared {
     ///   `ScatterGL.xError`, `ScatterGL.yError`.
     public struct Error: Encodable {
         /// Determines whether or not this set of error bars is visible.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Determines the rule used to generate the error bars.
         /// 
@@ -2497,42 +2499,42 @@ public struct Shared {
         /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
         /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
         /// the bar lengths are set with data set `array`.
-        public var type: `Type`?
+        public var type: `Type`? = nil
     
         /// Determines whether or not the error bars have the same length in both direction (top/bottom for
         /// vertical bars, left/right for horizontal bars.
-        public var symmetric: Bool?
+        public var symmetric: Bool? = nil
     
         /// Sets the data corresponding the length of each error bar.
         /// 
         /// Values are plotted relative to the underlying data.
-        public var array: [Double]?
+        public var array: [Double]? = nil
     
         /// Sets the data corresponding the length of each error bar in the bottom (left) direction for
         /// vertical (horizontal) bars Values are plotted relative to the underlying data.
-        public var arrayMinus: [Double]?
+        public var arrayMinus: [Double]? = nil
     
         /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if
         /// `type` is set to *constant*) corresponding to the lengths of the error bars.
-        public var value: Double?
+        public var value: Double? = nil
     
         /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if
         /// `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left)
         /// direction for vertical (horizontal) bars
-        public var valueMinus: Double?
+        public var valueMinus: Double? = nil
     
-        public var traceReference: Int?
+        public var traceReference: Int? = nil
     
-        public var traceReferenceMinus: Int?
+        public var traceReferenceMinus: Int? = nil
     
         /// Sets the stoke color of the error bars.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the thickness (in px) of the error bars.
-        public var thickness: Double?
+        public var thickness: Double? = nil
     
         /// Sets the width (in px) of the cross-bar at both ends of the error bars.
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2605,11 +2607,11 @@ public struct Shared {
         /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
         /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
         /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: Data<String>?
+        public var family: Data<String>? = nil
     
-        public var size: Data<Double>?
+        public var size: Data<Double>? = nil
     
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2635,40 +2637,40 @@ public struct Shared {
     /// - Note:
     ///   Used by `Bar.marker`, `Histogram.marker`, `Funnel.marker`, `BarPolar.marker`.
     public struct Marker: Encodable {
-        public var line: Shared.MarkerLine?
+        public var line: Shared.MarkerLine? = nil
     
         /// Sets themarkercolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
         /// `marker.color`is set to a numerical array.
         /// 
         /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
         /// equidistant to this point.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -2679,7 +2681,7 @@ public struct Shared {
         /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `marker.colorscale`.
@@ -2687,30 +2689,30 @@ public struct Shared {
         /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
         /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Sets the opacity of the bars.
-        public var opacity: Data<Double>?
+        public var opacity: Data<Double>? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2752,7 +2754,8 @@ public struct Shared {
         public init(line: Shared.MarkerLine? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin:
                 Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-                Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Data<Double>? = nil) {
+                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), opacity:
+                Data<Double>? = nil) {
             self.line = line
             self.coloring = coloring
             self.cAuto = cAuto
@@ -2776,10 +2779,10 @@ public struct Shared {
     ///   `Indicator.Gauge.Bar.line`, `Indicator.Gauge.Step.line`, `Indicator.Gauge.Threshold.line`.
     public struct Line: Encodable {
         /// Sets the color of line bounding the box(es).
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the width (in px) of line bounding the box(es).
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Creates `Line` object with specified properties.
         /// 
@@ -2807,14 +2810,14 @@ public struct Shared {
         /// based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying
         /// histograms share a subplot, the first explicit `start` is used exactly and all others are
         /// shifted down (if necessary) to differ from that one by an integer number of bins.
-        public var start: Anything?
+        public var start: Anything? = nil
     
         /// Sets the end value for the x axis bins.
         /// 
         /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
         /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
         /// a date string, and for category data `end` is based on the category serial numbers.
-        public var end: Anything?
+        public var end: Anything? = nil
     
         /// Sets the size of each x axis bin.
         /// 
@@ -2825,7 +2828,7 @@ public struct Shared {
         /// categories to bin together (always defaults to 1). If multiple non-overlaying histograms share a
         /// subplot, the first explicit `size` is used and all others discarded. If no `size` is
         /// provided,the sample data from all traces is combined to determine `size` as described above.
-        public var size: Anything?
+        public var size: Anything? = nil
     
         /// Creates `Bins` object with specified properties.
         /// 
@@ -2837,13 +2840,6 @@ public struct Shared {
             self.start = start
             self.end = end
             self.size = size
-        }
-        
-    }
-
-    public struct Layout: Encodable {
-        /// Creates `Layout` object with specified properties.
-        public init() {
         }
         
     }
@@ -2863,22 +2859,22 @@ public struct Shared {
         /// 
         /// If `constraint`, the data is represented as constraints with the invalid region shaded as
         /// specified by the `operation` and `value` parameters.
-        public var type: `Type`?
+        public var type: `Type`? = nil
     
         /// Sets the starting contour level value.
         /// 
         /// Must be less than `contours.end`
-        public var start: Double?
+        public var start: Double? = nil
     
         /// Sets the end contour level value.
         /// 
         /// Must be more than `contours.start`
-        public var end: Double?
+        public var end: Double? = nil
     
         /// Sets the step between each contour level.
         /// 
         /// Must be positive.
-        public var size: Double?
+        public var size: Double? = nil
     
         /// Determines the coloring method showing the contour values.
         /// 
@@ -2896,25 +2892,25 @@ public struct Shared {
         /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
         /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
         /// lines. If *none*, no coloring is applied on this trace.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the contour lines are drawn.
         /// 
         /// Has an effect only if `contours.coloring` is set to *fill*.
-        public var showLines: Bool?
+        public var showLines: Bool? = nil
     
         /// Determines whether to label the contour lines with their values.
-        public var showLabels: Bool?
+        public var showLabels: Bool? = nil
     
         /// Sets the font used for labeling the contour levels.
         /// 
         /// The default color comes from the lines, if shown. The default family and size come from
         /// `layout.font`.
-        public var labelFont: Shared.Font?
+        public var labelFont: Shared.Font? = nil
     
         /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar
         /// to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var labelFormat: String?
+        public var labelFormat: String? = nil
     
         /// Sets the constraint operation.
         /// 
@@ -2923,7 +2919,7 @@ public struct Shared {
         /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
         /// intervals make no difference to constraint display, but all versions are allowed for consistency
         /// with filter transforms.
-        public var operation: Shared.Operation?
+        public var operation: Shared.Operation? = nil
     
         /// Sets the value or values of the constraint boundary.
         /// 
@@ -2931,7 +2927,7 @@ public struct Shared {
         /// a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[)
         /// *value* is expected to be an array of two numbers where the first is the lower bound and the
         /// second is the upper bound.
-        public var value: Anything?
+        public var value: Anything? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2989,19 +2985,19 @@ public struct Shared {
         /// Sets the color of the contour level.
         /// 
         /// Has no effect if `contours.coloring` is set to *lines*.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the contour line width in (in px)
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Sets the dash style of lines.
         /// 
         /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
         /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
+        public var dash: String? = nil
     
         /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
-        public var smoothing: Double?
+        public var smoothing: Double? = nil
     
         /// Creates `SmoothDashedLine` object with specified properties.
         /// 
@@ -3025,27 +3021,27 @@ public struct Shared {
     ///   Used by `ScatterTernary.line`, `ScatterCarpet.line`, `ScatterPolar.line`.
     public struct ShapedSmoothDashedLine: Encodable {
         /// Sets the line color.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the line width (in px).
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Sets the dash style of lines.
         /// 
         /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
         /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
+        public var dash: String? = nil
     
         /// Determines the line shape.
         /// 
         /// With *spline* the lines are drawn using spline interpolation. The other available values
         /// correspond to step-wise line shapes.
-        public var shape: Shared.Shape?
+        public var shape: Shared.Shape? = nil
     
         /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing.
         /// 
         /// *0* corresponds to no smoothing (equivalent to a *linear* shape).
-        public var smoothing: Double?
+        public var smoothing: Double? = nil
     
         /// Creates `ShapedSmoothDashedLine` object with specified properties.
         /// 
@@ -3072,10 +3068,10 @@ public struct Shared {
     ///   `Sankey.Node.line`, `Sankey.Link.line`, `Table.Header.line`, `Table.Cells.line`.
     public struct VariableLine: Encodable {
         /// Sets the color of the line enclosing each sector.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Sets the width (in px) of the line enclosing each sector.
-        public var width: Data<Double>?
+        public var width: Data<Double>? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -3101,13 +3097,13 @@ public struct Shared {
     public struct Projection: Encodable {
         public struct X: Encodable {
             /// Sets whether or not projections are shown along the x axis.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the projection color.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the scale factor determining the size of the projection marker points.
-            public var scale: Double?
+            public var scale: Double? = nil
         
             /// Creates `X` object with specified properties.
             /// 
@@ -3122,17 +3118,17 @@ public struct Shared {
             }
             
         }
-        public var x: X?
+        public var x: X? = nil
     
         public struct Y: Encodable {
             /// Sets whether or not projections are shown along the y axis.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the projection color.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the scale factor determining the size of the projection marker points.
-            public var scale: Double?
+            public var scale: Double? = nil
         
             /// Creates `Y` object with specified properties.
             /// 
@@ -3147,17 +3143,17 @@ public struct Shared {
             }
             
         }
-        public var y: Y?
+        public var y: Y? = nil
     
         public struct Z: Encodable {
             /// Sets whether or not projections are shown along the z axis.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the projection color.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the scale factor determining the size of the projection marker points.
-            public var scale: Double?
+            public var scale: Double? = nil
         
             /// Creates `Z` object with specified properties.
             /// 
@@ -3172,7 +3168,7 @@ public struct Shared {
             }
             
         }
-        public var z: Z?
+        public var z: Z? = nil
     
         /// Creates `Projection` object with specified properties.
         public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
@@ -3199,70 +3195,70 @@ public struct Shared {
             case x
         }
         /// Sets the marker symbol type.
-        public var symbol: Symbol?
+        public var symbol: Symbol? = nil
     
         /// Sets the marker size (in px).
-        public var size: Data<Double>?
+        public var size: Data<Double>? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
         /// and `sizemode`.
-        public var sizeReference: Double?
+        public var sizeReference: Double? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the minimum size (in px) of the rendered marker points.
-        public var sizeMin: Double?
+        public var sizeMin: Double? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the rule for which the data in `size` is converted to pixels.
-        public var sizeMode: Shared.SizeMode?
+        public var sizeMode: Shared.SizeMode? = nil
     
         /// Sets the marker opacity.
         /// 
         /// Note that the marker opacity for scatter3d traces must be a scalar value for performance
         /// reasons. To set a blending opacity value (i.e. which is not transparent), set *marker.color* to
         /// an rgba color and use its alpha channel.
-        public var opacity: Double?
+        public var opacity: Double? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
-        public var line: Shared.MarkerLine?
+        public var line: Shared.MarkerLine? = nil
     
         /// Sets themarkercolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
         /// `marker.color`is set to a numerical array.
         /// 
         /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
         /// equidistant to this point.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -3273,7 +3269,7 @@ public struct Shared {
         /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `marker.colorscale`.
@@ -3281,25 +3277,25 @@ public struct Shared {
         /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
         /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -3353,7 +3349,7 @@ public struct Shared {
                 Shared.ColorBar? = nil, line: Shared.MarkerLine? = nil, coloring: Coloring? = nil, cAuto: Bool?
                 = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale?
                 = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil,
-                colorAxis: SubPlotID? = nil) {
+                colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
             self.symbol = symbol
             self.size = size
             self.sizeReference = sizeReference
@@ -3381,13 +3377,13 @@ public struct Shared {
     ///   `Mesh3D.lightPosition`, `Cone.lightPosition`, `StreamTube.lightPosition`.
     public struct LightPosition: Encodable {
         /// Numeric vector, representing the X coordinate for each vertex.
-        public var x: Double?
+        public var x: Double? = nil
     
         /// Numeric vector, representing the Y coordinate for each vertex.
-        public var y: Double?
+        public var y: Double? = nil
     
         /// Numeric vector, representing the Z coordinate for each vertex.
-        public var z: Double?
+        public var z: Double? = nil
     
         /// Creates `LightPosition` object with specified properties.
         /// 
@@ -3408,28 +3404,28 @@ public struct Shared {
     ///   `StreamTube.lighting`.
     public struct Lighting: Encodable {
         /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
-        public var vertexNormalsEpsilon: Double?
+        public var vertexNormalsEpsilon: Double? = nil
     
         /// Epsilon for face normals calculation avoids math issues arising from degenerate geometry.
-        public var faceNormalsEpsilon: Double?
+        public var faceNormalsEpsilon: Double? = nil
     
         /// Ambient light increases overall color visibility but can wash out the image.
-        public var ambient: Double?
+        public var ambient: Double? = nil
     
         /// Represents the extent that incident rays are reflected in a range of angles.
-        public var diffuse: Double?
+        public var diffuse: Double? = nil
     
         /// Represents the level that incident rays are reflected in a single direction, causing shine.
-        public var specular: Double?
+        public var specular: Double? = nil
     
         /// Alters specular reflection; the rougher the surface, the wider and less contrasty the shine.
-        public var roughness: Double?
+        public var roughness: Double? = nil
     
         /// Represents the reflectance as a dependency of the viewing angle; e.g.
         /// 
         /// paper is reflective when viewing it from the edge of the paper (almost 90 degrees), causing
         /// shine.
-        public var fresnel: Double?
+        public var fresnel: Double? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -3474,13 +3470,13 @@ public struct Shared {
     ///   Used by `Isosurface.contour`, `Volume.contour`, `Mesh3D.contour`.
     public struct ContourHover: Encodable {
         /// Sets whether or not dynamic contours are shown on hover
-        public var show: Bool?
+        public var show: Bool? = nil
     
         /// Sets the color of the contour lines.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the width of the contour lines.
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Creates `ContourHover` object with specified properties.
         /// 

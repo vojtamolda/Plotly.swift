@@ -60,14 +60,8 @@ final class Heatmaps: XCTestCase {
             autoSize: false,
             width: 700,
             height: 700,
-            xAxis: .init(
-                ticks: .off,
-                side: .top
-            ),
-            yAxis: .init(
-                ticks: .off,
-                tickSuffix: .none
-            ),
+            xAxis: [.init(ticks: .off, side: .top)],
+            yAxis: [.init(ticks: .off, tickSuffix: .none)],
             annotations: x.enumerated().flatMap { x in
                 y.enumerated().map { y in
                     Layout.Annotation(
@@ -93,7 +87,7 @@ final class Heatmaps: XCTestCase {
     /// https://plot.ly/javascript/heatmaps/#heatmap-with-unequal-block-sizes
     func testHeatmapWithUnequalBlockSizes() {
         let (a, b) = (1.120529, 0.306349)
-        let theta = Array(stride(from: -Double.pi / 13.0, to: 4.0 * Double.pi, by: 0.01))
+        let theta = stride(from: -Double.pi / 13.0, to: 4.0 * Double.pi, by: 0.01)
         let x = theta.map { a * exp(-b * $0) * cos($0) }
         let y = theta.map { a * exp(-b * $0) * sin($0) }
 
@@ -127,22 +121,26 @@ final class Heatmaps: XCTestCase {
                 t: 200, b: 200
             ),
             showLegend: false,
-            xAxis: Layout.XAxis(
-                autoRange: .off,
-                range: [0, phi],
-                ticks: .off,
-                showTickLabels: false,
-                showGrid: false,
-                zeroLine: false
-            ),
-            yAxis: Layout.YAxis(
-                autoRange: .off,
-                range: [0, 1],
-                ticks: .off,
-                showTickLabels: false,
-                showGrid: false,
-                zeroLine: false
-            )
+            xAxis: [
+                Layout.XAxis(
+                    autoRange: .off,
+                    range: [0, phi],
+                    ticks: .off,
+                    showTickLabels: false,
+                    showGrid: false,
+                    zeroLine: false
+                )
+            ],
+            yAxis: [
+                Layout.YAxis(
+                    autoRange: .off,
+                    range: [0, 1],
+                    ticks: .off,
+                    showTickLabels: false,
+                    showGrid: false,
+                    zeroLine: false
+                )
+            ]
         )
 
         let figure = Figure(data: [spiral, heatmap], layout: layout)

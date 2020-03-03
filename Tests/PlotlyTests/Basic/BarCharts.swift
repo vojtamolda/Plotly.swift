@@ -84,13 +84,8 @@ final class BarCharts: XCTestCase {
             font: "Raleway, sans-serif",
             title: "Number of Graphs Made this Week",
             showLegend: false,
-            xAxis: Layout.XAxis(
-                tickAngle: -45
-            ),
-            yAxis: Layout.YAxis(
-                gridWidth: 2,
-                zeroLine: false
-            )
+            xAxis: [Layout.XAxis(tickAngle: -45)],
+            yAxis: [Layout.YAxis(gridWidth: 2, zeroLine: false)]
         )
         let figure = Figure(data: [trace], layout: layout)
         output(figure)
@@ -188,9 +183,7 @@ final class BarCharts: XCTestCase {
         )
         let layout = Layout(
             title: "January 2013 Sales Report",
-            xAxis: Layout.XAxis(
-                tickAngle: -45
-            )
+            xAxis: [Layout.XAxis(tickAngle: -45)]
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
         output(figure)
@@ -277,25 +270,29 @@ final class BarCharts: XCTestCase {
             barGap: 0.15,
             barGroupGap: 0.1,
             title: "US Export of Plastic Scrap",
-            xAxis: Layout.XAxis(
-                tickFont: Shared.Font(
-                    size: 14,
-                    color: .RGB(107, 107, 107)
-                )
-            ),
-            yAxis: Layout.YAxis(
-                title: Layout.YAxis.Title(
-                    text: "USD (millions)",
-                    font: Shared.Font(
-                        size: 16,
+            xAxis: [
+                Layout.XAxis(
+                    tickFont: Shared.Font(
+                        size: 14,
                         color: .RGB(107, 107, 107)
                     )
-                ),
-                tickFont: Shared.Font(
-                    size: 14,
-                    color: .RGB(107, 107, 107)
                 )
-            ),
+            ],
+            yAxis: [
+                Layout.YAxis(
+                    title: Layout.YAxis.Title(
+                        text: "USD (millions)",
+                        font: Shared.Font(
+                            size: 16,
+                            color: .RGB(107, 107, 107)
+                        )
+                    ),
+                    tickFont: Shared.Font(
+                        size: 14,
+                        color: .RGB(107, 107, 107)
+                    )
+                )
+            ],
             legend: Layout.Legend(
                 backgroundColor: .RGB(255, 255, 255, 0),
                 borderColor: .RGB(255, 255, 255, 0),
@@ -418,8 +415,8 @@ final class BarCharts: XCTestCase {
         let layout = Layout(
             barMode: .relative,
             title: "Relative Barmode",
-            xAxis: Layout.XAxis(title: "X axis"),
-            yAxis: Layout.YAxis(title: "Y axis")
+            xAxis: [Layout.XAxis(title: "X axis")],
+            yAxis: [Layout.YAxis(title: "Y axis")]
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)

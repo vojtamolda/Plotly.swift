@@ -21,6 +21,9 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(ContourPlots.allTests),
         testCase(Heatmaps.allTests),
 
+        // https://plot.ly/javascript/subplots/
+        testCase(Subplots.allTests),
+
         testCase(FigureTests.allTests),
         testCase(SwatchTests.allTests),
         testCase(PlotableTests.allTests)

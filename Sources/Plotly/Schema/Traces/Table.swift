@@ -18,28 +18,28 @@ public struct Table: Trace {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -49,17 +49,17 @@ public struct Table: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -72,19 +72,19 @@ public struct Table: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
-    public var domain: Shared.Domain?
+    public var domain: Shared.Domain? = nil
 
     /// The width of columns expressed as a ratio.
     /// 
     /// Columns fill the available width in proportion of their specified column widths.
-    public var columnWidth: Data<Double>?
+    public var columnWidth: Data<Double>? = nil
 
     /// Specifies the rendered order of the data columns; for example, a value `2` at position `0` means
     /// that column index `0` in the data will be rendered as the third column, as columns have an index
     /// base of zero.
-    public var columnOrder: [Int]?
+    public var columnOrder: [Int]? = nil
 
     public struct Header: Encodable {
         /// Header cell values.
@@ -92,36 +92,36 @@ public struct Table: Trace {
         /// `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]`
         /// vector length for all columns must be the same (longer vectors will be truncated). Each value
         /// must be a finite number or a string.
-        public var values: [Double]?
+        public var values: [Double]? = nil
     
         /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those
         /// of Python.
         /// 
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var format: [Double]?
+        public var format: [Double]? = nil
     
         /// Prefix for cell values.
-        public var prefix: Data<String>?
+        public var prefix: Data<String>? = nil
     
         /// Suffix for cell values.
-        public var suffix: Data<String>?
+        public var suffix: Data<String>? = nil
     
         /// The height of cells.
-        public var height: Double?
+        public var height: Double? = nil
     
         /// Sets the horizontal alignment of the `text` within the box.
         /// 
         /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
         /// HTML tags) or if an explicit width is set to override the text width.
-        public var align: Shared.HorizontalAlign?
+        public var align: Shared.HorizontalAlign? = nil
     
-        public var line: Shared.VariableLine?
+        public var line: Shared.VariableLine? = nil
     
         public struct Fill: Encodable {
             /// Sets the cell fill color.
             /// 
             /// It accepts either a specific color or an array of colors or a 2D array of colors.
-            public var coloring: Coloring?
+            public var coloring: Coloring? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -137,9 +137,9 @@ public struct Table: Trace {
             }
             
         }
-        public var fill: Fill?
+        public var fill: Fill? = nil
     
-        public var font: Shared.VariableFont?
+        public var font: Shared.VariableFont? = nil
     
         /// Creates `Header` object with specified properties.
         /// 
@@ -169,7 +169,7 @@ public struct Table: Trace {
         }
         
     }
-    public var header: Header?
+    public var header: Header? = nil
 
     public struct Cells: Encodable {
         /// Cell values.
@@ -177,36 +177,36 @@ public struct Table: Trace {
         /// `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]`
         /// vector length for all columns must be the same (longer vectors will be truncated). Each value
         /// must be a finite number or a string.
-        public var values: [Double]?
+        public var values: [Double]? = nil
     
         /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those
         /// of Python.
         /// 
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var format: [Double]?
+        public var format: [Double]? = nil
     
         /// Prefix for cell values.
-        public var prefix: Data<String>?
+        public var prefix: Data<String>? = nil
     
         /// Suffix for cell values.
-        public var suffix: Data<String>?
+        public var suffix: Data<String>? = nil
     
         /// The height of cells.
-        public var height: Double?
+        public var height: Double? = nil
     
         /// Sets the horizontal alignment of the `text` within the box.
         /// 
         /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
         /// HTML tags) or if an explicit width is set to override the text width.
-        public var align: Shared.HorizontalAlign?
+        public var align: Shared.HorizontalAlign? = nil
     
-        public var line: Shared.VariableLine?
+        public var line: Shared.VariableLine? = nil
     
         public struct Fill: Encodable {
             /// Sets the cell fill color.
             /// 
             /// It accepts either a specific color or an array of colors or a 2D array of colors.
-            public var coloring: Coloring?
+            public var coloring: Coloring? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -222,9 +222,9 @@ public struct Table: Trace {
             }
             
         }
-        public var fill: Fill?
+        public var fill: Fill? = nil
     
-        public var font: Shared.VariableFont?
+        public var font: Shared.VariableFont? = nil
     
         /// Creates `Cells` object with specified properties.
         /// 
@@ -254,12 +254,11 @@ public struct Table: Trace {
         }
         
     }
-    public var cells: Cells?
+    public var cells: Cells? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid

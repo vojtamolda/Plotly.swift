@@ -13,7 +13,7 @@ public struct Layout: Encodable {
     /// 
     /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
     /// still be extended with lighter and darker colors, see `extendfunnelareacolors`.
-    public var funnelAreaColorWay: ColorList?
+    public var funnelAreaColorWay: ColorList? = nil
 
     /// If `true`, the funnelarea slice colors (whether given by `funnelareacolorway` or inherited from
     /// `colorway`) will be extended to three times its original length by first repeating every color
@@ -22,7 +22,7 @@ public struct Layout: Encodable {
     /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
     /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
     /// never extended.
-    public var extendFunnelAreaColors: Bool?
+    public var extendFunnelAreaColors: Bool? = nil
 
     
     // MARK: Treemap
@@ -31,7 +31,7 @@ public struct Layout: Encodable {
     /// 
     /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
     /// still be extended with lighter and darker colors, see `extendtreemapcolors`.
-    public var treemapColorWay: ColorList?
+    public var treemapColorWay: ColorList? = nil
 
     /// If `true`, the treemap slice colors (whether given by `treemapcolorway` or inherited from
     /// `colorway`) will be extended to three times its original length by first repeating every color
@@ -40,7 +40,7 @@ public struct Layout: Encodable {
     /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
     /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
     /// never extended.
-    public var extendTreemapColors: Bool?
+    public var extendTreemapColors: Bool? = nil
 
     
     // MARK: Sunburst
@@ -49,7 +49,7 @@ public struct Layout: Encodable {
     /// 
     /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
     /// still be extended with lighter and darker colors, see `extendsunburstcolors`.
-    public var sunburstColorWay: ColorList?
+    public var sunburstColorWay: ColorList? = nil
 
     /// If `true`, the sunburst slice colors (whether given by `sunburstcolorway` or inherited from
     /// `colorway`) will be extended to three times its original length by first repeating every color
@@ -58,20 +58,20 @@ public struct Layout: Encodable {
     /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
     /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
     /// never extended.
-    public var extendSunburstColors: Bool?
+    public var extendSunburstColors: Bool? = nil
 
     
     // MARK: Pie
 
     /// hiddenlabels is the funnelarea & pie chart analog of visible:'legendonly' but it can contain
     /// many labels, and can simultaneously hide slices from several pies/funnelarea charts
-    public var hiddenLabels: [Double]?
+    public var hiddenLabels: [Double]? = nil
 
     /// Sets the default pie slice colors.
     /// 
     /// Defaults to the main `colorway` used for trace colors. If you specify a new list here it can
     /// still be extended with lighter and darker colors, see `extendpiecolors`.
-    public var pieColorWay: ColorList?
+    public var pieColorWay: ColorList? = nil
 
     /// If `true`, the pie slice colors (whether given by `piecolorway` or inherited from `colorway`)
     /// will be extended to three times its original length by first repeating every color 20% lighter
@@ -80,7 +80,7 @@ public struct Layout: Encodable {
     /// This is intended to reduce the likelihood of reusing the same color when you have many slices,
     /// but you can set `false` to disable. Colors provided in the trace, using `marker.colors`, are
     /// never extended.
-    public var extendPieColors: Bool?
+    public var extendPieColors: Bool? = nil
 
     
     // MARK: Waterfall
@@ -99,13 +99,13 @@ public struct Layout: Encodable {
     /// With *group*, the bars are plotted next to one another centered around the shared location. With
     /// *overlay*, the bars are plotted over one another, you might need to an *opacity* to see multiple
     /// bars.
-    public var waterfallMode: WaterfallMode?
+    public var waterfallMode: WaterfallMode? = nil
 
     /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var waterfallGap: Double?
+    public var waterfallGap: Double? = nil
 
     /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var waterfallGroupGap: Double?
+    public var waterfallGroupGap: Double? = nil
 
     
     // MARK: Funnel
@@ -125,13 +125,13 @@ public struct Layout: Encodable {
     /// With *stack*, the bars are stacked on top of one another With *group*, the bars are plotted next
     /// to one another centered around the shared location. With *overlay*, the bars are plotted over
     /// one another, you might need to an *opacity* to see multiple bars.
-    public var funnelMode: FunnelMode?
+    public var funnelMode: FunnelMode? = nil
 
     /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var funnelGap: Double?
+    public var funnelGap: Double? = nil
 
     /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var funnelGroupGap: Double?
+    public var funnelGroupGap: Double? = nil
 
     
     // MARK: Violin
@@ -150,17 +150,17 @@ public struct Layout: Encodable {
     /// If *group*, the violins are plotted next to one another centered around the shared location. If
     /// *overlay*, the violins are plotted over one another, you might need to set *opacity* to see them
     /// multiple violins. Has no effect on traces that have *width* set.
-    public var violinMode: ViolinMode?
+    public var violinMode: ViolinMode? = nil
 
     /// Sets the gap (in plot fraction) between violins of adjacent location coordinates.
     /// 
     /// Has no effect on traces that have *width* set.
-    public var violinGap: Double?
+    public var violinGap: Double? = nil
 
     /// Sets the gap (in plot fraction) between violins of the same location coordinate.
     /// 
     /// Has no effect on traces that have *width* set.
-    public var violinGroupGap: Double?
+    public var violinGroupGap: Double? = nil
 
     
     // MARK: Box and Candlestick
@@ -179,17 +179,17 @@ public struct Layout: Encodable {
     /// If *group*, the boxes are plotted next to one another centered around the shared location. If
     /// *overlay*, the boxes are plotted over one another, you might need to set *opacity* to see them
     /// multiple boxes. Has no effect on traces that have *width* set.
-    public var boxMode: BoxMode?
+    public var boxMode: BoxMode? = nil
 
     /// Sets the gap (in plot fraction) between boxes of adjacent location coordinates.
     /// 
     /// Has no effect on traces that have *width* set.
-    public var boxGap: Double?
+    public var boxGap: Double? = nil
 
     /// Sets the gap (in plot fraction) between boxes of the same location coordinate.
     /// 
     /// Has no effect on traces that have *width* set.
-    public var boxGroupGap: Double?
+    public var boxGroupGap: Double? = nil
 
     
     // MARK: Bar, BarPolar and Histogram
@@ -212,7 +212,7 @@ public struct Layout: Encodable {
     /// on top of one another, with negative values below the axis, positive values above With *group*,
     /// the bars are plotted next to one another centered around the shared location. With *overlay*,
     /// the bars are plotted over one another, you might need to an *opacity* to see multiple bars.
-    public var barMode: BarMode?
+    public var barMode: BarMode? = nil
 
     /// Sets the normalization for bar traces on the graph.
     /// 
@@ -227,13 +227,13 @@ public struct Layout: Encodable {
     /// 
     /// With *fraction*, the value of each bar is divided by the sum of all values at that location
     /// coordinate. *percent* is the same but multiplied by 100 to show percentages.
-    public var barNormalization: BarNormalization?
+    public var barNormalization: BarNormalization? = nil
 
     /// Sets the gap (in plot fraction) between bars of adjacent location coordinates.
-    public var barGap: Double?
+    public var barGap: Double? = nil
 
     /// Sets the gap (in plot fraction) between bars of the same location coordinate.
-    public var barGroupGap: Double?
+    public var barGroupGap: Double? = nil
 
     
     // MARK: - Design, Look and Feel
@@ -241,19 +241,19 @@ public struct Layout: Encodable {
     /// Sets the global font.
     /// 
     /// Note that fonts used in traces and other layout components inherit from the global font.
-    public var font: Shared.Font?
+    public var font: Shared.Font? = nil
 
     public struct Title: Encodable {
         /// Sets the plot's title.
         /// 
         /// Note that before the existence of `title.text`, the title's contents used to be defined as the
         /// `title` attribute itself. This behavior has been deprecated.
-        public var text: String?
+        public var text: String? = nil
     
         /// Sets the title font.
         /// 
         /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Sets the container `x` refers to.
         /// 
@@ -267,7 +267,7 @@ public struct Layout: Encodable {
         /// 
         /// *container* spans the entire `width` of the plot. *paper* refers to the width of the plotting
         /// area only.
-        public var xReference: XAxisReference?
+        public var xReference: XAxisReference? = nil
     
         /// Sets the container `y` refers to.
         /// 
@@ -281,31 +281,31 @@ public struct Layout: Encodable {
         /// 
         /// *container* spans the entire `height` of the plot. *paper* refers to the height of the plotting
         /// area only.
-        public var yReference: YAxisReference?
+        public var yReference: YAxisReference? = nil
     
         /// Sets the x position with respect to `xref` in normalized coordinates from *0* (left) to *1*
         /// (right).
-        public var x: Double?
+        public var x: Double? = nil
     
         /// Sets the y position with respect to `yref` in normalized coordinates from *0* (bottom) to *1*
         /// (top).
         /// 
         /// *auto* places the baseline of the title onto the vertical center of the top margin.
-        public var y: Double?
+        public var y: Double? = nil
     
         /// Sets the title's horizontal alignment with respect to its x position.
         /// 
         /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
         /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
         /// `xanchor` value automatically based on the value of `x`.
-        public var xAnchor: Shared.XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor? = nil
     
         /// Sets the title's vertical alignment with respect to its y position.
         /// 
         /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
         /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
         /// calculates the `yanchor` value automatically based on the value of `y`.
-        public var yAnchor: Shared.YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor? = nil
     
         /// Sets the padding of the title.
         /// 
@@ -313,7 +313,7 @@ public struct Layout: Encodable {
         /// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
         /// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
         /// respective anchor value is *middle*/*center*.
-        public var padding: Shared.Padding?
+        public var padding: Shared.Padding? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -357,42 +357,42 @@ public struct Layout: Encodable {
         }
         
     }
-    public var title: Title?
+    public var title: Title? = nil
 
     /// Determines whether or not a layout width or height that has been left undefined by the user is
     /// initialized on each relayout.
     /// 
     /// Note that, regardless of this attribute, an undefined layout width or height is always
     /// initialized on the first call to plot.
-    public var autoSize: Bool?
+    public var autoSize: Bool? = nil
 
     /// Sets the plot's width (in px).
-    public var width: Double?
+    public var width: Double? = nil
 
     /// Sets the plot's height (in px).
-    public var height: Double?
+    public var height: Double? = nil
 
     public struct Margin: Encodable {
         /// Sets the left margin (in px).
-        public var l: Double?
+        public var l: Double? = nil
     
         /// Sets the right margin (in px).
-        public var r: Double?
+        public var r: Double? = nil
     
         /// Sets the top margin (in px).
-        public var t: Double?
+        public var t: Double? = nil
     
         /// Sets the bottom margin (in px).
-        public var b: Double?
+        public var b: Double? = nil
     
         /// Sets the amount of padding (in px) between the plotting area and the axis lines
-        public var padding: Double?
+        public var padding: Double? = nil
     
         /// Turns on/off margin expansion computations.
         /// 
         /// Legends, colorbars, updatemenus, sliders, axis rangeselector and rangeslider are allowed to push
         /// the margins by defaults.
-        public var autoExpand: Bool?
+        public var autoExpand: Bool? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -424,39 +424,39 @@ public struct Layout: Encodable {
         }
         
     }
-    public var margin: Margin?
+    public var margin: Margin? = nil
 
     /// Sets the color of paper where the graph is drawn.
-    public var paperBackgroundColor: Color?
+    public var paperBackgroundColor: Color? = nil
 
     /// Sets the color of plotting area in-between x and y axes.
-    public var plotBackgroundColor: Color?
+    public var plotBackgroundColor: Color? = nil
 
     /// Sets the decimal and thousand separators.
     /// 
     /// For example, *. * puts a '.' before decimals and a space between thousands. In English locales,
     /// dflt is *.,* but other locales may alter this default.
-    public var separators: String?
+    public var separators: String? = nil
 
     /// Determines whether or not a text link citing the data source is placed at the bottom-right cored
     /// of the figure.
     /// 
     /// Has only an effect only on graphs that have been generated via forked graphs from the plotly
     /// service (at https://plot.ly or on-premise).
-    public var hideSources: Bool?
+    public var hideSources: Bool? = nil
 
     /// Determines whether or not a legend is drawn.
     /// 
     /// Default is `true` if there is a trace to show and any of these: a) Two or more traces would by
     /// default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is
     /// explicitly given with `showlegend: true`.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
+
+    /// Sets the default trace colors.
+    public var colorWay: ColorList? = nil
 
     
     // MARK: - Templating and Events
-
-    /// Sets the default trace colors.
-    public var colorWay: ColorList?
 
     /// If provided, a changed value tells `Plotly.react` that one or more data arrays has changed.
     /// 
@@ -464,7 +464,7 @@ public struct Layout: Encodable {
     /// incremental change. If NOT provided, `Plotly.react` assumes that data arrays are being treated
     /// as immutable, thus any data array with a different identity from its predecessor contains new
     /// data.
-    public var dataRevision: Anything?
+    public var dataRevision: Anything? = nil
 
     /// Used to allow user interactions with the plot to persist after `Plotly.react` calls that are
     /// unaware of these interactions.
@@ -478,19 +478,16 @@ public struct Layout: Encodable {
     /// axes you might set `xaxis.uirevision=*time*` and `yaxis.uirevision=*cost*`. Then if only the y
     /// data is changed, you can update `yaxis.uirevision=*quantity*` and the y axis range will reset
     /// but the x axis range will retain any user-driven zoom.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Controls persistence of user-driven changes in `editable: true` configuration, other than trace
     /// names and axis titles.
     /// 
     /// Defaults to `layout.uirevision`.
-    public var editRevision: Anything?
+    public var editRevision: Anything? = nil
 
     /// Controls persistence of user-driven changes in selected points from all traces.
-    public var selectionRevision: Anything?
-
-    
-    // MARK: - User Interface
+    public var selectionRevision: Anything? = nil
 
     /// Default attributes to be applied to the plot.
     /// 
@@ -505,26 +502,29 @@ public struct Layout: Encodable {
     /// appended to the end of the array, so you can use this for a watermark annotation or a logo
     /// image, for example. To omit one of these items on the plot, make an item with matching
     /// `templateitemname` and `visible: false`.
-    public var template: Anything?
+    public var template: Anything? = nil
+
+    
+    // MARK: - User Interface
 
     public struct ModeBar: Encodable {
         /// Sets the orientation of the modebar.
-        public var orientation: Shared.Orientation?
+        public var orientation: Shared.Orientation? = nil
     
         /// Sets the background color of the modebar.
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// Sets the color of the icons in the modebar.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the color of the active or hovered on icons in the modebar.
-        public var activeColor: Color?
+        public var activeColor: Color? = nil
     
         /// Controls persistence of user-driven changes related to the modebar, including `hovermode`,
         /// `dragmode`, and `showspikes` at both the root level and inside subplots.
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -554,7 +554,7 @@ public struct Layout: Encodable {
         }
         
     }
-    public var modeBar: ModeBar?
+    public var modeBar: ModeBar? = nil
 
     /// Assigns extra meta information that can be used in various `text` attributes.
     /// 
@@ -563,17 +563,14 @@ public struct Layout: Encodable {
     /// can access `meta` fields using template strings: `%{meta[i]}` where `i` is the index of the
     /// `meta` item in question. `meta` can also be an object for example `{key: value}` which can be
     /// accessed %{meta[key]}.
-    public var meta: Data<Anything>?
-
-    
-    // MARK: - User Interaction
+    public var meta: Data<Anything>? = nil
 
     /// Sets transition options used during Plotly.react updates.
     public struct Transition: Encodable {
         /// The duration of the transition, in milliseconds.
         /// 
         /// If equal to zero, updates are synchronous.
-        public var duration: Double?
+        public var duration: Double? = nil
     
         /// The easing function used for the transition
         public enum Easing: String, Encodable {
@@ -615,7 +612,7 @@ public struct Layout: Encodable {
             case bounceInOut = "bounce-in-out"
         }
         /// The easing function used for the transition
-        public var easing: Easing?
+        public var easing: Easing? = nil
     
         /// Determines whether the figure's layout or traces smoothly transitions during updates that make
         /// both traces and layout change.
@@ -625,7 +622,7 @@ public struct Layout: Encodable {
         }
         /// Determines whether the figure's layout or traces smoothly transitions during updates that make
         /// both traces and layout change.
-        public var ordering: Ordering?
+        public var ordering: Ordering? = nil
     
         /// Creates `Transition` object with specified properties.
         /// 
@@ -642,7 +639,10 @@ public struct Layout: Encodable {
         
     }
     /// Sets transition options used during Plotly.react updates.
-    public var transition: Transition?
+    public var transition: Transition? = nil
+
+    
+    // MARK: - User Interaction
 
     /// Determines the mode of single click interactions.
     /// 
@@ -656,13 +656,14 @@ public struct Layout: Encodable {
     /// missing, `plotly_click` and `plotly_selected` events are not fired.
     public struct ClickMode: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var event: ClickMode { ClickMode(rawValue: 1 << 0) }
         public static var select: ClickMode { ClickMode(rawValue: 1 << 1) }
         public static var none: ClickMode { ClickMode(rawValue: 1 << 2) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["event"] }
@@ -682,7 +683,7 @@ public struct Layout: Encodable {
     /// confusing, consider explicitly setting `hovermode`: *closest* when using this feature. Selection
     /// events are sent accordingly as long as *event* flag is set as well. When the *event* flag is
     /// missing, `plotly_click` and `plotly_selected` events are not fired.
-    public var clickMode: ClickMode?
+    public var clickMode: ClickMode? = nil
 
     /// Determines the mode of drag interactions.
     /// 
@@ -696,7 +697,6 @@ public struct Layout: Encodable {
         case orbit
         case turntable
         case off
-        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -721,7 +721,7 @@ public struct Layout: Encodable {
     /// 
     /// *select* and *lasso* apply only to scatter traces with markers or text. *orbit* and *turntable*
     /// apply only to 3D scenes.
-    public var dragMode: DragMode?
+    public var dragMode: DragMode? = nil
 
     /// Determines the mode of hover interactions.
     /// 
@@ -734,7 +734,6 @@ public struct Layout: Encodable {
         case y
         case closest
         case off
-        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -755,7 +754,7 @@ public struct Layout: Encodable {
     /// lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation`
     /// value) for plots based on cartesian coordinates. For anything else the default value is
     /// *closest*.
-    public var hoverMode: HoverMode?
+    public var hoverMode: HoverMode? = nil
 
     /// Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff,
     /// 0 means no looking for data).
@@ -763,19 +762,16 @@ public struct Layout: Encodable {
     /// This is only a real distance for hovering on point-like objects, like scatter points. For
     /// area-like objects (bars, scatter fills, etc) hovering is on inside the area and off outside, but
     /// these objects will not supersede hover on point-like objects in case of conflict.
-    public var hoverDistance: Int?
+    public var hoverDistance: Int? = nil
 
     /// Sets the default distance (in pixels) to look for data to draw spikelines to (-1 means no
     /// cutoff, 0 means no looking for data).
     /// 
     /// As with hoverdistance, distance does not apply to area-like objects. In addition, some objects
     /// can be hovered on but will not generate spikelines, such as scatter fills.
-    public var spikeDistance: Int?
+    public var spikeDistance: Int? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
-
-    
-    // MARK: - Subplots and Axes
+    public var hoverLabel: Shared.HoverLabel? = nil
 
     /// When "dragmode" is set to "select", this limits the selection of the drag to horizontal,
     /// vertical or diagonal.
@@ -793,7 +789,10 @@ public struct Layout: Encodable {
     /// 
     /// "h" only allows horizontal selection, "v" only vertical, "d" only diagonal and "any" sets no
     /// limit.
-    public var selectDirection: SelectDirection?
+    public var selectDirection: SelectDirection? = nil
+
+    
+    // MARK: - Subplots and Axes
 
     public struct Grid: Encodable {
         /// The number of rows in the grid.
@@ -801,7 +800,7 @@ public struct Layout: Encodable {
         /// If you provide a 2D `subplots` array or a `yaxes` array, its length is used as the default. But
         /// it's also possible to have a different length, if you want to leave a row at the end for
         /// non-cartesian subplots.
-        public var rows: Int?
+        public var rows: Int? = nil
     
         /// Is the first row the top or the bottom? Note that columns are always enumerated from left to
         /// right.
@@ -811,14 +810,14 @@ public struct Layout: Encodable {
         }
         /// Is the first row the top or the bottom? Note that columns are always enumerated from left to
         /// right.
-        public var rowOrder: RowOrder?
+        public var rowOrder: RowOrder? = nil
     
         /// The number of columns in the grid.
         /// 
         /// If you provide a 2D `subplots` array, the length of its longest row is used as the default. If
         /// you give an `xaxes` array, its length is used as the default. But it's also possible to have a
         /// different length, if you want to leave a row at the end for non-cartesian subplots.
-        public var columns: Int?
+        public var columns: Int? = nil
     
         /// Used for freeform grids, where some axes may be shared across subplots but others are not.
         /// 
@@ -826,21 +825,21 @@ public struct Layout: Encodable {
         /// empty. You may reuse x axes within the same column, and y axes within the same row.
         /// Non-cartesian subplots and traces that support `domain` can place themselves in this grid
         /// separately using the `gridcell` attribute.
-        public var subPlots: InfoArray?
+        public var subplots: InfoArray? = nil
     
         /// Used with `yaxes` when the x and y axes are shared across columns and rows.
         /// 
         /// Each entry should be an x axis id like *x*, *x2*, etc., or ** to not put an x axis in that
         /// column. Entries other than ** must be unique. Ignored if `subplots` is present. If missing but
         /// `yaxes` is present, will generate consecutive IDs.
-        public var xAxes: InfoArray?
+        public var xAxes: InfoArray? = nil
     
         /// Used with `yaxes` when the x and y axes are shared across columns and rows.
         /// 
         /// Each entry should be an y axis id like *y*, *y2*, etc., or ** to not put a y axis in that row.
         /// Entries other than ** must be unique. Ignored if `subplots` is present. If missing but `xaxes`
         /// is present, will generate consecutive IDs.
-        public var yAxes: InfoArray?
+        public var yAxes: InfoArray? = nil
     
         /// If no `subplots`, `xaxes`, or `yaxes` are given but we do have `rows` and `columns`, we can
         /// generate defaults using consecutive axis IDs, in two ways: *coupled* gives one x axis per column
@@ -858,30 +857,30 @@ public struct Layout: Encodable {
         /// 
         /// *independent* uses a new xy pair for each cell, left-to-right across each row then iterating
         /// rows according to `roworder`.
-        public var pattern: Pattern?
+        public var pattern: Pattern? = nil
     
         /// Horizontal space between grid cells, expressed as a fraction of the total width available to one
         /// cell.
         /// 
         /// Defaults to 0.1 for coupled-axes grids and 0.2 for independent grids.
-        public var xGap: Double?
+        public var xGap: Double? = nil
     
         /// Vertical space between grid cells, expressed as a fraction of the total height available to one
         /// cell.
         /// 
         /// Defaults to 0.1 for coupled-axes grids and 0.3 for independent grids.
-        public var yGap: Double?
+        public var yGap: Double? = nil
     
         public struct Domain: Encodable {
             /// Sets the horizontal domain of this grid subplot (in plot fraction).
             /// 
             /// The first and last cells end exactly at the domain edges, with no grout around the edges.
-            public var x: InfoArray?
+            public var x: InfoArray? = nil
         
             /// Sets the vertical domain of this grid subplot (in plot fraction).
             /// 
             /// The first and last cells end exactly at the domain edges, with no grout around the edges.
-            public var y: InfoArray?
+            public var y: InfoArray? = nil
         
             /// Creates `Domain` object with specified properties.
             /// 
@@ -894,7 +893,7 @@ public struct Layout: Encodable {
             }
             
         }
-        public var domain: Domain?
+        public var domain: Domain? = nil
     
         /// Sets where the x axis labels and titles go.
         /// 
@@ -910,7 +909,7 @@ public struct Layout: Encodable {
         /// 
         /// *bottom* means the very bottom of the grid. *bottom plot* is the lowest plot that each x axis is
         /// used in. *top* and *top plot* are similar.
-        public var xSide: XSide?
+        public var xSide: XSide? = nil
     
         /// Sets where the y axis labels and titles go.
         /// 
@@ -926,14 +925,14 @@ public struct Layout: Encodable {
         /// 
         /// *left* means the very left edge of the grid. *left plot* is the leftmost plot that each y axis
         /// is used in. *right* and *right plot* are similar.
-        public var ySide: YSide?
+        public var ySide: YSide? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case rows
             case rowOrder = "roworder"
             case columns
-            case subPlots = "subplots"
+            case subplots
             case xAxes = "xaxes"
             case yAxes = "yaxes"
             case pattern
@@ -951,7 +950,7 @@ public struct Layout: Encodable {
         ///   - rowOrder: Is the first row the top or the bottom? Note that columns are always enumerated from
         ///   left to right.
         ///   - columns: The number of columns in the grid.
-        ///   - subPlots: Used for freeform grids, where some axes may be shared across subplots but others
+        ///   - subplots: Used for freeform grids, where some axes may be shared across subplots but others
         ///   are not.
         ///   - xAxes: Used with `yaxes` when the x and y axes are shared across columns and rows.
         ///   - yAxes: Used with `yaxes` when the x and y axes are shared across columns and rows.
@@ -965,14 +964,14 @@ public struct Layout: Encodable {
         ///   - domain:
         ///   - xSide: Sets where the x axis labels and titles go.
         ///   - ySide: Sets where the y axis labels and titles go.
-        public init(rows: Int? = nil, rowOrder: RowOrder? = nil, columns: Int? = nil, subPlots:
+        public init(rows: Int? = nil, rowOrder: RowOrder? = nil, columns: Int? = nil, subplots:
                 InfoArray? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, pattern: Pattern? = nil,
                 xGap: Double? = nil, yGap: Double? = nil, domain: Domain? = nil, xSide: XSide? = nil, ySide:
                 YSide? = nil) {
             self.rows = rows
             self.rowOrder = rowOrder
             self.columns = columns
-            self.subPlots = subPlots
+            self.subplots = subplots
             self.xAxes = xAxes
             self.yAxes = yAxes
             self.pattern = pattern
@@ -984,36 +983,38 @@ public struct Layout: Encodable {
         }
         
     }
-    public var grid: Grid?
+    public var grid: Grid? = nil
 
     /// Sets the default calendar system to use for interpreting and displaying dates throughout the
     /// plot.
-    public var calendar: Shared.Calendar?
+    public var calendar: Shared.Calendar? = nil
 
-    public struct XAxis: Encodable {
+    public class XAxis: Encodable {
+        public var uid: UInt = UInt.random(in: 2...UInt.max)
+    
         /// A single toggle to hide the axis while preserving interaction like dragging.
         /// 
         /// Default is true when a cheater plot is present on the axis, otherwise false
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
         /// colors.
         /// 
         /// Grid color is lightened by blending this with the plot background Individual pieces can override
         /// this.
-        public var color: Color?
+        public var color: Color? = nil
     
         public struct Title: Encodable {
             /// Sets the title of this axis.
             /// 
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
-            public var text: String?
+            public var text: String? = nil
         
             /// Sets this axis' title font.
             /// 
             /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
-            public var font: Shared.Font?
+            public var font: Shared.Font? = nil
         
             /// Sets the standoff distance (in px) between the axis labels and the title text The default value
             /// is a function of the axis tick labels, the title `font.size` and the axis `linewidth`.
@@ -1022,7 +1023,7 @@ public struct Layout: Encodable {
             /// standoff distance is always less than the set or default value. By setting `standoff` and
             /// turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff
             /// distance.
-            public var standoff: Double?
+            public var standoff: Double? = nil
         
             /// Creates `Title` object with specified properties.
             /// 
@@ -1039,7 +1040,7 @@ public struct Layout: Encodable {
             }
             
         }
-        public var title: Title?
+        public var title: Title? = nil
     
         /// Sets the axis type.
         /// 
@@ -1057,18 +1058,18 @@ public struct Layout: Encodable {
         /// 
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
-        public var type: `Type`?
+        public var type: `Type`? = nil
     
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-        public var autoRange: Shared.AutoRange?
+        public var autoRange: Shared.AutoRange? = nil
     
         /// If *normal*, the range is computed in relation to the extrema of the input data.
         /// 
         /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
         /// is non-negative, regardless of the input data. Applies only to linear axes.
-        public var rangeMode: Shared.RangeMode?
+        public var rangeMode: Shared.RangeMode? = nil
     
         /// Sets the range of this axis.
         /// 
@@ -1077,12 +1078,12 @@ public struct Layout: Encodable {
         /// strings, like date data, though Date objects and unix milliseconds will be accepted and
         /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
         /// where each category is assigned a serial number from zero in the order it appears.
-        public var range: InfoArray?
+        public var range: InfoArray? = nil
     
         /// Determines whether or not this axis is zoom-able.
         /// 
         /// If true, then zoom is disabled.
-        public var fixedRange: Bool?
+        public var fixedRange: Bool? = nil
     
         /// If set to another axis id (e.g.
         /// 
@@ -1097,8 +1098,8 @@ public struct Layout: Encodable {
         /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
         /// `scaleanchor` and a `matches` constraint is currently forbidden.
         public enum ScaleAnchor: String, Encodable {
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g.
         /// 
@@ -1112,7 +1113,7 @@ public struct Layout: Encodable {
         /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
         /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
         /// `scaleanchor` and a `matches` constraint is currently forbidden.
-        public var scaleAnchor: ScaleAnchor?
+        public var scaleAnchor: ScaleAnchor? = nil
     
         /// If this axis is linked to another by `scaleanchor`, this determines the pixel to unit scale
         /// ratio.
@@ -1120,7 +1121,7 @@ public struct Layout: Encodable {
         /// For example, if this value is 10, then every unit on this axis spans 10 times the number of
         /// pixels as a unit on the linked axis. Use this for example to create an elevation profile where
         /// the vertical scale is exaggerated a fixed amount with respect to the horizontal.
-        public var scaleRatio: Double?
+        public var scaleRatio: Double? = nil
     
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
         /// those of the other axis), determines how that happens: by increasing the *range* (default), or
@@ -1132,7 +1133,7 @@ public struct Layout: Encodable {
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
         /// those of the other axis), determines how that happens: by increasing the *range* (default), or
         /// by decreasing the *domain*.
-        public var constrain: Constrain?
+        public var constrain: Constrain? = nil
     
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
         /// those of the other axis), determines which direction we push the originally specified plot area.
@@ -1152,7 +1153,7 @@ public struct Layout: Encodable {
         /// 
         /// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
         /// and *bottom* for y axes.
-        public var constrainToward: ConstrainToward?
+        public var constrainToward: ConstrainToward? = nil
     
         /// If set to another axis id (e.g.
         /// 
@@ -1162,8 +1163,8 @@ public struct Layout: Encodable {
         /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
         /// same `type`.
         public enum Matches: String, Encodable {
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g.
         /// 
@@ -1172,7 +1173,7 @@ public struct Layout: Encodable {
         /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
         /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
         /// same `type`.
-        public var matches: Matches?
+        public var matches: Matches? = nil
     
         /// Sets the tick mode for this axis.
         /// 
@@ -1181,13 +1182,13 @@ public struct Layout: Encodable {
         /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
         /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
         /// provided).
-        public var tickMode: Shared.TickMode?
+        public var tickMode: Shared.TickMode? = nil
     
         /// Specifies the maximum number of ticks for the particular axis.
         /// 
         /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
         /// Has an effect only if `tickmode` is set to *auto*.
-        public var numTicks: Int?
+        public var numTicks: Int? = nil
     
         /// Sets the placement of the first tick on this axis.
         /// 
@@ -1196,7 +1197,7 @@ public struct Layout: Encodable {
         /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
         /// data. If the axis `type` is *category*, it should be a number, using the scale where each
         /// category is assigned a serial number from zero in the order it appears.
-        public var tick0: Anything?
+        public var tick0: Anything? = nil
     
         /// Sets the step in-between ticks on this axis.
         /// 
@@ -1213,23 +1214,23 @@ public struct Layout: Encodable {
         /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
         /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
         /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-        public var dTick: Anything?
+        public var dTick: Anything? = nil
     
         /// Sets the values at which ticks on this axis appear.
         /// 
         /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-        public var tickValues: [Double]?
+        public var tickValues: [Double]? = nil
     
         /// Sets the text displayed at the ticks position via `tickvals`.
         /// 
         /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-        public var tickText: [Double]?
+        public var tickText: [Double]? = nil
     
         /// Determines whether ticks are drawn or not.
         /// 
         /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
         /// (inside) the axis lines.
-        public var ticks: Shared.Ticks?
+        public var ticks: Shared.Ticks? = nil
     
         /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels.
         /// 
@@ -1243,7 +1244,7 @@ public struct Layout: Encodable {
         /// 
         /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
         /// ticks and grid lines are drawn half a category to the left/bottom of labels.
-        public var ticksOn: TicksOn?
+        public var ticksOn: TicksOn? = nil
     
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
         /// area.
@@ -1251,41 +1252,41 @@ public struct Layout: Encodable {
         /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
         /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
         /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
-        public var mirror: Shared.Mirror?
+        public var mirror: Shared.Mirror? = nil
     
         /// Sets the tick length (in px).
-        public var tickLength: Double?
+        public var tickLength: Double? = nil
     
         /// Sets the tick width (in px).
-        public var tickWidth: Double?
+        public var tickWidth: Double? = nil
     
         /// Sets the tick color.
-        public var tickColor: Color?
+        public var tickColor: Color? = nil
     
         /// Determines whether or not the tick labels are drawn.
-        public var showTickLabels: Bool?
+        public var showTickLabels: Bool? = nil
     
         /// Determines whether long tick labels automatically grow the figure margins.
-        public var autoMargin: Bool?
+        public var autoMargin: Bool? = nil
     
         /// Determines whether or not spikes (aka droplines) are drawn for this axis.
         /// 
         /// Note: This only takes affect when hovermode = closest
-        public var showSpikes: Bool?
+        public var showSpikes: Bool? = nil
     
         /// Sets the spike color.
         /// 
         /// If undefined, will use the series color
-        public var spikeColor: Color?
+        public var spikeColor: Color? = nil
     
         /// Sets the width (in px) of the zero line.
-        public var spikeThickness: Double?
+        public var spikeThickness: Double? = nil
     
         /// Sets the dash style of lines.
         /// 
         /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
         /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var spikeDash: String?
+        public var spikeDash: String? = nil
     
         /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data
         /// point to the axis the series is plotted on.
@@ -1294,13 +1295,14 @@ public struct Layout: Encodable {
         /// *marker*, then a marker dot is drawn on the axis the series is plotted on
         public struct SpikeMode: OptionSet, Encodable {
             public let rawValue: Int
-        
             public static var toAxis: SpikeMode { SpikeMode(rawValue: 1 << 0) }
             public static var across: SpikeMode { SpikeMode(rawValue: 1 << 1) }
             public static var marker: SpikeMode { SpikeMode(rawValue: 1 << 2) }
-        
-            public init(rawValue: Int) { self.rawValue = rawValue }
-        
+            
+            public init(rawValue: Int) {
+                self.rawValue = rawValue
+            }
+            
             public func encode(to encoder: Encoder) throws {
                 var options = [String]()
                 if (self.rawValue & 1 << 0) != 0 { options += ["toaxis"] }
@@ -1315,7 +1317,7 @@ public struct Layout: Encodable {
         /// 
         /// If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If
         /// *marker*, then a marker dot is drawn on the axis the series is plotted on
-        public var spikeMode: SpikeMode?
+        public var spikeMode: SpikeMode? = nil
     
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
         public enum SpikeSnap: String, Encodable {
@@ -1323,45 +1325,45 @@ public struct Layout: Encodable {
             case cursor
         }
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
-        public var spikeSnap: SpikeSnap?
+        public var spikeSnap: SpikeSnap? = nil
     
         /// Sets the tick font.
-        public var tickFont: Shared.Font?
+        public var tickFont: Shared.Font? = nil
     
         /// Sets the angle of the tick labels with respect to the horizontal.
         /// 
         /// For example, a `tickangle` of -90 draws the tick labels vertically.
-        public var tickAngle: Angle?
+        public var tickAngle: Angle? = nil
     
         /// Sets a tick label prefix.
-        public var tickPrefix: String?
+        public var tickPrefix: String? = nil
     
         /// If *all*, all tick labels are displayed with a prefix.
         /// 
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
-        public var showTickPrefix: Shared.ShowTickPrefix?
+        public var showTickPrefix: Shared.ShowTickPrefix? = nil
     
         /// Sets a tick label suffix.
-        public var tickSuffix: String?
+        public var tickSuffix: String? = nil
     
         /// Same as `showtickprefix` but for tick suffixes.
-        public var showTickSuffix: Shared.ShowTickSuffix?
+        public var showTickSuffix: Shared.ShowTickSuffix? = nil
     
         /// If *all*, all exponents are shown besides their significands.
         /// 
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
-        public var showExponent: Shared.ShowExponent?
+        public var showExponent: Shared.ShowExponent? = nil
     
         /// Determines a formatting rule for the tick exponents.
         /// 
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-        public var exponentFormat: Shared.ExponentFormat?
+        public var exponentFormat: Shared.ExponentFormat? = nil
     
         /// If "true", even 4-digit integers are separated
-        public var separateThousands: Bool?
+        public var separateThousands: Bool? = nil
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
         /// those in Python.
@@ -1371,9 +1373,9 @@ public struct Layout: Encodable {
         /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
         /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-        public var tickFormat: String?
+        public var tickFormat: String? = nil
     
-        public var tickFormatStops: [Shared.TickFormatStop]?
+        public var tickFormatStops: [Shared.TickFormatStop]? = nil
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
         /// those in Python.
@@ -1383,49 +1385,49 @@ public struct Layout: Encodable {
         /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
         /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-        public var hoverFormat: String?
+        public var hoverFormat: String? = nil
     
         /// Determines whether or not a line bounding this axis is drawn.
-        public var showLine: Bool?
+        public var showLine: Bool? = nil
     
         /// Sets the axis line color.
-        public var lineColor: Color?
+        public var lineColor: Color? = nil
     
         /// Sets the width (in px) of the axis line.
-        public var lineWidth: Double?
+        public var lineWidth: Double? = nil
     
         /// Determines whether or not grid lines are drawn.
         /// 
         /// If *true*, the grid lines are drawn at every tick mark.
-        public var showGrid: Bool?
+        public var showGrid: Bool? = nil
     
         /// Sets the color of the grid lines.
-        public var gridColor: Color?
+        public var gridColor: Color? = nil
     
         /// Sets the width (in px) of the grid lines.
-        public var gridWidth: Double?
+        public var gridWidth: Double? = nil
     
         /// Determines whether or not a line is drawn at along the 0 value of this axis.
         /// 
         /// If *true*, the zero line is drawn on top of the grid lines.
-        public var zeroLine: Bool?
+        public var zeroLine: Bool? = nil
     
         /// Sets the line color of the zero line.
-        public var zeroLineColor: Color?
+        public var zeroLineColor: Color? = nil
     
         /// Sets the width (in px) of the zero line.
-        public var zeroLineWidth: Double?
+        public var zeroLineWidth: Double? = nil
     
         /// Determines whether or not a dividers are drawn between the category levels of this axis.
         /// 
         /// Only has an effect on *multicategory* axes.
-        public var showDividers: Bool?
+        public var showDividers: Bool? = nil
     
         /// Sets the color of the dividers Only has an effect on *multicategory* axes.
-        public var dividerColor: Color?
+        public var dividerColor: Color? = nil
     
         /// Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
-        public var dividerWidth: Double?
+        public var dividerWidth: Double? = nil
     
         /// If set to an opposite-letter axis id (e.g.
         /// 
@@ -1433,14 +1435,14 @@ public struct Layout: Encodable {
         /// axis' position is determined by `position`.
         public enum Anchor: String, Encodable {
             case free
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to an opposite-letter axis id (e.g.
         /// 
         /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
         /// axis' position is determined by `position`.
-        public var anchor: Anchor?
+        public var anchor: Anchor? = nil
     
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the
         /// plotting area.
@@ -1452,7 +1454,7 @@ public struct Layout: Encodable {
         }
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the
         /// plotting area.
-        public var side: Side?
+        public var side: Side? = nil
     
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
         /// axis, with traces and axes visible for both axes.
@@ -1461,15 +1463,15 @@ public struct Layout: Encodable {
         /// overlapping domains only the highest-numbered axis will be visible.
         public enum Overlaying: String, Encodable {
             case free
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
         /// axis, with traces and axes visible for both axes.
         /// 
         /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
         /// overlapping domains only the highest-numbered axis will be visible.
-        public var overlaying: Overlaying?
+        public var overlaying: Overlaying? = nil
     
         /// Sets the layer on which this axis is displayed.
         /// 
@@ -1477,15 +1479,15 @@ public struct Layout: Encodable {
         /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
         /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
         /// nodes above this axis.
-        public var layer: Shared.Layer?
+        public var layer: Shared.Layer? = nil
     
         /// Sets the domain of this axis (in plot fraction).
-        public var domain: InfoArray?
+        public var domain: InfoArray? = nil
     
         /// Sets the position of this axis in the plotting space (in normalized coordinates).
         /// 
         /// Only has an effect if `anchor` is set to *free*.
-        public var position: Double?
+        public var position: Double? = nil
     
         /// Specifies the ordering logic for the case of categorical variables.
         /// 
@@ -1498,33 +1500,33 @@ public struct Layout: Encodable {
         /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
         /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
         /// or median of all the values.
-        public var categoryOrder: Shared.CategoryOrder?
+        public var categoryOrder: Shared.CategoryOrder? = nil
     
         /// Sets the order in which categories on this axis appear.
         /// 
         /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-        public var categoryArray: [Double]?
+        public var categoryArray: [Double]? = nil
     
         /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in
         /// `editable: true` configuration.
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         public struct RangeSlider: Encodable {
             /// Sets the background color of the range slider.
-            public var backgroundColor: Color?
+            public var backgroundColor: Color? = nil
         
             /// Sets the border color of the range slider.
-            public var borderColor: Color?
+            public var borderColor: Color? = nil
         
             /// Sets the border width of the range slider.
-            public var borderWidth: Int?
+            public var borderWidth: Int? = nil
         
             /// Determines whether or not the range slider range is computed in relation to the input data.
             /// 
             /// If `range` is provided, then `autorange` is set to *false*.
-            public var autoRange: Bool?
+            public var autoRange: Bool? = nil
         
             /// Sets the range of the range slider.
             /// 
@@ -1533,15 +1535,15 @@ public struct Layout: Encodable {
             /// date data, though Date objects and unix milliseconds will be accepted and converted to strings.
             /// If the axis `type` is *category*, it should be numbers, using the scale where each category is
             /// assigned a serial number from zero in the order it appears.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// The height of the range slider as a fraction of the total plot area height.
-            public var thickness: Double?
+            public var thickness: Double? = nil
         
             /// Determines whether or not the range slider will be visible.
             /// 
             /// If visible, perpendicular axes will be set to `fixedrange`
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             public struct YAxis: Encodable {
                 /// Determines whether or not the range of this axis in the rangeslider use the same value than in
@@ -1559,10 +1561,10 @@ public struct Layout: Encodable {
                 /// 
                 /// If *auto*, the autorange will be used. If *fixed*, the `range` is used. If *match*, the current
                 /// range of the corresponding y-axis on the main subplot is used.
-                public var rangeMode: RangeMode?
+                public var rangeMode: RangeMode? = nil
             
                 /// Sets the range of this axis for the rangeslider.
-                public var range: InfoArray?
+                public var range: InfoArray? = nil
             
                 /// Decoding and encoding keys compatible with Plotly schema.
                 enum CodingKeys: String, CodingKey {
@@ -1582,7 +1584,7 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var yAxis: YAxis?
+            public var yAxis: YAxis? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -1622,21 +1624,21 @@ public struct Layout: Encodable {
             }
             
         }
-        public var rangeSlider: RangeSlider?
+        public var rangeSlider: RangeSlider? = nil
     
         public struct RangeSelector: Encodable {
             /// Determines whether or not this range selector is visible.
             /// 
             /// Note that range selectors are only available for x axes of `type` set to or auto-typed to
             /// *date*.
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets the specifications for each buttons.
             /// 
             /// By default, a range selector comes with no buttons.
             public struct Button: Encodable {
                 /// Determines whether or not this button is visible.
-                public var visible: Bool?
+                public var visible: Bool? = nil
             
                 /// The unit of measurement that the `count` value will set the range by.
                 public enum Step: String, Encodable {
@@ -1649,7 +1651,7 @@ public struct Layout: Encodable {
                     case all
                 }
                 /// The unit of measurement that the `count` value will set the range by.
-                public var step: Step?
+                public var step: Step? = nil
             
                 /// Sets the range update mode.
                 /// 
@@ -1671,15 +1673,15 @@ public struct Layout: Encodable {
                 /// and `count` set to *1* the range update shifts the start of the range back to January 01 of the
                 /// current year. Month and year *todate* are currently available only for the built-in (Gregorian)
                 /// calendar.
-                public var stepMode: StepMode?
+                public var stepMode: StepMode? = nil
             
                 /// Sets the number of steps to take to update the range.
                 /// 
                 /// Use with `step` to specify the update interval.
-                public var count: Double?
+                public var count: Double? = nil
             
                 /// Sets the text label to appear on the button.
-                public var label: String?
+                public var label: String? = nil
             
                 /// When used in a template, named items are created in the output figure in addition to any items
                 /// the figure already has in this array.
@@ -1687,7 +1689,7 @@ public struct Layout: Encodable {
                 /// You can modify these items in the output figure by making your own item with `templateitemname`
                 /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
                 /// false` to hide it). Has no effect outside of a template.
-                public var name: String?
+                public var name: String? = nil
             
                 /// Used to refer to a named item in this array in the template.
                 /// 
@@ -1696,7 +1698,7 @@ public struct Layout: Encodable {
                 /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
                 /// template or no matching item, this item will be hidden unless you explicitly show it with
                 /// `visible: true`.
-                public var templateItemName: String?
+                public var templateItemName: String? = nil
             
                 /// Decoding and encoding keys compatible with Plotly schema.
                 enum CodingKeys: String, CodingKey {
@@ -1732,37 +1734,37 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var buttons: [Button]?
+            public var buttons: [Button]? = nil
         
             /// Sets the x position (in normalized coordinates) of the range selector.
-            public var x: Double?
+            public var x: Double? = nil
         
             /// Sets the range selector's horizontal position anchor.
             /// 
             /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
-            public var xAnchor: Shared.XAutoAnchor?
+            public var xAnchor: Shared.XAutoAnchor? = nil
         
             /// Sets the y position (in normalized coordinates) of the range selector.
-            public var y: Double?
+            public var y: Double? = nil
         
             /// Sets the range selector's vertical position anchor This anchor binds the `y` position to the
             /// *top*, *middle* or *bottom* of the range selector.
-            public var yAnchor: Shared.YAutoAnchor?
+            public var yAnchor: Shared.YAutoAnchor? = nil
         
             /// Sets the font of the range selector button text.
-            public var font: Shared.Font?
+            public var font: Shared.Font? = nil
         
             /// Sets the background color of the range selector buttons.
-            public var backgroundColor: Color?
+            public var backgroundColor: Color? = nil
         
             /// Sets the background color of the active range selector button.
-            public var activeColor: Color?
+            public var activeColor: Color? = nil
         
             /// Sets the color of the border enclosing the range selector.
-            public var borderColor: Color?
+            public var borderColor: Color? = nil
         
             /// Sets the width (in px) of the border enclosing the range selector.
-            public var borderWidth: Double?
+            public var borderWidth: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -1812,13 +1814,13 @@ public struct Layout: Encodable {
             }
             
         }
-        public var rangeSelector: RangeSelector?
+        public var rangeSelector: RangeSelector? = nil
     
         /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
         /// 
         /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
         /// or via the global `layout.calendar`
-        public var calendar: Shared.Calendar?
+        public var calendar: Shared.Calendar? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -1896,6 +1898,7 @@ public struct Layout: Encodable {
         /// Creates `XAxis` object with specified properties.
         /// 
         /// - Parameters:
+        ///   - uid:
         ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
         ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
         ///   and grid colors.
@@ -1982,28 +1985,30 @@ public struct Layout: Encodable {
         ///   - rangeSlider:
         ///   - rangeSelector:
         ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil,
-                autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil,
-                fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain:
-                Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode:
-                Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
-                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn:
-                TicksOn? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? =
-                nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes:
-                Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil,
-                spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil,
-                tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? =
-                nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent:
-                Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands:
-                Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil,
-                hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? =
-                nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? =
-                nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil,
-                dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? =
-                nil, overlaying: Overlaying? = nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil,
-                position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? =
-                nil, uiRevision: Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector?
-                = nil, calendar: Shared.Calendar? = nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), visible: Bool? = nil, color: Color? =
+                nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode:
+                Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor:
+                ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward:
+                ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks:
+                Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil,
+                tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror:
+                Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? =
+                nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor:
+                Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? =
+                nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil,
+                tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? =
+                nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil,
+                exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat:
+                String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil,
+                showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+                gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
+                = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
+                dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? =
+                nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil,
+                categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision:
+                Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar:
+                Shared.Calendar? = nil) {
+            self.uid = uid
             self.visible = visible
             self.color = color
             self.title = title
@@ -2076,32 +2081,34 @@ public struct Layout: Encodable {
         }
         
     }
-    public var xAxis: XAxis?
+    public var xAxis: [XAxis] = []
 
-    public struct YAxis: Encodable {
+    public class YAxis: Encodable {
+        public var uid: UInt = UInt.random(in: 2...UInt.max)
+    
         /// A single toggle to hide the axis while preserving interaction like dragging.
         /// 
         /// Default is true when a cheater plot is present on the axis, otherwise false
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
         /// colors.
         /// 
         /// Grid color is lightened by blending this with the plot background Individual pieces can override
         /// this.
-        public var color: Color?
+        public var color: Color? = nil
     
         public struct Title: Encodable {
             /// Sets the title of this axis.
             /// 
             /// Note that before the existence of `title.text`, the title's contents used to be defined as the
             /// `title` attribute itself. This behavior has been deprecated.
-            public var text: String?
+            public var text: String? = nil
         
             /// Sets this axis' title font.
             /// 
             /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
-            public var font: Shared.Font?
+            public var font: Shared.Font? = nil
         
             /// Sets the standoff distance (in px) between the axis labels and the title text The default value
             /// is a function of the axis tick labels, the title `font.size` and the axis `linewidth`.
@@ -2110,7 +2117,7 @@ public struct Layout: Encodable {
             /// standoff distance is always less than the set or default value. By setting `standoff` and
             /// turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff
             /// distance.
-            public var standoff: Double?
+            public var standoff: Double? = nil
         
             /// Creates `Title` object with specified properties.
             /// 
@@ -2127,7 +2134,7 @@ public struct Layout: Encodable {
             }
             
         }
-        public var title: Title?
+        public var title: Title? = nil
     
         /// Sets the axis type.
         /// 
@@ -2145,18 +2152,18 @@ public struct Layout: Encodable {
         /// 
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
-        public var type: `Type`?
+        public var type: `Type`? = nil
     
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-        public var autoRange: Shared.AutoRange?
+        public var autoRange: Shared.AutoRange? = nil
     
         /// If *normal*, the range is computed in relation to the extrema of the input data.
         /// 
         /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
         /// is non-negative, regardless of the input data. Applies only to linear axes.
-        public var rangeMode: Shared.RangeMode?
+        public var rangeMode: Shared.RangeMode? = nil
     
         /// Sets the range of this axis.
         /// 
@@ -2165,12 +2172,12 @@ public struct Layout: Encodable {
         /// strings, like date data, though Date objects and unix milliseconds will be accepted and
         /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
         /// where each category is assigned a serial number from zero in the order it appears.
-        public var range: InfoArray?
+        public var range: InfoArray? = nil
     
         /// Determines whether or not this axis is zoom-able.
         /// 
         /// If true, then zoom is disabled.
-        public var fixedRange: Bool?
+        public var fixedRange: Bool? = nil
     
         /// If set to another axis id (e.g.
         /// 
@@ -2185,8 +2192,8 @@ public struct Layout: Encodable {
         /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
         /// `scaleanchor` and a `matches` constraint is currently forbidden.
         public enum ScaleAnchor: String, Encodable {
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g.
         /// 
@@ -2200,7 +2207,7 @@ public struct Layout: Encodable {
         /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
         /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
         /// `scaleanchor` and a `matches` constraint is currently forbidden.
-        public var scaleAnchor: ScaleAnchor?
+        public var scaleAnchor: ScaleAnchor? = nil
     
         /// If this axis is linked to another by `scaleanchor`, this determines the pixel to unit scale
         /// ratio.
@@ -2208,7 +2215,7 @@ public struct Layout: Encodable {
         /// For example, if this value is 10, then every unit on this axis spans 10 times the number of
         /// pixels as a unit on the linked axis. Use this for example to create an elevation profile where
         /// the vertical scale is exaggerated a fixed amount with respect to the horizontal.
-        public var scaleRatio: Double?
+        public var scaleRatio: Double? = nil
     
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
         /// those of the other axis), determines how that happens: by increasing the *range* (default), or
@@ -2220,7 +2227,7 @@ public struct Layout: Encodable {
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
         /// those of the other axis), determines how that happens: by increasing the *range* (default), or
         /// by decreasing the *domain*.
-        public var constrain: Constrain?
+        public var constrain: Constrain? = nil
     
         /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
         /// those of the other axis), determines which direction we push the originally specified plot area.
@@ -2240,7 +2247,7 @@ public struct Layout: Encodable {
         /// 
         /// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
         /// and *bottom* for y axes.
-        public var constrainToward: ConstrainToward?
+        public var constrainToward: ConstrainToward? = nil
     
         /// If set to another axis id (e.g.
         /// 
@@ -2250,8 +2257,8 @@ public struct Layout: Encodable {
         /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
         /// same `type`.
         public enum Matches: String, Encodable {
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to another axis id (e.g.
         /// 
@@ -2260,7 +2267,7 @@ public struct Layout: Encodable {
         /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
         /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
         /// same `type`.
-        public var matches: Matches?
+        public var matches: Matches? = nil
     
         /// Sets the tick mode for this axis.
         /// 
@@ -2269,13 +2276,13 @@ public struct Layout: Encodable {
         /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
         /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
         /// provided).
-        public var tickMode: Shared.TickMode?
+        public var tickMode: Shared.TickMode? = nil
     
         /// Specifies the maximum number of ticks for the particular axis.
         /// 
         /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
         /// Has an effect only if `tickmode` is set to *auto*.
-        public var numTicks: Int?
+        public var numTicks: Int? = nil
     
         /// Sets the placement of the first tick on this axis.
         /// 
@@ -2284,7 +2291,7 @@ public struct Layout: Encodable {
         /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
         /// data. If the axis `type` is *category*, it should be a number, using the scale where each
         /// category is assigned a serial number from zero in the order it appears.
-        public var tick0: Anything?
+        public var tick0: Anything? = nil
     
         /// Sets the step in-between ticks on this axis.
         /// 
@@ -2301,23 +2308,23 @@ public struct Layout: Encodable {
         /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
         /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
         /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-        public var dTick: Anything?
+        public var dTick: Anything? = nil
     
         /// Sets the values at which ticks on this axis appear.
         /// 
         /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-        public var tickValues: [Double]?
+        public var tickValues: [Double]? = nil
     
         /// Sets the text displayed at the ticks position via `tickvals`.
         /// 
         /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-        public var tickText: [Double]?
+        public var tickText: [Double]? = nil
     
         /// Determines whether ticks are drawn or not.
         /// 
         /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
         /// (inside) the axis lines.
-        public var ticks: Shared.Ticks?
+        public var ticks: Shared.Ticks? = nil
     
         /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels.
         /// 
@@ -2331,7 +2338,7 @@ public struct Layout: Encodable {
         /// 
         /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
         /// ticks and grid lines are drawn half a category to the left/bottom of labels.
-        public var ticksOn: TicksOn?
+        public var ticksOn: TicksOn? = nil
     
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
         /// area.
@@ -2339,41 +2346,41 @@ public struct Layout: Encodable {
         /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
         /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
         /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
-        public var mirror: Shared.Mirror?
+        public var mirror: Shared.Mirror? = nil
     
         /// Sets the tick length (in px).
-        public var tickLength: Double?
+        public var tickLength: Double? = nil
     
         /// Sets the tick width (in px).
-        public var tickWidth: Double?
+        public var tickWidth: Double? = nil
     
         /// Sets the tick color.
-        public var tickColor: Color?
+        public var tickColor: Color? = nil
     
         /// Determines whether or not the tick labels are drawn.
-        public var showTickLabels: Bool?
+        public var showTickLabels: Bool? = nil
     
         /// Determines whether long tick labels automatically grow the figure margins.
-        public var autoMargin: Bool?
+        public var autoMargin: Bool? = nil
     
         /// Determines whether or not spikes (aka droplines) are drawn for this axis.
         /// 
         /// Note: This only takes affect when hovermode = closest
-        public var showSpikes: Bool?
+        public var showSpikes: Bool? = nil
     
         /// Sets the spike color.
         /// 
         /// If undefined, will use the series color
-        public var spikeColor: Color?
+        public var spikeColor: Color? = nil
     
         /// Sets the width (in px) of the zero line.
-        public var spikeThickness: Double?
+        public var spikeThickness: Double? = nil
     
         /// Sets the dash style of lines.
         /// 
         /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
         /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var spikeDash: String?
+        public var spikeDash: String? = nil
     
         /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data
         /// point to the axis the series is plotted on.
@@ -2382,13 +2389,14 @@ public struct Layout: Encodable {
         /// *marker*, then a marker dot is drawn on the axis the series is plotted on
         public struct SpikeMode: OptionSet, Encodable {
             public let rawValue: Int
-        
             public static var toAxis: SpikeMode { SpikeMode(rawValue: 1 << 0) }
             public static var across: SpikeMode { SpikeMode(rawValue: 1 << 1) }
             public static var marker: SpikeMode { SpikeMode(rawValue: 1 << 2) }
-        
-            public init(rawValue: Int) { self.rawValue = rawValue }
-        
+            
+            public init(rawValue: Int) {
+                self.rawValue = rawValue
+            }
+            
             public func encode(to encoder: Encoder) throws {
                 var options = [String]()
                 if (self.rawValue & 1 << 0) != 0 { options += ["toaxis"] }
@@ -2403,7 +2411,7 @@ public struct Layout: Encodable {
         /// 
         /// If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If
         /// *marker*, then a marker dot is drawn on the axis the series is plotted on
-        public var spikeMode: SpikeMode?
+        public var spikeMode: SpikeMode? = nil
     
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
         public enum SpikeSnap: String, Encodable {
@@ -2411,45 +2419,45 @@ public struct Layout: Encodable {
             case cursor
         }
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
-        public var spikeSnap: SpikeSnap?
+        public var spikeSnap: SpikeSnap? = nil
     
         /// Sets the tick font.
-        public var tickFont: Shared.Font?
+        public var tickFont: Shared.Font? = nil
     
         /// Sets the angle of the tick labels with respect to the horizontal.
         /// 
         /// For example, a `tickangle` of -90 draws the tick labels vertically.
-        public var tickAngle: Angle?
+        public var tickAngle: Angle? = nil
     
         /// Sets a tick label prefix.
-        public var tickPrefix: String?
+        public var tickPrefix: String? = nil
     
         /// If *all*, all tick labels are displayed with a prefix.
         /// 
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
-        public var showTickPrefix: Shared.ShowTickPrefix?
+        public var showTickPrefix: Shared.ShowTickPrefix? = nil
     
         /// Sets a tick label suffix.
-        public var tickSuffix: String?
+        public var tickSuffix: String? = nil
     
         /// Same as `showtickprefix` but for tick suffixes.
-        public var showTickSuffix: Shared.ShowTickSuffix?
+        public var showTickSuffix: Shared.ShowTickSuffix? = nil
     
         /// If *all*, all exponents are shown besides their significands.
         /// 
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
-        public var showExponent: Shared.ShowExponent?
+        public var showExponent: Shared.ShowExponent? = nil
     
         /// Determines a formatting rule for the tick exponents.
         /// 
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-        public var exponentFormat: Shared.ExponentFormat?
+        public var exponentFormat: Shared.ExponentFormat? = nil
     
         /// If "true", even 4-digit integers are separated
-        public var separateThousands: Bool?
+        public var separateThousands: Bool? = nil
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
         /// those in Python.
@@ -2459,9 +2467,9 @@ public struct Layout: Encodable {
         /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
         /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-        public var tickFormat: String?
+        public var tickFormat: String? = nil
     
-        public var tickFormatStops: [Shared.TickFormatStop]?
+        public var tickFormatStops: [Shared.TickFormatStop]? = nil
     
         /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
         /// those in Python.
@@ -2471,49 +2479,49 @@ public struct Layout: Encodable {
         /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
         /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-        public var hoverFormat: String?
+        public var hoverFormat: String? = nil
     
         /// Determines whether or not a line bounding this axis is drawn.
-        public var showLine: Bool?
+        public var showLine: Bool? = nil
     
         /// Sets the axis line color.
-        public var lineColor: Color?
+        public var lineColor: Color? = nil
     
         /// Sets the width (in px) of the axis line.
-        public var lineWidth: Double?
+        public var lineWidth: Double? = nil
     
         /// Determines whether or not grid lines are drawn.
         /// 
         /// If *true*, the grid lines are drawn at every tick mark.
-        public var showGrid: Bool?
+        public var showGrid: Bool? = nil
     
         /// Sets the color of the grid lines.
-        public var gridColor: Color?
+        public var gridColor: Color? = nil
     
         /// Sets the width (in px) of the grid lines.
-        public var gridWidth: Double?
+        public var gridWidth: Double? = nil
     
         /// Determines whether or not a line is drawn at along the 0 value of this axis.
         /// 
         /// If *true*, the zero line is drawn on top of the grid lines.
-        public var zeroLine: Bool?
+        public var zeroLine: Bool? = nil
     
         /// Sets the line color of the zero line.
-        public var zeroLineColor: Color?
+        public var zeroLineColor: Color? = nil
     
         /// Sets the width (in px) of the zero line.
-        public var zeroLineWidth: Double?
+        public var zeroLineWidth: Double? = nil
     
         /// Determines whether or not a dividers are drawn between the category levels of this axis.
         /// 
         /// Only has an effect on *multicategory* axes.
-        public var showDividers: Bool?
+        public var showDividers: Bool? = nil
     
         /// Sets the color of the dividers Only has an effect on *multicategory* axes.
-        public var dividerColor: Color?
+        public var dividerColor: Color? = nil
     
         /// Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
-        public var dividerWidth: Double?
+        public var dividerWidth: Double? = nil
     
         /// If set to an opposite-letter axis id (e.g.
         /// 
@@ -2521,14 +2529,14 @@ public struct Layout: Encodable {
         /// axis' position is determined by `position`.
         public enum Anchor: String, Encodable {
             case free
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set to an opposite-letter axis id (e.g.
         /// 
         /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
         /// axis' position is determined by `position`.
-        public var anchor: Anchor?
+        public var anchor: Anchor? = nil
     
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the
         /// plotting area.
@@ -2540,7 +2548,7 @@ public struct Layout: Encodable {
         }
         /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the
         /// plotting area.
-        public var side: Side?
+        public var side: Side? = nil
     
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
         /// axis, with traces and axes visible for both axes.
@@ -2549,15 +2557,15 @@ public struct Layout: Encodable {
         /// overlapping domains only the highest-numbered axis will be visible.
         public enum Overlaying: String, Encodable {
             case free
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
         /// axis, with traces and axes visible for both axes.
         /// 
         /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
         /// overlapping domains only the highest-numbered axis will be visible.
-        public var overlaying: Overlaying?
+        public var overlaying: Overlaying? = nil
     
         /// Sets the layer on which this axis is displayed.
         /// 
@@ -2565,15 +2573,15 @@ public struct Layout: Encodable {
         /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
         /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
         /// nodes above this axis.
-        public var layer: Shared.Layer?
+        public var layer: Shared.Layer? = nil
     
         /// Sets the domain of this axis (in plot fraction).
-        public var domain: InfoArray?
+        public var domain: InfoArray? = nil
     
         /// Sets the position of this axis in the plotting space (in normalized coordinates).
         /// 
         /// Only has an effect if `anchor` is set to *free*.
-        public var position: Double?
+        public var position: Double? = nil
     
         /// Specifies the ordering logic for the case of categorical variables.
         /// 
@@ -2586,24 +2594,24 @@ public struct Layout: Encodable {
         /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
         /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
         /// or median of all the values.
-        public var categoryOrder: Shared.CategoryOrder?
+        public var categoryOrder: Shared.CategoryOrder? = nil
     
         /// Sets the order in which categories on this axis appear.
         /// 
         /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-        public var categoryArray: [Double]?
+        public var categoryArray: [Double]? = nil
     
         /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in
         /// `editable: true` configuration.
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
         /// 
         /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
         /// or via the global `layout.calendar`
-        public var calendar: Shared.Calendar?
+        public var calendar: Shared.Calendar? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2679,6 +2687,7 @@ public struct Layout: Encodable {
         /// Creates `YAxis` object with specified properties.
         /// 
         /// - Parameters:
+        ///   - uid:
         ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
         ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
         ///   and grid colors.
@@ -2763,27 +2772,29 @@ public struct Layout: Encodable {
         ///   - uiRevision: Controls persistence of user-driven changes in axis `range`, `autorange`, and
         ///   `title` if in `editable: true` configuration.
         ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
-        public init(visible: Bool? = nil, color: Color? = nil, title: Title? = nil, type: `Type`? = nil,
-                autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? = nil,
-                fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain:
-                Constrain? = nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, tickMode:
-                Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
-                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn:
-                TicksOn? = nil, mirror: Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? =
-                nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes:
-                Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil,
-                spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil,
-                tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? =
-                nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent:
-                Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands:
-                Bool? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil,
-                hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? =
-                nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? =
-                nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil,
-                dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? =
-                nil, overlaying: Overlaying? = nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil,
-                position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? =
-                nil, uiRevision: Anything? = nil, calendar: Shared.Calendar? = nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), visible: Bool? = nil, color: Color? =
+                nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode:
+                Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor:
+                ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward:
+                ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks:
+                Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil,
+                tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror:
+                Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? =
+                nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor:
+                Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? =
+                nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil,
+                tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? =
+                nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil,
+                exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat:
+                String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil,
+                showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+                gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
+                = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
+                dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? =
+                nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil,
+                categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision:
+                Anything? = nil, calendar: Shared.Calendar? = nil) {
+            self.uid = uid
             self.visible = visible
             self.color = color
             self.title = title
@@ -2854,26 +2865,28 @@ public struct Layout: Encodable {
         }
         
     }
-    public var yAxis: YAxis?
+    public var yAxis: [YAxis] = []
 
-    public struct Ternary: Encodable {
-        public var domain: Shared.Domain?
+    public class Ternary: Encodable {
+        public var uid: UInt = UInt.random(in: 2...UInt.max)
+    
+        public var domain: Shared.Domain? = nil
     
         /// Set the background color of the subplot
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// The number each triplet should sum to, and the maximum range of each axis
-        public var sum: Double?
+        public var sum: Double? = nil
     
         public struct AAxis: Encodable {
-            public var title: Shared.Title?
+            public var title: Shared.Title? = nil
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
             /// colors.
             /// 
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
             /// this.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -2882,13 +2895,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -2897,7 +2910,7 @@ public struct Layout: Encodable {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -2914,73 +2927,73 @@ public struct Layout: Encodable {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Sets the tick font.
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -2990,9 +3003,9 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -3002,27 +3015,27 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var hoverFormat: String?
+            public var hoverFormat: String? = nil
         
             /// Determines whether or not a line bounding this axis is drawn.
-            public var showLine: Bool?
+            public var showLine: Bool? = nil
         
             /// Sets the axis line color.
-            public var lineColor: Color?
+            public var lineColor: Color? = nil
         
             /// Sets the width (in px) of the axis line.
-            public var lineWidth: Double?
+            public var lineWidth: Double? = nil
         
             /// Determines whether or not grid lines are drawn.
             /// 
             /// If *true*, the grid lines are drawn at every tick mark.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the color of the grid lines.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the width (in px) of the grid lines.
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Sets the layer on which this axis is displayed.
             /// 
@@ -3030,19 +3043,19 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer?
+            public var layer: Shared.Layer? = nil
         
             /// The minimum value visible on this axis.
             /// 
             /// The maximum is determined by the sum minus the minimum values of the other two axes. The full
             /// view corresponds to all the minima set to zero.
-            public var min: Double?
+            public var min: Double? = nil
         
             /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true`
             /// configuration.
             /// 
             /// Defaults to `ternary<N>.uirevision`.
-            public var uiRevision: Anything?
+            public var uiRevision: Anything? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -3171,17 +3184,17 @@ public struct Layout: Encodable {
             }
             
         }
-        public var aAxis: AAxis?
+        public var aAxis: AAxis? = nil
     
         public struct BAxis: Encodable {
-            public var title: Shared.Title?
+            public var title: Shared.Title? = nil
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
             /// colors.
             /// 
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
             /// this.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -3190,13 +3203,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -3205,7 +3218,7 @@ public struct Layout: Encodable {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -3222,73 +3235,73 @@ public struct Layout: Encodable {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Sets the tick font.
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -3298,9 +3311,9 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -3310,27 +3323,27 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var hoverFormat: String?
+            public var hoverFormat: String? = nil
         
             /// Determines whether or not a line bounding this axis is drawn.
-            public var showLine: Bool?
+            public var showLine: Bool? = nil
         
             /// Sets the axis line color.
-            public var lineColor: Color?
+            public var lineColor: Color? = nil
         
             /// Sets the width (in px) of the axis line.
-            public var lineWidth: Double?
+            public var lineWidth: Double? = nil
         
             /// Determines whether or not grid lines are drawn.
             /// 
             /// If *true*, the grid lines are drawn at every tick mark.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the color of the grid lines.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the width (in px) of the grid lines.
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Sets the layer on which this axis is displayed.
             /// 
@@ -3338,19 +3351,19 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer?
+            public var layer: Shared.Layer? = nil
         
             /// The minimum value visible on this axis.
             /// 
             /// The maximum is determined by the sum minus the minimum values of the other two axes. The full
             /// view corresponds to all the minima set to zero.
-            public var min: Double?
+            public var min: Double? = nil
         
             /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true`
             /// configuration.
             /// 
             /// Defaults to `ternary<N>.uirevision`.
-            public var uiRevision: Anything?
+            public var uiRevision: Anything? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -3479,17 +3492,17 @@ public struct Layout: Encodable {
             }
             
         }
-        public var bAxis: BAxis?
+        public var bAxis: BAxis? = nil
     
         public struct CAxis: Encodable {
-            public var title: Shared.Title?
+            public var title: Shared.Title? = nil
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
             /// colors.
             /// 
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
             /// this.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -3498,13 +3511,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -3513,7 +3526,7 @@ public struct Layout: Encodable {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -3530,73 +3543,73 @@ public struct Layout: Encodable {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Sets the tick font.
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -3606,9 +3619,9 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -3618,27 +3631,27 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var hoverFormat: String?
+            public var hoverFormat: String? = nil
         
             /// Determines whether or not a line bounding this axis is drawn.
-            public var showLine: Bool?
+            public var showLine: Bool? = nil
         
             /// Sets the axis line color.
-            public var lineColor: Color?
+            public var lineColor: Color? = nil
         
             /// Sets the width (in px) of the axis line.
-            public var lineWidth: Double?
+            public var lineWidth: Double? = nil
         
             /// Determines whether or not grid lines are drawn.
             /// 
             /// If *true*, the grid lines are drawn at every tick mark.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the color of the grid lines.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the width (in px) of the grid lines.
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Sets the layer on which this axis is displayed.
             /// 
@@ -3646,19 +3659,19 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer?
+            public var layer: Shared.Layer? = nil
         
             /// The minimum value visible on this axis.
             /// 
             /// The maximum is determined by the sum minus the minimum values of the other two axes. The full
             /// view corresponds to all the minima set to zero.
-            public var min: Double?
+            public var min: Double? = nil
         
             /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true`
             /// configuration.
             /// 
             /// Defaults to `ternary<N>.uirevision`.
-            public var uiRevision: Anything?
+            public var uiRevision: Anything? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -3787,13 +3800,13 @@ public struct Layout: Encodable {
             }
             
         }
-        public var cAxis: CAxis?
+        public var cAxis: CAxis? = nil
     
         /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the
         /// individual axes.
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -3809,6 +3822,7 @@ public struct Layout: Encodable {
         /// Creates `Ternary` object with specified properties.
         /// 
         /// - Parameters:
+        ///   - uid:
         ///   - domain:
         ///   - backgroundColor: Set the background color of the subplot
         ///   - sum: The number each triplet should sum to, and the maximum range of each axis
@@ -3817,8 +3831,10 @@ public struct Layout: Encodable {
         ///   - cAxis:
         ///   - uiRevision: Controls persistence of user-driven changes in axis `min` and `title`, if not
         ///   overridden in the individual axes.
-        public init(domain: Shared.Domain? = nil, backgroundColor: Color? = nil, sum: Double? = nil,
-                aAxis: AAxis? = nil, bAxis: BAxis? = nil, cAxis: CAxis? = nil, uiRevision: Anything? = nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Shared.Domain? = nil,
+                backgroundColor: Color? = nil, sum: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil,
+                cAxis: CAxis? = nil, uiRevision: Anything? = nil) {
+            self.uid = uid
             self.domain = domain
             self.backgroundColor = backgroundColor
             self.sum = sum
@@ -3829,10 +3845,12 @@ public struct Layout: Encodable {
         }
         
     }
-    public var ternary: Ternary?
+    public var ternary: [Ternary] = []
 
-    public struct Scene: Encodable {
-        public var backgroundColor: Color?
+    public class Scene: Encodable {
+        public var uid: UInt = UInt.random(in: 2...UInt.max)
+    
+        public var backgroundColor: Color? = nil
     
         public struct Camera: Encodable {
             /// Sets the (x,y,z) components of the 'up' camera vector.
@@ -3840,11 +3858,11 @@ public struct Layout: Encodable {
             /// This vector determines the up direction of this scene with respect to the page. The default is
             /// *{x: 0, y: 0, z: 1}* which means that the z axis points up.
             public struct Up: Encodable {
-                public var x: Double?
+                public var x: Double? = nil
             
-                public var y: Double?
+                public var y: Double? = nil
             
-                public var z: Double?
+                public var z: Double? = nil
             
                 /// Creates `Up` object with specified properties.
                 public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
@@ -3858,18 +3876,18 @@ public struct Layout: Encodable {
             /// 
             /// This vector determines the up direction of this scene with respect to the page. The default is
             /// *{x: 0, y: 0, z: 1}* which means that the z axis points up.
-            public var up: Up?
+            public var up: Up? = nil
         
             /// Sets the (x,y,z) components of the 'center' camera vector This vector determines the translation
             /// (x,y,z) space about the center of this scene.
             /// 
             /// By default, there is no such translation.
             public struct Center: Encodable {
-                public var x: Double?
+                public var x: Double? = nil
             
-                public var y: Double?
+                public var y: Double? = nil
             
-                public var z: Double?
+                public var z: Double? = nil
             
                 /// Creates `Center` object with specified properties.
                 public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
@@ -3883,17 +3901,17 @@ public struct Layout: Encodable {
             /// (x,y,z) space about the center of this scene.
             /// 
             /// By default, there is no such translation.
-            public var center: Center?
+            public var center: Center? = nil
         
             /// Sets the (x,y,z) components of the 'eye' camera vector.
             /// 
             /// This vector determines the view point about the origin of this scene.
             public struct Eye: Encodable {
-                public var x: Double?
+                public var x: Double? = nil
             
-                public var y: Double?
+                public var y: Double? = nil
             
-                public var z: Double?
+                public var z: Double? = nil
             
                 /// Creates `Eye` object with specified properties.
                 public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
@@ -3906,7 +3924,7 @@ public struct Layout: Encodable {
             /// Sets the (x,y,z) components of the 'eye' camera vector.
             /// 
             /// This vector determines the view point about the origin of this scene.
-            public var eye: Eye?
+            public var eye: Eye? = nil
         
             public struct Projection: Encodable {
                 /// Sets the projection type.
@@ -3921,7 +3939,7 @@ public struct Layout: Encodable {
                 /// 
                 /// The projection type could be either *perspective* or *orthographic*. The default is
                 /// *perspective*.
-                public var type: `Type`?
+                public var type: `Type`? = nil
             
                 /// Creates `Projection` object with specified properties.
                 /// 
@@ -3932,7 +3950,7 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var projection: Projection?
+            public var projection: Projection? = nil
         
             /// Creates `Camera` object with specified properties.
             /// 
@@ -3951,9 +3969,9 @@ public struct Layout: Encodable {
             }
             
         }
-        public var camera: Camera?
+        public var camera: Camera? = nil
     
-        public var domain: Shared.Domain?
+        public var domain: Shared.Domain? = nil
     
         /// If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges.
         /// 
@@ -3975,15 +3993,15 @@ public struct Layout: Encodable {
         /// *aspectratio* is provided). If *auto*, this scene's axes are drawn using the results of *data*
         /// except when one axis is more than four times the size of the two others, where in that case the
         /// results of *cube* are used.
-        public var aspectMode: AspectMode?
+        public var aspectMode: AspectMode? = nil
     
         /// Sets this scene's axis aspectratio.
         public struct AspectRatio: Encodable {
-            public var x: Double?
+            public var x: Double? = nil
         
-            public var y: Double?
+            public var y: Double? = nil
         
-            public var z: Double?
+            public var z: Double? = nil
         
             /// Creates `AspectRatio` object with specified properties.
             public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
@@ -3994,42 +4012,42 @@ public struct Layout: Encodable {
             
         }
         /// Sets this scene's axis aspectratio.
-        public var aspectRatio: AspectRatio?
+        public var aspectRatio: AspectRatio? = nil
     
         public struct XAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging.
             /// 
             /// Default is true when a cheater plot is present on the axis, otherwise false
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
-            public var showSpikes: Bool?
+            public var showSpikes: Bool? = nil
         
             /// Sets whether or not spikes extending from the projection data points to this axis' wall
             /// boundaries are shown on hover.
-            public var spikeSides: Bool?
+            public var spikeSides: Bool? = nil
         
             /// Sets the thickness (in px) of the spikes.
-            public var spikeThickness: Double?
+            public var spikeThickness: Double? = nil
         
             /// Sets the color of the spikes.
-            public var spikeColor: Color?
+            public var spikeColor: Color? = nil
         
             /// Sets whether or not this axis' wall has a background color.
-            public var showBackground: Bool?
+            public var showBackground: Bool? = nil
         
             /// Sets the background color of this axis' wall.
-            public var backgroundColor: Color?
+            public var backgroundColor: Color? = nil
         
             /// Sets whether or not this axis is labeled
-            public var showAxesLabels: Bool?
+            public var showAxesLabels: Bool? = nil
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
             /// colors.
             /// 
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
             /// this.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Specifies the ordering logic for the case of categorical variables.
             /// 
@@ -4042,14 +4060,14 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            public var categoryOrder: Shared.CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder? = nil
         
             /// Sets the order in which categories on this axis appear.
             /// 
             /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-            public var categoryArray: [Double]?
+            public var categoryArray: [Double]? = nil
         
-            public var title: Shared.Title?
+            public var title: Shared.Title? = nil
         
             /// Sets the axis type.
             /// 
@@ -4066,18 +4084,18 @@ public struct Layout: Encodable {
             /// 
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
-            public var type: `Type`?
+            public var type: `Type`? = nil
         
             /// Determines whether or not the range of this axis is computed in relation to the input data.
             /// 
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-            public var autoRange: Shared.AutoRange?
+            public var autoRange: Shared.AutoRange? = nil
         
             /// If *normal*, the range is computed in relation to the extrema of the input data.
             /// 
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
-            public var rangeMode: Shared.RangeMode?
+            public var rangeMode: Shared.RangeMode? = nil
         
             /// Sets the range of this axis.
             /// 
@@ -4086,7 +4104,7 @@ public struct Layout: Encodable {
             /// strings, like date data, though Date objects and unix milliseconds will be accepted and
             /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
             /// where each category is assigned a serial number from zero in the order it appears.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -4095,13 +4113,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -4110,7 +4128,7 @@ public struct Layout: Encodable {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -4127,23 +4145,23 @@ public struct Layout: Encodable {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
             /// area.
@@ -4151,57 +4169,57 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
-            public var mirror: Shared.Mirror?
+            public var mirror: Shared.Mirror? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// Sets the tick font.
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -4211,9 +4229,9 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -4223,44 +4241,44 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var hoverFormat: String?
+            public var hoverFormat: String? = nil
         
             /// Determines whether or not a line bounding this axis is drawn.
-            public var showLine: Bool?
+            public var showLine: Bool? = nil
         
             /// Sets the axis line color.
-            public var lineColor: Color?
+            public var lineColor: Color? = nil
         
             /// Sets the width (in px) of the axis line.
-            public var lineWidth: Double?
+            public var lineWidth: Double? = nil
         
             /// Determines whether or not grid lines are drawn.
             /// 
             /// If *true*, the grid lines are drawn at every tick mark.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the color of the grid lines.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the width (in px) of the grid lines.
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Determines whether or not a line is drawn at along the 0 value of this axis.
             /// 
             /// If *true*, the zero line is drawn on top of the grid lines.
-            public var zeroLine: Bool?
+            public var zeroLine: Bool? = nil
         
             /// Sets the line color of the zero line.
-            public var zeroLineColor: Color?
+            public var zeroLineColor: Color? = nil
         
             /// Sets the width (in px) of the zero line.
-            public var zeroLineWidth: Double?
+            public var zeroLineWidth: Double? = nil
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
             /// 
             /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
             /// or via the global `layout.calendar`
-            public var calendar: Shared.Calendar?
+            public var calendar: Shared.Calendar? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -4446,42 +4464,42 @@ public struct Layout: Encodable {
             }
             
         }
-        public var xAxis: XAxis?
+        public var xAxis: XAxis? = nil
     
         public struct YAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging.
             /// 
             /// Default is true when a cheater plot is present on the axis, otherwise false
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
-            public var showSpikes: Bool?
+            public var showSpikes: Bool? = nil
         
             /// Sets whether or not spikes extending from the projection data points to this axis' wall
             /// boundaries are shown on hover.
-            public var spikeSides: Bool?
+            public var spikeSides: Bool? = nil
         
             /// Sets the thickness (in px) of the spikes.
-            public var spikeThickness: Double?
+            public var spikeThickness: Double? = nil
         
             /// Sets the color of the spikes.
-            public var spikeColor: Color?
+            public var spikeColor: Color? = nil
         
             /// Sets whether or not this axis' wall has a background color.
-            public var showBackground: Bool?
+            public var showBackground: Bool? = nil
         
             /// Sets the background color of this axis' wall.
-            public var backgroundColor: Color?
+            public var backgroundColor: Color? = nil
         
             /// Sets whether or not this axis is labeled
-            public var showAxesLabels: Bool?
+            public var showAxesLabels: Bool? = nil
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
             /// colors.
             /// 
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
             /// this.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Specifies the ordering logic for the case of categorical variables.
             /// 
@@ -4494,14 +4512,14 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            public var categoryOrder: Shared.CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder? = nil
         
             /// Sets the order in which categories on this axis appear.
             /// 
             /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-            public var categoryArray: [Double]?
+            public var categoryArray: [Double]? = nil
         
-            public var title: Shared.Title?
+            public var title: Shared.Title? = nil
         
             /// Sets the axis type.
             /// 
@@ -4518,18 +4536,18 @@ public struct Layout: Encodable {
             /// 
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
-            public var type: `Type`?
+            public var type: `Type`? = nil
         
             /// Determines whether or not the range of this axis is computed in relation to the input data.
             /// 
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-            public var autoRange: Shared.AutoRange?
+            public var autoRange: Shared.AutoRange? = nil
         
             /// If *normal*, the range is computed in relation to the extrema of the input data.
             /// 
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
-            public var rangeMode: Shared.RangeMode?
+            public var rangeMode: Shared.RangeMode? = nil
         
             /// Sets the range of this axis.
             /// 
@@ -4538,7 +4556,7 @@ public struct Layout: Encodable {
             /// strings, like date data, though Date objects and unix milliseconds will be accepted and
             /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
             /// where each category is assigned a serial number from zero in the order it appears.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -4547,13 +4565,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -4562,7 +4580,7 @@ public struct Layout: Encodable {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -4579,23 +4597,23 @@ public struct Layout: Encodable {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
             /// area.
@@ -4603,57 +4621,57 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
-            public var mirror: Shared.Mirror?
+            public var mirror: Shared.Mirror? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// Sets the tick font.
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -4663,9 +4681,9 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -4675,44 +4693,44 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var hoverFormat: String?
+            public var hoverFormat: String? = nil
         
             /// Determines whether or not a line bounding this axis is drawn.
-            public var showLine: Bool?
+            public var showLine: Bool? = nil
         
             /// Sets the axis line color.
-            public var lineColor: Color?
+            public var lineColor: Color? = nil
         
             /// Sets the width (in px) of the axis line.
-            public var lineWidth: Double?
+            public var lineWidth: Double? = nil
         
             /// Determines whether or not grid lines are drawn.
             /// 
             /// If *true*, the grid lines are drawn at every tick mark.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the color of the grid lines.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the width (in px) of the grid lines.
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Determines whether or not a line is drawn at along the 0 value of this axis.
             /// 
             /// If *true*, the zero line is drawn on top of the grid lines.
-            public var zeroLine: Bool?
+            public var zeroLine: Bool? = nil
         
             /// Sets the line color of the zero line.
-            public var zeroLineColor: Color?
+            public var zeroLineColor: Color? = nil
         
             /// Sets the width (in px) of the zero line.
-            public var zeroLineWidth: Double?
+            public var zeroLineWidth: Double? = nil
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
             /// 
             /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
             /// or via the global `layout.calendar`
-            public var calendar: Shared.Calendar?
+            public var calendar: Shared.Calendar? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -4898,42 +4916,42 @@ public struct Layout: Encodable {
             }
             
         }
-        public var yAxis: YAxis?
+        public var yAxis: YAxis? = nil
     
         public struct ZAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging.
             /// 
             /// Default is true when a cheater plot is present on the axis, otherwise false
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
-            public var showSpikes: Bool?
+            public var showSpikes: Bool? = nil
         
             /// Sets whether or not spikes extending from the projection data points to this axis' wall
             /// boundaries are shown on hover.
-            public var spikeSides: Bool?
+            public var spikeSides: Bool? = nil
         
             /// Sets the thickness (in px) of the spikes.
-            public var spikeThickness: Double?
+            public var spikeThickness: Double? = nil
         
             /// Sets the color of the spikes.
-            public var spikeColor: Color?
+            public var spikeColor: Color? = nil
         
             /// Sets whether or not this axis' wall has a background color.
-            public var showBackground: Bool?
+            public var showBackground: Bool? = nil
         
             /// Sets the background color of this axis' wall.
-            public var backgroundColor: Color?
+            public var backgroundColor: Color? = nil
         
             /// Sets whether or not this axis is labeled
-            public var showAxesLabels: Bool?
+            public var showAxesLabels: Bool? = nil
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
             /// colors.
             /// 
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
             /// this.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Specifies the ordering logic for the case of categorical variables.
             /// 
@@ -4946,14 +4964,14 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            public var categoryOrder: Shared.CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder? = nil
         
             /// Sets the order in which categories on this axis appear.
             /// 
             /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-            public var categoryArray: [Double]?
+            public var categoryArray: [Double]? = nil
         
-            public var title: Shared.Title?
+            public var title: Shared.Title? = nil
         
             /// Sets the axis type.
             /// 
@@ -4970,18 +4988,18 @@ public struct Layout: Encodable {
             /// 
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
-            public var type: `Type`?
+            public var type: `Type`? = nil
         
             /// Determines whether or not the range of this axis is computed in relation to the input data.
             /// 
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-            public var autoRange: Shared.AutoRange?
+            public var autoRange: Shared.AutoRange? = nil
         
             /// If *normal*, the range is computed in relation to the extrema of the input data.
             /// 
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data. Applies only to linear axes.
-            public var rangeMode: Shared.RangeMode?
+            public var rangeMode: Shared.RangeMode? = nil
         
             /// Sets the range of this axis.
             /// 
@@ -4990,7 +5008,7 @@ public struct Layout: Encodable {
             /// strings, like date data, though Date objects and unix milliseconds will be accepted and
             /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
             /// where each category is assigned a serial number from zero in the order it appears.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -4999,13 +5017,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -5014,7 +5032,7 @@ public struct Layout: Encodable {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -5031,23 +5049,23 @@ public struct Layout: Encodable {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
             /// area.
@@ -5055,57 +5073,57 @@ public struct Layout: Encodable {
             /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
             /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
             /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
-            public var mirror: Shared.Mirror?
+            public var mirror: Shared.Mirror? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// Sets the tick font.
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -5115,9 +5133,9 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -5127,44 +5145,44 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var hoverFormat: String?
+            public var hoverFormat: String? = nil
         
             /// Determines whether or not a line bounding this axis is drawn.
-            public var showLine: Bool?
+            public var showLine: Bool? = nil
         
             /// Sets the axis line color.
-            public var lineColor: Color?
+            public var lineColor: Color? = nil
         
             /// Sets the width (in px) of the axis line.
-            public var lineWidth: Double?
+            public var lineWidth: Double? = nil
         
             /// Determines whether or not grid lines are drawn.
             /// 
             /// If *true*, the grid lines are drawn at every tick mark.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the color of the grid lines.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the width (in px) of the grid lines.
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Determines whether or not a line is drawn at along the 0 value of this axis.
             /// 
             /// If *true*, the zero line is drawn on top of the grid lines.
-            public var zeroLine: Bool?
+            public var zeroLine: Bool? = nil
         
             /// Sets the line color of the zero line.
-            public var zeroLineColor: Color?
+            public var zeroLineColor: Color? = nil
         
             /// Sets the width (in px) of the zero line.
-            public var zeroLineWidth: Double?
+            public var zeroLineWidth: Double? = nil
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
             /// 
             /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
             /// or via the global `layout.calendar`
-            public var calendar: Shared.Calendar?
+            public var calendar: Shared.Calendar? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -5350,7 +5368,7 @@ public struct Layout: Encodable {
             }
             
         }
-        public var zAxis: ZAxis?
+        public var zAxis: ZAxis? = nil
     
         /// Determines the mode of drag interactions for this scene.
         public enum DragMode: Encodable {
@@ -5359,7 +5377,6 @@ public struct Layout: Encodable {
             case zoom
             case pan
             case off
-            
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
@@ -5377,13 +5394,12 @@ public struct Layout: Encodable {
             }
         }
         /// Determines the mode of drag interactions for this scene.
-        public var dragMode: DragMode?
+        public var dragMode: DragMode? = nil
     
         /// Determines the mode of hover interactions for this scene.
         public enum HoverMode: Encodable {
             case closest
             case off
-            
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
@@ -5395,31 +5411,31 @@ public struct Layout: Encodable {
             }
         }
         /// Determines the mode of hover interactions for this scene.
-        public var hoverMode: HoverMode?
+        public var hoverMode: HoverMode? = nil
     
         /// Controls persistence of user-driven changes in camera attributes.
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         public struct Annotation: Encodable {
             /// Determines whether or not this annotation is visible.
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets the annotation's x position.
-            public var x: Anything?
+            public var x: Anything? = nil
         
             /// Sets the annotation's y position.
-            public var y: Anything?
+            public var y: Anything? = nil
         
             /// Sets the annotation's z position.
-            public var z: Anything?
+            public var z: Anything? = nil
         
             /// Sets the x component of the arrow tail about the arrow head (in pixels).
-            public var ax: Double?
+            public var ax: Double? = nil
         
             /// Sets the y component of the arrow tail about the arrow head (in pixels).
-            public var ay: Double?
+            public var ay: Double? = nil
         
             /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*,
             /// *center* or *right* of the annotation.
@@ -5428,11 +5444,11 @@ public struct Layout: Encodable {
             /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
             /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
             /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
-            public var xAnchor: Shared.XAutoAnchor?
+            public var xAnchor: Shared.XAutoAnchor? = nil
         
             /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative)
             /// by this many pixels.
-            public var xShift: Double?
+            public var xShift: Double? = nil
         
             /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*,
             /// *middle* or *bottom* of the annotation.
@@ -5441,86 +5457,87 @@ public struct Layout: Encodable {
             /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
             /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
             /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
-            public var yAnchor: Shared.YAutoAnchor?
+            public var yAnchor: Shared.YAutoAnchor? = nil
         
             /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this
             /// many pixels.
-            public var yShift: Double?
+            public var yShift: Double? = nil
         
             /// Sets the text associated with this annotation.
             /// 
             /// Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics
             /// (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
-            public var text: String?
+            public var text: String? = nil
         
             /// Sets the angle at which the `text` is drawn with respect to the horizontal.
-            public var textAngle: Angle?
+            public var textAngle: Angle? = nil
         
             /// Sets the annotation text font.
-            public var font: Shared.Font?
+            public var font: Shared.Font? = nil
         
             /// Sets an explicit width for the text box.
             /// 
             /// null (default) lets the text set the box width. Wider text will be clipped. There is no
             /// automatic wrapping; use <br> to start a new line.
-            public var width: Double?
+            public var width: Double? = nil
         
             /// Sets an explicit height for the text box.
             /// 
             /// null (default) lets the text set the box height. Taller text will be clipped.
-            public var height: Double?
+            public var height: Double? = nil
         
             /// Sets the opacity of the annotation (text + arrow).
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the horizontal alignment of the `text` within the box.
             /// 
             /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
             /// HTML tags) or if an explicit width is set to override the text width.
-            public var align: Shared.HorizontalAlign?
+            public var align: Shared.HorizontalAlign? = nil
         
             /// Sets the vertical alignment of the `text` within the box.
             /// 
             /// Has an effect only if an explicit height is set to override the text height.
-            public var verticalAlign: Shared.VerticalAlign?
+            public var verticalAlign: Shared.VerticalAlign? = nil
         
             /// Sets the background color of the annotation.
-            public var backgroundColor: Color?
+            public var backgroundColor: Color? = nil
         
             /// Sets the color of the border enclosing the annotation `text`.
-            public var borderColor: Color?
+            public var borderColor: Color? = nil
         
             /// Sets the padding (in px) between the `text` and the enclosing border.
-            public var borderPadding: Double?
+            public var borderPadding: Double? = nil
         
             /// Sets the width (in px) of the border enclosing the annotation `text`.
-            public var borderWidth: Double?
+            public var borderWidth: Double? = nil
         
             /// Determines whether or not the annotation is drawn with an arrow.
             /// 
             /// If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and
             /// `y` provided.
-            public var showArrow: Bool?
+            public var showArrow: Bool? = nil
         
             /// Sets the color of the annotation arrow.
-            public var arrowColor: Color?
+            public var arrowColor: Color? = nil
         
             /// Sets the end annotation arrow head style.
-            public var arrowHead: Int?
+            public var arrowHead: Int? = nil
         
             /// Sets the start annotation arrow head style.
-            public var startArrowHead: Int?
+            public var startArrowHead: Int? = nil
         
             /// Sets the annotation arrow head position.
             public struct ArrowSide: OptionSet, Encodable {
                 public let rawValue: Int
-            
                 public static var end: ArrowSide { ArrowSide(rawValue: 1 << 0) }
                 public static var start: ArrowSide { ArrowSide(rawValue: 1 << 1) }
                 public static var none: ArrowSide { ArrowSide(rawValue: 1 << 2) }
-            
-                public init(rawValue: Int) { self.rawValue = rawValue }
-            
+                
+                public init(rawValue: Int) {
+                    self.rawValue = rawValue
+                }
+                
                 public func encode(to encoder: Encoder) throws {
                     var options = [String]()
                     if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
@@ -5531,55 +5548,55 @@ public struct Layout: Encodable {
                 }
             }
             /// Sets the annotation arrow head position.
-            public var arrowSide: ArrowSide?
+            public var arrowSide: ArrowSide? = nil
         
             /// Sets the size of the end annotation arrow head, relative to `arrowwidth`.
             /// 
             /// A value of 1 (default) gives a head about 3x as wide as the line.
-            public var arrowSize: Double?
+            public var arrowSize: Double? = nil
         
             /// Sets the size of the start annotation arrow head, relative to `arrowwidth`.
             /// 
             /// A value of 1 (default) gives a head about 3x as wide as the line.
-            public var startArrowSize: Double?
+            public var startArrowSize: Double? = nil
         
             /// Sets the width (in px) of annotation arrow line.
-            public var arrowWidth: Double?
+            public var arrowWidth: Double? = nil
         
             /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at,
             /// for example to point at the edge of a marker independent of zoom.
             /// 
             /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
             /// `yshift` which moves everything by this amount.
-            public var standoff: Double?
+            public var standoff: Double? = nil
         
             /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing
             /// at, for example to point at the edge of a marker independent of zoom.
             /// 
             /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
             /// `yshift` which moves everything by this amount.
-            public var startStandoff: Double?
+            public var startStandoff: Double? = nil
         
             /// Sets text to appear when hovering over this annotation.
             /// 
             /// If omitted or blank, no hover label will appear.
-            public var hoverText: String?
+            public var hoverText: String? = nil
         
             public struct HoverLabel: Encodable {
                 /// Sets the background color of the hover label.
                 /// 
                 /// By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
-                public var backgroundColor: Color?
+                public var backgroundColor: Color? = nil
             
                 /// Sets the border color of the hover label.
                 /// 
                 /// By default uses either dark grey or white, for maximum contrast with `hoverlabel.bgcolor`.
-                public var borderColor: Color?
+                public var borderColor: Color? = nil
             
                 /// Sets the hover label text font.
                 /// 
                 /// By default uses the global hover font and size, with color from `hoverlabel.bordercolor`.
-                public var font: Shared.Font?
+                public var font: Shared.Font? = nil
             
                 /// Decoding and encoding keys compatible with Plotly schema.
                 enum CodingKeys: String, CodingKey {
@@ -5602,14 +5619,14 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var hoverLabel: HoverLabel?
+            public var hoverLabel: HoverLabel? = nil
         
             /// Determines whether the annotation text box captures mouse move and click events, or allows those
             /// events to pass through to data points in the plot that may be behind the annotation.
             /// 
             /// By default `captureevents` is *false* unless `hovertext` is provided. If you use the event
             /// `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
-            public var captureEvents: Bool?
+            public var captureEvents: Bool? = nil
         
             /// When used in a template, named items are created in the output figure in addition to any items
             /// the figure already has in this array.
@@ -5617,7 +5634,7 @@ public struct Layout: Encodable {
             /// You can modify these items in the output figure by making your own item with `templateitemname`
             /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
             /// false` to hide it). Has no effect outside of a template.
-            public var name: String?
+            public var name: String? = nil
         
             /// Used to refer to a named item in this array in the template.
             /// 
@@ -5626,7 +5643,7 @@ public struct Layout: Encodable {
             /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
             /// template or no matching item, this item will be hidden unless you explicitly show it with
             /// `visible: true`.
-            public var templateItemName: String?
+            public var templateItemName: String? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -5769,7 +5786,7 @@ public struct Layout: Encodable {
             }
             
         }
-        public var annotations: [Annotation]?
+        public var annotations: [Annotation]? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -5790,6 +5807,7 @@ public struct Layout: Encodable {
         /// Creates `Scene` object with specified properties.
         /// 
         /// - Parameters:
+        ///   - uid:
         ///   - backgroundColor:
         ///   - camera:
         ///   - domain:
@@ -5802,10 +5820,12 @@ public struct Layout: Encodable {
         ///   - hoverMode: Determines the mode of hover interactions for this scene.
         ///   - uiRevision: Controls persistence of user-driven changes in camera attributes.
         ///   - annotations:
-        public init(backgroundColor: Color? = nil, camera: Camera? = nil, domain: Shared.Domain? = nil,
-                aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? = nil, xAxis: XAxis? = nil, yAxis:
-                YAxis? = nil, zAxis: ZAxis? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil,
-                uiRevision: Anything? = nil, annotations: [Annotation]? = nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), backgroundColor: Color? = nil, camera:
+                Camera? = nil, domain: Shared.Domain? = nil, aspectMode: AspectMode? = nil, aspectRatio:
+                AspectRatio? = nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, zAxis: ZAxis? = nil, dragMode:
+                DragMode? = nil, hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations:
+                [Annotation]? = nil) {
+            self.uid = uid
             self.backgroundColor = backgroundColor
             self.camera = camera
             self.domain = domain
@@ -5821,10 +5841,12 @@ public struct Layout: Encodable {
         }
         
     }
-    public var scene: Scene?
+    public var scene: [Scene] = []
 
-    public struct Geo: Encodable {
-        public var domain: Shared.Domain?
+    public class Geo: Encodable {
+        public var uid: UInt = UInt.random(in: 2...UInt.max)
+    
+        public var domain: Shared.Domain? = nil
     
         /// Sets the resolution of the base layers.
         /// 
@@ -5836,7 +5858,7 @@ public struct Layout: Encodable {
         /// Sets the resolution of the base layers.
         /// 
         /// The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
-        public var resolution: Resolution?
+        public var resolution: Resolution? = nil
     
         /// Set the scope of the map.
         public enum Scope: String, Encodable {
@@ -5849,7 +5871,7 @@ public struct Layout: Encodable {
             case southAmerica = "south america"
         }
         /// Set the scope of the map.
-        public var scope: Scope?
+        public var scope: Scope? = nil
     
         public struct Projection: Encodable {
             /// Sets the projection type.
@@ -5878,19 +5900,19 @@ public struct Layout: Encodable {
                 case sinusoidal
             }
             /// Sets the projection type.
-            public var type: `Type`?
+            public var type: `Type`? = nil
         
             public struct Rotation: Encodable {
                 /// Rotates the map along parallels (in degrees East).
                 /// 
                 /// Defaults to the center of the `lonaxis.range` values.
-                public var longitude: Double?
+                public var longitude: Double? = nil
             
                 /// Rotates the map along meridians (in degrees North).
-                public var latitude: Double?
+                public var latitude: Double? = nil
             
                 /// Roll the map (in degrees) For example, a roll of *180* makes the map appear upside down.
-                public var roll: Double?
+                public var roll: Double? = nil
             
                 /// Decoding and encoding keys compatible with Plotly schema.
                 enum CodingKeys: String, CodingKey {
@@ -5912,17 +5934,17 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var rotation: Rotation?
+            public var rotation: Rotation? = nil
         
             /// For conic projection types only.
             /// 
             /// Sets the parallels (tangent, secant) where the cone intersects the sphere.
-            public var parallels: InfoArray?
+            public var parallels: InfoArray? = nil
         
             /// Zooms in or out on the map view.
             /// 
             /// A scale of *1* corresponds to the largest zoom level that fits the map's lon and lat ranges.
-            public var scale: Double?
+            public var scale: Double? = nil
         
             /// Creates `Projection` object with specified properties.
             /// 
@@ -5940,20 +5962,20 @@ public struct Layout: Encodable {
             }
             
         }
-        public var projection: Projection?
+        public var projection: Projection? = nil
     
         public struct Center: Encodable {
             /// Sets the longitude of the map's center.
             /// 
             /// By default, the map's longitude center lies at the middle of the longitude range for scoped
             /// projection and above `projection.rotation.lon` otherwise.
-            public var longitude: Double?
+            public var longitude: Double? = nil
         
             /// Sets the latitude of the map's center.
             /// 
             /// For all projection types, the map's latitude center lies at the middle of the latitude range by
             /// default.
-            public var latitude: Double?
+            public var latitude: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -5972,94 +5994,94 @@ public struct Layout: Encodable {
             }
             
         }
-        public var center: Center?
+        public var center: Center? = nil
     
         /// Sets whether or not the coastlines are drawn.
-        public var showCoastLines: Bool?
+        public var showCoastLines: Bool? = nil
     
         /// Sets the coastline color.
-        public var coastLineColor: Color?
+        public var coastLineColor: Color? = nil
     
         /// Sets the coastline stroke width (in px).
-        public var coastLineWidth: Double?
+        public var coastLineWidth: Double? = nil
     
         /// Sets whether or not land masses are filled in color.
-        public var showLand: Bool?
+        public var showLand: Bool? = nil
     
         /// Sets the land mass color.
-        public var landColor: Color?
+        public var landColor: Color? = nil
     
         /// Sets whether or not oceans are filled in color.
-        public var showOcean: Bool?
+        public var showOcean: Bool? = nil
     
         /// Sets the ocean color
-        public var oceanColor: Color?
+        public var oceanColor: Color? = nil
     
         /// Sets whether or not lakes are drawn.
-        public var showLakes: Bool?
+        public var showLakes: Bool? = nil
     
         /// Sets the color of the lakes.
-        public var lakeColor: Color?
+        public var lakeColor: Color? = nil
     
         /// Sets whether or not rivers are drawn.
-        public var showRivers: Bool?
+        public var showRivers: Bool? = nil
     
         /// Sets color of the rivers.
-        public var riverColor: Color?
+        public var riverColor: Color? = nil
     
         /// Sets the stroke width (in px) of the rivers.
-        public var riverWidth: Double?
+        public var riverWidth: Double? = nil
     
         /// Sets whether or not country boundaries are drawn.
-        public var showCountries: Bool?
+        public var showCountries: Bool? = nil
     
         /// Sets line color of the country boundaries.
-        public var countryColor: Color?
+        public var countryColor: Color? = nil
     
         /// Sets line width (in px) of the country boundaries.
-        public var countryWidth: Double?
+        public var countryWidth: Double? = nil
     
         /// Sets whether or not boundaries of subunits within countries (e.g.
         /// 
         /// states, provinces) are drawn.
-        public var showSubUnits: Bool?
+        public var showSubunits: Bool? = nil
     
         /// Sets the color of the subunits boundaries.
-        public var subUnitColor: Color?
+        public var subUnitColor: Color? = nil
     
         /// Sets the stroke width (in px) of the subunits boundaries.
-        public var subUnitWidth: Double?
+        public var subUnitWidth: Double? = nil
     
         /// Sets whether or not a frame is drawn around the map.
-        public var showFrame: Bool?
+        public var showFrame: Bool? = nil
     
         /// Sets the color the frame.
-        public var frameColor: Color?
+        public var frameColor: Color? = nil
     
         /// Sets the stroke width (in px) of the frame.
-        public var frameWidth: Double?
+        public var frameWidth: Double? = nil
     
         /// Set the background color of the map
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         public struct LongitudeAxis: Encodable {
             /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// Sets whether or not graticule are shown on the map.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the graticule's starting tick longitude/latitude.
-            public var tick0: Double?
+            public var tick0: Double? = nil
         
             /// Sets the graticule's longitude/latitude tick step.
-            public var dTick: Double?
+            public var dTick: Double? = nil
         
             /// Sets the graticule's stroke color.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the graticule's stroke width (in px).
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -6091,26 +6113,26 @@ public struct Layout: Encodable {
             }
             
         }
-        public var longitudeAxis: LongitudeAxis?
+        public var longitudeAxis: LongitudeAxis? = nil
     
         public struct LatitudeAxis: Encodable {
             /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// Sets whether or not graticule are shown on the map.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the graticule's starting tick longitude/latitude.
-            public var tick0: Double?
+            public var tick0: Double? = nil
         
             /// Sets the graticule's longitude/latitude tick step.
-            public var dTick: Double?
+            public var dTick: Double? = nil
         
             /// Sets the graticule's stroke color.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the graticule's stroke width (in px).
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -6142,12 +6164,12 @@ public struct Layout: Encodable {
             }
             
         }
-        public var latitudeAxis: LatitudeAxis?
+        public var latitudeAxis: LatitudeAxis? = nil
     
         /// Controls persistence of user-driven changes in the view (projection and center).
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -6171,7 +6193,7 @@ public struct Layout: Encodable {
             case showCountries = "showcountries"
             case countryColor = "countrycolor"
             case countryWidth = "countrywidth"
-            case showSubUnits = "showsubunits"
+            case showSubunits = "showsubunits"
             case subUnitColor = "subunitcolor"
             case subUnitWidth = "subunitwidth"
             case showFrame = "showframe"
@@ -6186,6 +6208,7 @@ public struct Layout: Encodable {
         /// Creates `Geo` object with specified properties.
         /// 
         /// - Parameters:
+        ///   - uid:
         ///   - domain:
         ///   - resolution: Sets the resolution of the base layers.
         ///   - scope: Set the scope of the map.
@@ -6206,7 +6229,7 @@ public struct Layout: Encodable {
         ///   - showCountries: Sets whether or not country boundaries are drawn.
         ///   - countryColor: Sets line color of the country boundaries.
         ///   - countryWidth: Sets line width (in px) of the country boundaries.
-        ///   - showSubUnits: Sets whether or not boundaries of subunits within countries (e.g.
+        ///   - showSubunits: Sets whether or not boundaries of subunits within countries (e.g.
         ///   - subUnitColor: Sets the color of the subunits boundaries.
         ///   - subUnitWidth: Sets the stroke width (in px) of the subunits boundaries.
         ///   - showFrame: Sets whether or not a frame is drawn around the map.
@@ -6216,16 +6239,17 @@ public struct Layout: Encodable {
         ///   - longitudeAxis:
         ///   - latitudeAxis:
         ///   - uiRevision: Controls persistence of user-driven changes in the view (projection and center).
-        public init(domain: Shared.Domain? = nil, resolution: Resolution? = nil, scope: Scope? = nil,
-                projection: Projection? = nil, center: Center? = nil, showCoastLines: Bool? = nil,
-                coastLineColor: Color? = nil, coastLineWidth: Double? = nil, showLand: Bool? = nil, landColor:
-                Color? = nil, showOcean: Bool? = nil, oceanColor: Color? = nil, showLakes: Bool? = nil,
-                lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor: Color? = nil, riverWidth: Double?
-                = nil, showCountries: Bool? = nil, countryColor: Color? = nil, countryWidth: Double? = nil,
-                showSubUnits: Bool? = nil, subUnitColor: Color? = nil, subUnitWidth: Double? = nil, showFrame:
-                Bool? = nil, frameColor: Color? = nil, frameWidth: Double? = nil, backgroundColor: Color? = nil,
-                longitudeAxis: LongitudeAxis? = nil, latitudeAxis: LatitudeAxis? = nil, uiRevision: Anything? =
-                nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Shared.Domain? = nil, resolution:
+                Resolution? = nil, scope: Scope? = nil, projection: Projection? = nil, center: Center? = nil,
+                showCoastLines: Bool? = nil, coastLineColor: Color? = nil, coastLineWidth: Double? = nil,
+                showLand: Bool? = nil, landColor: Color? = nil, showOcean: Bool? = nil, oceanColor: Color? =
+                nil, showLakes: Bool? = nil, lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor:
+                Color? = nil, riverWidth: Double? = nil, showCountries: Bool? = nil, countryColor: Color? = nil,
+                countryWidth: Double? = nil, showSubunits: Bool? = nil, subUnitColor: Color? = nil,
+                subUnitWidth: Double? = nil, showFrame: Bool? = nil, frameColor: Color? = nil, frameWidth:
+                Double? = nil, backgroundColor: Color? = nil, longitudeAxis: LongitudeAxis? = nil, latitudeAxis:
+                LatitudeAxis? = nil, uiRevision: Anything? = nil) {
+            self.uid = uid
             self.domain = domain
             self.resolution = resolution
             self.scope = scope
@@ -6246,7 +6270,7 @@ public struct Layout: Encodable {
             self.showCountries = showCountries
             self.countryColor = countryColor
             self.countryWidth = countryWidth
-            self.showSubUnits = showSubUnits
+            self.showSubunits = showSubunits
             self.subUnitColor = subUnitColor
             self.subUnitWidth = subUnitWidth
             self.showFrame = showFrame
@@ -6259,10 +6283,12 @@ public struct Layout: Encodable {
         }
         
     }
-    public var geo: Geo?
+    public var geo: [Geo] = []
 
-    public struct Mapbox: Encodable {
-        public var domain: Shared.Domain?
+    public class Mapbox: Encodable {
+        public var uid: UInt = UInt.random(in: 2...UInt.max)
+    
+        public var domain: Shared.Domain? = nil
     
         /// Sets the mapbox access token to be used for this mapbox map.
         /// 
@@ -6270,7 +6296,7 @@ public struct Layout: Encodable {
         /// `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values :
         /// basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer
         /// references the Mapbox server.
-        public var accessToken: String?
+        public var accessToken: String? = nil
     
         /// Defines the map layers that are rendered by default below the trace layers defined in `data`,
         /// which are themselves by default rendered below the layers defined in `layout.mapbox.layers`.
@@ -6287,14 +6313,14 @@ public struct Layout: Encodable {
         /// stamen-watercolor The built-in Mapbox styles are: basic, streets, outdoors, light, dark,
         /// satellite, satellite-streets Mapbox style URLs are of the form:
         /// mapbox://mapbox.mapbox-<name>-<version>
-        public var style: Anything?
+        public var style: Anything? = nil
     
         public struct Center: Encodable {
             /// Sets the longitude of the center of the map (in degrees East).
-            public var longitude: Double?
+            public var longitude: Double? = nil
         
             /// Sets the latitude of the center of the map (in degrees North).
-            public var latitude: Double?
+            public var latitude: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -6313,21 +6339,21 @@ public struct Layout: Encodable {
             }
             
         }
-        public var center: Center?
+        public var center: Center? = nil
     
         /// Sets the zoom level of the map (mapbox.zoom).
-        public var zoom: Double?
+        public var zoom: Double? = nil
     
         /// Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).
-        public var bearing: Double?
+        public var bearing: Double? = nil
     
         /// Sets the pitch angle of the map (in degrees, where *0* means perpendicular to the surface of the
         /// map) (mapbox.pitch).
-        public var pitch: Double?
+        public var pitch: Double? = nil
     
         public struct Layer: Encodable {
             /// Determines whether this layer is displayed
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets the source type for this layer, that is the type of the layer data.
             public enum SourceType: String, Encodable {
@@ -6337,22 +6363,22 @@ public struct Layout: Encodable {
                 case image
             }
             /// Sets the source type for this layer, that is the type of the layer data.
-            public var sourceType: SourceType?
+            public var sourceType: SourceType? = nil
         
             /// Sets the source data for this layer (mapbox.layer.source).
             /// 
             /// When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object.
             /// When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile
             /// URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
-            public var source: Anything?
+            public var source: Anything? = nil
         
             /// Specifies the layer to use from a vector tile source (mapbox.layer.source-layer).
             /// 
             /// Required for *vector* source type that supports multiple layers.
-            public var sourceLayer: String?
+            public var sourceLayer: String? = nil
         
             /// Sets the attribution for this source.
-            public var sourceAttribution: String?
+            public var sourceAttribution: String? = nil
         
             /// Sets the layer type, that is the how the layer data set in `source` will be rendered With
             /// `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill* and
@@ -6375,18 +6401,18 @@ public struct Layout: Encodable {
             /// but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With
             /// `sourcetype` set to *vector*, the following values are allowed: *circle*, *line*, *fill* and
             /// *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
-            public var type: `Type`?
+            public var type: `Type`? = nil
         
             /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in
             /// clockwise order: top left, top right, bottom right, bottom left.
             /// 
             /// Only has an effect for *image* `sourcetype`.
-            public var coordinates: Anything?
+            public var coordinates: Anything? = nil
         
             /// Determines if the layer will be inserted before the layer with the specified ID.
             /// 
             /// If omitted or set to '', the layer will be inserted above every existing layer.
-            public var below: String?
+            public var below: String? = nil
         
             /// Sets the primary layer color.
             /// 
@@ -6394,7 +6420,7 @@ public struct Layout: Encodable {
             /// If `type` is *line*, color corresponds to the line color (mapbox.layer.paint.line-color) If
             /// `type` is *fill*, color corresponds to the fill color (mapbox.layer.paint.fill-color) If `type`
             /// is *symbol*, color corresponds to the icon color (mapbox.layer.paint.icon-color)
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the opacity of the layer.
             /// 
@@ -6403,23 +6429,23 @@ public struct Layout: Encodable {
             /// (mapbox.layer.paint.line-opacity) If `type` is *fill*, opacity corresponds to the fill opacity
             /// (mapbox.layer.paint.fill-opacity) If `type` is *symbol*, opacity corresponds to the icon/text
             /// opacity (mapbox.layer.paint.text-opacity)
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the minimum zoom level (mapbox.layer.minzoom).
             /// 
             /// At zoom levels less than the minzoom, the layer will be hidden.
-            public var minZoom: Double?
+            public var minZoom: Double? = nil
         
             /// Sets the maximum zoom level (mapbox.layer.maxzoom).
             /// 
             /// At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
-            public var maxZoom: Double?
+            public var maxZoom: Double? = nil
         
             public struct Circle: Encodable {
                 /// Sets the circle radius (mapbox.layer.paint.circle-radius).
                 /// 
                 /// Has an effect only when `type` is set to *circle*.
-                public var radius: Double?
+                public var radius: Double? = nil
             
                 /// Creates `Circle` object with specified properties.
                 /// 
@@ -6430,18 +6456,18 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var circle: Circle?
+            public var circle: Circle? = nil
         
             public struct DashedLine: Encodable {
                 /// Sets the line width (mapbox.layer.paint.line-width).
                 /// 
                 /// Has an effect only when `type` is set to *line*.
-                public var width: Double?
+                public var width: Double? = nil
             
                 /// Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray).
                 /// 
                 /// Has an effect only when `type` is set to *line*.
-                public var dash: [Double]?
+                public var dash: [Double]? = nil
             
                 /// Creates `DashedLine` object with specified properties.
                 /// 
@@ -6454,13 +6480,13 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var line: DashedLine?
+            public var line: DashedLine? = nil
         
             public struct Fill: Encodable {
                 /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color).
                 /// 
                 /// Has an effect only when `type` is set to *fill*.
-                public var outlineColor: Color?
+                public var outlineColor: Color? = nil
             
                 /// Decoding and encoding keys compatible with Plotly schema.
                 enum CodingKeys: String, CodingKey {
@@ -6476,21 +6502,21 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var fill: Fill?
+            public var fill: Fill? = nil
         
             public struct Symbol: Encodable {
                 /// Sets the symbol icon image (mapbox.layer.layout.icon-image).
                 /// 
                 /// Full list: https://www.mapbox.com/maki-icons/
-                public var icon: String?
+                public var icon: String? = nil
             
                 /// Sets the symbol icon size (mapbox.layer.layout.icon-size).
                 /// 
                 /// Has an effect only when `type` is set to *symbol*.
-                public var iconSize: Double?
+                public var iconSize: Double? = nil
             
                 /// Sets the symbol text (mapbox.layer.layout.text-field).
-                public var text: String?
+                public var text: String? = nil
             
                 /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement).
                 /// 
@@ -6507,16 +6533,16 @@ public struct Layout: Encodable {
                 /// If `placement` is *point*, the label is placed where the geometry is located If `placement` is
                 /// *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the
                 /// label is placed on the center of the geometry
-                public var placement: Placement?
+                public var placement: Placement? = nil
             
                 /// Sets the icon text font (color=mapbox.layer.paint.text-color,
                 /// size=mapbox.layer.layout.text-size).
                 /// 
                 /// Has an effect only when `type` is set to *symbol*.
-                public var textFont: Shared.Font?
+                public var textFont: Shared.Font? = nil
             
                 /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-                public var textPosition: Shared.TextPosition?
+                public var textPosition: Shared.TextPosition? = nil
             
                 /// Decoding and encoding keys compatible with Plotly schema.
                 enum CodingKeys: String, CodingKey {
@@ -6550,7 +6576,7 @@ public struct Layout: Encodable {
                 }
                 
             }
-            public var symbol: Symbol?
+            public var symbol: Symbol? = nil
         
             /// When used in a template, named items are created in the output figure in addition to any items
             /// the figure already has in this array.
@@ -6558,7 +6584,7 @@ public struct Layout: Encodable {
             /// You can modify these items in the output figure by making your own item with `templateitemname`
             /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
             /// false` to hide it). Has no effect outside of a template.
-            public var name: String?
+            public var name: String? = nil
         
             /// Used to refer to a named item in this array in the template.
             /// 
@@ -6567,7 +6593,7 @@ public struct Layout: Encodable {
             /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
             /// template or no matching item, this item will be hidden unless you explicitly show it with
             /// `visible: true`.
-            public var templateItemName: String?
+            public var templateItemName: String? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -6642,12 +6668,12 @@ public struct Layout: Encodable {
             }
             
         }
-        public var layers: [Layer]?
+        public var layers: [Layer]? = nil
     
         /// Controls persistence of user-driven changes in the view: `center`, `zoom`, `bearing`, `pitch`.
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -6665,6 +6691,7 @@ public struct Layout: Encodable {
         /// Creates `Mapbox` object with specified properties.
         /// 
         /// - Parameters:
+        ///   - uid:
         ///   - domain:
         ///   - accessToken: Sets the mapbox access token to be used for this mapbox map.
         ///   - style: Defines the map layers that are rendered by default below the trace layers defined in
@@ -6679,9 +6706,11 @@ public struct Layout: Encodable {
         ///   - layers:
         ///   - uiRevision: Controls persistence of user-driven changes in the view: `center`, `zoom`,
         ///   `bearing`, `pitch`.
-        public init(domain: Shared.Domain? = nil, accessToken: String? = nil, style: Anything? = nil,
-                center: Center? = nil, zoom: Double? = nil, bearing: Double? = nil, pitch: Double? = nil,
-                layers: [Layer]? = nil, uiRevision: Anything? = nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Shared.Domain? = nil,
+                accessToken: String? = nil, style: Anything? = nil, center: Center? = nil, zoom: Double? = nil,
+                bearing: Double? = nil, pitch: Double? = nil, layers: [Layer]? = nil, uiRevision: Anything? =
+                nil) {
+            self.uid = uid
             self.domain = domain
             self.accessToken = accessToken
             self.style = style
@@ -6694,28 +6723,30 @@ public struct Layout: Encodable {
         }
         
     }
-    public var mapbox: Mapbox?
+    public var mapbox: [Mapbox] = []
 
-    public struct Polar: Encodable {
-        public var domain: Shared.Domain?
+    public class Polar: Encodable {
+        public var uid: UInt = UInt.random(in: 2...UInt.max)
+    
+        public var domain: Shared.Domain? = nil
     
         /// Sets angular span of this polar subplot with two angles (in degrees).
         /// 
         /// Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to
         /// rightmost limit of the polar subplot.
-        public var sector: InfoArray?
+        public var sector: InfoArray? = nil
     
         /// Sets the fraction of the radius to cut out of the polar subplot.
-        public var hole: Double?
+        public var hole: Double? = nil
     
         /// Set the background color of the subplot
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         public struct RadialAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging.
             /// 
             /// Default is true when a cheater plot is present on the axis, otherwise false
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets the axis type.
             /// 
@@ -6732,12 +6763,12 @@ public struct Layout: Encodable {
             /// 
             /// By default, plotly attempts to determined the axis type by looking into the data of the traces
             /// that referenced the axis in question.
-            public var type: `Type`?
+            public var type: `Type`? = nil
         
             /// Determines whether or not the range of this axis is computed in relation to the input data.
             /// 
             /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-            public var autoRange: Shared.AutoRange?
+            public var autoRange: Shared.AutoRange? = nil
         
             /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
             /// is non-negative, regardless of the input data.
@@ -6754,7 +6785,7 @@ public struct Layout: Encodable {
             /// 
             /// If *normal*, the range is computed in relation to the extrema of the input data (same behavior
             /// as for cartesian axes).
-            public var rangeMode: RangeMode?
+            public var rangeMode: RangeMode? = nil
         
             /// Sets the range of this axis.
             /// 
@@ -6763,7 +6794,7 @@ public struct Layout: Encodable {
             /// strings, like date data, though Date objects and unix milliseconds will be accepted and
             /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
             /// where each category is assigned a serial number from zero in the order it appears.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// Specifies the ordering logic for the case of categorical variables.
             /// 
@@ -6776,18 +6807,18 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            public var categoryOrder: Shared.CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder? = nil
         
             /// Sets the order in which categories on this axis appear.
             /// 
             /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-            public var categoryArray: [Double]?
+            public var categoryArray: [Double]? = nil
         
             /// Sets the angle (in degrees) from which the radial axis is drawn.
             /// 
             /// Note that by default, radial axis line on the theta=0 line corresponds to a line pointing right
             /// (like what mathematicians prefer). Defaults to the first `polar.sector` angle.
-            public var angle: Angle?
+            public var angle: Angle? = nil
         
             /// Determines on which side of radial axis line the tick and tick labels appear.
             public enum Side: String, Encodable {
@@ -6795,9 +6826,9 @@ public struct Layout: Encodable {
                 case counterClockwise = "counterclockwise"
             }
             /// Determines on which side of radial axis line the tick and tick labels appear.
-            public var side: Side?
+            public var side: Side? = nil
         
-            public var title: Shared.Title?
+            public var title: Shared.Title? = nil
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -6807,40 +6838,40 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var hoverFormat: String?
+            public var hoverFormat: String? = nil
         
             /// Controls persistence of user-driven changes in axis `range`, `autorange`, `angle`, and `title`
             /// if in `editable: true` configuration.
             /// 
             /// Defaults to `polar<N>.uirevision`.
-            public var uiRevision: Anything?
+            public var uiRevision: Anything? = nil
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
             /// colors.
             /// 
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
             /// this.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Determines whether or not a line bounding this axis is drawn.
-            public var showLine: Bool?
+            public var showLine: Bool? = nil
         
             /// Sets the axis line color.
-            public var lineColor: Color?
+            public var lineColor: Color? = nil
         
             /// Sets the width (in px) of the axis line.
-            public var lineWidth: Double?
+            public var lineWidth: Double? = nil
         
             /// Determines whether or not grid lines are drawn.
             /// 
             /// If *true*, the grid lines are drawn at every tick mark.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the color of the grid lines.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the width (in px) of the grid lines.
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -6849,13 +6880,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -6864,7 +6895,7 @@ public struct Layout: Encodable {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -6881,73 +6912,73 @@ public struct Layout: Encodable {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Sets the tick font.
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -6957,9 +6988,9 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets the layer on which this axis is displayed.
             /// 
@@ -6967,13 +6998,13 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer?
+            public var layer: Shared.Layer? = nil
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
             /// 
             /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
             /// or via the global `layout.calendar`
-            public var calendar: Shared.Calendar?
+            public var calendar: Shared.Calendar? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -7134,13 +7165,13 @@ public struct Layout: Encodable {
             }
             
         }
-        public var radialAxis: RadialAxis?
+        public var radialAxis: RadialAxis? = nil
     
         public struct AngularAxis: Encodable {
             /// A single toggle to hide the axis while preserving interaction like dragging.
             /// 
             /// Default is true when a cheater plot is present on the axis, otherwise false
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets the angular axis type.
             /// 
@@ -7155,7 +7186,7 @@ public struct Layout: Encodable {
             /// 
             /// If *linear*, set `thetaunit` to determine the unit in which axis value are shown. If *category,
             /// use `period` to set the number of integer coordinates around polar axis.
-            public var type: `Type`?
+            public var type: `Type`? = nil
         
             /// Specifies the ordering logic for the case of categorical variables.
             /// 
@@ -7168,12 +7199,12 @@ public struct Layout: Encodable {
             /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
             /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
             /// or median of all the values.
-            public var categoryOrder: Shared.CategoryOrder?
+            public var categoryOrder: Shared.CategoryOrder? = nil
         
             /// Sets the order in which categories on this axis appear.
             /// 
             /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-            public var categoryArray: [Double]?
+            public var categoryArray: [Double]? = nil
         
             /// Sets the format unit of the formatted *theta* values.
             /// 
@@ -7185,12 +7216,12 @@ public struct Layout: Encodable {
             /// Sets the format unit of the formatted *theta* values.
             /// 
             /// Has an effect only when `angularaxis.type` is *linear*.
-            public var thetaUnit: ThetaUnit?
+            public var thetaUnit: ThetaUnit? = nil
         
             /// Set the angular period.
             /// 
             /// Has an effect only when `angularaxis.type` is *category*.
-            public var period: Double?
+            public var period: Double? = nil
         
             /// Sets the direction corresponding to positive angles.
             public enum Direction: String, Encodable {
@@ -7198,7 +7229,7 @@ public struct Layout: Encodable {
                 case clockwise
             }
             /// Sets the direction corresponding to positive angles.
-            public var direction: Direction?
+            public var direction: Direction? = nil
         
             /// Sets that start position (in degrees) of the angular axis By default, polar subplots with
             /// `direction` set to *counterclockwise* get a `rotation` of *0* which corresponds to due East
@@ -7206,7 +7237,7 @@ public struct Layout: Encodable {
             /// 
             /// In turn, polar with `direction` set to *clockwise* get a rotation of *90* which corresponds to
             /// due North (like on a compass),
-            public var rotation: Angle?
+            public var rotation: Angle? = nil
         
             /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -7216,39 +7247,39 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var hoverFormat: String?
+            public var hoverFormat: String? = nil
         
             /// Controls persistence of user-driven changes in axis `rotation`.
             /// 
             /// Defaults to `polar<N>.uirevision`.
-            public var uiRevision: Anything?
+            public var uiRevision: Anything? = nil
         
             /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
             /// colors.
             /// 
             /// Grid color is lightened by blending this with the plot background Individual pieces can override
             /// this.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Determines whether or not a line bounding this axis is drawn.
-            public var showLine: Bool?
+            public var showLine: Bool? = nil
         
             /// Sets the axis line color.
-            public var lineColor: Color?
+            public var lineColor: Color? = nil
         
             /// Sets the width (in px) of the axis line.
-            public var lineWidth: Double?
+            public var lineWidth: Double? = nil
         
             /// Determines whether or not grid lines are drawn.
             /// 
             /// If *true*, the grid lines are drawn at every tick mark.
-            public var showGrid: Bool?
+            public var showGrid: Bool? = nil
         
             /// Sets the color of the grid lines.
-            public var gridColor: Color?
+            public var gridColor: Color? = nil
         
             /// Sets the width (in px) of the grid lines.
-            public var gridWidth: Double?
+            public var gridWidth: Double? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -7257,13 +7288,13 @@ public struct Layout: Encodable {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -7272,7 +7303,7 @@ public struct Layout: Encodable {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -7289,73 +7320,73 @@ public struct Layout: Encodable {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Sets the tick font.
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -7365,9 +7396,9 @@ public struct Layout: Encodable {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets the layer on which this axis is displayed.
             /// 
@@ -7375,7 +7406,7 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer?
+            public var layer: Shared.Layer? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -7525,7 +7556,7 @@ public struct Layout: Encodable {
             }
             
         }
-        public var angularAxis: AngularAxis?
+        public var angularAxis: AngularAxis? = nil
     
         /// Determines if the radial axis grid lines and angular axis line are drawn as *circular* sectors
         /// or as *linear* (polygon) sectors.
@@ -7543,13 +7574,13 @@ public struct Layout: Encodable {
         /// Has an effect only when the angular axis has `type` *category*. Note that `radialaxis.angle` is
         /// snapped to the angle of the closest vertex when `gridshape` is *circular* (so that radial axis
         /// scale is the same as the data scale).
-        public var gridShape: GridShape?
+        public var gridShape: GridShape? = nil
     
         /// Controls persistence of user-driven changes in axis attributes, if not overridden in the
         /// individual axes.
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -7566,6 +7597,7 @@ public struct Layout: Encodable {
         /// Creates `Polar` object with specified properties.
         /// 
         /// - Parameters:
+        ///   - uid:
         ///   - domain:
         ///   - sector: Sets angular span of this polar subplot with two angles (in degrees).
         ///   - hole: Sets the fraction of the radius to cut out of the polar subplot.
@@ -7576,9 +7608,11 @@ public struct Layout: Encodable {
         ///   *circular* sectors or as *linear* (polygon) sectors.
         ///   - uiRevision: Controls persistence of user-driven changes in axis attributes, if not overridden
         ///   in the individual axes.
-        public init(domain: Shared.Domain? = nil, sector: InfoArray? = nil, hole: Double? = nil,
-                backgroundColor: Color? = nil, radialAxis: RadialAxis? = nil, angularAxis: AngularAxis? = nil,
-                gridShape: GridShape? = nil, uiRevision: Anything? = nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Shared.Domain? = nil, sector:
+                InfoArray? = nil, hole: Double? = nil, backgroundColor: Color? = nil, radialAxis: RadialAxis? =
+                nil, angularAxis: AngularAxis? = nil, gridShape: GridShape? = nil, uiRevision: Anything? = nil)
+                {
+            self.uid = uid
             self.domain = domain
             self.sector = sector
             self.hole = hole
@@ -7590,23 +7624,26 @@ public struct Layout: Encodable {
         }
         
     }
-    public var polar: Polar?
+    public var polar: [Polar] = []
+
+    
+    // MARK: - Legend, Labels and Shapes
 
     public struct Legend: Encodable {
         /// Sets the legend background color.
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// Sets the color of the border enclosing the legend.
-        public var borderColor: Color?
+        public var borderColor: Color? = nil
     
         /// Sets the width (in px) of the border enclosing the legend.
-        public var borderWidth: Double?
+        public var borderWidth: Double? = nil
     
         /// Sets the font used to text the legend items.
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Sets the orientation of the legend.
-        public var orientation: Shared.Orientation?
+        public var orientation: Shared.Orientation? = nil
     
         /// Determines the order at which the legend items are displayed.
         /// 
@@ -7616,13 +7653,14 @@ public struct Layout: Encodable {
         /// items are displayed in the opposite order as *grouped*.
         public struct TraceOrder: OptionSet, Encodable {
             public let rawValue: Int
-        
             public static var reversed: TraceOrder { TraceOrder(rawValue: 1 << 0) }
             public static var grouped: TraceOrder { TraceOrder(rawValue: 1 << 1) }
             public static var normal: TraceOrder { TraceOrder(rawValue: 1 << 2) }
-        
-            public init(rawValue: Int) { self.rawValue = rawValue }
-        
+            
+            public init(rawValue: Int) {
+                self.rawValue = rawValue
+            }
+            
             public func encode(to encoder: Encoder) throws {
                 var options = [String]()
                 if (self.rawValue & 1 << 0) != 0 { options += ["reversed"] }
@@ -7638,10 +7676,10 @@ public struct Layout: Encodable {
         /// *reversed*, the items are displayed in the opposite order as *normal*. If *grouped*, the items
         /// are displayed in groups (when a trace `legendgroup` is provided). if *grouped+reversed*, the
         /// items are displayed in the opposite order as *grouped*.
-        public var traceOrder: TraceOrder?
+        public var traceOrder: TraceOrder? = nil
     
         /// Sets the amount of vertical space (in px) between legend groups.
-        public var traceGroupGap: Double?
+        public var traceGroupGap: Double? = nil
     
         /// Determines if the legend items symbols scale with their corresponding *trace* attributes or
         /// remain *constant* independent of the symbol size on the graph.
@@ -7651,7 +7689,7 @@ public struct Layout: Encodable {
         }
         /// Determines if the legend items symbols scale with their corresponding *trace* attributes or
         /// remain *constant* independent of the symbol size on the graph.
-        public var itemSizing: ItemSizing?
+        public var itemSizing: ItemSizing? = nil
     
         /// Determines the behavior on legend item click.
         /// 
@@ -7661,7 +7699,6 @@ public struct Layout: Encodable {
             case toggle
             case toggleOthers
             case off
-            
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
@@ -7678,7 +7715,7 @@ public struct Layout: Encodable {
         /// 
         /// *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the
         /// clicked item the sole visible item on the graph. *false* disable legend item click interactions.
-        public var itemClick: ItemClick?
+        public var itemClick: ItemClick? = nil
     
         /// Determines the behavior on legend item double-click.
         /// 
@@ -7689,7 +7726,6 @@ public struct Layout: Encodable {
             case toggle
             case toggleOthers
             case off
-            
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
@@ -7707,12 +7743,12 @@ public struct Layout: Encodable {
         /// *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the
         /// clicked item the sole visible item on the graph. *false* disable legend item double-click
         /// interactions.
-        public var itemDoubleClick: ItemDoubleClick?
+        public var itemDoubleClick: ItemDoubleClick? = nil
     
         /// Sets the x position (in normalized coordinates) of the legend.
         /// 
         /// Defaults to *1.02* for vertical legends and defaults to *0* for horizontal legends.
-        public var x: Double?
+        public var x: Double? = nil
     
         /// Sets the legend's horizontal position anchor.
         /// 
@@ -7720,14 +7756,14 @@ public struct Layout: Encodable {
         /// *auto* anchors legends to the right for `x` values greater than or equal to 2/3, anchors legends
         /// to the left for `x` values less than or equal to 1/3 and anchors legends with respect to their
         /// center otherwise.
-        public var xAnchor: Shared.XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor? = nil
     
         /// Sets the y position (in normalized coordinates) of the legend.
         /// 
         /// Defaults to *1* for vertical legends, defaults to *-0.1* for horizontal legends on graphs w/o
         /// range sliders and defaults to *1.1* for horizontal legends on graph with one or multiple range
         /// sliders.
-        public var y: Double?
+        public var y: Double? = nil
     
         /// Sets the legend's vertical position anchor This anchor binds the `y` position to the *top*,
         /// *middle* or *bottom* of the legend.
@@ -7735,15 +7771,15 @@ public struct Layout: Encodable {
         /// Value *auto* anchors legends at their bottom for `y` values less than or equal to 1/3, anchors
         /// legends to at their top for `y` values greater than or equal to 2/3 and anchors legends with
         /// respect to their middle otherwise.
-        public var yAnchor: Shared.YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor? = nil
     
         /// Controls persistence of legend-driven changes in trace and pie label visibility.
         /// 
         /// Defaults to `layout.uirevision`.
-        public var uiRevision: Anything?
+        public var uiRevision: Anything? = nil
     
         /// Sets the vertical alignment of the symbols with respect to their associated text.
-        public var verticalAlign: Shared.VerticalAlign?
+        public var verticalAlign: Shared.VerticalAlign? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -7812,89 +7848,87 @@ public struct Layout: Encodable {
         }
         
     }
-    public var legend: Legend?
-
-    
-    // MARK: - Labels and Shapes
+    public var legend: Legend? = nil
 
     public struct Annotation: Encodable {
         /// Determines whether or not this annotation is visible.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Sets the text associated with this annotation.
         /// 
         /// Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics
         /// (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
-        public var text: String?
+        public var text: String? = nil
     
         /// Sets the angle at which the `text` is drawn with respect to the horizontal.
-        public var textAngle: Angle?
+        public var textAngle: Angle? = nil
     
         /// Sets the annotation text font.
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Sets an explicit width for the text box.
         /// 
         /// null (default) lets the text set the box width. Wider text will be clipped. There is no
         /// automatic wrapping; use <br> to start a new line.
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Sets an explicit height for the text box.
         /// 
         /// null (default) lets the text set the box height. Taller text will be clipped.
-        public var height: Double?
+        public var height: Double? = nil
     
         /// Sets the opacity of the annotation (text + arrow).
-        public var opacity: Double?
+        public var opacity: Double? = nil
     
         /// Sets the horizontal alignment of the `text` within the box.
         /// 
         /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
         /// HTML tags) or if an explicit width is set to override the text width.
-        public var align: Shared.HorizontalAlign?
+        public var align: Shared.HorizontalAlign? = nil
     
         /// Sets the vertical alignment of the `text` within the box.
         /// 
         /// Has an effect only if an explicit height is set to override the text height.
-        public var verticalAlign: Shared.VerticalAlign?
+        public var verticalAlign: Shared.VerticalAlign? = nil
     
         /// Sets the background color of the annotation.
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// Sets the color of the border enclosing the annotation `text`.
-        public var borderColor: Color?
+        public var borderColor: Color? = nil
     
         /// Sets the padding (in px) between the `text` and the enclosing border.
-        public var borderPadding: Double?
+        public var borderPadding: Double? = nil
     
         /// Sets the width (in px) of the border enclosing the annotation `text`.
-        public var borderWidth: Double?
+        public var borderWidth: Double? = nil
     
         /// Determines whether or not the annotation is drawn with an arrow.
         /// 
         /// If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and
         /// `y` provided.
-        public var showArrow: Bool?
+        public var showArrow: Bool? = nil
     
         /// Sets the color of the annotation arrow.
-        public var arrowColor: Color?
+        public var arrowColor: Color? = nil
     
         /// Sets the end annotation arrow head style.
-        public var arrowHead: Int?
+        public var arrowHead: Int? = nil
     
         /// Sets the start annotation arrow head style.
-        public var startArrowHead: Int?
+        public var startArrowHead: Int? = nil
     
         /// Sets the annotation arrow head position.
         public struct ArrowSide: OptionSet, Encodable {
             public let rawValue: Int
-        
             public static var end: ArrowSide { ArrowSide(rawValue: 1 << 0) }
             public static var start: ArrowSide { ArrowSide(rawValue: 1 << 1) }
             public static var none: ArrowSide { ArrowSide(rawValue: 1 << 2) }
-        
-            public init(rawValue: Int) { self.rawValue = rawValue }
-        
+            
+            public init(rawValue: Int) {
+                self.rawValue = rawValue
+            }
+            
             public func encode(to encoder: Encoder) throws {
                 var options = [String]()
                 if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
@@ -7905,48 +7939,48 @@ public struct Layout: Encodable {
             }
         }
         /// Sets the annotation arrow head position.
-        public var arrowSide: ArrowSide?
+        public var arrowSide: ArrowSide? = nil
     
         /// Sets the size of the end annotation arrow head, relative to `arrowwidth`.
         /// 
         /// A value of 1 (default) gives a head about 3x as wide as the line.
-        public var arrowSize: Double?
+        public var arrowSize: Double? = nil
     
         /// Sets the size of the start annotation arrow head, relative to `arrowwidth`.
         /// 
         /// A value of 1 (default) gives a head about 3x as wide as the line.
-        public var startArrowSize: Double?
+        public var startArrowSize: Double? = nil
     
         /// Sets the width (in px) of annotation arrow line.
-        public var arrowWidth: Double?
+        public var arrowWidth: Double? = nil
     
         /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at,
         /// for example to point at the edge of a marker independent of zoom.
         /// 
         /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
         /// `yshift` which moves everything by this amount.
-        public var standoff: Double?
+        public var standoff: Double? = nil
     
         /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing
         /// at, for example to point at the edge of a marker independent of zoom.
         /// 
         /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
         /// `yshift` which moves everything by this amount.
-        public var startStandoff: Double?
+        public var startStandoff: Double? = nil
     
         /// Sets the x component of the arrow tail about the arrow head.
         /// 
         /// If `axref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from
         /// right to left (left to right). If `axref` is an axis, this is an absolute value on that axis,
         /// like `x`, NOT a relative value.
-        public var ax: Anything?
+        public var ax: Anything? = nil
     
         /// Sets the y component of the arrow tail about the arrow head.
         /// 
         /// If `ayref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from
         /// bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis,
         /// like `y`, NOT a relative value.
-        public var ay: Anything?
+        public var ay: Anything? = nil
     
         /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
         /// 
@@ -7955,14 +7989,14 @@ public struct Layout: Encodable {
         /// annotations which should continue to indicate the correct trend when zoomed.
         public enum AxReference: String, Encodable {
             case pixel
-            case xSubPlotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
         }
         /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
         /// 
         /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
         /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
         /// annotations which should continue to indicate the correct trend when zoomed.
-        public var axReference: AxReference?
+        public var axReference: AxReference? = nil
     
         /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
         /// 
@@ -7971,21 +8005,21 @@ public struct Layout: Encodable {
         /// annotations which should continue to indicate the correct trend when zoomed.
         public enum AyReference: String, Encodable {
             case pixel
-            case ySubPlotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
         }
         /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
         /// 
         /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
         /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
         /// annotations which should continue to indicate the correct trend when zoomed.
-        public var ayReference: AyReference?
+        public var ayReference: AyReference? = nil
     
         /// Sets the annotation's x coordinate axis.
         /// 
         /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
         /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
         /// normalized coordinates where 0 (1) corresponds to the left (right) side.
-        public var xReference: Shared.XAxisReference?
+        public var xReference: Shared.XAxisReference? = nil
     
         /// Sets the annotation's x position.
         /// 
@@ -7994,7 +8028,7 @@ public struct Layout: Encodable {
         /// milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it
         /// should be numbers, using the scale where each category is assigned a serial number from zero in
         /// the order it appears.
-        public var x: Anything?
+        public var x: Anything? = nil
     
         /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*,
         /// *center* or *right* of the annotation.
@@ -8003,18 +8037,18 @@ public struct Layout: Encodable {
         /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
         /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
         /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
-        public var xAnchor: Shared.XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor? = nil
     
         /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative)
         /// by this many pixels.
-        public var xShift: Double?
+        public var xShift: Double? = nil
     
         /// Sets the annotation's y coordinate axis.
         /// 
         /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
         /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
         /// normalized coordinates where 0 (1) corresponds to the bottom (top).
-        public var yReference: Shared.YAxisReference?
+        public var yReference: Shared.YAxisReference? = nil
     
         /// Sets the annotation's y position.
         /// 
@@ -8023,7 +8057,7 @@ public struct Layout: Encodable {
         /// milliseconds will be accepted and converted to strings. If the axis `type` is *category*, it
         /// should be numbers, using the scale where each category is assigned a serial number from zero in
         /// the order it appears.
-        public var y: Anything?
+        public var y: Anything? = nil
     
         /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*,
         /// *middle* or *bottom* of the annotation.
@@ -8032,11 +8066,11 @@ public struct Layout: Encodable {
         /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
         /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
         /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
-        public var yAnchor: Shared.YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor? = nil
     
         /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this
         /// many pixels.
-        public var yShift: Double?
+        public var yShift: Double? = nil
     
         /// Makes this annotation respond to clicks on the plot.
         /// 
@@ -8051,7 +8085,6 @@ public struct Layout: Encodable {
             case off
             case onOff
             case onOut
-            
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
@@ -8073,36 +8106,36 @@ public struct Layout: Encodable {
         /// annotation. If you need to show/hide this annotation in response to different `x` or `y` values,
         /// you can set `xclick` and/or `yclick`. This is useful for example to label the side of a bar. To
         /// label markers though, `standoff` is preferred over `xclick` and `yclick`.
-        public var clickToShow: ClickToShow?
+        public var clickToShow: ClickToShow? = nil
     
         /// Toggle this annotation when clicking a data point whose `x` value is `xclick` rather than the
         /// annotation's `x` value.
-        public var xClick: Anything?
+        public var xClick: Anything? = nil
     
         /// Toggle this annotation when clicking a data point whose `y` value is `yclick` rather than the
         /// annotation's `y` value.
-        public var yClick: Anything?
+        public var yClick: Anything? = nil
     
         /// Sets text to appear when hovering over this annotation.
         /// 
         /// If omitted or blank, no hover label will appear.
-        public var hoverText: String?
+        public var hoverText: String? = nil
     
         public struct HoverLabel: Encodable {
             /// Sets the background color of the hover label.
             /// 
             /// By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
-            public var backgroundColor: Color?
+            public var backgroundColor: Color? = nil
         
             /// Sets the border color of the hover label.
             /// 
             /// By default uses either dark grey or white, for maximum contrast with `hoverlabel.bgcolor`.
-            public var borderColor: Color?
+            public var borderColor: Color? = nil
         
             /// Sets the hover label text font.
             /// 
             /// By default uses the global hover font and size, with color from `hoverlabel.bordercolor`.
-            public var font: Shared.Font?
+            public var font: Shared.Font? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -8125,14 +8158,14 @@ public struct Layout: Encodable {
             }
             
         }
-        public var hoverLabel: HoverLabel?
+        public var hoverLabel: HoverLabel? = nil
     
         /// Determines whether the annotation text box captures mouse move and click events, or allows those
         /// events to pass through to data points in the plot that may be behind the annotation.
         /// 
         /// By default `captureevents` is *false* unless `hovertext` is provided. If you use the event
         /// `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
-        public var captureEvents: Bool?
+        public var captureEvents: Bool? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -8140,7 +8173,7 @@ public struct Layout: Encodable {
         /// You can modify these items in the output figure by making your own item with `templateitemname`
         /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
         /// false` to hide it). Has no effect outside of a template.
-        public var name: String?
+        public var name: String? = nil
     
         /// Used to refer to a named item in this array in the template.
         /// 
@@ -8149,7 +8182,7 @@ public struct Layout: Encodable {
         /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
         /// template or no matching item, this item will be hidden unless you explicitly show it with
         /// `visible: true`.
-        public var templateItemName: String?
+        public var templateItemName: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -8315,11 +8348,11 @@ public struct Layout: Encodable {
         }
         
     }
-    public var annotations: [Annotation]?
+    public var annotations: [Annotation]? = nil
 
     public struct Shape: Encodable {
         /// Determines whether or not this shape is visible.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Specifies the shape type to be drawn.
         /// 
@@ -8343,7 +8376,7 @@ public struct Layout: Encodable {
         /// *rect*, a rectangle is drawn linking (`x0`,`y0`), (`x1`,`y0`), (`x1`,`y1`), (`x0`,`y1`),
         /// (`x0`,`y0`) with respect to the axes' sizing mode. If *path*, draw a custom SVG path using
         /// `path`. with respect to the axes' sizing mode.
-        public var type: `Type`?
+        public var type: `Type`? = nil
     
         /// Specifies whether shapes are drawn below or above traces.
         public enum Layer: String, Encodable {
@@ -8351,7 +8384,7 @@ public struct Layout: Encodable {
             case above
         }
         /// Specifies whether shapes are drawn below or above traces.
-        public var layer: Layer?
+        public var layer: Layer? = nil
     
         /// Sets the shape's x coordinate axis.
         /// 
@@ -8360,7 +8393,7 @@ public struct Layout: Encodable {
         /// normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type`
         /// is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then
         /// you must convert the date to unix time in milliseconds.
-        public var xReference: Shared.XAxisReference?
+        public var xReference: Shared.XAxisReference? = nil
     
         /// Sets the shapes's sizing mode along the x axis.
         /// 
@@ -8380,31 +8413,31 @@ public struct Layout: Encodable {
         /// `xanchor` specifies the x position in terms of data or plot fraction but `x0`, `x1` and x
         /// coordinates within `path` are pixels relative to `xanchor`. This way, the shape can have a fixed
         /// width while maintaining a position relative to data or plot fraction.
-        public var xSizeMode: XSizeMode?
+        public var xSizeMode: XSizeMode? = nil
     
         /// Only relevant in conjunction with `xsizemode` set to *pixel*.
         /// 
         /// Specifies the anchor point on the x axis to which `x0`, `x1` and x coordinates within `path` are
         /// relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when
         /// `xsizemode` not set to *pixel*.
-        public var xAnchor: Anything?
+        public var xAnchor: Anything? = nil
     
         /// Sets the shape's starting x position.
         /// 
         /// See `type` and `xsizemode` for more info.
-        public var x0: Anything?
+        public var x0: Anything? = nil
     
         /// Sets the shape's end x position.
         /// 
         /// See `type` and `xsizemode` for more info.
-        public var x1: Anything?
+        public var x1: Anything? = nil
     
         /// Sets the annotation's y coordinate axis.
         /// 
         /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
         /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
         /// normalized coordinates where *0* (*1*) corresponds to the bottom (top).
-        public var yReference: Shared.YAxisReference?
+        public var yReference: Shared.YAxisReference? = nil
     
         /// Sets the shapes's sizing mode along the y axis.
         /// 
@@ -8424,24 +8457,24 @@ public struct Layout: Encodable {
         /// `yanchor` specifies the y position in terms of data or plot fraction but `y0`, `y1` and y
         /// coordinates within `path` are pixels relative to `yanchor`. This way, the shape can have a fixed
         /// height while maintaining a position relative to data or plot fraction.
-        public var ySizeMode: YSizeMode?
+        public var ySizeMode: YSizeMode? = nil
     
         /// Only relevant in conjunction with `ysizemode` set to *pixel*.
         /// 
         /// Specifies the anchor point on the y axis to which `y0`, `y1` and y coordinates within `path` are
         /// relative to. E.g. useful to attach a pixel sized shape to a certain data value. No effect when
         /// `ysizemode` not set to *pixel*.
-        public var yAnchor: Anything?
+        public var yAnchor: Anything? = nil
     
         /// Sets the shape's starting y position.
         /// 
         /// See `type` and `ysizemode` for more info.
-        public var y0: Anything?
+        public var y0: Anything? = nil
     
         /// Sets the shape's end y position.
         /// 
         /// See `type` and `ysizemode` for more info.
-        public var y1: Anything?
+        public var y1: Anything? = nil
     
         /// For `type` *path* - a valid SVG path with the pixel values replaced by data values in
         /// `xsizemode`/`ysizemode` being *scaled* and taken unmodified as pixels relative to `xanchor` and
@@ -8457,15 +8490,15 @@ public struct Layout: Encodable {
         /// describe fractional positions On data axes: because space and T are both normal components of
         /// path strings, we can't use either to separate date from time parts. Therefore we'll use
         /// underscore for this purpose: 2015-02-21_13:45:56.789
-        public var path: String?
+        public var path: String? = nil
     
         /// Sets the opacity of the shape.
-        public var opacity: Double?
+        public var opacity: Double? = nil
     
-        public var line: Shared.DashedLine?
+        public var line: Shared.DashedLine? = nil
     
         /// Sets the color filling the shape's interior.
-        public var fillColor: Color?
+        public var fillColor: Color? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -8473,7 +8506,7 @@ public struct Layout: Encodable {
         /// You can modify these items in the output figure by making your own item with `templateitemname`
         /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
         /// false` to hide it). Has no effect outside of a template.
-        public var name: String?
+        public var name: String? = nil
     
         /// Used to refer to a named item in this array in the template.
         /// 
@@ -8482,7 +8515,7 @@ public struct Layout: Encodable {
         /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
         /// template or no matching item, this item will be hidden unless you explicitly show it with
         /// `visible: true`.
-        public var templateItemName: String?
+        public var templateItemName: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -8560,17 +8593,17 @@ public struct Layout: Encodable {
         }
         
     }
-    public var shapes: [Shape]?
+    public var shapes: [Shape]? = nil
 
     public struct Image: Encodable {
         /// Determines whether or not this image is visible.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Specifies the URL of the image to be used.
         /// 
         /// The URL must be accessible from the domain where the plot code is run, and can be either
         /// relative or absolute.
-        public var source: String?
+        public var source: String? = nil
     
         /// Specifies whether images are drawn below or above traces.
         /// 
@@ -8582,19 +8615,19 @@ public struct Layout: Encodable {
         /// Specifies whether images are drawn below or above traces.
         /// 
         /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
-        public var layer: Layer?
+        public var layer: Layer? = nil
     
         /// Sets the image container size horizontally.
         /// 
         /// The image will be sized based on the `position` value. When `xref` is set to `paper`, units are
         /// sized relative to the plot width.
-        public var xSize: Double?
+        public var xSize: Double? = nil
     
         /// Sets the image container size vertically.
         /// 
         /// The image will be sized based on the `position` value. When `yref` is set to `paper`, units are
         /// sized relative to the plot height.
-        public var ySize: Double?
+        public var ySize: Double? = nil
     
         /// Specifies which dimension of the image to constrain.
         public enum Sizing: String, Encodable {
@@ -8603,42 +8636,42 @@ public struct Layout: Encodable {
             case stretch
         }
         /// Specifies which dimension of the image to constrain.
-        public var sizing: Sizing?
+        public var sizing: Sizing? = nil
     
         /// Sets the opacity of the image.
-        public var opacity: Double?
+        public var opacity: Double? = nil
     
         /// Sets the image's x position.
         /// 
         /// When `xref` is set to `paper`, units are sized relative to the plot height. See `xref` for more
         /// info
-        public var x: Anything?
+        public var x: Anything? = nil
     
         /// Sets the image's y position.
         /// 
         /// When `yref` is set to `paper`, units are sized relative to the plot height. See `yref` for more
         /// info
-        public var y: Anything?
+        public var y: Anything? = nil
     
         /// Sets the anchor for the x position
-        public var xAnchor: Shared.XAnchor?
+        public var xAnchor: Shared.XAnchor? = nil
     
         /// Sets the anchor for the y position.
-        public var yAnchor: Shared.YAnchor?
+        public var yAnchor: Shared.YAnchor? = nil
     
         /// Sets the images's x coordinate axis.
         /// 
         /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set
         /// to *paper*, the `x` position refers to the distance from the left of plot in normalized
         /// coordinates where *0* (*1*) corresponds to the left (right).
-        public var xReference: Shared.XAxisReference?
+        public var xReference: Shared.XAxisReference? = nil
     
         /// Sets the images's y coordinate axis.
         /// 
         /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set
         /// to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized
         /// coordinates where *0* (*1*) corresponds to the bottom (top).
-        public var yReference: Shared.YAxisReference?
+        public var yReference: Shared.YAxisReference? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -8646,7 +8679,7 @@ public struct Layout: Encodable {
         /// You can modify these items in the output figure by making your own item with `templateitemname`
         /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
         /// false` to hide it). Has no effect outside of a template.
-        public var name: String?
+        public var name: String? = nil
     
         /// Used to refer to a named item in this array in the template.
         /// 
@@ -8655,7 +8688,7 @@ public struct Layout: Encodable {
         /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
         /// template or no matching item, this item will be hidden unless you explicitly show it with
         /// `visible: true`.
-        public var templateItemName: String?
+        public var templateItemName: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -8718,11 +8751,11 @@ public struct Layout: Encodable {
         }
         
     }
-    public var images: [Image]?
+    public var images: [Image]? = nil
 
     public struct UpdateMenu: Encodable {
         /// Determines whether or not the update menu is visible.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are
         /// stacked horizontally or vertically
@@ -8732,7 +8765,7 @@ public struct Layout: Encodable {
         }
         /// Determines whether the buttons are accessible via a dropdown menu or whether the buttons are
         /// stacked horizontally or vertically
-        public var type: `Type`?
+        public var type: `Type`? = nil
     
         /// Determines the direction in which the buttons are laid out, whether in a dropdown menu or a
         /// row/column of buttons.
@@ -8750,17 +8783,17 @@ public struct Layout: Encodable {
         /// 
         /// For `left` and `up`, the buttons will still appear in left-to-right or top-to-bottom order
         /// respectively.
-        public var direction: Direction?
+        public var direction: Direction? = nil
     
         /// Determines which button (by index starting from 0) is considered active.
-        public var active: Int?
+        public var active: Int? = nil
     
         /// Highlights active dropdown item or active button if true.
-        public var showActive: Bool?
+        public var showActive: Bool? = nil
     
         public struct Button: Encodable {
             /// Determines whether or not this button is visible.
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets the Plotly method to be called on click.
             /// 
@@ -8779,19 +8812,19 @@ public struct Layout: Encodable {
             /// If the `skip` method is used, the API updatemenu will function as normal but will perform no API
             /// calls and will not bind automatically to state updates. This may be used to create a component
             /// interface and attach to updatemenu events manually via JavaScript.
-            public var method: Method?
+            public var method: Method? = nil
         
             /// Sets the arguments values to be passed to the Plotly method set in `method` on click.
-            public var args: InfoArray?
+            public var args: InfoArray? = nil
         
             /// Sets a 2nd set of `args`, these arguments values are passed to the Plotly method set in `method`
             /// when clicking this button while in the active state.
             /// 
             /// Use this to create toggle buttons.
-            public var args2: InfoArray?
+            public var args2: InfoArray? = nil
         
             /// Sets the text label to appear on the button.
-            public var label: String?
+            public var label: String? = nil
         
             /// When true, the API method is executed.
             /// 
@@ -8799,7 +8832,7 @@ public struct Layout: Encodable {
             /// useful when hooking into, for example, the `plotly_buttonclicked` method and executing the API
             /// command manually without losing the benefit of the updatemenu automatically binding to the state
             /// of the plot through the specification of `method` and `args`.
-            public var execute: Bool?
+            public var execute: Bool? = nil
         
             /// When used in a template, named items are created in the output figure in addition to any items
             /// the figure already has in this array.
@@ -8807,7 +8840,7 @@ public struct Layout: Encodable {
             /// You can modify these items in the output figure by making your own item with `templateitemname`
             /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
             /// false` to hide it). Has no effect outside of a template.
-            public var name: String?
+            public var name: String? = nil
         
             /// Used to refer to a named item in this array in the template.
             /// 
@@ -8816,7 +8849,7 @@ public struct Layout: Encodable {
             /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
             /// template or no matching item, this item will be hidden unless you explicitly show it with
             /// `visible: true`.
-            public var templateItemName: String?
+            public var templateItemName: String? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -8857,37 +8890,37 @@ public struct Layout: Encodable {
             }
             
         }
-        public var buttons: [Button]?
+        public var buttons: [Button]? = nil
     
         /// Sets the x position (in normalized coordinates) of the update menu.
-        public var x: Double?
+        public var x: Double? = nil
     
         /// Sets the update menu's horizontal position anchor.
         /// 
         /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
-        public var xAnchor: Shared.XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor? = nil
     
         /// Sets the y position (in normalized coordinates) of the update menu.
-        public var y: Double?
+        public var y: Double? = nil
     
         /// Sets the update menu's vertical position anchor This anchor binds the `y` position to the *top*,
         /// *middle* or *bottom* of the range selector.
-        public var yAnchor: Shared.YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor? = nil
     
         /// Sets the padding around the buttons or dropdown menu.
-        public var padding: Shared.Padding?
+        public var padding: Shared.Padding? = nil
     
         /// Sets the font of the update menu button text.
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Sets the background color of the update menu buttons.
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// Sets the color of the border enclosing the update menu.
-        public var borderColor: Color?
+        public var borderColor: Color? = nil
     
         /// Sets the width (in px) of the border enclosing the update menu.
-        public var borderWidth: Double?
+        public var borderWidth: Double? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -8895,7 +8928,7 @@ public struct Layout: Encodable {
         /// You can modify these items in the output figure by making your own item with `templateitemname`
         /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
         /// false` to hide it). Has no effect outside of a template.
-        public var name: String?
+        public var name: String? = nil
     
         /// Used to refer to a named item in this array in the template.
         /// 
@@ -8904,7 +8937,7 @@ public struct Layout: Encodable {
         /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
         /// template or no matching item, this item will be hidden unless you explicitly show it with
         /// `visible: true`.
-        public var templateItemName: String?
+        public var templateItemName: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -8977,21 +9010,18 @@ public struct Layout: Encodable {
         }
         
     }
-    public var updateMenus: [UpdateMenu]?
-
-    
-    // MARK: - Color Visualization
+    public var updateMenus: [UpdateMenu]? = nil
 
     public struct Slider: Encodable {
         /// Determines whether or not the slider is visible.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Determines which button (by index starting from 0) is considered active.
-        public var active: Double?
+        public var active: Double? = nil
     
         public struct Step: Encodable {
             /// Determines whether or not this step is included in the slider.
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets the Plotly method to be called when the slider value is changed.
             /// 
@@ -9010,18 +9040,18 @@ public struct Layout: Encodable {
             /// If the `skip` method is used, the API slider will function as normal but will perform no API
             /// calls and will not bind automatically to state updates. This may be used to create a component
             /// interface and attach to slider events manually via JavaScript.
-            public var method: Method?
+            public var method: Method? = nil
         
             /// Sets the arguments values to be passed to the Plotly method set in `method` on slide.
-            public var args: InfoArray?
+            public var args: InfoArray? = nil
         
             /// Sets the text label to appear on the slider
-            public var label: String?
+            public var label: String? = nil
         
             /// Sets the value of the slider step, used to refer to the step programatically.
             /// 
             /// Defaults to the slider label if not provided.
-            public var value: String?
+            public var value: String? = nil
         
             /// When true, the API method is executed.
             /// 
@@ -9029,7 +9059,7 @@ public struct Layout: Encodable {
             /// useful when hooking into, for example, the `plotly_sliderchange` method and executing the API
             /// command manually without losing the benefit of the slider automatically binding to the state of
             /// the plot through the specification of `method` and `args`.
-            public var execute: Bool?
+            public var execute: Bool? = nil
         
             /// When used in a template, named items are created in the output figure in addition to any items
             /// the figure already has in this array.
@@ -9037,7 +9067,7 @@ public struct Layout: Encodable {
             /// You can modify these items in the output figure by making your own item with `templateitemname`
             /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
             /// false` to hide it). Has no effect outside of a template.
-            public var name: String?
+            public var name: String? = nil
         
             /// Used to refer to a named item in this array in the template.
             /// 
@@ -9046,7 +9076,7 @@ public struct Layout: Encodable {
             /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
             /// template or no matching item, this item will be hidden unless you explicitly show it with
             /// `visible: true`.
-            public var templateItemName: String?
+            public var templateItemName: String? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -9086,39 +9116,39 @@ public struct Layout: Encodable {
             }
             
         }
-        public var steps: [Step]?
+        public var steps: [Step]? = nil
     
         /// Determines whether this slider length is set in units of plot *fraction* or in *pixels.
         /// 
         /// Use `len` to set the value.
-        public var lengthMode: Shared.LengthMode?
+        public var lengthMode: Shared.LengthMode? = nil
     
         /// Sets the length of the slider This measure excludes the padding of both ends.
         /// 
         /// That is, the slider's length is this length minus the padding on both ends.
-        public var length: Double?
+        public var length: Double? = nil
     
         /// Sets the x position (in normalized coordinates) of the slider.
-        public var x: Double?
+        public var x: Double? = nil
     
         /// Set the padding of the slider component along each side.
-        public var padding: Shared.Padding?
+        public var padding: Shared.Padding? = nil
     
         /// Sets the slider's horizontal position anchor.
         /// 
         /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
-        public var xAnchor: Shared.XAutoAnchor?
+        public var xAnchor: Shared.XAutoAnchor? = nil
     
         /// Sets the y position (in normalized coordinates) of the slider.
-        public var y: Double?
+        public var y: Double? = nil
     
         /// Sets the slider's vertical position anchor This anchor binds the `y` position to the *top*,
         /// *middle* or *bottom* of the range selector.
-        public var yAnchor: Shared.YAutoAnchor?
+        public var yAnchor: Shared.YAutoAnchor? = nil
     
         public struct Transition: Encodable {
             /// Sets the duration of the slider transition
-            public var duration: Double?
+            public var duration: Double? = nil
         
             /// Sets the easing function of the slider transition
             public enum Easing: String, Encodable {
@@ -9160,7 +9190,7 @@ public struct Layout: Encodable {
                 case bounceInOut = "bounce-in-out"
             }
             /// Sets the easing function of the slider transition
-            public var easing: Easing?
+            public var easing: Easing? = nil
         
             /// Creates `Transition` object with specified properties.
             /// 
@@ -9173,26 +9203,26 @@ public struct Layout: Encodable {
             }
             
         }
-        public var transition: Transition?
+        public var transition: Transition? = nil
     
         public struct CurrentValue: Encodable {
             /// Shows the currently-selected value above the slider.
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// The alignment of the value readout relative to the length of the slider.
-            public var xAnchor: Shared.XAnchor?
+            public var xAnchor: Shared.XAnchor? = nil
         
             /// The amount of space, in pixels, between the current value label and the slider.
-            public var offset: Double?
+            public var offset: Double? = nil
         
             /// When currentvalue.visible is true, this sets the prefix of the label.
-            public var prefix: String?
+            public var prefix: String? = nil
         
             /// When currentvalue.visible is true, this sets the suffix of the label.
-            public var suffix: String?
+            public var suffix: String? = nil
         
             /// Sets the font of the current value label text.
-            public var font: Shared.Font?
+            public var font: Shared.Font? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -9224,34 +9254,34 @@ public struct Layout: Encodable {
             }
             
         }
-        public var currentValue: CurrentValue?
+        public var currentValue: CurrentValue? = nil
     
         /// Sets the font of the slider step labels.
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Sets the background color of the slider grip while dragging.
-        public var activeBackgroundColor: Color?
+        public var activeBackgroundColor: Color? = nil
     
         /// Sets the background color of the slider.
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// Sets the color of the border enclosing the slider.
-        public var borderColor: Color?
+        public var borderColor: Color? = nil
     
         /// Sets the width (in px) of the border enclosing the slider.
-        public var borderWidth: Double?
+        public var borderWidth: Double? = nil
     
         /// Sets the length in pixels of step tick marks
-        public var tickLength: Double?
+        public var tickLength: Double? = nil
     
         /// Sets the color of the border enclosing the slider.
-        public var tickColor: Color?
+        public var tickColor: Color? = nil
     
         /// Sets the tick width (in px).
-        public var tickWidth: Double?
+        public var tickWidth: Double? = nil
     
         /// Sets the length in pixels of minor step tick marks
-        public var minorTickLength: Double?
+        public var minorTickLength: Double? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -9259,7 +9289,7 @@ public struct Layout: Encodable {
         /// You can modify these items in the output figure by making your own item with `templateitemname`
         /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
         /// false` to hide it). Has no effect outside of a template.
-        public var name: String?
+        public var name: String? = nil
     
         /// Used to refer to a named item in this array in the template.
         /// 
@@ -9268,7 +9298,7 @@ public struct Layout: Encodable {
         /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
         /// template or no matching item, this item will be hidden unless you explicitly show it with
         /// `visible: true`.
-        public var templateItemName: String?
+        public var templateItemName: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -9360,23 +9390,26 @@ public struct Layout: Encodable {
         }
         
     }
-    public var sliders: [Slider]?
+    public var sliders: [Slider]? = nil
+
+    
+    // MARK: - Color Visualization
 
     public struct ColorMap: Encodable {
         /// Sets the default sequential colorscale for positive values.
         /// 
         /// Note that `autocolorscale` must be true for this attribute to work.
-        public var sequential: ColorScale?
+        public var sequential: ColorScale? = nil
     
         /// Sets the default sequential colorscale for negative values.
         /// 
         /// Note that `autocolorscale` must be true for this attribute to work.
-        public var sequentialMinus: ColorScale?
+        public var sequentialMinus: ColorScale? = nil
     
         /// Sets the default diverging colorscale.
         /// 
         /// Note that `autocolorscale` must be true for this attribute to work.
-        public var diverging: ColorScale?
+        public var diverging: ColorScale? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -9399,32 +9432,34 @@ public struct Layout: Encodable {
         }
         
     }
-    public var colorScale: ColorMap?
+    public var colorScale: ColorMap? = nil
 
-    public struct ColorAxis: Encodable {
+    public class ColorAxis: Encodable {
+        public var uid: UInt = UInt.random(in: 2...UInt.max)
+    
         /// Determines whether or not the color domain is computed with respect to the input data (here
         /// corresponding trace color array(s)) or the bounds set in `cmin` and `cmax` Defaults to `false`
         /// when `cmin` and `cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Value should have the same units as corresponding trace color array(s) and if set, `cmax` must
         /// be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Value should have the same units as corresponding trace color array(s) and if set, `cmin` must
         /// be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this
         /// point.
         /// 
         /// Value should have the same units as corresponding trace color array(s). Has no effect when
         /// `cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -9434,7 +9469,7 @@ public struct Layout: Encodable {
         /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
         /// be a palette name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `colorscale`.
@@ -9442,18 +9477,18 @@ public struct Layout: Encodable {
         /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
         /// chosen according to whether numbers in the `color` array are all positive, all negative or
         /// mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
         /// first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -9471,6 +9506,7 @@ public struct Layout: Encodable {
         /// Creates `ColorAxis` object with specified properties.
         /// 
         /// - Parameters:
+        ///   - uid:
         ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
         ///   (here corresponding trace color array(s)) or the bounds set in `cmin` and `cmax` Defaults to
         ///   `false` when `cmin` and `cmax` are set by the user.
@@ -9484,9 +9520,11 @@ public struct Layout: Encodable {
         ///   - reverseScale: Reverses the color mapping if true.
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
-        public init(cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? =
-                nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
-                showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), cAuto: Bool? = nil, cMin: Double? = nil,
+                cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+                Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? =
+                nil) {
+            self.uid = uid
             self.cAuto = cAuto
             self.cMin = cMin
             self.cMax = cMax
@@ -9499,7 +9537,7 @@ public struct Layout: Encodable {
         }
         
     }
-    public var colorAxis: ColorAxis?
+    public var colorAxis: [ColorAxis] = []
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -9684,11 +9722,11 @@ public struct Layout: Encodable {
             ModeBar? = nil, meta: Data<Anything>? = nil, transition: Transition? = nil, clickMode:
             ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? =
             nil, spikeDistance: Int? = nil, hoverLabel: Shared.HoverLabel? = nil, selectDirection:
-            SelectDirection? = nil, grid: Grid? = nil, calendar: Shared.Calendar? = nil, xAxis: XAxis? =
-            nil, yAxis: YAxis? = nil, ternary: Ternary? = nil, scene: Scene? = nil, geo: Geo? = nil, mapbox:
-            Mapbox? = nil, polar: Polar? = nil, legend: Legend? = nil, annotations: [Annotation]? = nil,
+            SelectDirection? = nil, grid: Grid? = nil, calendar: Shared.Calendar? = nil, xAxis: [XAxis] =
+            [], yAxis: [YAxis] = [], ternary: [Ternary] = [], scene: [Scene] = [], geo: [Geo] = [], mapbox:
+            [Mapbox] = [], polar: [Polar] = [], legend: Legend? = nil, annotations: [Annotation]? = nil,
             shapes: [Shape]? = nil, images: [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders:
-            [Slider]? = nil, colorScale: ColorMap? = nil, colorAxis: ColorAxis? = nil) {
+            [Slider]? = nil, colorScale: ColorMap? = nil, colorAxis: [ColorAxis] = []) {
         self.funnelAreaColorWay = funnelAreaColorWay
         self.extendFunnelAreaColors = extendFunnelAreaColors
         self.treemapColorWay = treemapColorWay
@@ -9760,4 +9798,112 @@ public struct Layout: Encodable {
         self.colorAxis = colorAxis
     }
     
+    /// Encodes the object in a format compatible with Plotly.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        var axisContainer = encoder.container(keyedBy: AxisKeys.self)
+        try container.encodeIfPresent(funnelAreaColorWay, forKey: .funnelAreaColorWay)
+        try container.encodeIfPresent(extendFunnelAreaColors, forKey: .extendFunnelAreaColors)
+        try container.encodeIfPresent(treemapColorWay, forKey: .treemapColorWay)
+        try container.encodeIfPresent(extendTreemapColors, forKey: .extendTreemapColors)
+        try container.encodeIfPresent(sunburstColorWay, forKey: .sunburstColorWay)
+        try container.encodeIfPresent(extendSunburstColors, forKey: .extendSunburstColors)
+        try container.encodeIfPresent(hiddenLabels, forKey: .hiddenLabels)
+        try container.encodeIfPresent(pieColorWay, forKey: .pieColorWay)
+        try container.encodeIfPresent(extendPieColors, forKey: .extendPieColors)
+        try container.encodeIfPresent(waterfallMode, forKey: .waterfallMode)
+        try container.encodeIfPresent(waterfallGap, forKey: .waterfallGap)
+        try container.encodeIfPresent(waterfallGroupGap, forKey: .waterfallGroupGap)
+        try container.encodeIfPresent(funnelMode, forKey: .funnelMode)
+        try container.encodeIfPresent(funnelGap, forKey: .funnelGap)
+        try container.encodeIfPresent(funnelGroupGap, forKey: .funnelGroupGap)
+        try container.encodeIfPresent(violinMode, forKey: .violinMode)
+        try container.encodeIfPresent(violinGap, forKey: .violinGap)
+        try container.encodeIfPresent(violinGroupGap, forKey: .violinGroupGap)
+        try container.encodeIfPresent(boxMode, forKey: .boxMode)
+        try container.encodeIfPresent(boxGap, forKey: .boxGap)
+        try container.encodeIfPresent(boxGroupGap, forKey: .boxGroupGap)
+        try container.encodeIfPresent(barMode, forKey: .barMode)
+        try container.encodeIfPresent(barNormalization, forKey: .barNormalization)
+        try container.encodeIfPresent(barGap, forKey: .barGap)
+        try container.encodeIfPresent(barGroupGap, forKey: .barGroupGap)
+        try container.encodeIfPresent(font, forKey: .font)
+        try container.encodeIfPresent(title, forKey: .title)
+        try container.encodeIfPresent(autoSize, forKey: .autoSize)
+        try container.encodeIfPresent(width, forKey: .width)
+        try container.encodeIfPresent(height, forKey: .height)
+        try container.encodeIfPresent(margin, forKey: .margin)
+        try container.encodeIfPresent(paperBackgroundColor, forKey: .paperBackgroundColor)
+        try container.encodeIfPresent(plotBackgroundColor, forKey: .plotBackgroundColor)
+        try container.encodeIfPresent(separators, forKey: .separators)
+        try container.encodeIfPresent(hideSources, forKey: .hideSources)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(colorWay, forKey: .colorWay)
+        try container.encodeIfPresent(dataRevision, forKey: .dataRevision)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(editRevision, forKey: .editRevision)
+        try container.encodeIfPresent(selectionRevision, forKey: .selectionRevision)
+        try container.encodeIfPresent(template, forKey: .template)
+        try container.encodeIfPresent(modeBar, forKey: .modeBar)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(transition, forKey: .transition)
+        try container.encodeIfPresent(clickMode, forKey: .clickMode)
+        try container.encodeIfPresent(dragMode, forKey: .dragMode)
+        try container.encodeIfPresent(hoverMode, forKey: .hoverMode)
+        try container.encodeIfPresent(hoverDistance, forKey: .hoverDistance)
+        try container.encodeIfPresent(spikeDistance, forKey: .spikeDistance)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(selectDirection, forKey: .selectDirection)
+        try container.encodeIfPresent(grid, forKey: .grid)
+        try container.encodeIfPresent(calendar, forKey: .calendar)
+        for axis in self.xAxis {
+            try axisContainer.encode(axis, forKey: AxisKeys(.xAxis, axis.uid))
+        }
+        for axis in self.yAxis {
+            try axisContainer.encode(axis, forKey: AxisKeys(.yAxis, axis.uid))
+        }
+        for axis in self.ternary {
+            try axisContainer.encode(axis, forKey: AxisKeys(.ternary, axis.uid))
+        }
+        for axis in self.scene {
+            try axisContainer.encode(axis, forKey: AxisKeys(.scene, axis.uid))
+        }
+        for axis in self.geo {
+            try axisContainer.encode(axis, forKey: AxisKeys(.geo, axis.uid))
+        }
+        for axis in self.mapbox {
+            try axisContainer.encode(axis, forKey: AxisKeys(.mapbox, axis.uid))
+        }
+        for axis in self.polar {
+            try axisContainer.encode(axis, forKey: AxisKeys(.polar, axis.uid))
+        }
+        try container.encodeIfPresent(legend, forKey: .legend)
+        try container.encodeIfPresent(annotations, forKey: .annotations)
+        try container.encodeIfPresent(shapes, forKey: .shapes)
+        try container.encodeIfPresent(images, forKey: .images)
+        try container.encodeIfPresent(updateMenus, forKey: .updateMenus)
+        try container.encodeIfPresent(sliders, forKey: .sliders)
+        try container.encodeIfPresent(colorScale, forKey: .colorScale)
+        for axis in self.colorAxis {
+            try axisContainer.encode(axis, forKey: AxisKeys(.colorAxis, axis.uid))
+        }
+        /// Convenience type that appends integer UID to a coding key.
+        struct AxisKeys: CodingKey {
+            var intValue: Int?
+            var stringValue: String
+        
+            init(intValue: Int) {
+                self.intValue = intValue
+                self.stringValue = String(intValue)
+            }
+        
+            init(stringValue: String) {
+                self.stringValue = stringValue
+            }
+        
+            init(_ key: CodingKeys, _ uid: UInt) {
+                self.init(stringValue: key.rawValue + String(uid))
+            }
+        }
+    }
 }

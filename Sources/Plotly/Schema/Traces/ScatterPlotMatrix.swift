@@ -19,36 +19,36 @@ public struct ScatterPlotMatrix: Trace {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -58,26 +58,26 @@ public struct ScatterPlotMatrix: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -90,20 +90,20 @@ public struct ScatterPlotMatrix: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     public struct Dimension: Encodable {
         /// Determines whether or not this dimension is shown on the graph.
         /// 
         /// Note that even visible false dimension contribute to the default grid generate by this splom
         /// trace.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Sets the label corresponding to this splom dimension.
-        public var label: String?
+        public var label: String? = nil
     
         /// Sets the dimension values to be plotted.
-        public var values: [Double]?
+        public var values: [Double]? = nil
     
         public struct Axis: Encodable {
             /// Sets the axis type for this dimension's generated x and y axes.
@@ -118,12 +118,12 @@ public struct ScatterPlotMatrix: Trace {
             /// Sets the axis type for this dimension's generated x and y axes.
             /// 
             /// Note that the axis `type` values set in layout take precedence over this attribute.
-            public var type: `Type`?
+            public var type: `Type`? = nil
         
             /// Determines whether or not the x & y axes generated by this dimension match.
             /// 
             /// Equivalent to setting the `matches` axis attribute in the layout with the correct axis id.
-            public var matches: Bool?
+            public var matches: Bool? = nil
         
             /// Creates `Axis` object with specified properties.
             /// 
@@ -136,7 +136,7 @@ public struct ScatterPlotMatrix: Trace {
             }
             
         }
-        public var axis: Axis?
+        public var axis: Axis? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -144,7 +144,7 @@ public struct ScatterPlotMatrix: Trace {
         /// You can modify these items in the output figure by making your own item with `templateitemname`
         /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
         /// false` to hide it). Has no effect outside of a template.
-        public var name: String?
+        public var name: String? = nil
     
         /// Used to refer to a named item in this array in the template.
         /// 
@@ -153,7 +153,7 @@ public struct ScatterPlotMatrix: Trace {
         /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
         /// template or no matching item, this item will be hidden unless you explicitly show it with
         /// `visible: true`.
-        public var templateItemName: String?
+        public var templateItemName: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -186,16 +186,16 @@ public struct ScatterPlotMatrix: Trace {
         }
         
     }
-    public var dimensions: [Dimension]?
+    public var dimensions: [Dimension]? = nil
 
     /// Sets text elements associated with each (x,y) pair to appear on hover.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -212,27 +212,27 @@ public struct ScatterPlotMatrix: Trace {
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
-    public var marker: Shared.SymbolicMarker?
+    public var marker: Shared.SymbolicMarker? = nil
 
     /// Sets the list of x axes corresponding to dimensions of this splom trace.
     /// 
     /// By default, a splom will match the first N xaxes where N is the number of input dimensions. Note
     /// that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false,
     /// this splom trace will generate one less x-axis and one less y-axis.
-    public var xAxes: InfoArray?
+    public var xAxes: InfoArray? = nil
 
     /// Sets the list of y axes corresponding to dimensions of this splom trace.
     /// 
     /// By default, a splom will match the first N yaxes where N is the number of input dimensions. Note
     /// that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false,
     /// this splom trace will generate one less x-axis and one less y-axis.
-    public var yAxes: InfoArray?
+    public var yAxes: InfoArray? = nil
 
     public struct Diagonal: Encodable {
         /// Determines whether or not subplots on the diagonal are displayed.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Creates `Diagonal` object with specified properties.
         /// 
@@ -243,24 +243,24 @@ public struct ScatterPlotMatrix: Trace {
         }
         
     }
-    public var diagonal: Diagonal?
+    public var diagonal: Diagonal? = nil
 
     /// Determines whether or not subplots on the upper half from the diagonal are displayed.
-    public var showUpperHalf: Bool?
+    public var showUpperHalf: Bool? = nil
 
     /// Determines whether or not subplots on the lower half from the diagonal are displayed.
-    public var showLowerHalf: Bool?
+    public var showLowerHalf: Bool? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the marker size of selected points.
-            public var size: Double?
+            public var size: Double? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -275,7 +275,7 @@ public struct ScatterPlotMatrix: Trace {
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Selected` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -283,18 +283,18 @@ public struct ScatterPlotMatrix: Trace {
         }
         
     }
-    public var selected: Selected?
+    public var selected: Selected? = nil
 
     public struct Unselected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the marker size of unselected points, applied only when a selection exists.
-            public var size: Double?
+            public var size: Double? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -309,7 +309,7 @@ public struct ScatterPlotMatrix: Trace {
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Unselected` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -317,15 +317,14 @@ public struct ScatterPlotMatrix: Trace {
         }
         
     }
-    public var unselected: Unselected?
+    public var unselected: Unselected? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"

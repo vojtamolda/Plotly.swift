@@ -257,7 +257,7 @@ enum Predefined {
     /// Decoded Plotly schema attribute of type `subplotid`.
     ///
     /// - Remark: Properties originate from `/defs/valObjects/subplotid`.
-    struct SubPlotID: PredefinedType {
+    struct SubplotID: PredefinedType {
         var codingPath: [CodingKey] = []
 
         let valType: String
@@ -306,7 +306,7 @@ enum Predefined {
         let editType: String?
         let role: String?
 
-        let dflt: Schema.Primitive? = nil  // FIXME: Dictionary in some cases
+        let dflt: Schema.Primitive? = nil
         let values: [Schema.Primitive]?
         let arrayOk: Bool?
 
@@ -326,7 +326,7 @@ enum Predefined {
         let editType: String?
         let role: String?
 
-        let items: [Schema.Primitive] = []  // FIXME: Dictionary in some cases
+        let items: [Schema.Primitive] = []
         let dflt: [Schema.Primitive]?
         let freeLength: Bool?
         let dimensions: Schema.Primitive?

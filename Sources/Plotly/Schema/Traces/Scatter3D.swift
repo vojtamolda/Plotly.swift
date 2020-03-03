@@ -9,7 +9,7 @@
 ///   [Python](https://plot.ly/python/reference/#scatter3d), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatter3d) or 
 ///   [R](https://plot.ly/r/reference/#scatter3d)
-public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData: Plotable, ZData: Plotable {
+public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: Plotable, YData: Plotable, ZData: Plotable {
     public let type: String = "scatter3d"
 
     public let animatable: Bool = false
@@ -18,39 +18,39 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -60,13 +60,13 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -79,23 +79,23 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the x coordinates.
-    public var x: XData?
+    public var x: XData? = nil
 
     /// Sets the y coordinates.
-    public var y: YData?
+    public var y: YData? = nil
 
     /// Sets the z coordinates.
-    public var z: ZData?
+    public var z: ZData? = nil
 
     /// Sets text elements associated with each (x,y,z) triplet.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y,z) coordinates. If trace `hoverinfo` contains
     /// a *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -108,14 +108,14 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available.
-    public var textTemplate: Data<String>?
+    public var textTemplate: Data<String>? = nil
 
     /// Sets text elements associated with each (x,y,z) triplet.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y,z) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -132,14 +132,14 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Determines the drawing mode for this scatter trace.
     /// 
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-    public var mode: Shared.Mode?
+    public var mode: Shared.Mode? = nil
 
     /// If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are
     /// filled with a Delaunay surface about the x, y, z respectively.
@@ -151,57 +151,57 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     }
     /// If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are
     /// filled with a Delaunay surface about the x, y, z respectively.
-    public var surfaceAxis: SurfaceAxis?
+    public var surfaceAxis: SurfaceAxis? = nil
 
     /// Sets the surface fill color.
-    public var surfaceColor: Color?
+    public var surfaceColor: Color? = nil
 
-    public var projection: Shared.Projection?
+    public var projection: Shared.Projection? = nil
 
     /// Determines whether or not gaps (i.e.
     /// 
     /// {nan} or missing values) in the provided data arrays are connected.
-    public var connectGaps: Bool?
+    public var connectGaps: Bool? = nil
 
     public struct DashedMarkerLine: Encodable {
         /// Sets the line width (in px).
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Sets the dash style of the lines.
-        public var dash: Shared.Dash?
+        public var dash: Shared.Dash? = nil
     
         /// Sets thelinecolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if
         /// set.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in
         /// `line.color`is set to a numerical array.
         /// 
         /// Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color` and if set, `line.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color` and if set, `line.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `line.cmin` and/or `line.cmax` to be
         /// equidistant to this point.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color`. Has no effect when `line.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -212,7 +212,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         /// in color space, use`line.cmin` and `line.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `line.colorscale`.
@@ -220,27 +220,27 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         /// Has an effect only if in `line.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. If true, `line.cmin` will
         /// correspond to the last color in the array and `line.cmax` will correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -282,7 +282,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         public init(width: Double? = nil, dash: Shared.Dash? = nil, coloring: Coloring? = nil, cAuto:
                 Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:
                 ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
-                nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil) {
+                nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
             self.width = width
             self.dash = dash
             self.coloring = coloring
@@ -299,46 +299,45 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         }
         
     }
-    public var line: DashedMarkerLine?
+    public var line: DashedMarkerLine? = nil
 
-    public var marker: Shared.SymbolicMarker?
+    public var marker: Shared.SymbolicMarker? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition?
+    public var textPosition: Shared.TextPosition? = nil
 
-    public var textFont: Shared.VariableFont?
+    public var textFont: Shared.VariableFont? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
-    public var xError: Shared.Error?
+    public var xError: Shared.Error? = nil
 
-    public var yError: Shared.Error?
+    public var yError: Shared.Error? = nil
 
-    public var zError: Shared.Error?
+    public var zError: Shared.Error? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar?
+    public var xCalendar: Shared.Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar?
+    public var yCalendar: Shared.Calendar? = nil
 
     /// Sets the calendar system to use with `z` date data.
-    public var zCalendar: Shared.Calendar?
+    public var zCalendar: Shared.Calendar? = nil
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: SubPlotID?
+    public var scene: Layout.Scene = Layout.Scene(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -462,7 +461,8 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
             Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont:
             Shared.VariableFont? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil,
             yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil,
-            yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+            yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: Layout.Scene =
+            Layout.Scene(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -505,8 +505,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -520,6 +519,15 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
+        if let z = self.z {
+            try z.encode(toPlotly: container.superEncoder(forKey: .z))
+        }
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
@@ -540,22 +548,6 @@ public struct Scatter3D<XData, YData, ZData>: Trace where XData: Plotable, YData
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
         try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
         try container.encodeIfPresent(zCalendar, forKey: .zCalendar)
-        try container.encodeIfPresent(scene, forKey: .scene)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
-    
-        if let z = self.z {
-            let zEncoder = container.superEncoder(forKey: .z)
-            try z.encode(toPlotly: zEncoder)
-        }
+        try container.encode("scene\(scene.uid)", forKey: .scene)
     }
-    
 }

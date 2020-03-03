@@ -10,7 +10,7 @@
 ///   [Python](https://plot.ly/python/reference/#waterfall), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#waterfall) or 
 ///   [R](https://plot.ly/r/reference/#waterfall)
-public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plotable {
+public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: Plotable {
     public let type: String = "waterfall"
 
     public let animatable: Bool = false
@@ -19,39 +19,39 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -61,20 +61,20 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -87,52 +87,52 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// An array containing types of values.
     /// 
     /// By default the values are considered as 'relative'. However; it is possible to use 'total' to
     /// compute the sums. Also 'absolute' could be applied to reset the computed total or to declare an
     /// initial value where needed.
-    public var measure: [String]?
+    public var measure: [String]? = nil
 
     /// Sets where the bar base is drawn (in position axis units).
-    public var base: Double?
+    public var base: Double? = nil
 
     /// Sets the x coordinates.
-    public var x: XData?
+    public var x: XData? = nil
 
     /// Alternate to `x`.
     /// 
     /// Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and
     /// `dx` the step.
-    public var x0: Anything?
+    public var x0: Anything? = nil
 
     /// Sets the x coordinate step.
     /// 
     /// See `x0` for more info.
-    public var dx: Double?
+    public var dx: Double? = nil
 
     /// Sets the y coordinates.
-    public var y: YData?
+    public var y: YData? = nil
 
     /// Alternate to `y`.
     /// 
     /// Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and
     /// `dy` the step.
-    public var y0: Anything?
+    public var y0: Anything? = nil
 
     /// Sets the y coordinate step.
     /// 
     /// See `y0` for more info.
-    public var dy: Double?
+    public var dy: Double? = nil
 
     /// Sets hover text elements associated with each (x,y) pair.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -149,7 +149,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// true`) are available. variables `initial`, `delta` and `final`. Anything contained in tag
     /// `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To
     /// hide the secondary box completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -157,7 +157,6 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var name: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var x: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var y: HoverInfo { HoverInfo(rawValue: 1 << 2) }
@@ -168,9 +167,11 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 7) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 8) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 9) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["name"] }
@@ -191,23 +192,24 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
     /// Determines which trace information appear on the graph.
     /// 
     /// In the case of having multiple waterfalls, totals are computed separately (per trace).
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var label: TextInfo { TextInfo(rawValue: 1 << 0) }
         public static var text: TextInfo { TextInfo(rawValue: 1 << 1) }
         public static var initial: TextInfo { TextInfo(rawValue: 1 << 2) }
         public static var delta: TextInfo { TextInfo(rawValue: 1 << 3) }
         public static var final: TextInfo { TextInfo(rawValue: 1 << 4) }
         public static var none: TextInfo { TextInfo(rawValue: 1 << 5) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
@@ -223,7 +225,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// Determines which trace information appear on the graph.
     /// 
     /// In the case of having multiple waterfalls, totals are computed separately (per trace).
-    public var textInfo: TextInfo?
+    public var textInfo: TextInfo? = nil
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -236,14 +238,14 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `initial`, `delta`, `final` and `label`.
-    public var textTemplate: Data<String>?
+    public var textTemplate: Data<String>? = nil
 
     /// Sets text elements associated with each (x,y) pair.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Specifies the location of the `text`.
     /// 
@@ -252,55 +254,55 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
-    public var textPosition: Shared.AdjacentPosition?
+    public var textPosition: Shared.AdjacentPosition? = nil
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    public var insideTextAnchor: Shared.InsideTextAnchor?
+    public var insideTextAnchor: Shared.InsideTextAnchor? = nil
 
     /// Sets the angle of the tick labels with respect to the bar.
     /// 
     /// For example, a `tickangle` of -90 draws the tick labels vertically. With *auto* the texts may
     /// automatically be rotated to fit with the maximum size in bars.
-    public var textAngle: Angle?
+    public var textAngle: Angle? = nil
 
     /// Sets the font used for `text`.
-    public var textFont: Shared.VariableFont?
+    public var textFont: Shared.VariableFont? = nil
 
     /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: Shared.VariableFont?
+    public var insideTextFont: Shared.VariableFont? = nil
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outsideTextFont: Shared.OutsideTextFont?
+    public var outsideTextFont: Shared.OutsideTextFont? = nil
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    public var constrainText: Shared.ConstrainText?
+    public var constrainText: Shared.ConstrainText? = nil
 
     /// Determines whether the text nodes are clipped about the subplot axes.
     /// 
     /// To show the text nodes above axis lines and tick labels, make sure to set `xaxis.layer` and
     /// `yaxis.layer` to *below traces*.
-    public var clipOnAxis: Bool?
+    public var clipOnAxis: Bool? = nil
 
     /// Sets the orientation of the bars.
     /// 
     /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
-    public var orientation: Shared.Orientation?
+    public var orientation: Shared.Orientation? = nil
 
     /// Shifts the position where the bar is drawn (in position axis units).
     /// 
     /// In *group* barmode, traces that set *offset* will be excluded and drawn in *overlay* mode
     /// instead.
-    public var offset: Data<Double>?
+    public var offset: Data<Double>? = nil
 
     /// Sets the bar width (in position axis units).
-    public var width: Data<Double>?
+    public var width: Data<Double>? = nil
 
     public struct Increasing: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker color of all increasing values.
-            public var color: Color?
+            public var color: Color? = nil
         
-            public var line: Shared.Line?
+            public var line: Shared.Line? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -313,7 +315,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Increasing` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -321,14 +323,14 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         }
         
     }
-    public var increasing: Increasing?
+    public var increasing: Increasing? = nil
 
     public struct Decreasing: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker color of all decreasing values.
-            public var color: Color?
+            public var color: Color? = nil
         
-            public var line: Shared.Line?
+            public var line: Shared.Line? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -341,7 +343,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Decreasing` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -349,14 +351,14 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         }
         
     }
-    public var decreasing: Decreasing?
+    public var decreasing: Decreasing? = nil
 
     public struct Totals: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker color of all intermediate sums and total values.
-            public var color: Color?
+            public var color: Color? = nil
         
-            public var line: Shared.Line?
+            public var line: Shared.Line? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -369,7 +371,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Totals` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -377,10 +379,10 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         }
         
     }
-    public var totals: Totals?
+    public var totals: Totals? = nil
 
     public struct Connector: Encodable {
-        public var line: Shared.DashedLine?
+        public var line: Shared.DashedLine? = nil
     
         /// Sets the shape of connector lines.
         public enum Mode: String, Encodable {
@@ -388,10 +390,10 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
             case between
         }
         /// Sets the shape of connector lines.
-        public var mode: Mode?
+        public var mode: Mode? = nil
     
         /// Determines if connector lines are drawn.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Creates `Connector` object with specified properties.
         /// 
@@ -406,33 +408,32 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         }
         
     }
-    public var connector: Connector?
+    public var connector: Connector? = nil
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup
     /// where bars of the same position coordinate will line up.
-    public var offsetGroup: String?
+    public var offsetGroup: String? = nil
 
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup.
     /// 
     /// This controls whether bars compute their positional range dependently or independently.
-    public var alignmentGroup: String?
+    public var alignmentGroup: String? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubPlotID?
+    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubPlotID?
+    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -572,8 +573,8 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
             constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation:
             Shared.Orientation? = nil, offset: Data<Double>? = nil, width: Data<Double>? = nil, increasing:
             Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? =
-            nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: SubPlotID? = nil, yAxis:
-            SubPlotID? = nil) {
+            nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: Layout.XAxis =
+            Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -626,8 +627,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -644,8 +644,14 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         try container.encodeIfPresent(measure, forKey: .measure)
         try container.encodeIfPresent(base, forKey: .base)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
         try container.encodeIfPresent(x0, forKey: .x0)
         try container.encodeIfPresent(dx, forKey: .dx)
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
         try container.encodeIfPresent(y0, forKey: .y0)
         try container.encodeIfPresent(dy, forKey: .dy)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
@@ -671,18 +677,7 @@ public struct Waterfall<XData, YData>: Trace where XData: Plotable, YData: Plota
         try container.encodeIfPresent(connector, forKey: .connector)
         try container.encodeIfPresent(offsetGroup, forKey: .offsetGroup)
         try container.encodeIfPresent(alignmentGroup, forKey: .alignmentGroup)
-        try container.encodeIfPresent(xAxis, forKey: .xAxis)
-        try container.encodeIfPresent(yAxis, forKey: .yAxis)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
+        try container.encode("x\(xAxis.uid)", forKey: .xAxis)
+        try container.encode("y\(yAxis.uid)", forKey: .yAxis)
     }
-    
 }

@@ -199,11 +199,8 @@ final class LineCharts: XCTestCase {
 
         let layout = Layout(
             title: "Quarter 1 Growth",
-            xAxis: Layout.XAxis(title: "GDP per Capita",
-                                showGrid: true,
-                                zeroLine: true),
-            yAxis: Layout.YAxis(title: "Percent",
-                                showLine: false)
+            xAxis: [Layout.XAxis(title: "GDP per Capita", showGrid: true, zeroLine: true)],
+            yAxis: [Layout.YAxis(title: "Percent", showLine: false)]
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)
@@ -290,8 +287,8 @@ final class LineCharts: XCTestCase {
 
         let layout = Layout(
             title: "Title of the Graph",
-            xAxis: Layout.XAxis(title: "x-axis title"),
-            yAxis: Layout.YAxis(title: "y-axis title")
+            xAxis: [Layout.XAxis(title: "x-axis title")],
+            yAxis: [Layout.YAxis(title: "y-axis title")]
         )
 
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
@@ -342,14 +339,18 @@ final class LineCharts: XCTestCase {
         )
 
         let layout = Layout(
-            xAxis: Layout.XAxis(
-                autoRange: .off,
-                range: [0.75, 5.25]
-            ),
-            yAxis: Layout.YAxis(
-                autoRange: .off,
-                range: [0, 18.5]
-            ),
+            xAxis: [
+                Layout.XAxis(
+                    autoRange: .off,
+                    range: [0.75, 5.25]
+                )
+            ],
+            yAxis: [
+                Layout.YAxis(
+                    autoRange: .off,
+                    range: [0, 18.5]
+                )
+            ],
             legend: Layout.Legend(font: Shared.Font(size: 16), traceOrder: .reversed, y: 0.5)
         )
 
@@ -433,28 +434,32 @@ final class LineCharts: XCTestCase {
                 autoExpand: false
             ),
             showLegend: false,
-            xAxis: Layout.XAxis(
-                ticks: .outside,
-                tickLength: 5,
-                tickWidth: 2,
-                tickColor: .RGB(204, 204, 204),
-                showTickLabels: true,
-                tickFont: Shared.Font(
-                    family: "Arial",
-                    size: 12,
-                    color: .RGB(82, 82, 82)
-                ),
-                showLine: false,
-                lineColor: .RGB(204, 204, 204),
-                lineWidth: 2,
-                showGrid: false
-            ),
-            yAxis: Layout.YAxis(
-                showTickLabels: false,
-                showLine: false,
-                showGrid: false,
-                zeroLine: false
-            )
+            xAxis: [
+                Layout.XAxis(
+                    ticks: .outside,
+                    tickLength: 5,
+                    tickWidth: 2,
+                    tickColor: .RGB(204, 204, 204),
+                    showTickLabels: true,
+                    tickFont: Shared.Font(
+                        family: "Arial",
+                        size: 12,
+                        color: .RGB(82, 82, 82)
+                    ),
+                    showLine: false,
+                    lineColor: .RGB(204, 204, 204),
+                    lineWidth: 2,
+                    showGrid: false
+                )
+            ],
+            yAxis: [
+                Layout.YAxis(
+                    showTickLabels: false,
+                    showLine: false,
+                    showGrid: false,
+                    zeroLine: false
+                )
+            ]
         )
 
         layout.annotations = [

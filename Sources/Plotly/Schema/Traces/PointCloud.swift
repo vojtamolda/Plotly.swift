@@ -5,7 +5,7 @@
 ///   [Python](https://plot.ly/python/reference/#pointcloud), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#pointcloud) or 
 ///   [R](https://plot.ly/r/reference/#pointcloud)
-public struct PointCloud<XYData>: Trace where XYData: Plotable {
+public struct PointCloud<XYData>: Trace, XYSubplot where XYData: Plotable {
     public let type: String = "pointcloud"
 
     public let animatable: Bool = false
@@ -14,39 +14,39 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -56,17 +56,17 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -79,19 +79,19 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the x coordinates.
-    public var x: XYData?
+    public var x: XYData? = nil
 
     /// Sets the y coordinates.
-    public var y: XYData?
+    public var y: XYData? = nil
 
     /// Faster alternative to specifying `x` and `y` separately.
     /// 
     /// If supplied, it must be a typed `Float32Array` array that represents points such that `xy[i * 2]
     /// = x[i]` and `xy[i * 2 + 1] = y[i]`
-    public var xy: XYData?
+    public var xy: XYData? = nil
 
     /// A sequential value, 0..n, supply it to avoid creating this array inside plotting.
     /// 
@@ -99,63 +99,63 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     /// the number of points. For the best performance and memory use, create one large `indices` typed
     /// array that is guaranteed to be at least as long as the largest number of points during use, and
     /// reuse it on each `Plotly.restyle()` call.
-    public var indices: [Int]?
+    public var indices: [Int]? = nil
 
     /// Specify `xbounds` in the shape of `[xMin, xMax] to avoid looping through the `xy` typed array.
     /// 
     /// Use it in conjunction with `xy` and `ybounds` for the performance benefits.
-    public var xBounds: [Double]?
+    public var xBounds: [Double]? = nil
 
     /// Specify `ybounds` in the shape of `[yMin, yMax] to avoid looping through the `xy` typed array.
     /// 
     /// Use it in conjunction with `xy` and `xbounds` for the performance benefits.
-    public var yBounds: [Double]?
+    public var yBounds: [Double]? = nil
 
     /// Sets text elements associated with each (x,y) pair.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     public struct Marker: Encodable {
         /// Sets the marker fill color.
         /// 
         /// It accepts a specific color.If the color is not fully opaque and there are hundreds of
         /// thousandsof points, it may cause slower zooming and panning.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the marker opacity.
         /// 
         /// The default value is `1` (fully opaque). If the markers are not fully opaque and there are
         /// hundreds of thousands of points, it may cause slower zooming and panning. Opacity fades the
         /// color even if `blend` is left on `false` even if there is no translucency effect in that case.
-        public var opacity: Double?
+        public var opacity: Double? = nil
     
         /// Determines if colors are blended together for a translucency effect in case `opacity` is
         /// specified as a value less then `1`.
         /// 
         /// Setting `blend` to `true` reduces zoom/pan speed if used with large numbers of points.
-        public var blend: Bool?
+        public var blend: Bool? = nil
     
         /// Sets the minimum size (in px) of the rendered marker points, effective when the `pointcloud`
         /// shows a million or more points.
-        public var sizeMin: Double?
+        public var sizeMin: Double? = nil
     
         /// Sets the maximum size (in px) of the rendered marker points.
         /// 
         /// Effective when the `pointcloud` shows only few points.
-        public var sizeMax: Double?
+        public var sizeMax: Double? = nil
     
         public struct Border: Encodable {
             /// Sets the stroke color.
             /// 
             /// It accepts a specific color. If the color is not fully opaque and there are hundreds of
             /// thousands of points, it may cause slower zooming and panning.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Specifies what fraction of the marker area is covered with the border.
-            public var areaRatio: Double?
+            public var areaRatio: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -174,7 +174,7 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
             }
             
         }
-        public var border: Border?
+        public var border: Border? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -208,24 +208,23 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
         }
         
     }
-    public var marker: Marker?
+    public var marker: Marker? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubPlotID?
+    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubPlotID?
+    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -309,7 +308,7 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil,
             x: XYData? = nil, y: XYData? = nil, xy: XYData? = nil, indices: [Int]? = nil, xBounds: [Double]?
             = nil, yBounds: [Double]? = nil, text: Data<String>? = nil, marker: Marker? = nil, xAxis:
-            SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+            Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -338,8 +337,7 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -353,28 +351,21 @@ public struct PointCloud<XYData>: Trace where XYData: Plotable {
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
+        if let xy = self.xy {
+            try xy.encode(toPlotly: container.superEncoder(forKey: .xy))
+        }
         try container.encodeIfPresent(indices, forKey: .indices)
         try container.encodeIfPresent(xBounds, forKey: .xBounds)
         try container.encodeIfPresent(yBounds, forKey: .yBounds)
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(marker, forKey: .marker)
-        try container.encodeIfPresent(xAxis, forKey: .xAxis)
-        try container.encodeIfPresent(yAxis, forKey: .yAxis)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
-    
-        if let xy = self.xy {
-            let xyEncoder = container.superEncoder(forKey: .xy)
-            try xy.encode(toPlotly: xyEncoder)
-        }
+        try container.encode("x\(xAxis.uid)", forKey: .xAxis)
+        try container.encode("y\(yAxis.uid)", forKey: .yAxis)
     }
-    
 }

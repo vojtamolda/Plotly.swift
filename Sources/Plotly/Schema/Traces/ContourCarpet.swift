@@ -8,7 +8,7 @@
 ///   [Python](https://plot.ly/python/reference/#contourcarpet), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#contourcarpet) or 
 ///   [R](https://plot.ly/r/reference/#contourcarpet)
-public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, AData: Plotable, BData: Plotable {
+public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: Plotable, AData: Plotable, BData: Plotable {
     public let type: String = "contourcarpet"
 
     public let animatable: Bool = false
@@ -17,39 +17,39 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -59,9 +59,9 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -74,50 +74,50 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// The `carpet` of the carpet axes on which this contour trace lies
-    public var carpet: String?
+    public var carpet: String? = nil
 
     /// Sets the z data.
-    public var z: ZData?
+    public var z: ZData? = nil
 
     /// Sets the x coordinates.
-    public var a: AData?
+    public var a: AData? = nil
 
     /// Alternate to `x`.
     /// 
     /// Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and
     /// `dx` the step.
-    public var a0: Anything?
+    public var a0: Anything? = nil
 
     /// Sets the x coordinate step.
     /// 
     /// See `x0` for more info.
-    public var da: Double?
+    public var da: Double? = nil
 
     /// Sets the y coordinates.
-    public var b: BData?
+    public var b: BData? = nil
 
     /// Alternate to `y`.
     /// 
     /// Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and
     /// `dy` the step.
-    public var b0: Anything?
+    public var b0: Anything? = nil
 
     /// Sets the y coordinate step.
     /// 
     /// See `y0` for more info.
-    public var db: Double?
+    public var db: Double? = nil
 
     /// Sets the text elements associated with each z value.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Transposes the z data.
-    public var transpose: Bool?
+    public var transpose: Bool? = nil
 
     /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is
     /// provided).
@@ -133,7 +133,7 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// 
     /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
     /// `x` is not provided).
-    public var aType: AType?
+    public var aType: AType? = nil
 
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is
     /// provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default
@@ -145,50 +145,50 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is
     /// provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default
     /// behavior when `y` is not provided)
-    public var bType: BType?
+    public var bType: BType? = nil
 
     /// Sets the fill color if `contours.type` is *constraint*.
     /// 
     /// Defaults to a half-transparent variant of the line color, marker color, or marker line color,
     /// whichever is available.
-    public var fillColor: Color?
+    public var fillColor: Color? = nil
 
     /// Determines whether or not the contour level attributes are picked by an algorithm.
     /// 
     /// If *true*, the number of contour levels can be set in `ncontours`. If *false*, set the contour
     /// level attributes in `contours`.
-    public var autoContour: Bool?
+    public var autoContour: Bool? = nil
 
     /// Sets the maximum number of contour levels.
     /// 
     /// The actual number of contours will be chosen automatically to be less than or equal to the value
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
-    public var nContours: Int?
+    public var nContours: Int? = nil
 
-    public var contours: Shared.Contours?
+    public var contours: Shared.Contours? = nil
 
-    public var line: Shared.SmoothDashedLine?
+    public var line: Shared.SmoothDashedLine? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
     /// by the user.
-    public var zAuto: Bool?
+    public var zAuto: Bool? = nil
 
     /// Sets the lower bound of the color domain.
     /// 
     /// Value should have the same units as in `z` and if set, `zmax` must be set as well.
-    public var zMin: Double?
+    public var zMin: Double? = nil
 
     /// Sets the upper bound of the color domain.
     /// 
     /// Value should have the same units as in `z` and if set, `zmin` must be set as well.
-    public var zMax: Double?
+    public var zMax: Double? = nil
 
     /// Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this
     /// point.
     /// 
     /// Value should have the same units as in `z`. Has no effect when `zauto` is `false`.
-    public var zMiddle: Double?
+    public var zMiddle: Double? = nil
 
     /// Sets the colorscale.
     /// 
@@ -198,7 +198,7 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-    public var colorScale: ColorScale?
+    public var colorScale: ColorScale? = nil
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
     /// determined by `colorscale`.
@@ -206,42 +206,41 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
-    public var autoColorScale: Bool?
+    public var autoColorScale: Bool? = nil
 
     /// Reverses the color mapping if true.
     /// 
     /// If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the
     /// first color.
-    public var reverseScale: Bool?
+    public var reverseScale: Bool? = nil
 
     /// Determines whether or not a colorbar is displayed for this trace.
-    public var showScale: Bool?
+    public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar?
+    public var colorBar: Shared.ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: SubPlotID?
+    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubPlotID?
+    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubPlotID?
+    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -378,8 +377,8 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
             nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? = nil, zAuto: Bool? = nil,
             zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
             autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-            Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID?
-            = nil) {
+            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), xAxis:
+            Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -426,8 +425,7 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -440,8 +438,17 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         try container.encodeIfPresent(carpet, forKey: .carpet)
+        if let z = self.z {
+            try z.encode(toPlotly: container.superEncoder(forKey: .z))
+        }
+        if let a = self.a {
+            try a.encode(toPlotly: container.superEncoder(forKey: .a))
+        }
         try container.encodeIfPresent(a0, forKey: .a0)
         try container.encodeIfPresent(da, forKey: .da)
+        if let b = self.b {
+            try b.encode(toPlotly: container.superEncoder(forKey: .b))
+        }
         try container.encodeIfPresent(b0, forKey: .b0)
         try container.encodeIfPresent(db, forKey: .db)
         try container.encodeIfPresent(text, forKey: .text)
@@ -463,24 +470,8 @@ public struct ContourCarpet<ZData, AData, BData>: Trace where ZData: Plotable, A
         try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
         try container.encodeIfPresent(showScale, forKey: .showScale)
         try container.encodeIfPresent(colorBar, forKey: .colorBar)
-        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
-        try container.encodeIfPresent(xAxis, forKey: .xAxis)
-        try container.encodeIfPresent(yAxis, forKey: .yAxis)
-    
-        if let z = self.z {
-            let zEncoder = container.superEncoder(forKey: .z)
-            try z.encode(toPlotly: zEncoder)
-        }
-    
-        if let a = self.a {
-            let aEncoder = container.superEncoder(forKey: .a)
-            try a.encode(toPlotly: aEncoder)
-        }
-    
-        if let b = self.b {
-            let bEncoder = container.superEncoder(forKey: .b)
-            try b.encode(toPlotly: bEncoder)
-        }
+        try container.encode("coloraxis\(colorAxis.uid)", forKey: .colorAxis)
+        try container.encode("x\(xAxis.uid)", forKey: .xAxis)
+        try container.encode("y\(yAxis.uid)", forKey: .yAxis)
     }
-    
 }

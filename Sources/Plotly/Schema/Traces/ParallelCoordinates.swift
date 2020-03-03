@@ -16,28 +16,28 @@ public struct ParallelCoordinates: Trace {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -47,11 +47,11 @@ public struct ParallelCoordinates: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -64,15 +64,15 @@ public struct ParallelCoordinates: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
-    public var domain: Shared.Domain?
+    public var domain: Shared.Domain? = nil
 
     /// Sets the angle of the labels with respect to the horizontal.
     /// 
     /// For example, a `tickangle` of -90 draws the labels vertically. Tilted labels with *labelangle*
     /// may be positioned better inside margins when `labelposition` is set to *bottom*.
-    public var labelAngle: Angle?
+    public var labelAngle: Angle? = nil
 
     /// Specifies the location of the `label`.
     /// 
@@ -88,29 +88,29 @@ public struct ParallelCoordinates: Trace {
     /// *top* positions labels above, next to the title *bottom* positions labels below the graph Tilted
     /// labels with *labelangle* may be positioned better inside margins when `labelposition` is set to
     /// *bottom*.
-    public var labelSide: LabelSide?
+    public var labelSide: LabelSide? = nil
 
     /// Sets the font for the `dimension` labels.
-    public var labelFont: Shared.Font?
+    public var labelFont: Shared.Font? = nil
 
     /// Sets the font for the `dimension` tick values.
-    public var tickFont: Shared.Font?
+    public var tickFont: Shared.Font? = nil
 
     /// Sets the font for the `dimension` range values.
-    public var rangeFont: Shared.Font?
+    public var rangeFont: Shared.Font? = nil
 
     /// The dimensions (variables) of the parallel coordinates chart.
     /// 
     /// 2..60 dimensions are supported.
     public struct Dimension: Encodable {
         /// The shown name of the dimension.
-        public var label: String?
+        public var label: String? = nil
     
         /// Sets the values at which ticks on this axis appear.
-        public var tickValues: [Double]?
+        public var tickValues: [Double]? = nil
     
         /// Sets the text displayed at the ticks position via `tickvals`.
-        public var tickText: [Double]?
+        public var tickText: [Double]? = nil
     
         /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
         /// those in Python.
@@ -120,34 +120,34 @@ public struct ParallelCoordinates: Trace {
         /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
         /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-        public var tickFormat: String?
+        public var tickFormat: String? = nil
     
         /// Shows the dimension when set to `true` (the default).
         /// 
         /// Hides the dimension for `false`.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// The domain range that represents the full, shown axis extent.
         /// 
         /// Defaults to the `values` extent. Must be an array of `[fromValue, toValue]` with finite numbers
         /// as elements.
-        public var range: InfoArray?
+        public var range: InfoArray? = nil
     
         /// The domain range to which the filter on the dimension is constrained.
         /// 
         /// Must be an array of `[fromValue, toValue]` with `fromValue <= toValue`, or if `multiselect` is
         /// not disabled, you may give an array of arrays, where each inner array is `[fromValue, toValue]`.
-        public var constraintRange: InfoArray?
+        public var constraintRange: InfoArray? = nil
     
         /// Do we allow multiple selection ranges or just a single range?
-        public var multiSelect: Bool?
+        public var multiSelect: Bool? = nil
     
         /// Dimension values.
         /// 
         /// `values[n]` represents the value of the `n`th point in the dataset, therefore the `values`
         /// vector for all dimensions must be the same (longer vectors will be truncated). Each value must
         /// be a finite number.
-        public var values: [Double]?
+        public var values: [Double]? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -155,7 +155,7 @@ public struct ParallelCoordinates: Trace {
         /// You can modify these items in the output figure by making your own item with `templateitemname`
         /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
         /// false` to hide it). Has no effect outside of a template.
-        public var name: String?
+        public var name: String? = nil
     
         /// Used to refer to a named item in this array in the template.
         /// 
@@ -164,7 +164,7 @@ public struct ParallelCoordinates: Trace {
         /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
         /// template or no matching item, this item will be hidden unless you explicitly show it with
         /// `visible: true`.
-        public var templateItemName: String?
+        public var templateItemName: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -215,7 +215,7 @@ public struct ParallelCoordinates: Trace {
         }
         
     }
-    public var dimensions: [Dimension]?
+    public var dimensions: [Dimension]? = nil
 
     public struct MarkerLine: Encodable {
         /// Sets thelinecolor.
@@ -223,33 +223,33 @@ public struct ParallelCoordinates: Trace {
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if
         /// set.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in
         /// `line.color`is set to a numerical array.
         /// 
         /// Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color` and if set, `line.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color` and if set, `line.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `line.cmin` and/or `line.cmax` to be
         /// equidistant to this point.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color`. Has no effect when `line.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -260,7 +260,7 @@ public struct ParallelCoordinates: Trace {
         /// in color space, use`line.cmin` and `line.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `line.colorscale`.
@@ -268,27 +268,27 @@ public struct ParallelCoordinates: Trace {
         /// Has an effect only if in `line.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. If true, `line.cmin` will
         /// correspond to the last color in the array and `line.cmax` will correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -326,7 +326,7 @@ public struct ParallelCoordinates: Trace {
         public init(coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
                 nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                SubPlotID? = nil) {
+                Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
             self.coloring = coloring
             self.cAuto = cAuto
             self.cMin = cMin
@@ -341,12 +341,11 @@ public struct ParallelCoordinates: Trace {
         }
         
     }
-    public var line: MarkerLine?
+    public var line: MarkerLine? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid

@@ -10,7 +10,7 @@
 ///   [Python](https://plot.ly/python/reference/#volume), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#volume) or 
 ///   [R](https://plot.ly/r/reference/#volume)
-public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueData: Plotable {
+public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plotable, ValueData: Plotable {
     public let type: String = "volume"
 
     public let animatable: Bool = false
@@ -19,28 +19,28 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -50,11 +50,11 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -67,41 +67,41 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the X coordinates of the vertices on X axis.
-    public var x: XYZData?
+    public var x: XYZData? = nil
 
     /// Sets the Y coordinates of the vertices on Y axis.
-    public var y: XYZData?
+    public var y: XYZData? = nil
 
     /// Sets the Z coordinates of the vertices on Z axis.
-    public var z: XYZData?
+    public var z: XYZData? = nil
 
     /// Sets the 4th dimension (value) of the vertices.
-    public var value: ValueData?
+    public var value: ValueData? = nil
 
     /// Sets the minimum boundary for iso-surface plot.
-    public var isoMin: Double?
+    public var isoMin: Double? = nil
 
     /// Sets the maximum boundary for iso-surface plot.
-    public var isoMax: Double?
+    public var isoMax: Double? = nil
 
     public struct Surface: Encodable {
         /// Hides/displays surfaces between minimum and maximum iso-values.
-        public var show: Bool?
+        public var show: Bool? = nil
     
         /// Sets the number of iso-surfaces between minimum and maximum iso-values.
         /// 
         /// By default this value is 2 meaning that only minimum and maximum surfaces would be drawn.
-        public var count: Int?
+        public var count: Int? = nil
     
         /// Sets the fill ratio of the iso-surface.
         /// 
         /// The default fill value of the surface is 1 meaning that they are entirely shaded. On the other
         /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
         /// edges.
-        public var fill: Double?
+        public var fill: Double? = nil
     
         /// Sets the surface pattern of the iso-surface 3-D sections.
         /// 
@@ -111,7 +111,6 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         /// reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
         public struct Pattern: OptionSet, Encodable {
             public let rawValue: Int
-        
             public static var a: Pattern { Pattern(rawValue: 1 << 0) }
             public static var b: Pattern { Pattern(rawValue: 1 << 1) }
             public static var c: Pattern { Pattern(rawValue: 1 << 2) }
@@ -120,9 +119,11 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             public static var all: Pattern { Pattern(rawValue: 1 << 5) }
             public static var odd: Pattern { Pattern(rawValue: 1 << 6) }
             public static var even: Pattern { Pattern(rawValue: 1 << 7) }
-        
-            public init(rawValue: Int) { self.rawValue = rawValue }
-        
+            
+            public init(rawValue: Int) {
+                self.rawValue = rawValue
+            }
+            
             public func encode(to encoder: Encoder) throws {
                 var options = [String]()
                 if (self.rawValue & 1 << 0) != 0 { options += ["A"] }
@@ -143,7 +144,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         /// shaded. The check options (either 1 or 2) could be used to draw half of the squares on the
         /// surface. Using various combinations of capital `A`, `B`, `C`, `D` and `E` may also be used to
         /// reduce the number of triangles on the iso-surfaces and creating other patterns of interest.
-        public var pattern: Pattern?
+        public var pattern: Pattern? = nil
     
         /// Creates `Surface` object with specified properties.
         /// 
@@ -161,19 +162,19 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         }
         
     }
-    public var surface: Surface?
+    public var surface: Surface? = nil
 
     public struct SpaceFrame: Encodable {
         /// Displays/hides tetrahedron shapes between minimum and maximum iso-values.
         /// 
         /// Often useful when either caps or surfaces are disabled or filled with values less than 1.
-        public var show: Bool?
+        public var show: Bool? = nil
     
         /// Sets the fill ratio of the `spaceframe` elements.
         /// 
         /// The default fill value is 1 meaning that they are entirely shaded. Applying a `fill` ratio less
         /// than one would allow the creation of openings parallel to the edges.
-        public var fill: Double?
+        public var fill: Double? = nil
     
         /// Creates `SpaceFrame` object with specified properties.
         /// 
@@ -186,24 +187,24 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         }
         
     }
-    public var spaceFrame: SpaceFrame?
+    public var spaceFrame: SpaceFrame? = nil
 
     public struct Slices: Encodable {
         public struct X: Encodable {
             /// Determines whether or not slice planes about the x dimension are drawn.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Specifies the location(s) of slices on the axis.
             /// 
             /// When not specified slices would be created for all points of the axis x except start and end.
-            public var locations: [Double]?
+            public var locations: [Double]? = nil
         
             /// Sets the fill ratio of the `slices`.
             /// 
             /// The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other
             /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
             /// edges.
-            public var fill: Double?
+            public var fill: Double? = nil
         
             /// Creates `X` object with specified properties.
             /// 
@@ -218,23 +219,23 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             }
             
         }
-        public var x: X?
+        public var x: X? = nil
     
         public struct Y: Encodable {
             /// Determines whether or not slice planes about the y dimension are drawn.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Specifies the location(s) of slices on the axis.
             /// 
             /// When not specified slices would be created for all points of the axis y except start and end.
-            public var locations: [Double]?
+            public var locations: [Double]? = nil
         
             /// Sets the fill ratio of the `slices`.
             /// 
             /// The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other
             /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
             /// edges.
-            public var fill: Double?
+            public var fill: Double? = nil
         
             /// Creates `Y` object with specified properties.
             /// 
@@ -249,23 +250,23 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             }
             
         }
-        public var y: Y?
+        public var y: Y? = nil
     
         public struct Z: Encodable {
             /// Determines whether or not slice planes about the z dimension are drawn.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Specifies the location(s) of slices on the axis.
             /// 
             /// When not specified slices would be created for all points of the axis z except start and end.
-            public var locations: [Double]?
+            public var locations: [Double]? = nil
         
             /// Sets the fill ratio of the `slices`.
             /// 
             /// The default fill value of the `slices` is 1 meaning that they are entirely shaded. On the other
             /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
             /// edges.
-            public var fill: Double?
+            public var fill: Double? = nil
         
             /// Creates `Z` object with specified properties.
             /// 
@@ -280,7 +281,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             }
             
         }
-        public var z: Z?
+        public var z: Z? = nil
     
         /// Creates `Slices` object with specified properties.
         public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
@@ -290,7 +291,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         }
         
     }
-    public var slices: Slices?
+    public var slices: Slices? = nil
 
     public struct Caps: Encodable {
         public struct X: Encodable {
@@ -299,14 +300,14 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             /// The default fill value of the x `slices` is 1 meaning that they are entirely shaded. On the
             /// other hand Applying a `fill` ratio less than one would allow the creation of openings parallel
             /// to the edges.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the fill ratio of the `caps`.
             /// 
             /// The default fill value of the `caps` is 1 meaning that they are entirely shaded. On the other
             /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
             /// edges.
-            public var fill: Double?
+            public var fill: Double? = nil
         
             /// Creates `X` object with specified properties.
             /// 
@@ -319,7 +320,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             }
             
         }
-        public var x: X?
+        public var x: X? = nil
     
         public struct Y: Encodable {
             /// Sets the fill ratio of the `slices`.
@@ -327,14 +328,14 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             /// The default fill value of the y `slices` is 1 meaning that they are entirely shaded. On the
             /// other hand Applying a `fill` ratio less than one would allow the creation of openings parallel
             /// to the edges.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the fill ratio of the `caps`.
             /// 
             /// The default fill value of the `caps` is 1 meaning that they are entirely shaded. On the other
             /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
             /// edges.
-            public var fill: Double?
+            public var fill: Double? = nil
         
             /// Creates `Y` object with specified properties.
             /// 
@@ -347,7 +348,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             }
             
         }
-        public var y: Y?
+        public var y: Y? = nil
     
         public struct Z: Encodable {
             /// Sets the fill ratio of the `slices`.
@@ -355,14 +356,14 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             /// The default fill value of the z `slices` is 1 meaning that they are entirely shaded. On the
             /// other hand Applying a `fill` ratio less than one would allow the creation of openings parallel
             /// to the edges.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the fill ratio of the `caps`.
             /// 
             /// The default fill value of the `caps` is 1 meaning that they are entirely shaded. On the other
             /// hand Applying a `fill` ratio less than one would allow the creation of openings parallel to the
             /// edges.
-            public var fill: Double?
+            public var fill: Double? = nil
         
             /// Creates `Z` object with specified properties.
             /// 
@@ -375,7 +376,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             }
             
         }
-        public var z: Z?
+        public var z: Z? = nil
     
         /// Creates `Caps` object with specified properties.
         public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
@@ -385,16 +386,16 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         }
         
     }
-    public var caps: Caps?
+    public var caps: Caps? = nil
 
     /// Sets the text elements associated with the vertices.
     /// 
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -411,28 +412,28 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here
     /// `value`) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax` are
     /// set by the user.
-    public var cAuto: Bool?
+    public var cAuto: Bool? = nil
 
     /// Sets the lower bound of the color domain.
     /// 
     /// Value should have the same units as `value` and if set, `cmax` must be set as well.
-    public var cMin: Double?
+    public var cMin: Double? = nil
 
     /// Sets the upper bound of the color domain.
     /// 
     /// Value should have the same units as `value` and if set, `cmin` must be set as well.
-    public var cMax: Double?
+    public var cMax: Double? = nil
 
     /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this
     /// point.
     /// 
     /// Value should have the same units as `value`. Has no effect when `cauto` is `false`.
-    public var cMiddle: Double?
+    public var cMiddle: Double? = nil
 
     /// Sets the colorscale.
     /// 
@@ -442,7 +443,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-    public var colorScale: ColorScale?
+    public var colorScale: ColorScale? = nil
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
     /// determined by `colorscale`.
@@ -450,25 +451,25 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
-    public var autoColorScale: Bool?
+    public var autoColorScale: Bool? = nil
 
     /// Reverses the color mapping if true.
     /// 
     /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
     /// first color.
-    public var reverseScale: Bool?
+    public var reverseScale: Bool? = nil
 
     /// Determines whether or not a colorbar is displayed for this trace.
-    public var showScale: Bool?
+    public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar?
+    public var colorBar: Shared.ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: SubPlotID?
+    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
 
     /// Sets the opacity of the surface.
     /// 
@@ -476,7 +477,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent
     /// surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in
     /// the near future and is subject to change.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the opacityscale.
     /// 
@@ -486,34 +487,33 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// values and those in the middle would be more transparent Alternatively, `opacityscale` may be a
     /// palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default
     /// is 'uniform'.
-    public var opacityScale: Anything?
+    public var opacityScale: Anything? = nil
 
-    public var lightPosition: Shared.LightPosition?
+    public var lightPosition: Shared.LightPosition? = nil
 
-    public var lighting: Shared.Lighting?
+    public var lighting: Shared.Lighting? = nil
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an
     /// angular, low-poly look via flat reflections.
-    public var flatShading: Bool?
+    public var flatShading: Bool? = nil
 
-    public var contour: Shared.ContourHover?
+    public var contour: Shared.ContourHover? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: SubPlotID?
+    public var scene: Layout.Scene = Layout.Scene(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid
@@ -643,10 +643,10 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
             hoverTemplate: Data<String>? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
             nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
             reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-            SubPlotID? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition:
-            Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool? = nil,
-            contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene: SubPlotID? =
-            nil) {
+            Layout.ColorAxis = Layout.ColorAxis(uid: 1), opacity: Double? = nil, opacityScale: Anything? =
+            nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading:
+            Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene:
+            Layout.Scene = Layout.Scene(uid: 1)) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -692,8 +692,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
@@ -703,6 +702,18 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
+        if let z = self.z {
+            try z.encode(toPlotly: container.superEncoder(forKey: .z))
+        }
+        if let value = self.value {
+            try value.encode(toPlotly: container.superEncoder(forKey: .value))
+        }
         try container.encodeIfPresent(isoMin, forKey: .isoMin)
         try container.encodeIfPresent(isoMax, forKey: .isoMax)
         try container.encodeIfPresent(surface, forKey: .surface)
@@ -721,7 +732,7 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
         try container.encodeIfPresent(showScale, forKey: .showScale)
         try container.encodeIfPresent(colorBar, forKey: .colorBar)
-        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encode("coloraxis\(colorAxis.uid)", forKey: .colorAxis)
         try container.encodeIfPresent(opacity, forKey: .opacity)
         try container.encodeIfPresent(opacityScale, forKey: .opacityScale)
         try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
@@ -729,27 +740,6 @@ public struct Volume<XYZData, ValueData>: Trace where XYZData: Plotable, ValueDa
         try container.encodeIfPresent(flatShading, forKey: .flatShading)
         try container.encodeIfPresent(contour, forKey: .contour)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
-        try container.encodeIfPresent(scene, forKey: .scene)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
-    
-        if let z = self.z {
-            let zEncoder = container.superEncoder(forKey: .z)
-            try z.encode(toPlotly: zEncoder)
-        }
-    
-        if let value = self.value {
-            let valueEncoder = container.superEncoder(forKey: .value)
-            try value.encode(toPlotly: valueEncoder)
-        }
+        try container.encode("scene\(scene.uid)", forKey: .scene)
     }
-    
 }

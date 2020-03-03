@@ -15,31 +15,31 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -49,13 +49,13 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -68,29 +68,29 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the longitude coordinates (in degrees East).
-    public var longitude: CoordinateData?
+    public var longitude: CoordinateData? = nil
 
     /// Sets the latitude coordinates (in degrees North).
-    public var latitude: CoordinateData?
+    public var latitude: CoordinateData? = nil
 
     /// Sets the points' weight.
     /// 
     /// For example, a value of 10 would be equivalent to having 10 points of weight 1 in the same spot
-    public var z: ZData?
+    public var z: ZData? = nil
 
     /// Sets the radius of influence of one `lon` / `lat` point in pixels.
     /// 
     /// Increasing the value makes the densitymapbox trace smoother, but less detailed.
-    public var radius: Data<Double>?
+    public var radius: Data<Double>? = nil
 
     /// Determines if the densitymapbox trace will be inserted before the layer with the specified ID.
     /// 
     /// By default, densitymapbox traces are placed below the first layer of type symbol If set to '',
     /// the layer will be inserted above every existing layer.
-    public var below: String?
+    public var below: String? = nil
 
     /// Sets text elements associated with each (lon,lat) pair If a single string, the same string
     /// appears over all the data points.
@@ -98,14 +98,14 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Sets hover text elements associated with each (lon,lat) pair If a single string, the same string
     /// appears over all the data points.
     /// 
     /// If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.
     /// To be seen, trace `hoverinfo` must contain a *text* flag.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -113,7 +113,6 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var longitude: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var latitude: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
@@ -122,9 +121,11 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 5) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 6) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 7) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["lon"] }
@@ -143,7 +144,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -160,28 +161,28 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
     /// by the user.
-    public var zAuto: Bool?
+    public var zAuto: Bool? = nil
 
     /// Sets the lower bound of the color domain.
     /// 
     /// Value should have the same units as in `z` and if set, `zmax` must be set as well.
-    public var zMin: Double?
+    public var zMin: Double? = nil
 
     /// Sets the upper bound of the color domain.
     /// 
     /// Value should have the same units as in `z` and if set, `zmin` must be set as well.
-    public var zMax: Double?
+    public var zMax: Double? = nil
 
     /// Sets the mid-point of the color domain by scaling `zmin` and/or `zmax` to be equidistant to this
     /// point.
     /// 
     /// Value should have the same units as in `z`. Has no effect when `zauto` is `false`.
-    public var zMiddle: Double?
+    public var zMiddle: Double? = nil
 
     /// Sets the colorscale.
     /// 
@@ -191,7 +192,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// bounds of the colorscale in color space, use`zmin` and `zmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-    public var colorScale: ColorScale?
+    public var colorScale: ColorScale? = nil
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
     /// determined by `colorscale`.
@@ -199,36 +200,35 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
-    public var autoColorScale: Bool?
+    public var autoColorScale: Bool? = nil
 
     /// Reverses the color mapping if true.
     /// 
     /// If true, `zmin` will correspond to the last color in the array and `zmax` will correspond to the
     /// first color.
-    public var reverseScale: Bool?
+    public var reverseScale: Bool? = nil
 
     /// Determines whether or not a colorbar is displayed for this trace.
-    public var showScale: Bool?
+    public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar?
+    public var colorBar: Shared.ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: SubPlotID?
+    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
 
     /// Sets a reference between this trace's data coordinates and a mapbox subplot.
     /// 
     /// If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer
     /// to `layout.mapbox2`, and so on.
-    public var subPlot: SubPlotID?
+    public var subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case opacity
         case name
@@ -259,7 +259,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
         case showScale = "showscale"
         case colorBar = "colorbar"
         case colorAxis = "coloraxis"
-        case subPlot = "subplot"
+        case subplot
     }
     
     /// Creates `DensityMapbox` object from the most frequently used properties.
@@ -332,7 +332,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
     ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
     ///   - colorBar:
     ///   - colorAxis: Sets a reference to a shared color axis.
-    ///   - subPlot: Sets a reference between this trace's data coordinates and a mapbox subplot.
+    ///   - subplot: Sets a reference between this trace's data coordinates and a mapbox subplot.
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
             String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
@@ -342,7 +342,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
             hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? =
             nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
             reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-            SubPlotID? = nil, subPlot: SubPlotID? = nil) {
+            Layout.ColorAxis = Layout.ColorAxis(uid: 1), subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -373,14 +373,13 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
         self.showScale = showScale
         self.colorBar = colorBar
         self.colorAxis = colorAxis
-        self.subPlot = subPlot
+        self.subplot = subplot
     }
     
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(opacity, forKey: .opacity)
         try container.encodeIfPresent(name, forKey: .name)
@@ -392,6 +391,15 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let longitude = self.longitude {
+            try longitude.encode(toPlotly: container.superEncoder(forKey: .longitude))
+        }
+        if let latitude = self.latitude {
+            try latitude.encode(toPlotly: container.superEncoder(forKey: .latitude))
+        }
+        if let z = self.z {
+            try z.encode(toPlotly: container.superEncoder(forKey: .z))
+        }
         try container.encodeIfPresent(radius, forKey: .radius)
         try container.encodeIfPresent(below, forKey: .below)
         try container.encodeIfPresent(text, forKey: .text)
@@ -407,23 +415,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: 
         try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
         try container.encodeIfPresent(showScale, forKey: .showScale)
         try container.encodeIfPresent(colorBar, forKey: .colorBar)
-        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
-        try container.encodeIfPresent(subPlot, forKey: .subPlot)
-    
-        if let longitude = self.longitude {
-            let longitudeEncoder = container.superEncoder(forKey: .longitude)
-            try longitude.encode(toPlotly: longitudeEncoder)
-        }
-    
-        if let latitude = self.latitude {
-            let latitudeEncoder = container.superEncoder(forKey: .latitude)
-            try latitude.encode(toPlotly: latitudeEncoder)
-        }
-    
-        if let z = self.z {
-            let zEncoder = container.superEncoder(forKey: .z)
-            try z.encode(toPlotly: zEncoder)
-        }
+        try container.encode("coloraxis\(colorAxis.uid)", forKey: .colorAxis)
+        try container.encode("mapbox\(subplot.uid)", forKey: .subplot)
     }
-    
 }

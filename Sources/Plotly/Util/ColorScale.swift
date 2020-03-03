@@ -475,33 +475,36 @@ public struct ColorScale: Encodable {
 
         /// Creates a figure that shows all _Ocean_ color scales next to each other.
         public static func swatch() -> Figure {
-            let swatchBars = [
-                Self.thermal.createSwatchBar(category: "Sequential", name: "thermal"),
-                Self.haline.createSwatchBar(category: "Sequential", name: "haline"),
-                Self.solar.createSwatchBar(category: "Sequential", name: "solar"),
-                Self.ice.createSwatchBar(category: "Sequential", name: "ice"),
-                Self.gray.createSwatchBar(category: "Sequential", name: "gray"),
-                Self.oxy.createSwatchBar(category: "Sequential", name: "oxy"),
-                Self.deep.createSwatchBar(category: "Sequential", name: "deep"),
-                Self.dense.createSwatchBar(category: "Sequential", name: "dense"),
-                Self.algae.createSwatchBar(category: "Sequential", name: "algae"),
-                Self.matter.createSwatchBar(category: "Sequential", name: "matter"),
-                Self.turbid.createSwatchBar(category: "Sequential", name: "turbid"),
-                Self.speed.createSwatchBar(category: "Sequential", name: "speed"),
-                Self.amp.createSwatchBar(category: "Sequential", name: "amp"),
-                Self.tempo.createSwatchBar(category: "Sequential", name: "tempo"),
-                Self.rain.createSwatchBar(category: "Sequential", name: "rain"),
-                Self.phase.createSwatchBar(category: "Sequential", name: "phase"),
-
-                Self.topo.createSwatchBar(category: "Diverging", name: "topo"),
-                Self.balance.createSwatchBar(category: "Diverging", name: "balance"),
-                Self.delta.createSwatchBar(category: "Diverging", name: "delta"),
-                Self.curl.createSwatchBar(category: "Diverging", name: "curl"),
-                Self.diff.createSwatchBar(category: "Diverging", name: "diff"),
-                Self.tarn.createSwatchBar(category: "Diverging", name: "tarn")
+            let colorScales = [
+                ("Sequential", [
+                    ("thermal", Self.thermal),
+                    ("haline", Self.haline),
+                    ("solar", Self.solar),
+                    ("ice", Self.ice),
+                    ("gray", Self.gray),
+                    ("oxy", Self.oxy),
+                    ("deep", Self.deep),
+                    ("dense", Self.dense),
+                    ("algae", Self.algae),
+                    ("matter", Self.matter),
+                    ("turbid", Self.turbid),
+                    ("speed", Self.speed),
+                    ("amp", Self.amp),
+                    ("tempo", Self.tempo),
+                    ("rain", Self.rain),
+                    ("phase", Self.phase)
+                ]),
+                ("Diverging", [
+                    ("topo", Self.topo),
+                    ("balance", Self.balance),
+                    ("delta", Self.delta),
+                    ("curl", Self.curl),
+                    ("diff", Self.diff),
+                    ("tarn", Self.tarn)
+                ])
             ]
             return ColorScale.createSwatchBarFigure(title: "Ocean Color Scales Swatch",
-                data: swatchBars)
+                colorScales: colorScales)
         }
     }
 
@@ -892,39 +895,43 @@ public struct ColorScale: Encodable {
 
         /// Creates a figure that shows all _Brewer_ color scales next to each other.
         public static func swatch() -> Figure {
-            let swatchBars = [
-                Self.blueGreen.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "blueGreen"),
-                Self.bluePurple.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "bluePurple"),
-                Self.greenBlue.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "greenBlue"),
-                Self.orangeRed.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "orangeRed"),
-                Self.purpleBlue.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "purpleBlue"),
-                Self.purpleBlueGreen.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "purpleBlueGreen"),
-                Self.purpleRed.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "purpleRed"),
-                Self.redPurple.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "redPurple"),
-                Self.yellowGreen.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "yellowGreen"),
-                Self.yellowGreenBlue.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "yellowGreenBlue"),
-                Self.yellowOrangeBrown.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "yellowOrangeBrown"),
-                Self.yellowOrangeRed.createSwatchBar(category: "Sequential<br>(Multi Hue)", name: "yellowOrangeRed"),
-
-                Self.blues.createSwatchBar(category: "Sequential<br>(Single-Hue)", name: "blues"),
-                Self.greens.createSwatchBar(category: "Sequential<br>(Single-Hue)", name: "greens"),
-                Self.grays.createSwatchBar(category: "Sequential<br>(Single-Hue)", name: "grays"),
-                Self.oranges.createSwatchBar(category: "Sequential<br>(Single-Hue)", name: "oranges"),
-                Self.purples.createSwatchBar(category: "Sequential<br>(Single-Hue)", name: "purples"),
-                Self.reds.createSwatchBar(category: "Sequential<br>(Single-Hue)", name: "reds"),
-
-                Self.brownTeal.createSwatchBar(category: "Diverging", name: "brownTeal"),
-                Self.pinkGreen.createSwatchBar(category: "Diverging", name: "pinkGreen"),
-                Self.purpleGreen.createSwatchBar(category: "Diverging", name: "purpleGreen"),
-                Self.purpleOrange.createSwatchBar(category: "Diverging", name: "purpleOrange"),
-                Self.redBlue.createSwatchBar(category: "Diverging", name: "redBlue"),
-                Self.redGray.createSwatchBar(category: "Diverging", name: "redGray"),
-                Self.redYellowBlue.createSwatchBar(category: "Diverging", name: "redYellowBlue"),
-                Self.redYellowGreen.createSwatchBar(category: "Diverging", name: "redYellowGreen"),
-                Self.spectral.createSwatchBar(category: "Diverging", name: "spectral")
+            let colorScales = [
+                ("Sequential<br>(Multi Hue)", [
+                    ("blueGreen", Self.blueGreen),
+                    ("bluePurple", Self.bluePurple),
+                    ("greenBlue", Self.greenBlue),
+                    ("orangeRed", Self.orangeRed),
+                    ("purpleBlue", Self.purpleBlue),
+                    ("purpleBlueGreen", Self.purpleBlueGreen),
+                    ("purpleRed", Self.purpleRed),
+                    ("redPurple", Self.redPurple),
+                    ("yellowGreen", Self.yellowGreen),
+                    ("yellowGreenBlue", Self.yellowGreenBlue),
+                    ("yellowOrangeBrown", Self.yellowOrangeBrown),
+                    ("yellowOrangeRed", Self.yellowOrangeRed)
+                ]),
+                ("Sequential<br>(Single Hue)", [
+                    ("blues", Self.blues),
+                    ("greens", Self.greens),
+                    ("grays", Self.grays),
+                    ("oranges", Self.oranges),
+                    ("purples", Self.purples),
+                    ("reds", Self.reds)
+                ]),
+                ("Diverging", [
+                    ("brownTeal", Self.brownTeal),
+                    ("pinkGreen", Self.pinkGreen),
+                    ("purpleGreen", Self.purpleGreen),
+                    ("purpleOrange", Self.purpleOrange),
+                    ("redBlue", Self.redBlue),
+                    ("redGray", Self.redGray),
+                    ("redYellowBlue", Self.redYellowBlue),
+                    ("redYellowGreen", Self.redYellowGreen),
+                    ("spectral", Self.spectral)
+                ])
             ]
             return ColorScale.createSwatchBarFigure(title: "Brewer Color Scales Swatch",
-                data: swatchBars)
+                colorScales: colorScales)
         }
     }
 
@@ -1227,37 +1234,40 @@ public struct ColorScale: Encodable {
 
         /// Creates a figure that shows all _Carto_ color scales next to each other.
         public static func swatch() -> Figure {
-            let swatchBars = [
-                Self.burgundy.createSwatchBar(category: "Sequential", name: "burgundy"),
-                Self.yellowBurgundy.createSwatchBar(category: "Sequential", name: "yellowBurgundy"),
-                Self.orangeRed.createSwatchBar(category: "Sequential", name: "orangeRed"),
-                Self.yellowOrange.createSwatchBar(category: "Sequential", name: "yellowOrange"),
-                Self.peach.createSwatchBar(category: "Sequential", name: "peach"),
-                Self.yellowPink.createSwatchBar(category: "Sequential", name: "yellowPink"),
-                Self.mint.createSwatchBar(category: "Sequential", name: "mint"),
-                Self.greenBlue.createSwatchBar(category: "Sequential", name: "greenBlue"),
-                Self.darkMint.createSwatchBar(category: "Sequential", name: "darkMint"),
-                Self.emerald.createSwatchBar(category: "Sequential", name: "emerald"),
-                Self.yellowBlue.createSwatchBar(category: "Sequential", name: "yellowBlue"),
-                Self.teal.createSwatchBar(category: "Sequential", name: "teal"),
-                Self.greenTeal.createSwatchBar(category: "Sequential", name: "greenTeal"),
-                Self.purple.createSwatchBar(category: "Sequential", name: "purple"),
-                Self.orangePurple.createSwatchBar(category: "Sequential", name: "orangePurple"),
-                Self.sunset.createSwatchBar(category: "Sequential", name: "sunset"),
-                Self.magenta.createSwatchBar(category: "Sequential", name: "magenta"),
-                Self.sunsetDark.createSwatchBar(category: "Sequential", name: "sunsetDark"),
-                Self.yellowBrown.createSwatchBar(category: "Sequential", name: "yellowBrown"),
-
-                Self.armyRose.createSwatchBar(category: "Diverging", name: "armyRose"),
-                Self.fall.createSwatchBar(category: "Diverging", name: "fall"),
-                Self.geyser.createSwatchBar(category: "Diverging", name: "geyser"),
-                Self.temps.createSwatchBar(category: "Diverging", name: "temps"),
-                Self.tealRose.createSwatchBar(category: "Diverging", name: "tealRose"),
-                Self.tropic.createSwatchBar(category: "Diverging", name: "tropic"),
-                Self.earth.createSwatchBar(category: "Diverging", name: "earth")
+            let colorScales = [
+                ("Sequential", [
+                    ("burgundy", Self.burgundy),
+                    ("yellowBurgundy", Self.yellowBurgundy),
+                    ("orangeRed", Self.orangeRed),
+                    ("yellowOrange", Self.yellowOrange),
+                    ("peach", Self.peach),
+                    ("yellowPink", Self.yellowPink),
+                    ("mint", Self.mint),
+                    ("greenBlue", Self.greenBlue),
+                    ("darkMint", Self.darkMint),
+                    ("emerald", Self.emerald),
+                    ("yellowBlue", Self.yellowBlue),
+                    ("teal", Self.teal),
+                    ("greenTeal", Self.greenTeal),
+                    ("purple", Self.purple),
+                    ("orangePurple", Self.orangePurple),
+                    ("sunset", Self.sunset),
+                    ("magenta", Self.magenta),
+                    ("sunsetDark", Self.sunsetDark),
+                    ("yellowBrown", Self.yellowBrown)
+                ]),
+                ("Diverging", [
+                    ("armyRose", Self.armyRose),
+                    ("fall", Self.fall),
+                    ("geyser", Self.geyser),
+                    ("temps", Self.temps),
+                    ("tealRose", Self.tealRose),
+                    ("tropic", Self.tropic),
+                    ("earth", Self.earth)
+                ])
             ]
             return ColorScale.createSwatchBarFigure(title: "Carto Color Scales Swatch",
-                data: swatchBars)
+                colorScales: colorScales)
         }
     }
 
@@ -1647,38 +1657,41 @@ public struct ColorScale: Encodable {
 
         /// Creates a figure that shows all _Plotly_ color scales next to each other.
         public static func swatch() -> Figure {
-            let swatchBars = [
-                Self.grays.createSwatchBar(category: "JavaScript", name: "grays"),
-                Self.blueGreenYellow.createSwatchBar(category: "JavaScript", name: "blueGreenYellow"),
-                Self.greens.createSwatchBar(category: "JavaScript", name: "greens"),
-                Self.redOrangeYellow.createSwatchBar(category: "JavaScript", name: "redOrangeYellow"),
-                Self.blueRed.createSwatchBar(category: "JavaScript", name: "blueRed"),
-                Self.redBlue.createSwatchBar(category: "JavaScript", name: "redBlue"),
-                Self.reds.createSwatchBar(category: "JavaScript", name: "reds"),
-                Self.blues.createSwatchBar(category: "JavaScript", name: "blues"),
-                Self.picnic.createSwatchBar(category: "JavaScript", name: "picnic"),
-                Self.rainbow.createSwatchBar(category: "JavaScript", name: "rainbow"),
-                Self.portland.createSwatchBar(category: "JavaScript", name: "portland"),
-                Self.jet.createSwatchBar(category: "JavaScript", name: "jet"),
-                Self.hot.createSwatchBar(category: "JavaScript", name: "hot"),
-                Self.blackBody.createSwatchBar(category: "JavaScript", name: "blackBody"),
-                Self.earth.createSwatchBar(category: "JavaScript", name: "earth"),
-                Self.electric.createSwatchBar(category: "JavaScript", name: "electric"),
-                Self.viridis.createSwatchBar(category: "JavaScript", name: "viridis"),
-                Self.cividis.createSwatchBar(category: "JavaScript", name: "cividis"),
-
-                Self.plotly3.createSwatchBar(category: "Python", name: "plotly3"),
-                Self.inferno.createSwatchBar(category: "Python", name: "inferno"),
-                Self.magma.createSwatchBar(category: "Python", name: "magma"),
-                Self.plasma.createSwatchBar(category: "Python", name: "plasma"),
-                Self.iceFire.createSwatchBar(category: "Python", name: "iceFire"),
-                Self.edge.createSwatchBar(category: "Python", name: "edge"),
-                Self.hsv.createSwatchBar(category: "Python", name: "hsv"),
-                Self.magentaRedYellowBlue.createSwatchBar(category: "Python", name: "magentaRedYellowBlue"),
-                Self.magentaYellowGreenBlue.createSwatchBar(category: "Python", name: "magentaYellowGreenBlue")
+            let colorScales = [
+                ("JavaScript", [
+                    ("grays", Self.grays),
+                    ("blueGreenYellow", Self.blueGreenYellow),
+                    ("greens", Self.greens),
+                    ("redOrangeYellow", Self.redOrangeYellow),
+                    ("blueRed", Self.blueRed),
+                    ("redBlue", Self.redBlue),
+                    ("reds", Self.reds),
+                    ("blues", Self.blues),
+                    ("picnic", Self.picnic),
+                    ("rainbow", Self.rainbow),
+                    ("portland", Self.portland),
+                    ("jet", Self.jet),
+                    ("hot", Self.hot),
+                    ("blackBody", Self.blackBody),
+                    ("earth", Self.earth),
+                    ("electric", Self.electric),
+                    ("viridis", Self.viridis),
+                    ("cividis", Self.cividis)
+                ]),
+                ("Python", [
+                    ("plotly3", Self.plotly3),
+                    ("inferno", Self.inferno),
+                    ("magma", Self.magma),
+                    ("plasma", Self.plasma),
+                    ("iceFire", Self.iceFire),
+                    ("edge", Self.edge),
+                    ("hsv", Self.hsv),
+                    ("magentaRedYellowBlue", Self.magentaRedYellowBlue),
+                    ("magentaYellowGreenBlue", Self.magentaYellowGreenBlue)
+                ])
             ]
             return ColorScale.createSwatchBarFigure(title: "Plotly Color Scales Swatch",
-                data: swatchBars)
+                colorScales: colorScales)
         }
     }
 
@@ -1824,74 +1837,79 @@ public struct ColorScale: Encodable {
 
         /// Creates a figure that shows all _Sequential_ color scales next to each other.
         public static func swatch() -> Figure {
-            let swatchBars = [
-                Self.thermal.createSwatchBar(category: "Ocean", name: "thermal"),
-                Self.haline.createSwatchBar(category: "Ocean", name: "haline"),
-                Self.solar.createSwatchBar(category: "Ocean", name: "solar"),
-                Self.ice.createSwatchBar(category: "Ocean", name: "ice"),
-                Self.gray.createSwatchBar(category: "Ocean", name: "gray"),
-                Self.deep.createSwatchBar(category: "Ocean", name: "deep"),
-                Self.dense.createSwatchBar(category: "Ocean", name: "dense"),
-                Self.algae.createSwatchBar(category: "Ocean", name: "algae"),
-                Self.matter.createSwatchBar(category: "Ocean", name: "matter"),
-                Self.turbid.createSwatchBar(category: "Ocean", name: "turbid"),
-                Self.speed.createSwatchBar(category: "Ocean", name: "speed"),
-                Self.amp.createSwatchBar(category: "Ocean", name: "amp"),
-                Self.tempo.createSwatchBar(category: "Ocean", name: "tempo"),
-                Self.rain.createSwatchBar(category: "Ocean", name: "rain"),
-
-                Self.blueGreen.createSwatchBar(category: "Brewer", name: "blueGreen"),
-                Self.bluePurple.createSwatchBar(category: "Brewer", name: "bluePurple"),
-                Self.greenBlue.createSwatchBar(category: "Brewer", name: "greenBlue"),
-                Self.orangeRed.createSwatchBar(category: "Brewer", name: "orangeRed"),
-                Self.purpleBlue.createSwatchBar(category: "Brewer", name: "purpleBlue"),
-                Self.purpleBlueGreen.createSwatchBar(category: "Brewer", name: "purpleBlueGreen"),
-                Self.purpleRed.createSwatchBar(category: "Brewer", name: "purpleRed"),
-                Self.redPurple.createSwatchBar(category: "Brewer", name: "redPurple"),
-                Self.yellowGreen.createSwatchBar(category: "Brewer", name: "yellowGreen"),
-                Self.yellowGreenBlue.createSwatchBar(category: "Brewer", name: "yellowGreenBlue"),
-                Self.yellowOrangeBrown.createSwatchBar(category: "Brewer", name: "yellowOrangeBrown"),
-                Self.yellowOrangeRed.createSwatchBar(category: "Brewer", name: "yellowOrangeRed"),
-                Self.blues.createSwatchBar(category: "Brewer", name: "blues"),
-                Self.greens.createSwatchBar(category: "Brewer", name: "greens"),
-                Self.grays.createSwatchBar(category: "Brewer", name: "grays"),
-                Self.oranges.createSwatchBar(category: "Brewer", name: "oranges"),
-                Self.purples.createSwatchBar(category: "Brewer", name: "purples"),
-                Self.reds.createSwatchBar(category: "Brewer", name: "reds"),
-
-                Self.burgundy.createSwatchBar(category: "Brewer", name: "burgundy"),
-                Self.yellowBurgundy.createSwatchBar(category: "Brewer", name: "yellowBurgundy"),
-                Self.yellowOrange.createSwatchBar(category: "Brewer", name: "yellowOrange"),
-                Self.peach.createSwatchBar(category: "Brewer", name: "peach"),
-                Self.yellowPink.createSwatchBar(category: "Brewer", name: "yellowPink"),
-                Self.mint.createSwatchBar(category: "Brewer", name: "mint"),
-                Self.darkMint.createSwatchBar(category: "Brewer", name: "darkMint"),
-                Self.emerald.createSwatchBar(category: "Brewer", name: "emerald"),
-                Self.yellowBlue.createSwatchBar(category: "Brewer", name: "yellowBlue"),
-                Self.teal.createSwatchBar(category: "Brewer", name: "teal"),
-                Self.greenTeal.createSwatchBar(category: "Brewer", name: "greenTeal"),
-                Self.purple.createSwatchBar(category: "Brewer", name: "purple"),
-                Self.orangePurple.createSwatchBar(category: "Brewer", name: "orangePurple"),
-                Self.sunset.createSwatchBar(category: "Brewer", name: "sunset"),
-                Self.magenta.createSwatchBar(category: "Brewer", name: "magenta"),
-                Self.sunsetDark.createSwatchBar(category: "Brewer", name: "sunsetDark"),
-                Self.yellowBrown.createSwatchBar(category: "Brewer", name: "yellowBrown"),
-
-                Self.rainbow.createSwatchBar(category: "Plotly", name: "rainbow"),
-                Self.jet.createSwatchBar(category: "Plotly", name: "jet"),
-                Self.hot.createSwatchBar(category: "Plotly", name: "hot"),
-                Self.blackBody.createSwatchBar(category: "Plotly", name: "blackBody"),
-                Self.earth.createSwatchBar(category: "Plotly", name: "earth"),
-                Self.electric.createSwatchBar(category: "Plotly", name: "electric"),
-                Self.viridis.createSwatchBar(category: "Plotly", name: "viridis"),
-                Self.cividis.createSwatchBar(category: "Plotly", name: "cividis"),
-                Self.plotly3.createSwatchBar(category: "Plotly", name: "plotly3"),
-                Self.inferno.createSwatchBar(category: "Plotly", name: "inferno"),
-                Self.magma.createSwatchBar(category: "Plotly", name: "magma"),
-                Self.plasma.createSwatchBar(category: "Plotly", name: "plasma")
+            let colorScales = [
+                ("Ocean", [
+                    ("thermal", Self.thermal),
+                    ("haline", Self.haline),
+                    ("solar", Self.solar),
+                    ("ice", Self.ice),
+                    ("gray", Self.gray),
+                    ("deep", Self.deep),
+                    ("dense", Self.dense),
+                    ("algae", Self.algae),
+                    ("matter", Self.matter),
+                    ("turbid", Self.turbid),
+                    ("speed", Self.speed),
+                    ("amp", Self.amp),
+                    ("tempo", Self.tempo),
+                    ("rain", Self.rain)
+                ]),
+                ("Brewer", [
+                    ("blueGreen", Self.blueGreen),
+                    ("bluePurple", Self.bluePurple),
+                    ("greenBlue", Self.greenBlue),
+                    ("orangeRed", Self.orangeRed),
+                    ("purpleBlue", Self.purpleBlue),
+                    ("purpleBlueGreen", Self.purpleBlueGreen),
+                    ("purpleRed", Self.purpleRed),
+                    ("redPurple", Self.redPurple),
+                    ("yellowGreen", Self.yellowGreen),
+                    ("yellowGreenBlue", Self.yellowGreenBlue),
+                    ("yellowOrangeBrown", Self.yellowOrangeBrown),
+                    ("yellowOrangeRed", Self.yellowOrangeRed),
+                    ("blues", Self.blues),
+                    ("greens", Self.greens),
+                    ("grays", Self.grays),
+                    ("oranges", Self.oranges),
+                    ("purples", Self.purples),
+                    ("reds", Self.reds)
+                ]),
+                ("Carto", [
+                    ("burgundy", Self.burgundy),
+                    ("yellowBurgundy", Self.yellowBurgundy),
+                    ("yellowOrange", Self.yellowOrange),
+                    ("peach", Self.peach),
+                    ("yellowPink", Self.yellowPink),
+                    ("mint", Self.mint),
+                    ("darkMint", Self.darkMint),
+                    ("emerald", Self.emerald),
+                    ("yellowBlue", Self.yellowBlue),
+                    ("teal", Self.teal),
+                    ("greenTeal", Self.greenTeal),
+                    ("purple", Self.purple),
+                    ("orangePurple", Self.orangePurple),
+                    ("sunset", Self.sunset),
+                    ("magenta", Self.magenta),
+                    ("sunsetDark", Self.sunsetDark),
+                    ("yellowBrown", Self.yellowBrown)
+                ]),
+                ("Plotly", [
+                    ("rainbow", Self.rainbow),
+                    ("jet", Self.jet),
+                    ("hot", Self.hot),
+                    ("blackBody", Self.blackBody),
+                    ("earth", Self.earth),
+                    ("electric", Self.electric),
+                    ("viridis", Self.viridis),
+                    ("cividis", Self.cividis),
+                    ("plotly3", Self.plotly3),
+                    ("inferno", Self.inferno),
+                    ("magma", Self.magma),
+                    ("plasma", Self.plasma)
+                ])
             ]
             return ColorScale.createSwatchBarFigure(title: "Sequential Color Scales Swatch",
-                data: swatchBars)
+                colorScales: colorScales)
         }
     }
 
@@ -1959,37 +1977,42 @@ public struct ColorScale: Encodable {
 
         /// Creates a figure that shows all _Diverging_ color scales next to each other.
         public static func swatch() -> Figure {
-            let swatchBars = [
-                Self.topo.createSwatchBar(category: "Ocean", name: "topo"),
-                Self.balance.createSwatchBar(category: "Ocean", name: "balance"),
-                Self.delta.createSwatchBar(category: "Ocean", name: "delta"),
-                Self.curl.createSwatchBar(category: "Ocean", name: "curl"),
-                Self.diff.createSwatchBar(category: "Ocean", name: "diff"),
-                Self.tarn.createSwatchBar(category: "Ocean", name: "tarn"),
-
-                Self.brownTeal.createSwatchBar(category: "Brewer", name: "brownTeal"),
-                Self.purpleGreen.createSwatchBar(category: "Brewer", name: "purpleGreen"),
-                Self.pinkGreen.createSwatchBar(category: "Brewer", name: "pinkGreen"),
-                Self.purpleOrange.createSwatchBar(category: "Brewer", name: "purpleOrange"),
-                Self.redBlue.createSwatchBar(category: "Brewer", name: "redBlue"),
-                Self.redGray.createSwatchBar(category: "Brewer", name: "redGray"),
-                Self.redYellowBlue.createSwatchBar(category: "Brewer", name: "redYellowBlue"),
-                Self.redYellowGreen.createSwatchBar(category: "Brewer", name: "redYellowGreen"),
-                Self.spectral.createSwatchBar(category: "Brewer", name: "spectral"),
-
-                Self.armyRose.createSwatchBar(category: "Carto", name: "armyRose"),
-                Self.fall.createSwatchBar(category: "Carto", name: "fall"),
-                Self.geyser.createSwatchBar(category: "Carto", name: "geyser"),
-                Self.temps.createSwatchBar(category: "Carto", name: "temps"),
-                Self.tealRose.createSwatchBar(category: "Carto", name: "tealRose"),
-                Self.tropic.createSwatchBar(category: "Carto", name: "tropic"),
-                Self.earth.createSwatchBar(category: "Carto", name: "earth"),
-
-                Self.picnic.createSwatchBar(category: "Plotly", name: "picnic"),
-                Self.portland.createSwatchBar(category: "Plotly", name: "portland")
+            let colorScales = [
+                ("Ocean", [
+                    ("topo", Self.topo),
+                    ("balance", Self.balance),
+                    ("delta", Self.delta),
+                    ("curl", Self.curl),
+                    ("diff", Self.diff),
+                    ("tarn", Self.tarn)
+                ]),
+                ("Brewer", [
+                    ("brownTeal", Self.brownTeal),
+                    ("purpleGreen", Self.purpleGreen),
+                    ("pinkGreen", Self.pinkGreen),
+                    ("purpleOrange", Self.purpleOrange),
+                    ("redBlue", Self.redBlue),
+                    ("redGray", Self.redGray),
+                    ("redYellowBlue", Self.redYellowBlue),
+                    ("redYellowGreen", Self.redYellowGreen),
+                    ("spectral", Self.spectral)
+                ]),
+                ("Carto", [
+                    ("armyRose", Self.armyRose),
+                    ("fall", Self.fall),
+                    ("geyser", Self.geyser),
+                    ("temps", Self.temps),
+                    ("tealRose", Self.tealRose),
+                    ("tropic", Self.tropic),
+                    ("earth", Self.earth)
+                ]),
+                ("Plotly", [   
+                    ("picnic", Self.picnic),
+                    ("portland", Self.portland)
+                ])
             ]
             return ColorScale.createSwatchBarFigure(title: "Diverging Color Scales Swatch",
-                data: swatchBars)
+                colorScales: colorScales)
         }
     }
 
@@ -2021,25 +2044,17 @@ public struct ColorScale: Encodable {
 
         /// Creates a figure that shows all _Cyclic_ color scales next to each other.
         public static func swatch() -> Figure {
-            let swatchCircles = [
-                Cyclical.twilight.crateSwatchCircle(name: "twilight", subPlot: 1),
-                Cyclical.iceFire.crateSwatchCircle(name: "iceFire", subPlot: 2),
-                Cyclical.edge.crateSwatchCircle(name: "edge", subPlot: 3),
-                Cyclical.phase.crateSwatchCircle(name: "phase", subPlot: 4),
-                Cyclical.hsv.crateSwatchCircle(name: "hsv", subPlot: 5),
-                Cyclical.magentaRedYellowBlue.crateSwatchCircle(name: "magentaRedYellowBlue", subPlot: 6),
-                Cyclical.magentaYellowGreenBlue.crateSwatchCircle(name: "magentaYellowGreenBlue", subPlot: 7)
+            let colorScales = [
+                ("twilight", Cyclical.twilight),
+                ("iceFire", Cyclical.iceFire),
+                ("edge", Cyclical.edge),
+                ("phase", Cyclical.phase),
+                ("hsv", Cyclical.hsv),
+                ("magentaRedYellowBlue", Cyclical.magentaRedYellowBlue),
+                ("magentaYellowGreenBlue", Cyclical.magentaYellowGreenBlue)
             ]
-
-            let layout = Layout(
-                title: "Cyclical Color Scales Swatch",
-                showLegend: false,
-                polar: .init(
-                    radialAxis: .init(visible: false),
-                    angularAxis: .init(visible: false)
-                )
-            )
-            return Figure(data: swatchCircles, layout: layout)
+            return ColorScale.createSwatchCircleFigure(title: "Cyclical Color Scales Swatch",
+                colorScales: colorScales)
         }
     }
 
@@ -2076,27 +2091,31 @@ public struct ColorScale: Encodable {
 
     /// Creates a figure that shows all popular color scales next to each other.
     public static func swatch() -> Figure {
-        let swatchBars = [
-            Self.blues.createSwatchBar(category: "Sequential", name: "blues"),
-            Self.greens.createSwatchBar(category: "Sequential", name: "greens"),
-            Self.grays.createSwatchBar(category: "Sequential", name: "grays"),
-            Self.oranges.createSwatchBar(category: "Sequential", name: "oranges"),
-            Self.purples.createSwatchBar(category: "Sequential", name: "purples"),
-            Self.reds.createSwatchBar(category: "Sequential", name: "reds"),
-            Self.sunset.createSwatchBar(category: "Sequential", name: "sunset"),
-            Self.viridis.createSwatchBar(category: "Sequential", name: "viridis"),
-            Self.magma.createSwatchBar(category: "Sequential", name: "magma"),
-            Self.plasma.createSwatchBar(category: "Sequential", name: "plasma"),
-            Self.inferno.createSwatchBar(category: "Sequential", name: "inferno"),
-
-            Self.redBlue.createSwatchBar(category: "Diverging", name: "redBlue"),
-            Self.pinkGreen.createSwatchBar(category: "Diverging", name: "pinkGreen"),
-            Self.temps.createSwatchBar(category: "Diverging", name: "temps"),
-
-            Self.phase.createSwatchBar(category: "Cyclical", name: "phase")
+        let colorScales = [
+            ("Sequential", [
+                ("blues", Self.blues),
+                ("greens", Self.greens),
+                ("grays", Self.grays),
+                ("oranges", Self.oranges),
+                ("purples", Self.purples),
+                ("reds", Self.reds),
+                ("sunset", Self.sunset),
+                ("viridis", Self.viridis),
+                ("magma", Self.magma),
+                ("plasma", Self.plasma),
+                ("inferno", Self.inferno)
+            ]),
+            ("Diverging", [
+                ("redBlue", Self.redBlue),
+                ("pinkGreen", Self.pinkGreen),
+                ("temps", Self.temps)
+            ]),
+            ("Cyclical", [
+                ("phase", Self.phase)
+            ])
         ]
         return Self.createSwatchBarFigure(title: "Frequent Color Scales Swatch",
-            data: swatchBars)
+            colorScales: colorScales)
     }
 
     /// Ordered collection of normalized, non-decreasing scale values and corresponding colors.
@@ -2226,25 +2245,33 @@ extension ColorScale: ExpressibleByDictionaryLiteral {
 
 
 fileprivate extension ColorScale {
-    /// Constructs trace that displays the color scale range.
-    func createSwatchBar(category: String, name: String) -> Bar<[Int], [[String]]> {
-        let resolution = 200
-        return Bar(
-            name: name,
-            hoverInfo: Shared.HoverInfo.none,
-            x: [Int](repeating: 1, count: resolution),
-            y: [[String](repeating: category, count: resolution),
-                [String](repeating: name, count: resolution)],
-            orientation: .h,
-            marker: Shared.Marker(
-                coloring: .colorScale([Double](stride(from: 0.0, to: Double(resolution), by: 1.0))),
-                colorScale: self
-            )
-        )
-    }
-
     /// Builds a figure that displays the color scales above each other for comparison.
-    static func createSwatchBarFigure(title: String, data swatches: [Trace]) -> Figure {
+    static func createSwatchBarFigure(title: String, colorScales: [(String, [(String, ColorScale)])]) -> Figure {
+        let resolution = 200
+        let xAxis = Layout.XAxis(visible: false)
+        let yAxis = Layout.YAxis(autoMargin: true)
+
+        var swatches = [Trace]()
+        for (category, categoryColorScales) in colorScales {
+            for (name, colorScale) in categoryColorScales {
+                let swatch = Bar(
+                    name: name,
+                    hoverInfo: Shared.HoverInfo.none,
+                    x: [Int](repeating: 1, count: resolution),
+                    y: [[String](repeating: category, count: resolution),
+                        [String](repeating: name, count: resolution)],
+                    orientation: .h,
+                    marker: Shared.Marker(
+                        coloring: .colorScale([Double](stride(from: 0.0, to: Double(resolution), by: 1.0))),
+                        colorScale: colorScale
+                    ),
+                    xAxis: xAxis,
+                    yAxis: yAxis
+                )
+                swatches.append(swatch)
+            }
+        }
+
         let layout = Layout(
             barMode: .stack,
             barNormalization: .fraction,
@@ -2252,28 +2279,41 @@ fileprivate extension ColorScale {
             width: 600,
             height: Double(swatches.count) * 40,
             margin: .init(autoExpand: true),
-            showLegend: false,
-            xAxis: .init(visible: false),
-            yAxis: .init(autoMargin: true)
+            showLegend: false
         )
+
         return Figure(data: swatches.reversed(), layout: layout)
     }
 
-    /// Constructs `BarPolar` trace that displays the cyclical scale range.
-    func crateSwatchCircle(name: String, subPlot: Int) -> BarPolar<[Int], [Double]> {
+    /// Builds a figure that displays the color scales circles next to each other.
+    static func createSwatchCircleFigure(title: String, colorScales: [(String, ColorScale)]) -> Figure {
         let resolution = 360.0
-        return BarPolar(
-            name: name,
-            r: [Int](repeating: 1, count: Int(resolution)),
-            theta: [Double](stride(from: 0.0, through: 360.0, by: 360.0 / resolution)),
-            base: .constant(0.75),
-            width: .constant(360.0 / resolution),
-            marker: .init(
-                coloring: .colorScale([Double](stride(from: 0.0, to: resolution, by: 1.0))),
-                colorScale: self
-            ),
-            hoverTemplate: .constant(name),
-            subPlot: "polar\(subPlot)"
+
+        var swatches = [Trace]()
+        for (name, colorScale) in colorScales {
+            let swatch = BarPolar(
+                name: name,
+                r: [Int](repeating: 1, count: Int(resolution)),
+                theta: [Double](stride(from: 0.0, through: 360.0, by: 360.0 / resolution)),
+                base: .constant(0.75),
+                width: .constant(360.0 / resolution),
+                marker: Shared.Marker(
+                    coloring: .colorScale([Double](stride(from: 0.0, to: resolution, by: 1.0))),
+                    colorScale: colorScale
+                ),
+                hoverTemplate: .constant(name),
+                subplot: .init(
+                    radialAxis: .init(visible: false),
+                    angularAxis: .init(visible: false)
+                )
+            )
+            swatches.append(swatch)
+        }
+
+        let layout = Layout(
+            title: .init(text: title),
+            showLegend: false
         )
+        return Figure(data: swatches, layout: layout)
     }
 }

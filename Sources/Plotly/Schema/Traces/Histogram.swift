@@ -8,7 +8,7 @@
 ///   [Python](https://plot.ly/python/reference/#histogram), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#histogram) or 
 ///   [R](https://plot.ly/r/reference/#histogram)
-public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plotable {
+public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: Plotable {
     public let type: String = "histogram"
 
     public let animatable: Bool = false
@@ -17,39 +17,39 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -59,26 +59,26 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -91,34 +91,34 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the sample data to be binned on the x axis.
-    public var x: XData?
+    public var x: XData? = nil
 
     /// Sets the sample data to be binned on the y axis.
-    public var y: YData?
+    public var y: YData? = nil
 
     /// Sets hover text elements associated with each bar.
     /// 
     /// If a single string, the same string appears over all bars. If an array of string, the items are
     /// mapped in order to the this trace's coordinates.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Sets the orientation of the bars.
     /// 
     /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
-    public var orientation: Shared.Orientation?
+    public var orientation: Shared.Orientation? = nil
 
     /// Specifies the binning function used for this histogram trace.
     /// 
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
     /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    public var binningFunction: Shared.BinningFunction?
+    public var binningFunction: Shared.BinningFunction? = nil
 
     /// Specifies the type of normalization used for this histogram trace.
     /// 
@@ -130,7 +130,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    public var normalization: Shared.Normalization?
+    public var normalization: Shared.Normalization? = nil
 
     public struct Cumulative: Encodable {
         /// If true, display the cumulative distribution by summing the binned values.
@@ -139,7 +139,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
         /// mode, the *density* `histnorm` settings behave the same as their equivalents without *density*:
         /// ** and *density* both rise to the number of data points, and *probability* and *probability
         /// density* both rise to the number of sample points.
-        public var enabled: Bool?
+        public var enabled: Bool? = nil
     
         /// Only applies if cumulative is enabled.
         /// 
@@ -153,7 +153,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
         /// 
         /// If *increasing* (default) we sum all prior bins, so the result increases from left to right. If
         /// *decreasing* we sum later bins so the result decreases from left to right.
-        public var direction: Direction?
+        public var direction: Direction? = nil
     
         /// Only applies if cumulative is enabled.
         /// 
@@ -172,7 +172,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
         /// current cumulative value. *include* is the default for compatibility with various other tools,
         /// however it introduces a half-bin bias to the results. *exclude* makes the opposite half-bin
         /// bias, and *half* removes it.
-        public var currentBin: CurrentBin?
+        public var currentBin: CurrentBin? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -194,37 +194,37 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
         }
         
     }
-    public var cumulative: Cumulative?
+    public var cumulative: Cumulative? = nil
 
     /// Specifies the maximum number of desired bins.
     /// 
     /// This value will be used in an algorithm that will decide the optimal bin size such that the
     /// histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
-    public var xNumBins: Int?
+    public var xNumBins: Int? = nil
 
-    public var xBins: Shared.Bins?
+    public var xBins: Shared.Bins? = nil
 
     /// Specifies the maximum number of desired bins.
     /// 
     /// This value will be used in an algorithm that will decide the optimal bin size such that the
     /// histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
-    public var yNumBins: Int?
+    public var yNumBins: Int? = nil
 
-    public var yBins: Shared.Bins?
+    public var yBins: Shared.Bins? = nil
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not
     /// needed.
     /// 
     /// However, we accept `autobinx: true` or `false` and will update `xbins` accordingly before
     /// deleting `autobinx` from the trace.
-    public var xAutoBin: Bool?
+    public var xAutoBin: Bool? = nil
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobiny` is not
     /// needed.
     /// 
     /// However, we accept `autobiny: true` or `false` and will update `ybins` accordingly before
     /// deleting `autobiny` from the trace.
-    public var yAutoBin: Bool?
+    public var yAutoBin: Bool? = nil
 
     /// Set a group of histogram traces which will have compatible bin settings.
     /// 
@@ -232,7 +232,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// *relative* and *group* are forced into the same bingroup, Using `bingroup`, traces under
     /// `barmode` *overlay* and on different axes (of the same axis type) can have compatible bin
     /// settings. Note that histogram and histogram2d* trace can share the same `bingroup`
-    public var binGroup: String?
+    public var binGroup: String? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -249,26 +249,26 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// true`) are available. variable `binNumber` Anything contained in tag `<extra>` is displayed in
     /// the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
-    public var marker: Shared.Marker?
+    public var marker: Shared.Marker? = nil
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup
     /// where bars of the same position coordinate will line up.
-    public var offsetGroup: String?
+    public var offsetGroup: String? = nil
 
     /// Set several traces linked to the same position axis or matching axes to the same alignmentgroup.
     /// 
     /// This controls whether bars compute their positional range dependently or independently.
-    public var alignmentGroup: String?
+    public var alignmentGroup: String? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -281,11 +281,11 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         public struct TextFont: Encodable {
             /// Sets the text font color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `TextFont` object with specified properties.
             /// 
@@ -296,7 +296,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
             }
             
         }
-        public var textFont: TextFont?
+        public var textFont: TextFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -311,15 +311,15 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
         }
         
     }
-    public var selected: Selected?
+    public var selected: Selected? = nil
 
     public struct Unselected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -332,11 +332,11 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         public struct TextFont: Encodable {
             /// Sets the text font color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `TextFont` object with specified properties.
             /// 
@@ -347,7 +347,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
             }
             
         }
-        public var textFont: TextFont?
+        public var textFont: TextFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -362,34 +362,33 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
         }
         
     }
-    public var unselected: Unselected?
+    public var unselected: Unselected? = nil
 
-    public var xError: Shared.Error?
+    public var xError: Shared.Error? = nil
 
-    public var yError: Shared.Error?
+    public var yError: Shared.Error? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar?
+    public var xCalendar: Shared.Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar?
+    public var yCalendar: Shared.Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubPlotID?
+    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubPlotID?
+    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -520,7 +519,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
             Shared.Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected:
             Selected? = nil, unselected: Unselected? = nil, xError: Shared.Error? = nil, yError:
             Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,
-            xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+            xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -568,8 +567,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -585,6 +583,12 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
         try container.encodeIfPresent(orientation, forKey: .orientation)
@@ -608,18 +612,7 @@ public struct Histogram<XData, YData>: Trace where XData: Plotable, YData: Plota
         try container.encodeIfPresent(yError, forKey: .yError)
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
         try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
-        try container.encodeIfPresent(xAxis, forKey: .xAxis)
-        try container.encodeIfPresent(yAxis, forKey: .yAxis)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
+        try container.encode("x\(xAxis.uid)", forKey: .xAxis)
+        try container.encode("y\(yAxis.uid)", forKey: .yAxis)
     }
-    
 }

@@ -79,7 +79,7 @@ class Object(CamelCased):
         "scattergl": "ScatterGL",
         "scatterpolargl": "ScatterPolarGL",
         "splom": "ScatterPlotMatrix",
-        "subplotid": "SubPlotID",
+        "subplotid": "SubplotID",
         "tickson": "TicksOn",
         "type": "`Type`",
         "valign": "VerticalAlign",
@@ -141,7 +141,7 @@ class Attribute(CamelCased):
         "pad": "padding",
         "pointpos": "pointPosition",
         "ref": "reference",
-        "showsubunits": "showSubUnits",
+        "showsubunits": "showSubunits",
         "sizeref": "sizeReference",
         "sizex": "xSize",
         "sizey": "ySize",
@@ -161,7 +161,7 @@ class Attribute(CamelCased):
     }
     capitalize = {
         "area", "bar", "bin", "click", "contour", "displayed", "entry", "frame", "grid", "margin",
-        "menu", "min", "plots", "revision", "scale", "select", "style", "text", "title", "access",
+        "menu", "min", "revision", "scale", "select", "style", "text", "title", "access",
         "active", "align", "alpha", "anchor", "angle", "array", "arrow", "aspect", "attribution",
         "auto", "axes", "axis", "background", "bar", "bins", "bound", "bounds", "calendar",
         "capture", "carpet", "category", "cheater", "cloud", "coast", "color", "count",
@@ -171,7 +171,7 @@ class Attribute(CamelCased):
         "icon", "index", "info", "item", "json", "label", "lakes", "land", "layer", "legend",
         "length", "line", "list", "logo", "lower", "mapbox", "marker", "max", "mean", "mode",
         "name", "norm", "normals", "ocean", "offset", "order", "orientation", "padding", "path",
-        "paths", "pie", "plot", "point", "points", "polar", "position", "prefix", "range",
+        "paths", "pie", "point", "points", "polar", "position", "prefix", "range",
         "ratio", "rivers", "scales", "selection", "selector", "shading", "shape", "shift",
         "show", "side", "size", "sizing", "slider", "slope", "smooth", "snap", "source",
         "spike", "spikes", "standoff", "stop", "suffix", "sunburst", "surface", "template",
@@ -231,8 +231,11 @@ class Enumerated(CamelCased):
         "{}": "presentInSet", "}{": "notPresentInSet",
         # Treemap Pathbar (*/pathbar/edgeshape)
         "|": "bar", "/": "forwardSlash", "\\": "backwardSlash",
-        # SubPlotID regexps
-        "/^x([2-9]|[1-9][0-9]+)?$/": "xSubPlotID", "/^y([2-9]|[1-9][0-9]+)?$/": "ySubPlotID"
+        # SubplotID regexps
+        "/^x([2-9]|[1-9][0-9]+)?$/": "xSubplotID",
+        "/^y([2-9]|[1-9][0-9]+)?$/": "ySubplotID",
+        "/^colorspace([2-9]|[1-9][0-9]+)?$/": "colorSpaceSubplotID",
+
     }
     rename = {
         "-se": "SE", "-sw": "SW", "-ne": "NE", "-nw": "NW", "-ns": "NS"

@@ -6,9 +6,13 @@
 class Instance: Definable {
     var name: String
     var array: Bool
-    var constant: String? =  nil
     var optional: Bool = true
     var access: Access = .public
+    var weak: Bool = false
+    var constant: Bool = false
+    var initialization: String? = "nil"
+
+    var exclude = false
 
     var type: GeneratedType
     let origin: PredefinedType
@@ -20,7 +24,8 @@ class Instance: Definable {
         var dataType = (type.parent?.name == self.parent?.name) ? type.name : "Shared.\(type.name)"
         dataType = self.array ? "[\(dataType)]" : dataType
         dataType = self.optional ? "\(dataType)?" : dataType
-        return "\(name): \(dataType)"
+        let initialization = (self.initialization != nil) ? " = \(self.initialization!)" : ""
+        return "\(name): \(dataType)\(initialization)"
     }
 
     var documentation: Markup {
@@ -28,11 +33,9 @@ class Instance: Definable {
     }
 
     var definition: [String] {
-        if let const = self.constant {
-            return ["\(access)let \(argument) = \(const)"]
-        } else {
-            return ["\(access)var \(argument)"]
-        }
+        let weak = self.weak ? "weak " : ""
+        let varlet = self.constant ? "let " : "var "
+        return ["\(access)\(weak)\(varlet)\(argument)"]
     }
 
     /// Creates an instance of a `type` accessible under the specified `name`.

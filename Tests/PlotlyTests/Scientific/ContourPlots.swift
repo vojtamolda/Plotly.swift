@@ -129,56 +129,53 @@ final class ContourPlots: XCTestCase {
             [nil, nil, nil, 26, 25, 24, 23, 22]
         ]
 
+        let layout = Layout(
+            title: "Connect the Gaps Between Null Values in the Z Matrix",
+            xAxis: [
+                .init(domain: [0, 0.45]), .init(domain: [0.55, 1]),
+                .init(domain: [0, 0.45]), .init(domain: [0.55, 1])
+            ],
+            yAxis: [
+                .init(domain: [0.55, 1]), .init(domain: [0.55, 1]),
+                .init(domain: [0, 0.45]), .init(domain: [0, 0.45])
+            ]
+        )
+
         let contour1 = Contour<[[Int?]], [Int], [Int]>(
             z: z,
             showScale: false,
-            xAxis: "x1",
-            yAxis: "y1"
+            xAxis: layout.xAxis[0],
+            yAxis: layout.yAxis[0]
         )
+        // FIXME: (contour2.xAxis.anchor, contour2.yAxis.anchor) = (contour2.yAxis, contour2.xAxis)
+
         let contour2 = Contour<[[Int?]], [Int], [Int]>(
             z: z,
             connectGaps: true,
             showScale: false,
-            xAxis: "x2",
-            yAxis: "y2"
+            xAxis: layout.xAxis[1],
+            yAxis: layout.yAxis[1]
         )
+        // FIXME: (contour2.xAxis.anchor, contour2.yAxis.anchor) = (contour2.yAxis, contour2.xAxis)
 
         let heatmap1 = Heatmap<[[Int?]], [Int]>(
             z: z,
             zSmooth: .best,
             showScale: false,
-            xAxis: "x3",
-            yAxis: "y3"
+            xAxis: layout.xAxis[2],
+            yAxis: layout.yAxis[2]
         )
+        // FIXME: (heatmap1.xAxis.anchor, heatmap1.yAxis.anchor) = (heatmap1.yAxis, heatmap1.xAxis)
+
         let heatmap2 = Heatmap<[[Int?]], [Int]>(
             z: z,
             zSmooth: .best,
             connectGaps: true,
             showScale: false,
-            xAxis: "x4",
-            yAxis: "y4"
+            xAxis: layout.xAxis[3],
+            yAxis: layout.yAxis[3]
         )
-
-        let layout = Layout(
-            title: "Connect the Gaps Between Null Values in the Z Matrix"
-            // Fixme: The xAxis/yAxis domains can't be set
-            //   xaxis: {domain: [0, 0.45],
-            //    anchor: 'y1'},
-            //  yaxis: {domain: [0.55, 1],
-            //    anchor: 'x1'},
-            //  xaxis2: {domain: [0.55, 1],
-            //    anchor: 'y2'},
-            //  yaxis2: {domain: [0.55, 1],
-            //    anchor: 'x2'},
-            //  xaxis3: {domain: [0, 0.45],
-            //    anchor: 'y3'},
-            //  yaxis3: {domain: [0, 0.45],
-            //    anchor: 'x3'},
-            //  xaxis4: {domain: [0.55, 1],
-            //    anchor: 'y4'},
-            //  yaxis4: {domain: [0, 0.45],
-            //    anchor: 'x4'}
-        )
+        // FIXME: (heatmap2.xAxis.anchor, heatmap2.yAxis.anchor) = (heatmap2.yAxis, heatmap2.xAxis)
 
         let figure = Figure(data: [contour1, contour2, heatmap1, heatmap2], layout: layout)
         output(figure)
@@ -196,33 +193,33 @@ final class ContourPlots: XCTestCase {
             [11, 14, 17, 26, 25, 24, 23, 22]
         ]
 
-        let contour1 = Contour<[[Int]], [Int], [Int]>(
+        let layout = Layout(
+            title: "Smoothing Contour Lines",
+            xAxis: [
+                .init(domain: [0, 0.45]), .init(domain: [0.55, 1])
+            ],
+            yAxis: [
+                .init(domain: [0.55, 1]), .init(domain: [0.55, 1])
+            ]
+        )
+
+        let contour0 = Contour<[[Int]], [Int], [Int]>(
             z: z,
             line: .init(smoothing: 0.00),
-            xAxis: "x1",
-            yAxis: "y1"
+            xAxis: layout.xAxis[0],
+            yAxis: layout.yAxis[0]
         )
-        let contour2 = Contour<[[Int]], [Int], [Int]>(
+        // FIXME: (contour1.xAxis.anchor, contour1.yAxis.anchor) = (contour1.yAxis, contour1.xAxis)
+
+        let contour1 = Contour<[[Int]], [Int], [Int]>(
             z: z,
             line: .init(smoothing: 0.85),
-            xAxis: "x2",
-            yAxis: "y2"
+            xAxis: layout.xAxis[1],
+            yAxis: layout.yAxis[1]
         )
+        // FIXME: (contour2.xAxis.anchor, contour2.yAxis.anchor) = (contour2.yAxis, contour2.xAxis)
 
-        let layout = Layout(
-            title: "Smoothing Contour Lines"
-            // Fixme: The xAxis/yAxis domains can't be set
-            //   xaxis: {domain: [0, 0.45],
-            //    anchor: 'y1'},
-            //  yaxis: {domain: [0.55, 1],
-            //    anchor: 'x1'},
-            //  xaxis2: {domain: [0.55, 1],
-            //    anchor: 'y2'},
-            //  yaxis2: {domain: [0.55, 1],
-            //    anchor: 'x2'},
-        )
-
-        let figure = Figure(data: [contour1, contour2], layout: layout)
+        let figure = Figure(data: [contour0, contour1], layout: layout)
         output(figure)
     }
 

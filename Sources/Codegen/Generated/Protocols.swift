@@ -1,19 +1,25 @@
 import Foundation
 
 
-/// A code generated Swift data type.
+/// An encodable, generated Swift data type.
 ///
 /// Generated Swift data types originate from some Plotly schema data type and extend it.
 /// The extension allows for creation of new instances and keep track of the origin schema
 /// type. The origin reference is useful for translating the name and also for parsing of
 /// the documentation string to a formatted markup text.
+///
+/// Each generated type also has to provide a way to encode it's instances or in other
+/// words enable it's own conformance to`Encodable` protocol.
 protocol GeneratedType {
     var name: String { get }
     var parent: Generated.Object? { get }
     var origin: PredefinedType { get }
 
     /// Creates instance of the Swift data type with the specified name.
-    func instance(named: String, array: Bool) -> Instance
+    func instantiate(name: String, array allowed: Bool) -> Instance
+
+    /// Generates a chunk of Swift code that encodes the instance to an existing encoding `container`.
+    func encode(_ instance: Instance, to container: String) -> [String]
 }
 extension GeneratedType {
     var path: String {
@@ -28,18 +34,18 @@ extension GeneratedType {
     }
 
     /// Default implementation for non-shared types.
-    func instance(named: String, array: Bool = false) -> Instance {
-        return Instance(of: self, named: named, array: array)
+    func instantiate(name: String, array: Bool = false) -> Instance {
+        return Instance(of: self, named: name, array: array)
     }
-}
 
-/// Access level of a Swift property or a struct.
-enum Access: String, CustomStringConvertible {
-    var description: String { self.rawValue }
-
-    case `private` = "private "
-    case `public` = "public "
-    case `default` = ""
+    /// Generates a chunk of Swift code that encodes an instance of all Swift types that conform to `Encodable`.
+    func encode(_ instance: Instance, to container: String = "container") -> [String] {
+        if instance.optional {
+            return ["try \(container).encodeIfPresent(\(instance.name), forKey: .\(instance.name))"]
+        } else {
+            return ["try \(container).encode(\(instance.name), forKey: .\(instance.name))"]
+        }
+    }
 }
 
 
@@ -84,8 +90,8 @@ extension SharedGeneratedType {
 
     /// Default implementation for shared types.
     ///
-    /// There's no code generated for inlined, shared (i.e. with multiple created instances)
-    /// situations to avoid duplication and build errors.
+    /// There's no code generated for inlined context. Only the shared context with multiple
+    /// created instances situations generate code to avoid duplication and build errors.
     func define(as context: Context) -> [String] {
         switch context {
         case .inlined:
@@ -122,7 +128,26 @@ extension Definable {
     }
 }
 
+
 /// Context where a generated Swift type is being defined.
 enum Context {
-    case inlined, shared
+    case shared
+    case inlined
+}
+
+/// Access level of a Swift property or a struct.
+enum Access: String, CustomStringConvertible {
+    case `default` = ""
+    case `public` = "public "
+    case `private` = "private "
+
+    var description: String { self.rawValue }
+}
+
+/// Semantic behavior of a Swift type.
+enum Semantics: String, CustomStringConvertible {
+    case value = "struct "
+    case reference = "class "
+
+    var description: String { self.rawValue }
 }

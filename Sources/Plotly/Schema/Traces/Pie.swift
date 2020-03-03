@@ -16,39 +16,39 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -58,13 +58,13 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -77,38 +77,38 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the sector labels.
     /// 
     /// If `labels` entries are duplicated, we sum associated `values` or simply count occurrences if
     /// `values` is not provided. For other array attributes (including color) we use the first
     /// non-empty entry among all occurrences of the label.
-    public var labels: LabelsData?
+    public var labels: LabelsData? = nil
 
     /// Alternate to `labels`.
     /// 
     /// Builds a numeric set of labels. Use with `dlabel` where `label0` is the starting label and
     /// `dlabel` the step.
-    public var label0: Double?
+    public var label0: Double? = nil
 
     /// Sets the label step.
     /// 
     /// See `label0` for more info.
-    public var dLabel: Double?
+    public var dLabel: Double? = nil
 
     /// Sets the values of the sectors.
     /// 
     /// If omitted, we count occurrences of each label.
-    public var values: ValuesData?
+    public var values: ValuesData? = nil
 
     public struct Marker: Encodable {
         /// Sets the color of each sector.
         /// 
         /// If not specified, the default trace color set is used to pick the sector colors.
-        public var colors: ColorList?
+        public var colors: ColorList? = nil
     
-        public var line: Shared.VariableLine?
+        public var line: Shared.VariableLine? = nil
     
         /// Creates `Marker` object with specified properties.
         /// 
@@ -121,38 +121,39 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         }
         
     }
-    public var marker: Marker?
+    public var marker: Marker? = nil
 
     /// Sets text elements associated with each sector.
     /// 
     /// If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Sets hover text elements associated with each sector.
     /// 
     /// If a single string, the same string appears for all data points. If an array of string, the
     /// items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a
     /// *text* flag.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// If there are multiple pie charts that should be sized according to their totals, link them by
     /// providing a non-empty group id here shared by every trace in the same group.
-    public var scaleGroup: String?
+    public var scaleGroup: String? = nil
 
     /// Determines which trace information appear on the graph.
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var label: TextInfo { TextInfo(rawValue: 1 << 0) }
         public static var text: TextInfo { TextInfo(rawValue: 1 << 1) }
         public static var value: TextInfo { TextInfo(rawValue: 1 << 2) }
         public static var percent: TextInfo { TextInfo(rawValue: 1 << 3) }
         public static var none: TextInfo { TextInfo(rawValue: 1 << 4) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
@@ -165,7 +166,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         }
     }
     /// Determines which trace information appear on the graph.
-    public var textInfo: TextInfo?
+    public var textInfo: TextInfo? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -173,7 +174,6 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var label: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var text: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var value: HoverInfo { HoverInfo(rawValue: 1 << 2) }
@@ -182,9 +182,11 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 5) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 6) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 7) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
@@ -203,7 +205,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -221,7 +223,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// contained in tag `<extra>` is displayed in the secondary box, for example
     /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -234,22 +236,22 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`.
-    public var textTemplate: Data<String>?
+    public var textTemplate: Data<String>? = nil
 
     /// Specifies the location of the `textinfo`.
-    public var textPosition: Shared.AdjacentPosition?
+    public var textPosition: Shared.AdjacentPosition? = nil
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Shared.VariableFont?
+    public var textFont: Shared.VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Shared.VariableFont?
+    public var insideTextFont: Shared.VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying outside the sector.
-    public var outsideTextFont: Shared.OutsideTextFont?
+    public var outsideTextFont: Shared.OutsideTextFont? = nil
 
     /// Determines whether outside text labels can push the margins.
-    public var autoMargin: Bool?
+    public var autoMargin: Bool? = nil
 
     public struct Title: Encodable {
         /// Sets the title of the chart.
@@ -257,12 +259,12 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         /// If it is empty, no title is displayed. Note that before the existence of `title.text`, the
         /// title's contents used to be defined as the `title` attribute itself. This behavior has been
         /// deprecated.
-        public var text: String?
+        public var text: String? = nil
     
         /// Sets the font used for `title`.
         /// 
         /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-        public var font: Shared.VariableFont?
+        public var font: Shared.VariableFont? = nil
     
         /// Specifies the location of the `title`.
         /// 
@@ -279,7 +281,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         /// Specifies the location of the `title`.
         /// 
         /// Note that the title's position used to be set by the now deprecated `titleposition` attribute.
-        public var position: Position?
+        public var position: Position? = nil
     
         /// Creates `Title` object with specified properties.
         /// 
@@ -294,17 +296,17 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         }
         
     }
-    public var title: Title?
+    public var title: Title? = nil
 
-    public var domain: Shared.Domain?
+    public var domain: Shared.Domain? = nil
 
     /// Sets the fraction of the radius to cut out of the pie.
     /// 
     /// Use this to make a donut chart.
-    public var hole: Double?
+    public var hole: Double? = nil
 
     /// Determines whether or not the sectors are reordered from largest to smallest.
-    public var sort: Bool?
+    public var sort: Bool? = nil
 
     /// Specifies the direction at which succeeding sectors follow one another.
     public enum Direction: String, Encodable {
@@ -312,21 +314,20 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         case counterClockwise = "counterclockwise"
     }
     /// Specifies the direction at which succeeding sectors follow one another.
-    public var direction: Direction?
+    public var direction: Direction? = nil
 
     /// Instead of the first slice starting at 12 o'clock, rotate to some other angle.
-    public var rotation: Double?
+    public var rotation: Double? = nil
 
     /// Sets the fraction of larger radius to pull the sectors out from the center.
     /// 
     /// This can be a constant to pull all slices apart from each other equally or an array to highlight
     /// one or more slices.
-    public var pull: Data<Double>?
+    public var pull: Data<Double>? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -485,8 +486,7 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -500,8 +500,14 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let labels = self.labels {
+            try labels.encode(toPlotly: container.superEncoder(forKey: .labels))
+        }
         try container.encodeIfPresent(label0, forKey: .label0)
         try container.encodeIfPresent(dLabel, forKey: .dLabel)
+        if let values = self.values {
+            try values.encode(toPlotly: container.superEncoder(forKey: .values))
+        }
         try container.encodeIfPresent(marker, forKey: .marker)
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
@@ -522,16 +528,5 @@ public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, Val
         try container.encodeIfPresent(direction, forKey: .direction)
         try container.encodeIfPresent(rotation, forKey: .rotation)
         try container.encodeIfPresent(pull, forKey: .pull)
-    
-        if let labels = self.labels {
-            let labelsEncoder = container.superEncoder(forKey: .labels)
-            try labels.encode(toPlotly: labelsEncoder)
-        }
-    
-        if let values = self.values {
-            let valuesEncoder = container.superEncoder(forKey: .values)
-            try values.encode(toPlotly: valuesEncoder)
-        }
     }
-    
 }

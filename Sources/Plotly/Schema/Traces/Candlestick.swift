@@ -11,7 +11,7 @@
 ///   [Python](https://plot.ly/python/reference/#candlestick), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#candlestick) or 
 ///   [R](https://plot.ly/r/reference/#candlestick)
-public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace where XData: Plotable, OpenData: Plotable, HighData: Plotable, LowData: Plotable, CloseData: Plotable {
+public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace, XYSubplot where XData: Plotable, OpenData: Plotable, HighData: Plotable, LowData: Plotable, CloseData: Plotable {
     public let type: String = "candlestick"
 
     public let animatable: Bool = false
@@ -20,39 +20,39 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -62,24 +62,24 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -92,31 +92,31 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the x coordinates.
     /// 
     /// If absent, linear coordinate will be generated.
-    public var x: XData?
+    public var x: XData? = nil
 
     /// Sets the open values.
-    public var open: OpenData?
+    public var open: OpenData? = nil
 
     /// Sets the high values.
-    public var high: HighData?
+    public var high: HighData? = nil
 
     /// Sets the low values.
-    public var low: LowData?
+    public var low: LowData? = nil
 
     /// Sets the close values.
-    public var close: CloseData?
+    public var close: CloseData? = nil
 
     public struct Line: Encodable {
         /// Sets the width (in px) of line bounding the box(es).
         /// 
         /// Note that this style setting can also be set per direction via `increasing.line.width` and
         /// `decreasing.line.width`.
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Creates `Line` object with specified properties.
         /// 
@@ -127,15 +127,15 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         }
         
     }
-    public var line: Line?
+    public var line: Line? = nil
 
     public struct Increasing: Encodable {
         public struct Line: Encodable {
             /// Sets the color of line bounding the box(es).
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the width (in px) of line bounding the box(es).
-            public var width: Double?
+            public var width: Double? = nil
         
             /// Creates `Line` object with specified properties.
             /// 
@@ -148,13 +148,13 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
             }
             
         }
-        public var line: Line?
+        public var line: Line? = nil
     
         /// Sets the fill color.
         /// 
         /// Defaults to a half-transparent variant of the line color, marker color, or marker line color,
         /// whichever is available.
-        public var fillColor: Color?
+        public var fillColor: Color? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -173,15 +173,15 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         }
         
     }
-    public var increasing: Increasing?
+    public var increasing: Increasing? = nil
 
     public struct Decreasing: Encodable {
         public struct Line: Encodable {
             /// Sets the color of line bounding the box(es).
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the width (in px) of line bounding the box(es).
-            public var width: Double?
+            public var width: Double? = nil
         
             /// Creates `Line` object with specified properties.
             /// 
@@ -194,13 +194,13 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
             }
             
         }
-        public var line: Line?
+        public var line: Line? = nil
     
         /// Sets the fill color.
         /// 
         /// Defaults to a half-transparent variant of the line color, marker color, or marker line color,
         /// whichever is available.
-        public var fillColor: Color?
+        public var fillColor: Color? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -219,36 +219,36 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         }
         
     }
-    public var decreasing: Decreasing?
+    public var decreasing: Decreasing? = nil
 
     /// Sets hover text elements associated with each sample point.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to this trace's sample points.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Sets the width of the whiskers relative to the box' width.
     /// 
     /// For example, with 1, the whiskers are as wide as the box(es).
-    public var whiskerWidth: Double?
+    public var whiskerWidth: Double? = nil
 
     public struct HoverLabel: Encodable {
         /// Sets the background color of the hover labels for this trace
-        public var backgroundColor: Coloring?
+        public var backgroundColor: Coloring? = nil
     
         /// Sets the border color of the hover labels for this trace.
-        public var borderColor: Coloring?
+        public var borderColor: Coloring? = nil
     
         /// Sets the font used in hover labels.
-        public var font: Shared.VariableFont?
+        public var font: Shared.VariableFont? = nil
     
         /// Sets the horizontal alignment of the text content within hover label box.
         /// 
         /// Has an effect only if the hover label text spans more two or more lines
-        public var align: Shared.AutoAlign?
+        public var align: Shared.AutoAlign? = nil
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all
         /// traces.
@@ -256,10 +256,10 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
         /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
         /// truncate to `namelength - 3` characters and add an ellipsis.
-        public var nameLength: Data<Int>?
+        public var nameLength: Data<Int>? = nil
     
         /// Show hover information (open, close, high, low) in separate labels.
-        public var split: Bool?
+        public var split: Bool? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -293,27 +293,26 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         }
         
     }
-    public var hoverLabel: HoverLabel?
+    public var hoverLabel: HoverLabel? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar?
+    public var xCalendar: Shared.Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubPlotID?
+    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubPlotID?
+    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -416,7 +415,8 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
             high: HighData? = nil, low: LowData? = nil, close: CloseData? = nil, line: Line? = nil,
             increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: Data<String>? = nil,
             hoverText: Data<String>? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil,
-            xCalendar: Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+            xCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis:
+            Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -451,8 +451,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -467,6 +466,21 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
+        if let open = self.open {
+            try open.encode(toPlotly: container.superEncoder(forKey: .open))
+        }
+        if let high = self.high {
+            try high.encode(toPlotly: container.superEncoder(forKey: .high))
+        }
+        if let low = self.low {
+            try low.encode(toPlotly: container.superEncoder(forKey: .low))
+        }
+        if let close = self.close {
+            try close.encode(toPlotly: container.superEncoder(forKey: .close))
+        }
         try container.encodeIfPresent(line, forKey: .line)
         try container.encodeIfPresent(increasing, forKey: .increasing)
         try container.encodeIfPresent(decreasing, forKey: .decreasing)
@@ -475,33 +489,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace 
         try container.encodeIfPresent(whiskerWidth, forKey: .whiskerWidth)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
-        try container.encodeIfPresent(xAxis, forKey: .xAxis)
-        try container.encodeIfPresent(yAxis, forKey: .yAxis)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let open = self.open {
-            let openEncoder = container.superEncoder(forKey: .open)
-            try open.encode(toPlotly: openEncoder)
-        }
-    
-        if let high = self.high {
-            let highEncoder = container.superEncoder(forKey: .high)
-            try high.encode(toPlotly: highEncoder)
-        }
-    
-        if let low = self.low {
-            let lowEncoder = container.superEncoder(forKey: .low)
-            try low.encode(toPlotly: lowEncoder)
-        }
-    
-        if let close = self.close {
-            let closeEncoder = container.superEncoder(forKey: .close)
-            try close.encode(toPlotly: closeEncoder)
-        }
+        try container.encode("x\(xAxis.uid)", forKey: .xAxis)
+        try container.encode("y\(yAxis.uid)", forKey: .yAxis)
     }
-    
 }

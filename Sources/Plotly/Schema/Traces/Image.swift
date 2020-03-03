@@ -10,7 +10,7 @@
 ///   [Python](https://plot.ly/python/reference/#image), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#image) or 
 ///   [R](https://plot.ly/r/reference/#image)
-public struct Image<ZData>: Trace where ZData: Plotable {
+public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
     public let type: String = "image"
 
     public let animatable: Bool = false
@@ -19,31 +19,31 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -53,11 +53,11 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -70,10 +70,10 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
-    public var z: ZData?
+    public var z: ZData? = nil
 
     /// Color model used to map the numerical color components described in `z` into colors.
     public enum ColorModel: String, Encodable {
@@ -83,39 +83,39 @@ public struct Image<ZData>: Trace where ZData: Plotable {
         case HSLA = "hsla"
     }
     /// Color model used to map the numerical color components described in `z` into colors.
-    public var colorModel: ColorModel?
+    public var colorModel: ColorModel? = nil
 
     /// Array defining the lower bound for each color component.
     /// 
     /// Note that the default value will depend on the colormodel. For the `rgb` colormodel, it is [0,
     /// 0, 0]. For the `rgba` colormodel, it is [0, 0, 0, 0]. For the `hsl` colormodel, it is [0, 0, 0].
     /// For the `hsla` colormodel, it is [0, 0, 0, 0].
-    public var zMin: InfoArray?
+    public var zMin: InfoArray? = nil
 
     /// Array defining the higher bound for each color component.
     /// 
     /// Note that the default value will depend on the colormodel. For the `rgb` colormodel, it is [255,
     /// 255, 255]. For the `rgba` colormodel, it is [255, 255, 255, 1]. For the `hsl` colormodel, it is
     /// [360, 100, 100]. For the `hsla` colormodel, it is [360, 100, 100, 1].
-    public var zMax: InfoArray?
+    public var zMax: InfoArray? = nil
 
     /// Set the image's x position.
-    public var x0: Anything?
+    public var x0: Anything? = nil
 
     /// Set the image's y position.
-    public var y0: Anything?
+    public var y0: Anything? = nil
 
     /// Set the pixel's horizontal size.
-    public var dx: Double?
+    public var dx: Double? = nil
 
     /// Set the pixel's vertical size
-    public var dy: Double?
+    public var dy: Double? = nil
 
     /// Sets the text elements associated with each z value.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -123,7 +123,6 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var x: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var y: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
@@ -133,9 +132,11 @@ public struct Image<ZData>: Trace where ZData: Plotable {
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 6) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 7) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 8) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
@@ -155,7 +156,7 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -172,24 +173,23 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// true`) are available. variables `z`, `color` and `colormodel`. Anything contained in tag
     /// `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To
     /// hide the secondary box completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubPlotID?
+    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubPlotID?
+    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case opacity
         case name
@@ -271,7 +271,8 @@ public struct Image<ZData>: Trace where ZData: Plotable {
             z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil,
             x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text:
             Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate:
-            Data<String>? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+            Data<String>? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis =
+            Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -301,8 +302,7 @@ public struct Image<ZData>: Trace where ZData: Plotable {
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(opacity, forKey: .opacity)
         try container.encodeIfPresent(name, forKey: .name)
@@ -313,6 +313,9 @@ public struct Image<ZData>: Trace where ZData: Plotable {
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let z = self.z {
+            try z.encode(toPlotly: container.superEncoder(forKey: .z))
+        }
         try container.encodeIfPresent(colorModel, forKey: .colorModel)
         try container.encodeIfPresent(zMin, forKey: .zMin)
         try container.encodeIfPresent(zMax, forKey: .zMax)
@@ -324,13 +327,7 @@ public struct Image<ZData>: Trace where ZData: Plotable {
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
-        try container.encodeIfPresent(xAxis, forKey: .xAxis)
-        try container.encodeIfPresent(yAxis, forKey: .yAxis)
-    
-        if let z = self.z {
-            let zEncoder = container.superEncoder(forKey: .z)
-            try z.encode(toPlotly: zEncoder)
-        }
+        try container.encode("x\(xAxis.uid)", forKey: .xAxis)
+        try container.encode("y\(yAxis.uid)", forKey: .yAxis)
     }
-    
 }

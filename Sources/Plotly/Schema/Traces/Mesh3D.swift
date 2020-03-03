@@ -7,7 +7,7 @@
 ///   [Python](https://plot.ly/python/reference/#mesh3d), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#mesh3d) or 
 ///   [R](https://plot.ly/r/reference/#mesh3d)
-public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>: Trace where XData: Plotable, YData: Plotable, ZData: Plotable, IntensityData: Plotable, VertexcolorData: Plotable, FacecolorData: Plotable {
+public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>: Trace, SceneSubplot where XData: Plotable, YData: Plotable, ZData: Plotable, IntensityData: Plotable, VertexcolorData: Plotable, FacecolorData: Plotable {
     public let type: String = "mesh3d"
 
     public let animatable: Bool = false
@@ -16,28 +16,28 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -47,11 +47,11 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -64,25 +64,25 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the X coordinates of the vertices.
     /// 
     /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
     /// nth vertex.
-    public var x: XData?
+    public var x: XData? = nil
 
     /// Sets the Y coordinates of the vertices.
     /// 
     /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
     /// nth vertex.
-    public var y: YData?
+    public var y: YData? = nil
 
     /// Sets the Z coordinates of the vertices.
     /// 
     /// The nth element of vectors `x`, `y` and `z` jointly represent the X, Y and Z coordinates of the
     /// nth vertex.
-    public var z: ZData?
+    public var z: ZData? = nil
 
     /// A vector of vertex indices, i.e.
     /// 
@@ -91,7 +91,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// mesh, where `i[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays.
     /// Therefore, each element in `i` represents a point in space, which is the first vertex of a
     /// triangle.
-    public var i: [Int]?
+    public var i: [Int]? = nil
 
     /// A vector of vertex indices, i.e.
     /// 
@@ -100,7 +100,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// mesh, where `j[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays.
     /// Therefore, each element in `j` represents a point in space, which is the second vertex of a
     /// triangle.
-    public var j: [Int]?
+    public var j: [Int]? = nil
 
     /// A vector of vertex indices, i.e.
     /// 
@@ -109,16 +109,16 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// mesh, where `k[m] = n` points to the triplet `{x[n], y[n], z[n]}` in the vertex arrays.
     /// Therefore, each element in `k` represents a point in space, which is the third vertex of a
     /// triangle.
-    public var k: [Int]?
+    public var k: [Int]? = nil
 
     /// Sets the text elements associated with the vertices.
     /// 
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -135,7 +135,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Sets the Delaunay axis, which is the axis that is perpendicular to the surface of the Delaunay
     /// triangulation.
@@ -152,7 +152,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// 
     /// It has an effect if `i`, `j`, `k` are not provided and `alphahull` is set to indicate Delaunay
     /// triangulation.
-    public var delaunayAxis: DelaunayAxis?
+    public var delaunayAxis: DelaunayAxis? = nil
 
     /// Determines how the mesh surface triangles are derived from the set of vertices (points)
     /// represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not supplied.
@@ -166,43 +166,43 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// parameter for the mesh fitting. If *0*, the convex-hull algorithm is used. It is suitable for
     /// convex bodies or if the intention is to enclose the `x`, `y` and `z` point set into a convex
     /// hull.
-    public var alphaHull: Double?
+    public var alphaHull: Double? = nil
 
     /// Sets the vertex intensity values, used for plotting fields on meshes
-    public var intensity: IntensityData?
+    public var intensity: IntensityData? = nil
 
     /// Sets the color of the whole mesh
-    public var color: Color?
+    public var color: Color? = nil
 
     /// Sets the color of each vertex Overrides *color*.
     /// 
     /// While Red, green and blue colors are in the range of 0 and 255; in the case of having vertex
     /// color data in RGBA format, the alpha color should be normalized to be between 0 and 1.
-    public var vertexColor: VertexcolorData?
+    public var vertexColor: VertexcolorData? = nil
 
     /// Sets the color of each face Overrides *color* and *vertexcolor*.
-    public var faceColor: FacecolorData?
+    public var faceColor: FacecolorData? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here
     /// `intensity`) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax`
     /// are set by the user.
-    public var cAuto: Bool?
+    public var cAuto: Bool? = nil
 
     /// Sets the lower bound of the color domain.
     /// 
     /// Value should have the same units as `intensity` and if set, `cmax` must be set as well.
-    public var cMin: Double?
+    public var cMin: Double? = nil
 
     /// Sets the upper bound of the color domain.
     /// 
     /// Value should have the same units as `intensity` and if set, `cmin` must be set as well.
-    public var cMax: Double?
+    public var cMax: Double? = nil
 
     /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this
     /// point.
     /// 
     /// Value should have the same units as `intensity`. Has no effect when `cauto` is `false`.
-    public var cMiddle: Double?
+    public var cMiddle: Double? = nil
 
     /// Sets the colorscale.
     /// 
@@ -212,7 +212,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-    public var colorScale: ColorScale?
+    public var colorScale: ColorScale? = nil
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
     /// determined by `colorscale`.
@@ -220,25 +220,25 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
-    public var autoColorScale: Bool?
+    public var autoColorScale: Bool? = nil
 
     /// Reverses the color mapping if true.
     /// 
     /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
     /// first color.
-    public var reverseScale: Bool?
+    public var reverseScale: Bool? = nil
 
     /// Determines whether or not a colorbar is displayed for this trace.
-    public var showScale: Bool?
+    public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar?
+    public var colorBar: Shared.ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: SubPlotID?
+    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
 
     /// Sets the opacity of the surface.
     /// 
@@ -246,43 +246,42 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent
     /// surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in
     /// the near future and is subject to change.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an
     /// angular, low-poly look via flat reflections.
-    public var flatShading: Bool?
+    public var flatShading: Bool? = nil
 
-    public var contour: Shared.ContourHover?
+    public var contour: Shared.ContourHover? = nil
 
-    public var lightPosition: Shared.LightPosition?
+    public var lightPosition: Shared.LightPosition? = nil
 
-    public var lighting: Shared.Lighting?
+    public var lighting: Shared.Lighting? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar?
+    public var xCalendar: Shared.Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar?
+    public var yCalendar: Shared.Calendar? = nil
 
     /// Sets the calendar system to use with `z` date data.
-    public var zCalendar: Shared.Calendar?
+    public var zCalendar: Shared.Calendar? = nil
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: SubPlotID?
+    public var scene: Layout.Scene = Layout.Scene(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid
@@ -428,11 +427,12 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
             color: Color? = nil, vertexColor: VertexcolorData? = nil, faceColor: FacecolorData? = nil,
             cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil,
             colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
-            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity:
-            Double? = nil, flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition:
-            Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? =
-            nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar:
-            Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
+            Layout.ColorAxis(uid: 1), opacity: Double? = nil, flatShading: Bool? = nil, contour:
+            Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting:
+            Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil,
+            yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: Layout.Scene =
+            Layout.Scene(uid: 1)) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -482,8 +482,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
@@ -493,6 +492,15 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
+        if let z = self.z {
+            try z.encode(toPlotly: container.superEncoder(forKey: .z))
+        }
         try container.encodeIfPresent(i, forKey: .i)
         try container.encodeIfPresent(j, forKey: .j)
         try container.encodeIfPresent(k, forKey: .k)
@@ -501,7 +509,16 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
         try container.encodeIfPresent(delaunayAxis, forKey: .delaunayAxis)
         try container.encodeIfPresent(alphaHull, forKey: .alphaHull)
+        if let intensity = self.intensity {
+            try intensity.encode(toPlotly: container.superEncoder(forKey: .intensity))
+        }
         try container.encodeIfPresent(color, forKey: .color)
+        if let vertexColor = self.vertexColor {
+            try vertexColor.encode(toPlotly: container.superEncoder(forKey: .vertexColor))
+        }
+        if let faceColor = self.faceColor {
+            try faceColor.encode(toPlotly: container.superEncoder(forKey: .faceColor))
+        }
         try container.encodeIfPresent(cAuto, forKey: .cAuto)
         try container.encodeIfPresent(cMin, forKey: .cMin)
         try container.encodeIfPresent(cMax, forKey: .cMax)
@@ -511,7 +528,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
         try container.encodeIfPresent(showScale, forKey: .showScale)
         try container.encodeIfPresent(colorBar, forKey: .colorBar)
-        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encode("coloraxis\(colorAxis.uid)", forKey: .colorAxis)
         try container.encodeIfPresent(opacity, forKey: .opacity)
         try container.encodeIfPresent(flatShading, forKey: .flatShading)
         try container.encodeIfPresent(contour, forKey: .contour)
@@ -521,37 +538,6 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
         try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
         try container.encodeIfPresent(zCalendar, forKey: .zCalendar)
-        try container.encodeIfPresent(scene, forKey: .scene)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
-    
-        if let z = self.z {
-            let zEncoder = container.superEncoder(forKey: .z)
-            try z.encode(toPlotly: zEncoder)
-        }
-    
-        if let intensity = self.intensity {
-            let intensityEncoder = container.superEncoder(forKey: .intensity)
-            try intensity.encode(toPlotly: intensityEncoder)
-        }
-    
-        if let vertexColor = self.vertexColor {
-            let vertexColorEncoder = container.superEncoder(forKey: .vertexColor)
-            try vertexColor.encode(toPlotly: vertexColorEncoder)
-        }
-    
-        if let faceColor = self.faceColor {
-            let faceColorEncoder = container.superEncoder(forKey: .faceColor)
-            try faceColor.encode(toPlotly: faceColorEncoder)
-        }
+        try container.encode("scene\(scene.uid)", forKey: .scene)
     }
-    
 }

@@ -14,16 +14,16 @@ public struct ParallelCategories: Trace {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -33,11 +33,11 @@ public struct ParallelCategories: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -50,9 +50,9 @@ public struct ParallelCategories: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
-    public var domain: Shared.Domain?
+    public var domain: Shared.Domain? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -60,15 +60,16 @@ public struct ParallelCategories: Trace {
     /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var count: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var probability: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 2) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 3) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 4) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["count"] }
@@ -84,7 +85,7 @@ public struct ParallelCategories: Trace {
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
     /// Sets the hover interaction mode for the parcats diagram.
     /// 
@@ -101,7 +102,7 @@ public struct ParallelCategories: Trace {
     /// If `category`, hover interaction take place per category. If `color`, hover interactions take
     /// place per color per category. If `dimension`, hover interactions take place across all
     /// categories per dimension.
-    public var hoverOn: HoverOn?
+    public var hoverOn: HoverOn? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -119,7 +120,7 @@ public struct ParallelCategories: Trace {
     /// `colorcount` and `bandcolorcount`. Anything contained in tag `<extra>` is displayed in the
     /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: String?
+    public var hoverTemplate: String? = nil
 
     /// Sets the drag interaction mode for categories and dimensions.
     /// 
@@ -136,10 +137,10 @@ public struct ParallelCategories: Trace {
     /// If `perpendicular`, the categories can only move along a line perpendicular to the paths. If
     /// `freeform`, the categories can freely move on the plane. If `fixed`, the categories and
     /// dimensions are stationary.
-    public var arrangement: Arrangement?
+    public var arrangement: Arrangement? = nil
 
     /// Sort paths so that like colors are bundled together within each category.
-    public var bundleColors: Bool?
+    public var bundleColors: Bool? = nil
 
     /// Sets the path sorting algorithm.
     /// 
@@ -153,18 +154,18 @@ public struct ParallelCategories: Trace {
     /// 
     /// If `forward`, sort paths based on dimension categories from left to right. If `backward`, sort
     /// paths based on dimensions categories from right to left.
-    public var sortPaths: SortPaths?
+    public var sortPaths: SortPaths? = nil
 
     /// Sets the font for the `dimension` labels.
-    public var labelFont: Shared.Font?
+    public var labelFont: Shared.Font? = nil
 
     /// Sets the font for the `category` labels.
-    public var tickFont: Shared.Font?
+    public var tickFont: Shared.Font? = nil
 
     /// The dimensions (variables) of the parallel categories diagram.
     public struct Dimension: Encodable {
         /// The shown name of the dimension.
-        public var label: String?
+        public var label: String? = nil
     
         /// Specifies the ordering logic for the categories in the dimension.
         /// 
@@ -174,32 +175,32 @@ public struct ParallelCategories: Trace {
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        public var categoryOrder: Shared.CarpetCategoryOrder?
+        public var categoryOrder: Shared.CarpetCategoryOrder? = nil
     
         /// Sets the order in which categories in this dimension appear.
         /// 
         /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
-        public var categoryArray: [Double]?
+        public var categoryArray: [Double]? = nil
     
         /// Sets alternative tick labels for the categories in this dimension.
         /// 
         /// Only has an effect if `categoryorder` is set to *array*. Should be an array the same length as
         /// `categoryarray` Used with `categoryorder`.
-        public var tickText: [Double]?
+        public var tickText: [Double]? = nil
     
         /// Dimension values.
         /// 
         /// `values[n]` represents the category value of the `n`th point in the dataset, therefore the
         /// `values` vector for all dimensions must be the same (longer vectors will be truncated).
-        public var values: [Double]?
+        public var values: [Double]? = nil
     
         /// The display index of dimension, from left to right, zero indexed, defaults to dimension index.
-        public var displayIndex: Int?
+        public var displayIndex: Int? = nil
     
         /// Shows the dimension when set to `true` (the default).
         /// 
         /// Hides the dimension for `false`.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -236,7 +237,7 @@ public struct ParallelCategories: Trace {
         }
         
     }
-    public var dimensions: [Dimension]?
+    public var dimensions: [Dimension]? = nil
 
     public struct ShapedMarkerLine: Encodable {
         /// Sets thelinecolor.
@@ -244,33 +245,33 @@ public struct ParallelCategories: Trace {
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `line.cmin` and `line.cmax` if
         /// set.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `line.color`) or the bounds set in `line.cmin` and `line.cmax` Has an effect only if in
         /// `line.color`is set to a numerical array.
         /// 
         /// Defaults to `false` when `line.cmin` and `line.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color` and if set, `line.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color` and if set, `line.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `line.cmin` and/or `line.cmax` to be
         /// equidistant to this point.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. Value should have the same
         /// units as in `line.color`. Has no effect when `line.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -281,7 +282,7 @@ public struct ParallelCategories: Trace {
         /// in color space, use`line.cmin` and `line.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `line.colorscale`.
@@ -289,27 +290,27 @@ public struct ParallelCategories: Trace {
         /// Has an effect only if in `line.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array. If true, `line.cmin` will
         /// correspond to the last color in the array and `line.cmax` will correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
         /// 
         /// Has an effect only if in `line.color`is set to a numerical array.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Sets the shape of the paths.
         /// 
@@ -323,7 +324,7 @@ public struct ParallelCategories: Trace {
         /// 
         /// If `linear`, paths are composed of straight lines. If `hspline`, paths are composed of
         /// horizontal curved splines
-        public var shape: Shape?
+        public var shape: Shape? = nil
     
         /// Template string used for rendering the information that appear on hover box.
         /// 
@@ -340,7 +341,7 @@ public struct ParallelCategories: Trace {
         /// true`) are available. variables `count` and `probability`. Anything contained in tag `<extra>`
         /// is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
         /// secondary box completely, use an empty tag `<extra></extra>`.
-        public var hoverTemplate: String?
+        public var hoverTemplate: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -382,7 +383,8 @@ public struct ParallelCategories: Trace {
         public init(coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
                 nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                SubPlotID? = nil, shape: Shape? = nil, hoverTemplate: String? = nil) {
+                Layout.ColorAxis = Layout.ColorAxis(uid: 1), shape: Shape? = nil, hoverTemplate: String? = nil)
+                {
             self.coloring = coloring
             self.cAuto = cAuto
             self.cMin = cMin
@@ -399,17 +401,16 @@ public struct ParallelCategories: Trace {
         }
         
     }
-    public var line: ShapedMarkerLine?
+    public var line: ShapedMarkerLine? = nil
 
     /// The number of observations represented by each state.
     /// 
     /// Defaults to 1 so that each state represents one observation
-    public var counts: Data<Double>?
+    public var counts: Data<Double>? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid

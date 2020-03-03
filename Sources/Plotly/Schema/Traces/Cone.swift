@@ -9,7 +9,7 @@
 ///   [Python](https://plot.ly/python/reference/#cone), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#cone) or 
 ///   [R](https://plot.ly/r/reference/#cone)
-public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Plotable {
+public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotable, UVWData: Plotable {
     public let type: String = "cone"
 
     public let animatable: Bool = false
@@ -18,28 +18,28 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -49,11 +49,11 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -66,25 +66,25 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the x coordinates of the vector field and of the displayed cones.
-    public var x: XYZData?
+    public var x: XYZData? = nil
 
     /// Sets the y coordinates of the vector field and of the displayed cones.
-    public var y: XYZData?
+    public var y: XYZData? = nil
 
     /// Sets the z coordinates of the vector field and of the displayed cones.
-    public var z: XYZData?
+    public var z: XYZData? = nil
 
     /// Sets the x components of the vector field.
-    public var u: UVWData?
+    public var u: UVWData? = nil
 
     /// Sets the y components of the vector field.
-    public var v: UVWData?
+    public var v: UVWData? = nil
 
     /// Sets the z components of the vector field.
-    public var w: UVWData?
+    public var w: UVWData? = nil
 
     /// Determines whether `sizeref` is set as a *scaled* (i.e unitless) scalar (normalized by the max
     /// u/v/w norm in the vector field) or as *absolute* value (in the same units as the vector field).
@@ -94,7 +94,7 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     }
     /// Determines whether `sizeref` is set as a *scaled* (i.e unitless) scalar (normalized by the max
     /// u/v/w norm in the vector field) or as *absolute* value (in the same units as the vector field).
-    public var sizeMode: SizeMode?
+    public var sizeMode: SizeMode? = nil
 
     /// Adjusts the cone size scaling.
     /// 
@@ -104,7 +104,7 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// trace use the same factor. With `sizemode` set to *scaled*, `sizeref` is unitless, its default
     /// value is *0.5* With `sizemode` set to *absolute*, `sizeref` has the same units as the u/v/w
     /// vector field, its the default value is half the sample's maximum vector norm.
-    public var sizeReference: Double?
+    public var sizeReference: Double? = nil
 
     /// Sets the cones' anchor with respect to their x/y/z positions.
     /// 
@@ -118,16 +118,16 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// Sets the cones' anchor with respect to their x/y/z positions.
     /// 
     /// Note that *cm* denote the cone's center of mass which corresponds to 1/4 from the tail to tip.
-    public var anchor: Anchor?
+    public var anchor: Anchor? = nil
 
     /// Sets the text elements associated with the cones.
     /// 
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -144,28 +144,28 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the
     /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
     /// completely, use an empty tag `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here
     /// u/v/w norm) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax`
     /// are set by the user.
-    public var cAuto: Bool?
+    public var cAuto: Bool? = nil
 
     /// Sets the lower bound of the color domain.
     /// 
     /// Value should have the same units as u/v/w norm and if set, `cmax` must be set as well.
-    public var cMin: Double?
+    public var cMin: Double? = nil
 
     /// Sets the upper bound of the color domain.
     /// 
     /// Value should have the same units as u/v/w norm and if set, `cmin` must be set as well.
-    public var cMax: Double?
+    public var cMax: Double? = nil
 
     /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this
     /// point.
     /// 
     /// Value should have the same units as u/v/w norm. Has no effect when `cauto` is `false`.
-    public var cMiddle: Double?
+    public var cMiddle: Double? = nil
 
     /// Sets the colorscale.
     /// 
@@ -175,7 +175,7 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-    public var colorScale: ColorScale?
+    public var colorScale: ColorScale? = nil
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
     /// determined by `colorscale`.
@@ -183,25 +183,25 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
-    public var autoColorScale: Bool?
+    public var autoColorScale: Bool? = nil
 
     /// Reverses the color mapping if true.
     /// 
     /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
     /// first color.
-    public var reverseScale: Bool?
+    public var reverseScale: Bool? = nil
 
     /// Determines whether or not a colorbar is displayed for this trace.
-    public var showScale: Bool?
+    public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar?
+    public var colorBar: Shared.ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: SubPlotID?
+    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
 
     /// Sets the opacity of the surface.
     /// 
@@ -209,11 +209,11 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent
     /// surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in
     /// the near future and is subject to change.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
-    public var lightPosition: Shared.LightPosition?
+    public var lightPosition: Shared.LightPosition? = nil
 
-    public var lighting: Shared.Lighting?
+    public var lighting: Shared.Lighting? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -221,7 +221,6 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var x: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var y: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
@@ -234,9 +233,11 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 9) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 10) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 11) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
@@ -259,18 +260,17 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: SubPlotID?
+    public var scene: Layout.Scene = Layout.Scene(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid
@@ -396,9 +396,9 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
             Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, cAuto:
             Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:
             ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
-            nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil, opacity: Double? = nil,
-            lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo:
-            HoverInfo? = nil, scene: SubPlotID? = nil) {
+            nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1),
+            opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? =
+            nil, hoverInfo: HoverInfo? = nil, scene: Layout.Scene = Layout.Scene(uid: 1)) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -440,8 +440,7 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
@@ -451,6 +450,24 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
+        if let z = self.z {
+            try z.encode(toPlotly: container.superEncoder(forKey: .z))
+        }
+        if let u = self.u {
+            try u.encode(toPlotly: container.superEncoder(forKey: .u))
+        }
+        if let v = self.v {
+            try v.encode(toPlotly: container.superEncoder(forKey: .v))
+        }
+        if let w = self.w {
+            try w.encode(toPlotly: container.superEncoder(forKey: .w))
+        }
         try container.encodeIfPresent(sizeMode, forKey: .sizeMode)
         try container.encodeIfPresent(sizeReference, forKey: .sizeReference)
         try container.encodeIfPresent(anchor, forKey: .anchor)
@@ -466,42 +483,11 @@ public struct Cone<XYZData, UVWData>: Trace where XYZData: Plotable, UVWData: Pl
         try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
         try container.encodeIfPresent(showScale, forKey: .showScale)
         try container.encodeIfPresent(colorBar, forKey: .colorBar)
-        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encode("coloraxis\(colorAxis.uid)", forKey: .colorAxis)
         try container.encodeIfPresent(opacity, forKey: .opacity)
         try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
         try container.encodeIfPresent(lighting, forKey: .lighting)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
-        try container.encodeIfPresent(scene, forKey: .scene)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
-    
-        if let z = self.z {
-            let zEncoder = container.superEncoder(forKey: .z)
-            try z.encode(toPlotly: zEncoder)
-        }
-    
-        if let u = self.u {
-            let uEncoder = container.superEncoder(forKey: .u)
-            try u.encode(toPlotly: uEncoder)
-        }
-    
-        if let v = self.v {
-            let vEncoder = container.superEncoder(forKey: .v)
-            try v.encode(toPlotly: vEncoder)
-        }
-    
-        if let w = self.w {
-            let wEncoder = container.superEncoder(forKey: .w)
-            try w.encode(toPlotly: wEncoder)
-        }
+        try container.encode("scene\(scene.uid)", forKey: .scene)
     }
-    
 }

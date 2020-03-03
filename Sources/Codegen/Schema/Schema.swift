@@ -176,7 +176,7 @@ extension Schema {
         case colorList(_ colorList: Predefined.ColorList)
         case colorScale(_ colorScale: Predefined.ColorScale)
         case angle(_ angle: Predefined.Angle)
-        case subPlotId(_ subPlotId: Predefined.SubPlotID)
+        case subplotID(_ subplotID: Predefined.SubplotID)
         case flagList(_ flagList: Predefined.FlagList)
         case any(_ any: Predefined.Any_)
         case infoArray(_ infoArray: Predefined.InfoArray)
@@ -208,7 +208,7 @@ extension Schema {
             case "angle":
                 self = .angle(try Predefined.Angle(parse: decoder))
             case "subplotid":
-                self = .subPlotId(try Predefined.SubPlotID(parse: decoder))
+                self = .subplotID(try Predefined.SubplotID(parse: decoder))
             case "flaglist":
                 self = .flagList(try Predefined.FlagList(parse: decoder))
             case "any":
@@ -222,7 +222,7 @@ extension Schema {
         }
     }
 
-    /// Convenience type to allow ad-hoc key construction from string literals.
+    /// Convenience type to allow ad-hoc construction of coding keys from strings.
     struct Keys: CodingKey {
         var intValue: Int?
         var stringValue: String

@@ -14,39 +14,39 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -56,20 +56,20 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -82,67 +82,67 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the radial coordinates
-    public var r: RData?
+    public var r: RData? = nil
 
     /// Sets the angular coordinates
-    public var theta: ThetaData?
+    public var theta: ThetaData? = nil
 
     /// Alternate to `r`.
     /// 
     /// Builds a linear space of r coordinates. Use with `dr` where `r0` is the starting coordinate and
     /// `dr` the step.
-    public var r0: Anything?
+    public var r0: Anything? = nil
 
     /// Sets the r coordinate step.
-    public var dr: Double?
+    public var dr: Double? = nil
 
     /// Alternate to `theta`.
     /// 
     /// Builds a linear space of theta coordinates. Use with `dtheta` where `theta0` is the starting
     /// coordinate and `dtheta` the step.
-    public var theta0: Anything?
+    public var theta0: Anything? = nil
 
     /// Sets the theta coordinate step.
     /// 
     /// By default, the `dtheta` step equals the subplot's period divided by the length of the `r`
     /// coordinates.
-    public var dTheta: Double?
+    public var dTheta: Double? = nil
 
     /// Sets the unit of input *theta* values.
     /// 
     /// Has an effect only when on *linear* angular axes.
-    public var thetaUnit: Shared.ThetaUnit?
+    public var thetaUnit: Shared.ThetaUnit? = nil
 
     /// Sets where the bar base is drawn (in radial axis units).
     /// 
     /// In *stack* barmode, traces that set *base* will be excluded and drawn in *overlay* mode instead.
-    public var base: Data<Anything>?
+    public var base: Data<Anything>? = nil
 
     /// Shifts the angular position where the bar is drawn (in *thetatunit* units).
-    public var offset: Data<Double>?
+    public var offset: Data<Double>? = nil
 
     /// Sets the bar angular width (in *thetaunit* units).
-    public var width: Data<Double>?
+    public var width: Data<Double>? = nil
 
     /// Sets hover text elements associated with each bar.
     /// 
     /// If a single string, the same string appears over all bars. If an array of string, the items are
     /// mapped in order to the this trace's coordinates.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
-    public var marker: Shared.Marker?
+    public var marker: Shared.Marker? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.PolarHoverInfo?
+    public var hoverInfo: Shared.PolarHoverInfo? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -159,15 +159,15 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -180,11 +180,11 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         public struct TextFont: Encodable {
             /// Sets the text font color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `TextFont` object with specified properties.
             /// 
@@ -195,7 +195,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
             }
             
         }
-        public var textFont: TextFont?
+        public var textFont: TextFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -210,15 +210,15 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
         }
         
     }
-    public var selected: Selected?
+    public var selected: Selected? = nil
 
     public struct Unselected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -231,11 +231,11 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         public struct TextFont: Encodable {
             /// Sets the text font color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `TextFont` object with specified properties.
             /// 
@@ -246,7 +246,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
             }
             
         }
-        public var textFont: TextFont?
+        public var textFont: TextFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -261,18 +261,17 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
         }
         
     }
-    public var unselected: Unselected?
+    public var unselected: Unselected? = nil
 
     /// Sets a reference between this trace's data coordinates and a polar subplot.
     /// 
     /// If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to
     /// `layout.polar2`, and so on.
-    public var subPlot: SubPlotID?
+    public var subplot: Layout.Polar = Layout.Polar(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -304,7 +303,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
         case hoverTemplate = "hovertemplate"
         case selected
         case unselected
-        case subPlot = "subplot"
+        case subplot
     }
     
     /// Creates `BarPolar` object from the most frequently used properties.
@@ -365,7 +364,7 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
     ///   - selected:
     ///   - unselected:
-    ///   - subPlot: Sets a reference between this trace's data coordinates and a polar subplot.
+    ///   - subplot: Sets a reference between this trace's data coordinates and a polar subplot.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
@@ -375,7 +374,8 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
             thetaUnit: Shared.ThetaUnit? = nil, base: Data<Anything>? = nil, offset: Data<Double>? = nil,
             width: Data<Double>? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, marker:
             Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: Data<String>? =
-            nil, selected: Selected? = nil, unselected: Unselected? = nil, subPlot: SubPlotID? = nil) {
+            nil, selected: Selected? = nil, unselected: Unselected? = nil, subplot: Layout.Polar =
+            Layout.Polar(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -407,14 +407,13 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
         self.hoverTemplate = hoverTemplate
         self.selected = selected
         self.unselected = unselected
-        self.subPlot = subPlot
+        self.subplot = subplot
     }
     
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -429,6 +428,12 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let r = self.r {
+            try r.encode(toPlotly: container.superEncoder(forKey: .r))
+        }
+        if let theta = self.theta {
+            try theta.encode(toPlotly: container.superEncoder(forKey: .theta))
+        }
         try container.encodeIfPresent(r0, forKey: .r0)
         try container.encodeIfPresent(dr, forKey: .dr)
         try container.encodeIfPresent(theta0, forKey: .theta0)
@@ -444,17 +449,6 @@ public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
         try container.encodeIfPresent(selected, forKey: .selected)
         try container.encodeIfPresent(unselected, forKey: .unselected)
-        try container.encodeIfPresent(subPlot, forKey: .subPlot)
-    
-        if let r = self.r {
-            let rEncoder = container.superEncoder(forKey: .r)
-            try r.encode(toPlotly: rEncoder)
-        }
-    
-        if let theta = self.theta {
-            let thetaEncoder = container.superEncoder(forKey: .theta)
-            try theta.encode(toPlotly: thetaEncoder)
-        }
+        try container.encode("polar\(subplot.uid)", forKey: .subplot)
     }
-    
 }

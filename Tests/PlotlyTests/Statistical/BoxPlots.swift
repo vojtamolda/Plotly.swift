@@ -96,10 +96,12 @@ final class BoxPlots: XCTestCase {
 
         let layout = Layout(
             boxMode: .group,
-            yAxis: Layout.YAxis(
-                title: "normalized moisture",
-                zeroLine: false
-            )
+            yAxis: [
+                Layout.YAxis(
+                    title: "normalized moisture",
+                    zeroLine: false
+                )
+            ]
         )
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
         output(figure)
@@ -229,10 +231,12 @@ final class BoxPlots: XCTestCase {
         let layout = Layout(
             boxMode: .group,
             title: "Grouped Horizontal Box Plot",
-            xAxis: .init(
-                title: "normalized moisture",
-                zeroLine: false
-            )
+            xAxis: [
+                .init(
+                    title: "normalized moisture",
+                    zeroLine: false
+                )
+            ]
         )
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
         output(figure)
@@ -315,16 +319,18 @@ final class BoxPlots: XCTestCase {
             paperBackgroundColor: .RGB(243, 243, 243),
             plotBackgroundColor: .RGB(243, 243, 243),
             showLegend: false,
-            yAxis: .init(
-                autoRange: .off,
-                dTick: .numeric(5),
-                showGrid: true,
-                gridColor: .RGB(255, 255, 255),
-                gridWidth: 1,
-                zeroLine: true,
-                zeroLineColor: .RGB(255, 255, 255),
-                zeroLineWidth: 2
-            )
+            yAxis: [
+                .init(
+                    autoRange: .off,
+                    dTick: .numeric(5),
+                    showGrid: true,
+                    gridColor: .RGB(255, 255, 255),
+                    gridWidth: 1,
+                    zeroLine: true,
+                    zeroLineColor: .RGB(255, 255, 255),
+                    zeroLineWidth: 2
+                )
+            ]
         )
 
         let figure = Figure(data: traces, layout: layout)
@@ -363,17 +369,21 @@ final class BoxPlots: XCTestCase {
             paperBackgroundColor: .RGB(233, 233, 233),
             plotBackgroundColor: .RGB(233, 233, 233),
             showLegend: false,
-            xAxis: .init(
-                autoRange: .off,
-                showTickLabels: false,
-                tickAngle: 90,
-                showGrid: false,
-                zeroLine: false
-            ),
-            yAxis: .init(
-                gridColor: .white,
-                zeroLine: false
-            )
+            xAxis: [
+                .init(
+                    autoRange: .off,
+                    showTickLabels: false,
+                    tickAngle: 90,
+                    showGrid: false,
+                    zeroLine: false
+                )
+            ],
+            yAxis: [
+                .init(
+                    gridColor: .white,
+                    zeroLine: false
+                )
+            ]
         )
 
         let figure = Figure(data: traces, layout: layout)

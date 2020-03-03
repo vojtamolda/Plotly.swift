@@ -38,13 +38,17 @@ extension SharedGeneratedType {
 
     /// Identifies multiply-referenced and therefore shareable data types.
     ///
-    /// All shared types have their instances re-associates their instances to a single
-    /// multiply-referenced parent data type.
+    /// All shared types have their instances re-associates to a one multiply-referenced parent data type.
+    ///
+    /// - Remark: Honestly, I'm not sure if I understand everything this function does, even tough I wrote it...
+    /// If you happen to decipher it, please, improve the comment here.
     static func share(parent: Generated.Object) {
         var visited = Set<Int>()
         let prioritizedTypes = Self.existing.sorted{ $0.priority > $1.priority }.enumerated()
 
         for sharedType in prioritizedTypes where !visited.contains(sharedType.offset) {
+            if sharedType.element.instances.count == 0 { continue }
+
             visited.insert(sharedType.offset)
             let shareableTypes = prioritizedTypes.filter { type in
                 !visited.contains(type.offset) && type.element.shareable(as: sharedType.element)

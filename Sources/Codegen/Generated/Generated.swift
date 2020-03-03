@@ -16,6 +16,7 @@ enum Generated {
         let schema: Predefined.Object
         var origin: PredefinedType { schema as PredefinedType }
         var access: Access = .public
+        var semantics: Semantics = .value
         var priority: Int { members.count }
         var protocols: [String] = ["Encodable"]
         var generics: [Generated.Generic] = []
@@ -43,7 +44,7 @@ enum Generated {
             var constraints = self.generics.compactMap { $0.constraint }.joined(separator: ", ")
             if !constraints.isEmpty { constraints = " where \(constraints)" }
 
-            lines += ["\(access)struct \(name)\(generics)\(protocols)\(constraints) {"]
+            lines += ["\(access)\(semantics)\(name)\(generics)\(protocols)\(constraints) {"]
 
             for member in members {
                 lines += member.define(as: .inlined).indented()
@@ -65,11 +66,11 @@ enum Generated {
             var lines = [String]()
             lines += ["/// Decoding and encoding keys compatible with Plotly schema."]
             lines += ["enum CodingKeys: String, CodingKey {"]
-            for prop in properties {
-                if prop.name == prop.origin.name {
-                    lines += ["case \(prop.name)"].indented()
+            for property in properties where !property.exclude {
+                if property.name == property.origin.name {
+                    lines += ["case \(property.name)"].indented()
                 } else {
-                    lines += ["case \(prop.name) = \(prop.origin.name.escaped())"].indented()
+                    lines += ["case \(property.name) = \(property.origin.name.escaped())"].indented()
                 }
             }
             lines += ["}", ""]
@@ -89,7 +90,7 @@ enum Generated {
             markup.addCallout(parameters: frequentVariables)
 
             var lines = markup.text()
-            let frequentArguments = frequentVariables.map { $0.argument + " = nil" }.joined(separator: ", ")
+            let frequentArguments = frequentVariables.map { $0.argument }.joined(separator: ", ")
             lines += "\(access)init(\(frequentArguments)) {".wrapped(at: Markup.width).hanginglyIndented(2)
             lines += frequentVariables.map { "self.\($0.name) = \($0.name)" }.indented()
             lines += ["}", ""]
@@ -97,13 +98,13 @@ enum Generated {
         }
 
         private var fullInitFunction: [String] {
-            let variables = properties.filter { $0.constant == nil }
+            let variables = properties.filter { !$0.constant }
 
             var markup = Markup(summary: "Creates `\(name)` object with specified properties.")
             markup.addCallout(parameters: variables)
 
             var lines = markup.text()
-            let arguments = variables.map { $0.argument + " = nil" }.joined(separator: ", ")
+            let arguments = variables.map { $0.argument }.joined(separator: ", ")
             lines += "\(access)init(\(arguments)) {".wrapped(at: Markup.width).hanginglyIndented(2)
             lines += variables.map { "self.\($0.name) = \($0.name)" }.indented()
             lines += ["}", ""]
@@ -112,22 +113,19 @@ enum Generated {
 
         private var encodeFunction: [String] {
             if generics.isEmpty { return [] }
+            var lines = """
+            /// Encodes the object in a format compatible with Plotly.
+            \(access)func encode(to encoder: Encoder) throws {
+                var container = encoder.container(keyedBy: CodingKeys.self)
+            """.lines()
 
-            var lines = [String]()
-            lines += ["/// Encodes the object in a format compatible with Plotly."]
-            lines += ["\(access)func encode(to encoder: Encoder) throws {"]
-            lines += ["var container = encoder.container(keyedBy: CodingKeys.self)"].indented()
-            for prop in properties where !(prop.type is Generated.Generic) {
-                lines += ["try container.encodeIfPresent(\(prop.name), forKey: .\(prop.name))"].indented()
+            for property in properties where !property.exclude {
+                lines += property.type.encode(property, to: "container").indented()
             }
-            for prop in properties where (prop.type is Generated.Generic) {
-                lines += [""]
-                lines += ["if let \(prop.name) = self.\(prop.name) {"].indented()
-                lines += ["let \(prop.name)Encoder = container.superEncoder(forKey: .\(prop.name))"].indented(2)
-                lines += ["try \(prop.name).encode(toPlotly: \(prop.name)Encoder)"].indented(2)
-                lines += ["}"].indented()
+
+            lines += """
             }
-            lines += ["}", ""]
+            """.lines()
             return lines
         }
 
@@ -162,46 +160,46 @@ enum Generated {
                     switch attribute {
                     case .dataArray(let dataArray):
                         let dataArrayType = Generated.DataArray(parent: self, schema: dataArray)
-                        members += [dataArrayType.instance(named: identifier)]
+                        members += [dataArrayType.instantiate(name: identifier)]
                     case .enumerated(let enumerated):
                         let enumeratedType = Generated.Enumerated(named: identifier, parent: self, schema: enumerated)
                         members += [enumeratedType.instance(named: identifier)]
                     case .boolean(let boolean):
                         let booleanType = Generated.Boolean(parent: self, schema: boolean)
-                        members += [booleanType.instance(named: identifier)]
+                        members += [booleanType.instantiate(name: identifier)]
                     case .number(let number):
                         let numberType = Generated.Number(parent: self, schema: number)
-                        members += [numberType.instance(named: identifier)]
+                        members += [numberType.instantiate(name: identifier)]
                     case .integer(let integer):
                         let integerType = Generated.Integer(parent: self, schema: integer)
-                        members += [integerType.instance(named: identifier)]
+                        members += [integerType.instantiate(name: identifier)]
                     case .string(let string):
                         let stringType = Generated.String_(parent: self, schema: string)
-                        members += [stringType.instance(named: identifier)]
+                        members += [stringType.instantiate(name: identifier)]
                     case .color(let color):
                         let colorType = Generated.Color(parent: self, schema: color)
-                        members += [colorType.instance(named: identifier)]
+                        members += [colorType.instantiate(name: identifier)]
                     case .colorList(let colorList):
                         let colorListType = Generated.ColorList.init(parent: self, schema: colorList)
-                        members += [colorListType.instance(named: identifier)]
+                        members += [colorListType.instantiate(name: identifier)]
                     case .colorScale(let colorScale):
                         let colorScaleType = Generated.ColorScale(parent: self, schema: colorScale)
-                        members += [colorScaleType.instance(named: identifier)]
+                        members += [colorScaleType.instantiate(name: identifier)]
                     case .angle(let angle):
                         let angleType = Generated.Angle(parent: self, schema: angle)
-                        members += [angleType.instance(named: identifier)]
-                    case .subPlotId(let subPlotId):
-                        let subPlotIdType = Generated.SubPlotID(parent: self, schema: subPlotId)
-                        members += [subPlotIdType.instance(named: identifier)]
+                        members += [angleType.instantiate(name: identifier)]
+                    case .subplotID(let subplotID):
+                        let subplotIDType = Generated.SubplotID(parent: self, schema: subplotID)
+                        members += [subplotIDType.instantiate(name: identifier)]
                     case .flagList(let flagList):
                         let flagListType = Generated.FlagList(named: identifier, parent: self, schema: flagList)
                         members += [flagListType.instance(named: identifier)]
                     case .any(let any):
                         let anyType = Generated.Any_(parent: self, schema: any)
-                        members += [anyType.instance(named: identifier)]
+                        members += [anyType.instantiate(name: identifier)]
                     case .infoArray(let infoArray):
                         let infoArrayType = Generated.InfoArray(parent: self, schema: infoArray)
-                        members += [infoArrayType.instance(named: identifier)]
+                        members += [infoArrayType.instantiate(name: identifier)]
                     }
                 case .object(let object):
                     if let nestedObjectType = Generated.Object(named: identifier, parent: self, schema: object) {
@@ -324,17 +322,20 @@ enum Generated {
         var cases: [Case] = []
 
         var definition: [String] {
-            var lines = [String]()
-
             let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            lines += ["\(access)enum \(name)\(protocols) {"]
+            var lines = """
+            \(access)enum \(name)\(protocols) {
+            """.lines()
+
             for `case` in cases {
                 let rawValue = (hasRawType && (`case`.rawValue != nil)) ? " = \(`case`.rawValue!)" : ""    
                 lines += ["case \(`case`.label)\(rawValue)"].indented()
             }
 
             lines += customEncoding.indented()
-            lines += ["}"]
+            lines += """
+            }
+            """.lines()
             return lines
         }
 
@@ -344,22 +345,24 @@ enum Generated {
 
         private var customEncoding: [String] {
             if hasRawType { return [] }
-
-            var lines = [String]()
-            lines += [""]
-            lines += ["\(access)func encode(to encoder: Encoder) throws {"]
-
-            lines += ["var container = encoder.singleValueContainer()"].indented()
-            lines += ["switch self {"].indented()
+            var lines = """
+            \(access)func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+            """.lines()
 
             for `case` in cases {
                 let value = `case`.rawValue ?? `case`.label.escaped()
-                lines += ["case .\(`case`.label):"].indented()
-                lines += ["try container.encode(\(value))"].indented(2)
+                lines += """
+                case .\(`case`.label):
+                    try container.encode(\(value))
+                """.lines().indented()
             }
 
-            lines += ["}"].indented()
-            lines += ["}"]
+            lines += """
+                }
+            }
+            """.lines()
             return lines
         }
 
@@ -525,11 +528,119 @@ enum Generated {
     }
 
     /// Plotly `subplotid` data type equivalent generated in Swift.
-    struct SubPlotID: GeneratedType {
-        let name: String = "SubPlotID"
+    ///
+    /// Swift implementation of subplots holds a weak reference to a corresponding type
+    /// from the `Layout` struct. Encoding outputs a unique string reference instead of
+    /// the actual data structure. The reference is used by JavaScript to pair traces
+    /// with their subplots.
+    struct SubplotID: GeneratedType {
+        var name: String {
+            switch kind {
+            case .xAxis:
+                return "Layout.XAxis"
+            case .yAxis:
+                return "Layout.YAxis"
+            case .ternary:
+                return "Layout.Ternary"
+            case .scene:
+                return "Layout.Scene"
+            case .geo:
+                return "Layout.Geo"
+            case .mapbox:
+                return "Layout.Mapbox"
+            case .polar:
+                return "Layout.Polar"
+            case .colorAxis:
+                return "Layout.ColorAxis"
+            }
+        }
         let parent: Generated.Object?
-        let schema: Predefined.SubPlotID
+        let schema: Predefined.SubplotID
         var origin: PredefinedType { schema as PredefinedType }
+
+        enum Kind {
+            case xAxis, yAxis, ternary, scene, geo, mapbox, polar, colorAxis
+        }
+        private let kind: Kind
+
+        init(parent: Generated.Object, schema: Predefined.SubplotID) {
+            self.parent = parent
+            self.schema = schema
+
+            switch schema.dflt {
+            case "x":
+                kind = .xAxis
+            case "y":
+                kind = .yAxis
+            case "ternary":
+                kind = .ternary
+            case "scene":
+                kind = .scene
+            case "geo":
+                kind = .geo
+            case "mapbox":
+                kind = .mapbox
+            case "polar":
+                kind = .polar
+            default:
+                if schema.regex == "/^coloraxis([2-9]|[1-9][0-9]+)?$/" {
+                    kind = .colorAxis
+                } else {
+                    fatalError("Unsupported subplot type in '\(schema.path)'")
+                }
+            }
+        }
+
+        /// Creates a weakly referenced instance to prevent reference cycles between `Layout` and `Trace`s.
+        func instantiate(name: String, array: Bool = false) -> Instance {
+            let instance = Instance(of: self, named: name, array: array)
+            instance.optional = false
+
+            switch kind {
+            case .xAxis:
+                instance.initialization = "Layout.XAxis(uid: 1)"
+            case .yAxis:
+                instance.initialization = "Layout.YAxis(uid: 1)"
+            case .ternary:
+                instance.initialization = "Layout.Ternary(uid: 1)"
+            case .scene:
+                instance.initialization = "Layout.Scene(uid: 1)"
+            case .geo:
+                instance.initialization = "Layout.Geo(uid: 1)"
+            case .mapbox:
+                instance.initialization = "Layout.Mapbox(uid: 1)"
+            case .polar:
+                instance.initialization = "Layout.Polar(uid: 1)"
+            case .colorAxis:
+                instance.initialization = "Layout.ColorAxis(uid: 1)"
+            }
+            return instance
+        }
+
+        /// Generates a chunk of Swift code that encodes only a reference to the corresponding axis/subplot.
+        func encode(_ instance: Instance, to container: String = "container") -> [String] {
+            var prefix: String = ""
+            switch kind {
+            case .xAxis:
+                prefix = "x"
+            case .yAxis:
+                prefix = "y"
+            case .ternary:
+                prefix = "ternary"
+            case .scene:
+                prefix = "scene"
+            case .geo:
+                prefix = "geo"
+            case .mapbox:
+                prefix = "mapbox"
+            case .polar:
+                prefix = "polar"
+            case .colorAxis:
+                prefix = "coloraxis"
+            }
+            let reference = "\"\(prefix)\\(\(instance.name).uid)\""
+            return ["try \(container).encode(\(reference), forKey: .\(instance.name))"]
+        }
     }
 
     /// Data type that maps Plotly `flaglist` to `OptionSet` from the Swift standard library.
@@ -553,29 +664,39 @@ enum Generated {
         var options: [Option] = []
 
         var definition: [String] {
-            var lines = [String]()
+            var lines = """
+            \(access)struct \(name): OptionSet, Encodable {
+                \(access)let rawValue: Int
 
-            lines += ["\(access)struct \(name): OptionSet, Encodable {"]
-            lines += ["\(access)let rawValue: Int"].indented()
-            lines += [""]
+            """.lines()
+
             for (i, option) in options.enumerated() {
                 let property = "\(access)static var \(option.label): \(name)"
                 let calculated = "\(name)(rawValue: 1 << \(i))"
                 lines += ["\(property) { \(calculated) }"].indented()
             }
-            lines += [""]
-            lines += ["\(access)init(rawValue: Int) { self.rawValue = rawValue }"].indented()
-            lines += [""]
-            lines += ["\(access)func encode(to encoder: Encoder) throws {"].indented()
-            lines += ["var options = [String]()"].indented(2)
+
+            lines += """
+                
+                \(access)init(rawValue: Int) {
+                    self.rawValue = rawValue
+                }
+                
+                \(access)func encode(to encoder: Encoder) throws {
+                    var options = [String]()
+            """.lines()
+
             for (i, option) in options.enumerated() {
-                let rawValue = option.rawValue
-                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(rawValue)] }"].indented(2)
+                lines += ["if (self.rawValue & 1 << \(i)) != 0 { options += [\(option.rawValue)] }"].indented(2)
             }
-            lines += ["var container = encoder.singleValueContainer()"].indented(2)
-            lines += ["try container.encode(options.joined(separator: \"+\"))"].indented(2)
-            lines += ["}"].indented()
-            lines += ["}"]
+
+            lines += """
+                    var container = encoder.singleValueContainer()
+                    try container.encode(options.joined(separator: \"+\"))
+                }
+            }
+
+            """.lines()
             return lines
         }
 
@@ -654,6 +775,16 @@ extension Generated {
             self.protocol = `protocol`
 
             parent.generics.append(self)
+        }
+
+        /// Generates a chunk of Swift code that encodes an instance of all Swift types that conform to `Plotable`.
+        func encode(_ instance: Instance, to container: String = "container") -> [String] {
+            let superEncoder = "\(container).superEncoder(forKey: .\(instance.name))"
+            return """
+            if let \(instance.name) = self.\(instance.name) {
+                try \(instance.name).encode(toPlotly: \(superEncoder))
+            }
+            """.lines()
         }
     }
 

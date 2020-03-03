@@ -15,39 +15,39 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -57,20 +57,20 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -83,19 +83,19 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the longitude coordinates (in degrees East).
-    public var longitude: CoordinateData?
+    public var longitude: CoordinateData? = nil
 
     /// Sets the latitude coordinates (in degrees North).
-    public var latitude: CoordinateData?
+    public var latitude: CoordinateData? = nil
 
     /// Determines the drawing mode for this scatter trace.
     /// 
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover.
-    public var mode: Shared.Mode?
+    public var mode: Shared.Mode? = nil
 
     /// Sets text elements associated with each (lon,lat) pair If a single string, the same string
     /// appears over all the data points.
@@ -103,7 +103,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -116,83 +116,83 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `lat`, `lon` and `text`.
-    public var textTemplate: Data<String>?
+    public var textTemplate: Data<String>? = nil
 
     /// Sets hover text elements associated with each (lon,lat) pair If a single string, the same string
     /// appears over all the data points.
     /// 
     /// If an array of string, the items are mapped in order to the this trace's (lon,lat) coordinates.
     /// To be seen, trace `hoverinfo` must contain a *text* flag.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
-    public var line: Shared.Line?
+    public var line: Shared.Line? = nil
 
     /// Determines whether or not gaps (i.e.
     /// 
     /// {nan} or missing values) in the provided data arrays are connected.
-    public var connectGaps: Bool?
+    public var connectGaps: Bool? = nil
 
     public struct SymbolicMarker: Encodable {
         /// Sets the marker symbol.
         /// 
         /// Full list: https://www.mapbox.com/maki-icons/ Note that the array `marker.color` and
         /// `marker.size` are only available for *circle* symbols.
-        public var symbol: Data<String>?
+        public var symbol: Data<String>? = nil
     
         /// Sets the marker opacity.
-        public var opacity: Data<Double>?
+        public var opacity: Data<Double>? = nil
     
         /// Sets the marker size (in px).
-        public var size: Data<Double>?
+        public var size: Data<Double>? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
         /// and `sizemode`.
-        public var sizeReference: Double?
+        public var sizeReference: Double? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the minimum size (in px) of the rendered marker points.
-        public var sizeMin: Double?
+        public var sizeMin: Double? = nil
     
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the rule for which the data in `size` is converted to pixels.
-        public var sizeMode: Shared.SizeMode?
+        public var sizeMode: Shared.SizeMode? = nil
     
         /// Sets themarkercolor.
         /// 
         /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
         /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
         /// if set.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here in
         /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
         /// `marker.color`is set to a numerical array.
         /// 
         /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
         /// equidistant to this point.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
         /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -203,7 +203,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `marker.colorscale`.
@@ -211,27 +211,27 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
         /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
         /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
         /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
         /// 
         /// Has an effect only if in `marker.color`is set to a numerical array.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -283,7 +283,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
                 coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
                 cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                SubPlotID? = nil) {
+                Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -304,7 +304,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         }
         
     }
-    public var marker: SymbolicMarker?
+    public var marker: SymbolicMarker? = nil
 
     /// Sets the area to fill with a solid color.
     /// 
@@ -318,40 +318,40 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// 
     /// Use with `fillcolor` if not *none*. *toself* connects the endpoints of the trace (or each
     /// segment of the trace if it has gaps) into a closed shape.
-    public var fill: Fill?
+    public var fill: Fill? = nil
 
     /// Sets the fill color.
     /// 
     /// Defaults to a half-transparent variant of the line color, marker color, or marker line color,
     /// whichever is available.
-    public var fillColor: Color?
+    public var fillColor: Color? = nil
 
     /// Sets the icon text font (color=mapbox.layer.paint.text-color,
     /// size=mapbox.layer.layout.text-size).
     /// 
     /// Has an effect only when `type` is set to *symbol*.
-    public var textFont: Shared.Font?
+    public var textFont: Shared.Font? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition?
+    public var textPosition: Shared.TextPosition? = nil
 
     /// Determines if this scattermapbox trace's layers are to be inserted before the layer with the
     /// specified ID.
     /// 
     /// By default, scattermapbox layers are inserted above all the base layers. To place the
     /// scattermapbox layers above every other layer, set `below` to *''*.
-    public var below: String?
+    public var below: String? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the marker size of selected points.
-            public var size: Double?
+            public var size: Double? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -366,7 +366,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Selected` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -374,18 +374,18 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         }
         
     }
-    public var selected: Selected?
+    public var selected: Selected? = nil
 
     public struct Unselected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the marker size of unselected points, applied only when a selection exists.
-            public var size: Double?
+            public var size: Double? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -400,7 +400,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         /// Creates `Unselected` object with specified properties.
         public init(marker: Marker? = nil) {
@@ -408,7 +408,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         }
         
     }
-    public var unselected: Unselected?
+    public var unselected: Unselected? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -416,7 +416,6 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var longitude: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var latitude: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var text: HoverInfo { HoverInfo(rawValue: 1 << 2) }
@@ -424,9 +423,11 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 4) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 5) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 6) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["lon"] }
@@ -444,7 +445,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -461,18 +462,17 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Sets a reference between this trace's data coordinates and a mapbox subplot.
     /// 
     /// If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer
     /// to `layout.mapbox2`, and so on.
-    public var subPlot: SubPlotID?
+    public var subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -505,7 +505,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         case unselected
         case hoverInfo = "hoverinfo"
         case hoverTemplate = "hovertemplate"
-        case subPlot = "subplot"
+        case subplot
     }
     
     /// Creates `ScatterMapbox` object from the most frequently used properties.
@@ -579,7 +579,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
     ///   - unselected:
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
-    ///   - subPlot: Sets a reference between this trace's data coordinates and a mapbox subplot.
+    ///   - subplot: Sets a reference between this trace's data coordinates and a mapbox subplot.
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
@@ -590,7 +590,7 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
             connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? =
             nil, textFont: Shared.Font? = nil, textPosition: Shared.TextPosition? = nil, below: String? =
             nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil,
-            hoverTemplate: Data<String>? = nil, subPlot: SubPlotID? = nil) {
+            hoverTemplate: Data<String>? = nil, subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -623,14 +623,13 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         self.unselected = unselected
         self.hoverInfo = hoverInfo
         self.hoverTemplate = hoverTemplate
-        self.subPlot = subPlot
+        self.subplot = subplot
     }
     
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -645,6 +644,12 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let longitude = self.longitude {
+            try longitude.encode(toPlotly: container.superEncoder(forKey: .longitude))
+        }
+        if let latitude = self.latitude {
+            try latitude.encode(toPlotly: container.superEncoder(forKey: .latitude))
+        }
         try container.encodeIfPresent(mode, forKey: .mode)
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
@@ -661,17 +666,6 @@ public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotabl
         try container.encodeIfPresent(unselected, forKey: .unselected)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
-        try container.encodeIfPresent(subPlot, forKey: .subPlot)
-    
-        if let longitude = self.longitude {
-            let longitudeEncoder = container.superEncoder(forKey: .longitude)
-            try longitude.encode(toPlotly: longitudeEncoder)
-        }
-    
-        if let latitude = self.latitude {
-            let latitudeEncoder = container.superEncoder(forKey: .latitude)
-            try latitude.encode(toPlotly: latitudeEncoder)
-        }
+        try container.encode("mapbox\(subplot.uid)", forKey: .subplot)
     }
-    
 }

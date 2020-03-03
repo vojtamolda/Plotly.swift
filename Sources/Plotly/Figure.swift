@@ -5,6 +5,35 @@ import Foundation
 public protocol Trace: Encodable {
     var type: String { get }
     var animatable: Bool { get }
+
+    var name: String? { get }
+    var uid: String? { get }
+}
+
+
+protocol XYSubplot {
+    var xAxis: Layout.XAxis { get }
+    var yAxis: Layout.YAxis { get }
+}
+
+protocol TernarySubplot {
+    var subplot: Layout.Ternary { get }
+}
+
+protocol SceneSubplot {
+    var scene: Layout.Scene { get }
+}
+
+protocol GeoSubplot {
+    var geo: Layout.Geo { get }
+}
+
+protocol MapboxSubplot {
+    var subplot: Layout.Mapbox { get }
+}
+
+protocol PolarSubplot {
+    var subplot: Layout.Polar { get }
 }
 
 
@@ -61,7 +90,21 @@ public struct Figure {
     /// Creates a `Figure` displaying the `data` traces with styling and configuration specified by `layout` and `config`.
     public init(data: [Trace], layout: Layout? = nil, config: Config? = nil) {
         self.data = data
+
         self.layout = layout
+        if self.layout != nil {
+            for trace in data {
+                if let xySubplot = trace as? XYSubplot {
+                    self.layout!.xAxis.append(xySubplot.xAxis)
+                    self.layout!.yAxis.append(xySubplot.yAxis)
+                }
+                if let polarSubplot = trace as? PolarSubplot {
+                    self.layout!.polar.append(polarSubplot.subplot)
+                }
+            }
+
+        }
+
         self.config = config
     }
 

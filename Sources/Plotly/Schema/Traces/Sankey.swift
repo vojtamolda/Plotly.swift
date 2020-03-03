@@ -17,28 +17,28 @@ public struct Sankey: Trace {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -48,16 +48,16 @@ public struct Sankey: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -70,7 +70,7 @@ public struct Sankey: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -79,13 +79,14 @@ public struct Sankey: Trace {
     /// `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 2) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["all"] }
@@ -100,25 +101,25 @@ public struct Sankey: Trace {
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired. Note that this attribute is superseded by
     /// `node.hoverinfo` and `node.hoverinfo` for nodes and links respectively.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var domain: Shared.Domain?
+    public var domain: Shared.Domain? = nil
 
     /// Sets the orientation of the Sankey diagram.
-    public var orientation: Shared.Orientation?
+    public var orientation: Shared.Orientation? = nil
 
     /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of
     /// Python.
     /// 
     /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-    public var valueFormat: String?
+    public var valueFormat: String? = nil
 
     /// Adds a unit to follow the value in the hover tooltip.
     /// 
     /// Add a space if a separation is necessary from the value.
-    public var valueSuffix: String?
+    public var valueSuffix: String? = nil
 
     /// If value is `snap` (the default), the node arrangement is assisted by automatic snapping of
     /// elements to preserve space between nodes specified via `nodepad`.
@@ -138,27 +139,27 @@ public struct Sankey: Trace {
     /// If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If
     /// value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are
     /// stationary.
-    public var arrangement: Arrangement?
+    public var arrangement: Arrangement? = nil
 
     /// Sets the font for node labels
-    public var textFont: Shared.Font?
+    public var textFont: Shared.Font? = nil
 
     /// The nodes of the Sankey plot.
     public struct Node: Encodable {
         /// The shown name of the node.
-        public var label: [Double]?
+        public var label: [Double]? = nil
     
         /// Groups of nodes.
         /// 
         /// Each group is defined by an array with the indices of the nodes it contains. Multiple groups can
         /// be specified.
-        public var groups: InfoArray?
+        public var groups: InfoArray? = nil
     
         /// The normalized horizontal position of the node.
-        public var x: [Double]?
+        public var x: [Double]? = nil
     
         /// The normalized vertical position of the node.
-        public var y: [Double]?
+        public var y: [Double]? = nil
     
         /// Sets the `node` color.
         /// 
@@ -166,15 +167,15 @@ public struct Sankey: Trace {
         /// omitted, then the default `Plotly` color palette will be cycled through to have a variety of
         /// colors. These defaults are not fully opaque, to allow some visibility of what is beneath the
         /// node.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
-        public var line: Shared.VariableLine?
+        public var line: Shared.VariableLine? = nil
     
         /// Sets the padding (in px) between the `nodes`.
-        public var padding: Double?
+        public var padding: Double? = nil
     
         /// Sets the thickness (in px) of the `nodes`.
-        public var thickness: Double?
+        public var thickness: Double? = nil
     
         /// Determines which trace information appear when hovering nodes.
         /// 
@@ -189,9 +190,9 @@ public struct Sankey: Trace {
         /// 
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
-        public var hoverInfo: HoverInfo?
+        public var hoverInfo: HoverInfo? = nil
     
-        public var hoverLabel: Shared.HoverLabel?
+        public var hoverLabel: Shared.HoverLabel? = nil
     
         /// Template string used for rendering the information that appear on hover box.
         /// 
@@ -208,7 +209,7 @@ public struct Sankey: Trace {
         /// true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is
         /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
         /// secondary box completely, use an empty tag `<extra></extra>`.
-        public var hoverTemplate: Data<String>?
+        public var hoverTemplate: Data<String>? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -258,29 +259,29 @@ public struct Sankey: Trace {
         
     }
     /// The nodes of the Sankey plot.
-    public var node: Node?
+    public var node: Node? = nil
 
     /// The links of the Sankey plot.
     public struct Link: Encodable {
         /// The shown name of the link.
-        public var label: [Double]?
+        public var label: [Double]? = nil
     
         /// Sets the `link` color.
         /// 
         /// It can be a single value, or an array for specifying color for each `link`. If `link.color` is
         /// omitted, then by default, a translucent grey link will be used.
-        public var coloring: Coloring?
+        public var coloring: Coloring? = nil
     
-        public var line: Shared.VariableLine?
+        public var line: Shared.VariableLine? = nil
     
         /// An integer number `[0..nodes.length - 1]` that represents the source node.
-        public var source: [Double]?
+        public var source: [Double]? = nil
     
         /// An integer number `[0..nodes.length - 1]` that represents the target node.
-        public var target: [Double]?
+        public var target: [Double]? = nil
     
         /// A numeric value representing the flow volume value.
-        public var value: [Double]?
+        public var value: [Double]? = nil
     
         /// Determines which trace information appear when hovering links.
         /// 
@@ -295,9 +296,9 @@ public struct Sankey: Trace {
         /// 
         /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
         /// click and hover events are still fired.
-        public var hoverInfo: HoverInfo?
+        public var hoverInfo: HoverInfo? = nil
     
-        public var hoverLabel: Shared.HoverLabel?
+        public var hoverLabel: Shared.HoverLabel? = nil
     
         /// Template string used for rendering the information that appear on hover box.
         /// 
@@ -314,17 +315,17 @@ public struct Sankey: Trace {
         /// true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is
         /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
         /// secondary box completely, use an empty tag `<extra></extra>`.
-        public var hoverTemplate: Data<String>?
+        public var hoverTemplate: Data<String>? = nil
     
         public struct ConcentrationScales: Encodable {
             /// The label of the links to color based on their concentration within a flow.
-            public var label: String?
+            public var label: String? = nil
         
             /// Sets the upper bound of the color domain.
-            public var cMax: Double?
+            public var cMax: Double? = nil
         
             /// Sets the lower bound of the color domain.
-            public var cMin: Double?
+            public var cMin: Double? = nil
         
             /// Sets the colorscale.
             /// 
@@ -334,7 +335,7 @@ public struct Sankey: Trace {
             /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
             /// be a palette name string of the following list:
             /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-            public var colorScale: ColorScale?
+            public var colorScale: ColorScale? = nil
         
             /// When used in a template, named items are created in the output figure in addition to any items
             /// the figure already has in this array.
@@ -342,7 +343,7 @@ public struct Sankey: Trace {
             /// You can modify these items in the output figure by making your own item with `templateitemname`
             /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
             /// false` to hide it). Has no effect outside of a template.
-            public var name: String?
+            public var name: String? = nil
         
             /// Used to refer to a named item in this array in the template.
             /// 
@@ -351,7 +352,7 @@ public struct Sankey: Trace {
             /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
             /// template or no matching item, this item will be hidden unless you explicitly show it with
             /// `visible: true`.
-            public var templateItemName: String?
+            public var templateItemName: String? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -384,7 +385,7 @@ public struct Sankey: Trace {
             }
             
         }
-        public var colorScales: [ConcentrationScales]?
+        public var colorScales: [ConcentrationScales]? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -431,12 +432,11 @@ public struct Sankey: Trace {
         
     }
     /// The links of the Sankey plot.
-    public var link: Link?
+    public var link: Link? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid

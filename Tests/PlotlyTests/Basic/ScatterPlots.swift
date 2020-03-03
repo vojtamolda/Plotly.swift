@@ -52,8 +52,8 @@ final class ScatterPlots: XCTestCase {
         )
         let layout = Layout(
             title: "Data Labels Hover",
-            xAxis: Layout.XAxis(range: [0.75, 5.25]),
-            yAxis: Layout.YAxis(range: [0, 8])
+            xAxis: [Layout.XAxis(range: [0.75, 5.25])],
+            yAxis: [Layout.YAxis(range: [0, 8])]
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
         output(figure)
@@ -83,8 +83,8 @@ final class ScatterPlots: XCTestCase {
         )
         let layout = Layout(
             title: "Data Labels on the Plot",
-            xAxis: Layout.XAxis(range: [0.75, 5.25]),
-            yAxis: Layout.YAxis(range: [0, 8]),
+            xAxis: [Layout.XAxis(range: [0.75, 5.25])],
+            yAxis: [Layout.YAxis(range: [0, 8])],
             legend: Layout.Legend(
                 font: Shared.Font(family: "Arial, sans-serif", size: 20, color: .gray),
                 y: 0.5

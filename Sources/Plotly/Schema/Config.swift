@@ -9,52 +9,52 @@ public struct Config: Encodable {
     /// Determines whether the graphs are interactive or not.
     /// 
     /// If *false*, no interactivity, for export or image generation.
-    public var staticPlot: Bool?
+    public var staticPlot: Bool? = nil
 
     /// Sets base URL for the 'Edit in Chart Studio' (aka sendDataToCloud) mode bar button and the
     /// showLink/sendData on-graph link
-    public var plotlyServerURL: String?
+    public var plotlyServerURL: String? = nil
 
     /// Determines whether the graph is editable or not.
     /// 
     /// Sets all pieces of `edits` unless a separate `edits` config item overrides individual parts.
-    public var editable: Bool?
+    public var editable: Bool? = nil
 
     public struct Edits: Encodable {
         /// Determines if the main anchor of the annotation is editable.
         /// 
         /// The main anchor corresponds to the text (if no arrow) or the arrow (which drags the whole thing
         /// leaving the arrow length & direction unchanged).
-        public var annotationPosition: Bool?
+        public var annotationPosition: Bool? = nil
     
         /// Has only an effect for annotations with arrows.
         /// 
         /// Enables changing the length and direction of the arrow.
-        public var annotationTail: Bool?
+        public var annotationTail: Bool? = nil
     
         /// Enables editing annotation text.
-        public var annotationText: Bool?
+        public var annotationText: Bool? = nil
     
         /// Enables editing axis title text.
-        public var axisTitleText: Bool?
+        public var axisTitleText: Bool? = nil
     
         /// Enables moving colorbars.
-        public var colorBarPosition: Bool?
+        public var colorBarPosition: Bool? = nil
     
         /// Enables editing colorbar title text.
-        public var colorBarTitleText: Bool?
+        public var colorBarTitleText: Bool? = nil
     
         /// Enables moving the legend.
-        public var legendPosition: Bool?
+        public var legendPosition: Bool? = nil
     
         /// Enables editing the trace name fields from the legend
-        public var legendText: Bool?
+        public var legendText: Bool? = nil
     
         /// Enables moving shapes.
-        public var shapePosition: Bool?
+        public var shapePosition: Bool? = nil
     
         /// Enables editing the global layout title.
-        public var titleText: Bool?
+        public var titleText: Bool? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -100,23 +100,23 @@ public struct Config: Encodable {
         }
         
     }
-    public var edits: Edits?
+    public var edits: Edits? = nil
 
     /// Determines whether the graphs are plotted with respect to layout.autosize:true and infer its
     /// container size.
-    public var autosizable: Bool?
+    public var autosizable: Bool? = nil
 
     /// Determines whether to change the layout size when window is resized.
     /// 
     /// In v2, this option will be removed and will always be true.
-    public var responsive: Bool?
+    public var responsive: Bool? = nil
 
     /// When `layout.autosize` is turned on, determines whether the graph fills the container (the
     /// default) or the screen (if set to *true*).
-    public var fillFrame: Bool?
+    public var fillFrame: Bool? = nil
 
     /// When `layout.autosize` is turned on, set the frame margins in fraction of the graph size.
-    public var frameMargins: Double?
+    public var frameMargins: Double? = nil
 
     /// Determines whether mouse wheel or two-finger scroll zooms is enable.
     /// 
@@ -125,16 +125,17 @@ public struct Config: Encodable {
     /// to disable scrolling for all subplots.
     public struct ScrollZoom: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var cartesian: ScrollZoom { ScrollZoom(rawValue: 1 << 0) }
         public static var GL3D: ScrollZoom { ScrollZoom(rawValue: 1 << 1) }
         public static var geo: ScrollZoom { ScrollZoom(rawValue: 1 << 2) }
         public static var mapbox: ScrollZoom { ScrollZoom(rawValue: 1 << 3) }
         public static var on: ScrollZoom { ScrollZoom(rawValue: 1 << 4) }
         public static var off: ScrollZoom { ScrollZoom(rawValue: 1 << 5) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["cartesian"] }
@@ -152,7 +153,7 @@ public struct Config: Encodable {
     /// Turned on by default for gl3d, geo and mapbox subplots (as these subplot types do not have
     /// zoombox via pan), but turned off by default for cartesian subplots. Set `scrollZoom` to *false*
     /// to disable scrolling for all subplots.
-    public var scrollZoom: ScrollZoom?
+    public var scrollZoom: ScrollZoom? = nil
 
     /// Sets the double click interaction mode.
     /// 
@@ -166,7 +167,6 @@ public struct Config: Encodable {
         case reset
         case autoSize
         case resetAndAutoSize
-        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -188,39 +188,39 @@ public struct Config: Encodable {
     /// ranges to their autorange values. If *reset+autosize*, the odd double clicks resets the axis
     /// ranges to their initial values and even double clicks set the axis ranges to their autorange
     /// values.
-    public var doubleClick: DoubleClick?
+    public var doubleClick: DoubleClick? = nil
 
     /// Sets the delay for registering a double-click in ms.
     /// 
     /// This is the time interval (in ms) between first mousedown and 2nd mouseup to constitute a
     /// double-click. This setting propagates to all on-subplot double clicks (except for geo and
     /// mapbox) and on-legend double clicks.
-    public var doubleClickDelay: Double?
+    public var doubleClickDelay: Double? = nil
 
     /// Set to *false* to omit cartesian axis pan/zoom drag handles.
-    public var showAxisDragHandles: Bool?
+    public var showAxisDragHandles: Bool? = nil
 
     /// Set to *false* to omit direct range entry at the pan/zoom drag points, note that
     /// `showAxisDragHandles` must be enabled to have an effect.
-    public var showAxisRangeEntryBoxes: Bool?
+    public var showAxisRangeEntryBoxes: Bool? = nil
 
     /// Determines whether or not tips are shown while interacting with the resulting graphs.
-    public var showTips: Bool?
+    public var showTips: Bool? = nil
 
     /// Determines whether a link to plot.ly is displayed at the bottom right corner of resulting
     /// graphs.
     /// 
     /// Use with `sendData` and `linkText`.
-    public var showLink: Bool?
+    public var showLink: Bool? = nil
 
     /// Sets the text appearing in the `showLink` link.
-    public var linkText: String?
+    public var linkText: String? = nil
 
     /// If *showLink* is true, does it contain data just link to a plot.ly file?
-    public var sendData: Bool?
+    public var sendData: Bool? = nil
 
     /// Adds a source-displaying function to show sources on the resulting graphs.
-    public var showSources: Anything?
+    public var showSources: Anything? = nil
 
     /// Determines the mode bar display mode.
     /// 
@@ -230,7 +230,6 @@ public struct Config: Encodable {
         case hover
         case on
         case off
-        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -247,7 +246,7 @@ public struct Config: Encodable {
     /// 
     /// If *true*, the mode bar is always visible. If *false*, the mode bar is always hidden. If
     /// *hover*, the mode bar is visible while the mouse cursor is on the graph container.
-    public var displayModeBar: DisplayModeBar?
+    public var displayModeBar: DisplayModeBar? = nil
 
     /// Should we include a ModeBar button, labeled "Edit in Chart Studio", that sends this chart to
     /// plot.ly or another plotly server as specified by `plotlyServerURL` for editing, export, etc?
@@ -256,74 +255,74 @@ public struct Config: Encodable {
     /// Note that this button can (depending on `plotlyServerURL`) send your data to an external server.
     /// However that server does not persist your data until you arrive at the Chart Studio and
     /// explicitly click "Save".
-    public var showSendToCloud: Bool?
+    public var showSendToCloud: Bool? = nil
 
     /// Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk.
     /// 
     /// Note that if both `showSendToCloud` and `showEditInChartStudio` are turned, only
     /// `showEditInChartStudio` will be honored.
-    public var showEditInChartStudio: Bool?
+    public var showEditInChartStudio: Bool? = nil
 
     /// Remove mode bar buttons by name.
     /// 
     /// See ./components/modebar/buttons.js for the list of names.
-    public var modeBarButtonsToRemove: Anything?
+    public var modeBarButtonsToRemove: Anything? = nil
 
     /// Add mode bar button using config objects See ./components/modebar/buttons.js for list of
     /// arguments.
-    public var modeBarButtonsToAdd: Anything?
+    public var modeBarButtonsToAdd: Anything? = nil
 
     /// Define fully custom mode bar buttons as nested array, where the outer arrays represents button
     /// groups, and the inner arrays have buttons config objects or names of default buttons See
     /// ./components/modebar/buttons.js for more info.
-    public var modeBarButtons: Anything?
+    public var modeBarButtons: Anything? = nil
 
     /// Statically override options for toImage modebar button allowed keys are format, filename, width,
     /// height, scale see ../components/modebar/buttons.js
-    public var toImageButtonOptions: Anything?
+    public var toImageButtonOptions: Anything? = nil
 
     /// Determines whether or not the plotly logo is displayed on the end of the mode bar.
-    public var displayLogo: Bool?
+    public var displayLogo: Bool? = nil
 
     /// watermark the images with the company's logo
-    public var watermark: Bool?
+    public var watermark: Bool? = nil
 
     /// Set the pixel ratio during WebGL image export.
     /// 
     /// This config option was formerly named `plot3dPixelRatio` which is now deprecated.
-    public var plotGlPixelRatio: Double?
+    public var plotGlPixelRatio: Double? = nil
 
     /// Set function to add the background color (i.e.
     /// 
     /// `layout.paper_color`) to a different container. This function take the graph div as first
     /// argument and the current background color as second argument. Alternatively, set to string
     /// *opaque* to ensure there is white behind it.
-    public var setBackground: Anything?
+    public var setBackground: Anything? = nil
 
     /// Set the URL to topojson used in geo charts.
     /// 
     /// By default, the topojson files are fetched from cdn.plot.ly. For example, set this option to:
     /// <path-to-plotly.js>/dist/topojson/ to render geographical feature using the topojson files that
     /// ship with the plotly.js module.
-    public var topoJsonURL: String?
+    public var topoJsonURL: String? = nil
 
     /// Mapbox access token (required to plot mapbox trace types) If using an Mapbox Atlas server, set
     /// this option to '' so that plotly.js won't attempt to authenticate to the public Mapbox server.
-    public var mapboxAccessToken: String?
+    public var mapboxAccessToken: String? = nil
 
     /// Turn all console logging on or off (errors will be thrown) This should ONLY be set via
     /// Plotly.setPlotConfig Available levels: 0: no logs 1: warnings and errors, but not informational
     /// messages 2: verbose logs
-    public var logging: Bool?
+    public var logging: Bool? = nil
 
     /// Sets the length of the undo/redo queue.
-    public var queueLength: Int?
+    public var queueLength: Int? = nil
 
     /// Set global transform to be applied to all traces with no specification needed
-    public var globalTransforms: Anything?
+    public var globalTransforms: Anything? = nil
 
     /// Which localization should we use? Should be a string like 'en' or 'en-US'.
-    public var locale: String?
+    public var locale: String? = nil
 
     /// Localization definitions Locales can be provided either here (specific to one chart) or globally
     /// by registering them as modules.
@@ -337,7 +336,7 @@ public struct Config: Encodable {
     /// consequence being the last fallback date format %x is DD/MM/YYYY instead of MM/DD/YYYY).
     /// Currently `grouping` and `currency` are ignored for our automatic number formatting, but can be
     /// used in custom formats.
-    public var locales: Anything?
+    public var locales: Anything? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {

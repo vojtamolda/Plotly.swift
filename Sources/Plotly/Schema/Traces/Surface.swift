@@ -11,7 +11,7 @@
 ///   [Python](https://plot.ly/python/reference/#surface), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#surface) or 
 ///   [R](https://plot.ly/r/reference/#surface)
-public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable, XYData: Plotable {
+public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceData: Plotable, XYData: Plotable {
     public let type: String = "surface"
 
     public let animatable: Bool = false
@@ -20,28 +20,28 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -51,11 +51,11 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -68,25 +68,25 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the z coordinates.
-    public var z: ZSurfaceData?
+    public var z: ZSurfaceData? = nil
 
     /// Sets the x coordinates.
-    public var x: XYData?
+    public var x: XYData? = nil
 
     /// Sets the y coordinates.
-    public var y: XYData?
+    public var y: XYData? = nil
 
     /// Sets the text elements associated with each z value.
     /// 
     /// If trace `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be
     /// seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Same as `text`.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -103,36 +103,36 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Determines whether or not gaps (i.e.
     /// 
     /// {nan} or missing values) in the `z` data are filled in.
-    public var connectGaps: Bool?
+    public var connectGaps: Bool? = nil
 
     /// Sets the surface color values, used for setting a color scale independent of `z`.
-    public var surfaceColor: ZSurfaceData?
+    public var surfaceColor: ZSurfaceData? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here z or
     /// surfacecolor) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax`
     /// are set by the user.
-    public var cAuto: Bool?
+    public var cAuto: Bool? = nil
 
     /// Sets the lower bound of the color domain.
     /// 
     /// Value should have the same units as z or surfacecolor and if set, `cmax` must be set as well.
-    public var cMin: Double?
+    public var cMin: Double? = nil
 
     /// Sets the upper bound of the color domain.
     /// 
     /// Value should have the same units as z or surfacecolor and if set, `cmin` must be set as well.
-    public var cMax: Double?
+    public var cMax: Double? = nil
 
     /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this
     /// point.
     /// 
     /// Value should have the same units as z or surfacecolor. Has no effect when `cauto` is `false`.
-    public var cMiddle: Double?
+    public var cMiddle: Double? = nil
 
     /// Sets the colorscale.
     /// 
@@ -142,7 +142,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
     /// be a palette name string of the following list:
     /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-    public var colorScale: ColorScale?
+    public var colorScale: ColorScale? = nil
 
     /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
     /// determined by `colorscale`.
@@ -150,67 +150,67 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
     /// chosen according to whether numbers in the `color` array are all positive, all negative or
     /// mixed.
-    public var autoColorScale: Bool?
+    public var autoColorScale: Bool? = nil
 
     /// Reverses the color mapping if true.
     /// 
     /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
     /// first color.
-    public var reverseScale: Bool?
+    public var reverseScale: Bool? = nil
 
     /// Determines whether or not a colorbar is displayed for this trace.
-    public var showScale: Bool?
+    public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar?
+    public var colorBar: Shared.ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: SubPlotID?
+    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
 
     public struct Contours: Encodable {
         public struct X: Encodable {
             /// Determines whether or not contour lines about the x dimension are drawn.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the starting contour level value.
             /// 
             /// Must be less than `contours.end`
-            public var start: Double?
+            public var start: Double? = nil
         
             /// Sets the end contour level value.
             /// 
             /// Must be more than `contours.start`
-            public var end: Double?
+            public var end: Double? = nil
         
             /// Sets the step between each contour level.
             /// 
             /// Must be positive.
-            public var size: Double?
+            public var size: Double? = nil
         
-            public var project: Shared.Projection?
+            public var project: Shared.Projection? = nil
         
             /// Sets the color of the contour lines.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// An alternate to *color*.
             /// 
             /// Determines whether or not the contour lines are colored using the trace *colorscale*.
-            public var useColormap: Bool?
+            public var useColormap: Bool? = nil
         
             /// Sets the width of the contour lines.
-            public var width: Double?
+            public var width: Double? = nil
         
             /// Determines whether or not contour lines about the x dimension are highlighted on hover.
-            public var highlight: Bool?
+            public var highlight: Bool? = nil
         
             /// Sets the color of the highlighted contour lines.
-            public var highlightColor: Color?
+            public var highlightColor: Color? = nil
         
             /// Sets the width of the highlighted contour lines.
-            public var highlightWidth: Double?
+            public var highlightWidth: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -259,48 +259,48 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
             }
             
         }
-        public var x: X?
+        public var x: X? = nil
     
         public struct Y: Encodable {
             /// Determines whether or not contour lines about the y dimension are drawn.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the starting contour level value.
             /// 
             /// Must be less than `contours.end`
-            public var start: Double?
+            public var start: Double? = nil
         
             /// Sets the end contour level value.
             /// 
             /// Must be more than `contours.start`
-            public var end: Double?
+            public var end: Double? = nil
         
             /// Sets the step between each contour level.
             /// 
             /// Must be positive.
-            public var size: Double?
+            public var size: Double? = nil
         
-            public var project: Shared.Projection?
+            public var project: Shared.Projection? = nil
         
             /// Sets the color of the contour lines.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// An alternate to *color*.
             /// 
             /// Determines whether or not the contour lines are colored using the trace *colorscale*.
-            public var useColormap: Bool?
+            public var useColormap: Bool? = nil
         
             /// Sets the width of the contour lines.
-            public var width: Double?
+            public var width: Double? = nil
         
             /// Determines whether or not contour lines about the y dimension are highlighted on hover.
-            public var highlight: Bool?
+            public var highlight: Bool? = nil
         
             /// Sets the color of the highlighted contour lines.
-            public var highlightColor: Color?
+            public var highlightColor: Color? = nil
         
             /// Sets the width of the highlighted contour lines.
-            public var highlightWidth: Double?
+            public var highlightWidth: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -349,48 +349,48 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
             }
             
         }
-        public var y: Y?
+        public var y: Y? = nil
     
         public struct Z: Encodable {
             /// Determines whether or not contour lines about the z dimension are drawn.
-            public var show: Bool?
+            public var show: Bool? = nil
         
             /// Sets the starting contour level value.
             /// 
             /// Must be less than `contours.end`
-            public var start: Double?
+            public var start: Double? = nil
         
             /// Sets the end contour level value.
             /// 
             /// Must be more than `contours.start`
-            public var end: Double?
+            public var end: Double? = nil
         
             /// Sets the step between each contour level.
             /// 
             /// Must be positive.
-            public var size: Double?
+            public var size: Double? = nil
         
-            public var project: Shared.Projection?
+            public var project: Shared.Projection? = nil
         
             /// Sets the color of the contour lines.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// An alternate to *color*.
             /// 
             /// Determines whether or not the contour lines are colored using the trace *colorscale*.
-            public var useColormap: Bool?
+            public var useColormap: Bool? = nil
         
             /// Sets the width of the contour lines.
-            public var width: Double?
+            public var width: Double? = nil
         
             /// Determines whether or not contour lines about the z dimension are highlighted on hover.
-            public var highlight: Bool?
+            public var highlight: Bool? = nil
         
             /// Sets the color of the highlighted contour lines.
-            public var highlightColor: Color?
+            public var highlightColor: Color? = nil
         
             /// Sets the width of the highlighted contour lines.
-            public var highlightWidth: Double?
+            public var highlightWidth: Double? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -439,7 +439,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
             }
             
         }
-        public var z: Z?
+        public var z: Z? = nil
     
         /// Creates `Contours` object with specified properties.
         public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
@@ -449,34 +449,34 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
         }
         
     }
-    public var contours: Contours?
+    public var contours: Contours? = nil
 
     /// Determines whether or not a surface is drawn.
     /// 
     /// For example, set `hidesurface` to *false* `contours.x.show` to *true* and `contours.y.show` to
     /// *true* to draw a wire frame plot.
-    public var hideSurface: Bool?
+    public var hideSurface: Bool? = nil
 
-    public var lightPosition: Shared.LightPosition?
+    public var lightPosition: Shared.LightPosition? = nil
 
     public struct Lighting: Encodable {
         /// Ambient light increases overall color visibility but can wash out the image.
-        public var ambient: Double?
+        public var ambient: Double? = nil
     
         /// Represents the extent that incident rays are reflected in a range of angles.
-        public var diffuse: Double?
+        public var diffuse: Double? = nil
     
         /// Represents the level that incident rays are reflected in a single direction, causing shine.
-        public var specular: Double?
+        public var specular: Double? = nil
     
         /// Alters specular reflection; the rougher the surface, the wider and less contrasty the shine.
-        public var roughness: Double?
+        public var roughness: Double? = nil
     
         /// Represents the reflectance as a dependency of the viewing angle; e.g.
         /// 
         /// paper is reflective when viewing it from the edge of the paper (almost 90 degrees), causing
         /// shine.
-        public var fresnel: Double?
+        public var fresnel: Double? = nil
     
         /// Creates `Lighting` object with specified properties.
         /// 
@@ -498,7 +498,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
         }
         
     }
-    public var lighting: Lighting?
+    public var lighting: Lighting? = nil
 
     /// Sets the opacity of the surface.
     /// 
@@ -506,33 +506,32 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// equal to 0.5 on two surfaces (and 0.25 with four surfaces), an overlay of multiple transparent
     /// surfaces may not perfectly be sorted in depth by the webgl API. This behavior may be improved in
     /// the near future and is subject to change.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar?
+    public var xCalendar: Shared.Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar?
+    public var yCalendar: Shared.Calendar? = nil
 
     /// Sets the calendar system to use with `z` date data.
-    public var zCalendar: Shared.Calendar?
+    public var zCalendar: Shared.Calendar? = nil
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: SubPlotID?
+    public var scene: Layout.Scene = Layout.Scene(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid
@@ -655,11 +654,11 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
             Data<String>? = nil, hoverTemplate: Data<String>? = nil, connectGaps: Bool? = nil, surfaceColor:
             ZSurfaceData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle:
             Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
-            nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: SubPlotID? = nil,
-            contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: Shared.LightPosition? = nil,
-            lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo: Shared.HoverInfo? = nil,
-            xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar:
-            Shared.Calendar? = nil, scene: SubPlotID? = nil) {
+            nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
+            Layout.ColorAxis(uid: 1), contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition:
+            Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo:
+            Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,
+            zCalendar: Shared.Calendar? = nil, scene: Layout.Scene = Layout.Scene(uid: 1)) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -702,8 +701,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
@@ -713,10 +711,22 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let z = self.z {
+            try z.encode(toPlotly: container.superEncoder(forKey: .z))
+        }
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
         try container.encodeIfPresent(connectGaps, forKey: .connectGaps)
+        if let surfaceColor = self.surfaceColor {
+            try surfaceColor.encode(toPlotly: container.superEncoder(forKey: .surfaceColor))
+        }
         try container.encodeIfPresent(cAuto, forKey: .cAuto)
         try container.encodeIfPresent(cMin, forKey: .cMin)
         try container.encodeIfPresent(cMax, forKey: .cMax)
@@ -726,7 +736,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
         try container.encodeIfPresent(reverseScale, forKey: .reverseScale)
         try container.encodeIfPresent(showScale, forKey: .showScale)
         try container.encodeIfPresent(colorBar, forKey: .colorBar)
-        try container.encodeIfPresent(colorAxis, forKey: .colorAxis)
+        try container.encode("coloraxis\(colorAxis.uid)", forKey: .colorAxis)
         try container.encodeIfPresent(contours, forKey: .contours)
         try container.encodeIfPresent(hideSurface, forKey: .hideSurface)
         try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
@@ -736,27 +746,6 @@ public struct Surface<ZSurfaceData, XYData>: Trace where ZSurfaceData: Plotable,
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
         try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
         try container.encodeIfPresent(zCalendar, forKey: .zCalendar)
-        try container.encodeIfPresent(scene, forKey: .scene)
-    
-        if let z = self.z {
-            let zEncoder = container.superEncoder(forKey: .z)
-            try z.encode(toPlotly: zEncoder)
-        }
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
-    
-        if let surfaceColor = self.surfaceColor {
-            let surfaceColorEncoder = container.superEncoder(forKey: .surfaceColor)
-            try surfaceColor.encode(toPlotly: surfaceColorEncoder)
-        }
+        try container.encode("scene\(scene.uid)", forKey: .scene)
     }
-    
 }

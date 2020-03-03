@@ -19,28 +19,28 @@ public struct Indicator: Trace {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -50,11 +50,11 @@ public struct Indicator: Trace {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -67,7 +67,7 @@ public struct Indicator: Trace {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Determines how the value is displayed on the graph.
     /// 
@@ -75,13 +75,14 @@ public struct Indicator: Trace {
     /// value in text. Finally, `gauge` displays the value graphically on an axis.
     public struct Mode: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var number: Mode { Mode(rawValue: 1 << 0) }
         public static var delta: Mode { Mode(rawValue: 1 << 1) }
         public static var gauge: Mode { Mode(rawValue: 1 << 2) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["number"] }
@@ -95,30 +96,30 @@ public struct Indicator: Trace {
     /// 
     /// `number` displays the value numerically in text. `delta` displays the difference to a reference
     /// value in text. Finally, `gauge` displays the value graphically on an axis.
-    public var mode: Mode?
+    public var mode: Mode? = nil
 
     /// Sets the number to be displayed.
-    public var value: Double?
+    public var value: Double? = nil
 
     /// Sets the horizontal alignment of the `text` within the box.
     /// 
     /// Note that this attribute has no effect if an angular gauge is displayed: in this case, it is
     /// always centered
-    public var align: Shared.HorizontalAlign?
+    public var align: Shared.HorizontalAlign? = nil
 
-    public var domain: Shared.Domain?
+    public var domain: Shared.Domain? = nil
 
     public struct Title: Encodable {
         /// Sets the title of this indicator.
-        public var text: String?
+        public var text: String? = nil
     
         /// Sets the horizontal alignment of the title.
         /// 
         /// It defaults to `center` except for bullet charts for which it defaults to right.
-        public var align: Shared.HorizontalAlign?
+        public var align: Shared.HorizontalAlign? = nil
     
         /// Set the font used to display the title
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Creates `Title` object with specified properties.
         /// 
@@ -134,23 +135,23 @@ public struct Indicator: Trace {
         }
         
     }
-    public var title: Title?
+    public var title: Title? = nil
 
     public struct Number: Encodable {
         /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of
         /// Python.
         /// 
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var valueFormat: String?
+        public var valueFormat: String? = nil
     
         /// Set the font used to display main number
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Sets a prefix appearing before the number.
-        public var prefix: String?
+        public var prefix: String? = nil
     
         /// Sets a suffix appearing next to the number.
-        public var suffix: String?
+        public var suffix: String? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -177,13 +178,13 @@ public struct Indicator: Trace {
         }
         
     }
-    public var number: Number?
+    public var number: Number? = nil
 
     public struct Delta: Encodable {
         /// Sets the reference value to compute the delta.
         /// 
         /// By default, it is set to the current value.
-        public var reference: Double?
+        public var reference: Double? = nil
     
         /// Sets the position of delta with respect to the number.
         public enum Position: String, Encodable {
@@ -193,23 +194,23 @@ public struct Indicator: Trace {
             case right
         }
         /// Sets the position of delta with respect to the number.
-        public var position: Position?
+        public var position: Position? = nil
     
         /// Show relative change
-        public var relative: Bool?
+        public var relative: Bool? = nil
     
         /// Sets the value formatting rule using d3 formatting mini-language which is similar to those of
         /// Python.
         /// 
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var valueFormat: String?
+        public var valueFormat: String? = nil
     
         public struct Increasing: Encodable {
             /// Sets the symbol to display for increasing value
-            public var symbol: String?
+            public var symbol: String? = nil
         
             /// Sets the color for increasing value.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `Increasing` object with specified properties.
             /// 
@@ -222,14 +223,14 @@ public struct Indicator: Trace {
             }
             
         }
-        public var increasing: Increasing?
+        public var increasing: Increasing? = nil
     
         public struct Decreasing: Encodable {
             /// Sets the symbol to display for increasing value
-            public var symbol: String?
+            public var symbol: String? = nil
         
             /// Sets the color for increasing value.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `Decreasing` object with specified properties.
             /// 
@@ -242,10 +243,10 @@ public struct Indicator: Trace {
             }
             
         }
-        public var decreasing: Decreasing?
+        public var decreasing: Decreasing? = nil
     
         /// Set the font used to display the delta
-        public var font: Shared.Font?
+        public var font: Shared.Font? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -282,7 +283,7 @@ public struct Indicator: Trace {
         }
         
     }
-    public var delta: Delta?
+    public var delta: Delta? = nil
 
     /// The gauge of the Indicator plot.
     public struct Gauge: Encodable {
@@ -292,17 +293,17 @@ public struct Indicator: Trace {
             case bullet
         }
         /// Set the shape of the gauge
-        public var shape: Shape?
+        public var shape: Shape? = nil
     
         /// Set the appearance of the gauge's value
         public struct Bar: Encodable {
             /// Sets the background color of the arc.
-            public var color: Color?
+            public var color: Color? = nil
         
-            public var line: Shared.Line?
+            public var line: Shared.Line? = nil
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
-            public var thickness: Double?
+            public var thickness: Double? = nil
         
             /// Creates `Bar` object with specified properties.
             /// 
@@ -318,25 +319,25 @@ public struct Indicator: Trace {
             
         }
         /// Set the appearance of the gauge's value
-        public var bar: Bar?
+        public var bar: Bar? = nil
     
         /// Sets the gauge background color.
-        public var backgroundColor: Color?
+        public var backgroundColor: Color? = nil
     
         /// Sets the color of the border enclosing the gauge.
-        public var borderColor: Color?
+        public var borderColor: Color? = nil
     
         /// Sets the width (in px) of the border enclosing the gauge.
-        public var borderWidth: Double?
+        public var borderWidth: Double? = nil
     
         public struct Axis: Encodable {
             /// Sets the range of this axis.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// A single toggle to hide the axis while preserving interaction like dragging.
             /// 
             /// Default is true when a cheater plot is present on the axis, otherwise false
-            public var visible: Bool?
+            public var visible: Bool? = nil
         
             /// Sets the tick mode for this axis.
             /// 
@@ -345,13 +346,13 @@ public struct Indicator: Trace {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode?
+            public var tickMode: Shared.TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
             /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
             /// Has an effect only if `tickmode` is set to *auto*.
-            public var numTicks: Int?
+            public var numTicks: Int? = nil
         
             /// Sets the placement of the first tick on this axis.
             /// 
@@ -360,7 +361,7 @@ public struct Indicator: Trace {
             /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
             /// data. If the axis `type` is *category*, it should be a number, using the scale where each
             /// category is assigned a serial number from zero in the order it appears.
-            public var tick0: Anything?
+            public var tick0: Anything? = nil
         
             /// Sets the step in-between ticks on this axis.
             /// 
@@ -377,43 +378,43 @@ public struct Indicator: Trace {
             /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
             /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
             /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
-            public var dTick: Anything?
+            public var dTick: Anything? = nil
         
             /// Sets the values at which ticks on this axis appear.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
-            public var tickValues: [Double]?
+            public var tickValues: [Double]? = nil
         
             /// Sets the text displayed at the ticks position via `tickvals`.
             /// 
             /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
-            public var tickText: [Double]?
+            public var tickText: [Double]? = nil
         
             /// Determines whether ticks are drawn or not.
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks?
+            public var ticks: Shared.Ticks? = nil
         
             /// Sets the tick length (in px).
-            public var tickLength: Double?
+            public var tickLength: Double? = nil
         
             /// Sets the tick width (in px).
-            public var tickWidth: Double?
+            public var tickWidth: Double? = nil
         
             /// Sets the tick color.
-            public var tickColor: Color?
+            public var tickColor: Color? = nil
         
             /// Determines whether or not the tick labels are drawn.
-            public var showTickLabels: Bool?
+            public var showTickLabels: Bool? = nil
         
             /// Sets the color bar's tick label font
-            public var tickFont: Shared.Font?
+            public var tickFont: Shared.Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
             /// For example, a `tickangle` of -90 draws the tick labels vertically.
-            public var tickAngle: Angle?
+            public var tickAngle: Angle? = nil
         
             /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
             /// those in Python.
@@ -423,39 +424,39 @@ public struct Indicator: Trace {
             /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
             /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
-            public var tickFormat: String?
+            public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]?
+            public var tickFormatStops: [Shared.TickFormatStop]? = nil
         
             /// Sets a tick label prefix.
-            public var tickPrefix: String?
+            public var tickPrefix: String? = nil
         
             /// If *all*, all tick labels are displayed with a prefix.
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix?
+            public var showTickPrefix: Shared.ShowTickPrefix? = nil
         
             /// Sets a tick label suffix.
-            public var tickSuffix: String?
+            public var tickSuffix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix?
+            public var showTickSuffix: Shared.ShowTickSuffix? = nil
         
             /// If "true", even 4-digit integers are separated
-            public var separateThousands: Bool?
+            public var separateThousands: Bool? = nil
         
             /// Determines a formatting rule for the tick exponents.
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat?
+            public var exponentFormat: Shared.ExponentFormat? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent?
+            public var showExponent: Shared.ShowExponent? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -549,19 +550,19 @@ public struct Indicator: Trace {
             }
             
         }
-        public var axis: Axis?
+        public var axis: Axis? = nil
     
         public struct Step: Encodable {
             /// Sets the background color of the arc.
-            public var color: Color?
+            public var color: Color? = nil
         
-            public var line: Shared.Line?
+            public var line: Shared.Line? = nil
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
-            public var thickness: Double?
+            public var thickness: Double? = nil
         
             /// Sets the range of this axis.
-            public var range: InfoArray?
+            public var range: InfoArray? = nil
         
             /// When used in a template, named items are created in the output figure in addition to any items
             /// the figure already has in this array.
@@ -569,7 +570,7 @@ public struct Indicator: Trace {
             /// You can modify these items in the output figure by making your own item with `templateitemname`
             /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
             /// false` to hide it). Has no effect outside of a template.
-            public var name: String?
+            public var name: String? = nil
         
             /// Used to refer to a named item in this array in the template.
             /// 
@@ -578,7 +579,7 @@ public struct Indicator: Trace {
             /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
             /// template or no matching item, this item will be hidden unless you explicitly show it with
             /// `visible: true`.
-            public var templateItemName: String?
+            public var templateItemName: String? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -611,16 +612,16 @@ public struct Indicator: Trace {
             }
             
         }
-        public var steps: [Step]?
+        public var steps: [Step]? = nil
     
         public struct Threshold: Encodable {
-            public var line: Shared.Line?
+            public var line: Shared.Line? = nil
         
             /// Sets the thickness of the threshold line as a fraction of the thickness of the gauge.
-            public var thickness: Double?
+            public var thickness: Double? = nil
         
             /// Sets a treshold value drawn as a line.
-            public var value: Double?
+            public var value: Double? = nil
         
             /// Creates `Threshold` object with specified properties.
             /// 
@@ -636,7 +637,7 @@ public struct Indicator: Trace {
             }
             
         }
-        public var threshold: Threshold?
+        public var threshold: Threshold? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -676,12 +677,11 @@ public struct Indicator: Trace {
         
     }
     /// The gauge of the Indicator plot.
-    public var gauge: Gauge?
+    public var gauge: Gauge? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case name
         case uid

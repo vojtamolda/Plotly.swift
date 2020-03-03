@@ -9,7 +9,7 @@
 ///   [Python](https://plot.ly/python/reference/#scatter), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatter) or 
 ///   [R](https://plot.ly/r/reference/#scatter)
-public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotable {
+public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: Plotable {
     public let type: String = "scatter"
 
     public let animatable: Bool = true
@@ -18,39 +18,39 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
-    public var showLegend: Bool?
+    public var showLegend: Bool? = nil
 
     /// Sets the legend group for this trace.
     /// 
     /// Traces part of the same legend group hide/show at the same time when toggling legend items.
-    public var legendGroup: String?
+    public var legendGroup: String? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -60,26 +60,26 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
     /// Array containing integer indices of selected points.
     /// 
     /// Has an effect only for traces that support selections. Note that an empty array means an empty
     /// selection where the `unselected` are turned on for all points, whereas, any other non-array
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
-    public var selectedPoints: Anything?
+    public var selectedPoints: Anything? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo?
+    public var hoverInfo: Shared.HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -92,35 +92,35 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the x coordinates.
-    public var x: XData?
+    public var x: XData? = nil
 
     /// Alternate to `x`.
     /// 
     /// Builds a linear space of x coordinates. Use with `dx` where `x0` is the starting coordinate and
     /// `dx` the step.
-    public var x0: Anything?
+    public var x0: Anything? = nil
 
     /// Sets the x coordinate step.
     /// 
     /// See `x0` for more info.
-    public var dx: Double?
+    public var dx: Double? = nil
 
     /// Sets the y coordinates.
-    public var y: YData?
+    public var y: YData? = nil
 
     /// Alternate to `y`.
     /// 
     /// Builds a linear space of y coordinates. Use with `dy` where `y0` is the starting coordinate and
     /// `dy` the step.
-    public var y0: Anything?
+    public var y0: Anything? = nil
 
     /// Sets the y coordinate step.
     /// 
     /// See `y0` for more info.
-    public var dy: Double?
+    public var dy: Double? = nil
 
     /// Set several scatter traces (on the same subplot) to the same stackgroup in order to add their y
     /// values (or their x values if `orientation` is *h*).
@@ -131,14 +131,14 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// `stackgroup` will only fill to (or be filled to) other traces in the same group. With multiple
     /// `stackgroup`s or some traces stacked and some not, if fill-linked traces are not already
     /// consecutive, the later ones will be pushed down in the drawing order.
-    public var stackGroup: String?
+    public var stackGroup: String? = nil
 
     /// Only relevant when `stackgroup` is used, and only the first `orientation` found in the
     /// `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`.
     /// 
     /// Sets the stacking direction. With *v* (*h*), the y (x) values of subsequent traces are added.
     /// Also affects the default value of `fill`.
-    public var orientation: Shared.Orientation?
+    public var orientation: Shared.Orientation? = nil
 
     /// Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the
     /// `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`.
@@ -159,7 +159,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// trace at each location is divided by the sum of all trace values at that location. *percent* is
     /// the same but multiplied by 100 to show percentages. If there are multiple subplots, or multiple
     /// `stackgroup`s on one subplot, each will be normalized within its own set.
-    public var groupNormalization: GroupNormalization?
+    public var groupNormalization: GroupNormalization? = nil
 
     /// Only relevant when `stackgroup` is used, and only the first `stackgaps` found in the
     /// `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`.
@@ -177,14 +177,14 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// Determines how we handle locations at which other traces in this group have data but this one
     /// does not. With *infer zero* we insert a zero at these locations. With *interpolate* we linearly
     /// interpolate between existing values, and extrapolate a constant beyond the existing values.
-    public var stackGaps: StackGaps?
+    public var stackGaps: StackGaps? = nil
 
     /// Sets text elements associated with each (x,y) pair.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. If trace `hoverinfo` contains a
     /// *text* flag and *hovertext* is not set, these elements will be seen in the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -197,26 +197,26 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available.
-    public var textTemplate: Data<String>?
+    public var textTemplate: Data<String>? = nil
 
     /// Sets hover text elements associated with each (x,y) pair.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
     /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
     /// must contain a *text* flag.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Determines the drawing mode for this scatter trace.
     /// 
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-    public var mode: Shared.Mode?
+    public var mode: Shared.Mode? = nil
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight
     /// filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the
     /// default is *fills*, otherwise it is *points*.
-    public var hoverOn: Shared.HoverOn?
+    public var hoverOn: Shared.HoverOn? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -233,14 +233,14 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     public struct ShapedSmoothDashedLine: Encodable {
         /// Sets the line color.
-        public var color: Color?
+        public var color: Color? = nil
     
         /// Sets the line width (in px).
-        public var width: Double?
+        public var width: Double? = nil
     
         /// Determines the line shape.
         /// 
@@ -258,24 +258,24 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
         /// 
         /// With *spline* the lines are drawn using spline interpolation. The other available values
         /// correspond to step-wise line shapes.
-        public var shape: Shape?
+        public var shape: Shape? = nil
     
         /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing.
         /// 
         /// *0* corresponds to no smoothing (equivalent to a *linear* shape).
-        public var smoothing: Double?
+        public var smoothing: Double? = nil
     
         /// Sets the dash style of lines.
         /// 
         /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
         /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String?
+        public var dash: String? = nil
     
         /// Simplifies lines by removing nearly-collinear points.
         /// 
         /// When transitioning lines, it may be desirable to disable this so that the number of points along
         /// the resulting SVG path is unaffected.
-        public var simplify: Bool?
+        public var simplify: Bool? = nil
     
         /// Creates `ShapedSmoothDashedLine` object with specified properties.
         /// 
@@ -297,18 +297,18 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
         }
         
     }
-    public var line: ShapedSmoothDashedLine?
+    public var line: ShapedSmoothDashedLine? = nil
 
     /// Determines whether or not gaps (i.e.
     /// 
     /// {nan} or missing values) in the provided data arrays are connected.
-    public var connectGaps: Bool?
+    public var connectGaps: Bool? = nil
 
     /// Determines whether or not markers and text nodes are clipped about the subplot axes.
     /// 
     /// To show markers and text nodes above axis lines and tick labels, make sure to set `xaxis.layer`
     /// and `yaxis.layer` to *below traces*.
-    public var clipOnAxis: Bool?
+    public var clipOnAxis: Bool? = nil
 
     /// Sets the area to fill with a solid color.
     /// 
@@ -324,26 +324,26 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
     /// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
     /// later ones will be pushed down in the drawing order.
-    public var fill: Shared.Fill?
+    public var fill: Shared.Fill? = nil
 
     /// Sets the fill color.
     /// 
     /// Defaults to a half-transparent variant of the line color, marker color, or marker line color,
     /// whichever is available.
-    public var fillColor: Color?
+    public var fillColor: Color? = nil
 
-    public var marker: Shared.GradientMarker?
+    public var marker: Shared.GradientMarker? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of selected points.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the marker size of selected points.
-            public var size: Double?
+            public var size: Double? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -358,11 +358,11 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         public struct TextFont: Encodable {
             /// Sets the text font color of selected points.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `TextFont` object with specified properties.
             /// 
@@ -373,7 +373,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
             }
             
         }
-        public var textFont: TextFont?
+        public var textFont: TextFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -388,18 +388,18 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
         }
         
     }
-    public var selected: Selected?
+    public var selected: Selected? = nil
 
     public struct Unselected: Encodable {
         public struct Marker: Encodable {
             /// Sets the marker opacity of unselected points, applied only when a selection exists.
-            public var opacity: Double?
+            public var opacity: Double? = nil
         
             /// Sets the marker color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Sets the marker size of unselected points, applied only when a selection exists.
-            public var size: Double?
+            public var size: Double? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
@@ -414,11 +414,11 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
             }
             
         }
-        public var marker: Marker?
+        public var marker: Marker? = nil
     
         public struct TextFont: Encodable {
             /// Sets the text font color of unselected points, applied only when a selection exists.
-            public var color: Color?
+            public var color: Color? = nil
         
             /// Creates `TextFont` object with specified properties.
             /// 
@@ -429,7 +429,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
             }
             
         }
-        public var textFont: TextFont?
+        public var textFont: TextFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -444,40 +444,39 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
         }
         
     }
-    public var unselected: Unselected?
+    public var unselected: Unselected? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition?
+    public var textPosition: Shared.TextPosition? = nil
 
     /// Sets the text font.
-    public var textFont: Shared.VariableFont?
+    public var textFont: Shared.VariableFont? = nil
 
-    public var xError: Shared.Error?
+    public var xError: Shared.Error? = nil
 
-    public var yError: Shared.Error?
+    public var yError: Shared.Error? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar?
+    public var xCalendar: Shared.Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar?
+    public var yCalendar: Shared.Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: SubPlotID?
+    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: SubPlotID?
+    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case showLegend = "showlegend"
         case legendGroup = "legendgroup"
@@ -630,7 +629,8 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
             nil, marker: Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? =
             nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.VariableFont? = nil, xError:
             Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar:
-            Shared.Calendar? = nil, xAxis: SubPlotID? = nil, yAxis: SubPlotID? = nil) {
+            Shared.Calendar? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis =
+            Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -683,8 +683,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
@@ -700,8 +699,14 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(transforms, forKey: .transforms)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        if let x = self.x {
+            try x.encode(toPlotly: container.superEncoder(forKey: .x))
+        }
         try container.encodeIfPresent(x0, forKey: .x0)
         try container.encodeIfPresent(dx, forKey: .dx)
+        if let y = self.y {
+            try y.encode(toPlotly: container.superEncoder(forKey: .y))
+        }
         try container.encodeIfPresent(y0, forKey: .y0)
         try container.encodeIfPresent(dy, forKey: .dy)
         try container.encodeIfPresent(stackGroup, forKey: .stackGroup)
@@ -728,18 +733,7 @@ public struct Scatter<XData, YData>: Trace where XData: Plotable, YData: Plotabl
         try container.encodeIfPresent(yError, forKey: .yError)
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
         try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
-        try container.encodeIfPresent(xAxis, forKey: .xAxis)
-        try container.encodeIfPresent(yAxis, forKey: .yAxis)
-    
-        if let x = self.x {
-            let xEncoder = container.superEncoder(forKey: .x)
-            try x.encode(toPlotly: xEncoder)
-        }
-    
-        if let y = self.y {
-            let yEncoder = container.superEncoder(forKey: .y)
-            try y.encode(toPlotly: yEncoder)
-        }
+        try container.encode("x\(xAxis.uid)", forKey: .xAxis)
+        try container.encode("y\(yAxis.uid)", forKey: .yAxis)
     }
-    
 }

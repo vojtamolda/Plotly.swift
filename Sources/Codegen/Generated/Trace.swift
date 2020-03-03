@@ -22,16 +22,19 @@ struct Trace: Definable {
                 editType: nil, role: nil, dflt: nil, noBlank: nil, strict: nil, values: nil, arrayOk: nil)
         let generatedString = Generated.String_(parent: attributes, schema: predefinedString)
         let typeConst = Instance(of: generatedString, named: "type")
-        typeConst.constant = schema.type.escaped()
+        typeConst.constant = true
         typeConst.optional = false
+        typeConst.initialization = schema.type.escaped()
         attributes.members.insert(typeConst, at: 0)
 
-        let predefinedBol = Predefined.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool", description: nil,
+        let predefinedBool = Predefined.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool", description: nil,
                 editType: nil, role: nil)
-        let generatedBool = Generated.Boolean(parent: attributes, schema: predefinedBol)
+        let generatedBool = Generated.Boolean(parent: attributes, schema: predefinedBool)
         let animatableConst = Instance(of: generatedBool, named: "animatable")
-        animatableConst.constant = String(schema.animatable)
+        animatableConst.constant = true
         animatableConst.optional = false
+        animatableConst.exclude = true
+        animatableConst.initialization = String(schema.animatable)
         attributes.members.insert(animatableConst, at: 1)
 
         workarounds()
@@ -58,7 +61,7 @@ struct Trace: Definable {
 
         case "Cone":
             fallthrough
-        case"StreamTube":
+        case "StreamTube":
             disabledGenerics += ["x", "y", "z", "u", "v", "w"]
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
@@ -195,6 +198,29 @@ struct Trace: Definable {
                     origin: latitude.origin, protocol: "Plotable")
             latitude.type = coordinateData
             longitude.type = coordinateData
+        }
+
+        if attributes.members.firstInstance(named: "xAxis") != nil &&
+            attributes.members.firstInstance(named: "yAxis") != nil {
+            attributes.protocols.append("XYSubplot")
+        }
+        if let subplot = attributes.members.firstInstance(named: "subplot") {
+            switch subplot.type.name {
+            case "Ternary":
+                attributes.protocols.append("TernarySubplot")
+            case "Mapbox":
+                attributes.protocols.append("MapboxSubplot")
+            case "Polar":
+                attributes.protocols.append("PolarSubplot")
+            default:
+                break
+            }
+        }
+        if attributes.members.firstInstance(named: "scene") != nil {
+            attributes.protocols.append("SceneSubplot")
+        }
+        if attributes.members.firstInstance(named: "geo") != nil {
+            attributes.protocols.append("GeoSubplot")
         }
 
         for instance in attributes.members.compactMap( { $0 as? Instance } ) where instance.origin.role == "data" {

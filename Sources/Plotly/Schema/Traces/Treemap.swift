@@ -16,31 +16,31 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible?
+    public var visible: Shared.Visible? = nil
 
     /// Sets the opacity of the trace.
-    public var opacity: Double?
+    public var opacity: Double? = nil
 
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
-    public var name: String?
+    public var name: String? = nil
 
     /// Assign an id to this trace, Use this to provide object constancy between traces during
     /// animations and transitions.
-    public var uid: String?
+    public var uid: String? = nil
 
     /// Assigns id labels to each datum.
     /// 
     /// These ids for object constancy of data points during animation. Should be an array of strings,
     /// not numbers or any other type.
-    public var ids: [String]?
+    public var ids: [String]? = nil
 
     /// Assigns extra data each datum.
     /// 
     /// This may be useful when listening to hover, click and selection events. Note that, *scatter*
     /// traces also appends customdata items in the markers DOM elements
-    public var customData: [String]?
+    public var customData: [String]? = nil
 
     /// Assigns extra meta information associated with this trace that can be used in various text
     /// attributes.
@@ -50,13 +50,13 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// trace `meta` values in an attribute in the same trace, simply use `%{meta[i]}` where `i` is the
     /// index or key of the `meta` item in question. To access trace `meta` in layout attributes, use
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
-    public var meta: Data<Anything>?
+    public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel?
+    public var hoverLabel: Shared.HoverLabel? = nil
 
-    public var stream: Shared.Stream?
+    public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]?
+    public var transforms: [Shared.Transform]? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -69,22 +69,22 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// can add/remove traces before the end of the `data` array, such that the same trace has a
     /// different index, you can still preserve user-driven changes if you give each trace a `uid` that
     /// stays with it as it moves.
-    public var uiRevision: Anything?
+    public var uiRevision: Anything? = nil
 
     /// Sets the labels of each of the sectors.
-    public var labels: [String]?
+    public var labels: [String]? = nil
 
     /// Sets the parent sectors for each of the sectors.
     /// 
     /// Empty string items '' are understood to reference the root node in the hierarchy. If `ids` is
     /// filled, `parents` items are understood to be "ids" themselves. When `ids` is not set, plotly
     /// attempts to find matching items in `labels`, but beware they must be unique.
-    public var parents: [String]?
+    public var parents: [String]? = nil
 
     /// Sets the values associated with each of the sectors.
     /// 
     /// Use with `branchvalues` to determine how the values are summed.
-    public var values: ValuesData?
+    public var values: ValuesData? = nil
 
     /// Determines how the items in `values` are summed.
     /// 
@@ -100,18 +100,19 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// When set to *total*, items in `values` are taken to be value of all its descendants. When set to
     /// *remainder*, items in `values` corresponding to the root and the branches sectors are taken to
     /// be the extra part not part of the sum of the values at their leaves.
-    public var branchValues: BranchValues?
+    public var branchValues: BranchValues? = nil
 
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the
     /// *leaves* and/or *branches*, otherwise 0.
     public struct Count: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var branches: Count { Count(rawValue: 1 << 0) }
         public static var leaves: Count { Count(rawValue: 1 << 1) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["branches"] }
@@ -122,18 +123,18 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     }
     /// Determines default for `values` when it is not provided, by inferring a 1 for each of the
     /// *leaves* and/or *branches*, otherwise 0.
-    public var count: Count?
+    public var count: Count? = nil
 
     /// Sets the level from which this trace hierarchy is rendered.
     /// 
     /// Set `level` to `''` to start from the root node in the hierarchy. Must be an "id" if `ids` is
     /// filled in, otherwise plotly attempts to find a matching item in `labels`.
-    public var level: Anything?
+    public var level: Anything? = nil
 
     /// Sets the number of rendered sectors from any given `level`.
     /// 
     /// Set `maxdepth` to *-1* to render all the levels in the hierarchy.
-    public var maxDepth: Int?
+    public var maxDepth: Int? = nil
 
     public struct Tiling: Encodable {
         /// Determines d3 treemap solver.
@@ -150,7 +151,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         /// Determines d3 treemap solver.
         /// 
         /// For more info please refer to https://github.com/d3/d3-hierarchy#treemap-tiling
-        public var packing: Packing?
+        public var packing: Packing? = nil
     
         /// When using *squarify* `packing` algorithm, according to
         /// https://github.com/d3/d3-hierarchy/blob/master/README.md#squarify_ratio this option specifies
@@ -161,17 +162,18 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         /// two will attempt to produce a mixture of rectangles whose width:height ratio is either 2:1 or
         /// 1:2. When using *squarify*, unlike d3 which uses the Golden Ratio i.e. 1.618034, Plotly applies
         /// 1 to increase squares in treemap layouts.
-        public var squarifyRatio: Double?
+        public var squarifyRatio: Double? = nil
     
         /// Determines if the positions obtained from solver are flipped on each axis.
         public struct Flip: OptionSet, Encodable {
             public let rawValue: Int
-        
             public static var x: Flip { Flip(rawValue: 1 << 0) }
             public static var y: Flip { Flip(rawValue: 1 << 1) }
-        
-            public init(rawValue: Int) { self.rawValue = rawValue }
-        
+            
+            public init(rawValue: Int) {
+                self.rawValue = rawValue
+            }
+            
             public func encode(to encoder: Encoder) throws {
                 var options = [String]()
                 if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
@@ -181,10 +183,10 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
             }
         }
         /// Determines if the positions obtained from solver are flipped on each axis.
-        public var flip: Flip?
+        public var flip: Flip? = nil
     
         /// Sets the inner padding (in px).
-        public var padding: Double?
+        public var padding: Double? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -212,15 +214,15 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         }
         
     }
-    public var tiling: Tiling?
+    public var tiling: Tiling? = nil
 
     public struct Marker: Encodable {
-        public var padding: Shared.Padding?
+        public var padding: Shared.Padding? = nil
     
         /// Sets the color of each sector of this trace.
         /// 
         /// If not specified, the default trace color set is used to pick the sector colors.
-        public var colors: [Double]?
+        public var colors: [Double]? = nil
     
         /// Determines if the sector colors are faded towards the background from the leaves up to the
         /// headers.
@@ -233,7 +235,6 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
             case on
             case off
             case reversed
-            
             public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
@@ -253,35 +254,35 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         /// `marker.colors` is set, but otherwise defaults to true. When set to *reversed*, the fading
         /// direction is inverted, that is the top elements within hierarchy are drawn with fully saturated
         /// colors while the leaves are faded towards the background color.
-        public var depthFade: DepthFade?
+        public var depthFade: DepthFade? = nil
     
-        public var line: Shared.VariableLine?
+        public var line: Shared.VariableLine? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here
         /// colors) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if colorsis set
         /// to a numerical array.
         /// 
         /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        public var cAuto: Bool?
+        public var cAuto: Bool? = nil
     
         /// Sets the lower bound of the color domain.
         /// 
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors and if set, `marker.cmax` must be set as well.
-        public var cMin: Double?
+        public var cMin: Double? = nil
     
         /// Sets the upper bound of the color domain.
         /// 
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors and if set, `marker.cmin` must be set as well.
-        public var cMax: Double?
+        public var cMax: Double? = nil
     
         /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
         /// equidistant to this point.
         /// 
         /// Has an effect only if colorsis set to a numerical array. Value should have the same units as
         /// colors. Has no effect when `marker.cauto` is `false`.
-        public var cMiddle: Double?
+        public var cMiddle: Double? = nil
     
         /// Sets the colorscale.
         /// 
@@ -292,7 +293,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
         /// name string of the following list:
         /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale?
+        public var colorScale: ColorScale? = nil
     
         /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
         /// determined by `marker.colorscale`.
@@ -300,27 +301,27 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         /// Has an effect only if colorsis set to a numerical array. In case `colorscale` is unspecified or
         /// `autocolorscale` is true, the default palette will be chosen according to whether numbers in the
         /// `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool?
+        public var autoColorScale: Bool? = nil
     
         /// Reverses the color mapping if true.
         /// 
         /// Has an effect only if colorsis set to a numerical array. If true, `marker.cmin` will correspond
         /// to the last color in the array and `marker.cmax` will correspond to the first color.
-        public var reverseScale: Bool?
+        public var reverseScale: Bool? = nil
     
         /// Determines whether or not a colorbar is displayed for this trace.
         /// 
         /// Has an effect only if colorsis set to a numerical array.
-        public var showScale: Bool?
+        public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar?
+        public var colorBar: Shared.ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: SubPlotID?
+        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -366,7 +367,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
                 nil, line: Shared.VariableLine? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
                 nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                SubPlotID? = nil) {
+                Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
             self.padding = padding
             self.colors = colors
             self.depthFade = depthFade
@@ -384,13 +385,13 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         }
         
     }
-    public var marker: Marker?
+    public var marker: Marker? = nil
 
     public struct PathBar: Encodable {
         /// Determines if the path bar is drawn i.e.
         /// 
         /// outside the trace `domain` and with one pixel gap.
-        public var visible: Bool?
+        public var visible: Bool? = nil
     
         /// Determines on which side of the the treemap the `pathbar` should be presented.
         public enum Side: String, Encodable {
@@ -398,7 +399,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
             case bottom
         }
         /// Determines on which side of the the treemap the `pathbar` should be presented.
-        public var side: Side?
+        public var side: Side? = nil
     
         /// Determines which shape is used for edges between `barpath` labels.
         public enum EdgeShape: String, Encodable {
@@ -409,15 +410,15 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
             case backwardSlash = "\\"
         }
         /// Determines which shape is used for edges between `barpath` labels.
-        public var edgeShape: EdgeShape?
+        public var edgeShape: EdgeShape? = nil
     
         /// Sets the thickness of `pathbar` (in px).
         /// 
         /// If not specified the `pathbar.textfont.size` is used with 3 pixles extra padding on each side.
-        public var thickness: Double?
+        public var thickness: Double? = nil
     
         /// Sets the font used inside `pathbar`.
-        public var textFont: Shared.VariableFont?
+        public var textFont: Shared.VariableFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -446,19 +447,18 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         }
         
     }
-    public var pathBar: PathBar?
+    public var pathBar: PathBar? = nil
 
     /// Sets text elements associated with each sector.
     /// 
     /// If trace `textinfo` contains a *text* flag, these elements will be seen on the chart. If trace
     /// `hoverinfo` contains a *text* flag and *hovertext* is not set, these elements will be seen in
     /// the hover labels.
-    public var text: Data<String>?
+    public var text: Data<String>? = nil
 
     /// Determines which trace information appear on the graph.
     public struct TextInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var label: TextInfo { TextInfo(rawValue: 1 << 0) }
         public static var text: TextInfo { TextInfo(rawValue: 1 << 1) }
         public static var value: TextInfo { TextInfo(rawValue: 1 << 2) }
@@ -467,9 +467,11 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         public static var percentEntry: TextInfo { TextInfo(rawValue: 1 << 5) }
         public static var percentParent: TextInfo { TextInfo(rawValue: 1 << 6) }
         public static var none: TextInfo { TextInfo(rawValue: 1 << 7) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
@@ -485,7 +487,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         }
     }
     /// Determines which trace information appear on the graph.
-    public var textInfo: TextInfo?
+    public var textInfo: TextInfo? = nil
 
     /// Template string used for rendering the information text that appear on points.
     /// 
@@ -499,14 +501,14 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
     /// `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`,
     /// `percentEntry`, `percentParent`, `label` and `value`.
-    public var textTemplate: Data<String>?
+    public var textTemplate: Data<String>? = nil
 
     /// Sets hover text elements associated with each sector.
     /// 
     /// If a single string, the same string appears for all data points. If an array of string, the
     /// items are mapped in order of this trace's sectors. To be seen, trace `hoverinfo` must contain a
     /// *text* flag.
-    public var hoverText: Data<String>?
+    public var hoverText: Data<String>? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -514,7 +516,6 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// click and hover events are still fired.
     public struct HoverInfo: OptionSet, Encodable {
         public let rawValue: Int
-    
         public static var label: HoverInfo { HoverInfo(rawValue: 1 << 0) }
         public static var text: HoverInfo { HoverInfo(rawValue: 1 << 1) }
         public static var value: HoverInfo { HoverInfo(rawValue: 1 << 2) }
@@ -526,9 +527,11 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         public static var all: HoverInfo { HoverInfo(rawValue: 1 << 8) }
         public static var none: HoverInfo { HoverInfo(rawValue: 1 << 9) }
         public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 10) }
-    
-        public init(rawValue: Int) { self.rawValue = rawValue }
-    
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
         public func encode(to encoder: Encoder) throws {
             var options = [String]()
             if (self.rawValue & 1 << 0) != 0 { options += ["label"] }
@@ -550,7 +553,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: HoverInfo?
+    public var hoverInfo: HoverInfo? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -568,26 +571,25 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for
     /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>?
+    public var hoverTemplate: Data<String>? = nil
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Shared.VariableFont?
+    public var textFont: Shared.VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Shared.VariableFont?
+    public var insideTextFont: Shared.VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying outside the sector.
-    public var outsideTextFont: Shared.OutsideTextFont?
+    public var outsideTextFont: Shared.OutsideTextFont? = nil
 
     /// Sets the positions of the `text` elements.
-    public var textPosition: Shared.TextPosition?
+    public var textPosition: Shared.TextPosition? = nil
 
-    public var domain: Shared.Domain?
+    public var domain: Shared.Domain? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
         case type
-        case animatable
         case visible
         case opacity
         case name
@@ -727,8 +729,7 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
     /// Encodes the object in a format compatible with Plotly.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
-        try container.encodeIfPresent(animatable, forKey: .animatable)
+        try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(opacity, forKey: .opacity)
         try container.encodeIfPresent(name, forKey: .name)
@@ -742,6 +743,9 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         try container.encodeIfPresent(labels, forKey: .labels)
         try container.encodeIfPresent(parents, forKey: .parents)
+        if let values = self.values {
+            try values.encode(toPlotly: container.superEncoder(forKey: .values))
+        }
         try container.encodeIfPresent(branchValues, forKey: .branchValues)
         try container.encodeIfPresent(count, forKey: .count)
         try container.encodeIfPresent(level, forKey: .level)
@@ -760,11 +764,5 @@ public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
         try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
         try container.encodeIfPresent(textPosition, forKey: .textPosition)
         try container.encodeIfPresent(domain, forKey: .domain)
-    
-        if let values = self.values {
-            let valuesEncoder = container.superEncoder(forKey: .values)
-            try values.encode(toPlotly: valuesEncoder)
-        }
     }
-    
 }

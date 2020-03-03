@@ -17,6 +17,11 @@ extension String {
         let (lowerSelf, lowerOther) = (self.lowercased(), other.lowercased())
         return lowerSelf.contains(lowerOther) || lowerOther.contains(lowerSelf)
     }
+
+    /// Returns an array of Strings obtained by splitting on new line characters.
+    func lines() -> [String] {
+        return split(separator: "\n").map { String($0) }
+    }
 }
 
 

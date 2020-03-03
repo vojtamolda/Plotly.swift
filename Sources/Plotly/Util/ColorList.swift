@@ -385,68 +385,81 @@ extension ColorList {
 
     /// Creates a figure that shows all color lists next to each other.
     public static func swatch() -> Figure {
-        let swatches = [
-            Brewer.accent.createSwatchBar(category: "Brewer", name: "accent"),
-            Brewer.dark.createSwatchBar(category: "Brewer", name: "dark"),
-            Brewer.paired.createSwatchBar(category: "Brewer", name: "paired"),
-            Brewer.pastel1.createSwatchBar(category: "Brewer", name: "pastel1"),
-            Brewer.pastel2.createSwatchBar(category: "Brewer", name: "pastel2"),
-            Brewer.set1.createSwatchBar(category: "Brewer", name: "set1"),
-            Brewer.set2.createSwatchBar(category: "Brewer", name: "set2"),
-            Brewer.set3.createSwatchBar(category: "Brewer", name: "set3"),
-
-            Carto.antique.createSwatchBar(category: "Carto", name: "antique"),
-            Carto.bold.createSwatchBar(category: "Carto", name: "bold"),
-            Carto.pastel.createSwatchBar(category: "Carto", name: "pastel"),
-            Carto.prism.createSwatchBar(category: "Carto", name: "prism"),
-            Carto.safe.createSwatchBar(category: "Carto", name: "safe"),
-            Carto.vivid.createSwatchBar(category: "Carto", name: "vivid"),
-
-            Plotly.plotly.createSwatchBar(category: "Plotly", name: "plotly"),
-            Plotly.plotly3.createSwatchBar(category: "Plotly", name: "plotly3"),
-            Plotly.d3.createSwatchBar(category: "Plotly", name: "d3"),
-            Plotly.g10.createSwatchBar(category: "Plotly", name: "g10"),
-            Plotly.t10.createSwatchBar(category: "Plotly", name: "t10"),
-            Plotly.alphabet.createSwatchBar(category: "Plotly", name: "alphabet"),
-            Plotly.light24.createSwatchBar(category: "Plotly", name: "light24"),
-            Plotly.dark24.createSwatchBar(category: "Plotly", name: "dark24"),
+        let colorLists = [
+            ("Brewer", [
+                ("accent", Brewer.accent),
+                ("dark", Brewer.dark),
+                ("paired", Brewer.paired),
+                ("pastel1", Brewer.pastel1),
+                ("pastel2", Brewer.pastel2),
+                ("set1", Brewer.set1),
+                ("set2", Brewer.set2),
+                ("set3", Brewer.set3)
+            ]),
+            ("Carto", [
+                ("antique", Carto.antique),
+                ("bold", Carto.bold),
+                ("pastel", Carto.pastel),
+                ("prism", Carto.prism),
+                ("safe", Carto.safe),
+                ("vivid", Carto.vivid)
+            ]),
+            ("Plotly", [
+                ("plotly", Plotly.plotly),
+                ("plotly3", Plotly.plotly3),
+                ("d3", Plotly.d3),
+                ("g10", Plotly.g10),
+                ("t10", Plotly.t10),
+                ("alphabet", Plotly.alphabet),
+                ("light24", Plotly.light24),
+                ("dark24", Plotly.dark24)
+            ])
         ]
         return ColorList.createSwatchBarFigure(title: "Color List Swatch",
-            data: swatches)
+            colorLists: colorLists)
     }
 }
 
 
 fileprivate extension ColorList {
-    /// Constructs trace that displays the color list.
-    func createSwatchBar(category: String = "", name: String) -> Bar<[Int], [[String]]> {
-        let bar = Bar(
-            name: name,
-            hoverInfo: Shared.HoverInfo.none,
-            x: [Int](repeating: 1, count: self.count),
-            y: [[String](repeating: category, count: self.count),
-                [String](repeating: name, count: self.count)],
-            orientation: .h,
-            marker: Shared.Marker(
-                coloring: .variable(self)
-            )
-        )
-        return bar
-    }
-
-    /// Builds a figure that displays the color lists above each other for comparison.
-    static func createSwatchBarFigure(title: String, data swatches: [Trace]) -> Figure {
-        let layout = Layout(
+       /// Builds a figure that displays the color scales above each other for comparison.
+    static func createSwatchBarFigure(title: String, colorLists: [(String, [(String, ColorList)])]) -> Figure {
+        var layout = Layout(
             barMode: .stack,
             barNormalization: .fraction,
             title: .init(text: title),
             width: 600,
-            height: Double(swatches.count) * 40,
             margin: .init(autoExpand: true),
             showLegend: false,
-            xAxis: .init(visible: false),
-            yAxis: .init(autoMargin: true)
+            xAxis: [
+                .init(visible: false)
+            ],
+            yAxis: [
+                .init(autoMargin: true)
+            ]
         )
+
+        var swatches = [Trace]()
+        for (category, categoryColorLists) in colorLists {
+            for (name, colorList) in categoryColorLists {
+                let swatch = Bar(
+                    name: name,
+                    hoverInfo: Shared.HoverInfo.none,
+                    x: [Int](repeating: 1, count: colorList.count),
+                    y: [[String](repeating: category, count: colorList.count),
+                        [String](repeating: name, count: colorList.count)],
+                    orientation: .h,
+                    marker: Shared.Marker(
+                        coloring: .variable(colorList)
+                    ),
+                    xAxis: layout.xAxis.first!,
+                    yAxis: layout.yAxis.first!
+                )
+                swatches.append(swatch)
+            }
+        }
+
+        layout.height = Double(swatches.count) * 40
         return Figure(data: swatches.reversed(), layout: layout)
     }
 }
