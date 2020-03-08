@@ -1097,9 +1097,18 @@ public struct Layout: Encodable {
         /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
         /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
         /// `scaleanchor` and a `matches` constraint is currently forbidden.
-        public enum ScaleAnchor: String, Encodable {
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+        public enum ScaleAnchor: Encodable {
+            case xAxis(Layout.XAxis)
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// If set to another axis id (e.g.
         /// 
@@ -1162,9 +1171,18 @@ public struct Layout: Encodable {
         /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
         /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
         /// same `type`.
-        public enum Matches: String, Encodable {
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+        public enum Matches: Encodable {
+            case xAxis(Layout.XAxis)
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// If set to another axis id (e.g.
         /// 
@@ -1433,10 +1451,21 @@ public struct Layout: Encodable {
         /// 
         /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
         /// axis' position is determined by `position`.
-        public enum Anchor: String, Encodable {
+        public enum Anchor: Encodable {
             case free
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xAxis(Layout.XAxis)
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .free:
+                    try container.encode("free")
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// If set to an opposite-letter axis id (e.g.
         /// 
@@ -1461,10 +1490,21 @@ public struct Layout: Encodable {
         /// 
         /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
         /// overlapping domains only the highest-numbered axis will be visible.
-        public enum Overlaying: String, Encodable {
+        public enum Overlaying: Encodable {
             case free
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xAxis(Layout.XAxis)
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .free:
+                    try container.encode("free")
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
         /// axis, with traces and axes visible for both axes.
@@ -2191,9 +2231,18 @@ public struct Layout: Encodable {
         /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
         /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
         /// `scaleanchor` and a `matches` constraint is currently forbidden.
-        public enum ScaleAnchor: String, Encodable {
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+        public enum ScaleAnchor: Encodable {
+            case xAxis(Layout.XAxis)
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// If set to another axis id (e.g.
         /// 
@@ -2256,9 +2305,18 @@ public struct Layout: Encodable {
         /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
         /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
         /// same `type`.
-        public enum Matches: String, Encodable {
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+        public enum Matches: Encodable {
+            case xAxis(Layout.XAxis)
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// If set to another axis id (e.g.
         /// 
@@ -2527,10 +2585,21 @@ public struct Layout: Encodable {
         /// 
         /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
         /// axis' position is determined by `position`.
-        public enum Anchor: String, Encodable {
+        public enum Anchor: Encodable {
             case free
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xAxis(Layout.XAxis)
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .free:
+                    try container.encode("free")
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// If set to an opposite-letter axis id (e.g.
         /// 
@@ -2555,10 +2624,21 @@ public struct Layout: Encodable {
         /// 
         /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
         /// overlapping domains only the highest-numbered axis will be visible.
-        public enum Overlaying: String, Encodable {
+        public enum Overlaying: Encodable {
             case free
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case xAxis(Layout.XAxis)
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .free:
+                    try container.encode("free")
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
         /// axis, with traces and axes visible for both axes.
@@ -7987,9 +8067,18 @@ public struct Layout: Encodable {
         /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
         /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
         /// annotations which should continue to indicate the correct trend when zoomed.
-        public enum AxReference: String, Encodable {
+        public enum AxReference: Encodable {
             case pixel
-            case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+            case xAxis(Layout.XAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .pixel:
+                    try container.encode("pixel")
+                case .xAxis(let axis):
+                    try container.encode("x\(axis.uid)")
+                }
+            }
         }
         /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
         /// 
@@ -8003,9 +8092,18 @@ public struct Layout: Encodable {
         /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
         /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
         /// annotations which should continue to indicate the correct trend when zoomed.
-        public enum AyReference: String, Encodable {
+        public enum AyReference: Encodable {
             case pixel
-            case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+            case yAxis(Layout.YAxis)
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .pixel:
+                    try container.encode("pixel")
+                case .yAxis(let axis):
+                    try container.encode("y\(axis.uid)")
+                }
+            }
         }
         /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
         /// 

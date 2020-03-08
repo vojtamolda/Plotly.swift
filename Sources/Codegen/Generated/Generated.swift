@@ -315,48 +315,73 @@ enum Generated {
         var instances: [Instance] = []
         static var existing: [Generated.Enumerated] = []
 
-        struct Case: Equatable {
-            let label: String
-            let rawValue: String?
+        enum Case: Equatable {
+            case regular(label: String, rawValue: String?)
+            case axis(xy: String)
+
+            var label: String {
+                switch self {
+                case .regular(let label, _):
+                    return label
+                case .axis(let xy):
+                    return xy
+                }
+            }
+
+            init(label: String, rawValue: String? = nil) {
+                self = .regular(label: label, rawValue: rawValue)
+            }
         }
         var cases: [Case] = []
 
+        enum RawType: String, CustomStringConvertible {
+            case none = "", int = "Int, ", string = "String, "
+            var description: String { self.rawValue }
+        }
+        private var rawType: RawType = .string
+
         var definition: [String] {
-            let protocols = (!self.protocols.isEmpty) ? (": " + self.protocols.joined(separator: ", ")) : ""
-            var lines = """
-            \(access)enum \(name)\(protocols) {
-            """.lines()
+            let protocols = self.protocols.joined(separator: ", ")
+            var lines = ["\(access)enum \(name): \(rawType)\(protocols) {"]
 
             for `case` in cases {
-                let rawValue = (hasRawType && (`case`.rawValue != nil)) ? " = \(`case`.rawValue!)" : ""    
-                lines += ["case \(`case`.label)\(rawValue)"].indented()
+                switch `case` {
+                case .regular(let label, let rawValue):
+                    let equalTo = (rawType != .none && (rawValue != nil)) ? " = \(rawValue!)" : ""
+                    lines += ["case \(label)\(equalTo)"].indented()
+                case .axis(let xy):
+                    lines += ["case \(xy)Axis(Layout.\(xy.capitalized)Axis)"].indented()
+                }
             }
 
             lines += customEncoding.indented()
-            lines += """
-            }
-            """.lines()
+            lines += ["}"]
             return lines
         }
 
-        private var hasRawType: Bool {
-            !schema.values.contains { if case Schema.Primitive.bool = $0 { return true } else { return false } }
-        }
-
         private var customEncoding: [String] {
-            if hasRawType { return [] }
+            if rawType != .none { return [] }
+
             var lines = """
+
             \(access)func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
             """.lines()
 
             for `case` in cases {
-                let value = `case`.rawValue ?? `case`.label.escaped()
-                lines += """
-                case .\(`case`.label):
-                    try container.encode(\(value))
-                """.lines().indented()
+                switch `case` {
+                case .regular(let label, let rawValue):
+                    lines += """
+                    case .\(label):
+                        try container.encode(\(rawValue ?? label.escaped()))
+                    """.lines().indented()
+                case .axis(let xy):
+                    lines += """
+                    case .\(xy)Axis(let axis):
+                        try container.encode("\(xy)\\(axis.uid)")
+                    """.lines().indented()
+                }
             }
 
             lines += """
@@ -372,35 +397,6 @@ enum Generated {
             self.schema = enumerated
             Self.existing.append(self)
 
-            // Workaround for numerical values of `*Marker.Symbol`
-            if schema.path.hasSuffix("marker/symbol") {
-                protocols.insert("String", at: 0)
-                let onlyStrings = schema.values.filter {
-                    if case Schema.Primitive.string = $0 { return true } else { return false }
-                }
-                cases = onlyStrings.map { sanitized($0) }
-                return
-            }
-            // Workaround for numerical values of `Geo.Resolution`
-            if schema.path.hasSuffix("geo/resolution") {
-                protocols.insert("Int", at: 0)
-                cases = schema.values.map { primitive -> Case in
-                    guard case let Schema.Primitive.int(int) = primitive else {
-                        fatalError("Unsupported Geo Resolution value in '\(schema.path)'")
-                    }
-                    return Case(label: "oneOver\(int)M", rawValue: "\(int)")
-                }
-                return
-            }
-            // Improvement of meaningless numerical values of `SurfaceAxis`
-            if schema.path.hasSuffix("surfaceaxis") {
-                protocols.insert("Int", at: 0)
-                cases = [Case(label: "off", rawValue: "-1"), Case(label: "x", rawValue: "0"),
-                         Case(label: "y", rawValue: "1"), Case(label: "z", rawValue: "2")]
-                return
-            }
-
-            if hasRawType { protocols.insert("String", at: 0) }
             cases = schema.values.map { sanitized($0) }
             workarounds()
         }
@@ -409,9 +405,14 @@ enum Generated {
         private func sanitized(_ primitive: Schema.Primitive) -> Case {
             switch primitive {
             case .bool(let bool):
+                rawType = .none
                 let string = "\(bool)"
                 let sanitized = Schema.name!.enumerated[string]!
                 return Case(label: sanitized, rawValue: string)
+            case .int(let int):
+                rawType = .none
+                let string = "\(int)"
+                return Case(label: string, rawValue: string)
             case .string(let string):
                 let sanitized = Schema.name!.enumerated[string]!
                 let rawValue = (sanitized == string) ? nil : string.escaped()
@@ -421,7 +422,7 @@ enum Generated {
             }
         }
 
-        /// Post-processing to avoid name collisions.
+        /// Post-processing to avoid name collisions and fix weird corner cases.
         private func workarounds() {
             switch name {
             case "Align":
@@ -435,6 +436,26 @@ enum Generated {
                 if cases.containsCase(labeled: "auto") { name = "AdjacentPosition" }
             case "CategoryOrder":
                 if cases.count == 4 { name = "CarpetCategoryOrder"}
+            case "Resolution":
+                rawType = .int
+                cases = schema.values.map { primitive -> Case in
+                    guard case let Schema.Primitive.int(int) = primitive else {
+                        fatalError("Unsupported Geo Resolution value in '\(schema.path)'")
+                    }
+                    return Case(label: "oneOver\(int)M", rawValue: "\(int)")
+                }
+            case "SurfaceAxis":
+                rawType = .int
+                cases = [
+                    Case(label: "off", rawValue: "-1"), Case(label: "x", rawValue: "0"),
+                    Case(label: "y", rawValue: "1"), Case(label: "z", rawValue: "2")
+                ]
+            case "Symbol":
+                rawType = .string
+                let onlyStrings = schema.values.filter {
+                    if case Schema.Primitive.string = $0 { return true } else { return false }
+                }
+                cases = onlyStrings.map { sanitized($0) }
             case "Fill":
                 if cases.count == 3 { name = "AreaFill"}
             case "XReference":
@@ -447,6 +468,17 @@ enum Generated {
                 name = "AxisType"
             default:
                 break
+            }
+
+            if cases.containsCase(labeled: "xSubplotID") {
+                let index = cases.firstIndex { $0.label == "xSubplotID" }!
+                cases[index] = .axis(xy: "x")
+                rawType = .none
+            }
+            if cases.containsCase(labeled: "ySubplotID") {
+                let index = cases.firstIndex { $0.label == "ySubplotID" }!
+                cases[index] = .axis(xy: "y")
+                rawType = .none
             }
         }
 

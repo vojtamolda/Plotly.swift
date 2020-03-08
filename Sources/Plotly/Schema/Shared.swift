@@ -516,9 +516,18 @@ public struct Shared {
     /// 
     /// - Note:
     ///   Used by `Layout.Annotation.xReference`, `Layout.Shape.xReference`, `Layout.Image.xReference`.
-    public enum XAxisReference: String, Encodable {
+    public enum XAxisReference: Encodable {
         case paper
-        case xSubplotID = "/^x([2-9]|[1-9][0-9]+)?$/"
+        case xAxis(Layout.XAxis)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .paper:
+                try container.encode("paper")
+            case .xAxis(let axis):
+                try container.encode("x\(axis.uid)")
+            }
+        }
     }
 
     /// Sets the annotation's y coordinate axis.
@@ -529,9 +538,18 @@ public struct Shared {
     /// 
     /// - Note:
     ///   Used by `Layout.Annotation.yReference`, `Layout.Shape.yReference`, `Layout.Image.yReference`.
-    public enum YAxisReference: String, Encodable {
+    public enum YAxisReference: Encodable {
         case paper
-        case ySubplotID = "/^y([2-9]|[1-9][0-9]+)?$/"
+        case yAxis(Layout.YAxis)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .paper:
+                try container.encode("paper")
+            case .yAxis(let axis):
+                try container.encode("y\(axis.uid)")
+            }
+        }
     }
 
     /// Sets the anchor for the x position
