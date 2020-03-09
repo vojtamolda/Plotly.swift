@@ -10,7 +10,7 @@
 ///   [Python](https://plot.ly/python/reference/#scatterpolar), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatterpolar) or 
 ///   [R](https://plot.ly/r/reference/#scatterpolar)
-public struct ScatterPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData: Plotable {
+public struct ScatterPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plotable, ThetaData: Plotable {
     public let type: String = "scatterpolar"
 
     public let animatable: Bool = false

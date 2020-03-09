@@ -206,11 +206,11 @@ struct Trace: Definable {
         }
         if let subplot = attributes.members.firstInstance(named: "subplot") {
             switch subplot.type.name {
-            case "Ternary":
+            case "Layout.Ternary":
                 attributes.protocols.append("TernarySubplot")
-            case "Mapbox":
+            case "Layout.Mapbox":
                 attributes.protocols.append("MapboxSubplot")
-            case "Polar":
+            case "Layout.Polar":
                 attributes.protocols.append("PolarSubplot")
             default:
                 break

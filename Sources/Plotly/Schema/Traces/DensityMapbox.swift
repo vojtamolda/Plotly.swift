@@ -6,7 +6,7 @@
 ///   [Python](https://plot.ly/python/reference/#densitymapbox), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#densitymapbox) or 
 ///   [R](https://plot.ly/r/reference/#densitymapbox)
-public struct DensityMapbox<CoordinateData, ZData>: Trace where CoordinateData: Plotable, ZData: Plotable {
+public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where CoordinateData: Plotable, ZData: Plotable {
     public let type: String = "densitymapbox"
 
     public let animatable: Bool = false

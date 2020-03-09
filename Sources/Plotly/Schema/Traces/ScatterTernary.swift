@@ -7,7 +7,7 @@
 ///   [Python](https://plot.ly/python/reference/#scatterternary), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatterternary) or 
 ///   [R](https://plot.ly/r/reference/#scatterternary)
-public struct ScatterTernary<AData, BData, CData>: Trace where AData: Plotable, BData: Plotable, CData: Plotable {
+public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where AData: Plotable, BData: Plotable, CData: Plotable {
     public let type: String = "scatterternary"
 
     public let animatable: Bool = false

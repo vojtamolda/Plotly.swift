@@ -6,7 +6,7 @@
 ///   [Python](https://plot.ly/python/reference/#choroplethmapbox), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#choroplethmapbox) or 
 ///   [R](https://plot.ly/r/reference/#choroplethmapbox)
-public struct ChoroplethMapbox<LocationsData, ZData>: Trace where LocationsData: Plotable, ZData: Plotable {
+public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where LocationsData: Plotable, ZData: Plotable {
     public let type: String = "choroplethmapbox"
 
     public let animatable: Bool = false

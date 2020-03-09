@@ -5,7 +5,7 @@
 ///   [Python](https://plot.ly/python/reference/#barpolar), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#barpolar) or 
 ///   [R](https://plot.ly/r/reference/#barpolar)
-public struct BarPolar<RData, ThetaData>: Trace where RData: Plotable, ThetaData: Plotable {
+public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plotable, ThetaData: Plotable {
     public let type: String = "barpolar"
 
     public let animatable: Bool = false

@@ -10,7 +10,7 @@
 ///   [Python](https://plot.ly/python/reference/#scatterpolargl), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl) or 
 ///   [R](https://plot.ly/r/reference/#scatterpolargl)
-public struct ScatterPolarGL<RData, ThetaData>: Trace where RData: Plotable, ThetaData: Plotable {
+public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData: Plotable, ThetaData: Plotable {
     public let type: String = "scatterpolargl"
 
     public let animatable: Bool = false

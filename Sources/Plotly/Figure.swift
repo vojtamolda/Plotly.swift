@@ -98,6 +98,18 @@ public struct Figure {
                     self.layout!.xAxis.append(xySubplot.xAxis)
                     self.layout!.yAxis.append(xySubplot.yAxis)
                 }
+                if let ternarySubplot = trace as? TernarySubplot {
+                    self.layout!.ternary.append(ternarySubplot.subplot)
+                }
+                if let sceneSubplot = trace as? SceneSubplot {
+                    self.layout!.scene.append(sceneSubplot.scene)
+                }
+                if let geoSubplot = trace as? GeoSubplot {
+                    self.layout!.geo.append(geoSubplot.geo)
+                }
+                if let mapboxSubplot = trace as? MapboxSubplot {
+                    self.layout!.mapbox.append(mapboxSubplot.subplot)
+                }
                 if let polarSubplot = trace as? PolarSubplot {
                     self.layout!.polar.append(polarSubplot.subplot)
                 }

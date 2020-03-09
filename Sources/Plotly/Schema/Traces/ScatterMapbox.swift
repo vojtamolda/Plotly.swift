@@ -6,7 +6,7 @@
 ///   [Python](https://plot.ly/python/reference/#scattermapbox), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#scattermapbox) or 
 ///   [R](https://plot.ly/r/reference/#scattermapbox)
-public struct ScatterMapbox<CoordinateData>: Trace where CoordinateData: Plotable {
+public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where CoordinateData: Plotable {
     public let type: String = "scattermapbox"
 
     public let animatable: Bool = false
