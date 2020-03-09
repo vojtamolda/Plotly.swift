@@ -9,3 +9,6 @@
 
 # Folder Preferences on macOS
 .DS_Store
+
+# Swift Package Manager
+Package.resolved

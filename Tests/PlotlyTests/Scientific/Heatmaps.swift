@@ -55,30 +55,40 @@ final class Heatmaps: XCTestCase {
             showScale: false
         )
 
-        let layout = Layout(
+        var layout = Layout(
             title: "Annotated Heatmap",
             autoSize: false,
             width: 700,
             height: 700,
-            xAxis: [.init(ticks: .off, side: .top)],
-            yAxis: [.init(ticks: .off, tickSuffix: .none)],
-            annotations: x.enumerated().flatMap { x in
-                y.enumerated().map { y in
-                    Layout.Annotation(
-                        text: String(z[y.offset][x.offset]),
-                        font: Shared.Font(
-                            family: "Arial",
-                            size: 12,
-                            color: (z[y.offset][x.offset] == 0.0) ? .black : .white
-                        ),
-                        showArrow: false,
-                        x: .string(x.element),
-                        y: .string(y.element)
-                        // FIXME: yReference and xReference don't work
-                    )
-                }
-            }
+            xAxis: [.init(
+                    uid: 1,
+                    ticks: .off,
+                    side: .top)
+            ],
+            yAxis: [.init(
+                uid: 1,
+                ticks: .off,
+                tickSuffix: .none)
+            ]
         )
+
+        layout.annotations = x.enumerated().flatMap { x in
+            y.enumerated().map { y in
+                Layout.Annotation(
+                    text: String(z[y.offset][x.offset]),
+                    font: Shared.Font(
+                        family: "Arial",
+                        size: 12,
+                        color: (z[y.offset][x.offset] == 0.0) ? .black : .white
+                    ),
+                    showArrow: false,
+                    xReference: .xAxis(layout.xAxis[0]),
+                    x: .string(x.element),
+                    yReference: .yAxis(layout.yAxis[0]),
+                    y: .string(y.element)
+                )
+            }
+        }
 
         let figure = Figure(data: [trace], layout: layout)
         output(figure)

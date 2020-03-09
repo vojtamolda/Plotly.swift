@@ -3,6 +3,7 @@
 public enum InfoArray: Encodable {
     case numeric([Double])
     case string([String])
+    case nested([InfoArray])
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -11,6 +12,8 @@ public enum InfoArray: Encodable {
             try container.encode(numerals)
         case .string(let strings):
             try container.encode(strings)
+        case .nested(let infoArrays):
+            try container.encode(infoArrays)
         }
     }
 }

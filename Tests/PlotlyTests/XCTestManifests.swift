@@ -23,6 +23,11 @@ public func allTests() -> [XCTestCaseEntry] {
 
         // https://plot.ly/javascript/subplots/
         testCase(Subplots.allTests),
+        testCase(InsetPlots.allTests),
+        testCase(Subplots3D.allTests),
+        testCase(MixedSubplots.allTests),
+        testCase(TableSubplots.allTests),
+        testCase(MultipleAxesSubplots.allTests),
 
         testCase(FigureTests.allTests),
         testCase(SwatchTests.allTests),

@@ -147,7 +147,8 @@ final class ContourPlots: XCTestCase {
             xAxis: layout.xAxis[0],
             yAxis: layout.yAxis[0]
         )
-        // FIXME: (contour2.xAxis.anchor, contour2.yAxis.anchor) = (contour2.yAxis, contour2.xAxis)
+        contour1.xAxis.anchor = .yAxis(contour1.yAxis)
+        contour1.yAxis.anchor = .xAxis(contour1.xAxis)
 
         let contour2 = Contour<[[Int?]], [Int], [Int]>(
             z: z,
@@ -156,7 +157,8 @@ final class ContourPlots: XCTestCase {
             xAxis: layout.xAxis[1],
             yAxis: layout.yAxis[1]
         )
-        // FIXME: (contour2.xAxis.anchor, contour2.yAxis.anchor) = (contour2.yAxis, contour2.xAxis)
+        contour2.xAxis.anchor = .yAxis(contour2.yAxis)
+        contour2.yAxis.anchor = .xAxis(contour2.xAxis)
 
         let heatmap1 = Heatmap<[[Int?]], [Int]>(
             z: z,
@@ -165,7 +167,8 @@ final class ContourPlots: XCTestCase {
             xAxis: layout.xAxis[2],
             yAxis: layout.yAxis[2]
         )
-        // FIXME: (heatmap1.xAxis.anchor, heatmap1.yAxis.anchor) = (heatmap1.yAxis, heatmap1.xAxis)
+        heatmap1.xAxis.anchor = .yAxis(heatmap1.yAxis)
+        heatmap1.yAxis.anchor = .xAxis(heatmap1.xAxis)
 
         let heatmap2 = Heatmap<[[Int?]], [Int]>(
             z: z,
@@ -175,7 +178,8 @@ final class ContourPlots: XCTestCase {
             xAxis: layout.xAxis[3],
             yAxis: layout.yAxis[3]
         )
-        // FIXME: (heatmap2.xAxis.anchor, heatmap2.yAxis.anchor) = (heatmap2.yAxis, heatmap2.xAxis)
+        heatmap2.xAxis.anchor = .yAxis(heatmap2.yAxis)
+        heatmap2.yAxis.anchor = .xAxis(heatmap2.xAxis)
 
         let figure = Figure(data: [contour1, contour2, heatmap1, heatmap2], layout: layout)
         output(figure)
@@ -203,23 +207,25 @@ final class ContourPlots: XCTestCase {
             ]
         )
 
-        let contour0 = Contour<[[Int]], [Int], [Int]>(
+        let contour1 = Contour<[[Int]], [Int], [Int]>(
             z: z,
             line: .init(smoothing: 0.00),
             xAxis: layout.xAxis[0],
             yAxis: layout.yAxis[0]
         )
-        // FIXME: (contour1.xAxis.anchor, contour1.yAxis.anchor) = (contour1.yAxis, contour1.xAxis)
+        contour1.xAxis.anchor = .yAxis(contour1.yAxis)
+        contour1.yAxis.anchor = .xAxis(contour1.xAxis)
 
-        let contour1 = Contour<[[Int]], [Int], [Int]>(
+        let contour2 = Contour<[[Int]], [Int], [Int]>(
             z: z,
             line: .init(smoothing: 0.85),
             xAxis: layout.xAxis[1],
             yAxis: layout.yAxis[1]
         )
-        // FIXME: (contour2.xAxis.anchor, contour2.yAxis.anchor) = (contour2.yAxis, contour2.xAxis)
+        contour2.xAxis.anchor = .yAxis(contour2.yAxis)
+        contour2.yAxis.anchor = .xAxis(contour2.xAxis)
 
-        let figure = Figure(data: [contour0, contour1], layout: layout)
+        let figure = Figure(data: [contour1, contour2], layout: layout)
         output(figure)
     }
 
