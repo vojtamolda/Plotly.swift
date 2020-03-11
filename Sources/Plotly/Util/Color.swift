@@ -346,6 +346,10 @@ public enum Color: Encodable {
     /// Black standard CSS color: `#000000` or `rgb(0,0,0)`.
     public static let black = Self.CSS("Black", 0x000000)
 
+    // MARK: Special
+    /// Transparent, invisible color.
+    public static let transparent = Self.RGB(255, 255, 255, 1.0)
+
     case value(_ value: UInt32)
     case RGB(_ red: UInt8, _ green: UInt8, _ blue: UInt8, _ alpha: Float? = nil)
     case HSL(_ hue: Float, _ saturation: Float, _ lightness: Float, _ alpha: Float? = nil)
@@ -358,18 +362,18 @@ public enum Color: Encodable {
             try container.encode(String(format: "#%06x", value))
         case .RGB(let red, let green, let blue, let alpha):
             if alpha == nil {
-                try container.encode("rgb(\(red), \(green), \(blue)")
+                try container.encode("rgb(\(red), \(green), \(blue))")
             } else {
                 try container.encode("rgba(\(red), \(green), \(blue), \(alpha!))")
             }
         case .HSL(let hue, let saturation, let lightness, let alpha):
             if alpha == nil {
-                try container.encode("hsl(\(hue), \(saturation), \(lightness)")
+                try container.encode("hsl(\(hue), \(saturation), \(lightness))")
             } else {
                 try container.encode("hsla(\(hue), \(saturation), \(lightness), \(alpha!))")
             }
         case .CSS(let name, _):
-            try container.encode(name)
+            try container.encode(name.lowercased())
         }
     }
 }
