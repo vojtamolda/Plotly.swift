@@ -39,6 +39,11 @@ public func allTests() -> [XCTestCaseEntry] {
 
 extension XCTestCase {
     internal func output(_ figure: Figure) {
+        var name = self.name.replacingOccurrences(of: "-", with: "")
+        name = name.replacingOccurrences(of: "[", with: "")
+        name = name.replacingOccurrences(of: "]", with: "")
+        name = name.replacingOccurrences(of: " ", with: ".")
+
         let htmlFile = URL(fileURLWithPath: "\(name).html")
         figure.write(toFile: htmlFile.relativePath, as: .HTML, javaScript: .online)
 

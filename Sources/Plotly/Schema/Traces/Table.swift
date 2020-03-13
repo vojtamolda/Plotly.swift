@@ -9,7 +9,7 @@
 ///   [Python](https://plot.ly/python/reference/#table), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#table) or 
 ///   [R](https://plot.ly/r/reference/#table)
-public struct Table: Trace {
+public struct Table<CellData>: Trace where CellData: Plotable {
     public let type: String = "table"
 
     public let animatable: Bool = false
@@ -92,13 +92,13 @@ public struct Table: Trace {
         /// `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]`
         /// vector length for all columns must be the same (longer vectors will be truncated). Each value
         /// must be a finite number or a string.
-        public var values: [Double]? = nil
+        public var values: [String]? = nil
     
         /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those
         /// of Python.
         /// 
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var format: [Double]? = nil
+        public var format: Data<String>? = nil
     
         /// Prefix for cell values.
         public var prefix: Data<String>? = nil
@@ -154,7 +154,7 @@ public struct Table: Trace {
         ///   - line:
         ///   - fill:
         ///   - font:
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: Data<String>? = nil,
+        public init(values: [String]? = nil, format: Data<String>? = nil, prefix: Data<String>? = nil,
                 suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
                 Shared.VariableLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
             self.values = values
@@ -171,19 +171,19 @@ public struct Table: Trace {
     }
     public var header: Header? = nil
 
-    public struct Cells: Encodable {
+    public struct Cells<CellData>: Encodable where CellData: Plotable {
         /// Cell values.
         /// 
         /// `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]`
         /// vector length for all columns must be the same (longer vectors will be truncated). Each value
         /// must be a finite number or a string.
-        public var values: [Double]? = nil
+        public var values: CellData? = nil
     
         /// Sets the cell value formatting rule using d3 formatting mini-language which is similar to those
         /// of Python.
         /// 
         /// See https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var format: [Double]? = nil
+        public var format: Data<String>? = nil
     
         /// Prefix for cell values.
         public var prefix: Data<String>? = nil
@@ -226,6 +226,19 @@ public struct Table: Trace {
     
         public var font: Shared.VariableFont? = nil
     
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case values
+            case format
+            case prefix
+            case suffix
+            case height
+            case align
+            case line
+            case fill
+            case font
+        }
+        
         /// Creates `Cells` object with specified properties.
         /// 
         /// - Parameters:
@@ -239,7 +252,7 @@ public struct Table: Trace {
         ///   - line:
         ///   - fill:
         ///   - font:
-        public init(values: [Double]? = nil, format: [Double]? = nil, prefix: Data<String>? = nil,
+        public init(values: CellData? = nil, format: Data<String>? = nil, prefix: Data<String>? = nil,
                 suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
                 Shared.VariableLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
             self.values = values
@@ -253,8 +266,23 @@ public struct Table: Trace {
             self.font = font
         }
         
+        /// Encodes the object in a format compatible with Plotly.
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            if let values = self.values {
+                try values.encode(toPlotly: container.superEncoder(forKey: .values))
+            }
+            try container.encodeIfPresent(format, forKey: .format)
+            try container.encodeIfPresent(prefix, forKey: .prefix)
+            try container.encodeIfPresent(suffix, forKey: .suffix)
+            try container.encodeIfPresent(height, forKey: .height)
+            try container.encodeIfPresent(align, forKey: .align)
+            try container.encodeIfPresent(line, forKey: .line)
+            try container.encodeIfPresent(fill, forKey: .fill)
+            try container.encodeIfPresent(font, forKey: .font)
+        }
     }
-    public var cells: Cells? = nil
+    public var cells: Cells<CellData>? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -304,7 +332,7 @@ public struct Table: Trace {
             [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo:
             Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil,
             uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: Data<Double>? = nil,
-            columnOrder: [Int]? = nil, header: Header? = nil, cells: Cells? = nil) {
+            columnOrder: [Int]? = nil, header: Header? = nil, cells: Cells<CellData>? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -322,4 +350,24 @@ public struct Table: Trace {
         self.cells = cells
     }
     
+    /// Encodes the object in a format compatible with Plotly.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(domain, forKey: .domain)
+        try container.encodeIfPresent(columnWidth, forKey: .columnWidth)
+        try container.encodeIfPresent(columnOrder, forKey: .columnOrder)
+        try container.encodeIfPresent(header, forKey: .header)
+        try container.encodeIfPresent(cells, forKey: .cells)
+    }
 }

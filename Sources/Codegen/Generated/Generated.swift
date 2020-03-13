@@ -10,7 +10,10 @@ enum Generated {
 
     /// Data type that maps hierarchical Plotly `object` to a Swift `struct`.
     final class Object: SharedGeneratedType {
-        var name: String
+        var base: String
+        var name: String {
+            generics.isEmpty ? base : "\(base)<\(generics.map { $0.name }.joined(separator: ", "))>"
+        }
         var shared: Bool = false
         var parent: Generated.Object?
         let schema: Predefined.Object
@@ -38,13 +41,11 @@ enum Generated {
 
             var protocols = self.protocols.joined(separator: ", ")
             if !protocols.isEmpty { protocols = ": \(protocols)" }
-
-            var generics = self.generics.map { $0.name }.joined(separator: ", ")
-            if !generics.isEmpty { generics = "<\(generics)>" }
+            
             var constraints = self.generics.compactMap { $0.constraint }.joined(separator: ", ")
             if !constraints.isEmpty { constraints = " where \(constraints)" }
 
-            lines += ["\(access)\(semantics)\(name)\(generics)\(protocols)\(constraints) {"]
+            lines += ["\(access)\(semantics)\(name)\(protocols)\(constraints) {"]
 
             for member in members {
                 lines += member.define(as: .inlined).indented()
@@ -61,7 +62,7 @@ enum Generated {
         }
 
         private var codingKeys: [String] {
-            if properties.filter({ $0.name != $0.origin.name }).isEmpty { return [] }
+            if properties.filter({ $0.name != $0.origin.name }).isEmpty && generics.isEmpty { return [] }
 
             var lines = [String]()
             lines += ["/// Decoding and encoding keys compatible with Plotly schema."]
@@ -86,7 +87,7 @@ enum Generated {
             }
             if frequentVariables.count < 2 { return [] }
 
-            var markup = Markup(summary: "Creates `\(name)` object from the most frequently used properties.")
+            var markup = Markup(summary: "Creates `\(base)` object from the most frequently used properties.")
             markup.addCallout(parameters: frequentVariables)
 
             var lines = markup.text()
@@ -100,7 +101,7 @@ enum Generated {
         private var fullInitFunction: [String] {
             let variables = properties.filter { !$0.constant }
 
-            var markup = Markup(summary: "Creates `\(name)` object with specified properties.")
+            var markup = Markup(summary: "Creates `\(base)` object with specified properties.")
             markup.addCallout(parameters: variables)
 
             var lines = markup.text()
@@ -130,7 +131,7 @@ enum Generated {
         }
 
         init?(named name: String, parent: Generated.Object? = nil, schema object: Predefined.Object) {
-            self.name = Schema.name!.pascalCased(name)
+            self.base = Schema.name!.pascalCased(name)
             self.parent = parent
             self.schema = object
             self.members = []
@@ -220,36 +221,36 @@ enum Generated {
             case "InsideTextFont":
                 fallthrough
             case "OutSideTextFont":
-                if members.containsInstance(named: "coloring") { name = "VariableFont" }
+                if members.containsInstance(named: "coloring") { base = "VariableFont" }
 
             case "Line":
                 if members.containsInstance(named: "colorScale") {
-                    name = "MarkerLine"
+                    base = "MarkerLine"
                 } else if members.containsInstance(named: "coloring") {
-                    name = "VariableLine"
+                    base = "VariableLine"
                 }
-                if members.containsInstance(named: "dash") { name = "Dashed\(name)" }
-                if members.containsInstance(named: "smoothing") { name = "Smooth\(name)" }
-                if members.containsInstance(named: "shape") { name = "Shaped\(name)" }
+                if members.containsInstance(named: "dash") { base = "Dashed\(name)" }
+                if members.containsInstance(named: "smoothing") { base = "Smooth\(name)" }
+                if members.containsInstance(named: "shape") { base = "Shaped\(name)" }
 
             case "Marker":
-                if members.containsInstance(named: "symbol") { name = "SymbolicMarker" }
-                if members.containsInstance(named: "gradient") { name = "GradientMarker" }
+                if members.containsInstance(named: "symbol") { base = "SymbolicMarker" }
+                if members.containsInstance(named: "gradient") { base = "GradientMarker" }
 
             case "Contour":
-                if members.count == 3 { name = "ContourHover"}
+                if members.count == 3 { base = "ContourHover"}
 
             case "XBins":
                 fallthrough
             case "YBins":
-                name = "Bins"
+                base = "Bins"
 
             case "XError":
                 fallthrough
             case "YError":
                 fallthrough
             case "ZError":
-                name = "Error"
+                base = "Error"
                 let useless = ["yCopyStyle", "zCopyStyle"]
                 members.removeAllInstances(named: useless)
 
@@ -270,7 +271,7 @@ enum Generated {
         /// of two non-identical structs are very likely to be different.
         func shareable(as other: Generated.Object) -> Bool {
             if !self.shareable || !other.shareable { return false }
-            if !self.name.almostEqual(to: other.name) { return false }
+            if !self.base.almostEqual(to: other.base) { return false }
             if self.members.count != other.members.count { return false }
 
             return self.members.allSatisfy { selfMember in

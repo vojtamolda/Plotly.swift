@@ -23,10 +23,10 @@ protocol GeneratedType {
 }
 extension GeneratedType {
     var path: String {
-        var ancestors = [name]
+        var ancestors = self is Generated.Object ? [(self as! Generated.Object).base] : [name]
         var ancestor = self.parent
         while ancestor != nil {
-            ancestors.append(ancestor!.name)
+            ancestors.append(ancestor!.base)
             ancestor = ancestor!.parent
         }
         let path = ancestors.reversed().joined(separator: ".")
@@ -61,7 +61,6 @@ extension GeneratedType {
 /// The single definition of a re-used data type naturally allows the assignment between all
 /// of it's instances.
 protocol SharedGeneratedType: GeneratedType, Definable, AnyObject {
-    var name: String { get set }
     var shared: Bool { get set }
     var parent: Generated.Object? { get set }
     var access: Access { get set }

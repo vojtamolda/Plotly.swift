@@ -155,6 +155,22 @@ struct Trace: Definable {
             let columnOrder = attributes.members.firstInstance(named: "columnOrder")!
             columnOrder.type = Generated.Override(of: columnOrder.type, as: "[Int]")
 
+            let header = attributes.members.firstInstance(named: "header")!.type as! Generated.Object
+            let headerFormat = header.members.firstInstance(named: "format")!
+            headerFormat.type = Generated.Override(of: headerFormat.type, as: "Data<String>")
+            let headerValues = header.members.firstInstance(named: "values")!
+            headerValues.type = Generated.Override(of: headerValues.type, as: "[String]")
+
+            let cells = attributes.members.firstInstance(named: "cells")!.type as! Generated.Object
+            let cellsFormat = cells.members.firstInstance(named: "format")!
+            cellsFormat.type = Generated.Override(of: cellsFormat.type, as: "Data<String>")
+            let cellsValues = cells.members.firstInstance(named: "values")!
+            let cellsDataType = Generated.Generic(name: "CellData", parent: cells,
+                    origin: cellsValues.origin, protocol: "Plotable")
+            cellsValues.type = cellsDataType
+
+            attributes.generics.append(cellsDataType)
+
         case "Volume":
             disabledGenerics += ["x", "y", "z"]
             let x = attributes.members.firstInstance(named: "x")!
@@ -237,7 +253,7 @@ struct Trace: Definable {
         let layoutAttributes = Generated.Object(named: "layout", schema: entries)!
         var sectionMark: Mark? = nil
 
-        switch attributes.name {
+        switch attributes.base {
         case "Bar":
             sectionMark = Mark(label: "Bar, BarPolar and Histogram", separator: false)
         case "BarPolar":
@@ -260,7 +276,7 @@ struct Trace: Definable {
             layoutAttributes.members.removeAllInstances(named: duplicates)
 
         default:
-            sectionMark = Mark(label: "\(attributes.name)", separator: false)
+            sectionMark = Mark(label: "\(attributes.base)", separator: false)
         }
 
         if sectionMark != nil { layout.layoutAttributes.members.insert(sectionMark!, at: 0) }

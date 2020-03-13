@@ -24,7 +24,7 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     layout.write(to: outputDirectory.appendingPathComponent("Layout.swift"))
     let tracesDirectory = outputDirectory.appendingPathComponent("Traces")
     for trace in traces {
-        trace.write(to: tracesDirectory.appendingPathComponent("\(trace.attributes.name).swift"))
+        trace.write(to: tracesDirectory.appendingPathComponent("\(trace.attributes.base).swift"))
     }
     shared.write(to: outputDirectory.appendingPathComponent("Shared.swift"))
 }

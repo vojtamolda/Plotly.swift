@@ -76,7 +76,7 @@ struct Markup {
         addCallout(named: "Parameters", content: summaries.reduce([], +))
     }
 
-    /// Adds a _Example_ callout section with a list of references.
+    /// Adds a _Note_ callout section with a list of references.
     mutating func addCallout(note references: [Instance]) {
         if references.count <= 1 { return }
 
