@@ -77,14 +77,28 @@ custom_categories:
       - Mesh3D
       - Cone
 
-  - name: Shared
-    children:
-      - Trace
-      - Plotable
-      - Shared
-
   - name: Figure
     children:
       - Figure
-      - Config
+      - Trace
       - Layout
+      - Config
+      - Shared
+      - HTML
+
+  - name: Plotable
+    children:
+      - Plotable
+      - Array
+      - Tensor
+
+  - name: Utilities
+    children:
+      - Angle
+      - Anything
+      - Color
+      - Coloring
+      - ColorList
+      - ColorScale
+      - Data
+      - InfoArray
