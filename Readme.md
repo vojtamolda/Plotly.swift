@@ -15,8 +15,8 @@
   <a href="https://github.com/vojtamolda/Plotly.swift/release">
     <img alt="Release" src="https://img.shields.io/github/v/release/vojtamolda/Plotly.swift.svg?color=lightgrey">
    </a>
-  <a href="https://en.wikipedia.org/wiki/MIT_License">
-    <img alt="MIT License" src="https://img.shields.io/github/license/vojtamolda/Plotly.swift.svg?color=blue">
+  <a href="https://en.wikipedia.org/wiki/GPL_License">
+    <img alt="GPL License" src="https://img.shields.io/github/license/vojtamolda/Plotly.swift.svg?color=blue">
   </a>
   <a href="https://github.com/vojtamolda/Plotly.swift/issues">
     <img alt="Contributions Welcome" src="https://img.shields.io/badge/contributions-welcome-blueviolet.svg">
@@ -86,4 +86,4 @@ Internal infrastructure of the library is built on top of [Plotly.js](https://gi
 
 # License
 
-Library is licensed under the MIT license. See [the text](License.txt) for more details.
+Library is licensed under the GPL license. See [the text](License.txt) for more details.
