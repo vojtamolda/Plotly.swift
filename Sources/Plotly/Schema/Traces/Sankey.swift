@@ -8,7 +8,7 @@
 ///   [Python](https://plot.ly/python/reference/#sankey), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#sankey) or 
 ///   [R](https://plot.ly/r/reference/#sankey)
-public struct Sankey: Trace {
+public struct Sankey: Trace, DomainSubplot {
     public let type: String = "sankey"
 
     public let animatable: Bool = false

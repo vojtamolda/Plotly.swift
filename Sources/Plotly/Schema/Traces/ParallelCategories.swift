@@ -5,7 +5,7 @@
 ///   [Python](https://plot.ly/python/reference/#parcats), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#parcats) or 
 ///   [R](https://plot.ly/r/reference/#parcats)
-public struct ParallelCategories: Trace {
+public struct ParallelCategories: Trace, DomainSubplot {
     public let type: String = "parcats"
 
     public let animatable: Bool = false

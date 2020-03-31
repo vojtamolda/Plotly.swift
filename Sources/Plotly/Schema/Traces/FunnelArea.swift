@@ -9,7 +9,7 @@
 ///   [Python](https://plot.ly/python/reference/#funnelarea), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#funnelarea) or 
 ///   [R](https://plot.ly/r/reference/#funnelarea)
-public struct FunnelArea<LabelsData, ValuesData>: Trace where LabelsData: Plotable, ValuesData: Plotable {
+public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData: Plotable, ValuesData: Plotable {
     public let type: String = "funnelarea"
 
     public let animatable: Bool = false

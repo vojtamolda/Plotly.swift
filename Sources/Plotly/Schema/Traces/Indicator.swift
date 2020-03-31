@@ -10,7 +10,7 @@
 ///   [Python](https://plot.ly/python/reference/#indicator), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#indicator) or 
 ///   [R](https://plot.ly/r/reference/#indicator)
-public struct Indicator: Trace {
+public struct Indicator: Trace, DomainSubplot {
     public let type: String = "indicator"
 
     public let animatable: Bool = true

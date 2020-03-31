@@ -7,7 +7,7 @@
 ///   [Python](https://plot.ly/python/reference/#sunburst), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#sunburst) or 
 ///   [R](https://plot.ly/r/reference/#sunburst)
-public struct Sunburst<ValuesData>: Trace where ValuesData: Plotable {
+public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plotable {
     public let type: String = "sunburst"
 
     public let animatable: Bool = true

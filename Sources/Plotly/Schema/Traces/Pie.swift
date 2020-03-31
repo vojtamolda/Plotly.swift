@@ -7,7 +7,7 @@
 ///   [Python](https://plot.ly/python/reference/#pie), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#pie) or 
 ///   [R](https://plot.ly/r/reference/#pie)
-public struct Pie<LabelsData, ValuesData>: Trace where LabelsData: Plotable, ValuesData: Plotable {
+public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData: Plotable, ValuesData: Plotable {
     public let type: String = "pie"
 
     public let animatable: Bool = false

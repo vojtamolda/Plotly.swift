@@ -191,6 +191,7 @@ struct Trace: Definable {
             break
         }
 
+        // Detection of attributes with generic data type
         if let ids = attributes.members.firstInstance(named: "ids") {
             disabledGenerics += ["ids"]
             ids.type = Generated.Override(of: ids.type, as: "[String]")
@@ -216,9 +217,13 @@ struct Trace: Definable {
             longitude.type = coordinateData
         }
 
+        // Detection of subplot type
         if attributes.members.firstInstance(named: "xAxis") != nil &&
             attributes.members.firstInstance(named: "yAxis") != nil {
             attributes.protocols.append("XYSubplot")
+        }
+        if attributes.members.firstInstance(named: "domain") != nil {
+            attributes.protocols.append("DomainSubplot")
         }
         if let subplot = attributes.members.firstInstance(named: "subplot") {
             switch subplot.type.name {

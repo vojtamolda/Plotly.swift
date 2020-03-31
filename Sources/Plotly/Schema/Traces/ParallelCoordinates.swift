@@ -7,7 +7,7 @@
 ///   [Python](https://plot.ly/python/reference/#parcoords), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#parcoords) or 
 ///   [R](https://plot.ly/r/reference/#parcoords)
-public struct ParallelCoordinates: Trace {
+public struct ParallelCoordinates: Trace, DomainSubplot {
     public let type: String = "parcoords"
 
     public let animatable: Bool = false

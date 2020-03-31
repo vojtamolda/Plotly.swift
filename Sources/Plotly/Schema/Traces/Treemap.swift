@@ -7,7 +7,7 @@
 ///   [Python](https://plot.ly/python/reference/#treemap), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#treemap) or 
 ///   [R](https://plot.ly/r/reference/#treemap)
-public struct Treemap<ValuesData>: Trace where ValuesData: Plotable {
+public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotable {
     public let type: String = "treemap"
 
     public let animatable: Bool = true

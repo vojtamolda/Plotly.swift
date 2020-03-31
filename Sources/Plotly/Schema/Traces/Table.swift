@@ -9,7 +9,7 @@
 ///   [Python](https://plot.ly/python/reference/#table), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#table) or 
 ///   [R](https://plot.ly/r/reference/#table)
-public struct Table<CellData>: Trace where CellData: Plotable {
+public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
     public let type: String = "table"
 
     public let animatable: Bool = false

@@ -16,6 +16,10 @@ protocol XYSubplot {
     var yAxis: Layout.YAxis { get }
 }
 
+protocol DomainSubplot {
+    var domain: Shared.Domain? { get }
+}
+
 protocol TernarySubplot {
     var subplot: Layout.Ternary { get }
 }
