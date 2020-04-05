@@ -34,6 +34,6 @@ let (argc, args) = (CommandLine.argc, CommandLine.arguments)
 let schemaFile = URL(fileURLWithPath: (argc > 1) ? args[1] : "./Assets/Plotly.json")
 let orderFile = URL(fileURLWithPath: (argc > 2) ? args[2] : "./Assets/Order.json")
 let nameFile = URL(fileURLWithPath: (argc > 3) ? args[3] : "./Assets/Name.json")
-let outputDirectory = URL(fileURLWithPath: (argc > 4) ? args[4] : "../Plotly/Schema/", isDirectory: true)
+let outputDirectory = URL(fileURLWithPath: (argc > 4) ? args[4] : "../Plotly/", isDirectory: true)
 
 generateSwiftCode(from: schemaFile, to: outputDirectory, ordering: orderFile, naming: nameFile)
