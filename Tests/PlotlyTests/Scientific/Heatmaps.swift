@@ -134,7 +134,7 @@ final class Heatmaps: XCTestCase {
             xAxis: [
                 Layout.XAxis(
                     autoRange: .off,
-                    range: [0, phi],
+                    range: [0, .init(phi)],
                     ticks: .off,
                     showTickLabels: false,
                     showGrid: false,

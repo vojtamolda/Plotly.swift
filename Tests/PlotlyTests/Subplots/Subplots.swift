@@ -136,12 +136,12 @@ final class Subplots: XCTestCase {
                 rows: 2,
                 rowOrder: .bottomToTop,
                 columns: 2,
-                // FIXME: This is extremely ugly API.
+                // FIXME: The "x*y*" strings are an extremely ugly API.
                 // Plotly.js also seems to have a bug where "x1y1" doesn't work whereas "xy" does.
-                subplots: .nested([
-                    .string(["xy", "x2y"]),
-                    .string(["xy3", "x4y4"])
-                ]),
+                subplots: [
+                    ["xy", "x2y"],
+                    ["xy3", "x4y4"]
+                ],
                 pattern: .independent
             )
         )
