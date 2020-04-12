@@ -74,7 +74,7 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -373,14 +373,13 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, r: RData? = nil, theta: ThetaData? =
-            nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil,
-            thetaUnit: Shared.ThetaUnit? = nil, base: Data<Anything>? = nil, offset: Data<Double>? = nil,
-            width: Data<Double>? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, marker:
-            Shared.Marker? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: Data<String>? =
-            nil, selected: Selected? = nil, unselected: Unselected? = nil, subplot: Layout.Polar =
-            Layout.Polar(uid: 1)) {
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
+            [], uiRevision: Anything? = nil, r: RData? = nil, theta: ThetaData? = nil, r0: Anything? = nil,
+            dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit?
+            = nil, base: Data<Anything>? = nil, offset: Data<Double>? = nil, width: Data<Double>? = nil,
+            text: Data<String>? = nil, hoverText: Data<String>? = nil, marker: Shared.Marker? = nil,
+            hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: Data<String>? = nil, selected: Selected?
+            = nil, unselected: Unselected? = nil, subplot: Layout.Polar = Layout.Polar(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -431,7 +430,8 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
         try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let r = self.r {
             try r.encode(toPlotly: container.superEncoder(forKey: .r))

@@ -9,23 +9,39 @@ func generateSwiftCode(from schemaFile: URL, to outputDirectory: URL, ordering o
     let nameData = try! Data(contentsOf: nameFile)
     Schema.name = try! JSONDecoder().decode(Name.self, from: nameData)
 
+    // Read and decode schema
     let schemaData = try! Data(contentsOf: schemaFile)
     let schema = try! JSONDecoder().decode(Schema.self, from: schemaData)
 
-    let config = Config(schema: schema.config)
+    // Generate types from the schema
     var layout = Layout(schema: schema.layout)
-    var traces = [Trace]()
-    for (identifier, schema) in schema.traces.all {
-        if let trace = Trace(identifier: identifier, schema: schema, layout: &layout) { traces += [trace] }
+    let traces = schema.traces.all.compactMap { (identifier, schema) in
+        Trace(identifier: identifier, schema: schema, layout: &layout)
     }
+    let transforms = schema.transforms.all.map { (identifier, schema) in
+        Transform(identifier: identifier, schema: schema)
+    }
+    let frame = Frame(schema: schema.frames)
+    let animation = Animation(schema: schema.animation)
+    let config = Config(schema: schema.config)
+
+    // Detect shared data types
     let shared = Shared()
 
-    config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
+    // Write the generated data types
     layout.write(to: outputDirectory.appendingPathComponent("Layout.swift"))
-    let tracesDirectory = outputDirectory.appendingPathComponent("Traces")
     for trace in traces {
+        let tracesDirectory = outputDirectory.appendingPathComponent("Traces")
         trace.write(to: tracesDirectory.appendingPathComponent("\(trace.attributes.base).swift"))
     }
+    for transform in transforms {
+        let transformsDirectory = outputDirectory.appendingPathComponent("Transforms")
+        transform.write(to: transformsDirectory.appendingPathComponent("\(transform.attributes.base).swift"))
+    }
+    frame.write(to: outputDirectory.appendingPathComponent("Frame.swift"))
+    animation.write(to: outputDirectory.appendingPathComponent("Animation.swift"))
+    config.write(to: outputDirectory.appendingPathComponent("Config.swift"))
+
     shared.write(to: outputDirectory.appendingPathComponent("Shared.swift"))
 }
 

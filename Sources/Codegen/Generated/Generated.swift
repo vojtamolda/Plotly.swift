@@ -113,7 +113,10 @@ enum Generated {
         }
 
         private var encodeFunction: [String] {
-            if generics.isEmpty { return [] }
+            let encodeOverrides = properties.compactMap { $0.type as? Generated.Override }.filter { $0.encoding != nil }
+            if generics.isEmpty && encodeOverrides.isEmpty {
+                return []
+            }
             var lines = """
             /// Encodes the object in a format compatible with Plotly.
             \(access)func encode(to encoder: Encoder) throws {
@@ -825,13 +828,25 @@ extension Generated {
     struct Override: GeneratedType {
         let name: String
         let servant: GeneratedType
+        let encoding: [String]?
 
         var parent: Generated.Object? { servant.parent }
         var origin: PredefinedType { servant.origin }
 
-        init(of servant: GeneratedType, as name: String) {
+        init(of servant: GeneratedType, as name: String, encoding: [String]? = nil) {
             self.name = name
             self.servant = servant
+            self.encoding = encoding
+        }
+        
+        /// Generates a chunk of Swift code that encodes an instance of all Swift types that conform to `Encodable`.
+        func encode(_ instance: Instance, to container: String = "container") -> [String] {
+            if encoding != nil { return encoding! }
+            if instance.optional {
+                return ["try \(container).encodeIfPresent(\(instance.name), forKey: .\(instance.name))"]
+            } else {
+                return ["try \(container).encode(\(instance.name), forKey: .\(instance.name))"]
+            }
         }
     }
 }

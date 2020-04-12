@@ -71,7 +71,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -458,8 +458,8 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel: Shared.HoverLabel? = nil,
-            stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? =
-            nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text: Data<String>? = nil, textTemplate:
+            stream: Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, x:
+            XData? = nil, y: YData? = nil, z: ZData? = nil, text: Data<String>? = nil, textTemplate:
             Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, mode:
             Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection:
             Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedMarkerLine? = nil, marker:
@@ -522,7 +522,8 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
         try container.encodeIfPresent(meta, forKey: .meta)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let x = self.x {
             try x.encode(toPlotly: container.superEncoder(forKey: .x))

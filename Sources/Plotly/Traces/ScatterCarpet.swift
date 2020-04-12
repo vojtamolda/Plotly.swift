@@ -75,7 +75,7 @@ public struct ScatterCarpet<AData, BData>: Trace, XYSubplot where AData: Plotabl
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -461,15 +461,15 @@ public struct ScatterCarpet<AData, BData>: Trace, XYSubplot where AData: Plotabl
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, carpet: String? = nil, a: AData? = nil,
-            b: BData? = nil, mode: Shared.Mode? = nil, text: Data<String>? = nil, textTemplate:
-            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.ShapedSmoothDashedLine? = nil,
-            connectGaps: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker:
-            Shared.GradientMarker? = nil, textFont: Shared.VariableFont? = nil, textPosition:
-            Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo:
-            HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: Data<String>? = nil, xAxis:
-            Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
+            [], uiRevision: Anything? = nil, carpet: String? = nil, a: AData? = nil, b: BData? = nil, mode:
+            Shared.Mode? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText:
+            Data<String>? = nil, line: Shared.ShapedSmoothDashedLine? = nil, connectGaps: Bool? = nil, fill:
+            Shared.AreaFill? = nil, fillColor: Color? = nil, marker: Shared.GradientMarker? = nil, textFont:
+            Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil, selected: Selected? = nil,
+            unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil,
+            hoverTemplate: Data<String>? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis:
+            Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -523,7 +523,8 @@ public struct ScatterCarpet<AData, BData>: Trace, XYSubplot where AData: Plotabl
         try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         try container.encodeIfPresent(carpet, forKey: .carpet)
         if let a = self.a {

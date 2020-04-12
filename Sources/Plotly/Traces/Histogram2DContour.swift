@@ -78,7 +78,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -445,14 +445,14 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z:
-            ZData? = nil, marker: Marker? = nil, normalization: Shared.Normalization? = nil,
-            binningFunction: Shared.BinningFunction? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil,
-            yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil,
-            binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool?
-            = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? =
-            nil, zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin:
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
+            [], uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, marker:
+            Marker? = nil, normalization: Shared.Normalization? = nil, binningFunction:
+            Shared.BinningFunction? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? =
+            nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String?
+            = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool? = nil, nContours:
+            Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? = nil,
+            zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin:
             Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
             autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
             Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), xCalendar:
@@ -525,7 +525,8 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let x = self.x {
             try x.encode(toPlotly: container.superEncoder(forKey: .x))

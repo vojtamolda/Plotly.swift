@@ -82,7 +82,7 @@ public struct ScatterPlotMatrix: Trace {
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -414,9 +414,9 @@ public struct ScatterPlotMatrix: Trace {
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil,
             meta: Data<Anything>? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? =
-            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, dimensions: [Dimension]? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, marker:
+            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform]
+            = [], uiRevision: Anything? = nil, dimensions: [Dimension]? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, marker:
             Shared.SymbolicMarker? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, diagonal:
             Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected: Selected? =
             nil, unselected: Unselected? = nil, opacity: Double? = nil) {
@@ -449,4 +449,37 @@ public struct ScatterPlotMatrix: Trace {
         self.opacity = opacity
     }
     
+    /// Encodes the object in a format compatible with Plotly.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(dimensions, forKey: .dimensions)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(marker, forKey: .marker)
+        try container.encodeIfPresent(xAxes, forKey: .xAxes)
+        try container.encodeIfPresent(yAxes, forKey: .yAxes)
+        try container.encodeIfPresent(diagonal, forKey: .diagonal)
+        try container.encodeIfPresent(showUpperHalf, forKey: .showUpperHalf)
+        try container.encodeIfPresent(showLowerHalf, forKey: .showLowerHalf)
+        try container.encodeIfPresent(selected, forKey: .selected)
+        try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(opacity, forKey: .opacity)
+    }
 }

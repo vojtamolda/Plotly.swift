@@ -76,7 +76,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -653,15 +653,15 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: CoordinateData? = nil,
-            latitude: CoordinateData? = nil, locations: LocationsData? = nil, locationMode: LocationMode? =
-            nil, mode: Shared.Mode? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil,
-            hoverText: Data<String>? = nil, textFont: Shared.VariableFont? = nil, textPosition:
-            Shared.TextPosition? = nil, line: Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker:
-            GradientMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil,
-            unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil,
-            geo: Layout.Geo = Layout.Geo(uid: 1)) {
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
+            [], uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
+            nil, locations: LocationsData? = nil, locationMode: LocationMode? = nil, mode: Shared.Mode? =
+            nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? =
+            nil, textFont: Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil, line:
+            Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? =
+            nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil,
+            hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, geo: Layout.Geo =
+            Layout.Geo(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -714,7 +714,8 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
         try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let longitude = self.longitude {
             try longitude.encode(toPlotly: container.superEncoder(forKey: .longitude))

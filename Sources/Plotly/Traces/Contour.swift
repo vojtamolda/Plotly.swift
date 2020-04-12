@@ -78,7 +78,7 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -425,19 +425,18 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, z: ZData? = nil, x: XData? = nil, x0:
-            Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil,
-            text: Data<String>? = nil, hoverText: Data<String>? = nil, transpose: Bool? = nil, xType:
-            Shared.AxisType? = nil, yType: Shared.AxisType? = nil, zHoverFormat: String? = nil,
-            hoverTemplate: Data<String>? = nil, hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil,
-            fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil, contours:
-            Shared.Contours? = nil, line: Shared.SmoothDashedLine? = nil, zAuto: Bool? = nil, zMin: Double?
-            = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
-            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), xCalendar:
-            Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis =
-            Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
+            [], uiRevision: Anything? = nil, z: ZData? = nil, x: XData? = nil, x0: Anything? = nil, dx:
+            Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>? =
+            nil, hoverText: Data<String>? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil,
+            yType: Shared.AxisType? = nil, zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil,
+            hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool?
+            = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? =
+            nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil,
+            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
+            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
+            Layout.ColorAxis(uid: 1), xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,
+            xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -505,7 +504,8 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let z = self.z {
             try z.encode(toPlotly: container.superEncoder(forKey: .z))

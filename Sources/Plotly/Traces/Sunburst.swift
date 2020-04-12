@@ -61,7 +61,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -514,14 +514,14 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     ///   - domain:
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
             String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, labels: [String]? = nil, parents:
-            [String]? = nil, values: ValuesData? = nil, branchValues: BranchValues? = nil, count: Count? =
-            nil, level: Anything? = nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil,
-            text: Data<String>? = nil, textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil,
-            hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil,
-            textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil,
-            outsideTextFont: Shared.OutsideTextFont? = nil, domain: Shared.Domain? = nil) {
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
+            [], uiRevision: Anything? = nil, labels: [String]? = nil, parents: [String]? = nil, values:
+            ValuesData? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? =
+            nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: Data<String>? = nil,
+            textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
+            hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, textFont: Shared.VariableFont?
+            = nil, insideTextFont: Shared.VariableFont? = nil, outsideTextFont: Shared.OutsideTextFont? =
+            nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -567,7 +567,8 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         try container.encodeIfPresent(meta, forKey: .meta)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         try container.encodeIfPresent(labels, forKey: .labels)
         try container.encodeIfPresent(parents, forKey: .parents)

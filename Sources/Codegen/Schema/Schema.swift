@@ -71,28 +71,39 @@ struct Schema: Decodable {
     /// Decoded `layout` object.
     let layout: Layout
 
-    // FIXME: Transforms are currently not used.
-    struct Transforms: Decodable {
-        struct Transform: Decodable {
-            let attributes: Entry
+    /// Specification of a data transformation in the Plotly schema.
+    struct Transform: Decodable {
+        let attributes: Predefined.Object
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: Keys.self)
+            attributes = try container.decode(Predefined.Object.self, forKey: Keys("attributes"))
         }
-        let aggregate: Transform
-        let filter: Transform
-        let groupby: Transform
-        let sort: Transform
+    }
+    /// Ordered decoded collection of`/transforms/*` sub-tree.
+    struct Transforms: Decodable {
+        let all: [(String, Transform)]
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: Keys.self)
+
+            var entries: [(identifier: String, entry: Transform)] = []
+            for key in container.allKeys {
+                let transform = try container.decode(Transform.self, forKey: key)
+                entries.append((identifier: key.stringValue, entry: transform))
+            }
+
+            Schema.order!.sorted(entries: &entries, at: container.codingPath)
+            all = entries.map { ($0.identifier, $0.entry) }
+        }
     }
     let transforms: Transforms
 
-    // FIXME: Frames are currently not used.
-    struct Frames: Decodable {
-        struct Items: Decodable {
-            let frames_entry: Predefined.Object
-        }
-        let items: Items
-    }
+    /// Specification of `/frames/*` subtree attributes.
+    typealias Frames = Predefined.Object
     let frames: Frames
 
-    // FIXME: Animation is currently not used.
+    /// Specification of `/animation/*` subtree attributes.
     typealias Animation = Predefined.Object
     let animation: Animation
 

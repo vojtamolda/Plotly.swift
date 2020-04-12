@@ -60,7 +60,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -340,14 +340,14 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
     ///   - subplot: Sets a reference between this trace's data coordinates and a mapbox subplot.
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
             String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, longitude: CoordinateData? = nil,
-            latitude: CoordinateData? = nil, z: ZData? = nil, radius: Data<Double>? = nil, below: String? =
-            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
-            hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? =
-            nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-            Layout.ColorAxis = Layout.ColorAxis(uid: 1), subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)) {
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
+            [], uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
+            nil, z: ZData? = nil, radius: Data<Double>? = nil, below: String? = nil, text: Data<String>? =
+            nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? =
+            nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil,
+            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
+            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
+            Layout.ColorAxis(uid: 1), subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -394,7 +394,8 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
         try container.encodeIfPresent(meta, forKey: .meta)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let longitude = self.longitude {
             try longitude.encode(toPlotly: container.superEncoder(forKey: .longitude))

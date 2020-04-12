@@ -56,7 +56,7 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -406,8 +406,8 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
     ///   - line:
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
             [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, stream:
-            Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil,
-            domain: Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont:
+            Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, domain:
+            Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont:
             Shared.Font? = nil, tickFont: Shared.Font? = nil, rangeFont: Shared.Font? = nil, dimensions:
             [Dimension]? = nil, line: MarkerLine? = nil) {
         self.visible = visible
@@ -429,4 +429,27 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
         self.line = line
     }
     
+    /// Encodes the object in a format compatible with Plotly.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(domain, forKey: .domain)
+        try container.encodeIfPresent(labelAngle, forKey: .labelAngle)
+        try container.encodeIfPresent(labelSide, forKey: .labelSide)
+        try container.encodeIfPresent(labelFont, forKey: .labelFont)
+        try container.encodeIfPresent(tickFont, forKey: .tickFont)
+        try container.encodeIfPresent(rangeFont, forKey: .rangeFont)
+        try container.encodeIfPresent(dimensions, forKey: .dimensions)
+        try container.encodeIfPresent(line, forKey: .line)
+    }
 }

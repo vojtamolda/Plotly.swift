@@ -1,5 +1,5 @@
 
-/// Generated struct corresponding to one of Plotly `trace`s.
+/// Generated struct corresponding to one of Plotly `traces`.
 struct Trace: Definable {
     let schema: Schema.Trace
     let attributes: Generated.Object
@@ -18,8 +18,9 @@ struct Trace: Definable {
         attributes = Generated.Object(named: identifier, schema: schema.attributes)!
         attributes.protocols = ["Trace"]
 
-        let predefinedString = Predefined.String_(codingPath: [Schema.Keys("type")], valType: "string", description: nil,
-                editType: nil, role: nil, dflt: nil, noBlank: nil, strict: nil, values: nil, arrayOk: nil)
+        let predefinedString = Predefined.String_(codingPath: [Schema.Keys("type")], valType: "string",
+                                                  description: nil, editType: nil, role: nil, dflt: nil,
+                                                  noBlank: nil, strict: nil, values: nil, arrayOk: nil)
         let generatedString = Generated.String_(parent: attributes, schema: predefinedString)
         let typeConst = Instance(of: generatedString, named: "type")
         typeConst.constant = true
@@ -27,8 +28,8 @@ struct Trace: Definable {
         typeConst.initialization = schema.type.escaped()
         attributes.members.insert(typeConst, at: 0)
 
-        let predefinedBool = Predefined.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool", description: nil,
-                editType: nil, role: nil)
+        let predefinedBool = Predefined.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool",
+                                                description: nil, editType: nil, role: nil)
         let generatedBool = Generated.Boolean(parent: attributes, schema: predefinedBool)
         let animatableConst = Instance(of: generatedBool, named: "animatable")
         animatableConst.constant = true
@@ -67,7 +68,7 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let z = attributes.members.firstInstance(named: "z")!
             let xyzData = Generated.Generic(name: "XYZData", parent: attributes,
-                    origin: x.origin, protocol: "Plotable")
+                                            origin: x.origin, protocol: "Plotable")
             x.type = xyzData
             y.type = xyzData
             z.type = xyzData
@@ -75,7 +76,7 @@ struct Trace: Definable {
             let v = attributes.members.firstInstance(named: "v")!
             let w = attributes.members.firstInstance(named: "w")!
             let uvwData = Generated.Generic(name: "UVWData", parent: attributes,
-                    origin: u.origin, protocol: "Plotable")
+                                            origin: u.origin, protocol: "Plotable")
             u.type = uvwData
             v.type = uvwData
             w.type = uvwData
@@ -86,12 +87,12 @@ struct Trace: Definable {
             disabledGenerics += ["z", "x", "y"]
             let z = attributes.members.firstInstance(named: "z")!
             let zData = Generated.Generic(name: "ZData", parent: attributes,
-                    origin: z.origin, protocol: "Plotable")
+                                          origin: z.origin, protocol: "Plotable")
             z.type = zData
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let xyData = Generated.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, protocol: "Plotable")
+                                           origin: x.origin, protocol: "Plotable")
             x.type = xyData
             y.type = xyData
 
@@ -119,7 +120,7 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let xy = attributes.members.firstInstance(named: "xy")!
             let xyData = Generated.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, protocol: "Plotable")
+                                           origin: x.origin, protocol: "Plotable")
             x.type = xyData
             y.type = xyData
             xy.type = xyData
@@ -140,13 +141,13 @@ struct Trace: Definable {
             let z = attributes.members.firstInstance(named: "z")!
             let surfaceColor = attributes.members.firstInstance(named: "surfaceColor")!
             let zSurfaceData = Generated.Generic(name: "ZSurfaceData", parent: attributes,
-                    origin: z.origin, protocol: "Plotable")
+                                                 origin: z.origin, protocol: "Plotable")
             z.type = zSurfaceData
             surfaceColor.type = zSurfaceData
             let x = attributes.members.firstInstance(named: "x")!
             let y = attributes.members.firstInstance(named: "y")!
             let xyData = Generated.Generic(name: "XYData", parent: attributes,
-                    origin: x.origin, protocol: "Plotable")
+                                           origin: x.origin, protocol: "Plotable")
             x.type = xyData
             y.type = xyData
 
@@ -166,7 +167,7 @@ struct Trace: Definable {
             cellsFormat.type = Generated.Override(of: cellsFormat.type, as: "Data<String>")
             let cellsValues = cells.members.firstInstance(named: "values")!
             let cellsDataType = Generated.Generic(name: "CellData", parent: cells,
-                    origin: cellsValues.origin, protocol: "Plotable")
+                                                  origin: cellsValues.origin, protocol: "Plotable")
             cellsValues.type = cellsDataType
 
             attributes.generics.append(cellsDataType)
@@ -177,7 +178,7 @@ struct Trace: Definable {
             let y = attributes.members.firstInstance(named: "y")!
             let z = attributes.members.firstInstance(named: "z")!
             let xyzData = Generated.Generic(name: "XYZData", parent: attributes,
-                    origin: x.origin, protocol: "Plotable")
+                                            origin: x.origin, protocol: "Plotable")
             x.type = xyzData
             y.type = xyzData
             z.type = xyzData
@@ -189,6 +190,18 @@ struct Trace: Definable {
 
         default:
             break
+        }
+
+        // Override transforms property
+        if let transforms = attributes.members.firstInstance(named: "transforms") {
+            let transformsCustomEncoding = """
+                var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+                for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
+                """.lines()
+            transforms.type = Generated.Override(of: transforms.type, as: "Transform",
+                                                 encoding: transformsCustomEncoding)
+            transforms.initialization = "[]"
+            transforms.optional = false
         }
 
         // Detection of attributes with generic data type
@@ -212,7 +225,7 @@ struct Trace: Definable {
            let longitude = attributes.members.firstInstance(named: "longitude") {
             disabledGenerics += ["latitude", "longitude"]
             let coordinateData = Generated.Generic(name: "CoordinateData", parent: attributes,
-                    origin: latitude.origin, protocol: "Plotable")
+                                                   origin: latitude.origin, protocol: "Plotable")
             latitude.type = coordinateData
             longitude.type = coordinateData
         }
@@ -246,8 +259,8 @@ struct Trace: Definable {
 
         for instance in attributes.members.compactMap( { $0 as? Instance } ) where instance.origin.role == "data" {
             if disabledGenerics.contains(instance.name) { continue }
-            let generic = Generated.Generic(name: "\(instance.name.capitalized)Data",
-                    parent: attributes, origin: instance.origin, protocol: "Plotable")
+            let generic = Generated.Generic(name: "\(instance.name.capitalized)Data", parent: attributes,
+                                            origin: instance.origin, protocol: "Plotable")
             instance.type = generic
         }
     }

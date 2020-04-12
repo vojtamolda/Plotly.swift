@@ -69,7 +69,7 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -440,15 +440,15 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel: Shared.HoverLabel? = nil,
-            stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? =
-            nil, labels: LabelsData? = nil, label0: Double? = nil, dLabel: Double? = nil, values:
-            ValuesData? = nil, marker: Marker? = nil, text: Data<String>? = nil, hoverText: Data<String>? =
-            nil, scaleGroup: String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil,
-            hoverTemplate: Data<String>? = nil, textTemplate: Data<String>? = nil, textPosition:
-            Shared.AdjacentPosition? = nil, textFont: Shared.VariableFont? = nil, insideTextFont:
-            Shared.VariableFont? = nil, outsideTextFont: Shared.OutsideTextFont? = nil, autoMargin: Bool? =
-            nil, title: Title? = nil, domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil,
-            direction: Direction? = nil, rotation: Double? = nil, pull: Data<Double>? = nil) {
+            stream: Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, labels:
+            LabelsData? = nil, label0: Double? = nil, dLabel: Double? = nil, values: ValuesData? = nil,
+            marker: Marker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, scaleGroup:
+            String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate:
+            Data<String>? = nil, textTemplate: Data<String>? = nil, textPosition: Shared.AdjacentPosition? =
+            nil, textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil,
+            outsideTextFont: Shared.OutsideTextFont? = nil, autoMargin: Bool? = nil, title: Title? = nil,
+            domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? =
+            nil, rotation: Double? = nil, pull: Data<Double>? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -503,7 +503,8 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
         try container.encodeIfPresent(meta, forKey: .meta)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let labels = self.labels {
             try labels.encode(toPlotly: container.superEncoder(forKey: .labels))

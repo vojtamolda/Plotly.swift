@@ -35,6 +35,7 @@ struct Shared: Definable {
 
 extension SharedGeneratedType {
     static var existingShared: [Self] { Self.existing.filter { $0.shared } }
+    static var disabledSharing: [String] { ["Transform"] }
 
     /// Identifies multiply-referenced and therefore shareable data types.
     ///
@@ -47,6 +48,7 @@ extension SharedGeneratedType {
         let prioritizedTypes = Self.existing.sorted{ $0.priority > $1.priority }.enumerated()
 
         for sharedType in prioritizedTypes where !visited.contains(sharedType.offset) {
+            if disabledSharing.contains(sharedType.element.name) { continue }
             if sharedType.element.instances.count == 0 { continue }
 
             visited.insert(sharedType.offset)

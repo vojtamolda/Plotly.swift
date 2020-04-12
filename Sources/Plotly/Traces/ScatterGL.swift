@@ -80,7 +80,7 @@ public struct ScatterGL<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -508,16 +508,16 @@ public struct ScatterGL<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil,
             meta: Data<Anything>? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? =
-            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil,
-            dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>?
-            = nil, hoverText: Data<String>? = nil, textPosition: Shared.TextPosition? = nil, textFont:
-            Shared.VariableFont? = nil, mode: Shared.Mode? = nil, line: ShapedDashedLine? = nil, marker:
-            Shared.SymbolicMarker? = nil, connectGaps: Bool? = nil, fill: Shared.Fill? = nil, fillColor:
-            Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil,
-            hoverTemplate: Data<String>? = nil, textTemplate: Data<String>? = nil, xError: Shared.Error? =
-            nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar?
-            = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
+            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform]
+            = [], uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y:
+            YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>? = nil, hoverText:
+            Data<String>? = nil, textPosition: Shared.TextPosition? = nil, textFont: Shared.VariableFont? =
+            nil, mode: Shared.Mode? = nil, line: ShapedDashedLine? = nil, marker: Shared.SymbolicMarker? =
+            nil, connectGaps: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, selected:
+            Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil, hoverTemplate:
+            Data<String>? = nil, textTemplate: Data<String>? = nil, xError: Shared.Error? = nil, yError:
+            Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,
+            xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -577,7 +577,8 @@ public struct ScatterGL<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let x = self.x {
             try x.encode(toPlotly: container.superEncoder(forKey: .x))

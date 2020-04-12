@@ -82,9 +82,11 @@ custom_categories:
       - Figure
       - Trace
       - Layout
+      - Frame
       - Config
       - Shared
       - HTML
+      - Animation
 
   - name: Plotable
     children:
@@ -102,3 +104,11 @@ custom_categories:
       - ColorScale
       - Data
       - InfoArray
+
+  - name: Transforms
+    children:
+      - Transform
+      - Filter
+      - Aggregate
+      - GroupBy
+      - Sort

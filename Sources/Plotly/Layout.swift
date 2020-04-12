@@ -578,46 +578,7 @@ public struct Layout: Encodable {
         public var duration: Double? = nil
     
         /// The easing function used for the transition
-        public enum Easing: String, Encodable {
-            case linear
-            case quad
-            case cubic
-            case sin
-            case exp
-            case circle
-            case elastic
-            case back
-            case bounce
-            case linearIn = "linear-in"
-            case quadIn = "quad-in"
-            case cubicIn = "cubic-in"
-            case sinIn = "sin-in"
-            case expIn = "exp-in"
-            case circleIn = "circle-in"
-            case elasticIn = "elastic-in"
-            case backIn = "back-in"
-            case bounceIn = "bounce-in"
-            case linearOut = "linear-out"
-            case quadOut = "quad-out"
-            case cubicOut = "cubic-out"
-            case sinOut = "sin-out"
-            case expOut = "exp-out"
-            case circleOut = "circle-out"
-            case elasticOut = "elastic-out"
-            case backOut = "back-out"
-            case bounceOut = "bounce-out"
-            case linearInOut = "linear-in-out"
-            case quadInOut = "quad-in-out"
-            case cubicInOut = "cubic-in-out"
-            case sinInOut = "sin-in-out"
-            case expInOut = "exp-in-out"
-            case circleInOut = "circle-in-out"
-            case elasticInOut = "elastic-in-out"
-            case backInOut = "back-in-out"
-            case bounceInOut = "bounce-in-out"
-        }
-        /// The easing function used for the transition
-        public var easing: Easing? = nil
+        public var easing: Shared.Easing? = nil
     
         /// Determines whether the figure's layout or traces smoothly transitions during updates that make
         /// both traces and layout change.
@@ -636,7 +597,7 @@ public struct Layout: Encodable {
         ///   - easing: The easing function used for the transition
         ///   - ordering: Determines whether the figure's layout or traces smoothly transitions during updates
         ///   that make both traces and layout change.
-        public init(duration: Double? = nil, easing: Easing? = nil, ordering: Ordering? = nil) {
+        public init(duration: Double? = nil, easing: Shared.Easing? = nil, ordering: Ordering? = nil) {
             self.duration = duration
             self.easing = easing
             self.ordering = ordering
@@ -9254,53 +9215,14 @@ public struct Layout: Encodable {
             public var duration: Double? = nil
         
             /// Sets the easing function of the slider transition
-            public enum Easing: String, Encodable {
-                case linear
-                case quad
-                case cubic
-                case sin
-                case exp
-                case circle
-                case elastic
-                case back
-                case bounce
-                case linearIn = "linear-in"
-                case quadIn = "quad-in"
-                case cubicIn = "cubic-in"
-                case sinIn = "sin-in"
-                case expIn = "exp-in"
-                case circleIn = "circle-in"
-                case elasticIn = "elastic-in"
-                case backIn = "back-in"
-                case bounceIn = "bounce-in"
-                case linearOut = "linear-out"
-                case quadOut = "quad-out"
-                case cubicOut = "cubic-out"
-                case sinOut = "sin-out"
-                case expOut = "exp-out"
-                case circleOut = "circle-out"
-                case elasticOut = "elastic-out"
-                case backOut = "back-out"
-                case bounceOut = "bounce-out"
-                case linearInOut = "linear-in-out"
-                case quadInOut = "quad-in-out"
-                case cubicInOut = "cubic-in-out"
-                case sinInOut = "sin-in-out"
-                case expInOut = "exp-in-out"
-                case circleInOut = "circle-in-out"
-                case elasticInOut = "elastic-in-out"
-                case backInOut = "back-in-out"
-                case bounceInOut = "bounce-in-out"
-            }
-            /// Sets the easing function of the slider transition
-            public var easing: Easing? = nil
+            public var easing: Shared.Easing? = nil
         
             /// Creates `Transition` object with specified properties.
             /// 
             /// - Parameters:
             ///   - duration: Sets the duration of the slider transition
             ///   - easing: Sets the easing function of the slider transition
-            public init(duration: Double? = nil, easing: Easing? = nil) {
+            public init(duration: Double? = nil, easing: Shared.Easing? = nil) {
                 self.duration = duration
                 self.easing = easing
             }

@@ -59,7 +59,7 @@ public struct Indicator: Trace, DomainSubplot {
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -742,9 +742,9 @@ public struct Indicator: Trace, DomainSubplot {
     ///   - gauge: The gauge of the Indicator plot.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
             [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, stream:
-            Shared.Stream? = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode:
-            Mode? = nil, value: Double? = nil, align: Shared.HorizontalAlign? = nil, domain: Shared.Domain?
-            = nil, title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
+            Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, mode: Mode? =
+            nil, value: Double? = nil, align: Shared.HorizontalAlign? = nil, domain: Shared.Domain? = nil,
+            title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -764,4 +764,27 @@ public struct Indicator: Trace, DomainSubplot {
         self.gauge = gauge
     }
     
+    /// Encodes the object in a format compatible with Plotly.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(ids, forKey: .ids)
+        try container.encodeIfPresent(customData, forKey: .customData)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(mode, forKey: .mode)
+        try container.encodeIfPresent(value, forKey: .value)
+        try container.encodeIfPresent(align, forKey: .align)
+        try container.encodeIfPresent(domain, forKey: .domain)
+        try container.encodeIfPresent(title, forKey: .title)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(delta, forKey: .delta)
+        try container.encodeIfPresent(gauge, forKey: .gauge)
+    }
 }

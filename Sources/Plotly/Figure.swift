@@ -11,6 +11,11 @@ public protocol Trace: Encodable {
 }
 
 
+public protocol Transform: Encodable {
+    var enabled: Bool? { get }
+}
+
+
 protocol XYSubplot {
     var xAxis: Layout.XAxis { get }
     var yAxis: Layout.YAxis { get }

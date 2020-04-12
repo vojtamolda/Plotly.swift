@@ -52,6 +52,50 @@ public struct Shared {
         case h
     }
 
+    /// The easing function used for the transition
+    /// 
+    /// - Note:
+    ///   Used by `Layout.Transition.easing`, `Layout.Slider.Transition.easing`,
+    ///   `Animation.Transition.easing`.
+    public enum Easing: String, Encodable {
+        case linear
+        case quad
+        case cubic
+        case sin
+        case exp
+        case circle
+        case elastic
+        case back
+        case bounce
+        case linearIn = "linear-in"
+        case quadIn = "quad-in"
+        case cubicIn = "cubic-in"
+        case sinIn = "sin-in"
+        case expIn = "exp-in"
+        case circleIn = "circle-in"
+        case elasticIn = "elastic-in"
+        case backIn = "back-in"
+        case bounceIn = "bounce-in"
+        case linearOut = "linear-out"
+        case quadOut = "quad-out"
+        case cubicOut = "cubic-out"
+        case sinOut = "sin-out"
+        case expOut = "exp-out"
+        case circleOut = "circle-out"
+        case elasticOut = "elastic-out"
+        case backOut = "back-out"
+        case bounceOut = "bounce-out"
+        case linearInOut = "linear-in-out"
+        case quadInOut = "quad-in-out"
+        case cubicInOut = "cubic-in-out"
+        case sinInOut = "sin-in-out"
+        case expInOut = "exp-in-out"
+        case circleInOut = "circle-in-out"
+        case elasticInOut = "elastic-in-out"
+        case backInOut = "back-in-out"
+        case bounceInOut = "bounce-in-out"
+    }
+
     /// Sets the horizontal alignment of the text content within hover label box.
     /// 
     /// Has an effect only if the hover label text spans more two or more lines
@@ -93,7 +137,7 @@ public struct Shared {
     ///   `Contour.yCalendar`, `Scatter3D.xCalendar`, `Scatter3D.yCalendar`, `Scatter3D.zCalendar`,
     ///   `Surface.xCalendar`, `Surface.yCalendar`, `Surface.zCalendar`, `Mesh3D.xCalendar`,
     ///   `Mesh3D.yCalendar`, `Mesh3D.zCalendar`, `ScatterGL.xCalendar`, `ScatterGL.yCalendar`,
-    ///   `OHLC.xCalendar`, `Candlestick.xCalendar`.
+    ///   `OHLC.xCalendar`, `Candlestick.xCalendar`, `Filter.valueCalendar`, `Filter.targetCalendar`.
     public enum Calendar: String, Encodable {
         case gregorian
         case chinese
@@ -2111,27 +2155,6 @@ public struct Shared {
         public init(token: String? = nil, maxPoints: Double? = nil) {
             self.token = token
             self.maxPoints = maxPoints
-        }
-        
-    }
-
-    /// An array of operations that manipulate the trace data, for example filtering or sorting the data
-    /// arrays.
-    /// 
-    /// - Note:
-    ///   Used by `Scatter.transforms`, `Bar.transforms`, `Box.transforms`, `Heatmap.transforms`,
-    ///   `Histogram.transforms`, `Histogram2D.transforms`, `Histogram2DContour.transforms`,
-    ///   `Contour.transforms`, `ScatterTernary.transforms`, `Violin.transforms`, `Funnel.transforms`,
-    ///   `Waterfall.transforms`, `Pie.transforms`, `Sunburst.transforms`, `Treemap.transforms`,
-    ///   `FunnelArea.transforms`, `Scatter3D.transforms`, `ScatterGeo.transforms`,
-    ///   `Choropleth.transforms`, `ScatterGL.transforms`, `ScatterPlotMatrix.transforms`,
-    ///   `HeatmapGL.transforms`, `ParallelCoordinates.transforms`, `ParallelCategories.transforms`,
-    ///   `ScatterMapbox.transforms`, `ChoroplethMapbox.transforms`, `DensityMapbox.transforms`,
-    ///   `Indicator.transforms`, `ScatterCarpet.transforms`, `OHLC.transforms`, `Candlestick.transforms`,
-    ///   `ScatterPolar.transforms`, `ScatterPolarGL.transforms`, `BarPolar.transforms`.
-    public struct Transform: Encodable {
-        /// Creates `Transform` object with specified properties.
-        public init() {
         }
         
     }

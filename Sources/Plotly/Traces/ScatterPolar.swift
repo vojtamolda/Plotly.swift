@@ -79,7 +79,7 @@ public struct ScatterPolar<RData, ThetaData>: Trace, PolarSubplot where RData: P
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -464,17 +464,16 @@ public struct ScatterPolar<RData, ThetaData>: Trace, PolarSubplot where RData: P
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: RData? =
-            nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil,
-            dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit? = nil, text: Data<String>? = nil,
-            textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, line:
-            Shared.ShapedSmoothDashedLine? = nil, connectGaps: Bool? = nil, marker: Shared.GradientMarker? =
-            nil, clipOnAxis: Bool? = nil, textPosition: Shared.TextPosition? = nil, textFont:
-            Shared.VariableFont? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, hoverInfo:
-            Shared.PolarHoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: Data<String>? =
-            nil, selected: Selected? = nil, unselected: Unselected? = nil, subplot: Layout.Polar =
-            Layout.Polar(uid: 1)) {
+            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
+            [], uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: RData? = nil, theta: ThetaData? =
+            nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil,
+            thetaUnit: Shared.ThetaUnit? = nil, text: Data<String>? = nil, textTemplate: Data<String>? =
+            nil, hoverText: Data<String>? = nil, line: Shared.ShapedSmoothDashedLine? = nil, connectGaps:
+            Bool? = nil, marker: Shared.GradientMarker? = nil, clipOnAxis: Bool? = nil, textPosition:
+            Shared.TextPosition? = nil, textFont: Shared.VariableFont? = nil, fill: Shared.AreaFill? = nil,
+            fillColor: Color? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, hoverOn: Shared.HoverOn? =
+            nil, hoverTemplate: Data<String>? = nil, selected: Selected? = nil, unselected: Unselected? =
+            nil, subplot: Layout.Polar = Layout.Polar(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -532,7 +531,8 @@ public struct ScatterPolar<RData, ThetaData>: Trace, PolarSubplot where RData: P
         try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         try container.encodeIfPresent(mode, forKey: .mode)
         if let r = self.r {

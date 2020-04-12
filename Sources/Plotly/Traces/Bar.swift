@@ -83,7 +83,7 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -497,9 +497,9 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
-            = nil, transforms: [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, x0:
-            Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil,
-            text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
+            = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, x0: Anything?
+            = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text:
+            Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
             hoverTemplate: Data<String>? = nil, textPosition: Shared.AdjacentPosition? = nil,
             insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont:
             Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil, outsideTextFont:
@@ -577,7 +577,8 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let x = self.x {
             try x.encode(toPlotly: container.superEncoder(forKey: .x))

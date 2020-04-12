@@ -79,7 +79,7 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -698,17 +698,17 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil,
             meta: Data<Anything>? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? =
-            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0:
-            Anything? = nil, y0: Anything? = nil, name: String? = nil, orientation: Shared.Orientation? =
-            nil, bandwidth: Double? = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode:
-            SpanMode? = nil, span: InfoArray? = nil, line: Shared.Line? = nil, fillColor: Color? = nil,
-            points: Points? = nil, jitter: Double? = nil, pointPosition: Double? = nil, width: Double? =
-            nil, marker: SymbolicMarker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
-            hoverTemplate: Data<String>? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? =
-            nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil,
-            unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid:
-            1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
+            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform]
+            = [], uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0:
+            Anything? = nil, name: String? = nil, orientation: Shared.Orientation? = nil, bandwidth: Double?
+            = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span:
+            InfoArray? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, points: Points? = nil,
+            jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker:
+            SymbolicMarker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate:
+            Data<String>? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup:
+            String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected?
+            = nil, hoverOn: HoverOn? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis
+            = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -772,7 +772,8 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let y = self.y {
             try y.encode(toPlotly: container.superEncoder(forKey: .y))

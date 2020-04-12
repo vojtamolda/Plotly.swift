@@ -58,6 +58,8 @@ class Object(CamelCased):
         "error_x": "XError",
         "error_y": "YError",
         "error_z": "ZError",
+        "func": "Function",
+        "funcmode": "FunctionMode",
         "groupby": "GroupBy",
         "groupnorm": "GroupNormalization",
         "halign": "HorizontalAlign",

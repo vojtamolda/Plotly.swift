@@ -84,7 +84,7 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace,
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -415,13 +415,12 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace,
     public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms:
-            [Shared.Transform]? = nil, uiRevision: Anything? = nil, x: XData? = nil, open: OpenData? = nil,
-            high: HighData? = nil, low: LowData? = nil, close: CloseData? = nil, line: Line? = nil,
-            increasing: Increasing? = nil, decreasing: Decreasing? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil,
-            xCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis:
-            Layout.YAxis = Layout.YAxis(uid: 1)) {
+            hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Transform] = [],
+            uiRevision: Anything? = nil, x: XData? = nil, open: OpenData? = nil, high: HighData? = nil, low:
+            LowData? = nil, close: CloseData? = nil, line: Line? = nil, increasing: Increasing? = nil,
+            decreasing: Decreasing? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
+            whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil,
+            xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -469,7 +468,8 @@ public struct Candlestick<XData, OpenData, HighData, LowData, CloseData>: Trace,
         try container.encodeIfPresent(selectedPoints, forKey: .selectedPoints)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(stream, forKey: .stream)
-        try container.encodeIfPresent(transforms, forKey: .transforms)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
         if let x = self.x {
             try x.encode(toPlotly: container.superEncoder(forKey: .x))

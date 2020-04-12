@@ -42,7 +42,7 @@ public struct ParallelCategories: Trace, DomainSubplot {
 
     public var stream: Shared.Stream? = nil
 
-    public var transforms: [Shared.Transform]? = nil
+    public var transforms: [Transform] = []
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -474,12 +474,11 @@ public struct ParallelCategories: Trace, DomainSubplot {
     ///   - line:
     ///   - counts: The number of observations represented by each state.
     public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, meta:
-            Data<Anything>? = nil, stream: Shared.Stream? = nil, transforms: [Shared.Transform]? = nil,
-            uiRevision: Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn:
-            HoverOn? = nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors:
-            Bool? = nil, sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font?
-            = nil, dimensions: [Dimension]? = nil, line: ShapedMarkerLine? = nil, counts: Data<Double>? =
-            nil) {
+            Data<Anything>? = nil, stream: Shared.Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? =
+            nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil,
+            sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil,
+            dimensions: [Dimension]? = nil, line: ShapedMarkerLine? = nil, counts: Data<Double>? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid
@@ -501,4 +500,29 @@ public struct ParallelCategories: Trace, DomainSubplot {
         self.counts = counts
     }
     
+    /// Encodes the object in a format compatible with Plotly.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(uid, forKey: .uid)
+        try container.encodeIfPresent(meta, forKey: .meta)
+        try container.encodeIfPresent(stream, forKey: .stream)
+        var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
+        for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
+        try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(domain, forKey: .domain)
+        try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(hoverOn, forKey: .hoverOn)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(arrangement, forKey: .arrangement)
+        try container.encodeIfPresent(bundleColors, forKey: .bundleColors)
+        try container.encodeIfPresent(sortPaths, forKey: .sortPaths)
+        try container.encodeIfPresent(labelFont, forKey: .labelFont)
+        try container.encodeIfPresent(tickFont, forKey: .tickFont)
+        try container.encodeIfPresent(dimensions, forKey: .dimensions)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(counts, forKey: .counts)
+    }
 }
