@@ -6,8 +6,9 @@ public protocol Trace: Encodable {
     var type: String { get }
     var animatable: Bool { get }
 
-    var name: String? { get }
-    var uid: String? { get }
+    var visible: Shared.Visible? { get set }
+    var name: String? { get set }
+    var uid: String? { get set }
 }
 
 
@@ -90,6 +91,9 @@ public struct Figure {
     /// Structure containing Plotly configuration.
     public var config: Config?
     
+    /// Collection of animation frames.
+    public var frames: [Frame] = []
+    
     /// `Figure` output format specification.
     public enum Format {
         case HTML
@@ -97,34 +101,35 @@ public struct Figure {
     }
 
     /// Creates a `Figure` displaying the `data` traces with styling and configuration specified by `layout` and `config`.
-    public init(data: [Trace], layout: Layout? = nil, config: Config? = nil) {
+    public init(data: [Trace], layout: Layout? = nil, frames: [Frame] = [], config: Config? = nil) {
         self.data = data
 
         self.layout = layout
         if self.layout != nil {
             for trace in data {
-                if let xySubplot = trace as? XYSubplot {
+                switch trace {
+                case let xySubplot as XYSubplot:
                     self.layout!.xAxis.append(xySubplot.xAxis)
                     self.layout!.yAxis.append(xySubplot.yAxis)
-                }
-                if let ternarySubplot = trace as? TernarySubplot {
+                case is DomainSubplot:
+                    break
+                case let ternarySubplot as TernarySubplot:
                     self.layout!.ternary.append(ternarySubplot.subplot)
-                }
-                if let sceneSubplot = trace as? SceneSubplot {
+                case let sceneSubplot as SceneSubplot:
                     self.layout!.scene.append(sceneSubplot.scene)
-                }
-                if let geoSubplot = trace as? GeoSubplot {
+                case let geoSubplot as GeoSubplot:
                     self.layout!.geo.append(geoSubplot.geo)
-                }
-                if let mapboxSubplot = trace as? MapboxSubplot {
+                case let mapboxSubplot as MapboxSubplot:
                     self.layout!.mapbox.append(mapboxSubplot.subplot)
-                }
-                if let polarSubplot = trace as? PolarSubplot {
+                case let polarSubplot as PolarSubplot:
                     self.layout!.polar.append(polarSubplot.subplot)
+                default:
+                    fatalError("Unsupported subplot protocol")
                 }
             }
-
         }
+        
+        self.frames = frames
 
         self.config = config
     }
@@ -163,6 +168,7 @@ extension Figure: Encodable {
     enum CodingKeys: String, CodingKey {
         case data
         case layout
+        case frames
         case config
     }
 
@@ -174,6 +180,11 @@ extension Figure: Encodable {
             try trace.encode(to: dataContainer.superEncoder())
         }
         try container.encode(layout, forKey: .layout)
+
+        var framesContainer = container.nestedUnkeyedContainer(forKey: .frames)
+        for frame in frames {
+            try frame.encode(to: framesContainer.superEncoder())
+        }
         try container.encode(config, forKey: .config)
     }
 }

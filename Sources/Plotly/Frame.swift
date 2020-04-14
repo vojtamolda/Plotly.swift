@@ -24,12 +24,12 @@ public struct Frame: Encodable {
     /// A list of traces this frame modifies.
     /// 
     /// The format is identical to the normal trace definition.
-    public var data: Anything? = nil
+    public var data: [Trace] = []
 
     /// Layout properties which this frame modifies.
     /// 
     /// The format is identical to the normal layout definition.
-    public var layout: Anything? = nil
+    public var layout: Layout? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -53,7 +53,7 @@ public struct Frame: Encodable {
     ///   - data: A list of traces this frame modifies.
     ///   - layout: Layout properties which this frame modifies.
     public init(group: String? = nil, name: String? = nil, traces: Anything? = nil, baseFrame:
-            String? = nil, data: Anything? = nil, layout: Anything? = nil) {
+            String? = nil, data: [Trace] = [], layout: Layout? = nil) {
         self.group = group
         self.name = name
         self.traces = traces
@@ -62,4 +62,15 @@ public struct Frame: Encodable {
         self.layout = layout
     }
     
+    /// Encodes the object in a format compatible with Plotly.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(group, forKey: .group)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(traces, forKey: .traces)
+        try container.encodeIfPresent(baseFrame, forKey: .baseFrame)
+        var dataContainer = container.nestedUnkeyedContainer(forKey: .data)
+        for trace in data { try trace.encode(to: dataContainer.superEncoder()) }
+        try container.encodeIfPresent(layout, forKey: .layout)
+    }
 }

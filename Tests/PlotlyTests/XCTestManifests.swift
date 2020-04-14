@@ -6,6 +6,10 @@ import Plotly
 #if os(Linux)
 public func allTests() -> [XCTestCaseEntry] {
     [
+        // https://plotly.com/javascript/animations/
+        testCase(Buttons.allTests),
+        testCase(Sliders.allTests),
+
         // https://plot.ly/javascript/basic-charts/
         testCase(LineCharts.allTests),
         testCase(ScatterPlots.allTests),
