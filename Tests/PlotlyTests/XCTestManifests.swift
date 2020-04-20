@@ -37,7 +37,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(SwatchTests.allTests),
         testCase(PlotableTests.allTests),
 
-        testCase(InforArrayTests.allTests)
+        testCase(InfoArrayTests.allTests)
     ]
 }
 #endif

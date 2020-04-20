@@ -1,7 +1,6 @@
 import Foundation
 import XCTest
 import Plotly
-import Darwin
 
 
 /// https://plotly.com/python/animations/
