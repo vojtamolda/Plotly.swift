@@ -190,8 +190,8 @@ extension Figure: Encodable {
 }
 
 
-#if os(Linux) && canImport(Python)
-import Python
+#if os(Linux) && canImport(PythonKit)
+import PythonKit
 
 extension Figure {
     /// Displays interactive figure in Jupyter notebook.
