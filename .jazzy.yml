@@ -1,6 +1,6 @@
 module: Plotly
-module_version: 0.2.0
-title: Plotly.swift - Documentation (0.2.0)
+module_version: 0.3.0
+title: Plotly.swift - Documentation (0.3.0)
 theme: apple
 
 author: Vojta Molda
