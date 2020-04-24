@@ -71,7 +71,7 @@ If you're interested in the inner workings of the library [Code Generation] and 
 
 Library is in early beta stage and the releases before version `1.0.0` doesn't follow [Semantic Versioning]. Symbol and method names may and generally will change. Before the `1.0.0` release, the recommendation is to depend on `.exact("0.x.y")` version to make sure your code doesn't break due to backward incompatible changes in the API.
 
-Licensed under the GPL license. See [the text][License] for more details.
+Licensed under the MIT license. See [the text][License] for more details.
 
 
 
@@ -87,7 +87,7 @@ Licensed under the GPL license. See [the text][License] for more details.
 [Contributions Badge]: https://img.shields.io/badge/contributions-welcome-blueviolet.svg "Contributions Welcome"
 [Contributions]: https://github.com/vojtamolda/Plotly.swift/issues
 
-[License Badge]: https://img.shields.io/github/license/vojtamolda/Plotly.swift.svg?color=yellow "GPL License"
+[License Badge]: https://img.shields.io/github/license/vojtamolda/Plotly.swift.svg?color=yellow "MIT License"
 [License]: https://github.com/vojtamolda/Plotly.swift/blob/master/License.txt
 
 [Lifecycle Badge]: https://img.shields.io/badge/lifecycle-maturing-blue.svg "Lifecycle"
