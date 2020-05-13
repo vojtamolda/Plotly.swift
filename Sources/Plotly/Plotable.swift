@@ -14,6 +14,44 @@ extension Array: Plotable where Element: Encodable {
 }
 
 
+extension Range: Plotable where Element: Encodable {
+    public func encode(toPlotly encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        for element in self {
+            try container.encode(element)
+        }
+    }
+}
+
+extension ClosedRange: Plotable where Element: Encodable {
+    public func encode(toPlotly encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        for element in self {
+            try container.encode(element)
+        }
+    }
+}
+
+extension StrideTo: Plotable where Element: Encodable {
+    public func encode(toPlotly encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        for element in self {
+            try container.encode(element)
+        }
+    }
+}
+
+
+extension StrideThrough: Plotable where Element: Encodable {
+    public func encode(toPlotly encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        for element in self {
+            try container.encode(element)
+        }
+    }
+}
+
+
 #if canImport(TensorFlow)
 import TensorFlow
 

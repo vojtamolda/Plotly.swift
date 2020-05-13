@@ -2145,7 +2145,7 @@ public struct ColorScale: Encodable {
     /// - Precondition: Collection `scalesColors` has to contain at least 2 items.
     public init(interpolate colors: [Color]) {
         precondition(colors.count > 1)
-        let scales = [Double](stride(from: 0.0, through: 1.0, by: 1.0 / Double(colors.count - 1)))
+        let scales = stride(from: 0.0, through: 1.0, by: 1.0 / Double(colors.count - 1))
         scalesColors = zip(scales, colors).map { $0 }
     }
 
@@ -2294,7 +2294,7 @@ fileprivate extension ColorScale {
             let swatch = BarPolar(
                 name: name,
                 r: [Int](repeating: 1, count: Int(resolution)),
-                theta: [Double](stride(from: 0.0, through: 360.0, by: 360.0 / resolution)),
+                theta: stride(from: 0.0, through: 360.0, by: 360.0 / resolution),
                 base: .constant(0.75),
                 width: .constant(360.0 / resolution),
                 marker: Shared.Marker(

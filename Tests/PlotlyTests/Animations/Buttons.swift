@@ -194,7 +194,7 @@ final class Buttons: XCTestCase {
     
     /// https://plotly.com/javascript/animations/#defining-named-frames-with-plotly.addframes
     func testDefiningNamedFrames() {
-        let t = [Double](stride(from: -Double.pi, through: +Double.pi, by: 2 * Double.pi / 100))
+        let t = stride(from: -Double.pi, through: +Double.pi, by: 2 * Double.pi / 100)
         let sine = t.map { sin($0) }
         let cosine = t.map { cos($0) }
     

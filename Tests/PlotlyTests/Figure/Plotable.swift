@@ -9,6 +9,8 @@ import TensorFlow
 final class PlotableTests: XCTestCase {
     static var allTests = [
         ("testCustomTypePlot", testCustomTypePlot),
+        ("testRangePlot", testRangePlot),
+        ("testStridePlot", testStridePlot),
         ("testTensorFlowPlot", testTensorFlowPlot),
     ]
 
@@ -19,6 +21,38 @@ final class PlotableTests: XCTestCase {
         )
 
         let figure = Figure(data: [barChart])
+        output(figure)
+    }
+
+    func testRangePlot() {
+        let closedRangeScatter = Scatter(
+            name: "Closed range to 10",
+            x: 0...10,
+            y: 0...10
+        )
+        let openRangeScatter = Scatter(
+            name: "Open range to 10",
+            x: 0..<10,
+            y: 0..<10
+        )
+
+        let figure = Figure(data: [closedRangeScatter, openRangeScatter])
+        output(figure)
+    }
+    
+    func testStridePlot() {
+        let strideThroughScatter = Scatter(
+            name: "Stride through 1",
+            x: stride(from: 0, through: 1, by: 0.1),
+            y: stride(from: 0, through: 1, by: 0.1)
+        )
+        let strideToScatter = Scatter(
+            name: "Stride to 1",
+            x: stride(from: 0, to: 1, by: 0.1),
+            y: stride(from: 0, to: 1, by: 0.1)
+        )
+        
+        let figure = Figure(data: [strideThroughScatter, strideToScatter])
         output(figure)
     }
 

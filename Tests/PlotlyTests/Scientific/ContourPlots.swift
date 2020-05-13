@@ -25,7 +25,7 @@ final class ContourPlots: XCTestCase {
     func testSimpleContourPlot() {
         let size = 100.0
 
-        let x: [Double] = [Double](stride(from: -2 * Double.pi, through: +2 * Double.pi, by: 4 * Double.pi / size))
+        let x = stride(from: -2 * Double.pi, through: +2 * Double.pi, by: 4 * Double.pi / size)
         let z: [[Double]] = x.map { x1 in
             x.map { x2 in
                     let r2 = x1 * x1 + x2 * x2

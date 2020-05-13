@@ -89,7 +89,7 @@ final class ErrorBars: XCTestCase {
 
     /// https://plot.ly/javascript/error-bars/#colored-and-styled-error-bars
     func testColoredAndStyledErrorBars() {
-        let x = Array<Double>(stride(from: -4, to: +4, by: 8/100))
+        let x = stride(from: -4.0, to: +4.0, by: 8/100)
         let sinc = x.map { x in x * Double.pi }.map { x in sin(x) / x }
 
         let precise = Scatter(

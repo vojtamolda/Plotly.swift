@@ -39,7 +39,7 @@ final class Sliders: XCTestCase {
     /// https://plotly.com/python/sliders/
     func testSimpleSliderControl() {
         var traces = stride(from: 0.0, through: 5.0, by: 0.1).map { frequency -> Trace in
-            let time = [Double](stride(from: 0, through: 10, by: 0.01))
+            let time = stride(from: 0, through: 10, by: 0.01)
             let wave = time.map { sin(frequency * $0) }
 
             return Scatter(

@@ -21,7 +21,7 @@ The following code creates a combined line and bar plot and displays the figure.
 import Plotly
  
  
-let x = [1, 2, 3, 4]
+let x = 1...4
 let y = [10, 15, 13, 17]
  
 let scatter = Scatter(name: "Scatter", x: x, y: y)
