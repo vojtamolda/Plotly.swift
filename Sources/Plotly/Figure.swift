@@ -135,6 +135,7 @@ public struct Figure {
     }
 
     /// Shows the `Figure` in the default browser available on your OS.
+    @available(iOS 10.0, *)
     public func show(javaScript bundle: HTML.JavaScriptBundleOption = .online) {
         try! Browser.show(figure: self, javaScript: bundle)
     }
