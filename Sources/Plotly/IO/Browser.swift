@@ -5,6 +5,7 @@ import Foundation
 struct Browser {
     
     /// Opens the specified URL in the default browser available on your OS.
+    @available(macOS 10.0, *)
     static func open(url: URL) throws {
         let env = URL(fileURLWithPath: "/usr/bin/env")
         let browser = try Process.run(env, arguments: ["open", url.absoluteString])
@@ -12,6 +13,7 @@ struct Browser {
     }
 
     /// Exports the `Figure` to a temporary HTML file and displays it using the default browser available on your OS.
+    @available(iOS 11.0, *)
     static func show(figure: Figure, javaScript bundle: HTML.JavaScriptBundleOption) throws {
         let htmlDocument = try HTML.create(from: figure, plotly: bundle, mathJax: bundle, document: true)
 

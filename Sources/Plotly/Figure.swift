@@ -148,6 +148,7 @@ public struct Figure {
     /// - Warning: Calling may take a few seconds because the function needs internet access.
     /// Current implementation of `.included` option downloads the library from the CDN
     /// server and returns `<script>` tag with the file content.
+    @available(iOS 11.0, *)
     public func write<T>(toFile path: T, as format: Format = .HTML,
                   javaScript bundle: HTML.JavaScriptBundleOption = .online)
         where T : StringProtocol {
