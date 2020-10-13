@@ -22,6 +22,11 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
     /// legend itself is visible).
     public var visible: Shared.Visible? = nil
 
+    /// Sets the legend group for this trace.
+    /// 
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String? = nil
+
     /// Sets the opacity of the trace.
     public var opacity: Double? = nil
 
@@ -159,14 +164,17 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
+
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -235,6 +243,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
     enum CodingKeys: String, CodingKey {
         case type
         case visible
+        case legendGroup = "legendgroup"
         case opacity
         case name
         case uid
@@ -254,6 +263,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
         case hoverText = "hovertext"
         case hoverInfo = "hoverinfo"
         case hoverTemplate = "hovertemplate"
+        case showLegend = "showlegend"
         case zAuto = "zauto"
         case zMin = "zmin"
         case zMax = "zmax"
@@ -297,6 +307,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
     /// 
     /// - Parameters:
     ///   - visible: Determines whether or not this trace is visible.
+    ///   - legendGroup: Sets the legend group for this trace.
     ///   - opacity: Sets the opacity of the trace.
     ///   - name: Sets the trace name.
     ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
@@ -323,6 +334,8 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
     ///   the same string appears over all the data points.
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
+    ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
+    ///   legend.
     ///   - zAuto: Determines whether or not the color domain is computed with respect to the input data
     ///   (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax`
     ///   are set by the user.
@@ -338,17 +351,19 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
     ///   - colorBar:
     ///   - colorAxis: Sets a reference to a shared color axis.
     ///   - subplot: Sets a reference between this trace's data coordinates and a mapbox subplot.
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
-            nil, z: ZData? = nil, radius: Data<Double>? = nil, below: String? = nil, text: Data<String>? =
-            nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? =
-            nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil,
-            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
-            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
-            Layout.ColorAxis(uid: 1), subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)) {
+    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, opacity: Double? = nil,
+            name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil,
+            meta: Data<Anything>? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil,
+            transforms: [Transform] = [], uiRevision: Anything? = nil, longitude: CoordinateData? = nil,
+            latitude: CoordinateData? = nil, z: ZData? = nil, radius: Data<Double>? = nil, below: String? =
+            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: Data<String>? = nil, showLegend: Bool? = nil, zAuto: Bool? = nil, zMin: Double? =
+            nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+            Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? =
+            nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), subplot: Layout.Mapbox =
+            Layout.Mapbox(uid: 1)) {
         self.visible = visible
+        self.legendGroup = legendGroup
         self.opacity = opacity
         self.name = name
         self.uid = uid
@@ -368,6 +383,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
         self.hoverText = hoverText
         self.hoverInfo = hoverInfo
         self.hoverTemplate = hoverTemplate
+        self.showLegend = showLegend
         self.zAuto = zAuto
         self.zMin = zMin
         self.zMax = zMax
@@ -386,6 +402,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
         try container.encodeIfPresent(opacity, forKey: .opacity)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
@@ -412,6 +429,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(zAuto, forKey: .zAuto)
         try container.encodeIfPresent(zMin, forKey: .zMin)
         try container.encodeIfPresent(zMax, forKey: .zMax)

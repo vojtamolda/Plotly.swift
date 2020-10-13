@@ -116,8 +116,8 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
     
         /// Sets the horizontal alignment of the `text` within the box.
         /// 
-        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
-        /// HTML tags) or if an explicit width is set to override the text width.
+        /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
+        /// tags) or if an explicit width is set to override the text width.
         public var align: Shared.HorizontalAlign? = nil
     
         public var line: Shared.VariableLine? = nil
@@ -201,8 +201,8 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
     
         /// Sets the horizontal alignment of the `text` within the box.
         /// 
-        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
-        /// HTML tags) or if an explicit width is set to override the text width.
+        /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
+        /// tags) or if an explicit width is set to override the text width.
         public var align: Shared.HorizontalAlign? = nil
     
         public var line: Shared.VariableLine? = nil

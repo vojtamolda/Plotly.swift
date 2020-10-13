@@ -27,6 +27,11 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     /// legend itself is visible).
     public var visible: Shared.Visible? = nil
 
+    /// Sets the legend group for this trace.
+    /// 
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String? = nil
+
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
@@ -101,12 +106,12 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
@@ -513,11 +518,24 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     /// the near future and is subject to change.
     public var opacity: Double? = nil
 
+    /// Sets the opacityscale.
+    /// 
+    /// The opacityscale must be an array containing arrays mapping a normalized value to an opacity
+    /// value. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+    /// example, `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower values would have higher opacity
+    /// values and those in the middle would be more transparent Alternatively, `opacityscale` may be a
+    /// palette name string of the following list: 'min', 'max', 'extremes' and 'uniform'. The default
+    /// is 'uniform'.
+    public var opacityScale: Anything? = nil
+
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
     public var hoverInfo: Shared.HoverInfo? = nil
+
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool? = nil
 
     /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Shared.Calendar? = nil
@@ -538,6 +556,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     enum CodingKeys: String, CodingKey {
         case type
         case visible
+        case legendGroup = "legendgroup"
         case name
         case uid
         case ids
@@ -569,7 +588,9 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
         case lightPosition = "lightposition"
         case lighting
         case opacity
+        case opacityScale = "opacityscale"
         case hoverInfo = "hoverinfo"
+        case showLegend = "showlegend"
         case xCalendar = "xcalendar"
         case yCalendar = "ycalendar"
         case zCalendar = "zcalendar"
@@ -607,6 +628,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     /// 
     /// - Parameters:
     ///   - visible: Determines whether or not this trace is visible.
+    ///   - legendGroup: Sets the legend group for this trace.
     ///   - name: Sets the trace name.
     ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
     ///   animations and transitions.
@@ -647,24 +669,29 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     ///   - lightPosition:
     ///   - lighting:
     ///   - opacity: Sets the opacity of the surface.
+    ///   - opacityScale: Sets the opacityscale.
     ///   - hoverInfo: Determines which trace information appear on hover.
+    ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
+    ///   legend.
     ///   - xCalendar: Sets the calendar system to use with `x` date data.
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - zCalendar: Sets the calendar system to use with `z` date data.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
-            Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, z:
-            ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil, text: Data<String>? = nil, hoverText:
-            Data<String>? = nil, hoverTemplate: Data<String>? = nil, connectGaps: Bool? = nil, surfaceColor:
-            ZSurfaceData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle:
-            Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
-            nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
-            Layout.ColorAxis(uid: 1), contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition:
-            Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, hoverInfo:
-            Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,
-            zCalendar: Shared.Calendar? = nil, scene: Layout.Scene = Layout.Scene(uid: 1)) {
+    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
+            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
+            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? =
+            nil, z: ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, connectGaps: Bool? = nil,
+            surfaceColor: ZSurfaceData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
+            cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
+            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
+            Layout.ColorAxis = Layout.ColorAxis(uid: 1), contours: Contours? = nil, hideSurface: Bool? =
+            nil, lightPosition: Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? =
+            nil, opacityScale: Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, showLegend: Bool? = nil,
+            xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar:
+            Shared.Calendar? = nil, scene: Layout.Scene = Layout.Scene(uid: 1)) {
         self.visible = visible
+        self.legendGroup = legendGroup
         self.name = name
         self.uid = uid
         self.ids = ids
@@ -696,7 +723,9 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
         self.lightPosition = lightPosition
         self.lighting = lighting
         self.opacity = opacity
+        self.opacityScale = opacityScale
         self.hoverInfo = hoverInfo
+        self.showLegend = showLegend
         self.xCalendar = xCalendar
         self.yCalendar = yCalendar
         self.zCalendar = zCalendar
@@ -708,6 +737,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
         try container.encodeIfPresent(ids, forKey: .ids)
@@ -747,7 +777,9 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
         try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
         try container.encodeIfPresent(lighting, forKey: .lighting)
         try container.encodeIfPresent(opacity, forKey: .opacity)
+        try container.encodeIfPresent(opacityScale, forKey: .opacityScale)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
         try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
         try container.encodeIfPresent(zCalendar, forKey: .zCalendar)

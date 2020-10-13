@@ -16,8 +16,12 @@ public struct Config: Encodable {
     /// If *false*, no interactivity, for export or image generation.
     public var staticPlot: Bool? = nil
 
-    /// Sets base URL for the 'Edit in Chart Studio' (aka sendDataToCloud) mode bar button and the
-    /// showLink/sendData on-graph link
+    /// When set it determines base URL for the 'Edit in Chart Studio'
+    /// `showEditInChartStudio`/`showSendToCloud` mode bar button and the showLink/sendData on-graph
+    /// link.
+    /// 
+    /// To enable sending your data to Chart Studio Cloud, you need to set both `plotlyServerURL` to
+    /// 'https://chart-studio.plotly.com' and also set `showSendToCloud` to true.
     public var plotlyServerURL: String? = nil
 
     /// Determines whether the graph is editable or not.
@@ -212,8 +216,8 @@ public struct Config: Encodable {
     /// Determines whether or not tips are shown while interacting with the resulting graphs.
     public var showTips: Bool? = nil
 
-    /// Determines whether a link to plot.ly is displayed at the bottom right corner of resulting
-    /// graphs.
+    /// Determines whether a link to Chart Studio Cloud is displayed at the bottom right corner of
+    /// resulting graphs.
     /// 
     /// Use with `sendData` and `linkText`.
     public var showLink: Bool? = nil
@@ -221,7 +225,7 @@ public struct Config: Encodable {
     /// Sets the text appearing in the `showLink` link.
     public var linkText: String? = nil
 
-    /// If *showLink* is true, does it contain data just link to a plot.ly file?
+    /// If *showLink* is true, does it contain data just link to a Chart Studio Cloud file?
     public var sendData: Bool? = nil
 
     /// Adds a source-displaying function to show sources on the resulting graphs.
@@ -254,12 +258,13 @@ public struct Config: Encodable {
     public var displayModeBar: DisplayModeBar? = nil
 
     /// Should we include a ModeBar button, labeled "Edit in Chart Studio", that sends this chart to
-    /// plot.ly or another plotly server as specified by `plotlyServerURL` for editing, export, etc?
-    /// Prior to version 1.43.0 this button was included by default, now it is opt-in using this flag.
+    /// chart-studio.plotly.com (formerly plot.ly) or another plotly server as specified by
+    /// `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0 this button was included by
+    /// default, now it is opt-in using this flag.
     /// 
-    /// Note that this button can (depending on `plotlyServerURL`) send your data to an external server.
-    /// However that server does not persist your data until you arrive at the Chart Studio and
-    /// explicitly click "Save".
+    /// Note that this button can (depending on `plotlyServerURL` being set) send your data to an
+    /// external server. However that server does not persist your data until you arrive at the Chart
+    /// Studio and explicitly click "Save".
     public var showSendToCloud: Bool? = nil
 
     /// Same as `showSendToCloud`, but use a pencil icon instead of a floppy-disk.
@@ -318,7 +323,12 @@ public struct Config: Encodable {
     /// Turn all console logging on or off (errors will be thrown) This should ONLY be set via
     /// Plotly.setPlotConfig Available levels: 0: no logs 1: warnings and errors, but not informational
     /// messages 2: verbose logs
-    public var logging: Bool? = nil
+    public var logging: Int? = nil
+
+    /// Set on-graph logging (notifier) level This should ONLY be set via Plotly.setPlotConfig Available
+    /// levels: 0: no on-graph logs 1: warnings and errors, but not informational messages 2: verbose
+    /// logs
+    public var notifyOnLogging: Int? = nil
 
     /// Sets the length of the undo/redo queue.
     public var queueLength: Int? = nil
@@ -377,6 +387,7 @@ public struct Config: Encodable {
         case topoJsonURL = "topojsonURL"
         case mapboxAccessToken
         case logging
+        case notifyOnLogging
         case queueLength
         case globalTransforms
         case locale
@@ -387,8 +398,9 @@ public struct Config: Encodable {
     /// 
     /// - Parameters:
     ///   - staticPlot: Determines whether the graphs are interactive or not.
-    ///   - plotlyServerURL: Sets base URL for the 'Edit in Chart Studio' (aka sendDataToCloud) mode bar
-    ///   button and the showLink/sendData on-graph link
+    ///   - plotlyServerURL: When set it determines base URL for the 'Edit in Chart Studio'
+    ///   `showEditInChartStudio`/`showSendToCloud` mode bar button and the showLink/sendData on-graph
+    ///   link.
     ///   - editable: Determines whether the graph is editable or not.
     ///   - edits:
     ///   - autosizable: Determines whether the graphs are plotted with respect to layout.autosize:true
@@ -406,16 +418,16 @@ public struct Config: Encodable {
     ///   points, note that `showAxisDragHandles` must be enabled to have an effect.
     ///   - showTips: Determines whether or not tips are shown while interacting with the resulting
     ///   graphs.
-    ///   - showLink: Determines whether a link to plot.ly is displayed at the bottom right corner of
-    ///   resulting graphs.
+    ///   - showLink: Determines whether a link to Chart Studio Cloud is displayed at the bottom right
+    ///   corner of resulting graphs.
     ///   - linkText: Sets the text appearing in the `showLink` link.
-    ///   - sendData: If *showLink* is true, does it contain data just link to a plot.ly file?
+    ///   - sendData: If *showLink* is true, does it contain data just link to a Chart Studio Cloud file?
     ///   - showSources: Adds a source-displaying function to show sources on the resulting graphs.
     ///   - displayModeBar: Determines the mode bar display mode.
     ///   - showSendToCloud: Should we include a ModeBar button, labeled "Edit in Chart Studio", that
-    ///   sends this chart to plot.ly or another plotly server as specified by `plotlyServerURL` for
-    ///   editing, export, etc? Prior to version 1.43.0 this button was included by default, now it is
-    ///   opt-in using this flag.
+    ///   sends this chart to chart-studio.plotly.com (formerly plot.ly) or another plotly server as
+    ///   specified by `plotlyServerURL` for editing, export, etc? Prior to version 1.43.0 this button was
+    ///   included by default, now it is opt-in using this flag.
     ///   - showEditInChartStudio: Same as `showSendToCloud`, but use a pencil icon instead of a
     ///   floppy-disk.
     ///   - modeBarButtonsToRemove: Remove mode bar buttons by name.
@@ -438,6 +450,9 @@ public struct Config: Encodable {
     ///   - logging: Turn all console logging on or off (errors will be thrown) This should ONLY be set
     ///   via Plotly.setPlotConfig Available levels: 0: no logs 1: warnings and errors, but not
     ///   informational messages 2: verbose logs
+    ///   - notifyOnLogging: Set on-graph logging (notifier) level This should ONLY be set via
+    ///   Plotly.setPlotConfig Available levels: 0: no on-graph logs 1: warnings and errors, but not
+    ///   informational messages 2: verbose logs
     ///   - queueLength: Sets the length of the undo/redo queue.
     ///   - globalTransforms: Set global transform to be applied to all traces with no specification
     ///   needed
@@ -454,8 +469,9 @@ public struct Config: Encodable {
             Anything? = nil, modeBarButtonsToAdd: Anything? = nil, modeBarButtons: Anything? = nil,
             toImageButtonOptions: Anything? = nil, displayLogo: Bool? = nil, watermark: Bool? = nil,
             plotGlPixelRatio: Double? = nil, setBackground: Anything? = nil, topoJsonURL: String? = nil,
-            mapboxAccessToken: String? = nil, logging: Bool? = nil, queueLength: Int? = nil,
-            globalTransforms: Anything? = nil, locale: String? = nil, locales: Anything? = nil) {
+            mapboxAccessToken: String? = nil, logging: Int? = nil, notifyOnLogging: Int? = nil, queueLength:
+            Int? = nil, globalTransforms: Anything? = nil, locale: String? = nil, locales: Anything? = nil)
+            {
         self.staticPlot = staticPlot
         self.plotlyServerURL = plotlyServerURL
         self.editable = editable
@@ -488,6 +504,7 @@ public struct Config: Encodable {
         self.topoJsonURL = topoJsonURL
         self.mapboxAccessToken = mapboxAccessToken
         self.logging = logging
+        self.notifyOnLogging = notifyOnLogging
         self.queueLength = queueLength
         self.globalTransforms = globalTransforms
         self.locale = locale

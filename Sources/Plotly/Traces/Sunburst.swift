@@ -335,10 +335,10 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
-    /// `arrayOk: true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`,
-    /// `percentEntry`, `percentParent`, `label` and `value`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are
+    /// available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry`,
+    /// `percentParent`, `label` and `value`.
     public var textTemplate: Data<String>? = nil
 
     /// Sets hover text elements associated with each sector.
@@ -401,23 +401,49 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. variables `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry`
-    /// and `percentParent`. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. variables
+    /// `currentPath`, `root`, `entry`, `percentRoot`, `percentEntry` and `percentParent`. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
     /// Sets the font used for `textinfo`.
     public var textFont: Shared.VariableFont? = nil
 
+    /// Controls the orientation of the text inside chart sectors.
+    /// 
+    /// When set to *auto*, text may be oriented in any direction in order to be as big as possible in
+    /// the middle of a sector. The *horizontal* option orients text to be parallel with the bottom of
+    /// the chart, and may make text smaller in order to achieve that goal. The *radial* option orients
+    /// text along the radius of the sector. The *tangential* option orients text perpendicular to the
+    /// radius of the sector.
+    public enum InsideTextOrientation: String, Encodable {
+        case horizontal
+        case radial
+        case tangential
+        case auto
+    }
+    /// Controls the orientation of the text inside chart sectors.
+    /// 
+    /// When set to *auto*, text may be oriented in any direction in order to be as big as possible in
+    /// the middle of a sector. The *horizontal* option orients text to be parallel with the bottom of
+    /// the chart, and may make text smaller in order to achieve that goal. The *radial* option orients
+    /// text along the radius of the sector. The *tangential* option orients text perpendicular to the
+    /// radius of the sector.
+    public var insideTextOrientation: InsideTextOrientation? = nil
+
     /// Sets the font used for `textinfo` lying inside the sector.
     public var insideTextFont: Shared.VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying outside the sector.
+    /// 
+    /// This option refers to the root of the hierarchy presented at the center of a sunburst graph.
+    /// Please note that if a hierarchy has multiple root nodes, this option won't have any effect and
+    /// `insidetextfont` would be used.
     public var outsideTextFont: Shared.OutsideTextFont? = nil
 
     public var domain: Shared.Domain? = nil
@@ -452,6 +478,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         case hoverInfo = "hoverinfo"
         case hoverTemplate = "hovertemplate"
         case textFont = "textfont"
+        case insideTextOrientation = "insidetextorientation"
         case insideTextFont = "insidetextfont"
         case outsideTextFont = "outsidetextfont"
         case domain
@@ -509,6 +536,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
     ///   - textFont: Sets the font used for `textinfo`.
+    ///   - insideTextOrientation: Controls the orientation of the text inside chart sectors.
     ///   - insideTextFont: Sets the font used for `textinfo` lying inside the sector.
     ///   - outsideTextFont: Sets the font used for `textinfo` lying outside the sector.
     ///   - domain:
@@ -520,8 +548,8 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
             nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: Data<String>? = nil,
             textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
             hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, textFont: Shared.VariableFont?
-            = nil, insideTextFont: Shared.VariableFont? = nil, outsideTextFont: Shared.OutsideTextFont? =
-            nil, domain: Shared.Domain? = nil) {
+            = nil, insideTextOrientation: InsideTextOrientation? = nil, insideTextFont: Shared.VariableFont?
+            = nil, outsideTextFont: Shared.OutsideTextFont? = nil, domain: Shared.Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -549,6 +577,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         self.hoverInfo = hoverInfo
         self.hoverTemplate = hoverTemplate
         self.textFont = textFont
+        self.insideTextOrientation = insideTextOrientation
         self.insideTextFont = insideTextFont
         self.outsideTextFont = outsideTextFont
         self.domain = domain
@@ -588,6 +617,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
         try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(insideTextOrientation, forKey: .insideTextOrientation)
         try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
         try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
         try container.encodeIfPresent(domain, forKey: .domain)

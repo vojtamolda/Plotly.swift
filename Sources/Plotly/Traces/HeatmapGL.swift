@@ -129,6 +129,23 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
     /// behavior when `y` is not provided)
     public var yType: Shared.AxisType? = nil
 
+    /// Picks a smoothing algorithm use to smooth `z` data.
+    public enum ZSmooth: Encodable {
+        case fast
+        case off
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .fast:
+                try container.encode("fast")
+            case .off:
+                try container.encode(false)
+            }
+        }
+    }
+    /// Picks a smoothing algorithm use to smooth `z` data.
+    public var zSmooth: ZSmooth? = nil
+
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
     /// by the user.
@@ -224,6 +241,7 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
         case transpose
         case xType = "xtype"
         case yType = "ytype"
+        case zSmooth = "zsmooth"
         case zAuto = "zauto"
         case zMin = "zmin"
         case zMax = "zmax"
@@ -292,6 +310,7 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
     ///   - yType: If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y`
     ///   is provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default
     ///   behavior when `y` is not provided)
+    ///   - zSmooth: Picks a smoothing algorithm use to smooth `z` data.
     ///   - zAuto: Determines whether or not the color domain is computed with respect to the input data
     ///   (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax`
     ///   are set by the user.
@@ -314,11 +333,11 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
             = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, z: ZData? = nil, x: XYData? =
             nil, x0: Anything? = nil, dx: Double? = nil, y: XYData? = nil, y0: Anything? = nil, dy: Double?
             = nil, text: Data<String>? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil, yType:
-            Shared.AxisType? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle:
-            Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
-            nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
-            Layout.ColorAxis(uid: 1), xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis =
-            Layout.YAxis(uid: 1)) {
+            Shared.AxisType? = nil, zSmooth: ZSmooth? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax:
+            Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? =
+            nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil,
+            colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), xAxis: Layout.XAxis = Layout.XAxis(uid:
+            1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -342,6 +361,7 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
         self.transpose = transpose
         self.xType = xType
         self.yType = yType
+        self.zSmooth = zSmooth
         self.zAuto = zAuto
         self.zMin = zMin
         self.zMax = zMax
@@ -390,6 +410,7 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
         try container.encodeIfPresent(transpose, forKey: .transpose)
         try container.encodeIfPresent(xType, forKey: .xType)
         try container.encodeIfPresent(yType, forKey: .yType)
+        try container.encodeIfPresent(zSmooth, forKey: .zSmooth)
         try container.encodeIfPresent(zAuto, forKey: .zAuto)
         try container.encodeIfPresent(zMin, forKey: .zMin)
         try container.encodeIfPresent(zMax, forKey: .zMax)

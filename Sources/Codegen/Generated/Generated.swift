@@ -257,6 +257,9 @@ enum Generated {
                 let useless = ["yCopyStyle", "zCopyStyle"]
                 members.removeAllInstances(named: useless)
 
+            case "Title":
+                if members.containsInstance(named: "side") { base = "LegendTitle" }
+
             default:
                 break
             }
@@ -401,12 +404,12 @@ enum Generated {
             self.schema = enumerated
             Self.existing.append(self)
 
-            cases = schema.values.map { sanitized($0) }
+            cases = schema.values.compactMap { sanitized($0) }
             workarounds()
         }
 
         /// Transforms Plotly schema primitive to a valid Swift case.
-        private func sanitized(_ primitive: Schema.Primitive) -> Case {
+        private func sanitized(_ primitive: Schema.Primitive) -> Case? {
             switch primitive {
             case .bool(let bool):
                 rawType = .none
@@ -418,6 +421,7 @@ enum Generated {
                 let string = "\(int)"
                 return Case(label: string, rawValue: string)
             case .string(let string):
+                if Int(string) != nil { return nil }
                 let sanitized = Schema.name!.enumerated[string]!
                 let rawValue = (sanitized == string) ? nil : string.escaped()
                 return Case(label: sanitized, rawValue: rawValue)
@@ -432,6 +436,9 @@ enum Generated {
             case "Align":
                 if cases.containsCase(labeled: "auto") { name = "AutoAlign" }
                 if cases.containsCase(labeled: "center") { name = "HorizontalAlign" }
+            case "Layer":
+                if cases.containsCase(labeled: "above") { name = "ShapeLayer" }
+                if cases.containsCase(labeled: "aboveTraces") { name = "AxisLayer" }
             case "XAnchor":
                 if cases.containsCase(labeled: "auto") { name = "XAutoAnchor" }
             case "YAnchor":
@@ -440,6 +447,10 @@ enum Generated {
                 if cases.containsCase(labeled: "auto") { name = "AdjacentPosition" }
             case "CategoryOrder":
                 if cases.count == 4 { name = "CarpetCategoryOrder"}
+            case "Side":
+                if parent?.base == "Title" && !cases.containsCase(labeled: "right") {
+                    cases.append(Case(label: "right"))
+                }
             case "Resolution":
                 rawType = .int
                 cases = schema.values.map { primitive -> Case in
@@ -459,7 +470,7 @@ enum Generated {
                 let onlyStrings = schema.values.filter {
                     if case Schema.Primitive.string = $0 { return true } else { return false }
                 }
-                cases = onlyStrings.map { sanitized($0) }
+                cases = onlyStrings.compactMap { sanitized($0) }
             case "Fill":
                 if cases.count == 3 { name = "AreaFill"}
             case "XReference":

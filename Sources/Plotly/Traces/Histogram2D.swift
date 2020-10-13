@@ -26,6 +26,11 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
     /// legend itself is visible).
     public var visible: Shared.Visible? = nil
 
+    /// Sets the legend group for this trace.
+    /// 
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String? = nil
+
     /// Sets the opacity of the trace.
     public var opacity: Double? = nil
 
@@ -216,14 +221,17 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. variable `z` Anything contained in tag `<extra>` is displayed in the
-    /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
-    /// completely, use an empty tag `<extra></extra>`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. variable `z`
+    /// Anything contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
+
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -304,6 +312,7 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
     enum CodingKeys: String, CodingKey {
         case type
         case visible
+        case legendGroup = "legendgroup"
         case opacity
         case name
         case uid
@@ -335,6 +344,7 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
         case zSmooth = "zsmooth"
         case zHoverFormat = "zhoverformat"
         case hoverTemplate = "hovertemplate"
+        case showLegend = "showlegend"
         case zAuto = "zauto"
         case zMin = "zmin"
         case zMax = "zmax"
@@ -376,6 +386,7 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
     /// 
     /// - Parameters:
     ///   - visible: Determines whether or not this trace is visible.
+    ///   - legendGroup: Sets the legend group for this trace.
     ///   - opacity: Sets the opacity of the trace.
     ///   - name: Sets the trace name.
     ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
@@ -415,6 +426,8 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
     ///   - zHoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
     ///   very similar to those in Python.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
+    ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
+    ///   legend.
     ///   - zAuto: Determines whether or not the color domain is computed with respect to the input data
     ///   (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax`
     ///   are set by the user.
@@ -433,21 +446,23 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
-            = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, y: YData? =
-            nil, z: ZData? = nil, marker: Marker? = nil, normalization: Shared.Normalization? = nil,
-            binningFunction: Shared.BinningFunction? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil,
-            yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil,
-            binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, xGap: Double? =
-            nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat: String? = nil, hoverTemplate:
-            Data<String>? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle:
-            Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
-            nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
-            Layout.ColorAxis(uid: 1), xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil,
-            xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
+    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, opacity: Double? = nil,
+            name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil,
+            meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel?
+            = nil, stream: Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil,
+            x: XData? = nil, y: YData? = nil, z: ZData? = nil, marker: Marker? = nil, normalization:
+            Shared.Normalization? = nil, binningFunction: Shared.BinningFunction? = nil, xNumBins: Int? =
+            nil, xBins: Shared.Bins? = nil, yNumBins: Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool?
+            = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup:
+            String? = nil, xGap: Double? = nil, yGap: Double? = nil, zSmooth: ZSmooth? = nil, zHoverFormat:
+            String? = nil, hoverTemplate: Data<String>? = nil, showLegend: Bool? = nil, zAuto: Bool? = nil,
+            zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
+            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), xCalendar:
+            Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis =
+            Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
+        self.legendGroup = legendGroup
         self.opacity = opacity
         self.name = name
         self.uid = uid
@@ -479,6 +494,7 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
         self.zSmooth = zSmooth
         self.zHoverFormat = zHoverFormat
         self.hoverTemplate = hoverTemplate
+        self.showLegend = showLegend
         self.zAuto = zAuto
         self.zMin = zMin
         self.zMax = zMax
@@ -500,6 +516,7 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
         try container.encodeIfPresent(opacity, forKey: .opacity)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
@@ -538,6 +555,7 @@ public struct Histogram2D<XData, YData, ZData>: Trace, XYSubplot where XData: Pl
         try container.encodeIfPresent(zSmooth, forKey: .zSmooth)
         try container.encodeIfPresent(zHoverFormat, forKey: .zHoverFormat)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(zAuto, forKey: .zAuto)
         try container.encodeIfPresent(zMin, forKey: .zMin)
         try container.encodeIfPresent(zMax, forKey: .zMax)

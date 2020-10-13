@@ -23,6 +23,11 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// legend itself is visible).
     public var visible: Shared.Visible? = nil
 
+    /// Sets the legend group for this trace.
+    /// 
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String? = nil
+
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
@@ -133,12 +138,12 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
@@ -173,8 +178,18 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// hull.
     public var alphaHull: Double? = nil
 
-    /// Sets the vertex intensity values, used for plotting fields on meshes
+    /// Sets the intensity values for vertices or cells as defined by `intensitymode`.
+    /// 
+    /// It can be used for plotting fields on meshes.
     public var intensity: IntensityData? = nil
+
+    /// Determines the source of `intensity` values.
+    public enum IntensityMode: String, Encodable {
+        case vertex
+        case cell
+    }
+    /// Determines the source of `intensity` values.
+    public var intensityMode: IntensityMode? = nil
 
     /// Sets the color of the whole mesh
     public var color: Color? = nil
@@ -269,6 +284,9 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// click and hover events are still fired.
     public var hoverInfo: Shared.HoverInfo? = nil
 
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool? = nil
+
     /// Sets the calendar system to use with `x` date data.
     public var xCalendar: Shared.Calendar? = nil
 
@@ -288,6 +306,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     enum CodingKeys: String, CodingKey {
         case type
         case visible
+        case legendGroup = "legendgroup"
         case name
         case uid
         case ids
@@ -308,6 +327,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         case delaunayAxis = "delaunayaxis"
         case alphaHull = "alphahull"
         case intensity
+        case intensityMode = "intensitymode"
         case color
         case vertexColor = "vertexcolor"
         case faceColor = "facecolor"
@@ -327,6 +347,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         case lightPosition = "lightposition"
         case lighting
         case hoverInfo = "hoverinfo"
+        case showLegend = "showlegend"
         case xCalendar = "xcalendar"
         case yCalendar = "ycalendar"
         case zCalendar = "zcalendar"
@@ -342,7 +363,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     ///   - z: Sets the Z coordinates of the vertices.
     ///   - text: Sets the text elements associated with the vertices.
     ///   - hoverText: Same as `text`.
-    ///   - intensity: Sets the vertex intensity values, used for plotting fields on meshes
+    ///   - intensity: Sets the intensity values for vertices or cells as defined by `intensitymode`.
     ///   - vertexColor: Sets the color of each vertex Overrides *color*.
     ///   - faceColor: Sets the color of each face Overrides *color* and *vertexcolor*.
     ///   - colorScale: Sets the colorscale.
@@ -368,6 +389,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     /// 
     /// - Parameters:
     ///   - visible: Determines whether or not this trace is visible.
+    ///   - legendGroup: Sets the legend group for this trace.
     ///   - name: Sets the trace name.
     ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
     ///   animations and transitions.
@@ -394,7 +416,8 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     ///   - alphaHull: Determines how the mesh surface triangles are derived from the set of vertices
     ///   (points) represented by the `x`, `y` and `z` arrays, if the `i`, `j`, `k` arrays are not
     ///   supplied.
-    ///   - intensity: Sets the vertex intensity values, used for plotting fields on meshes
+    ///   - intensity: Sets the intensity values for vertices or cells as defined by `intensitymode`.
+    ///   - intensityMode: Determines the source of `intensity` values.
     ///   - color: Sets the color of the whole mesh
     ///   - vertexColor: Sets the color of each vertex Overrides *color*.
     ///   - faceColor: Sets the color of each face Overrides *color* and *vertexcolor*.
@@ -419,26 +442,29 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
     ///   - lightPosition:
     ///   - lighting:
     ///   - hoverInfo: Determines which trace information appear on hover.
+    ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
+    ///   legend.
     ///   - xCalendar: Sets the calendar system to use with `x` date data.
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - zCalendar: Sets the calendar system to use with `z` date data.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
-            Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XData? =
-            nil, y: YData? = nil, z: ZData? = nil, i: [Int]? = nil, j: [Int]? = nil, k: [Int]? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil,
-            delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity: IntensityData? = nil,
-            color: Color? = nil, vertexColor: VertexcolorData? = nil, faceColor: FacecolorData? = nil,
-            cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil,
-            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
-            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis =
-            Layout.ColorAxis(uid: 1), opacity: Double? = nil, flatShading: Bool? = nil, contour:
-            Shared.ContourHover? = nil, lightPosition: Shared.LightPosition? = nil, lighting:
-            Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? = nil, xCalendar: Shared.Calendar? = nil,
-            yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: Layout.Scene =
-            Layout.Scene(uid: 1)) {
+    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
+            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
+            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? =
+            nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, i: [Int]? = nil, j: [Int]? = nil, k:
+            [Int]? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate:
+            Data<String>? = nil, delaunayAxis: DelaunayAxis? = nil, alphaHull: Double? = nil, intensity:
+            IntensityData? = nil, intensityMode: IntensityMode? = nil, color: Color? = nil, vertexColor:
+            VertexcolorData? = nil, faceColor: FacecolorData? = nil, cAuto: Bool? = nil, cMin: Double? =
+            nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+            Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? =
+            nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), opacity: Double? = nil,
+            flatShading: Bool? = nil, contour: Shared.ContourHover? = nil, lightPosition:
+            Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: Shared.HoverInfo? =
+            nil, showLegend: Bool? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? =
+            nil, zCalendar: Shared.Calendar? = nil, scene: Layout.Scene = Layout.Scene(uid: 1)) {
         self.visible = visible
+        self.legendGroup = legendGroup
         self.name = name
         self.uid = uid
         self.ids = ids
@@ -459,6 +485,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         self.delaunayAxis = delaunayAxis
         self.alphaHull = alphaHull
         self.intensity = intensity
+        self.intensityMode = intensityMode
         self.color = color
         self.vertexColor = vertexColor
         self.faceColor = faceColor
@@ -478,6 +505,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         self.lightPosition = lightPosition
         self.lighting = lighting
         self.hoverInfo = hoverInfo
+        self.showLegend = showLegend
         self.xCalendar = xCalendar
         self.yCalendar = yCalendar
         self.zCalendar = zCalendar
@@ -489,6 +517,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
         try container.encodeIfPresent(ids, forKey: .ids)
@@ -517,6 +546,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         if let intensity = self.intensity {
             try intensity.encode(toPlotly: container.superEncoder(forKey: .intensity))
         }
+        try container.encodeIfPresent(intensityMode, forKey: .intensityMode)
         try container.encodeIfPresent(color, forKey: .color)
         if let vertexColor = self.vertexColor {
             try vertexColor.encode(toPlotly: container.superEncoder(forKey: .vertexColor))
@@ -540,6 +570,7 @@ public struct Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, Faceco
         try container.encodeIfPresent(lightPosition, forKey: .lightPosition)
         try container.encodeIfPresent(lighting, forKey: .lighting)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
         try container.encodeIfPresent(yCalendar, forKey: .yCalendar)
         try container.encodeIfPresent(zCalendar, forKey: .zCalendar)

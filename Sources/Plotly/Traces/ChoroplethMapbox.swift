@@ -22,6 +22,11 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
     /// legend itself is visible).
     public var visible: Shared.Visible? = nil
 
+    /// Sets the legend group for this trace.
+    /// 
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String? = nil
+
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
@@ -87,9 +92,15 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
 
     /// Sets the GeoJSON data associated with this trace.
     /// 
-    /// Can be set as a valid GeoJSON object or as URL string Note that we only accept GeoJSON of type
-    /// *FeatureCollection* and *Feature* with geometries of type *Polygon* and *MultiPolygon*.
+    /// It can be set as a valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of
+    /// type *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
     public var geoJson: Anything? = nil
+
+    /// Sets the key in GeoJSON features which is used as id to match the items included in the
+    /// `locations` array.
+    /// 
+    /// Support nested property, for example *properties.name*.
+    public var featureIDKey: String? = nil
 
     /// Determines if the choropleth polygons will be inserted before the layer with the specified ID.
     /// 
@@ -215,14 +226,17 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. variable `properties` Anything contained in tag `<extra>` is displayed in
-    /// the secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
-    /// completely, use an empty tag `<extra></extra>`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. variable
+    /// `properties` Anything contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
+
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -291,6 +305,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
     enum CodingKeys: String, CodingKey {
         case type
         case visible
+        case legendGroup = "legendgroup"
         case name
         case uid
         case ids
@@ -304,6 +319,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
         case locations
         case z
         case geoJson = "geojson"
+        case featureIDKey = "featureidkey"
         case below
         case text
         case hoverText = "hovertext"
@@ -312,6 +328,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
         case unselected
         case hoverInfo = "hoverinfo"
         case hoverTemplate = "hovertemplate"
+        case showLegend = "showlegend"
         case zAuto = "zauto"
         case zMin = "zmin"
         case zMax = "zmax"
@@ -353,6 +370,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
     /// 
     /// - Parameters:
     ///   - visible: Determines whether or not this trace is visible.
+    ///   - legendGroup: Sets the legend group for this trace.
     ///   - name: Sets the trace name.
     ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
     ///   animations and transitions.
@@ -370,6 +388,8 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
     ///   - locations: Sets which features found in *geojson* to plot using their feature `id` field.
     ///   - z: Sets the color values.
     ///   - geoJson: Sets the GeoJSON data associated with this trace.
+    ///   - featureIDKey: Sets the key in GeoJSON features which is used as id to match the items included
+    ///   in the `locations` array.
     ///   - below: Determines if the choropleth polygons will be inserted before the layer with the
     ///   specified ID.
     ///   - text: Sets the text elements associated with each location.
@@ -379,6 +399,8 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
     ///   - unselected:
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
+    ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
+    ///   legend.
     ///   - zAuto: Determines whether or not the color domain is computed with respect to the input data
     ///   (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax`
     ///   are set by the user.
@@ -394,18 +416,20 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
     ///   - colorBar:
     ///   - colorAxis: Sets a reference to a shared color axis.
     ///   - subplot: Sets a reference between this trace's data coordinates and a mapbox subplot.
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints:
-            Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Transform] = [], uiRevision: Anything? = nil, locations: LocationsData? = nil, z: ZData? = nil,
-            geoJson: Anything? = nil, below: String? = nil, text: Data<String>? = nil, hoverText:
-            Data<String>? = nil, marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? =
-            nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin:
-            Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
-            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), subplot:
-            Layout.Mapbox = Layout.Mapbox(uid: 1)) {
+    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
+            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
+            nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream:
+            Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, locations:
+            LocationsData? = nil, z: ZData? = nil, geoJson: Anything? = nil, featureIDKey: String? = nil,
+            below: String? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, marker: Marker?
+            = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: Data<String>? = nil, showLegend: Bool? = nil, zAuto: Bool? = nil, zMin: Double? =
+            nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+            Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? =
+            nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), subplot: Layout.Mapbox =
+            Layout.Mapbox(uid: 1)) {
         self.visible = visible
+        self.legendGroup = legendGroup
         self.name = name
         self.uid = uid
         self.ids = ids
@@ -419,6 +443,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
         self.locations = locations
         self.z = z
         self.geoJson = geoJson
+        self.featureIDKey = featureIDKey
         self.below = below
         self.text = text
         self.hoverText = hoverText
@@ -427,6 +452,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
         self.unselected = unselected
         self.hoverInfo = hoverInfo
         self.hoverTemplate = hoverTemplate
+        self.showLegend = showLegend
         self.zAuto = zAuto
         self.zMin = zMin
         self.zMax = zMax
@@ -445,6 +471,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
         try container.encodeIfPresent(ids, forKey: .ids)
@@ -463,6 +490,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
             try z.encode(toPlotly: container.superEncoder(forKey: .z))
         }
         try container.encodeIfPresent(geoJson, forKey: .geoJson)
+        try container.encodeIfPresent(featureIDKey, forKey: .featureIDKey)
         try container.encodeIfPresent(below, forKey: .below)
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
@@ -471,6 +499,7 @@ public struct ChoroplethMapbox<LocationsData, ZData>: Trace, MapboxSubplot where
         try container.encodeIfPresent(unselected, forKey: .unselected)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(zAuto, forKey: .zAuto)
         try container.encodeIfPresent(zMin, forKey: .zMin)
         try container.encodeIfPresent(zMax, forKey: .zMax)

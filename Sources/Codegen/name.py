@@ -69,6 +69,7 @@ class Object(CamelCased):
         "hoveron": "HoverOn",
         "insidetextanchor": "InsideTextAnchor",
         "insidetextfont": "InsideTextFont",
+        "insidetextorientation": "InsideTextOrientation",
         "lataxis": "LatitudeAxis",
         "lenmode": "LengthMode",
         "lonaxis": "LongitudeAxis",
@@ -92,13 +93,13 @@ class Object(CamelCased):
         "2d": "2D", "3d": "3D",
     }
     capitalize = {
-        "anchor", "area", "auto", "array", "axis", "bar", "bins", "calendar", "carpet", "cloud",
-        "click", "contour", "direction", "double", "entry", "exponent", "fade", "font", "format",
-        "frame", "gaps", "geo", "info", "label", "line", "list", "mapbox", "max", "mean", "menu",
-        "menus", "min", "mode", "orientation", "order", "paths", "polar", "prefix", "points",
-        "position", "ratio", "range", "scale", "selector", "shape", "side", "size", "sizing",
-        "slider", "smooth",  "snap", "stop", "suffix", "ternary", "text", "tick", "toward",
-        "tube", "type", "unit", "value"
+        "anchor", "area", "auto", "array", "axis", "bar", "bins", "bounds", "break", "calendar",
+        "carpet", "cloud", "click", "contour", "direction", "double", "entry", "exponent", "fade",
+        "font", "format", "frame", "gaps", "geo", "info", "label", "line", "list", "mapbox", "max",
+        "mean", "menu", "menus", "method", "min", "mode", "orientation", "order", "paths", "polar",
+        "prefix", "points", "position", "ratio", "range", "rule", "scale", "selector", "shape",
+        "side", "size", "sizing", "slider", "smooth", "snap", "stop", "suffix", "ternary", "text",
+        "tick", "toward", "tube", "type", "unit", "value"
     }
 
 
@@ -124,6 +125,7 @@ class Attribute(CamelCased):
         "error_x": "xError",
         "error_y": "yError",
         "error_z": "zError",
+        "featureidkey": "featureIDKey",
         "hovertext": "hoverText",
         "hovertextsrc": "hoverTextSource",
         "insidetextanchor": "insideTextAnchor",
@@ -144,6 +146,8 @@ class Attribute(CamelCased):
         "pointpos": "pointPosition",
         "ref": "reference",
         "showsubunits": "showSubunits",
+        "sd": "standardDeviation",
+        "sdsrc": "standardDeviationSource",
         "sizeref": "sizeReference",
         "sizex": "xSize",
         "sizey": "ySize",
@@ -168,14 +172,14 @@ class Attribute(CamelCased):
         "auto", "axes", "axis", "background", "bar", "bins", "bound", "bounds", "calendar",
         "capture", "carpet", "category", "cheater", "cloud", "coast", "color", "count",
         "countries","current", "dash", "data", "depth", "direction", "display", "distance",
-        "divider", "dividers", "double", "edit", "epsilon", "events", "expand", "fade",
+        "divider", "dividers", "double", "edit", "epsilon", "events", "expand", "fade", "fence",
         "font", "format", "funnel", "gap", "geo", "group", "half", "head", "hover", "hull",
         "icon", "index", "info", "item", "json", "label", "lakes", "land", "layer", "legend",
         "length", "line", "list", "logo", "lower", "mapbox", "marker", "max", "mean", "mode",
-        "name", "norm", "normals", "ocean", "offset", "order", "orientation", "padding", "path",
-        "paths", "pie", "point", "points", "polar", "position", "prefix", "range",
+        "name", "norm", "normals", "ocean", "offset", "order", "orientation", "overlap", "padding",
+        "path", "paths", "pie", "point", "points", "polar", "position", "prefix", "range",
         "ratio", "rivers", "scales", "selection", "selector", "shading", "shape", "shift",
-        "show", "side", "size", "sizing", "slider", "slope", "smooth", "snap", "source",
+        "show", "side", "size", "sizing", "slider", "slope", "smooth", "snap", "span", "source",
         "spike", "spikes", "standoff", "stop", "suffix", "sunburst", "surface", "template",
         "theta", "thickness", "thousands", "tick", "token", "toward", "trace", "treemap", "tube",
         "type", "unit", "upper", "value", "vertex", "waterfall", "way", "width", "zoom"
@@ -198,6 +202,7 @@ class Enumerated(CamelCased):
         "-": "auto",
         "afterall": "afterAll",
         "B": "B",
+        "drawrect": "drawRect",
         "E": "E",
         "ISO-3": "ISO3",
         "SI": "SI",
@@ -207,6 +212,7 @@ class Enumerated(CamelCased):
         "bowtie": "bowTie",
         "bowtie-open": "bowTieOpen",
         "false": "off",
+        "geojson-id": "geoJsonID",
         "hsl": "HSL",
         "hsla": "HSLA",
         "onoff": "onOff",
@@ -214,6 +220,8 @@ class Enumerated(CamelCased):
         "reset+autosize": "resetAndAutoSize",
         "rgb": "RGB",
         "rgba": "RGBA",
+        "rgba256": "RGBA256",
+        "sd": "standardDeviation",
         "tonext": "toNext",
         "tonextx": "toNextX",
         "tonexty": "toNextY",
@@ -243,10 +251,11 @@ class Enumerated(CamelCased):
         "-se": "SE", "-sw": "SW", "-ne": "NE", "-nw": "NW", "-ns": "NS"
     }
     capitalize = {
-        "america", "ascending", "bottom", "category", "center", "clockwise", "conic",
-        "conformal", "dash", "descending" "density",  "dot", "down",  "earth", "equidistant",
-        "first", "json",  "size", "left", "names", "only", "negative",  "mercator",  "others",
-        "outliers", "plot", "right", "ticks", "traces", "zero"
+        "america", "ascending", "bottom", "category", "center", "circle", "clockwise", "closed",
+        "conic", "conformal", "dash", "descending" "density",  "dot", "down",  "earth",
+        "equidistant", "first", "json",  "size", "left", "names", "only", "negative",  "mercator",
+        "odd", "open", "others", "outliers", "path", "plot", "right", "ticks", "traces",
+        "zero"
     }
 
     @classmethod
@@ -260,6 +269,8 @@ class Enumerated(CamelCased):
             return
 
         if type(mashed_together) == str:
+            if mashed_together.isdigit():
+                return
             if mashed_together in cls.override:
                 cls.container[mashed_together] = cls.override[mashed_together]
                 return

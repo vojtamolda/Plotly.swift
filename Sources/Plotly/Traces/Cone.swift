@@ -25,6 +25,11 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
     /// legend itself is visible).
     public var visible: Shared.Visible? = nil
 
+    /// Sets the legend group for this trace.
+    /// 
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String? = nil
+
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
@@ -142,14 +147,17 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. variable `norm` Anything contained in tag `<extra>` is displayed in the
-    /// secondary box, for example "<extra>{fullData.name}</extra>". To hide the secondary box
-    /// completely, use an empty tag `<extra></extra>`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. variable
+    /// `norm` Anything contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
+
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here
     /// u/v/w norm) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and `cmax`
@@ -277,6 +285,7 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
     enum CodingKeys: String, CodingKey {
         case type
         case visible
+        case legendGroup = "legendgroup"
         case name
         case uid
         case ids
@@ -297,6 +306,7 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
         case text
         case hoverText = "hovertext"
         case hoverTemplate = "hovertemplate"
+        case showLegend = "showlegend"
         case cAuto = "cauto"
         case cMin = "cmin"
         case cMax = "cmax"
@@ -348,6 +358,7 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
     /// 
     /// - Parameters:
     ///   - visible: Determines whether or not this trace is visible.
+    ///   - legendGroup: Sets the legend group for this trace.
     ///   - name: Sets the trace name.
     ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
     ///   animations and transitions.
@@ -374,6 +385,8 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
     ///   - text: Sets the text elements associated with the cones.
     ///   - hoverText: Same as `text`.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
+    ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
+    ///   legend.
     ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
     ///   (here u/v/w norm) or the bounds set in `cmin` and `cmax` Defaults to `false` when `cmin` and
     ///   `cmax` are set by the user.
@@ -393,18 +406,20 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
     ///   - lighting:
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
-            Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XYZData?
-            = nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? = nil, w: UVWData? =
-            nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, cAuto:
-            Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:
-            ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
-            nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1),
-            opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? =
-            nil, hoverInfo: HoverInfo? = nil, scene: Layout.Scene = Layout.Scene(uid: 1)) {
+    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
+            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
+            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? =
+            nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? =
+            nil, w: UVWData? = nil, sizeMode: SizeMode? = nil, sizeReference: Double? = nil, anchor: Anchor?
+            = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? =
+            nil, showLegend: Bool? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
+            cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
+            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
+            Layout.ColorAxis = Layout.ColorAxis(uid: 1), opacity: Double? = nil, lightPosition:
+            Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil,
+            scene: Layout.Scene = Layout.Scene(uid: 1)) {
         self.visible = visible
+        self.legendGroup = legendGroup
         self.name = name
         self.uid = uid
         self.ids = ids
@@ -425,6 +440,7 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
         self.text = text
         self.hoverText = hoverText
         self.hoverTemplate = hoverTemplate
+        self.showLegend = showLegend
         self.cAuto = cAuto
         self.cMin = cMin
         self.cMax = cMax
@@ -447,6 +463,7 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
         try container.encodeIfPresent(ids, forKey: .ids)
@@ -479,6 +496,7 @@ public struct Cone<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotabl
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(cAuto, forKey: .cAuto)
         try container.encodeIfPresent(cMin, forKey: .cMin)
         try container.encodeIfPresent(cMax, forKey: .cMax)

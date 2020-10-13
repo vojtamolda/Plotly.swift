@@ -174,6 +174,9 @@ public struct Sankey: Trace, DomainSubplot {
         /// node.
         public var coloring: Coloring? = nil
     
+        /// Assigns extra data to each node.
+        public var customData: [Double]? = nil
+    
         public var line: Shared.VariableLine? = nil
     
         /// Sets the padding (in px) between the `nodes`.
@@ -207,13 +210,13 @@ public struct Sankey: Trace, DomainSubplot {
         /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
         /// the formatting syntax. Dates are formatted using d3-time-format's syntax
         /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-        /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-        /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-        /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-        /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-        /// true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is
-        /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
-        /// secondary box completely, use an empty tag `<extra></extra>`.
+        /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+        /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+        /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+        /// that can be specified per-point (the ones that are `arrayOk: true`) are available. variables
+        /// `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for
+        /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+        /// `<extra></extra>`.
         public var hoverTemplate: Data<String>? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
@@ -223,6 +226,7 @@ public struct Sankey: Trace, DomainSubplot {
             case x
             case y
             case coloring = "color"
+            case customData = "customdata"
             case line
             case padding = "pad"
             case thickness
@@ -239,6 +243,7 @@ public struct Sankey: Trace, DomainSubplot {
         ///   - x: The normalized horizontal position of the node.
         ///   - y: The normalized vertical position of the node.
         ///   - coloring: Sets the `node` color.
+        ///   - customData: Assigns extra data to each node.
         ///   - line:
         ///   - padding: Sets the padding (in px) between the `nodes`.
         ///   - thickness: Sets the thickness (in px) of the `nodes`.
@@ -246,14 +251,15 @@ public struct Sankey: Trace, DomainSubplot {
         ///   - hoverLabel:
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         public init(label: [Double]? = nil, groups: InfoArray? = nil, x: [Double]? = nil, y: [Double]? =
-                nil, coloring: Coloring? = nil, line: Shared.VariableLine? = nil, padding: Double? = nil,
-                thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil,
-                hoverTemplate: Data<String>? = nil) {
+                nil, coloring: Coloring? = nil, customData: [Double]? = nil, line: Shared.VariableLine? = nil,
+                padding: Double? = nil, thickness: Double? = nil, hoverInfo: HoverInfo? = nil, hoverLabel:
+                Shared.HoverLabel? = nil, hoverTemplate: Data<String>? = nil) {
             self.label = label
             self.groups = groups
             self.x = x
             self.y = y
             self.coloring = coloring
+            self.customData = customData
             self.line = line
             self.padding = padding
             self.thickness = thickness
@@ -276,6 +282,9 @@ public struct Sankey: Trace, DomainSubplot {
         /// It can be a single value, or an array for specifying color for each `link`. If `link.color` is
         /// omitted, then by default, a translucent grey link will be used.
         public var coloring: Coloring? = nil
+    
+        /// Assigns extra data to each link.
+        public var customData: [Double]? = nil
     
         public var line: Shared.VariableLine? = nil
     
@@ -313,13 +322,13 @@ public struct Sankey: Trace, DomainSubplot {
         /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
         /// the formatting syntax. Dates are formatted using d3-time-format's syntax
         /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-        /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-        /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-        /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-        /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-        /// true`) are available. variables `value` and `label`. Anything contained in tag `<extra>` is
-        /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
-        /// secondary box completely, use an empty tag `<extra></extra>`.
+        /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+        /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+        /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+        /// that can be specified per-point (the ones that are `arrayOk: true`) are available. variables
+        /// `value` and `label`. Anything contained in tag `<extra>` is displayed in the secondary box, for
+        /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+        /// `<extra></extra>`.
         public var hoverTemplate: Data<String>? = nil
     
         public struct ConcentrationScales: Encodable {
@@ -396,6 +405,7 @@ public struct Sankey: Trace, DomainSubplot {
         enum CodingKeys: String, CodingKey {
             case label
             case coloring = "color"
+            case customData = "customdata"
             case line
             case source
             case target
@@ -411,6 +421,7 @@ public struct Sankey: Trace, DomainSubplot {
         /// - Parameters:
         ///   - label: The shown name of the link.
         ///   - coloring: Sets the `link` color.
+        ///   - customData: Assigns extra data to each link.
         ///   - line:
         ///   - source: An integer number `[0..nodes.length - 1]` that represents the source node.
         ///   - target: An integer number `[0..nodes.length - 1]` that represents the target node.
@@ -419,12 +430,13 @@ public struct Sankey: Trace, DomainSubplot {
         ///   - hoverLabel:
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         ///   - colorScales:
-        public init(label: [Double]? = nil, coloring: Coloring? = nil, line: Shared.VariableLine? = nil,
-                source: [Double]? = nil, target: [Double]? = nil, value: [Double]? = nil, hoverInfo: HoverInfo?
-                = nil, hoverLabel: Shared.HoverLabel? = nil, hoverTemplate: Data<String>? = nil, colorScales:
-                [ConcentrationScales]? = nil) {
+        public init(label: [Double]? = nil, coloring: Coloring? = nil, customData: [Double]? = nil,
+                line: Shared.VariableLine? = nil, source: [Double]? = nil, target: [Double]? = nil, value:
+                [Double]? = nil, hoverInfo: HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil,
+                hoverTemplate: Data<String>? = nil, colorScales: [ConcentrationScales]? = nil) {
             self.label = label
             self.coloring = coloring
+            self.customData = customData
             self.line = line
             self.source = source
             self.target = target

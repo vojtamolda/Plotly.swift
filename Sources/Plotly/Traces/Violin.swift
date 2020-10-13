@@ -104,12 +104,14 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     /// See overview for more info.
     public var x: XData? = nil
 
-    /// Sets the x coordinate of the box.
+    /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set
+    /// using q1/median/q3.
     /// 
     /// See overview for more info.
     public var x0: Anything? = nil
 
-    /// Sets the y coordinate of the box.
+    /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set
+    /// using q1/median/q3.
     /// 
     /// See overview for more info.
     public var y0: Anything? = nil
@@ -185,7 +187,10 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     /// If *outliers*, only the sample points lying outside the whiskers are shown If
     /// *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
     /// greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are
-    /// shown If *false*, only the violins are shown with no sample points
+    /// shown If *false*, only the violins are shown with no sample points.
+    /// 
+    /// Defaults to *suspectedoutliers* when `marker.outliercolor` or `marker.line.outliercolor` is set,
+    /// otherwise defaults to *outliers*.
     public enum Points: Encodable {
         case all
         case outliers
@@ -208,7 +213,10 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     /// If *outliers*, only the sample points lying outside the whiskers are shown If
     /// *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
     /// greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are
-    /// shown If *false*, only the violins are shown with no sample points
+    /// shown If *false*, only the violins are shown with no sample points.
+    /// 
+    /// Defaults to *suspectedoutliers* when `marker.outliercolor` or `marker.line.outliercolor` is set,
+    /// otherwise defaults to *outliers*.
     public var points: Points? = nil
 
     /// Sets the amount of jitter in the sample points drawn.
@@ -349,12 +357,12 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
@@ -654,8 +662,10 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     ///   `colorbar.title`.
     ///   - y: Sets the y sample data or coordinates.
     ///   - x: Sets the x sample data or coordinates.
-    ///   - x0: Sets the x coordinate of the box.
-    ///   - y0: Sets the y coordinate of the box.
+    ///   - x0: Sets the x coordinate for single-box traces or the starting coordinate for multi-box
+    ///   traces set using q1/median/q3.
+    ///   - y0: Sets the y coordinate for single-box traces or the starting coordinate for multi-box
+    ///   traces set using q1/median/q3.
     ///   - name: Sets the trace name.
     ///   - orientation: Sets the orientation of the violin(s).
     ///   - bandwidth: Sets the bandwidth used to compute the kernel density estimate.
@@ -673,7 +683,7 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     ///   - points: If *outliers*, only the sample points lying outside the whiskers are shown If
     ///   *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
     ///   greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are
-    ///   shown If *false*, only the violins are shown with no sample points
+    ///   shown If *false*, only the violins are shown with no sample points.
     ///   - jitter: Sets the amount of jitter in the sample points drawn.
     ///   - pointPosition: Sets the position of the sample points in relation to the violins.
     ///   - width: Sets the width of the violin in data coordinates.

@@ -23,6 +23,11 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     /// legend itself is visible).
     public var visible: Shared.Visible? = nil
 
+    /// Sets the legend group for this trace.
+    /// 
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String? = nil
+
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
@@ -86,16 +91,37 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     public var locations: LocationsData? = nil
 
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
+    /// 
+    /// Values *ISO-3*, *USA-states*, *country names* correspond to features on the base map and value
+    /// *geojson-id* corresponds to features from a custom GeoJSON linked to the `geojson` attribute.
     public enum LocationMode: String, Encodable {
         case ISO3 = "ISO-3"
         case statesOfUSA = "USA-states"
         case countryNames = "country names"
+        case geoJsonID = "geojson-id"
     }
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
+    /// 
+    /// Values *ISO-3*, *USA-states*, *country names* correspond to features on the base map and value
+    /// *geojson-id* corresponds to features from a custom GeoJSON linked to the `geojson` attribute.
     public var locationMode: LocationMode? = nil
 
     /// Sets the color values.
     public var z: ZData? = nil
+
+    /// Sets optional GeoJSON data associated with this trace.
+    /// 
+    /// If not given, the features on the base map are used. It can be set as a valid GeoJSON object or
+    /// as a URL string. Note that we only accept GeoJSONs of type *FeatureCollection* or *Feature* with
+    /// geometries of type *Polygon* or *MultiPolygon*.
+    public var geoJson: Anything? = nil
+
+    /// Sets the key in GeoJSON features which is used as id to match the items included in the
+    /// `locations` array.
+    /// 
+    /// Only has an effect when `geojson` is set. Support nested property, for example
+    /// *properties.name*.
+    public var featureIDKey: String? = nil
 
     /// Sets the text elements associated with each location.
     public var text: Data<String>? = nil
@@ -215,14 +241,17 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
+
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -291,6 +320,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     enum CodingKeys: String, CodingKey {
         case type
         case visible
+        case legendGroup = "legendgroup"
         case name
         case uid
         case ids
@@ -304,6 +334,8 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
         case locations
         case locationMode = "locationmode"
         case z
+        case geoJson = "geojson"
+        case featureIDKey = "featureidkey"
         case text
         case hoverText = "hovertext"
         case marker
@@ -311,6 +343,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
         case unselected
         case hoverInfo = "hoverinfo"
         case hoverTemplate = "hovertemplate"
+        case showLegend = "showlegend"
         case zAuto = "zauto"
         case zMin = "zmin"
         case zMax = "zmax"
@@ -352,6 +385,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     /// 
     /// - Parameters:
     ///   - visible: Determines whether or not this trace is visible.
+    ///   - legendGroup: Sets the legend group for this trace.
     ///   - name: Sets the trace name.
     ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
     ///   animations and transitions.
@@ -370,6 +404,9 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     ///   - locationMode: Determines the set of locations used to match entries in `locations` to regions
     ///   on the map.
     ///   - z: Sets the color values.
+    ///   - geoJson: Sets optional GeoJSON data associated with this trace.
+    ///   - featureIDKey: Sets the key in GeoJSON features which is used as id to match the items included
+    ///   in the `locations` array.
     ///   - text: Sets the text elements associated with each location.
     ///   - hoverText: Same as `text`.
     ///   - marker:
@@ -377,6 +414,8 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     ///   - unselected:
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
+    ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
+    ///   legend.
     ///   - zAuto: Determines whether or not the color domain is computed with respect to the input data
     ///   (here in `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax`
     ///   are set by the user.
@@ -392,18 +431,20 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     ///   - colorBar:
     ///   - colorAxis: Sets a reference to a shared color axis.
     ///   - geo: Sets a reference between this trace's geospatial coordinates and a geographic map.
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints:
-            Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms:
-            [Transform] = [], uiRevision: Anything? = nil, locations: LocationsData? = nil, locationMode:
-            LocationMode? = nil, z: ZData? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
+    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
+            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
+            nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream:
+            Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, locations:
+            LocationsData? = nil, locationMode: LocationMode? = nil, z: ZData? = nil, geoJson: Anything? =
+            nil, featureIDKey: String? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
             marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo:
-            HoverInfo? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin: Double? = nil,
-            zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
-            Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? =
-            nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), geo: Layout.Geo = Layout.Geo(uid:
-            1)) {
+            HoverInfo? = nil, hoverTemplate: Data<String>? = nil, showLegend: Bool? = nil, zAuto: Bool? =
+            nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? =
+            nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), geo: Layout.Geo
+            = Layout.Geo(uid: 1)) {
         self.visible = visible
+        self.legendGroup = legendGroup
         self.name = name
         self.uid = uid
         self.ids = ids
@@ -417,6 +458,8 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
         self.locations = locations
         self.locationMode = locationMode
         self.z = z
+        self.geoJson = geoJson
+        self.featureIDKey = featureIDKey
         self.text = text
         self.hoverText = hoverText
         self.marker = marker
@@ -424,6 +467,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
         self.unselected = unselected
         self.hoverInfo = hoverInfo
         self.hoverTemplate = hoverTemplate
+        self.showLegend = showLegend
         self.zAuto = zAuto
         self.zMin = zMin
         self.zMax = zMax
@@ -442,6 +486,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
         try container.encodeIfPresent(ids, forKey: .ids)
@@ -460,6 +505,8 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
         if let z = self.z {
             try z.encode(toPlotly: container.superEncoder(forKey: .z))
         }
+        try container.encodeIfPresent(geoJson, forKey: .geoJson)
+        try container.encodeIfPresent(featureIDKey, forKey: .featureIDKey)
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
         try container.encodeIfPresent(marker, forKey: .marker)
@@ -467,6 +514,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
         try container.encodeIfPresent(unselected, forKey: .unselected)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
         try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encodeIfPresent(zAuto, forKey: .zAuto)
         try container.encodeIfPresent(zMin, forKey: .zMin)
         try container.encodeIfPresent(zMax, forKey: .zMax)

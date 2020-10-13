@@ -26,6 +26,11 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     /// legend itself is visible).
     public var visible: Shared.Visible? = nil
 
+    /// Sets the legend group for this trace.
+    /// 
+    /// Traces part of the same legend group hide/show at the same time when toggling legend items.
+    public var legendGroup: String? = nil
+
     /// Sets the trace name.
     /// 
     /// The trace name appear as the legend item and on hover.
@@ -410,12 +415,12 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
@@ -510,6 +515,9 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     /// click and hover events are still fired.
     public var hoverInfo: Shared.HoverInfo? = nil
 
+    /// Determines whether or not an item corresponding to this trace is shown in the legend.
+    public var showLegend: Bool? = nil
+
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
@@ -520,6 +528,7 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     enum CodingKeys: String, CodingKey {
         case type
         case visible
+        case legendGroup = "legendgroup"
         case name
         case uid
         case ids
@@ -558,6 +567,7 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
         case flatShading = "flatshading"
         case contour
         case hoverInfo = "hoverinfo"
+        case showLegend = "showlegend"
         case scene
     }
     
@@ -591,6 +601,7 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     /// 
     /// - Parameters:
     ///   - visible: Determines whether or not this trace is visible.
+    ///   - legendGroup: Sets the legend group for this trace.
     ///   - name: Sets the trace name.
     ///   - uid: Assign an id to this trace, Use this to provide object constancy between traces during
     ///   animations and transitions.
@@ -638,21 +649,24 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     ///   meshes with an angular, low-poly look via flat reflections.
     ///   - contour:
     ///   - hoverInfo: Determines which trace information appear on hover.
+    ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
+    ///   legend.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
-            Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil, x: XYZData?
-            = nil, y: XYZData? = nil, z: XYZData? = nil, value: ValueData? = nil, isoMin: Double? = nil,
-            isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? =
-            nil, caps: Caps? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
-            hoverTemplate: Data<String>? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
-            nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
+    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
+            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
+            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? =
+            nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, value: ValueData? = nil, isoMin:
+            Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil,
+            slices: Slices? = nil, caps: Caps? = nil, text: Data<String>? = nil, hoverText: Data<String>? =
+            nil, hoverTemplate: Data<String>? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double?
+            = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
             reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
             Layout.ColorAxis = Layout.ColorAxis(uid: 1), opacity: Double? = nil, opacityScale: Anything? =
             nil, lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading:
-            Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, scene:
-            Layout.Scene = Layout.Scene(uid: 1)) {
+            Bool? = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil,
+            showLegend: Bool? = nil, scene: Layout.Scene = Layout.Scene(uid: 1)) {
         self.visible = visible
+        self.legendGroup = legendGroup
         self.name = name
         self.uid = uid
         self.ids = ids
@@ -691,6 +705,7 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
         self.flatShading = flatShading
         self.contour = contour
         self.hoverInfo = hoverInfo
+        self.showLegend = showLegend
         self.scene = scene
     }
     
@@ -699,6 +714,7 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(visible, forKey: .visible)
+        try container.encodeIfPresent(legendGroup, forKey: .legendGroup)
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(uid, forKey: .uid)
         try container.encodeIfPresent(ids, forKey: .ids)
@@ -745,6 +761,7 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
         try container.encodeIfPresent(flatShading, forKey: .flatShading)
         try container.encodeIfPresent(contour, forKey: .contour)
         try container.encodeIfPresent(hoverInfo, forKey: .hoverInfo)
+        try container.encodeIfPresent(showLegend, forKey: .showLegend)
         try container.encode("scene\(scene.uid)", forKey: .scene)
     }
 }

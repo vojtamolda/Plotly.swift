@@ -220,14 +220,13 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. variables `label`, `color`, `value`, `percent` and `text`. Anything
-    /// contained in tag `<extra>` is displayed in the secondary box, for example
-    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
-    /// `<extra></extra>`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. variables
+    /// `label`, `color`, `value`, `percent` and `text`. Anything contained in tag `<extra>` is
+    /// displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To hide the
+    /// secondary box completely, use an empty tag `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
     /// Template string used for rendering the information text that appear on points.
@@ -238,9 +237,9 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
-    /// `arrayOk: true`) are available. variables `label`, `color`, `value`, `percent` and `text`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are
+    /// available. variables `label`, `color`, `value`, `percent` and `text`.
     public var textTemplate: Data<String>? = nil
 
     /// Specifies the location of the `textinfo`.
@@ -248,6 +247,28 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
 
     /// Sets the font used for `textinfo`.
     public var textFont: Shared.VariableFont? = nil
+
+    /// Controls the orientation of the text inside chart sectors.
+    /// 
+    /// When set to *auto*, text may be oriented in any direction in order to be as big as possible in
+    /// the middle of a sector. The *horizontal* option orients text to be parallel with the bottom of
+    /// the chart, and may make text smaller in order to achieve that goal. The *radial* option orients
+    /// text along the radius of the sector. The *tangential* option orients text perpendicular to the
+    /// radius of the sector.
+    public enum InsideTextOrientation: String, Encodable {
+        case horizontal
+        case radial
+        case tangential
+        case auto
+    }
+    /// Controls the orientation of the text inside chart sectors.
+    /// 
+    /// When set to *auto*, text may be oriented in any direction in order to be as big as possible in
+    /// the middle of a sector. The *horizontal* option orients text to be parallel with the bottom of
+    /// the chart, and may make text smaller in order to achieve that goal. The *radial* option orients
+    /// text along the radius of the sector. The *tangential* option orients text perpendicular to the
+    /// radius of the sector.
+    public var insideTextOrientation: InsideTextOrientation? = nil
 
     /// Sets the font used for `textinfo` lying inside the sector.
     public var insideTextFont: Shared.VariableFont? = nil
@@ -360,6 +381,7 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
         case textTemplate = "texttemplate"
         case textPosition = "textposition"
         case textFont = "textfont"
+        case insideTextOrientation = "insidetextorientation"
         case insideTextFont = "insidetextfont"
         case outsideTextFont = "outsidetextfont"
         case autoMargin = "automargin"
@@ -427,6 +449,7 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
     ///   - textTemplate: Template string used for rendering the information text that appear on points.
     ///   - textPosition: Specifies the location of the `textinfo`.
     ///   - textFont: Sets the font used for `textinfo`.
+    ///   - insideTextOrientation: Controls the orientation of the text inside chart sectors.
     ///   - insideTextFont: Sets the font used for `textinfo` lying inside the sector.
     ///   - outsideTextFont: Sets the font used for `textinfo` lying outside the sector.
     ///   - autoMargin: Determines whether outside text labels can push the margins.
@@ -445,10 +468,11 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
             marker: Marker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, scaleGroup:
             String? = nil, textInfo: TextInfo? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate:
             Data<String>? = nil, textTemplate: Data<String>? = nil, textPosition: Shared.AdjacentPosition? =
-            nil, textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil,
-            outsideTextFont: Shared.OutsideTextFont? = nil, autoMargin: Bool? = nil, title: Title? = nil,
-            domain: Shared.Domain? = nil, hole: Double? = nil, sort: Bool? = nil, direction: Direction? =
-            nil, rotation: Double? = nil, pull: Data<Double>? = nil) {
+            nil, textFont: Shared.VariableFont? = nil, insideTextOrientation: InsideTextOrientation? = nil,
+            insideTextFont: Shared.VariableFont? = nil, outsideTextFont: Shared.OutsideTextFont? = nil,
+            autoMargin: Bool? = nil, title: Title? = nil, domain: Shared.Domain? = nil, hole: Double? = nil,
+            sort: Bool? = nil, direction: Direction? = nil, rotation: Double? = nil, pull: Data<Double>? =
+            nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -476,6 +500,7 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
         self.textTemplate = textTemplate
         self.textPosition = textPosition
         self.textFont = textFont
+        self.insideTextOrientation = insideTextOrientation
         self.insideTextFont = insideTextFont
         self.outsideTextFont = outsideTextFont
         self.autoMargin = autoMargin
@@ -524,6 +549,7 @@ public struct Pie<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData
         try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
         try container.encodeIfPresent(textPosition, forKey: .textPosition)
         try container.encodeIfPresent(textFont, forKey: .textFont)
+        try container.encodeIfPresent(insideTextOrientation, forKey: .insideTextOrientation)
         try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
         try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
         try container.encodeIfPresent(autoMargin, forKey: .autoMargin)

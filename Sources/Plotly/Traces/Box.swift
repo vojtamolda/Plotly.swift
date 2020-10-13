@@ -3,21 +3,30 @@
 // See `Sources/Codegen/Readme.md` for more details.
 
 
-/// In vertical (horizontal) box plots, statistics are computed using `y` (`x`) values.
+/// Each box spans from quartile 1 (Q1) to quartile 3 (Q3).
 /// 
-/// By supplying an `x` (`y`) array, one box per distinct x (y) value is drawn If no `x` (`y`)
-/// {array} is provided, a single box is drawn. That box position is then positioned with with
-/// `name` or with `x0` (`y0`) if provided. Each box spans from quartile 1 (Q1) to quartile 3 (Q3).
-/// The second quartile (Q2) is marked by a line inside the box. By default, the whiskers correspond
-/// to the box' edges +/- 1.5 times the interquartile range (IQR: Q3-Q1), see *boxpoints* for other
-/// options.
+/// The second quartile (Q2, i.e. the median) is marked by a line inside the box. The fences grow
+/// outward from the boxes' edges, by default they span +/- 1.5 times the interquartile range (IQR:
+/// Q3-Q1), The sample mean and standard deviation as well as notches and the sample, outlier and
+/// suspected outliers points can be optionally added to the box plot. The values and positions
+/// corresponding to each boxes can be input using two signatures. The first signature expects users
+/// to supply the sample values in the `y` data array for vertical boxes (`x` for horizontal boxes).
+/// By supplying an `x` (`y`) array, one box per distinct `x` (`y`) value is drawn If no `x` (`y`)
+/// {array} is provided, a single box is drawn. In this case, the box is positioned with the trace
+/// `name` or with `x0` (`y0`) if provided. The second signature expects users to supply the boxes
+/// corresponding Q1, median and Q3 statistics in the `q1`, `median` and `q3` data arrays
+/// respectively. Other box features relying on statistics namely `lowerfence`, `upperfence`,
+/// `notchspan` can be set directly by the users. To have plotly compute them or to show sample
+/// points besides the boxes, users can set the `y` data array for vertical boxes (`x` for
+/// horizontal boxes) to a 2D array with the outer length corresponding to the number of boxes in
+/// the traces and the inner length corresponding the sample size.
 /// 
 /// - SeeAlso:
 ///   Documentation for 
 ///   [Python](https://plot.ly/python/reference/#box), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#box) or 
 ///   [R](https://plot.ly/r/reference/#box)
-public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: Plotable {
+public struct Box<YData, XData, Q1Data, MedianData, Q3Data, LowerfenceData, UpperfenceData, NotchspanData, MeanData, StandarddeviationData>: Trace, XYSubplot where YData: Plotable, XData: Plotable, Q1Data: Plotable, MedianData: Plotable, Q3Data: Plotable, LowerfenceData: Plotable, UpperfenceData: Plotable, NotchspanData: Plotable, MeanData: Plotable, StandarddeviationData: Plotable {
     public let type: String = "box"
 
     public let animatable: Bool = false
@@ -114,49 +123,60 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
     /// See overview for more info.
     public var x: XData? = nil
 
-    /// Sets the x coordinate of the box.
+    /// Sets the x coordinate for single-box traces or the starting coordinate for multi-box traces set
+    /// using q1/median/q3.
     /// 
     /// See overview for more info.
     public var x0: Anything? = nil
 
-    /// Sets the y coordinate of the box.
+    /// Sets the y coordinate for single-box traces or the starting coordinate for multi-box traces set
+    /// using q1/median/q3.
     /// 
     /// See overview for more info.
     public var y0: Anything? = nil
 
-    /// Sets the text elements associated with each sample value.
+    /// Sets the x coordinate step for multi-box traces set using q1/median/q3.
+    public var dx: Double? = nil
+
+    /// Sets the y coordinate step for multi-box traces set using q1/median/q3.
+    public var dy: Double? = nil
+
+    /// Sets the Quartile 1 values.
     /// 
-    /// If a single string, the same string appears over all the data points. If an array of string, the
-    /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
-    /// must contain a *text* flag.
-    public var text: Data<String>? = nil
+    /// There should be as many items as the number of boxes desired.
+    public var q1: Q1Data? = nil
 
-    /// Same as `text`.
-    public var hoverText: Data<String>? = nil
-
-    /// Template string used for rendering the information that appear on hover box.
+    /// Sets the median values.
     /// 
-    /// Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example
-    /// "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example
-    /// "Price: %{y:$.2f}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
-    /// the formatting syntax. Dates are formatted using d3-time-format's syntax
-    /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
-    /// `<extra></extra>`.
-    public var hoverTemplate: Data<String>? = nil
+    /// There should be as many items as the number of boxes desired.
+    public var median: MedianData? = nil
 
-    /// Sets the width of the whiskers relative to the box' width.
+    /// Sets the Quartile 3 values.
     /// 
-    /// For example, with 1, the whiskers are as wide as the box(es).
-    public var whiskerWidth: Double? = nil
+    /// There should be as many items as the number of boxes desired.
+    public var q3: Q3Data? = nil
 
-    /// Determines whether or not notches should be drawn.
+    /// Sets the lower fence values.
+    /// 
+    /// There should be as many items as the number of boxes desired. This attribute has effect only
+    /// under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`)
+    /// is set, we compute the lower as the last sample point below 1.5 times the IQR.
+    public var lowerFence: LowerfenceData? = nil
+
+    /// Sets the upper fence values.
+    /// 
+    /// There should be as many items as the number of boxes desired. This attribute has effect only
+    /// under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`)
+    /// is set, we compute the lower as the last sample point above 1.5 times the IQR.
+    public var upperFence: UpperfenceData? = nil
+
+    /// Determines whether or not notches are drawn.
+    /// 
+    /// Notches displays a confidence interval around the median. We compute the confidence interval as
+    /// median +/- 1.57 * IQR / sqrt(N), where IQR is the interquartile range and N is the sample size.
+    /// If two boxes' notches do not overlap there is 95% confidence their medians differ. See
+    /// https://sites.google.com/site/davidsstatistics/home/notched-box-plots for more info. Defaults to
+    /// *false* unless `notchwidth` or `notchspan` is set.
     public var notched: Bool? = nil
 
     /// Sets the width of the notches relative to the box' width.
@@ -164,10 +184,20 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
     /// For example, with 0, the notches are as wide as the box(es).
     public var notchWidth: Double? = nil
 
+    /// Sets the notch span from the boxes' `median` values.
+    /// 
+    /// There should be as many items as the number of boxes desired. This attribute has effect only
+    /// under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is
+    /// set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
+    public var notchSpan: NotchspanData? = nil
+
     /// If *outliers*, only the sample points lying outside the whiskers are shown If
     /// *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
     /// greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are
-    /// shown If *false*, only the box(es) are shown with no sample points
+    /// shown If *false*, only the box(es) are shown with no sample points Defaults to
+    /// *suspectedoutliers* when `marker.outliercolor` or `marker.line.outliercolor` is set.
+    /// 
+    /// Defaults to *all* under the q1/median/q3 signature. Otherwise defaults to *outliers*.
     public enum BoxPoints: Encodable {
         case all
         case outliers
@@ -190,34 +220,11 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If
     /// *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
     /// greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are
-    /// shown If *false*, only the box(es) are shown with no sample points
+    /// shown If *false*, only the box(es) are shown with no sample points Defaults to
+    /// *suspectedoutliers* when `marker.outliercolor` or `marker.line.outliercolor` is set.
+    /// 
+    /// Defaults to *all* under the q1/median/q3 signature. Otherwise defaults to *outliers*.
     public var boxPoints: BoxPoints? = nil
-
-    /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the
-    /// box(es).
-    /// 
-    /// If *sd* the standard deviation is also drawn.
-    public enum BoxMean: Encodable {
-        case on
-        case sd
-        case off
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            switch self {
-            case .on:
-                try container.encode(true)
-            case .sd:
-                try container.encode("sd")
-            case .off:
-                try container.encode(false)
-            }
-        }
-    }
-    /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the
-    /// box(es).
-    /// 
-    /// If *sd* the standard deviation is also drawn.
-    public var boxMean: BoxMean? = nil
 
     /// Sets the amount of jitter in the sample points drawn.
     /// 
@@ -232,10 +239,77 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
     /// boxes
     public var pointPosition: Double? = nil
 
+    /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the
+    /// box(es).
+    /// 
+    /// If *sd* the standard deviation is also drawn. Defaults to *true* when `mean` is set. Defaults to
+    /// *sd* when `sd` is set Otherwise defaults to *false*.
+    public enum BoxMean: Encodable {
+        case on
+        case standardDeviation
+        case off
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .on:
+                try container.encode(true)
+            case .standardDeviation:
+                try container.encode("sd")
+            case .off:
+                try container.encode(false)
+            }
+        }
+    }
+    /// If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line inside the
+    /// box(es).
+    /// 
+    /// If *sd* the standard deviation is also drawn. Defaults to *true* when `mean` is set. Defaults to
+    /// *sd* when `sd` is set Otherwise defaults to *false*.
+    public var boxMean: BoxMean? = nil
+
+    /// Sets the mean values.
+    /// 
+    /// There should be as many items as the number of boxes desired. This attribute has effect only
+    /// under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set,
+    /// we compute the mean for each box using the sample values.
+    public var mean: MeanData? = nil
+
+    /// Sets the standard deviation values.
+    /// 
+    /// There should be as many items as the number of boxes desired. This attribute has effect only
+    /// under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set,
+    /// we compute the standard deviation for each box using the sample values.
+    public var standardDeviation: StandarddeviationData? = nil
+
     /// Sets the orientation of the box(es).
     /// 
     /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
     public var orientation: Shared.Orientation? = nil
+
+    /// Sets the method used to compute the sample's Q1 and Q3 quartiles.
+    /// 
+    /// The *linear* method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using
+    /// method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The
+    /// *exclusive* method uses the median to divide the ordered dataset into two halves if the sample
+    /// is odd, it does not include the median in either half - Q1 is then the median of the lower half
+    /// and Q3 the median of the upper half. The *inclusive* method also uses the median to divide the
+    /// ordered dataset into two halves but if the sample is odd, it includes the median in both halves
+    /// - Q1 is then the median of the lower half and Q3 the median of the upper half.
+    public enum QuartileMethod: String, Encodable {
+        case linear
+        case exclusive
+        case inclusive
+    }
+    /// Sets the method used to compute the sample's Q1 and Q3 quartiles.
+    /// 
+    /// The *linear* method uses the 25th percentile for Q1 and 75th percentile for Q3 as computed using
+    /// method #10 (listed on http://www.amstat.org/publications/jse/v14n3/langford.html). The
+    /// *exclusive* method uses the median to divide the ordered dataset into two halves if the sample
+    /// is odd, it does not include the median in either half - Q1 is then the median of the lower half
+    /// and Q3 the median of the upper half. The *inclusive* method also uses the median to divide the
+    /// ordered dataset into two halves but if the sample is odd, it includes the median in both halves
+    /// - Q1 is then the median of the lower half and Q3 the median of the upper half.
+    public var quartileMethod: QuartileMethod? = nil
 
     /// Sets the width of the box in data coordinate If *0* (default value) the width is automatically
     /// selected based on the positions of other box traces in the same subplot.
@@ -350,6 +424,11 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
     /// whichever is available.
     public var fillColor: Color? = nil
 
+    /// Sets the width of the whiskers relative to the box' width.
+    /// 
+    /// For example, with 1, the whiskers are as wide as the box(es).
+    public var whiskerWidth: Double? = nil
+
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup
     /// where bars of the same position coordinate will line up.
     public var offsetGroup: String? = nil
@@ -427,6 +506,33 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
     }
     public var unselected: Unselected? = nil
 
+    /// Sets the text elements associated with each sample value.
+    /// 
+    /// If a single string, the same string appears over all the data points. If an array of string, the
+    /// items are mapped in order to the this trace's (x,y) coordinates. To be seen, trace `hoverinfo`
+    /// must contain a *text* flag.
+    public var text: Data<String>? = nil
+
+    /// Same as `text`.
+    public var hoverText: Data<String>? = nil
+
+    /// Template string used for rendering the information that appear on hover box.
+    /// 
+    /// Note that this will override `hoverinfo`. Variables are inserted using %{variable}, for example
+    /// "y: %{y}". Numbers are formatted using d3-format's syntax %{variable:d3-format}, for example
+    /// "Price: %{y:$.2f}".
+    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
+    /// the formatting syntax. Dates are formatted using d3-time-format's syntax
+    /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// `<extra></extra>`.
+    public var hoverTemplate: Data<String>? = nil
+
     /// Do the hover effects highlight individual boxes or sample points or both?
     public struct HoverOn: OptionSet, Encodable {
         public let rawValue: Int
@@ -488,25 +594,36 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
         case x
         case x0
         case y0
-        case text
-        case hoverText = "hovertext"
-        case hoverTemplate = "hovertemplate"
-        case whiskerWidth = "whiskerwidth"
+        case dx
+        case dy
+        case q1
+        case median
+        case q3
+        case lowerFence = "lowerfence"
+        case upperFence = "upperfence"
         case notched
         case notchWidth = "notchwidth"
+        case notchSpan = "notchspan"
         case boxPoints = "boxpoints"
-        case boxMean = "boxmean"
         case jitter
         case pointPosition = "pointpos"
+        case boxMean = "boxmean"
+        case mean
+        case standardDeviation = "sd"
         case orientation
+        case quartileMethod = "quartilemethod"
         case width
         case marker
         case line
         case fillColor = "fillcolor"
+        case whiskerWidth = "whiskerwidth"
         case offsetGroup = "offsetgroup"
         case alignmentGroup = "alignmentgroup"
         case selected
         case unselected
+        case text
+        case hoverText = "hovertext"
+        case hoverTemplate = "hovertemplate"
         case hoverOn = "hoveron"
         case xCalendar = "xcalendar"
         case yCalendar = "ycalendar"
@@ -520,19 +637,38 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
     ///   - name: Sets the trace name.
     ///   - y: Sets the y sample data or coordinates.
     ///   - x: Sets the x sample data or coordinates.
-    ///   - text: Sets the text elements associated with each sample value.
-    ///   - hoverText: Same as `text`.
+    ///   - q1: Sets the Quartile 1 values.
+    ///   - median: Sets the median values.
+    ///   - q3: Sets the Quartile 3 values.
+    ///   - lowerFence: Sets the lower fence values.
+    ///   - upperFence: Sets the upper fence values.
+    ///   - notchSpan: Sets the notch span from the boxes' `median` values.
+    ///   - mean: Sets the mean values.
+    ///   - standardDeviation: Sets the standard deviation values.
     ///   - marker:
     ///   - line:
-    public init(name: String? = nil, y: YData? = nil, x: XData? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil) {
+    ///   - text: Sets the text elements associated with each sample value.
+    ///   - hoverText: Same as `text`.
+    public init(name: String? = nil, y: YData? = nil, x: XData? = nil, q1: Q1Data? = nil, median:
+            MedianData? = nil, q3: Q3Data? = nil, lowerFence: LowerfenceData? = nil, upperFence:
+            UpperfenceData? = nil, notchSpan: NotchspanData? = nil, mean: MeanData? = nil,
+            standardDeviation: StandarddeviationData? = nil, marker: SymbolicMarker? = nil, line:
+            Shared.Line? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil) {
         self.name = name
         self.y = y
         self.x = x
-        self.text = text
-        self.hoverText = hoverText
+        self.q1 = q1
+        self.median = median
+        self.q3 = q3
+        self.lowerFence = lowerFence
+        self.upperFence = upperFence
+        self.notchSpan = notchSpan
+        self.mean = mean
+        self.standardDeviation = standardDeviation
         self.marker = marker
         self.line = line
+        self.text = text
+        self.hoverText = hoverText
     }
     
     /// Creates `Box` object with specified properties.
@@ -560,34 +696,48 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
     ///   `colorbar.title`.
     ///   - y: Sets the y sample data or coordinates.
     ///   - x: Sets the x sample data or coordinates.
-    ///   - x0: Sets the x coordinate of the box.
-    ///   - y0: Sets the y coordinate of the box.
-    ///   - text: Sets the text elements associated with each sample value.
-    ///   - hoverText: Same as `text`.
-    ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
-    ///   - whiskerWidth: Sets the width of the whiskers relative to the box' width.
-    ///   - notched: Determines whether or not notches should be drawn.
+    ///   - x0: Sets the x coordinate for single-box traces or the starting coordinate for multi-box
+    ///   traces set using q1/median/q3.
+    ///   - y0: Sets the y coordinate for single-box traces or the starting coordinate for multi-box
+    ///   traces set using q1/median/q3.
+    ///   - dx: Sets the x coordinate step for multi-box traces set using q1/median/q3.
+    ///   - dy: Sets the y coordinate step for multi-box traces set using q1/median/q3.
+    ///   - q1: Sets the Quartile 1 values.
+    ///   - median: Sets the median values.
+    ///   - q3: Sets the Quartile 3 values.
+    ///   - lowerFence: Sets the lower fence values.
+    ///   - upperFence: Sets the upper fence values.
+    ///   - notched: Determines whether or not notches are drawn.
     ///   - notchWidth: Sets the width of the notches relative to the box' width.
+    ///   - notchSpan: Sets the notch span from the boxes' `median` values.
     ///   - boxPoints: If *outliers*, only the sample points lying outside the whiskers are shown If
     ///   *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
     ///   greater than 4*Q3-3*Q1 are highlighted (see `outliercolor`) If *all*, all sample points are
-    ///   shown If *false*, only the box(es) are shown with no sample points
-    ///   - boxMean: If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line
-    ///   inside the box(es).
+    ///   shown If *false*, only the box(es) are shown with no sample points Defaults to
+    ///   *suspectedoutliers* when `marker.outliercolor` or `marker.line.outliercolor` is set.
     ///   - jitter: Sets the amount of jitter in the sample points drawn.
     ///   - pointPosition: Sets the position of the sample points in relation to the box(es).
+    ///   - boxMean: If *true*, the mean of the box(es)' underlying distribution is drawn as a dashed line
+    ///   inside the box(es).
+    ///   - mean: Sets the mean values.
+    ///   - standardDeviation: Sets the standard deviation values.
     ///   - orientation: Sets the orientation of the box(es).
+    ///   - quartileMethod: Sets the method used to compute the sample's Q1 and Q3 quartiles.
     ///   - width: Sets the width of the box in data coordinate If *0* (default value) the width is
     ///   automatically selected based on the positions of other box traces in the same subplot.
     ///   - marker:
     ///   - line:
     ///   - fillColor: Sets the fill color.
+    ///   - whiskerWidth: Sets the width of the whiskers relative to the box' width.
     ///   - offsetGroup: Set several traces linked to the same position axis or matching axes to the same
     ///   offsetgroup where bars of the same position coordinate will line up.
     ///   - alignmentGroup: Set several traces linked to the same position axis or matching axes to the
     ///   same alignmentgroup.
     ///   - selected:
     ///   - unselected:
+    ///   - text: Sets the text elements associated with each sample value.
+    ///   - hoverText: Same as `text`.
+    ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
     ///   - hoverOn: Do the hover effects highlight individual boxes or sample points or both?
     ///   - xCalendar: Sets the calendar system to use with `x` date data.
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
@@ -598,15 +748,18 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
             = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, y: YData? = nil, x: XData? =
-            nil, x0: Anything? = nil, y0: Anything? = nil, text: Data<String>? = nil, hoverText:
-            Data<String>? = nil, hoverTemplate: Data<String>? = nil, whiskerWidth: Double? = nil, notched:
-            Bool? = nil, notchWidth: Double? = nil, boxPoints: BoxPoints? = nil, boxMean: BoxMean? = nil,
-            jitter: Double? = nil, pointPosition: Double? = nil, orientation: Shared.Orientation? = nil,
-            width: Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color?
-            = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil,
-            unselected: Unselected? = nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil,
-            yCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis:
-            Layout.YAxis = Layout.YAxis(uid: 1)) {
+            nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, q1: Q1Data?
+            = nil, median: MedianData? = nil, q3: Q3Data? = nil, lowerFence: LowerfenceData? = nil,
+            upperFence: UpperfenceData? = nil, notched: Bool? = nil, notchWidth: Double? = nil, notchSpan:
+            NotchspanData? = nil, boxPoints: BoxPoints? = nil, jitter: Double? = nil, pointPosition: Double?
+            = nil, boxMean: BoxMean? = nil, mean: MeanData? = nil, standardDeviation: StandarddeviationData?
+            = nil, orientation: Shared.Orientation? = nil, quartileMethod: QuartileMethod? = nil, width:
+            Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil,
+            whiskerWidth: Double? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil,
+            selected: Selected? = nil, unselected: Unselected? = nil, text: Data<String>? = nil, hoverText:
+            Data<String>? = nil, hoverTemplate: Data<String>? = nil, hoverOn: HoverOn? = nil, xCalendar:
+            Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis =
+            Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -626,25 +779,36 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
         self.x = x
         self.x0 = x0
         self.y0 = y0
-        self.text = text
-        self.hoverText = hoverText
-        self.hoverTemplate = hoverTemplate
-        self.whiskerWidth = whiskerWidth
+        self.dx = dx
+        self.dy = dy
+        self.q1 = q1
+        self.median = median
+        self.q3 = q3
+        self.lowerFence = lowerFence
+        self.upperFence = upperFence
         self.notched = notched
         self.notchWidth = notchWidth
+        self.notchSpan = notchSpan
         self.boxPoints = boxPoints
-        self.boxMean = boxMean
         self.jitter = jitter
         self.pointPosition = pointPosition
+        self.boxMean = boxMean
+        self.mean = mean
+        self.standardDeviation = standardDeviation
         self.orientation = orientation
+        self.quartileMethod = quartileMethod
         self.width = width
         self.marker = marker
         self.line = line
         self.fillColor = fillColor
+        self.whiskerWidth = whiskerWidth
         self.offsetGroup = offsetGroup
         self.alignmentGroup = alignmentGroup
         self.selected = selected
         self.unselected = unselected
+        self.text = text
+        self.hoverText = hoverText
+        self.hoverTemplate = hoverTemplate
         self.hoverOn = hoverOn
         self.xCalendar = xCalendar
         self.yCalendar = yCalendar
@@ -680,25 +844,52 @@ public struct Box<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: 
         }
         try container.encodeIfPresent(x0, forKey: .x0)
         try container.encodeIfPresent(y0, forKey: .y0)
-        try container.encodeIfPresent(text, forKey: .text)
-        try container.encodeIfPresent(hoverText, forKey: .hoverText)
-        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
-        try container.encodeIfPresent(whiskerWidth, forKey: .whiskerWidth)
+        try container.encodeIfPresent(dx, forKey: .dx)
+        try container.encodeIfPresent(dy, forKey: .dy)
+        if let q1 = self.q1 {
+            try q1.encode(toPlotly: container.superEncoder(forKey: .q1))
+        }
+        if let median = self.median {
+            try median.encode(toPlotly: container.superEncoder(forKey: .median))
+        }
+        if let q3 = self.q3 {
+            try q3.encode(toPlotly: container.superEncoder(forKey: .q3))
+        }
+        if let lowerFence = self.lowerFence {
+            try lowerFence.encode(toPlotly: container.superEncoder(forKey: .lowerFence))
+        }
+        if let upperFence = self.upperFence {
+            try upperFence.encode(toPlotly: container.superEncoder(forKey: .upperFence))
+        }
         try container.encodeIfPresent(notched, forKey: .notched)
         try container.encodeIfPresent(notchWidth, forKey: .notchWidth)
+        if let notchSpan = self.notchSpan {
+            try notchSpan.encode(toPlotly: container.superEncoder(forKey: .notchSpan))
+        }
         try container.encodeIfPresent(boxPoints, forKey: .boxPoints)
-        try container.encodeIfPresent(boxMean, forKey: .boxMean)
         try container.encodeIfPresent(jitter, forKey: .jitter)
         try container.encodeIfPresent(pointPosition, forKey: .pointPosition)
+        try container.encodeIfPresent(boxMean, forKey: .boxMean)
+        if let mean = self.mean {
+            try mean.encode(toPlotly: container.superEncoder(forKey: .mean))
+        }
+        if let standardDeviation = self.standardDeviation {
+            try standardDeviation.encode(toPlotly: container.superEncoder(forKey: .standardDeviation))
+        }
         try container.encodeIfPresent(orientation, forKey: .orientation)
+        try container.encodeIfPresent(quartileMethod, forKey: .quartileMethod)
         try container.encodeIfPresent(width, forKey: .width)
         try container.encodeIfPresent(marker, forKey: .marker)
         try container.encodeIfPresent(line, forKey: .line)
         try container.encodeIfPresent(fillColor, forKey: .fillColor)
+        try container.encodeIfPresent(whiskerWidth, forKey: .whiskerWidth)
         try container.encodeIfPresent(offsetGroup, forKey: .offsetGroup)
         try container.encodeIfPresent(alignmentGroup, forKey: .alignmentGroup)
         try container.encodeIfPresent(selected, forKey: .selected)
         try container.encodeIfPresent(unselected, forKey: .unselected)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(hoverText, forKey: .hoverText)
+        try container.encodeIfPresent(hoverTemplate, forKey: .hoverTemplate)
         try container.encodeIfPresent(hoverOn, forKey: .hoverOn)
         try container.encodeIfPresent(xCalendar, forKey: .xCalendar)
         try container.encodeIfPresent(yCalendar, forKey: .yCalendar)

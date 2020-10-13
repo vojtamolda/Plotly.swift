@@ -118,9 +118,9 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
-    /// `arrayOk: true`) are available. variables `lat`, `lon` and `text`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are
+    /// available. variables `lat`, `lon` and `text`.
     public var textTemplate: Data<String>? = nil
 
     /// Sets hover text elements associated with each (lon,lat) pair If a single string, the same string
@@ -143,6 +143,15 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
         /// Full list: https://www.mapbox.com/maki-icons/ Note that the array `marker.color` and
         /// `marker.size` are only available for *circle* symbols.
         public var symbol: Data<String>? = nil
+    
+        /// Sets the marker orientation from true North, in degrees clockwise.
+        /// 
+        /// When using the *auto* default, no rotation would be applied in perspective views which is
+        /// different from using a zero angle.
+        public var angle: Data<Double>? = nil
+    
+        /// Flag to draw all symbols, even if they overlap.
+        public var allowOverlap: Bool? = nil
     
         /// Sets the marker opacity.
         public var opacity: Data<Double>? = nil
@@ -241,6 +250,8 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case symbol
+            case angle
+            case allowOverlap = "allowoverlap"
             case opacity
             case size
             case sizeReference = "sizeref"
@@ -263,6 +274,8 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
         /// 
         /// - Parameters:
         ///   - symbol: Sets the marker symbol.
+        ///   - angle: Sets the marker orientation from true North, in degrees clockwise.
+        ///   - allowOverlap: Flag to draw all symbols, even if they overlap.
         ///   - opacity: Sets the marker opacity.
         ///   - size: Sets the marker size (in px).
         ///   - sizeReference: Has an effect only if `marker.size` is set to a numerical array.
@@ -283,13 +296,15 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(symbol: Data<String>? = nil, opacity: Data<Double>? = nil, size: Data<Double>? =
-                nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil,
-                coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
-                cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-                reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
+        public init(symbol: Data<String>? = nil, angle: Data<Double>? = nil, allowOverlap: Bool? = nil,
+                opacity: Data<Double>? = nil, size: Data<Double>? = nil, sizeReference: Double? = nil, sizeMin:
+                Double? = nil, sizeMode: Shared.SizeMode? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil,
+                cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
+                autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
             self.symbol = symbol
+            self.angle = angle
+            self.allowOverlap = allowOverlap
             self.opacity = opacity
             self.size = size
             self.sizeReference = sizeReference
@@ -460,12 +475,12 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 

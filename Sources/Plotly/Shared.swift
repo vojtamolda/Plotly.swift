@@ -52,6 +52,15 @@ public struct Shared {
         case h
     }
 
+    /// Specifies whether new shapes are drawn below or above traces.
+    /// 
+    /// - Note:
+    ///   Used by `Layout.NewShape.layer`, `Layout.Shape.layer`, `Layout.Image.layer`.
+    public enum ShapeLayer: String, Encodable {
+        case below
+        case above
+    }
+
     /// The easing function used for the transition
     /// 
     /// - Note:
@@ -470,7 +479,7 @@ public struct Shared {
     ///   Used by `Layout.XAxis.layer`, `Layout.YAxis.layer`, `Layout.Ternary.AAxis.layer`,
     ///   `Layout.Ternary.BAxis.layer`, `Layout.Ternary.CAxis.layer`, `Layout.Polar.RadialAxis.layer`,
     ///   `Layout.Polar.AngularAxis.layer`.
-    public enum Layer: String, Encodable {
+    public enum AxisLayer: String, Encodable {
         case aboveTraces = "above traces"
         case belowTraces = "below traces"
     }
@@ -513,8 +522,8 @@ public struct Shared {
 
     /// Sets the horizontal alignment of the `text` within the box.
     /// 
-    /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
-    /// HTML tags) or if an explicit width is set to override the text width.
+    /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
+    /// tags) or if an explicit width is set to override the text width.
     /// 
     /// - Note:
     ///   Used by `Layout.Scene.Annotation.align`, `Layout.Annotation.align`, `Indicator.align`,
@@ -721,24 +730,30 @@ public struct Shared {
     /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
     /// 
     /// - Note:
-    ///   Used by `Shared.ColorBar.Title.side`, `Shared.GradientMarker.ColorBar.Title.side`,
-    ///   `Shared.Marker.ColorBar.Title.side`, `Heatmap.ColorBar.Title.side`,
-    ///   `Histogram.Marker.ColorBar.Title.side`, `Histogram2D.ColorBar.Title.side`,
-    ///   `Histogram2DContour.ColorBar.Title.side`, `Contour.ColorBar.Title.side`,
-    ///   `ScatterTernary.GradientMarker.ColorBar.Title.side`, `Funnel.Marker.ColorBar.Title.side`,
-    ///   `Sunburst.Marker.ColorBar.Title.side`, `Treemap.Marker.ColorBar.Title.side`,
-    ///   `Scatter3D.DashedMarkerLine.ColorBar.Title.side`, `Shared.SymbolicMarker.ColorBar.Title.side`,
-    ///   `Surface.ColorBar.Title.side`, `Isosurface.ColorBar.Title.side`, `Volume.ColorBar.Title.side`,
-    ///   `Mesh3D.ColorBar.Title.side`, `Cone.ColorBar.Title.side`, `StreamTube.ColorBar.Title.side`,
-    ///   `ScatterGeo.GradientMarker.ColorBar.Title.side`, `Choropleth.ColorBar.Title.side`,
-    ///   `ScatterGL.SymbolicMarker.ColorBar.Title.side`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.Title.side`, `HeatmapGL.ColorBar.Title.side`,
-    ///   `ParallelCoordinates.MarkerLine.ColorBar.Title.side`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.Title.side`,
-    ///   `ScatterMapbox.SymbolicMarker.ColorBar.Title.side`, `ChoroplethMapbox.ColorBar.Title.side`,
-    ///   `DensityMapbox.ColorBar.Title.side`, `ScatterCarpet.GradientMarker.ColorBar.Title.side`,
-    ///   `ContourCarpet.ColorBar.Title.side`, `ScatterPolar.GradientMarker.ColorBar.Title.side`,
-    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.Title.side`, `BarPolar.Marker.ColorBar.Title.side`.
+    ///   Used by `Shared.ColorBar.LegendTitle.side`, `Shared.GradientMarker.ColorBar.LegendTitle.side`,
+    ///   `Shared.Marker.ColorBar.LegendTitle.side`, `Heatmap.ColorBar.LegendTitle.side`,
+    ///   `Histogram.Marker.ColorBar.LegendTitle.side`, `Histogram2D.ColorBar.LegendTitle.side`,
+    ///   `Histogram2DContour.ColorBar.LegendTitle.side`, `Contour.ColorBar.LegendTitle.side`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.LegendTitle.side`,
+    ///   `Funnel.Marker.ColorBar.LegendTitle.side`, `Sunburst.Marker.ColorBar.LegendTitle.side`,
+    ///   `Treemap.Marker.ColorBar.LegendTitle.side`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.LegendTitle.side`,
+    ///   `Shared.SymbolicMarker.ColorBar.LegendTitle.side`, `Surface.ColorBar.LegendTitle.side`,
+    ///   `Isosurface.ColorBar.LegendTitle.side`, `Volume.ColorBar.LegendTitle.side`,
+    ///   `Mesh3D.ColorBar.LegendTitle.side`, `Cone.ColorBar.LegendTitle.side`,
+    ///   `StreamTube.ColorBar.LegendTitle.side`, `ScatterGeo.GradientMarker.ColorBar.LegendTitle.side`,
+    ///   `Choropleth.ColorBar.LegendTitle.side`, `ScatterGL.SymbolicMarker.ColorBar.LegendTitle.side`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.LegendTitle.side`,
+    ///   `HeatmapGL.ColorBar.LegendTitle.side`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.LegendTitle.side`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.LegendTitle.side`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.LegendTitle.side`,
+    ///   `ChoroplethMapbox.ColorBar.LegendTitle.side`, `DensityMapbox.ColorBar.LegendTitle.side`,
+    ///   `ScatterCarpet.GradientMarker.ColorBar.LegendTitle.side`,
+    ///   `ContourCarpet.ColorBar.LegendTitle.side`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.LegendTitle.side`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.LegendTitle.side`,
+    ///   `BarPolar.Marker.ColorBar.LegendTitle.side`.
     public enum Side: String, Encodable {
         case right
         case top
@@ -962,6 +977,22 @@ public struct Shared {
         case lineNEOpen = "line-ne-open"
         case lineNW = "line-nw"
         case lineNWOpen = "line-nw-open"
+        case arrowUp = "arrow-up"
+        case arrowUpOpen = "arrow-up-open"
+        case arrowDown = "arrow-down"
+        case arrowDownOpen = "arrow-down-open"
+        case arrowLeft = "arrow-left"
+        case arrowLeftOpen = "arrow-left-open"
+        case arrowRight = "arrow-right"
+        case arrowRightOpen = "arrow-right-open"
+        case arrowBarUp = "arrow-bar-up"
+        case arrowBarUpOpen = "arrow-bar-up-open"
+        case arrowBarDown = "arrow-bar-down"
+        case arrowBarDownOpen = "arrow-bar-down-open"
+        case arrowBarLeft = "arrow-bar-left"
+        case arrowBarLeftOpen = "arrow-bar-left-open"
+        case arrowBarRight = "arrow-bar-right"
+        case arrowBarRightOpen = "arrow-bar-right-open"
     }
 
     /// Has an effect only if `marker.size` is set to a numerical array.
@@ -1326,62 +1357,66 @@ public struct Shared {
     ///   `Layout.Scene.Annotation.font`, `Layout.Scene.Annotation.HoverLabel.font`,
     ///   `Layout.Mapbox.Layer.Symbol.textFont`, `Layout.Polar.RadialAxis.Title.font`,
     ///   `Layout.Polar.RadialAxis.tickFont`, `Layout.Polar.AngularAxis.tickFont`, `Layout.Legend.font`,
-    ///   `Layout.Annotation.font`, `Layout.Annotation.HoverLabel.font`, `Layout.UpdateMenu.font`,
-    ///   `Layout.Slider.CurrentValue.font`, `Layout.Slider.font`, `Shared.ColorBar.tickFont`,
-    ///   `Shared.ColorBar.Title.font`, `Shared.GradientMarker.ColorBar.tickFont`,
-    ///   `Shared.GradientMarker.ColorBar.Title.font`, `Shared.Marker.ColorBar.tickFont`,
-    ///   `Shared.Marker.ColorBar.Title.font`, `Heatmap.ColorBar.tickFont`, `Heatmap.ColorBar.Title.font`,
-    ///   `Histogram.Marker.ColorBar.tickFont`, `Histogram.Marker.ColorBar.Title.font`,
-    ///   `Histogram2D.ColorBar.tickFont`, `Histogram2D.ColorBar.Title.font`, `Shared.Contours.labelFont`,
-    ///   `Histogram2DContour.ColorBar.tickFont`, `Histogram2DContour.ColorBar.Title.font`,
-    ///   `Contour.Contours.labelFont`, `Contour.ColorBar.tickFont`, `Contour.ColorBar.Title.font`,
+    ///   `Shared.LegendTitle.font`, `Layout.Annotation.font`, `Layout.Annotation.HoverLabel.font`,
+    ///   `Layout.UpdateMenu.font`, `Layout.Slider.CurrentValue.font`, `Layout.Slider.font`,
+    ///   `Shared.ColorBar.tickFont`, `Shared.ColorBar.LegendTitle.font`,
+    ///   `Shared.GradientMarker.ColorBar.tickFont`, `Shared.GradientMarker.ColorBar.LegendTitle.font`,
+    ///   `Shared.Marker.ColorBar.tickFont`, `Shared.Marker.ColorBar.LegendTitle.font`,
+    ///   `Heatmap.ColorBar.tickFont`, `Heatmap.ColorBar.LegendTitle.font`,
+    ///   `Histogram.Marker.ColorBar.tickFont`, `Histogram.Marker.ColorBar.LegendTitle.font`,
+    ///   `Histogram2D.ColorBar.tickFont`, `Histogram2D.ColorBar.LegendTitle.font`,
+    ///   `Shared.Contours.labelFont`, `Histogram2DContour.ColorBar.tickFont`,
+    ///   `Histogram2DContour.ColorBar.LegendTitle.font`, `Contour.Contours.labelFont`,
+    ///   `Contour.ColorBar.tickFont`, `Contour.ColorBar.LegendTitle.font`,
     ///   `ScatterTernary.GradientMarker.ColorBar.tickFont`,
-    ///   `ScatterTernary.GradientMarker.ColorBar.Title.font`, `Funnel.Marker.ColorBar.tickFont`,
-    ///   `Funnel.Marker.ColorBar.Title.font`, `Sunburst.Marker.ColorBar.tickFont`,
-    ///   `Sunburst.Marker.ColorBar.Title.font`, `Treemap.Marker.ColorBar.tickFont`,
-    ///   `Treemap.Marker.ColorBar.Title.font`, `Scatter3D.DashedMarkerLine.ColorBar.tickFont`,
-    ///   `Scatter3D.DashedMarkerLine.ColorBar.Title.font`, `Shared.SymbolicMarker.ColorBar.tickFont`,
-    ///   `Shared.SymbolicMarker.ColorBar.Title.font`, `Surface.ColorBar.tickFont`,
-    ///   `Surface.ColorBar.Title.font`, `Isosurface.ColorBar.tickFont`, `Isosurface.ColorBar.Title.font`,
-    ///   `Volume.ColorBar.tickFont`, `Volume.ColorBar.Title.font`, `Mesh3D.ColorBar.tickFont`,
-    ///   `Mesh3D.ColorBar.Title.font`, `Cone.ColorBar.tickFont`, `Cone.ColorBar.Title.font`,
-    ///   `StreamTube.ColorBar.tickFont`, `StreamTube.ColorBar.Title.font`,
-    ///   `ScatterGeo.GradientMarker.ColorBar.tickFont`, `ScatterGeo.GradientMarker.ColorBar.Title.font`,
-    ///   `Choropleth.ColorBar.tickFont`, `Choropleth.ColorBar.Title.font`,
-    ///   `ScatterGL.SymbolicMarker.ColorBar.tickFont`, `ScatterGL.SymbolicMarker.ColorBar.Title.font`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.LegendTitle.font`, `Funnel.Marker.ColorBar.tickFont`,
+    ///   `Funnel.Marker.ColorBar.LegendTitle.font`, `Sunburst.Marker.ColorBar.tickFont`,
+    ///   `Sunburst.Marker.ColorBar.LegendTitle.font`, `Treemap.Marker.ColorBar.tickFont`,
+    ///   `Treemap.Marker.ColorBar.LegendTitle.font`, `Scatter3D.DashedMarkerLine.ColorBar.tickFont`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.LegendTitle.font`,
+    ///   `Shared.SymbolicMarker.ColorBar.tickFont`, `Shared.SymbolicMarker.ColorBar.LegendTitle.font`,
+    ///   `Surface.ColorBar.tickFont`, `Surface.ColorBar.LegendTitle.font`,
+    ///   `Isosurface.ColorBar.tickFont`, `Isosurface.ColorBar.LegendTitle.font`,
+    ///   `Volume.ColorBar.tickFont`, `Volume.ColorBar.LegendTitle.font`, `Mesh3D.ColorBar.tickFont`,
+    ///   `Mesh3D.ColorBar.LegendTitle.font`, `Cone.ColorBar.tickFont`, `Cone.ColorBar.LegendTitle.font`,
+    ///   `StreamTube.ColorBar.tickFont`, `StreamTube.ColorBar.LegendTitle.font`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.tickFont`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.LegendTitle.font`, `Choropleth.ColorBar.tickFont`,
+    ///   `Choropleth.ColorBar.LegendTitle.font`, `ScatterGL.SymbolicMarker.ColorBar.tickFont`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.LegendTitle.font`,
     ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFont`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.Title.font`, `HeatmapGL.ColorBar.tickFont`,
-    ///   `HeatmapGL.ColorBar.Title.font`, `ParallelCoordinates.labelFont`,
+    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.LegendTitle.font`, `HeatmapGL.ColorBar.tickFont`,
+    ///   `HeatmapGL.ColorBar.LegendTitle.font`, `ParallelCoordinates.labelFont`,
     ///   `ParallelCoordinates.tickFont`, `ParallelCoordinates.rangeFont`,
     ///   `ParallelCoordinates.MarkerLine.ColorBar.tickFont`,
-    ///   `ParallelCoordinates.MarkerLine.ColorBar.Title.font`, `ParallelCategories.labelFont`,
+    ///   `ParallelCoordinates.MarkerLine.ColorBar.LegendTitle.font`, `ParallelCategories.labelFont`,
     ///   `ParallelCategories.tickFont`, `ParallelCategories.ShapedMarkerLine.ColorBar.tickFont`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.Title.font`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.LegendTitle.font`,
     ///   `ScatterMapbox.SymbolicMarker.ColorBar.tickFont`,
-    ///   `ScatterMapbox.SymbolicMarker.ColorBar.Title.font`, `ScatterMapbox.textFont`,
-    ///   `ChoroplethMapbox.ColorBar.tickFont`, `ChoroplethMapbox.ColorBar.Title.font`,
-    ///   `DensityMapbox.ColorBar.tickFont`, `DensityMapbox.ColorBar.Title.font`, `Sankey.textFont`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.LegendTitle.font`, `ScatterMapbox.textFont`,
+    ///   `ChoroplethMapbox.ColorBar.tickFont`, `ChoroplethMapbox.ColorBar.LegendTitle.font`,
+    ///   `DensityMapbox.ColorBar.tickFont`, `DensityMapbox.ColorBar.LegendTitle.font`, `Sankey.textFont`,
     ///   `Indicator.Title.font`, `Indicator.Number.font`, `Indicator.Delta.font`,
     ///   `Indicator.Gauge.Axis.tickFont`, `Carpet.AAxis.Title.font`, `Carpet.AAxis.tickFont`,
     ///   `Carpet.BAxis.Title.font`, `Carpet.BAxis.tickFont`, `Carpet.font`,
     ///   `ScatterCarpet.GradientMarker.ColorBar.tickFont`,
-    ///   `ScatterCarpet.GradientMarker.ColorBar.Title.font`, `ContourCarpet.Contours.labelFont`,
-    ///   `ContourCarpet.ColorBar.tickFont`, `ContourCarpet.ColorBar.Title.font`,
+    ///   `ScatterCarpet.GradientMarker.ColorBar.LegendTitle.font`, `ContourCarpet.Contours.labelFont`,
+    ///   `ContourCarpet.ColorBar.tickFont`, `ContourCarpet.ColorBar.LegendTitle.font`,
     ///   `ScatterPolar.GradientMarker.ColorBar.tickFont`,
-    ///   `ScatterPolar.GradientMarker.ColorBar.Title.font`,
+    ///   `ScatterPolar.GradientMarker.ColorBar.LegendTitle.font`,
     ///   `ScatterPolarGL.SymbolicMarker.ColorBar.tickFont`,
-    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.Title.font`, `BarPolar.Marker.ColorBar.tickFont`,
-    ///   `BarPolar.Marker.ColorBar.Title.font`.
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.LegendTitle.font`, `BarPolar.Marker.ColorBar.tickFont`,
+    ///   `BarPolar.Marker.ColorBar.LegendTitle.font`.
     public struct Font: Encodable {
         /// HTML font family - the typeface that will be applied by the web browser.
         /// 
         /// The web browser will only be able to apply a font if it is available on the system which it
         /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+        /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
+        /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
+        /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
+        /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
+        /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: String? = nil
     
         public var size: Double? = nil
@@ -1437,6 +1472,38 @@ public struct Shared {
             self.r = r
             self.b = b
             self.l = l
+        }
+        
+    }
+
+    /// - Note:
+    ///   Used by `Layout.NewShape.line`, `Layout.Shape.line`, `Funnel.Connector.line`,
+    ///   `Waterfall.Connector.line`, `ScatterGeo.line`.
+    public struct DashedLine: Encodable {
+        /// Sets the line color.
+        /// 
+        /// By default uses either dark grey or white to increase contrast with background color.
+        public var color: Color? = nil
+    
+        /// Sets the line width (in px).
+        public var width: Double? = nil
+    
+        /// Sets the dash style of lines.
+        /// 
+        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+        /// dash length list in px (eg *5px,10px,2px,2px*).
+        public var dash: String? = nil
+    
+        /// Creates `DashedLine` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - color: Sets the line color.
+        ///   - width: Sets the line width (in px).
+        ///   - dash: Sets the dash style of lines.
+        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil) {
+            self.color = color
+            self.width = width
+            self.dash = dash
         }
         
     }
@@ -1662,31 +1729,55 @@ public struct Shared {
     }
 
     /// - Note:
-    ///   Used by `Layout.Shape.line`, `Funnel.Connector.line`, `Waterfall.Connector.line`,
-    ///   `ScatterGeo.line`.
-    public struct DashedLine: Encodable {
-        /// Sets the line color.
-        public var color: Color? = nil
+    ///   Used by `Layout.Legend.title`, `Shared.ColorBar.title`, `Shared.GradientMarker.ColorBar.title`,
+    ///   `Shared.Marker.ColorBar.title`, `Heatmap.ColorBar.title`, `Histogram.Marker.ColorBar.title`,
+    ///   `Histogram2D.ColorBar.title`, `Histogram2DContour.ColorBar.title`, `Contour.ColorBar.title`,
+    ///   `ScatterTernary.GradientMarker.ColorBar.title`, `Funnel.Marker.ColorBar.title`,
+    ///   `Sunburst.Marker.ColorBar.title`, `Treemap.Marker.ColorBar.title`,
+    ///   `Scatter3D.DashedMarkerLine.ColorBar.title`, `Shared.SymbolicMarker.ColorBar.title`,
+    ///   `Surface.ColorBar.title`, `Isosurface.ColorBar.title`, `Volume.ColorBar.title`,
+    ///   `Mesh3D.ColorBar.title`, `Cone.ColorBar.title`, `StreamTube.ColorBar.title`,
+    ///   `ScatterGeo.GradientMarker.ColorBar.title`, `Choropleth.ColorBar.title`,
+    ///   `ScatterGL.SymbolicMarker.ColorBar.title`, `ScatterPlotMatrix.SymbolicMarker.ColorBar.title`,
+    ///   `HeatmapGL.ColorBar.title`, `ParallelCoordinates.MarkerLine.ColorBar.title`,
+    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.title`,
+    ///   `ScatterMapbox.SymbolicMarker.ColorBar.title`, `ChoroplethMapbox.ColorBar.title`,
+    ///   `DensityMapbox.ColorBar.title`, `ScatterCarpet.GradientMarker.ColorBar.title`,
+    ///   `ContourCarpet.ColorBar.title`, `ScatterPolar.GradientMarker.ColorBar.title`,
+    ///   `ScatterPolarGL.SymbolicMarker.ColorBar.title`, `BarPolar.Marker.ColorBar.title`.
+    public struct LegendTitle: Encodable {
+        /// Sets the title of the legend.
+        public var text: String? = nil
     
-        /// Sets the line width (in px).
-        public var width: Double? = nil
+        /// Sets this legend's title font.
+        public var font: Shared.Font? = nil
     
-        /// Sets the dash style of lines.
+        /// Determines the location of legend's title with respect to the legend items.
         /// 
-        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-        /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String? = nil
+        /// Defaulted to *top* with `orientation` is *h*. Defaulted to *left* with `orientation` is *v*. The
+        /// *top left* options could be used to expand legend area in both x and y sides.
+        public enum Side: String, Encodable {
+            case top
+            case left
+            case topLeft = "top left"
+            case right
+        }
+        /// Determines the location of legend's title with respect to the legend items.
+        /// 
+        /// Defaulted to *top* with `orientation` is *h*. Defaulted to *left* with `orientation` is *v*. The
+        /// *top left* options could be used to expand legend area in both x and y sides.
+        public var side: Side? = nil
     
-        /// Creates `DashedLine` object with specified properties.
+        /// Creates `LegendTitle` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - color: Sets the line color.
-        ///   - width: Sets the line width (in px).
-        ///   - dash: Sets the dash style of lines.
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
+        ///   - text: Sets the title of the legend.
+        ///   - font: Sets this legend's title font.
+        ///   - side: Determines the location of legend's title with respect to the legend items.
+        public init(text: String? = nil, font: Shared.Font? = nil, side: Side? = nil) {
+            self.text = text
+            self.font = font
+            self.side = side
         }
         
     }
@@ -1844,9 +1935,8 @@ public struct Shared {
         /// those in Python.
         /// 
         /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        /// And for dates see:
-        /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-        /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var tickFormat: String? = nil
     
@@ -1882,37 +1972,7 @@ public struct Shared {
         /// last tick is shown. If *none*, no exponents appear.
         public var showExponent: Shared.ShowExponent? = nil
     
-        public struct Title: Encodable {
-            /// Sets the title of the color bar.
-            /// 
-            /// Note that before the existence of `title.text`, the title's contents used to be defined as the
-            /// `title` attribute itself. This behavior has been deprecated.
-            public var text: String? = nil
-        
-            /// Sets this color bar's title font.
-            /// 
-            /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-            public var font: Shared.Font? = nil
-        
-            /// Determines the location of color bar's title with respect to the color bar.
-            /// 
-            /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
-            public var side: Shared.Side? = nil
-        
-            /// Creates `Title` object with specified properties.
-            /// 
-            /// - Parameters:
-            ///   - text: Sets the title of the color bar.
-            ///   - font: Sets this color bar's title font.
-            ///   - side: Determines the location of color bar's title with respect to the color bar.
-            public init(text: String? = nil, font: Shared.Font? = nil, side: Shared.Side? = nil) {
-                self.text = text
-                self.font = font
-                self.side = side
-            }
-            
-        }
-        public var title: Title? = nil
+        public var title: Shared.LegendTitle? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -2012,7 +2072,7 @@ public struct Shared {
                 [Shared.TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix:
                 Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix?
                 = nil, separateThousands: Bool? = nil, exponentFormat: Shared.ExponentFormat? = nil,
-                showExponent: Shared.ShowExponent? = nil, title: Title? = nil) {
+                showExponent: Shared.ShowExponent? = nil, title: Shared.LegendTitle? = nil) {
             self.thicknessMode = thicknessMode
             self.thickness = thickness
             self.lengthMode = lengthMode
@@ -2086,11 +2146,11 @@ public struct Shared {
         /// 
         /// The web browser will only be able to apply a font if it is available on the system which it
         /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+        /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
+        /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
+        /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
+        /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
+        /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: Data<String>? = nil
     
         public var size: Data<Double>? = nil
@@ -2133,7 +2193,7 @@ public struct Shared {
     public struct Stream: Encodable {
         /// The stream id number links a data trace on a plot with a stream.
         /// 
-        /// See https://plot.ly/settings for more details.
+        /// See https://chart-studio.plotly.com/settings for more details.
         public var token: String? = nil
     
         /// Sets the maximum number of points to keep on the plots from an incoming stream.
@@ -2648,11 +2708,11 @@ public struct Shared {
         /// 
         /// The web browser will only be able to apply a font if it is available on the system which it
         /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The plotly service (at
-        /// https://plot.ly or on-premise) generates images on a server, where only a select number of fonts
-        /// are installed and supported. These include *Arial*, *Balto*, *Courier New*, *Droid Sans*,,
-        /// *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*, *Overpass*,
-        /// *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+        /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
+        /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
+        /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
+        /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
+        /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
         public var family: Data<String>? = nil
     
         public var size: Data<Double>? = nil

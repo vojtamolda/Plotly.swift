@@ -103,13 +103,34 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     public var locations: LocationsData? = nil
 
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
+    /// 
+    /// Values *ISO-3*, *USA-states*, *country names* correspond to features on the base map and value
+    /// *geojson-id* corresponds to features from a custom GeoJSON linked to the `geojson` attribute.
     public enum LocationMode: String, Encodable {
         case ISO3 = "ISO-3"
         case statesOfUSA = "USA-states"
         case countryNames = "country names"
+        case geoJsonID = "geojson-id"
     }
     /// Determines the set of locations used to match entries in `locations` to regions on the map.
+    /// 
+    /// Values *ISO-3*, *USA-states*, *country names* correspond to features on the base map and value
+    /// *geojson-id* corresponds to features from a custom GeoJSON linked to the `geojson` attribute.
     public var locationMode: LocationMode? = nil
+
+    /// Sets optional GeoJSON data associated with this trace.
+    /// 
+    /// If not given, the features on the base map are used when `locations` is set. It can be set as a
+    /// valid GeoJSON object or as a URL string. Note that we only accept GeoJSONs of type
+    /// *FeatureCollection* or *Feature* with geometries of type *Polygon* or *MultiPolygon*.
+    public var geoJson: Anything? = nil
+
+    /// Sets the key in GeoJSON features which is used as id to match the items included in the
+    /// `locations` array.
+    /// 
+    /// Only has an effect when `geojson` is set. Support nested property, for example
+    /// *properties.name*.
+    public var featureIDKey: String? = nil
 
     /// Determines the drawing mode for this scatter trace.
     /// 
@@ -134,9 +155,9 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. Every attributes that can be specified per-point (the ones that are
-    /// `arrayOk: true`) are available. variables `lat`, `lon`, `location` and `text`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// Every attributes that can be specified per-point (the ones that are `arrayOk: true`) are
+    /// available. variables `lat`, `lon`, `location` and `text`.
     public var textTemplate: Data<String>? = nil
 
     /// Sets hover text elements associated with each (lon,lat) pair or item in `locations`.
@@ -524,12 +545,12 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. Anything contained in tag `<extra>` is displayed in the secondary box, for
-    /// example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. Anything
+    /// contained in tag `<extra>` is displayed in the secondary box, for example
+    /// "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an empty tag
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
@@ -560,6 +581,8 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
         case latitude = "lat"
         case locations
         case locationMode = "locationmode"
+        case geoJson = "geojson"
+        case featureIDKey = "featureidkey"
         case mode
         case text
         case textTemplate = "texttemplate"
@@ -632,6 +655,9 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     ///   - locations: Sets the coordinates via location IDs or names.
     ///   - locationMode: Determines the set of locations used to match entries in `locations` to regions
     ///   on the map.
+    ///   - geoJson: Sets optional GeoJSON data associated with this trace.
+    ///   - featureIDKey: Sets the key in GeoJSON features which is used as id to match the items included
+    ///   in the `locations` array.
     ///   - mode: Determines the drawing mode for this scatter trace.
     ///   - text: Sets text elements associated with each (lon,lat) pair or item in `locations`.
     ///   - textTemplate: Template string used for rendering the information text that appear on points.
@@ -655,13 +681,13 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
             [], uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
-            nil, locations: LocationsData? = nil, locationMode: LocationMode? = nil, mode: Shared.Mode? =
-            nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? =
-            nil, textFont: Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil, line:
-            Shared.DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? =
-            nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil,
-            hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, geo: Layout.Geo =
-            Layout.Geo(uid: 1)) {
+            nil, locations: LocationsData? = nil, locationMode: LocationMode? = nil, geoJson: Anything? =
+            nil, featureIDKey: String? = nil, mode: Shared.Mode? = nil, text: Data<String>? = nil,
+            textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, textFont:
+            Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil, line: Shared.DashedLine? =
+            nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? = nil, fillColor:
+            Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? =
+            nil, hoverTemplate: Data<String>? = nil, geo: Layout.Geo = Layout.Geo(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -680,6 +706,8 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
         self.latitude = latitude
         self.locations = locations
         self.locationMode = locationMode
+        self.geoJson = geoJson
+        self.featureIDKey = featureIDKey
         self.mode = mode
         self.text = text
         self.textTemplate = textTemplate
@@ -727,6 +755,8 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
             try locations.encode(toPlotly: container.superEncoder(forKey: .locations))
         }
         try container.encodeIfPresent(locationMode, forKey: .locationMode)
+        try container.encodeIfPresent(geoJson, forKey: .geoJson)
+        try container.encodeIfPresent(featureIDKey, forKey: .featureIDKey)
         try container.encodeIfPresent(mode, forKey: .mode)
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(textTemplate, forKey: .textTemplate)

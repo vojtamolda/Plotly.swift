@@ -77,31 +77,44 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
     /// stays with it as it moves.
     public var uiRevision: Anything? = nil
 
+    /// Specifies the data URI of the image to be visualized.
+    /// 
+    /// The URI consists of "data:image/[<media subtype>][;base64],<data>"
+    public var source: String? = nil
+
     /// A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a color.
     public var z: ZData? = nil
 
     /// Color model used to map the numerical color components described in `z` into colors.
+    /// 
+    /// If `source` is specified, this attribute will be set to `rgba256` otherwise it defaults to
+    /// `rgb`.
     public enum ColorModel: String, Encodable {
         case RGB = "rgb"
         case RGBA = "rgba"
+        case RGBA256 = "rgba256"
         case HSL = "hsl"
         case HSLA = "hsla"
     }
     /// Color model used to map the numerical color components described in `z` into colors.
+    /// 
+    /// If `source` is specified, this attribute will be set to `rgba256` otherwise it defaults to
+    /// `rgb`.
     public var colorModel: ColorModel? = nil
 
     /// Array defining the lower bound for each color component.
     /// 
     /// Note that the default value will depend on the colormodel. For the `rgb` colormodel, it is [0,
-    /// 0, 0]. For the `rgba` colormodel, it is [0, 0, 0, 0]. For the `hsl` colormodel, it is [0, 0, 0].
-    /// For the `hsla` colormodel, it is [0, 0, 0, 0].
+    /// 0, 0]. For the `rgba` colormodel, it is [0, 0, 0, 0]. For the `rgba256` colormodel, it is [0, 0,
+    /// 0, 0]. For the `hsl` colormodel, it is [0, 0, 0]. For the `hsla` colormodel, it is [0, 0, 0, 0].
     public var zMin: InfoArray? = nil
 
     /// Array defining the higher bound for each color component.
     /// 
     /// Note that the default value will depend on the colormodel. For the `rgb` colormodel, it is [255,
-    /// 255, 255]. For the `rgba` colormodel, it is [255, 255, 255, 1]. For the `hsl` colormodel, it is
-    /// [360, 100, 100]. For the `hsla` colormodel, it is [360, 100, 100, 1].
+    /// 255, 255]. For the `rgba` colormodel, it is [255, 255, 255, 1]. For the `rgba256` colormodel, it
+    /// is [255, 255, 255, 255]. For the `hsl` colormodel, it is [360, 100, 100]. For the `hsla`
+    /// colormodel, it is [360, 100, 100, 1].
     public var zMax: InfoArray? = nil
 
     /// Set the image's x position.
@@ -171,13 +184,13 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
     /// https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format for details on
     /// the formatting syntax. Dates are formatted using d3-time-format's syntax
     /// %{variable|d3-time-format}, for example "Day: %{2019-01-01|%A}".
-    /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format for details on
-    /// the date formatting syntax. The variables available in `hovertemplate` are the ones emitted as
-    /// event data described at this link https://plot.ly/javascript/plotlyjs-events/#event-data.
-    /// Additionally, every attributes that can be specified per-point (the ones that are `arrayOk:
-    /// true`) are available. variables `z`, `color` and `colormodel`. Anything contained in tag
-    /// `<extra>` is displayed in the secondary box, for example "<extra>{fullData.name}</extra>". To
-    /// hide the secondary box completely, use an empty tag `<extra></extra>`.
+    /// https://github.com/d3/d3-time-format#locale_format for details on the date formatting syntax.
+    /// The variables available in `hovertemplate` are the ones emitted as event data described at this
+    /// link https://plotly.com/javascript/plotlyjs-events/#event-data. Additionally, every attributes
+    /// that can be specified per-point (the ones that are `arrayOk: true`) are available. variables
+    /// `z`, `color` and `colormodel`. Anything contained in tag `<extra>` is displayed in the secondary
+    /// box, for example "<extra>{fullData.name}</extra>". To hide the secondary box completely, use an
+    /// empty tag `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
@@ -205,6 +218,7 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
         case hoverLabel = "hoverlabel"
         case stream
         case uiRevision = "uirevision"
+        case source
         case z
         case colorModel = "colormodel"
         case zMin = "zmin"
@@ -254,6 +268,7 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
     ///   - uiRevision: Controls persistence of some user-driven changes to the trace: `constraintrange`
     ///   in `parcoords` traces, as well as some `editable: true` modifications such as `name` and
     ///   `colorbar.title`.
+    ///   - source: Specifies the data URI of the image to be visualized.
     ///   - z: A 2-dimensional array in which each element is an array of 3 or 4 numbers representing a
     ///   color.
     ///   - colorModel: Color model used to map the numerical color components described in `z` into
@@ -273,11 +288,11 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
     public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
             String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
             hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil,
-            z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil,
-            x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate:
-            Data<String>? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis =
-            Layout.YAxis(uid: 1)) {
+            source: String? = nil, z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil,
+            zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double?
+            = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: Data<String>? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis:
+            Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -288,6 +303,7 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
         self.hoverLabel = hoverLabel
         self.stream = stream
         self.uiRevision = uiRevision
+        self.source = source
         self.z = z
         self.colorModel = colorModel
         self.zMin = zMin
@@ -318,6 +334,7 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
         try container.encodeIfPresent(hoverLabel, forKey: .hoverLabel)
         try container.encodeIfPresent(stream, forKey: .stream)
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(source, forKey: .source)
         if let z = self.z {
             try z.encode(toPlotly: container.superEncoder(forKey: .z))
         }

@@ -364,6 +364,60 @@ public struct Layout: Encodable {
     }
     public var title: Title? = nil
 
+    public struct UniformText: Encodable {
+        /// Determines how the font size for various text elements are uniformed between each trace type.
+        /// 
+        /// If the computed text sizes were smaller than the minimum size defined by `uniformtext.minsize`
+        /// using *hide* option hides the text; and using *show* option shows the text without further
+        /// downscaling. Please note that if the size defined by `minsize` is greater than the font size
+        /// defined by trace, then the `minsize` is used.
+        public enum Mode: Encodable {
+            case off
+            case hide
+            case show
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .off:
+                    try container.encode(false)
+                case .hide:
+                    try container.encode("hide")
+                case .show:
+                    try container.encode("show")
+                }
+            }
+        }
+        /// Determines how the font size for various text elements are uniformed between each trace type.
+        /// 
+        /// If the computed text sizes were smaller than the minimum size defined by `uniformtext.minsize`
+        /// using *hide* option hides the text; and using *show* option shows the text without further
+        /// downscaling. Please note that if the size defined by `minsize` is greater than the font size
+        /// defined by trace, then the `minsize` is used.
+        public var mode: Mode? = nil
+    
+        /// Sets the minimum text size between traces of the same type.
+        public var minSize: Double? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case mode
+            case minSize = "minsize"
+        }
+        
+        /// Creates `UniformText` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - mode: Determines how the font size for various text elements are uniformed between each trace
+        ///   type.
+        ///   - minSize: Sets the minimum text size between traces of the same type.
+        public init(mode: Mode? = nil, minSize: Double? = nil) {
+            self.mode = mode
+            self.minSize = minSize
+        }
+        
+    }
+    public var uniformText: UniformText? = nil
+
     /// Determines whether or not a layout width or height that has been left undefined by the user is
     /// initialized on each relayout.
     /// 
@@ -431,10 +485,10 @@ public struct Layout: Encodable {
     }
     public var margin: Margin? = nil
 
-    /// Sets the color of paper where the graph is drawn.
+    /// Sets the background color of the paper where the graph is drawn.
     public var paperBackgroundColor: Color? = nil
 
-    /// Sets the color of plotting area in-between x and y axes.
+    /// Sets the background color of the plotting area in-between x and y axes.
     public var plotBackgroundColor: Color? = nil
 
     /// Sets the decimal and thousand separators.
@@ -446,8 +500,8 @@ public struct Layout: Encodable {
     /// Determines whether or not a text link citing the data source is placed at the bottom-right cored
     /// of the figure.
     /// 
-    /// Has only an effect only on graphs that have been generated via forked graphs from the plotly
-    /// service (at https://plot.ly or on-premise).
+    /// Has only an effect only on graphs that have been generated via forked graphs from the Chart
+    /// Studio Cloud (at https://chart-studio.plotly.com or on-premise).
     public var hideSources: Bool? = nil
 
     /// Determines whether or not a legend is drawn.
@@ -561,6 +615,112 @@ public struct Layout: Encodable {
     }
     public var modeBar: ModeBar? = nil
 
+    public struct NewShape: Encodable {
+        public var line: Shared.DashedLine? = nil
+    
+        /// Sets the color filling new shapes' interior.
+        /// 
+        /// Please note that if using a fillcolor with alpha greater than half, drag inside the active shape
+        /// starts moving the shape underneath, otherwise a new shape could be started over.
+        public var fillColor: Color? = nil
+    
+        /// Determines the path's interior.
+        /// 
+        /// For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
+        public enum FillRule: String, Encodable {
+            case evenOdd = "evenodd"
+            case nonZero = "nonzero"
+        }
+        /// Determines the path's interior.
+        /// 
+        /// For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
+        public var fillRule: FillRule? = nil
+    
+        /// Sets the opacity of new shapes.
+        public var opacity: Double? = nil
+    
+        /// Specifies whether new shapes are drawn below or above traces.
+        public var layer: Shared.ShapeLayer? = nil
+    
+        /// When `dragmode` is set to *drawrect*, *drawline* or *drawcircle* this limits the drag to be
+        /// horizontal, vertical or diagonal.
+        /// 
+        /// Using *diagonal* there is no limit e.g. in drawing lines in any direction. *ortho* limits the
+        /// draw to be either horizontal or vertical. *horizontal* allows horizontal extend. *vertical*
+        /// allows vertical extend.
+        public enum DrawDirection: String, Encodable {
+            case ortho
+            case horizontal
+            case vertical
+            case diagonal
+        }
+        /// When `dragmode` is set to *drawrect*, *drawline* or *drawcircle* this limits the drag to be
+        /// horizontal, vertical or diagonal.
+        /// 
+        /// Using *diagonal* there is no limit e.g. in drawing lines in any direction. *ortho* limits the
+        /// draw to be either horizontal or vertical. *horizontal* allows horizontal extend. *vertical*
+        /// allows vertical extend.
+        public var drawDirection: DrawDirection? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case line
+            case fillColor = "fillcolor"
+            case fillRule = "fillrule"
+            case opacity
+            case layer
+            case drawDirection = "drawdirection"
+        }
+        
+        /// Creates `NewShape` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - line:
+        ///   - fillColor: Sets the color filling new shapes' interior.
+        ///   - fillRule: Determines the path's interior.
+        ///   - opacity: Sets the opacity of new shapes.
+        ///   - layer: Specifies whether new shapes are drawn below or above traces.
+        ///   - drawDirection: When `dragmode` is set to *drawrect*, *drawline* or *drawcircle* this limits
+        ///   the drag to be horizontal, vertical or diagonal.
+        public init(line: Shared.DashedLine? = nil, fillColor: Color? = nil, fillRule: FillRule? = nil,
+                opacity: Double? = nil, layer: Shared.ShapeLayer? = nil, drawDirection: DrawDirection? = nil) {
+            self.line = line
+            self.fillColor = fillColor
+            self.fillRule = fillRule
+            self.opacity = opacity
+            self.layer = layer
+            self.drawDirection = drawDirection
+        }
+        
+    }
+    public var newShape: NewShape? = nil
+
+    public struct ActiveShape: Encodable {
+        /// Sets the color filling the active shape' interior.
+        public var fillColor: Color? = nil
+    
+        /// Sets the opacity of the active shape.
+        public var opacity: Double? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case fillColor = "fillcolor"
+            case opacity
+        }
+        
+        /// Creates `ActiveShape` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - fillColor: Sets the color filling the active shape' interior.
+        ///   - opacity: Sets the opacity of the active shape.
+        public init(fillColor: Color? = nil, opacity: Double? = nil) {
+            self.fillColor = fillColor
+            self.opacity = opacity
+        }
+        
+    }
+    public var activeShape: ActiveShape? = nil
+
     /// Assigns extra meta information that can be used in various `text` attributes.
     /// 
     /// Attributes such as the graph, axis and colorbar `title.text`, annotation `text` `trace.name` in
@@ -660,6 +820,11 @@ public struct Layout: Encodable {
         case pan
         case select
         case lasso
+        case drawClosedPath
+        case drawOpenPath
+        case drawline
+        case drawRect
+        case drawCircle
         case orbit
         case turntable
         case off
@@ -674,6 +839,16 @@ public struct Layout: Encodable {
                 try container.encode("select")
             case .lasso:
                 try container.encode("lasso")
+            case .drawClosedPath:
+                try container.encode("drawclosedpath")
+            case .drawOpenPath:
+                try container.encode("drawopenpath")
+            case .drawline:
+                try container.encode("drawline")
+            case .drawRect:
+                try container.encode("drawrect")
+            case .drawCircle:
+                try container.encode("drawcircle")
             case .orbit:
                 try container.encode("orbit")
             case .turntable:
@@ -691,15 +866,24 @@ public struct Layout: Encodable {
 
     /// Determines the mode of hover interactions.
     /// 
-    /// If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode`
-    /// lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation`
-    /// value) for plots based on cartesian coordinates. For anything else the default value is
-    /// *closest*.
+    /// If *closest*, a single hoverlabel will appear for the *closest* point within the
+    /// `hoverdistance`. If *x* (or *y*), multiple hoverlabels will appear for multiple points at the
+    /// *closest* x- (or y-) coordinate within the `hoverdistance`, with the caveat that no more than
+    /// one hoverlabel will appear per trace. If *x unified* (or *y unified*), a single hoverlabel will
+    /// appear multiple points at the closest x- (or y-) coordinate within the `hoverdistance` with the
+    /// caveat that no more than one hoverlabel will appear per trace. In this mode, spikelines are
+    /// enabled by default perpendicular to the specified axis. If false, hover interactions are
+    /// disabled. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If
+    /// `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's
+    /// `orientation` value) for plots based on cartesian coordinates. For anything else the default
+    /// value is *closest*.
     public enum HoverMode: Encodable {
         case x
         case y
         case closest
         case off
+        case xUnified
+        case yUnified
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
@@ -711,15 +895,26 @@ public struct Layout: Encodable {
                 try container.encode("closest")
             case .off:
                 try container.encode(false)
+            case .xUnified:
+                try container.encode("x unified")
+            case .yUnified:
+                try container.encode("y unified")
             }
         }
     }
     /// Determines the mode of hover interactions.
     /// 
-    /// If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If `clickmode`
-    /// lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's `orientation`
-    /// value) for plots based on cartesian coordinates. For anything else the default value is
-    /// *closest*.
+    /// If *closest*, a single hoverlabel will appear for the *closest* point within the
+    /// `hoverdistance`. If *x* (or *y*), multiple hoverlabels will appear for multiple points at the
+    /// *closest* x- (or y-) coordinate within the `hoverdistance`, with the caveat that no more than
+    /// one hoverlabel will appear per trace. If *x unified* (or *y unified*), a single hoverlabel will
+    /// appear multiple points at the closest x- (or y-) coordinate within the `hoverdistance` with the
+    /// caveat that no more than one hoverlabel will appear per trace. In this mode, spikelines are
+    /// enabled by default perpendicular to the specified axis. If false, hover interactions are
+    /// disabled. If `clickmode` includes the *select* flag, `hovermode` defaults to *closest*. If
+    /// `clickmode` lacks the *select* flag, it defaults to *x* or *y* (depending on the trace's
+    /// `orientation` value) for plots based on cartesian coordinates. For anything else the default
+    /// value is *closest*.
     public var hoverMode: HoverMode? = nil
 
     /// Sets the default distance (in pixels) to look for data to add hover labels (-1 means no cutoff,
@@ -739,10 +934,10 @@ public struct Layout: Encodable {
 
     public var hoverLabel: Shared.HoverLabel? = nil
 
-    /// When "dragmode" is set to "select", this limits the selection of the drag to horizontal,
+    /// When `dragmode` is set to *select*, this limits the selection of the drag to horizontal,
     /// vertical or diagonal.
     /// 
-    /// "h" only allows horizontal selection, "v" only vertical, "d" only diagonal and "any" sets no
+    /// *h* only allows horizontal selection, *v* only vertical, *d* only diagonal and *any* sets no
     /// limit.
     public enum SelectDirection: String, Encodable {
         case h
@@ -750,10 +945,10 @@ public struct Layout: Encodable {
         case d
         case any
     }
-    /// When "dragmode" is set to "select", this limits the selection of the drag to horizontal,
+    /// When `dragmode` is set to *select*, this limits the selection of the drag to horizontal,
     /// vertical or diagonal.
     /// 
-    /// "h" only allows horizontal selection, "v" only vertical, "d" only diagonal and "any" sets no
+    /// *h* only allows horizontal selection, *v* only vertical, *d* only diagonal and *any* sets no
     /// limit.
     public var selectDirection: SelectDirection? = nil
 
@@ -1159,6 +1354,103 @@ public struct Layout: Encodable {
         /// same `type`.
         public var matches: Matches? = nil
     
+        public struct RangeBreak: Encodable {
+            /// Determines whether this axis rangebreak is enabled or disabled.
+            /// 
+            /// Please note that `rangebreaks` only work for *date* axis type.
+            public var enabled: Bool? = nil
+        
+            /// Sets the lower and upper bounds of this axis rangebreak.
+            /// 
+            /// Can be used with `pattern`.
+            public var bounds: InfoArray? = nil
+        
+            /// Determines a pattern on the time line that generates breaks.
+            /// 
+            /// If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is
+            /// case-insensitive and considers only the first three characters), as well as Sunday-based
+            /// integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24.
+            /// for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] } or simply { bounds:
+            /// ['sat', 'mon'] } breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour',
+            /// bounds: [17, 8] } breaks from 5pm to 8am (i.e. skips non-work hours).
+            public enum Pattern: String, Encodable {
+                case dayOfWeek = "day of week"
+                case hour
+                case off = ""
+            }
+            /// Determines a pattern on the time line that generates breaks.
+            /// 
+            /// If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is
+            /// case-insensitive and considers only the first three characters), as well as Sunday-based
+            /// integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24.
+            /// for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] } or simply { bounds:
+            /// ['sat', 'mon'] } breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour',
+            /// bounds: [17, 8] } breaks from 5pm to 8am (i.e. skips non-work hours).
+            public var pattern: Pattern? = nil
+        
+            /// Sets the coordinate values corresponding to the rangebreaks.
+            /// 
+            /// An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
+            public var values: InfoArray? = nil
+        
+            /// Sets the size of each `values` item.
+            /// 
+            /// The default is one day in milliseconds.
+            public var dValue: Double? = nil
+        
+            /// When used in a template, named items are created in the output figure in addition to any items
+            /// the figure already has in this array.
+            /// 
+            /// You can modify these items in the output figure by making your own item with `templateitemname`
+            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+            /// false` to hide it). Has no effect outside of a template.
+            public var name: String? = nil
+        
+            /// Used to refer to a named item in this array in the template.
+            /// 
+            /// Named items from the template will be created even without a matching item in the input figure,
+            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+            /// template or no matching item, this item will be hidden unless you explicitly show it with
+            /// `visible: true`.
+            public var templateItemName: String? = nil
+        
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case enabled
+                case bounds
+                case pattern
+                case values
+                case dValue = "dvalue"
+                case name
+                case templateItemName = "templateitemname"
+            }
+            
+            /// Creates `RangeBreak` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - enabled: Determines whether this axis rangebreak is enabled or disabled.
+            ///   - bounds: Sets the lower and upper bounds of this axis rangebreak.
+            ///   - pattern: Determines a pattern on the time line that generates breaks.
+            ///   - values: Sets the coordinate values corresponding to the rangebreaks.
+            ///   - dValue: Sets the size of each `values` item.
+            ///   - name: When used in a template, named items are created in the output figure in addition to any
+            ///   items the figure already has in this array.
+            ///   - templateItemName: Used to refer to a named item in this array in the template.
+            public init(enabled: Bool? = nil, bounds: InfoArray? = nil, pattern: Pattern? = nil, values:
+                    InfoArray? = nil, dValue: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
+                self.enabled = enabled
+                self.bounds = bounds
+                self.pattern = pattern
+                self.values = values
+                self.dValue = dValue
+                self.name = name
+                self.templateItemName = templateItemName
+            }
+            
+        }
+        public var rangeBreaks: [RangeBreak]? = nil
+    
         /// Sets the tick mode for this axis.
         /// 
         /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
@@ -1229,6 +1521,20 @@ public struct Layout: Encodable {
         /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
         /// ticks and grid lines are drawn half a category to the left/bottom of labels.
         public var ticksOn: TicksOn? = nil
+    
+        /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines.
+        /// 
+        /// Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the
+        /// middle of the period between ticks.
+        public enum TickLabelMode: String, Encodable {
+            case instant
+            case period
+        }
+        /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines.
+        /// 
+        /// Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the
+        /// middle of the period between ticks.
+        public var tickLabelMode: TickLabelMode? = nil
     
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
         /// area.
@@ -1307,6 +1613,7 @@ public struct Layout: Encodable {
         public enum SpikeSnap: String, Encodable {
             case data
             case cursor
+            case hoveredData = "hovered data"
         }
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
         public var spikeSnap: SpikeSnap? = nil
@@ -1353,9 +1660,8 @@ public struct Layout: Encodable {
         /// those in Python.
         /// 
         /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        /// And for dates see:
-        /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-        /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var tickFormat: String? = nil
     
@@ -1365,9 +1671,8 @@ public struct Layout: Encodable {
         /// those in Python.
         /// 
         /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        /// And for dates see:
-        /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-        /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var hoverFormat: String? = nil
     
@@ -1485,7 +1790,7 @@ public struct Layout: Encodable {
         /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
         /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
         /// nodes above this axis.
-        public var layer: Shared.Layer? = nil
+        public var layer: Shared.AxisLayer? = nil
     
         /// Sets the domain of this axis (in plot fraction).
         public var domain: InfoArray? = nil
@@ -1843,6 +2148,7 @@ public struct Layout: Encodable {
             case constrain
             case constrainToward = "constraintoward"
             case matches
+            case rangeBreaks = "rangebreaks"
             case tickMode = "tickmode"
             case numTicks = "nticks"
             case tick0
@@ -1851,6 +2157,7 @@ public struct Layout: Encodable {
             case tickText = "ticktext"
             case ticks
             case ticksOn = "tickson"
+            case tickLabelMode = "ticklabelmode"
             case mirror
             case tickLength = "ticklen"
             case tickWidth = "tickwidth"
@@ -1925,6 +2232,7 @@ public struct Layout: Encodable {
         ///   `scaleratio` or those of the other axis), determines which direction we push the originally
         ///   specified plot area.
         ///   - matches: If set to another axis id (e.g.
+        ///   - rangeBreaks:
         ///   - tickMode: Sets the tick mode for this axis.
         ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
         ///   - tick0: Sets the placement of the first tick on this axis.
@@ -1934,6 +2242,8 @@ public struct Layout: Encodable {
         ///   - ticks: Determines whether ticks are drawn or not.
         ///   - ticksOn: Determines where ticks and grid lines are drawn with respect to their corresponding
         ///   tick labels.
+        ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
+        ///   ticks and grid lines.
         ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
         ///   plotting area.
         ///   - tickLength: Sets the tick length (in px).
@@ -1995,22 +2305,23 @@ public struct Layout: Encodable {
                 nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode:
                 Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor:
                 ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward:
-                ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks:
-                Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil,
-                tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror:
-                Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? =
-                nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor:
-                Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? =
-                nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil,
-                tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? =
-                nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil,
-                exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat:
-                String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil,
-                showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
-                gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
-                = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
+                ConstrainToward? = nil, matches: Matches? = nil, rangeBreaks: [RangeBreak]? = nil, tickMode:
+                Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
+                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn:
+                TicksOn? = nil, tickLabelMode: TickLabelMode? = nil, mirror: Shared.Mirror? = nil, tickLength:
+                Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil,
+                autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness:
+                Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? =
+                nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil,
+                showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+                Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat:
+                Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil,
+                tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? =
+                nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color?
+                = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil,
+                zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
                 dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? =
-                nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil,
+                nil, layer: Shared.AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil,
                 categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision:
                 Anything? = nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar:
                 Shared.Calendar? = nil) {
@@ -2028,6 +2339,7 @@ public struct Layout: Encodable {
             self.constrain = constrain
             self.constrainToward = constrainToward
             self.matches = matches
+            self.rangeBreaks = rangeBreaks
             self.tickMode = tickMode
             self.numTicks = numTicks
             self.tick0 = tick0
@@ -2036,6 +2348,7 @@ public struct Layout: Encodable {
             self.tickText = tickText
             self.ticks = ticks
             self.ticksOn = ticksOn
+            self.tickLabelMode = tickLabelMode
             self.mirror = mirror
             self.tickLength = tickLength
             self.tickWidth = tickWidth
@@ -2293,6 +2606,103 @@ public struct Layout: Encodable {
         /// same `type`.
         public var matches: Matches? = nil
     
+        public struct RangeBreak: Encodable {
+            /// Determines whether this axis rangebreak is enabled or disabled.
+            /// 
+            /// Please note that `rangebreaks` only work for *date* axis type.
+            public var enabled: Bool? = nil
+        
+            /// Sets the lower and upper bounds of this axis rangebreak.
+            /// 
+            /// Can be used with `pattern`.
+            public var bounds: InfoArray? = nil
+        
+            /// Determines a pattern on the time line that generates breaks.
+            /// 
+            /// If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is
+            /// case-insensitive and considers only the first three characters), as well as Sunday-based
+            /// integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24.
+            /// for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] } or simply { bounds:
+            /// ['sat', 'mon'] } breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour',
+            /// bounds: [17, 8] } breaks from 5pm to 8am (i.e. skips non-work hours).
+            public enum Pattern: String, Encodable {
+                case dayOfWeek = "day of week"
+                case hour
+                case off = ""
+            }
+            /// Determines a pattern on the time line that generates breaks.
+            /// 
+            /// If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is
+            /// case-insensitive and considers only the first three characters), as well as Sunday-based
+            /// integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24.
+            /// for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] } or simply { bounds:
+            /// ['sat', 'mon'] } breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour',
+            /// bounds: [17, 8] } breaks from 5pm to 8am (i.e. skips non-work hours).
+            public var pattern: Pattern? = nil
+        
+            /// Sets the coordinate values corresponding to the rangebreaks.
+            /// 
+            /// An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
+            public var values: InfoArray? = nil
+        
+            /// Sets the size of each `values` item.
+            /// 
+            /// The default is one day in milliseconds.
+            public var dValue: Double? = nil
+        
+            /// When used in a template, named items are created in the output figure in addition to any items
+            /// the figure already has in this array.
+            /// 
+            /// You can modify these items in the output figure by making your own item with `templateitemname`
+            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+            /// false` to hide it). Has no effect outside of a template.
+            public var name: String? = nil
+        
+            /// Used to refer to a named item in this array in the template.
+            /// 
+            /// Named items from the template will be created even without a matching item in the input figure,
+            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+            /// template or no matching item, this item will be hidden unless you explicitly show it with
+            /// `visible: true`.
+            public var templateItemName: String? = nil
+        
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case enabled
+                case bounds
+                case pattern
+                case values
+                case dValue = "dvalue"
+                case name
+                case templateItemName = "templateitemname"
+            }
+            
+            /// Creates `RangeBreak` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - enabled: Determines whether this axis rangebreak is enabled or disabled.
+            ///   - bounds: Sets the lower and upper bounds of this axis rangebreak.
+            ///   - pattern: Determines a pattern on the time line that generates breaks.
+            ///   - values: Sets the coordinate values corresponding to the rangebreaks.
+            ///   - dValue: Sets the size of each `values` item.
+            ///   - name: When used in a template, named items are created in the output figure in addition to any
+            ///   items the figure already has in this array.
+            ///   - templateItemName: Used to refer to a named item in this array in the template.
+            public init(enabled: Bool? = nil, bounds: InfoArray? = nil, pattern: Pattern? = nil, values:
+                    InfoArray? = nil, dValue: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
+                self.enabled = enabled
+                self.bounds = bounds
+                self.pattern = pattern
+                self.values = values
+                self.dValue = dValue
+                self.name = name
+                self.templateItemName = templateItemName
+            }
+            
+        }
+        public var rangeBreaks: [RangeBreak]? = nil
+    
         /// Sets the tick mode for this axis.
         /// 
         /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
@@ -2363,6 +2773,20 @@ public struct Layout: Encodable {
         /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
         /// ticks and grid lines are drawn half a category to the left/bottom of labels.
         public var ticksOn: TicksOn? = nil
+    
+        /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines.
+        /// 
+        /// Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the
+        /// middle of the period between ticks.
+        public enum TickLabelMode: String, Encodable {
+            case instant
+            case period
+        }
+        /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines.
+        /// 
+        /// Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the
+        /// middle of the period between ticks.
+        public var tickLabelMode: TickLabelMode? = nil
     
         /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
         /// area.
@@ -2441,6 +2865,7 @@ public struct Layout: Encodable {
         public enum SpikeSnap: String, Encodable {
             case data
             case cursor
+            case hoveredData = "hovered data"
         }
         /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
         public var spikeSnap: SpikeSnap? = nil
@@ -2487,9 +2912,8 @@ public struct Layout: Encodable {
         /// those in Python.
         /// 
         /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        /// And for dates see:
-        /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-        /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var tickFormat: String? = nil
     
@@ -2499,9 +2923,8 @@ public struct Layout: Encodable {
         /// those in Python.
         /// 
         /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        /// And for dates see:
-        /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-        /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var hoverFormat: String? = nil
     
@@ -2619,7 +3042,7 @@ public struct Layout: Encodable {
         /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
         /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
         /// nodes above this axis.
-        public var layer: Shared.Layer? = nil
+        public var layer: Shared.AxisLayer? = nil
     
         /// Sets the domain of this axis (in plot fraction).
         public var domain: InfoArray? = nil
@@ -2674,6 +3097,7 @@ public struct Layout: Encodable {
             case constrain
             case constrainToward = "constraintoward"
             case matches
+            case rangeBreaks = "rangebreaks"
             case tickMode = "tickmode"
             case numTicks = "nticks"
             case tick0
@@ -2682,6 +3106,7 @@ public struct Layout: Encodable {
             case tickText = "ticktext"
             case ticks
             case ticksOn = "tickson"
+            case tickLabelMode = "ticklabelmode"
             case mirror
             case tickLength = "ticklen"
             case tickWidth = "tickwidth"
@@ -2754,6 +3179,7 @@ public struct Layout: Encodable {
         ///   `scaleratio` or those of the other axis), determines which direction we push the originally
         ///   specified plot area.
         ///   - matches: If set to another axis id (e.g.
+        ///   - rangeBreaks:
         ///   - tickMode: Sets the tick mode for this axis.
         ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
         ///   - tick0: Sets the placement of the first tick on this axis.
@@ -2763,6 +3189,8 @@ public struct Layout: Encodable {
         ///   - ticks: Determines whether ticks are drawn or not.
         ///   - ticksOn: Determines where ticks and grid lines are drawn with respect to their corresponding
         ///   tick labels.
+        ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
+        ///   ticks and grid lines.
         ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
         ///   plotting area.
         ///   - tickLength: Sets the tick length (in px).
@@ -2822,22 +3250,23 @@ public struct Layout: Encodable {
                 nil, title: Title? = nil, type: `Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode:
                 Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor:
                 ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward:
-                ConstrainToward? = nil, matches: Matches? = nil, tickMode: Shared.TickMode? = nil, numTicks:
-                Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil,
-                tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: TicksOn? = nil, mirror:
-                Shared.Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? =
-                nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor:
-                Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? =
-                nil, spikeSnap: SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil,
-                tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? =
-                nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil,
-                exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat:
-                String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil,
-                showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
-                gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
-                = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
+                ConstrainToward? = nil, matches: Matches? = nil, rangeBreaks: [RangeBreak]? = nil, tickMode:
+                Shared.TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
+                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn:
+                TicksOn? = nil, tickLabelMode: TickLabelMode? = nil, mirror: Shared.Mirror? = nil, tickLength:
+                Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil,
+                autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness:
+                Double? = nil, spikeDash: String? = nil, spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? =
+                nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil,
+                showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+                Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat:
+                Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? = nil,
+                tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? =
+                nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color?
+                = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil,
+                zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
                 dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? =
-                nil, layer: Shared.Layer? = nil, domain: InfoArray? = nil, position: Double? = nil,
+                nil, layer: Shared.AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil,
                 categoryOrder: Shared.CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision:
                 Anything? = nil, calendar: Shared.Calendar? = nil) {
             self.uid = uid
@@ -2854,6 +3283,7 @@ public struct Layout: Encodable {
             self.constrain = constrain
             self.constrainToward = constrainToward
             self.matches = matches
+            self.rangeBreaks = rangeBreaks
             self.tickMode = tickMode
             self.numTicks = numTicks
             self.tick0 = tick0
@@ -2862,6 +3292,7 @@ public struct Layout: Encodable {
             self.tickText = tickText
             self.ticks = ticks
             self.ticksOn = ticksOn
+            self.tickLabelMode = tickLabelMode
             self.mirror = mirror
             self.tickLength = tickLength
             self.tickWidth = tickWidth
@@ -3045,9 +3476,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
@@ -3057,9 +3487,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var hoverFormat: String? = nil
         
@@ -3089,7 +3518,7 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer? = nil
+            public var layer: Shared.AxisLayer? = nil
         
             /// The minimum value visible on this axis.
             /// 
@@ -3192,7 +3621,7 @@ public struct Layout: Encodable {
                     tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? =
                     nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
                     Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer:
-                    Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+                    Shared.AxisLayer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -3353,9 +3782,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
@@ -3365,9 +3793,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var hoverFormat: String? = nil
         
@@ -3397,7 +3824,7 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer? = nil
+            public var layer: Shared.AxisLayer? = nil
         
             /// The minimum value visible on this axis.
             /// 
@@ -3500,7 +3927,7 @@ public struct Layout: Encodable {
                     tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? =
                     nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
                     Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer:
-                    Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+                    Shared.AxisLayer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -3661,9 +4088,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
@@ -3673,9 +4099,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var hoverFormat: String? = nil
         
@@ -3705,7 +4130,7 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer? = nil
+            public var layer: Shared.AxisLayer? = nil
         
             /// The minimum value visible on this axis.
             /// 
@@ -3808,7 +4233,7 @@ public struct Layout: Encodable {
                     tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? =
                     nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
                     Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, layer:
-                    Shared.Layer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
+                    Shared.AxisLayer? = nil, min: Double? = nil, uiRevision: Anything? = nil) {
                 self.title = title
                 self.color = color
                 self.tickMode = tickMode
@@ -4271,9 +4696,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
@@ -4283,9 +4707,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var hoverFormat: String? = nil
         
@@ -4723,9 +5146,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
@@ -4735,9 +5157,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var hoverFormat: String? = nil
         
@@ -5175,9 +5596,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
@@ -5187,9 +5607,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var hoverFormat: String? = nil
         
@@ -5537,8 +5956,8 @@ public struct Layout: Encodable {
         
             /// Sets the horizontal alignment of the `text` within the box.
             /// 
-            /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
-            /// HTML tags) or if an explicit width is set to override the text width.
+            /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
+            /// tags) or if an explicit width is set to override the text width.
             public var align: Shared.HorizontalAlign? = nil
         
             /// Sets the vertical alignment of the `text` within the box.
@@ -5894,6 +6313,44 @@ public struct Layout: Encodable {
     
         public var domain: Shared.Domain? = nil
     
+        /// Determines if this subplot's view settings are auto-computed to fit trace data.
+        /// 
+        /// On scoped maps, setting `fitbounds` leads to `center.lon` and `center.lat` getting auto-filled.
+        /// On maps with a non-clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`,
+        /// and `projection.rotation.lon` getting auto-filled. On maps with a clipped projection, setting
+        /// `fitbounds` leads to `center.lon`, `center.lat`, `projection.rotation.lon`,
+        /// `projection.rotation.lat`, `lonaxis.range` and `lonaxis.range` getting auto-filled. If
+        /// *locations*, only the trace's visible locations are considered in the `fitbounds` computations.
+        /// If *geojson*, the entire trace input `geojson` (if provided) is considered in the `fitbounds`
+        /// computations, Defaults to *false*.
+        public enum FitBounds: Encodable {
+            case off
+            case locations
+            case geoJson
+            public func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                switch self {
+                case .off:
+                    try container.encode(false)
+                case .locations:
+                    try container.encode("locations")
+                case .geoJson:
+                    try container.encode("geojson")
+                }
+            }
+        }
+        /// Determines if this subplot's view settings are auto-computed to fit trace data.
+        /// 
+        /// On scoped maps, setting `fitbounds` leads to `center.lon` and `center.lat` getting auto-filled.
+        /// On maps with a non-clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`,
+        /// and `projection.rotation.lon` getting auto-filled. On maps with a clipped projection, setting
+        /// `fitbounds` leads to `center.lon`, `center.lat`, `projection.rotation.lon`,
+        /// `projection.rotation.lat`, `lonaxis.range` and `lonaxis.range` getting auto-filled. If
+        /// *locations*, only the trace's visible locations are considered in the `fitbounds` computations.
+        /// If *geojson*, the entire trace input `geojson` (if provided) is considered in the `fitbounds`
+        /// computations, Defaults to *false*.
+        public var fitBounds: FitBounds? = nil
+    
         /// Sets the resolution of the base layers.
         /// 
         /// The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
@@ -6041,6 +6498,9 @@ public struct Layout: Encodable {
             
         }
         public var center: Center? = nil
+    
+        /// Sets the default visibility of the base layers.
+        public var visible: Bool? = nil
     
         /// Sets whether or not the coastlines are drawn.
         public var showCoastLines: Bool? = nil
@@ -6220,10 +6680,12 @@ public struct Layout: Encodable {
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case domain
+            case fitBounds = "fitbounds"
             case resolution
             case scope
             case projection
             case center
+            case visible
             case showCoastLines = "showcoastlines"
             case coastLineColor = "coastlinecolor"
             case coastLineWidth = "coastlinewidth"
@@ -6256,10 +6718,12 @@ public struct Layout: Encodable {
         /// - Parameters:
         ///   - uid:
         ///   - domain:
+        ///   - fitBounds: Determines if this subplot's view settings are auto-computed to fit trace data.
         ///   - resolution: Sets the resolution of the base layers.
         ///   - scope: Set the scope of the map.
         ///   - projection:
         ///   - center:
+        ///   - visible: Sets the default visibility of the base layers.
         ///   - showCoastLines: Sets whether or not the coastlines are drawn.
         ///   - coastLineColor: Sets the coastline color.
         ///   - coastLineWidth: Sets the coastline stroke width (in px).
@@ -6285,22 +6749,25 @@ public struct Layout: Encodable {
         ///   - longitudeAxis:
         ///   - latitudeAxis:
         ///   - uiRevision: Controls persistence of user-driven changes in the view (projection and center).
-        public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Shared.Domain? = nil, resolution:
-                Resolution? = nil, scope: Scope? = nil, projection: Projection? = nil, center: Center? = nil,
-                showCoastLines: Bool? = nil, coastLineColor: Color? = nil, coastLineWidth: Double? = nil,
-                showLand: Bool? = nil, landColor: Color? = nil, showOcean: Bool? = nil, oceanColor: Color? =
-                nil, showLakes: Bool? = nil, lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor:
-                Color? = nil, riverWidth: Double? = nil, showCountries: Bool? = nil, countryColor: Color? = nil,
-                countryWidth: Double? = nil, showSubunits: Bool? = nil, subUnitColor: Color? = nil,
-                subUnitWidth: Double? = nil, showFrame: Bool? = nil, frameColor: Color? = nil, frameWidth:
-                Double? = nil, backgroundColor: Color? = nil, longitudeAxis: LongitudeAxis? = nil, latitudeAxis:
-                LatitudeAxis? = nil, uiRevision: Anything? = nil) {
+        public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Shared.Domain? = nil, fitBounds:
+                FitBounds? = nil, resolution: Resolution? = nil, scope: Scope? = nil, projection: Projection? =
+                nil, center: Center? = nil, visible: Bool? = nil, showCoastLines: Bool? = nil, coastLineColor:
+                Color? = nil, coastLineWidth: Double? = nil, showLand: Bool? = nil, landColor: Color? = nil,
+                showOcean: Bool? = nil, oceanColor: Color? = nil, showLakes: Bool? = nil, lakeColor: Color? =
+                nil, showRivers: Bool? = nil, riverColor: Color? = nil, riverWidth: Double? = nil,
+                showCountries: Bool? = nil, countryColor: Color? = nil, countryWidth: Double? = nil,
+                showSubunits: Bool? = nil, subUnitColor: Color? = nil, subUnitWidth: Double? = nil, showFrame:
+                Bool? = nil, frameColor: Color? = nil, frameWidth: Double? = nil, backgroundColor: Color? = nil,
+                longitudeAxis: LongitudeAxis? = nil, latitudeAxis: LatitudeAxis? = nil, uiRevision: Anything? =
+                nil) {
             self.uid = uid
             self.domain = domain
+            self.fitBounds = fitBounds
             self.resolution = resolution
             self.scope = scope
             self.projection = projection
             self.center = center
+            self.visible = visible
             self.showCoastLines = showCoastLines
             self.coastLineColor = coastLineColor
             self.coastLineWidth = coastLineWidth
@@ -6880,9 +7347,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var hoverFormat: String? = nil
         
@@ -7030,9 +7496,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
@@ -7044,7 +7509,7 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer? = nil
+            public var layer: Shared.AxisLayer? = nil
         
             /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
             /// 
@@ -7164,7 +7629,7 @@ public struct Layout: Encodable {
                     = nil, tickSuffix: String? = nil, showExponent: Shared.ShowExponent? = nil, exponentFormat:
                     Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Shared.Font? = nil,
                     tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [Shared.TickFormatStop]? =
-                    nil, layer: Shared.Layer? = nil, calendar: Shared.Calendar? = nil) {
+                    nil, layer: Shared.AxisLayer? = nil, calendar: Shared.Calendar? = nil) {
                 self.visible = visible
                 self.type = type
                 self.autoRange = autoRange
@@ -7289,9 +7754,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var hoverFormat: String? = nil
         
@@ -7438,9 +7902,8 @@ public struct Layout: Encodable {
             /// those in Python.
             /// 
             /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-            /// And for dates see:
-            /// https://github.com/d3/d3-3.x-api-reference/blob/master/Time-Formatting.md#format We add one item
-            /// to d3's date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+            /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+            /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
@@ -7452,7 +7915,7 @@ public struct Layout: Encodable {
             /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
             /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
             /// nodes above this axis.
-            public var layer: Shared.Layer? = nil
+            public var layer: Shared.AxisLayer? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -7558,7 +8021,7 @@ public struct Layout: Encodable {
                     showTickSuffix: Shared.ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent:
                     Shared.ShowExponent? = nil, exponentFormat: Shared.ExponentFormat? = nil, separateThousands:
                     Bool? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil,
-                    tickFormatStops: [Shared.TickFormatStop]? = nil, layer: Shared.Layer? = nil) {
+                    tickFormatStops: [Shared.TickFormatStop]? = nil, layer: Shared.AxisLayer? = nil) {
                 self.visible = visible
                 self.type = type
                 self.categoryOrder = categoryOrder
@@ -7677,6 +8140,8 @@ public struct Layout: Encodable {
 
     public struct Legend: Encodable {
         /// Sets the legend background color.
+        /// 
+        /// Defaults to `layout.paper_bgcolor`.
         public var backgroundColor: Color? = nil
     
         /// Sets the color of the border enclosing the legend.
@@ -7827,6 +8292,8 @@ public struct Layout: Encodable {
         /// Sets the vertical alignment of the symbols with respect to their associated text.
         public var verticalAlign: Shared.VerticalAlign? = nil
     
+        public var title: Shared.LegendTitle? = nil
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case backgroundColor = "bgcolor"
@@ -7845,6 +8312,7 @@ public struct Layout: Encodable {
             case yAnchor = "yanchor"
             case uiRevision = "uirevision"
             case verticalAlign = "valign"
+            case title
         }
         
         /// Creates `Legend` object with specified properties.
@@ -7869,12 +8337,13 @@ public struct Layout: Encodable {
         ///   - uiRevision: Controls persistence of legend-driven changes in trace and pie label visibility.
         ///   - verticalAlign: Sets the vertical alignment of the symbols with respect to their associated
         ///   text.
+        ///   - title:
         public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? =
                 nil, font: Shared.Font? = nil, orientation: Shared.Orientation? = nil, traceOrder: TraceOrder? =
                 nil, traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemClick: ItemClick? = nil,
                 itemDoubleClick: ItemDoubleClick? = nil, x: Double? = nil, xAnchor: Shared.XAutoAnchor? = nil,
                 y: Double? = nil, yAnchor: Shared.YAutoAnchor? = nil, uiRevision: Anything? = nil,
-                verticalAlign: Shared.VerticalAlign? = nil) {
+                verticalAlign: Shared.VerticalAlign? = nil, title: Shared.LegendTitle? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.borderWidth = borderWidth
@@ -7891,6 +8360,7 @@ public struct Layout: Encodable {
             self.yAnchor = yAnchor
             self.uiRevision = uiRevision
             self.verticalAlign = verticalAlign
+            self.title = title
         }
         
     }
@@ -7928,8 +8398,8 @@ public struct Layout: Encodable {
     
         /// Sets the horizontal alignment of the `text` within the box.
         /// 
-        /// Has an effect only if `text` spans more two or more lines (i.e. `text` contains one or more <br>
-        /// HTML tags) or if an explicit width is set to override the text width.
+        /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
+        /// tags) or if an explicit width is set to override the text width.
         public var align: Shared.HorizontalAlign? = nil
     
         /// Sets the vertical alignment of the `text` within the box.
@@ -8443,12 +8913,7 @@ public struct Layout: Encodable {
         public var type: `Type`? = nil
     
         /// Specifies whether shapes are drawn below or above traces.
-        public enum Layer: String, Encodable {
-            case below
-            case above
-        }
-        /// Specifies whether shapes are drawn below or above traces.
-        public var layer: Layer? = nil
+        public var layer: Shared.ShapeLayer? = nil
     
         /// Sets the shape's x coordinate axis.
         /// 
@@ -8562,7 +9027,27 @@ public struct Layout: Encodable {
         public var line: Shared.DashedLine? = nil
     
         /// Sets the color filling the shape's interior.
+        /// 
+        /// Only applies to closed shapes.
         public var fillColor: Color? = nil
+    
+        /// Determines which regions of complex paths constitute the interior.
+        /// 
+        /// For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
+        public enum FillRule: String, Encodable {
+            case evenOdd = "evenodd"
+            case nonZero = "nonzero"
+        }
+        /// Determines which regions of complex paths constitute the interior.
+        /// 
+        /// For more info please visit https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/fill-rule
+        public var fillRule: FillRule? = nil
+    
+        /// Determines whether the shape could be activated for edit or not.
+        /// 
+        /// Has no effect when the older editable shapes mode is enabled via `config.editable` or
+        /// `config.edits.shapePosition`.
+        public var editable: Bool? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -8600,6 +9085,8 @@ public struct Layout: Encodable {
             case opacity
             case line
             case fillColor = "fillcolor"
+            case fillRule = "fillrule"
+            case editable
             case name
             case templateItemName = "templateitemname"
         }
@@ -8626,15 +9113,18 @@ public struct Layout: Encodable {
         ///   - opacity: Sets the opacity of the shape.
         ///   - line:
         ///   - fillColor: Sets the color filling the shape's interior.
+        ///   - fillRule: Determines which regions of complex paths constitute the interior.
+        ///   - editable: Determines whether the shape could be activated for edit or not.
         ///   - name: When used in a template, named items are created in the output figure in addition to any
         ///   items the figure already has in this array.
         ///   - templateItemName: Used to refer to a named item in this array in the template.
-        public init(visible: Bool? = nil, type: `Type`? = nil, layer: Layer? = nil, xReference:
-                Shared.XAxisReference? = nil, xSizeMode: XSizeMode? = nil, xAnchor: Anything? = nil, x0:
-                Anything? = nil, x1: Anything? = nil, yReference: Shared.YAxisReference? = nil, ySizeMode:
+        public init(visible: Bool? = nil, type: `Type`? = nil, layer: Shared.ShapeLayer? = nil,
+                xReference: Shared.XAxisReference? = nil, xSizeMode: XSizeMode? = nil, xAnchor: Anything? = nil,
+                x0: Anything? = nil, x1: Anything? = nil, yReference: Shared.YAxisReference? = nil, ySizeMode:
                 YSizeMode? = nil, yAnchor: Anything? = nil, y0: Anything? = nil, y1: Anything? = nil, path:
                 String? = nil, opacity: Double? = nil, line: Shared.DashedLine? = nil, fillColor: Color? = nil,
-                name: String? = nil, templateItemName: String? = nil) {
+                fillRule: FillRule? = nil, editable: Bool? = nil, name: String? = nil, templateItemName: String?
+                = nil) {
             self.visible = visible
             self.type = type
             self.layer = layer
@@ -8652,6 +9142,8 @@ public struct Layout: Encodable {
             self.opacity = opacity
             self.line = line
             self.fillColor = fillColor
+            self.fillRule = fillRule
+            self.editable = editable
             self.name = name
             self.templateItemName = templateItemName
         }
@@ -8672,14 +9164,7 @@ public struct Layout: Encodable {
         /// Specifies whether images are drawn below or above traces.
         /// 
         /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
-        public enum Layer: String, Encodable {
-            case below
-            case above
-        }
-        /// Specifies whether images are drawn below or above traces.
-        /// 
-        /// When `xref` and `yref` are both set to `paper`, image is drawn below the entire plot area.
-        public var layer: Layer? = nil
+        public var layer: Shared.ShapeLayer? = nil
     
         /// Sets the image container size horizontally.
         /// 
@@ -8792,11 +9277,11 @@ public struct Layout: Encodable {
         ///   - name: When used in a template, named items are created in the output figure in addition to any
         ///   items the figure already has in this array.
         ///   - templateItemName: Used to refer to a named item in this array in the template.
-        public init(visible: Bool? = nil, source: String? = nil, layer: Layer? = nil, xSize: Double? =
-                nil, ySize: Double? = nil, sizing: Sizing? = nil, opacity: Double? = nil, x: Anything? = nil, y:
-                Anything? = nil, xAnchor: Shared.XAnchor? = nil, yAnchor: Shared.YAnchor? = nil, xReference:
-                Shared.XAxisReference? = nil, yReference: Shared.YAxisReference? = nil, name: String? = nil,
-                templateItemName: String? = nil) {
+        public init(visible: Bool? = nil, source: String? = nil, layer: Shared.ShapeLayer? = nil, xSize:
+                Double? = nil, ySize: Double? = nil, sizing: Sizing? = nil, opacity: Double? = nil, x: Anything?
+                = nil, y: Anything? = nil, xAnchor: Shared.XAnchor? = nil, yAnchor: Shared.YAnchor? = nil,
+                xReference: Shared.XAxisReference? = nil, yReference: Shared.YAxisReference? = nil, name:
+                String? = nil, templateItemName: String? = nil) {
             self.visible = visible
             self.source = source
             self.layer = layer
@@ -9593,6 +10078,7 @@ public struct Layout: Encodable {
         case barGroupGap = "bargroupgap"
         case font
         case title
+        case uniformText = "uniformtext"
         case autoSize = "autosize"
         case width
         case height
@@ -9609,6 +10095,8 @@ public struct Layout: Encodable {
         case selectionRevision = "selectionrevision"
         case template
         case modeBar = "modebar"
+        case newShape = "newshape"
+        case activeShape = "activeshape"
         case meta
         case transition
         case clickMode = "clickmode"
@@ -9678,13 +10166,14 @@ public struct Layout: Encodable {
     ///   - barGroupGap: Sets the gap (in plot fraction) between bars of the same location coordinate.
     ///   - font: Sets the global font.
     ///   - title:
+    ///   - uniformText:
     ///   - autoSize: Determines whether or not a layout width or height that has been left undefined by
     ///   the user is initialized on each relayout.
     ///   - width: Sets the plot's width (in px).
     ///   - height: Sets the plot's height (in px).
     ///   - margin:
-    ///   - paperBackgroundColor: Sets the color of paper where the graph is drawn.
-    ///   - plotBackgroundColor: Sets the color of plotting area in-between x and y axes.
+    ///   - paperBackgroundColor: Sets the background color of the paper where the graph is drawn.
+    ///   - plotBackgroundColor: Sets the background color of the plotting area in-between x and y axes.
     ///   - separators: Sets the decimal and thousand separators.
     ///   - hideSources: Determines whether or not a text link citing the data source is placed at the
     ///   bottom-right cored of the figure.
@@ -9700,6 +10189,8 @@ public struct Layout: Encodable {
     ///   traces.
     ///   - template: Default attributes to be applied to the plot.
     ///   - modeBar:
+    ///   - newShape:
+    ///   - activeShape:
     ///   - meta: Assigns extra meta information that can be used in various `text` attributes.
     ///   - transition: Sets transition options used during Plotly.react updates.
     ///   - clickMode: Determines the mode of single click interactions.
@@ -9710,7 +10201,7 @@ public struct Layout: Encodable {
     ///   - spikeDistance: Sets the default distance (in pixels) to look for data to draw spikelines to
     ///   (-1 means no cutoff, 0 means no looking for data).
     ///   - hoverLabel:
-    ///   - selectDirection: When "dragmode" is set to "select", this limits the selection of the drag to
+    ///   - selectDirection: When `dragmode` is set to *select*, this limits the selection of the drag to
     ///   horizontal, vertical or diagonal.
     ///   - grid:
     ///   - calendar: Sets the default calendar system to use for interpreting and displaying dates
@@ -9739,14 +10230,15 @@ public struct Layout: Encodable {
             violinGap: Double? = nil, violinGroupGap: Double? = nil, boxMode: BoxMode? = nil, boxGap:
             Double? = nil, boxGroupGap: Double? = nil, barMode: BarMode? = nil, barNormalization:
             BarNormalization? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, font: Shared.Font? =
-            nil, title: Title? = nil, autoSize: Bool? = nil, width: Double? = nil, height: Double? = nil,
-            margin: Margin? = nil, paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil,
-            separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? = nil, colorWay:
-            ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil, editRevision:
-            Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil, modeBar:
-            ModeBar? = nil, meta: Data<Anything>? = nil, transition: Transition? = nil, clickMode:
-            ClickMode? = nil, dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? =
-            nil, spikeDistance: Int? = nil, hoverLabel: Shared.HoverLabel? = nil, selectDirection:
+            nil, title: Title? = nil, uniformText: UniformText? = nil, autoSize: Bool? = nil, width: Double?
+            = nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil,
+            plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil,
+            showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision:
+            Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template:
+            Anything? = nil, modeBar: ModeBar? = nil, newShape: NewShape? = nil, activeShape: ActiveShape? =
+            nil, meta: Data<Anything>? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil,
+            dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil,
+            spikeDistance: Int? = nil, hoverLabel: Shared.HoverLabel? = nil, selectDirection:
             SelectDirection? = nil, grid: Grid? = nil, calendar: Shared.Calendar? = nil, xAxis: [XAxis] =
             [], yAxis: [YAxis] = [], ternary: [Ternary] = [], scene: [Scene] = [], geo: [Geo] = [], mapbox:
             [Mapbox] = [], polar: [Polar] = [], legend: Legend? = nil, annotations: [Annotation]? = nil,
@@ -9779,6 +10271,7 @@ public struct Layout: Encodable {
         self.barGroupGap = barGroupGap
         self.font = font
         self.title = title
+        self.uniformText = uniformText
         self.autoSize = autoSize
         self.width = width
         self.height = height
@@ -9795,6 +10288,8 @@ public struct Layout: Encodable {
         self.selectionRevision = selectionRevision
         self.template = template
         self.modeBar = modeBar
+        self.newShape = newShape
+        self.activeShape = activeShape
         self.meta = meta
         self.transition = transition
         self.clickMode = clickMode
@@ -9854,6 +10349,7 @@ public struct Layout: Encodable {
         try container.encodeIfPresent(barGroupGap, forKey: .barGroupGap)
         try container.encodeIfPresent(font, forKey: .font)
         try container.encodeIfPresent(title, forKey: .title)
+        try container.encodeIfPresent(uniformText, forKey: .uniformText)
         try container.encodeIfPresent(autoSize, forKey: .autoSize)
         try container.encodeIfPresent(width, forKey: .width)
         try container.encodeIfPresent(height, forKey: .height)
@@ -9870,6 +10366,8 @@ public struct Layout: Encodable {
         try container.encodeIfPresent(selectionRevision, forKey: .selectionRevision)
         try container.encodeIfPresent(template, forKey: .template)
         try container.encodeIfPresent(modeBar, forKey: .modeBar)
+        try container.encodeIfPresent(newShape, forKey: .newShape)
+        try container.encodeIfPresent(activeShape, forKey: .activeShape)
         try container.encodeIfPresent(meta, forKey: .meta)
         try container.encodeIfPresent(transition, forKey: .transition)
         try container.encodeIfPresent(clickMode, forKey: .clickMode)
