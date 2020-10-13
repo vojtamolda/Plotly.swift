@@ -1,52 +1,3 @@
-import Foundation
-
-
-/// Protocol shared by all chart types that can appear in a _Plotly_ `Figure`.
-public protocol Trace: Encodable {
-    var type: String { get }
-    var animatable: Bool { get }
-
-    var visible: Shared.Visible? { get set }
-    var name: String? { get set }
-    var uid: String? { get set }
-}
-
-
-public protocol Transform: Encodable {
-    var enabled: Bool? { get }
-}
-
-
-protocol XYSubplot {
-    var xAxis: Layout.XAxis { get }
-    var yAxis: Layout.YAxis { get }
-}
-
-protocol DomainSubplot {
-    var domain: Shared.Domain? { get }
-}
-
-protocol TernarySubplot {
-    var subplot: Layout.Ternary { get }
-}
-
-protocol SceneSubplot {
-    var scene: Layout.Scene { get }
-}
-
-protocol GeoSubplot {
-    var geo: Layout.Geo { get }
-}
-
-protocol MapboxSubplot {
-    var subplot: Layout.Mapbox { get }
-}
-
-protocol PolarSubplot {
-    var subplot: Layout.Polar { get }
-}
-
-
 /// Swift representation of a _Plotly.js_ chart.
 ///
 /// _Plotly.js_ charts are described declaratively as JSON objects. Every aspect of a plotly chart
@@ -69,6 +20,7 @@ protocol PolarSubplot {
 ///         mode: [.lines, .markers])
 /// ]
 /// ```
+///
 /// Here is the equivalent _Plotly.js_ JSON serialization:
 /// ```javascript
 /// var data = [
@@ -135,25 +87,31 @@ public struct Figure {
     }
 
     /// Shows the `Figure` in the default browser available on your OS.
+    ///
+    /// Here's an example that shows figure with a scatter trace:
+    /// ```swift
+    /// let scatterTrace = Scatter(x: [1, 2, 3], y: [4, 6, 5])
+    /// let figure = Figure(data: [scatterTrace])
+    /// figure.show()
+    /// ```
     @available(iOS 10.0, *)
     public func show(javaScript bundle: HTML.JavaScriptBundleOption = .online) {
         try! Browser.show(figure: self, javaScript: bundle)
     }
 
     /// Writes representation of the `Figure` object to a URL using the specified format.
+    ///
     /// - Parameter toFile: File where to save the `Figure` object.
     /// - Parameter as: Output format (HTML, JSON, ...)
     /// - Parameter javaScript: Bundling option (include, online, exclude, ...) for _MathJax_ and
-    /// _Plotly_ JavaScript libraries. Used only for HTML format.
+    ///   _Plotly_ JavaScript libraries. Used only for HTML format.
     ///
     /// - Warning: Calling may take a few seconds because the function needs internet access.
-    /// Current implementation of `.included` option downloads the library from the CDN
-    /// server and returns `<script>` tag with the file content.
+    ///   Current implementation of `.included` option downloads the library from the CDN
+    ///   server and returns `<script>` tag with the file content.
     @available(iOS 11.0, *)
-    public func write<T>(toFile path: T, as format: Format = .HTML,
-                  javaScript bundle: HTML.JavaScriptBundleOption = .online)
-        where T : StringProtocol {
-
+    public func write<T: StringProtocol>(toFile path: T, as format: Format = .HTML,
+                                         javaScript bundle: HTML.JavaScriptBundleOption = .online) {
         switch format {
         case .HTML:
             let html = try! HTML.create(from: self, plotly: bundle, mathJax: bundle, document: true)
@@ -192,28 +150,42 @@ extension Figure: Encodable {
 }
 
 
-#if os(Linux) && canImport(PythonKit)
+#if canImport(PythonKit)
 import PythonKit
 
-extension Figure {
+public extension Figure {
     /// Displays interactive figure in Jupyter notebook.
     ///
-    /// Prior to calling this method, the following Jupyter notebook magic
-    /// has to be executed:
-    /// ```
-    /// %include "EnableIPythonDisplay.swift"
+    /// Here's an example displaying a figure with a scatter and a bar trace:
+    ///
+    /// ```swift
+    /// let barTrace = Scatter(x: [1, 2, 3], y: [4, 6, 5])
+    /// let scatterTrace = Scatter(x: [1, 2, 3], y: [4, 6, 5])
+    /// let figure = Figure(data: [barTrace, scatterTrace])
+    /// figure.display()
     /// ```
     ///
-    /// - Bug: Google Colab seems to be a bit broken. I wasn't able to figure out
-    /// a Swift-only communication with the Jupyter kernel. There's more details
-    /// in the `Workaround.ipynb` notebook. A Swift only solution that works
-    /// locally in Jupyter breaks in the Colab environment. To make the displaying
-    /// work, the communication with the kernel has to be routed via the Python
-    /// bridge.
-    public func display() {
+    /// - Important:
+    ///   Prior to calling this method, the following Jupyter notebook magic has to be executed:
+    ///   ```
+    ///   %include "EnableIPythonDisplay.swift"
+    ///   ```
+    ///
+    /// - Bug:
+    ///   Google Colab seems to be a bit broken. I wasn't able to figure out a Swift-only
+    ///   communication with the Jupyter kernel. There's more details in the `Workaround.ipynb`
+    ///   notebook. A Swift only solution that works locally in Jupyter breaks in the Colab
+    ///   environment. For the time being, to make the display method work, the communication
+    ///   with the kernel has to be routed via the Python bridge.
+    func display() {
         let htmlContent = try! HTML.create(from: self, plotly: .online, mathJax: .online, document: false)
         let iPythonDisplay = Python.import("IPython.display")
         iPythonDisplay[dynamicMember: "display"](iPythonDisplay.HTML(htmlContent))
     }
 }
 #endif
+
+
+public protocol Transform: Encodable {
+    var enabled: Bool? { get }
+}

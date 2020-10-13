@@ -34,6 +34,7 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(MultipleAxesSubplots.allTests),
 
         testCase(FigureTests.allTests),
+        testCase(TraceTests.allTests),
         testCase(SwatchTests.allTests),
         testCase(PlotableTests.allTests),
 

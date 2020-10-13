@@ -21,9 +21,5 @@ final class FigureTests: XCTestCase {
         let figure = Figure(data: [Scatter(x: x, y: y), Bar(x: x, y: y)])
 
         output(figure)
-
-        output(figure)
-        output(figure)
-        output(figure)
     }
 }
