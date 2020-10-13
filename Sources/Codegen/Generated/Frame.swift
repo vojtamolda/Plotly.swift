@@ -11,13 +11,13 @@ struct Frame: Definable {
     var definition: [String] { attributes.definition }
 
     init(schema: Schema.Frames) {
-        let (_, itemsEntry) = schema.entries.first!
+        let (_, itemsEntry) = schema.entries.first { $0.identifier == "items" }!
         guard case let Schema.Entry.object(itemsSchema) = itemsEntry else {
-            fatalError("TODO")
+            fatalError("Unable to locate frame/items entry.")
         }
-        let (_, frameEntry) = itemsSchema.entries.first!
+        let (_, frameEntry) = itemsSchema.entries.first { $0.identifier == "frames_entry" }!
         guard case let Schema.Entry.object(frameSchema) = frameEntry else {
-            fatalError("TODO")
+            fatalError("Unable to locate 'frame/items/frames_entry'")
         }
 
         attributes = Generated.Object(named: "frame", schema: frameSchema)!

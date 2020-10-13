@@ -109,7 +109,7 @@ enum Predefined {
         let editType: String?
         let role: String?
 
-        let dflt: Bool? = nil
+        let dflt: Bool?
 
         enum CodingKeys: String, CodingKey {
             case valType, description, editType, role, dflt

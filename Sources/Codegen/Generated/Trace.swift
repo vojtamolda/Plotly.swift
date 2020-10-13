@@ -29,7 +29,7 @@ struct Trace: Definable {
         attributes.members.insert(typeConst, at: 0)
 
         let predefinedBool = Predefined.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool",
-                                                description: nil, editType: nil, role: nil)
+                                                description: nil, editType: nil, role: nil, dflt: nil)
         let generatedBool = Generated.Boolean(parent: attributes, schema: predefinedBool)
         let animatableConst = Instance(of: generatedBool, named: "animatable")
         animatableConst.constant = true
