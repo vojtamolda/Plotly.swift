@@ -47,9 +47,10 @@ Following Swift documentation is really helpful to understand how the JSON schem
 
 ## Usage
 
-To generate fresh Swift code from a new schema located in the [`Assets/Plotly.json`] file run the following commands without any optional command line arguments:
+To generate fresh Swift code from and update the schema located in the [`Assets/Plotly.json`] file, run the following commands without any optional command line arguments:
 
 ```shell
+python3 plotly.py [PLOTLY_SCHEMA]
 python3 order.py [PLOTLY_SCHEMA] [SWIFT_ORDER]
 python3 names.py [PLOTLY_SCHEMA] [SWIFT_NAME]
 swift run codegen [PLOTLY_SCHEMA] [SWIFT_ORDER] [SWIFT_NAME] [OUTPUT_DIR]
