@@ -16,7 +16,7 @@
 ///   [Python](https://plot.ly/python/reference/#ohlc), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#ohlc) or 
 ///   [R](https://plot.ly/r/reference/#ohlc)
-public struct OHLC<XData, OpenData, HighData, LowData, CloseData>: Trace, XYSubplot where XData: Plotable, OpenData: Plotable, HighData: Plotable, LowData: Plotable, CloseData: Plotable {
+public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHLCData: Plotable {
     public let type: String = "ohlc"
 
     public let animatable: Bool = false
@@ -105,16 +105,16 @@ public struct OHLC<XData, OpenData, HighData, LowData, CloseData>: Trace, XYSubp
     public var x: XData? = nil
 
     /// Sets the open values.
-    public var open: OpenData? = nil
+    public var open: OHLCData? = nil
 
     /// Sets the high values.
-    public var high: HighData? = nil
+    public var high: OHLCData? = nil
 
     /// Sets the low values.
-    public var low: LowData? = nil
+    public var low: OHLCData? = nil
 
     /// Sets the close values.
-    public var close: CloseData? = nil
+    public var close: OHLCData? = nil
 
     public struct DashedLine: Encodable {
         /// [object Object] Note that this style setting can also be set per direction via
@@ -349,8 +349,8 @@ public struct OHLC<XData, OpenData, HighData, LowData, CloseData>: Trace, XYSubp
     ///   - line:
     ///   - text: Sets hover text elements associated with each sample point.
     ///   - hoverText: Same as `text`.
-    public init(name: String? = nil, x: XData? = nil, open: OpenData? = nil, high: HighData? = nil,
-            low: LowData? = nil, close: CloseData? = nil, line: DashedLine? = nil, text: Data<String>? =
+    public init(name: String? = nil, x: XData? = nil, open: OHLCData? = nil, high: OHLCData? = nil,
+            low: OHLCData? = nil, close: OHLCData? = nil, line: DashedLine? = nil, text: Data<String>? =
             nil, hoverText: Data<String>? = nil) {
         self.name = name
         self.x = x
@@ -404,8 +404,8 @@ public struct OHLC<XData, OpenData, HighData, LowData, CloseData>: Trace, XYSubp
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Transform] = [],
-            uiRevision: Anything? = nil, x: XData? = nil, open: OpenData? = nil, high: HighData? = nil, low:
-            LowData? = nil, close: CloseData? = nil, line: DashedLine? = nil, increasing: Increasing? = nil,
+            uiRevision: Anything? = nil, x: XData? = nil, open: OHLCData? = nil, high: OHLCData? = nil, low:
+            OHLCData? = nil, close: OHLCData? = nil, line: DashedLine? = nil, increasing: Increasing? = nil,
             decreasing: Decreasing? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
             tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil,
             xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {

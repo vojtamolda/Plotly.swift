@@ -59,7 +59,60 @@ struct Trace: Definable {
             let opacityIndex = attributes.members.firstIndex{ ($0 as? Instance)?.name == "opacity" }!
             let name = attributes.members.remove(at: nameIndex)
             attributes.members.insert(name, at: opacityIndex + 1)
+            
+            disabledGenerics += ["y", "x"]
+            let y = attributes.members.firstInstance(named: "y")!
+            let x = attributes.members.firstInstance(named: "x")!
 
+            let yData = Generated.Generic(name: "YData", parent: attributes,
+                                          origin: y.origin, protocol: "Plotable")
+            let xData = Generated.Generic(name: "XData", parent: attributes,
+                                          origin: x.origin, protocol: "Plotable")
+            y.type = yData
+            x.type = xData
+            
+            disabledGenerics += ["q1", "median", "q3", "lowerFence", "upperFence", "notchSpan",
+                                 "mean", "standardDeviation"]
+            let q1 = attributes.members.firstInstance(named: "q1")!
+            let median = attributes.members.firstInstance(named: "median")!
+            let q3 = attributes.members.firstInstance(named: "q3")!
+            let lowerFence = attributes.members.firstInstance(named: "lowerFence")!
+            let upperFence = attributes.members.firstInstance(named: "upperFence")!
+            let notchSpan = attributes.members.firstInstance(named: "notchSpan")!
+            let mean = attributes.members.firstInstance(named: "mean")!
+            let standardDeviation = attributes.members.firstInstance(named: "standardDeviation")!
+            let qData = Generated.Generic(name: "QData", parent: attributes,
+                                          origin: standardDeviation.origin, protocol: "Plotable")
+            q1.type = qData
+            median.type = qData
+            q3.type = qData
+            lowerFence.type = qData
+            upperFence.type = qData
+            notchSpan.type = qData
+            mean.type = qData
+            standardDeviation.type = qData
+
+        case "Candlestick":
+            fallthrough
+        case "OHLC":
+            disabledGenerics += ["x"]
+            let x = attributes.members.firstInstance(named: "x")!
+            let xData = Generated.Generic(name: "XData", parent: attributes,
+                                          origin: x.origin, protocol: "Plotable")
+            x.type = xData
+            
+            disabledGenerics += ["open", "high", "low", "close"]
+            let open = attributes.members.firstInstance(named: "open")!
+            let high = attributes.members.firstInstance(named: "high")!
+            let low = attributes.members.firstInstance(named: "low")!
+            let close = attributes.members.firstInstance(named: "close")!
+            let ohlcData = Generated.Generic(name: "OHLCData", parent: attributes,
+                                             origin: open.origin, protocol: "Plotable")
+            open.type = ohlcData
+            high.type = ohlcData
+            low.type = ohlcData
+            close.type = ohlcData
+            
         case "Cone":
             fallthrough
         case "StreamTube":

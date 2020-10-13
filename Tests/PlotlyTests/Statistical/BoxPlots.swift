@@ -16,13 +16,13 @@ final class BoxPlots: XCTestCase {
         ("testFullyStyledBoxPlot", testFullyStyledBoxPlot),
         ("testRainbowBoxPlot", testRainbowBoxPlot)
     ]
-
+    
     /// https://plot.ly/javascript/box-plots/#basic-box-plot
     func testBasicBoxPlot() {
-        let trace1 = Box<[Double], [Int]>(
+        let trace1 = Box<[Double], Unused, Unused>(
             y: (1...50).map { _ in Double.random(in: 0...1) }
         )
-        let trace2 = Box<[Double], [Int]>(
+        let trace2 = Box<[Double], Unused, Unused>(
             y: (1...50).map { _ in Double.random(in: 1...2) }
         )
 
@@ -32,7 +32,7 @@ final class BoxPlots: XCTestCase {
 
     /// https://plot.ly/javascript/box-plots/#box-plot-that-displays-the-underlying-data
     func testBoxPlotThatDisplaysTheUnderlyingData() {
-        let trace = Box<[Int], [Int]>(
+        let trace = Box<[Int], Unused, Unused>(
             y: [0, 1, 1, 2, 3, 5, 8, 13, 21],
             boxPoints: .all,
             jitter: 0.3,
@@ -45,11 +45,11 @@ final class BoxPlots: XCTestCase {
 
     /// https://plot.ly/javascript/box-plots/#horizontal-box-plot
     func testHorizontalBoxPlot() {
-        let trace1 = Box<[Int], [Int]>(
+        let trace1 = Box<Unused, [Int], Unused>(
             name: "Set 1",
             x: [1, 2, 3, 4, 4, 4, 8, 9, 10]
         )
-        let trace2 = Box<[Double], [Int]>(
+        let trace2 = Box<Unused, [Int], Unused>(
             name: "Set 2",
             x: [2, 3, 3, 3, 3, 5, 6, 6, 7]
         )
@@ -66,7 +66,7 @@ final class BoxPlots: XCTestCase {
         let x = ["day 1", "day 1", "day 1", "day 1", "day 1", "day 1",
                  "day 2", "day 2", "day 2", "day 2", "day 2", "day 2"]
 
-        let trace1 = Box(
+        let trace1 = Box<[Double], [String], Unused>(
             name: "kale",
             y: [0.2, 0.2, 0.6, 1.0, 0.5, 0.4,
                 0.2, 0.7, 0.9, 0.1, 0.5, 0.3],
@@ -75,7 +75,7 @@ final class BoxPlots: XCTestCase {
                 color: 0xD9970
             )
         )
-        let trace2 = Box(
+        let trace2 = Box<[Double], [String], Unused>(
             name: "radishes",
             y: [0.6, 0.7, 0.3, 0.6, 0.0, 0.5,
                 0.7, 0.9, 0.5, 0.8, 0.7, 0.2],
@@ -84,7 +84,7 @@ final class BoxPlots: XCTestCase {
                 color: 0xFF4136
             )
         )
-        let trace3 = Box(
+        let trace3 = Box<[Double], [String], Unused>(
             name: "carrots",
             y: [0.1, 0.3, 0.1, 0.9, 0.6, 0.6,
                 0.9, 1.0, 0.3, 0.6, 0.8, 0.5],
@@ -112,7 +112,7 @@ final class BoxPlots: XCTestCase {
         let y = [0.75, 5.25, 5.5, 6, 6.2, 6.6, 6.80, 7.0, 7.2, 7.5, 7.5, 7.75, 8.15,
                  8.15, 8.65, 8.93, 9.2, 9.5, 10, 10.25, 11.5, 12, 16, 20.90, 22.3, 23.25]
 
-        let trace1 = Box<[Double], [Int]>(
+        let trace1 = Box<[Double], Unused, Unused>(
             name: "All Points",
             y: y,
             boxPoints: .all,
@@ -122,7 +122,7 @@ final class BoxPlots: XCTestCase {
                 color: .RGB(7, 40, 89)
             )
         )
-        let trace2 = Box<[Double], [Int]>(
+        let trace2 = Box<[Double], Unused, Unused>(
             name: "Only Whiskers",
             y: y,
             boxPoints: .off,
@@ -130,7 +130,7 @@ final class BoxPlots: XCTestCase {
                 color: .RGB(9, 56, 125)
             )
         )
-        let trace3 = Box<[Double], [Int]>(
+        let trace3 = Box<[Double], Unused, Unused>(
             name: "Suspected Outlier",
             y: y,
             boxPoints: .suspectedOutliers,
@@ -143,7 +143,7 @@ final class BoxPlots: XCTestCase {
                 )
             )
         )
-        let trace4 = Box<[Double], [Int]>(
+        let trace4 = Box<[Double], Unused, Unused>(
             name: "Whiskers and Outliers",
             y: y,
             boxPoints: .outliers,
@@ -164,7 +164,7 @@ final class BoxPlots: XCTestCase {
         let y = [2.37, 2.16, 4.82, 1.73, 1.04, 0.23, 1.32, 2.91, 0.11, 4.51,
                  0.51, 3.75, 1.35, 2.98, 4.50, 0.18, 4.66, 1.30, 2.06, 1.19]
 
-        let trace1 = Box<[Double], [Int]>(
+        let trace1 = Box<[Double], Unused, Unused>(
             name: "Only Mean",
             y: y,
             boxMean: .off,
@@ -173,10 +173,10 @@ final class BoxPlots: XCTestCase {
             )
         )
 
-        let trace2 = Box<[Double], [Int]>(
+        let trace2 = Box<[Double], Unused, Unused>(
             name: "Mean and Standard Deviation",
             y: y,
-            boxMean: .sd,
+            boxMean: .standardDeviation,
             marker: .init(
                 color: .RGB(10, 140, 208)
             )
@@ -194,7 +194,7 @@ final class BoxPlots: XCTestCase {
         let y = ["day 1", "day 1", "day 1", "day 1", "day 1", "day 1",
                  "day 2", "day 2", "day 2", "day 2", "day 2", "day 2"]
 
-        let trace1 = Box(
+        let trace1 = Box<[String], [Double], Unused>(
             name: "kale",
             y: y,
             x: [0.2, 0.2, 0.6, 1.0, 0.5, 0.4,
@@ -205,7 +205,7 @@ final class BoxPlots: XCTestCase {
                 color: 0x3D9970
             )
         )
-        let trace2 = Box(
+        let trace2 = Box<[String], [Double], Unused>(
             name: "radishes",
             y: y,
             x: [0.6, 0.7, 0.3, 0.6, 0.0, 0.5,
@@ -216,7 +216,7 @@ final class BoxPlots: XCTestCase {
                 color: 0xFF4136
             )
         )
-        let trace3 = Box(
+        let trace3 = Box<[String], [Double], Unused>(
             name: "carrots",
             y: y,
             x: [0.1, 0.3, 0.1, 0.9, 0.6, 0.6,
@@ -232,7 +232,7 @@ final class BoxPlots: XCTestCase {
             boxMode: .group,
             title: "Grouped Horizontal Box Plot",
             xAxis: [
-                .init(
+                .init(uid: 0,
                     title: "normalized moisture",
                     zeroLine: false
                 )
@@ -244,7 +244,7 @@ final class BoxPlots: XCTestCase {
 
     /// https://plot.ly/javascript/box-plots/#colored-box-plot
     func testColoredBoxPlot() {
-        let trace1 = Box<[Double], [Int]>(
+        let trace1 = Box<[Double], Unused, Unused>(
             name: "Sample A",
             y: [1, 2, 3, 4, 4, 4, 8, 9, 10],
             marker: .init(
@@ -252,7 +252,7 @@ final class BoxPlots: XCTestCase {
             )
         )
 
-        let trace2 = Box<[Double], [Int]>(
+        let trace2 = Box<[Double], Unused, Unused>(
             name: "Sample B",
             y: [2, 3, 3, 3, 3, 5, 6, 6, 7],
             marker: .init(
@@ -270,33 +270,44 @@ final class BoxPlots: XCTestCase {
     /// https://plot.ly/javascript/box-plots/#fully-styled-box-plot
     func testFullyStyledBoxPlot() {
         let x = [
-            "Carmelo<br>Anthony", "Dwyane<br>Wade",
-            "Deron<br>Williams", "Brook<br>Lopez",
-            "Damian<br>Lillard", "David<br>West",
-            "Blake<br>Griffin", "David<br>Lee",
+            "Carmelo<br>Anthony",
+            "Dwyane<br>Wade",
+            "Deron<br>Williams",
+            "Brook<br>Lopez",
+            "Damian<br>Lillard",
+            "David<br>West",
+            "Blake<br>Griffin",
+            "David<br>Lee",
             "Demar<br>Derozan"
         ]
         let y = [
-            (1...30).map { _ in Double.random(in: 0...10) }, (1...30).map { _ in Double.random(in: 0...20) },
-            (1...30).map { _ in Double.random(in: 0...25) }, (1...30).map { _ in Double.random(in: 0...40) },
-            (1...30).map { _ in Double.random(in: 0...45) }, (1...30).map { _ in Double.random(in: 0...30) },
-            (1...30).map { _ in Double.random(in: 0...20) }, (1...30).map { _ in Double.random(in: 0...15) },
+            (1...30).map { _ in Double.random(in: 0...10) },
+            (1...30).map { _ in Double.random(in: 0...20) },
+            (1...30).map { _ in Double.random(in: 0...25) },
+            (1...30).map { _ in Double.random(in: 0...40) },
+            (1...30).map { _ in Double.random(in: 0...45) },
+            (1...30).map { _ in Double.random(in: 0...30) },
+            (1...30).map { _ in Double.random(in: 0...20) },
+            (1...30).map { _ in Double.random(in: 0...15) },
             (1...30).map { _ in Double.random(in: 0...43) },
         ]
         let colors: [Color] = [
-            .RGB(93, 164, 214, 0.5), .RGB(255, 144, 14, 0.5),
-            .RGB(44, 160, 101, 0.5), .RGB(255, 65, 54, 0.5),
-            .RGB(207, 114, 255, 0.5), .RGB(127, 96, 0, 0.5),
-            .RGB(255, 140, 184, 0.5), .RGB(79, 90, 117, 0.5),
+            .RGB(93, 164, 214, 0.5),
+            .RGB(255, 144, 14, 0.5),
+            .RGB(44, 160, 101, 0.5),
+            .RGB(255, 65, 54, 0.5),
+            .RGB(207, 114, 255, 0.5),
+            .RGB(127, 96, 0, 0.5),
+            .RGB(255, 140, 184, 0.5),
+            .RGB(79, 90, 117, 0.5),
             .RGB(222, 223, 0, 0.5)
         ]
 
         var traces = [Trace]()
         for i in 0..<x.count {
-            let trace = Box<[Double], [Int]>(
+            let trace = Box<[Double], Unused, Unused>(
                 name: x[i],
                 y: y[i],
-                whiskerWidth: 0.2,
                 boxPoints: .all,
                 jitter: 0.5,
                 marker: .init(
@@ -305,7 +316,8 @@ final class BoxPlots: XCTestCase {
                 line: .init(
                     width: 1
                 ),
-                fillColor: colors[i]
+                fillColor: colors[i],
+                whiskerWidth: 0.2
             )
             traces.append(trace)
         }
@@ -356,7 +368,7 @@ final class BoxPlots: XCTestCase {
 
         var traces = [Trace]()
         for i in 0..<boxNumber {
-            let trace = Box<[Double], [Int]>(
+            let trace = Box<[Double], Unused, Unused>(
                 y: y[i],
                 marker: .init(
                     color: colors[i]

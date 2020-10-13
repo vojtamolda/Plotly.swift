@@ -26,7 +26,7 @@
 ///   [Python](https://plot.ly/python/reference/#box), 
 ///   [JavaScript](https://plot.ly/javascript/reference/#box) or 
 ///   [R](https://plot.ly/r/reference/#box)
-public struct Box<YData, XData, Q1Data, MedianData, Q3Data, LowerfenceData, UpperfenceData, NotchspanData, MeanData, StandarddeviationData>: Trace, XYSubplot where YData: Plotable, XData: Plotable, Q1Data: Plotable, MedianData: Plotable, Q3Data: Plotable, LowerfenceData: Plotable, UpperfenceData: Plotable, NotchspanData: Plotable, MeanData: Plotable, StandarddeviationData: Plotable {
+public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, XData: Plotable, QData: Plotable {
     public let type: String = "box"
 
     public let animatable: Bool = false
@@ -144,31 +144,31 @@ public struct Box<YData, XData, Q1Data, MedianData, Q3Data, LowerfenceData, Uppe
     /// Sets the Quartile 1 values.
     /// 
     /// There should be as many items as the number of boxes desired.
-    public var q1: Q1Data? = nil
+    public var q1: QData? = nil
 
     /// Sets the median values.
     /// 
     /// There should be as many items as the number of boxes desired.
-    public var median: MedianData? = nil
+    public var median: QData? = nil
 
     /// Sets the Quartile 3 values.
     /// 
     /// There should be as many items as the number of boxes desired.
-    public var q3: Q3Data? = nil
+    public var q3: QData? = nil
 
     /// Sets the lower fence values.
     /// 
     /// There should be as many items as the number of boxes desired. This attribute has effect only
     /// under the q1/median/q3 signature. If `lowerfence` is not provided but a sample (in `y` or `x`)
     /// is set, we compute the lower as the last sample point below 1.5 times the IQR.
-    public var lowerFence: LowerfenceData? = nil
+    public var lowerFence: QData? = nil
 
     /// Sets the upper fence values.
     /// 
     /// There should be as many items as the number of boxes desired. This attribute has effect only
     /// under the q1/median/q3 signature. If `upperfence` is not provided but a sample (in `y` or `x`)
     /// is set, we compute the lower as the last sample point above 1.5 times the IQR.
-    public var upperFence: UpperfenceData? = nil
+    public var upperFence: QData? = nil
 
     /// Determines whether or not notches are drawn.
     /// 
@@ -189,7 +189,7 @@ public struct Box<YData, XData, Q1Data, MedianData, Q3Data, LowerfenceData, Uppe
     /// There should be as many items as the number of boxes desired. This attribute has effect only
     /// under the q1/median/q3 signature. If `notchspan` is not provided but a sample (in `y` or `x`) is
     /// set, we compute it as 1.57 * IQR / sqrt(N), where N is the sample size.
-    public var notchSpan: NotchspanData? = nil
+    public var notchSpan: QData? = nil
 
     /// If *outliers*, only the sample points lying outside the whiskers are shown If
     /// *suspectedoutliers*, the outlier points are shown and points either less than 4*Q1-3*Q3 or
@@ -272,14 +272,14 @@ public struct Box<YData, XData, Q1Data, MedianData, Q3Data, LowerfenceData, Uppe
     /// There should be as many items as the number of boxes desired. This attribute has effect only
     /// under the q1/median/q3 signature. If `mean` is not provided but a sample (in `y` or `x`) is set,
     /// we compute the mean for each box using the sample values.
-    public var mean: MeanData? = nil
+    public var mean: QData? = nil
 
     /// Sets the standard deviation values.
     /// 
     /// There should be as many items as the number of boxes desired. This attribute has effect only
     /// under the q1/median/q3 signature. If `sd` is not provided but a sample (in `y` or `x`) is set,
     /// we compute the standard deviation for each box using the sample values.
-    public var standardDeviation: StandarddeviationData? = nil
+    public var standardDeviation: QData? = nil
 
     /// Sets the orientation of the box(es).
     /// 
@@ -649,11 +649,10 @@ public struct Box<YData, XData, Q1Data, MedianData, Q3Data, LowerfenceData, Uppe
     ///   - line:
     ///   - text: Sets the text elements associated with each sample value.
     ///   - hoverText: Same as `text`.
-    public init(name: String? = nil, y: YData? = nil, x: XData? = nil, q1: Q1Data? = nil, median:
-            MedianData? = nil, q3: Q3Data? = nil, lowerFence: LowerfenceData? = nil, upperFence:
-            UpperfenceData? = nil, notchSpan: NotchspanData? = nil, mean: MeanData? = nil,
-            standardDeviation: StandarddeviationData? = nil, marker: SymbolicMarker? = nil, line:
-            Shared.Line? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil) {
+    public init(name: String? = nil, y: YData? = nil, x: XData? = nil, q1: QData? = nil, median:
+            QData? = nil, q3: QData? = nil, lowerFence: QData? = nil, upperFence: QData? = nil, notchSpan:
+            QData? = nil, mean: QData? = nil, standardDeviation: QData? = nil, marker: SymbolicMarker? =
+            nil, line: Shared.Line? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil) {
         self.name = name
         self.y = y
         self.x = x
@@ -748,18 +747,17 @@ public struct Box<YData, XData, Q1Data, MedianData, Q3Data, LowerfenceData, Uppe
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
             = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, y: YData? = nil, x: XData? =
-            nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, q1: Q1Data?
-            = nil, median: MedianData? = nil, q3: Q3Data? = nil, lowerFence: LowerfenceData? = nil,
-            upperFence: UpperfenceData? = nil, notched: Bool? = nil, notchWidth: Double? = nil, notchSpan:
-            NotchspanData? = nil, boxPoints: BoxPoints? = nil, jitter: Double? = nil, pointPosition: Double?
-            = nil, boxMean: BoxMean? = nil, mean: MeanData? = nil, standardDeviation: StandarddeviationData?
-            = nil, orientation: Shared.Orientation? = nil, quartileMethod: QuartileMethod? = nil, width:
-            Double? = nil, marker: SymbolicMarker? = nil, line: Shared.Line? = nil, fillColor: Color? = nil,
-            whiskerWidth: Double? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil,
-            selected: Selected? = nil, unselected: Unselected? = nil, text: Data<String>? = nil, hoverText:
-            Data<String>? = nil, hoverTemplate: Data<String>? = nil, hoverOn: HoverOn? = nil, xCalendar:
-            Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis =
-            Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
+            nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, q1: QData?
+            = nil, median: QData? = nil, q3: QData? = nil, lowerFence: QData? = nil, upperFence: QData? =
+            nil, notched: Bool? = nil, notchWidth: Double? = nil, notchSpan: QData? = nil, boxPoints:
+            BoxPoints? = nil, jitter: Double? = nil, pointPosition: Double? = nil, boxMean: BoxMean? = nil,
+            mean: QData? = nil, standardDeviation: QData? = nil, orientation: Shared.Orientation? = nil,
+            quartileMethod: QuartileMethod? = nil, width: Double? = nil, marker: SymbolicMarker? = nil,
+            line: Shared.Line? = nil, fillColor: Color? = nil, whiskerWidth: Double? = nil, offsetGroup:
+            String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected?
+            = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? =
+            nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? =
+            nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
