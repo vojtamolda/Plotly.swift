@@ -36,10 +36,10 @@ Getting Plotly working in Playgrounds requires a few extra steps but hopefully t
 
 1. Generate `Plotly.xcodeproj` project equivalent to `Package.swift` with the following command.
     ```shell
-    swift project generate-xcodeproj
+    swift package generate-xcodeproj
     ```
-2. Open  `Playground.xcworkspace` in XCode. The example blindly references `Plotly.xcodeproj` that doesn't normally exist in the repository. If you are creating your own workspace from scratch then click on *File* -> *Add Files ...* menu and navigate to `Plotly.xcodeproj` file that has been created in the root of the repository.
-3. Select `Plotly-Package` scheme and then manually build it via *Product* -> *Build* menu. This is necessary to make `import Plotly` work. Unless the library is built first, the playground code will fail to compile because it won't be able to locate Plotly module binaries.
+2. Open  `Playground.xcworkspace` example in XCode. The workspace blindly references `Plotly.xcodeproj` that doesn't normally exist in the repository. If you are creating your own workspace from scratch then click on *File* -> *Add Files ...* menu and navigate to `Plotly.xcodeproj` file that has been created in the root of the repository.
+3. Select `Plotly-Package` scheme. This is necessary to make `import Plotly` work. Unless the library is built first, the playground code will fail to compile. It won't be able to locate Plotly framework and link with it.
 4. Enjoy and run the code in the demo playground! The key trick is the last line. It sets the `liveView` property of the current Playground page to a view containing the figure.
 
 
