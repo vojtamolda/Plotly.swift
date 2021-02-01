@@ -13,15 +13,13 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout repository
+        # Checkout the git repository
+        uses: actions/checkout@v2
 
-      - name: Install swift
-        # Download Swift compiler, install it and update PATH
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          wget https://swift.org/builds/swift-5.1.4-release/ubuntu1804/swift-5.1.4-RELEASE/swift-5.1.4-RELEASE-ubuntu18.04.tar.gz
-          tar xzf swift-5.1.4-RELEASE-ubuntu18.04.tar.gz
-          echo "::add-path::$(pwd)/swift-5.1.4-RELEASE-ubuntu18.04/usr/bin"
+      - name: Compiler setup
+        # Download and install latest Swift compiler
+        uses: fwal/setup-swift@v1.5.0
 
       - name: Generate order
         # Parse Plotly schema and generate ordering of Swift struct members
@@ -38,6 +36,6 @@ jobs:
         working-directory: Sources/Codegen/
         run: swift run codegen
 
-      - name: Check for changes
-        # Check whether all generated code changes are committed to git
+      - name: Check changes
+        # Check whether all changes in the generated Swift source code are comitted
         run: git diff --quiet || git diff

@@ -4,8 +4,7 @@
 /Packages/
 
 # XCode Projects and Data
-/*.xcodeproj/
-/xcuserdata/
+*xcuserdata*
 
 # Folder Preferences on macOS
 .DS_Store
