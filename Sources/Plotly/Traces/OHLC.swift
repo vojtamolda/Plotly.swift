@@ -295,13 +295,13 @@ public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHL
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
+    public var xAxis: Layout.XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
+    public var yAxis: Layout.YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -408,7 +408,7 @@ public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHL
             OHLCData? = nil, close: OHLCData? = nil, line: DashedLine? = nil, increasing: Increasing? = nil,
             decreasing: Decreasing? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
             tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil,
-            xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
+            xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

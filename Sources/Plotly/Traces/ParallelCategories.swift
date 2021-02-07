@@ -315,7 +315,7 @@ public struct ParallelCategories: Trace, DomainSubplot {
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+        public var colorAxis: Layout.ColorAxis = .preset
     
         /// Sets the shape of the paths.
         /// 
@@ -388,8 +388,7 @@ public struct ParallelCategories: Trace, DomainSubplot {
         public init(coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
                 nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
                 reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                Layout.ColorAxis = Layout.ColorAxis(uid: 1), shape: Shape? = nil, hoverTemplate: String? = nil)
-                {
+                Layout.ColorAxis = .preset, shape: Shape? = nil, hoverTemplate: String? = nil) {
             self.coloring = coloring
             self.cAuto = cAuto
             self.cMin = cMin

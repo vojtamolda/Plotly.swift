@@ -284,7 +284,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+        public var colorAxis: Layout.ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -340,8 +340,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
                 colorBar: Shared.ColorBar? = nil, line: Shared.MarkerLine? = nil, gradient: Shared.Gradient? =
                 nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
                 cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-                reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: Layout.ColorAxis =
-                Layout.ColorAxis(uid: 1)) {
+                reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: Layout.ColorAxis = .preset) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -558,7 +557,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     /// 
     /// If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the
     /// geospatial coordinates refer to `layout.geo2`, and so on.
-    public var geo: Layout.Geo = Layout.Geo(uid: 1)
+    public var geo: Layout.Geo = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -687,7 +686,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
             Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil, line: Shared.DashedLine? =
             nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? = nil, fillColor:
             Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? =
-            nil, hoverTemplate: Data<String>? = nil, geo: Layout.Geo = Layout.Geo(uid: 1)) {
+            nil, hoverTemplate: Data<String>? = nil, geo: Layout.Geo = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

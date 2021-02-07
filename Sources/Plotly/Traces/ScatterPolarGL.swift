@@ -377,7 +377,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     /// 
     /// If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to
     /// `layout.polar2`, and so on.
-    public var subplot: Layout.Polar = Layout.Polar(uid: 1)
+    public var subplot: Layout.Polar = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -502,7 +502,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
             = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? = nil, fill: Shared.Fill? = nil,
             fillColor: Color? = nil, textPosition: Shared.TextPosition? = nil, textFont:
             Shared.VariableFont? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected? = nil,
-            unselected: Unselected? = nil, subplot: Layout.Polar = Layout.Polar(uid: 1)) {
+            unselected: Unselected? = nil, subplot: Layout.Polar = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

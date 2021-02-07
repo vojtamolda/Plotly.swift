@@ -229,19 +229,19 @@ public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+    public var colorAxis: Layout.ColorAxis = .preset
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
+    public var xAxis: Layout.XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
+    public var yAxis: Layout.YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -382,8 +382,8 @@ public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: 
             nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? = nil, zAuto: Bool? = nil,
             zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
             autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), xAxis:
-            Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis = Layout.YAxis(uid: 1)) {
+            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset, xAxis: Layout.XAxis = .preset,
+            yAxis: Layout.YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

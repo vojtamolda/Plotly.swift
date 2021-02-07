@@ -10,32 +10,41 @@ enum Generated {
 
     /// Data type that maps hierarchical Plotly `object` to a Swift `struct`.
     final class Object: SharedGeneratedType {
-        var base: String
         var name: String {
-            generics.isEmpty ? base : "\(base)<\(generics.map { $0.name }.joined(separator: ", "))>"
+            generics.isEmpty ? base : "\(base)<\(generics.map(\.name).joined(separator: ", "))>"
         }
         var shared: Bool = false
         var parent: Generated.Object?
-        let schema: Predefined.Object
         var origin: PredefinedType { schema as PredefinedType }
         var access: Access = .public
+        var priority: Int { members.count }
+        static var existing: [Generated.Object] = []
+        var instances: [Instance] = []
+
+        /// Stub of the object name without generics and parents (i.e. Scatter, XAxis, Font).
+        var base: String
+        /// Origin object decoded from the schema.
+        let schema: Predefined.Object
+        /// Switch indicating value (i.e struct) or reference (i.e. class) semantics.
         var semantics: Semantics = .value
-        /// Inheritance modifier (i.e. open, final)
-        var extensibility: Extensibility = .default
         /// List of protocols the generated object conforms to.
         var protocols: [String] = ["Encodable"]
+        /// List of types over which the generated object is generic.
         var generics: [Generated.Generic] = []
-
-        var instances: [Instance] = []
-        static var existing: [Generated.Object] = []
-
-        var members: [Definable]
+        
+        /// Primitives from which the members are generated.
         var primitives: [String: Schema.Primitive]
+        /// Members of the generated object. Besides `Instance` this includes `Markers` or other objects.
+        var members: [Definable]
 
+        /// List of the most frequently used properties for generating smaller, easier to understand initializer.
         var frequentProperties: [String] = []
+        /// List of all properties of the generated object.
         var properties: [Instance] { members.compactMap { $0 as? Instance } }
 
+        /// List of ignored primitives keys.
         static private let ignored: [String] = ["_deprecated", "src", "impliedEdits"]
+        /// Flag indicating whether the object can be places in the `Shared` namespace.
         private var shareable = true
 
         var definition: [String] {
@@ -147,8 +156,8 @@ enum Generated {
             // Workaround for arrays of objects represented as `items` entry.
             if let itemsEntry = object.entries.first(where: { $0.identifier == "items" }) {
                 guard case let parent = parent!,
-                    case let Schema.Entry.object(itemsSchema) = itemsEntry.entry,
-                    case let Schema.Entry.object(itemSchema) = itemsSchema.entries[0].entry else {
+                      case let Schema.Entry.object(itemsSchema) = itemsEntry.entry,
+                      case let Schema.Entry.object(itemSchema) = itemsSchema.entries[0].entry else {
                     fatalError()
                 }
                 let itemType = Generated.Object(named: itemSchema.name, parent: parent, schema: itemSchema)!
@@ -642,29 +651,11 @@ enum Generated {
             }
         }
 
-        /// Creates a weakly referenced instance to prevent reference cycles between `Layout` and `Trace`s.
+        /// Creates instance initialized to the default `preset` subplot.
         func instantiate(name: String, array: Bool = false) -> Instance {
             let instance = Instance(of: self, named: name, array: array)
             instance.optional = false
-
-            switch kind {
-            case .xAxis:
-                instance.initialization = "Layout.XAxis(uid: 1)"
-            case .yAxis:
-                instance.initialization = "Layout.YAxis(uid: 1)"
-            case .ternary:
-                instance.initialization = "Layout.Ternary(uid: 1)"
-            case .scene:
-                instance.initialization = "Layout.Scene(uid: 1)"
-            case .geo:
-                instance.initialization = "Layout.Geo(uid: 1)"
-            case .mapbox:
-                instance.initialization = "Layout.Mapbox(uid: 1)"
-            case .polar:
-                instance.initialization = "Layout.Polar(uid: 1)"
-            case .colorAxis:
-                instance.initialization = "Layout.ColorAxis(uid: 1)"
-            }
+            instance.initialization = ".preset"
             return instance
         }
 

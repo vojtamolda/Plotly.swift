@@ -217,7 +217,7 @@ public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: P
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+    public var colorAxis: Layout.ColorAxis = .preset
 
     /// Sets the opacity of the surface.
     /// 
@@ -284,7 +284,7 @@ public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: P
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: Layout.Scene = Layout.Scene(uid: 1)
+    public var scene: Layout.Scene = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -418,9 +418,8 @@ public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: P
             nil, showLegend: Bool? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
             cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
             reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-            Layout.ColorAxis = Layout.ColorAxis(uid: 1), opacity: Double? = nil, lightPosition:
-            Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil,
-            scene: Layout.Scene = Layout.Scene(uid: 1)) {
+            Layout.ColorAxis = .preset, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil,
+            lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: Layout.Scene = .preset) {
         self.visible = visible
         self.legendGroup = legendGroup
         self.name = name

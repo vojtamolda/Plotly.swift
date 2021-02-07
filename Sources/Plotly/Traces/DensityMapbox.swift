@@ -231,13 +231,13 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+    public var colorAxis: Layout.ColorAxis = .preset
 
     /// Sets a reference between this trace's data coordinates and a mapbox subplot.
     /// 
     /// If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer
     /// to `layout.mapbox2`, and so on.
-    public var subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)
+    public var subplot: Layout.Mapbox = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -360,8 +360,7 @@ public struct DensityMapbox<CoordinateData, ZData>: Trace, MapboxSubplot where C
             hoverTemplate: Data<String>? = nil, showLegend: Bool? = nil, zAuto: Bool? = nil, zMin: Double? =
             nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
             Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? =
-            nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), subplot: Layout.Mapbox =
-            Layout.Mapbox(uid: 1)) {
+            nil, colorAxis: Layout.ColorAxis = .preset, subplot: Layout.Mapbox = .preset) {
         self.visible = visible
         self.legendGroup = legendGroup
         self.opacity = opacity

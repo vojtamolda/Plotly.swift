@@ -1151,6 +1151,7 @@ public struct Layout: Encodable {
     public var calendar: Shared.Calendar? = nil
 
     public class XAxis: Encodable {
+        /// Unique identifier of the axis.
         public var uid: UInt = UInt.random(in: 2...UInt.max)
     
         /// A single toggle to hide the axis while preserving interaction like dragging.
@@ -2133,6 +2134,9 @@ public struct Layout: Encodable {
         /// or via the global `layout.calendar`
         public var calendar: Shared.Calendar? = nil
     
+        /// Shared and preset default axis reference used to initialize layout and all traces.
+        public static let preset: XAxis = XAxis(uid: 1)
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case visible
@@ -2208,10 +2212,29 @@ public struct Layout: Encodable {
             case calendar
         }
         
+        /// Creates `XAxis` object from the most frequently used properties.
+        /// 
+        /// - Parameters:
+        ///   - title:
+        ///   - range: Sets the range of this axis.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - domain: Sets the domain of this axis (in plot fraction).
+        public init(title: Title? = nil, range: InfoArray? = nil, ticks: Shared.Ticks? = nil, tickAngle:
+                Angle? = nil, showGrid: Bool? = nil, domain: InfoArray? = nil) {
+            self.title = title
+            self.range = range
+            self.ticks = ticks
+            self.tickAngle = tickAngle
+            self.showGrid = showGrid
+            self.domain = domain
+        }
+        
         /// Creates `XAxis` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - uid:
+        ///   - uid: Unique identifier of the axis.
         ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
         ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
         ///   and grid colors.
@@ -2400,9 +2423,10 @@ public struct Layout: Encodable {
         }
         
     }
-    public var xAxis: [XAxis] = []
+    public var xAxis: [XAxis] = .preset()
 
     public class YAxis: Encodable {
+        /// Unique identifier of the axis.
         public var uid: UInt = UInt.random(in: 2...UInt.max)
     
         /// A single toggle to hide the axis while preserving interaction like dragging.
@@ -3082,6 +3106,9 @@ public struct Layout: Encodable {
         /// or via the global `layout.calendar`
         public var calendar: Shared.Calendar? = nil
     
+        /// Shared and preset default axis reference used to initialize layout and all traces.
+        public static let preset: YAxis = YAxis(uid: 1)
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case visible
@@ -3155,10 +3182,29 @@ public struct Layout: Encodable {
             case calendar
         }
         
+        /// Creates `YAxis` object from the most frequently used properties.
+        /// 
+        /// - Parameters:
+        ///   - title:
+        ///   - range: Sets the range of this axis.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - domain: Sets the domain of this axis (in plot fraction).
+        public init(title: Title? = nil, range: InfoArray? = nil, ticks: Shared.Ticks? = nil, tickAngle:
+                Angle? = nil, showGrid: Bool? = nil, domain: InfoArray? = nil) {
+            self.title = title
+            self.range = range
+            self.ticks = ticks
+            self.tickAngle = tickAngle
+            self.showGrid = showGrid
+            self.domain = domain
+        }
+        
         /// Creates `YAxis` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - uid:
+        ///   - uid: Unique identifier of the axis.
         ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
         ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
         ///   and grid colors.
@@ -3342,9 +3388,10 @@ public struct Layout: Encodable {
         }
         
     }
-    public var yAxis: [YAxis] = []
+    public var yAxis: [YAxis] = .preset()
 
     public class Ternary: Encodable {
+        /// Unique identifier of the axis.
         public var uid: UInt = UInt.random(in: 2...UInt.max)
     
         public var domain: Shared.Domain? = nil
@@ -4279,6 +4326,9 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything? = nil
     
+        /// Shared and preset default axis reference used to initialize layout and all traces.
+        public static let preset: Ternary = Ternary(uid: 1)
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case domain
@@ -4293,7 +4343,7 @@ public struct Layout: Encodable {
         /// Creates `Ternary` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - uid:
+        ///   - uid: Unique identifier of the axis.
         ///   - domain:
         ///   - backgroundColor: Set the background color of the subplot
         ///   - sum: The number each triplet should sum to, and the maximum range of each axis
@@ -4316,9 +4366,10 @@ public struct Layout: Encodable {
         }
         
     }
-    public var ternary: [Ternary] = []
+    public var ternary: [Ternary] = .preset()
 
     public class Scene: Encodable {
+        /// Unique identifier of the axis.
         public var uid: UInt = UInt.random(in: 2...UInt.max)
     
         public var backgroundColor: Color? = nil
@@ -6253,6 +6304,9 @@ public struct Layout: Encodable {
         }
         public var annotations: [Annotation]? = nil
     
+        /// Shared and preset default axis reference used to initialize layout and all traces.
+        public static let preset: Scene = Scene(uid: 1)
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case backgroundColor = "bgcolor"
@@ -6272,7 +6326,7 @@ public struct Layout: Encodable {
         /// Creates `Scene` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - uid:
+        ///   - uid: Unique identifier of the axis.
         ///   - backgroundColor:
         ///   - camera:
         ///   - domain:
@@ -6306,9 +6360,10 @@ public struct Layout: Encodable {
         }
         
     }
-    public var scene: [Scene] = []
+    public var scene: [Scene] = .preset()
 
     public class Geo: Encodable {
+        /// Unique identifier of the axis.
         public var uid: UInt = UInt.random(in: 2...UInt.max)
     
         public var domain: Shared.Domain? = nil
@@ -6677,6 +6732,9 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything? = nil
     
+        /// Shared and preset default axis reference used to initialize layout and all traces.
+        public static let preset: Geo = Geo(uid: 1)
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case domain
@@ -6716,7 +6774,7 @@ public struct Layout: Encodable {
         /// Creates `Geo` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - uid:
+        ///   - uid: Unique identifier of the axis.
         ///   - domain:
         ///   - fitBounds: Determines if this subplot's view settings are auto-computed to fit trace data.
         ///   - resolution: Sets the resolution of the base layers.
@@ -6796,9 +6854,10 @@ public struct Layout: Encodable {
         }
         
     }
-    public var geo: [Geo] = []
+    public var geo: [Geo] = .preset()
 
     public class Mapbox: Encodable {
+        /// Unique identifier of the axis.
         public var uid: UInt = UInt.random(in: 2...UInt.max)
     
         public var domain: Shared.Domain? = nil
@@ -7188,6 +7247,9 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything? = nil
     
+        /// Shared and preset default axis reference used to initialize layout and all traces.
+        public static let preset: Mapbox = Mapbox(uid: 1)
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case domain
@@ -7204,7 +7266,7 @@ public struct Layout: Encodable {
         /// Creates `Mapbox` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - uid:
+        ///   - uid: Unique identifier of the axis.
         ///   - domain:
         ///   - accessToken: Sets the mapbox access token to be used for this mapbox map.
         ///   - style: Defines the map layers that are rendered by default below the trace layers defined in
@@ -7236,9 +7298,10 @@ public struct Layout: Encodable {
         }
         
     }
-    public var mapbox: [Mapbox] = []
+    public var mapbox: [Mapbox] = .preset()
 
     public class Polar: Encodable {
+        /// Unique identifier of the axis.
         public var uid: UInt = UInt.random(in: 2...UInt.max)
     
         public var domain: Shared.Domain? = nil
@@ -8091,6 +8154,9 @@ public struct Layout: Encodable {
         /// Defaults to `layout.uirevision`.
         public var uiRevision: Anything? = nil
     
+        /// Shared and preset default axis reference used to initialize layout and all traces.
+        public static let preset: Polar = Polar(uid: 1)
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case domain
@@ -8106,7 +8172,7 @@ public struct Layout: Encodable {
         /// Creates `Polar` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - uid:
+        ///   - uid: Unique identifier of the axis.
         ///   - domain:
         ///   - sector: Sets angular span of this polar subplot with two angles (in degrees).
         ///   - hole: Sets the fraction of the radius to cut out of the polar subplot.
@@ -8133,7 +8199,7 @@ public struct Layout: Encodable {
         }
         
     }
-    public var polar: [Polar] = []
+    public var polar: [Polar] = .preset()
 
     
     // MARK: - Legend, Labels and Shapes
@@ -9945,6 +10011,7 @@ public struct Layout: Encodable {
     public var colorScale: ColorMap? = nil
 
     public class ColorAxis: Encodable {
+        /// Unique identifier of the axis.
         public var uid: UInt = UInt.random(in: 2...UInt.max)
     
         /// Determines whether or not the color domain is computed with respect to the input data (here
@@ -10000,6 +10067,9 @@ public struct Layout: Encodable {
     
         public var colorBar: Shared.ColorBar? = nil
     
+        /// Shared and preset default axis reference used to initialize layout and all traces.
+        public static let preset: ColorAxis = ColorAxis(uid: 1)
+    
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case cAuto = "cauto"
@@ -10016,7 +10086,7 @@ public struct Layout: Encodable {
         /// Creates `ColorAxis` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - uid:
+        ///   - uid: Unique identifier of the axis.
         ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
         ///   (here corresponding trace color array(s)) or the bounds set in `cmin` and `cmax` Defaults to
         ///   `false` when `cmin` and `cmax` are set by the user.
@@ -10047,7 +10117,7 @@ public struct Layout: Encodable {
         }
         
     }
-    public var colorAxis: [ColorAxis] = []
+    public var colorAxis: [ColorAxis] = .preset()
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -10240,10 +10310,11 @@ public struct Layout: Encodable {
             dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil,
             spikeDistance: Int? = nil, hoverLabel: Shared.HoverLabel? = nil, selectDirection:
             SelectDirection? = nil, grid: Grid? = nil, calendar: Shared.Calendar? = nil, xAxis: [XAxis] =
-            [], yAxis: [YAxis] = [], ternary: [Ternary] = [], scene: [Scene] = [], geo: [Geo] = [], mapbox:
-            [Mapbox] = [], polar: [Polar] = [], legend: Legend? = nil, annotations: [Annotation]? = nil,
-            shapes: [Shape]? = nil, images: [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders:
-            [Slider]? = nil, colorScale: ColorMap? = nil, colorAxis: [ColorAxis] = []) {
+            .preset(), yAxis: [YAxis] = .preset(), ternary: [Ternary] = .preset(), scene: [Scene] =
+            .preset(), geo: [Geo] = .preset(), mapbox: [Mapbox] = .preset(), polar: [Polar] = .preset(),
+            legend: Legend? = nil, annotations: [Annotation]? = nil, shapes: [Shape]? = nil, images:
+            [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders: [Slider]? = nil, colorScale:
+            ColorMap? = nil, colorAxis: [ColorAxis] = .preset()) {
         self.funnelAreaColorWay = funnelAreaColorWay
         self.extendFunnelAreaColors = extendFunnelAreaColors
         self.treemapColorWay = treemapColorWay
@@ -10430,3 +10501,691 @@ public struct Layout: Encodable {
         }
     }
 }
+
+// MARK: - Subplot Array Extensions
+extension Array where Element == Layout.XAxis {
+    /// Preset default axis' customized with the most frequently used properties.
+    /// 
+    /// - Parameters:
+    ///   - title:
+    ///   - range: Sets the range of this axis.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - showGrid: Determines whether or not grid lines are drawn.
+    ///   - domain: Sets the domain of this axis (in plot fraction).
+    public static func preset(title: Layout.XAxis.Title? = nil, range: InfoArray? = nil, ticks:
+            Shared.Ticks? = nil, tickAngle: Angle? = nil, showGrid: Bool? = nil, domain: InfoArray? = nil)
+            -> [Layout.XAxis] {
+        let axis = Layout.XAxis(uid: 1)
+        axis.title = title
+        axis.range = range
+        axis.ticks = ticks
+        axis.tickAngle = tickAngle
+        axis.showGrid = showGrid
+        axis.domain = domain
+        return [axis]
+    }
+
+    /// Preset default axis' customized with the specified properties.
+    /// 
+    /// - Parameters:
+    ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+    ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+    ///   and grid colors.
+    ///   - title:
+    ///   - type: Sets the axis type.
+    ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
+    ///   input data.
+    ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
+    ///   - range: Sets the range of this axis.
+    ///   - fixedRange: Determines whether or not this axis is zoom-able.
+    ///   - scaleAnchor: If set to another axis id (e.g.
+    ///   - scaleRatio: If this axis is linked to another by `scaleanchor`, this determines the pixel to
+    ///   unit scale ratio.
+    ///   - constrain: If this axis needs to be compressed (either due to its own `scaleanchor` and
+    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*
+    ///   (default), or by decreasing the *domain*.
+    ///   - constrainToward: If this axis needs to be compressed (either due to its own `scaleanchor` and
+    ///   `scaleratio` or those of the other axis), determines which direction we push the originally
+    ///   specified plot area.
+    ///   - matches: If set to another axis id (e.g.
+    ///   - rangeBreaks:
+    ///   - tickMode: Sets the tick mode for this axis.
+    ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+    ///   - tick0: Sets the placement of the first tick on this axis.
+    ///   - dTick: Sets the step in-between ticks on this axis.
+    ///   - tickValues: Sets the values at which ticks on this axis appear.
+    ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - ticksOn: Determines where ticks and grid lines are drawn with respect to their corresponding
+    ///   tick labels.
+    ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
+    ///   ticks and grid lines.
+    ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
+    ///   plotting area.
+    ///   - tickLength: Sets the tick length (in px).
+    ///   - tickWidth: Sets the tick width (in px).
+    ///   - tickColor: Sets the tick color.
+    ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+    ///   - autoMargin: Determines whether long tick labels automatically grow the figure margins.
+    ///   - showSpikes: Determines whether or not spikes (aka droplines) are drawn for this axis.
+    ///   - spikeColor: Sets the spike color.
+    ///   - spikeThickness: Sets the width (in px) of the zero line.
+    ///   - spikeDash: Sets the dash style of lines.
+    ///   - spikeMode: Determines the drawing mode for the spike line If *toaxis*, the line is drawn from
+    ///   the data point to the axis the series is plotted on.
+    ///   - spikeSnap: Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    ///   - tickFont: Sets the tick font.
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - tickPrefix: Sets a tick label prefix.
+    ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+    ///   - tickSuffix: Sets a tick label suffix.
+    ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+    ///   - showExponent: If *all*, all exponents are shown besides their significands.
+    ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - separateThousands: If "true", even 4-digit integers are separated
+    ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - tickFormatStops:
+    ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+    ///   - lineColor: Sets the axis line color.
+    ///   - lineWidth: Sets the width (in px) of the axis line.
+    ///   - showGrid: Determines whether or not grid lines are drawn.
+    ///   - gridColor: Sets the color of the grid lines.
+    ///   - gridWidth: Sets the width (in px) of the grid lines.
+    ///   - zeroLine: Determines whether or not a line is drawn at along the 0 value of this axis.
+    ///   - zeroLineColor: Sets the line color of the zero line.
+    ///   - zeroLineWidth: Sets the width (in px) of the zero line.
+    ///   - showDividers: Determines whether or not a dividers are drawn between the category levels of
+    ///   this axis.
+    ///   - dividerColor: Sets the color of the dividers Only has an effect on *multicategory* axes.
+    ///   - dividerWidth: Sets the width (in px) of the dividers Only has an effect on *multicategory*
+    ///   axes.
+    ///   - anchor: If set to an opposite-letter axis id (e.g.
+    ///   - side: Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top*
+    ///   (*right*) of the plotting area.
+    ///   - overlaying: If set a same-letter axis id, this axis is overlaid on top of the corresponding
+    ///   same-letter axis, with traces and axes visible for both axes.
+    ///   - layer: Sets the layer on which this axis is displayed.
+    ///   - domain: Sets the domain of this axis (in plot fraction).
+    ///   - position: Sets the position of this axis in the plotting space (in normalized coordinates).
+    ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+    ///   - categoryArray: Sets the order in which categories on this axis appear.
+    ///   - uiRevision: Controls persistence of user-driven changes in axis `range`, `autorange`, and
+    ///   `title` if in `editable: true` configuration.
+    ///   - rangeSlider:
+    ///   - rangeSelector:
+    ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+    public static func preset(visible: Bool? = nil, color: Color? = nil, title: Layout.XAxis.Title?
+            = nil, type: Layout.XAxis.`Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode:
+            Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor:
+            Layout.XAxis.ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Layout.XAxis.Constrain? =
+            nil, constrainToward: Layout.XAxis.ConstrainToward? = nil, matches: Layout.XAxis.Matches? = nil,
+            rangeBreaks: [Layout.XAxis.RangeBreak]? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int?
+            = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText:
+            [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: Layout.XAxis.TicksOn? = nil,
+            tickLabelMode: Layout.XAxis.TickLabelMode? = nil, mirror: Shared.Mirror? = nil, tickLength:
+            Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil,
+            autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness:
+            Double? = nil, spikeDash: String? = nil, spikeMode: Layout.XAxis.SpikeMode? = nil, spikeSnap:
+            Layout.XAxis.SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil,
+            tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? =
+            nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil,
+            exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat:
+            String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil,
+            showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+            gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
+            = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
+            dividerWidth: Double? = nil, anchor: Layout.XAxis.Anchor? = nil, side: Layout.XAxis.Side? = nil,
+            overlaying: Layout.XAxis.Overlaying? = nil, layer: Shared.AxisLayer? = nil, domain: InfoArray? =
+            nil, position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray:
+            [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: Layout.XAxis.RangeSlider? = nil,
+            rangeSelector: Layout.XAxis.RangeSelector? = nil, calendar: Shared.Calendar? = nil) ->
+            [Layout.XAxis] {
+        let axis = Layout.XAxis(uid: 1)
+        axis.visible = visible
+        axis.color = color
+        axis.title = title
+        axis.type = type
+        axis.autoRange = autoRange
+        axis.rangeMode = rangeMode
+        axis.range = range
+        axis.fixedRange = fixedRange
+        axis.scaleAnchor = scaleAnchor
+        axis.scaleRatio = scaleRatio
+        axis.constrain = constrain
+        axis.constrainToward = constrainToward
+        axis.matches = matches
+        axis.rangeBreaks = rangeBreaks
+        axis.tickMode = tickMode
+        axis.numTicks = numTicks
+        axis.tick0 = tick0
+        axis.dTick = dTick
+        axis.tickValues = tickValues
+        axis.tickText = tickText
+        axis.ticks = ticks
+        axis.ticksOn = ticksOn
+        axis.tickLabelMode = tickLabelMode
+        axis.mirror = mirror
+        axis.tickLength = tickLength
+        axis.tickWidth = tickWidth
+        axis.tickColor = tickColor
+        axis.showTickLabels = showTickLabels
+        axis.autoMargin = autoMargin
+        axis.showSpikes = showSpikes
+        axis.spikeColor = spikeColor
+        axis.spikeThickness = spikeThickness
+        axis.spikeDash = spikeDash
+        axis.spikeMode = spikeMode
+        axis.spikeSnap = spikeSnap
+        axis.tickFont = tickFont
+        axis.tickAngle = tickAngle
+        axis.tickPrefix = tickPrefix
+        axis.showTickPrefix = showTickPrefix
+        axis.tickSuffix = tickSuffix
+        axis.showTickSuffix = showTickSuffix
+        axis.showExponent = showExponent
+        axis.exponentFormat = exponentFormat
+        axis.separateThousands = separateThousands
+        axis.tickFormat = tickFormat
+        axis.tickFormatStops = tickFormatStops
+        axis.hoverFormat = hoverFormat
+        axis.showLine = showLine
+        axis.lineColor = lineColor
+        axis.lineWidth = lineWidth
+        axis.showGrid = showGrid
+        axis.gridColor = gridColor
+        axis.gridWidth = gridWidth
+        axis.zeroLine = zeroLine
+        axis.zeroLineColor = zeroLineColor
+        axis.zeroLineWidth = zeroLineWidth
+        axis.showDividers = showDividers
+        axis.dividerColor = dividerColor
+        axis.dividerWidth = dividerWidth
+        axis.anchor = anchor
+        axis.side = side
+        axis.overlaying = overlaying
+        axis.layer = layer
+        axis.domain = domain
+        axis.position = position
+        axis.categoryOrder = categoryOrder
+        axis.categoryArray = categoryArray
+        axis.uiRevision = uiRevision
+        axis.rangeSlider = rangeSlider
+        axis.rangeSelector = rangeSelector
+        axis.calendar = calendar
+        return [axis]
+    }
+}
+
+extension Array where Element == Layout.YAxis {
+    /// Preset default axis' customized with the most frequently used properties.
+    /// 
+    /// - Parameters:
+    ///   - title:
+    ///   - range: Sets the range of this axis.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - showGrid: Determines whether or not grid lines are drawn.
+    ///   - domain: Sets the domain of this axis (in plot fraction).
+    public static func preset(title: Layout.YAxis.Title? = nil, range: InfoArray? = nil, ticks:
+            Shared.Ticks? = nil, tickAngle: Angle? = nil, showGrid: Bool? = nil, domain: InfoArray? = nil)
+            -> [Layout.YAxis] {
+        let axis = Layout.YAxis(uid: 1)
+        axis.title = title
+        axis.range = range
+        axis.ticks = ticks
+        axis.tickAngle = tickAngle
+        axis.showGrid = showGrid
+        axis.domain = domain
+        return [axis]
+    }
+
+    /// Preset default axis' customized with the specified properties.
+    /// 
+    /// - Parameters:
+    ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+    ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+    ///   and grid colors.
+    ///   - title:
+    ///   - type: Sets the axis type.
+    ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
+    ///   input data.
+    ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
+    ///   - range: Sets the range of this axis.
+    ///   - fixedRange: Determines whether or not this axis is zoom-able.
+    ///   - scaleAnchor: If set to another axis id (e.g.
+    ///   - scaleRatio: If this axis is linked to another by `scaleanchor`, this determines the pixel to
+    ///   unit scale ratio.
+    ///   - constrain: If this axis needs to be compressed (either due to its own `scaleanchor` and
+    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*
+    ///   (default), or by decreasing the *domain*.
+    ///   - constrainToward: If this axis needs to be compressed (either due to its own `scaleanchor` and
+    ///   `scaleratio` or those of the other axis), determines which direction we push the originally
+    ///   specified plot area.
+    ///   - matches: If set to another axis id (e.g.
+    ///   - rangeBreaks:
+    ///   - tickMode: Sets the tick mode for this axis.
+    ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+    ///   - tick0: Sets the placement of the first tick on this axis.
+    ///   - dTick: Sets the step in-between ticks on this axis.
+    ///   - tickValues: Sets the values at which ticks on this axis appear.
+    ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - ticksOn: Determines where ticks and grid lines are drawn with respect to their corresponding
+    ///   tick labels.
+    ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
+    ///   ticks and grid lines.
+    ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
+    ///   plotting area.
+    ///   - tickLength: Sets the tick length (in px).
+    ///   - tickWidth: Sets the tick width (in px).
+    ///   - tickColor: Sets the tick color.
+    ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+    ///   - autoMargin: Determines whether long tick labels automatically grow the figure margins.
+    ///   - showSpikes: Determines whether or not spikes (aka droplines) are drawn for this axis.
+    ///   - spikeColor: Sets the spike color.
+    ///   - spikeThickness: Sets the width (in px) of the zero line.
+    ///   - spikeDash: Sets the dash style of lines.
+    ///   - spikeMode: Determines the drawing mode for the spike line If *toaxis*, the line is drawn from
+    ///   the data point to the axis the series is plotted on.
+    ///   - spikeSnap: Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    ///   - tickFont: Sets the tick font.
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - tickPrefix: Sets a tick label prefix.
+    ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+    ///   - tickSuffix: Sets a tick label suffix.
+    ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+    ///   - showExponent: If *all*, all exponents are shown besides their significands.
+    ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - separateThousands: If "true", even 4-digit integers are separated
+    ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - tickFormatStops:
+    ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+    ///   - lineColor: Sets the axis line color.
+    ///   - lineWidth: Sets the width (in px) of the axis line.
+    ///   - showGrid: Determines whether or not grid lines are drawn.
+    ///   - gridColor: Sets the color of the grid lines.
+    ///   - gridWidth: Sets the width (in px) of the grid lines.
+    ///   - zeroLine: Determines whether or not a line is drawn at along the 0 value of this axis.
+    ///   - zeroLineColor: Sets the line color of the zero line.
+    ///   - zeroLineWidth: Sets the width (in px) of the zero line.
+    ///   - showDividers: Determines whether or not a dividers are drawn between the category levels of
+    ///   this axis.
+    ///   - dividerColor: Sets the color of the dividers Only has an effect on *multicategory* axes.
+    ///   - dividerWidth: Sets the width (in px) of the dividers Only has an effect on *multicategory*
+    ///   axes.
+    ///   - anchor: If set to an opposite-letter axis id (e.g.
+    ///   - side: Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top*
+    ///   (*right*) of the plotting area.
+    ///   - overlaying: If set a same-letter axis id, this axis is overlaid on top of the corresponding
+    ///   same-letter axis, with traces and axes visible for both axes.
+    ///   - layer: Sets the layer on which this axis is displayed.
+    ///   - domain: Sets the domain of this axis (in plot fraction).
+    ///   - position: Sets the position of this axis in the plotting space (in normalized coordinates).
+    ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+    ///   - categoryArray: Sets the order in which categories on this axis appear.
+    ///   - uiRevision: Controls persistence of user-driven changes in axis `range`, `autorange`, and
+    ///   `title` if in `editable: true` configuration.
+    ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+    public static func preset(visible: Bool? = nil, color: Color? = nil, title: Layout.YAxis.Title?
+            = nil, type: Layout.YAxis.`Type`? = nil, autoRange: Shared.AutoRange? = nil, rangeMode:
+            Shared.RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor:
+            Layout.YAxis.ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Layout.YAxis.Constrain? =
+            nil, constrainToward: Layout.YAxis.ConstrainToward? = nil, matches: Layout.YAxis.Matches? = nil,
+            rangeBreaks: [Layout.YAxis.RangeBreak]? = nil, tickMode: Shared.TickMode? = nil, numTicks: Int?
+            = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText:
+            [Double]? = nil, ticks: Shared.Ticks? = nil, ticksOn: Layout.YAxis.TicksOn? = nil,
+            tickLabelMode: Layout.YAxis.TickLabelMode? = nil, mirror: Shared.Mirror? = nil, tickLength:
+            Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil,
+            autoMargin: Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness:
+            Double? = nil, spikeDash: String? = nil, spikeMode: Layout.YAxis.SpikeMode? = nil, spikeSnap:
+            Layout.YAxis.SpikeSnap? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil,
+            tickPrefix: String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? =
+            nil, showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil,
+            exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat:
+            String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, hoverFormat: String? = nil,
+            showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+            gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
+            = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
+            dividerWidth: Double? = nil, anchor: Layout.YAxis.Anchor? = nil, side: Layout.YAxis.Side? = nil,
+            overlaying: Layout.YAxis.Overlaying? = nil, layer: Shared.AxisLayer? = nil, domain: InfoArray? =
+            nil, position: Double? = nil, categoryOrder: Shared.CategoryOrder? = nil, categoryArray:
+            [Double]? = nil, uiRevision: Anything? = nil, calendar: Shared.Calendar? = nil) ->
+            [Layout.YAxis] {
+        let axis = Layout.YAxis(uid: 1)
+        axis.visible = visible
+        axis.color = color
+        axis.title = title
+        axis.type = type
+        axis.autoRange = autoRange
+        axis.rangeMode = rangeMode
+        axis.range = range
+        axis.fixedRange = fixedRange
+        axis.scaleAnchor = scaleAnchor
+        axis.scaleRatio = scaleRatio
+        axis.constrain = constrain
+        axis.constrainToward = constrainToward
+        axis.matches = matches
+        axis.rangeBreaks = rangeBreaks
+        axis.tickMode = tickMode
+        axis.numTicks = numTicks
+        axis.tick0 = tick0
+        axis.dTick = dTick
+        axis.tickValues = tickValues
+        axis.tickText = tickText
+        axis.ticks = ticks
+        axis.ticksOn = ticksOn
+        axis.tickLabelMode = tickLabelMode
+        axis.mirror = mirror
+        axis.tickLength = tickLength
+        axis.tickWidth = tickWidth
+        axis.tickColor = tickColor
+        axis.showTickLabels = showTickLabels
+        axis.autoMargin = autoMargin
+        axis.showSpikes = showSpikes
+        axis.spikeColor = spikeColor
+        axis.spikeThickness = spikeThickness
+        axis.spikeDash = spikeDash
+        axis.spikeMode = spikeMode
+        axis.spikeSnap = spikeSnap
+        axis.tickFont = tickFont
+        axis.tickAngle = tickAngle
+        axis.tickPrefix = tickPrefix
+        axis.showTickPrefix = showTickPrefix
+        axis.tickSuffix = tickSuffix
+        axis.showTickSuffix = showTickSuffix
+        axis.showExponent = showExponent
+        axis.exponentFormat = exponentFormat
+        axis.separateThousands = separateThousands
+        axis.tickFormat = tickFormat
+        axis.tickFormatStops = tickFormatStops
+        axis.hoverFormat = hoverFormat
+        axis.showLine = showLine
+        axis.lineColor = lineColor
+        axis.lineWidth = lineWidth
+        axis.showGrid = showGrid
+        axis.gridColor = gridColor
+        axis.gridWidth = gridWidth
+        axis.zeroLine = zeroLine
+        axis.zeroLineColor = zeroLineColor
+        axis.zeroLineWidth = zeroLineWidth
+        axis.showDividers = showDividers
+        axis.dividerColor = dividerColor
+        axis.dividerWidth = dividerWidth
+        axis.anchor = anchor
+        axis.side = side
+        axis.overlaying = overlaying
+        axis.layer = layer
+        axis.domain = domain
+        axis.position = position
+        axis.categoryOrder = categoryOrder
+        axis.categoryArray = categoryArray
+        axis.uiRevision = uiRevision
+        axis.calendar = calendar
+        return [axis]
+    }
+}
+
+extension Array where Element == Layout.Ternary {
+
+    /// Preset default axis' customized with the specified properties.
+    /// 
+    /// - Parameters:
+    ///   - domain:
+    ///   - backgroundColor: Set the background color of the subplot
+    ///   - sum: The number each triplet should sum to, and the maximum range of each axis
+    ///   - aAxis:
+    ///   - bAxis:
+    ///   - cAxis:
+    ///   - uiRevision: Controls persistence of user-driven changes in axis `min` and `title`, if not
+    ///   overridden in the individual axes.
+    public static func preset(domain: Shared.Domain? = nil, backgroundColor: Color? = nil, sum:
+            Double? = nil, aAxis: Layout.Ternary.AAxis? = nil, bAxis: Layout.Ternary.BAxis? = nil, cAxis:
+            Layout.Ternary.CAxis? = nil, uiRevision: Anything? = nil) -> [Layout.Ternary] {
+        let axis = Layout.Ternary(uid: 1)
+        axis.domain = domain
+        axis.backgroundColor = backgroundColor
+        axis.sum = sum
+        axis.aAxis = aAxis
+        axis.bAxis = bAxis
+        axis.cAxis = cAxis
+        axis.uiRevision = uiRevision
+        return [axis]
+    }
+}
+
+extension Array where Element == Layout.Scene {
+
+    /// Preset default axis' customized with the specified properties.
+    /// 
+    /// - Parameters:
+    ///   - backgroundColor:
+    ///   - camera:
+    ///   - domain:
+    ///   - aspectMode: If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges.
+    ///   - aspectRatio: Sets this scene's axis aspectratio.
+    ///   - xAxis:
+    ///   - yAxis:
+    ///   - zAxis:
+    ///   - dragMode: Determines the mode of drag interactions for this scene.
+    ///   - hoverMode: Determines the mode of hover interactions for this scene.
+    ///   - uiRevision: Controls persistence of user-driven changes in camera attributes.
+    ///   - annotations:
+    public static func preset(backgroundColor: Color? = nil, camera: Layout.Scene.Camera? = nil,
+            domain: Shared.Domain? = nil, aspectMode: Layout.Scene.AspectMode? = nil, aspectRatio:
+            Layout.Scene.AspectRatio? = nil, xAxis: Layout.Scene.XAxis? = nil, yAxis: Layout.Scene.YAxis? =
+            nil, zAxis: Layout.Scene.ZAxis? = nil, dragMode: Layout.Scene.DragMode? = nil, hoverMode:
+            Layout.Scene.HoverMode? = nil, uiRevision: Anything? = nil, annotations:
+            [Layout.Scene.Annotation]? = nil) -> [Layout.Scene] {
+        let axis = Layout.Scene(uid: 1)
+        axis.backgroundColor = backgroundColor
+        axis.camera = camera
+        axis.domain = domain
+        axis.aspectMode = aspectMode
+        axis.aspectRatio = aspectRatio
+        axis.xAxis = xAxis
+        axis.yAxis = yAxis
+        axis.zAxis = zAxis
+        axis.dragMode = dragMode
+        axis.hoverMode = hoverMode
+        axis.uiRevision = uiRevision
+        axis.annotations = annotations
+        return [axis]
+    }
+}
+
+extension Array where Element == Layout.Geo {
+
+    /// Preset default axis' customized with the specified properties.
+    /// 
+    /// - Parameters:
+    ///   - domain:
+    ///   - fitBounds: Determines if this subplot's view settings are auto-computed to fit trace data.
+    ///   - resolution: Sets the resolution of the base layers.
+    ///   - scope: Set the scope of the map.
+    ///   - projection:
+    ///   - center:
+    ///   - visible: Sets the default visibility of the base layers.
+    ///   - showCoastLines: Sets whether or not the coastlines are drawn.
+    ///   - coastLineColor: Sets the coastline color.
+    ///   - coastLineWidth: Sets the coastline stroke width (in px).
+    ///   - showLand: Sets whether or not land masses are filled in color.
+    ///   - landColor: Sets the land mass color.
+    ///   - showOcean: Sets whether or not oceans are filled in color.
+    ///   - oceanColor: Sets the ocean color
+    ///   - showLakes: Sets whether or not lakes are drawn.
+    ///   - lakeColor: Sets the color of the lakes.
+    ///   - showRivers: Sets whether or not rivers are drawn.
+    ///   - riverColor: Sets color of the rivers.
+    ///   - riverWidth: Sets the stroke width (in px) of the rivers.
+    ///   - showCountries: Sets whether or not country boundaries are drawn.
+    ///   - countryColor: Sets line color of the country boundaries.
+    ///   - countryWidth: Sets line width (in px) of the country boundaries.
+    ///   - showSubunits: Sets whether or not boundaries of subunits within countries (e.g.
+    ///   - subUnitColor: Sets the color of the subunits boundaries.
+    ///   - subUnitWidth: Sets the stroke width (in px) of the subunits boundaries.
+    ///   - showFrame: Sets whether or not a frame is drawn around the map.
+    ///   - frameColor: Sets the color the frame.
+    ///   - frameWidth: Sets the stroke width (in px) of the frame.
+    ///   - backgroundColor: Set the background color of the map
+    ///   - longitudeAxis:
+    ///   - latitudeAxis:
+    ///   - uiRevision: Controls persistence of user-driven changes in the view (projection and center).
+    public static func preset(domain: Shared.Domain? = nil, fitBounds: Layout.Geo.FitBounds? = nil,
+            resolution: Layout.Geo.Resolution? = nil, scope: Layout.Geo.Scope? = nil, projection:
+            Layout.Geo.Projection? = nil, center: Layout.Geo.Center? = nil, visible: Bool? = nil,
+            showCoastLines: Bool? = nil, coastLineColor: Color? = nil, coastLineWidth: Double? = nil,
+            showLand: Bool? = nil, landColor: Color? = nil, showOcean: Bool? = nil, oceanColor: Color? =
+            nil, showLakes: Bool? = nil, lakeColor: Color? = nil, showRivers: Bool? = nil, riverColor:
+            Color? = nil, riverWidth: Double? = nil, showCountries: Bool? = nil, countryColor: Color? = nil,
+            countryWidth: Double? = nil, showSubunits: Bool? = nil, subUnitColor: Color? = nil,
+            subUnitWidth: Double? = nil, showFrame: Bool? = nil, frameColor: Color? = nil, frameWidth:
+            Double? = nil, backgroundColor: Color? = nil, longitudeAxis: Layout.Geo.LongitudeAxis? = nil,
+            latitudeAxis: Layout.Geo.LatitudeAxis? = nil, uiRevision: Anything? = nil) -> [Layout.Geo] {
+        let axis = Layout.Geo(uid: 1)
+        axis.domain = domain
+        axis.fitBounds = fitBounds
+        axis.resolution = resolution
+        axis.scope = scope
+        axis.projection = projection
+        axis.center = center
+        axis.visible = visible
+        axis.showCoastLines = showCoastLines
+        axis.coastLineColor = coastLineColor
+        axis.coastLineWidth = coastLineWidth
+        axis.showLand = showLand
+        axis.landColor = landColor
+        axis.showOcean = showOcean
+        axis.oceanColor = oceanColor
+        axis.showLakes = showLakes
+        axis.lakeColor = lakeColor
+        axis.showRivers = showRivers
+        axis.riverColor = riverColor
+        axis.riverWidth = riverWidth
+        axis.showCountries = showCountries
+        axis.countryColor = countryColor
+        axis.countryWidth = countryWidth
+        axis.showSubunits = showSubunits
+        axis.subUnitColor = subUnitColor
+        axis.subUnitWidth = subUnitWidth
+        axis.showFrame = showFrame
+        axis.frameColor = frameColor
+        axis.frameWidth = frameWidth
+        axis.backgroundColor = backgroundColor
+        axis.longitudeAxis = longitudeAxis
+        axis.latitudeAxis = latitudeAxis
+        axis.uiRevision = uiRevision
+        return [axis]
+    }
+}
+
+extension Array where Element == Layout.Mapbox {
+
+    /// Preset default axis' customized with the specified properties.
+    /// 
+    /// - Parameters:
+    ///   - domain:
+    ///   - accessToken: Sets the mapbox access token to be used for this mapbox map.
+    ///   - style: Defines the map layers that are rendered by default below the trace layers defined in
+    ///   `data`, which are themselves by default rendered below the layers defined in
+    ///   `layout.mapbox.layers`.
+    ///   - center:
+    ///   - zoom: Sets the zoom level of the map (mapbox.zoom).
+    ///   - bearing: Sets the bearing angle of the map in degrees counter-clockwise from North
+    ///   (mapbox.bearing).
+    ///   - pitch: Sets the pitch angle of the map (in degrees, where *0* means perpendicular to the
+    ///   surface of the map) (mapbox.pitch).
+    ///   - layers:
+    ///   - uiRevision: Controls persistence of user-driven changes in the view: `center`, `zoom`,
+    ///   `bearing`, `pitch`.
+    public static func preset(domain: Shared.Domain? = nil, accessToken: String? = nil, style:
+            Anything? = nil, center: Layout.Mapbox.Center? = nil, zoom: Double? = nil, bearing: Double? =
+            nil, pitch: Double? = nil, layers: [Layout.Mapbox.Layer]? = nil, uiRevision: Anything? = nil) ->
+            [Layout.Mapbox] {
+        let axis = Layout.Mapbox(uid: 1)
+        axis.domain = domain
+        axis.accessToken = accessToken
+        axis.style = style
+        axis.center = center
+        axis.zoom = zoom
+        axis.bearing = bearing
+        axis.pitch = pitch
+        axis.layers = layers
+        axis.uiRevision = uiRevision
+        return [axis]
+    }
+}
+
+extension Array where Element == Layout.Polar {
+
+    /// Preset default axis' customized with the specified properties.
+    /// 
+    /// - Parameters:
+    ///   - domain:
+    ///   - sector: Sets angular span of this polar subplot with two angles (in degrees).
+    ///   - hole: Sets the fraction of the radius to cut out of the polar subplot.
+    ///   - backgroundColor: Set the background color of the subplot
+    ///   - radialAxis:
+    ///   - angularAxis:
+    ///   - gridShape: Determines if the radial axis grid lines and angular axis line are drawn as
+    ///   *circular* sectors or as *linear* (polygon) sectors.
+    ///   - uiRevision: Controls persistence of user-driven changes in axis attributes, if not overridden
+    ///   in the individual axes.
+    public static func preset(domain: Shared.Domain? = nil, sector: InfoArray? = nil, hole: Double?
+            = nil, backgroundColor: Color? = nil, radialAxis: Layout.Polar.RadialAxis? = nil, angularAxis:
+            Layout.Polar.AngularAxis? = nil, gridShape: Layout.Polar.GridShape? = nil, uiRevision: Anything?
+            = nil) -> [Layout.Polar] {
+        let axis = Layout.Polar(uid: 1)
+        axis.domain = domain
+        axis.sector = sector
+        axis.hole = hole
+        axis.backgroundColor = backgroundColor
+        axis.radialAxis = radialAxis
+        axis.angularAxis = angularAxis
+        axis.gridShape = gridShape
+        axis.uiRevision = uiRevision
+        return [axis]
+    }
+}
+
+extension Array where Element == Layout.ColorAxis {
+
+    /// Preset default axis' customized with the specified properties.
+    /// 
+    /// - Parameters:
+    ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
+    ///   (here corresponding trace color array(s)) or the bounds set in `cmin` and `cmax` Defaults to
+    ///   `false` when `cmin` and `cmax` are set by the user.
+    ///   - cMin: Sets the lower bound of the color domain.
+    ///   - cMax: Sets the upper bound of the color domain.
+    ///   - cMiddle: Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be
+    ///   equidistant to this point.
+    ///   - colorScale: Sets the colorscale.
+    ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
+    ///   true`) or the palette determined by `colorscale`.
+    ///   - reverseScale: Reverses the color mapping if true.
+    ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
+    ///   - colorBar:
+    public static func preset(cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle:
+            Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
+            nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil) -> [Layout.ColorAxis] {
+        let axis = Layout.ColorAxis(uid: 1)
+        axis.cAuto = cAuto
+        axis.cMin = cMin
+        axis.cMax = cMax
+        axis.cMiddle = cMiddle
+        axis.colorScale = colorScale
+        axis.autoColorScale = autoColorScale
+        axis.reverseScale = reverseScale
+        axis.showScale = showScale
+        axis.colorBar = colorBar
+        return [axis]
+    }
+}
+

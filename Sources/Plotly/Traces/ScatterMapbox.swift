@@ -245,7 +245,7 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+        public var colorAxis: Layout.ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -301,7 +301,7 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
                 Double? = nil, sizeMode: Shared.SizeMode? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil,
                 cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
+                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset) {
             self.symbol = symbol
             self.angle = angle
             self.allowOverlap = allowOverlap
@@ -488,7 +488,7 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     /// 
     /// If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer
     /// to `layout.mapbox2`, and so on.
-    public var subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)
+    public var subplot: Layout.Mapbox = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -610,7 +610,7 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
             SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Shared.Font? = nil,
             textPosition: Shared.TextPosition? = nil, below: String? = nil, selected: Selected? = nil,
             unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil,
-            subplot: Layout.Mapbox = Layout.Mapbox(uid: 1)) {
+            subplot: Layout.Mapbox = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

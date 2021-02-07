@@ -308,13 +308,13 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+    public var colorAxis: Layout.ColorAxis = .preset
 
     /// Sets a reference between this trace's geospatial coordinates and a geographic map.
     /// 
     /// If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the
     /// geospatial coordinates refer to `layout.geo2`, and so on.
-    public var geo: Layout.Geo = Layout.Geo(uid: 1)
+    public var geo: Layout.Geo = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -441,8 +441,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
             HoverInfo? = nil, hoverTemplate: Data<String>? = nil, showLegend: Bool? = nil, zAuto: Bool? =
             nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? =
             nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1), geo: Layout.Geo
-            = Layout.Geo(uid: 1)) {
+            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset, geo: Layout.Geo = .preset) {
         self.visible = visible
         self.legendGroup = legendGroup
         self.name = name

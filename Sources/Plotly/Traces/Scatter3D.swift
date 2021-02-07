@@ -245,7 +245,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+        public var colorAxis: Layout.ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -287,7 +287,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
         public init(width: Double? = nil, dash: Shared.Dash? = nil, coloring: Coloring? = nil, cAuto:
                 Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:
                 ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
-                nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
+                nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset) {
             self.width = width
             self.dash = dash
             self.coloring = coloring
@@ -338,7 +338,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: Layout.Scene = Layout.Scene(uid: 1)
+    public var scene: Layout.Scene = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -467,7 +467,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
             Shared.VariableFont? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil,
             yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil,
             yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: Layout.Scene =
-            Layout.Scene(uid: 1)) {
+            .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -2,6 +2,7 @@
 /// Generated struct corresponding to Plotly `layout`.
 struct Layout: Definable {
     var layoutAttributes: Generated.Object
+    var subplotTypes: [Generated.Object]
 
     var documentation: Markup {
         var markup = Markup(summary: "Specification of element arrangement on a `Figure` that applies to all traces.")
@@ -13,6 +14,7 @@ struct Layout: Definable {
         lines += layoutAttributes.definition.dropLast()
         lines += encodeFunction.indented()
         lines += ["}"]
+        lines += subplotPresetExtensions
         return lines
     }
 
@@ -65,14 +67,26 @@ struct Layout: Definable {
         """.lines()
         return lines
     }
+    
+    private var subplotPresetExtensions: [String] {
+        var lines = Mark(label: "Subplot Array Extensions").definition
+        for subplotType in subplotTypes {
+            lines.append(contentsOf: subplotType.arrayPresetExtension)
+        }
+        lines += [""]
+        return lines
+    }
+    
+
 
     init(schema: Schema.Layout) {
         layoutAttributes = Generated.Object(named: "layout", schema: schema.layoutAttributes)!
+        subplotTypes = []
         workarounds()
     }
 
     /// Post-processing to remove obsolete members and add navigation marks.
-    private func workarounds() {
+    private mutating func workarounds() {
         let obsolete = ["radialAxis", "angularAxis", "orientation", "direction"]
         layoutAttributes.members.removeAllInstances(named: obsolete)
 
@@ -85,7 +99,8 @@ struct Layout: Definable {
         layoutAttributes.members.insert(Mark(label: "Color Visualization"), before: "colorScale")
 
         for subplot in Self.subplots {
-            layoutAttributes.members.transformToSubplotArray(named: subplot)
+            let subplotType = layoutAttributes.members.transformToSubplotArray(named: subplot)
+            subplotTypes.append(subplotType!)
         }
     }
 }
@@ -99,28 +114,100 @@ fileprivate extension Array where Element == Definable {
         }
     }
 
-    /// Transforms the element with the specified name to a subplot array.
-    mutating func transformToSubplotArray(named name: String) {
-        if let instance = self.firstInstance(named: name) {
-            instance.array = true
-            instance.optional = false
-            instance.initialization = "[]"
+    /// Transforms the element with the specified name to a subplot array and returns the type.
+    mutating func transformToSubplotArray(named name: String) -> Generated.Object?  {
+        guard let instance = self.firstInstance(named: name) else { return nil }
+        instance.initialization = ".preset()"
+        instance.array = true
+        instance.optional = false
 
-            if let instanceType = (instance.type as? Generated.Object) {
-                instanceType.semantics = .reference
+        guard let instanceType = (instance.type as? Generated.Object) else { return nil }
+        instanceType.semantics = .reference
+        instanceType.frequentProperties = ["name", "title", "showGrid", "domain", "achor",
+                                           "range", "ticks", "tickAngle"]
 
-                let predefinedInteger = Predefined.Integer(codingPath: [Schema.Keys("uid")],
-                    valType: "integer", description: nil, editType: nil, role: nil, dflt: nil, min: nil, max: nil, arrayOk: nil)
-                let generatedInteger = Generated.Integer(parent: instanceType, schema: predefinedInteger)
+        // Add uid member with default random initialization
+        let predefinedInt = Predefined.Integer(codingPath: [Schema.Keys("uid")],
+            valType: "integer", description: nil, editType: nil, role: nil, dflt: nil,
+            min: nil, max: nil, arrayOk: nil)
+        let generatedInt = Generated.Integer(parent: instanceType, schema: predefinedInt)
 
-                let idType = Generated.Override(of: generatedInteger, as: "UInt")
-                let idInstance = Instance(of: idType, named: "uid")
-                idInstance.constant = false
-                idInstance.optional = false
-                idInstance.exclude = true
-                idInstance.initialization = "UInt.random(in: 2...UInt.max)"
-                instanceType.members.insert(idInstance, at: 0)
-            }
+        let idType = Generated.Override(of: generatedInt, as: "UInt")
+        let idInstance = Instance(of: idType, named: "uid")
+        idInstance.description = "Unique identifier of the axis."
+        idInstance.initialization = "UInt.random(in: 2...UInt.max)"
+        idInstance.constant = false
+        idInstance.optional = false
+        idInstance.exclude = true
+        instanceType.members.insert(idInstance, at: 0)
+
+        // Add preset static member initialized to uid = 1
+        let instanceTypeOverride = Generated.Override(of: instanceType, as: instanceType.name)
+        
+        let presetInstance = Instance(of: instanceTypeOverride, named: "preset")
+        presetInstance.description = "Shared and preset default axis reference used to initialize layout and all traces."
+        presetInstance.initialization = "\(instanceType.name)(uid: 1)"
+        presetInstance.stationary = true
+        presetInstance.constant = true
+        presetInstance.optional = false
+        presetInstance.exclude = true
+        instanceType.members.append(presetInstance)
+        
+        return instanceType
+    }
+}
+
+
+fileprivate extension Generated.Object {
+    var arrayPresetExtension: [String] {
+        var lines = [String]()
+        lines += ["extension Array where Element == \(identifier) {"]
+        lines += frequentPresetFunction.indented()
+        lines += [""]
+        lines += fullPresetFunction.indented()
+        lines += ["}", ""]
+        return lines
+    }
+
+    private var frequentPresetFunction: [String] {
+        if members.count < 10 { return [] }
+        let frequentVariables = properties.filter { property in
+            if property.type is Generated.Generic { return true }
+            if frequentProperties.contains(property.name) { return true }
+            return false
         }
+        if frequentVariables.count < 2 { return [] }
+
+        var markup = Markup(summary: "Preset default axis' customized with the most frequently used properties.")
+        markup.addCallout(parameters: frequentVariables)
+
+        var lines = markup.text()
+        let frequentArguments = frequentVariables.map { $0.argument() }.joined(separator: ", ")
+        lines += "\(access)static func preset(\(frequentArguments)) -> [\(identifier)] {"
+            .wrapped(at: Markup.width).hanginglyIndented(2)
+
+        lines += ["let axis = \(identifier)(uid: 1)"].indented()
+        lines += frequentVariables.map { "axis.\($0.name) = \($0.name)" }.indented()
+        lines += ["return [axis]"].indented()
+        lines += ["}"]
+        return lines
+    }
+    
+    private var fullPresetFunction: [String] {
+        let variables = properties.filter { !$0.constant && !$0.exclude }
+
+        var markup = Markup(summary: "Preset default axis' customized with the specified properties.")
+        markup.addCallout(parameters: variables)
+
+        var lines = markup.text()
+        let arguments = variables.map { $0.argument() }.joined(separator: ", ")
+        lines += "\(access)static func preset(\(arguments)) -> [\(identifier)] {"
+            .wrapped(at: Markup.width).hanginglyIndented(2)
+        
+        lines += ["let axis = \(identifier)(uid: 1)"].indented()
+        lines += variables.map { "axis.\($0.name) = \($0.name)" }.indented()
+        lines += ["return [axis]"].indented()
+        lines += ["}"]
+        return lines
     }
 }

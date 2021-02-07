@@ -362,7 +362,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     /// 
     /// If *ternary* (the default value), the data refer to `layout.ternary`. If *ternary2*, the data
     /// refer to `layout.ternary2`, and so on.
-    public var subplot: Layout.Ternary = Layout.Ternary(uid: 1)
+    public var subplot: Layout.Ternary = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -490,7 +490,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
             Shared.GradientMarker? = nil, textFont: Shared.VariableFont? = nil, textPosition:
             Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo:
             HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: Data<String>? = nil, subplot:
-            Layout.Ternary = Layout.Ternary(uid: 1)) {
+            Layout.Ternary = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

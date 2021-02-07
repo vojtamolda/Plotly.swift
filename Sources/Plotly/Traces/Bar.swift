@@ -353,13 +353,13 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
+    public var xAxis: Layout.XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
+    public var yAxis: Layout.YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -508,8 +508,7 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
             = nil, width: Data<Double>? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil,
             alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError:
             Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar:
-            Shared.Calendar? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis: Layout.YAxis =
-            Layout.YAxis(uid: 1)) {
+            Shared.Calendar? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

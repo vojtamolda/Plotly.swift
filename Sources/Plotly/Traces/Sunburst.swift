@@ -212,7 +212,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)
+        public var colorAxis: Layout.ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -252,7 +252,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         public init(colors: [Double]? = nil, line: Shared.VariableLine? = nil, cAuto: Bool? = nil, cMin:
                 Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = Layout.ColorAxis(uid: 1)) {
+                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset) {
             self.colors = colors
             self.line = line
             self.cAuto = cAuto

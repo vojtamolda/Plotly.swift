@@ -345,13 +345,13 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = Layout.XAxis(uid: 1)
+    public var xAxis: Layout.XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = Layout.YAxis(uid: 1)
+    public var yAxis: Layout.YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -488,8 +488,8 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
             outsideTextFont: Shared.OutsideTextFont? = nil, constrainText: Shared.ConstrainText? = nil,
             clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width:
             Double? = nil, marker: Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? =
-            nil, alignmentGroup: String? = nil, xAxis: Layout.XAxis = Layout.XAxis(uid: 1), yAxis:
-            Layout.YAxis = Layout.YAxis(uid: 1)) {
+            nil, alignmentGroup: String? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis =
+            .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
