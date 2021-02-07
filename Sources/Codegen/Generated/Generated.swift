@@ -20,7 +20,9 @@ enum Generated {
         var origin: PredefinedType { schema as PredefinedType }
         var access: Access = .public
         var semantics: Semantics = .value
-        var priority: Int { members.count }
+        /// Inheritance modifier (i.e. open, final)
+        var extensibility: Extensibility = .default
+        /// List of protocols the generated object conforms to.
         var protocols: [String] = ["Encodable"]
         var generics: [Generated.Generic] = []
 
@@ -45,7 +47,7 @@ enum Generated {
             var constraints = self.generics.compactMap { $0.constraint }.joined(separator: ", ")
             if !constraints.isEmpty { constraints = " where \(constraints)" }
 
-            lines += ["\(access)\(semantics)\(name)\(protocols)\(constraints) {"]
+            lines += ["\(access)\(extensibility)\(semantics)\(name)\(protocols)\(constraints) {"]
 
             for member in members {
                 lines += member.define(as: .inlined).indented()
@@ -91,22 +93,24 @@ enum Generated {
             markup.addCallout(parameters: frequentVariables)
 
             var lines = markup.text()
-            let frequentArguments = frequentVariables.map { $0.argument }.joined(separator: ", ")
-            lines += "\(access)init(\(frequentArguments)) {".wrapped(at: Markup.width).hanginglyIndented(2)
+            let frequentArguments = frequentVariables.map { $0.argument(inContextOf: self) }.joined(separator: ", ")
+            lines += "\(access)init(\(frequentArguments)) {"
+                .wrapped(at: Markup.width).hanginglyIndented(2)
             lines += frequentVariables.map { "self.\($0.name) = \($0.name)" }.indented()
             lines += ["}", ""]
             return lines
         }
 
         private var fullInitFunction: [String] {
-            let variables = properties.filter { !$0.constant }
+            let variables = properties.filter { !$0.constant && !$0.stationary }
 
             var markup = Markup(summary: "Creates `\(base)` object with specified properties.")
             markup.addCallout(parameters: variables)
 
             var lines = markup.text()
-            let arguments = variables.map { $0.argument }.joined(separator: ", ")
-            lines += "\(access)init(\(arguments)) {".wrapped(at: Markup.width).hanginglyIndented(2)
+            let arguments = variables.map { $0.argument(inContextOf: self) }.joined(separator: ", ")
+            lines += "\(access)init(\(arguments)) {"
+                .wrapped(at: Markup.width).hanginglyIndented(2)
             lines += variables.map { "self.\($0.name) = \($0.name)" }.indented()
             lines += ["}", ""]
             return lines
@@ -357,7 +361,7 @@ enum Generated {
                     let equalTo = (rawType != .none && (rawValue != nil)) ? " = \(rawValue!)" : ""
                     lines += ["case \(label)\(equalTo)"].indented()
                 case .axis(let xy):
-                    lines += ["case \(xy)Axis(Layout.\(xy.capitalized)Axis)"].indented()
+                    lines += ["case \(xy)Axis(\(xy.capitalized)Axis)"].indented()
                 }
             }
 
@@ -558,7 +562,7 @@ enum Generated {
 
     /// Plotly `colorscale` data type equivalent generated in Swift.
     ///
-    /// - Note: `Layout.ColorScale` is renamed to `Layout.ColorMap` to prevent conflicts.
+    /// - Note: `ColorScale` is renamed to `ColorMap` to prevent conflicts.
     struct ColorScale: GeneratedType {
         let name: String = "ColorScale"
         let parent: Generated.Object?
@@ -584,21 +588,21 @@ enum Generated {
         var name: String {
             switch kind {
             case .xAxis:
-                return "Layout.XAxis"
+                return "XAxis"
             case .yAxis:
-                return "Layout.YAxis"
+                return "YAxis"
             case .ternary:
-                return "Layout.Ternary"
+                return "Ternary"
             case .scene:
-                return "Layout.Scene"
+                return "Scene"
             case .geo:
-                return "Layout.Geo"
+                return "Geo"
             case .mapbox:
-                return "Layout.Mapbox"
+                return "Mapbox"
             case .polar:
-                return "Layout.Polar"
+                return "Polar"
             case .colorAxis:
-                return "Layout.ColorAxis"
+                return "ColorAxis"
             }
         }
         let parent: Generated.Object?

@@ -4,38 +4,46 @@
 /// It keeps a reference to the associated Swift data type and also the Plotly schema type
 /// it originates from.
 class Instance: Definable {
+    /// Name of the instance.
     var name: String
+    /// Flag indicating whether instance is an array of `type`s.
     var array: Bool
-    var optional: Bool = true
+    /// Access level of the instance.
     var access: Access = .public
-    var weak: Bool = false
+    /// Flag expressing whether the instance is an optional of `type`.
+    var optional: Bool = true
+    /// Flag signaling if the instance is static.
+    var stationary: Bool = false
+    /// Switch between `var` and `let`.
     var constant: Bool = false
-    var initialization: String? = "nil"
+    /// Value the instance is initialized to.
+    var initialization: Initialization = "nil"
 
+    /// Additional description specific to this instance. Appended to `origin.description`.
+    var description: String = ""
+    /// Indication whether this instance is excluded from initializers and coding keys.
     var exclude = false
 
+    /// Swift type of this instance.
     var type: GeneratedType
+    /// Source data type decoded from the schema.
     let origin: PredefinedType
-    let parent: Generated.Object?
+    /// Object where this instance is contained in.
+    var parent: Generated.Object?
 
-    var path: String { (parent?.path ?? "") + "." + name }
-
-    var argument: String {
-        var dataType = (type.parent?.name == self.parent?.name) ? type.name : "Shared.\(type.name)"
-        dataType = self.array ? "[\(dataType)]" : dataType
-        dataType = self.optional ? "\(dataType)?" : dataType
-        let initialization = (self.initialization != nil) ? " = \(self.initialization!)" : ""
-        return "\(name): \(dataType)\(initialization)"
+    /// Globally unique identifier if the instance (i.e. XAxis.Title.text).
+    var identifier: String {
+        (parent == nil) ? "\(name)" : "\(parent!.identifier).\(name)"
     }
 
     var documentation: Markup {
-        return Markup(parse: origin.description)
+        return Markup(parse: (origin.description ?? "") + description)
     }
 
     var definition: [String] {
-        let weak = self.weak ? "weak " : ""
+        let stat = self.stationary ? "static " : ""
         let varlet = self.constant ? "let " : "var "
-        return ["\(access)\(weak)\(varlet)\(argument)"]
+        return ["\(access)\(stat)\(varlet)\(argument(inContextOf: parent))"]
     }
 
     /// Creates an instance of a `type` accessible under the specified `name`.
@@ -59,6 +67,16 @@ class Instance: Definable {
             break
         }
     }
+    
+    /// Generates chunk of the Swift code representing the instance passed as an argument to a function.
+    func argument(inContextOf object: Generated.Object? = nil) -> String {
+        let inParentContext = (type.parent?.identifier == object?.identifier)
+        
+        var dataType = inParentContext ? type.name : type.identifier
+        dataType = self.array ? "[\(dataType)]" : dataType
+        dataType = self.optional ? "\(dataType)?" : dataType
+        return "\(name): \(dataType)\(initialization)"
+    }
 
     /// Checks for share-ability by comparing the key fields to `other` instance.
     func shareable(as other: Instance) -> Bool {
@@ -70,7 +88,7 @@ class Instance: Definable {
     }
 
     /// Outputs the definition of the instance in the specified context.
-    func define(as context: Context) -> [String] {
+    func define(as denotation: Denotation) -> [String] {
         if let definable = type as? Definable {
             return definable.define(as: .inlined) + documentation.text() + definition
         } else {
@@ -89,4 +107,24 @@ struct Mark: Definable {
 
     var documentation = Markup()
     var definition: [String] { ["", "// MARK: \(separator ? "- " : "")\(label)"] }
+}
+
+
+/// Initialization of a variable instance.
+enum Initialization: CustomStringConvertible, ExpressibleByStringLiteral {
+    case constant(_ value: String)
+    case computed(_ code: String)
+
+    init(stringLiteral: String) {
+        self = .constant(stringLiteral)
+    }
+    
+    var description: String {
+        switch self {
+        case .constant(let value):
+            return " = \(value)"
+        case .computed(let code):
+            return " { \(code) }"
+        }
+    }
 }

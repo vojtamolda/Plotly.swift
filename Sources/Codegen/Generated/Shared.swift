@@ -6,7 +6,7 @@ struct Shared: Definable {
     var documentation = Markup()
     var definition: [String] {
         var lines = [String]()
-        lines += ["public struct Shared {"]
+        lines += ["public enum Shared {"]
         for member in shared.members {
             lines += member.define(as: .shared).indented()
             lines += [""]
@@ -33,7 +33,7 @@ struct Shared: Definable {
     }
 }
 
-extension SharedGeneratedType {
+fileprivate extension SharedGeneratedType {
     static var existingShared: [Self] { Self.existing.filter { $0.shared } }
     static var disabledSharing: [String] { ["Transform"] }
 

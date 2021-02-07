@@ -5,7 +5,7 @@ struct Layout: Definable {
 
     var documentation: Markup {
         var markup = Markup(summary: "Specification of element arrangement on a `Figure` that applies to all traces.")
-        markup.addCallout(seeAlso: layoutAttributes.path)
+        markup.addCallout(seeAlso: layoutAttributes.identifier)
         return markup
     }
     var definition: [String] {

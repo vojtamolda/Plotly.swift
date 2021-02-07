@@ -5,7 +5,7 @@ struct Config: Definable {
 
     var documentation: Markup {
         var markup = Markup(summary: "Set of choices that affect user interface, toolbar and backend interactions.")
-        markup.addCallout(seeAlso: attributes.path)
+        markup.addCallout(seeAlso: attributes.identifier)
         return markup
     }
     var definition: [String] { attributes.definition }

@@ -11,8 +11,13 @@ import Foundation
 /// Each generated type also has to provide a way to encode it's instances or in other
 /// words enable it's own conformance to`Encodable` protocol.
 protocol GeneratedType {
+    /// Name of the type (i.e. Double, Bool, [String]).
     var name: String { get }
+    /// Globally unique identifier of the type (i.e. Double, [Bool], SomeType.NestedType).
+    var identifier: String { get }
+    /// Ancestor object where this type is contained in (i.e. NestedType for SomeType.NestedType).
     var parent: Generated.Object? { get }
+    /// Originating type data structure directly decoded from the schema.
     var origin: PredefinedType { get }
 
     /// Creates instance of the Swift data type with the specified name.
@@ -21,17 +26,10 @@ protocol GeneratedType {
     /// Generates a chunk of Swift code that encodes the instance to an existing encoding `container`.
     func encode(_ instance: Instance, to container: String) -> [String]
 }
+
 extension GeneratedType {
-    var path: String {
-        var ancestors = self is Generated.Object ? [(self as! Generated.Object).base] : [name]
-        var ancestor = self.parent
-        while ancestor != nil {
-            ancestors.append(ancestor!.base)
-            ancestor = ancestor!.parent
-        }
-        let path = ancestors.reversed().joined(separator: ".")
-        return path
-    }
+    /// Default implementation for non-shared types.
+    var identifier: String { name }
 
     /// Default implementation for non-shared types.
     func instantiate(name: String, array: Bool = false) -> Instance {
@@ -61,17 +59,33 @@ extension GeneratedType {
 /// The single definition of a re-used data type naturally allows the assignment between all
 /// of it's instances.
 protocol SharedGeneratedType: GeneratedType, Definable, AnyObject {
+    /// Flag indicating whether the type is used by enough instances to warrant sharing.
+    ///
+    /// Multiply instantiated types have their definitions moved to the `Shared` namespace object. This helps
+    /// allows reusing of different chunks of functionality and reduces the size of the codebase.
     var shared: Bool { get set }
+    /// Ancestor object where this type is contained in (i.e. NestedType for SomeType.NestedType).
     var parent: Generated.Object? { get set }
+    /// Access modifier (i.e. private or public).
     var access: Access { get set }
+    /// Eagerness of the type to be shared. Stabilizes sharing detection.
     var priority: Int { get }
+    /// Existing instances of the type.
     var instances: [Instance] { get set }
+    /// Container holding all types of the this kind (i.e. all enums, objects or flag lists).
     static var existing: [Self] { get }
 
-    /// Checks whether the data type can by represented by `other` and therefore the definition can be shared.
+    /// Checks whether the data type can be represented by `other` and therefore the definition can be shared.
     func shareable(as other: Self) -> Bool
 }
+
 extension SharedGeneratedType {
+    /// Default implementation of shared types.
+    var identifier: String {
+        (parent == nil) ? "\(name)" : "\(parent!.identifier).\(name)"
+    }
+    
+    /// Documentation written in Xcode markup flavor.
     var documentation: Markup {
         var markup = Markup(parse: origin.description)
         markup.addCallout(note: instances)
@@ -91,8 +105,8 @@ extension SharedGeneratedType {
     ///
     /// There's no code generated for inlined context. Only the shared context with multiple
     /// created instances situations generate code to avoid duplication and build errors.
-    func define(as context: Context) -> [String] {
-        switch context {
+    func define(as denotation: Denotation) -> [String] {
+        switch denotation {
         case .inlined:
             return shared ? [] : documentation.text() + definition
         case .shared:
@@ -107,15 +121,18 @@ extension SharedGeneratedType {
 /// Besides the definition of the object the generated code also contains a documentation markup.
 /// Default implementation adds a convenience method for saving the generated code to a file.
 protocol Definable {
+    /// Documentation written in Xcode markup flavor.
     var documentation: Markup { get }
+    /// Lines defining the object.
     var definition: [String] { get }
 
-    /// Definition of the data type (including the nested inline structs) within a specific context.
-    func define(as context: Context) -> [String]
+    /// Definition of the data type (including the nested inline structs) within the specified context.
+    func define(as denotation: Denotation) -> [String]
 }
+
 extension Definable {
     /// Default implementation that ignores context and is useful for simple non-shared objects.
-    func define(as context: Context) -> [String] {
+    func define(as denotation: Denotation) -> [String] {
         return documentation.text() + definition
     }
 
@@ -136,7 +153,7 @@ extension Definable {
 
 
 /// Context where a generated Swift type is being defined.
-enum Context {
+enum Denotation {
     case shared
     case inlined
 }

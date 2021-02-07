@@ -343,6 +343,7 @@ protocol PathDecodable: Decodable {
     var name: String { get }
     var codingPath: [CodingKey] { get set }
 }
+
 extension PathDecodable {
     var name: String { codingPath.last!.stringValue }
     var path: String { codingPath.map { $0.stringValue }.joined(separator: "/") }
