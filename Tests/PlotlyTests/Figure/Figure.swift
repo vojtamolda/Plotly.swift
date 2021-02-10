@@ -23,19 +23,4 @@ final class FigureTests: XCTestCase {
 
         output(figure)
     }
-    
-    func testAxisUIDCollision() throws {
-        let x = [1.0, 2.0, 3.0, 4.0]
-        let y = [10.0, 15.0, 13.0, 17.0]
-
-        let scatter = Scatter(x: x, y: y, xAxis: .init(uid: 1))
-        let bar = Bar(x: x, y: y, xAxis: .init(uid: 2))
-        
-        let layout = Layout(
-            xAxis: [.init(uid: 1, title: "Hello X")]
-        )
-
-        try XCTSkipIf(true)
-        let figure = Figure(data: [scatter, bar], layout: layout)
-    }
 }

@@ -106,8 +106,8 @@ class Object(CamelCased):
 class Attribute(CamelCased):
     type = 'attribute'
     capitalized = False
-    container = {}
-
+    container = { "preset": "preset" }
+    
     override = {
         "autobinx": "xAutoBin",
         "autobiny": "yAutoBin",

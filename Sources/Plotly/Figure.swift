@@ -122,31 +122,6 @@ public struct Figure {
         )
         return axis0
     }
-//    
-//    private func assignSubplots(to layout: &inout Layout, traces: [Trace]) {
-//        for trace in traces {
-//            switch trace {
-//            case let xySubplot as XYSubplot:
-//                self.layout!.xAxis.append(xySubplot.xAxis)
-//                self.layout!.yAxis.append(xySubplot.yAxis)
-//            case is DomainSubplot:
-//                break
-//            case let ternarySubplot as TernarySubplot:
-//                self.layout!.ternary.append(ternarySubplot.subplot)
-//            case let sceneSubplot as SceneSubplot:
-//                self.layout!.scene.append(sceneSubplot.scene)
-//            case let geoSubplot as GeoSubplot:
-//                self.layout!.geo.append(geoSubplot.geo)
-//            case let mapboxSubplot as MapboxSubplot:
-//                self.layout!.mapbox.append(mapboxSubplot.subplot)
-//            case let polarSubplot as PolarSubplot:
-//                self.layout!.polar.append(polarSubplot.subplot)
-//            default:
-//                fatalError("Unsupported subplot protocol")
-//            }
-//        }
-//        
-//    }
 
     /// Shows the chart in the default browser.
     ///

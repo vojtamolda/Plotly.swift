@@ -306,12 +306,11 @@ enum Predefined {
         let editType: String?
         let role: String?
 
-        let dflt: Schema.Primitive? = nil
         let values: [Schema.Primitive]?
         let arrayOk: Bool?
 
         enum CodingKeys: String, CodingKey {
-            case valType, description, editType, role, dflt, values, arrayOk
+            case valType, description, editType, role, values, arrayOk
         }
     }
 
@@ -326,13 +325,12 @@ enum Predefined {
         let editType: String?
         let role: String?
 
-        let items: [Schema.Primitive] = []
         let dflt: [Schema.Primitive]?
         let freeLength: Bool?
         let dimensions: Schema.Primitive?
 
         enum CodingKeys: String, CodingKey {
-            case valType, description, editType, role, items, dflt, freeLength, dimensions
+            case valType, description, editType, role, dflt, freeLength, dimensions
         }
     }
 }
