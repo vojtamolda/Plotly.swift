@@ -15,15 +15,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#violin) or 
 ///   [R](https://plot.ly/r/reference/#violin)
 public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "violin"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -73,11 +75,11 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -127,7 +129,7 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     /// Sets the orientation of the violin(s).
     /// 
     /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
-    public var orientation: Shared.Orientation? = nil
+    public var orientation: Orientation? = nil
 
     /// Sets the bandwidth used to compute the kernel density estimate.
     /// 
@@ -176,7 +178,7 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     /// Has an effect only when `spanmode` is set to *manual*.
     public var span: InfoArray? = nil
 
-    public var line: Shared.Line? = nil
+    public var line: Line? = nil
 
     /// Sets the fill color.
     /// 
@@ -247,7 +249,7 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
-        public var symbol: Shared.Symbol? = nil
+        public var symbol: Symbol? = nil
     
         /// Sets the marker opacity.
         public var opacity: Double? = nil
@@ -326,8 +328,8 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
         ///   - size: Sets the marker size (in px).
         ///   - color: Sets themarkercolor.
         ///   - line:
-        public init(outlierColor: Color? = nil, symbol: Shared.Symbol? = nil, opacity: Double? = nil,
-                size: Double? = nil, color: Color? = nil, line: Line? = nil) {
+        public init(outlierColor: Color? = nil, symbol: Symbol? = nil, opacity: Double? = nil, size:
+                Double? = nil, color: Color? = nil, line: Line? = nil) {
             self.outlierColor = outlierColor
             self.symbol = symbol
             self.opacity = opacity
@@ -378,7 +380,7 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
         /// Sets the inner box plot fill color.
         public var fillColor: Color? = nil
     
-        public var line: Shared.Line? = nil
+        public var line: Line? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -395,8 +397,8 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
         ///   - width: Sets the width of the inner box plots relative to the violins' width.
         ///   - fillColor: Sets the inner box plot fill color.
         ///   - line:
-        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line:
-                Shared.Line? = nil) {
+        public init(visible: Bool? = nil, width: Double? = nil, fillColor: Color? = nil, line: Line? =
+                nil) {
             self.visible = visible
             self.width = width
             self.fillColor = fillColor
@@ -559,13 +561,13 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -627,8 +629,8 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     ///   - marker:
     ///   - text: Sets the text elements associated with each sample value.
     ///   - hoverText: Same as `text`.
-    public init(y: YData? = nil, x: XData? = nil, name: String? = nil, line: Shared.Line? = nil,
-            marker: SymbolicMarker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil) {
+    public init(y: YData? = nil, x: XData? = nil, name: String? = nil, line: Line? = nil, marker:
+            SymbolicMarker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil) {
         self.y = y
         self.x = x
         self.name = name
@@ -705,19 +707,19 @@ public struct Violin<YData, XData>: Trace, XYSubplot where YData: Plotable, XDat
     ///   density estimate or any combination of them?
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil,
-            meta: Data<Anything>? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? =
-            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform]
-            = [], uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0:
-            Anything? = nil, name: String? = nil, orientation: Shared.Orientation? = nil, bandwidth: Double?
-            = nil, scaleGroup: String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span:
-            InfoArray? = nil, line: Shared.Line? = nil, fillColor: Color? = nil, points: Points? = nil,
-            jitter: Double? = nil, pointPosition: Double? = nil, width: Double? = nil, marker:
-            SymbolicMarker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate:
-            Data<String>? = nil, box: Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup:
-            String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected?
-            = nil, hoverOn: HoverOn? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis = .preset) {
+            meta: Data<Anything>? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil,
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? = nil, y0: Anything? = nil,
+            name: String? = nil, orientation: Orientation? = nil, bandwidth: Double? = nil, scaleGroup:
+            String? = nil, scaleMode: ScaleMode? = nil, spanMode: SpanMode? = nil, span: InfoArray? = nil,
+            line: Line? = nil, fillColor: Color? = nil, points: Points? = nil, jitter: Double? = nil,
+            pointPosition: Double? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, text:
+            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, box:
+            Box? = nil, meanLine: MeanLine? = nil, side: Side? = nil, offsetGroup: String? = nil,
+            alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil,
+            hoverOn: HoverOn? = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -21,12 +21,14 @@ enum Generated {
         static var existing: [Generated.Object] = []
         var instances: [Instance] = []
 
-        /// Stub of the object name without generics and parents (i.e. Scatter, XAxis, Font).
+        /// Stub of the object name without generics and parents, e.g. Scatter, XAxis or Font.
         var base: String
         /// Origin object decoded from the schema.
         let schema: Predefined.Object
         /// Switch indicating value (i.e struct) or reference (i.e. class) semantics.
         var semantics: Semantics = .value
+        /// Overridability of the type, i.e. open or final.
+        var extensibility: Extensibility = .default
         /// List of protocols the generated object conforms to.
         var protocols: [String] = ["Encodable"]
         /// List of types over which the generated object is generic.

@@ -15,15 +15,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#table) or 
 ///   [R](https://plot.ly/r/reference/#table)
 public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "table"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the trace name.
     /// 
@@ -60,11 +62,11 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -79,7 +81,7 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
     /// stays with it as it moves.
     public var uiRevision: Anything? = nil
 
-    public var domain: Shared.Domain? = nil
+    public var domain: Domain? = nil
 
     /// The width of columns expressed as a ratio.
     /// 
@@ -118,9 +120,9 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
         /// 
         /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
         /// tags) or if an explicit width is set to override the text width.
-        public var align: Shared.HorizontalAlign? = nil
+        public var align: HorizontalAlign? = nil
     
-        public var line: Shared.VariableLine? = nil
+        public var line: VariableLine? = nil
     
         public struct Fill: Encodable {
             /// Sets the cell fill color.
@@ -144,7 +146,7 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
         }
         public var fill: Fill? = nil
     
-        public var font: Shared.VariableFont? = nil
+        public var font: VariableFont? = nil
     
         /// Creates `Header` object with specified properties.
         /// 
@@ -160,8 +162,8 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
         ///   - fill:
         ///   - font:
         public init(values: [String]? = nil, format: Data<String>? = nil, prefix: Data<String>? = nil,
-                suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
-                Shared.VariableLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
+                suffix: Data<String>? = nil, height: Double? = nil, align: HorizontalAlign? = nil, line:
+                VariableLine? = nil, fill: Fill? = nil, font: VariableFont? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -203,9 +205,9 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
         /// 
         /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
         /// tags) or if an explicit width is set to override the text width.
-        public var align: Shared.HorizontalAlign? = nil
+        public var align: HorizontalAlign? = nil
     
-        public var line: Shared.VariableLine? = nil
+        public var line: VariableLine? = nil
     
         public struct Fill: Encodable {
             /// Sets the cell fill color.
@@ -229,7 +231,7 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
         }
         public var fill: Fill? = nil
     
-        public var font: Shared.VariableFont? = nil
+        public var font: VariableFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -258,8 +260,8 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
         ///   - fill:
         ///   - font:
         public init(values: CellData? = nil, format: Data<String>? = nil, prefix: Data<String>? = nil,
-                suffix: Data<String>? = nil, height: Double? = nil, align: Shared.HorizontalAlign? = nil, line:
-                Shared.VariableLine? = nil, fill: Fill? = nil, font: Shared.VariableFont? = nil) {
+                suffix: Data<String>? = nil, height: Double? = nil, align: HorizontalAlign? = nil, line:
+                VariableLine? = nil, fill: Fill? = nil, font: VariableFont? = nil) {
             self.values = values
             self.format = format
             self.prefix = prefix
@@ -333,11 +335,11 @@ public struct Table<CellData>: Trace, DomainSubplot where CellData: Plotable {
     ///   columns have an index base of zero.
     ///   - header:
     ///   - cells:
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo:
-            Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil,
-            uiRevision: Anything? = nil, domain: Shared.Domain? = nil, columnWidth: Data<Double>? = nil,
-            columnOrder: [Int]? = nil, header: Header? = nil, cells: Cells<CellData>? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? =
+            nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, domain:
+            Domain? = nil, columnWidth: Data<Double>? = nil, columnOrder: [Int]? = nil, header: Header? =
+            nil, cells: Cells<CellData>? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

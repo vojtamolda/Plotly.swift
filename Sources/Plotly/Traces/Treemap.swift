@@ -13,15 +13,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#treemap) or 
 ///   [R](https://plot.ly/r/reference/#treemap)
 public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "treemap"
 
-    public let animatable: Bool = true
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { true }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the opacity of the trace.
     public var opacity: Double? = nil
@@ -57,9 +59,9 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -222,7 +224,7 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
     public var tiling: Tiling? = nil
 
     public struct Marker: Encodable {
-        public var padding: Shared.Padding? = nil
+        public var padding: Padding? = nil
     
         /// Sets the color of each sector of this trace.
         /// 
@@ -261,7 +263,7 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
         /// colors while the leaves are faded towards the background color.
         public var depthFade: DepthFade? = nil
     
-        public var line: Shared.VariableLine? = nil
+        public var line: VariableLine? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here
         /// colors) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if colorsis set
@@ -319,14 +321,14 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
         /// Has an effect only if colorsis set to a numerical array.
         public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar? = nil
+        public var colorBar: ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
+        public var colorAxis: ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -368,11 +370,10 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(padding: Shared.Padding? = nil, colors: [Double]? = nil, depthFade: DepthFade? =
-                nil, line: Shared.VariableLine? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
-                nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-                reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                Layout.ColorAxis = .preset) {
+        public init(padding: Padding? = nil, colors: [Double]? = nil, depthFade: DepthFade? = nil, line:
+                VariableLine? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle:
+                Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
+                nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: ColorAxis = .preset) {
             self.padding = padding
             self.colors = colors
             self.depthFade = depthFade
@@ -423,7 +424,7 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
         public var thickness: Double? = nil
     
         /// Sets the font used inside `pathbar`.
-        public var textFont: Shared.VariableFont? = nil
+        public var textFont: VariableFont? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -443,7 +444,7 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
         ///   - thickness: Sets the thickness of `pathbar` (in px).
         ///   - textFont: Sets the font used inside `pathbar`.
         public init(visible: Bool? = nil, side: Side? = nil, edgeShape: EdgeShape? = nil, thickness:
-                Double? = nil, textFont: Shared.VariableFont? = nil) {
+                Double? = nil, textFont: VariableFont? = nil) {
             self.visible = visible
             self.side = side
             self.edgeShape = edgeShape
@@ -579,22 +580,22 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
     public var hoverTemplate: Data<String>? = nil
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Shared.VariableFont? = nil
+    public var insideTextFont: VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying outside the sector.
     /// 
     /// This option refers to the root of the hierarchy presented on top left corner of a treemap graph.
     /// Please note that if a hierarchy has multiple root nodes, this option won't have any effect and
     /// `insidetextfont` would be used.
-    public var outsideTextFont: Shared.OutsideTextFont? = nil
+    public var outsideTextFont: OutsideTextFont? = nil
 
     /// Sets the positions of the `text` elements.
-    public var textPosition: Shared.TextPosition? = nil
+    public var textPosition: TextPosition? = nil
 
-    public var domain: Shared.Domain? = nil
+    public var domain: Domain? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -690,17 +691,16 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
     ///   - outsideTextFont: Sets the font used for `textinfo` lying outside the sector.
     ///   - textPosition: Sets the positions of the `text` elements.
     ///   - domain:
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, labels: [String]? = nil, parents: [String]? = nil, values:
-            ValuesData? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? =
-            nil, maxDepth: Int? = nil, tiling: Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? =
-            nil, text: Data<String>? = nil, textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil,
-            hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil,
-            textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil,
-            outsideTextFont: Shared.OutsideTextFont? = nil, textPosition: Shared.TextPosition? = nil,
-            domain: Shared.Domain? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? =
+            nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
+            HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? =
+            nil, labels: [String]? = nil, parents: [String]? = nil, values: ValuesData? = nil, branchValues:
+            BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, tiling:
+            Tiling? = nil, marker: Marker? = nil, pathBar: PathBar? = nil, text: Data<String>? = nil,
+            textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
+            hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, textFont: VariableFont? = nil,
+            insideTextFont: VariableFont? = nil, outsideTextFont: OutsideTextFont? = nil, textPosition:
+            TextPosition? = nil, domain: Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

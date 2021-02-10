@@ -17,15 +17,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#streamtube) or 
 ///   [R](https://plot.ly/r/reference/#streamtube)
 public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: Plotable, UVWData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "streamtube"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the legend group for this trace.
     /// 
@@ -63,9 +65,9 @@ public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: P
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -210,14 +212,14 @@ public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: P
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar? = nil
+    public var colorBar: ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = .preset
+    public var colorAxis: ColorAxis = .preset
 
     /// Sets the opacity of the surface.
     /// 
@@ -227,9 +229,9 @@ public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: P
     /// the near future and is subject to change.
     public var opacity: Double? = nil
 
-    public var lightPosition: Shared.LightPosition? = nil
+    public var lightPosition: LightPosition? = nil
 
-    public var lighting: Shared.Lighting? = nil
+    public var lighting: Lighting? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -284,7 +286,7 @@ public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: P
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: Layout.Scene = .preset
+    public var scene: Scene = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -409,17 +411,17 @@ public struct StreamTube<XYZData, UVWData>: Trace, SceneSubplot where XYZData: P
     ///   - lighting:
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
-    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
-            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
-            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? =
-            nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? =
-            nil, w: UVWData? = nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double?
-            = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? =
-            nil, showLegend: Bool? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
-            cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-            Layout.ColorAxis = .preset, opacity: Double? = nil, lightPosition: Shared.LightPosition? = nil,
-            lighting: Shared.Lighting? = nil, hoverInfo: HoverInfo? = nil, scene: Layout.Scene = .preset) {
+    public init(visible: Visible? = nil, legendGroup: String? = nil, name: String? = nil, uid:
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: XYZData? =
+            nil, y: XYZData? = nil, z: XYZData? = nil, u: UVWData? = nil, v: UVWData? = nil, w: UVWData? =
+            nil, starts: Starts? = nil, maxDisplayed: Int? = nil, sizeReference: Double? = nil, text:
+            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil,
+            showLegend: Bool? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle:
+            Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
+            nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: ColorAxis = .preset, opacity:
+            Double? = nil, lightPosition: LightPosition? = nil, lighting: Lighting? = nil, hoverInfo:
+            HoverInfo? = nil, scene: Scene = .preset) {
         self.visible = visible
         self.legendGroup = legendGroup
         self.name = name

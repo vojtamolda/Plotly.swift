@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatterpolargl) or 
 ///   [R](https://plot.ly/r/reference/#scatterpolargl)
 public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData: Plotable, ThetaData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "scatterpolargl"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -75,9 +77,9 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -99,7 +101,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-    public var mode: Shared.Mode? = nil
+    public var mode: Mode? = nil
 
     /// Sets the radial coordinates
     public var r: RData? = nil
@@ -131,7 +133,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     /// Sets the unit of input *theta* values.
     /// 
     /// Has an effect only when on *linear* angular axes.
-    public var thetaUnit: Shared.ThetaUnit? = nil
+    public var thetaUnit: ThetaUnit? = nil
 
     /// Sets text elements associated with each (x,y) pair.
     /// 
@@ -200,7 +202,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
         public var shape: Shape? = nil
     
         /// Sets the style of the lines.
-        public var dash: Shared.Dash? = nil
+        public var dash: Dash? = nil
     
         /// Creates `ShapedDashedLine` object with specified properties.
         /// 
@@ -209,8 +211,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
         ///   - width: Sets the line width (in px).
         ///   - shape: Determines the line shape.
         ///   - dash: Sets the style of the lines.
-        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Shared.Dash? =
-                nil) {
+        public init(color: Color? = nil, width: Double? = nil, shape: Shape? = nil, dash: Dash? = nil) {
             self.color = color
             self.width = width
             self.shape = shape
@@ -225,7 +226,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     /// {nan} or missing values) in the provided data arrays are connected.
     public var connectGaps: Bool? = nil
 
-    public var marker: Shared.SymbolicMarker? = nil
+    public var marker: SymbolicMarker? = nil
 
     /// Sets the area to fill with a solid color.
     /// 
@@ -241,7 +242,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     /// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
     /// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
     /// later ones will be pushed down in the drawing order.
-    public var fill: Shared.Fill? = nil
+    public var fill: Fill? = nil
 
     /// Sets the fill color.
     /// 
@@ -250,16 +251,16 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     public var fillColor: Color? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition? = nil
+    public var textPosition: TextPosition? = nil
 
     /// Sets the text font.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.PolarHoverInfo? = nil
+    public var hoverInfo: PolarHoverInfo? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
@@ -377,7 +378,7 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     /// 
     /// If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to
     /// `layout.polar2`, and so on.
-    public var subplot: Layout.Polar = .preset
+    public var subplot: Polar = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -432,9 +433,9 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     ///   - hoverText: Sets hover text elements associated with each (x,y) pair.
     ///   - line:
     ///   - marker:
-    public init(name: String? = nil, mode: Shared.Mode? = nil, r: RData? = nil, theta: ThetaData? =
-            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line: ShapedDashedLine? = nil,
-            marker: Shared.SymbolicMarker? = nil) {
+    public init(name: String? = nil, mode: Mode? = nil, r: RData? = nil, theta: ThetaData? = nil,
+            text: Data<String>? = nil, hoverText: Data<String>? = nil, line: ShapedDashedLine? = nil,
+            marker: SymbolicMarker? = nil) {
         self.name = name
         self.mode = mode
         self.r = r
@@ -491,18 +492,17 @@ public struct ScatterPolarGL<RData, ThetaData>: Trace, PolarSubplot where RData:
     ///   - selected:
     ///   - unselected:
     ///   - subplot: Sets a reference between this trace's data coordinates and a polar subplot.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, mode: Shared.Mode? = nil, r: RData? = nil, theta: ThetaData? =
-            nil, r0: Anything? = nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil,
-            thetaUnit: Shared.ThetaUnit? = nil, text: Data<String>? = nil, textTemplate: Data<String>? =
-            nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, line: ShapedDashedLine?
-            = nil, connectGaps: Bool? = nil, marker: Shared.SymbolicMarker? = nil, fill: Shared.Fill? = nil,
-            fillColor: Color? = nil, textPosition: Shared.TextPosition? = nil, textFont:
-            Shared.VariableFont? = nil, hoverInfo: Shared.PolarHoverInfo? = nil, selected: Selected? = nil,
-            unselected: Unselected? = nil, subplot: Layout.Polar = .preset) {
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, mode: Mode? = nil, r: RData? = nil, theta: ThetaData? = nil, r0: Anything? =
+            nil, dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? =
+            nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? =
+            nil, hoverTemplate: Data<String>? = nil, line: ShapedDashedLine? = nil, connectGaps: Bool? =
+            nil, marker: SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textPosition:
+            TextPosition? = nil, textFont: VariableFont? = nil, hoverInfo: PolarHoverInfo? = nil, selected:
+            Selected? = nil, unselected: Unselected? = nil, subplot: Polar = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

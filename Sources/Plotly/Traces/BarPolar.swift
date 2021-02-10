@@ -11,15 +11,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#barpolar) or 
 ///   [R](https://plot.ly/r/reference/#barpolar)
 public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plotable, ThetaData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "barpolar"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -70,9 +72,9 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -119,7 +121,7 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
     /// Sets the unit of input *theta* values.
     /// 
     /// Has an effect only when on *linear* angular axes.
-    public var thetaUnit: Shared.ThetaUnit? = nil
+    public var thetaUnit: ThetaUnit? = nil
 
     /// Sets where the bar base is drawn (in radial axis units).
     /// 
@@ -141,13 +143,13 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
     /// Same as `text`.
     public var hoverText: Data<String>? = nil
 
-    public var marker: Shared.Marker? = nil
+    public var marker: Marker? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.PolarHoverInfo? = nil
+    public var hoverInfo: PolarHoverInfo? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -272,7 +274,7 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
     /// 
     /// If *polar* (the default value), the data refer to `layout.polar`. If *polar2*, the data refer to
     /// `layout.polar2`, and so on.
-    public var subplot: Layout.Polar = .preset
+    public var subplot: Polar = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -321,7 +323,7 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
     ///   - hoverText: Same as `text`.
     ///   - marker:
     public init(name: String? = nil, r: RData? = nil, theta: ThetaData? = nil, text: Data<String>? =
-            nil, hoverText: Data<String>? = nil, marker: Shared.Marker? = nil) {
+            nil, hoverText: Data<String>? = nil, marker: Marker? = nil) {
         self.name = name
         self.r = r
         self.theta = theta
@@ -370,16 +372,16 @@ public struct BarPolar<RData, ThetaData>: Trace, PolarSubplot where RData: Plota
     ///   - selected:
     ///   - unselected:
     ///   - subplot: Sets a reference between this trace's data coordinates and a polar subplot.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, r: RData? = nil, theta: ThetaData? = nil, r0: Anything? = nil,
-            dr: Double? = nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: Shared.ThetaUnit?
-            = nil, base: Data<Anything>? = nil, offset: Data<Double>? = nil, width: Data<Double>? = nil,
-            text: Data<String>? = nil, hoverText: Data<String>? = nil, marker: Shared.Marker? = nil,
-            hoverInfo: Shared.PolarHoverInfo? = nil, hoverTemplate: Data<String>? = nil, selected: Selected?
-            = nil, unselected: Unselected? = nil, subplot: Layout.Polar = .preset) {
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, r: RData? = nil, theta: ThetaData? = nil, r0: Anything? = nil, dr: Double? =
+            nil, theta0: Anything? = nil, dTheta: Double? = nil, thetaUnit: ThetaUnit? = nil, base:
+            Data<Anything>? = nil, offset: Data<Double>? = nil, width: Data<Double>? = nil, text:
+            Data<String>? = nil, hoverText: Data<String>? = nil, marker: Marker? = nil, hoverInfo:
+            PolarHoverInfo? = nil, hoverTemplate: Data<String>? = nil, selected: Selected? = nil,
+            unselected: Unselected? = nil, subplot: Polar = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -23,20 +23,22 @@ struct Trace: Definable {
                                                   noBlank: nil, strict: nil, values: nil, arrayOk: nil)
         let generatedString = Generated.String_(parent: attributes, schema: predefinedString)
         let typeConst = Instance(of: generatedString, named: "type")
+        typeConst.description = "Corresponding _Plotly_ trace type."
         typeConst.constant = true
         typeConst.optional = false
-        typeConst.initialization = schema.type.escaped()
+        typeConst.initialization = .constant(schema.type.escaped())
         attributes.members.insert(typeConst, at: 0)
 
         let predefinedBool = Predefined.Boolean(codingPath: [Schema.Keys("animatable")], valType: "bool",
                                                 description: nil, editType: nil, role: nil, dflt: nil)
         let generatedBool = Generated.Boolean(parent: attributes, schema: predefinedBool)
-        let animatableConst = Instance(of: generatedBool, named: "animatable")
-        animatableConst.constant = true
-        animatableConst.optional = false
-        animatableConst.exclude = true
-        animatableConst.initialization = String(schema.animatable)
-        attributes.members.insert(animatableConst, at: 1)
+        let animatableStaticConst = Instance(of: generatedBool, named: "animatable")
+        animatableStaticConst.description = "Switch indicating whether the trace supports animation of its data."
+        animatableStaticConst.stationary = true
+        animatableStaticConst.optional = false
+        animatableStaticConst.exclude = true
+        animatableStaticConst.initialization = .computed(String(schema.animatable))
+        attributes.members.insert(animatableStaticConst, at: 1)
 
         workarounds()
         layoutWorkarounds(schema: schema, layout: &layout)
@@ -293,11 +295,11 @@ struct Trace: Definable {
         }
         if let subplot = attributes.members.firstInstance(named: "subplot") {
             switch subplot.type.name {
-            case "Layout.Ternary":
+            case "Ternary":
                 attributes.protocols.append("TernarySubplot")
-            case "Layout.Mapbox":
+            case "Mapbox":
                 attributes.protocols.append("MapboxSubplot")
-            case "Layout.Polar":
+            case "Polar":
                 attributes.protocols.append("PolarSubplot")
             default:
                 break

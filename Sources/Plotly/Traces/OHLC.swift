@@ -17,15 +17,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#ohlc) or 
 ///   [R](https://plot.ly/r/reference/#ohlc)
 public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHLCData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "ohlc"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -80,9 +82,9 @@ public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHL
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -236,12 +238,12 @@ public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHL
         public var borderColor: Coloring? = nil
     
         /// Sets the font used in hover labels.
-        public var font: Shared.VariableFont? = nil
+        public var font: VariableFont? = nil
     
         /// Sets the horizontal alignment of the text content within hover label box.
         /// 
         /// Has an effect only if the hover label text spans more two or more lines
-        public var align: Shared.AutoAlign? = nil
+        public var align: AutoAlign? = nil
     
         /// Sets the default length (in number of characters) of the trace name in the hover labels for all
         /// traces.
@@ -274,9 +276,8 @@ public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHL
         ///   - nameLength: Sets the default length (in number of characters) of the trace name in the hover
         ///   labels for all traces.
         ///   - split: Show hover information (open, close, high, low) in separate labels.
-        public init(backgroundColor: Coloring? = nil, borderColor: Coloring? = nil, font:
-                Shared.VariableFont? = nil, align: Shared.AutoAlign? = nil, nameLength: Data<Int>? = nil, split:
-                Bool? = nil) {
+        public init(backgroundColor: Coloring? = nil, borderColor: Coloring? = nil, font: VariableFont?
+                = nil, align: AutoAlign? = nil, nameLength: Data<Int>? = nil, split: Bool? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.font = font
@@ -289,19 +290,19 @@ public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHL
     public var hoverLabel: HoverLabel? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -400,15 +401,15 @@ public struct OHLC<XData, OHLCData>: Trace, XYSubplot where XData: Plotable, OHL
     ///   - xCalendar: Sets the calendar system to use with `x` date data.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverInfo: Shared.HoverInfo? = nil, stream: Shared.Stream? = nil, transforms: [Transform] = [],
-            uiRevision: Anything? = nil, x: XData? = nil, open: OHLCData? = nil, high: OHLCData? = nil, low:
-            OHLCData? = nil, close: OHLCData? = nil, line: DashedLine? = nil, increasing: Increasing? = nil,
-            decreasing: Decreasing? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
-            tickWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Shared.Calendar? = nil,
-            xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis = .preset) {
+            hoverInfo: HoverInfo? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, x: XData? = nil, open: OHLCData? = nil, high: OHLCData? = nil, low: OHLCData? =
+            nil, close: OHLCData? = nil, line: DashedLine? = nil, increasing: Increasing? = nil, decreasing:
+            Decreasing? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, tickWidth: Double?
+            = nil, hoverLabel: HoverLabel? = nil, xCalendar: Calendar? = nil, xAxis: XAxis = .preset, yAxis:
+            YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

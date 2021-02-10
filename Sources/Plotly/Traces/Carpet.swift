@@ -15,15 +15,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#carpet) or 
 ///   [R](https://plot.ly/r/reference/#carpet)
 public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: Plotable, YData: Plotable, AData: Plotable, BData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "carpet"
 
-    public let animatable: Bool = true
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { true }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the opacity of the trace.
     public var opacity: Double? = nil
@@ -59,7 +61,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -139,7 +141,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             /// Sets this axis' title font.
             /// 
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-            public var font: Shared.Font? = nil
+            public var font: Font? = nil
         
             /// An additional amount by which to offset the title from the tick labels, given in pixels.
             /// 
@@ -153,7 +155,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             ///   - font: Sets this axis' title font.
             ///   - offset: An additional amount by which to offset the title from the tick labels, given in
             ///   pixels.
-            public init(text: String? = nil, font: Shared.Font? = nil, offset: Double? = nil) {
+            public init(text: String? = nil, font: Font? = nil, offset: Double? = nil) {
                 self.text = text
                 self.font = font
                 self.offset = offset
@@ -181,13 +183,13 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-        public var autoRange: Shared.AutoRange? = nil
+        public var autoRange: AutoRange? = nil
     
         /// If *normal*, the range is computed in relation to the extrema of the input data.
         /// 
         /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
         /// is non-negative, regardless of the input data.
-        public var rangeMode: Shared.RangeMode? = nil
+        public var rangeMode: RangeMode? = nil
     
         /// Sets the range of this axis.
         /// 
@@ -244,7 +246,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         public var showTickLabels: ShowTickLabels? = nil
     
         /// Sets the tick font.
-        public var tickFont: Shared.Font? = nil
+        public var tickFont: Font? = nil
     
         /// Sets the angle of the tick labels with respect to the horizontal.
         /// 
@@ -258,25 +260,25 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// 
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
-        public var showTickPrefix: Shared.ShowTickPrefix? = nil
+        public var showTickPrefix: ShowTickPrefix? = nil
     
         /// Sets a tick label suffix.
         public var tickSuffix: String? = nil
     
         /// Same as `showtickprefix` but for tick suffixes.
-        public var showTickSuffix: Shared.ShowTickSuffix? = nil
+        public var showTickSuffix: ShowTickSuffix? = nil
     
         /// If *all*, all exponents are shown besides their significands.
         /// 
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
-        public var showExponent: Shared.ShowExponent? = nil
+        public var showExponent: ShowExponent? = nil
     
         /// Determines a formatting rule for the tick exponents.
         /// 
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-        public var exponentFormat: Shared.ExponentFormat? = nil
+        public var exponentFormat: ExponentFormat? = nil
     
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
@@ -290,7 +292,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// *09~15~23.46*
         public var tickFormat: String? = nil
     
-        public var tickFormatStops: [Shared.TickFormatStop]? = nil
+        public var tickFormatStops: [TickFormatStop]? = nil
     
         /// Specifies the ordering logic for the case of categorical variables.
         /// 
@@ -300,7 +302,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        public var categoryOrder: Shared.CarpetCategoryOrder? = nil
+        public var categoryOrder: CarpetCategoryOrder? = nil
     
         /// Sets the order in which categories on this axis appear.
         /// 
@@ -489,21 +491,21 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         ///   - arrayTick0: The starting index of grid lines along the axis
         ///   - arraydTick: The stride between grid lines along the axis
         public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? =
-                nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? =
-                nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil,
-                numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels:
-                ShowTickLabels? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix:
-                String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil,
-                showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil,
-                exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat:
-                String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, categoryOrder:
-                Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil,
-                labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color?
-                = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid:
-                Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? =
-                nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil,
-                endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? =
-                nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
+                nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil,
+                fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks:
+                Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels:
+                ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? =
+                nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
+                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
+                nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding:
+                Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil,
+                lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? =
+                nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil,
+                minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil,
+                startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor:
+                Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick:
+                Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
@@ -578,7 +580,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             /// Sets this axis' title font.
             /// 
             /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-            public var font: Shared.Font? = nil
+            public var font: Font? = nil
         
             /// An additional amount by which to offset the title from the tick labels, given in pixels.
             /// 
@@ -592,7 +594,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             ///   - font: Sets this axis' title font.
             ///   - offset: An additional amount by which to offset the title from the tick labels, given in
             ///   pixels.
-            public init(text: String? = nil, font: Shared.Font? = nil, offset: Double? = nil) {
+            public init(text: String? = nil, font: Font? = nil, offset: Double? = nil) {
                 self.text = text
                 self.font = font
                 self.offset = offset
@@ -620,13 +622,13 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-        public var autoRange: Shared.AutoRange? = nil
+        public var autoRange: AutoRange? = nil
     
         /// If *normal*, the range is computed in relation to the extrema of the input data.
         /// 
         /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
         /// is non-negative, regardless of the input data.
-        public var rangeMode: Shared.RangeMode? = nil
+        public var rangeMode: RangeMode? = nil
     
         /// Sets the range of this axis.
         /// 
@@ -683,7 +685,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         public var showTickLabels: ShowTickLabels? = nil
     
         /// Sets the tick font.
-        public var tickFont: Shared.Font? = nil
+        public var tickFont: Font? = nil
     
         /// Sets the angle of the tick labels with respect to the horizontal.
         /// 
@@ -697,25 +699,25 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// 
         /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
         /// displayed with a suffix. If *none*, tick prefixes are hidden.
-        public var showTickPrefix: Shared.ShowTickPrefix? = nil
+        public var showTickPrefix: ShowTickPrefix? = nil
     
         /// Sets a tick label suffix.
         public var tickSuffix: String? = nil
     
         /// Same as `showtickprefix` but for tick suffixes.
-        public var showTickSuffix: Shared.ShowTickSuffix? = nil
+        public var showTickSuffix: ShowTickSuffix? = nil
     
         /// If *all*, all exponents are shown besides their significands.
         /// 
         /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
         /// last tick is shown. If *none*, no exponents appear.
-        public var showExponent: Shared.ShowExponent? = nil
+        public var showExponent: ShowExponent? = nil
     
         /// Determines a formatting rule for the tick exponents.
         /// 
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-        public var exponentFormat: Shared.ExponentFormat? = nil
+        public var exponentFormat: ExponentFormat? = nil
     
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
@@ -729,7 +731,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// *09~15~23.46*
         public var tickFormat: String? = nil
     
-        public var tickFormatStops: [Shared.TickFormatStop]? = nil
+        public var tickFormatStops: [TickFormatStop]? = nil
     
         /// Specifies the ordering logic for the case of categorical variables.
         /// 
@@ -739,7 +741,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        public var categoryOrder: Shared.CarpetCategoryOrder? = nil
+        public var categoryOrder: CarpetCategoryOrder? = nil
     
         /// Sets the order in which categories on this axis appear.
         /// 
@@ -928,21 +930,21 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         ///   - arrayTick0: The starting index of grid lines along the axis
         ///   - arraydTick: The stride between grid lines along the axis
         public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? =
-                nil, autoRange: Shared.AutoRange? = nil, rangeMode: Shared.RangeMode? = nil, range: InfoArray? =
-                nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil,
-                numTicks: Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels:
-                ShowTickLabels? = nil, tickFont: Shared.Font? = nil, tickAngle: Angle? = nil, tickPrefix:
-                String? = nil, showTickPrefix: Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil,
-                showTickSuffix: Shared.ShowTickSuffix? = nil, showExponent: Shared.ShowExponent? = nil,
-                exponentFormat: Shared.ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat:
-                String? = nil, tickFormatStops: [Shared.TickFormatStop]? = nil, categoryOrder:
-                Shared.CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil,
-                labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color?
-                = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid:
-                Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? =
-                nil, startLine: Bool? = nil, startLineColor: Color? = nil, startLineWidth: Double? = nil,
-                endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor: Color? = nil, tick0: Double? =
-                nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick: Int? = nil) {
+                nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil,
+                fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks:
+                Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels:
+                ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? =
+                nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
+                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
+                nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding:
+                Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil,
+                lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? =
+                nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil,
+                minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil,
+                startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor:
+                Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick:
+                Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
@@ -998,7 +1000,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
     public var bAxis: BAxis? = nil
 
     /// The default font used for axis & tick labels on this carpet
-    public var font: Shared.Font? = nil
+    public var font: Font? = nil
 
     /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
     /// colors.
@@ -1011,13 +1013,13 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -1100,13 +1102,12 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
     ///   and grid colors.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            stream: Shared.Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: XData? =
-            nil, y: YData? = nil, a: AData? = nil, a0: Double? = nil, da: Double? = nil, b: BData? = nil,
-            b0: Double? = nil, db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis:
-            BAxis? = nil, font: Shared.Font? = nil, color: Color? = nil, xAxis: Layout.XAxis = .preset,
-            yAxis: Layout.YAxis = .preset) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? =
+            nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, stream:
+            Stream? = nil, uiRevision: Anything? = nil, carpet: String? = nil, x: XData? = nil, y: YData? =
+            nil, a: AData? = nil, a0: Double? = nil, da: Double? = nil, b: BData? = nil, b0: Double? = nil,
+            db: Double? = nil, cheaterSlope: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, font:
+            Font? = nil, color: Color? = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

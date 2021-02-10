@@ -12,15 +12,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#scattermapbox) or 
 ///   [R](https://plot.ly/r/reference/#scattermapbox)
 public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where CoordinateData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "scattermapbox"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -71,9 +73,9 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -100,7 +102,7 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     /// 
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover.
-    public var mode: Shared.Mode? = nil
+    public var mode: Mode? = nil
 
     /// Sets text elements associated with each (lon,lat) pair If a single string, the same string
     /// appears over all the data points.
@@ -130,7 +132,7 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     /// To be seen, trace `hoverinfo` must contain a *text* flag.
     public var hoverText: Data<String>? = nil
 
-    public var line: Shared.Line? = nil
+    public var line: Line? = nil
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -173,7 +175,7 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the rule for which the data in `size` is converted to pixels.
-        public var sizeMode: Shared.SizeMode? = nil
+        public var sizeMode: SizeMode? = nil
     
         /// Sets themarkercolor.
         /// 
@@ -238,14 +240,14 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
         /// Has an effect only if in `marker.color`is set to a numerical array.
         public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar? = nil
+        public var colorBar: ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
+        public var colorAxis: ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -298,10 +300,10 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
         ///   - colorAxis: Sets a reference to a shared color axis.
         public init(symbol: Data<String>? = nil, angle: Data<Double>? = nil, allowOverlap: Bool? = nil,
                 opacity: Data<Double>? = nil, size: Data<Double>? = nil, sizeReference: Double? = nil, sizeMin:
-                Double? = nil, sizeMode: Shared.SizeMode? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil,
-                cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
+                Double? = nil, sizeMode: SizeMode? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin:
+                Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset) {
+                ColorBar? = nil, colorAxis: ColorAxis = .preset) {
             self.symbol = symbol
             self.angle = angle
             self.allowOverlap = allowOverlap
@@ -350,10 +352,10 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     /// size=mapbox.layer.layout.text-size).
     /// 
     /// Has an effect only when `type` is set to *symbol*.
-    public var textFont: Shared.Font? = nil
+    public var textFont: Font? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition? = nil
+    public var textPosition: TextPosition? = nil
 
     /// Determines if this scattermapbox trace's layers are to be inserted before the layer with the
     /// specified ID.
@@ -488,7 +490,7 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     /// 
     /// If *mapbox* (the default value), the data refer to `layout.mapbox`. If *mapbox2*, the data refer
     /// to `layout.mapbox2`, and so on.
-    public var subplot: Layout.Mapbox = .preset
+    public var subplot: Mapbox = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -542,8 +544,8 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
-            nil, mode: Shared.Mode? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line:
-            Shared.Line? = nil, marker: SymbolicMarker? = nil) {
+            nil, mode: Mode? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line: Line? =
+            nil, marker: SymbolicMarker? = nil) {
         self.name = name
         self.longitude = longitude
         self.latitude = latitude
@@ -600,17 +602,16 @@ public struct ScatterMapbox<CoordinateData>: Trace, MapboxSubplot where Coordina
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
     ///   - subplot: Sets a reference between this trace's data coordinates and a mapbox subplot.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
-            nil, mode: Shared.Mode? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil,
-            hoverText: Data<String>? = nil, line: Shared.Line? = nil, connectGaps: Bool? = nil, marker:
-            SymbolicMarker? = nil, fill: Fill? = nil, fillColor: Color? = nil, textFont: Shared.Font? = nil,
-            textPosition: Shared.TextPosition? = nil, below: String? = nil, selected: Selected? = nil,
-            unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil,
-            subplot: Layout.Mapbox = .preset) {
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? = nil, mode: Mode?
+            = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? =
+            nil, line: Line? = nil, connectGaps: Bool? = nil, marker: SymbolicMarker? = nil, fill: Fill? =
+            nil, fillColor: Color? = nil, textFont: Font? = nil, textPosition: TextPosition? = nil, below:
+            String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? =
+            nil, hoverTemplate: Data<String>? = nil, subplot: Mapbox = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

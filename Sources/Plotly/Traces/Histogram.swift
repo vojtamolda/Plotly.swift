@@ -14,15 +14,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#histogram) or 
 ///   [R](https://plot.ly/r/reference/#histogram)
 public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "histogram"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -77,11 +79,11 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -116,14 +118,14 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// Sets the orientation of the bars.
     /// 
     /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
-    public var orientation: Shared.Orientation? = nil
+    public var orientation: Orientation? = nil
 
     /// Specifies the binning function used for this histogram trace.
     /// 
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
     /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    public var binningFunction: Shared.BinningFunction? = nil
+    public var binningFunction: BinningFunction? = nil
 
     /// Specifies the type of normalization used for this histogram trace.
     /// 
@@ -135,7 +137,7 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    public var normalization: Shared.Normalization? = nil
+    public var normalization: Normalization? = nil
 
     public struct Cumulative: Encodable {
         /// If true, display the cumulative distribution by summing the binned values.
@@ -207,7 +209,7 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
     public var xNumBins: Int? = nil
 
-    public var xBins: Shared.Bins? = nil
+    public var xBins: Bins? = nil
 
     /// Specifies the maximum number of desired bins.
     /// 
@@ -215,7 +217,7 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
     public var yNumBins: Int? = nil
 
-    public var yBins: Shared.Bins? = nil
+    public var yBins: Bins? = nil
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not
     /// needed.
@@ -256,7 +258,7 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
-    public var marker: Shared.Marker? = nil
+    public var marker: Marker? = nil
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup
     /// where bars of the same position coordinate will line up.
@@ -369,27 +371,27 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     }
     public var unselected: Unselected? = nil
 
-    public var xError: Shared.Error? = nil
+    public var xError: Error? = nil
 
-    public var yError: Shared.Error? = nil
+    public var yError: Error? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar? = nil
+    public var yCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -448,7 +450,7 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     ///   - hoverText: Same as `text`.
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, marker: Shared.Marker? = nil) {
+            hoverText: Data<String>? = nil, marker: Marker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -511,20 +513,19 @@ public struct Histogram<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
-            = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, y: YData? =
-            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, orientation: Shared.Orientation?
-            = nil, binningFunction: Shared.BinningFunction? = nil, normalization: Shared.Normalization? =
-            nil, cumulative: Cumulative? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins:
-            Int? = nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup:
-            String? = nil, hoverTemplate: Data<String>? = nil, marker: Shared.Marker? = nil, offsetGroup:
-            String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected?
-            = nil, xError: Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? =
-            nil, yCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis =
-            .preset) {
+            hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms:
+            [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, text:
+            Data<String>? = nil, hoverText: Data<String>? = nil, orientation: Orientation? = nil,
+            binningFunction: BinningFunction? = nil, normalization: Normalization? = nil, cumulative:
+            Cumulative? = nil, xNumBins: Int? = nil, xBins: Bins? = nil, yNumBins: Int? = nil, yBins: Bins?
+            = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String? = nil, hoverTemplate:
+            Data<String>? = nil, marker: Marker? = nil, offsetGroup: String? = nil, alignmentGroup: String?
+            = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError: Error? = nil, yError:
+            Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: XAxis = .preset,
+            yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

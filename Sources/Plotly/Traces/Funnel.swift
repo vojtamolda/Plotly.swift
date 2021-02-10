@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#funnel) or 
 ///   [R](https://plot.ly/r/reference/#funnel)
 public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "funnel"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -75,9 +77,9 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -253,10 +255,10 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
-    public var textPosition: Shared.AdjacentPosition? = nil
+    public var textPosition: AdjacentPosition? = nil
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    public var insideTextAnchor: Shared.InsideTextAnchor? = nil
+    public var insideTextAnchor: InsideTextAnchor? = nil
 
     /// Sets the angle of the tick labels with respect to the bar.
     /// 
@@ -265,16 +267,16 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     public var textAngle: Angle? = nil
 
     /// Sets the font used for `text`.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: Shared.VariableFont? = nil
+    public var insideTextFont: VariableFont? = nil
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outsideTextFont: Shared.OutsideTextFont? = nil
+    public var outsideTextFont: OutsideTextFont? = nil
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    public var constrainText: Shared.ConstrainText? = nil
+    public var constrainText: ConstrainText? = nil
 
     /// Determines whether the text nodes are clipped about the subplot axes.
     /// 
@@ -288,7 +290,7 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     /// funnels are tend to be oriented horizontally; unless only *y* array is presented or orientation
     /// is set to *v*. Also regarding graphs including only 'horizontal' funnels, *autorange* on the
     /// *y-axis* are set to *reversed*.
-    public var orientation: Shared.Orientation? = nil
+    public var orientation: Orientation? = nil
 
     /// Shifts the position where the bar is drawn (in position axis units).
     /// 
@@ -299,13 +301,13 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     /// Sets the bar width (in position axis units).
     public var width: Double? = nil
 
-    public var marker: Shared.Marker? = nil
+    public var marker: Marker? = nil
 
     public struct Connector: Encodable {
         /// Sets the fill color.
         public var fillColor: Color? = nil
     
-        public var line: Shared.DashedLine? = nil
+        public var line: DashedLine? = nil
     
         /// Determines if connector regions and lines are drawn.
         public var visible: Bool? = nil
@@ -323,7 +325,7 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
         ///   - fillColor: Sets the fill color.
         ///   - line:
         ///   - visible: Determines if connector regions and lines are drawn.
-        public init(fillColor: Color? = nil, line: Shared.DashedLine? = nil, visible: Bool? = nil) {
+        public init(fillColor: Color? = nil, line: DashedLine? = nil, visible: Bool? = nil) {
             self.fillColor = fillColor
             self.line = line
             self.visible = visible
@@ -345,13 +347,13 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -411,7 +413,7 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     ///   - text: Sets text elements associated with each (x,y) pair.
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, hoverText: Data<String>? =
-            nil, text: Data<String>? = nil, marker: Shared.Marker? = nil) {
+            nil, text: Data<String>? = nil, marker: Marker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -475,21 +477,19 @@ public struct Funnel<XData, YData>: Trace, XYSubplot where XData: Plotable, YDat
     ///   same alignmentgroup.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y:
-            YData? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText: Data<String>? = nil,
-            hoverTemplate: Data<String>? = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil,
-            textTemplate: Data<String>? = nil, text: Data<String>? = nil, textPosition:
-            Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle:
-            Angle? = nil, textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil,
-            outsideTextFont: Shared.OutsideTextFont? = nil, constrainText: Shared.ConstrainText? = nil,
-            clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil, offset: Double? = nil, width:
-            Double? = nil, marker: Shared.Marker? = nil, connector: Connector? = nil, offsetGroup: String? =
-            nil, alignmentGroup: String? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis =
-            .preset) {
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0:
+            Anything? = nil, dy: Double? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>?
+            = nil, hoverInfo: HoverInfo? = nil, textInfo: TextInfo? = nil, textTemplate: Data<String>? =
+            nil, text: Data<String>? = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor:
+            InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: VariableFont? = nil, insideTextFont:
+            VariableFont? = nil, outsideTextFont: OutsideTextFont? = nil, constrainText: ConstrainText? =
+            nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, offset: Double? = nil, width:
+            Double? = nil, marker: Marker? = nil, connector: Connector? = nil, offsetGroup: String? = nil,
+            alignmentGroup: String? = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

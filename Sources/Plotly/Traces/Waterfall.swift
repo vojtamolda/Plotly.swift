@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#waterfall) or 
 ///   [R](https://plot.ly/r/reference/#waterfall)
 public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "waterfall"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -75,9 +77,9 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -259,10 +261,10 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
-    public var textPosition: Shared.AdjacentPosition? = nil
+    public var textPosition: AdjacentPosition? = nil
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    public var insideTextAnchor: Shared.InsideTextAnchor? = nil
+    public var insideTextAnchor: InsideTextAnchor? = nil
 
     /// Sets the angle of the tick labels with respect to the bar.
     /// 
@@ -271,16 +273,16 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     public var textAngle: Angle? = nil
 
     /// Sets the font used for `text`.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: Shared.VariableFont? = nil
+    public var insideTextFont: VariableFont? = nil
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outsideTextFont: Shared.OutsideTextFont? = nil
+    public var outsideTextFont: OutsideTextFont? = nil
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    public var constrainText: Shared.ConstrainText? = nil
+    public var constrainText: ConstrainText? = nil
 
     /// Determines whether the text nodes are clipped about the subplot axes.
     /// 
@@ -291,7 +293,7 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// Sets the orientation of the bars.
     /// 
     /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
-    public var orientation: Shared.Orientation? = nil
+    public var orientation: Orientation? = nil
 
     /// Shifts the position where the bar is drawn (in position axis units).
     /// 
@@ -307,14 +309,14 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
             /// Sets the marker color of all increasing values.
             public var color: Color? = nil
         
-            public var line: Shared.Line? = nil
+            public var line: Line? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
             /// - Parameters:
             ///   - color: Sets the marker color of all increasing values.
             ///   - line:
-            public init(color: Color? = nil, line: Shared.Line? = nil) {
+            public init(color: Color? = nil, line: Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -335,14 +337,14 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
             /// Sets the marker color of all decreasing values.
             public var color: Color? = nil
         
-            public var line: Shared.Line? = nil
+            public var line: Line? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
             /// - Parameters:
             ///   - color: Sets the marker color of all decreasing values.
             ///   - line:
-            public init(color: Color? = nil, line: Shared.Line? = nil) {
+            public init(color: Color? = nil, line: Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -363,14 +365,14 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
             /// Sets the marker color of all intermediate sums and total values.
             public var color: Color? = nil
         
-            public var line: Shared.Line? = nil
+            public var line: Line? = nil
         
             /// Creates `Marker` object with specified properties.
             /// 
             /// - Parameters:
             ///   - color: Sets the marker color of all intermediate sums and total values.
             ///   - line:
-            public init(color: Color? = nil, line: Shared.Line? = nil) {
+            public init(color: Color? = nil, line: Line? = nil) {
                 self.color = color
                 self.line = line
             }
@@ -387,7 +389,7 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     public var totals: Totals? = nil
 
     public struct Connector: Encodable {
-        public var line: Shared.DashedLine? = nil
+        public var line: DashedLine? = nil
     
         /// Sets the shape of connector lines.
         public enum Mode: String, Encodable {
@@ -406,7 +408,7 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
         ///   - line:
         ///   - mode: Sets the shape of connector lines.
         ///   - visible: Determines if connector lines are drawn.
-        public init(line: Shared.DashedLine? = nil, mode: Mode? = nil, visible: Bool? = nil) {
+        public init(line: DashedLine? = nil, mode: Mode? = nil, visible: Bool? = nil) {
             self.line = line
             self.mode = mode
             self.visible = visible
@@ -428,13 +430,13 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -564,22 +566,21 @@ public struct Waterfall<XData, YData>: Trace, XYSubplot where XData: Plotable, Y
     ///   same alignmentgroup.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, measure: [String]? = nil, base: Double? = nil, x: XData? = nil,
-            x0: Anything? = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil,
-            hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
-            textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, text: Data<String>? = nil,
-            textPosition: Shared.AdjacentPosition? = nil, insideTextAnchor: Shared.InsideTextAnchor? = nil,
-            textAngle: Angle? = nil, textFont: Shared.VariableFont? = nil, insideTextFont:
-            Shared.VariableFont? = nil, outsideTextFont: Shared.OutsideTextFont? = nil, constrainText:
-            Shared.ConstrainText? = nil, clipOnAxis: Bool? = nil, orientation: Shared.Orientation? = nil,
-            offset: Data<Double>? = nil, width: Data<Double>? = nil, increasing: Increasing? = nil,
-            decreasing: Decreasing? = nil, totals: Totals? = nil, connector: Connector? = nil, offsetGroup:
-            String? = nil, alignmentGroup: String? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis
-            = .preset) {
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, measure: [String]? = nil, base: Double? = nil, x: XData? = nil, x0: Anything? =
+            nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, hoverText:
+            Data<String>? = nil, hoverTemplate: Data<String>? = nil, hoverInfo: HoverInfo? = nil, textInfo:
+            TextInfo? = nil, textTemplate: Data<String>? = nil, text: Data<String>? = nil, textPosition:
+            AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil, textAngle: Angle? = nil,
+            textFont: VariableFont? = nil, insideTextFont: VariableFont? = nil, outsideTextFont:
+            OutsideTextFont? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool? = nil,
+            orientation: Orientation? = nil, offset: Data<Double>? = nil, width: Data<Double>? = nil,
+            increasing: Increasing? = nil, decreasing: Decreasing? = nil, totals: Totals? = nil, connector:
+            Connector? = nil, offsetGroup: String? = nil, alignmentGroup: String? = nil, xAxis: XAxis =
+            .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

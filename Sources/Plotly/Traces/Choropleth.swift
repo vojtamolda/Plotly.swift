@@ -13,15 +13,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#choropleth) or 
 ///   [R](https://plot.ly/r/reference/#choropleth)
 public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where LocationsData: Plotable, ZData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "choropleth"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the legend group for this trace.
     /// 
@@ -66,9 +68,9 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -130,7 +132,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     public var hoverText: Data<String>? = nil
 
     public struct Marker: Encodable {
-        public var line: Shared.VariableLine? = nil
+        public var line: VariableLine? = nil
     
         /// Sets the opacity of the locations.
         public var opacity: Data<Double>? = nil
@@ -140,7 +142,7 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
         /// - Parameters:
         ///   - line:
         ///   - opacity: Sets the opacity of the locations.
-        public init(line: Shared.VariableLine? = nil, opacity: Data<Double>? = nil) {
+        public init(line: VariableLine? = nil, opacity: Data<Double>? = nil) {
             self.line = line
             self.opacity = opacity
         }
@@ -301,20 +303,20 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar? = nil
+    public var colorBar: ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = .preset
+    public var colorAxis: ColorAxis = .preset
 
     /// Sets a reference between this trace's geospatial coordinates and a geographic map.
     /// 
     /// If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the
     /// geospatial coordinates refer to `layout.geo2`, and so on.
-    public var geo: Layout.Geo = .preset
+    public var geo: Geo = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -431,17 +433,17 @@ public struct Choropleth<LocationsData, ZData>: Trace, GeoSubplot where Location
     ///   - colorBar:
     ///   - colorAxis: Sets a reference to a shared color axis.
     ///   - geo: Sets a reference between this trace's geospatial coordinates and a geographic map.
-    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
-            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
-            nil, selectedPoints: Anything? = nil, hoverLabel: Shared.HoverLabel? = nil, stream:
-            Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, locations:
-            LocationsData? = nil, locationMode: LocationMode? = nil, z: ZData? = nil, geoJson: Anything? =
-            nil, featureIDKey: String? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
-            marker: Marker? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo:
-            HoverInfo? = nil, hoverTemplate: Data<String>? = nil, showLegend: Bool? = nil, zAuto: Bool? =
-            nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? =
-            nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset, geo: Layout.Geo = .preset) {
+    public init(visible: Visible? = nil, legendGroup: String? = nil, name: String? = nil, uid:
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
+            selectedPoints: Anything? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil,
+            transforms: [Transform] = [], uiRevision: Anything? = nil, locations: LocationsData? = nil,
+            locationMode: LocationMode? = nil, z: ZData? = nil, geoJson: Anything? = nil, featureIDKey:
+            String? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, marker: Marker? = nil,
+            selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: Data<String>? = nil, showLegend: Bool? = nil, zAuto: Bool? = nil, zMin: Double? =
+            nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+            Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil,
+            colorAxis: ColorAxis = .preset, geo: Geo = .preset) {
         self.visible = visible
         self.legendGroup = legendGroup
         self.name = name

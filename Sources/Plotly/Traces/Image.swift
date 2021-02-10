@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#image) or 
 ///   [R](https://plot.ly/r/reference/#image)
 public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "image"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the opacity of the trace.
     public var opacity: Double? = nil
@@ -60,9 +62,9 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -197,13 +199,13 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -285,14 +287,13 @@ public struct Image<ZData>: Trace, XYSubplot where ZData: Plotable {
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil,
-            source: String? = nil, z: ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil,
-            zMax: InfoArray? = nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double?
-            = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
-            hoverTemplate: Data<String>? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis =
-            .preset) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? =
+            nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
+            HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, source: String? = nil, z:
+            ZData? = nil, colorModel: ColorModel? = nil, zMin: InfoArray? = nil, zMax: InfoArray? = nil, x0:
+            Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, text: Data<String>?
+            = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>?
+            = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

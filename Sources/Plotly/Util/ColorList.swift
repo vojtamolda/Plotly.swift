@@ -444,12 +444,12 @@ fileprivate extension ColorList {
             for (name, colorList) in categoryColorLists {
                 let swatch = Bar(
                     name: name,
-                    hoverInfo: Shared.HoverInfo.none,
+                    hoverInfo: HoverInfo.none,
                     x: [Int](repeating: 1, count: colorList.count),
                     y: [[String](repeating: category, count: colorList.count),
                         [String](repeating: name, count: colorList.count)],
                     orientation: .h,
-                    marker: Shared.Marker(
+                    marker: Marker(
                         coloring: .variable(colorList)
                     ),
                     xAxis: layout.xAxis.first!,

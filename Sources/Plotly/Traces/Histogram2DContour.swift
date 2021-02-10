@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#histogram2dcontour) or 
 ///   [R](https://plot.ly/r/reference/#histogram2dcontour)
 public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XData: Plotable, YData: Plotable, ZData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "histogram2dcontour"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -72,11 +74,11 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -127,14 +129,14 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
     /// the area of each bar corresponds to the probability that an event will fall into the
     /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    public var normalization: Shared.Normalization? = nil
+    public var normalization: Normalization? = nil
 
     /// Specifies the binning function used for this histogram trace.
     /// 
     /// If *count*, the histogram values are computed by counting the number of values lying inside each
     /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
     /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    public var binningFunction: Shared.BinningFunction? = nil
+    public var binningFunction: BinningFunction? = nil
 
     /// Specifies the maximum number of desired bins.
     /// 
@@ -142,7 +144,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     /// histogram best visualizes the distribution of the data. Ignored if `xbins.size` is provided.
     public var xNumBins: Int? = nil
 
-    public var xBins: Shared.Bins? = nil
+    public var xBins: Bins? = nil
 
     /// Specifies the maximum number of desired bins.
     /// 
@@ -150,7 +152,7 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     /// histogram best visualizes the distribution of the data. Ignored if `ybins.size` is provided.
     public var yNumBins: Int? = nil
 
-    public var yBins: Shared.Bins? = nil
+    public var yBins: Bins? = nil
 
     /// Obsolete: since v1.42 each bin attribute is auto-determined separately and `autobinx` is not
     /// needed.
@@ -196,9 +198,9 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
     public var nContours: Int? = nil
 
-    public var contours: Shared.Contours? = nil
+    public var contours: Contours? = nil
 
-    public var line: Shared.SmoothDashedLine? = nil
+    public var line: SmoothDashedLine? = nil
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
     /// those in Python.
@@ -271,32 +273,32 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar? = nil
+    public var colorBar: ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = .preset
+    public var colorAxis: ColorAxis = .preset
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar? = nil
+    public var yCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -364,8 +366,8 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, marker:
-            Marker? = nil, line: Shared.SmoothDashedLine? = nil, colorScale: ColorScale? = nil,
-            reverseScale: Bool? = nil) {
+            Marker? = nil, line: SmoothDashedLine? = nil, colorScale: ColorScale? = nil, reverseScale: Bool?
+            = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -442,22 +444,20 @@ public struct Histogram2DContour<XData, YData, ZData>: Trace, XYSubplot where XD
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, marker:
-            Marker? = nil, normalization: Shared.Normalization? = nil, binningFunction:
-            Shared.BinningFunction? = nil, xNumBins: Int? = nil, xBins: Shared.Bins? = nil, yNumBins: Int? =
-            nil, yBins: Shared.Bins? = nil, xAutoBin: Bool? = nil, yAutoBin: Bool? = nil, binGroup: String?
-            = nil, xBinGroup: String? = nil, yBinGroup: String? = nil, autoContour: Bool? = nil, nContours:
-            Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? = nil,
-            zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, zAuto: Bool? = nil, zMin:
-            Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
-            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset, xCalendar: Shared.Calendar? =
-            nil, yCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis =
-            .preset) {
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, marker: Marker? = nil,
+            normalization: Normalization? = nil, binningFunction: BinningFunction? = nil, xNumBins: Int? =
+            nil, xBins: Bins? = nil, yNumBins: Int? = nil, yBins: Bins? = nil, xAutoBin: Bool? = nil,
+            yAutoBin: Bool? = nil, binGroup: String? = nil, xBinGroup: String? = nil, yBinGroup: String? =
+            nil, autoContour: Bool? = nil, nContours: Int? = nil, contours: Contours? = nil, line:
+            SmoothDashedLine? = nil, zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, zAuto:
+            Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale:
+            ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
+            nil, colorBar: ColorBar? = nil, colorAxis: ColorAxis = .preset, xCalendar: Calendar? = nil,
+            yCalendar: Calendar? = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

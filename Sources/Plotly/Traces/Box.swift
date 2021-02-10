@@ -27,15 +27,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#box) or 
 ///   [R](https://plot.ly/r/reference/#box)
 public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, XData: Plotable, QData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "box"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -92,11 +94,11 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -284,7 +286,7 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
     /// Sets the orientation of the box(es).
     /// 
     /// If *v* (*h*), the distribution is visualized along the vertical (horizontal).
-    public var orientation: Shared.Orientation? = nil
+    public var orientation: Orientation? = nil
 
     /// Sets the method used to compute the sample's Q1 and Q3 quartiles.
     /// 
@@ -324,7 +326,7 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
-        public var symbol: Shared.Symbol? = nil
+        public var symbol: Symbol? = nil
     
         /// Sets the marker opacity.
         public var opacity: Double? = nil
@@ -403,8 +405,8 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
         ///   - size: Sets the marker size (in px).
         ///   - color: Sets themarkercolor.
         ///   - line:
-        public init(outlierColor: Color? = nil, symbol: Shared.Symbol? = nil, opacity: Double? = nil,
-                size: Double? = nil, color: Color? = nil, line: Line? = nil) {
+        public init(outlierColor: Color? = nil, symbol: Symbol? = nil, opacity: Double? = nil, size:
+                Double? = nil, color: Color? = nil, line: Line? = nil) {
             self.outlierColor = outlierColor
             self.symbol = symbol
             self.opacity = opacity
@@ -416,7 +418,7 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
     }
     public var marker: SymbolicMarker? = nil
 
-    public var line: Shared.Line? = nil
+    public var line: Line? = nil
 
     /// Sets the fill color.
     /// 
@@ -555,22 +557,22 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
     public var hoverOn: HoverOn? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar? = nil
+    public var yCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -652,7 +654,7 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
     public init(name: String? = nil, y: YData? = nil, x: XData? = nil, q1: QData? = nil, median:
             QData? = nil, q3: QData? = nil, lowerFence: QData? = nil, upperFence: QData? = nil, notchSpan:
             QData? = nil, mean: QData? = nil, standardDeviation: QData? = nil, marker: SymbolicMarker? =
-            nil, line: Shared.Line? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil) {
+            nil, line: Line? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil) {
         self.name = name
         self.y = y
         self.x = x
@@ -742,22 +744,22 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
-            = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, y: YData? = nil, x: XData? =
-            nil, x0: Anything? = nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, q1: QData?
-            = nil, median: QData? = nil, q3: QData? = nil, lowerFence: QData? = nil, upperFence: QData? =
-            nil, notched: Bool? = nil, notchWidth: Double? = nil, notchSpan: QData? = nil, boxPoints:
-            BoxPoints? = nil, jitter: Double? = nil, pointPosition: Double? = nil, boxMean: BoxMean? = nil,
-            mean: QData? = nil, standardDeviation: QData? = nil, orientation: Shared.Orientation? = nil,
-            quartileMethod: QuartileMethod? = nil, width: Double? = nil, marker: SymbolicMarker? = nil,
-            line: Shared.Line? = nil, fillColor: Color? = nil, whiskerWidth: Double? = nil, offsetGroup:
-            String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected?
-            = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? =
-            nil, hoverOn: HoverOn? = nil, xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? =
-            nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis = .preset) {
+            hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms:
+            [Transform] = [], uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? =
+            nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, q1: QData? = nil, median: QData?
+            = nil, q3: QData? = nil, lowerFence: QData? = nil, upperFence: QData? = nil, notched: Bool? =
+            nil, notchWidth: Double? = nil, notchSpan: QData? = nil, boxPoints: BoxPoints? = nil, jitter:
+            Double? = nil, pointPosition: Double? = nil, boxMean: BoxMean? = nil, mean: QData? = nil,
+            standardDeviation: QData? = nil, orientation: Orientation? = nil, quartileMethod:
+            QuartileMethod? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Line? = nil,
+            fillColor: Color? = nil, whiskerWidth: Double? = nil, offsetGroup: String? = nil,
+            alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, text:
+            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil,
+            hoverOn: HoverOn? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: XAxis =
+            .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

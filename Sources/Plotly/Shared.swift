@@ -3,1774 +3,1950 @@
 // See `Sources/Codegen/Readme.md` for more details.
 
 
-public enum Shared {
+
+// MARK: - Enums
+
+/// Sets the title's horizontal alignment with respect to its x position.
+/// 
+/// *left* means that the title starts at x, *right* means that the title ends at x and *center*
+/// means that the title's center is at x. *auto* divides `xref` by three and calculates the
+/// `xanchor` value automatically based on the value of `x`.
+/// 
+/// - Note:
+///   Used by `Layout.Title.xAnchor`, `XAxis.RangeSelector.xAnchor`, `Scene.Annotation.xAnchor`,
+///   `Layout.Legend.xAnchor`, `Layout.Annotation.xAnchor`, `Layout.UpdateMenu.xAnchor`,
+///   `Layout.Slider.xAnchor`.
+public enum XAutoAnchor: String, Encodable {
+    case auto
+    case left
+    case center
+    case right
+}
+
+/// Sets the title's vertical alignment with respect to its y position.
+/// 
+/// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
+/// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
+/// calculates the `yanchor` value automatically based on the value of `y`.
+/// 
+/// - Note:
+///   Used by `Layout.Title.yAnchor`, `XAxis.RangeSelector.yAnchor`, `Scene.Annotation.yAnchor`,
+///   `Layout.Legend.yAnchor`, `Layout.Annotation.yAnchor`, `Layout.UpdateMenu.yAnchor`,
+///   `Layout.Slider.yAnchor`.
+public enum YAutoAnchor: String, Encodable {
+    case auto
+    case top
+    case middle
+    case bottom
+}
+
+/// Sets the orientation of the modebar.
+/// 
+/// - Note:
+///   Used by `Layout.ModeBar.orientation`, `Layout.Legend.orientation`, `Scatter<XData,
+///   YData>.orientation`, `Bar<XData, YData>.orientation`, `Box<YData, XData, QData>.orientation`,
+///   `Histogram<XData, YData>.orientation`, `Violin<YData, XData>.orientation`, `Funnel<XData,
+///   YData>.orientation`, `Waterfall<XData, YData>.orientation`, `Sankey.orientation`.
+public enum Orientation: String, Encodable {
+    case v
+    case h
+}
+
+/// Specifies whether new shapes are drawn below or above traces.
+/// 
+/// - Note:
+///   Used by `Layout.NewShape.layer`, `Layout.Shape.layer`, `Layout.Image.layer`.
+public enum ShapeLayer: String, Encodable {
+    case below
+    case above
+}
+
+/// The easing function used for the transition
+/// 
+/// - Note:
+///   Used by `Layout.Transition.easing`, `Layout.Slider.Transition.easing`,
+///   `Animation.Transition.easing`.
+public enum Easing: String, Encodable {
+    case linear
+    case quad
+    case cubic
+    case sin
+    case exp
+    case circle
+    case elastic
+    case back
+    case bounce
+    case linearIn = "linear-in"
+    case quadIn = "quad-in"
+    case cubicIn = "cubic-in"
+    case sinIn = "sin-in"
+    case expIn = "exp-in"
+    case circleIn = "circle-in"
+    case elasticIn = "elastic-in"
+    case backIn = "back-in"
+    case bounceIn = "bounce-in"
+    case linearOut = "linear-out"
+    case quadOut = "quad-out"
+    case cubicOut = "cubic-out"
+    case sinOut = "sin-out"
+    case expOut = "exp-out"
+    case circleOut = "circle-out"
+    case elasticOut = "elastic-out"
+    case backOut = "back-out"
+    case bounceOut = "bounce-out"
+    case linearInOut = "linear-in-out"
+    case quadInOut = "quad-in-out"
+    case cubicInOut = "cubic-in-out"
+    case sinInOut = "sin-in-out"
+    case expInOut = "exp-in-out"
+    case circleInOut = "circle-in-out"
+    case elasticInOut = "elastic-in-out"
+    case backInOut = "back-in-out"
+    case bounceInOut = "bounce-in-out"
+}
+
+/// Sets the horizontal alignment of the text content within hover label box.
+/// 
+/// Has an effect only if the hover label text spans more two or more lines
+/// 
+/// - Note:
+///   Used by `HoverLabel.align`, `Scatter<XData, YData>.HoverLabel.align`, `Bar<XData,
+///   YData>.HoverLabel.align`, `Box<YData, XData, QData>.HoverLabel.align`, `Heatmap<ZData,
+///   XYData>.HoverLabel.align`, `Histogram<XData, YData>.HoverLabel.align`, `Histogram2D<XData,
+///   YData, ZData>.HoverLabel.align`, `Histogram2DContour<XData, YData, ZData>.HoverLabel.align`,
+///   `Contour<ZData, XData, YData>.HoverLabel.align`, `ScatterTernary<AData, BData,
+///   CData>.HoverLabel.align`, `Violin<YData, XData>.HoverLabel.align`, `Funnel<XData,
+///   YData>.HoverLabel.align`, `Waterfall<XData, YData>.HoverLabel.align`,
+///   `Image<ZData>.HoverLabel.align`, `Pie<LabelsData, ValuesData>.HoverLabel.align`,
+///   `Sunburst<ValuesData>.HoverLabel.align`, `Treemap<ValuesData>.HoverLabel.align`,
+///   `FunnelArea<LabelsData, ValuesData>.HoverLabel.align`, `Scatter3D<XData, YData,
+///   ZData>.HoverLabel.align`, `Surface<ZSurfaceData, XYData>.HoverLabel.align`, `Isosurface<XData,
+///   YData, ZData, ValueData>.HoverLabel.align`, `Volume<XYZData, ValueData>.HoverLabel.align`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>.HoverLabel.align`,
+///   `Cone<XYZData, UVWData>.HoverLabel.align`, `StreamTube<XYZData, UVWData>.HoverLabel.align`,
+///   `ScatterGeo<CoordinateData, LocationsData>.HoverLabel.align`, `Choropleth<LocationsData,
+///   ZData>.HoverLabel.align`, `ScatterGL<XData, YData>.HoverLabel.align`,
+///   `ScatterPlotMatrix.HoverLabel.align`, `PointCloud<XYData>.HoverLabel.align`, `HeatmapGL<ZData,
+///   XYData>.HoverLabel.align`, `ScatterMapbox<CoordinateData>.HoverLabel.align`,
+///   `ChoroplethMapbox<LocationsData, ZData>.HoverLabel.align`, `DensityMapbox<CoordinateData,
+///   ZData>.HoverLabel.align`, `Sankey.HoverLabel.align`, `Sankey.Node.HoverLabel.align`,
+///   `Sankey.Link.HoverLabel.align`, `Table<CellData>.HoverLabel.align`, `ScatterCarpet<AData,
+///   BData>.HoverLabel.align`, `OHLC<XData, OHLCData>.HoverLabel.align`, `Candlestick<XData,
+///   OHLCData>.HoverLabel.align`, `ScatterPolar<RData, ThetaData>.HoverLabel.align`,
+///   `ScatterPolarGL<RData, ThetaData>.HoverLabel.align`, `BarPolar<RData,
+///   ThetaData>.HoverLabel.align`.
+public enum AutoAlign: String, Encodable {
+    case left
+    case right
+    case auto
+}
+
+/// Sets the default calendar system to use for interpreting and displaying dates throughout the
+/// plot.
+/// 
+/// - Note:
+///   Used by `Layout.calendar`, `XAxis.calendar`, `YAxis.calendar`, `Scene.XAxis.calendar`,
+///   `Scene.YAxis.calendar`, `Scene.ZAxis.calendar`, `Polar.RadialAxis.calendar`, `Scatter<XData,
+///   YData>.xCalendar`, `Scatter<XData, YData>.yCalendar`, `Bar<XData, YData>.xCalendar`, `Bar<XData,
+///   YData>.yCalendar`, `Box<YData, XData, QData>.xCalendar`, `Box<YData, XData, QData>.yCalendar`,
+///   `Heatmap<ZData, XYData>.xCalendar`, `Heatmap<ZData, XYData>.yCalendar`, `Histogram<XData,
+///   YData>.xCalendar`, `Histogram<XData, YData>.yCalendar`, `Histogram2D<XData, YData,
+///   ZData>.xCalendar`, `Histogram2D<XData, YData, ZData>.yCalendar`, `Histogram2DContour<XData,
+///   YData, ZData>.xCalendar`, `Histogram2DContour<XData, YData, ZData>.yCalendar`, `Contour<ZData,
+///   XData, YData>.xCalendar`, `Contour<ZData, XData, YData>.yCalendar`, `Scatter3D<XData, YData,
+///   ZData>.xCalendar`, `Scatter3D<XData, YData, ZData>.yCalendar`, `Scatter3D<XData, YData,
+///   ZData>.zCalendar`, `Surface<ZSurfaceData, XYData>.xCalendar`, `Surface<ZSurfaceData,
+///   XYData>.yCalendar`, `Surface<ZSurfaceData, XYData>.zCalendar`, `Mesh3D<XData, YData, ZData,
+///   IntensityData, VertexcolorData, FacecolorData>.xCalendar`, `Mesh3D<XData, YData, ZData,
+///   IntensityData, VertexcolorData, FacecolorData>.yCalendar`, `Mesh3D<XData, YData, ZData,
+///   IntensityData, VertexcolorData, FacecolorData>.zCalendar`, `ScatterGL<XData, YData>.xCalendar`,
+///   `ScatterGL<XData, YData>.yCalendar`, `OHLC<XData, OHLCData>.xCalendar`, `Candlestick<XData,
+///   OHLCData>.xCalendar`, `Filter.valueCalendar`, `Filter.targetCalendar`.
+public enum Calendar: String, Encodable {
+    case gregorian
+    case chinese
+    case coptic
+    case discworld
+    case ethiopian
+    case hebrew
+    case islamic
+    case julian
+    case mayan
+    case nanakshahi
+    case nepali
+    case persian
+    case jalali
+    case taiwan
+    case thai
+    case ummalqura
+}
+
+/// Determines whether or not the range of this axis is computed in relation to the input data.
+/// 
+/// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+/// 
+/// - Note:
+///   Used by `XAxis.autoRange`, `YAxis.autoRange`, `Scene.XAxis.autoRange`, `Scene.YAxis.autoRange`,
+///   `Scene.ZAxis.autoRange`, `Polar.RadialAxis.autoRange`, `Carpet<XData, YData, AData,
+///   BData>.AAxis.autoRange`, `Carpet<XData, YData, AData, BData>.BAxis.autoRange`.
+public enum AutoRange: Encodable {
+    case on
+    case off
+    case reversed
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .on:
+            try container.encode(true)
+        case .off:
+            try container.encode(false)
+        case .reversed:
+            try container.encode("reversed")
+        }
+    }
+}
+
+/// If *normal*, the range is computed in relation to the extrema of the input data.
+/// 
+/// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
+/// is non-negative, regardless of the input data. Applies only to linear axes.
+/// 
+/// - Note:
+///   Used by `XAxis.rangeMode`, `YAxis.rangeMode`, `Scene.XAxis.rangeMode`, `Scene.YAxis.rangeMode`,
+///   `Scene.ZAxis.rangeMode`, `Carpet<XData, YData, AData, BData>.AAxis.rangeMode`, `Carpet<XData,
+///   YData, AData, BData>.BAxis.rangeMode`.
+public enum RangeMode: String, Encodable {
+    case normal
+    case toZero = "tozero"
+    case nonNegative = "nonnegative"
+}
+
+/// Sets the tick mode for this axis.
+/// 
+/// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+/// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+/// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+/// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+/// provided).
+/// 
+/// - Note:
+///   Used by `XAxis.tickMode`, `YAxis.tickMode`, `Ternary.AAxis.tickMode`, `Ternary.BAxis.tickMode`,
+///   `Ternary.CAxis.tickMode`, `Scene.XAxis.tickMode`, `Scene.YAxis.tickMode`,
+///   `Scene.ZAxis.tickMode`, `Polar.RadialAxis.tickMode`, `Polar.AngularAxis.tickMode`,
+///   `ColorBar.tickMode`, `GradientMarker.ColorBar.tickMode`, `Marker.ColorBar.tickMode`,
+///   `Heatmap<ZData, XYData>.ColorBar.tickMode`, `Histogram<XData, YData>.Marker.ColorBar.tickMode`,
+///   `Histogram2D<XData, YData, ZData>.ColorBar.tickMode`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.tickMode`, `Contour<ZData, XData, YData>.ColorBar.tickMode`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.tickMode`, `Funnel<XData,
+///   YData>.Marker.ColorBar.tickMode`, `Sunburst<ValuesData>.Marker.ColorBar.tickMode`,
+///   `Treemap<ValuesData>.Marker.ColorBar.tickMode`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.tickMode`, `SymbolicMarker.ColorBar.tickMode`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.tickMode`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.tickMode`, `Volume<XYZData, ValueData>.ColorBar.tickMode`, `Mesh3D<XData,
+///   YData, ZData, IntensityData, VertexcolorData, FacecolorData>.ColorBar.tickMode`, `Cone<XYZData,
+///   UVWData>.ColorBar.tickMode`, `StreamTube<XYZData, UVWData>.ColorBar.tickMode`,
+///   `ScatterGeo<CoordinateData, LocationsData>.GradientMarker.ColorBar.tickMode`,
+///   `Choropleth<LocationsData, ZData>.ColorBar.tickMode`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.tickMode`, `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickMode`,
+///   `HeatmapGL<ZData, XYData>.ColorBar.tickMode`,
+///   `ParallelCoordinates.MarkerLine.ColorBar.tickMode`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.tickMode`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.tickMode`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.tickMode`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.tickMode`, `Indicator.Gauge.Axis.tickMode`, `ScatterCarpet<AData,
+///   BData>.GradientMarker.ColorBar.tickMode`, `ContourCarpet<ZData, AData,
+///   BData>.ColorBar.tickMode`, `ScatterPolar<RData, ThetaData>.GradientMarker.ColorBar.tickMode`,
+///   `ScatterPolarGL<RData, ThetaData>.SymbolicMarker.ColorBar.tickMode`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.tickMode`.
+public enum TickMode: String, Encodable {
+    case auto
+    case linear
+    case array
+}
+
+/// Determines whether ticks are drawn or not.
+/// 
+/// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+/// (inside) the axis lines.
+/// 
+/// - Note:
+///   Used by `XAxis.ticks`, `YAxis.ticks`, `Ternary.AAxis.ticks`, `Ternary.BAxis.ticks`,
+///   `Ternary.CAxis.ticks`, `Scene.XAxis.ticks`, `Scene.YAxis.ticks`, `Scene.ZAxis.ticks`,
+///   `Polar.RadialAxis.ticks`, `Polar.AngularAxis.ticks`, `ColorBar.ticks`,
+///   `GradientMarker.ColorBar.ticks`, `Marker.ColorBar.ticks`, `Heatmap<ZData,
+///   XYData>.ColorBar.ticks`, `Histogram<XData, YData>.Marker.ColorBar.ticks`, `Histogram2D<XData,
+///   YData, ZData>.ColorBar.ticks`, `Histogram2DContour<XData, YData, ZData>.ColorBar.ticks`,
+///   `Contour<ZData, XData, YData>.ColorBar.ticks`, `ScatterTernary<AData, BData,
+///   CData>.GradientMarker.ColorBar.ticks`, `Funnel<XData, YData>.Marker.ColorBar.ticks`,
+///   `Sunburst<ValuesData>.Marker.ColorBar.ticks`, `Treemap<ValuesData>.Marker.ColorBar.ticks`,
+///   `Scatter3D<XData, YData, ZData>.DashedMarkerLine.ColorBar.ticks`,
+///   `SymbolicMarker.ColorBar.ticks`, `Surface<ZSurfaceData, XYData>.ColorBar.ticks`,
+///   `Isosurface<XData, YData, ZData, ValueData>.ColorBar.ticks`, `Volume<XYZData,
+///   ValueData>.ColorBar.ticks`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.ticks`, `Cone<XYZData, UVWData>.ColorBar.ticks`, `StreamTube<XYZData,
+///   UVWData>.ColorBar.ticks`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.ticks`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.ticks`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.ticks`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.ticks`, `HeatmapGL<ZData, XYData>.ColorBar.ticks`,
+///   `ParallelCoordinates.MarkerLine.ColorBar.ticks`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.ticks`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.ticks`, `ChoroplethMapbox<LocationsData,
+///   ZData>.ColorBar.ticks`, `DensityMapbox<CoordinateData, ZData>.ColorBar.ticks`,
+///   `Indicator.Gauge.Axis.ticks`, `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.ticks`,
+///   `ContourCarpet<ZData, AData, BData>.ColorBar.ticks`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.ticks`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.ticks`, `BarPolar<RData, ThetaData>.Marker.ColorBar.ticks`.
+public enum Ticks: String, Encodable {
+    case outside
+    case inside
+    case off = ""
+}
+
+/// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
+/// area.
+/// 
+/// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
+/// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
+/// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+/// 
+/// - Note:
+///   Used by `XAxis.mirror`, `YAxis.mirror`, `Scene.XAxis.mirror`, `Scene.YAxis.mirror`,
+///   `Scene.ZAxis.mirror`.
+public enum Mirror: Encodable {
+    case on
+    case ticks
+    case off
+    case all
+    case allTicks
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .on:
+            try container.encode(true)
+        case .ticks:
+            try container.encode("ticks")
+        case .off:
+            try container.encode(false)
+        case .all:
+            try container.encode("all")
+        case .allTicks:
+            try container.encode("allticks")
+        }
+    }
+}
+
+/// If *all*, all tick labels are displayed with a prefix.
+/// 
+/// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+/// displayed with a suffix. If *none*, tick prefixes are hidden.
+/// 
+/// - Note:
+///   Used by `XAxis.showTickPrefix`, `YAxis.showTickPrefix`, `Ternary.AAxis.showTickPrefix`,
+///   `Ternary.BAxis.showTickPrefix`, `Ternary.CAxis.showTickPrefix`, `Scene.XAxis.showTickPrefix`,
+///   `Scene.YAxis.showTickPrefix`, `Scene.ZAxis.showTickPrefix`, `Polar.RadialAxis.showTickPrefix`,
+///   `Polar.AngularAxis.showTickPrefix`, `ColorBar.showTickPrefix`,
+///   `GradientMarker.ColorBar.showTickPrefix`, `Marker.ColorBar.showTickPrefix`, `Heatmap<ZData,
+///   XYData>.ColorBar.showTickPrefix`, `Histogram<XData, YData>.Marker.ColorBar.showTickPrefix`,
+///   `Histogram2D<XData, YData, ZData>.ColorBar.showTickPrefix`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.showTickPrefix`, `Contour<ZData, XData, YData>.ColorBar.showTickPrefix`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.showTickPrefix`, `Funnel<XData,
+///   YData>.Marker.ColorBar.showTickPrefix`, `Sunburst<ValuesData>.Marker.ColorBar.showTickPrefix`,
+///   `Treemap<ValuesData>.Marker.ColorBar.showTickPrefix`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.showTickPrefix`, `SymbolicMarker.ColorBar.showTickPrefix`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.showTickPrefix`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.showTickPrefix`, `Volume<XYZData, ValueData>.ColorBar.showTickPrefix`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.showTickPrefix`, `Cone<XYZData, UVWData>.ColorBar.showTickPrefix`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.showTickPrefix`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.showTickPrefix`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.showTickPrefix`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.showTickPrefix`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickPrefix`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.showTickPrefix`, `ParallelCoordinates.MarkerLine.ColorBar.showTickPrefix`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.showTickPrefix`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.showTickPrefix`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.showTickPrefix`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.showTickPrefix`, `Indicator.Gauge.Axis.showTickPrefix`, `Carpet<XData, YData,
+///   AData, BData>.AAxis.showTickPrefix`, `Carpet<XData, YData, AData, BData>.BAxis.showTickPrefix`,
+///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.showTickPrefix`, `ContourCarpet<ZData,
+///   AData, BData>.ColorBar.showTickPrefix`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.showTickPrefix`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.showTickPrefix`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.showTickPrefix`.
+public enum ShowTickPrefix: String, Encodable {
+    case all
+    case first
+    case last
+    case none
+}
+
+/// Same as `showtickprefix` but for tick suffixes.
+/// 
+/// - Note:
+///   Used by `XAxis.showTickSuffix`, `YAxis.showTickSuffix`, `Ternary.AAxis.showTickSuffix`,
+///   `Ternary.BAxis.showTickSuffix`, `Ternary.CAxis.showTickSuffix`, `Scene.XAxis.showTickSuffix`,
+///   `Scene.YAxis.showTickSuffix`, `Scene.ZAxis.showTickSuffix`, `Polar.RadialAxis.showTickSuffix`,
+///   `Polar.AngularAxis.showTickSuffix`, `ColorBar.showTickSuffix`,
+///   `GradientMarker.ColorBar.showTickSuffix`, `Marker.ColorBar.showTickSuffix`, `Heatmap<ZData,
+///   XYData>.ColorBar.showTickSuffix`, `Histogram<XData, YData>.Marker.ColorBar.showTickSuffix`,
+///   `Histogram2D<XData, YData, ZData>.ColorBar.showTickSuffix`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.showTickSuffix`, `Contour<ZData, XData, YData>.ColorBar.showTickSuffix`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.showTickSuffix`, `Funnel<XData,
+///   YData>.Marker.ColorBar.showTickSuffix`, `Sunburst<ValuesData>.Marker.ColorBar.showTickSuffix`,
+///   `Treemap<ValuesData>.Marker.ColorBar.showTickSuffix`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.showTickSuffix`, `SymbolicMarker.ColorBar.showTickSuffix`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.showTickSuffix`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.showTickSuffix`, `Volume<XYZData, ValueData>.ColorBar.showTickSuffix`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.showTickSuffix`, `Cone<XYZData, UVWData>.ColorBar.showTickSuffix`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.showTickSuffix`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.showTickSuffix`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.showTickSuffix`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.showTickSuffix`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickSuffix`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.showTickSuffix`, `ParallelCoordinates.MarkerLine.ColorBar.showTickSuffix`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.showTickSuffix`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.showTickSuffix`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.showTickSuffix`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.showTickSuffix`, `Indicator.Gauge.Axis.showTickSuffix`, `Carpet<XData, YData,
+///   AData, BData>.AAxis.showTickSuffix`, `Carpet<XData, YData, AData, BData>.BAxis.showTickSuffix`,
+///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.showTickSuffix`, `ContourCarpet<ZData,
+///   AData, BData>.ColorBar.showTickSuffix`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.showTickSuffix`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.showTickSuffix`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.showTickSuffix`.
+public enum ShowTickSuffix: String, Encodable {
+    case all
+    case first
+    case last
+    case none
+}
+
+/// If *all*, all exponents are shown besides their significands.
+/// 
+/// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+/// last tick is shown. If *none*, no exponents appear.
+/// 
+/// - Note:
+///   Used by `XAxis.showExponent`, `YAxis.showExponent`, `Ternary.AAxis.showExponent`,
+///   `Ternary.BAxis.showExponent`, `Ternary.CAxis.showExponent`, `Scene.XAxis.showExponent`,
+///   `Scene.YAxis.showExponent`, `Scene.ZAxis.showExponent`, `Polar.RadialAxis.showExponent`,
+///   `Polar.AngularAxis.showExponent`, `ColorBar.showExponent`,
+///   `GradientMarker.ColorBar.showExponent`, `Marker.ColorBar.showExponent`, `Heatmap<ZData,
+///   XYData>.ColorBar.showExponent`, `Histogram<XData, YData>.Marker.ColorBar.showExponent`,
+///   `Histogram2D<XData, YData, ZData>.ColorBar.showExponent`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.showExponent`, `Contour<ZData, XData, YData>.ColorBar.showExponent`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.showExponent`, `Funnel<XData,
+///   YData>.Marker.ColorBar.showExponent`, `Sunburst<ValuesData>.Marker.ColorBar.showExponent`,
+///   `Treemap<ValuesData>.Marker.ColorBar.showExponent`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.showExponent`, `SymbolicMarker.ColorBar.showExponent`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.showExponent`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.showExponent`, `Volume<XYZData, ValueData>.ColorBar.showExponent`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.showExponent`, `Cone<XYZData, UVWData>.ColorBar.showExponent`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.showExponent`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.showExponent`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.showExponent`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.showExponent`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showExponent`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.showExponent`, `ParallelCoordinates.MarkerLine.ColorBar.showExponent`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.showExponent`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.showExponent`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.showExponent`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.showExponent`, `Indicator.Gauge.Axis.showExponent`, `Carpet<XData, YData, AData,
+///   BData>.AAxis.showExponent`, `Carpet<XData, YData, AData, BData>.BAxis.showExponent`,
+///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.showExponent`, `ContourCarpet<ZData, AData,
+///   BData>.ColorBar.showExponent`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.showExponent`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.showExponent`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.showExponent`.
+public enum ShowExponent: String, Encodable {
+    case all
+    case first
+    case last
+    case none
+}
+
+/// Determines a formatting rule for the tick exponents.
+/// 
+/// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+/// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+/// 
+/// - Note:
+///   Used by `XAxis.exponentFormat`, `YAxis.exponentFormat`, `Ternary.AAxis.exponentFormat`,
+///   `Ternary.BAxis.exponentFormat`, `Ternary.CAxis.exponentFormat`, `Scene.XAxis.exponentFormat`,
+///   `Scene.YAxis.exponentFormat`, `Scene.ZAxis.exponentFormat`, `Polar.RadialAxis.exponentFormat`,
+///   `Polar.AngularAxis.exponentFormat`, `ColorBar.exponentFormat`,
+///   `GradientMarker.ColorBar.exponentFormat`, `Marker.ColorBar.exponentFormat`, `Heatmap<ZData,
+///   XYData>.ColorBar.exponentFormat`, `Histogram<XData, YData>.Marker.ColorBar.exponentFormat`,
+///   `Histogram2D<XData, YData, ZData>.ColorBar.exponentFormat`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.exponentFormat`, `Contour<ZData, XData, YData>.ColorBar.exponentFormat`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.exponentFormat`, `Funnel<XData,
+///   YData>.Marker.ColorBar.exponentFormat`, `Sunburst<ValuesData>.Marker.ColorBar.exponentFormat`,
+///   `Treemap<ValuesData>.Marker.ColorBar.exponentFormat`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.exponentFormat`, `SymbolicMarker.ColorBar.exponentFormat`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.exponentFormat`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.exponentFormat`, `Volume<XYZData, ValueData>.ColorBar.exponentFormat`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.exponentFormat`, `Cone<XYZData, UVWData>.ColorBar.exponentFormat`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.exponentFormat`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.exponentFormat`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.exponentFormat`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.exponentFormat`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.exponentFormat`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.exponentFormat`, `ParallelCoordinates.MarkerLine.ColorBar.exponentFormat`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.exponentFormat`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.exponentFormat`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.exponentFormat`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.exponentFormat`, `Indicator.Gauge.Axis.exponentFormat`, `Carpet<XData, YData,
+///   AData, BData>.AAxis.exponentFormat`, `Carpet<XData, YData, AData, BData>.BAxis.exponentFormat`,
+///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.exponentFormat`, `ContourCarpet<ZData,
+///   AData, BData>.ColorBar.exponentFormat`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.exponentFormat`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.exponentFormat`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.exponentFormat`.
+public enum ExponentFormat: String, Encodable {
+    case none
+    case e
+    case E
+    case power
+    case SI
+    case B
+}
+
+/// Sets the layer on which this axis is displayed.
+/// 
+/// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
+/// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
+/// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
+/// nodes above this axis.
+/// 
+/// - Note:
+///   Used by `XAxis.layer`, `YAxis.layer`, `Ternary.AAxis.layer`, `Ternary.BAxis.layer`,
+///   `Ternary.CAxis.layer`, `Polar.RadialAxis.layer`, `Polar.AngularAxis.layer`.
+public enum AxisLayer: String, Encodable {
+    case aboveTraces = "above traces"
+    case belowTraces = "below traces"
+}
+
+/// Specifies the ordering logic for the case of categorical variables.
+/// 
+/// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+/// Set `categoryorder` to *category ascending* or *category descending* if order should be
+/// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+/// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+/// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+/// mode. The unspecified categories will follow the categories in `categoryarray`. Set
+/// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
+/// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
+/// or median of all the values.
+/// 
+/// - Note:
+///   Used by `XAxis.categoryOrder`, `YAxis.categoryOrder`, `Scene.XAxis.categoryOrder`,
+///   `Scene.YAxis.categoryOrder`, `Scene.ZAxis.categoryOrder`, `Polar.RadialAxis.categoryOrder`,
+///   `Polar.AngularAxis.categoryOrder`.
+public enum CategoryOrder: String, Encodable {
+    case trace
+    case categoryAscending = "category ascending"
+    case categoryDescending = "category descending"
+    case array
+    case totalAscending = "total ascending"
+    case totalDescending = "total descending"
+    case minAscending = "min ascending"
+    case minDescending = "min descending"
+    case maxAscending = "max ascending"
+    case maxDescending = "max descending"
+    case sumAscending = "sum ascending"
+    case sumDescending = "sum descending"
+    case meanAscending = "mean ascending"
+    case meanDescending = "mean descending"
+    case medianAscending = "median ascending"
+    case medianDescending = "median descending"
+}
+
+/// Sets the horizontal alignment of the `text` within the box.
+/// 
+/// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
+/// tags) or if an explicit width is set to override the text width.
+/// 
+/// - Note:
+///   Used by `Scene.Annotation.align`, `Layout.Annotation.align`, `Indicator.align`,
+///   `Indicator.Title.align`, `Table<CellData>.Header.align`,
+///   `Table<CellData>.Cells<CellData>.align`.
+public enum HorizontalAlign: String, Encodable {
+    case left
+    case center
+    case right
+}
+
+/// Sets the vertical alignment of the `text` within the box.
+/// 
+/// Has an effect only if an explicit height is set to override the text height.
+/// 
+/// - Note:
+///   Used by `Scene.Annotation.verticalAlign`, `Layout.Legend.verticalAlign`,
+///   `Layout.Annotation.verticalAlign`.
+public enum VerticalAlign: String, Encodable {
+    case top
+    case middle
+    case bottom
+}
+
+/// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+/// 
+/// - Note:
+///   Used by `Mapbox.Layer.Symbol.textPosition`, `Scatter<XData, YData>.textPosition`,
+///   `ScatterTernary<AData, BData, CData>.textPosition`, `Treemap<ValuesData>.textPosition`,
+///   `Scatter3D<XData, YData, ZData>.textPosition`, `ScatterGeo<CoordinateData,
+///   LocationsData>.textPosition`, `ScatterGL<XData, YData>.textPosition`,
+///   `ScatterMapbox<CoordinateData>.textPosition`, `ScatterCarpet<AData, BData>.textPosition`,
+///   `ScatterPolar<RData, ThetaData>.textPosition`, `ScatterPolarGL<RData, ThetaData>.textPosition`.
+public enum TextPosition: String, Encodable {
+    case topLeft = "top left"
+    case topCenter = "top center"
+    case topRight = "top right"
+    case middleLeft = "middle left"
+    case middleCenter = "middle center"
+    case middleRight = "middle right"
+    case bottomLeft = "bottom left"
+    case bottomCenter = "bottom center"
+    case bottomRight = "bottom right"
+}
+
+/// Sets the annotation's x coordinate axis.
+/// 
+/// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
+/// *paper*, the `x` position refers to the distance from the left side of the plotting area in
+/// normalized coordinates where 0 (1) corresponds to the left (right) side.
+/// 
+/// - Note:
+///   Used by `Layout.Annotation.xReference`, `Layout.Shape.xReference`, `Layout.Image.xReference`.
+public enum XAxisReference: Encodable {
+    case paper
+    case xAxis(XAxis)
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .paper:
+            try container.encode("paper")
+        case .xAxis(let axis):
+            try container.encode("x\(axis.uid)")
+        }
+    }
+}
+
+/// Sets the annotation's y coordinate axis.
+/// 
+/// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+/// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
+/// normalized coordinates where 0 (1) corresponds to the bottom (top).
+/// 
+/// - Note:
+///   Used by `Layout.Annotation.yReference`, `Layout.Shape.yReference`, `Layout.Image.yReference`.
+public enum YAxisReference: Encodable {
+    case paper
+    case yAxis(YAxis)
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .paper:
+            try container.encode("paper")
+        case .yAxis(let axis):
+            try container.encode("y\(axis.uid)")
+        }
+    }
+}
+
+/// Sets the anchor for the x position
+/// 
+/// - Note:
+///   Used by `Layout.Image.xAnchor`, `Layout.Slider.CurrentValue.xAnchor`, `ColorBar.xAnchor`,
+///   `GradientMarker.ColorBar.xAnchor`, `Marker.ColorBar.xAnchor`, `Heatmap<ZData,
+///   XYData>.ColorBar.xAnchor`, `Histogram<XData, YData>.Marker.ColorBar.xAnchor`,
+///   `Histogram2D<XData, YData, ZData>.ColorBar.xAnchor`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.xAnchor`, `Contour<ZData, XData, YData>.ColorBar.xAnchor`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.xAnchor`, `Funnel<XData,
+///   YData>.Marker.ColorBar.xAnchor`, `Sunburst<ValuesData>.Marker.ColorBar.xAnchor`,
+///   `Treemap<ValuesData>.Marker.ColorBar.xAnchor`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.xAnchor`, `SymbolicMarker.ColorBar.xAnchor`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.xAnchor`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.xAnchor`, `Volume<XYZData, ValueData>.ColorBar.xAnchor`, `Mesh3D<XData,
+///   YData, ZData, IntensityData, VertexcolorData, FacecolorData>.ColorBar.xAnchor`, `Cone<XYZData,
+///   UVWData>.ColorBar.xAnchor`, `StreamTube<XYZData, UVWData>.ColorBar.xAnchor`,
+///   `ScatterGeo<CoordinateData, LocationsData>.GradientMarker.ColorBar.xAnchor`,
+///   `Choropleth<LocationsData, ZData>.ColorBar.xAnchor`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.xAnchor`, `ScatterPlotMatrix.SymbolicMarker.ColorBar.xAnchor`,
+///   `HeatmapGL<ZData, XYData>.ColorBar.xAnchor`, `ParallelCoordinates.MarkerLine.ColorBar.xAnchor`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.xAnchor`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.xAnchor`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.xAnchor`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.xAnchor`, `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.xAnchor`,
+///   `ContourCarpet<ZData, AData, BData>.ColorBar.xAnchor`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.xAnchor`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.xAnchor`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.xAnchor`.
+public enum XAnchor: String, Encodable {
+    case left
+    case center
+    case right
+}
+
+/// Sets the anchor for the y position.
+/// 
+/// - Note:
+///   Used by `Layout.Image.yAnchor`, `ColorBar.yAnchor`, `GradientMarker.ColorBar.yAnchor`,
+///   `Marker.ColorBar.yAnchor`, `Heatmap<ZData, XYData>.ColorBar.yAnchor`, `Histogram<XData,
+///   YData>.Marker.ColorBar.yAnchor`, `Histogram2D<XData, YData, ZData>.ColorBar.yAnchor`,
+///   `Histogram2DContour<XData, YData, ZData>.ColorBar.yAnchor`, `Contour<ZData, XData,
+///   YData>.ColorBar.yAnchor`, `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.yAnchor`,
+///   `Funnel<XData, YData>.Marker.ColorBar.yAnchor`, `Sunburst<ValuesData>.Marker.ColorBar.yAnchor`,
+///   `Treemap<ValuesData>.Marker.ColorBar.yAnchor`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.yAnchor`, `SymbolicMarker.ColorBar.yAnchor`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.yAnchor`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.yAnchor`, `Volume<XYZData, ValueData>.ColorBar.yAnchor`, `Mesh3D<XData,
+///   YData, ZData, IntensityData, VertexcolorData, FacecolorData>.ColorBar.yAnchor`, `Cone<XYZData,
+///   UVWData>.ColorBar.yAnchor`, `StreamTube<XYZData, UVWData>.ColorBar.yAnchor`,
+///   `ScatterGeo<CoordinateData, LocationsData>.GradientMarker.ColorBar.yAnchor`,
+///   `Choropleth<LocationsData, ZData>.ColorBar.yAnchor`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.yAnchor`, `ScatterPlotMatrix.SymbolicMarker.ColorBar.yAnchor`,
+///   `HeatmapGL<ZData, XYData>.ColorBar.yAnchor`, `ParallelCoordinates.MarkerLine.ColorBar.yAnchor`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.yAnchor`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.yAnchor`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.yAnchor`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.yAnchor`, `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.yAnchor`,
+///   `ContourCarpet<ZData, AData, BData>.ColorBar.yAnchor`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.yAnchor`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.yAnchor`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.yAnchor`.
+public enum YAnchor: String, Encodable {
+    case top
+    case middle
+    case bottom
+}
+
+/// Determines whether this slider length is set in units of plot *fraction* or in *pixels.
+/// 
+/// Use `len` to set the value.
+/// 
+/// - Note:
+///   Used by `Layout.Slider.lengthMode`, `ColorBar.lengthMode`, `GradientMarker.ColorBar.lengthMode`,
+///   `Marker.ColorBar.lengthMode`, `Heatmap<ZData, XYData>.ColorBar.lengthMode`, `Histogram<XData,
+///   YData>.Marker.ColorBar.lengthMode`, `Histogram2D<XData, YData, ZData>.ColorBar.lengthMode`,
+///   `Histogram2DContour<XData, YData, ZData>.ColorBar.lengthMode`, `Contour<ZData, XData,
+///   YData>.ColorBar.lengthMode`, `ScatterTernary<AData, BData,
+///   CData>.GradientMarker.ColorBar.lengthMode`, `Funnel<XData, YData>.Marker.ColorBar.lengthMode`,
+///   `Sunburst<ValuesData>.Marker.ColorBar.lengthMode`,
+///   `Treemap<ValuesData>.Marker.ColorBar.lengthMode`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.lengthMode`, `SymbolicMarker.ColorBar.lengthMode`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.lengthMode`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.lengthMode`, `Volume<XYZData, ValueData>.ColorBar.lengthMode`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.lengthMode`, `Cone<XYZData, UVWData>.ColorBar.lengthMode`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.lengthMode`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.lengthMode`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.lengthMode`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.lengthMode`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.lengthMode`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.lengthMode`, `ParallelCoordinates.MarkerLine.ColorBar.lengthMode`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.lengthMode`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.lengthMode`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.lengthMode`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.lengthMode`, `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.lengthMode`,
+///   `ContourCarpet<ZData, AData, BData>.ColorBar.lengthMode`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.lengthMode`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.lengthMode`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.lengthMode`.
+public enum LengthMode: String, Encodable {
+    case fraction
+    case pixels
+}
+
+/// Determines whether this color bar's thickness (i.e.
+/// 
+/// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
+/// Use `thickness` to set the value.
+/// 
+/// - Note:
+///   Used by `ColorBar.thicknessMode`, `GradientMarker.ColorBar.thicknessMode`,
+///   `Marker.ColorBar.thicknessMode`, `Heatmap<ZData, XYData>.ColorBar.thicknessMode`,
+///   `Histogram<XData, YData>.Marker.ColorBar.thicknessMode`, `Histogram2D<XData, YData,
+///   ZData>.ColorBar.thicknessMode`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.thicknessMode`, `Contour<ZData, XData, YData>.ColorBar.thicknessMode`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.thicknessMode`, `Funnel<XData,
+///   YData>.Marker.ColorBar.thicknessMode`, `Sunburst<ValuesData>.Marker.ColorBar.thicknessMode`,
+///   `Treemap<ValuesData>.Marker.ColorBar.thicknessMode`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.thicknessMode`, `SymbolicMarker.ColorBar.thicknessMode`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.thicknessMode`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.thicknessMode`, `Volume<XYZData, ValueData>.ColorBar.thicknessMode`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.thicknessMode`, `Cone<XYZData, UVWData>.ColorBar.thicknessMode`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.thicknessMode`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.thicknessMode`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.thicknessMode`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.thicknessMode`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.thicknessMode`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.thicknessMode`, `ParallelCoordinates.MarkerLine.ColorBar.thicknessMode`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.thicknessMode`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.thicknessMode`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.thicknessMode`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.thicknessMode`, `ScatterCarpet<AData,
+///   BData>.GradientMarker.ColorBar.thicknessMode`, `ContourCarpet<ZData, AData,
+///   BData>.ColorBar.thicknessMode`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.thicknessMode`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.thicknessMode`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.thicknessMode`.
+public enum ThicknessMode: String, Encodable {
+    case fraction
+    case pixels
+}
+
+/// Determines the location of color bar's title with respect to the color bar.
+/// 
+/// Note that the title's location used to be set by the now deprecated `titleside` attribute.
+/// 
+/// - Note:
+///   Used by `ColorBar.LegendTitle.side`, `GradientMarker.ColorBar.LegendTitle.side`,
+///   `Marker.ColorBar.LegendTitle.side`, `Heatmap<ZData, XYData>.ColorBar.LegendTitle.side`,
+///   `Histogram<XData, YData>.Marker.ColorBar.LegendTitle.side`, `Histogram2D<XData, YData,
+///   ZData>.ColorBar.LegendTitle.side`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.LegendTitle.side`, `Contour<ZData, XData, YData>.ColorBar.LegendTitle.side`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.LegendTitle.side`, `Funnel<XData,
+///   YData>.Marker.ColorBar.LegendTitle.side`,
+///   `Sunburst<ValuesData>.Marker.ColorBar.LegendTitle.side`,
+///   `Treemap<ValuesData>.Marker.ColorBar.LegendTitle.side`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.LegendTitle.side`, `SymbolicMarker.ColorBar.LegendTitle.side`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.LegendTitle.side`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.LegendTitle.side`, `Volume<XYZData, ValueData>.ColorBar.LegendTitle.side`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.LegendTitle.side`, `Cone<XYZData, UVWData>.ColorBar.LegendTitle.side`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.LegendTitle.side`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.LegendTitle.side`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.LegendTitle.side`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.LegendTitle.side`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.LegendTitle.side`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.LegendTitle.side`, `ParallelCoordinates.MarkerLine.ColorBar.LegendTitle.side`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.LegendTitle.side`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.LegendTitle.side`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.LegendTitle.side`,
+///   `DensityMapbox<CoordinateData, ZData>.ColorBar.LegendTitle.side`, `ScatterCarpet<AData,
+///   BData>.GradientMarker.ColorBar.LegendTitle.side`, `ContourCarpet<ZData, AData,
+///   BData>.ColorBar.LegendTitle.side`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.LegendTitle.side`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.LegendTitle.side`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.LegendTitle.side`.
+public enum Side: String, Encodable {
+    case right
+    case top
+    case bottom
+}
+
+/// Determines whether or not this trace is visible.
+/// 
+/// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
+/// legend itself is visible).
+/// 
+/// - Note:
+///   Used by `Scatter<XData, YData>.visible`, `Bar<XData, YData>.visible`, `Box<YData, XData,
+///   QData>.visible`, `Heatmap<ZData, XYData>.visible`, `Histogram<XData, YData>.visible`,
+///   `Histogram2D<XData, YData, ZData>.visible`, `Histogram2DContour<XData, YData, ZData>.visible`,
+///   `Contour<ZData, XData, YData>.visible`, `ScatterTernary<AData, BData, CData>.visible`,
+///   `Violin<YData, XData>.visible`, `Funnel<XData, YData>.visible`, `Waterfall<XData,
+///   YData>.visible`, `Image<ZData>.visible`, `Pie<LabelsData, ValuesData>.visible`,
+///   `Sunburst<ValuesData>.visible`, `Treemap<ValuesData>.visible`, `FunnelArea<LabelsData,
+///   ValuesData>.visible`, `Scatter3D<XData, YData, ZData>.visible`, `Surface<ZSurfaceData,
+///   XYData>.visible`, `Isosurface<XData, YData, ZData, ValueData>.visible`, `Volume<XYZData,
+///   ValueData>.visible`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.visible`, `Cone<XYZData, UVWData>.visible`, `StreamTube<XYZData,
+///   UVWData>.visible`, `ScatterGeo<CoordinateData, LocationsData>.visible`,
+///   `Choropleth<LocationsData, ZData>.visible`, `ScatterGL<XData, YData>.visible`,
+///   `ScatterPlotMatrix.visible`, `PointCloud<XYData>.visible`, `HeatmapGL<ZData, XYData>.visible`,
+///   `ParallelCoordinates.visible`, `ParallelCategories.visible`,
+///   `ScatterMapbox<CoordinateData>.visible`, `ChoroplethMapbox<LocationsData, ZData>.visible`,
+///   `DensityMapbox<CoordinateData, ZData>.visible`, `Sankey.visible`, `Indicator.visible`,
+///   `Table<CellData>.visible`, `Carpet<XData, YData, AData, BData>.visible`, `ScatterCarpet<AData,
+///   BData>.visible`, `ContourCarpet<ZData, AData, BData>.visible`, `OHLC<XData, OHLCData>.visible`,
+///   `Candlestick<XData, OHLCData>.visible`, `ScatterPolar<RData, ThetaData>.visible`,
+///   `ScatterPolarGL<RData, ThetaData>.visible`, `BarPolar<RData, ThetaData>.visible`.
+public enum Visible: Encodable {
+    case on
+    case off
+    case legendOnly
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .on:
+            try container.encode(true)
+        case .off:
+            try container.encode(false)
+        case .legendOnly:
+            try container.encode("legendonly")
+        }
+    }
+}
+
+/// Sets the area to fill with a solid color.
+/// 
+/// Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if
+/// `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to
+/// x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and
+/// the endpoints of the trace before it, connecting those endpoints with straight lines (to make a
+/// stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*.
+/// *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into
+/// a closed shape. *tonext* fills the space between two traces if one completely encloses the other
+/// (eg consecutive contour lines), and behaves like *toself* if there is no trace before it.
+/// *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup`
+/// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
+/// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
+/// later ones will be pushed down in the drawing order.
+/// 
+/// - Note:
+///   Used by `Scatter<XData, YData>.fill`, `ScatterGL<XData, YData>.fill`, `ScatterPolarGL<RData,
+///   ThetaData>.fill`.
+public enum Fill: String, Encodable {
+    case none
+    case toZeroY = "tozeroy"
+    case toZeroX = "tozerox"
+    case toNextY = "tonexty"
+    case toNextX = "tonextx"
+    case toSelf = "toself"
+    case toNext = "tonext"
+}
+
+/// Sets the marker symbol type.
+/// 
+/// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
+/// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
+/// *dot-open* to a symbol name.
+/// 
+/// - Note:
+///   Used by `GradientMarker.symbol`, `Box<YData, XData, QData>.SymbolicMarker.symbol`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.symbol`, `Violin<YData,
+///   XData>.SymbolicMarker.symbol`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.symbol`, `ScatterGL<XData, YData>.SymbolicMarker.symbol`,
+///   `ScatterPlotMatrix.SymbolicMarker.symbol`, `ScatterCarpet<AData, BData>.GradientMarker.symbol`,
+///   `ScatterPolar<RData, ThetaData>.GradientMarker.symbol`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.symbol`.
+public enum Symbol: String, Encodable {
+    case circle
+    case circleOpen = "circle-open"
+    case circleDot = "circle-dot"
+    case circleOpenDot = "circle-open-dot"
+    case square
+    case squareOpen = "square-open"
+    case squareDot = "square-dot"
+    case squareOpenDot = "square-open-dot"
+    case diamond
+    case diamondOpen = "diamond-open"
+    case diamondDot = "diamond-dot"
+    case diamondOpenDot = "diamond-open-dot"
+    case cross
+    case crossOpen = "cross-open"
+    case crossDot = "cross-dot"
+    case crossOpenDot = "cross-open-dot"
+    case x
+    case xOpen = "x-open"
+    case xDot = "x-dot"
+    case xOpenDot = "x-open-dot"
+    case triangleUp = "triangle-up"
+    case triangleUpOpen = "triangle-up-open"
+    case triangleUpDot = "triangle-up-dot"
+    case triangleUpOpenDot = "triangle-up-open-dot"
+    case triangleDown = "triangle-down"
+    case triangleDownOpen = "triangle-down-open"
+    case triangleDownDot = "triangle-down-dot"
+    case triangleDownOpenDot = "triangle-down-open-dot"
+    case triangleLeft = "triangle-left"
+    case triangleLeftOpen = "triangle-left-open"
+    case triangleLeftDot = "triangle-left-dot"
+    case triangleLeftOpenDot = "triangle-left-open-dot"
+    case triangleRight = "triangle-right"
+    case triangleRightOpen = "triangle-right-open"
+    case triangleRightDot = "triangle-right-dot"
+    case triangleRightOpenDot = "triangle-right-open-dot"
+    case triangleNE = "triangle-ne"
+    case triangleNEOpen = "triangle-ne-open"
+    case triangleNEDot = "triangle-ne-dot"
+    case triangleNEOpenDot = "triangle-ne-open-dot"
+    case triangleSE = "triangle-se"
+    case triangleSEOpen = "triangle-se-open"
+    case triangleSEDot = "triangle-se-dot"
+    case triangleSEOpenDot = "triangle-se-open-dot"
+    case triangleSW = "triangle-sw"
+    case triangleSWOpen = "triangle-sw-open"
+    case triangleSWDot = "triangle-sw-dot"
+    case triangleSWOpenDot = "triangle-sw-open-dot"
+    case triangleNW = "triangle-nw"
+    case triangleNWOpen = "triangle-nw-open"
+    case triangleNWDot = "triangle-nw-dot"
+    case triangleNWOpenDot = "triangle-nw-open-dot"
+    case pentagon
+    case pentagonOpen = "pentagon-open"
+    case pentagonDot = "pentagon-dot"
+    case pentagonOpenDot = "pentagon-open-dot"
+    case hexagon
+    case hexagonOpen = "hexagon-open"
+    case hexagonDot = "hexagon-dot"
+    case hexagonOpenDot = "hexagon-open-dot"
+    case hexagon2
+    case hexagon2Open = "hexagon2-open"
+    case hexagon2Dot = "hexagon2-dot"
+    case hexagon2OpenDot = "hexagon2-open-dot"
+    case octagon
+    case octagonOpen = "octagon-open"
+    case octagonDot = "octagon-dot"
+    case octagonOpenDot = "octagon-open-dot"
+    case star
+    case starOpen = "star-open"
+    case starDot = "star-dot"
+    case starOpenDot = "star-open-dot"
+    case hexagram
+    case hexagramOpen = "hexagram-open"
+    case hexagramDot = "hexagram-dot"
+    case hexagramOpenDot = "hexagram-open-dot"
+    case starTriangleUp = "star-triangle-up"
+    case starTriangleUpOpen = "star-triangle-up-open"
+    case starTriangleUpDot = "star-triangle-up-dot"
+    case starTriangleUpOpenDot = "star-triangle-up-open-dot"
+    case starTriangleDown = "star-triangle-down"
+    case starTriangleDownOpen = "star-triangle-down-open"
+    case starTriangleDownDot = "star-triangle-down-dot"
+    case starTriangleDownOpenDot = "star-triangle-down-open-dot"
+    case starSquare = "star-square"
+    case starSquareOpen = "star-square-open"
+    case starSquareDot = "star-square-dot"
+    case starSquareOpenDot = "star-square-open-dot"
+    case starDiamond = "star-diamond"
+    case starDiamondOpen = "star-diamond-open"
+    case starDiamondDot = "star-diamond-dot"
+    case starDiamondOpenDot = "star-diamond-open-dot"
+    case diamondTall = "diamond-tall"
+    case diamondTallOpen = "diamond-tall-open"
+    case diamondTallDot = "diamond-tall-dot"
+    case diamondTallOpenDot = "diamond-tall-open-dot"
+    case diamondWide = "diamond-wide"
+    case diamondWideOpen = "diamond-wide-open"
+    case diamondWideDot = "diamond-wide-dot"
+    case diamondWideOpenDot = "diamond-wide-open-dot"
+    case hourglass
+    case hourglassOpen = "hourglass-open"
+    case bowTie = "bowtie"
+    case bowTieOpen = "bowtie-open"
+    case circleCross = "circle-cross"
+    case circleCrossOpen = "circle-cross-open"
+    case circleX = "circle-x"
+    case circleXOpen = "circle-x-open"
+    case squareCross = "square-cross"
+    case squareCrossOpen = "square-cross-open"
+    case squareX = "square-x"
+    case squareXOpen = "square-x-open"
+    case diamondCross = "diamond-cross"
+    case diamondCrossOpen = "diamond-cross-open"
+    case diamondX = "diamond-x"
+    case diamondXOpen = "diamond-x-open"
+    case crossThin = "cross-thin"
+    case crossThinOpen = "cross-thin-open"
+    case xThin = "x-thin"
+    case xThinOpen = "x-thin-open"
+    case asterisk
+    case asteriskOpen = "asterisk-open"
+    case hash
+    case hashOpen = "hash-open"
+    case hashDot = "hash-dot"
+    case hashOpenDot = "hash-open-dot"
+    case yUp = "y-up"
+    case yUpOpen = "y-up-open"
+    case yDown = "y-down"
+    case yDownOpen = "y-down-open"
+    case yLeft = "y-left"
+    case yLeftOpen = "y-left-open"
+    case yRight = "y-right"
+    case yRightOpen = "y-right-open"
+    case lineEw = "line-ew"
+    case lineEwOpen = "line-ew-open"
+    case lineNS = "line-ns"
+    case lineNSOpen = "line-ns-open"
+    case lineNE = "line-ne"
+    case lineNEOpen = "line-ne-open"
+    case lineNW = "line-nw"
+    case lineNWOpen = "line-nw-open"
+    case arrowUp = "arrow-up"
+    case arrowUpOpen = "arrow-up-open"
+    case arrowDown = "arrow-down"
+    case arrowDownOpen = "arrow-down-open"
+    case arrowLeft = "arrow-left"
+    case arrowLeftOpen = "arrow-left-open"
+    case arrowRight = "arrow-right"
+    case arrowRightOpen = "arrow-right-open"
+    case arrowBarUp = "arrow-bar-up"
+    case arrowBarUpOpen = "arrow-bar-up-open"
+    case arrowBarDown = "arrow-bar-down"
+    case arrowBarDownOpen = "arrow-bar-down-open"
+    case arrowBarLeft = "arrow-bar-left"
+    case arrowBarLeftOpen = "arrow-bar-left-open"
+    case arrowBarRight = "arrow-bar-right"
+    case arrowBarRightOpen = "arrow-bar-right-open"
+}
+
+/// Has an effect only if `marker.size` is set to a numerical array.
+/// 
+/// Sets the rule for which the data in `size` is converted to pixels.
+/// 
+/// - Note:
+///   Used by `GradientMarker.sizeMode`, `ScatterTernary<AData, BData,
+///   CData>.GradientMarker.sizeMode`, `SymbolicMarker.sizeMode`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.sizeMode`, `ScatterGL<XData, YData>.SymbolicMarker.sizeMode`,
+///   `ScatterPlotMatrix.SymbolicMarker.sizeMode`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.sizeMode`, `ScatterCarpet<AData,
+///   BData>.GradientMarker.sizeMode`, `ScatterPolar<RData, ThetaData>.GradientMarker.sizeMode`,
+///   `ScatterPolarGL<RData, ThetaData>.SymbolicMarker.sizeMode`.
+public enum SizeMode: String, Encodable {
+    case diameter
+    case area
+}
+
+/// Specifies the location of the `text`.
+/// 
+/// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
+/// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
+/// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
+/// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
+/// outside.
+/// 
+/// - Note:
+///   Used by `Bar<XData, YData>.textPosition`, `Funnel<XData, YData>.textPosition`, `Waterfall<XData,
+///   YData>.textPosition`, `Pie<LabelsData, ValuesData>.textPosition`.
+public enum AdjacentPosition: String, Encodable {
+    case inside
+    case outside
+    case auto
+    case none
+}
+
+/// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
+/// 
+/// - Note:
+///   Used by `Bar<XData, YData>.insideTextAnchor`, `Funnel<XData, YData>.insideTextAnchor`,
+///   `Waterfall<XData, YData>.insideTextAnchor`.
+public enum InsideTextAnchor: String, Encodable {
+    case end
+    case middle
+    case start
+}
+
+/// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
+/// 
+/// - Note:
+///   Used by `Bar<XData, YData>.constrainText`, `Funnel<XData, YData>.constrainText`,
+///   `Waterfall<XData, YData>.constrainText`.
+public enum ConstrainText: String, Encodable {
+    case inside
+    case outside
+    case both
+    case none
+}
+
+/// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is
+/// provided).
+/// 
+/// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
+/// `x` is not provided).
+/// 
+/// - Note:
+///   Used by `Heatmap<ZData, XYData>.xType`, `Heatmap<ZData, XYData>.yType`, `Contour<ZData, XData,
+///   YData>.xType`, `Contour<ZData, XData, YData>.yType`, `HeatmapGL<ZData, XYData>.xType`,
+///   `HeatmapGL<ZData, XYData>.yType`.
+public enum AxisType: String, Encodable {
+    case array
+    case scaled
+}
+
+/// Specifies the binning function used for this histogram trace.
+/// 
+/// If *count*, the histogram values are computed by counting the number of values lying inside each
+/// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
+/// average, the minimum or the maximum of the values lying inside each bin respectively.
+/// 
+/// - Note:
+///   Used by `Histogram<XData, YData>.binningFunction`, `Histogram2D<XData, YData,
+///   ZData>.binningFunction`, `Histogram2DContour<XData, YData, ZData>.binningFunction`.
+public enum BinningFunction: String, Encodable {
+    case count
+    case sum
+    case avg
+    case min
+    case max
+}
+
+/// Specifies the type of normalization used for this histogram trace.
+/// 
+/// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
+/// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
+/// the percentage / fraction of occurrences with respect to the total number of sample points
+/// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
+/// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
+/// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
+/// the area of each bar corresponds to the probability that an event will fall into the
+/// corresponding bin (here, the sum of all bin AREAS equals 1).
+/// 
+/// - Note:
+///   Used by `Histogram<XData, YData>.normalization`, `Histogram2D<XData, YData,
+///   ZData>.normalization`, `Histogram2DContour<XData, YData, ZData>.normalization`.
+public enum Normalization: String, Encodable {
+    case off = ""
+    case percent
+    case probability
+    case density
+    case probabilityDensity = "probability density"
+}
+
+/// Sets the constraint operation.
+/// 
+/// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
+/// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
+/// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
+/// intervals make no difference to constraint display, but all versions are allowed for consistency
+/// with filter transforms.
+/// 
+/// - Note:
+///   Used by `Contours.operation`, `Contour<ZData, XData, YData>.Contours.operation`,
+///   `ContourCarpet<ZData, AData, BData>.Contours.operation`.
+public enum Operation: String, Encodable {
+    case equalTo = "="
+    case lessThan = "<"
+    case greaterEqualThan = ">="
+    case greaterThan = ">"
+    case lessEqualThan = "<="
+    case insideInclusive = "[]"
+    case insideExclusive = "()"
+    case insideInclusiveExclusive = "[)"
+    case insideExclusiveInclusive = "(]"
+    case outsideInclusive = "]["
+    case outsideExclusive = ")("
+    case outsideInclusiveExclusive = "]("
+    case outsideExclusiveInclusive = ")["
+}
+
+/// Determines the line shape.
+/// 
+/// With *spline* the lines are drawn using spline interpolation. The other available values
+/// correspond to step-wise line shapes.
+/// 
+/// - Note:
+///   Used by `ShapedSmoothDashedLine.shape`, `ScatterCarpet<AData,
+///   BData>.ShapedSmoothDashedLine.shape`, `ScatterPolar<RData,
+///   ThetaData>.ShapedSmoothDashedLine.shape`.
+public enum Shape: String, Encodable {
+    case linear
+    case spline
+}
+
+/// Sets the area to fill with a solid color.
+/// 
+/// Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to
+/// scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has
+/// gaps) into a closed shape. *tonext* fills the space between two traces if one completely
+/// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
+/// trace before it. *tonext* should not be used if one trace does not enclose the other.
+/// 
+/// - Note:
+///   Used by `ScatterTernary<AData, BData, CData>.fill`, `ScatterCarpet<AData, BData>.fill`,
+///   `ScatterPolar<RData, ThetaData>.fill`.
+public enum AreaFill: String, Encodable {
+    case none
+    case toSelf = "toself"
+    case toNext = "tonext"
+}
+
+/// Sets the dash style of the lines.
+/// 
+/// - Note:
+///   Used by `Scatter3D<XData, YData, ZData>.DashedMarkerLine.dash`, `ScatterGL<XData,
+///   YData>.ShapedDashedLine.dash`, `ScatterPolarGL<RData, ThetaData>.ShapedDashedLine.dash`.
+public enum Dash: String, Encodable {
+    case solid
+    case dot
+    case dash
+    case longDash = "longdash"
+    case dashDot = "dashdot"
+    case longDashDot = "longdashdot"
+}
+
+/// Specifies the ordering logic for the categories in the dimension.
+/// 
+/// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+/// Set `categoryorder` to *category ascending* or *category descending* if order should be
+/// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+/// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+/// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+/// mode. The unspecified categories will follow the categories in `categoryarray`.
+/// 
+/// - Note:
+///   Used by `ParallelCategories.Dimension.categoryOrder`, `Carpet<XData, YData, AData,
+///   BData>.AAxis.categoryOrder`, `Carpet<XData, YData, AData, BData>.BAxis.categoryOrder`.
+public enum CarpetCategoryOrder: String, Encodable {
+    case trace
+    case categoryAscending = "category ascending"
+    case categoryDescending = "category descending"
+    case array
+}
+
+/// Sets the unit of input *theta* values.
+/// 
+/// Has an effect only when on *linear* angular axes.
+/// 
+/// - Note:
+///   Used by `ScatterPolar<RData, ThetaData>.thetaUnit`, `ScatterPolarGL<RData,
+///   ThetaData>.thetaUnit`, `BarPolar<RData, ThetaData>.thetaUnit`.
+public enum ThetaUnit: String, Encodable {
+    case radians
+    case degrees
+    case gradians
+}
+
+
+// MARK: - FlagLists
+
+/// Determines which trace information appear on hover.
+/// 
+/// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+/// click and hover events are still fired.
+/// 
+/// - Note:
+///   Used by `Scatter<XData, YData>.hoverInfo`, `Bar<XData, YData>.hoverInfo`, `Box<YData, XData,
+///   QData>.hoverInfo`, `Heatmap<ZData, XYData>.hoverInfo`, `Histogram<XData, YData>.hoverInfo`,
+///   `Histogram2D<XData, YData, ZData>.hoverInfo`, `Histogram2DContour<XData, YData,
+///   ZData>.hoverInfo`, `Contour<ZData, XData, YData>.hoverInfo`, `Violin<YData, XData>.hoverInfo`,
+///   `Scatter3D<XData, YData, ZData>.hoverInfo`, `Surface<ZSurfaceData, XYData>.hoverInfo`,
+///   `Isosurface<XData, YData, ZData, ValueData>.hoverInfo`, `Volume<XYZData, ValueData>.hoverInfo`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>.hoverInfo`,
+///   `ScatterGL<XData, YData>.hoverInfo`, `ScatterPlotMatrix.hoverInfo`,
+///   `PointCloud<XYData>.hoverInfo`, `HeatmapGL<ZData, XYData>.hoverInfo`,
+///   `Table<CellData>.hoverInfo`, `OHLC<XData, OHLCData>.hoverInfo`, `Candlestick<XData,
+///   OHLCData>.hoverInfo`.
+public struct HoverInfo: OptionSet, Encodable {
+    public let rawValue: Int
+    public static var x: HoverInfo { HoverInfo(rawValue: 1 << 0) }
+    public static var y: HoverInfo { HoverInfo(rawValue: 1 << 1) }
+    public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
+    public static var text: HoverInfo { HoverInfo(rawValue: 1 << 3) }
+    public static var name: HoverInfo { HoverInfo(rawValue: 1 << 4) }
+    public static var all: HoverInfo { HoverInfo(rawValue: 1 << 5) }
+    public static var none: HoverInfo { HoverInfo(rawValue: 1 << 6) }
+    public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 7) }
     
-    // MARK: - Enums
-
-    /// Sets the title's horizontal alignment with respect to its x position.
-    /// 
-    /// *left* means that the title starts at x, *right* means that the title ends at x and *center*
-    /// means that the title's center is at x. *auto* divides `xref` by three and calculates the
-    /// `xanchor` value automatically based on the value of `x`.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Title.xAnchor`, `Layout.XAxis.RangeSelector.xAnchor`,
-    ///   `Layout.Scene.Annotation.xAnchor`, `Layout.Legend.xAnchor`, `Layout.Annotation.xAnchor`,
-    ///   `Layout.UpdateMenu.xAnchor`, `Layout.Slider.xAnchor`.
-    public enum XAutoAnchor: String, Encodable {
-        case auto
-        case left
-        case center
-        case right
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
     }
-
-    /// Sets the title's vertical alignment with respect to its y position.
-    /// 
-    /// *top* means that the title's cap line is at y, *bottom* means that the title's baseline is at y
-    /// and *middle* means that the title's midline is at y. *auto* divides `yref` by three and
-    /// calculates the `yanchor` value automatically based on the value of `y`.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Title.yAnchor`, `Layout.XAxis.RangeSelector.yAnchor`,
-    ///   `Layout.Scene.Annotation.yAnchor`, `Layout.Legend.yAnchor`, `Layout.Annotation.yAnchor`,
-    ///   `Layout.UpdateMenu.yAnchor`, `Layout.Slider.yAnchor`.
-    public enum YAutoAnchor: String, Encodable {
-        case auto
-        case top
-        case middle
-        case bottom
+    
+    public func encode(to encoder: Encoder) throws {
+        var options = [String]()
+        if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
+        if (self.rawValue & 1 << 1) != 0 { options += ["y"] }
+        if (self.rawValue & 1 << 2) != 0 { options += ["z"] }
+        if (self.rawValue & 1 << 3) != 0 { options += ["text"] }
+        if (self.rawValue & 1 << 4) != 0 { options += ["name"] }
+        if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
+        if (self.rawValue & 1 << 6) != 0 { options += ["none"] }
+        if (self.rawValue & 1 << 7) != 0 { options += ["skip"] }
+        var container = encoder.singleValueContainer()
+        try container.encode(options.joined(separator: "+"))
     }
+}
 
-    /// Sets the orientation of the modebar.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.ModeBar.orientation`, `Layout.Legend.orientation`, `Scatter<XData,
-    ///   YData>.orientation`, `Bar<XData, YData>.orientation`, `Box<YData, XData, QData>.orientation`,
-    ///   `Histogram<XData, YData>.orientation`, `Violin<YData, XData>.orientation`, `Funnel<XData,
-    ///   YData>.orientation`, `Waterfall<XData, YData>.orientation`, `Sankey.orientation`.
-    public enum Orientation: String, Encodable {
-        case v
-        case h
+/// Determines the drawing mode for this scatter trace.
+/// 
+/// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
+/// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
+/// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
+/// 
+/// - Note:
+///   Used by `Scatter<XData, YData>.mode`, `ScatterTernary<AData, BData, CData>.mode`,
+///   `Scatter3D<XData, YData, ZData>.mode`, `ScatterGeo<CoordinateData, LocationsData>.mode`,
+///   `ScatterGL<XData, YData>.mode`, `ScatterMapbox<CoordinateData>.mode`, `ScatterCarpet<AData,
+///   BData>.mode`, `ScatterPolar<RData, ThetaData>.mode`, `ScatterPolarGL<RData, ThetaData>.mode`.
+public struct Mode: OptionSet, Encodable {
+    public let rawValue: Int
+    public static var lines: Mode { Mode(rawValue: 1 << 0) }
+    public static var markers: Mode { Mode(rawValue: 1 << 1) }
+    public static var text: Mode { Mode(rawValue: 1 << 2) }
+    public static var none: Mode { Mode(rawValue: 1 << 3) }
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var options = [String]()
+        if (self.rawValue & 1 << 0) != 0 { options += ["lines"] }
+        if (self.rawValue & 1 << 1) != 0 { options += ["markers"] }
+        if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
+        if (self.rawValue & 1 << 3) != 0 { options += ["none"] }
+        var container = encoder.singleValueContainer()
+        try container.encode(options.joined(separator: "+"))
+    }
+}
 
-    /// Specifies whether new shapes are drawn below or above traces.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.NewShape.layer`, `Layout.Shape.layer`, `Layout.Image.layer`.
-    public enum ShapeLayer: String, Encodable {
-        case below
-        case above
+/// Do the hover effects highlight individual points (markers or line points) or do they highlight
+/// filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the
+/// default is *fills*, otherwise it is *points*.
+/// 
+/// - Note:
+///   Used by `Scatter<XData, YData>.hoverOn`, `ScatterTernary<AData, BData, CData>.hoverOn`,
+///   `ScatterCarpet<AData, BData>.hoverOn`, `ScatterPolar<RData, ThetaData>.hoverOn`.
+public struct HoverOn: OptionSet, Encodable {
+    public let rawValue: Int
+    public static var points: HoverOn { HoverOn(rawValue: 1 << 0) }
+    public static var fills: HoverOn { HoverOn(rawValue: 1 << 1) }
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var options = [String]()
+        if (self.rawValue & 1 << 0) != 0 { options += ["points"] }
+        if (self.rawValue & 1 << 1) != 0 { options += ["fills"] }
+        var container = encoder.singleValueContainer()
+        try container.encode(options.joined(separator: "+"))
+    }
+}
 
-    /// The easing function used for the transition
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Transition.easing`, `Layout.Slider.Transition.easing`,
-    ///   `Animation.Transition.easing`.
-    public enum Easing: String, Encodable {
-        case linear
-        case quad
-        case cubic
-        case sin
-        case exp
-        case circle
-        case elastic
-        case back
-        case bounce
-        case linearIn = "linear-in"
-        case quadIn = "quad-in"
-        case cubicIn = "cubic-in"
-        case sinIn = "sin-in"
-        case expIn = "exp-in"
-        case circleIn = "circle-in"
-        case elasticIn = "elastic-in"
-        case backIn = "back-in"
-        case bounceIn = "bounce-in"
-        case linearOut = "linear-out"
-        case quadOut = "quad-out"
-        case cubicOut = "cubic-out"
-        case sinOut = "sin-out"
-        case expOut = "exp-out"
-        case circleOut = "circle-out"
-        case elasticOut = "elastic-out"
-        case backOut = "back-out"
-        case bounceOut = "bounce-out"
-        case linearInOut = "linear-in-out"
-        case quadInOut = "quad-in-out"
-        case cubicInOut = "cubic-in-out"
-        case sinInOut = "sin-in-out"
-        case expInOut = "exp-in-out"
-        case circleInOut = "circle-in-out"
-        case elasticInOut = "elastic-in-out"
-        case backInOut = "back-in-out"
-        case bounceInOut = "bounce-in-out"
+/// Determines which trace information appear on hover.
+/// 
+/// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
+/// click and hover events are still fired.
+/// 
+/// - Note:
+///   Used by `ScatterPolar<RData, ThetaData>.hoverInfo`, `ScatterPolarGL<RData,
+///   ThetaData>.hoverInfo`, `BarPolar<RData, ThetaData>.hoverInfo`.
+public struct PolarHoverInfo: OptionSet, Encodable {
+    public let rawValue: Int
+    public static var r: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 0) }
+    public static var theta: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 1) }
+    public static var text: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 2) }
+    public static var name: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 3) }
+    public static var all: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 4) }
+    public static var none: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 5) }
+    public static var skip: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 6) }
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var options = [String]()
+        if (self.rawValue & 1 << 0) != 0 { options += ["r"] }
+        if (self.rawValue & 1 << 1) != 0 { options += ["theta"] }
+        if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
+        if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
+        if (self.rawValue & 1 << 4) != 0 { options += ["all"] }
+        if (self.rawValue & 1 << 5) != 0 { options += ["none"] }
+        if (self.rawValue & 1 << 6) != 0 { options += ["skip"] }
+        var container = encoder.singleValueContainer()
+        try container.encode(options.joined(separator: "+"))
+    }
+}
+
+
+// MARK: - Objects
+
+/// Sets the global font.
+/// 
+/// Note that fonts used in traces and other layout components inherit from the global font.
+/// 
+/// - Note:
+///   Used by `Layout.font`, `Layout.Title.font`, `HoverLabel.font`, `XAxis.Title.font`,
+///   `XAxis.tickFont`, `XAxis.RangeSelector.font`, `YAxis.Title.font`, `YAxis.tickFont`,
+///   `Title.font`, `Ternary.AAxis.tickFont`, `Ternary.BAxis.Title.font`, `Ternary.BAxis.tickFont`,
+///   `Ternary.CAxis.Title.font`, `Ternary.CAxis.tickFont`, `Scene.XAxis.Title.font`,
+///   `Scene.XAxis.tickFont`, `Scene.YAxis.Title.font`, `Scene.YAxis.tickFont`,
+///   `Scene.ZAxis.Title.font`, `Scene.ZAxis.tickFont`, `Scene.Annotation.font`,
+///   `Scene.Annotation.HoverLabel.font`, `Mapbox.Layer.Symbol.textFont`,
+///   `Polar.RadialAxis.Title.font`, `Polar.RadialAxis.tickFont`, `Polar.AngularAxis.tickFont`,
+///   `Layout.Legend.font`, `LegendTitle.font`, `Layout.Annotation.font`,
+///   `Layout.Annotation.HoverLabel.font`, `Layout.UpdateMenu.font`,
+///   `Layout.Slider.CurrentValue.font`, `Layout.Slider.font`, `ColorBar.tickFont`,
+///   `ColorBar.LegendTitle.font`, `GradientMarker.ColorBar.tickFont`,
+///   `GradientMarker.ColorBar.LegendTitle.font`, `Marker.ColorBar.tickFont`,
+///   `Marker.ColorBar.LegendTitle.font`, `Heatmap<ZData, XYData>.ColorBar.tickFont`, `Heatmap<ZData,
+///   XYData>.ColorBar.LegendTitle.font`, `Histogram<XData, YData>.Marker.ColorBar.tickFont`,
+///   `Histogram<XData, YData>.Marker.ColorBar.LegendTitle.font`, `Histogram2D<XData, YData,
+///   ZData>.ColorBar.tickFont`, `Histogram2D<XData, YData, ZData>.ColorBar.LegendTitle.font`,
+///   `Contours.labelFont`, `Histogram2DContour<XData, YData, ZData>.ColorBar.tickFont`,
+///   `Histogram2DContour<XData, YData, ZData>.ColorBar.LegendTitle.font`, `Contour<ZData, XData,
+///   YData>.Contours.labelFont`, `Contour<ZData, XData, YData>.ColorBar.tickFont`, `Contour<ZData,
+///   XData, YData>.ColorBar.LegendTitle.font`, `ScatterTernary<AData, BData,
+///   CData>.GradientMarker.ColorBar.tickFont`, `ScatterTernary<AData, BData,
+///   CData>.GradientMarker.ColorBar.LegendTitle.font`, `Funnel<XData,
+///   YData>.Marker.ColorBar.tickFont`, `Funnel<XData, YData>.Marker.ColorBar.LegendTitle.font`,
+///   `Sunburst<ValuesData>.Marker.ColorBar.tickFont`,
+///   `Sunburst<ValuesData>.Marker.ColorBar.LegendTitle.font`,
+///   `Treemap<ValuesData>.Marker.ColorBar.tickFont`,
+///   `Treemap<ValuesData>.Marker.ColorBar.LegendTitle.font`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.tickFont`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.LegendTitle.font`, `SymbolicMarker.ColorBar.tickFont`,
+///   `SymbolicMarker.ColorBar.LegendTitle.font`, `Surface<ZSurfaceData, XYData>.ColorBar.tickFont`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.LegendTitle.font`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.tickFont`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.LegendTitle.font`, `Volume<XYZData, ValueData>.ColorBar.tickFont`,
+///   `Volume<XYZData, ValueData>.ColorBar.LegendTitle.font`, `Mesh3D<XData, YData, ZData,
+///   IntensityData, VertexcolorData, FacecolorData>.ColorBar.tickFont`, `Mesh3D<XData, YData, ZData,
+///   IntensityData, VertexcolorData, FacecolorData>.ColorBar.LegendTitle.font`, `Cone<XYZData,
+///   UVWData>.ColorBar.tickFont`, `Cone<XYZData, UVWData>.ColorBar.LegendTitle.font`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.tickFont`, `StreamTube<XYZData,
+///   UVWData>.ColorBar.LegendTitle.font`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.tickFont`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.LegendTitle.font`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.tickFont`, `Choropleth<LocationsData, ZData>.ColorBar.LegendTitle.font`,
+///   `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.tickFont`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.LegendTitle.font`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFont`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.LegendTitle.font`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.tickFont`, `HeatmapGL<ZData, XYData>.ColorBar.LegendTitle.font`,
+///   `ParallelCoordinates.labelFont`, `ParallelCoordinates.tickFont`,
+///   `ParallelCoordinates.rangeFont`, `ParallelCoordinates.MarkerLine.ColorBar.tickFont`,
+///   `ParallelCoordinates.MarkerLine.ColorBar.LegendTitle.font`, `ParallelCategories.labelFont`,
+///   `ParallelCategories.tickFont`, `ParallelCategories.ShapedMarkerLine.ColorBar.tickFont`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.LegendTitle.font`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.tickFont`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.LegendTitle.font`,
+///   `ScatterMapbox<CoordinateData>.textFont`, `ChoroplethMapbox<LocationsData,
+///   ZData>.ColorBar.tickFont`, `ChoroplethMapbox<LocationsData, ZData>.ColorBar.LegendTitle.font`,
+///   `DensityMapbox<CoordinateData, ZData>.ColorBar.tickFont`, `DensityMapbox<CoordinateData,
+///   ZData>.ColorBar.LegendTitle.font`, `Sankey.textFont`, `Indicator.Title.font`,
+///   `Indicator.Number.font`, `Indicator.Delta.font`, `Indicator.Gauge.Axis.tickFont`, `Carpet<XData,
+///   YData, AData, BData>.AAxis.Title.font`, `Carpet<XData, YData, AData, BData>.AAxis.tickFont`,
+///   `Carpet<XData, YData, AData, BData>.BAxis.Title.font`, `Carpet<XData, YData, AData,
+///   BData>.BAxis.tickFont`, `Carpet<XData, YData, AData, BData>.font`, `ScatterCarpet<AData,
+///   BData>.GradientMarker.ColorBar.tickFont`, `ScatterCarpet<AData,
+///   BData>.GradientMarker.ColorBar.LegendTitle.font`, `ContourCarpet<ZData, AData,
+///   BData>.Contours.labelFont`, `ContourCarpet<ZData, AData, BData>.ColorBar.tickFont`,
+///   `ContourCarpet<ZData, AData, BData>.ColorBar.LegendTitle.font`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.tickFont`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.LegendTitle.font`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.tickFont`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.LegendTitle.font`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.tickFont`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.LegendTitle.font`.
+public struct Font: Encodable {
+    /// HTML font family - the typeface that will be applied by the web browser.
+    /// 
+    /// The web browser will only be able to apply a font if it is available on the system which it
+    /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+    /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
+    /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
+    /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
+    /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
+    /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+    public var family: String? = nil
+
+    public var size: Double? = nil
+
+    public var color: Color? = nil
+
+    /// Creates `Font` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - family: HTML font family - the typeface that will be applied by the web browser.
+    ///   - size:
+    ///   - color:
+    public init(family: String? = nil, size: Double? = nil, color: Color? = nil) {
+        self.family = family
+        self.size = size
+        self.color = color
+    }
+    
+}
+
+/// Sets the padding of the title.
+/// 
+/// Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set
+/// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
+/// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
+/// respective anchor value is *middle*/*center*.
+/// 
+/// - Note:
+///   Used by `Layout.Title.padding`, `Layout.UpdateMenu.padding`, `Layout.Slider.padding`,
+///   `Treemap<ValuesData>.Marker.padding`.
+public struct Padding: Encodable {
+    /// The amount of padding (in px) along the top of the component.
+    public var t: Double? = nil
+
+    /// The amount of padding (in px) on the right side of the component.
+    public var r: Double? = nil
+
+    /// The amount of padding (in px) along the bottom of the component.
+    public var b: Double? = nil
+
+    /// The amount of padding (in px) on the left side of the component.
+    public var l: Double? = nil
+
+    /// Creates `Padding` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - t: The amount of padding (in px) along the top of the component.
+    ///   - r: The amount of padding (in px) on the right side of the component.
+    ///   - b: The amount of padding (in px) along the bottom of the component.
+    ///   - l: The amount of padding (in px) on the left side of the component.
+    public init(t: Double? = nil, r: Double? = nil, b: Double? = nil, l: Double? = nil) {
+        self.t = t
+        self.r = r
+        self.b = b
+        self.l = l
+    }
+    
+}
+
+/// - Note:
+///   Used by `Layout.NewShape.line`, `Layout.Shape.line`, `Funnel<XData, YData>.Connector.line`,
+///   `Waterfall<XData, YData>.Connector.line`, `ScatterGeo<CoordinateData, LocationsData>.line`.
+public struct DashedLine: Encodable {
+    /// Sets the line color.
+    /// 
+    /// By default uses either dark grey or white to increase contrast with background color.
+    public var color: Color? = nil
+
+    /// Sets the line width (in px).
+    public var width: Double? = nil
+
+    /// Sets the dash style of lines.
+    /// 
+    /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+    /// dash length list in px (eg *5px,10px,2px,2px*).
+    public var dash: String? = nil
+
+    /// Creates `DashedLine` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - color: Sets the line color.
+    ///   - width: Sets the line width (in px).
+    ///   - dash: Sets the dash style of lines.
+    public init(color: Color? = nil, width: Double? = nil, dash: String? = nil) {
+        self.color = color
+        self.width = width
+        self.dash = dash
+    }
+    
+}
+
+/// - Note:
+///   Used by `Layout.hoverLabel`, `Scatter<XData, YData>.hoverLabel`, `Bar<XData, YData>.hoverLabel`,
+///   `Box<YData, XData, QData>.hoverLabel`, `Heatmap<ZData, XYData>.hoverLabel`, `Histogram<XData,
+///   YData>.hoverLabel`, `Histogram2D<XData, YData, ZData>.hoverLabel`, `Histogram2DContour<XData,
+///   YData, ZData>.hoverLabel`, `Contour<ZData, XData, YData>.hoverLabel`, `ScatterTernary<AData,
+///   BData, CData>.hoverLabel`, `Violin<YData, XData>.hoverLabel`, `Funnel<XData, YData>.hoverLabel`,
+///   `Waterfall<XData, YData>.hoverLabel`, `Image<ZData>.hoverLabel`, `Pie<LabelsData,
+///   ValuesData>.hoverLabel`, `Sunburst<ValuesData>.hoverLabel`, `Treemap<ValuesData>.hoverLabel`,
+///   `FunnelArea<LabelsData, ValuesData>.hoverLabel`, `Scatter3D<XData, YData, ZData>.hoverLabel`,
+///   `Surface<ZSurfaceData, XYData>.hoverLabel`, `Isosurface<XData, YData, ZData,
+///   ValueData>.hoverLabel`, `Volume<XYZData, ValueData>.hoverLabel`, `Mesh3D<XData, YData, ZData,
+///   IntensityData, VertexcolorData, FacecolorData>.hoverLabel`, `Cone<XYZData, UVWData>.hoverLabel`,
+///   `StreamTube<XYZData, UVWData>.hoverLabel`, `ScatterGeo<CoordinateData,
+///   LocationsData>.hoverLabel`, `Choropleth<LocationsData, ZData>.hoverLabel`, `ScatterGL<XData,
+///   YData>.hoverLabel`, `ScatterPlotMatrix.hoverLabel`, `PointCloud<XYData>.hoverLabel`,
+///   `HeatmapGL<ZData, XYData>.hoverLabel`, `ScatterMapbox<CoordinateData>.hoverLabel`,
+///   `ChoroplethMapbox<LocationsData, ZData>.hoverLabel`, `DensityMapbox<CoordinateData,
+///   ZData>.hoverLabel`, `Sankey.hoverLabel`, `Sankey.Node.hoverLabel`, `Sankey.Link.hoverLabel`,
+///   `Table<CellData>.hoverLabel`, `ScatterCarpet<AData, BData>.hoverLabel`, `ScatterPolar<RData,
+///   ThetaData>.hoverLabel`, `ScatterPolarGL<RData, ThetaData>.hoverLabel`, `BarPolar<RData,
+///   ThetaData>.hoverLabel`.
+public struct HoverLabel: Encodable {
+    /// Sets the background color of all hover labels on graph
+    public var backgroundColor: Color? = nil
+
+    /// Sets the border color of all hover labels on graph.
+    public var borderColor: Color? = nil
+
+    /// Sets the default hover label font used by all traces on the graph.
+    public var font: Font? = nil
 
     /// Sets the horizontal alignment of the text content within hover label box.
     /// 
     /// Has an effect only if the hover label text spans more two or more lines
-    /// 
-    /// - Note:
-    ///   Used by `Shared.HoverLabel.align`, `Scatter<XData, YData>.HoverLabel.align`, `Bar<XData,
-    ///   YData>.HoverLabel.align`, `Box<YData, XData, QData>.HoverLabel.align`, `Heatmap<ZData,
-    ///   XYData>.HoverLabel.align`, `Histogram<XData, YData>.HoverLabel.align`, `Histogram2D<XData,
-    ///   YData, ZData>.HoverLabel.align`, `Histogram2DContour<XData, YData, ZData>.HoverLabel.align`,
-    ///   `Contour<ZData, XData, YData>.HoverLabel.align`, `ScatterTernary<AData, BData,
-    ///   CData>.HoverLabel.align`, `Violin<YData, XData>.HoverLabel.align`, `Funnel<XData,
-    ///   YData>.HoverLabel.align`, `Waterfall<XData, YData>.HoverLabel.align`,
-    ///   `Image<ZData>.HoverLabel.align`, `Pie<LabelsData, ValuesData>.HoverLabel.align`,
-    ///   `Sunburst<ValuesData>.HoverLabel.align`, `Treemap<ValuesData>.HoverLabel.align`,
-    ///   `FunnelArea<LabelsData, ValuesData>.HoverLabel.align`, `Scatter3D<XData, YData,
-    ///   ZData>.HoverLabel.align`, `Surface<ZSurfaceData, XYData>.HoverLabel.align`, `Isosurface<XData,
-    ///   YData, ZData, ValueData>.HoverLabel.align`, `Volume<XYZData, ValueData>.HoverLabel.align`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>.HoverLabel.align`,
-    ///   `Cone<XYZData, UVWData>.HoverLabel.align`, `StreamTube<XYZData, UVWData>.HoverLabel.align`,
-    ///   `ScatterGeo<CoordinateData, LocationsData>.HoverLabel.align`, `Choropleth<LocationsData,
-    ///   ZData>.HoverLabel.align`, `ScatterGL<XData, YData>.HoverLabel.align`,
-    ///   `ScatterPlotMatrix.HoverLabel.align`, `PointCloud<XYData>.HoverLabel.align`, `HeatmapGL<ZData,
-    ///   XYData>.HoverLabel.align`, `ScatterMapbox<CoordinateData>.HoverLabel.align`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.HoverLabel.align`, `DensityMapbox<CoordinateData,
-    ///   ZData>.HoverLabel.align`, `Sankey.HoverLabel.align`, `Sankey.Node.HoverLabel.align`,
-    ///   `Sankey.Link.HoverLabel.align`, `Table<CellData>.HoverLabel.align`, `ScatterCarpet<AData,
-    ///   BData>.HoverLabel.align`, `OHLC<XData, OHLCData>.HoverLabel.align`, `Candlestick<XData,
-    ///   OHLCData>.HoverLabel.align`, `ScatterPolar<RData, ThetaData>.HoverLabel.align`,
-    ///   `ScatterPolarGL<RData, ThetaData>.HoverLabel.align`, `BarPolar<RData,
-    ///   ThetaData>.HoverLabel.align`.
-    public enum AutoAlign: String, Encodable {
-        case left
-        case right
-        case auto
-    }
+    public var align: AutoAlign? = nil
 
-    /// Sets the default calendar system to use for interpreting and displaying dates throughout the
-    /// plot.
+    /// Sets the default length (in number of characters) of the trace name in the hover labels for all
+    /// traces.
     /// 
-    /// - Note:
-    ///   Used by `Layout.calendar`, `Layout.XAxis.calendar`, `Layout.YAxis.calendar`,
-    ///   `Layout.Scene.XAxis.calendar`, `Layout.Scene.YAxis.calendar`, `Layout.Scene.ZAxis.calendar`,
-    ///   `Layout.Polar.RadialAxis.calendar`, `Scatter<XData, YData>.xCalendar`, `Scatter<XData,
-    ///   YData>.yCalendar`, `Bar<XData, YData>.xCalendar`, `Bar<XData, YData>.yCalendar`, `Box<YData,
-    ///   XData, QData>.xCalendar`, `Box<YData, XData, QData>.yCalendar`, `Heatmap<ZData,
-    ///   XYData>.xCalendar`, `Heatmap<ZData, XYData>.yCalendar`, `Histogram<XData, YData>.xCalendar`,
-    ///   `Histogram<XData, YData>.yCalendar`, `Histogram2D<XData, YData, ZData>.xCalendar`,
-    ///   `Histogram2D<XData, YData, ZData>.yCalendar`, `Histogram2DContour<XData, YData,
-    ///   ZData>.xCalendar`, `Histogram2DContour<XData, YData, ZData>.yCalendar`, `Contour<ZData, XData,
-    ///   YData>.xCalendar`, `Contour<ZData, XData, YData>.yCalendar`, `Scatter3D<XData, YData,
-    ///   ZData>.xCalendar`, `Scatter3D<XData, YData, ZData>.yCalendar`, `Scatter3D<XData, YData,
-    ///   ZData>.zCalendar`, `Surface<ZSurfaceData, XYData>.xCalendar`, `Surface<ZSurfaceData,
-    ///   XYData>.yCalendar`, `Surface<ZSurfaceData, XYData>.zCalendar`, `Mesh3D<XData, YData, ZData,
-    ///   IntensityData, VertexcolorData, FacecolorData>.xCalendar`, `Mesh3D<XData, YData, ZData,
-    ///   IntensityData, VertexcolorData, FacecolorData>.yCalendar`, `Mesh3D<XData, YData, ZData,
-    ///   IntensityData, VertexcolorData, FacecolorData>.zCalendar`, `ScatterGL<XData, YData>.xCalendar`,
-    ///   `ScatterGL<XData, YData>.yCalendar`, `OHLC<XData, OHLCData>.xCalendar`, `Candlestick<XData,
-    ///   OHLCData>.xCalendar`, `Filter.valueCalendar`, `Filter.targetCalendar`.
-    public enum Calendar: String, Encodable {
-        case gregorian
-        case chinese
-        case coptic
-        case discworld
-        case ethiopian
-        case hebrew
-        case islamic
-        case julian
-        case mayan
-        case nanakshahi
-        case nepali
-        case persian
-        case jalali
-        case taiwan
-        case thai
-        case ummalqura
+    /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
+    /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
+    /// truncate to `namelength - 3` characters and add an ellipsis.
+    public var nameLength: Int? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case backgroundColor = "bgcolor"
+        case borderColor = "bordercolor"
+        case font
+        case align
+        case nameLength = "namelength"
     }
+    
+    /// Creates `HoverLabel` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - backgroundColor: Sets the background color of all hover labels on graph
+    ///   - borderColor: Sets the border color of all hover labels on graph.
+    ///   - font: Sets the default hover label font used by all traces on the graph.
+    ///   - align: Sets the horizontal alignment of the text content within hover label box.
+    ///   - nameLength: Sets the default length (in number of characters) of the trace name in the hover
+    ///   labels for all traces.
+    public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil, align:
+            AutoAlign? = nil, nameLength: Int? = nil) {
+        self.backgroundColor = backgroundColor
+        self.borderColor = borderColor
+        self.font = font
+        self.align = align
+        self.nameLength = nameLength
+    }
+    
+}
+
+public final class XAxis: Encodable, SubplotAxis {
+    /// Unique identifier of the axis.
+    public var uid: UInt = UInt.random(in: 2...UInt.max)
+
+    /// A single toggle to hide the axis while preserving interaction like dragging.
+    /// 
+    /// Default is true when a cheater plot is present on the axis, otherwise false
+    public var visible: Bool? = nil
+
+    /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+    /// colors.
+    /// 
+    /// Grid color is lightened by blending this with the plot background Individual pieces can override
+    /// this.
+    public var color: Color? = nil
+
+    public struct Title: Encodable {
+        /// Sets the title of this axis.
+        /// 
+        /// Note that before the existence of `title.text`, the title's contents used to be defined as the
+        /// `title` attribute itself. This behavior has been deprecated.
+        public var text: String? = nil
+    
+        /// Sets this axis' title font.
+        /// 
+        /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+        public var font: Font? = nil
+    
+        /// Sets the standoff distance (in px) between the axis labels and the title text The default value
+        /// is a function of the axis tick labels, the title `font.size` and the axis `linewidth`.
+        /// 
+        /// Note that the axis title position is always constrained within the margins, so the actual
+        /// standoff distance is always less than the set or default value. By setting `standoff` and
+        /// turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff
+        /// distance.
+        public var standoff: Double? = nil
+    
+        /// Creates `Title` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - text: Sets the title of this axis.
+        ///   - font: Sets this axis' title font.
+        ///   - standoff: Sets the standoff distance (in px) between the axis labels and the title text The
+        ///   default value is a function of the axis tick labels, the title `font.size` and the axis
+        ///   `linewidth`.
+        public init(text: String? = nil, font: Font? = nil, standoff: Double? = nil) {
+            self.text = text
+            self.font = font
+            self.standoff = standoff
+        }
+        
+    }
+    public var title: Title? = nil
+
+    /// Sets the axis type.
+    /// 
+    /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+    /// that referenced the axis in question.
+    public enum `Type`: String, Encodable {
+        case auto = "-"
+        case linear
+        case log
+        case date
+        case category
+        case multiCategory = "multicategory"
+    }
+    /// Sets the axis type.
+    /// 
+    /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+    /// that referenced the axis in question.
+    public var type: `Type`? = nil
 
     /// Determines whether or not the range of this axis is computed in relation to the input data.
     /// 
     /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.autoRange`, `Layout.YAxis.autoRange`, `Layout.Scene.XAxis.autoRange`,
-    ///   `Layout.Scene.YAxis.autoRange`, `Layout.Scene.ZAxis.autoRange`,
-    ///   `Layout.Polar.RadialAxis.autoRange`, `Carpet<XData, YData, AData, BData>.AAxis.autoRange`,
-    ///   `Carpet<XData, YData, AData, BData>.BAxis.autoRange`.
-    public enum AutoRange: Encodable {
-        case on
-        case off
-        case reversed
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            switch self {
-            case .on:
-                try container.encode(true)
-            case .off:
-                try container.encode(false)
-            case .reversed:
-                try container.encode("reversed")
-            }
-        }
-    }
+    public var autoRange: AutoRange? = nil
 
     /// If *normal*, the range is computed in relation to the extrema of the input data.
     /// 
     /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
     /// is non-negative, regardless of the input data. Applies only to linear axes.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.rangeMode`, `Layout.YAxis.rangeMode`, `Layout.Scene.XAxis.rangeMode`,
-    ///   `Layout.Scene.YAxis.rangeMode`, `Layout.Scene.ZAxis.rangeMode`, `Carpet<XData, YData, AData,
-    ///   BData>.AAxis.rangeMode`, `Carpet<XData, YData, AData, BData>.BAxis.rangeMode`.
-    public enum RangeMode: String, Encodable {
-        case normal
-        case toZero = "tozero"
-        case nonNegative = "nonnegative"
-    }
+    public var rangeMode: RangeMode? = nil
 
-    /// Sets the tick mode for this axis.
+    /// Sets the range of this axis.
     /// 
-    /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
-    /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
-    /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
-    /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
-    /// provided).
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.tickMode`, `Layout.YAxis.tickMode`, `Layout.Ternary.AAxis.tickMode`,
-    ///   `Layout.Ternary.BAxis.tickMode`, `Layout.Ternary.CAxis.tickMode`, `Layout.Scene.XAxis.tickMode`,
-    ///   `Layout.Scene.YAxis.tickMode`, `Layout.Scene.ZAxis.tickMode`,
-    ///   `Layout.Polar.RadialAxis.tickMode`, `Layout.Polar.AngularAxis.tickMode`,
-    ///   `Shared.ColorBar.tickMode`, `Shared.GradientMarker.ColorBar.tickMode`,
-    ///   `Shared.Marker.ColorBar.tickMode`, `Heatmap<ZData, XYData>.ColorBar.tickMode`, `Histogram<XData,
-    ///   YData>.Marker.ColorBar.tickMode`, `Histogram2D<XData, YData, ZData>.ColorBar.tickMode`,
-    ///   `Histogram2DContour<XData, YData, ZData>.ColorBar.tickMode`, `Contour<ZData, XData,
-    ///   YData>.ColorBar.tickMode`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.ColorBar.tickMode`, `Funnel<XData, YData>.Marker.ColorBar.tickMode`,
-    ///   `Sunburst<ValuesData>.Marker.ColorBar.tickMode`, `Treemap<ValuesData>.Marker.ColorBar.tickMode`,
-    ///   `Scatter3D<XData, YData, ZData>.DashedMarkerLine.ColorBar.tickMode`,
-    ///   `Shared.SymbolicMarker.ColorBar.tickMode`, `Surface<ZSurfaceData, XYData>.ColorBar.tickMode`,
-    ///   `Isosurface<XData, YData, ZData, ValueData>.ColorBar.tickMode`, `Volume<XYZData,
-    ///   ValueData>.ColorBar.tickMode`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.tickMode`, `Cone<XYZData, UVWData>.ColorBar.tickMode`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.tickMode`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.tickMode`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.tickMode`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.tickMode`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickMode`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.tickMode`, `ParallelCoordinates.MarkerLine.ColorBar.tickMode`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.tickMode`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.tickMode`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.tickMode`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.tickMode`, `Indicator.Gauge.Axis.tickMode`, `ScatterCarpet<AData,
-    ///   BData>.GradientMarker.ColorBar.tickMode`, `ContourCarpet<ZData, AData,
-    ///   BData>.ColorBar.tickMode`, `ScatterPolar<RData, ThetaData>.GradientMarker.ColorBar.tickMode`,
-    ///   `ScatterPolarGL<RData, ThetaData>.SymbolicMarker.ColorBar.tickMode`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.tickMode`.
-    public enum TickMode: String, Encodable {
-        case auto
-        case linear
-        case array
-    }
+    /// If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the
+    /// range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date
+    /// strings, like date data, though Date objects and unix milliseconds will be accepted and
+    /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
+    /// where each category is assigned a serial number from zero in the order it appears.
+    public var range: InfoArray? = nil
 
-    /// Determines whether ticks are drawn or not.
+    /// Determines whether or not this axis is zoom-able.
     /// 
-    /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
-    /// (inside) the axis lines.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.ticks`, `Layout.YAxis.ticks`, `Layout.Ternary.AAxis.ticks`,
-    ///   `Layout.Ternary.BAxis.ticks`, `Layout.Ternary.CAxis.ticks`, `Layout.Scene.XAxis.ticks`,
-    ///   `Layout.Scene.YAxis.ticks`, `Layout.Scene.ZAxis.ticks`, `Layout.Polar.RadialAxis.ticks`,
-    ///   `Layout.Polar.AngularAxis.ticks`, `Shared.ColorBar.ticks`,
-    ///   `Shared.GradientMarker.ColorBar.ticks`, `Shared.Marker.ColorBar.ticks`, `Heatmap<ZData,
-    ///   XYData>.ColorBar.ticks`, `Histogram<XData, YData>.Marker.ColorBar.ticks`, `Histogram2D<XData,
-    ///   YData, ZData>.ColorBar.ticks`, `Histogram2DContour<XData, YData, ZData>.ColorBar.ticks`,
-    ///   `Contour<ZData, XData, YData>.ColorBar.ticks`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.ColorBar.ticks`, `Funnel<XData, YData>.Marker.ColorBar.ticks`,
-    ///   `Sunburst<ValuesData>.Marker.ColorBar.ticks`, `Treemap<ValuesData>.Marker.ColorBar.ticks`,
-    ///   `Scatter3D<XData, YData, ZData>.DashedMarkerLine.ColorBar.ticks`,
-    ///   `Shared.SymbolicMarker.ColorBar.ticks`, `Surface<ZSurfaceData, XYData>.ColorBar.ticks`,
-    ///   `Isosurface<XData, YData, ZData, ValueData>.ColorBar.ticks`, `Volume<XYZData,
-    ///   ValueData>.ColorBar.ticks`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.ticks`, `Cone<XYZData, UVWData>.ColorBar.ticks`, `StreamTube<XYZData,
-    ///   UVWData>.ColorBar.ticks`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.ticks`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.ticks`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.ticks`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.ticks`, `HeatmapGL<ZData, XYData>.ColorBar.ticks`,
-    ///   `ParallelCoordinates.MarkerLine.ColorBar.ticks`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.ticks`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.ticks`, `ChoroplethMapbox<LocationsData,
-    ///   ZData>.ColorBar.ticks`, `DensityMapbox<CoordinateData, ZData>.ColorBar.ticks`,
-    ///   `Indicator.Gauge.Axis.ticks`, `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.ticks`,
-    ///   `ContourCarpet<ZData, AData, BData>.ColorBar.ticks`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.ticks`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.ticks`, `BarPolar<RData, ThetaData>.Marker.ColorBar.ticks`.
-    public enum Ticks: String, Encodable {
-        case outside
-        case inside
-        case off = ""
-    }
+    /// If true, then zoom is disabled.
+    public var fixedRange: Bool? = nil
 
-    /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
-    /// area.
+    /// If set to another axis id (e.g.
     /// 
-    /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
-    /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
-    /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.mirror`, `Layout.YAxis.mirror`, `Layout.Scene.XAxis.mirror`,
-    ///   `Layout.Scene.YAxis.mirror`, `Layout.Scene.ZAxis.mirror`.
-    public enum Mirror: Encodable {
-        case on
-        case ticks
-        case off
-        case all
-        case allTicks
+    /// `x2`, `y`), the range of this axis changes together with the range of the corresponding axis
+    /// such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but
+    /// when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain`
+    /// and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis:
+    /// {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`.
+    /// The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter
+    /// (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}`
+    /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
+    /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
+    /// `scaleanchor` and a `matches` constraint is currently forbidden.
+    public enum ScaleAnchor: Encodable {
+        case xAxis(XAxis)
+        case yAxis(YAxis)
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .on:
-                try container.encode(true)
-            case .ticks:
-                try container.encode("ticks")
-            case .off:
-                try container.encode(false)
-            case .all:
-                try container.encode("all")
-            case .allTicks:
-                try container.encode("allticks")
-            }
-        }
-    }
-
-    /// If *all*, all tick labels are displayed with a prefix.
-    /// 
-    /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
-    /// displayed with a suffix. If *none*, tick prefixes are hidden.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.showTickPrefix`, `Layout.YAxis.showTickPrefix`,
-    ///   `Layout.Ternary.AAxis.showTickPrefix`, `Layout.Ternary.BAxis.showTickPrefix`,
-    ///   `Layout.Ternary.CAxis.showTickPrefix`, `Layout.Scene.XAxis.showTickPrefix`,
-    ///   `Layout.Scene.YAxis.showTickPrefix`, `Layout.Scene.ZAxis.showTickPrefix`,
-    ///   `Layout.Polar.RadialAxis.showTickPrefix`, `Layout.Polar.AngularAxis.showTickPrefix`,
-    ///   `Shared.ColorBar.showTickPrefix`, `Shared.GradientMarker.ColorBar.showTickPrefix`,
-    ///   `Shared.Marker.ColorBar.showTickPrefix`, `Heatmap<ZData, XYData>.ColorBar.showTickPrefix`,
-    ///   `Histogram<XData, YData>.Marker.ColorBar.showTickPrefix`, `Histogram2D<XData, YData,
-    ///   ZData>.ColorBar.showTickPrefix`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.showTickPrefix`, `Contour<ZData, XData, YData>.ColorBar.showTickPrefix`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.showTickPrefix`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.showTickPrefix`, `Sunburst<ValuesData>.Marker.ColorBar.showTickPrefix`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.showTickPrefix`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.showTickPrefix`,
-    ///   `Shared.SymbolicMarker.ColorBar.showTickPrefix`, `Surface<ZSurfaceData,
-    ///   XYData>.ColorBar.showTickPrefix`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.showTickPrefix`, `Volume<XYZData, ValueData>.ColorBar.showTickPrefix`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.showTickPrefix`, `Cone<XYZData, UVWData>.ColorBar.showTickPrefix`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.showTickPrefix`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.showTickPrefix`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.showTickPrefix`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.showTickPrefix`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickPrefix`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.showTickPrefix`, `ParallelCoordinates.MarkerLine.ColorBar.showTickPrefix`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.showTickPrefix`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.showTickPrefix`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.showTickPrefix`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.showTickPrefix`, `Indicator.Gauge.Axis.showTickPrefix`, `Carpet<XData, YData,
-    ///   AData, BData>.AAxis.showTickPrefix`, `Carpet<XData, YData, AData, BData>.BAxis.showTickPrefix`,
-    ///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.showTickPrefix`, `ContourCarpet<ZData,
-    ///   AData, BData>.ColorBar.showTickPrefix`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.showTickPrefix`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.showTickPrefix`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.showTickPrefix`.
-    public enum ShowTickPrefix: String, Encodable {
-        case all
-        case first
-        case last
-        case none
-    }
-
-    /// Same as `showtickprefix` but for tick suffixes.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.showTickSuffix`, `Layout.YAxis.showTickSuffix`,
-    ///   `Layout.Ternary.AAxis.showTickSuffix`, `Layout.Ternary.BAxis.showTickSuffix`,
-    ///   `Layout.Ternary.CAxis.showTickSuffix`, `Layout.Scene.XAxis.showTickSuffix`,
-    ///   `Layout.Scene.YAxis.showTickSuffix`, `Layout.Scene.ZAxis.showTickSuffix`,
-    ///   `Layout.Polar.RadialAxis.showTickSuffix`, `Layout.Polar.AngularAxis.showTickSuffix`,
-    ///   `Shared.ColorBar.showTickSuffix`, `Shared.GradientMarker.ColorBar.showTickSuffix`,
-    ///   `Shared.Marker.ColorBar.showTickSuffix`, `Heatmap<ZData, XYData>.ColorBar.showTickSuffix`,
-    ///   `Histogram<XData, YData>.Marker.ColorBar.showTickSuffix`, `Histogram2D<XData, YData,
-    ///   ZData>.ColorBar.showTickSuffix`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.showTickSuffix`, `Contour<ZData, XData, YData>.ColorBar.showTickSuffix`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.showTickSuffix`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.showTickSuffix`, `Sunburst<ValuesData>.Marker.ColorBar.showTickSuffix`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.showTickSuffix`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.showTickSuffix`,
-    ///   `Shared.SymbolicMarker.ColorBar.showTickSuffix`, `Surface<ZSurfaceData,
-    ///   XYData>.ColorBar.showTickSuffix`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.showTickSuffix`, `Volume<XYZData, ValueData>.ColorBar.showTickSuffix`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.showTickSuffix`, `Cone<XYZData, UVWData>.ColorBar.showTickSuffix`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.showTickSuffix`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.showTickSuffix`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.showTickSuffix`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.showTickSuffix`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showTickSuffix`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.showTickSuffix`, `ParallelCoordinates.MarkerLine.ColorBar.showTickSuffix`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.showTickSuffix`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.showTickSuffix`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.showTickSuffix`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.showTickSuffix`, `Indicator.Gauge.Axis.showTickSuffix`, `Carpet<XData, YData,
-    ///   AData, BData>.AAxis.showTickSuffix`, `Carpet<XData, YData, AData, BData>.BAxis.showTickSuffix`,
-    ///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.showTickSuffix`, `ContourCarpet<ZData,
-    ///   AData, BData>.ColorBar.showTickSuffix`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.showTickSuffix`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.showTickSuffix`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.showTickSuffix`.
-    public enum ShowTickSuffix: String, Encodable {
-        case all
-        case first
-        case last
-        case none
-    }
-
-    /// If *all*, all exponents are shown besides their significands.
-    /// 
-    /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
-    /// last tick is shown. If *none*, no exponents appear.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.showExponent`, `Layout.YAxis.showExponent`,
-    ///   `Layout.Ternary.AAxis.showExponent`, `Layout.Ternary.BAxis.showExponent`,
-    ///   `Layout.Ternary.CAxis.showExponent`, `Layout.Scene.XAxis.showExponent`,
-    ///   `Layout.Scene.YAxis.showExponent`, `Layout.Scene.ZAxis.showExponent`,
-    ///   `Layout.Polar.RadialAxis.showExponent`, `Layout.Polar.AngularAxis.showExponent`,
-    ///   `Shared.ColorBar.showExponent`, `Shared.GradientMarker.ColorBar.showExponent`,
-    ///   `Shared.Marker.ColorBar.showExponent`, `Heatmap<ZData, XYData>.ColorBar.showExponent`,
-    ///   `Histogram<XData, YData>.Marker.ColorBar.showExponent`, `Histogram2D<XData, YData,
-    ///   ZData>.ColorBar.showExponent`, `Histogram2DContour<XData, YData, ZData>.ColorBar.showExponent`,
-    ///   `Contour<ZData, XData, YData>.ColorBar.showExponent`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.ColorBar.showExponent`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.showExponent`, `Sunburst<ValuesData>.Marker.ColorBar.showExponent`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.showExponent`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.showExponent`, `Shared.SymbolicMarker.ColorBar.showExponent`,
-    ///   `Surface<ZSurfaceData, XYData>.ColorBar.showExponent`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.showExponent`, `Volume<XYZData, ValueData>.ColorBar.showExponent`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.showExponent`, `Cone<XYZData, UVWData>.ColorBar.showExponent`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.showExponent`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.showExponent`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.showExponent`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.showExponent`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.showExponent`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.showExponent`, `ParallelCoordinates.MarkerLine.ColorBar.showExponent`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.showExponent`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.showExponent`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.showExponent`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.showExponent`, `Indicator.Gauge.Axis.showExponent`, `Carpet<XData, YData, AData,
-    ///   BData>.AAxis.showExponent`, `Carpet<XData, YData, AData, BData>.BAxis.showExponent`,
-    ///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.showExponent`, `ContourCarpet<ZData, AData,
-    ///   BData>.ColorBar.showExponent`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.showExponent`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.showExponent`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.showExponent`.
-    public enum ShowExponent: String, Encodable {
-        case all
-        case first
-        case last
-        case none
-    }
-
-    /// Determines a formatting rule for the tick exponents.
-    /// 
-    /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
-    /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.exponentFormat`, `Layout.YAxis.exponentFormat`,
-    ///   `Layout.Ternary.AAxis.exponentFormat`, `Layout.Ternary.BAxis.exponentFormat`,
-    ///   `Layout.Ternary.CAxis.exponentFormat`, `Layout.Scene.XAxis.exponentFormat`,
-    ///   `Layout.Scene.YAxis.exponentFormat`, `Layout.Scene.ZAxis.exponentFormat`,
-    ///   `Layout.Polar.RadialAxis.exponentFormat`, `Layout.Polar.AngularAxis.exponentFormat`,
-    ///   `Shared.ColorBar.exponentFormat`, `Shared.GradientMarker.ColorBar.exponentFormat`,
-    ///   `Shared.Marker.ColorBar.exponentFormat`, `Heatmap<ZData, XYData>.ColorBar.exponentFormat`,
-    ///   `Histogram<XData, YData>.Marker.ColorBar.exponentFormat`, `Histogram2D<XData, YData,
-    ///   ZData>.ColorBar.exponentFormat`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.exponentFormat`, `Contour<ZData, XData, YData>.ColorBar.exponentFormat`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.exponentFormat`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.exponentFormat`, `Sunburst<ValuesData>.Marker.ColorBar.exponentFormat`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.exponentFormat`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.exponentFormat`,
-    ///   `Shared.SymbolicMarker.ColorBar.exponentFormat`, `Surface<ZSurfaceData,
-    ///   XYData>.ColorBar.exponentFormat`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.exponentFormat`, `Volume<XYZData, ValueData>.ColorBar.exponentFormat`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.exponentFormat`, `Cone<XYZData, UVWData>.ColorBar.exponentFormat`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.exponentFormat`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.exponentFormat`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.exponentFormat`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.exponentFormat`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.exponentFormat`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.exponentFormat`, `ParallelCoordinates.MarkerLine.ColorBar.exponentFormat`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.exponentFormat`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.exponentFormat`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.exponentFormat`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.exponentFormat`, `Indicator.Gauge.Axis.exponentFormat`, `Carpet<XData, YData,
-    ///   AData, BData>.AAxis.exponentFormat`, `Carpet<XData, YData, AData, BData>.BAxis.exponentFormat`,
-    ///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.exponentFormat`, `ContourCarpet<ZData,
-    ///   AData, BData>.ColorBar.exponentFormat`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.exponentFormat`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.exponentFormat`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.exponentFormat`.
-    public enum ExponentFormat: String, Encodable {
-        case none
-        case e
-        case E
-        case power
-        case SI
-        case B
-    }
-
-    /// Sets the layer on which this axis is displayed.
-    /// 
-    /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
-    /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
-    /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
-    /// nodes above this axis.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.layer`, `Layout.YAxis.layer`, `Layout.Ternary.AAxis.layer`,
-    ///   `Layout.Ternary.BAxis.layer`, `Layout.Ternary.CAxis.layer`, `Layout.Polar.RadialAxis.layer`,
-    ///   `Layout.Polar.AngularAxis.layer`.
-    public enum AxisLayer: String, Encodable {
-        case aboveTraces = "above traces"
-        case belowTraces = "below traces"
-    }
-
-    /// Specifies the ordering logic for the case of categorical variables.
-    /// 
-    /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
-    /// Set `categoryorder` to *category ascending* or *category descending* if order should be
-    /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
-    /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
-    /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
-    /// mode. The unspecified categories will follow the categories in `categoryarray`. Set
-    /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
-    /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
-    /// or median of all the values.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.XAxis.categoryOrder`, `Layout.YAxis.categoryOrder`,
-    ///   `Layout.Scene.XAxis.categoryOrder`, `Layout.Scene.YAxis.categoryOrder`,
-    ///   `Layout.Scene.ZAxis.categoryOrder`, `Layout.Polar.RadialAxis.categoryOrder`,
-    ///   `Layout.Polar.AngularAxis.categoryOrder`.
-    public enum CategoryOrder: String, Encodable {
-        case trace
-        case categoryAscending = "category ascending"
-        case categoryDescending = "category descending"
-        case array
-        case totalAscending = "total ascending"
-        case totalDescending = "total descending"
-        case minAscending = "min ascending"
-        case minDescending = "min descending"
-        case maxAscending = "max ascending"
-        case maxDescending = "max descending"
-        case sumAscending = "sum ascending"
-        case sumDescending = "sum descending"
-        case meanAscending = "mean ascending"
-        case meanDescending = "mean descending"
-        case medianAscending = "median ascending"
-        case medianDescending = "median descending"
-    }
-
-    /// Sets the horizontal alignment of the `text` within the box.
-    /// 
-    /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
-    /// tags) or if an explicit width is set to override the text width.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Scene.Annotation.align`, `Layout.Annotation.align`, `Indicator.align`,
-    ///   `Indicator.Title.align`, `Table<CellData>.Header.align`,
-    ///   `Table<CellData>.Cells<CellData>.align`.
-    public enum HorizontalAlign: String, Encodable {
-        case left
-        case center
-        case right
-    }
-
-    /// Sets the vertical alignment of the `text` within the box.
-    /// 
-    /// Has an effect only if an explicit height is set to override the text height.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Scene.Annotation.verticalAlign`, `Layout.Legend.verticalAlign`,
-    ///   `Layout.Annotation.verticalAlign`.
-    public enum VerticalAlign: String, Encodable {
-        case top
-        case middle
-        case bottom
-    }
-
-    /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Mapbox.Layer.Symbol.textPosition`, `Scatter<XData, YData>.textPosition`,
-    ///   `ScatterTernary<AData, BData, CData>.textPosition`, `Treemap<ValuesData>.textPosition`,
-    ///   `Scatter3D<XData, YData, ZData>.textPosition`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.textPosition`, `ScatterGL<XData, YData>.textPosition`,
-    ///   `ScatterMapbox<CoordinateData>.textPosition`, `ScatterCarpet<AData, BData>.textPosition`,
-    ///   `ScatterPolar<RData, ThetaData>.textPosition`, `ScatterPolarGL<RData, ThetaData>.textPosition`.
-    public enum TextPosition: String, Encodable {
-        case topLeft = "top left"
-        case topCenter = "top center"
-        case topRight = "top right"
-        case middleLeft = "middle left"
-        case middleCenter = "middle center"
-        case middleRight = "middle right"
-        case bottomLeft = "bottom left"
-        case bottomCenter = "bottom center"
-        case bottomRight = "bottom right"
-    }
-
-    /// Sets the annotation's x coordinate axis.
-    /// 
-    /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
-    /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-    /// normalized coordinates where 0 (1) corresponds to the left (right) side.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Annotation.xReference`, `Layout.Shape.xReference`, `Layout.Image.xReference`.
-    public enum XAxisReference: Encodable {
-        case paper
-        case xAxis(Layout.XAxis)
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            switch self {
-            case .paper:
-                try container.encode("paper")
             case .xAxis(let axis):
                 try container.encode("x\(axis.uid)")
-            }
-        }
-    }
-
-    /// Sets the annotation's y coordinate axis.
-    /// 
-    /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
-    /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-    /// normalized coordinates where 0 (1) corresponds to the bottom (top).
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Annotation.yReference`, `Layout.Shape.yReference`, `Layout.Image.yReference`.
-    public enum YAxisReference: Encodable {
-        case paper
-        case yAxis(Layout.YAxis)
-        public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            switch self {
-            case .paper:
-                try container.encode("paper")
             case .yAxis(let axis):
                 try container.encode("y\(axis.uid)")
             }
         }
     }
-
-    /// Sets the anchor for the x position
+    /// If set to another axis id (e.g.
     /// 
-    /// - Note:
-    ///   Used by `Layout.Image.xAnchor`, `Layout.Slider.CurrentValue.xAnchor`, `Shared.ColorBar.xAnchor`,
-    ///   `Shared.GradientMarker.ColorBar.xAnchor`, `Shared.Marker.ColorBar.xAnchor`, `Heatmap<ZData,
-    ///   XYData>.ColorBar.xAnchor`, `Histogram<XData, YData>.Marker.ColorBar.xAnchor`,
-    ///   `Histogram2D<XData, YData, ZData>.ColorBar.xAnchor`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.xAnchor`, `Contour<ZData, XData, YData>.ColorBar.xAnchor`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.xAnchor`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.xAnchor`, `Sunburst<ValuesData>.Marker.ColorBar.xAnchor`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.xAnchor`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.xAnchor`, `Shared.SymbolicMarker.ColorBar.xAnchor`,
-    ///   `Surface<ZSurfaceData, XYData>.ColorBar.xAnchor`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.xAnchor`, `Volume<XYZData, ValueData>.ColorBar.xAnchor`, `Mesh3D<XData,
-    ///   YData, ZData, IntensityData, VertexcolorData, FacecolorData>.ColorBar.xAnchor`, `Cone<XYZData,
-    ///   UVWData>.ColorBar.xAnchor`, `StreamTube<XYZData, UVWData>.ColorBar.xAnchor`,
-    ///   `ScatterGeo<CoordinateData, LocationsData>.GradientMarker.ColorBar.xAnchor`,
-    ///   `Choropleth<LocationsData, ZData>.ColorBar.xAnchor`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.xAnchor`, `ScatterPlotMatrix.SymbolicMarker.ColorBar.xAnchor`,
-    ///   `HeatmapGL<ZData, XYData>.ColorBar.xAnchor`, `ParallelCoordinates.MarkerLine.ColorBar.xAnchor`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.xAnchor`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.xAnchor`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.xAnchor`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.xAnchor`, `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.xAnchor`,
-    ///   `ContourCarpet<ZData, AData, BData>.ColorBar.xAnchor`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.xAnchor`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.xAnchor`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.xAnchor`.
-    public enum XAnchor: String, Encodable {
+    /// `x2`, `y`), the range of this axis changes together with the range of the corresponding axis
+    /// such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but
+    /// when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain`
+    /// and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis:
+    /// {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`.
+    /// The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter
+    /// (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}`
+    /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
+    /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
+    /// `scaleanchor` and a `matches` constraint is currently forbidden.
+    public var scaleAnchor: ScaleAnchor? = nil
+
+    /// If this axis is linked to another by `scaleanchor`, this determines the pixel to unit scale
+    /// ratio.
+    /// 
+    /// For example, if this value is 10, then every unit on this axis spans 10 times the number of
+    /// pixels as a unit on the linked axis. Use this for example to create an elevation profile where
+    /// the vertical scale is exaggerated a fixed amount with respect to the horizontal.
+    public var scaleRatio: Double? = nil
+
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
+    /// those of the other axis), determines how that happens: by increasing the *range* (default), or
+    /// by decreasing the *domain*.
+    public enum Constrain: String, Encodable {
+        case range
+        case domain
+    }
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
+    /// those of the other axis), determines how that happens: by increasing the *range* (default), or
+    /// by decreasing the *domain*.
+    public var constrain: Constrain? = nil
+
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
+    /// those of the other axis), determines which direction we push the originally specified plot area.
+    /// 
+    /// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
+    /// and *bottom* for y axes.
+    public enum ConstrainToward: String, Encodable {
         case left
         case center
         case right
-    }
-
-    /// Sets the anchor for the y position.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Image.yAnchor`, `Shared.ColorBar.yAnchor`,
-    ///   `Shared.GradientMarker.ColorBar.yAnchor`, `Shared.Marker.ColorBar.yAnchor`, `Heatmap<ZData,
-    ///   XYData>.ColorBar.yAnchor`, `Histogram<XData, YData>.Marker.ColorBar.yAnchor`,
-    ///   `Histogram2D<XData, YData, ZData>.ColorBar.yAnchor`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.yAnchor`, `Contour<ZData, XData, YData>.ColorBar.yAnchor`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.yAnchor`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.yAnchor`, `Sunburst<ValuesData>.Marker.ColorBar.yAnchor`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.yAnchor`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.yAnchor`, `Shared.SymbolicMarker.ColorBar.yAnchor`,
-    ///   `Surface<ZSurfaceData, XYData>.ColorBar.yAnchor`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.yAnchor`, `Volume<XYZData, ValueData>.ColorBar.yAnchor`, `Mesh3D<XData,
-    ///   YData, ZData, IntensityData, VertexcolorData, FacecolorData>.ColorBar.yAnchor`, `Cone<XYZData,
-    ///   UVWData>.ColorBar.yAnchor`, `StreamTube<XYZData, UVWData>.ColorBar.yAnchor`,
-    ///   `ScatterGeo<CoordinateData, LocationsData>.GradientMarker.ColorBar.yAnchor`,
-    ///   `Choropleth<LocationsData, ZData>.ColorBar.yAnchor`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.yAnchor`, `ScatterPlotMatrix.SymbolicMarker.ColorBar.yAnchor`,
-    ///   `HeatmapGL<ZData, XYData>.ColorBar.yAnchor`, `ParallelCoordinates.MarkerLine.ColorBar.yAnchor`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.yAnchor`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.yAnchor`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.yAnchor`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.yAnchor`, `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.yAnchor`,
-    ///   `ContourCarpet<ZData, AData, BData>.ColorBar.yAnchor`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.yAnchor`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.yAnchor`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.yAnchor`.
-    public enum YAnchor: String, Encodable {
         case top
         case middle
         case bottom
     }
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
+    /// those of the other axis), determines which direction we push the originally specified plot area.
+    /// 
+    /// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
+    /// and *bottom* for y axes.
+    public var constrainToward: ConstrainToward? = nil
 
-    /// Determines whether this slider length is set in units of plot *fraction* or in *pixels.
+    /// If set to another axis id (e.g.
     /// 
-    /// Use `len` to set the value.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Slider.lengthMode`, `Shared.ColorBar.lengthMode`,
-    ///   `Shared.GradientMarker.ColorBar.lengthMode`, `Shared.Marker.ColorBar.lengthMode`,
-    ///   `Heatmap<ZData, XYData>.ColorBar.lengthMode`, `Histogram<XData,
-    ///   YData>.Marker.ColorBar.lengthMode`, `Histogram2D<XData, YData, ZData>.ColorBar.lengthMode`,
-    ///   `Histogram2DContour<XData, YData, ZData>.ColorBar.lengthMode`, `Contour<ZData, XData,
-    ///   YData>.ColorBar.lengthMode`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.ColorBar.lengthMode`, `Funnel<XData, YData>.Marker.ColorBar.lengthMode`,
-    ///   `Sunburst<ValuesData>.Marker.ColorBar.lengthMode`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.lengthMode`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.lengthMode`, `Shared.SymbolicMarker.ColorBar.lengthMode`,
-    ///   `Surface<ZSurfaceData, XYData>.ColorBar.lengthMode`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.lengthMode`, `Volume<XYZData, ValueData>.ColorBar.lengthMode`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.lengthMode`, `Cone<XYZData, UVWData>.ColorBar.lengthMode`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.lengthMode`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.lengthMode`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.lengthMode`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.lengthMode`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.lengthMode`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.lengthMode`, `ParallelCoordinates.MarkerLine.ColorBar.lengthMode`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.lengthMode`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.lengthMode`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.lengthMode`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.lengthMode`, `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.lengthMode`,
-    ///   `ContourCarpet<ZData, AData, BData>.ColorBar.lengthMode`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.lengthMode`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.lengthMode`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.lengthMode`.
-    public enum LengthMode: String, Encodable {
-        case fraction
-        case pixels
-    }
-
-    /// Determines whether this color bar's thickness (i.e.
-    /// 
-    /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
-    /// Use `thickness` to set the value.
-    /// 
-    /// - Note:
-    ///   Used by `Shared.ColorBar.thicknessMode`, `Shared.GradientMarker.ColorBar.thicknessMode`,
-    ///   `Shared.Marker.ColorBar.thicknessMode`, `Heatmap<ZData, XYData>.ColorBar.thicknessMode`,
-    ///   `Histogram<XData, YData>.Marker.ColorBar.thicknessMode`, `Histogram2D<XData, YData,
-    ///   ZData>.ColorBar.thicknessMode`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.thicknessMode`, `Contour<ZData, XData, YData>.ColorBar.thicknessMode`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.thicknessMode`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.thicknessMode`, `Sunburst<ValuesData>.Marker.ColorBar.thicknessMode`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.thicknessMode`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.thicknessMode`, `Shared.SymbolicMarker.ColorBar.thicknessMode`,
-    ///   `Surface<ZSurfaceData, XYData>.ColorBar.thicknessMode`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.thicknessMode`, `Volume<XYZData, ValueData>.ColorBar.thicknessMode`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.thicknessMode`, `Cone<XYZData, UVWData>.ColorBar.thicknessMode`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.thicknessMode`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.thicknessMode`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.thicknessMode`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.thicknessMode`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.thicknessMode`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.thicknessMode`, `ParallelCoordinates.MarkerLine.ColorBar.thicknessMode`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.thicknessMode`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.thicknessMode`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.thicknessMode`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.thicknessMode`, `ScatterCarpet<AData,
-    ///   BData>.GradientMarker.ColorBar.thicknessMode`, `ContourCarpet<ZData, AData,
-    ///   BData>.ColorBar.thicknessMode`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.thicknessMode`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.thicknessMode`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.thicknessMode`.
-    public enum ThicknessMode: String, Encodable {
-        case fraction
-        case pixels
-    }
-
-    /// Determines the location of color bar's title with respect to the color bar.
-    /// 
-    /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
-    /// 
-    /// - Note:
-    ///   Used by `Shared.ColorBar.LegendTitle.side`, `Shared.GradientMarker.ColorBar.LegendTitle.side`,
-    ///   `Shared.Marker.ColorBar.LegendTitle.side`, `Heatmap<ZData, XYData>.ColorBar.LegendTitle.side`,
-    ///   `Histogram<XData, YData>.Marker.ColorBar.LegendTitle.side`, `Histogram2D<XData, YData,
-    ///   ZData>.ColorBar.LegendTitle.side`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.LegendTitle.side`, `Contour<ZData, XData, YData>.ColorBar.LegendTitle.side`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.LegendTitle.side`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.LegendTitle.side`,
-    ///   `Sunburst<ValuesData>.Marker.ColorBar.LegendTitle.side`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.LegendTitle.side`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.LegendTitle.side`,
-    ///   `Shared.SymbolicMarker.ColorBar.LegendTitle.side`, `Surface<ZSurfaceData,
-    ///   XYData>.ColorBar.LegendTitle.side`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.LegendTitle.side`, `Volume<XYZData, ValueData>.ColorBar.LegendTitle.side`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.LegendTitle.side`, `Cone<XYZData, UVWData>.ColorBar.LegendTitle.side`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.LegendTitle.side`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.LegendTitle.side`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.LegendTitle.side`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.LegendTitle.side`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.LegendTitle.side`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.LegendTitle.side`, `ParallelCoordinates.MarkerLine.ColorBar.LegendTitle.side`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.LegendTitle.side`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.LegendTitle.side`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.LegendTitle.side`,
-    ///   `DensityMapbox<CoordinateData, ZData>.ColorBar.LegendTitle.side`, `ScatterCarpet<AData,
-    ///   BData>.GradientMarker.ColorBar.LegendTitle.side`, `ContourCarpet<ZData, AData,
-    ///   BData>.ColorBar.LegendTitle.side`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.LegendTitle.side`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.LegendTitle.side`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.LegendTitle.side`.
-    public enum Side: String, Encodable {
-        case right
-        case top
-        case bottom
-    }
-
-    /// Determines whether or not this trace is visible.
-    /// 
-    /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
-    /// legend itself is visible).
-    /// 
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.visible`, `Bar<XData, YData>.visible`, `Box<YData, XData,
-    ///   QData>.visible`, `Heatmap<ZData, XYData>.visible`, `Histogram<XData, YData>.visible`,
-    ///   `Histogram2D<XData, YData, ZData>.visible`, `Histogram2DContour<XData, YData, ZData>.visible`,
-    ///   `Contour<ZData, XData, YData>.visible`, `ScatterTernary<AData, BData, CData>.visible`,
-    ///   `Violin<YData, XData>.visible`, `Funnel<XData, YData>.visible`, `Waterfall<XData,
-    ///   YData>.visible`, `Image<ZData>.visible`, `Pie<LabelsData, ValuesData>.visible`,
-    ///   `Sunburst<ValuesData>.visible`, `Treemap<ValuesData>.visible`, `FunnelArea<LabelsData,
-    ///   ValuesData>.visible`, `Scatter3D<XData, YData, ZData>.visible`, `Surface<ZSurfaceData,
-    ///   XYData>.visible`, `Isosurface<XData, YData, ZData, ValueData>.visible`, `Volume<XYZData,
-    ///   ValueData>.visible`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.visible`, `Cone<XYZData, UVWData>.visible`, `StreamTube<XYZData,
-    ///   UVWData>.visible`, `ScatterGeo<CoordinateData, LocationsData>.visible`,
-    ///   `Choropleth<LocationsData, ZData>.visible`, `ScatterGL<XData, YData>.visible`,
-    ///   `ScatterPlotMatrix.visible`, `PointCloud<XYData>.visible`, `HeatmapGL<ZData, XYData>.visible`,
-    ///   `ParallelCoordinates.visible`, `ParallelCategories.visible`,
-    ///   `ScatterMapbox<CoordinateData>.visible`, `ChoroplethMapbox<LocationsData, ZData>.visible`,
-    ///   `DensityMapbox<CoordinateData, ZData>.visible`, `Sankey.visible`, `Indicator.visible`,
-    ///   `Table<CellData>.visible`, `Carpet<XData, YData, AData, BData>.visible`, `ScatterCarpet<AData,
-    ///   BData>.visible`, `ContourCarpet<ZData, AData, BData>.visible`, `OHLC<XData, OHLCData>.visible`,
-    ///   `Candlestick<XData, OHLCData>.visible`, `ScatterPolar<RData, ThetaData>.visible`,
-    ///   `ScatterPolarGL<RData, ThetaData>.visible`, `BarPolar<RData, ThetaData>.visible`.
-    public enum Visible: Encodable {
-        case on
-        case off
-        case legendOnly
+    /// `x2`, `y`), the range of this axis will match the range of the corresponding axis in
+    /// data-coordinates space. Moreover, matching axes share auto-range values, category lists and
+    /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
+    /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
+    /// same `type`.
+    public enum Matches: Encodable {
+        case xAxis(XAxis)
+        case yAxis(YAxis)
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .on:
-                try container.encode(true)
-            case .off:
-                try container.encode(false)
-            case .legendOnly:
-                try container.encode("legendonly")
+            case .xAxis(let axis):
+                try container.encode("x\(axis.uid)")
+            case .yAxis(let axis):
+                try container.encode("y\(axis.uid)")
             }
         }
     }
+    /// If set to another axis id (e.g.
+    /// 
+    /// `x2`, `y`), the range of this axis will match the range of the corresponding axis in
+    /// data-coordinates space. Moreover, matching axes share auto-range values, category lists and
+    /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
+    /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
+    /// same `type`.
+    public var matches: Matches? = nil
 
-    /// Sets the area to fill with a solid color.
-    /// 
-    /// Defaults to *none* unless this trace is stacked, then it gets *tonexty* (*tonextx*) if
-    /// `orientation` is *v* (*h*) Use with `fillcolor` if not *none*. *tozerox* and *tozeroy* fill to
-    /// x=0 and y=0 respectively. *tonextx* and *tonexty* fill between the endpoints of this trace and
-    /// the endpoints of the trace before it, connecting those endpoints with straight lines (to make a
-    /// stacked area graph); if there is no trace before it, they behave like *tozerox* and *tozeroy*.
-    /// *toself* connects the endpoints of the trace (or each segment of the trace if it has gaps) into
-    /// a closed shape. *tonext* fills the space between two traces if one completely encloses the other
-    /// (eg consecutive contour lines), and behaves like *toself* if there is no trace before it.
-    /// *tonext* should not be used if one trace does not enclose the other. Traces in a `stackgroup`
-    /// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
-    /// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
-    /// later ones will be pushed down in the drawing order.
-    /// 
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.fill`, `ScatterGL<XData, YData>.fill`, `ScatterPolarGL<RData,
-    ///   ThetaData>.fill`.
-    public enum Fill: String, Encodable {
-        case none
-        case toZeroY = "tozeroy"
-        case toZeroX = "tozerox"
-        case toNextY = "tonexty"
-        case toNextX = "tonextx"
-        case toSelf = "toself"
-        case toNext = "tonext"
-    }
-
-    /// Sets the marker symbol type.
-    /// 
-    /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
-    /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
-    /// *dot-open* to a symbol name.
-    /// 
-    /// - Note:
-    ///   Used by `Shared.GradientMarker.symbol`, `Box<YData, XData, QData>.SymbolicMarker.symbol`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.symbol`, `Violin<YData,
-    ///   XData>.SymbolicMarker.symbol`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.symbol`, `ScatterGL<XData, YData>.SymbolicMarker.symbol`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.symbol`, `ScatterCarpet<AData, BData>.GradientMarker.symbol`,
-    ///   `ScatterPolar<RData, ThetaData>.GradientMarker.symbol`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.symbol`.
-    public enum Symbol: String, Encodable {
-        case circle
-        case circleOpen = "circle-open"
-        case circleDot = "circle-dot"
-        case circleOpenDot = "circle-open-dot"
-        case square
-        case squareOpen = "square-open"
-        case squareDot = "square-dot"
-        case squareOpenDot = "square-open-dot"
-        case diamond
-        case diamondOpen = "diamond-open"
-        case diamondDot = "diamond-dot"
-        case diamondOpenDot = "diamond-open-dot"
-        case cross
-        case crossOpen = "cross-open"
-        case crossDot = "cross-dot"
-        case crossOpenDot = "cross-open-dot"
-        case x
-        case xOpen = "x-open"
-        case xDot = "x-dot"
-        case xOpenDot = "x-open-dot"
-        case triangleUp = "triangle-up"
-        case triangleUpOpen = "triangle-up-open"
-        case triangleUpDot = "triangle-up-dot"
-        case triangleUpOpenDot = "triangle-up-open-dot"
-        case triangleDown = "triangle-down"
-        case triangleDownOpen = "triangle-down-open"
-        case triangleDownDot = "triangle-down-dot"
-        case triangleDownOpenDot = "triangle-down-open-dot"
-        case triangleLeft = "triangle-left"
-        case triangleLeftOpen = "triangle-left-open"
-        case triangleLeftDot = "triangle-left-dot"
-        case triangleLeftOpenDot = "triangle-left-open-dot"
-        case triangleRight = "triangle-right"
-        case triangleRightOpen = "triangle-right-open"
-        case triangleRightDot = "triangle-right-dot"
-        case triangleRightOpenDot = "triangle-right-open-dot"
-        case triangleNE = "triangle-ne"
-        case triangleNEOpen = "triangle-ne-open"
-        case triangleNEDot = "triangle-ne-dot"
-        case triangleNEOpenDot = "triangle-ne-open-dot"
-        case triangleSE = "triangle-se"
-        case triangleSEOpen = "triangle-se-open"
-        case triangleSEDot = "triangle-se-dot"
-        case triangleSEOpenDot = "triangle-se-open-dot"
-        case triangleSW = "triangle-sw"
-        case triangleSWOpen = "triangle-sw-open"
-        case triangleSWDot = "triangle-sw-dot"
-        case triangleSWOpenDot = "triangle-sw-open-dot"
-        case triangleNW = "triangle-nw"
-        case triangleNWOpen = "triangle-nw-open"
-        case triangleNWDot = "triangle-nw-dot"
-        case triangleNWOpenDot = "triangle-nw-open-dot"
-        case pentagon
-        case pentagonOpen = "pentagon-open"
-        case pentagonDot = "pentagon-dot"
-        case pentagonOpenDot = "pentagon-open-dot"
-        case hexagon
-        case hexagonOpen = "hexagon-open"
-        case hexagonDot = "hexagon-dot"
-        case hexagonOpenDot = "hexagon-open-dot"
-        case hexagon2
-        case hexagon2Open = "hexagon2-open"
-        case hexagon2Dot = "hexagon2-dot"
-        case hexagon2OpenDot = "hexagon2-open-dot"
-        case octagon
-        case octagonOpen = "octagon-open"
-        case octagonDot = "octagon-dot"
-        case octagonOpenDot = "octagon-open-dot"
-        case star
-        case starOpen = "star-open"
-        case starDot = "star-dot"
-        case starOpenDot = "star-open-dot"
-        case hexagram
-        case hexagramOpen = "hexagram-open"
-        case hexagramDot = "hexagram-dot"
-        case hexagramOpenDot = "hexagram-open-dot"
-        case starTriangleUp = "star-triangle-up"
-        case starTriangleUpOpen = "star-triangle-up-open"
-        case starTriangleUpDot = "star-triangle-up-dot"
-        case starTriangleUpOpenDot = "star-triangle-up-open-dot"
-        case starTriangleDown = "star-triangle-down"
-        case starTriangleDownOpen = "star-triangle-down-open"
-        case starTriangleDownDot = "star-triangle-down-dot"
-        case starTriangleDownOpenDot = "star-triangle-down-open-dot"
-        case starSquare = "star-square"
-        case starSquareOpen = "star-square-open"
-        case starSquareDot = "star-square-dot"
-        case starSquareOpenDot = "star-square-open-dot"
-        case starDiamond = "star-diamond"
-        case starDiamondOpen = "star-diamond-open"
-        case starDiamondDot = "star-diamond-dot"
-        case starDiamondOpenDot = "star-diamond-open-dot"
-        case diamondTall = "diamond-tall"
-        case diamondTallOpen = "diamond-tall-open"
-        case diamondTallDot = "diamond-tall-dot"
-        case diamondTallOpenDot = "diamond-tall-open-dot"
-        case diamondWide = "diamond-wide"
-        case diamondWideOpen = "diamond-wide-open"
-        case diamondWideDot = "diamond-wide-dot"
-        case diamondWideOpenDot = "diamond-wide-open-dot"
-        case hourglass
-        case hourglassOpen = "hourglass-open"
-        case bowTie = "bowtie"
-        case bowTieOpen = "bowtie-open"
-        case circleCross = "circle-cross"
-        case circleCrossOpen = "circle-cross-open"
-        case circleX = "circle-x"
-        case circleXOpen = "circle-x-open"
-        case squareCross = "square-cross"
-        case squareCrossOpen = "square-cross-open"
-        case squareX = "square-x"
-        case squareXOpen = "square-x-open"
-        case diamondCross = "diamond-cross"
-        case diamondCrossOpen = "diamond-cross-open"
-        case diamondX = "diamond-x"
-        case diamondXOpen = "diamond-x-open"
-        case crossThin = "cross-thin"
-        case crossThinOpen = "cross-thin-open"
-        case xThin = "x-thin"
-        case xThinOpen = "x-thin-open"
-        case asterisk
-        case asteriskOpen = "asterisk-open"
-        case hash
-        case hashOpen = "hash-open"
-        case hashDot = "hash-dot"
-        case hashOpenDot = "hash-open-dot"
-        case yUp = "y-up"
-        case yUpOpen = "y-up-open"
-        case yDown = "y-down"
-        case yDownOpen = "y-down-open"
-        case yLeft = "y-left"
-        case yLeftOpen = "y-left-open"
-        case yRight = "y-right"
-        case yRightOpen = "y-right-open"
-        case lineEw = "line-ew"
-        case lineEwOpen = "line-ew-open"
-        case lineNS = "line-ns"
-        case lineNSOpen = "line-ns-open"
-        case lineNE = "line-ne"
-        case lineNEOpen = "line-ne-open"
-        case lineNW = "line-nw"
-        case lineNWOpen = "line-nw-open"
-        case arrowUp = "arrow-up"
-        case arrowUpOpen = "arrow-up-open"
-        case arrowDown = "arrow-down"
-        case arrowDownOpen = "arrow-down-open"
-        case arrowLeft = "arrow-left"
-        case arrowLeftOpen = "arrow-left-open"
-        case arrowRight = "arrow-right"
-        case arrowRightOpen = "arrow-right-open"
-        case arrowBarUp = "arrow-bar-up"
-        case arrowBarUpOpen = "arrow-bar-up-open"
-        case arrowBarDown = "arrow-bar-down"
-        case arrowBarDownOpen = "arrow-bar-down-open"
-        case arrowBarLeft = "arrow-bar-left"
-        case arrowBarLeftOpen = "arrow-bar-left-open"
-        case arrowBarRight = "arrow-bar-right"
-        case arrowBarRightOpen = "arrow-bar-right-open"
-    }
-
-    /// Has an effect only if `marker.size` is set to a numerical array.
-    /// 
-    /// Sets the rule for which the data in `size` is converted to pixels.
-    /// 
-    /// - Note:
-    ///   Used by `Shared.GradientMarker.sizeMode`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.sizeMode`, `Shared.SymbolicMarker.sizeMode`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.sizeMode`, `ScatterGL<XData, YData>.SymbolicMarker.sizeMode`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.sizeMode`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.sizeMode`, `ScatterCarpet<AData,
-    ///   BData>.GradientMarker.sizeMode`, `ScatterPolar<RData, ThetaData>.GradientMarker.sizeMode`,
-    ///   `ScatterPolarGL<RData, ThetaData>.SymbolicMarker.sizeMode`.
-    public enum SizeMode: String, Encodable {
-        case diameter
-        case area
-    }
-
-    /// Specifies the location of the `text`.
-    /// 
-    /// *inside* positions `text` inside, next to the bar end (rotated and scaled if needed). *outside*
-    /// positions `text` outside, next to the bar end (scaled if needed), unless there is another bar
-    /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
-    /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
-    /// outside.
-    /// 
-    /// - Note:
-    ///   Used by `Bar<XData, YData>.textPosition`, `Funnel<XData, YData>.textPosition`, `Waterfall<XData,
-    ///   YData>.textPosition`, `Pie<LabelsData, ValuesData>.textPosition`.
-    public enum AdjacentPosition: String, Encodable {
-        case inside
-        case outside
-        case auto
-        case none
-    }
-
-    /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    /// 
-    /// - Note:
-    ///   Used by `Bar<XData, YData>.insideTextAnchor`, `Funnel<XData, YData>.insideTextAnchor`,
-    ///   `Waterfall<XData, YData>.insideTextAnchor`.
-    public enum InsideTextAnchor: String, Encodable {
-        case end
-        case middle
-        case start
-    }
-
-    /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    /// 
-    /// - Note:
-    ///   Used by `Bar<XData, YData>.constrainText`, `Funnel<XData, YData>.constrainText`,
-    ///   `Waterfall<XData, YData>.constrainText`.
-    public enum ConstrainText: String, Encodable {
-        case inside
-        case outside
-        case both
-        case none
-    }
-
-    /// If *array*, the heatmap's x coordinates are given by *x* (the default behavior when `x` is
-    /// provided).
-    /// 
-    /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
-    /// `x` is not provided).
-    /// 
-    /// - Note:
-    ///   Used by `Heatmap<ZData, XYData>.xType`, `Heatmap<ZData, XYData>.yType`, `Contour<ZData, XData,
-    ///   YData>.xType`, `Contour<ZData, XData, YData>.yType`, `HeatmapGL<ZData, XYData>.xType`,
-    ///   `HeatmapGL<ZData, XYData>.yType`.
-    public enum AxisType: String, Encodable {
-        case array
-        case scaled
-    }
-
-    /// Specifies the binning function used for this histogram trace.
-    /// 
-    /// If *count*, the histogram values are computed by counting the number of values lying inside each
-    /// bin. If *sum*, *avg*, *min*, *max*, the histogram values are computed using the sum, the
-    /// average, the minimum or the maximum of the values lying inside each bin respectively.
-    /// 
-    /// - Note:
-    ///   Used by `Histogram<XData, YData>.binningFunction`, `Histogram2D<XData, YData,
-    ///   ZData>.binningFunction`, `Histogram2DContour<XData, YData, ZData>.binningFunction`.
-    public enum BinningFunction: String, Encodable {
-        case count
-        case sum
-        case avg
-        case min
-        case max
-    }
-
-    /// Specifies the type of normalization used for this histogram trace.
-    /// 
-    /// If **, the span of each bar corresponds to the number of occurrences (i.e. the number of data
-    /// points lying inside the bins). If *percent* / *probability*, the span of each bar corresponds to
-    /// the percentage / fraction of occurrences with respect to the total number of sample points
-    /// (here, the sum of all bin HEIGHTS equals 100% / 1). If *density*, the span of each bar
-    /// corresponds to the number of occurrences in a bin divided by the size of the bin interval (here,
-    /// the sum of all bin AREAS equals the total number of sample points). If *probability density*,
-    /// the area of each bar corresponds to the probability that an event will fall into the
-    /// corresponding bin (here, the sum of all bin AREAS equals 1).
-    /// 
-    /// - Note:
-    ///   Used by `Histogram<XData, YData>.normalization`, `Histogram2D<XData, YData,
-    ///   ZData>.normalization`, `Histogram2DContour<XData, YData, ZData>.normalization`.
-    public enum Normalization: String, Encodable {
-        case off = ""
-        case percent
-        case probability
-        case density
-        case probabilityDensity = "probability density"
-    }
-
-    /// Sets the constraint operation.
-    /// 
-    /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
-    /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
-    /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
-    /// intervals make no difference to constraint display, but all versions are allowed for consistency
-    /// with filter transforms.
-    /// 
-    /// - Note:
-    ///   Used by `Shared.Contours.operation`, `Contour<ZData, XData, YData>.Contours.operation`,
-    ///   `ContourCarpet<ZData, AData, BData>.Contours.operation`.
-    public enum Operation: String, Encodable {
-        case equalTo = "="
-        case lessThan = "<"
-        case greaterEqualThan = ">="
-        case greaterThan = ">"
-        case lessEqualThan = "<="
-        case insideInclusive = "[]"
-        case insideExclusive = "()"
-        case insideInclusiveExclusive = "[)"
-        case insideExclusiveInclusive = "(]"
-        case outsideInclusive = "]["
-        case outsideExclusive = ")("
-        case outsideInclusiveExclusive = "]("
-        case outsideExclusiveInclusive = ")["
-    }
-
-    /// Determines the line shape.
-    /// 
-    /// With *spline* the lines are drawn using spline interpolation. The other available values
-    /// correspond to step-wise line shapes.
-    /// 
-    /// - Note:
-    ///   Used by `Shared.ShapedSmoothDashedLine.shape`, `ScatterCarpet<AData,
-    ///   BData>.ShapedSmoothDashedLine.shape`, `ScatterPolar<RData,
-    ///   ThetaData>.ShapedSmoothDashedLine.shape`.
-    public enum Shape: String, Encodable {
-        case linear
-        case spline
-    }
-
-    /// Sets the area to fill with a solid color.
-    /// 
-    /// Use with `fillcolor` if not *none*. scatterternary has a subset of the options available to
-    /// scatter. *toself* connects the endpoints of the trace (or each segment of the trace if it has
-    /// gaps) into a closed shape. *tonext* fills the space between two traces if one completely
-    /// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
-    /// trace before it. *tonext* should not be used if one trace does not enclose the other.
-    /// 
-    /// - Note:
-    ///   Used by `ScatterTernary<AData, BData, CData>.fill`, `ScatterCarpet<AData, BData>.fill`,
-    ///   `ScatterPolar<RData, ThetaData>.fill`.
-    public enum AreaFill: String, Encodable {
-        case none
-        case toSelf = "toself"
-        case toNext = "tonext"
-    }
-
-    /// Sets the dash style of the lines.
-    /// 
-    /// - Note:
-    ///   Used by `Scatter3D<XData, YData, ZData>.DashedMarkerLine.dash`, `ScatterGL<XData,
-    ///   YData>.ShapedDashedLine.dash`, `ScatterPolarGL<RData, ThetaData>.ShapedDashedLine.dash`.
-    public enum Dash: String, Encodable {
-        case solid
-        case dot
-        case dash
-        case longDash = "longdash"
-        case dashDot = "dashdot"
-        case longDashDot = "longdashdot"
-    }
-
-    /// Specifies the ordering logic for the categories in the dimension.
-    /// 
-    /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
-    /// Set `categoryorder` to *category ascending* or *category descending* if order should be
-    /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
-    /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
-    /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
-    /// mode. The unspecified categories will follow the categories in `categoryarray`.
-    /// 
-    /// - Note:
-    ///   Used by `ParallelCategories.Dimension.categoryOrder`, `Carpet<XData, YData, AData,
-    ///   BData>.AAxis.categoryOrder`, `Carpet<XData, YData, AData, BData>.BAxis.categoryOrder`.
-    public enum CarpetCategoryOrder: String, Encodable {
-        case trace
-        case categoryAscending = "category ascending"
-        case categoryDescending = "category descending"
-        case array
-    }
-
-    /// Sets the unit of input *theta* values.
-    /// 
-    /// Has an effect only when on *linear* angular axes.
-    /// 
-    /// - Note:
-    ///   Used by `ScatterPolar<RData, ThetaData>.thetaUnit`, `ScatterPolarGL<RData,
-    ///   ThetaData>.thetaUnit`, `BarPolar<RData, ThetaData>.thetaUnit`.
-    public enum ThetaUnit: String, Encodable {
-        case radians
-        case degrees
-        case gradians
-    }
-
-    
-    // MARK: - FlagLists
-
-    /// Determines which trace information appear on hover.
-    /// 
-    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-    /// click and hover events are still fired.
-    /// 
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.hoverInfo`, `Bar<XData, YData>.hoverInfo`, `Box<YData, XData,
-    ///   QData>.hoverInfo`, `Heatmap<ZData, XYData>.hoverInfo`, `Histogram<XData, YData>.hoverInfo`,
-    ///   `Histogram2D<XData, YData, ZData>.hoverInfo`, `Histogram2DContour<XData, YData,
-    ///   ZData>.hoverInfo`, `Contour<ZData, XData, YData>.hoverInfo`, `Violin<YData, XData>.hoverInfo`,
-    ///   `Scatter3D<XData, YData, ZData>.hoverInfo`, `Surface<ZSurfaceData, XYData>.hoverInfo`,
-    ///   `Isosurface<XData, YData, ZData, ValueData>.hoverInfo`, `Volume<XYZData, ValueData>.hoverInfo`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData, FacecolorData>.hoverInfo`,
-    ///   `ScatterGL<XData, YData>.hoverInfo`, `ScatterPlotMatrix.hoverInfo`,
-    ///   `PointCloud<XYData>.hoverInfo`, `HeatmapGL<ZData, XYData>.hoverInfo`,
-    ///   `Table<CellData>.hoverInfo`, `OHLC<XData, OHLCData>.hoverInfo`, `Candlestick<XData,
-    ///   OHLCData>.hoverInfo`.
-    public struct HoverInfo: OptionSet, Encodable {
-        public let rawValue: Int
-        public static var x: HoverInfo { HoverInfo(rawValue: 1 << 0) }
-        public static var y: HoverInfo { HoverInfo(rawValue: 1 << 1) }
-        public static var z: HoverInfo { HoverInfo(rawValue: 1 << 2) }
-        public static var text: HoverInfo { HoverInfo(rawValue: 1 << 3) }
-        public static var name: HoverInfo { HoverInfo(rawValue: 1 << 4) }
-        public static var all: HoverInfo { HoverInfo(rawValue: 1 << 5) }
-        public static var none: HoverInfo { HoverInfo(rawValue: 1 << 6) }
-        public static var skip: HoverInfo { HoverInfo(rawValue: 1 << 7) }
-        
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["x"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["y"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["z"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["name"] }
-            if (self.rawValue & 1 << 5) != 0 { options += ["all"] }
-            if (self.rawValue & 1 << 6) != 0 { options += ["none"] }
-            if (self.rawValue & 1 << 7) != 0 { options += ["skip"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-
-    /// Determines the drawing mode for this scatter trace.
-    /// 
-    /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
-    /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
-    /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-    /// 
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.mode`, `ScatterTernary<AData, BData, CData>.mode`,
-    ///   `Scatter3D<XData, YData, ZData>.mode`, `ScatterGeo<CoordinateData, LocationsData>.mode`,
-    ///   `ScatterGL<XData, YData>.mode`, `ScatterMapbox<CoordinateData>.mode`, `ScatterCarpet<AData,
-    ///   BData>.mode`, `ScatterPolar<RData, ThetaData>.mode`, `ScatterPolarGL<RData, ThetaData>.mode`.
-    public struct Mode: OptionSet, Encodable {
-        public let rawValue: Int
-        public static var lines: Mode { Mode(rawValue: 1 << 0) }
-        public static var markers: Mode { Mode(rawValue: 1 << 1) }
-        public static var text: Mode { Mode(rawValue: 1 << 2) }
-        public static var none: Mode { Mode(rawValue: 1 << 3) }
-        
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["lines"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["markers"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["none"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-
-    /// Do the hover effects highlight individual points (markers or line points) or do they highlight
-    /// filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the
-    /// default is *fills*, otherwise it is *points*.
-    /// 
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.hoverOn`, `ScatterTernary<AData, BData, CData>.hoverOn`,
-    ///   `ScatterCarpet<AData, BData>.hoverOn`, `ScatterPolar<RData, ThetaData>.hoverOn`.
-    public struct HoverOn: OptionSet, Encodable {
-        public let rawValue: Int
-        public static var points: HoverOn { HoverOn(rawValue: 1 << 0) }
-        public static var fills: HoverOn { HoverOn(rawValue: 1 << 1) }
-        
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["points"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["fills"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-
-    /// Determines which trace information appear on hover.
-    /// 
-    /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
-    /// click and hover events are still fired.
-    /// 
-    /// - Note:
-    ///   Used by `ScatterPolar<RData, ThetaData>.hoverInfo`, `ScatterPolarGL<RData,
-    ///   ThetaData>.hoverInfo`, `BarPolar<RData, ThetaData>.hoverInfo`.
-    public struct PolarHoverInfo: OptionSet, Encodable {
-        public let rawValue: Int
-        public static var r: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 0) }
-        public static var theta: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 1) }
-        public static var text: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 2) }
-        public static var name: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 3) }
-        public static var all: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 4) }
-        public static var none: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 5) }
-        public static var skip: PolarHoverInfo { PolarHoverInfo(rawValue: 1 << 6) }
-        
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
-        
-        public func encode(to encoder: Encoder) throws {
-            var options = [String]()
-            if (self.rawValue & 1 << 0) != 0 { options += ["r"] }
-            if (self.rawValue & 1 << 1) != 0 { options += ["theta"] }
-            if (self.rawValue & 1 << 2) != 0 { options += ["text"] }
-            if (self.rawValue & 1 << 3) != 0 { options += ["name"] }
-            if (self.rawValue & 1 << 4) != 0 { options += ["all"] }
-            if (self.rawValue & 1 << 5) != 0 { options += ["none"] }
-            if (self.rawValue & 1 << 6) != 0 { options += ["skip"] }
-            var container = encoder.singleValueContainer()
-            try container.encode(options.joined(separator: "+"))
-        }
-    }
-
-    
-    // MARK: - Objects
-
-    /// Sets the global font.
-    /// 
-    /// Note that fonts used in traces and other layout components inherit from the global font.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.font`, `Layout.Title.font`, `Shared.HoverLabel.font`, `Layout.XAxis.Title.font`,
-    ///   `Layout.XAxis.tickFont`, `Layout.XAxis.RangeSelector.font`, `Layout.YAxis.Title.font`,
-    ///   `Layout.YAxis.tickFont`, `Shared.Title.font`, `Layout.Ternary.AAxis.tickFont`,
-    ///   `Layout.Ternary.BAxis.Title.font`, `Layout.Ternary.BAxis.tickFont`,
-    ///   `Layout.Ternary.CAxis.Title.font`, `Layout.Ternary.CAxis.tickFont`,
-    ///   `Layout.Scene.XAxis.Title.font`, `Layout.Scene.XAxis.tickFont`, `Layout.Scene.YAxis.Title.font`,
-    ///   `Layout.Scene.YAxis.tickFont`, `Layout.Scene.ZAxis.Title.font`, `Layout.Scene.ZAxis.tickFont`,
-    ///   `Layout.Scene.Annotation.font`, `Layout.Scene.Annotation.HoverLabel.font`,
-    ///   `Layout.Mapbox.Layer.Symbol.textFont`, `Layout.Polar.RadialAxis.Title.font`,
-    ///   `Layout.Polar.RadialAxis.tickFont`, `Layout.Polar.AngularAxis.tickFont`, `Layout.Legend.font`,
-    ///   `Shared.LegendTitle.font`, `Layout.Annotation.font`, `Layout.Annotation.HoverLabel.font`,
-    ///   `Layout.UpdateMenu.font`, `Layout.Slider.CurrentValue.font`, `Layout.Slider.font`,
-    ///   `Shared.ColorBar.tickFont`, `Shared.ColorBar.LegendTitle.font`,
-    ///   `Shared.GradientMarker.ColorBar.tickFont`, `Shared.GradientMarker.ColorBar.LegendTitle.font`,
-    ///   `Shared.Marker.ColorBar.tickFont`, `Shared.Marker.ColorBar.LegendTitle.font`, `Heatmap<ZData,
-    ///   XYData>.ColorBar.tickFont`, `Heatmap<ZData, XYData>.ColorBar.LegendTitle.font`,
-    ///   `Histogram<XData, YData>.Marker.ColorBar.tickFont`, `Histogram<XData,
-    ///   YData>.Marker.ColorBar.LegendTitle.font`, `Histogram2D<XData, YData, ZData>.ColorBar.tickFont`,
-    ///   `Histogram2D<XData, YData, ZData>.ColorBar.LegendTitle.font`, `Shared.Contours.labelFont`,
-    ///   `Histogram2DContour<XData, YData, ZData>.ColorBar.tickFont`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.LegendTitle.font`, `Contour<ZData, XData, YData>.Contours.labelFont`,
-    ///   `Contour<ZData, XData, YData>.ColorBar.tickFont`, `Contour<ZData, XData,
-    ///   YData>.ColorBar.LegendTitle.font`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.ColorBar.tickFont`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.ColorBar.LegendTitle.font`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.tickFont`, `Funnel<XData, YData>.Marker.ColorBar.LegendTitle.font`,
-    ///   `Sunburst<ValuesData>.Marker.ColorBar.tickFont`,
-    ///   `Sunburst<ValuesData>.Marker.ColorBar.LegendTitle.font`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.tickFont`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.LegendTitle.font`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.tickFont`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.LegendTitle.font`, `Shared.SymbolicMarker.ColorBar.tickFont`,
-    ///   `Shared.SymbolicMarker.ColorBar.LegendTitle.font`, `Surface<ZSurfaceData,
-    ///   XYData>.ColorBar.tickFont`, `Surface<ZSurfaceData, XYData>.ColorBar.LegendTitle.font`,
-    ///   `Isosurface<XData, YData, ZData, ValueData>.ColorBar.tickFont`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.LegendTitle.font`, `Volume<XYZData, ValueData>.ColorBar.tickFont`,
-    ///   `Volume<XYZData, ValueData>.ColorBar.LegendTitle.font`, `Mesh3D<XData, YData, ZData,
-    ///   IntensityData, VertexcolorData, FacecolorData>.ColorBar.tickFont`, `Mesh3D<XData, YData, ZData,
-    ///   IntensityData, VertexcolorData, FacecolorData>.ColorBar.LegendTitle.font`, `Cone<XYZData,
-    ///   UVWData>.ColorBar.tickFont`, `Cone<XYZData, UVWData>.ColorBar.LegendTitle.font`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.tickFont`, `StreamTube<XYZData,
-    ///   UVWData>.ColorBar.LegendTitle.font`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.tickFont`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.LegendTitle.font`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.tickFont`, `Choropleth<LocationsData, ZData>.ColorBar.LegendTitle.font`,
-    ///   `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.tickFont`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.LegendTitle.font`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFont`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.LegendTitle.font`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.tickFont`, `HeatmapGL<ZData, XYData>.ColorBar.LegendTitle.font`,
-    ///   `ParallelCoordinates.labelFont`, `ParallelCoordinates.tickFont`,
-    ///   `ParallelCoordinates.rangeFont`, `ParallelCoordinates.MarkerLine.ColorBar.tickFont`,
-    ///   `ParallelCoordinates.MarkerLine.ColorBar.LegendTitle.font`, `ParallelCategories.labelFont`,
-    ///   `ParallelCategories.tickFont`, `ParallelCategories.ShapedMarkerLine.ColorBar.tickFont`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.LegendTitle.font`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.tickFont`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.LegendTitle.font`,
-    ///   `ScatterMapbox<CoordinateData>.textFont`, `ChoroplethMapbox<LocationsData,
-    ///   ZData>.ColorBar.tickFont`, `ChoroplethMapbox<LocationsData, ZData>.ColorBar.LegendTitle.font`,
-    ///   `DensityMapbox<CoordinateData, ZData>.ColorBar.tickFont`, `DensityMapbox<CoordinateData,
-    ///   ZData>.ColorBar.LegendTitle.font`, `Sankey.textFont`, `Indicator.Title.font`,
-    ///   `Indicator.Number.font`, `Indicator.Delta.font`, `Indicator.Gauge.Axis.tickFont`, `Carpet<XData,
-    ///   YData, AData, BData>.AAxis.Title.font`, `Carpet<XData, YData, AData, BData>.AAxis.tickFont`,
-    ///   `Carpet<XData, YData, AData, BData>.BAxis.Title.font`, `Carpet<XData, YData, AData,
-    ///   BData>.BAxis.tickFont`, `Carpet<XData, YData, AData, BData>.font`, `ScatterCarpet<AData,
-    ///   BData>.GradientMarker.ColorBar.tickFont`, `ScatterCarpet<AData,
-    ///   BData>.GradientMarker.ColorBar.LegendTitle.font`, `ContourCarpet<ZData, AData,
-    ///   BData>.Contours.labelFont`, `ContourCarpet<ZData, AData, BData>.ColorBar.tickFont`,
-    ///   `ContourCarpet<ZData, AData, BData>.ColorBar.LegendTitle.font`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.tickFont`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.LegendTitle.font`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.tickFont`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.LegendTitle.font`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.tickFont`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.LegendTitle.font`.
-    public struct Font: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser.
+    public struct RangeBreak: Encodable {
+        /// Determines whether this axis rangebreak is enabled or disabled.
         /// 
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
-        /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
-        /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
-        /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
-        /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: String? = nil
-    
-        public var size: Double? = nil
-    
-        public var color: Color? = nil
-    
-        /// Creates `Font` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - family: HTML font family - the typeface that will be applied by the web browser.
-        ///   - size:
-        ///   - color:
-        public init(family: String? = nil, size: Double? = nil, color: Color? = nil) {
-            self.family = family
-            self.size = size
-            self.color = color
-        }
-        
-    }
-
-    /// Sets the padding of the title.
-    /// 
-    /// Each padding value only applies when the corresponding `xanchor`/`yanchor` value is set
-    /// accordingly. E.g. for left padding to take effect, `xanchor` must be set to *left*. The same
-    /// rule applies if `xanchor`/`yanchor` is determined automatically. Padding is muted if the
-    /// respective anchor value is *middle*/*center*.
-    /// 
-    /// - Note:
-    ///   Used by `Layout.Title.padding`, `Layout.UpdateMenu.padding`, `Layout.Slider.padding`,
-    ///   `Treemap<ValuesData>.Marker.padding`.
-    public struct Padding: Encodable {
-        /// The amount of padding (in px) along the top of the component.
-        public var t: Double? = nil
-    
-        /// The amount of padding (in px) on the right side of the component.
-        public var r: Double? = nil
-    
-        /// The amount of padding (in px) along the bottom of the component.
-        public var b: Double? = nil
-    
-        /// The amount of padding (in px) on the left side of the component.
-        public var l: Double? = nil
-    
-        /// Creates `Padding` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - t: The amount of padding (in px) along the top of the component.
-        ///   - r: The amount of padding (in px) on the right side of the component.
-        ///   - b: The amount of padding (in px) along the bottom of the component.
-        ///   - l: The amount of padding (in px) on the left side of the component.
-        public init(t: Double? = nil, r: Double? = nil, b: Double? = nil, l: Double? = nil) {
-            self.t = t
-            self.r = r
-            self.b = b
-            self.l = l
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Layout.NewShape.line`, `Layout.Shape.line`, `Funnel<XData, YData>.Connector.line`,
-    ///   `Waterfall<XData, YData>.Connector.line`, `ScatterGeo<CoordinateData, LocationsData>.line`.
-    public struct DashedLine: Encodable {
-        /// Sets the line color.
-        /// 
-        /// By default uses either dark grey or white to increase contrast with background color.
-        public var color: Color? = nil
-    
-        /// Sets the line width (in px).
-        public var width: Double? = nil
-    
-        /// Sets the dash style of lines.
-        /// 
-        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-        /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String? = nil
-    
-        /// Creates `DashedLine` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - color: Sets the line color.
-        ///   - width: Sets the line width (in px).
-        ///   - dash: Sets the dash style of lines.
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Layout.hoverLabel`, `Scatter<XData, YData>.hoverLabel`, `Bar<XData, YData>.hoverLabel`,
-    ///   `Box<YData, XData, QData>.hoverLabel`, `Heatmap<ZData, XYData>.hoverLabel`, `Histogram<XData,
-    ///   YData>.hoverLabel`, `Histogram2D<XData, YData, ZData>.hoverLabel`, `Histogram2DContour<XData,
-    ///   YData, ZData>.hoverLabel`, `Contour<ZData, XData, YData>.hoverLabel`, `ScatterTernary<AData,
-    ///   BData, CData>.hoverLabel`, `Violin<YData, XData>.hoverLabel`, `Funnel<XData, YData>.hoverLabel`,
-    ///   `Waterfall<XData, YData>.hoverLabel`, `Image<ZData>.hoverLabel`, `Pie<LabelsData,
-    ///   ValuesData>.hoverLabel`, `Sunburst<ValuesData>.hoverLabel`, `Treemap<ValuesData>.hoverLabel`,
-    ///   `FunnelArea<LabelsData, ValuesData>.hoverLabel`, `Scatter3D<XData, YData, ZData>.hoverLabel`,
-    ///   `Surface<ZSurfaceData, XYData>.hoverLabel`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.hoverLabel`, `Volume<XYZData, ValueData>.hoverLabel`, `Mesh3D<XData, YData, ZData,
-    ///   IntensityData, VertexcolorData, FacecolorData>.hoverLabel`, `Cone<XYZData, UVWData>.hoverLabel`,
-    ///   `StreamTube<XYZData, UVWData>.hoverLabel`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.hoverLabel`, `Choropleth<LocationsData, ZData>.hoverLabel`, `ScatterGL<XData,
-    ///   YData>.hoverLabel`, `ScatterPlotMatrix.hoverLabel`, `PointCloud<XYData>.hoverLabel`,
-    ///   `HeatmapGL<ZData, XYData>.hoverLabel`, `ScatterMapbox<CoordinateData>.hoverLabel`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.hoverLabel`, `DensityMapbox<CoordinateData,
-    ///   ZData>.hoverLabel`, `Sankey.hoverLabel`, `Sankey.Node.hoverLabel`, `Sankey.Link.hoverLabel`,
-    ///   `Table<CellData>.hoverLabel`, `ScatterCarpet<AData, BData>.hoverLabel`, `ScatterPolar<RData,
-    ///   ThetaData>.hoverLabel`, `ScatterPolarGL<RData, ThetaData>.hoverLabel`, `BarPolar<RData,
-    ///   ThetaData>.hoverLabel`.
-    public struct HoverLabel: Encodable {
-        /// Sets the background color of all hover labels on graph
-        public var backgroundColor: Color? = nil
-    
-        /// Sets the border color of all hover labels on graph.
-        public var borderColor: Color? = nil
-    
-        /// Sets the default hover label font used by all traces on the graph.
-        public var font: Shared.Font? = nil
-    
-        /// Sets the horizontal alignment of the text content within hover label box.
-        /// 
-        /// Has an effect only if the hover label text spans more two or more lines
-        public var align: Shared.AutoAlign? = nil
-    
-        /// Sets the default length (in number of characters) of the trace name in the hover labels for all
-        /// traces.
-        /// 
-        /// -1 shows the whole name regardless of length. 0-3 shows the first 0-3 characters, and an integer
-        /// >3 will show the whole name if it is less than that many characters, but if it is longer, will
-        /// truncate to `namelength - 3` characters and add an ellipsis.
-        public var nameLength: Int? = nil
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case backgroundColor = "bgcolor"
-            case borderColor = "bordercolor"
-            case font
-            case align
-            case nameLength = "namelength"
-        }
-        
-        /// Creates `HoverLabel` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - backgroundColor: Sets the background color of all hover labels on graph
-        ///   - borderColor: Sets the border color of all hover labels on graph.
-        ///   - font: Sets the default hover label font used by all traces on the graph.
-        ///   - align: Sets the horizontal alignment of the text content within hover label box.
-        ///   - nameLength: Sets the default length (in number of characters) of the trace name in the hover
-        ///   labels for all traces.
-        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Shared.Font? = nil,
-                align: Shared.AutoAlign? = nil, nameLength: Int? = nil) {
-            self.backgroundColor = backgroundColor
-            self.borderColor = borderColor
-            self.font = font
-            self.align = align
-            self.nameLength = nameLength
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Layout.XAxis.tickFormatStops`, `Layout.YAxis.tickFormatStops`,
-    ///   `Layout.Ternary.AAxis.tickFormatStops`, `Layout.Ternary.BAxis.tickFormatStops`,
-    ///   `Layout.Ternary.CAxis.tickFormatStops`, `Layout.Scene.XAxis.tickFormatStops`,
-    ///   `Layout.Scene.YAxis.tickFormatStops`, `Layout.Scene.ZAxis.tickFormatStops`,
-    ///   `Layout.Polar.RadialAxis.tickFormatStops`, `Layout.Polar.AngularAxis.tickFormatStops`,
-    ///   `Shared.ColorBar.tickFormatStops`, `Shared.GradientMarker.ColorBar.tickFormatStops`,
-    ///   `Shared.Marker.ColorBar.tickFormatStops`, `Heatmap<ZData, XYData>.ColorBar.tickFormatStops`,
-    ///   `Histogram<XData, YData>.Marker.ColorBar.tickFormatStops`, `Histogram2D<XData, YData,
-    ///   ZData>.ColorBar.tickFormatStops`, `Histogram2DContour<XData, YData,
-    ///   ZData>.ColorBar.tickFormatStops`, `Contour<ZData, XData, YData>.ColorBar.tickFormatStops`,
-    ///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.tickFormatStops`, `Funnel<XData,
-    ///   YData>.Marker.ColorBar.tickFormatStops`, `Sunburst<ValuesData>.Marker.ColorBar.tickFormatStops`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.tickFormatStops`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.tickFormatStops`,
-    ///   `Shared.SymbolicMarker.ColorBar.tickFormatStops`, `Surface<ZSurfaceData,
-    ///   XYData>.ColorBar.tickFormatStops`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.tickFormatStops`, `Volume<XYZData, ValueData>.ColorBar.tickFormatStops`,
-    ///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.ColorBar.tickFormatStops`, `Cone<XYZData, UVWData>.ColorBar.tickFormatStops`,
-    ///   `StreamTube<XYZData, UVWData>.ColorBar.tickFormatStops`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.ColorBar.tickFormatStops`, `Choropleth<LocationsData,
-    ///   ZData>.ColorBar.tickFormatStops`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.tickFormatStops`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFormatStops`, `HeatmapGL<ZData,
-    ///   XYData>.ColorBar.tickFormatStops`, `ParallelCoordinates.MarkerLine.ColorBar.tickFormatStops`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.tickFormatStops`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.tickFormatStops`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.tickFormatStops`,
-    ///   `DensityMapbox<CoordinateData, ZData>.ColorBar.tickFormatStops`,
-    ///   `Indicator.Gauge.Axis.tickFormatStops`, `Carpet<XData, YData, AData,
-    ///   BData>.AAxis.tickFormatStops`, `Carpet<XData, YData, AData, BData>.BAxis.tickFormatStops`,
-    ///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.tickFormatStops`, `ContourCarpet<ZData,
-    ///   AData, BData>.ColorBar.tickFormatStops`, `ScatterPolar<RData,
-    ///   ThetaData>.GradientMarker.ColorBar.tickFormatStops`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.ColorBar.tickFormatStops`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.tickFormatStops`.
-    public struct TickFormatStop: Encodable {
-        /// Determines whether or not this stop is used.
-        /// 
-        /// If `false`, this stop is ignored even within its `dtickrange`.
+        /// Please note that `rangebreaks` only work for *date* axis type.
         public var enabled: Bool? = nil
     
-        /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is
-        /// possible to omit *min* or *max* value by passing *null*
-        public var dTickRange: InfoArray? = nil
+        /// Sets the lower and upper bounds of this axis rangebreak.
+        /// 
+        /// Can be used with `pattern`.
+        public var bounds: InfoArray? = nil
     
-        /// string - dtickformat for described zoom level, the same as *tickformat*
-        public var value: String? = nil
+        /// Determines a pattern on the time line that generates breaks.
+        /// 
+        /// If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is
+        /// case-insensitive and considers only the first three characters), as well as Sunday-based
+        /// integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24.
+        /// for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] } or simply { bounds:
+        /// ['sat', 'mon'] } breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour',
+        /// bounds: [17, 8] } breaks from 5pm to 8am (i.e. skips non-work hours).
+        public enum Pattern: String, Encodable {
+            case dayOfWeek = "day of week"
+            case hour
+            case off = ""
+        }
+        /// Determines a pattern on the time line that generates breaks.
+        /// 
+        /// If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is
+        /// case-insensitive and considers only the first three characters), as well as Sunday-based
+        /// integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24.
+        /// for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] } or simply { bounds:
+        /// ['sat', 'mon'] } breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour',
+        /// bounds: [17, 8] } breaks from 5pm to 8am (i.e. skips non-work hours).
+        public var pattern: Pattern? = nil
+    
+        /// Sets the coordinate values corresponding to the rangebreaks.
+        /// 
+        /// An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
+        public var values: InfoArray? = nil
+    
+        /// Sets the size of each `values` item.
+        /// 
+        /// The default is one day in milliseconds.
+        public var dValue: Double? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
         /// the figure already has in this array.
@@ -1792,74 +1968,1120 @@ public enum Shared {
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
             case enabled
-            case dTickRange = "dtickrange"
-            case value
+            case bounds
+            case pattern
+            case values
+            case dValue = "dvalue"
             case name
             case templateItemName = "templateitemname"
         }
         
-        /// Creates `TickFormatStop` object with specified properties.
+        /// Creates `RangeBreak` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - enabled: Determines whether or not this stop is used.
-        ///   - dTickRange: range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom
-        ///   level, it is possible to omit *min* or *max* value by passing *null*
-        ///   - value: string - dtickformat for described zoom level, the same as *tickformat*
+        ///   - enabled: Determines whether this axis rangebreak is enabled or disabled.
+        ///   - bounds: Sets the lower and upper bounds of this axis rangebreak.
+        ///   - pattern: Determines a pattern on the time line that generates breaks.
+        ///   - values: Sets the coordinate values corresponding to the rangebreaks.
+        ///   - dValue: Sets the size of each `values` item.
         ///   - name: When used in a template, named items are created in the output figure in addition to any
         ///   items the figure already has in this array.
         ///   - templateItemName: Used to refer to a named item in this array in the template.
-        public init(enabled: Bool? = nil, dTickRange: InfoArray? = nil, value: String? = nil, name:
-                String? = nil, templateItemName: String? = nil) {
+        public init(enabled: Bool? = nil, bounds: InfoArray? = nil, pattern: Pattern? = nil, values:
+                InfoArray? = nil, dValue: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
             self.enabled = enabled
-            self.dTickRange = dTickRange
-            self.value = value
+            self.bounds = bounds
+            self.pattern = pattern
+            self.values = values
+            self.dValue = dValue
             self.name = name
             self.templateItemName = templateItemName
         }
         
     }
+    public var rangeBreaks: [RangeBreak]? = nil
 
-    /// - Note:
-    ///   Used by `Layout.Ternary.domain`, `Layout.Scene.domain`, `Layout.Geo.domain`,
-    ///   `Layout.Mapbox.domain`, `Layout.Polar.domain`, `Pie<LabelsData, ValuesData>.domain`,
-    ///   `Sunburst<ValuesData>.domain`, `Treemap<ValuesData>.domain`, `FunnelArea<LabelsData,
-    ///   ValuesData>.domain`, `ParallelCoordinates.domain`, `ParallelCategories.domain`, `Sankey.domain`,
-    ///   `Indicator.domain`, `Table<CellData>.domain`.
-    public struct Domain: Encodable {
-        /// Sets the horizontal domain of this ternary subplot (in plot fraction).
-        public var x: InfoArray? = nil
+    /// Sets the tick mode for this axis.
+    /// 
+    /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+    /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+    /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+    /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+    /// provided).
+    public var tickMode: TickMode? = nil
+
+    /// Specifies the maximum number of ticks for the particular axis.
+    /// 
+    /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+    /// Has an effect only if `tickmode` is set to *auto*.
+    public var numTicks: Int? = nil
+
+    /// Sets the placement of the first tick on this axis.
+    /// 
+    /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+    /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+    /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+    /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+    /// category is assigned a serial number from zero in the order it appears.
+    public var tick0: Anything? = nil
+
+    /// Sets the step in-between ticks on this axis.
+    /// 
+    /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+    /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+    /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+    /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+    /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+    /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+    /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+    /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+    /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+    /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+    /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+    /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+    /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+    public var dTick: Anything? = nil
+
+    /// Sets the values at which ticks on this axis appear.
+    /// 
+    /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    public var tickValues: [Double]? = nil
+
+    /// Sets the text displayed at the ticks position via `tickvals`.
+    /// 
+    /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    public var tickText: [Double]? = nil
+
+    /// Determines whether ticks are drawn or not.
+    /// 
+    /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+    /// (inside) the axis lines.
+    public var ticks: Ticks? = nil
+
+    /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels.
+    /// 
+    /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
+    /// ticks and grid lines are drawn half a category to the left/bottom of labels.
+    public enum TicksOn: String, Encodable {
+        case labels
+        case boundaries
+    }
+    /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels.
+    /// 
+    /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
+    /// ticks and grid lines are drawn half a category to the left/bottom of labels.
+    public var ticksOn: TicksOn? = nil
+
+    /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines.
+    /// 
+    /// Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the
+    /// middle of the period between ticks.
+    public enum TickLabelMode: String, Encodable {
+        case instant
+        case period
+    }
+    /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines.
+    /// 
+    /// Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the
+    /// middle of the period between ticks.
+    public var tickLabelMode: TickLabelMode? = nil
+
+    /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
+    /// area.
+    /// 
+    /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
+    /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
+    /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+    public var mirror: Mirror? = nil
+
+    /// Sets the tick length (in px).
+    public var tickLength: Double? = nil
+
+    /// Sets the tick width (in px).
+    public var tickWidth: Double? = nil
+
+    /// Sets the tick color.
+    public var tickColor: Color? = nil
+
+    /// Determines whether or not the tick labels are drawn.
+    public var showTickLabels: Bool? = nil
+
+    /// Determines whether long tick labels automatically grow the figure margins.
+    public var autoMargin: Bool? = nil
+
+    /// Determines whether or not spikes (aka droplines) are drawn for this axis.
+    /// 
+    /// Note: This only takes affect when hovermode = closest
+    public var showSpikes: Bool? = nil
+
+    /// Sets the spike color.
+    /// 
+    /// If undefined, will use the series color
+    public var spikeColor: Color? = nil
+
+    /// Sets the width (in px) of the zero line.
+    public var spikeThickness: Double? = nil
+
+    /// Sets the dash style of lines.
+    /// 
+    /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+    /// dash length list in px (eg *5px,10px,2px,2px*).
+    public var spikeDash: String? = nil
+
+    /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data
+    /// point to the axis the series is plotted on.
+    /// 
+    /// If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If
+    /// *marker*, then a marker dot is drawn on the axis the series is plotted on
+    public struct SpikeMode: OptionSet, Encodable {
+        public let rawValue: Int
+        public static var toAxis: SpikeMode { SpikeMode(rawValue: 1 << 0) }
+        public static var across: SpikeMode { SpikeMode(rawValue: 1 << 1) }
+        public static var marker: SpikeMode { SpikeMode(rawValue: 1 << 2) }
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["toaxis"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["across"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["marker"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data
+    /// point to the axis the series is plotted on.
+    /// 
+    /// If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If
+    /// *marker*, then a marker dot is drawn on the axis the series is plotted on
+    public var spikeMode: SpikeMode? = nil
+
+    /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    public enum SpikeSnap: String, Encodable {
+        case data
+        case cursor
+        case hoveredData = "hovered data"
+    }
+    /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    public var spikeSnap: SpikeSnap? = nil
+
+    /// Sets the tick font.
+    public var tickFont: Font? = nil
+
+    /// Sets the angle of the tick labels with respect to the horizontal.
+    /// 
+    /// For example, a `tickangle` of -90 draws the tick labels vertically.
+    public var tickAngle: Angle? = nil
+
+    /// Sets a tick label prefix.
+    public var tickPrefix: String? = nil
+
+    /// If *all*, all tick labels are displayed with a prefix.
+    /// 
+    /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+    /// displayed with a suffix. If *none*, tick prefixes are hidden.
+    public var showTickPrefix: ShowTickPrefix? = nil
+
+    /// Sets a tick label suffix.
+    public var tickSuffix: String? = nil
+
+    /// Same as `showtickprefix` but for tick suffixes.
+    public var showTickSuffix: ShowTickSuffix? = nil
+
+    /// If *all*, all exponents are shown besides their significands.
+    /// 
+    /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+    /// last tick is shown. If *none*, no exponents appear.
+    public var showExponent: ShowExponent? = nil
+
+    /// Determines a formatting rule for the tick exponents.
+    /// 
+    /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+    /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+    public var exponentFormat: ExponentFormat? = nil
+
+    /// If "true", even 4-digit integers are separated
+    public var separateThousands: Bool? = nil
+
+    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+    /// those in Python.
+    /// 
+    /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+    /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+    /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    public var tickFormat: String? = nil
+
+    public var tickFormatStops: [TickFormatStop]? = nil
+
+    /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+    /// those in Python.
+    /// 
+    /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+    /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+    /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    public var hoverFormat: String? = nil
+
+    /// Determines whether or not a line bounding this axis is drawn.
+    public var showLine: Bool? = nil
+
+    /// Sets the axis line color.
+    public var lineColor: Color? = nil
+
+    /// Sets the width (in px) of the axis line.
+    public var lineWidth: Double? = nil
+
+    /// Determines whether or not grid lines are drawn.
+    /// 
+    /// If *true*, the grid lines are drawn at every tick mark.
+    public var showGrid: Bool? = nil
+
+    /// Sets the color of the grid lines.
+    public var gridColor: Color? = nil
+
+    /// Sets the width (in px) of the grid lines.
+    public var gridWidth: Double? = nil
+
+    /// Determines whether or not a line is drawn at along the 0 value of this axis.
+    /// 
+    /// If *true*, the zero line is drawn on top of the grid lines.
+    public var zeroLine: Bool? = nil
+
+    /// Sets the line color of the zero line.
+    public var zeroLineColor: Color? = nil
+
+    /// Sets the width (in px) of the zero line.
+    public var zeroLineWidth: Double? = nil
+
+    /// Determines whether or not a dividers are drawn between the category levels of this axis.
+    /// 
+    /// Only has an effect on *multicategory* axes.
+    public var showDividers: Bool? = nil
+
+    /// Sets the color of the dividers Only has an effect on *multicategory* axes.
+    public var dividerColor: Color? = nil
+
+    /// Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
+    public var dividerWidth: Double? = nil
+
+    /// If set to an opposite-letter axis id (e.g.
+    /// 
+    /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
+    /// axis' position is determined by `position`.
+    public enum Anchor: Encodable {
+        case free
+        case xAxis(XAxis)
+        case yAxis(YAxis)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .free:
+                try container.encode("free")
+            case .xAxis(let axis):
+                try container.encode("x\(axis.uid)")
+            case .yAxis(let axis):
+                try container.encode("y\(axis.uid)")
+            }
+        }
+    }
+    /// If set to an opposite-letter axis id (e.g.
+    /// 
+    /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
+    /// axis' position is determined by `position`.
+    public var anchor: Anchor? = nil
+
+    /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the
+    /// plotting area.
+    public enum Side: String, Encodable {
+        case top
+        case bottom
+        case left
+        case right
+    }
+    /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the
+    /// plotting area.
+    public var side: Side? = nil
+
+    /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
+    /// axis, with traces and axes visible for both axes.
+    /// 
+    /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
+    /// overlapping domains only the highest-numbered axis will be visible.
+    public enum Overlaying: Encodable {
+        case free
+        case xAxis(XAxis)
+        case yAxis(YAxis)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .free:
+                try container.encode("free")
+            case .xAxis(let axis):
+                try container.encode("x\(axis.uid)")
+            case .yAxis(let axis):
+                try container.encode("y\(axis.uid)")
+            }
+        }
+    }
+    /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
+    /// axis, with traces and axes visible for both axes.
+    /// 
+    /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
+    /// overlapping domains only the highest-numbered axis will be visible.
+    public var overlaying: Overlaying? = nil
+
+    /// Sets the layer on which this axis is displayed.
+    /// 
+    /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
+    /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
+    /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
+    /// nodes above this axis.
+    public var layer: AxisLayer? = nil
+
+    /// Sets the domain of this axis (in plot fraction).
+    public var domain: InfoArray? = nil
+
+    /// Sets the position of this axis in the plotting space (in normalized coordinates).
+    /// 
+    /// Only has an effect if `anchor` is set to *free*.
+    public var position: Double? = nil
+
+    /// Specifies the ordering logic for the case of categorical variables.
+    /// 
+    /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+    /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+    /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+    /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+    /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+    /// mode. The unspecified categories will follow the categories in `categoryarray`. Set
+    /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
+    /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
+    /// or median of all the values.
+    public var categoryOrder: CategoryOrder? = nil
+
+    /// Sets the order in which categories on this axis appear.
+    /// 
+    /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    public var categoryArray: [Double]? = nil
+
+    /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in
+    /// `editable: true` configuration.
+    /// 
+    /// Defaults to `layout.uirevision`.
+    public var uiRevision: Anything? = nil
+
+    public struct RangeSlider: Encodable {
+        /// Sets the background color of the range slider.
+        public var backgroundColor: Color? = nil
     
-        /// Sets the vertical domain of this ternary subplot (in plot fraction).
-        public var y: InfoArray? = nil
+        /// Sets the border color of the range slider.
+        public var borderColor: Color? = nil
     
-        /// If there is a layout grid, use the domain for this row in the grid for this ternary subplot .
-        public var row: Int? = nil
+        /// Sets the border width of the range slider.
+        public var borderWidth: Int? = nil
     
-        /// If there is a layout grid, use the domain for this column in the grid for this ternary subplot .
-        public var column: Int? = nil
+        /// Determines whether or not the range slider range is computed in relation to the input data.
+        /// 
+        /// If `range` is provided, then `autorange` is set to *false*.
+        public var autoRange: Bool? = nil
     
-        /// Creates `Domain` object with specified properties.
+        /// Sets the range of the range slider.
+        /// 
+        /// If not set, defaults to the full xaxis range. If the axis `type` is *log*, then you must take
+        /// the log of your desired range. If the axis `type` is *date*, it should be date strings, like
+        /// date data, though Date objects and unix milliseconds will be accepted and converted to strings.
+        /// If the axis `type` is *category*, it should be numbers, using the scale where each category is
+        /// assigned a serial number from zero in the order it appears.
+        public var range: InfoArray? = nil
+    
+        /// The height of the range slider as a fraction of the total plot area height.
+        public var thickness: Double? = nil
+    
+        /// Determines whether or not the range slider will be visible.
+        /// 
+        /// If visible, perpendicular axes will be set to `fixedrange`
+        public var visible: Bool? = nil
+    
+        public struct YAxis: Encodable {
+            /// Determines whether or not the range of this axis in the rangeslider use the same value than in
+            /// the main plot when zooming in/out.
+            /// 
+            /// If *auto*, the autorange will be used. If *fixed*, the `range` is used. If *match*, the current
+            /// range of the corresponding y-axis on the main subplot is used.
+            public enum RangeMode: String, Encodable {
+                case auto
+                case fixed
+                case match
+            }
+            /// Determines whether or not the range of this axis in the rangeslider use the same value than in
+            /// the main plot when zooming in/out.
+            /// 
+            /// If *auto*, the autorange will be used. If *fixed*, the `range` is used. If *match*, the current
+            /// range of the corresponding y-axis on the main subplot is used.
+            public var rangeMode: RangeMode? = nil
+        
+            /// Sets the range of this axis for the rangeslider.
+            public var range: InfoArray? = nil
+        
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case rangeMode = "rangemode"
+                case range
+            }
+            
+            /// Creates `YAxis` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - rangeMode: Determines whether or not the range of this axis in the rangeslider use the same
+            ///   value than in the main plot when zooming in/out.
+            ///   - range: Sets the range of this axis for the rangeslider.
+            public init(rangeMode: RangeMode? = nil, range: InfoArray? = nil) {
+                self.rangeMode = rangeMode
+                self.range = range
+            }
+            
+        }
+        public var yAxis: YAxis? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case borderWidth = "borderwidth"
+            case autoRange = "autorange"
+            case range
+            case thickness
+            case visible
+            case yAxis = "yaxis"
+        }
+        
+        /// Creates `RangeSlider` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - x: Sets the horizontal domain of this ternary subplot (in plot fraction).
-        ///   - y: Sets the vertical domain of this ternary subplot (in plot fraction).
-        ///   - row: If there is a layout grid, use the domain for this row in the grid for this ternary
-        ///   subplot .
-        ///   - column: If there is a layout grid, use the domain for this column in the grid for this ternary
-        ///   subplot .
-        public init(x: InfoArray? = nil, y: InfoArray? = nil, row: Int? = nil, column: Int? = nil) {
-            self.x = x
-            self.y = y
-            self.row = row
-            self.column = column
+        ///   - backgroundColor: Sets the background color of the range slider.
+        ///   - borderColor: Sets the border color of the range slider.
+        ///   - borderWidth: Sets the border width of the range slider.
+        ///   - autoRange: Determines whether or not the range slider range is computed in relation to the
+        ///   input data.
+        ///   - range: Sets the range of the range slider.
+        ///   - thickness: The height of the range slider as a fraction of the total plot area height.
+        ///   - visible: Determines whether or not the range slider will be visible.
+        ///   - yAxis:
+        public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Int? = nil,
+                autoRange: Bool? = nil, range: InfoArray? = nil, thickness: Double? = nil, visible: Bool? = nil,
+                yAxis: YAxis? = nil) {
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
+            self.borderWidth = borderWidth
+            self.autoRange = autoRange
+            self.range = range
+            self.thickness = thickness
+            self.visible = visible
+            self.yAxis = yAxis
         }
         
     }
+    public var rangeSlider: RangeSlider? = nil
 
-    /// - Note:
-    ///   Used by `Layout.Ternary.AAxis.title`, `Layout.Ternary.BAxis.title`,
-    ///   `Layout.Ternary.CAxis.title`, `Layout.Scene.XAxis.title`, `Layout.Scene.YAxis.title`,
-    ///   `Layout.Scene.ZAxis.title`, `Layout.Polar.RadialAxis.title`.
+    public struct RangeSelector: Encodable {
+        /// Determines whether or not this range selector is visible.
+        /// 
+        /// Note that range selectors are only available for x axes of `type` set to or auto-typed to
+        /// *date*.
+        public var visible: Bool? = nil
+    
+        /// Sets the specifications for each buttons.
+        /// 
+        /// By default, a range selector comes with no buttons.
+        public struct Button: Encodable {
+            /// Determines whether or not this button is visible.
+            public var visible: Bool? = nil
+        
+            /// The unit of measurement that the `count` value will set the range by.
+            public enum Step: String, Encodable {
+                case month
+                case year
+                case day
+                case hour
+                case minute
+                case second
+                case all
+            }
+            /// The unit of measurement that the `count` value will set the range by.
+            public var step: Step? = nil
+        
+            /// Sets the range update mode.
+            /// 
+            /// If *backward*, the range update shifts the start of range back *count* times *step*
+            /// milliseconds. If *todate*, the range update shifts the start of range back to the first
+            /// timestamp from *count* times *step* milliseconds back. For example, with `step` set to *year*
+            /// and `count` set to *1* the range update shifts the start of the range back to January 01 of the
+            /// current year. Month and year *todate* are currently available only for the built-in (Gregorian)
+            /// calendar.
+            public enum StepMode: String, Encodable {
+                case backward
+                case todate
+            }
+            /// Sets the range update mode.
+            /// 
+            /// If *backward*, the range update shifts the start of range back *count* times *step*
+            /// milliseconds. If *todate*, the range update shifts the start of range back to the first
+            /// timestamp from *count* times *step* milliseconds back. For example, with `step` set to *year*
+            /// and `count` set to *1* the range update shifts the start of the range back to January 01 of the
+            /// current year. Month and year *todate* are currently available only for the built-in (Gregorian)
+            /// calendar.
+            public var stepMode: StepMode? = nil
+        
+            /// Sets the number of steps to take to update the range.
+            /// 
+            /// Use with `step` to specify the update interval.
+            public var count: Double? = nil
+        
+            /// Sets the text label to appear on the button.
+            public var label: String? = nil
+        
+            /// When used in a template, named items are created in the output figure in addition to any items
+            /// the figure already has in this array.
+            /// 
+            /// You can modify these items in the output figure by making your own item with `templateitemname`
+            /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+            /// false` to hide it). Has no effect outside of a template.
+            public var name: String? = nil
+        
+            /// Used to refer to a named item in this array in the template.
+            /// 
+            /// Named items from the template will be created even without a matching item in the input figure,
+            /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+            /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+            /// template or no matching item, this item will be hidden unless you explicitly show it with
+            /// `visible: true`.
+            public var templateItemName: String? = nil
+        
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case visible
+                case step
+                case stepMode = "stepmode"
+                case count
+                case label
+                case name
+                case templateItemName = "templateitemname"
+            }
+            
+            /// Creates `Button` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - visible: Determines whether or not this button is visible.
+            ///   - step: The unit of measurement that the `count` value will set the range by.
+            ///   - stepMode: Sets the range update mode.
+            ///   - count: Sets the number of steps to take to update the range.
+            ///   - label: Sets the text label to appear on the button.
+            ///   - name: When used in a template, named items are created in the output figure in addition to any
+            ///   items the figure already has in this array.
+            ///   - templateItemName: Used to refer to a named item in this array in the template.
+            public init(visible: Bool? = nil, step: Step? = nil, stepMode: StepMode? = nil, count: Double? =
+                    nil, label: String? = nil, name: String? = nil, templateItemName: String? = nil) {
+                self.visible = visible
+                self.step = step
+                self.stepMode = stepMode
+                self.count = count
+                self.label = label
+                self.name = name
+                self.templateItemName = templateItemName
+            }
+            
+        }
+        public var buttons: [Button]? = nil
+    
+        /// Sets the x position (in normalized coordinates) of the range selector.
+        public var x: Double? = nil
+    
+        /// Sets the range selector's horizontal position anchor.
+        /// 
+        /// This anchor binds the `x` position to the *left*, *center* or *right* of the range selector.
+        public var xAnchor: XAutoAnchor? = nil
+    
+        /// Sets the y position (in normalized coordinates) of the range selector.
+        public var y: Double? = nil
+    
+        /// Sets the range selector's vertical position anchor This anchor binds the `y` position to the
+        /// *top*, *middle* or *bottom* of the range selector.
+        public var yAnchor: YAutoAnchor? = nil
+    
+        /// Sets the font of the range selector button text.
+        public var font: Font? = nil
+    
+        /// Sets the background color of the range selector buttons.
+        public var backgroundColor: Color? = nil
+    
+        /// Sets the background color of the active range selector button.
+        public var activeColor: Color? = nil
+    
+        /// Sets the color of the border enclosing the range selector.
+        public var borderColor: Color? = nil
+    
+        /// Sets the width (in px) of the border enclosing the range selector.
+        public var borderWidth: Double? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case buttons
+            case x
+            case xAnchor = "xanchor"
+            case y
+            case yAnchor = "yanchor"
+            case font
+            case backgroundColor = "bgcolor"
+            case activeColor = "activecolor"
+            case borderColor = "bordercolor"
+            case borderWidth = "borderwidth"
+        }
+        
+        /// Creates `RangeSelector` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - visible: Determines whether or not this range selector is visible.
+        ///   - buttons:
+        ///   - x: Sets the x position (in normalized coordinates) of the range selector.
+        ///   - xAnchor: Sets the range selector's horizontal position anchor.
+        ///   - y: Sets the y position (in normalized coordinates) of the range selector.
+        ///   - yAnchor: Sets the range selector's vertical position anchor This anchor binds the `y` position
+        ///   to the *top*, *middle* or *bottom* of the range selector.
+        ///   - font: Sets the font of the range selector button text.
+        ///   - backgroundColor: Sets the background color of the range selector buttons.
+        ///   - activeColor: Sets the background color of the active range selector button.
+        ///   - borderColor: Sets the color of the border enclosing the range selector.
+        ///   - borderWidth: Sets the width (in px) of the border enclosing the range selector.
+        public init(visible: Bool? = nil, buttons: [Button]? = nil, x: Double? = nil, xAnchor:
+                XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, font: Font? = nil,
+                backgroundColor: Color? = nil, activeColor: Color? = nil, borderColor: Color? = nil,
+                borderWidth: Double? = nil) {
+            self.visible = visible
+            self.buttons = buttons
+            self.x = x
+            self.xAnchor = xAnchor
+            self.y = y
+            self.yAnchor = yAnchor
+            self.font = font
+            self.backgroundColor = backgroundColor
+            self.activeColor = activeColor
+            self.borderColor = borderColor
+            self.borderWidth = borderWidth
+        }
+        
+    }
+    public var rangeSelector: RangeSelector? = nil
+
+    /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+    /// 
+    /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
+    /// or via the global `layout.calendar`
+    public var calendar: Calendar? = nil
+
+    /// Shared and preset default axis reference used to initialize layout and all traces.
+    public static let preset: XAxis = XAxis(uid: 1)
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case visible
+        case color
+        case title
+        case type
+        case autoRange = "autorange"
+        case rangeMode = "rangemode"
+        case range
+        case fixedRange = "fixedrange"
+        case scaleAnchor = "scaleanchor"
+        case scaleRatio = "scaleratio"
+        case constrain
+        case constrainToward = "constraintoward"
+        case matches
+        case rangeBreaks = "rangebreaks"
+        case tickMode = "tickmode"
+        case numTicks = "nticks"
+        case tick0
+        case dTick = "dtick"
+        case tickValues = "tickvals"
+        case tickText = "ticktext"
+        case ticks
+        case ticksOn = "tickson"
+        case tickLabelMode = "ticklabelmode"
+        case mirror
+        case tickLength = "ticklen"
+        case tickWidth = "tickwidth"
+        case tickColor = "tickcolor"
+        case showTickLabels = "showticklabels"
+        case autoMargin = "automargin"
+        case showSpikes = "showspikes"
+        case spikeColor = "spikecolor"
+        case spikeThickness = "spikethickness"
+        case spikeDash = "spikedash"
+        case spikeMode = "spikemode"
+        case spikeSnap = "spikesnap"
+        case tickFont = "tickfont"
+        case tickAngle = "tickangle"
+        case tickPrefix = "tickprefix"
+        case showTickPrefix = "showtickprefix"
+        case tickSuffix = "ticksuffix"
+        case showTickSuffix = "showticksuffix"
+        case showExponent = "showexponent"
+        case exponentFormat = "exponentformat"
+        case separateThousands = "separatethousands"
+        case tickFormat = "tickformat"
+        case tickFormatStops = "tickformatstops"
+        case hoverFormat = "hoverformat"
+        case showLine = "showline"
+        case lineColor = "linecolor"
+        case lineWidth = "linewidth"
+        case showGrid = "showgrid"
+        case gridColor = "gridcolor"
+        case gridWidth = "gridwidth"
+        case zeroLine = "zeroline"
+        case zeroLineColor = "zerolinecolor"
+        case zeroLineWidth = "zerolinewidth"
+        case showDividers = "showdividers"
+        case dividerColor = "dividercolor"
+        case dividerWidth = "dividerwidth"
+        case anchor
+        case side
+        case overlaying
+        case layer
+        case domain
+        case position
+        case categoryOrder = "categoryorder"
+        case categoryArray = "categoryarray"
+        case uiRevision = "uirevision"
+        case rangeSlider = "rangeslider"
+        case rangeSelector = "rangeselector"
+        case calendar
+    }
+    
+    /// Creates `XAxis` object from the most frequently used properties.
+    /// 
+    /// - Parameters:
+    ///   - title:
+    ///   - range: Sets the range of this axis.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - showGrid: Determines whether or not grid lines are drawn.
+    ///   - domain: Sets the domain of this axis (in plot fraction).
+    public init(title: Title? = nil, range: InfoArray? = nil, ticks: Ticks? = nil, tickAngle: Angle?
+            = nil, showGrid: Bool? = nil, domain: InfoArray? = nil) {
+        self.title = title
+        self.range = range
+        self.ticks = ticks
+        self.tickAngle = tickAngle
+        self.showGrid = showGrid
+        self.domain = domain
+    }
+    
+    /// Creates `XAxis` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - uid: Unique identifier of the axis.
+    ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+    ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+    ///   and grid colors.
+    ///   - title:
+    ///   - type: Sets the axis type.
+    ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
+    ///   input data.
+    ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
+    ///   - range: Sets the range of this axis.
+    ///   - fixedRange: Determines whether or not this axis is zoom-able.
+    ///   - scaleAnchor: If set to another axis id (e.g.
+    ///   - scaleRatio: If this axis is linked to another by `scaleanchor`, this determines the pixel to
+    ///   unit scale ratio.
+    ///   - constrain: If this axis needs to be compressed (either due to its own `scaleanchor` and
+    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*
+    ///   (default), or by decreasing the *domain*.
+    ///   - constrainToward: If this axis needs to be compressed (either due to its own `scaleanchor` and
+    ///   `scaleratio` or those of the other axis), determines which direction we push the originally
+    ///   specified plot area.
+    ///   - matches: If set to another axis id (e.g.
+    ///   - rangeBreaks:
+    ///   - tickMode: Sets the tick mode for this axis.
+    ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+    ///   - tick0: Sets the placement of the first tick on this axis.
+    ///   - dTick: Sets the step in-between ticks on this axis.
+    ///   - tickValues: Sets the values at which ticks on this axis appear.
+    ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - ticksOn: Determines where ticks and grid lines are drawn with respect to their corresponding
+    ///   tick labels.
+    ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
+    ///   ticks and grid lines.
+    ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
+    ///   plotting area.
+    ///   - tickLength: Sets the tick length (in px).
+    ///   - tickWidth: Sets the tick width (in px).
+    ///   - tickColor: Sets the tick color.
+    ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+    ///   - autoMargin: Determines whether long tick labels automatically grow the figure margins.
+    ///   - showSpikes: Determines whether or not spikes (aka droplines) are drawn for this axis.
+    ///   - spikeColor: Sets the spike color.
+    ///   - spikeThickness: Sets the width (in px) of the zero line.
+    ///   - spikeDash: Sets the dash style of lines.
+    ///   - spikeMode: Determines the drawing mode for the spike line If *toaxis*, the line is drawn from
+    ///   the data point to the axis the series is plotted on.
+    ///   - spikeSnap: Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    ///   - tickFont: Sets the tick font.
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - tickPrefix: Sets a tick label prefix.
+    ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+    ///   - tickSuffix: Sets a tick label suffix.
+    ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+    ///   - showExponent: If *all*, all exponents are shown besides their significands.
+    ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - separateThousands: If "true", even 4-digit integers are separated
+    ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - tickFormatStops:
+    ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+    ///   - lineColor: Sets the axis line color.
+    ///   - lineWidth: Sets the width (in px) of the axis line.
+    ///   - showGrid: Determines whether or not grid lines are drawn.
+    ///   - gridColor: Sets the color of the grid lines.
+    ///   - gridWidth: Sets the width (in px) of the grid lines.
+    ///   - zeroLine: Determines whether or not a line is drawn at along the 0 value of this axis.
+    ///   - zeroLineColor: Sets the line color of the zero line.
+    ///   - zeroLineWidth: Sets the width (in px) of the zero line.
+    ///   - showDividers: Determines whether or not a dividers are drawn between the category levels of
+    ///   this axis.
+    ///   - dividerColor: Sets the color of the dividers Only has an effect on *multicategory* axes.
+    ///   - dividerWidth: Sets the width (in px) of the dividers Only has an effect on *multicategory*
+    ///   axes.
+    ///   - anchor: If set to an opposite-letter axis id (e.g.
+    ///   - side: Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top*
+    ///   (*right*) of the plotting area.
+    ///   - overlaying: If set a same-letter axis id, this axis is overlaid on top of the corresponding
+    ///   same-letter axis, with traces and axes visible for both axes.
+    ///   - layer: Sets the layer on which this axis is displayed.
+    ///   - domain: Sets the domain of this axis (in plot fraction).
+    ///   - position: Sets the position of this axis in the plotting space (in normalized coordinates).
+    ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+    ///   - categoryArray: Sets the order in which categories on this axis appear.
+    ///   - uiRevision: Controls persistence of user-driven changes in axis `range`, `autorange`, and
+    ///   `title` if in `editable: true` configuration.
+    ///   - rangeSlider:
+    ///   - rangeSelector:
+    ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+    public init(uid: UInt = UInt.random(in: 2...UInt.max), visible: Bool? = nil, color: Color? =
+            nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode:
+            RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? =
+            nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? =
+            nil, matches: Matches? = nil, rangeBreaks: [RangeBreak]? = nil, tickMode: TickMode? = nil,
+            numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? =
+            nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: TicksOn? = nil, tickLabelMode:
+            TickLabelMode? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? =
+            nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes:
+            Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil,
+            spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font? = nil, tickAngle:
+            Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix:
+            String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil,
+            exponentFormat: ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? =
+            nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? =
+            nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color?
+            = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil,
+            zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
+            dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? =
+            nil, layer: AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder:
+            CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider:
+            RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar? = nil) {
+        self.uid = uid
+        self.visible = visible
+        self.color = color
+        self.title = title
+        self.type = type
+        self.autoRange = autoRange
+        self.rangeMode = rangeMode
+        self.range = range
+        self.fixedRange = fixedRange
+        self.scaleAnchor = scaleAnchor
+        self.scaleRatio = scaleRatio
+        self.constrain = constrain
+        self.constrainToward = constrainToward
+        self.matches = matches
+        self.rangeBreaks = rangeBreaks
+        self.tickMode = tickMode
+        self.numTicks = numTicks
+        self.tick0 = tick0
+        self.dTick = dTick
+        self.tickValues = tickValues
+        self.tickText = tickText
+        self.ticks = ticks
+        self.ticksOn = ticksOn
+        self.tickLabelMode = tickLabelMode
+        self.mirror = mirror
+        self.tickLength = tickLength
+        self.tickWidth = tickWidth
+        self.tickColor = tickColor
+        self.showTickLabels = showTickLabels
+        self.autoMargin = autoMargin
+        self.showSpikes = showSpikes
+        self.spikeColor = spikeColor
+        self.spikeThickness = spikeThickness
+        self.spikeDash = spikeDash
+        self.spikeMode = spikeMode
+        self.spikeSnap = spikeSnap
+        self.tickFont = tickFont
+        self.tickAngle = tickAngle
+        self.tickPrefix = tickPrefix
+        self.showTickPrefix = showTickPrefix
+        self.tickSuffix = tickSuffix
+        self.showTickSuffix = showTickSuffix
+        self.showExponent = showExponent
+        self.exponentFormat = exponentFormat
+        self.separateThousands = separateThousands
+        self.tickFormat = tickFormat
+        self.tickFormatStops = tickFormatStops
+        self.hoverFormat = hoverFormat
+        self.showLine = showLine
+        self.lineColor = lineColor
+        self.lineWidth = lineWidth
+        self.showGrid = showGrid
+        self.gridColor = gridColor
+        self.gridWidth = gridWidth
+        self.zeroLine = zeroLine
+        self.zeroLineColor = zeroLineColor
+        self.zeroLineWidth = zeroLineWidth
+        self.showDividers = showDividers
+        self.dividerColor = dividerColor
+        self.dividerWidth = dividerWidth
+        self.anchor = anchor
+        self.side = side
+        self.overlaying = overlaying
+        self.layer = layer
+        self.domain = domain
+        self.position = position
+        self.categoryOrder = categoryOrder
+        self.categoryArray = categoryArray
+        self.uiRevision = uiRevision
+        self.rangeSlider = rangeSlider
+        self.rangeSelector = rangeSelector
+        self.calendar = calendar
+    }
+    
+}
+
+/// - Note:
+///   Used by `XAxis.tickFormatStops`, `YAxis.tickFormatStops`, `Ternary.AAxis.tickFormatStops`,
+///   `Ternary.BAxis.tickFormatStops`, `Ternary.CAxis.tickFormatStops`, `Scene.XAxis.tickFormatStops`,
+///   `Scene.YAxis.tickFormatStops`, `Scene.ZAxis.tickFormatStops`,
+///   `Polar.RadialAxis.tickFormatStops`, `Polar.AngularAxis.tickFormatStops`,
+///   `ColorBar.tickFormatStops`, `GradientMarker.ColorBar.tickFormatStops`,
+///   `Marker.ColorBar.tickFormatStops`, `Heatmap<ZData, XYData>.ColorBar.tickFormatStops`,
+///   `Histogram<XData, YData>.Marker.ColorBar.tickFormatStops`, `Histogram2D<XData, YData,
+///   ZData>.ColorBar.tickFormatStops`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.tickFormatStops`, `Contour<ZData, XData, YData>.ColorBar.tickFormatStops`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.tickFormatStops`, `Funnel<XData,
+///   YData>.Marker.ColorBar.tickFormatStops`, `Sunburst<ValuesData>.Marker.ColorBar.tickFormatStops`,
+///   `Treemap<ValuesData>.Marker.ColorBar.tickFormatStops`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.tickFormatStops`, `SymbolicMarker.ColorBar.tickFormatStops`,
+///   `Surface<ZSurfaceData, XYData>.ColorBar.tickFormatStops`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.tickFormatStops`, `Volume<XYZData, ValueData>.ColorBar.tickFormatStops`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.tickFormatStops`, `Cone<XYZData, UVWData>.ColorBar.tickFormatStops`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.tickFormatStops`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.tickFormatStops`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.tickFormatStops`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.tickFormatStops`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickFormatStops`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.tickFormatStops`, `ParallelCoordinates.MarkerLine.ColorBar.tickFormatStops`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.tickFormatStops`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.tickFormatStops`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.tickFormatStops`,
+///   `DensityMapbox<CoordinateData, ZData>.ColorBar.tickFormatStops`,
+///   `Indicator.Gauge.Axis.tickFormatStops`, `Carpet<XData, YData, AData,
+///   BData>.AAxis.tickFormatStops`, `Carpet<XData, YData, AData, BData>.BAxis.tickFormatStops`,
+///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.tickFormatStops`, `ContourCarpet<ZData,
+///   AData, BData>.ColorBar.tickFormatStops`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.tickFormatStops`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.tickFormatStops`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.tickFormatStops`.
+public struct TickFormatStop: Encodable {
+    /// Determines whether or not this stop is used.
+    /// 
+    /// If `false`, this stop is ignored even within its `dtickrange`.
+    public var enabled: Bool? = nil
+
+    /// range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom level, it is
+    /// possible to omit *min* or *max* value by passing *null*
+    public var dTickRange: InfoArray? = nil
+
+    /// string - dtickformat for described zoom level, the same as *tickformat*
+    public var value: String? = nil
+
+    /// When used in a template, named items are created in the output figure in addition to any items
+    /// the figure already has in this array.
+    /// 
+    /// You can modify these items in the output figure by making your own item with `templateitemname`
+    /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+    /// false` to hide it). Has no effect outside of a template.
+    public var name: String? = nil
+
+    /// Used to refer to a named item in this array in the template.
+    /// 
+    /// Named items from the template will be created even without a matching item in the input figure,
+    /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+    /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+    /// template or no matching item, this item will be hidden unless you explicitly show it with
+    /// `visible: true`.
+    public var templateItemName: String? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case enabled
+        case dTickRange = "dtickrange"
+        case value
+        case name
+        case templateItemName = "templateitemname"
+    }
+    
+    /// Creates `TickFormatStop` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - enabled: Determines whether or not this stop is used.
+    ///   - dTickRange: range [*min*, *max*], where *min*, *max* - dtick values which describe some zoom
+    ///   level, it is possible to omit *min* or *max* value by passing *null*
+    ///   - value: string - dtickformat for described zoom level, the same as *tickformat*
+    ///   - name: When used in a template, named items are created in the output figure in addition to any
+    ///   items the figure already has in this array.
+    ///   - templateItemName: Used to refer to a named item in this array in the template.
+    public init(enabled: Bool? = nil, dTickRange: InfoArray? = nil, value: String? = nil, name:
+            String? = nil, templateItemName: String? = nil) {
+        self.enabled = enabled
+        self.dTickRange = dTickRange
+        self.value = value
+        self.name = name
+        self.templateItemName = templateItemName
+    }
+    
+}
+
+public final class YAxis: Encodable, SubplotAxis {
+    /// Unique identifier of the axis.
+    public var uid: UInt = UInt.random(in: 2...UInt.max)
+
+    /// A single toggle to hide the axis while preserving interaction like dragging.
+    /// 
+    /// Default is true when a cheater plot is present on the axis, otherwise false
+    public var visible: Bool? = nil
+
+    /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+    /// colors.
+    /// 
+    /// Grid color is lightened by blending this with the plot background Individual pieces can override
+    /// this.
+    public var color: Color? = nil
+
     public struct Title: Encodable {
         /// Sets the title of this axis.
         /// 
@@ -1870,159 +3092,964 @@ public enum Shared {
         /// Sets this axis' title font.
         /// 
         /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
-        public var font: Shared.Font? = nil
+        public var font: Font? = nil
+    
+        /// Sets the standoff distance (in px) between the axis labels and the title text The default value
+        /// is a function of the axis tick labels, the title `font.size` and the axis `linewidth`.
+        /// 
+        /// Note that the axis title position is always constrained within the margins, so the actual
+        /// standoff distance is always less than the set or default value. By setting `standoff` and
+        /// turning on `automargin`, plotly.js will push the margins to fit the axis title at given standoff
+        /// distance.
+        public var standoff: Double? = nil
     
         /// Creates `Title` object with specified properties.
         /// 
         /// - Parameters:
         ///   - text: Sets the title of this axis.
         ///   - font: Sets this axis' title font.
-        public init(text: String? = nil, font: Shared.Font? = nil) {
+        ///   - standoff: Sets the standoff distance (in px) between the axis labels and the title text The
+        ///   default value is a function of the axis tick labels, the title `font.size` and the axis
+        ///   `linewidth`.
+        public init(text: String? = nil, font: Font? = nil, standoff: Double? = nil) {
             self.text = text
             self.font = font
+            self.standoff = standoff
         }
         
     }
+    public var title: Title? = nil
 
-    /// - Note:
-    ///   Used by `Layout.Legend.title`, `Shared.ColorBar.title`, `Shared.GradientMarker.ColorBar.title`,
-    ///   `Shared.Marker.ColorBar.title`, `Heatmap<ZData, XYData>.ColorBar.title`, `Histogram<XData,
-    ///   YData>.Marker.ColorBar.title`, `Histogram2D<XData, YData, ZData>.ColorBar.title`,
-    ///   `Histogram2DContour<XData, YData, ZData>.ColorBar.title`, `Contour<ZData, XData,
-    ///   YData>.ColorBar.title`, `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.title`,
-    ///   `Funnel<XData, YData>.Marker.ColorBar.title`, `Sunburst<ValuesData>.Marker.ColorBar.title`,
-    ///   `Treemap<ValuesData>.Marker.ColorBar.title`, `Scatter3D<XData, YData,
-    ///   ZData>.DashedMarkerLine.ColorBar.title`, `Shared.SymbolicMarker.ColorBar.title`,
-    ///   `Surface<ZSurfaceData, XYData>.ColorBar.title`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.ColorBar.title`, `Volume<XYZData, ValueData>.ColorBar.title`, `Mesh3D<XData, YData,
-    ///   ZData, IntensityData, VertexcolorData, FacecolorData>.ColorBar.title`, `Cone<XYZData,
-    ///   UVWData>.ColorBar.title`, `StreamTube<XYZData, UVWData>.ColorBar.title`,
-    ///   `ScatterGeo<CoordinateData, LocationsData>.GradientMarker.ColorBar.title`,
-    ///   `Choropleth<LocationsData, ZData>.ColorBar.title`, `ScatterGL<XData,
-    ///   YData>.SymbolicMarker.ColorBar.title`, `ScatterPlotMatrix.SymbolicMarker.ColorBar.title`,
-    ///   `HeatmapGL<ZData, XYData>.ColorBar.title`, `ParallelCoordinates.MarkerLine.ColorBar.title`,
-    ///   `ParallelCategories.ShapedMarkerLine.ColorBar.title`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.title`, `ChoroplethMapbox<LocationsData,
-    ///   ZData>.ColorBar.title`, `DensityMapbox<CoordinateData, ZData>.ColorBar.title`,
-    ///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.title`, `ContourCarpet<ZData, AData,
-    ///   BData>.ColorBar.title`, `ScatterPolar<RData, ThetaData>.GradientMarker.ColorBar.title`,
-    ///   `ScatterPolarGL<RData, ThetaData>.SymbolicMarker.ColorBar.title`, `BarPolar<RData,
-    ///   ThetaData>.Marker.ColorBar.title`.
-    public struct LegendTitle: Encodable {
-        /// Sets the title of the legend.
-        public var text: String? = nil
-    
-        /// Sets this legend's title font.
-        public var font: Shared.Font? = nil
-    
-        /// Determines the location of legend's title with respect to the legend items.
-        /// 
-        /// Defaulted to *top* with `orientation` is *h*. Defaulted to *left* with `orientation` is *v*. The
-        /// *top left* options could be used to expand legend area in both x and y sides.
-        public enum Side: String, Encodable {
-            case top
-            case left
-            case topLeft = "top left"
-            case right
+    /// Sets the axis type.
+    /// 
+    /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+    /// that referenced the axis in question.
+    public enum `Type`: String, Encodable {
+        case auto = "-"
+        case linear
+        case log
+        case date
+        case category
+        case multiCategory = "multicategory"
+    }
+    /// Sets the axis type.
+    /// 
+    /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+    /// that referenced the axis in question.
+    public var type: `Type`? = nil
+
+    /// Determines whether or not the range of this axis is computed in relation to the input data.
+    /// 
+    /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+    public var autoRange: AutoRange? = nil
+
+    /// If *normal*, the range is computed in relation to the extrema of the input data.
+    /// 
+    /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
+    /// is non-negative, regardless of the input data. Applies only to linear axes.
+    public var rangeMode: RangeMode? = nil
+
+    /// Sets the range of this axis.
+    /// 
+    /// If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the
+    /// range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date
+    /// strings, like date data, though Date objects and unix milliseconds will be accepted and
+    /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
+    /// where each category is assigned a serial number from zero in the order it appears.
+    public var range: InfoArray? = nil
+
+    /// Determines whether or not this axis is zoom-able.
+    /// 
+    /// If true, then zoom is disabled.
+    public var fixedRange: Bool? = nil
+
+    /// If set to another axis id (e.g.
+    /// 
+    /// `x2`, `y`), the range of this axis changes together with the range of the corresponding axis
+    /// such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but
+    /// when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain`
+    /// and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis:
+    /// {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`.
+    /// The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter
+    /// (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}`
+    /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
+    /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
+    /// `scaleanchor` and a `matches` constraint is currently forbidden.
+    public enum ScaleAnchor: Encodable {
+        case xAxis(XAxis)
+        case yAxis(YAxis)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .xAxis(let axis):
+                try container.encode("x\(axis.uid)")
+            case .yAxis(let axis):
+                try container.encode("y\(axis.uid)")
+            }
         }
-        /// Determines the location of legend's title with respect to the legend items.
+    }
+    /// If set to another axis id (e.g.
+    /// 
+    /// `x2`, `y`), the range of this axis changes together with the range of the corresponding axis
+    /// such that the scale of pixels per unit is in a constant ratio. Both axes are still zoomable, but
+    /// when you zoom one, the other will zoom the same amount, keeping a fixed midpoint. `constrain`
+    /// and `constraintoward` determine how we enforce the constraint. You can chain these, ie `yaxis:
+    /// {scaleanchor: *x*}, xaxis2: {scaleanchor: *y*}` but you can only link axes of the same `type`.
+    /// The linked axis can have the opposite letter (to constrain the aspect ratio) or the same letter
+    /// (to match scales across subplots). Loops (`yaxis: {scaleanchor: *x*}, xaxis: {scaleanchor: *y*}`
+    /// or longer) are redundant and the last constraint encountered will be ignored to avoid possible
+    /// inconsistent constraints via `scaleratio`. Note that setting axes simultaneously in both a
+    /// `scaleanchor` and a `matches` constraint is currently forbidden.
+    public var scaleAnchor: ScaleAnchor? = nil
+
+    /// If this axis is linked to another by `scaleanchor`, this determines the pixel to unit scale
+    /// ratio.
+    /// 
+    /// For example, if this value is 10, then every unit on this axis spans 10 times the number of
+    /// pixels as a unit on the linked axis. Use this for example to create an elevation profile where
+    /// the vertical scale is exaggerated a fixed amount with respect to the horizontal.
+    public var scaleRatio: Double? = nil
+
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
+    /// those of the other axis), determines how that happens: by increasing the *range* (default), or
+    /// by decreasing the *domain*.
+    public enum Constrain: String, Encodable {
+        case range
+        case domain
+    }
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
+    /// those of the other axis), determines how that happens: by increasing the *range* (default), or
+    /// by decreasing the *domain*.
+    public var constrain: Constrain? = nil
+
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
+    /// those of the other axis), determines which direction we push the originally specified plot area.
+    /// 
+    /// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
+    /// and *bottom* for y axes.
+    public enum ConstrainToward: String, Encodable {
+        case left
+        case center
+        case right
+        case top
+        case middle
+        case bottom
+    }
+    /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
+    /// those of the other axis), determines which direction we push the originally specified plot area.
+    /// 
+    /// Options are *left*, *center* (default), and *right* for x axes, and *top*, *middle* (default),
+    /// and *bottom* for y axes.
+    public var constrainToward: ConstrainToward? = nil
+
+    /// If set to another axis id (e.g.
+    /// 
+    /// `x2`, `y`), the range of this axis will match the range of the corresponding axis in
+    /// data-coordinates space. Moreover, matching axes share auto-range values, category lists and
+    /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
+    /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
+    /// same `type`.
+    public enum Matches: Encodable {
+        case xAxis(XAxis)
+        case yAxis(YAxis)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .xAxis(let axis):
+                try container.encode("x\(axis.uid)")
+            case .yAxis(let axis):
+                try container.encode("y\(axis.uid)")
+            }
+        }
+    }
+    /// If set to another axis id (e.g.
+    /// 
+    /// `x2`, `y`), the range of this axis will match the range of the corresponding axis in
+    /// data-coordinates space. Moreover, matching axes share auto-range values, category lists and
+    /// histogram auto-bins. Note that setting axes simultaneously in both a `scaleanchor` and a
+    /// `matches` constraint is currently forbidden. Moreover, note that matching axes must have the
+    /// same `type`.
+    public var matches: Matches? = nil
+
+    public struct RangeBreak: Encodable {
+        /// Determines whether this axis rangebreak is enabled or disabled.
         /// 
-        /// Defaulted to *top* with `orientation` is *h*. Defaulted to *left* with `orientation` is *v*. The
-        /// *top left* options could be used to expand legend area in both x and y sides.
-        public var side: Side? = nil
+        /// Please note that `rangebreaks` only work for *date* axis type.
+        public var enabled: Bool? = nil
     
-        /// Creates `LegendTitle` object with specified properties.
+        /// Sets the lower and upper bounds of this axis rangebreak.
+        /// 
+        /// Can be used with `pattern`.
+        public var bounds: InfoArray? = nil
+    
+        /// Determines a pattern on the time line that generates breaks.
+        /// 
+        /// If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is
+        /// case-insensitive and considers only the first three characters), as well as Sunday-based
+        /// integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24.
+        /// for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] } or simply { bounds:
+        /// ['sat', 'mon'] } breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour',
+        /// bounds: [17, 8] } breaks from 5pm to 8am (i.e. skips non-work hours).
+        public enum Pattern: String, Encodable {
+            case dayOfWeek = "day of week"
+            case hour
+            case off = ""
+        }
+        /// Determines a pattern on the time line that generates breaks.
+        /// 
+        /// If *day of week* - days of the week in English e.g. 'Sunday' or `sun` (matching is
+        /// case-insensitive and considers only the first three characters), as well as Sunday-based
+        /// integers between 0 and 6. If *hour* - hour (24-hour clock) as decimal numbers between 0 and 24.
+        /// for more info. Examples: - { pattern: 'day of week', bounds: [6, 1] } or simply { bounds:
+        /// ['sat', 'mon'] } breaks from Saturday to Monday (i.e. skips the weekends). - { pattern: 'hour',
+        /// bounds: [17, 8] } breaks from 5pm to 8am (i.e. skips non-work hours).
+        public var pattern: Pattern? = nil
+    
+        /// Sets the coordinate values corresponding to the rangebreaks.
+        /// 
+        /// An alternative to `bounds`. Use `dvalue` to set the size of the values along the axis.
+        public var values: InfoArray? = nil
+    
+        /// Sets the size of each `values` item.
+        /// 
+        /// The default is one day in milliseconds.
+        public var dValue: Double? = nil
+    
+        /// When used in a template, named items are created in the output figure in addition to any items
+        /// the figure already has in this array.
+        /// 
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        public var name: String? = nil
+    
+        /// Used to refer to a named item in this array in the template.
+        /// 
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        public var templateItemName: String? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case enabled
+            case bounds
+            case pattern
+            case values
+            case dValue = "dvalue"
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        /// Creates `RangeBreak` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - text: Sets the title of the legend.
-        ///   - font: Sets this legend's title font.
-        ///   - side: Determines the location of legend's title with respect to the legend items.
-        public init(text: String? = nil, font: Shared.Font? = nil, side: Side? = nil) {
-            self.text = text
-            self.font = font
-            self.side = side
+        ///   - enabled: Determines whether this axis rangebreak is enabled or disabled.
+        ///   - bounds: Sets the lower and upper bounds of this axis rangebreak.
+        ///   - pattern: Determines a pattern on the time line that generates breaks.
+        ///   - values: Sets the coordinate values corresponding to the rangebreaks.
+        ///   - dValue: Sets the size of each `values` item.
+        ///   - name: When used in a template, named items are created in the output figure in addition to any
+        ///   items the figure already has in this array.
+        ///   - templateItemName: Used to refer to a named item in this array in the template.
+        public init(enabled: Bool? = nil, bounds: InfoArray? = nil, pattern: Pattern? = nil, values:
+                InfoArray? = nil, dValue: Double? = nil, name: String? = nil, templateItemName: String? = nil) {
+            self.enabled = enabled
+            self.bounds = bounds
+            self.pattern = pattern
+            self.values = values
+            self.dValue = dValue
+            self.name = name
+            self.templateItemName = templateItemName
         }
         
     }
+    public var rangeBreaks: [RangeBreak]? = nil
 
-    /// - Note:
-    ///   Used by `Layout.ColorAxis.colorBar`, `Shared.GradientMarker.colorBar`, `Shared.Marker.colorBar`,
-    ///   `Heatmap<ZData, XYData>.colorBar`, `Histogram<XData, YData>.Marker.colorBar`,
-    ///   `Histogram2D<XData, YData, ZData>.colorBar`, `Histogram2DContour<XData, YData, ZData>.colorBar`,
-    ///   `Contour<ZData, XData, YData>.colorBar`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.colorBar`, `Funnel<XData, YData>.Marker.colorBar`,
-    ///   `Sunburst<ValuesData>.Marker.colorBar`, `Treemap<ValuesData>.Marker.colorBar`, `Scatter3D<XData,
-    ///   YData, ZData>.DashedMarkerLine.colorBar`, `Shared.SymbolicMarker.colorBar`,
-    ///   `Surface<ZSurfaceData, XYData>.colorBar`, `Isosurface<XData, YData, ZData, ValueData>.colorBar`,
-    ///   `Volume<XYZData, ValueData>.colorBar`, `Mesh3D<XData, YData, ZData, IntensityData,
-    ///   VertexcolorData, FacecolorData>.colorBar`, `Cone<XYZData, UVWData>.colorBar`,
-    ///   `StreamTube<XYZData, UVWData>.colorBar`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.colorBar`, `Choropleth<LocationsData, ZData>.colorBar`,
-    ///   `ScatterGL<XData, YData>.SymbolicMarker.colorBar`, `ScatterPlotMatrix.SymbolicMarker.colorBar`,
-    ///   `HeatmapGL<ZData, XYData>.colorBar`, `ParallelCoordinates.MarkerLine.colorBar`,
-    ///   `ParallelCategories.ShapedMarkerLine.colorBar`,
-    ///   `ScatterMapbox<CoordinateData>.SymbolicMarker.colorBar`, `ChoroplethMapbox<LocationsData,
-    ///   ZData>.colorBar`, `DensityMapbox<CoordinateData, ZData>.colorBar`, `ScatterCarpet<AData,
-    ///   BData>.GradientMarker.colorBar`, `ContourCarpet<ZData, AData, BData>.colorBar`,
-    ///   `ScatterPolar<RData, ThetaData>.GradientMarker.colorBar`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.colorBar`, `BarPolar<RData, ThetaData>.Marker.colorBar`.
-    public struct ColorBar: Encodable {
-        /// Determines whether this color bar's thickness (i.e.
+    /// Sets the tick mode for this axis.
+    /// 
+    /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+    /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+    /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+    /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+    /// provided).
+    public var tickMode: TickMode? = nil
+
+    /// Specifies the maximum number of ticks for the particular axis.
+    /// 
+    /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+    /// Has an effect only if `tickmode` is set to *auto*.
+    public var numTicks: Int? = nil
+
+    /// Sets the placement of the first tick on this axis.
+    /// 
+    /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+    /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+    /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+    /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+    /// category is assigned a serial number from zero in the order it appears.
+    public var tick0: Anything? = nil
+
+    /// Sets the step in-between ticks on this axis.
+    /// 
+    /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+    /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+    /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+    /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+    /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+    /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+    /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+    /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+    /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+    /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+    /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+    /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+    /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+    public var dTick: Anything? = nil
+
+    /// Sets the values at which ticks on this axis appear.
+    /// 
+    /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    public var tickValues: [Double]? = nil
+
+    /// Sets the text displayed at the ticks position via `tickvals`.
+    /// 
+    /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    public var tickText: [Double]? = nil
+
+    /// Determines whether ticks are drawn or not.
+    /// 
+    /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+    /// (inside) the axis lines.
+    public var ticks: Ticks? = nil
+
+    /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels.
+    /// 
+    /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
+    /// ticks and grid lines are drawn half a category to the left/bottom of labels.
+    public enum TicksOn: String, Encodable {
+        case labels
+        case boundaries
+    }
+    /// Determines where ticks and grid lines are drawn with respect to their corresponding tick labels.
+    /// 
+    /// Only has an effect for axes of `type` *category* or *multicategory*. When set to *boundaries*,
+    /// ticks and grid lines are drawn half a category to the left/bottom of labels.
+    public var ticksOn: TicksOn? = nil
+
+    /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines.
+    /// 
+    /// Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the
+    /// middle of the period between ticks.
+    public enum TickLabelMode: String, Encodable {
+        case instant
+        case period
+    }
+    /// Determines where tick labels are drawn with respect to their corresponding ticks and grid lines.
+    /// 
+    /// Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the
+    /// middle of the period between ticks.
+    public var tickLabelMode: TickLabelMode? = nil
+
+    /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
+    /// area.
+    /// 
+    /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
+    /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
+    /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+    public var mirror: Mirror? = nil
+
+    /// Sets the tick length (in px).
+    public var tickLength: Double? = nil
+
+    /// Sets the tick width (in px).
+    public var tickWidth: Double? = nil
+
+    /// Sets the tick color.
+    public var tickColor: Color? = nil
+
+    /// Determines whether or not the tick labels are drawn.
+    public var showTickLabels: Bool? = nil
+
+    /// Determines whether long tick labels automatically grow the figure margins.
+    public var autoMargin: Bool? = nil
+
+    /// Determines whether or not spikes (aka droplines) are drawn for this axis.
+    /// 
+    /// Note: This only takes affect when hovermode = closest
+    public var showSpikes: Bool? = nil
+
+    /// Sets the spike color.
+    /// 
+    /// If undefined, will use the series color
+    public var spikeColor: Color? = nil
+
+    /// Sets the width (in px) of the zero line.
+    public var spikeThickness: Double? = nil
+
+    /// Sets the dash style of lines.
+    /// 
+    /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+    /// dash length list in px (eg *5px,10px,2px,2px*).
+    public var spikeDash: String? = nil
+
+    /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data
+    /// point to the axis the series is plotted on.
+    /// 
+    /// If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If
+    /// *marker*, then a marker dot is drawn on the axis the series is plotted on
+    public struct SpikeMode: OptionSet, Encodable {
+        public let rawValue: Int
+        public static var toAxis: SpikeMode { SpikeMode(rawValue: 1 << 0) }
+        public static var across: SpikeMode { SpikeMode(rawValue: 1 << 1) }
+        public static var marker: SpikeMode { SpikeMode(rawValue: 1 << 2) }
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var options = [String]()
+            if (self.rawValue & 1 << 0) != 0 { options += ["toaxis"] }
+            if (self.rawValue & 1 << 1) != 0 { options += ["across"] }
+            if (self.rawValue & 1 << 2) != 0 { options += ["marker"] }
+            var container = encoder.singleValueContainer()
+            try container.encode(options.joined(separator: "+"))
+        }
+    }
+    /// Determines the drawing mode for the spike line If *toaxis*, the line is drawn from the data
+    /// point to the axis the series is plotted on.
+    /// 
+    /// If *across*, the line is drawn across the entire plot area, and supercedes *toaxis*. If
+    /// *marker*, then a marker dot is drawn on the axis the series is plotted on
+    public var spikeMode: SpikeMode? = nil
+
+    /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    public enum SpikeSnap: String, Encodable {
+        case data
+        case cursor
+        case hoveredData = "hovered data"
+    }
+    /// Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    public var spikeSnap: SpikeSnap? = nil
+
+    /// Sets the tick font.
+    public var tickFont: Font? = nil
+
+    /// Sets the angle of the tick labels with respect to the horizontal.
+    /// 
+    /// For example, a `tickangle` of -90 draws the tick labels vertically.
+    public var tickAngle: Angle? = nil
+
+    /// Sets a tick label prefix.
+    public var tickPrefix: String? = nil
+
+    /// If *all*, all tick labels are displayed with a prefix.
+    /// 
+    /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+    /// displayed with a suffix. If *none*, tick prefixes are hidden.
+    public var showTickPrefix: ShowTickPrefix? = nil
+
+    /// Sets a tick label suffix.
+    public var tickSuffix: String? = nil
+
+    /// Same as `showtickprefix` but for tick suffixes.
+    public var showTickSuffix: ShowTickSuffix? = nil
+
+    /// If *all*, all exponents are shown besides their significands.
+    /// 
+    /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+    /// last tick is shown. If *none*, no exponents appear.
+    public var showExponent: ShowExponent? = nil
+
+    /// Determines a formatting rule for the tick exponents.
+    /// 
+    /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+    /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+    public var exponentFormat: ExponentFormat? = nil
+
+    /// If "true", even 4-digit integers are separated
+    public var separateThousands: Bool? = nil
+
+    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+    /// those in Python.
+    /// 
+    /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+    /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+    /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    public var tickFormat: String? = nil
+
+    public var tickFormatStops: [TickFormatStop]? = nil
+
+    /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+    /// those in Python.
+    /// 
+    /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+    /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+    /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    public var hoverFormat: String? = nil
+
+    /// Determines whether or not a line bounding this axis is drawn.
+    public var showLine: Bool? = nil
+
+    /// Sets the axis line color.
+    public var lineColor: Color? = nil
+
+    /// Sets the width (in px) of the axis line.
+    public var lineWidth: Double? = nil
+
+    /// Determines whether or not grid lines are drawn.
+    /// 
+    /// If *true*, the grid lines are drawn at every tick mark.
+    public var showGrid: Bool? = nil
+
+    /// Sets the color of the grid lines.
+    public var gridColor: Color? = nil
+
+    /// Sets the width (in px) of the grid lines.
+    public var gridWidth: Double? = nil
+
+    /// Determines whether or not a line is drawn at along the 0 value of this axis.
+    /// 
+    /// If *true*, the zero line is drawn on top of the grid lines.
+    public var zeroLine: Bool? = nil
+
+    /// Sets the line color of the zero line.
+    public var zeroLineColor: Color? = nil
+
+    /// Sets the width (in px) of the zero line.
+    public var zeroLineWidth: Double? = nil
+
+    /// Determines whether or not a dividers are drawn between the category levels of this axis.
+    /// 
+    /// Only has an effect on *multicategory* axes.
+    public var showDividers: Bool? = nil
+
+    /// Sets the color of the dividers Only has an effect on *multicategory* axes.
+    public var dividerColor: Color? = nil
+
+    /// Sets the width (in px) of the dividers Only has an effect on *multicategory* axes.
+    public var dividerWidth: Double? = nil
+
+    /// If set to an opposite-letter axis id (e.g.
+    /// 
+    /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
+    /// axis' position is determined by `position`.
+    public enum Anchor: Encodable {
+        case free
+        case xAxis(XAxis)
+        case yAxis(YAxis)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .free:
+                try container.encode("free")
+            case .xAxis(let axis):
+                try container.encode("x\(axis.uid)")
+            case .yAxis(let axis):
+                try container.encode("y\(axis.uid)")
+            }
+        }
+    }
+    /// If set to an opposite-letter axis id (e.g.
+    /// 
+    /// `x2`, `y`), this axis is bound to the corresponding opposite-letter axis. If set to *free*, this
+    /// axis' position is determined by `position`.
+    public var anchor: Anchor? = nil
+
+    /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the
+    /// plotting area.
+    public enum Side: String, Encodable {
+        case top
+        case bottom
+        case left
+        case right
+    }
+    /// Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top* (*right*) of the
+    /// plotting area.
+    public var side: Side? = nil
+
+    /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
+    /// axis, with traces and axes visible for both axes.
+    /// 
+    /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
+    /// overlapping domains only the highest-numbered axis will be visible.
+    public enum Overlaying: Encodable {
+        case free
+        case xAxis(XAxis)
+        case yAxis(YAxis)
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .free:
+                try container.encode("free")
+            case .xAxis(let axis):
+                try container.encode("x\(axis.uid)")
+            case .yAxis(let axis):
+                try container.encode("y\(axis.uid)")
+            }
+        }
+    }
+    /// If set a same-letter axis id, this axis is overlaid on top of the corresponding same-letter
+    /// axis, with traces and axes visible for both axes.
+    /// 
+    /// If *false*, this axis does not overlay any same-letter axes. In this case, for axes with
+    /// overlapping domains only the highest-numbered axis will be visible.
+    public var overlaying: Overlaying? = nil
+
+    /// Sets the layer on which this axis is displayed.
+    /// 
+    /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
+    /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
+    /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
+    /// nodes above this axis.
+    public var layer: AxisLayer? = nil
+
+    /// Sets the domain of this axis (in plot fraction).
+    public var domain: InfoArray? = nil
+
+    /// Sets the position of this axis in the plotting space (in normalized coordinates).
+    /// 
+    /// Only has an effect if `anchor` is set to *free*.
+    public var position: Double? = nil
+
+    /// Specifies the ordering logic for the case of categorical variables.
+    /// 
+    /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+    /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+    /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+    /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+    /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+    /// mode. The unspecified categories will follow the categories in `categoryarray`. Set
+    /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
+    /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
+    /// or median of all the values.
+    public var categoryOrder: CategoryOrder? = nil
+
+    /// Sets the order in which categories on this axis appear.
+    /// 
+    /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+    public var categoryArray: [Double]? = nil
+
+    /// Controls persistence of user-driven changes in axis `range`, `autorange`, and `title` if in
+    /// `editable: true` configuration.
+    /// 
+    /// Defaults to `layout.uirevision`.
+    public var uiRevision: Anything? = nil
+
+    /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+    /// 
+    /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
+    /// or via the global `layout.calendar`
+    public var calendar: Calendar? = nil
+
+    /// Shared and preset default axis reference used to initialize layout and all traces.
+    public static let preset: YAxis = YAxis(uid: 1)
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case visible
+        case color
+        case title
+        case type
+        case autoRange = "autorange"
+        case rangeMode = "rangemode"
+        case range
+        case fixedRange = "fixedrange"
+        case scaleAnchor = "scaleanchor"
+        case scaleRatio = "scaleratio"
+        case constrain
+        case constrainToward = "constraintoward"
+        case matches
+        case rangeBreaks = "rangebreaks"
+        case tickMode = "tickmode"
+        case numTicks = "nticks"
+        case tick0
+        case dTick = "dtick"
+        case tickValues = "tickvals"
+        case tickText = "ticktext"
+        case ticks
+        case ticksOn = "tickson"
+        case tickLabelMode = "ticklabelmode"
+        case mirror
+        case tickLength = "ticklen"
+        case tickWidth = "tickwidth"
+        case tickColor = "tickcolor"
+        case showTickLabels = "showticklabels"
+        case autoMargin = "automargin"
+        case showSpikes = "showspikes"
+        case spikeColor = "spikecolor"
+        case spikeThickness = "spikethickness"
+        case spikeDash = "spikedash"
+        case spikeMode = "spikemode"
+        case spikeSnap = "spikesnap"
+        case tickFont = "tickfont"
+        case tickAngle = "tickangle"
+        case tickPrefix = "tickprefix"
+        case showTickPrefix = "showtickprefix"
+        case tickSuffix = "ticksuffix"
+        case showTickSuffix = "showticksuffix"
+        case showExponent = "showexponent"
+        case exponentFormat = "exponentformat"
+        case separateThousands = "separatethousands"
+        case tickFormat = "tickformat"
+        case tickFormatStops = "tickformatstops"
+        case hoverFormat = "hoverformat"
+        case showLine = "showline"
+        case lineColor = "linecolor"
+        case lineWidth = "linewidth"
+        case showGrid = "showgrid"
+        case gridColor = "gridcolor"
+        case gridWidth = "gridwidth"
+        case zeroLine = "zeroline"
+        case zeroLineColor = "zerolinecolor"
+        case zeroLineWidth = "zerolinewidth"
+        case showDividers = "showdividers"
+        case dividerColor = "dividercolor"
+        case dividerWidth = "dividerwidth"
+        case anchor
+        case side
+        case overlaying
+        case layer
+        case domain
+        case position
+        case categoryOrder = "categoryorder"
+        case categoryArray = "categoryarray"
+        case uiRevision = "uirevision"
+        case calendar
+    }
+    
+    /// Creates `YAxis` object from the most frequently used properties.
+    /// 
+    /// - Parameters:
+    ///   - title:
+    ///   - range: Sets the range of this axis.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - showGrid: Determines whether or not grid lines are drawn.
+    ///   - domain: Sets the domain of this axis (in plot fraction).
+    public init(title: Title? = nil, range: InfoArray? = nil, ticks: Ticks? = nil, tickAngle: Angle?
+            = nil, showGrid: Bool? = nil, domain: InfoArray? = nil) {
+        self.title = title
+        self.range = range
+        self.ticks = ticks
+        self.tickAngle = tickAngle
+        self.showGrid = showGrid
+        self.domain = domain
+    }
+    
+    /// Creates `YAxis` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - uid: Unique identifier of the axis.
+    ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+    ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+    ///   and grid colors.
+    ///   - title:
+    ///   - type: Sets the axis type.
+    ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
+    ///   input data.
+    ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
+    ///   - range: Sets the range of this axis.
+    ///   - fixedRange: Determines whether or not this axis is zoom-able.
+    ///   - scaleAnchor: If set to another axis id (e.g.
+    ///   - scaleRatio: If this axis is linked to another by `scaleanchor`, this determines the pixel to
+    ///   unit scale ratio.
+    ///   - constrain: If this axis needs to be compressed (either due to its own `scaleanchor` and
+    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*
+    ///   (default), or by decreasing the *domain*.
+    ///   - constrainToward: If this axis needs to be compressed (either due to its own `scaleanchor` and
+    ///   `scaleratio` or those of the other axis), determines which direction we push the originally
+    ///   specified plot area.
+    ///   - matches: If set to another axis id (e.g.
+    ///   - rangeBreaks:
+    ///   - tickMode: Sets the tick mode for this axis.
+    ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+    ///   - tick0: Sets the placement of the first tick on this axis.
+    ///   - dTick: Sets the step in-between ticks on this axis.
+    ///   - tickValues: Sets the values at which ticks on this axis appear.
+    ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - ticksOn: Determines where ticks and grid lines are drawn with respect to their corresponding
+    ///   tick labels.
+    ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
+    ///   ticks and grid lines.
+    ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
+    ///   plotting area.
+    ///   - tickLength: Sets the tick length (in px).
+    ///   - tickWidth: Sets the tick width (in px).
+    ///   - tickColor: Sets the tick color.
+    ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+    ///   - autoMargin: Determines whether long tick labels automatically grow the figure margins.
+    ///   - showSpikes: Determines whether or not spikes (aka droplines) are drawn for this axis.
+    ///   - spikeColor: Sets the spike color.
+    ///   - spikeThickness: Sets the width (in px) of the zero line.
+    ///   - spikeDash: Sets the dash style of lines.
+    ///   - spikeMode: Determines the drawing mode for the spike line If *toaxis*, the line is drawn from
+    ///   the data point to the axis the series is plotted on.
+    ///   - spikeSnap: Determines whether spikelines are stuck to the cursor or to the closest datapoints.
+    ///   - tickFont: Sets the tick font.
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - tickPrefix: Sets a tick label prefix.
+    ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+    ///   - tickSuffix: Sets a tick label suffix.
+    ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+    ///   - showExponent: If *all*, all exponents are shown besides their significands.
+    ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - separateThousands: If "true", even 4-digit integers are separated
+    ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - tickFormatStops:
+    ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+    ///   - lineColor: Sets the axis line color.
+    ///   - lineWidth: Sets the width (in px) of the axis line.
+    ///   - showGrid: Determines whether or not grid lines are drawn.
+    ///   - gridColor: Sets the color of the grid lines.
+    ///   - gridWidth: Sets the width (in px) of the grid lines.
+    ///   - zeroLine: Determines whether or not a line is drawn at along the 0 value of this axis.
+    ///   - zeroLineColor: Sets the line color of the zero line.
+    ///   - zeroLineWidth: Sets the width (in px) of the zero line.
+    ///   - showDividers: Determines whether or not a dividers are drawn between the category levels of
+    ///   this axis.
+    ///   - dividerColor: Sets the color of the dividers Only has an effect on *multicategory* axes.
+    ///   - dividerWidth: Sets the width (in px) of the dividers Only has an effect on *multicategory*
+    ///   axes.
+    ///   - anchor: If set to an opposite-letter axis id (e.g.
+    ///   - side: Determines whether a x (y) axis is positioned at the *bottom* (*left*) or *top*
+    ///   (*right*) of the plotting area.
+    ///   - overlaying: If set a same-letter axis id, this axis is overlaid on top of the corresponding
+    ///   same-letter axis, with traces and axes visible for both axes.
+    ///   - layer: Sets the layer on which this axis is displayed.
+    ///   - domain: Sets the domain of this axis (in plot fraction).
+    ///   - position: Sets the position of this axis in the plotting space (in normalized coordinates).
+    ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+    ///   - categoryArray: Sets the order in which categories on this axis appear.
+    ///   - uiRevision: Controls persistence of user-driven changes in axis `range`, `autorange`, and
+    ///   `title` if in `editable: true` configuration.
+    ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+    public init(uid: UInt = UInt.random(in: 2...UInt.max), visible: Bool? = nil, color: Color? =
+            nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode:
+            RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? =
+            nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? =
+            nil, matches: Matches? = nil, rangeBreaks: [RangeBreak]? = nil, tickMode: TickMode? = nil,
+            numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? =
+            nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: TicksOn? = nil, tickLabelMode:
+            TickLabelMode? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? =
+            nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes:
+            Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil,
+            spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font? = nil, tickAngle:
+            Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix:
+            String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil,
+            exponentFormat: ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? =
+            nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? =
+            nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color?
+            = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil,
+            zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
+            dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? =
+            nil, layer: AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder:
+            CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar:
+            Calendar? = nil) {
+        self.uid = uid
+        self.visible = visible
+        self.color = color
+        self.title = title
+        self.type = type
+        self.autoRange = autoRange
+        self.rangeMode = rangeMode
+        self.range = range
+        self.fixedRange = fixedRange
+        self.scaleAnchor = scaleAnchor
+        self.scaleRatio = scaleRatio
+        self.constrain = constrain
+        self.constrainToward = constrainToward
+        self.matches = matches
+        self.rangeBreaks = rangeBreaks
+        self.tickMode = tickMode
+        self.numTicks = numTicks
+        self.tick0 = tick0
+        self.dTick = dTick
+        self.tickValues = tickValues
+        self.tickText = tickText
+        self.ticks = ticks
+        self.ticksOn = ticksOn
+        self.tickLabelMode = tickLabelMode
+        self.mirror = mirror
+        self.tickLength = tickLength
+        self.tickWidth = tickWidth
+        self.tickColor = tickColor
+        self.showTickLabels = showTickLabels
+        self.autoMargin = autoMargin
+        self.showSpikes = showSpikes
+        self.spikeColor = spikeColor
+        self.spikeThickness = spikeThickness
+        self.spikeDash = spikeDash
+        self.spikeMode = spikeMode
+        self.spikeSnap = spikeSnap
+        self.tickFont = tickFont
+        self.tickAngle = tickAngle
+        self.tickPrefix = tickPrefix
+        self.showTickPrefix = showTickPrefix
+        self.tickSuffix = tickSuffix
+        self.showTickSuffix = showTickSuffix
+        self.showExponent = showExponent
+        self.exponentFormat = exponentFormat
+        self.separateThousands = separateThousands
+        self.tickFormat = tickFormat
+        self.tickFormatStops = tickFormatStops
+        self.hoverFormat = hoverFormat
+        self.showLine = showLine
+        self.lineColor = lineColor
+        self.lineWidth = lineWidth
+        self.showGrid = showGrid
+        self.gridColor = gridColor
+        self.gridWidth = gridWidth
+        self.zeroLine = zeroLine
+        self.zeroLineColor = zeroLineColor
+        self.zeroLineWidth = zeroLineWidth
+        self.showDividers = showDividers
+        self.dividerColor = dividerColor
+        self.dividerWidth = dividerWidth
+        self.anchor = anchor
+        self.side = side
+        self.overlaying = overlaying
+        self.layer = layer
+        self.domain = domain
+        self.position = position
+        self.categoryOrder = categoryOrder
+        self.categoryArray = categoryArray
+        self.uiRevision = uiRevision
+        self.calendar = calendar
+    }
+    
+}
+
+public final class Ternary: Encodable, SubplotAxis {
+    /// Unique identifier of the axis.
+    public var uid: UInt = UInt.random(in: 2...UInt.max)
+
+    public var domain: Domain? = nil
+
+    /// Set the background color of the subplot
+    public var backgroundColor: Color? = nil
+
+    /// The number each triplet should sum to, and the maximum range of each axis
+    public var sum: Double? = nil
+
+    public struct AAxis: Encodable {
+        public var title: Title? = nil
+    
+        /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+        /// colors.
         /// 
-        /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
-        /// Use `thickness` to set the value.
-        public var thicknessMode: Shared.ThicknessMode? = nil
-    
-        /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and
-        /// labels.
-        public var thickness: Double? = nil
-    
-        /// Determines whether this color bar's length (i.e.
-        /// 
-        /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
-        /// Use `len` to set the value.
-        public var lengthMode: Shared.LengthMode? = nil
-    
-        /// Sets the length of the color bar This measure excludes the padding of both ends.
-        /// 
-        /// That is, the color bar length is this length minus the padding on both ends.
-        public var length: Double? = nil
-    
-        /// Sets the x position of the color bar (in plot fraction).
-        public var x: Double? = nil
-    
-        /// Sets this color bar's horizontal position anchor.
-        /// 
-        /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
-        public var xAnchor: Shared.XAnchor? = nil
-    
-        /// Sets the amount of padding (in px) along the x direction.
-        public var xPadding: Double? = nil
-    
-        /// Sets the y position of the color bar (in plot fraction).
-        public var y: Double? = nil
-    
-        /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*,
-        /// *middle* or *bottom* of the color bar.
-        public var yAnchor: Shared.YAnchor? = nil
-    
-        /// Sets the amount of padding (in px) along the y direction.
-        public var yPading: Double? = nil
-    
-        /// Sets the axis line color.
-        public var outlineColor: Color? = nil
-    
-        /// Sets the width (in px) of the axis line.
-        public var outlineWidth: Double? = nil
-    
-        /// Sets the axis line color.
-        public var borderColor: Color? = nil
-    
-        /// Sets the width (in px) or the border enclosing this color bar.
-        public var borderWidth: Double? = nil
-    
-        /// Sets the color of padded area.
-        public var backgroundColor: Color? = nil
+        /// Grid color is lightened by blending this with the plot background Individual pieces can override
+        /// this.
+        public var color: Color? = nil
     
         /// Sets the tick mode for this axis.
         /// 
@@ -2031,7 +4058,7 @@ public enum Shared {
         /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
         /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
         /// provided).
-        public var tickMode: Shared.TickMode? = nil
+        public var tickMode: TickMode? = nil
     
         /// Specifies the maximum number of ticks for the particular axis.
         /// 
@@ -2079,7 +4106,7 @@ public enum Shared {
         /// 
         /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
         /// (inside) the axis lines.
-        public var ticks: Shared.Ticks? = nil
+        public var ticks: Ticks? = nil
     
         /// Sets the tick length (in px).
         public var tickLength: Double? = nil
@@ -2093,8 +4120,38 @@ public enum Shared {
         /// Determines whether or not the tick labels are drawn.
         public var showTickLabels: Bool? = nil
     
-        /// Sets the color bar's tick label font
-        public var tickFont: Shared.Font? = nil
+        /// If *all*, all tick labels are displayed with a prefix.
+        /// 
+        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+        /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        public var showTickPrefix: ShowTickPrefix? = nil
+    
+        /// Sets a tick label prefix.
+        public var tickPrefix: String? = nil
+    
+        /// Same as `showtickprefix` but for tick suffixes.
+        public var showTickSuffix: ShowTickSuffix? = nil
+    
+        /// Sets a tick label suffix.
+        public var tickSuffix: String? = nil
+    
+        /// If *all*, all exponents are shown besides their significands.
+        /// 
+        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+        /// last tick is shown. If *none*, no exponents appear.
+        public var showExponent: ShowExponent? = nil
+    
+        /// Determines a formatting rule for the tick exponents.
+        /// 
+        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        public var exponentFormat: ExponentFormat? = nil
+    
+        /// If "true", even 4-digit integers are separated
+        public var separateThousands: Bool? = nil
+    
+        /// Sets the tick font.
+        public var tickFont: Font? = nil
     
         /// Sets the angle of the tick labels with respect to the horizontal.
         /// 
@@ -2110,57 +4167,61 @@ public enum Shared {
         /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
         public var tickFormat: String? = nil
     
-        public var tickFormatStops: [Shared.TickFormatStop]? = nil
+        public var tickFormatStops: [TickFormatStop]? = nil
     
-        /// Sets a tick label prefix.
-        public var tickPrefix: String? = nil
-    
-        /// If *all*, all tick labels are displayed with a prefix.
+        /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
         /// 
-        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
-        /// displayed with a suffix. If *none*, tick prefixes are hidden.
-        public var showTickPrefix: Shared.ShowTickPrefix? = nil
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var hoverFormat: String? = nil
     
-        /// Sets a tick label suffix.
-        public var tickSuffix: String? = nil
+        /// Determines whether or not a line bounding this axis is drawn.
+        public var showLine: Bool? = nil
     
-        /// Same as `showtickprefix` but for tick suffixes.
-        public var showTickSuffix: Shared.ShowTickSuffix? = nil
+        /// Sets the axis line color.
+        public var lineColor: Color? = nil
     
-        /// If "true", even 4-digit integers are separated
-        public var separateThousands: Bool? = nil
+        /// Sets the width (in px) of the axis line.
+        public var lineWidth: Double? = nil
     
-        /// Determines a formatting rule for the tick exponents.
+        /// Determines whether or not grid lines are drawn.
         /// 
-        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
-        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-        public var exponentFormat: Shared.ExponentFormat? = nil
+        /// If *true*, the grid lines are drawn at every tick mark.
+        public var showGrid: Bool? = nil
     
-        /// If *all*, all exponents are shown besides their significands.
+        /// Sets the color of the grid lines.
+        public var gridColor: Color? = nil
+    
+        /// Sets the width (in px) of the grid lines.
+        public var gridWidth: Double? = nil
+    
+        /// Sets the layer on which this axis is displayed.
         /// 
-        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
-        /// last tick is shown. If *none*, no exponents appear.
-        public var showExponent: Shared.ShowExponent? = nil
+        /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
+        /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
+        /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
+        /// nodes above this axis.
+        public var layer: AxisLayer? = nil
     
-        public var title: Shared.LegendTitle? = nil
+        /// The minimum value visible on this axis.
+        /// 
+        /// The maximum is determined by the sum minus the minimum values of the other two axes. The full
+        /// view corresponds to all the minima set to zero.
+        public var min: Double? = nil
+    
+        /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true`
+        /// configuration.
+        /// 
+        /// Defaults to `ternary<N>.uirevision`.
+        public var uiRevision: Anything? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
-            case thicknessMode = "thicknessmode"
-            case thickness
-            case lengthMode = "lenmode"
-            case length = "len"
-            case x
-            case xAnchor = "xanchor"
-            case xPadding = "xpad"
-            case y
-            case yAnchor = "yanchor"
-            case yPading = "ypad"
-            case outlineColor = "outlinecolor"
-            case outlineWidth = "outlinewidth"
-            case borderColor = "bordercolor"
-            case borderWidth = "borderwidth"
-            case backgroundColor = "bgcolor"
+            case title
+            case color
             case tickMode = "tickmode"
             case numTicks = "nticks"
             case tick0
@@ -2172,40 +4233,35 @@ public enum Shared {
             case tickWidth = "tickwidth"
             case tickColor = "tickcolor"
             case showTickLabels = "showticklabels"
+            case showTickPrefix = "showtickprefix"
+            case tickPrefix = "tickprefix"
+            case showTickSuffix = "showticksuffix"
+            case tickSuffix = "ticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separateThousands = "separatethousands"
             case tickFont = "tickfont"
             case tickAngle = "tickangle"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
-            case tickPrefix = "tickprefix"
-            case showTickPrefix = "showtickprefix"
-            case tickSuffix = "ticksuffix"
-            case showTickSuffix = "showticksuffix"
-            case separateThousands = "separatethousands"
-            case exponentFormat = "exponentformat"
-            case showExponent = "showexponent"
-            case title
+            case hoverFormat = "hoverformat"
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case layer
+            case min
+            case uiRevision = "uirevision"
         }
         
-        /// Creates `ColorBar` object with specified properties.
+        /// Creates `AAxis` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - thicknessMode: Determines whether this color bar's thickness (i.e.
-        ///   - thickness: Sets the thickness of the color bar This measure excludes the size of the padding,
-        ///   ticks and labels.
-        ///   - lengthMode: Determines whether this color bar's length (i.e.
-        ///   - length: Sets the length of the color bar This measure excludes the padding of both ends.
-        ///   - x: Sets the x position of the color bar (in plot fraction).
-        ///   - xAnchor: Sets this color bar's horizontal position anchor.
-        ///   - xPadding: Sets the amount of padding (in px) along the x direction.
-        ///   - y: Sets the y position of the color bar (in plot fraction).
-        ///   - yAnchor: Sets this color bar's vertical position anchor This anchor binds the `y` position to
-        ///   the *top*, *middle* or *bottom* of the color bar.
-        ///   - yPading: Sets the amount of padding (in px) along the y direction.
-        ///   - outlineColor: Sets the axis line color.
-        ///   - outlineWidth: Sets the width (in px) of the axis line.
-        ///   - borderColor: Sets the axis line color.
-        ///   - borderWidth: Sets the width (in px) or the border enclosing this color bar.
-        ///   - backgroundColor: Sets the color of padded area.
+        ///   - title:
+        ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+        ///   and grid colors.
         ///   - tickMode: Sets the tick mode for this axis.
         ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
         ///   - tick0: Sets the placement of the first tick on this axis.
@@ -2217,47 +4273,43 @@ public enum Shared {
         ///   - tickWidth: Sets the tick width (in px).
         ///   - tickColor: Sets the tick color.
         ///   - showTickLabels: Determines whether or not the tick labels are drawn.
-        ///   - tickFont: Sets the color bar's tick label font
+        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+        ///   - tickPrefix: Sets a tick label prefix.
+        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+        ///   - tickSuffix: Sets a tick label suffix.
+        ///   - showExponent: If *all*, all exponents are shown besides their significands.
+        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - separateThousands: If "true", even 4-digit integers are separated
+        ///   - tickFont: Sets the tick font.
         ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
         ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
         ///   very similar to those in Python.
         ///   - tickFormatStops:
-        ///   - tickPrefix: Sets a tick label prefix.
-        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
-        ///   - tickSuffix: Sets a tick label suffix.
-        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
-        ///   - separateThousands: If "true", even 4-digit integers are separated
-        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
-        ///   - showExponent: If *all*, all exponents are shown besides their significands.
-        ///   - title:
-        public init(thicknessMode: Shared.ThicknessMode? = nil, thickness: Double? = nil, lengthMode:
-                Shared.LengthMode? = nil, length: Double? = nil, x: Double? = nil, xAnchor: Shared.XAnchor? =
-                nil, xPadding: Double? = nil, y: Double? = nil, yAnchor: Shared.YAnchor? = nil, yPading: Double?
-                = nil, outlineColor: Color? = nil, outlineWidth: Double? = nil, borderColor: Color? = nil,
-                borderWidth: Double? = nil, backgroundColor: Color? = nil, tickMode: Shared.TickMode? = nil,
-                numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? =
-                nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil,
-                tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont:
-                Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops:
-                [Shared.TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix:
-                Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix?
-                = nil, separateThousands: Bool? = nil, exponentFormat: Shared.ExponentFormat? = nil,
-                showExponent: Shared.ShowExponent? = nil, title: Shared.LegendTitle? = nil) {
-            self.thicknessMode = thicknessMode
-            self.thickness = thickness
-            self.lengthMode = lengthMode
-            self.length = length
-            self.x = x
-            self.xAnchor = xAnchor
-            self.xPadding = xPadding
-            self.y = y
-            self.yAnchor = yAnchor
-            self.yPading = yPading
-            self.outlineColor = outlineColor
-            self.outlineWidth = outlineWidth
-            self.borderColor = borderColor
-            self.borderWidth = borderWidth
-            self.backgroundColor = backgroundColor
+        ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+        ///   - lineColor: Sets the axis line color.
+        ///   - lineWidth: Sets the width (in px) of the axis line.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - gridColor: Sets the color of the grid lines.
+        ///   - gridWidth: Sets the width (in px) of the grid lines.
+        ///   - layer: Sets the layer on which this axis is displayed.
+        ///   - min: The minimum value visible on this axis.
+        ///   - uiRevision: Controls persistence of user-driven changes in axis `min`, and `title` if in
+        ///   `editable: true` configuration.
+        public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int?
+                = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText:
+                [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
+                tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil,
+                tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil,
+                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separateThousands:
+                Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil,
+                tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil,
+                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
+                nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil, uiRevision:
+                Anything? = nil) {
+            self.title = title
+            self.color = color
             self.tickMode = tickMode
             self.numTicks = numTicks
             self.tick0 = tick0
@@ -2269,1442 +4321,913 @@ public enum Shared {
             self.tickWidth = tickWidth
             self.tickColor = tickColor
             self.showTickLabels = showTickLabels
+            self.showTickPrefix = showTickPrefix
+            self.tickPrefix = tickPrefix
+            self.showTickSuffix = showTickSuffix
+            self.tickSuffix = tickSuffix
+            self.showExponent = showExponent
+            self.exponentFormat = exponentFormat
+            self.separateThousands = separateThousands
             self.tickFont = tickFont
             self.tickAngle = tickAngle
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
-            self.tickPrefix = tickPrefix
-            self.showTickPrefix = showTickPrefix
-            self.tickSuffix = tickSuffix
-            self.showTickSuffix = showTickSuffix
-            self.separateThousands = separateThousands
-            self.exponentFormat = exponentFormat
-            self.showExponent = showExponent
-            self.title = title
+            self.hoverFormat = hoverFormat
+            self.showLine = showLine
+            self.lineColor = lineColor
+            self.lineWidth = lineWidth
+            self.showGrid = showGrid
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+            self.layer = layer
+            self.min = min
+            self.uiRevision = uiRevision
         }
         
     }
+    public var aAxis: AAxis? = nil
 
-    /// Sets the font used in hover labels.
-    /// 
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.HoverLabel.font`, `Scatter<XData, YData>.textFont`, `Bar<XData,
-    ///   YData>.HoverLabel.font`, `Bar<XData, YData>.textFont`, `Bar<XData, YData>.insideTextFont`,
-    ///   `Box<YData, XData, QData>.HoverLabel.font`, `Heatmap<ZData, XYData>.HoverLabel.font`,
-    ///   `Histogram<XData, YData>.HoverLabel.font`, `Histogram2D<XData, YData, ZData>.HoverLabel.font`,
-    ///   `Histogram2DContour<XData, YData, ZData>.HoverLabel.font`, `Contour<ZData, XData,
-    ///   YData>.HoverLabel.font`, `ScatterTernary<AData, BData, CData>.HoverLabel.font`,
-    ///   `ScatterTernary<AData, BData, CData>.textFont`, `Violin<YData, XData>.HoverLabel.font`,
-    ///   `Funnel<XData, YData>.HoverLabel.font`, `Funnel<XData, YData>.textFont`, `Funnel<XData,
-    ///   YData>.insideTextFont`, `Waterfall<XData, YData>.HoverLabel.font`, `Waterfall<XData,
-    ///   YData>.textFont`, `Waterfall<XData, YData>.insideTextFont`, `Image<ZData>.HoverLabel.font`,
-    ///   `Pie<LabelsData, ValuesData>.HoverLabel.font`, `Pie<LabelsData, ValuesData>.textFont`,
-    ///   `Pie<LabelsData, ValuesData>.insideTextFont`, `Pie<LabelsData, ValuesData>.Title.font`,
-    ///   `Sunburst<ValuesData>.HoverLabel.font`, `Sunburst<ValuesData>.textFont`,
-    ///   `Sunburst<ValuesData>.insideTextFont`, `Treemap<ValuesData>.HoverLabel.font`,
-    ///   `Treemap<ValuesData>.PathBar.textFont`, `Treemap<ValuesData>.textFont`,
-    ///   `Treemap<ValuesData>.insideTextFont`, `FunnelArea<LabelsData, ValuesData>.HoverLabel.font`,
-    ///   `FunnelArea<LabelsData, ValuesData>.textFont`, `FunnelArea<LabelsData,
-    ///   ValuesData>.insideTextFont`, `FunnelArea<LabelsData, ValuesData>.Title.font`, `Scatter3D<XData,
-    ///   YData, ZData>.HoverLabel.font`, `Scatter3D<XData, YData, ZData>.textFont`,
-    ///   `Surface<ZSurfaceData, XYData>.HoverLabel.font`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.HoverLabel.font`, `Volume<XYZData, ValueData>.HoverLabel.font`, `Mesh3D<XData, YData,
-    ///   ZData, IntensityData, VertexcolorData, FacecolorData>.HoverLabel.font`, `Cone<XYZData,
-    ///   UVWData>.HoverLabel.font`, `StreamTube<XYZData, UVWData>.HoverLabel.font`,
-    ///   `ScatterGeo<CoordinateData, LocationsData>.HoverLabel.font`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.textFont`, `Choropleth<LocationsData, ZData>.HoverLabel.font`, `ScatterGL<XData,
-    ///   YData>.HoverLabel.font`, `ScatterGL<XData, YData>.textFont`,
-    ///   `ScatterPlotMatrix.HoverLabel.font`, `PointCloud<XYData>.HoverLabel.font`, `HeatmapGL<ZData,
-    ///   XYData>.HoverLabel.font`, `ScatterMapbox<CoordinateData>.HoverLabel.font`,
-    ///   `ChoroplethMapbox<LocationsData, ZData>.HoverLabel.font`, `DensityMapbox<CoordinateData,
-    ///   ZData>.HoverLabel.font`, `Sankey.HoverLabel.font`, `Sankey.Node.HoverLabel.font`,
-    ///   `Sankey.Link.HoverLabel.font`, `Table<CellData>.HoverLabel.font`, `Table<CellData>.Header.font`,
-    ///   `Table<CellData>.Cells<CellData>.font`, `ScatterCarpet<AData, BData>.HoverLabel.font`,
-    ///   `ScatterCarpet<AData, BData>.textFont`, `OHLC<XData, OHLCData>.HoverLabel.font`,
-    ///   `Candlestick<XData, OHLCData>.HoverLabel.font`, `ScatterPolar<RData,
-    ///   ThetaData>.HoverLabel.font`, `ScatterPolar<RData, ThetaData>.textFont`, `ScatterPolarGL<RData,
-    ///   ThetaData>.HoverLabel.font`, `ScatterPolarGL<RData, ThetaData>.textFont`, `BarPolar<RData,
-    ///   ThetaData>.HoverLabel.font`.
-    public struct VariableFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser.
+    public struct BAxis: Encodable {
+        public var title: Title? = nil
+    
+        /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+        /// colors.
         /// 
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
-        /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
-        /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
-        /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
-        /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: Data<String>? = nil
-    
-        public var size: Data<Double>? = nil
-    
-        public var coloring: Coloring? = nil
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case family
-            case size
-            case coloring = "color"
-        }
-        
-        /// Creates `VariableFont` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - family: HTML font family - the typeface that will be applied by the web browser.
-        ///   - size:
-        ///   - coloring:
-        public init(family: Data<String>? = nil, size: Data<Double>? = nil, coloring: Coloring? = nil) {
-            self.family = family
-            self.size = size
-            self.coloring = coloring
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.stream`, `Bar<XData, YData>.stream`, `Box<YData, XData,
-    ///   QData>.stream`, `Heatmap<ZData, XYData>.stream`, `Histogram<XData, YData>.stream`,
-    ///   `Histogram2D<XData, YData, ZData>.stream`, `Histogram2DContour<XData, YData, ZData>.stream`,
-    ///   `Contour<ZData, XData, YData>.stream`, `ScatterTernary<AData, BData, CData>.stream`,
-    ///   `Violin<YData, XData>.stream`, `Funnel<XData, YData>.stream`, `Waterfall<XData, YData>.stream`,
-    ///   `Image<ZData>.stream`, `Pie<LabelsData, ValuesData>.stream`, `Sunburst<ValuesData>.stream`,
-    ///   `Treemap<ValuesData>.stream`, `FunnelArea<LabelsData, ValuesData>.stream`, `Scatter3D<XData,
-    ///   YData, ZData>.stream`, `Surface<ZSurfaceData, XYData>.stream`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.stream`, `Volume<XYZData, ValueData>.stream`, `Mesh3D<XData, YData, ZData,
-    ///   IntensityData, VertexcolorData, FacecolorData>.stream`, `Cone<XYZData, UVWData>.stream`,
-    ///   `StreamTube<XYZData, UVWData>.stream`, `ScatterGeo<CoordinateData, LocationsData>.stream`,
-    ///   `Choropleth<LocationsData, ZData>.stream`, `ScatterGL<XData, YData>.stream`,
-    ///   `ScatterPlotMatrix.stream`, `PointCloud<XYData>.stream`, `HeatmapGL<ZData, XYData>.stream`,
-    ///   `ParallelCoordinates.stream`, `ParallelCategories.stream`,
-    ///   `ScatterMapbox<CoordinateData>.stream`, `ChoroplethMapbox<LocationsData, ZData>.stream`,
-    ///   `DensityMapbox<CoordinateData, ZData>.stream`, `Sankey.stream`, `Indicator.stream`,
-    ///   `Table<CellData>.stream`, `Carpet<XData, YData, AData, BData>.stream`, `ScatterCarpet<AData,
-    ///   BData>.stream`, `ContourCarpet<ZData, AData, BData>.stream`, `OHLC<XData, OHLCData>.stream`,
-    ///   `Candlestick<XData, OHLCData>.stream`, `ScatterPolar<RData, ThetaData>.stream`,
-    ///   `ScatterPolarGL<RData, ThetaData>.stream`, `BarPolar<RData, ThetaData>.stream`.
-    public struct Stream: Encodable {
-        /// The stream id number links a data trace on a plot with a stream.
-        /// 
-        /// See https://chart-studio.plotly.com/settings for more details.
-        public var token: String? = nil
-    
-        /// Sets the maximum number of points to keep on the plots from an incoming stream.
-        /// 
-        /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
-        public var maxPoints: Double? = nil
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case token
-            case maxPoints = "maxpoints"
-        }
-        
-        /// Creates `Stream` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - token: The stream id number links a data trace on a plot with a stream.
-        ///   - maxPoints: Sets the maximum number of points to keep on the plots from an incoming stream.
-        public init(token: String? = nil, maxPoints: Double? = nil) {
-            self.token = token
-            self.maxPoints = maxPoints
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.marker`, `ScatterTernary<AData, BData, CData>.marker`,
-    ///   `ScatterCarpet<AData, BData>.marker`, `ScatterPolar<RData, ThetaData>.marker`.
-    public struct GradientMarker: Encodable {
-        /// Sets the marker symbol type.
-        /// 
-        /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
-        /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
-        /// *dot-open* to a symbol name.
-        public var symbol: Shared.Symbol? = nil
-    
-        /// Sets the marker opacity.
-        public var opacity: Data<Double>? = nil
-    
-        /// Sets the marker size (in px).
-        public var size: Data<Double>? = nil
-    
-        /// Sets a maximum number of points to be drawn on the graph.
-        /// 
-        /// *0* corresponds to no limit.
-        public var maxDisplayed: Double? = nil
-    
-        /// Has an effect only if `marker.size` is set to a numerical array.
-        /// 
-        /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
-        /// and `sizemode`.
-        public var sizeReference: Double? = nil
-    
-        /// Has an effect only if `marker.size` is set to a numerical array.
-        /// 
-        /// Sets the minimum size (in px) of the rendered marker points.
-        public var sizeMin: Double? = nil
-    
-        /// Has an effect only if `marker.size` is set to a numerical array.
-        /// 
-        /// Sets the rule for which the data in `size` is converted to pixels.
-        public var sizeMode: Shared.SizeMode? = nil
-    
-        public var line: Shared.MarkerLine? = nil
-    
-        public var gradient: Shared.Gradient? = nil
-    
-        /// Sets themarkercolor.
-        /// 
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        public var coloring: Coloring? = nil
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in
-        /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
-        /// `marker.color`is set to a numerical array.
-        /// 
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        public var cAuto: Bool? = nil
-    
-        /// Sets the lower bound of the color domain.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        public var cMin: Double? = nil
-    
-        /// Sets the upper bound of the color domain.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        public var cMax: Double? = nil
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
-        /// equidistant to this point.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        public var cMiddle: Double? = nil
-    
-        /// Sets the colorscale.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale? = nil
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
-        /// determined by `marker.colorscale`.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool? = nil
-    
-        /// Reverses the color mapping if true.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        public var reverseScale: Bool? = nil
-    
-        /// Determines whether or not a colorbar is displayed for this trace.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        public var showScale: Bool? = nil
-    
-        public var colorBar: Shared.ColorBar? = nil
-    
-        /// Sets a reference to a shared color axis.
-        /// 
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case symbol
-            case opacity
-            case size
-            case maxDisplayed = "maxdisplayed"
-            case sizeReference = "sizeref"
-            case sizeMin = "sizemin"
-            case sizeMode = "sizemode"
-            case line
-            case gradient
-            case coloring = "color"
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorBar = "colorbar"
-            case colorAxis = "coloraxis"
-        }
-        
-        /// Creates `GradientMarker` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - symbol: Sets the marker symbol type.
-        ///   - opacity: Sets the marker opacity.
-        ///   - size: Sets the marker size (in px).
-        ///   - maxDisplayed: Sets a maximum number of points to be drawn on the graph.
-        ///   - sizeReference: Has an effect only if `marker.size` is set to a numerical array.
-        ///   - sizeMin: Has an effect only if `marker.size` is set to a numerical array.
-        ///   - sizeMode: Has an effect only if `marker.size` is set to a numerical array.
-        ///   - line:
-        ///   - gradient:
-        ///   - coloring: Sets themarkercolor.
-        ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
-        ///   (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only
-        ///   if in `marker.color`is set to a numerical array.
-        ///   - cMin: Sets the lower bound of the color domain.
-        ///   - cMax: Sets the upper bound of the color domain.
-        ///   - cMiddle: Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax`
-        ///   to be equidistant to this point.
-        ///   - colorScale: Sets the colorscale.
-        ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
-        ///   true`) or the palette determined by `marker.colorscale`.
-        ///   - reverseScale: Reverses the color mapping if true.
-        ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
-        ///   - colorBar:
-        ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(symbol: Shared.Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? =
-                nil, maxDisplayed: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil,
-                sizeMode: Shared.SizeMode? = nil, line: Shared.MarkerLine? = nil, gradient: Shared.Gradient? =
-                nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
-                cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-                reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                Layout.ColorAxis = .preset) {
-            self.symbol = symbol
-            self.opacity = opacity
-            self.size = size
-            self.maxDisplayed = maxDisplayed
-            self.sizeReference = sizeReference
-            self.sizeMin = sizeMin
-            self.sizeMode = sizeMode
-            self.line = line
-            self.gradient = gradient
-            self.coloring = coloring
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorBar = colorBar
-            self.colorAxis = colorAxis
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Shared.GradientMarker.line`, `Shared.Marker.line`, `Histogram<XData,
-    ///   YData>.Marker.line`, `ScatterTernary<AData, BData, CData>.GradientMarker.line`, `Funnel<XData,
-    ///   YData>.Marker.line`, `Shared.SymbolicMarker.line`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.line`, `ScatterGL<XData, YData>.SymbolicMarker.line`,
-    ///   `ScatterPlotMatrix.SymbolicMarker.line`, `ScatterCarpet<AData, BData>.GradientMarker.line`,
-    ///   `ScatterPolar<RData, ThetaData>.GradientMarker.line`, `ScatterPolarGL<RData,
-    ///   ThetaData>.SymbolicMarker.line`, `BarPolar<RData, ThetaData>.Marker.line`.
-    public struct MarkerLine: Encodable {
-        /// Sets the width (in px) of the lines bounding the marker points.
-        public var width: Data<Double>? = nil
-    
-        /// Sets themarker.linecolor.
-        /// 
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.line.cmin` and
-        /// `marker.line.cmax` if set.
-        public var coloring: Coloring? = nil
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in
-        /// `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax` Has an
-        /// effect only if in `marker.line.color`is set to a numerical array.
-        /// 
-        /// Defaults to `false` when `marker.line.cmin` and `marker.line.cmax` are set by the user.
-        public var cAuto: Bool? = nil
-    
-        /// Sets the lower bound of the color domain.
-        /// 
-        /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-        /// same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as well.
-        public var cMin: Double? = nil
-    
-        /// Sets the upper bound of the color domain.
-        /// 
-        /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-        /// same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as well.
-        public var cMax: Double? = nil
-    
-        /// Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax`
-        /// to be equidistant to this point.
-        /// 
-        /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
-        /// same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
-        public var cMiddle: Double? = nil
-    
-        /// Sets the colorscale.
-        /// 
-        /// Has an effect only if in `marker.line.color`is set to a numerical array. The colorscale must be
-        /// an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.line.cmin` and `marker.line.cmax`. Alternatively, `colorscale` may be
-        /// a palette name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale? = nil
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
-        /// determined by `marker.line.colorscale`.
-        /// 
-        /// Has an effect only if in `marker.line.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool? = nil
-    
-        /// Reverses the color mapping if true.
-        /// 
-        /// Has an effect only if in `marker.line.color`is set to a numerical array. If true,
-        /// `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will
-        /// correspond to the first color.
-        public var reverseScale: Bool? = nil
-    
-        /// Sets a reference to a shared color axis.
-        /// 
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case width
-            case coloring = "color"
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case colorAxis = "coloraxis"
-        }
-        
-        /// Creates `MarkerLine` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - width: Sets the width (in px) of the lines bounding the marker points.
-        ///   - coloring: Sets themarker.linecolor.
-        ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
-        ///   (here in `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax` Has
-        ///   an effect only if in `marker.line.color`is set to a numerical array.
-        ///   - cMin: Sets the lower bound of the color domain.
-        ///   - cMax: Sets the upper bound of the color domain.
-        ///   - cMiddle: Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or
-        ///   `marker.line.cmax` to be equidistant to this point.
-        ///   - colorScale: Sets the colorscale.
-        ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
-        ///   true`) or the palette determined by `marker.line.colorscale`.
-        ///   - reverseScale: Reverses the color mapping if true.
-        ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(width: Data<Double>? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin:
-                Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
-                autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: Layout.ColorAxis = .preset) {
-            self.width = width
-            self.coloring = coloring
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.colorAxis = colorAxis
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Shared.GradientMarker.gradient`, `ScatterTernary<AData, BData,
-    ///   CData>.GradientMarker.gradient`, `ScatterGeo<CoordinateData,
-    ///   LocationsData>.GradientMarker.gradient`, `ScatterCarpet<AData, BData>.GradientMarker.gradient`,
-    ///   `ScatterPolar<RData, ThetaData>.GradientMarker.gradient`.
-    public struct Gradient: Encodable {
-        /// Sets the type of gradient used to fill the markers
-        public enum `Type`: String, Encodable {
-            case radial
-            case horizontal
-            case vertical
-            case none
-        }
-        /// Sets the type of gradient used to fill the markers
-        public var type: `Type`? = nil
-    
-        /// Sets the final color of the gradient fill: the center color for radial, the right for
-        /// horizontal, or the bottom for vertical.
-        public var coloring: Coloring? = nil
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case type
-            case coloring = "color"
-        }
-        
-        /// Creates `Gradient` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - type: Sets the type of gradient used to fill the markers
-        ///   - coloring: Sets the final color of the gradient fill: the center color for radial, the right
-        ///   for horizontal, or the bottom for vertical.
-        public init(type: `Type`? = nil, coloring: Coloring? = nil) {
-            self.type = type
-            self.coloring = coloring
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Scatter<XData, YData>.xError`, `Scatter<XData, YData>.yError`, `Bar<XData,
-    ///   YData>.xError`, `Bar<XData, YData>.yError`, `Histogram<XData, YData>.xError`, `Histogram<XData,
-    ///   YData>.yError`, `Scatter3D<XData, YData, ZData>.xError`, `Scatter3D<XData, YData,
-    ///   ZData>.yError`, `Scatter3D<XData, YData, ZData>.zError`, `ScatterGL<XData, YData>.xError`,
-    ///   `ScatterGL<XData, YData>.yError`.
-    public struct Error: Encodable {
-        /// Determines whether or not this set of error bars is visible.
-        public var visible: Bool? = nil
-    
-        /// Determines the rule used to generate the error bars.
-        /// 
-        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-        /// the bar lengths are set with data set `array`.
-        public enum `Type`: String, Encodable {
-            case percent
-            case constant
-            case sqrt
-            case data
-        }
-        /// Determines the rule used to generate the error bars.
-        /// 
-        /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
-        /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-        /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
-        /// the bar lengths are set with data set `array`.
-        public var type: `Type`? = nil
-    
-        /// Determines whether or not the error bars have the same length in both direction (top/bottom for
-        /// vertical bars, left/right for horizontal bars.
-        public var symmetric: Bool? = nil
-    
-        /// Sets the data corresponding the length of each error bar.
-        /// 
-        /// Values are plotted relative to the underlying data.
-        public var array: [Double]? = nil
-    
-        /// Sets the data corresponding the length of each error bar in the bottom (left) direction for
-        /// vertical (horizontal) bars Values are plotted relative to the underlying data.
-        public var arrayMinus: [Double]? = nil
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if
-        /// `type` is set to *constant*) corresponding to the lengths of the error bars.
-        public var value: Double? = nil
-    
-        /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if
-        /// `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left)
-        /// direction for vertical (horizontal) bars
-        public var valueMinus: Double? = nil
-    
-        public var traceReference: Int? = nil
-    
-        public var traceReferenceMinus: Int? = nil
-    
-        /// Sets the stoke color of the error bars.
+        /// Grid color is lightened by blending this with the plot background Individual pieces can override
+        /// this.
         public var color: Color? = nil
     
-        /// Sets the thickness (in px) of the error bars.
-        public var thickness: Double? = nil
+        /// Sets the tick mode for this axis.
+        /// 
+        /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+        /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+        /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+        /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+        /// provided).
+        public var tickMode: TickMode? = nil
     
-        /// Sets the width (in px) of the cross-bar at both ends of the error bars.
-        public var width: Double? = nil
+        /// Specifies the maximum number of ticks for the particular axis.
+        /// 
+        /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+        /// Has an effect only if `tickmode` is set to *auto*.
+        public var numTicks: Int? = nil
+    
+        /// Sets the placement of the first tick on this axis.
+        /// 
+        /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+        /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+        /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+        /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+        /// category is assigned a serial number from zero in the order it appears.
+        public var tick0: Anything? = nil
+    
+        /// Sets the step in-between ticks on this axis.
+        /// 
+        /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+        /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+        /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+        /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+        /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+        /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+        /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+        /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+        /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+        /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+        /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+        /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+        /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+        public var dTick: Anything? = nil
+    
+        /// Sets the values at which ticks on this axis appear.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        public var tickValues: [Double]? = nil
+    
+        /// Sets the text displayed at the ticks position via `tickvals`.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        public var tickText: [Double]? = nil
+    
+        /// Determines whether ticks are drawn or not.
+        /// 
+        /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+        /// (inside) the axis lines.
+        public var ticks: Ticks? = nil
+    
+        /// Sets the tick length (in px).
+        public var tickLength: Double? = nil
+    
+        /// Sets the tick width (in px).
+        public var tickWidth: Double? = nil
+    
+        /// Sets the tick color.
+        public var tickColor: Color? = nil
+    
+        /// Determines whether or not the tick labels are drawn.
+        public var showTickLabels: Bool? = nil
+    
+        /// If *all*, all tick labels are displayed with a prefix.
+        /// 
+        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+        /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        public var showTickPrefix: ShowTickPrefix? = nil
+    
+        /// Sets a tick label prefix.
+        public var tickPrefix: String? = nil
+    
+        /// Same as `showtickprefix` but for tick suffixes.
+        public var showTickSuffix: ShowTickSuffix? = nil
+    
+        /// Sets a tick label suffix.
+        public var tickSuffix: String? = nil
+    
+        /// If *all*, all exponents are shown besides their significands.
+        /// 
+        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+        /// last tick is shown. If *none*, no exponents appear.
+        public var showExponent: ShowExponent? = nil
+    
+        /// Determines a formatting rule for the tick exponents.
+        /// 
+        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        public var exponentFormat: ExponentFormat? = nil
+    
+        /// If "true", even 4-digit integers are separated
+        public var separateThousands: Bool? = nil
+    
+        /// Sets the tick font.
+        public var tickFont: Font? = nil
+    
+        /// Sets the angle of the tick labels with respect to the horizontal.
+        /// 
+        /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        public var tickAngle: Angle? = nil
+    
+        /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var tickFormat: String? = nil
+    
+        public var tickFormatStops: [TickFormatStop]? = nil
+    
+        /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var hoverFormat: String? = nil
+    
+        /// Determines whether or not a line bounding this axis is drawn.
+        public var showLine: Bool? = nil
+    
+        /// Sets the axis line color.
+        public var lineColor: Color? = nil
+    
+        /// Sets the width (in px) of the axis line.
+        public var lineWidth: Double? = nil
+    
+        /// Determines whether or not grid lines are drawn.
+        /// 
+        /// If *true*, the grid lines are drawn at every tick mark.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the color of the grid lines.
+        public var gridColor: Color? = nil
+    
+        /// Sets the width (in px) of the grid lines.
+        public var gridWidth: Double? = nil
+    
+        /// Sets the layer on which this axis is displayed.
+        /// 
+        /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
+        /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
+        /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
+        /// nodes above this axis.
+        public var layer: AxisLayer? = nil
+    
+        /// The minimum value visible on this axis.
+        /// 
+        /// The maximum is determined by the sum minus the minimum values of the other two axes. The full
+        /// view corresponds to all the minima set to zero.
+        public var min: Double? = nil
+    
+        /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true`
+        /// configuration.
+        /// 
+        /// Defaults to `ternary<N>.uirevision`.
+        public var uiRevision: Anything? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
-            case visible
-            case type
-            case symmetric
-            case array
-            case arrayMinus = "arrayminus"
-            case value
-            case valueMinus = "valueminus"
-            case traceReference = "traceref"
-            case traceReferenceMinus = "tracerefminus"
+            case title
             case color
-            case thickness
-            case width
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case showTickPrefix = "showtickprefix"
+            case tickPrefix = "tickprefix"
+            case showTickSuffix = "showticksuffix"
+            case tickSuffix = "ticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separateThousands = "separatethousands"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case hoverFormat = "hoverformat"
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case layer
+            case min
+            case uiRevision = "uirevision"
         }
         
-        /// Creates `Error` object with specified properties.
+        /// Creates `BAxis` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - visible: Determines whether or not this set of error bars is visible.
-        ///   - type: Determines the rule used to generate the error bars.
-        ///   - symmetric: Determines whether or not the error bars have the same length in both direction
-        ///   (top/bottom for vertical bars, left/right for horizontal bars.
-        ///   - array: Sets the data corresponding the length of each error bar.
-        ///   - arrayMinus: Sets the data corresponding the length of each error bar in the bottom (left)
-        ///   direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
-        ///   - value: Sets the value of either the percentage (if `type` is set to *percent*) or the constant
-        ///   (if `type` is set to *constant*) corresponding to the lengths of the error bars.
-        ///   - valueMinus: Sets the value of either the percentage (if `type` is set to *percent*) or the
-        ///   constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the
-        ///   bottom (left) direction for vertical (horizontal) bars
-        ///   - traceReference:
-        ///   - traceReferenceMinus:
-        ///   - color: Sets the stoke color of the error bars.
-        ///   - thickness: Sets the thickness (in px) of the error bars.
-        ///   - width: Sets the width (in px) of the cross-bar at both ends of the error bars.
-        public init(visible: Bool? = nil, type: `Type`? = nil, symmetric: Bool? = nil, array: [Double]?
-                = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil,
-                traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness:
-                Double? = nil, width: Double? = nil) {
-            self.visible = visible
-            self.type = type
-            self.symmetric = symmetric
-            self.array = array
-            self.arrayMinus = arrayMinus
-            self.value = value
-            self.valueMinus = valueMinus
-            self.traceReference = traceReference
-            self.traceReferenceMinus = traceReferenceMinus
-            self.color = color
-            self.thickness = thickness
-            self.width = width
-        }
-        
-    }
-
-    /// Sets the font used for `text` lying outside the bar.
-    /// 
-    /// - Note:
-    ///   Used by `Bar<XData, YData>.outsideTextFont`, `Funnel<XData, YData>.outsideTextFont`,
-    ///   `Waterfall<XData, YData>.outsideTextFont`, `Pie<LabelsData, ValuesData>.outsideTextFont`,
-    ///   `Sunburst<ValuesData>.outsideTextFont`, `Treemap<ValuesData>.outsideTextFont`.
-    public struct OutsideTextFont: Encodable {
-        /// HTML font family - the typeface that will be applied by the web browser.
-        /// 
-        /// The web browser will only be able to apply a font if it is available on the system which it
-        /// operates. Provide multiple font families, separated by commas, to indicate the preference in
-        /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
-        /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
-        /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
-        /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
-        /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
-        public var family: Data<String>? = nil
-    
-        public var size: Data<Double>? = nil
-    
-        public var coloring: Coloring? = nil
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case family
-            case size
-            case coloring = "color"
-        }
-        
-        /// Creates `OutsideTextFont` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - family: HTML font family - the typeface that will be applied by the web browser.
-        ///   - size:
-        ///   - coloring:
-        public init(family: Data<String>? = nil, size: Data<Double>? = nil, coloring: Coloring? = nil) {
-            self.family = family
-            self.size = size
-            self.coloring = coloring
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Bar<XData, YData>.marker`, `Histogram<XData, YData>.marker`, `Funnel<XData,
-    ///   YData>.marker`, `BarPolar<RData, ThetaData>.marker`.
-    public struct Marker: Encodable {
-        public var line: Shared.MarkerLine? = nil
-    
-        /// Sets themarkercolor.
-        /// 
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        public var coloring: Coloring? = nil
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in
-        /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
-        /// `marker.color`is set to a numerical array.
-        /// 
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        public var cAuto: Bool? = nil
-    
-        /// Sets the lower bound of the color domain.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        public var cMin: Double? = nil
-    
-        /// Sets the upper bound of the color domain.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        public var cMax: Double? = nil
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
-        /// equidistant to this point.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        public var cMiddle: Double? = nil
-    
-        /// Sets the colorscale.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale? = nil
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
-        /// determined by `marker.colorscale`.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool? = nil
-    
-        /// Reverses the color mapping if true.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        public var reverseScale: Bool? = nil
-    
-        /// Determines whether or not a colorbar is displayed for this trace.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        public var showScale: Bool? = nil
-    
-        public var colorBar: Shared.ColorBar? = nil
-    
-        /// Sets a reference to a shared color axis.
-        /// 
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
-    
-        /// Sets the opacity of the bars.
-        public var opacity: Data<Double>? = nil
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case line
-            case coloring = "color"
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorBar = "colorbar"
-            case colorAxis = "coloraxis"
-            case opacity
-        }
-        
-        /// Creates `Marker` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - line:
-        ///   - coloring: Sets themarkercolor.
-        ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
-        ///   (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only
-        ///   if in `marker.color`is set to a numerical array.
-        ///   - cMin: Sets the lower bound of the color domain.
-        ///   - cMax: Sets the upper bound of the color domain.
-        ///   - cMiddle: Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax`
-        ///   to be equidistant to this point.
-        ///   - colorScale: Sets the colorscale.
-        ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
-        ///   true`) or the palette determined by `marker.colorscale`.
-        ///   - reverseScale: Reverses the color mapping if true.
-        ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
-        ///   - colorBar:
-        ///   - colorAxis: Sets a reference to a shared color axis.
-        ///   - opacity: Sets the opacity of the bars.
-        public init(line: Shared.MarkerLine? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin:
-                Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
-                autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset, opacity: Data<Double>? = nil) {
-            self.line = line
-            self.coloring = coloring
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorBar = colorBar
-            self.colorAxis = colorAxis
-            self.opacity = opacity
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Box<YData, XData, QData>.line`, `Violin<YData, XData>.line`, `Violin<YData,
-    ///   XData>.Box.line`, `Waterfall<XData, YData>.Increasing.Marker.line`, `Waterfall<XData,
-    ///   YData>.Decreasing.Marker.line`, `Waterfall<XData, YData>.Totals.Marker.line`,
-    ///   `ScatterMapbox<CoordinateData>.line`, `Indicator.Gauge.Bar.line`, `Indicator.Gauge.Step.line`,
-    ///   `Indicator.Gauge.Threshold.line`.
-    public struct Line: Encodable {
-        /// Sets the color of line bounding the box(es).
-        public var color: Color? = nil
-    
-        /// Sets the width (in px) of line bounding the box(es).
-        public var width: Double? = nil
-    
-        /// Creates `Line` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - color: Sets the color of line bounding the box(es).
-        ///   - width: Sets the width (in px) of line bounding the box(es).
-        public init(color: Color? = nil, width: Double? = nil) {
-            self.color = color
-            self.width = width
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Histogram<XData, YData>.xBins`, `Histogram<XData, YData>.yBins`, `Histogram2D<XData,
-    ///   YData, ZData>.xBins`, `Histogram2D<XData, YData, ZData>.yBins`, `Histogram2DContour<XData,
-    ///   YData, ZData>.xBins`, `Histogram2DContour<XData, YData, ZData>.yBins`.
-    public struct Bins: Encodable {
-        /// Sets the starting value for the x axis bins.
-        /// 
-        /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
-        /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
-        /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
-        /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
-        /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
-        /// based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying
-        /// histograms share a subplot, the first explicit `start` is used exactly and all others are
-        /// shifted down (if necessary) to differ from that one by an integer number of bins.
-        public var start: Anything? = nil
-    
-        /// Sets the end value for the x axis bins.
-        /// 
-        /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
-        /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
-        /// a date string, and for category data `end` is based on the category serial numbers.
-        public var end: Anything? = nil
-    
-        /// Sets the size of each x axis bin.
-        /// 
-        /// Default behavior: If `nbinsx` is 0 or omitted, we choose a nice round bin size such that the
-        /// number of bins is about the same as the typical number of samples in each bin. If `nbinsx` is
-        /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
-        /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
-        /// categories to bin together (always defaults to 1). If multiple non-overlaying histograms share a
-        /// subplot, the first explicit `size` is used and all others discarded. If no `size` is
-        /// provided,the sample data from all traces is combined to determine `size` as described above.
-        public var size: Anything? = nil
-    
-        /// Creates `Bins` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - start: Sets the starting value for the x axis bins.
-        ///   - end: Sets the end value for the x axis bins.
-        ///   - size: Sets the size of each x axis bin.
-        public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
-            self.start = start
-            self.end = end
-            self.size = size
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Histogram2DContour<XData, YData, ZData>.contours`, `Contour<ZData, XData,
-    ///   YData>.contours`, `ContourCarpet<ZData, AData, BData>.contours`.
-    public struct Contours: Encodable {
-        /// If `levels`, the data is represented as a contour plot with multiple levels displayed.
-        /// 
-        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
-        /// specified by the `operation` and `value` parameters.
-        public enum `Type`: String, Encodable {
-            case levels
-            case constraint
-        }
-        /// If `levels`, the data is represented as a contour plot with multiple levels displayed.
-        /// 
-        /// If `constraint`, the data is represented as constraints with the invalid region shaded as
-        /// specified by the `operation` and `value` parameters.
-        public var type: `Type`? = nil
-    
-        /// Sets the starting contour level value.
-        /// 
-        /// Must be less than `contours.end`
-        public var start: Double? = nil
-    
-        /// Sets the end contour level value.
-        /// 
-        /// Must be more than `contours.start`
-        public var end: Double? = nil
-    
-        /// Sets the step between each contour level.
-        /// 
-        /// Must be positive.
-        public var size: Double? = nil
-    
-        /// Determines the coloring method showing the contour values.
-        /// 
-        /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
-        /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
-        /// lines. If *none*, no coloring is applied on this trace.
-        public enum Coloring: String, Encodable {
-            case fill
-            case heatmap
-            case lines
-            case none
-        }
-        /// Determines the coloring method showing the contour values.
-        /// 
-        /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
-        /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
-        /// lines. If *none*, no coloring is applied on this trace.
-        public var coloring: Coloring? = nil
-    
-        /// Determines whether or not the contour lines are drawn.
-        /// 
-        /// Has an effect only if `contours.coloring` is set to *fill*.
-        public var showLines: Bool? = nil
-    
-        /// Determines whether to label the contour lines with their values.
-        public var showLabels: Bool? = nil
-    
-        /// Sets the font used for labeling the contour levels.
-        /// 
-        /// The default color comes from the lines, if shown. The default family and size come from
-        /// `layout.font`.
-        public var labelFont: Shared.Font? = nil
-    
-        /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar
-        /// to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        public var labelFormat: String? = nil
-    
-        /// Sets the constraint operation.
-        /// 
-        /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
-        /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
-        /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
-        /// intervals make no difference to constraint display, but all versions are allowed for consistency
-        /// with filter transforms.
-        public var operation: Shared.Operation? = nil
-    
-        /// Sets the value or values of the constraint boundary.
-        /// 
-        /// When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be
-        /// a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[)
-        /// *value* is expected to be an array of two numbers where the first is the lower bound and the
-        /// second is the upper bound.
-        public var value: Anything? = nil
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case type
-            case start
-            case end
-            case size
-            case coloring
-            case showLines = "showlines"
-            case showLabels = "showlabels"
-            case labelFont = "labelfont"
-            case labelFormat = "labelformat"
-            case operation
-            case value
-        }
-        
-        /// Creates `Contours` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - type: If `levels`, the data is represented as a contour plot with multiple levels displayed.
-        ///   - start: Sets the starting contour level value.
-        ///   - end: Sets the end contour level value.
-        ///   - size: Sets the step between each contour level.
-        ///   - coloring: Determines the coloring method showing the contour values.
-        ///   - showLines: Determines whether or not the contour lines are drawn.
-        ///   - showLabels: Determines whether to label the contour lines with their values.
-        ///   - labelFont: Sets the font used for labeling the contour levels.
-        ///   - labelFormat: Sets the contour label formatting rule using d3 formatting mini-language which is
-        ///   very similar to Python, see:
-        ///   https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
-        ///   - operation: Sets the constraint operation.
-        ///   - value: Sets the value or values of the constraint boundary.
-        public init(type: `Type`? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil,
-                coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont:
-                Shared.Font? = nil, labelFormat: String? = nil, operation: Shared.Operation? = nil, value:
+        ///   - title:
+        ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+        ///   and grid colors.
+        ///   - tickMode: Sets the tick mode for this axis.
+        ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+        ///   - tick0: Sets the placement of the first tick on this axis.
+        ///   - dTick: Sets the step in-between ticks on this axis.
+        ///   - tickValues: Sets the values at which ticks on this axis appear.
+        ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - tickLength: Sets the tick length (in px).
+        ///   - tickWidth: Sets the tick width (in px).
+        ///   - tickColor: Sets the tick color.
+        ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+        ///   - tickPrefix: Sets a tick label prefix.
+        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+        ///   - tickSuffix: Sets a tick label suffix.
+        ///   - showExponent: If *all*, all exponents are shown besides their significands.
+        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - separateThousands: If "true", even 4-digit integers are separated
+        ///   - tickFont: Sets the tick font.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - tickFormatStops:
+        ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+        ///   - lineColor: Sets the axis line color.
+        ///   - lineWidth: Sets the width (in px) of the axis line.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - gridColor: Sets the color of the grid lines.
+        ///   - gridWidth: Sets the width (in px) of the grid lines.
+        ///   - layer: Sets the layer on which this axis is displayed.
+        ///   - min: The minimum value visible on this axis.
+        ///   - uiRevision: Controls persistence of user-driven changes in axis `min`, and `title` if in
+        ///   `editable: true` configuration.
+        public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int?
+                = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText:
+                [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
+                tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil,
+                tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil,
+                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separateThousands:
+                Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil,
+                tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil,
+                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
+                nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil, uiRevision:
                 Anything? = nil) {
-            self.type = type
-            self.start = start
-            self.end = end
-            self.size = size
-            self.coloring = coloring
-            self.showLines = showLines
-            self.showLabels = showLabels
-            self.labelFont = labelFont
-            self.labelFormat = labelFormat
-            self.operation = operation
-            self.value = value
+            self.title = title
+            self.color = color
+            self.tickMode = tickMode
+            self.numTicks = numTicks
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.tickValues = tickValues
+            self.tickText = tickText
+            self.ticks = ticks
+            self.tickLength = tickLength
+            self.tickWidth = tickWidth
+            self.tickColor = tickColor
+            self.showTickLabels = showTickLabels
+            self.showTickPrefix = showTickPrefix
+            self.tickPrefix = tickPrefix
+            self.showTickSuffix = showTickSuffix
+            self.tickSuffix = tickSuffix
+            self.showExponent = showExponent
+            self.exponentFormat = exponentFormat
+            self.separateThousands = separateThousands
+            self.tickFont = tickFont
+            self.tickAngle = tickAngle
+            self.tickFormat = tickFormat
+            self.tickFormatStops = tickFormatStops
+            self.hoverFormat = hoverFormat
+            self.showLine = showLine
+            self.lineColor = lineColor
+            self.lineWidth = lineWidth
+            self.showGrid = showGrid
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+            self.layer = layer
+            self.min = min
+            self.uiRevision = uiRevision
         }
         
     }
+    public var bAxis: BAxis? = nil
 
-    /// - Note:
-    ///   Used by `Histogram2DContour<XData, YData, ZData>.line`, `Contour<ZData, XData, YData>.line`,
-    ///   `ContourCarpet<ZData, AData, BData>.line`.
-    public struct SmoothDashedLine: Encodable {
-        /// Sets the color of the contour level.
+    public struct CAxis: Encodable {
+        public var title: Title? = nil
+    
+        /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+        /// colors.
         /// 
-        /// Has no effect if `contours.coloring` is set to *lines*.
+        /// Grid color is lightened by blending this with the plot background Individual pieces can override
+        /// this.
         public var color: Color? = nil
     
-        /// Sets the contour line width in (in px)
-        public var width: Double? = nil
-    
-        /// Sets the dash style of lines.
+        /// Sets the tick mode for this axis.
         /// 
-        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-        /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String? = nil
+        /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+        /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+        /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+        /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+        /// provided).
+        public var tickMode: TickMode? = nil
     
-        /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
-        public var smoothing: Double? = nil
+        /// Specifies the maximum number of ticks for the particular axis.
+        /// 
+        /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+        /// Has an effect only if `tickmode` is set to *auto*.
+        public var numTicks: Int? = nil
     
-        /// Creates `SmoothDashedLine` object with specified properties.
+        /// Sets the placement of the first tick on this axis.
+        /// 
+        /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+        /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+        /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+        /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+        /// category is assigned a serial number from zero in the order it appears.
+        public var tick0: Anything? = nil
+    
+        /// Sets the step in-between ticks on this axis.
+        /// 
+        /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+        /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+        /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+        /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+        /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+        /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+        /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+        /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+        /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+        /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+        /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+        /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+        /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+        public var dTick: Anything? = nil
+    
+        /// Sets the values at which ticks on this axis appear.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        public var tickValues: [Double]? = nil
+    
+        /// Sets the text displayed at the ticks position via `tickvals`.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        public var tickText: [Double]? = nil
+    
+        /// Determines whether ticks are drawn or not.
+        /// 
+        /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+        /// (inside) the axis lines.
+        public var ticks: Ticks? = nil
+    
+        /// Sets the tick length (in px).
+        public var tickLength: Double? = nil
+    
+        /// Sets the tick width (in px).
+        public var tickWidth: Double? = nil
+    
+        /// Sets the tick color.
+        public var tickColor: Color? = nil
+    
+        /// Determines whether or not the tick labels are drawn.
+        public var showTickLabels: Bool? = nil
+    
+        /// If *all*, all tick labels are displayed with a prefix.
+        /// 
+        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+        /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        public var showTickPrefix: ShowTickPrefix? = nil
+    
+        /// Sets a tick label prefix.
+        public var tickPrefix: String? = nil
+    
+        /// Same as `showtickprefix` but for tick suffixes.
+        public var showTickSuffix: ShowTickSuffix? = nil
+    
+        /// Sets a tick label suffix.
+        public var tickSuffix: String? = nil
+    
+        /// If *all*, all exponents are shown besides their significands.
+        /// 
+        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+        /// last tick is shown. If *none*, no exponents appear.
+        public var showExponent: ShowExponent? = nil
+    
+        /// Determines a formatting rule for the tick exponents.
+        /// 
+        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        public var exponentFormat: ExponentFormat? = nil
+    
+        /// If "true", even 4-digit integers are separated
+        public var separateThousands: Bool? = nil
+    
+        /// Sets the tick font.
+        public var tickFont: Font? = nil
+    
+        /// Sets the angle of the tick labels with respect to the horizontal.
+        /// 
+        /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        public var tickAngle: Angle? = nil
+    
+        /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var tickFormat: String? = nil
+    
+        public var tickFormatStops: [TickFormatStop]? = nil
+    
+        /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var hoverFormat: String? = nil
+    
+        /// Determines whether or not a line bounding this axis is drawn.
+        public var showLine: Bool? = nil
+    
+        /// Sets the axis line color.
+        public var lineColor: Color? = nil
+    
+        /// Sets the width (in px) of the axis line.
+        public var lineWidth: Double? = nil
+    
+        /// Determines whether or not grid lines are drawn.
+        /// 
+        /// If *true*, the grid lines are drawn at every tick mark.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the color of the grid lines.
+        public var gridColor: Color? = nil
+    
+        /// Sets the width (in px) of the grid lines.
+        public var gridWidth: Double? = nil
+    
+        /// Sets the layer on which this axis is displayed.
+        /// 
+        /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
+        /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
+        /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
+        /// nodes above this axis.
+        public var layer: AxisLayer? = nil
+    
+        /// The minimum value visible on this axis.
+        /// 
+        /// The maximum is determined by the sum minus the minimum values of the other two axes. The full
+        /// view corresponds to all the minima set to zero.
+        public var min: Double? = nil
+    
+        /// Controls persistence of user-driven changes in axis `min`, and `title` if in `editable: true`
+        /// configuration.
+        /// 
+        /// Defaults to `ternary<N>.uirevision`.
+        public var uiRevision: Anything? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case title
+            case color
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case showTickPrefix = "showtickprefix"
+            case tickPrefix = "tickprefix"
+            case showTickSuffix = "showticksuffix"
+            case tickSuffix = "ticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separateThousands = "separatethousands"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case hoverFormat = "hoverformat"
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case layer
+            case min
+            case uiRevision = "uirevision"
+        }
+        
+        /// Creates `CAxis` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - color: Sets the color of the contour level.
-        ///   - width: Sets the contour line width in (in px)
-        ///   - dash: Sets the dash style of lines.
-        ///   - smoothing: Sets the amount of smoothing for the contour lines, where *0* corresponds to no
-        ///   smoothing.
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, smoothing: Double? =
+        ///   - title:
+        ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+        ///   and grid colors.
+        ///   - tickMode: Sets the tick mode for this axis.
+        ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+        ///   - tick0: Sets the placement of the first tick on this axis.
+        ///   - dTick: Sets the step in-between ticks on this axis.
+        ///   - tickValues: Sets the values at which ticks on this axis appear.
+        ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - tickLength: Sets the tick length (in px).
+        ///   - tickWidth: Sets the tick width (in px).
+        ///   - tickColor: Sets the tick color.
+        ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+        ///   - tickPrefix: Sets a tick label prefix.
+        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+        ///   - tickSuffix: Sets a tick label suffix.
+        ///   - showExponent: If *all*, all exponents are shown besides their significands.
+        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - separateThousands: If "true", even 4-digit integers are separated
+        ///   - tickFont: Sets the tick font.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - tickFormatStops:
+        ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+        ///   - lineColor: Sets the axis line color.
+        ///   - lineWidth: Sets the width (in px) of the axis line.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - gridColor: Sets the color of the grid lines.
+        ///   - gridWidth: Sets the width (in px) of the grid lines.
+        ///   - layer: Sets the layer on which this axis is displayed.
+        ///   - min: The minimum value visible on this axis.
+        ///   - uiRevision: Controls persistence of user-driven changes in axis `min`, and `title` if in
+        ///   `editable: true` configuration.
+        public init(title: Title? = nil, color: Color? = nil, tickMode: TickMode? = nil, numTicks: Int?
+                = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText:
+                [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
+                tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil,
+                tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil,
+                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separateThousands:
+                Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil,
+                tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil,
+                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
+                nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil, uiRevision:
+                Anything? = nil) {
+            self.title = title
+            self.color = color
+            self.tickMode = tickMode
+            self.numTicks = numTicks
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.tickValues = tickValues
+            self.tickText = tickText
+            self.ticks = ticks
+            self.tickLength = tickLength
+            self.tickWidth = tickWidth
+            self.tickColor = tickColor
+            self.showTickLabels = showTickLabels
+            self.showTickPrefix = showTickPrefix
+            self.tickPrefix = tickPrefix
+            self.showTickSuffix = showTickSuffix
+            self.tickSuffix = tickSuffix
+            self.showExponent = showExponent
+            self.exponentFormat = exponentFormat
+            self.separateThousands = separateThousands
+            self.tickFont = tickFont
+            self.tickAngle = tickAngle
+            self.tickFormat = tickFormat
+            self.tickFormatStops = tickFormatStops
+            self.hoverFormat = hoverFormat
+            self.showLine = showLine
+            self.lineColor = lineColor
+            self.lineWidth = lineWidth
+            self.showGrid = showGrid
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+            self.layer = layer
+            self.min = min
+            self.uiRevision = uiRevision
+        }
+        
+    }
+    public var cAxis: CAxis? = nil
+
+    /// Controls persistence of user-driven changes in axis `min` and `title`, if not overridden in the
+    /// individual axes.
+    /// 
+    /// Defaults to `layout.uirevision`.
+    public var uiRevision: Anything? = nil
+
+    /// Shared and preset default axis reference used to initialize layout and all traces.
+    public static let preset: Ternary = Ternary(uid: 1)
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case domain
+        case backgroundColor = "bgcolor"
+        case sum
+        case aAxis = "aaxis"
+        case bAxis = "baxis"
+        case cAxis = "caxis"
+        case uiRevision = "uirevision"
+    }
+    
+    /// Creates `Ternary` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - uid: Unique identifier of the axis.
+    ///   - domain:
+    ///   - backgroundColor: Set the background color of the subplot
+    ///   - sum: The number each triplet should sum to, and the maximum range of each axis
+    ///   - aAxis:
+    ///   - bAxis:
+    ///   - cAxis:
+    ///   - uiRevision: Controls persistence of user-driven changes in axis `min` and `title`, if not
+    ///   overridden in the individual axes.
+    public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Domain? = nil, backgroundColor:
+            Color? = nil, sum: Double? = nil, aAxis: AAxis? = nil, bAxis: BAxis? = nil, cAxis: CAxis? = nil,
+            uiRevision: Anything? = nil) {
+        self.uid = uid
+        self.domain = domain
+        self.backgroundColor = backgroundColor
+        self.sum = sum
+        self.aAxis = aAxis
+        self.bAxis = bAxis
+        self.cAxis = cAxis
+        self.uiRevision = uiRevision
+    }
+    
+}
+
+/// - Note:
+///   Used by `Ternary.domain`, `Scene.domain`, `Geo.domain`, `Mapbox.domain`, `Polar.domain`,
+///   `Pie<LabelsData, ValuesData>.domain`, `Sunburst<ValuesData>.domain`,
+///   `Treemap<ValuesData>.domain`, `FunnelArea<LabelsData, ValuesData>.domain`,
+///   `ParallelCoordinates.domain`, `ParallelCategories.domain`, `Sankey.domain`, `Indicator.domain`,
+///   `Table<CellData>.domain`.
+public struct Domain: Encodable {
+    /// Sets the horizontal domain of this ternary subplot (in plot fraction).
+    public var x: InfoArray? = nil
+
+    /// Sets the vertical domain of this ternary subplot (in plot fraction).
+    public var y: InfoArray? = nil
+
+    /// If there is a layout grid, use the domain for this row in the grid for this ternary subplot .
+    public var row: Int? = nil
+
+    /// If there is a layout grid, use the domain for this column in the grid for this ternary subplot .
+    public var column: Int? = nil
+
+    /// Creates `Domain` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - x: Sets the horizontal domain of this ternary subplot (in plot fraction).
+    ///   - y: Sets the vertical domain of this ternary subplot (in plot fraction).
+    ///   - row: If there is a layout grid, use the domain for this row in the grid for this ternary
+    ///   subplot .
+    ///   - column: If there is a layout grid, use the domain for this column in the grid for this ternary
+    ///   subplot .
+    public init(x: InfoArray? = nil, y: InfoArray? = nil, row: Int? = nil, column: Int? = nil) {
+        self.x = x
+        self.y = y
+        self.row = row
+        self.column = column
+    }
+    
+}
+
+/// - Note:
+///   Used by `Ternary.AAxis.title`, `Ternary.BAxis.title`, `Ternary.CAxis.title`,
+///   `Scene.XAxis.title`, `Scene.YAxis.title`, `Scene.ZAxis.title`, `Polar.RadialAxis.title`.
+public struct Title: Encodable {
+    /// Sets the title of this axis.
+    /// 
+    /// Note that before the existence of `title.text`, the title's contents used to be defined as the
+    /// `title` attribute itself. This behavior has been deprecated.
+    public var text: String? = nil
+
+    /// Sets this axis' title font.
+    /// 
+    /// Note that the title's font used to be customized by the now deprecated `titlefont` attribute.
+    public var font: Font? = nil
+
+    /// Creates `Title` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - text: Sets the title of this axis.
+    ///   - font: Sets this axis' title font.
+    public init(text: String? = nil, font: Font? = nil) {
+        self.text = text
+        self.font = font
+    }
+    
+}
+
+public final class Scene: Encodable, SubplotAxis {
+    /// Unique identifier of the axis.
+    public var uid: UInt = UInt.random(in: 2...UInt.max)
+
+    public var backgroundColor: Color? = nil
+
+    public struct Camera: Encodable {
+        /// Sets the (x,y,z) components of the 'up' camera vector.
+        /// 
+        /// This vector determines the up direction of this scene with respect to the page. The default is
+        /// *{x: 0, y: 0, z: 1}* which means that the z axis points up.
+        public struct Up: Encodable {
+            public var x: Double? = nil
+        
+            public var y: Double? = nil
+        
+            public var z: Double? = nil
+        
+            /// Creates `Up` object with specified properties.
+            public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
+                self.x = x
+                self.y = y
+                self.z = z
+            }
+            
+        }
+        /// Sets the (x,y,z) components of the 'up' camera vector.
+        /// 
+        /// This vector determines the up direction of this scene with respect to the page. The default is
+        /// *{x: 0, y: 0, z: 1}* which means that the z axis points up.
+        public var up: Up? = nil
+    
+        /// Sets the (x,y,z) components of the 'center' camera vector This vector determines the translation
+        /// (x,y,z) space about the center of this scene.
+        /// 
+        /// By default, there is no such translation.
+        public struct Center: Encodable {
+            public var x: Double? = nil
+        
+            public var y: Double? = nil
+        
+            public var z: Double? = nil
+        
+            /// Creates `Center` object with specified properties.
+            public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
+                self.x = x
+                self.y = y
+                self.z = z
+            }
+            
+        }
+        /// Sets the (x,y,z) components of the 'center' camera vector This vector determines the translation
+        /// (x,y,z) space about the center of this scene.
+        /// 
+        /// By default, there is no such translation.
+        public var center: Center? = nil
+    
+        /// Sets the (x,y,z) components of the 'eye' camera vector.
+        /// 
+        /// This vector determines the view point about the origin of this scene.
+        public struct Eye: Encodable {
+            public var x: Double? = nil
+        
+            public var y: Double? = nil
+        
+            public var z: Double? = nil
+        
+            /// Creates `Eye` object with specified properties.
+            public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
+                self.x = x
+                self.y = y
+                self.z = z
+            }
+            
+        }
+        /// Sets the (x,y,z) components of the 'eye' camera vector.
+        /// 
+        /// This vector determines the view point about the origin of this scene.
+        public var eye: Eye? = nil
+    
+        public struct Projection: Encodable {
+            /// Sets the projection type.
+            /// 
+            /// The projection type could be either *perspective* or *orthographic*. The default is
+            /// *perspective*.
+            public enum `Type`: String, Encodable {
+                case perspective
+                case orthographic
+            }
+            /// Sets the projection type.
+            /// 
+            /// The projection type could be either *perspective* or *orthographic*. The default is
+            /// *perspective*.
+            public var type: `Type`? = nil
+        
+            /// Creates `Projection` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - type: Sets the projection type.
+            public init(type: `Type`? = nil) {
+                self.type = type
+            }
+            
+        }
+        public var projection: Projection? = nil
+    
+        /// Creates `Camera` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - up: Sets the (x,y,z) components of the 'up' camera vector.
+        ///   - center: Sets the (x,y,z) components of the 'center' camera vector This vector determines the
+        ///   translation (x,y,z) space about the center of this scene.
+        ///   - eye: Sets the (x,y,z) components of the 'eye' camera vector.
+        ///   - projection:
+        public init(up: Up? = nil, center: Center? = nil, eye: Eye? = nil, projection: Projection? =
                 nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
-            self.smoothing = smoothing
+            self.up = up
+            self.center = center
+            self.eye = eye
+            self.projection = projection
         }
         
     }
+    public var camera: Camera? = nil
 
-    /// - Note:
-    ///   Used by `ScatterTernary<AData, BData, CData>.line`, `ScatterCarpet<AData, BData>.line`,
-    ///   `ScatterPolar<RData, ThetaData>.line`.
-    public struct ShapedSmoothDashedLine: Encodable {
-        /// Sets the line color.
-        public var color: Color? = nil
-    
-        /// Sets the line width (in px).
-        public var width: Double? = nil
-    
-        /// Sets the dash style of lines.
-        /// 
-        /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
-        /// dash length list in px (eg *5px,10px,2px,2px*).
-        public var dash: String? = nil
-    
-        /// Determines the line shape.
-        /// 
-        /// With *spline* the lines are drawn using spline interpolation. The other available values
-        /// correspond to step-wise line shapes.
-        public var shape: Shared.Shape? = nil
-    
-        /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing.
-        /// 
-        /// *0* corresponds to no smoothing (equivalent to a *linear* shape).
-        public var smoothing: Double? = nil
-    
-        /// Creates `ShapedSmoothDashedLine` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - color: Sets the line color.
-        ///   - width: Sets the line width (in px).
-        ///   - dash: Sets the dash style of lines.
-        ///   - shape: Determines the line shape.
-        ///   - smoothing: Has an effect only if `shape` is set to *spline* Sets the amount of smoothing.
-        public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, shape: Shared.Shape?
-                = nil, smoothing: Double? = nil) {
-            self.color = color
-            self.width = width
-            self.dash = dash
-            self.shape = shape
-            self.smoothing = smoothing
-        }
-        
+    public var domain: Domain? = nil
+
+    /// If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges.
+    /// 
+    /// If *data*, this scene's axes are drawn in proportion with the axes' ranges. If *manual*, this
+    /// scene's axes are drawn in proportion with the input of *aspectratio* (the default behavior if
+    /// *aspectratio* is provided). If *auto*, this scene's axes are drawn using the results of *data*
+    /// except when one axis is more than four times the size of the two others, where in that case the
+    /// results of *cube* are used.
+    public enum AspectMode: String, Encodable {
+        case auto
+        case cube
+        case data
+        case manual
     }
+    /// If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges.
+    /// 
+    /// If *data*, this scene's axes are drawn in proportion with the axes' ranges. If *manual*, this
+    /// scene's axes are drawn in proportion with the input of *aspectratio* (the default behavior if
+    /// *aspectratio* is provided). If *auto*, this scene's axes are drawn using the results of *data*
+    /// except when one axis is more than four times the size of the two others, where in that case the
+    /// results of *cube* are used.
+    public var aspectMode: AspectMode? = nil
 
-    /// - Note:
-    ///   Used by `Pie<LabelsData, ValuesData>.Marker.line`, `Sunburst<ValuesData>.Marker.line`,
-    ///   `Treemap<ValuesData>.Marker.line`, `FunnelArea<LabelsData, ValuesData>.Marker.line`,
-    ///   `Choropleth<LocationsData, ZData>.Marker.line`, `ChoroplethMapbox<LocationsData,
-    ///   ZData>.Marker.line`, `Sankey.Node.line`, `Sankey.Link.line`, `Table<CellData>.Header.line`,
-    ///   `Table<CellData>.Cells<CellData>.line`.
-    public struct VariableLine: Encodable {
-        /// Sets the color of the line enclosing each sector.
-        public var coloring: Coloring? = nil
-    
-        /// Sets the width (in px) of the line enclosing each sector.
-        public var width: Data<Double>? = nil
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case coloring = "color"
-            case width
-        }
-        
-        /// Creates `VariableLine` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - coloring: Sets the color of the line enclosing each sector.
-        ///   - width: Sets the width (in px) of the line enclosing each sector.
-        public init(coloring: Coloring? = nil, width: Data<Double>? = nil) {
-            self.coloring = coloring
-            self.width = width
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Scatter3D<XData, YData, ZData>.projection`, `Surface<ZSurfaceData,
-    ///   XYData>.Contours.X.project`, `Surface<ZSurfaceData, XYData>.Contours.Y.project`,
-    ///   `Surface<ZSurfaceData, XYData>.Contours.Z.project`.
-    public struct Projection: Encodable {
-        public struct X: Encodable {
-            /// Sets whether or not projections are shown along the x axis.
-            public var show: Bool? = nil
-        
-            /// Sets the projection color.
-            public var opacity: Double? = nil
-        
-            /// Sets the scale factor determining the size of the projection marker points.
-            public var scale: Double? = nil
-        
-            /// Creates `X` object with specified properties.
-            /// 
-            /// - Parameters:
-            ///   - show: Sets whether or not projections are shown along the x axis.
-            ///   - opacity: Sets the projection color.
-            ///   - scale: Sets the scale factor determining the size of the projection marker points.
-            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
-                self.show = show
-                self.opacity = opacity
-                self.scale = scale
-            }
-            
-        }
-        public var x: X? = nil
-    
-        public struct Y: Encodable {
-            /// Sets whether or not projections are shown along the y axis.
-            public var show: Bool? = nil
-        
-            /// Sets the projection color.
-            public var opacity: Double? = nil
-        
-            /// Sets the scale factor determining the size of the projection marker points.
-            public var scale: Double? = nil
-        
-            /// Creates `Y` object with specified properties.
-            /// 
-            /// - Parameters:
-            ///   - show: Sets whether or not projections are shown along the y axis.
-            ///   - opacity: Sets the projection color.
-            ///   - scale: Sets the scale factor determining the size of the projection marker points.
-            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
-                self.show = show
-                self.opacity = opacity
-                self.scale = scale
-            }
-            
-        }
-        public var y: Y? = nil
-    
-        public struct Z: Encodable {
-            /// Sets whether or not projections are shown along the z axis.
-            public var show: Bool? = nil
-        
-            /// Sets the projection color.
-            public var opacity: Double? = nil
-        
-            /// Sets the scale factor determining the size of the projection marker points.
-            public var scale: Double? = nil
-        
-            /// Creates `Z` object with specified properties.
-            /// 
-            /// - Parameters:
-            ///   - show: Sets whether or not projections are shown along the z axis.
-            ///   - opacity: Sets the projection color.
-            ///   - scale: Sets the scale factor determining the size of the projection marker points.
-            public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
-                self.show = show
-                self.opacity = opacity
-                self.scale = scale
-            }
-            
-        }
-        public var z: Z? = nil
-    
-        /// Creates `Projection` object with specified properties.
-        public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
-            self.x = x
-            self.y = y
-            self.z = z
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Scatter3D<XData, YData, ZData>.marker`, `ScatterGL<XData, YData>.marker`,
-    ///   `ScatterPlotMatrix.marker`, `ScatterPolarGL<RData, ThetaData>.marker`.
-    public struct SymbolicMarker: Encodable {
-        /// Sets the marker symbol type.
-        public enum Symbol: String, Encodable {
-            case circle
-            case circleOpen = "circle-open"
-            case square
-            case squareOpen = "square-open"
-            case diamond
-            case diamondOpen = "diamond-open"
-            case cross
-            case x
-        }
-        /// Sets the marker symbol type.
-        public var symbol: Symbol? = nil
-    
-        /// Sets the marker size (in px).
-        public var size: Data<Double>? = nil
-    
-        /// Has an effect only if `marker.size` is set to a numerical array.
-        /// 
-        /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
-        /// and `sizemode`.
-        public var sizeReference: Double? = nil
-    
-        /// Has an effect only if `marker.size` is set to a numerical array.
-        /// 
-        /// Sets the minimum size (in px) of the rendered marker points.
-        public var sizeMin: Double? = nil
-    
-        /// Has an effect only if `marker.size` is set to a numerical array.
-        /// 
-        /// Sets the rule for which the data in `size` is converted to pixels.
-        public var sizeMode: Shared.SizeMode? = nil
-    
-        /// Sets the marker opacity.
-        /// 
-        /// Note that the marker opacity for scatter3d traces must be a scalar value for performance
-        /// reasons. To set a blending opacity value (i.e. which is not transparent), set *marker.color* to
-        /// an rgba color and use its alpha channel.
-        public var opacity: Double? = nil
-    
-        public var colorBar: Shared.ColorBar? = nil
-    
-        public var line: Shared.MarkerLine? = nil
-    
-        /// Sets themarkercolor.
-        /// 
-        /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
-        /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
-        /// if set.
-        public var coloring: Coloring? = nil
-    
-        /// Determines whether or not the color domain is computed with respect to the input data (here in
-        /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
-        /// `marker.color`is set to a numerical array.
-        /// 
-        /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
-        public var cAuto: Bool? = nil
-    
-        /// Sets the lower bound of the color domain.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
-        public var cMin: Double? = nil
-    
-        /// Sets the upper bound of the color domain.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
-        public var cMax: Double? = nil
-    
-        /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
-        /// equidistant to this point.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
-        /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
-        public var cMiddle: Double? = nil
-    
-        /// Sets the colorscale.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
-        /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
-        /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
-        /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
-        /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
-        /// name string of the following list:
-        /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
-        public var colorScale: ColorScale? = nil
-    
-        /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
-        /// determined by `marker.colorscale`.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
-        /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
-        /// numbers in the `color` array are all positive, all negative or mixed.
-        public var autoColorScale: Bool? = nil
-    
-        /// Reverses the color mapping if true.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
-        /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
-        public var reverseScale: Bool? = nil
-    
-        /// Determines whether or not a colorbar is displayed for this trace.
-        /// 
-        /// Has an effect only if in `marker.color`is set to a numerical array.
-        public var showScale: Bool? = nil
-    
-        /// Sets a reference to a shared color axis.
-        /// 
-        /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
-        /// for these shared color axes are set in the layout, under `layout.coloraxis`,
-        /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
-    
-        /// Decoding and encoding keys compatible with Plotly schema.
-        enum CodingKeys: String, CodingKey {
-            case symbol
-            case size
-            case sizeReference = "sizeref"
-            case sizeMin = "sizemin"
-            case sizeMode = "sizemode"
-            case opacity
-            case colorBar = "colorbar"
-            case line
-            case coloring = "color"
-            case cAuto = "cauto"
-            case cMin = "cmin"
-            case cMax = "cmax"
-            case cMiddle = "cmid"
-            case colorScale = "colorscale"
-            case autoColorScale = "autocolorscale"
-            case reverseScale = "reversescale"
-            case showScale = "showscale"
-            case colorAxis = "coloraxis"
-        }
-        
-        /// Creates `SymbolicMarker` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - symbol: Sets the marker symbol type.
-        ///   - size: Sets the marker size (in px).
-        ///   - sizeReference: Has an effect only if `marker.size` is set to a numerical array.
-        ///   - sizeMin: Has an effect only if `marker.size` is set to a numerical array.
-        ///   - sizeMode: Has an effect only if `marker.size` is set to a numerical array.
-        ///   - opacity: Sets the marker opacity.
-        ///   - colorBar:
-        ///   - line:
-        ///   - coloring: Sets themarkercolor.
-        ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
-        ///   (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only
-        ///   if in `marker.color`is set to a numerical array.
-        ///   - cMin: Sets the lower bound of the color domain.
-        ///   - cMax: Sets the upper bound of the color domain.
-        ///   - cMiddle: Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax`
-        ///   to be equidistant to this point.
-        ///   - colorScale: Sets the colorscale.
-        ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
-        ///   true`) or the palette determined by `marker.colorscale`.
-        ///   - reverseScale: Reverses the color mapping if true.
-        ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
-        ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(symbol: Symbol? = nil, size: Data<Double>? = nil, sizeReference: Double? = nil,
-                sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil, opacity: Double? = nil, colorBar:
-                Shared.ColorBar? = nil, line: Shared.MarkerLine? = nil, coloring: Coloring? = nil, cAuto: Bool?
-                = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale?
-                = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil,
-                colorAxis: Layout.ColorAxis = .preset) {
-            self.symbol = symbol
-            self.size = size
-            self.sizeReference = sizeReference
-            self.sizeMin = sizeMin
-            self.sizeMode = sizeMode
-            self.opacity = opacity
-            self.colorBar = colorBar
-            self.line = line
-            self.coloring = coloring
-            self.cAuto = cAuto
-            self.cMin = cMin
-            self.cMax = cMax
-            self.cMiddle = cMiddle
-            self.colorScale = colorScale
-            self.autoColorScale = autoColorScale
-            self.reverseScale = reverseScale
-            self.showScale = showScale
-            self.colorAxis = colorAxis
-        }
-        
-    }
-
-    /// - Note:
-    ///   Used by `Surface<ZSurfaceData, XYData>.lightPosition`, `Isosurface<XData, YData, ZData,
-    ///   ValueData>.lightPosition`, `Volume<XYZData, ValueData>.lightPosition`, `Mesh3D<XData, YData,
-    ///   ZData, IntensityData, VertexcolorData, FacecolorData>.lightPosition`, `Cone<XYZData,
-    ///   UVWData>.lightPosition`, `StreamTube<XYZData, UVWData>.lightPosition`.
-    public struct LightPosition: Encodable {
-        /// Numeric vector, representing the X coordinate for each vertex.
+    /// Sets this scene's axis aspectratio.
+    public struct AspectRatio: Encodable {
         public var x: Double? = nil
     
-        /// Numeric vector, representing the Y coordinate for each vertex.
         public var y: Double? = nil
     
-        /// Numeric vector, representing the Z coordinate for each vertex.
         public var z: Double? = nil
     
-        /// Creates `LightPosition` object with specified properties.
-        /// 
-        /// - Parameters:
-        ///   - x: Numeric vector, representing the X coordinate for each vertex.
-        ///   - y: Numeric vector, representing the Y coordinate for each vertex.
-        ///   - z: Numeric vector, representing the Z coordinate for each vertex.
+        /// Creates `AspectRatio` object with specified properties.
         public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
             self.x = x
             self.y = y
@@ -3712,102 +5235,5687 @@ public enum Shared {
         }
         
     }
+    /// Sets this scene's axis aspectratio.
+    public var aspectRatio: AspectRatio? = nil
 
-    /// - Note:
-    ///   Used by `Isosurface<XData, YData, ZData, ValueData>.lighting`, `Volume<XYZData,
-    ///   ValueData>.lighting`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.lighting`, `Cone<XYZData, UVWData>.lighting`, `StreamTube<XYZData,
-    ///   UVWData>.lighting`.
-    public struct Lighting: Encodable {
-        /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
-        public var vertexNormalsEpsilon: Double? = nil
-    
-        /// Epsilon for face normals calculation avoids math issues arising from degenerate geometry.
-        public var faceNormalsEpsilon: Double? = nil
-    
-        /// Ambient light increases overall color visibility but can wash out the image.
-        public var ambient: Double? = nil
-    
-        /// Represents the extent that incident rays are reflected in a range of angles.
-        public var diffuse: Double? = nil
-    
-        /// Represents the level that incident rays are reflected in a single direction, causing shine.
-        public var specular: Double? = nil
-    
-        /// Alters specular reflection; the rougher the surface, the wider and less contrasty the shine.
-        public var roughness: Double? = nil
-    
-        /// Represents the reflectance as a dependency of the viewing angle; e.g.
+    public struct XAxis: Encodable {
+        /// A single toggle to hide the axis while preserving interaction like dragging.
         /// 
-        /// paper is reflective when viewing it from the edge of the paper (almost 90 degrees), causing
-        /// shine.
-        public var fresnel: Double? = nil
+        /// Default is true when a cheater plot is present on the axis, otherwise false
+        public var visible: Bool? = nil
+    
+        /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
+        public var showSpikes: Bool? = nil
+    
+        /// Sets whether or not spikes extending from the projection data points to this axis' wall
+        /// boundaries are shown on hover.
+        public var spikeSides: Bool? = nil
+    
+        /// Sets the thickness (in px) of the spikes.
+        public var spikeThickness: Double? = nil
+    
+        /// Sets the color of the spikes.
+        public var spikeColor: Color? = nil
+    
+        /// Sets whether or not this axis' wall has a background color.
+        public var showBackground: Bool? = nil
+    
+        /// Sets the background color of this axis' wall.
+        public var backgroundColor: Color? = nil
+    
+        /// Sets whether or not this axis is labeled
+        public var showAxesLabels: Bool? = nil
+    
+        /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+        /// colors.
+        /// 
+        /// Grid color is lightened by blending this with the plot background Individual pieces can override
+        /// this.
+        public var color: Color? = nil
+    
+        /// Specifies the ordering logic for the case of categorical variables.
+        /// 
+        /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+        /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+        /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+        /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+        /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+        /// mode. The unspecified categories will follow the categories in `categoryarray`. Set
+        /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
+        /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
+        /// or median of all the values.
+        public var categoryOrder: CategoryOrder? = nil
+    
+        /// Sets the order in which categories on this axis appear.
+        /// 
+        /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+        public var categoryArray: [Double]? = nil
+    
+        public var title: Title? = nil
+    
+        /// Sets the axis type.
+        /// 
+        /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+        /// that referenced the axis in question.
+        public enum `Type`: String, Encodable {
+            case auto = "-"
+            case linear
+            case log
+            case date
+            case category
+        }
+        /// Sets the axis type.
+        /// 
+        /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+        /// that referenced the axis in question.
+        public var type: `Type`? = nil
+    
+        /// Determines whether or not the range of this axis is computed in relation to the input data.
+        /// 
+        /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+        public var autoRange: AutoRange? = nil
+    
+        /// If *normal*, the range is computed in relation to the extrema of the input data.
+        /// 
+        /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
+        /// is non-negative, regardless of the input data. Applies only to linear axes.
+        public var rangeMode: RangeMode? = nil
+    
+        /// Sets the range of this axis.
+        /// 
+        /// If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the
+        /// range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date
+        /// strings, like date data, though Date objects and unix milliseconds will be accepted and
+        /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
+        /// where each category is assigned a serial number from zero in the order it appears.
+        public var range: InfoArray? = nil
+    
+        /// Sets the tick mode for this axis.
+        /// 
+        /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+        /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+        /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+        /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+        /// provided).
+        public var tickMode: TickMode? = nil
+    
+        /// Specifies the maximum number of ticks for the particular axis.
+        /// 
+        /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+        /// Has an effect only if `tickmode` is set to *auto*.
+        public var numTicks: Int? = nil
+    
+        /// Sets the placement of the first tick on this axis.
+        /// 
+        /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+        /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+        /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+        /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+        /// category is assigned a serial number from zero in the order it appears.
+        public var tick0: Anything? = nil
+    
+        /// Sets the step in-between ticks on this axis.
+        /// 
+        /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+        /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+        /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+        /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+        /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+        /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+        /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+        /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+        /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+        /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+        /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+        /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+        /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+        public var dTick: Anything? = nil
+    
+        /// Sets the values at which ticks on this axis appear.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        public var tickValues: [Double]? = nil
+    
+        /// Sets the text displayed at the ticks position via `tickvals`.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        public var tickText: [Double]? = nil
+    
+        /// Determines whether ticks are drawn or not.
+        /// 
+        /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+        /// (inside) the axis lines.
+        public var ticks: Ticks? = nil
+    
+        /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
+        /// area.
+        /// 
+        /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
+        /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
+        /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+        public var mirror: Mirror? = nil
+    
+        /// Sets the tick length (in px).
+        public var tickLength: Double? = nil
+    
+        /// Sets the tick width (in px).
+        public var tickWidth: Double? = nil
+    
+        /// Sets the tick color.
+        public var tickColor: Color? = nil
+    
+        /// Determines whether or not the tick labels are drawn.
+        public var showTickLabels: Bool? = nil
+    
+        /// Sets the tick font.
+        public var tickFont: Font? = nil
+    
+        /// Sets the angle of the tick labels with respect to the horizontal.
+        /// 
+        /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        public var tickAngle: Angle? = nil
+    
+        /// Sets a tick label prefix.
+        public var tickPrefix: String? = nil
+    
+        /// If *all*, all tick labels are displayed with a prefix.
+        /// 
+        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+        /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        public var showTickPrefix: ShowTickPrefix? = nil
+    
+        /// Sets a tick label suffix.
+        public var tickSuffix: String? = nil
+    
+        /// Same as `showtickprefix` but for tick suffixes.
+        public var showTickSuffix: ShowTickSuffix? = nil
+    
+        /// If *all*, all exponents are shown besides their significands.
+        /// 
+        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+        /// last tick is shown. If *none*, no exponents appear.
+        public var showExponent: ShowExponent? = nil
+    
+        /// Determines a formatting rule for the tick exponents.
+        /// 
+        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        public var exponentFormat: ExponentFormat? = nil
+    
+        /// If "true", even 4-digit integers are separated
+        public var separateThousands: Bool? = nil
+    
+        /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var tickFormat: String? = nil
+    
+        public var tickFormatStops: [TickFormatStop]? = nil
+    
+        /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var hoverFormat: String? = nil
+    
+        /// Determines whether or not a line bounding this axis is drawn.
+        public var showLine: Bool? = nil
+    
+        /// Sets the axis line color.
+        public var lineColor: Color? = nil
+    
+        /// Sets the width (in px) of the axis line.
+        public var lineWidth: Double? = nil
+    
+        /// Determines whether or not grid lines are drawn.
+        /// 
+        /// If *true*, the grid lines are drawn at every tick mark.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the color of the grid lines.
+        public var gridColor: Color? = nil
+    
+        /// Sets the width (in px) of the grid lines.
+        public var gridWidth: Double? = nil
+    
+        /// Determines whether or not a line is drawn at along the 0 value of this axis.
+        /// 
+        /// If *true*, the zero line is drawn on top of the grid lines.
+        public var zeroLine: Bool? = nil
+    
+        /// Sets the line color of the zero line.
+        public var zeroLineColor: Color? = nil
+    
+        /// Sets the width (in px) of the zero line.
+        public var zeroLineWidth: Double? = nil
+    
+        /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+        /// 
+        /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
+        /// or via the global `layout.calendar`
+        public var calendar: Calendar? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
-            case vertexNormalsEpsilon = "vertexnormalsepsilon"
-            case faceNormalsEpsilon = "facenormalsepsilon"
-            case ambient
-            case diffuse
-            case specular
-            case roughness
-            case fresnel
+            case visible
+            case showSpikes = "showspikes"
+            case spikeSides = "spikesides"
+            case spikeThickness = "spikethickness"
+            case spikeColor = "spikecolor"
+            case showBackground = "showbackground"
+            case backgroundColor = "backgroundcolor"
+            case showAxesLabels = "showaxeslabels"
+            case color
+            case categoryOrder = "categoryorder"
+            case categoryArray = "categoryarray"
+            case title
+            case type
+            case autoRange = "autorange"
+            case rangeMode = "rangemode"
+            case range
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case mirror
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickPrefix = "tickprefix"
+            case showTickPrefix = "showtickprefix"
+            case tickSuffix = "ticksuffix"
+            case showTickSuffix = "showticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separateThousands = "separatethousands"
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case hoverFormat = "hoverformat"
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case zeroLine = "zeroline"
+            case zeroLineColor = "zerolinecolor"
+            case zeroLineWidth = "zerolinewidth"
+            case calendar
         }
         
-        /// Creates `Lighting` object with specified properties.
+        /// Creates `XAxis` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - vertexNormalsEpsilon: Epsilon for vertex normals calculation avoids math issues arising from
-        ///   degenerate geometry.
-        ///   - faceNormalsEpsilon: Epsilon for face normals calculation avoids math issues arising from
-        ///   degenerate geometry.
-        ///   - ambient: Ambient light increases overall color visibility but can wash out the image.
-        ///   - diffuse: Represents the extent that incident rays are reflected in a range of angles.
-        ///   - specular: Represents the level that incident rays are reflected in a single direction, causing
-        ///   shine.
-        ///   - roughness: Alters specular reflection; the rougher the surface, the wider and less contrasty
-        ///   the shine.
-        ///   - fresnel: Represents the reflectance as a dependency of the viewing angle; e.g.
-        public init(vertexNormalsEpsilon: Double? = nil, faceNormalsEpsilon: Double? = nil, ambient:
-                Double? = nil, diffuse: Double? = nil, specular: Double? = nil, roughness: Double? = nil,
-                fresnel: Double? = nil) {
-            self.vertexNormalsEpsilon = vertexNormalsEpsilon
-            self.faceNormalsEpsilon = faceNormalsEpsilon
-            self.ambient = ambient
-            self.diffuse = diffuse
-            self.specular = specular
-            self.roughness = roughness
-            self.fresnel = fresnel
+        ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+        ///   - showSpikes: Sets whether or not spikes starting from data points to this axis' wall are shown
+        ///   on hover.
+        ///   - spikeSides: Sets whether or not spikes extending from the projection data points to this axis'
+        ///   wall boundaries are shown on hover.
+        ///   - spikeThickness: Sets the thickness (in px) of the spikes.
+        ///   - spikeColor: Sets the color of the spikes.
+        ///   - showBackground: Sets whether or not this axis' wall has a background color.
+        ///   - backgroundColor: Sets the background color of this axis' wall.
+        ///   - showAxesLabels: Sets whether or not this axis is labeled
+        ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+        ///   and grid colors.
+        ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+        ///   - categoryArray: Sets the order in which categories on this axis appear.
+        ///   - title:
+        ///   - type: Sets the axis type.
+        ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
+        ///   input data.
+        ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
+        ///   - range: Sets the range of this axis.
+        ///   - tickMode: Sets the tick mode for this axis.
+        ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+        ///   - tick0: Sets the placement of the first tick on this axis.
+        ///   - dTick: Sets the step in-between ticks on this axis.
+        ///   - tickValues: Sets the values at which ticks on this axis appear.
+        ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
+        ///   plotting area.
+        ///   - tickLength: Sets the tick length (in px).
+        ///   - tickWidth: Sets the tick width (in px).
+        ///   - tickColor: Sets the tick color.
+        ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+        ///   - tickFont: Sets the tick font.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - tickPrefix: Sets a tick label prefix.
+        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+        ///   - tickSuffix: Sets a tick label suffix.
+        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+        ///   - showExponent: If *all*, all exponents are shown besides their significands.
+        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - separateThousands: If "true", even 4-digit integers are separated
+        ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - tickFormatStops:
+        ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+        ///   - lineColor: Sets the axis line color.
+        ///   - lineWidth: Sets the width (in px) of the axis line.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - gridColor: Sets the color of the grid lines.
+        ///   - gridWidth: Sets the width (in px) of the grid lines.
+        ///   - zeroLine: Determines whether or not a line is drawn at along the 0 value of this axis.
+        ///   - zeroLineColor: Sets the line color of the zero line.
+        ///   - zeroLineWidth: Sets the width (in px) of the zero line.
+        ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+        public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil,
+                spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil,
+                backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder:
+                CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil,
+                autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode:
+                TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
+                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? =
+                nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
+                showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String?
+                = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
+                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
+                nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
+                Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil,
+                zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar:
+                Calendar? = nil) {
+            self.visible = visible
+            self.showSpikes = showSpikes
+            self.spikeSides = spikeSides
+            self.spikeThickness = spikeThickness
+            self.spikeColor = spikeColor
+            self.showBackground = showBackground
+            self.backgroundColor = backgroundColor
+            self.showAxesLabels = showAxesLabels
+            self.color = color
+            self.categoryOrder = categoryOrder
+            self.categoryArray = categoryArray
+            self.title = title
+            self.type = type
+            self.autoRange = autoRange
+            self.rangeMode = rangeMode
+            self.range = range
+            self.tickMode = tickMode
+            self.numTicks = numTicks
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.tickValues = tickValues
+            self.tickText = tickText
+            self.ticks = ticks
+            self.mirror = mirror
+            self.tickLength = tickLength
+            self.tickWidth = tickWidth
+            self.tickColor = tickColor
+            self.showTickLabels = showTickLabels
+            self.tickFont = tickFont
+            self.tickAngle = tickAngle
+            self.tickPrefix = tickPrefix
+            self.showTickPrefix = showTickPrefix
+            self.tickSuffix = tickSuffix
+            self.showTickSuffix = showTickSuffix
+            self.showExponent = showExponent
+            self.exponentFormat = exponentFormat
+            self.separateThousands = separateThousands
+            self.tickFormat = tickFormat
+            self.tickFormatStops = tickFormatStops
+            self.hoverFormat = hoverFormat
+            self.showLine = showLine
+            self.lineColor = lineColor
+            self.lineWidth = lineWidth
+            self.showGrid = showGrid
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+            self.zeroLine = zeroLine
+            self.zeroLineColor = zeroLineColor
+            self.zeroLineWidth = zeroLineWidth
+            self.calendar = calendar
         }
         
     }
+    public var xAxis: XAxis? = nil
 
-    /// - Note:
-    ///   Used by `Isosurface<XData, YData, ZData, ValueData>.contour`, `Volume<XYZData,
-    ///   ValueData>.contour`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
-    ///   FacecolorData>.contour`.
-    public struct ContourHover: Encodable {
-        /// Sets whether or not dynamic contours are shown on hover
-        public var show: Bool? = nil
+    public struct YAxis: Encodable {
+        /// A single toggle to hide the axis while preserving interaction like dragging.
+        /// 
+        /// Default is true when a cheater plot is present on the axis, otherwise false
+        public var visible: Bool? = nil
     
-        /// Sets the color of the contour lines.
+        /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
+        public var showSpikes: Bool? = nil
+    
+        /// Sets whether or not spikes extending from the projection data points to this axis' wall
+        /// boundaries are shown on hover.
+        public var spikeSides: Bool? = nil
+    
+        /// Sets the thickness (in px) of the spikes.
+        public var spikeThickness: Double? = nil
+    
+        /// Sets the color of the spikes.
+        public var spikeColor: Color? = nil
+    
+        /// Sets whether or not this axis' wall has a background color.
+        public var showBackground: Bool? = nil
+    
+        /// Sets the background color of this axis' wall.
+        public var backgroundColor: Color? = nil
+    
+        /// Sets whether or not this axis is labeled
+        public var showAxesLabels: Bool? = nil
+    
+        /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+        /// colors.
+        /// 
+        /// Grid color is lightened by blending this with the plot background Individual pieces can override
+        /// this.
         public var color: Color? = nil
     
-        /// Sets the width of the contour lines.
-        public var width: Double? = nil
+        /// Specifies the ordering logic for the case of categorical variables.
+        /// 
+        /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+        /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+        /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+        /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+        /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+        /// mode. The unspecified categories will follow the categories in `categoryarray`. Set
+        /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
+        /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
+        /// or median of all the values.
+        public var categoryOrder: CategoryOrder? = nil
     
-        /// Creates `ContourHover` object with specified properties.
+        /// Sets the order in which categories on this axis appear.
+        /// 
+        /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+        public var categoryArray: [Double]? = nil
+    
+        public var title: Title? = nil
+    
+        /// Sets the axis type.
+        /// 
+        /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+        /// that referenced the axis in question.
+        public enum `Type`: String, Encodable {
+            case auto = "-"
+            case linear
+            case log
+            case date
+            case category
+        }
+        /// Sets the axis type.
+        /// 
+        /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+        /// that referenced the axis in question.
+        public var type: `Type`? = nil
+    
+        /// Determines whether or not the range of this axis is computed in relation to the input data.
+        /// 
+        /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+        public var autoRange: AutoRange? = nil
+    
+        /// If *normal*, the range is computed in relation to the extrema of the input data.
+        /// 
+        /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
+        /// is non-negative, regardless of the input data. Applies only to linear axes.
+        public var rangeMode: RangeMode? = nil
+    
+        /// Sets the range of this axis.
+        /// 
+        /// If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the
+        /// range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date
+        /// strings, like date data, though Date objects and unix milliseconds will be accepted and
+        /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
+        /// where each category is assigned a serial number from zero in the order it appears.
+        public var range: InfoArray? = nil
+    
+        /// Sets the tick mode for this axis.
+        /// 
+        /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+        /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+        /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+        /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+        /// provided).
+        public var tickMode: TickMode? = nil
+    
+        /// Specifies the maximum number of ticks for the particular axis.
+        /// 
+        /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+        /// Has an effect only if `tickmode` is set to *auto*.
+        public var numTicks: Int? = nil
+    
+        /// Sets the placement of the first tick on this axis.
+        /// 
+        /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+        /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+        /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+        /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+        /// category is assigned a serial number from zero in the order it appears.
+        public var tick0: Anything? = nil
+    
+        /// Sets the step in-between ticks on this axis.
+        /// 
+        /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+        /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+        /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+        /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+        /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+        /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+        /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+        /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+        /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+        /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+        /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+        /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+        /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+        public var dTick: Anything? = nil
+    
+        /// Sets the values at which ticks on this axis appear.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        public var tickValues: [Double]? = nil
+    
+        /// Sets the text displayed at the ticks position via `tickvals`.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        public var tickText: [Double]? = nil
+    
+        /// Determines whether ticks are drawn or not.
+        /// 
+        /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+        /// (inside) the axis lines.
+        public var ticks: Ticks? = nil
+    
+        /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
+        /// area.
+        /// 
+        /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
+        /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
+        /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+        public var mirror: Mirror? = nil
+    
+        /// Sets the tick length (in px).
+        public var tickLength: Double? = nil
+    
+        /// Sets the tick width (in px).
+        public var tickWidth: Double? = nil
+    
+        /// Sets the tick color.
+        public var tickColor: Color? = nil
+    
+        /// Determines whether or not the tick labels are drawn.
+        public var showTickLabels: Bool? = nil
+    
+        /// Sets the tick font.
+        public var tickFont: Font? = nil
+    
+        /// Sets the angle of the tick labels with respect to the horizontal.
+        /// 
+        /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        public var tickAngle: Angle? = nil
+    
+        /// Sets a tick label prefix.
+        public var tickPrefix: String? = nil
+    
+        /// If *all*, all tick labels are displayed with a prefix.
+        /// 
+        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+        /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        public var showTickPrefix: ShowTickPrefix? = nil
+    
+        /// Sets a tick label suffix.
+        public var tickSuffix: String? = nil
+    
+        /// Same as `showtickprefix` but for tick suffixes.
+        public var showTickSuffix: ShowTickSuffix? = nil
+    
+        /// If *all*, all exponents are shown besides their significands.
+        /// 
+        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+        /// last tick is shown. If *none*, no exponents appear.
+        public var showExponent: ShowExponent? = nil
+    
+        /// Determines a formatting rule for the tick exponents.
+        /// 
+        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        public var exponentFormat: ExponentFormat? = nil
+    
+        /// If "true", even 4-digit integers are separated
+        public var separateThousands: Bool? = nil
+    
+        /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var tickFormat: String? = nil
+    
+        public var tickFormatStops: [TickFormatStop]? = nil
+    
+        /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var hoverFormat: String? = nil
+    
+        /// Determines whether or not a line bounding this axis is drawn.
+        public var showLine: Bool? = nil
+    
+        /// Sets the axis line color.
+        public var lineColor: Color? = nil
+    
+        /// Sets the width (in px) of the axis line.
+        public var lineWidth: Double? = nil
+    
+        /// Determines whether or not grid lines are drawn.
+        /// 
+        /// If *true*, the grid lines are drawn at every tick mark.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the color of the grid lines.
+        public var gridColor: Color? = nil
+    
+        /// Sets the width (in px) of the grid lines.
+        public var gridWidth: Double? = nil
+    
+        /// Determines whether or not a line is drawn at along the 0 value of this axis.
+        /// 
+        /// If *true*, the zero line is drawn on top of the grid lines.
+        public var zeroLine: Bool? = nil
+    
+        /// Sets the line color of the zero line.
+        public var zeroLineColor: Color? = nil
+    
+        /// Sets the width (in px) of the zero line.
+        public var zeroLineWidth: Double? = nil
+    
+        /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+        /// 
+        /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
+        /// or via the global `layout.calendar`
+        public var calendar: Calendar? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case showSpikes = "showspikes"
+            case spikeSides = "spikesides"
+            case spikeThickness = "spikethickness"
+            case spikeColor = "spikecolor"
+            case showBackground = "showbackground"
+            case backgroundColor = "backgroundcolor"
+            case showAxesLabels = "showaxeslabels"
+            case color
+            case categoryOrder = "categoryorder"
+            case categoryArray = "categoryarray"
+            case title
+            case type
+            case autoRange = "autorange"
+            case rangeMode = "rangemode"
+            case range
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case mirror
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickPrefix = "tickprefix"
+            case showTickPrefix = "showtickprefix"
+            case tickSuffix = "ticksuffix"
+            case showTickSuffix = "showticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separateThousands = "separatethousands"
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case hoverFormat = "hoverformat"
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case zeroLine = "zeroline"
+            case zeroLineColor = "zerolinecolor"
+            case zeroLineWidth = "zerolinewidth"
+            case calendar
+        }
+        
+        /// Creates `YAxis` object with specified properties.
         /// 
         /// - Parameters:
-        ///   - show: Sets whether or not dynamic contours are shown on hover
-        ///   - color: Sets the color of the contour lines.
-        ///   - width: Sets the width of the contour lines.
-        public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
-            self.show = show
+        ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+        ///   - showSpikes: Sets whether or not spikes starting from data points to this axis' wall are shown
+        ///   on hover.
+        ///   - spikeSides: Sets whether or not spikes extending from the projection data points to this axis'
+        ///   wall boundaries are shown on hover.
+        ///   - spikeThickness: Sets the thickness (in px) of the spikes.
+        ///   - spikeColor: Sets the color of the spikes.
+        ///   - showBackground: Sets whether or not this axis' wall has a background color.
+        ///   - backgroundColor: Sets the background color of this axis' wall.
+        ///   - showAxesLabels: Sets whether or not this axis is labeled
+        ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+        ///   and grid colors.
+        ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+        ///   - categoryArray: Sets the order in which categories on this axis appear.
+        ///   - title:
+        ///   - type: Sets the axis type.
+        ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
+        ///   input data.
+        ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
+        ///   - range: Sets the range of this axis.
+        ///   - tickMode: Sets the tick mode for this axis.
+        ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+        ///   - tick0: Sets the placement of the first tick on this axis.
+        ///   - dTick: Sets the step in-between ticks on this axis.
+        ///   - tickValues: Sets the values at which ticks on this axis appear.
+        ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
+        ///   plotting area.
+        ///   - tickLength: Sets the tick length (in px).
+        ///   - tickWidth: Sets the tick width (in px).
+        ///   - tickColor: Sets the tick color.
+        ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+        ///   - tickFont: Sets the tick font.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - tickPrefix: Sets a tick label prefix.
+        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+        ///   - tickSuffix: Sets a tick label suffix.
+        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+        ///   - showExponent: If *all*, all exponents are shown besides their significands.
+        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - separateThousands: If "true", even 4-digit integers are separated
+        ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - tickFormatStops:
+        ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+        ///   - lineColor: Sets the axis line color.
+        ///   - lineWidth: Sets the width (in px) of the axis line.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - gridColor: Sets the color of the grid lines.
+        ///   - gridWidth: Sets the width (in px) of the grid lines.
+        ///   - zeroLine: Determines whether or not a line is drawn at along the 0 value of this axis.
+        ///   - zeroLineColor: Sets the line color of the zero line.
+        ///   - zeroLineWidth: Sets the width (in px) of the zero line.
+        ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+        public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil,
+                spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil,
+                backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder:
+                CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil,
+                autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode:
+                TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
+                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? =
+                nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
+                showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String?
+                = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
+                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
+                nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
+                Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil,
+                zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar:
+                Calendar? = nil) {
+            self.visible = visible
+            self.showSpikes = showSpikes
+            self.spikeSides = spikeSides
+            self.spikeThickness = spikeThickness
+            self.spikeColor = spikeColor
+            self.showBackground = showBackground
+            self.backgroundColor = backgroundColor
+            self.showAxesLabels = showAxesLabels
             self.color = color
-            self.width = width
+            self.categoryOrder = categoryOrder
+            self.categoryArray = categoryArray
+            self.title = title
+            self.type = type
+            self.autoRange = autoRange
+            self.rangeMode = rangeMode
+            self.range = range
+            self.tickMode = tickMode
+            self.numTicks = numTicks
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.tickValues = tickValues
+            self.tickText = tickText
+            self.ticks = ticks
+            self.mirror = mirror
+            self.tickLength = tickLength
+            self.tickWidth = tickWidth
+            self.tickColor = tickColor
+            self.showTickLabels = showTickLabels
+            self.tickFont = tickFont
+            self.tickAngle = tickAngle
+            self.tickPrefix = tickPrefix
+            self.showTickPrefix = showTickPrefix
+            self.tickSuffix = tickSuffix
+            self.showTickSuffix = showTickSuffix
+            self.showExponent = showExponent
+            self.exponentFormat = exponentFormat
+            self.separateThousands = separateThousands
+            self.tickFormat = tickFormat
+            self.tickFormatStops = tickFormatStops
+            self.hoverFormat = hoverFormat
+            self.showLine = showLine
+            self.lineColor = lineColor
+            self.lineWidth = lineWidth
+            self.showGrid = showGrid
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+            self.zeroLine = zeroLine
+            self.zeroLineColor = zeroLineColor
+            self.zeroLineWidth = zeroLineWidth
+            self.calendar = calendar
         }
         
     }
+    public var yAxis: YAxis? = nil
 
+    public struct ZAxis: Encodable {
+        /// A single toggle to hide the axis while preserving interaction like dragging.
+        /// 
+        /// Default is true when a cheater plot is present on the axis, otherwise false
+        public var visible: Bool? = nil
+    
+        /// Sets whether or not spikes starting from data points to this axis' wall are shown on hover.
+        public var showSpikes: Bool? = nil
+    
+        /// Sets whether or not spikes extending from the projection data points to this axis' wall
+        /// boundaries are shown on hover.
+        public var spikeSides: Bool? = nil
+    
+        /// Sets the thickness (in px) of the spikes.
+        public var spikeThickness: Double? = nil
+    
+        /// Sets the color of the spikes.
+        public var spikeColor: Color? = nil
+    
+        /// Sets whether or not this axis' wall has a background color.
+        public var showBackground: Bool? = nil
+    
+        /// Sets the background color of this axis' wall.
+        public var backgroundColor: Color? = nil
+    
+        /// Sets whether or not this axis is labeled
+        public var showAxesLabels: Bool? = nil
+    
+        /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+        /// colors.
+        /// 
+        /// Grid color is lightened by blending this with the plot background Individual pieces can override
+        /// this.
+        public var color: Color? = nil
+    
+        /// Specifies the ordering logic for the case of categorical variables.
+        /// 
+        /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+        /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+        /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+        /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+        /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+        /// mode. The unspecified categories will follow the categories in `categoryarray`. Set
+        /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
+        /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
+        /// or median of all the values.
+        public var categoryOrder: CategoryOrder? = nil
+    
+        /// Sets the order in which categories on this axis appear.
+        /// 
+        /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+        public var categoryArray: [Double]? = nil
+    
+        public var title: Title? = nil
+    
+        /// Sets the axis type.
+        /// 
+        /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+        /// that referenced the axis in question.
+        public enum `Type`: String, Encodable {
+            case auto = "-"
+            case linear
+            case log
+            case date
+            case category
+        }
+        /// Sets the axis type.
+        /// 
+        /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+        /// that referenced the axis in question.
+        public var type: `Type`? = nil
+    
+        /// Determines whether or not the range of this axis is computed in relation to the input data.
+        /// 
+        /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+        public var autoRange: AutoRange? = nil
+    
+        /// If *normal*, the range is computed in relation to the extrema of the input data.
+        /// 
+        /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
+        /// is non-negative, regardless of the input data. Applies only to linear axes.
+        public var rangeMode: RangeMode? = nil
+    
+        /// Sets the range of this axis.
+        /// 
+        /// If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the
+        /// range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date
+        /// strings, like date data, though Date objects and unix milliseconds will be accepted and
+        /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
+        /// where each category is assigned a serial number from zero in the order it appears.
+        public var range: InfoArray? = nil
+    
+        /// Sets the tick mode for this axis.
+        /// 
+        /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+        /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+        /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+        /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+        /// provided).
+        public var tickMode: TickMode? = nil
+    
+        /// Specifies the maximum number of ticks for the particular axis.
+        /// 
+        /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+        /// Has an effect only if `tickmode` is set to *auto*.
+        public var numTicks: Int? = nil
+    
+        /// Sets the placement of the first tick on this axis.
+        /// 
+        /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+        /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+        /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+        /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+        /// category is assigned a serial number from zero in the order it appears.
+        public var tick0: Anything? = nil
+    
+        /// Sets the step in-between ticks on this axis.
+        /// 
+        /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+        /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+        /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+        /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+        /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+        /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+        /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+        /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+        /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+        /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+        /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+        /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+        /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+        public var dTick: Anything? = nil
+    
+        /// Sets the values at which ticks on this axis appear.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        public var tickValues: [Double]? = nil
+    
+        /// Sets the text displayed at the ticks position via `tickvals`.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        public var tickText: [Double]? = nil
+    
+        /// Determines whether ticks are drawn or not.
+        /// 
+        /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+        /// (inside) the axis lines.
+        public var ticks: Ticks? = nil
+    
+        /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
+        /// area.
+        /// 
+        /// If *true*, the axis lines are mirrored. If *ticks*, the axis lines and ticks are mirrored. If
+        /// *false*, mirroring is disable. If *all*, axis lines are mirrored on all shared-axes subplots. If
+        /// *allticks*, axis lines and ticks are mirrored on all shared-axes subplots.
+        public var mirror: Mirror? = nil
+    
+        /// Sets the tick length (in px).
+        public var tickLength: Double? = nil
+    
+        /// Sets the tick width (in px).
+        public var tickWidth: Double? = nil
+    
+        /// Sets the tick color.
+        public var tickColor: Color? = nil
+    
+        /// Determines whether or not the tick labels are drawn.
+        public var showTickLabels: Bool? = nil
+    
+        /// Sets the tick font.
+        public var tickFont: Font? = nil
+    
+        /// Sets the angle of the tick labels with respect to the horizontal.
+        /// 
+        /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        public var tickAngle: Angle? = nil
+    
+        /// Sets a tick label prefix.
+        public var tickPrefix: String? = nil
+    
+        /// If *all*, all tick labels are displayed with a prefix.
+        /// 
+        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+        /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        public var showTickPrefix: ShowTickPrefix? = nil
+    
+        /// Sets a tick label suffix.
+        public var tickSuffix: String? = nil
+    
+        /// Same as `showtickprefix` but for tick suffixes.
+        public var showTickSuffix: ShowTickSuffix? = nil
+    
+        /// If *all*, all exponents are shown besides their significands.
+        /// 
+        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+        /// last tick is shown. If *none*, no exponents appear.
+        public var showExponent: ShowExponent? = nil
+    
+        /// Determines a formatting rule for the tick exponents.
+        /// 
+        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        public var exponentFormat: ExponentFormat? = nil
+    
+        /// If "true", even 4-digit integers are separated
+        public var separateThousands: Bool? = nil
+    
+        /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var tickFormat: String? = nil
+    
+        public var tickFormatStops: [TickFormatStop]? = nil
+    
+        /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var hoverFormat: String? = nil
+    
+        /// Determines whether or not a line bounding this axis is drawn.
+        public var showLine: Bool? = nil
+    
+        /// Sets the axis line color.
+        public var lineColor: Color? = nil
+    
+        /// Sets the width (in px) of the axis line.
+        public var lineWidth: Double? = nil
+    
+        /// Determines whether or not grid lines are drawn.
+        /// 
+        /// If *true*, the grid lines are drawn at every tick mark.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the color of the grid lines.
+        public var gridColor: Color? = nil
+    
+        /// Sets the width (in px) of the grid lines.
+        public var gridWidth: Double? = nil
+    
+        /// Determines whether or not a line is drawn at along the 0 value of this axis.
+        /// 
+        /// If *true*, the zero line is drawn on top of the grid lines.
+        public var zeroLine: Bool? = nil
+    
+        /// Sets the line color of the zero line.
+        public var zeroLineColor: Color? = nil
+    
+        /// Sets the width (in px) of the zero line.
+        public var zeroLineWidth: Double? = nil
+    
+        /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+        /// 
+        /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
+        /// or via the global `layout.calendar`
+        public var calendar: Calendar? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case showSpikes = "showspikes"
+            case spikeSides = "spikesides"
+            case spikeThickness = "spikethickness"
+            case spikeColor = "spikecolor"
+            case showBackground = "showbackground"
+            case backgroundColor = "backgroundcolor"
+            case showAxesLabels = "showaxeslabels"
+            case color
+            case categoryOrder = "categoryorder"
+            case categoryArray = "categoryarray"
+            case title
+            case type
+            case autoRange = "autorange"
+            case rangeMode = "rangemode"
+            case range
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case mirror
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickPrefix = "tickprefix"
+            case showTickPrefix = "showtickprefix"
+            case tickSuffix = "ticksuffix"
+            case showTickSuffix = "showticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separateThousands = "separatethousands"
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case hoverFormat = "hoverformat"
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case zeroLine = "zeroline"
+            case zeroLineColor = "zerolinecolor"
+            case zeroLineWidth = "zerolinewidth"
+            case calendar
+        }
+        
+        /// Creates `ZAxis` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+        ///   - showSpikes: Sets whether or not spikes starting from data points to this axis' wall are shown
+        ///   on hover.
+        ///   - spikeSides: Sets whether or not spikes extending from the projection data points to this axis'
+        ///   wall boundaries are shown on hover.
+        ///   - spikeThickness: Sets the thickness (in px) of the spikes.
+        ///   - spikeColor: Sets the color of the spikes.
+        ///   - showBackground: Sets whether or not this axis' wall has a background color.
+        ///   - backgroundColor: Sets the background color of this axis' wall.
+        ///   - showAxesLabels: Sets whether or not this axis is labeled
+        ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+        ///   and grid colors.
+        ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+        ///   - categoryArray: Sets the order in which categories on this axis appear.
+        ///   - title:
+        ///   - type: Sets the axis type.
+        ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
+        ///   input data.
+        ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
+        ///   - range: Sets the range of this axis.
+        ///   - tickMode: Sets the tick mode for this axis.
+        ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+        ///   - tick0: Sets the placement of the first tick on this axis.
+        ///   - dTick: Sets the step in-between ticks on this axis.
+        ///   - tickValues: Sets the values at which ticks on this axis appear.
+        ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
+        ///   plotting area.
+        ///   - tickLength: Sets the tick length (in px).
+        ///   - tickWidth: Sets the tick width (in px).
+        ///   - tickColor: Sets the tick color.
+        ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+        ///   - tickFont: Sets the tick font.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - tickPrefix: Sets a tick label prefix.
+        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+        ///   - tickSuffix: Sets a tick label suffix.
+        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+        ///   - showExponent: If *all*, all exponents are shown besides their significands.
+        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - separateThousands: If "true", even 4-digit integers are separated
+        ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - tickFormatStops:
+        ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+        ///   - lineColor: Sets the axis line color.
+        ///   - lineWidth: Sets the width (in px) of the axis line.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - gridColor: Sets the color of the grid lines.
+        ///   - gridWidth: Sets the width (in px) of the grid lines.
+        ///   - zeroLine: Determines whether or not a line is drawn at along the 0 value of this axis.
+        ///   - zeroLineColor: Sets the line color of the zero line.
+        ///   - zeroLineWidth: Sets the width (in px) of the zero line.
+        ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+        public init(visible: Bool? = nil, showSpikes: Bool? = nil, spikeSides: Bool? = nil,
+                spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil,
+                backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder:
+                CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil,
+                autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode:
+                TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
+                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? =
+                nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
+                showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String?
+                = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
+                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
+                nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
+                Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil,
+                zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar:
+                Calendar? = nil) {
+            self.visible = visible
+            self.showSpikes = showSpikes
+            self.spikeSides = spikeSides
+            self.spikeThickness = spikeThickness
+            self.spikeColor = spikeColor
+            self.showBackground = showBackground
+            self.backgroundColor = backgroundColor
+            self.showAxesLabels = showAxesLabels
+            self.color = color
+            self.categoryOrder = categoryOrder
+            self.categoryArray = categoryArray
+            self.title = title
+            self.type = type
+            self.autoRange = autoRange
+            self.rangeMode = rangeMode
+            self.range = range
+            self.tickMode = tickMode
+            self.numTicks = numTicks
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.tickValues = tickValues
+            self.tickText = tickText
+            self.ticks = ticks
+            self.mirror = mirror
+            self.tickLength = tickLength
+            self.tickWidth = tickWidth
+            self.tickColor = tickColor
+            self.showTickLabels = showTickLabels
+            self.tickFont = tickFont
+            self.tickAngle = tickAngle
+            self.tickPrefix = tickPrefix
+            self.showTickPrefix = showTickPrefix
+            self.tickSuffix = tickSuffix
+            self.showTickSuffix = showTickSuffix
+            self.showExponent = showExponent
+            self.exponentFormat = exponentFormat
+            self.separateThousands = separateThousands
+            self.tickFormat = tickFormat
+            self.tickFormatStops = tickFormatStops
+            self.hoverFormat = hoverFormat
+            self.showLine = showLine
+            self.lineColor = lineColor
+            self.lineWidth = lineWidth
+            self.showGrid = showGrid
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+            self.zeroLine = zeroLine
+            self.zeroLineColor = zeroLineColor
+            self.zeroLineWidth = zeroLineWidth
+            self.calendar = calendar
+        }
+        
+    }
+    public var zAxis: ZAxis? = nil
+
+    /// Determines the mode of drag interactions for this scene.
+    public enum DragMode: Encodable {
+        case orbit
+        case turntable
+        case zoom
+        case pan
+        case off
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .orbit:
+                try container.encode("orbit")
+            case .turntable:
+                try container.encode("turntable")
+            case .zoom:
+                try container.encode("zoom")
+            case .pan:
+                try container.encode("pan")
+            case .off:
+                try container.encode(false)
+            }
+        }
+    }
+    /// Determines the mode of drag interactions for this scene.
+    public var dragMode: DragMode? = nil
+
+    /// Determines the mode of hover interactions for this scene.
+    public enum HoverMode: Encodable {
+        case closest
+        case off
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .closest:
+                try container.encode("closest")
+            case .off:
+                try container.encode(false)
+            }
+        }
+    }
+    /// Determines the mode of hover interactions for this scene.
+    public var hoverMode: HoverMode? = nil
+
+    /// Controls persistence of user-driven changes in camera attributes.
+    /// 
+    /// Defaults to `layout.uirevision`.
+    public var uiRevision: Anything? = nil
+
+    public struct Annotation: Encodable {
+        /// Determines whether or not this annotation is visible.
+        public var visible: Bool? = nil
+    
+        /// Sets the annotation's x position.
+        public var x: Anything? = nil
+    
+        /// Sets the annotation's y position.
+        public var y: Anything? = nil
+    
+        /// Sets the annotation's z position.
+        public var z: Anything? = nil
+    
+        /// Sets the x component of the arrow tail about the arrow head (in pixels).
+        public var ax: Double? = nil
+    
+        /// Sets the y component of the arrow tail about the arrow head (in pixels).
+        public var ay: Double? = nil
+    
+        /// Sets the text box's horizontal position anchor This anchor binds the `x` position to the *left*,
+        /// *center* or *right* of the annotation.
+        /// 
+        /// For example, if `x` is set to 1, `xref` to *paper* and `xanchor` to *right* then the right-most
+        /// portion of the annotation lines up with the right-most edge of the plotting area. If *auto*, the
+        /// anchor is equivalent to *center* for data-referenced annotations or if there is an arrow,
+        /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+        public var xAnchor: XAutoAnchor? = nil
+    
+        /// Shifts the position of the whole annotation and arrow to the right (positive) or left (negative)
+        /// by this many pixels.
+        public var xShift: Double? = nil
+    
+        /// Sets the text box's vertical position anchor This anchor binds the `y` position to the *top*,
+        /// *middle* or *bottom* of the annotation.
+        /// 
+        /// For example, if `y` is set to 1, `yref` to *paper* and `yanchor` to *top* then the top-most
+        /// portion of the annotation lines up with the top-most edge of the plotting area. If *auto*, the
+        /// anchor is equivalent to *middle* for data-referenced annotations or if there is an arrow,
+        /// whereas for paper-referenced with no arrow, the anchor picked corresponds to the closest side.
+        public var yAnchor: YAutoAnchor? = nil
+    
+        /// Shifts the position of the whole annotation and arrow up (positive) or down (negative) by this
+        /// many pixels.
+        public var yShift: Double? = nil
+    
+        /// Sets the text associated with this annotation.
+        /// 
+        /// Plotly uses a subset of HTML tags to do things like newline (<br>), bold (<b></b>), italics
+        /// (<i></i>), hyperlinks (<a href='...'></a>). Tags <em>, <sup>, <sub> <span> are also supported.
+        public var text: String? = nil
+    
+        /// Sets the angle at which the `text` is drawn with respect to the horizontal.
+        public var textAngle: Angle? = nil
+    
+        /// Sets the annotation text font.
+        public var font: Font? = nil
+    
+        /// Sets an explicit width for the text box.
+        /// 
+        /// null (default) lets the text set the box width. Wider text will be clipped. There is no
+        /// automatic wrapping; use <br> to start a new line.
+        public var width: Double? = nil
+    
+        /// Sets an explicit height for the text box.
+        /// 
+        /// null (default) lets the text set the box height. Taller text will be clipped.
+        public var height: Double? = nil
+    
+        /// Sets the opacity of the annotation (text + arrow).
+        public var opacity: Double? = nil
+    
+        /// Sets the horizontal alignment of the `text` within the box.
+        /// 
+        /// Has an effect only if `text` spans two or more lines (i.e. `text` contains one or more <br> HTML
+        /// tags) or if an explicit width is set to override the text width.
+        public var align: HorizontalAlign? = nil
+    
+        /// Sets the vertical alignment of the `text` within the box.
+        /// 
+        /// Has an effect only if an explicit height is set to override the text height.
+        public var verticalAlign: VerticalAlign? = nil
+    
+        /// Sets the background color of the annotation.
+        public var backgroundColor: Color? = nil
+    
+        /// Sets the color of the border enclosing the annotation `text`.
+        public var borderColor: Color? = nil
+    
+        /// Sets the padding (in px) between the `text` and the enclosing border.
+        public var borderPadding: Double? = nil
+    
+        /// Sets the width (in px) of the border enclosing the annotation `text`.
+        public var borderWidth: Double? = nil
+    
+        /// Determines whether or not the annotation is drawn with an arrow.
+        /// 
+        /// If *true*, `text` is placed near the arrow's tail. If *false*, `text` lines up with the `x` and
+        /// `y` provided.
+        public var showArrow: Bool? = nil
+    
+        /// Sets the color of the annotation arrow.
+        public var arrowColor: Color? = nil
+    
+        /// Sets the end annotation arrow head style.
+        public var arrowHead: Int? = nil
+    
+        /// Sets the start annotation arrow head style.
+        public var startArrowHead: Int? = nil
+    
+        /// Sets the annotation arrow head position.
+        public struct ArrowSide: OptionSet, Encodable {
+            public let rawValue: Int
+            public static var end: ArrowSide { ArrowSide(rawValue: 1 << 0) }
+            public static var start: ArrowSide { ArrowSide(rawValue: 1 << 1) }
+            public static var none: ArrowSide { ArrowSide(rawValue: 1 << 2) }
+            
+            public init(rawValue: Int) {
+                self.rawValue = rawValue
+            }
+            
+            public func encode(to encoder: Encoder) throws {
+                var options = [String]()
+                if (self.rawValue & 1 << 0) != 0 { options += ["end"] }
+                if (self.rawValue & 1 << 1) != 0 { options += ["start"] }
+                if (self.rawValue & 1 << 2) != 0 { options += ["none"] }
+                var container = encoder.singleValueContainer()
+                try container.encode(options.joined(separator: "+"))
+            }
+        }
+        /// Sets the annotation arrow head position.
+        public var arrowSide: ArrowSide? = nil
+    
+        /// Sets the size of the end annotation arrow head, relative to `arrowwidth`.
+        /// 
+        /// A value of 1 (default) gives a head about 3x as wide as the line.
+        public var arrowSize: Double? = nil
+    
+        /// Sets the size of the start annotation arrow head, relative to `arrowwidth`.
+        /// 
+        /// A value of 1 (default) gives a head about 3x as wide as the line.
+        public var startArrowSize: Double? = nil
+    
+        /// Sets the width (in px) of annotation arrow line.
+        public var arrowWidth: Double? = nil
+    
+        /// Sets a distance, in pixels, to move the end arrowhead away from the position it is pointing at,
+        /// for example to point at the edge of a marker independent of zoom.
+        /// 
+        /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
+        /// `yshift` which moves everything by this amount.
+        public var standoff: Double? = nil
+    
+        /// Sets a distance, in pixels, to move the start arrowhead away from the position it is pointing
+        /// at, for example to point at the edge of a marker independent of zoom.
+        /// 
+        /// Note that this shortens the arrow from the `ax` / `ay` vector, in contrast to `xshift` /
+        /// `yshift` which moves everything by this amount.
+        public var startStandoff: Double? = nil
+    
+        /// Sets text to appear when hovering over this annotation.
+        /// 
+        /// If omitted or blank, no hover label will appear.
+        public var hoverText: String? = nil
+    
+        public struct HoverLabel: Encodable {
+            /// Sets the background color of the hover label.
+            /// 
+            /// By default uses the annotation's `bgcolor` made opaque, or white if it was transparent.
+            public var backgroundColor: Color? = nil
+        
+            /// Sets the border color of the hover label.
+            /// 
+            /// By default uses either dark grey or white, for maximum contrast with `hoverlabel.bgcolor`.
+            public var borderColor: Color? = nil
+        
+            /// Sets the hover label text font.
+            /// 
+            /// By default uses the global hover font and size, with color from `hoverlabel.bordercolor`.
+            public var font: Font? = nil
+        
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case backgroundColor = "bgcolor"
+                case borderColor = "bordercolor"
+                case font
+            }
+            
+            /// Creates `HoverLabel` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - backgroundColor: Sets the background color of the hover label.
+            ///   - borderColor: Sets the border color of the hover label.
+            ///   - font: Sets the hover label text font.
+            public init(backgroundColor: Color? = nil, borderColor: Color? = nil, font: Font? = nil) {
+                self.backgroundColor = backgroundColor
+                self.borderColor = borderColor
+                self.font = font
+            }
+            
+        }
+        public var hoverLabel: HoverLabel? = nil
+    
+        /// Determines whether the annotation text box captures mouse move and click events, or allows those
+        /// events to pass through to data points in the plot that may be behind the annotation.
+        /// 
+        /// By default `captureevents` is *false* unless `hovertext` is provided. If you use the event
+        /// `plotly_clickannotation` without `hovertext` you must explicitly enable `captureevents`.
+        public var captureEvents: Bool? = nil
+    
+        /// When used in a template, named items are created in the output figure in addition to any items
+        /// the figure already has in this array.
+        /// 
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        public var name: String? = nil
+    
+        /// Used to refer to a named item in this array in the template.
+        /// 
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        public var templateItemName: String? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case x
+            case y
+            case z
+            case ax
+            case ay
+            case xAnchor = "xanchor"
+            case xShift = "xshift"
+            case yAnchor = "yanchor"
+            case yShift = "yshift"
+            case text
+            case textAngle = "textangle"
+            case font
+            case width
+            case height
+            case opacity
+            case align
+            case verticalAlign = "valign"
+            case backgroundColor = "bgcolor"
+            case borderColor = "bordercolor"
+            case borderPadding = "borderpad"
+            case borderWidth = "borderwidth"
+            case showArrow = "showarrow"
+            case arrowColor = "arrowcolor"
+            case arrowHead = "arrowhead"
+            case startArrowHead = "startarrowhead"
+            case arrowSide = "arrowside"
+            case arrowSize = "arrowsize"
+            case startArrowSize = "startarrowsize"
+            case arrowWidth = "arrowwidth"
+            case standoff
+            case startStandoff = "startstandoff"
+            case hoverText = "hovertext"
+            case hoverLabel = "hoverlabel"
+            case captureEvents = "captureevents"
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        /// Creates `Annotation` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - visible: Determines whether or not this annotation is visible.
+        ///   - x: Sets the annotation's x position.
+        ///   - y: Sets the annotation's y position.
+        ///   - z: Sets the annotation's z position.
+        ///   - ax: Sets the x component of the arrow tail about the arrow head (in pixels).
+        ///   - ay: Sets the y component of the arrow tail about the arrow head (in pixels).
+        ///   - xAnchor: Sets the text box's horizontal position anchor This anchor binds the `x` position to
+        ///   the *left*, *center* or *right* of the annotation.
+        ///   - xShift: Shifts the position of the whole annotation and arrow to the right (positive) or left
+        ///   (negative) by this many pixels.
+        ///   - yAnchor: Sets the text box's vertical position anchor This anchor binds the `y` position to
+        ///   the *top*, *middle* or *bottom* of the annotation.
+        ///   - yShift: Shifts the position of the whole annotation and arrow up (positive) or down (negative)
+        ///   by this many pixels.
+        ///   - text: Sets the text associated with this annotation.
+        ///   - textAngle: Sets the angle at which the `text` is drawn with respect to the horizontal.
+        ///   - font: Sets the annotation text font.
+        ///   - width: Sets an explicit width for the text box.
+        ///   - height: Sets an explicit height for the text box.
+        ///   - opacity: Sets the opacity of the annotation (text + arrow).
+        ///   - align: Sets the horizontal alignment of the `text` within the box.
+        ///   - verticalAlign: Sets the vertical alignment of the `text` within the box.
+        ///   - backgroundColor: Sets the background color of the annotation.
+        ///   - borderColor: Sets the color of the border enclosing the annotation `text`.
+        ///   - borderPadding: Sets the padding (in px) between the `text` and the enclosing border.
+        ///   - borderWidth: Sets the width (in px) of the border enclosing the annotation `text`.
+        ///   - showArrow: Determines whether or not the annotation is drawn with an arrow.
+        ///   - arrowColor: Sets the color of the annotation arrow.
+        ///   - arrowHead: Sets the end annotation arrow head style.
+        ///   - startArrowHead: Sets the start annotation arrow head style.
+        ///   - arrowSide: Sets the annotation arrow head position.
+        ///   - arrowSize: Sets the size of the end annotation arrow head, relative to `arrowwidth`.
+        ///   - startArrowSize: Sets the size of the start annotation arrow head, relative to `arrowwidth`.
+        ///   - arrowWidth: Sets the width (in px) of annotation arrow line.
+        ///   - standoff: Sets a distance, in pixels, to move the end arrowhead away from the position it is
+        ///   pointing at, for example to point at the edge of a marker independent of zoom.
+        ///   - startStandoff: Sets a distance, in pixels, to move the start arrowhead away from the position
+        ///   it is pointing at, for example to point at the edge of a marker independent of zoom.
+        ///   - hoverText: Sets text to appear when hovering over this annotation.
+        ///   - hoverLabel:
+        ///   - captureEvents: Determines whether the annotation text box captures mouse move and click
+        ///   events, or allows those events to pass through to data points in the plot that may be behind the
+        ///   annotation.
+        ///   - name: When used in a template, named items are created in the output figure in addition to any
+        ///   items the figure already has in this array.
+        ///   - templateItemName: Used to refer to a named item in this array in the template.
+        public init(visible: Bool? = nil, x: Anything? = nil, y: Anything? = nil, z: Anything? = nil,
+                ax: Double? = nil, ay: Double? = nil, xAnchor: XAutoAnchor? = nil, xShift: Double? = nil,
+                yAnchor: YAutoAnchor? = nil, yShift: Double? = nil, text: String? = nil, textAngle: Angle? =
+                nil, font: Font? = nil, width: Double? = nil, height: Double? = nil, opacity: Double? = nil,
+                align: HorizontalAlign? = nil, verticalAlign: VerticalAlign? = nil, backgroundColor: Color? =
+                nil, borderColor: Color? = nil, borderPadding: Double? = nil, borderWidth: Double? = nil,
+                showArrow: Bool? = nil, arrowColor: Color? = nil, arrowHead: Int? = nil, startArrowHead: Int? =
+                nil, arrowSide: ArrowSide? = nil, arrowSize: Double? = nil, startArrowSize: Double? = nil,
+                arrowWidth: Double? = nil, standoff: Double? = nil, startStandoff: Double? = nil, hoverText:
+                String? = nil, hoverLabel: HoverLabel? = nil, captureEvents: Bool? = nil, name: String? = nil,
+                templateItemName: String? = nil) {
+            self.visible = visible
+            self.x = x
+            self.y = y
+            self.z = z
+            self.ax = ax
+            self.ay = ay
+            self.xAnchor = xAnchor
+            self.xShift = xShift
+            self.yAnchor = yAnchor
+            self.yShift = yShift
+            self.text = text
+            self.textAngle = textAngle
+            self.font = font
+            self.width = width
+            self.height = height
+            self.opacity = opacity
+            self.align = align
+            self.verticalAlign = verticalAlign
+            self.backgroundColor = backgroundColor
+            self.borderColor = borderColor
+            self.borderPadding = borderPadding
+            self.borderWidth = borderWidth
+            self.showArrow = showArrow
+            self.arrowColor = arrowColor
+            self.arrowHead = arrowHead
+            self.startArrowHead = startArrowHead
+            self.arrowSide = arrowSide
+            self.arrowSize = arrowSize
+            self.startArrowSize = startArrowSize
+            self.arrowWidth = arrowWidth
+            self.standoff = standoff
+            self.startStandoff = startStandoff
+            self.hoverText = hoverText
+            self.hoverLabel = hoverLabel
+            self.captureEvents = captureEvents
+            self.name = name
+            self.templateItemName = templateItemName
+        }
+        
+    }
+    public var annotations: [Annotation]? = nil
+
+    /// Shared and preset default axis reference used to initialize layout and all traces.
+    public static let preset: Scene = Scene(uid: 1)
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case backgroundColor = "bgcolor"
+        case camera
+        case domain
+        case aspectMode = "aspectmode"
+        case aspectRatio = "aspectratio"
+        case xAxis = "xaxis"
+        case yAxis = "yaxis"
+        case zAxis = "zaxis"
+        case dragMode = "dragmode"
+        case hoverMode = "hovermode"
+        case uiRevision = "uirevision"
+        case annotations
+    }
+    
+    /// Creates `Scene` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - uid: Unique identifier of the axis.
+    ///   - backgroundColor:
+    ///   - camera:
+    ///   - domain:
+    ///   - aspectMode: If *cube*, this scene's axes are drawn as a cube, regardless of the axes' ranges.
+    ///   - aspectRatio: Sets this scene's axis aspectratio.
+    ///   - xAxis:
+    ///   - yAxis:
+    ///   - zAxis:
+    ///   - dragMode: Determines the mode of drag interactions for this scene.
+    ///   - hoverMode: Determines the mode of hover interactions for this scene.
+    ///   - uiRevision: Controls persistence of user-driven changes in camera attributes.
+    ///   - annotations:
+    public init(uid: UInt = UInt.random(in: 2...UInt.max), backgroundColor: Color? = nil, camera:
+            Camera? = nil, domain: Domain? = nil, aspectMode: AspectMode? = nil, aspectRatio: AspectRatio? =
+            nil, xAxis: XAxis? = nil, yAxis: YAxis? = nil, zAxis: ZAxis? = nil, dragMode: DragMode? = nil,
+            hoverMode: HoverMode? = nil, uiRevision: Anything? = nil, annotations: [Annotation]? = nil) {
+        self.uid = uid
+        self.backgroundColor = backgroundColor
+        self.camera = camera
+        self.domain = domain
+        self.aspectMode = aspectMode
+        self.aspectRatio = aspectRatio
+        self.xAxis = xAxis
+        self.yAxis = yAxis
+        self.zAxis = zAxis
+        self.dragMode = dragMode
+        self.hoverMode = hoverMode
+        self.uiRevision = uiRevision
+        self.annotations = annotations
+    }
+    
+}
+
+public final class Geo: Encodable, SubplotAxis {
+    /// Unique identifier of the axis.
+    public var uid: UInt = UInt.random(in: 2...UInt.max)
+
+    public var domain: Domain? = nil
+
+    /// Determines if this subplot's view settings are auto-computed to fit trace data.
+    /// 
+    /// On scoped maps, setting `fitbounds` leads to `center.lon` and `center.lat` getting auto-filled.
+    /// On maps with a non-clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`,
+    /// and `projection.rotation.lon` getting auto-filled. On maps with a clipped projection, setting
+    /// `fitbounds` leads to `center.lon`, `center.lat`, `projection.rotation.lon`,
+    /// `projection.rotation.lat`, `lonaxis.range` and `lonaxis.range` getting auto-filled. If
+    /// *locations*, only the trace's visible locations are considered in the `fitbounds` computations.
+    /// If *geojson*, the entire trace input `geojson` (if provided) is considered in the `fitbounds`
+    /// computations, Defaults to *false*.
+    public enum FitBounds: Encodable {
+        case off
+        case locations
+        case geoJson
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .off:
+                try container.encode(false)
+            case .locations:
+                try container.encode("locations")
+            case .geoJson:
+                try container.encode("geojson")
+            }
+        }
+    }
+    /// Determines if this subplot's view settings are auto-computed to fit trace data.
+    /// 
+    /// On scoped maps, setting `fitbounds` leads to `center.lon` and `center.lat` getting auto-filled.
+    /// On maps with a non-clipped projection, setting `fitbounds` leads to `center.lon`, `center.lat`,
+    /// and `projection.rotation.lon` getting auto-filled. On maps with a clipped projection, setting
+    /// `fitbounds` leads to `center.lon`, `center.lat`, `projection.rotation.lon`,
+    /// `projection.rotation.lat`, `lonaxis.range` and `lonaxis.range` getting auto-filled. If
+    /// *locations*, only the trace's visible locations are considered in the `fitbounds` computations.
+    /// If *geojson*, the entire trace input `geojson` (if provided) is considered in the `fitbounds`
+    /// computations, Defaults to *false*.
+    public var fitBounds: FitBounds? = nil
+
+    /// Sets the resolution of the base layers.
+    /// 
+    /// The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
+    public enum Resolution: Int, Encodable {
+        case oneOver110M = 110
+        case oneOver50M = 50
+    }
+    /// Sets the resolution of the base layers.
+    /// 
+    /// The values have units of km/mm e.g. 110 corresponds to a scale ratio of 1:110,000,000.
+    public var resolution: Resolution? = nil
+
+    /// Set the scope of the map.
+    public enum Scope: String, Encodable {
+        case world
+        case usa
+        case europe
+        case asia
+        case africa
+        case northAmerica = "north america"
+        case southAmerica = "south america"
+    }
+    /// Set the scope of the map.
+    public var scope: Scope? = nil
+
+    public struct Projection: Encodable {
+        /// Sets the projection type.
+        public enum `Type`: String, Encodable {
+            case equirectangular
+            case mercator
+            case orthographic
+            case naturalEarth = "natural earth"
+            case kavrayskiy7
+            case miller
+            case robinson
+            case eckert4
+            case azimuthalEqualArea = "azimuthal equal area"
+            case azimuthalEquidistant = "azimuthal equidistant"
+            case conicEqualArea = "conic equal area"
+            case conicConformal = "conic conformal"
+            case conicEquidistant = "conic equidistant"
+            case gnomonic
+            case stereographic
+            case mollweide
+            case hammer
+            case transverseMercator = "transverse mercator"
+            case albersUSA = "albers usa"
+            case winkelTripel = "winkel tripel"
+            case aitoff
+            case sinusoidal
+        }
+        /// Sets the projection type.
+        public var type: `Type`? = nil
+    
+        public struct Rotation: Encodable {
+            /// Rotates the map along parallels (in degrees East).
+            /// 
+            /// Defaults to the center of the `lonaxis.range` values.
+            public var longitude: Double? = nil
+        
+            /// Rotates the map along meridians (in degrees North).
+            public var latitude: Double? = nil
+        
+            /// Roll the map (in degrees) For example, a roll of *180* makes the map appear upside down.
+            public var roll: Double? = nil
+        
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case longitude = "lon"
+                case latitude = "lat"
+                case roll
+            }
+            
+            /// Creates `Rotation` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - longitude: Rotates the map along parallels (in degrees East).
+            ///   - latitude: Rotates the map along meridians (in degrees North).
+            ///   - roll: Roll the map (in degrees) For example, a roll of *180* makes the map appear upside down.
+            public init(longitude: Double? = nil, latitude: Double? = nil, roll: Double? = nil) {
+                self.longitude = longitude
+                self.latitude = latitude
+                self.roll = roll
+            }
+            
+        }
+        public var rotation: Rotation? = nil
+    
+        /// For conic projection types only.
+        /// 
+        /// Sets the parallels (tangent, secant) where the cone intersects the sphere.
+        public var parallels: InfoArray? = nil
+    
+        /// Zooms in or out on the map view.
+        /// 
+        /// A scale of *1* corresponds to the largest zoom level that fits the map's lon and lat ranges.
+        public var scale: Double? = nil
+    
+        /// Creates `Projection` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - type: Sets the projection type.
+        ///   - rotation:
+        ///   - parallels: For conic projection types only.
+        ///   - scale: Zooms in or out on the map view.
+        public init(type: `Type`? = nil, rotation: Rotation? = nil, parallels: InfoArray? = nil, scale:
+                Double? = nil) {
+            self.type = type
+            self.rotation = rotation
+            self.parallels = parallels
+            self.scale = scale
+        }
+        
+    }
+    public var projection: Projection? = nil
+
+    public struct Center: Encodable {
+        /// Sets the longitude of the map's center.
+        /// 
+        /// By default, the map's longitude center lies at the middle of the longitude range for scoped
+        /// projection and above `projection.rotation.lon` otherwise.
+        public var longitude: Double? = nil
+    
+        /// Sets the latitude of the map's center.
+        /// 
+        /// For all projection types, the map's latitude center lies at the middle of the latitude range by
+        /// default.
+        public var latitude: Double? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case longitude = "lon"
+            case latitude = "lat"
+        }
+        
+        /// Creates `Center` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - longitude: Sets the longitude of the map's center.
+        ///   - latitude: Sets the latitude of the map's center.
+        public init(longitude: Double? = nil, latitude: Double? = nil) {
+            self.longitude = longitude
+            self.latitude = latitude
+        }
+        
+    }
+    public var center: Center? = nil
+
+    /// Sets the default visibility of the base layers.
+    public var visible: Bool? = nil
+
+    /// Sets whether or not the coastlines are drawn.
+    public var showCoastLines: Bool? = nil
+
+    /// Sets the coastline color.
+    public var coastLineColor: Color? = nil
+
+    /// Sets the coastline stroke width (in px).
+    public var coastLineWidth: Double? = nil
+
+    /// Sets whether or not land masses are filled in color.
+    public var showLand: Bool? = nil
+
+    /// Sets the land mass color.
+    public var landColor: Color? = nil
+
+    /// Sets whether or not oceans are filled in color.
+    public var showOcean: Bool? = nil
+
+    /// Sets the ocean color
+    public var oceanColor: Color? = nil
+
+    /// Sets whether or not lakes are drawn.
+    public var showLakes: Bool? = nil
+
+    /// Sets the color of the lakes.
+    public var lakeColor: Color? = nil
+
+    /// Sets whether or not rivers are drawn.
+    public var showRivers: Bool? = nil
+
+    /// Sets color of the rivers.
+    public var riverColor: Color? = nil
+
+    /// Sets the stroke width (in px) of the rivers.
+    public var riverWidth: Double? = nil
+
+    /// Sets whether or not country boundaries are drawn.
+    public var showCountries: Bool? = nil
+
+    /// Sets line color of the country boundaries.
+    public var countryColor: Color? = nil
+
+    /// Sets line width (in px) of the country boundaries.
+    public var countryWidth: Double? = nil
+
+    /// Sets whether or not boundaries of subunits within countries (e.g.
+    /// 
+    /// states, provinces) are drawn.
+    public var showSubunits: Bool? = nil
+
+    /// Sets the color of the subunits boundaries.
+    public var subUnitColor: Color? = nil
+
+    /// Sets the stroke width (in px) of the subunits boundaries.
+    public var subUnitWidth: Double? = nil
+
+    /// Sets whether or not a frame is drawn around the map.
+    public var showFrame: Bool? = nil
+
+    /// Sets the color the frame.
+    public var frameColor: Color? = nil
+
+    /// Sets the stroke width (in px) of the frame.
+    public var frameWidth: Double? = nil
+
+    /// Set the background color of the map
+    public var backgroundColor: Color? = nil
+
+    public struct LongitudeAxis: Encodable {
+        /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
+        public var range: InfoArray? = nil
+    
+        /// Sets whether or not graticule are shown on the map.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the graticule's starting tick longitude/latitude.
+        public var tick0: Double? = nil
+    
+        /// Sets the graticule's longitude/latitude tick step.
+        public var dTick: Double? = nil
+    
+        /// Sets the graticule's stroke color.
+        public var gridColor: Color? = nil
+    
+        /// Sets the graticule's stroke width (in px).
+        public var gridWidth: Double? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case range
+            case showGrid = "showgrid"
+            case tick0
+            case dTick = "dtick"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+        }
+        
+        /// Creates `LongitudeAxis` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - range: Sets the range of this axis (in degrees), sets the map's clipped coordinates.
+        ///   - showGrid: Sets whether or not graticule are shown on the map.
+        ///   - tick0: Sets the graticule's starting tick longitude/latitude.
+        ///   - dTick: Sets the graticule's longitude/latitude tick step.
+        ///   - gridColor: Sets the graticule's stroke color.
+        ///   - gridWidth: Sets the graticule's stroke width (in px).
+        public init(range: InfoArray? = nil, showGrid: Bool? = nil, tick0: Double? = nil, dTick: Double?
+                = nil, gridColor: Color? = nil, gridWidth: Double? = nil) {
+            self.range = range
+            self.showGrid = showGrid
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+        }
+        
+    }
+    public var longitudeAxis: LongitudeAxis? = nil
+
+    public struct LatitudeAxis: Encodable {
+        /// Sets the range of this axis (in degrees), sets the map's clipped coordinates.
+        public var range: InfoArray? = nil
+    
+        /// Sets whether or not graticule are shown on the map.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the graticule's starting tick longitude/latitude.
+        public var tick0: Double? = nil
+    
+        /// Sets the graticule's longitude/latitude tick step.
+        public var dTick: Double? = nil
+    
+        /// Sets the graticule's stroke color.
+        public var gridColor: Color? = nil
+    
+        /// Sets the graticule's stroke width (in px).
+        public var gridWidth: Double? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case range
+            case showGrid = "showgrid"
+            case tick0
+            case dTick = "dtick"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+        }
+        
+        /// Creates `LatitudeAxis` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - range: Sets the range of this axis (in degrees), sets the map's clipped coordinates.
+        ///   - showGrid: Sets whether or not graticule are shown on the map.
+        ///   - tick0: Sets the graticule's starting tick longitude/latitude.
+        ///   - dTick: Sets the graticule's longitude/latitude tick step.
+        ///   - gridColor: Sets the graticule's stroke color.
+        ///   - gridWidth: Sets the graticule's stroke width (in px).
+        public init(range: InfoArray? = nil, showGrid: Bool? = nil, tick0: Double? = nil, dTick: Double?
+                = nil, gridColor: Color? = nil, gridWidth: Double? = nil) {
+            self.range = range
+            self.showGrid = showGrid
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+        }
+        
+    }
+    public var latitudeAxis: LatitudeAxis? = nil
+
+    /// Controls persistence of user-driven changes in the view (projection and center).
+    /// 
+    /// Defaults to `layout.uirevision`.
+    public var uiRevision: Anything? = nil
+
+    /// Shared and preset default axis reference used to initialize layout and all traces.
+    public static let preset: Geo = Geo(uid: 1)
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case domain
+        case fitBounds = "fitbounds"
+        case resolution
+        case scope
+        case projection
+        case center
+        case visible
+        case showCoastLines = "showcoastlines"
+        case coastLineColor = "coastlinecolor"
+        case coastLineWidth = "coastlinewidth"
+        case showLand = "showland"
+        case landColor = "landcolor"
+        case showOcean = "showocean"
+        case oceanColor = "oceancolor"
+        case showLakes = "showlakes"
+        case lakeColor = "lakecolor"
+        case showRivers = "showrivers"
+        case riverColor = "rivercolor"
+        case riverWidth = "riverwidth"
+        case showCountries = "showcountries"
+        case countryColor = "countrycolor"
+        case countryWidth = "countrywidth"
+        case showSubunits = "showsubunits"
+        case subUnitColor = "subunitcolor"
+        case subUnitWidth = "subunitwidth"
+        case showFrame = "showframe"
+        case frameColor = "framecolor"
+        case frameWidth = "framewidth"
+        case backgroundColor = "bgcolor"
+        case longitudeAxis = "lonaxis"
+        case latitudeAxis = "lataxis"
+        case uiRevision = "uirevision"
+    }
+    
+    /// Creates `Geo` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - uid: Unique identifier of the axis.
+    ///   - domain:
+    ///   - fitBounds: Determines if this subplot's view settings are auto-computed to fit trace data.
+    ///   - resolution: Sets the resolution of the base layers.
+    ///   - scope: Set the scope of the map.
+    ///   - projection:
+    ///   - center:
+    ///   - visible: Sets the default visibility of the base layers.
+    ///   - showCoastLines: Sets whether or not the coastlines are drawn.
+    ///   - coastLineColor: Sets the coastline color.
+    ///   - coastLineWidth: Sets the coastline stroke width (in px).
+    ///   - showLand: Sets whether or not land masses are filled in color.
+    ///   - landColor: Sets the land mass color.
+    ///   - showOcean: Sets whether or not oceans are filled in color.
+    ///   - oceanColor: Sets the ocean color
+    ///   - showLakes: Sets whether or not lakes are drawn.
+    ///   - lakeColor: Sets the color of the lakes.
+    ///   - showRivers: Sets whether or not rivers are drawn.
+    ///   - riverColor: Sets color of the rivers.
+    ///   - riverWidth: Sets the stroke width (in px) of the rivers.
+    ///   - showCountries: Sets whether or not country boundaries are drawn.
+    ///   - countryColor: Sets line color of the country boundaries.
+    ///   - countryWidth: Sets line width (in px) of the country boundaries.
+    ///   - showSubunits: Sets whether or not boundaries of subunits within countries (e.g.
+    ///   - subUnitColor: Sets the color of the subunits boundaries.
+    ///   - subUnitWidth: Sets the stroke width (in px) of the subunits boundaries.
+    ///   - showFrame: Sets whether or not a frame is drawn around the map.
+    ///   - frameColor: Sets the color the frame.
+    ///   - frameWidth: Sets the stroke width (in px) of the frame.
+    ///   - backgroundColor: Set the background color of the map
+    ///   - longitudeAxis:
+    ///   - latitudeAxis:
+    ///   - uiRevision: Controls persistence of user-driven changes in the view (projection and center).
+    public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Domain? = nil, fitBounds:
+            FitBounds? = nil, resolution: Resolution? = nil, scope: Scope? = nil, projection: Projection? =
+            nil, center: Center? = nil, visible: Bool? = nil, showCoastLines: Bool? = nil, coastLineColor:
+            Color? = nil, coastLineWidth: Double? = nil, showLand: Bool? = nil, landColor: Color? = nil,
+            showOcean: Bool? = nil, oceanColor: Color? = nil, showLakes: Bool? = nil, lakeColor: Color? =
+            nil, showRivers: Bool? = nil, riverColor: Color? = nil, riverWidth: Double? = nil,
+            showCountries: Bool? = nil, countryColor: Color? = nil, countryWidth: Double? = nil,
+            showSubunits: Bool? = nil, subUnitColor: Color? = nil, subUnitWidth: Double? = nil, showFrame:
+            Bool? = nil, frameColor: Color? = nil, frameWidth: Double? = nil, backgroundColor: Color? = nil,
+            longitudeAxis: LongitudeAxis? = nil, latitudeAxis: LatitudeAxis? = nil, uiRevision: Anything? =
+            nil) {
+        self.uid = uid
+        self.domain = domain
+        self.fitBounds = fitBounds
+        self.resolution = resolution
+        self.scope = scope
+        self.projection = projection
+        self.center = center
+        self.visible = visible
+        self.showCoastLines = showCoastLines
+        self.coastLineColor = coastLineColor
+        self.coastLineWidth = coastLineWidth
+        self.showLand = showLand
+        self.landColor = landColor
+        self.showOcean = showOcean
+        self.oceanColor = oceanColor
+        self.showLakes = showLakes
+        self.lakeColor = lakeColor
+        self.showRivers = showRivers
+        self.riverColor = riverColor
+        self.riverWidth = riverWidth
+        self.showCountries = showCountries
+        self.countryColor = countryColor
+        self.countryWidth = countryWidth
+        self.showSubunits = showSubunits
+        self.subUnitColor = subUnitColor
+        self.subUnitWidth = subUnitWidth
+        self.showFrame = showFrame
+        self.frameColor = frameColor
+        self.frameWidth = frameWidth
+        self.backgroundColor = backgroundColor
+        self.longitudeAxis = longitudeAxis
+        self.latitudeAxis = latitudeAxis
+        self.uiRevision = uiRevision
+    }
+    
+}
+
+public final class Mapbox: Encodable, SubplotAxis {
+    /// Unique identifier of the axis.
+    public var uid: UInt = UInt.random(in: 2...UInt.max)
+
+    public var domain: Domain? = nil
+
+    /// Sets the mapbox access token to be used for this mapbox map.
+    /// 
+    /// Alternatively, the mapbox access token can be set in the configuration options under
+    /// `mapboxAccessToken`. Note that accessToken are only required when `style` (e.g with values :
+    /// basic, streets, outdoors, light, dark, satellite, satellite-streets ) and/or a layout layer
+    /// references the Mapbox server.
+    public var accessToken: String? = nil
+
+    /// Defines the map layers that are rendered by default below the trace layers defined in `data`,
+    /// which are themselves by default rendered below the layers defined in `layout.mapbox.layers`.
+    /// 
+    /// These layers can be defined either explicitly as a Mapbox Style object which can contain
+    /// multiple layer definitions that load data from any public or private Tile Map Service (TMS or
+    /// XYZ) or Web Map Service (WMS) or implicitly by using one of the built-in style objects which use
+    /// WMSes which do not require any access tokens, or by using a default Mapbox style or custom
+    /// Mapbox style URL, both of which require a Mapbox access token Note that Mapbox access token can
+    /// be set in the `accesstoken` attribute or in the `mapboxAccessToken` config option. Mapbox Style
+    /// objects are of the form described in the Mapbox GL JS documentation available at
+    /// https://docs.mapbox.com/mapbox-gl-js/style-spec The built-in plotly.js styles objects are:
+    /// open-street-map, white-bg, carto-positron, carto-darkmatter, stamen-terrain, stamen-toner,
+    /// stamen-watercolor The built-in Mapbox styles are: basic, streets, outdoors, light, dark,
+    /// satellite, satellite-streets Mapbox style URLs are of the form:
+    /// mapbox://mapbox.mapbox-<name>-<version>
+    public var style: Anything? = nil
+
+    public struct Center: Encodable {
+        /// Sets the longitude of the center of the map (in degrees East).
+        public var longitude: Double? = nil
+    
+        /// Sets the latitude of the center of the map (in degrees North).
+        public var latitude: Double? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case longitude = "lon"
+            case latitude = "lat"
+        }
+        
+        /// Creates `Center` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - longitude: Sets the longitude of the center of the map (in degrees East).
+        ///   - latitude: Sets the latitude of the center of the map (in degrees North).
+        public init(longitude: Double? = nil, latitude: Double? = nil) {
+            self.longitude = longitude
+            self.latitude = latitude
+        }
+        
+    }
+    public var center: Center? = nil
+
+    /// Sets the zoom level of the map (mapbox.zoom).
+    public var zoom: Double? = nil
+
+    /// Sets the bearing angle of the map in degrees counter-clockwise from North (mapbox.bearing).
+    public var bearing: Double? = nil
+
+    /// Sets the pitch angle of the map (in degrees, where *0* means perpendicular to the surface of the
+    /// map) (mapbox.pitch).
+    public var pitch: Double? = nil
+
+    public struct Layer: Encodable {
+        /// Determines whether this layer is displayed
+        public var visible: Bool? = nil
+    
+        /// Sets the source type for this layer, that is the type of the layer data.
+        public enum SourceType: String, Encodable {
+            case geoJson = "geojson"
+            case vector
+            case raster
+            case image
+        }
+        /// Sets the source type for this layer, that is the type of the layer data.
+        public var sourceType: SourceType? = nil
+    
+        /// Sets the source data for this layer (mapbox.layer.source).
+        /// 
+        /// When `sourcetype` is set to *geojson*, `source` can be a URL to a GeoJSON or a GeoJSON object.
+        /// When `sourcetype` is set to *vector* or *raster*, `source` can be a URL or an array of tile
+        /// URLs. When `sourcetype` is set to *image*, `source` can be a URL to an image.
+        public var source: Anything? = nil
+    
+        /// Specifies the layer to use from a vector tile source (mapbox.layer.source-layer).
+        /// 
+        /// Required for *vector* source type that supports multiple layers.
+        public var sourceLayer: String? = nil
+    
+        /// Sets the attribution for this source.
+        public var sourceAttribution: String? = nil
+    
+        /// Sets the layer type, that is the how the layer data set in `source` will be rendered With
+        /// `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill* and
+        /// *symbol*.
+        /// 
+        /// but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With
+        /// `sourcetype` set to *vector*, the following values are allowed: *circle*, *line*, *fill* and
+        /// *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
+        public enum `Type`: String, Encodable {
+            case circle
+            case line
+            case fill
+            case symbol
+            case raster
+        }
+        /// Sets the layer type, that is the how the layer data set in `source` will be rendered With
+        /// `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill* and
+        /// *symbol*.
+        /// 
+        /// but note that *line* and *fill* are not compatible with Point GeoJSON geometries. With
+        /// `sourcetype` set to *vector*, the following values are allowed: *circle*, *line*, *fill* and
+        /// *symbol*. With `sourcetype` set to *raster* or `*image*`, only the *raster* value is allowed.
+        public var type: `Type`? = nil
+    
+        /// Sets the coordinates array contains [longitude, latitude] pairs for the image corners listed in
+        /// clockwise order: top left, top right, bottom right, bottom left.
+        /// 
+        /// Only has an effect for *image* `sourcetype`.
+        public var coordinates: Anything? = nil
+    
+        /// Determines if the layer will be inserted before the layer with the specified ID.
+        /// 
+        /// If omitted or set to '', the layer will be inserted above every existing layer.
+        public var below: String? = nil
+    
+        /// Sets the primary layer color.
+        /// 
+        /// If `type` is *circle*, color corresponds to the circle color (mapbox.layer.paint.circle-color)
+        /// If `type` is *line*, color corresponds to the line color (mapbox.layer.paint.line-color) If
+        /// `type` is *fill*, color corresponds to the fill color (mapbox.layer.paint.fill-color) If `type`
+        /// is *symbol*, color corresponds to the icon color (mapbox.layer.paint.icon-color)
+        public var color: Color? = nil
+    
+        /// Sets the opacity of the layer.
+        /// 
+        /// If `type` is *circle*, opacity corresponds to the circle opacity
+        /// (mapbox.layer.paint.circle-opacity) If `type` is *line*, opacity corresponds to the line opacity
+        /// (mapbox.layer.paint.line-opacity) If `type` is *fill*, opacity corresponds to the fill opacity
+        /// (mapbox.layer.paint.fill-opacity) If `type` is *symbol*, opacity corresponds to the icon/text
+        /// opacity (mapbox.layer.paint.text-opacity)
+        public var opacity: Double? = nil
+    
+        /// Sets the minimum zoom level (mapbox.layer.minzoom).
+        /// 
+        /// At zoom levels less than the minzoom, the layer will be hidden.
+        public var minZoom: Double? = nil
+    
+        /// Sets the maximum zoom level (mapbox.layer.maxzoom).
+        /// 
+        /// At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
+        public var maxZoom: Double? = nil
+    
+        public struct Circle: Encodable {
+            /// Sets the circle radius (mapbox.layer.paint.circle-radius).
+            /// 
+            /// Has an effect only when `type` is set to *circle*.
+            public var radius: Double? = nil
+        
+            /// Creates `Circle` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - radius: Sets the circle radius (mapbox.layer.paint.circle-radius).
+            public init(radius: Double? = nil) {
+                self.radius = radius
+            }
+            
+        }
+        public var circle: Circle? = nil
+    
+        public struct DashedLine: Encodable {
+            /// Sets the line width (mapbox.layer.paint.line-width).
+            /// 
+            /// Has an effect only when `type` is set to *line*.
+            public var width: Double? = nil
+        
+            /// Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray).
+            /// 
+            /// Has an effect only when `type` is set to *line*.
+            public var dash: [Double]? = nil
+        
+            /// Creates `DashedLine` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - width: Sets the line width (mapbox.layer.paint.line-width).
+            ///   - dash: Sets the length of dashes and gaps (mapbox.layer.paint.line-dasharray).
+            public init(width: Double? = nil, dash: [Double]? = nil) {
+                self.width = width
+                self.dash = dash
+            }
+            
+        }
+        public var line: DashedLine? = nil
+    
+        public struct Fill: Encodable {
+            /// Sets the fill outline color (mapbox.layer.paint.fill-outline-color).
+            /// 
+            /// Has an effect only when `type` is set to *fill*.
+            public var outlineColor: Color? = nil
+        
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case outlineColor = "outlinecolor"
+            }
+            
+            /// Creates `Fill` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - outlineColor: Sets the fill outline color (mapbox.layer.paint.fill-outline-color).
+            public init(outlineColor: Color? = nil) {
+                self.outlineColor = outlineColor
+            }
+            
+        }
+        public var fill: Fill? = nil
+    
+        public struct Symbol: Encodable {
+            /// Sets the symbol icon image (mapbox.layer.layout.icon-image).
+            /// 
+            /// Full list: https://www.mapbox.com/maki-icons/
+            public var icon: String? = nil
+        
+            /// Sets the symbol icon size (mapbox.layer.layout.icon-size).
+            /// 
+            /// Has an effect only when `type` is set to *symbol*.
+            public var iconSize: Double? = nil
+        
+            /// Sets the symbol text (mapbox.layer.layout.text-field).
+            public var text: String? = nil
+        
+            /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement).
+            /// 
+            /// If `placement` is *point*, the label is placed where the geometry is located If `placement` is
+            /// *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the
+            /// label is placed on the center of the geometry
+            public enum Placement: String, Encodable {
+                case point
+                case line
+                case lineCenter = "line-center"
+            }
+            /// Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement).
+            /// 
+            /// If `placement` is *point*, the label is placed where the geometry is located If `placement` is
+            /// *line*, the label is placed along the line of the geometry If `placement` is *line-center*, the
+            /// label is placed on the center of the geometry
+            public var placement: Placement? = nil
+        
+            /// Sets the icon text font (color=mapbox.layer.paint.text-color,
+            /// size=mapbox.layer.layout.text-size).
+            /// 
+            /// Has an effect only when `type` is set to *symbol*.
+            public var textFont: Font? = nil
+        
+            /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
+            public var textPosition: TextPosition? = nil
+        
+            /// Decoding and encoding keys compatible with Plotly schema.
+            enum CodingKeys: String, CodingKey {
+                case icon
+                case iconSize = "iconsize"
+                case text
+                case placement
+                case textFont = "textfont"
+                case textPosition = "textposition"
+            }
+            
+            /// Creates `Symbol` object with specified properties.
+            /// 
+            /// - Parameters:
+            ///   - icon: Sets the symbol icon image (mapbox.layer.layout.icon-image).
+            ///   - iconSize: Sets the symbol icon size (mapbox.layer.layout.icon-size).
+            ///   - text: Sets the symbol text (mapbox.layer.layout.text-field).
+            ///   - placement: Sets the symbol and/or text placement (mapbox.layer.layout.symbol-placement).
+            ///   - textFont: Sets the icon text font (color=mapbox.layer.paint.text-color,
+            ///   size=mapbox.layer.layout.text-size).
+            ///   - textPosition: Sets the positions of the `text` elements with respects to the (x,y)
+            ///   coordinates.
+            public init(icon: String? = nil, iconSize: Double? = nil, text: String? = nil, placement:
+                    Placement? = nil, textFont: Font? = nil, textPosition: TextPosition? = nil) {
+                self.icon = icon
+                self.iconSize = iconSize
+                self.text = text
+                self.placement = placement
+                self.textFont = textFont
+                self.textPosition = textPosition
+            }
+            
+        }
+        public var symbol: Symbol? = nil
+    
+        /// When used in a template, named items are created in the output figure in addition to any items
+        /// the figure already has in this array.
+        /// 
+        /// You can modify these items in the output figure by making your own item with `templateitemname`
+        /// matching this `name` alongside your modifications (including `visible: false` or `enabled:
+        /// false` to hide it). Has no effect outside of a template.
+        public var name: String? = nil
+    
+        /// Used to refer to a named item in this array in the template.
+        /// 
+        /// Named items from the template will be created even without a matching item in the input figure,
+        /// but you can modify one by making an item with `templateitemname` matching its `name`, alongside
+        /// your modifications (including `visible: false` or `enabled: false` to hide it). If there is no
+        /// template or no matching item, this item will be hidden unless you explicitly show it with
+        /// `visible: true`.
+        public var templateItemName: String? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case sourceType = "sourcetype"
+            case source
+            case sourceLayer = "sourcelayer"
+            case sourceAttribution = "sourceattribution"
+            case type
+            case coordinates
+            case below
+            case color
+            case opacity
+            case minZoom = "minzoom"
+            case maxZoom = "maxzoom"
+            case circle
+            case line
+            case fill
+            case symbol
+            case name
+            case templateItemName = "templateitemname"
+        }
+        
+        /// Creates `Layer` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - visible: Determines whether this layer is displayed
+        ///   - sourceType: Sets the source type for this layer, that is the type of the layer data.
+        ///   - source: Sets the source data for this layer (mapbox.layer.source).
+        ///   - sourceLayer: Specifies the layer to use from a vector tile source (mapbox.layer.source-layer).
+        ///   - sourceAttribution: Sets the attribution for this source.
+        ///   - type: Sets the layer type, that is the how the layer data set in `source` will be rendered
+        ///   With `sourcetype` set to *geojson*, the following values are allowed: *circle*, *line*, *fill*
+        ///   and *symbol*.
+        ///   - coordinates: Sets the coordinates array contains [longitude, latitude] pairs for the image
+        ///   corners listed in clockwise order: top left, top right, bottom right, bottom left.
+        ///   - below: Determines if the layer will be inserted before the layer with the specified ID.
+        ///   - color: Sets the primary layer color.
+        ///   - opacity: Sets the opacity of the layer.
+        ///   - minZoom: Sets the minimum zoom level (mapbox.layer.minzoom).
+        ///   - maxZoom: Sets the maximum zoom level (mapbox.layer.maxzoom).
+        ///   - circle:
+        ///   - line:
+        ///   - fill:
+        ///   - symbol:
+        ///   - name: When used in a template, named items are created in the output figure in addition to any
+        ///   items the figure already has in this array.
+        ///   - templateItemName: Used to refer to a named item in this array in the template.
+        public init(visible: Bool? = nil, sourceType: SourceType? = nil, source: Anything? = nil,
+                sourceLayer: String? = nil, sourceAttribution: String? = nil, type: `Type`? = nil, coordinates:
+                Anything? = nil, below: String? = nil, color: Color? = nil, opacity: Double? = nil, minZoom:
+                Double? = nil, maxZoom: Double? = nil, circle: Circle? = nil, line: DashedLine? = nil, fill:
+                Fill? = nil, symbol: Symbol? = nil, name: String? = nil, templateItemName: String? = nil) {
+            self.visible = visible
+            self.sourceType = sourceType
+            self.source = source
+            self.sourceLayer = sourceLayer
+            self.sourceAttribution = sourceAttribution
+            self.type = type
+            self.coordinates = coordinates
+            self.below = below
+            self.color = color
+            self.opacity = opacity
+            self.minZoom = minZoom
+            self.maxZoom = maxZoom
+            self.circle = circle
+            self.line = line
+            self.fill = fill
+            self.symbol = symbol
+            self.name = name
+            self.templateItemName = templateItemName
+        }
+        
+    }
+    public var layers: [Layer]? = nil
+
+    /// Controls persistence of user-driven changes in the view: `center`, `zoom`, `bearing`, `pitch`.
+    /// 
+    /// Defaults to `layout.uirevision`.
+    public var uiRevision: Anything? = nil
+
+    /// Shared and preset default axis reference used to initialize layout and all traces.
+    public static let preset: Mapbox = Mapbox(uid: 1)
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case domain
+        case accessToken = "accesstoken"
+        case style
+        case center
+        case zoom
+        case bearing
+        case pitch
+        case layers
+        case uiRevision = "uirevision"
+    }
+    
+    /// Creates `Mapbox` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - uid: Unique identifier of the axis.
+    ///   - domain:
+    ///   - accessToken: Sets the mapbox access token to be used for this mapbox map.
+    ///   - style: Defines the map layers that are rendered by default below the trace layers defined in
+    ///   `data`, which are themselves by default rendered below the layers defined in
+    ///   `layout.mapbox.layers`.
+    ///   - center:
+    ///   - zoom: Sets the zoom level of the map (mapbox.zoom).
+    ///   - bearing: Sets the bearing angle of the map in degrees counter-clockwise from North
+    ///   (mapbox.bearing).
+    ///   - pitch: Sets the pitch angle of the map (in degrees, where *0* means perpendicular to the
+    ///   surface of the map) (mapbox.pitch).
+    ///   - layers:
+    ///   - uiRevision: Controls persistence of user-driven changes in the view: `center`, `zoom`,
+    ///   `bearing`, `pitch`.
+    public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Domain? = nil, accessToken:
+            String? = nil, style: Anything? = nil, center: Center? = nil, zoom: Double? = nil, bearing:
+            Double? = nil, pitch: Double? = nil, layers: [Layer]? = nil, uiRevision: Anything? = nil) {
+        self.uid = uid
+        self.domain = domain
+        self.accessToken = accessToken
+        self.style = style
+        self.center = center
+        self.zoom = zoom
+        self.bearing = bearing
+        self.pitch = pitch
+        self.layers = layers
+        self.uiRevision = uiRevision
+    }
+    
+}
+
+public final class Polar: Encodable, SubplotAxis {
+    /// Unique identifier of the axis.
+    public var uid: UInt = UInt.random(in: 2...UInt.max)
+
+    public var domain: Domain? = nil
+
+    /// Sets angular span of this polar subplot with two angles (in degrees).
+    /// 
+    /// Sector are assumed to be spanned in the counterclockwise direction with *0* corresponding to
+    /// rightmost limit of the polar subplot.
+    public var sector: InfoArray? = nil
+
+    /// Sets the fraction of the radius to cut out of the polar subplot.
+    public var hole: Double? = nil
+
+    /// Set the background color of the subplot
+    public var backgroundColor: Color? = nil
+
+    public struct RadialAxis: Encodable {
+        /// A single toggle to hide the axis while preserving interaction like dragging.
+        /// 
+        /// Default is true when a cheater plot is present on the axis, otherwise false
+        public var visible: Bool? = nil
+    
+        /// Sets the axis type.
+        /// 
+        /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+        /// that referenced the axis in question.
+        public enum `Type`: String, Encodable {
+            case auto = "-"
+            case linear
+            case log
+            case date
+            case category
+        }
+        /// Sets the axis type.
+        /// 
+        /// By default, plotly attempts to determined the axis type by looking into the data of the traces
+        /// that referenced the axis in question.
+        public var type: `Type`? = nil
+    
+        /// Determines whether or not the range of this axis is computed in relation to the input data.
+        /// 
+        /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
+        public var autoRange: AutoRange? = nil
+    
+        /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
+        /// is non-negative, regardless of the input data.
+        /// 
+        /// If *normal*, the range is computed in relation to the extrema of the input data (same behavior
+        /// as for cartesian axes).
+        public enum RangeMode: String, Encodable {
+            case toZero = "tozero"
+            case nonNegative = "nonnegative"
+            case normal
+        }
+        /// If *tozero*`, the range extends to 0, regardless of the input data If *nonnegative*, the range
+        /// is non-negative, regardless of the input data.
+        /// 
+        /// If *normal*, the range is computed in relation to the extrema of the input data (same behavior
+        /// as for cartesian axes).
+        public var rangeMode: RangeMode? = nil
+    
+        /// Sets the range of this axis.
+        /// 
+        /// If the axis `type` is *log*, then you must take the log of your desired range (e.g. to set the
+        /// range from 1 to 100, set the range from 0 to 2). If the axis `type` is *date*, it should be date
+        /// strings, like date data, though Date objects and unix milliseconds will be accepted and
+        /// converted to strings. If the axis `type` is *category*, it should be numbers, using the scale
+        /// where each category is assigned a serial number from zero in the order it appears.
+        public var range: InfoArray? = nil
+    
+        /// Specifies the ordering logic for the case of categorical variables.
+        /// 
+        /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+        /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+        /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+        /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+        /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+        /// mode. The unspecified categories will follow the categories in `categoryarray`. Set
+        /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
+        /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
+        /// or median of all the values.
+        public var categoryOrder: CategoryOrder? = nil
+    
+        /// Sets the order in which categories on this axis appear.
+        /// 
+        /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+        public var categoryArray: [Double]? = nil
+    
+        /// Sets the angle (in degrees) from which the radial axis is drawn.
+        /// 
+        /// Note that by default, radial axis line on the theta=0 line corresponds to a line pointing right
+        /// (like what mathematicians prefer). Defaults to the first `polar.sector` angle.
+        public var angle: Angle? = nil
+    
+        /// Determines on which side of radial axis line the tick and tick labels appear.
+        public enum Side: String, Encodable {
+            case clockwise
+            case counterClockwise = "counterclockwise"
+        }
+        /// Determines on which side of radial axis line the tick and tick labels appear.
+        public var side: Side? = nil
+    
+        public var title: Title? = nil
+    
+        /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var hoverFormat: String? = nil
+    
+        /// Controls persistence of user-driven changes in axis `range`, `autorange`, `angle`, and `title`
+        /// if in `editable: true` configuration.
+        /// 
+        /// Defaults to `polar<N>.uirevision`.
+        public var uiRevision: Anything? = nil
+    
+        /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+        /// colors.
+        /// 
+        /// Grid color is lightened by blending this with the plot background Individual pieces can override
+        /// this.
+        public var color: Color? = nil
+    
+        /// Determines whether or not a line bounding this axis is drawn.
+        public var showLine: Bool? = nil
+    
+        /// Sets the axis line color.
+        public var lineColor: Color? = nil
+    
+        /// Sets the width (in px) of the axis line.
+        public var lineWidth: Double? = nil
+    
+        /// Determines whether or not grid lines are drawn.
+        /// 
+        /// If *true*, the grid lines are drawn at every tick mark.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the color of the grid lines.
+        public var gridColor: Color? = nil
+    
+        /// Sets the width (in px) of the grid lines.
+        public var gridWidth: Double? = nil
+    
+        /// Sets the tick mode for this axis.
+        /// 
+        /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+        /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+        /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+        /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+        /// provided).
+        public var tickMode: TickMode? = nil
+    
+        /// Specifies the maximum number of ticks for the particular axis.
+        /// 
+        /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+        /// Has an effect only if `tickmode` is set to *auto*.
+        public var numTicks: Int? = nil
+    
+        /// Sets the placement of the first tick on this axis.
+        /// 
+        /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+        /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+        /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+        /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+        /// category is assigned a serial number from zero in the order it appears.
+        public var tick0: Anything? = nil
+    
+        /// Sets the step in-between ticks on this axis.
+        /// 
+        /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+        /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+        /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+        /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+        /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+        /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+        /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+        /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+        /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+        /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+        /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+        /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+        /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+        public var dTick: Anything? = nil
+    
+        /// Sets the values at which ticks on this axis appear.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        public var tickValues: [Double]? = nil
+    
+        /// Sets the text displayed at the ticks position via `tickvals`.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        public var tickText: [Double]? = nil
+    
+        /// Determines whether ticks are drawn or not.
+        /// 
+        /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+        /// (inside) the axis lines.
+        public var ticks: Ticks? = nil
+    
+        /// Sets the tick length (in px).
+        public var tickLength: Double? = nil
+    
+        /// Sets the tick width (in px).
+        public var tickWidth: Double? = nil
+    
+        /// Sets the tick color.
+        public var tickColor: Color? = nil
+    
+        /// Determines whether or not the tick labels are drawn.
+        public var showTickLabels: Bool? = nil
+    
+        /// If *all*, all tick labels are displayed with a prefix.
+        /// 
+        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+        /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        public var showTickPrefix: ShowTickPrefix? = nil
+    
+        /// Sets a tick label prefix.
+        public var tickPrefix: String? = nil
+    
+        /// Same as `showtickprefix` but for tick suffixes.
+        public var showTickSuffix: ShowTickSuffix? = nil
+    
+        /// Sets a tick label suffix.
+        public var tickSuffix: String? = nil
+    
+        /// If *all*, all exponents are shown besides their significands.
+        /// 
+        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+        /// last tick is shown. If *none*, no exponents appear.
+        public var showExponent: ShowExponent? = nil
+    
+        /// Determines a formatting rule for the tick exponents.
+        /// 
+        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        public var exponentFormat: ExponentFormat? = nil
+    
+        /// If "true", even 4-digit integers are separated
+        public var separateThousands: Bool? = nil
+    
+        /// Sets the tick font.
+        public var tickFont: Font? = nil
+    
+        /// Sets the angle of the tick labels with respect to the horizontal.
+        /// 
+        /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        public var tickAngle: Angle? = nil
+    
+        /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var tickFormat: String? = nil
+    
+        public var tickFormatStops: [TickFormatStop]? = nil
+    
+        /// Sets the layer on which this axis is displayed.
+        /// 
+        /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
+        /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
+        /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
+        /// nodes above this axis.
+        public var layer: AxisLayer? = nil
+    
+        /// Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+        /// 
+        /// This does not set the calendar for interpreting data on this axis, that's specified in the trace
+        /// or via the global `layout.calendar`
+        public var calendar: Calendar? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case type
+            case autoRange = "autorange"
+            case rangeMode = "rangemode"
+            case range
+            case categoryOrder = "categoryorder"
+            case categoryArray = "categoryarray"
+            case angle
+            case side
+            case title
+            case hoverFormat = "hoverformat"
+            case uiRevision = "uirevision"
+            case color
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case showTickPrefix = "showtickprefix"
+            case tickPrefix = "tickprefix"
+            case showTickSuffix = "showticksuffix"
+            case tickSuffix = "ticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separateThousands = "separatethousands"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case layer
+            case calendar
+        }
+        
+        /// Creates `RadialAxis` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+        ///   - type: Sets the axis type.
+        ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
+        ///   input data.
+        ///   - rangeMode: If *tozero*`, the range extends to 0, regardless of the input data If
+        ///   *nonnegative*, the range is non-negative, regardless of the input data.
+        ///   - range: Sets the range of this axis.
+        ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+        ///   - categoryArray: Sets the order in which categories on this axis appear.
+        ///   - angle: Sets the angle (in degrees) from which the radial axis is drawn.
+        ///   - side: Determines on which side of radial axis line the tick and tick labels appear.
+        ///   - title:
+        ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - uiRevision: Controls persistence of user-driven changes in axis `range`, `autorange`, `angle`,
+        ///   and `title` if in `editable: true` configuration.
+        ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+        ///   and grid colors.
+        ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+        ///   - lineColor: Sets the axis line color.
+        ///   - lineWidth: Sets the width (in px) of the axis line.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - gridColor: Sets the color of the grid lines.
+        ///   - gridWidth: Sets the width (in px) of the grid lines.
+        ///   - tickMode: Sets the tick mode for this axis.
+        ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+        ///   - tick0: Sets the placement of the first tick on this axis.
+        ///   - dTick: Sets the step in-between ticks on this axis.
+        ///   - tickValues: Sets the values at which ticks on this axis appear.
+        ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - tickLength: Sets the tick length (in px).
+        ///   - tickWidth: Sets the tick width (in px).
+        ///   - tickColor: Sets the tick color.
+        ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+        ///   - tickPrefix: Sets a tick label prefix.
+        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+        ///   - tickSuffix: Sets a tick label suffix.
+        ///   - showExponent: If *all*, all exponents are shown besides their significands.
+        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - separateThousands: If "true", even 4-digit integers are separated
+        ///   - tickFont: Sets the tick font.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - tickFormatStops:
+        ///   - layer: Sets the layer on which this axis is displayed.
+        ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
+        public init(visible: Bool? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode:
+                RangeMode? = nil, range: InfoArray? = nil, categoryOrder: CategoryOrder? = nil, categoryArray:
+                [Double]? = nil, angle: Angle? = nil, side: Side? = nil, title: Title? = nil, hoverFormat:
+                String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil,
+                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
+                nil, gridWidth: Double? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything?
+                = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks:
+                Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
+                showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil,
+                showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? =
+                nil, exponentFormat: ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Font? =
+                nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
+                nil, layer: AxisLayer? = nil, calendar: Calendar? = nil) {
+            self.visible = visible
+            self.type = type
+            self.autoRange = autoRange
+            self.rangeMode = rangeMode
+            self.range = range
+            self.categoryOrder = categoryOrder
+            self.categoryArray = categoryArray
+            self.angle = angle
+            self.side = side
+            self.title = title
+            self.hoverFormat = hoverFormat
+            self.uiRevision = uiRevision
+            self.color = color
+            self.showLine = showLine
+            self.lineColor = lineColor
+            self.lineWidth = lineWidth
+            self.showGrid = showGrid
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+            self.tickMode = tickMode
+            self.numTicks = numTicks
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.tickValues = tickValues
+            self.tickText = tickText
+            self.ticks = ticks
+            self.tickLength = tickLength
+            self.tickWidth = tickWidth
+            self.tickColor = tickColor
+            self.showTickLabels = showTickLabels
+            self.showTickPrefix = showTickPrefix
+            self.tickPrefix = tickPrefix
+            self.showTickSuffix = showTickSuffix
+            self.tickSuffix = tickSuffix
+            self.showExponent = showExponent
+            self.exponentFormat = exponentFormat
+            self.separateThousands = separateThousands
+            self.tickFont = tickFont
+            self.tickAngle = tickAngle
+            self.tickFormat = tickFormat
+            self.tickFormatStops = tickFormatStops
+            self.layer = layer
+            self.calendar = calendar
+        }
+        
+    }
+    public var radialAxis: RadialAxis? = nil
+
+    public struct AngularAxis: Encodable {
+        /// A single toggle to hide the axis while preserving interaction like dragging.
+        /// 
+        /// Default is true when a cheater plot is present on the axis, otherwise false
+        public var visible: Bool? = nil
+    
+        /// Sets the angular axis type.
+        /// 
+        /// If *linear*, set `thetaunit` to determine the unit in which axis value are shown. If *category,
+        /// use `period` to set the number of integer coordinates around polar axis.
+        public enum `Type`: String, Encodable {
+            case auto = "-"
+            case linear
+            case category
+        }
+        /// Sets the angular axis type.
+        /// 
+        /// If *linear*, set `thetaunit` to determine the unit in which axis value are shown. If *category,
+        /// use `period` to set the number of integer coordinates around polar axis.
+        public var type: `Type`? = nil
+    
+        /// Specifies the ordering logic for the case of categorical variables.
+        /// 
+        /// By default, plotly uses *trace*, which specifies the order that is present in the data supplied.
+        /// Set `categoryorder` to *category ascending* or *category descending* if order should be
+        /// determined by the alphanumerical order of the category names. Set `categoryorder` to *array* to
+        /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
+        /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
+        /// mode. The unspecified categories will follow the categories in `categoryarray`. Set
+        /// `categoryorder` to *total ascending* or *total descending* if order should be determined by the
+        /// numerical order of the values. Similarly, the order can be determined by the min, max, sum, mean
+        /// or median of all the values.
+        public var categoryOrder: CategoryOrder? = nil
+    
+        /// Sets the order in which categories on this axis appear.
+        /// 
+        /// Only has an effect if `categoryorder` is set to *array*. Used with `categoryorder`.
+        public var categoryArray: [Double]? = nil
+    
+        /// Sets the format unit of the formatted *theta* values.
+        /// 
+        /// Has an effect only when `angularaxis.type` is *linear*.
+        public enum ThetaUnit: String, Encodable {
+            case radians
+            case degrees
+        }
+        /// Sets the format unit of the formatted *theta* values.
+        /// 
+        /// Has an effect only when `angularaxis.type` is *linear*.
+        public var thetaUnit: ThetaUnit? = nil
+    
+        /// Set the angular period.
+        /// 
+        /// Has an effect only when `angularaxis.type` is *category*.
+        public var period: Double? = nil
+    
+        /// Sets the direction corresponding to positive angles.
+        public enum Direction: String, Encodable {
+            case counterClockwise = "counterclockwise"
+            case clockwise
+        }
+        /// Sets the direction corresponding to positive angles.
+        public var direction: Direction? = nil
+    
+        /// Sets that start position (in degrees) of the angular axis By default, polar subplots with
+        /// `direction` set to *counterclockwise* get a `rotation` of *0* which corresponds to due East
+        /// (like what mathematicians prefer).
+        /// 
+        /// In turn, polar with `direction` set to *clockwise* get a rotation of *90* which corresponds to
+        /// due North (like on a compass),
+        public var rotation: Angle? = nil
+    
+        /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var hoverFormat: String? = nil
+    
+        /// Controls persistence of user-driven changes in axis `rotation`.
+        /// 
+        /// Defaults to `polar<N>.uirevision`.
+        public var uiRevision: Anything? = nil
+    
+        /// Sets default for all colors associated with this axis all at once: line, font, tick, and grid
+        /// colors.
+        /// 
+        /// Grid color is lightened by blending this with the plot background Individual pieces can override
+        /// this.
+        public var color: Color? = nil
+    
+        /// Determines whether or not a line bounding this axis is drawn.
+        public var showLine: Bool? = nil
+    
+        /// Sets the axis line color.
+        public var lineColor: Color? = nil
+    
+        /// Sets the width (in px) of the axis line.
+        public var lineWidth: Double? = nil
+    
+        /// Determines whether or not grid lines are drawn.
+        /// 
+        /// If *true*, the grid lines are drawn at every tick mark.
+        public var showGrid: Bool? = nil
+    
+        /// Sets the color of the grid lines.
+        public var gridColor: Color? = nil
+    
+        /// Sets the width (in px) of the grid lines.
+        public var gridWidth: Double? = nil
+    
+        /// Sets the tick mode for this axis.
+        /// 
+        /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+        /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+        /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+        /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+        /// provided).
+        public var tickMode: TickMode? = nil
+    
+        /// Specifies the maximum number of ticks for the particular axis.
+        /// 
+        /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+        /// Has an effect only if `tickmode` is set to *auto*.
+        public var numTicks: Int? = nil
+    
+        /// Sets the placement of the first tick on this axis.
+        /// 
+        /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+        /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+        /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+        /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+        /// category is assigned a serial number from zero in the order it appears.
+        public var tick0: Anything? = nil
+    
+        /// Sets the step in-between ticks on this axis.
+        /// 
+        /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+        /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+        /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+        /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+        /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+        /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+        /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+        /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+        /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+        /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+        /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+        /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+        /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+        public var dTick: Anything? = nil
+    
+        /// Sets the values at which ticks on this axis appear.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+        public var tickValues: [Double]? = nil
+    
+        /// Sets the text displayed at the ticks position via `tickvals`.
+        /// 
+        /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+        public var tickText: [Double]? = nil
+    
+        /// Determines whether ticks are drawn or not.
+        /// 
+        /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+        /// (inside) the axis lines.
+        public var ticks: Ticks? = nil
+    
+        /// Sets the tick length (in px).
+        public var tickLength: Double? = nil
+    
+        /// Sets the tick width (in px).
+        public var tickWidth: Double? = nil
+    
+        /// Sets the tick color.
+        public var tickColor: Color? = nil
+    
+        /// Determines whether or not the tick labels are drawn.
+        public var showTickLabels: Bool? = nil
+    
+        /// If *all*, all tick labels are displayed with a prefix.
+        /// 
+        /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+        /// displayed with a suffix. If *none*, tick prefixes are hidden.
+        public var showTickPrefix: ShowTickPrefix? = nil
+    
+        /// Sets a tick label prefix.
+        public var tickPrefix: String? = nil
+    
+        /// Same as `showtickprefix` but for tick suffixes.
+        public var showTickSuffix: ShowTickSuffix? = nil
+    
+        /// Sets a tick label suffix.
+        public var tickSuffix: String? = nil
+    
+        /// If *all*, all exponents are shown besides their significands.
+        /// 
+        /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+        /// last tick is shown. If *none*, no exponents appear.
+        public var showExponent: ShowExponent? = nil
+    
+        /// Determines a formatting rule for the tick exponents.
+        /// 
+        /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+        /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+        public var exponentFormat: ExponentFormat? = nil
+    
+        /// If "true", even 4-digit integers are separated
+        public var separateThousands: Bool? = nil
+    
+        /// Sets the tick font.
+        public var tickFont: Font? = nil
+    
+        /// Sets the angle of the tick labels with respect to the horizontal.
+        /// 
+        /// For example, a `tickangle` of -90 draws the tick labels vertically.
+        public var tickAngle: Angle? = nil
+    
+        /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+        /// those in Python.
+        /// 
+        /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+        /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+        /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+        /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+        public var tickFormat: String? = nil
+    
+        public var tickFormatStops: [TickFormatStop]? = nil
+    
+        /// Sets the layer on which this axis is displayed.
+        /// 
+        /// If *above traces*, this axis is displayed above all the subplot's traces If *below traces*, this
+        /// axis is displayed below all the subplot's traces, but above the grid lines. Useful when used
+        /// together with scatter-like traces with `cliponaxis` set to *false* to show markers and/or text
+        /// nodes above this axis.
+        public var layer: AxisLayer? = nil
+    
+        /// Decoding and encoding keys compatible with Plotly schema.
+        enum CodingKeys: String, CodingKey {
+            case visible
+            case type
+            case categoryOrder = "categoryorder"
+            case categoryArray = "categoryarray"
+            case thetaUnit = "thetaunit"
+            case period
+            case direction
+            case rotation
+            case hoverFormat = "hoverformat"
+            case uiRevision = "uirevision"
+            case color
+            case showLine = "showline"
+            case lineColor = "linecolor"
+            case lineWidth = "linewidth"
+            case showGrid = "showgrid"
+            case gridColor = "gridcolor"
+            case gridWidth = "gridwidth"
+            case tickMode = "tickmode"
+            case numTicks = "nticks"
+            case tick0
+            case dTick = "dtick"
+            case tickValues = "tickvals"
+            case tickText = "ticktext"
+            case ticks
+            case tickLength = "ticklen"
+            case tickWidth = "tickwidth"
+            case tickColor = "tickcolor"
+            case showTickLabels = "showticklabels"
+            case showTickPrefix = "showtickprefix"
+            case tickPrefix = "tickprefix"
+            case showTickSuffix = "showticksuffix"
+            case tickSuffix = "ticksuffix"
+            case showExponent = "showexponent"
+            case exponentFormat = "exponentformat"
+            case separateThousands = "separatethousands"
+            case tickFont = "tickfont"
+            case tickAngle = "tickangle"
+            case tickFormat = "tickformat"
+            case tickFormatStops = "tickformatstops"
+            case layer
+        }
+        
+        /// Creates `AngularAxis` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
+        ///   - type: Sets the angular axis type.
+        ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
+        ///   - categoryArray: Sets the order in which categories on this axis appear.
+        ///   - thetaUnit: Sets the format unit of the formatted *theta* values.
+        ///   - period: Set the angular period.
+        ///   - direction: Sets the direction corresponding to positive angles.
+        ///   - rotation: Sets that start position (in degrees) of the angular axis By default, polar subplots
+        ///   with `direction` set to *counterclockwise* get a `rotation` of *0* which corresponds to due East
+        ///   (like what mathematicians prefer).
+        ///   - hoverFormat: Sets the hover text formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - uiRevision: Controls persistence of user-driven changes in axis `rotation`.
+        ///   - color: Sets default for all colors associated with this axis all at once: line, font, tick,
+        ///   and grid colors.
+        ///   - showLine: Determines whether or not a line bounding this axis is drawn.
+        ///   - lineColor: Sets the axis line color.
+        ///   - lineWidth: Sets the width (in px) of the axis line.
+        ///   - showGrid: Determines whether or not grid lines are drawn.
+        ///   - gridColor: Sets the color of the grid lines.
+        ///   - gridWidth: Sets the width (in px) of the grid lines.
+        ///   - tickMode: Sets the tick mode for this axis.
+        ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+        ///   - tick0: Sets the placement of the first tick on this axis.
+        ///   - dTick: Sets the step in-between ticks on this axis.
+        ///   - tickValues: Sets the values at which ticks on this axis appear.
+        ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+        ///   - ticks: Determines whether ticks are drawn or not.
+        ///   - tickLength: Sets the tick length (in px).
+        ///   - tickWidth: Sets the tick width (in px).
+        ///   - tickColor: Sets the tick color.
+        ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+        ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+        ///   - tickPrefix: Sets a tick label prefix.
+        ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+        ///   - tickSuffix: Sets a tick label suffix.
+        ///   - showExponent: If *all*, all exponents are shown besides their significands.
+        ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - separateThousands: If "true", even 4-digit integers are separated
+        ///   - tickFont: Sets the tick font.
+        ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+        ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+        ///   very similar to those in Python.
+        ///   - tickFormatStops:
+        ///   - layer: Sets the layer on which this axis is displayed.
+        public init(visible: Bool? = nil, type: `Type`? = nil, categoryOrder: CategoryOrder? = nil,
+                categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction:
+                Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? =
+                nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? =
+                nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode:
+                TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
+                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double?
+                = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil,
+                showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix:
+                ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil,
+                exponentFormat: ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Font? = nil,
+                tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil,
+                layer: AxisLayer? = nil) {
+            self.visible = visible
+            self.type = type
+            self.categoryOrder = categoryOrder
+            self.categoryArray = categoryArray
+            self.thetaUnit = thetaUnit
+            self.period = period
+            self.direction = direction
+            self.rotation = rotation
+            self.hoverFormat = hoverFormat
+            self.uiRevision = uiRevision
+            self.color = color
+            self.showLine = showLine
+            self.lineColor = lineColor
+            self.lineWidth = lineWidth
+            self.showGrid = showGrid
+            self.gridColor = gridColor
+            self.gridWidth = gridWidth
+            self.tickMode = tickMode
+            self.numTicks = numTicks
+            self.tick0 = tick0
+            self.dTick = dTick
+            self.tickValues = tickValues
+            self.tickText = tickText
+            self.ticks = ticks
+            self.tickLength = tickLength
+            self.tickWidth = tickWidth
+            self.tickColor = tickColor
+            self.showTickLabels = showTickLabels
+            self.showTickPrefix = showTickPrefix
+            self.tickPrefix = tickPrefix
+            self.showTickSuffix = showTickSuffix
+            self.tickSuffix = tickSuffix
+            self.showExponent = showExponent
+            self.exponentFormat = exponentFormat
+            self.separateThousands = separateThousands
+            self.tickFont = tickFont
+            self.tickAngle = tickAngle
+            self.tickFormat = tickFormat
+            self.tickFormatStops = tickFormatStops
+            self.layer = layer
+        }
+        
+    }
+    public var angularAxis: AngularAxis? = nil
+
+    /// Determines if the radial axis grid lines and angular axis line are drawn as *circular* sectors
+    /// or as *linear* (polygon) sectors.
+    /// 
+    /// Has an effect only when the angular axis has `type` *category*. Note that `radialaxis.angle` is
+    /// snapped to the angle of the closest vertex when `gridshape` is *circular* (so that radial axis
+    /// scale is the same as the data scale).
+    public enum GridShape: String, Encodable {
+        case circular
+        case linear
+    }
+    /// Determines if the radial axis grid lines and angular axis line are drawn as *circular* sectors
+    /// or as *linear* (polygon) sectors.
+    /// 
+    /// Has an effect only when the angular axis has `type` *category*. Note that `radialaxis.angle` is
+    /// snapped to the angle of the closest vertex when `gridshape` is *circular* (so that radial axis
+    /// scale is the same as the data scale).
+    public var gridShape: GridShape? = nil
+
+    /// Controls persistence of user-driven changes in axis attributes, if not overridden in the
+    /// individual axes.
+    /// 
+    /// Defaults to `layout.uirevision`.
+    public var uiRevision: Anything? = nil
+
+    /// Shared and preset default axis reference used to initialize layout and all traces.
+    public static let preset: Polar = Polar(uid: 1)
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case domain
+        case sector
+        case hole
+        case backgroundColor = "bgcolor"
+        case radialAxis = "radialaxis"
+        case angularAxis = "angularaxis"
+        case gridShape = "gridshape"
+        case uiRevision = "uirevision"
+    }
+    
+    /// Creates `Polar` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - uid: Unique identifier of the axis.
+    ///   - domain:
+    ///   - sector: Sets angular span of this polar subplot with two angles (in degrees).
+    ///   - hole: Sets the fraction of the radius to cut out of the polar subplot.
+    ///   - backgroundColor: Set the background color of the subplot
+    ///   - radialAxis:
+    ///   - angularAxis:
+    ///   - gridShape: Determines if the radial axis grid lines and angular axis line are drawn as
+    ///   *circular* sectors or as *linear* (polygon) sectors.
+    ///   - uiRevision: Controls persistence of user-driven changes in axis attributes, if not overridden
+    ///   in the individual axes.
+    public init(uid: UInt = UInt.random(in: 2...UInt.max), domain: Domain? = nil, sector: InfoArray?
+            = nil, hole: Double? = nil, backgroundColor: Color? = nil, radialAxis: RadialAxis? = nil,
+            angularAxis: AngularAxis? = nil, gridShape: GridShape? = nil, uiRevision: Anything? = nil) {
+        self.uid = uid
+        self.domain = domain
+        self.sector = sector
+        self.hole = hole
+        self.backgroundColor = backgroundColor
+        self.radialAxis = radialAxis
+        self.angularAxis = angularAxis
+        self.gridShape = gridShape
+        self.uiRevision = uiRevision
+    }
+    
+}
+
+/// - Note:
+///   Used by `Layout.Legend.title`, `ColorBar.title`, `GradientMarker.ColorBar.title`,
+///   `Marker.ColorBar.title`, `Heatmap<ZData, XYData>.ColorBar.title`, `Histogram<XData,
+///   YData>.Marker.ColorBar.title`, `Histogram2D<XData, YData, ZData>.ColorBar.title`,
+///   `Histogram2DContour<XData, YData, ZData>.ColorBar.title`, `Contour<ZData, XData,
+///   YData>.ColorBar.title`, `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.title`,
+///   `Funnel<XData, YData>.Marker.ColorBar.title`, `Sunburst<ValuesData>.Marker.ColorBar.title`,
+///   `Treemap<ValuesData>.Marker.ColorBar.title`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.title`, `SymbolicMarker.ColorBar.title`, `Surface<ZSurfaceData,
+///   XYData>.ColorBar.title`, `Isosurface<XData, YData, ZData, ValueData>.ColorBar.title`,
+///   `Volume<XYZData, ValueData>.ColorBar.title`, `Mesh3D<XData, YData, ZData, IntensityData,
+///   VertexcolorData, FacecolorData>.ColorBar.title`, `Cone<XYZData, UVWData>.ColorBar.title`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.title`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.title`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.title`, `ScatterGL<XData, YData>.SymbolicMarker.ColorBar.title`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.title`, `HeatmapGL<ZData, XYData>.ColorBar.title`,
+///   `ParallelCoordinates.MarkerLine.ColorBar.title`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.title`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.title`, `ChoroplethMapbox<LocationsData,
+///   ZData>.ColorBar.title`, `DensityMapbox<CoordinateData, ZData>.ColorBar.title`,
+///   `ScatterCarpet<AData, BData>.GradientMarker.ColorBar.title`, `ContourCarpet<ZData, AData,
+///   BData>.ColorBar.title`, `ScatterPolar<RData, ThetaData>.GradientMarker.ColorBar.title`,
+///   `ScatterPolarGL<RData, ThetaData>.SymbolicMarker.ColorBar.title`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.title`.
+public struct LegendTitle: Encodable {
+    /// Sets the title of the legend.
+    public var text: String? = nil
+
+    /// Sets this legend's title font.
+    public var font: Font? = nil
+
+    /// Determines the location of legend's title with respect to the legend items.
+    /// 
+    /// Defaulted to *top* with `orientation` is *h*. Defaulted to *left* with `orientation` is *v*. The
+    /// *top left* options could be used to expand legend area in both x and y sides.
+    public enum Side: String, Encodable {
+        case top
+        case left
+        case topLeft = "top left"
+        case right
+    }
+    /// Determines the location of legend's title with respect to the legend items.
+    /// 
+    /// Defaulted to *top* with `orientation` is *h*. Defaulted to *left* with `orientation` is *v*. The
+    /// *top left* options could be used to expand legend area in both x and y sides.
+    public var side: Side? = nil
+
+    /// Creates `LegendTitle` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - text: Sets the title of the legend.
+    ///   - font: Sets this legend's title font.
+    ///   - side: Determines the location of legend's title with respect to the legend items.
+    public init(text: String? = nil, font: Font? = nil, side: Side? = nil) {
+        self.text = text
+        self.font = font
+        self.side = side
+    }
+    
+}
+
+public final class ColorAxis: Encodable, SubplotAxis {
+    /// Unique identifier of the axis.
+    public var uid: UInt = UInt.random(in: 2...UInt.max)
+
+    /// Determines whether or not the color domain is computed with respect to the input data (here
+    /// corresponding trace color array(s)) or the bounds set in `cmin` and `cmax` Defaults to `false`
+    /// when `cmin` and `cmax` are set by the user.
+    public var cAuto: Bool? = nil
+
+    /// Sets the lower bound of the color domain.
+    /// 
+    /// Value should have the same units as corresponding trace color array(s) and if set, `cmax` must
+    /// be set as well.
+    public var cMin: Double? = nil
+
+    /// Sets the upper bound of the color domain.
+    /// 
+    /// Value should have the same units as corresponding trace color array(s) and if set, `cmin` must
+    /// be set as well.
+    public var cMax: Double? = nil
+
+    /// Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be equidistant to this
+    /// point.
+    /// 
+    /// Value should have the same units as corresponding trace color array(s). Has no effect when
+    /// `cauto` is `false`.
+    public var cMiddle: Double? = nil
+
+    /// Sets the colorscale.
+    /// 
+    /// The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba,
+    /// hex, hsl, hsv, or named color string. At minimum, a mapping for the lowest (0) and highest (1)
+    /// values are required. For example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the
+    /// bounds of the colorscale in color space, use`cmin` and `cmax`. Alternatively, `colorscale` may
+    /// be a palette name string of the following list:
+    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    public var colorScale: ColorScale? = nil
+
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
+    /// determined by `colorscale`.
+    /// 
+    /// In case `colorscale` is unspecified or `autocolorscale` is true, the default palette will be
+    /// chosen according to whether numbers in the `color` array are all positive, all negative or
+    /// mixed.
+    public var autoColorScale: Bool? = nil
+
+    /// Reverses the color mapping if true.
+    /// 
+    /// If true, `cmin` will correspond to the last color in the array and `cmax` will correspond to the
+    /// first color.
+    public var reverseScale: Bool? = nil
+
+    /// Determines whether or not a colorbar is displayed for this trace.
+    public var showScale: Bool? = nil
+
+    public var colorBar: ColorBar? = nil
+
+    /// Shared and preset default axis reference used to initialize layout and all traces.
+    public static let preset: ColorAxis = ColorAxis(uid: 1)
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+    }
+    
+    /// Creates `ColorAxis` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - uid: Unique identifier of the axis.
+    ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
+    ///   (here corresponding trace color array(s)) or the bounds set in `cmin` and `cmax` Defaults to
+    ///   `false` when `cmin` and `cmax` are set by the user.
+    ///   - cMin: Sets the lower bound of the color domain.
+    ///   - cMax: Sets the upper bound of the color domain.
+    ///   - cMiddle: Sets the mid-point of the color domain by scaling `cmin` and/or `cmax` to be
+    ///   equidistant to this point.
+    ///   - colorScale: Sets the colorscale.
+    ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
+    ///   true`) or the palette determined by `colorscale`.
+    ///   - reverseScale: Reverses the color mapping if true.
+    ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
+    ///   - colorBar:
+    public init(uid: UInt = UInt.random(in: 2...UInt.max), cAuto: Bool? = nil, cMin: Double? = nil,
+            cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+            Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil) {
+        self.uid = uid
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
+        self.colorScale = colorScale
+        self.autoColorScale = autoColorScale
+        self.reverseScale = reverseScale
+        self.showScale = showScale
+        self.colorBar = colorBar
+    }
+    
+}
+
+/// - Note:
+///   Used by `ColorAxis.colorBar`, `GradientMarker.colorBar`, `Marker.colorBar`, `Heatmap<ZData,
+///   XYData>.colorBar`, `Histogram<XData, YData>.Marker.colorBar`, `Histogram2D<XData, YData,
+///   ZData>.colorBar`, `Histogram2DContour<XData, YData, ZData>.colorBar`, `Contour<ZData, XData,
+///   YData>.colorBar`, `ScatterTernary<AData, BData, CData>.GradientMarker.colorBar`, `Funnel<XData,
+///   YData>.Marker.colorBar`, `Sunburst<ValuesData>.Marker.colorBar`,
+///   `Treemap<ValuesData>.Marker.colorBar`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.colorBar`, `SymbolicMarker.colorBar`, `Surface<ZSurfaceData,
+///   XYData>.colorBar`, `Isosurface<XData, YData, ZData, ValueData>.colorBar`, `Volume<XYZData,
+///   ValueData>.colorBar`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.colorBar`, `Cone<XYZData, UVWData>.colorBar`, `StreamTube<XYZData,
+///   UVWData>.colorBar`, `ScatterGeo<CoordinateData, LocationsData>.GradientMarker.colorBar`,
+///   `Choropleth<LocationsData, ZData>.colorBar`, `ScatterGL<XData, YData>.SymbolicMarker.colorBar`,
+///   `ScatterPlotMatrix.SymbolicMarker.colorBar`, `HeatmapGL<ZData, XYData>.colorBar`,
+///   `ParallelCoordinates.MarkerLine.colorBar`, `ParallelCategories.ShapedMarkerLine.colorBar`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.colorBar`, `ChoroplethMapbox<LocationsData,
+///   ZData>.colorBar`, `DensityMapbox<CoordinateData, ZData>.colorBar`, `ScatterCarpet<AData,
+///   BData>.GradientMarker.colorBar`, `ContourCarpet<ZData, AData, BData>.colorBar`,
+///   `ScatterPolar<RData, ThetaData>.GradientMarker.colorBar`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.colorBar`, `BarPolar<RData, ThetaData>.Marker.colorBar`.
+public struct ColorBar: Encodable {
+    /// Determines whether this color bar's thickness (i.e.
+    /// 
+    /// the measure in the constant color direction) is set in units of plot *fraction* or in *pixels*.
+    /// Use `thickness` to set the value.
+    public var thicknessMode: ThicknessMode? = nil
+
+    /// Sets the thickness of the color bar This measure excludes the size of the padding, ticks and
+    /// labels.
+    public var thickness: Double? = nil
+
+    /// Determines whether this color bar's length (i.e.
+    /// 
+    /// the measure in the color variation direction) is set in units of plot *fraction* or in *pixels.
+    /// Use `len` to set the value.
+    public var lengthMode: LengthMode? = nil
+
+    /// Sets the length of the color bar This measure excludes the padding of both ends.
+    /// 
+    /// That is, the color bar length is this length minus the padding on both ends.
+    public var length: Double? = nil
+
+    /// Sets the x position of the color bar (in plot fraction).
+    public var x: Double? = nil
+
+    /// Sets this color bar's horizontal position anchor.
+    /// 
+    /// This anchor binds the `x` position to the *left*, *center* or *right* of the color bar.
+    public var xAnchor: XAnchor? = nil
+
+    /// Sets the amount of padding (in px) along the x direction.
+    public var xPadding: Double? = nil
+
+    /// Sets the y position of the color bar (in plot fraction).
+    public var y: Double? = nil
+
+    /// Sets this color bar's vertical position anchor This anchor binds the `y` position to the *top*,
+    /// *middle* or *bottom* of the color bar.
+    public var yAnchor: YAnchor? = nil
+
+    /// Sets the amount of padding (in px) along the y direction.
+    public var yPading: Double? = nil
+
+    /// Sets the axis line color.
+    public var outlineColor: Color? = nil
+
+    /// Sets the width (in px) of the axis line.
+    public var outlineWidth: Double? = nil
+
+    /// Sets the axis line color.
+    public var borderColor: Color? = nil
+
+    /// Sets the width (in px) or the border enclosing this color bar.
+    public var borderWidth: Double? = nil
+
+    /// Sets the color of padded area.
+    public var backgroundColor: Color? = nil
+
+    /// Sets the tick mode for this axis.
+    /// 
+    /// If *auto*, the number of ticks is set via `nticks`. If *linear*, the placement of the ticks is
+    /// determined by a starting position `tick0` and a tick step `dtick` (*linear* is the default value
+    /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
+    /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
+    /// provided).
+    public var tickMode: TickMode? = nil
+
+    /// Specifies the maximum number of ticks for the particular axis.
+    /// 
+    /// The actual number of ticks will be chosen automatically to be less than or equal to `nticks`.
+    /// Has an effect only if `tickmode` is set to *auto*.
+    public var numTicks: Int? = nil
+
+    /// Sets the placement of the first tick on this axis.
+    /// 
+    /// Use with `dtick`. If the axis `type` is *log*, then you must take the log of your starting tick
+    /// (e.g. to set the starting tick to 100, set the `tick0` to 2) except when `dtick`=*L<f>* (see
+    /// `dtick` for more info). If the axis `type` is *date*, it should be a date string, like date
+    /// data. If the axis `type` is *category*, it should be a number, using the scale where each
+    /// category is assigned a serial number from zero in the order it appears.
+    public var tick0: Anything? = nil
+
+    /// Sets the step in-between ticks on this axis.
+    /// 
+    /// Use with `tick0`. Must be a positive number, or special strings available to *log* and *date*
+    /// axes. If the axis `type` is *log*, then ticks are set every 10^(n*dtick) where n is the tick
+    /// number. For example, to set a tick mark at 1, 10, 100, 1000, ... set dtick to 1. To set tick
+    /// marks at 1, 100, 10000, ... set dtick to 2. To set tick marks at 1, 5, 25, 125, 625, 3125, ...
+    /// set dtick to log_10(5), or 0.69897000433. *log* has several special values; *L<f>*, where `f` is
+    /// a positive number, gives ticks linearly spaced in value (but not position). For example `tick0`
+    /// = 0.1, `dtick` = *L0.5* will put ticks at 0.1, 0.6, 1.1, 1.6 etc. To show powers of 10 plus
+    /// small digits between, use *D1* (all digits) or *D2* (only 2 and 5). `tick0` is ignored for *D1*
+    /// and *D2*. If the axis `type` is *date*, then you must convert the time to milliseconds. For
+    /// example, to set the interval between ticks to one day, set `dtick` to 86400000.0. *date* also
+    /// has special values *M<n>* gives ticks spaced by a number of months. `n` must be a positive
+    /// integer. To set ticks on the 15th of every third month, set `tick0` to *2000-01-15* and `dtick`
+    /// to *M3*. To set ticks every 4 years, set `dtick` to *M48*
+    public var dTick: Anything? = nil
+
+    /// Sets the values at which ticks on this axis appear.
+    /// 
+    /// Only has an effect if `tickmode` is set to *array*. Used with `ticktext`.
+    public var tickValues: [Double]? = nil
+
+    /// Sets the text displayed at the ticks position via `tickvals`.
+    /// 
+    /// Only has an effect if `tickmode` is set to *array*. Used with `tickvals`.
+    public var tickText: [Double]? = nil
+
+    /// Determines whether ticks are drawn or not.
+    /// 
+    /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
+    /// (inside) the axis lines.
+    public var ticks: Ticks? = nil
+
+    /// Sets the tick length (in px).
+    public var tickLength: Double? = nil
+
+    /// Sets the tick width (in px).
+    public var tickWidth: Double? = nil
+
+    /// Sets the tick color.
+    public var tickColor: Color? = nil
+
+    /// Determines whether or not the tick labels are drawn.
+    public var showTickLabels: Bool? = nil
+
+    /// Sets the color bar's tick label font
+    public var tickFont: Font? = nil
+
+    /// Sets the angle of the tick labels with respect to the horizontal.
+    /// 
+    /// For example, a `tickangle` of -90 draws the tick labels vertically.
+    public var tickAngle: Angle? = nil
+
+    /// Sets the tick label formatting rule using d3 formatting mini-languages which are very similar to
+    /// those in Python.
+    /// 
+    /// For numbers, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    /// And for dates see: https://github.com/d3/d3-time-format#locale_format We add one item to d3's
+    /// date formatter: *%{n}f* for fractional seconds with n digits. For example, *2016-10-13
+    /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
+    public var tickFormat: String? = nil
+
+    public var tickFormatStops: [TickFormatStop]? = nil
+
+    /// Sets a tick label prefix.
+    public var tickPrefix: String? = nil
+
+    /// If *all*, all tick labels are displayed with a prefix.
+    /// 
+    /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
+    /// displayed with a suffix. If *none*, tick prefixes are hidden.
+    public var showTickPrefix: ShowTickPrefix? = nil
+
+    /// Sets a tick label suffix.
+    public var tickSuffix: String? = nil
+
+    /// Same as `showtickprefix` but for tick suffixes.
+    public var showTickSuffix: ShowTickSuffix? = nil
+
+    /// If "true", even 4-digit integers are separated
+    public var separateThousands: Bool? = nil
+
+    /// Determines a formatting rule for the tick exponents.
+    /// 
+    /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
+    /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
+    public var exponentFormat: ExponentFormat? = nil
+
+    /// If *all*, all exponents are shown besides their significands.
+    /// 
+    /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
+    /// last tick is shown. If *none*, no exponents appear.
+    public var showExponent: ShowExponent? = nil
+
+    public var title: LegendTitle? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case thicknessMode = "thicknessmode"
+        case thickness
+        case lengthMode = "lenmode"
+        case length = "len"
+        case x
+        case xAnchor = "xanchor"
+        case xPadding = "xpad"
+        case y
+        case yAnchor = "yanchor"
+        case yPading = "ypad"
+        case outlineColor = "outlinecolor"
+        case outlineWidth = "outlinewidth"
+        case borderColor = "bordercolor"
+        case borderWidth = "borderwidth"
+        case backgroundColor = "bgcolor"
+        case tickMode = "tickmode"
+        case numTicks = "nticks"
+        case tick0
+        case dTick = "dtick"
+        case tickValues = "tickvals"
+        case tickText = "ticktext"
+        case ticks
+        case tickLength = "ticklen"
+        case tickWidth = "tickwidth"
+        case tickColor = "tickcolor"
+        case showTickLabels = "showticklabels"
+        case tickFont = "tickfont"
+        case tickAngle = "tickangle"
+        case tickFormat = "tickformat"
+        case tickFormatStops = "tickformatstops"
+        case tickPrefix = "tickprefix"
+        case showTickPrefix = "showtickprefix"
+        case tickSuffix = "ticksuffix"
+        case showTickSuffix = "showticksuffix"
+        case separateThousands = "separatethousands"
+        case exponentFormat = "exponentformat"
+        case showExponent = "showexponent"
+        case title
+    }
+    
+    /// Creates `ColorBar` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - thicknessMode: Determines whether this color bar's thickness (i.e.
+    ///   - thickness: Sets the thickness of the color bar This measure excludes the size of the padding,
+    ///   ticks and labels.
+    ///   - lengthMode: Determines whether this color bar's length (i.e.
+    ///   - length: Sets the length of the color bar This measure excludes the padding of both ends.
+    ///   - x: Sets the x position of the color bar (in plot fraction).
+    ///   - xAnchor: Sets this color bar's horizontal position anchor.
+    ///   - xPadding: Sets the amount of padding (in px) along the x direction.
+    ///   - y: Sets the y position of the color bar (in plot fraction).
+    ///   - yAnchor: Sets this color bar's vertical position anchor This anchor binds the `y` position to
+    ///   the *top*, *middle* or *bottom* of the color bar.
+    ///   - yPading: Sets the amount of padding (in px) along the y direction.
+    ///   - outlineColor: Sets the axis line color.
+    ///   - outlineWidth: Sets the width (in px) of the axis line.
+    ///   - borderColor: Sets the axis line color.
+    ///   - borderWidth: Sets the width (in px) or the border enclosing this color bar.
+    ///   - backgroundColor: Sets the color of padded area.
+    ///   - tickMode: Sets the tick mode for this axis.
+    ///   - numTicks: Specifies the maximum number of ticks for the particular axis.
+    ///   - tick0: Sets the placement of the first tick on this axis.
+    ///   - dTick: Sets the step in-between ticks on this axis.
+    ///   - tickValues: Sets the values at which ticks on this axis appear.
+    ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
+    ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - tickLength: Sets the tick length (in px).
+    ///   - tickWidth: Sets the tick width (in px).
+    ///   - tickColor: Sets the tick color.
+    ///   - showTickLabels: Determines whether or not the tick labels are drawn.
+    ///   - tickFont: Sets the color bar's tick label font
+    ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
+    ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
+    ///   very similar to those in Python.
+    ///   - tickFormatStops:
+    ///   - tickPrefix: Sets a tick label prefix.
+    ///   - showTickPrefix: If *all*, all tick labels are displayed with a prefix.
+    ///   - tickSuffix: Sets a tick label suffix.
+    ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
+    ///   - separateThousands: If "true", even 4-digit integers are separated
+    ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - showExponent: If *all*, all exponents are shown besides their significands.
+    ///   - title:
+    public init(thicknessMode: ThicknessMode? = nil, thickness: Double? = nil, lengthMode:
+            LengthMode? = nil, length: Double? = nil, x: Double? = nil, xAnchor: XAnchor? = nil, xPadding:
+            Double? = nil, y: Double? = nil, yAnchor: YAnchor? = nil, yPading: Double? = nil, outlineColor:
+            Color? = nil, outlineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? =
+            nil, backgroundColor: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0:
+            Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil,
+            ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? =
+            nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat:
+            String? = nil, tickFormatStops: [TickFormatStop]? = nil, tickPrefix: String? = nil,
+            showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+            ShowTickSuffix? = nil, separateThousands: Bool? = nil, exponentFormat: ExponentFormat? = nil,
+            showExponent: ShowExponent? = nil, title: LegendTitle? = nil) {
+        self.thicknessMode = thicknessMode
+        self.thickness = thickness
+        self.lengthMode = lengthMode
+        self.length = length
+        self.x = x
+        self.xAnchor = xAnchor
+        self.xPadding = xPadding
+        self.y = y
+        self.yAnchor = yAnchor
+        self.yPading = yPading
+        self.outlineColor = outlineColor
+        self.outlineWidth = outlineWidth
+        self.borderColor = borderColor
+        self.borderWidth = borderWidth
+        self.backgroundColor = backgroundColor
+        self.tickMode = tickMode
+        self.numTicks = numTicks
+        self.tick0 = tick0
+        self.dTick = dTick
+        self.tickValues = tickValues
+        self.tickText = tickText
+        self.ticks = ticks
+        self.tickLength = tickLength
+        self.tickWidth = tickWidth
+        self.tickColor = tickColor
+        self.showTickLabels = showTickLabels
+        self.tickFont = tickFont
+        self.tickAngle = tickAngle
+        self.tickFormat = tickFormat
+        self.tickFormatStops = tickFormatStops
+        self.tickPrefix = tickPrefix
+        self.showTickPrefix = showTickPrefix
+        self.tickSuffix = tickSuffix
+        self.showTickSuffix = showTickSuffix
+        self.separateThousands = separateThousands
+        self.exponentFormat = exponentFormat
+        self.showExponent = showExponent
+        self.title = title
+    }
+    
+}
+
+/// Sets the font used in hover labels.
+/// 
+/// - Note:
+///   Used by `Scatter<XData, YData>.HoverLabel.font`, `Scatter<XData, YData>.textFont`, `Bar<XData,
+///   YData>.HoverLabel.font`, `Bar<XData, YData>.textFont`, `Bar<XData, YData>.insideTextFont`,
+///   `Box<YData, XData, QData>.HoverLabel.font`, `Heatmap<ZData, XYData>.HoverLabel.font`,
+///   `Histogram<XData, YData>.HoverLabel.font`, `Histogram2D<XData, YData, ZData>.HoverLabel.font`,
+///   `Histogram2DContour<XData, YData, ZData>.HoverLabel.font`, `Contour<ZData, XData,
+///   YData>.HoverLabel.font`, `ScatterTernary<AData, BData, CData>.HoverLabel.font`,
+///   `ScatterTernary<AData, BData, CData>.textFont`, `Violin<YData, XData>.HoverLabel.font`,
+///   `Funnel<XData, YData>.HoverLabel.font`, `Funnel<XData, YData>.textFont`, `Funnel<XData,
+///   YData>.insideTextFont`, `Waterfall<XData, YData>.HoverLabel.font`, `Waterfall<XData,
+///   YData>.textFont`, `Waterfall<XData, YData>.insideTextFont`, `Image<ZData>.HoverLabel.font`,
+///   `Pie<LabelsData, ValuesData>.HoverLabel.font`, `Pie<LabelsData, ValuesData>.textFont`,
+///   `Pie<LabelsData, ValuesData>.insideTextFont`, `Pie<LabelsData, ValuesData>.Title.font`,
+///   `Sunburst<ValuesData>.HoverLabel.font`, `Sunburst<ValuesData>.textFont`,
+///   `Sunburst<ValuesData>.insideTextFont`, `Treemap<ValuesData>.HoverLabel.font`,
+///   `Treemap<ValuesData>.PathBar.textFont`, `Treemap<ValuesData>.textFont`,
+///   `Treemap<ValuesData>.insideTextFont`, `FunnelArea<LabelsData, ValuesData>.HoverLabel.font`,
+///   `FunnelArea<LabelsData, ValuesData>.textFont`, `FunnelArea<LabelsData,
+///   ValuesData>.insideTextFont`, `FunnelArea<LabelsData, ValuesData>.Title.font`, `Scatter3D<XData,
+///   YData, ZData>.HoverLabel.font`, `Scatter3D<XData, YData, ZData>.textFont`,
+///   `Surface<ZSurfaceData, XYData>.HoverLabel.font`, `Isosurface<XData, YData, ZData,
+///   ValueData>.HoverLabel.font`, `Volume<XYZData, ValueData>.HoverLabel.font`, `Mesh3D<XData, YData,
+///   ZData, IntensityData, VertexcolorData, FacecolorData>.HoverLabel.font`, `Cone<XYZData,
+///   UVWData>.HoverLabel.font`, `StreamTube<XYZData, UVWData>.HoverLabel.font`,
+///   `ScatterGeo<CoordinateData, LocationsData>.HoverLabel.font`, `ScatterGeo<CoordinateData,
+///   LocationsData>.textFont`, `Choropleth<LocationsData, ZData>.HoverLabel.font`, `ScatterGL<XData,
+///   YData>.HoverLabel.font`, `ScatterGL<XData, YData>.textFont`,
+///   `ScatterPlotMatrix.HoverLabel.font`, `PointCloud<XYData>.HoverLabel.font`, `HeatmapGL<ZData,
+///   XYData>.HoverLabel.font`, `ScatterMapbox<CoordinateData>.HoverLabel.font`,
+///   `ChoroplethMapbox<LocationsData, ZData>.HoverLabel.font`, `DensityMapbox<CoordinateData,
+///   ZData>.HoverLabel.font`, `Sankey.HoverLabel.font`, `Sankey.Node.HoverLabel.font`,
+///   `Sankey.Link.HoverLabel.font`, `Table<CellData>.HoverLabel.font`, `Table<CellData>.Header.font`,
+///   `Table<CellData>.Cells<CellData>.font`, `ScatterCarpet<AData, BData>.HoverLabel.font`,
+///   `ScatterCarpet<AData, BData>.textFont`, `OHLC<XData, OHLCData>.HoverLabel.font`,
+///   `Candlestick<XData, OHLCData>.HoverLabel.font`, `ScatterPolar<RData,
+///   ThetaData>.HoverLabel.font`, `ScatterPolar<RData, ThetaData>.textFont`, `ScatterPolarGL<RData,
+///   ThetaData>.HoverLabel.font`, `ScatterPolarGL<RData, ThetaData>.textFont`, `BarPolar<RData,
+///   ThetaData>.HoverLabel.font`.
+public struct VariableFont: Encodable {
+    /// HTML font family - the typeface that will be applied by the web browser.
+    /// 
+    /// The web browser will only be able to apply a font if it is available on the system which it
+    /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+    /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
+    /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
+    /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
+    /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
+    /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+    public var family: Data<String>? = nil
+
+    public var size: Data<Double>? = nil
+
+    public var coloring: Coloring? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case family
+        case size
+        case coloring = "color"
+    }
+    
+    /// Creates `VariableFont` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - family: HTML font family - the typeface that will be applied by the web browser.
+    ///   - size:
+    ///   - coloring:
+    public init(family: Data<String>? = nil, size: Data<Double>? = nil, coloring: Coloring? = nil) {
+        self.family = family
+        self.size = size
+        self.coloring = coloring
+    }
+    
+}
+
+/// - Note:
+///   Used by `Scatter<XData, YData>.stream`, `Bar<XData, YData>.stream`, `Box<YData, XData,
+///   QData>.stream`, `Heatmap<ZData, XYData>.stream`, `Histogram<XData, YData>.stream`,
+///   `Histogram2D<XData, YData, ZData>.stream`, `Histogram2DContour<XData, YData, ZData>.stream`,
+///   `Contour<ZData, XData, YData>.stream`, `ScatterTernary<AData, BData, CData>.stream`,
+///   `Violin<YData, XData>.stream`, `Funnel<XData, YData>.stream`, `Waterfall<XData, YData>.stream`,
+///   `Image<ZData>.stream`, `Pie<LabelsData, ValuesData>.stream`, `Sunburst<ValuesData>.stream`,
+///   `Treemap<ValuesData>.stream`, `FunnelArea<LabelsData, ValuesData>.stream`, `Scatter3D<XData,
+///   YData, ZData>.stream`, `Surface<ZSurfaceData, XYData>.stream`, `Isosurface<XData, YData, ZData,
+///   ValueData>.stream`, `Volume<XYZData, ValueData>.stream`, `Mesh3D<XData, YData, ZData,
+///   IntensityData, VertexcolorData, FacecolorData>.stream`, `Cone<XYZData, UVWData>.stream`,
+///   `StreamTube<XYZData, UVWData>.stream`, `ScatterGeo<CoordinateData, LocationsData>.stream`,
+///   `Choropleth<LocationsData, ZData>.stream`, `ScatterGL<XData, YData>.stream`,
+///   `ScatterPlotMatrix.stream`, `PointCloud<XYData>.stream`, `HeatmapGL<ZData, XYData>.stream`,
+///   `ParallelCoordinates.stream`, `ParallelCategories.stream`,
+///   `ScatterMapbox<CoordinateData>.stream`, `ChoroplethMapbox<LocationsData, ZData>.stream`,
+///   `DensityMapbox<CoordinateData, ZData>.stream`, `Sankey.stream`, `Indicator.stream`,
+///   `Table<CellData>.stream`, `Carpet<XData, YData, AData, BData>.stream`, `ScatterCarpet<AData,
+///   BData>.stream`, `ContourCarpet<ZData, AData, BData>.stream`, `OHLC<XData, OHLCData>.stream`,
+///   `Candlestick<XData, OHLCData>.stream`, `ScatterPolar<RData, ThetaData>.stream`,
+///   `ScatterPolarGL<RData, ThetaData>.stream`, `BarPolar<RData, ThetaData>.stream`.
+public struct Stream: Encodable {
+    /// The stream id number links a data trace on a plot with a stream.
+    /// 
+    /// See https://chart-studio.plotly.com/settings for more details.
+    public var token: String? = nil
+
+    /// Sets the maximum number of points to keep on the plots from an incoming stream.
+    /// 
+    /// If `maxpoints` is set to *50*, only the newest 50 points will be displayed on the plot.
+    public var maxPoints: Double? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case token
+        case maxPoints = "maxpoints"
+    }
+    
+    /// Creates `Stream` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - token: The stream id number links a data trace on a plot with a stream.
+    ///   - maxPoints: Sets the maximum number of points to keep on the plots from an incoming stream.
+    public init(token: String? = nil, maxPoints: Double? = nil) {
+        self.token = token
+        self.maxPoints = maxPoints
+    }
+    
+}
+
+/// - Note:
+///   Used by `Scatter<XData, YData>.marker`, `ScatterTernary<AData, BData, CData>.marker`,
+///   `ScatterCarpet<AData, BData>.marker`, `ScatterPolar<RData, ThetaData>.marker`.
+public struct GradientMarker: Encodable {
+    /// Sets the marker symbol type.
+    /// 
+    /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
+    /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
+    /// *dot-open* to a symbol name.
+    public var symbol: Symbol? = nil
+
+    /// Sets the marker opacity.
+    public var opacity: Data<Double>? = nil
+
+    /// Sets the marker size (in px).
+    public var size: Data<Double>? = nil
+
+    /// Sets a maximum number of points to be drawn on the graph.
+    /// 
+    /// *0* corresponds to no limit.
+    public var maxDisplayed: Double? = nil
+
+    /// Has an effect only if `marker.size` is set to a numerical array.
+    /// 
+    /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
+    /// and `sizemode`.
+    public var sizeReference: Double? = nil
+
+    /// Has an effect only if `marker.size` is set to a numerical array.
+    /// 
+    /// Sets the minimum size (in px) of the rendered marker points.
+    public var sizeMin: Double? = nil
+
+    /// Has an effect only if `marker.size` is set to a numerical array.
+    /// 
+    /// Sets the rule for which the data in `size` is converted to pixels.
+    public var sizeMode: SizeMode? = nil
+
+    public var line: MarkerLine? = nil
+
+    public var gradient: Gradient? = nil
+
+    /// Sets themarkercolor.
+    /// 
+    /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+    /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+    /// if set.
+    public var coloring: Coloring? = nil
+
+    /// Determines whether or not the color domain is computed with respect to the input data (here in
+    /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
+    /// `marker.color`is set to a numerical array.
+    /// 
+    /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+    public var cAuto: Bool? = nil
+
+    /// Sets the lower bound of the color domain.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+    public var cMin: Double? = nil
+
+    /// Sets the upper bound of the color domain.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+    public var cMax: Double? = nil
+
+    /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
+    /// equidistant to this point.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+    public var cMiddle: Double? = nil
+
+    /// Sets the colorscale.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
+    /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+    /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+    /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+    /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
+    /// name string of the following list:
+    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    public var colorScale: ColorScale? = nil
+
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
+    /// determined by `marker.colorscale`.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
+    /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+    /// numbers in the `color` array are all positive, all negative or mixed.
+    public var autoColorScale: Bool? = nil
+
+    /// Reverses the color mapping if true.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
+    /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+    public var reverseScale: Bool? = nil
+
+    /// Determines whether or not a colorbar is displayed for this trace.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array.
+    public var showScale: Bool? = nil
+
+    public var colorBar: ColorBar? = nil
+
+    /// Sets a reference to a shared color axis.
+    /// 
+    /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+    /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+    /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    public var colorAxis: ColorAxis = .preset
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case symbol
+        case opacity
+        case size
+        case maxDisplayed = "maxdisplayed"
+        case sizeReference = "sizeref"
+        case sizeMin = "sizemin"
+        case sizeMode = "sizemode"
+        case line
+        case gradient
+        case coloring = "color"
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+    }
+    
+    /// Creates `GradientMarker` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - symbol: Sets the marker symbol type.
+    ///   - opacity: Sets the marker opacity.
+    ///   - size: Sets the marker size (in px).
+    ///   - maxDisplayed: Sets a maximum number of points to be drawn on the graph.
+    ///   - sizeReference: Has an effect only if `marker.size` is set to a numerical array.
+    ///   - sizeMin: Has an effect only if `marker.size` is set to a numerical array.
+    ///   - sizeMode: Has an effect only if `marker.size` is set to a numerical array.
+    ///   - line:
+    ///   - gradient:
+    ///   - coloring: Sets themarkercolor.
+    ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
+    ///   (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only
+    ///   if in `marker.color`is set to a numerical array.
+    ///   - cMin: Sets the lower bound of the color domain.
+    ///   - cMax: Sets the upper bound of the color domain.
+    ///   - cMiddle: Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax`
+    ///   to be equidistant to this point.
+    ///   - colorScale: Sets the colorscale.
+    ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
+    ///   true`) or the palette determined by `marker.colorscale`.
+    ///   - reverseScale: Reverses the color mapping if true.
+    ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
+    ///   - colorBar:
+    ///   - colorAxis: Sets a reference to a shared color axis.
+    public init(symbol: Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? = nil,
+            maxDisplayed: Double? = nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode:
+            SizeMode? = nil, line: MarkerLine? = nil, gradient: Gradient? = nil, coloring: Coloring? = nil,
+            cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil,
+            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
+            showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: ColorAxis = .preset) {
+        self.symbol = symbol
+        self.opacity = opacity
+        self.size = size
+        self.maxDisplayed = maxDisplayed
+        self.sizeReference = sizeReference
+        self.sizeMin = sizeMin
+        self.sizeMode = sizeMode
+        self.line = line
+        self.gradient = gradient
+        self.coloring = coloring
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
+        self.colorScale = colorScale
+        self.autoColorScale = autoColorScale
+        self.reverseScale = reverseScale
+        self.showScale = showScale
+        self.colorBar = colorBar
+        self.colorAxis = colorAxis
+    }
+    
+}
+
+/// - Note:
+///   Used by `GradientMarker.line`, `Marker.line`, `Histogram<XData, YData>.Marker.line`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.line`, `Funnel<XData, YData>.Marker.line`,
+///   `SymbolicMarker.line`, `ScatterGeo<CoordinateData, LocationsData>.GradientMarker.line`,
+///   `ScatterGL<XData, YData>.SymbolicMarker.line`, `ScatterPlotMatrix.SymbolicMarker.line`,
+///   `ScatterCarpet<AData, BData>.GradientMarker.line`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.line`, `ScatterPolarGL<RData, ThetaData>.SymbolicMarker.line`,
+///   `BarPolar<RData, ThetaData>.Marker.line`.
+public struct MarkerLine: Encodable {
+    /// Sets the width (in px) of the lines bounding the marker points.
+    public var width: Data<Double>? = nil
+
+    /// Sets themarker.linecolor.
+    /// 
+    /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+    /// relative to the max and min values of the array or relative to `marker.line.cmin` and
+    /// `marker.line.cmax` if set.
+    public var coloring: Coloring? = nil
+
+    /// Determines whether or not the color domain is computed with respect to the input data (here in
+    /// `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax` Has an
+    /// effect only if in `marker.line.color`is set to a numerical array.
+    /// 
+    /// Defaults to `false` when `marker.line.cmin` and `marker.line.cmax` are set by the user.
+    public var cAuto: Bool? = nil
+
+    /// Sets the lower bound of the color domain.
+    /// 
+    /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
+    /// same units as in `marker.line.color` and if set, `marker.line.cmax` must be set as well.
+    public var cMin: Double? = nil
+
+    /// Sets the upper bound of the color domain.
+    /// 
+    /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
+    /// same units as in `marker.line.color` and if set, `marker.line.cmin` must be set as well.
+    public var cMax: Double? = nil
+
+    /// Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or `marker.line.cmax`
+    /// to be equidistant to this point.
+    /// 
+    /// Has an effect only if in `marker.line.color`is set to a numerical array. Value should have the
+    /// same units as in `marker.line.color`. Has no effect when `marker.line.cauto` is `false`.
+    public var cMiddle: Double? = nil
+
+    /// Sets the colorscale.
+    /// 
+    /// Has an effect only if in `marker.line.color`is set to a numerical array. The colorscale must be
+    /// an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+    /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+    /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+    /// in color space, use`marker.line.cmin` and `marker.line.cmax`. Alternatively, `colorscale` may be
+    /// a palette name string of the following list:
+    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    public var colorScale: ColorScale? = nil
+
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
+    /// determined by `marker.line.colorscale`.
+    /// 
+    /// Has an effect only if in `marker.line.color`is set to a numerical array. In case `colorscale` is
+    /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+    /// numbers in the `color` array are all positive, all negative or mixed.
+    public var autoColorScale: Bool? = nil
+
+    /// Reverses the color mapping if true.
+    /// 
+    /// Has an effect only if in `marker.line.color`is set to a numerical array. If true,
+    /// `marker.line.cmin` will correspond to the last color in the array and `marker.line.cmax` will
+    /// correspond to the first color.
+    public var reverseScale: Bool? = nil
+
+    /// Sets a reference to a shared color axis.
+    /// 
+    /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+    /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+    /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    public var colorAxis: ColorAxis = .preset
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case width
+        case coloring = "color"
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case colorAxis = "coloraxis"
+    }
+    
+    /// Creates `MarkerLine` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - width: Sets the width (in px) of the lines bounding the marker points.
+    ///   - coloring: Sets themarker.linecolor.
+    ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
+    ///   (here in `marker.line.color`) or the bounds set in `marker.line.cmin` and `marker.line.cmax` Has
+    ///   an effect only if in `marker.line.color`is set to a numerical array.
+    ///   - cMin: Sets the lower bound of the color domain.
+    ///   - cMax: Sets the upper bound of the color domain.
+    ///   - cMiddle: Sets the mid-point of the color domain by scaling `marker.line.cmin` and/or
+    ///   `marker.line.cmax` to be equidistant to this point.
+    ///   - colorScale: Sets the colorscale.
+    ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
+    ///   true`) or the palette determined by `marker.line.colorscale`.
+    ///   - reverseScale: Reverses the color mapping if true.
+    ///   - colorAxis: Sets a reference to a shared color axis.
+    public init(width: Data<Double>? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin:
+            Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
+            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, colorAxis: ColorAxis = .preset) {
+        self.width = width
+        self.coloring = coloring
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
+        self.colorScale = colorScale
+        self.autoColorScale = autoColorScale
+        self.reverseScale = reverseScale
+        self.colorAxis = colorAxis
+    }
+    
+}
+
+/// - Note:
+///   Used by `GradientMarker.gradient`, `ScatterTernary<AData, BData,
+///   CData>.GradientMarker.gradient`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.gradient`, `ScatterCarpet<AData, BData>.GradientMarker.gradient`,
+///   `ScatterPolar<RData, ThetaData>.GradientMarker.gradient`.
+public struct Gradient: Encodable {
+    /// Sets the type of gradient used to fill the markers
+    public enum `Type`: String, Encodable {
+        case radial
+        case horizontal
+        case vertical
+        case none
+    }
+    /// Sets the type of gradient used to fill the markers
+    public var type: `Type`? = nil
+
+    /// Sets the final color of the gradient fill: the center color for radial, the right for
+    /// horizontal, or the bottom for vertical.
+    public var coloring: Coloring? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case type
+        case coloring = "color"
+    }
+    
+    /// Creates `Gradient` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - type: Sets the type of gradient used to fill the markers
+    ///   - coloring: Sets the final color of the gradient fill: the center color for radial, the right
+    ///   for horizontal, or the bottom for vertical.
+    public init(type: `Type`? = nil, coloring: Coloring? = nil) {
+        self.type = type
+        self.coloring = coloring
+    }
+    
+}
+
+/// - Note:
+///   Used by `Scatter<XData, YData>.xError`, `Scatter<XData, YData>.yError`, `Bar<XData,
+///   YData>.xError`, `Bar<XData, YData>.yError`, `Histogram<XData, YData>.xError`, `Histogram<XData,
+///   YData>.yError`, `Scatter3D<XData, YData, ZData>.xError`, `Scatter3D<XData, YData,
+///   ZData>.yError`, `Scatter3D<XData, YData, ZData>.zError`, `ScatterGL<XData, YData>.xError`,
+///   `ScatterGL<XData, YData>.yError`.
+public struct Error: Encodable {
+    /// Determines whether or not this set of error bars is visible.
+    public var visible: Bool? = nil
+
+    /// Determines the rule used to generate the error bars.
+    /// 
+    /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
+    /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
+    /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+    /// the bar lengths are set with data set `array`.
+    public enum `Type`: String, Encodable {
+        case percent
+        case constant
+        case sqrt
+        case data
+    }
+    /// Determines the rule used to generate the error bars.
+    /// 
+    /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
+    /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
+    /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+    /// the bar lengths are set with data set `array`.
+    public var type: `Type`? = nil
+
+    /// Determines whether or not the error bars have the same length in both direction (top/bottom for
+    /// vertical bars, left/right for horizontal bars.
+    public var symmetric: Bool? = nil
+
+    /// Sets the data corresponding the length of each error bar.
+    /// 
+    /// Values are plotted relative to the underlying data.
+    public var array: [Double]? = nil
+
+    /// Sets the data corresponding the length of each error bar in the bottom (left) direction for
+    /// vertical (horizontal) bars Values are plotted relative to the underlying data.
+    public var arrayMinus: [Double]? = nil
+
+    /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if
+    /// `type` is set to *constant*) corresponding to the lengths of the error bars.
+    public var value: Double? = nil
+
+    /// Sets the value of either the percentage (if `type` is set to *percent*) or the constant (if
+    /// `type` is set to *constant*) corresponding to the lengths of the error bars in the bottom (left)
+    /// direction for vertical (horizontal) bars
+    public var valueMinus: Double? = nil
+
+    public var traceReference: Int? = nil
+
+    public var traceReferenceMinus: Int? = nil
+
+    /// Sets the stoke color of the error bars.
+    public var color: Color? = nil
+
+    /// Sets the thickness (in px) of the error bars.
+    public var thickness: Double? = nil
+
+    /// Sets the width (in px) of the cross-bar at both ends of the error bars.
+    public var width: Double? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case visible
+        case type
+        case symmetric
+        case array
+        case arrayMinus = "arrayminus"
+        case value
+        case valueMinus = "valueminus"
+        case traceReference = "traceref"
+        case traceReferenceMinus = "tracerefminus"
+        case color
+        case thickness
+        case width
+    }
+    
+    /// Creates `Error` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - visible: Determines whether or not this set of error bars is visible.
+    ///   - type: Determines the rule used to generate the error bars.
+    ///   - symmetric: Determines whether or not the error bars have the same length in both direction
+    ///   (top/bottom for vertical bars, left/right for horizontal bars.
+    ///   - array: Sets the data corresponding the length of each error bar.
+    ///   - arrayMinus: Sets the data corresponding the length of each error bar in the bottom (left)
+    ///   direction for vertical (horizontal) bars Values are plotted relative to the underlying data.
+    ///   - value: Sets the value of either the percentage (if `type` is set to *percent*) or the constant
+    ///   (if `type` is set to *constant*) corresponding to the lengths of the error bars.
+    ///   - valueMinus: Sets the value of either the percentage (if `type` is set to *percent*) or the
+    ///   constant (if `type` is set to *constant*) corresponding to the lengths of the error bars in the
+    ///   bottom (left) direction for vertical (horizontal) bars
+    ///   - traceReference:
+    ///   - traceReferenceMinus:
+    ///   - color: Sets the stoke color of the error bars.
+    ///   - thickness: Sets the thickness (in px) of the error bars.
+    ///   - width: Sets the width (in px) of the cross-bar at both ends of the error bars.
+    public init(visible: Bool? = nil, type: `Type`? = nil, symmetric: Bool? = nil, array: [Double]?
+            = nil, arrayMinus: [Double]? = nil, value: Double? = nil, valueMinus: Double? = nil,
+            traceReference: Int? = nil, traceReferenceMinus: Int? = nil, color: Color? = nil, thickness:
+            Double? = nil, width: Double? = nil) {
+        self.visible = visible
+        self.type = type
+        self.symmetric = symmetric
+        self.array = array
+        self.arrayMinus = arrayMinus
+        self.value = value
+        self.valueMinus = valueMinus
+        self.traceReference = traceReference
+        self.traceReferenceMinus = traceReferenceMinus
+        self.color = color
+        self.thickness = thickness
+        self.width = width
+    }
+    
+}
+
+/// Sets the font used for `text` lying outside the bar.
+/// 
+/// - Note:
+///   Used by `Bar<XData, YData>.outsideTextFont`, `Funnel<XData, YData>.outsideTextFont`,
+///   `Waterfall<XData, YData>.outsideTextFont`, `Pie<LabelsData, ValuesData>.outsideTextFont`,
+///   `Sunburst<ValuesData>.outsideTextFont`, `Treemap<ValuesData>.outsideTextFont`.
+public struct OutsideTextFont: Encodable {
+    /// HTML font family - the typeface that will be applied by the web browser.
+    /// 
+    /// The web browser will only be able to apply a font if it is available on the system which it
+    /// operates. Provide multiple font families, separated by commas, to indicate the preference in
+    /// which to apply fonts if they aren't available on the system. The Chart Studio Cloud (at
+    /// https://chart-studio.plotly.com or on-premise) generates images on a server, where only a select
+    /// number of fonts are installed and supported. These include *Arial*, *Balto*, *Courier New*,
+    /// *Droid Sans*,, *Droid Serif*, *Droid Sans Mono*, *Gravitas One*, *Old Standard TT*, *Open Sans*,
+    /// *Overpass*, *PT Sans Narrow*, *Raleway*, *Times New Roman*.
+    public var family: Data<String>? = nil
+
+    public var size: Data<Double>? = nil
+
+    public var coloring: Coloring? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case family
+        case size
+        case coloring = "color"
+    }
+    
+    /// Creates `OutsideTextFont` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - family: HTML font family - the typeface that will be applied by the web browser.
+    ///   - size:
+    ///   - coloring:
+    public init(family: Data<String>? = nil, size: Data<Double>? = nil, coloring: Coloring? = nil) {
+        self.family = family
+        self.size = size
+        self.coloring = coloring
+    }
+    
+}
+
+/// - Note:
+///   Used by `Bar<XData, YData>.marker`, `Histogram<XData, YData>.marker`, `Funnel<XData,
+///   YData>.marker`, `BarPolar<RData, ThetaData>.marker`.
+public struct Marker: Encodable {
+    public var line: MarkerLine? = nil
+
+    /// Sets themarkercolor.
+    /// 
+    /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+    /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+    /// if set.
+    public var coloring: Coloring? = nil
+
+    /// Determines whether or not the color domain is computed with respect to the input data (here in
+    /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
+    /// `marker.color`is set to a numerical array.
+    /// 
+    /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+    public var cAuto: Bool? = nil
+
+    /// Sets the lower bound of the color domain.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+    public var cMin: Double? = nil
+
+    /// Sets the upper bound of the color domain.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+    public var cMax: Double? = nil
+
+    /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
+    /// equidistant to this point.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+    public var cMiddle: Double? = nil
+
+    /// Sets the colorscale.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
+    /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+    /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+    /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+    /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
+    /// name string of the following list:
+    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    public var colorScale: ColorScale? = nil
+
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
+    /// determined by `marker.colorscale`.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
+    /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+    /// numbers in the `color` array are all positive, all negative or mixed.
+    public var autoColorScale: Bool? = nil
+
+    /// Reverses the color mapping if true.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
+    /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+    public var reverseScale: Bool? = nil
+
+    /// Determines whether or not a colorbar is displayed for this trace.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array.
+    public var showScale: Bool? = nil
+
+    public var colorBar: ColorBar? = nil
+
+    /// Sets a reference to a shared color axis.
+    /// 
+    /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+    /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+    /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    public var colorAxis: ColorAxis = .preset
+
+    /// Sets the opacity of the bars.
+    public var opacity: Data<Double>? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case line
+        case coloring = "color"
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorBar = "colorbar"
+        case colorAxis = "coloraxis"
+        case opacity
+    }
+    
+    /// Creates `Marker` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - line:
+    ///   - coloring: Sets themarkercolor.
+    ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
+    ///   (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only
+    ///   if in `marker.color`is set to a numerical array.
+    ///   - cMin: Sets the lower bound of the color domain.
+    ///   - cMax: Sets the upper bound of the color domain.
+    ///   - cMiddle: Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax`
+    ///   to be equidistant to this point.
+    ///   - colorScale: Sets the colorscale.
+    ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
+    ///   true`) or the palette determined by `marker.colorscale`.
+    ///   - reverseScale: Reverses the color mapping if true.
+    ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
+    ///   - colorBar:
+    ///   - colorAxis: Sets a reference to a shared color axis.
+    ///   - opacity: Sets the opacity of the bars.
+    public init(line: MarkerLine? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin:
+            Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
+            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+            ColorBar? = nil, colorAxis: ColorAxis = .preset, opacity: Data<Double>? = nil) {
+        self.line = line
+        self.coloring = coloring
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
+        self.colorScale = colorScale
+        self.autoColorScale = autoColorScale
+        self.reverseScale = reverseScale
+        self.showScale = showScale
+        self.colorBar = colorBar
+        self.colorAxis = colorAxis
+        self.opacity = opacity
+    }
+    
+}
+
+/// - Note:
+///   Used by `Box<YData, XData, QData>.line`, `Violin<YData, XData>.line`, `Violin<YData,
+///   XData>.Box.line`, `Waterfall<XData, YData>.Increasing.Marker.line`, `Waterfall<XData,
+///   YData>.Decreasing.Marker.line`, `Waterfall<XData, YData>.Totals.Marker.line`,
+///   `ScatterMapbox<CoordinateData>.line`, `Indicator.Gauge.Bar.line`, `Indicator.Gauge.Step.line`,
+///   `Indicator.Gauge.Threshold.line`.
+public struct Line: Encodable {
+    /// Sets the color of line bounding the box(es).
+    public var color: Color? = nil
+
+    /// Sets the width (in px) of line bounding the box(es).
+    public var width: Double? = nil
+
+    /// Creates `Line` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - color: Sets the color of line bounding the box(es).
+    ///   - width: Sets the width (in px) of line bounding the box(es).
+    public init(color: Color? = nil, width: Double? = nil) {
+        self.color = color
+        self.width = width
+    }
+    
+}
+
+/// - Note:
+///   Used by `Histogram<XData, YData>.xBins`, `Histogram<XData, YData>.yBins`, `Histogram2D<XData,
+///   YData, ZData>.xBins`, `Histogram2D<XData, YData, ZData>.yBins`, `Histogram2DContour<XData,
+///   YData, ZData>.xBins`, `Histogram2DContour<XData, YData, ZData>.yBins`.
+public struct Bins: Encodable {
+    /// Sets the starting value for the x axis bins.
+    /// 
+    /// Defaults to the minimum data value, shifted down if necessary to make nice round values and to
+    /// remove ambiguous bin edges. For example, if most of the data is integers we shift the bin edges
+    /// 0.5 down, so a `size` of 5 would have a default `start` of -0.5, so it is clear that 0-4 are in
+    /// the first bin, 5-9 in the second, but continuous data gets a start of 0 and bins [0,5), [5,10)
+    /// etc. Dates behave similarly, and `start` should be a date string. For category data, `start` is
+    /// based on the category serial numbers, and defaults to -0.5. If multiple non-overlaying
+    /// histograms share a subplot, the first explicit `start` is used exactly and all others are
+    /// shifted down (if necessary) to differ from that one by an integer number of bins.
+    public var start: Anything? = nil
+
+    /// Sets the end value for the x axis bins.
+    /// 
+    /// The last bin may not end exactly at this value, we increment the bin edge by `size` from `start`
+    /// until we reach or exceed `end`. Defaults to the maximum data value. Like `start`, for dates use
+    /// a date string, and for category data `end` is based on the category serial numbers.
+    public var end: Anything? = nil
+
+    /// Sets the size of each x axis bin.
+    /// 
+    /// Default behavior: If `nbinsx` is 0 or omitted, we choose a nice round bin size such that the
+    /// number of bins is about the same as the typical number of samples in each bin. If `nbinsx` is
+    /// provided, we choose a nice round bin size giving no more than that many bins. For date data, use
+    /// milliseconds or *M<n>* for months, as in `axis.dtick`. For category data, the number of
+    /// categories to bin together (always defaults to 1). If multiple non-overlaying histograms share a
+    /// subplot, the first explicit `size` is used and all others discarded. If no `size` is
+    /// provided,the sample data from all traces is combined to determine `size` as described above.
+    public var size: Anything? = nil
+
+    /// Creates `Bins` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - start: Sets the starting value for the x axis bins.
+    ///   - end: Sets the end value for the x axis bins.
+    ///   - size: Sets the size of each x axis bin.
+    public init(start: Anything? = nil, end: Anything? = nil, size: Anything? = nil) {
+        self.start = start
+        self.end = end
+        self.size = size
+    }
+    
+}
+
+/// - Note:
+///   Used by `Histogram2DContour<XData, YData, ZData>.contours`, `Contour<ZData, XData,
+///   YData>.contours`, `ContourCarpet<ZData, AData, BData>.contours`.
+public struct Contours: Encodable {
+    /// If `levels`, the data is represented as a contour plot with multiple levels displayed.
+    /// 
+    /// If `constraint`, the data is represented as constraints with the invalid region shaded as
+    /// specified by the `operation` and `value` parameters.
+    public enum `Type`: String, Encodable {
+        case levels
+        case constraint
+    }
+    /// If `levels`, the data is represented as a contour plot with multiple levels displayed.
+    /// 
+    /// If `constraint`, the data is represented as constraints with the invalid region shaded as
+    /// specified by the `operation` and `value` parameters.
+    public var type: `Type`? = nil
+
+    /// Sets the starting contour level value.
+    /// 
+    /// Must be less than `contours.end`
+    public var start: Double? = nil
+
+    /// Sets the end contour level value.
+    /// 
+    /// Must be more than `contours.start`
+    public var end: Double? = nil
+
+    /// Sets the step between each contour level.
+    /// 
+    /// Must be positive.
+    public var size: Double? = nil
+
+    /// Determines the coloring method showing the contour values.
+    /// 
+    /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
+    /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
+    /// lines. If *none*, no coloring is applied on this trace.
+    public enum Coloring: String, Encodable {
+        case fill
+        case heatmap
+        case lines
+        case none
+    }
+    /// Determines the coloring method showing the contour values.
+    /// 
+    /// If *fill*, coloring is done evenly between each contour level If *heatmap*, a heatmap gradient
+    /// coloring is applied between each contour level. If *lines*, coloring is done on the contour
+    /// lines. If *none*, no coloring is applied on this trace.
+    public var coloring: Coloring? = nil
+
+    /// Determines whether or not the contour lines are drawn.
+    /// 
+    /// Has an effect only if `contours.coloring` is set to *fill*.
+    public var showLines: Bool? = nil
+
+    /// Determines whether to label the contour lines with their values.
+    public var showLabels: Bool? = nil
+
+    /// Sets the font used for labeling the contour levels.
+    /// 
+    /// The default color comes from the lines, if shown. The default family and size come from
+    /// `layout.font`.
+    public var labelFont: Font? = nil
+
+    /// Sets the contour label formatting rule using d3 formatting mini-language which is very similar
+    /// to Python, see: https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    public var labelFormat: String? = nil
+
+    /// Sets the constraint operation.
+    /// 
+    /// *=* keeps regions equal to `value` *<* and *<=* keep regions less than `value` *>* and *>=* keep
+    /// regions greater than `value` *[]*, *()*, *[)*, and *(]* keep regions inside `value[0]` to
+    /// `value[1]` *][*, *)(*, *](*, *)[* keep regions outside `value[0]` to value[1]` Open vs. closed
+    /// intervals make no difference to constraint display, but all versions are allowed for consistency
+    /// with filter transforms.
+    public var operation: Operation? = nil
+
+    /// Sets the value or values of the constraint boundary.
+    /// 
+    /// When `operation` is set to one of the comparison values (=,<,>=,>,<=) *value* is expected to be
+    /// a number. When `operation` is set to one of the interval values ([],(),[),(],][,)(,](,)[)
+    /// *value* is expected to be an array of two numbers where the first is the lower bound and the
+    /// second is the upper bound.
+    public var value: Anything? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case type
+        case start
+        case end
+        case size
+        case coloring
+        case showLines = "showlines"
+        case showLabels = "showlabels"
+        case labelFont = "labelfont"
+        case labelFormat = "labelformat"
+        case operation
+        case value
+    }
+    
+    /// Creates `Contours` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - type: If `levels`, the data is represented as a contour plot with multiple levels displayed.
+    ///   - start: Sets the starting contour level value.
+    ///   - end: Sets the end contour level value.
+    ///   - size: Sets the step between each contour level.
+    ///   - coloring: Determines the coloring method showing the contour values.
+    ///   - showLines: Determines whether or not the contour lines are drawn.
+    ///   - showLabels: Determines whether to label the contour lines with their values.
+    ///   - labelFont: Sets the font used for labeling the contour levels.
+    ///   - labelFormat: Sets the contour label formatting rule using d3 formatting mini-language which is
+    ///   very similar to Python, see:
+    ///   https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format
+    ///   - operation: Sets the constraint operation.
+    ///   - value: Sets the value or values of the constraint boundary.
+    public init(type: `Type`? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil,
+            coloring: Coloring? = nil, showLines: Bool? = nil, showLabels: Bool? = nil, labelFont: Font? =
+            nil, labelFormat: String? = nil, operation: Operation? = nil, value: Anything? = nil) {
+        self.type = type
+        self.start = start
+        self.end = end
+        self.size = size
+        self.coloring = coloring
+        self.showLines = showLines
+        self.showLabels = showLabels
+        self.labelFont = labelFont
+        self.labelFormat = labelFormat
+        self.operation = operation
+        self.value = value
+    }
+    
+}
+
+/// - Note:
+///   Used by `Histogram2DContour<XData, YData, ZData>.line`, `Contour<ZData, XData, YData>.line`,
+///   `ContourCarpet<ZData, AData, BData>.line`.
+public struct SmoothDashedLine: Encodable {
+    /// Sets the color of the contour level.
+    /// 
+    /// Has no effect if `contours.coloring` is set to *lines*.
+    public var color: Color? = nil
+
+    /// Sets the contour line width in (in px)
+    public var width: Double? = nil
+
+    /// Sets the dash style of lines.
+    /// 
+    /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+    /// dash length list in px (eg *5px,10px,2px,2px*).
+    public var dash: String? = nil
+
+    /// Sets the amount of smoothing for the contour lines, where *0* corresponds to no smoothing.
+    public var smoothing: Double? = nil
+
+    /// Creates `SmoothDashedLine` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - color: Sets the color of the contour level.
+    ///   - width: Sets the contour line width in (in px)
+    ///   - dash: Sets the dash style of lines.
+    ///   - smoothing: Sets the amount of smoothing for the contour lines, where *0* corresponds to no
+    ///   smoothing.
+    public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, smoothing: Double? =
+            nil) {
+        self.color = color
+        self.width = width
+        self.dash = dash
+        self.smoothing = smoothing
+    }
+    
+}
+
+/// - Note:
+///   Used by `ScatterTernary<AData, BData, CData>.line`, `ScatterCarpet<AData, BData>.line`,
+///   `ScatterPolar<RData, ThetaData>.line`.
+public struct ShapedSmoothDashedLine: Encodable {
+    /// Sets the line color.
+    public var color: Color? = nil
+
+    /// Sets the line width (in px).
+    public var width: Double? = nil
+
+    /// Sets the dash style of lines.
+    /// 
+    /// Set to a dash type string (*solid*, *dot*, *dash*, *longdash*, *dashdot*, or *longdashdot*) or a
+    /// dash length list in px (eg *5px,10px,2px,2px*).
+    public var dash: String? = nil
+
+    /// Determines the line shape.
+    /// 
+    /// With *spline* the lines are drawn using spline interpolation. The other available values
+    /// correspond to step-wise line shapes.
+    public var shape: Shape? = nil
+
+    /// Has an effect only if `shape` is set to *spline* Sets the amount of smoothing.
+    /// 
+    /// *0* corresponds to no smoothing (equivalent to a *linear* shape).
+    public var smoothing: Double? = nil
+
+    /// Creates `ShapedSmoothDashedLine` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - color: Sets the line color.
+    ///   - width: Sets the line width (in px).
+    ///   - dash: Sets the dash style of lines.
+    ///   - shape: Determines the line shape.
+    ///   - smoothing: Has an effect only if `shape` is set to *spline* Sets the amount of smoothing.
+    public init(color: Color? = nil, width: Double? = nil, dash: String? = nil, shape: Shape? = nil,
+            smoothing: Double? = nil) {
+        self.color = color
+        self.width = width
+        self.dash = dash
+        self.shape = shape
+        self.smoothing = smoothing
+    }
+    
+}
+
+/// - Note:
+///   Used by `Pie<LabelsData, ValuesData>.Marker.line`, `Sunburst<ValuesData>.Marker.line`,
+///   `Treemap<ValuesData>.Marker.line`, `FunnelArea<LabelsData, ValuesData>.Marker.line`,
+///   `Choropleth<LocationsData, ZData>.Marker.line`, `ChoroplethMapbox<LocationsData,
+///   ZData>.Marker.line`, `Sankey.Node.line`, `Sankey.Link.line`, `Table<CellData>.Header.line`,
+///   `Table<CellData>.Cells<CellData>.line`.
+public struct VariableLine: Encodable {
+    /// Sets the color of the line enclosing each sector.
+    public var coloring: Coloring? = nil
+
+    /// Sets the width (in px) of the line enclosing each sector.
+    public var width: Data<Double>? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case coloring = "color"
+        case width
+    }
+    
+    /// Creates `VariableLine` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - coloring: Sets the color of the line enclosing each sector.
+    ///   - width: Sets the width (in px) of the line enclosing each sector.
+    public init(coloring: Coloring? = nil, width: Data<Double>? = nil) {
+        self.coloring = coloring
+        self.width = width
+    }
+    
+}
+
+/// - Note:
+///   Used by `Scatter3D<XData, YData, ZData>.projection`, `Surface<ZSurfaceData,
+///   XYData>.Contours.X.project`, `Surface<ZSurfaceData, XYData>.Contours.Y.project`,
+///   `Surface<ZSurfaceData, XYData>.Contours.Z.project`.
+public struct Projection: Encodable {
+    public struct X: Encodable {
+        /// Sets whether or not projections are shown along the x axis.
+        public var show: Bool? = nil
+    
+        /// Sets the projection color.
+        public var opacity: Double? = nil
+    
+        /// Sets the scale factor determining the size of the projection marker points.
+        public var scale: Double? = nil
+    
+        /// Creates `X` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - show: Sets whether or not projections are shown along the x axis.
+        ///   - opacity: Sets the projection color.
+        ///   - scale: Sets the scale factor determining the size of the projection marker points.
+        public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+            self.show = show
+            self.opacity = opacity
+            self.scale = scale
+        }
+        
+    }
+    public var x: X? = nil
+
+    public struct Y: Encodable {
+        /// Sets whether or not projections are shown along the y axis.
+        public var show: Bool? = nil
+    
+        /// Sets the projection color.
+        public var opacity: Double? = nil
+    
+        /// Sets the scale factor determining the size of the projection marker points.
+        public var scale: Double? = nil
+    
+        /// Creates `Y` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - show: Sets whether or not projections are shown along the y axis.
+        ///   - opacity: Sets the projection color.
+        ///   - scale: Sets the scale factor determining the size of the projection marker points.
+        public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+            self.show = show
+            self.opacity = opacity
+            self.scale = scale
+        }
+        
+    }
+    public var y: Y? = nil
+
+    public struct Z: Encodable {
+        /// Sets whether or not projections are shown along the z axis.
+        public var show: Bool? = nil
+    
+        /// Sets the projection color.
+        public var opacity: Double? = nil
+    
+        /// Sets the scale factor determining the size of the projection marker points.
+        public var scale: Double? = nil
+    
+        /// Creates `Z` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - show: Sets whether or not projections are shown along the z axis.
+        ///   - opacity: Sets the projection color.
+        ///   - scale: Sets the scale factor determining the size of the projection marker points.
+        public init(show: Bool? = nil, opacity: Double? = nil, scale: Double? = nil) {
+            self.show = show
+            self.opacity = opacity
+            self.scale = scale
+        }
+        
+    }
+    public var z: Z? = nil
+
+    /// Creates `Projection` object with specified properties.
+    public init(x: X? = nil, y: Y? = nil, z: Z? = nil) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+    
+}
+
+/// - Note:
+///   Used by `Scatter3D<XData, YData, ZData>.marker`, `ScatterGL<XData, YData>.marker`,
+///   `ScatterPlotMatrix.marker`, `ScatterPolarGL<RData, ThetaData>.marker`.
+public struct SymbolicMarker: Encodable {
+    /// Sets the marker symbol type.
+    public enum Symbol: String, Encodable {
+        case circle
+        case circleOpen = "circle-open"
+        case square
+        case squareOpen = "square-open"
+        case diamond
+        case diamondOpen = "diamond-open"
+        case cross
+        case x
+    }
+    /// Sets the marker symbol type.
+    public var symbol: Symbol? = nil
+
+    /// Sets the marker size (in px).
+    public var size: Data<Double>? = nil
+
+    /// Has an effect only if `marker.size` is set to a numerical array.
+    /// 
+    /// Sets the scale factor used to determine the rendered size of marker points. Use with `sizemin`
+    /// and `sizemode`.
+    public var sizeReference: Double? = nil
+
+    /// Has an effect only if `marker.size` is set to a numerical array.
+    /// 
+    /// Sets the minimum size (in px) of the rendered marker points.
+    public var sizeMin: Double? = nil
+
+    /// Has an effect only if `marker.size` is set to a numerical array.
+    /// 
+    /// Sets the rule for which the data in `size` is converted to pixels.
+    public var sizeMode: SizeMode? = nil
+
+    /// Sets the marker opacity.
+    /// 
+    /// Note that the marker opacity for scatter3d traces must be a scalar value for performance
+    /// reasons. To set a blending opacity value (i.e. which is not transparent), set *marker.color* to
+    /// an rgba color and use its alpha channel.
+    public var opacity: Double? = nil
+
+    public var colorBar: ColorBar? = nil
+
+    public var line: MarkerLine? = nil
+
+    /// Sets themarkercolor.
+    /// 
+    /// It accepts either a specific color or an array of numbers that are mapped to the colorscale
+    /// relative to the max and min values of the array or relative to `marker.cmin` and `marker.cmax`
+    /// if set.
+    public var coloring: Coloring? = nil
+
+    /// Determines whether or not the color domain is computed with respect to the input data (here in
+    /// `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if in
+    /// `marker.color`is set to a numerical array.
+    /// 
+    /// Defaults to `false` when `marker.cmin` and `marker.cmax` are set by the user.
+    public var cAuto: Bool? = nil
+
+    /// Sets the lower bound of the color domain.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmax` must be set as well.
+    public var cMin: Double? = nil
+
+    /// Sets the upper bound of the color domain.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color` and if set, `marker.cmin` must be set as well.
+    public var cMax: Double? = nil
+
+    /// Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax` to be
+    /// equidistant to this point.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. Value should have the same
+    /// units as in `marker.color`. Has no effect when `marker.cauto` is `false`.
+    public var cMiddle: Double? = nil
+
+    /// Sets the colorscale.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. The colorscale must be an
+    /// array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv, or named
+    /// color string. At minimum, a mapping for the lowest (0) and highest (1) values are required. For
+    /// example, `[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]`. To control the bounds of the colorscale
+    /// in color space, use`marker.cmin` and `marker.cmax`. Alternatively, `colorscale` may be a palette
+    /// name string of the following list:
+    /// Greys,YlGnBu,Greens,YlOrRd,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,Hot,Blackbody,Earth,Electric,Viridis,Cividis.
+    public var colorScale: ColorScale? = nil
+
+    /// Determines whether the colorscale is a default palette (`autocolorscale: true`) or the palette
+    /// determined by `marker.colorscale`.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. In case `colorscale` is
+    /// unspecified or `autocolorscale` is true, the default palette will be chosen according to whether
+    /// numbers in the `color` array are all positive, all negative or mixed.
+    public var autoColorScale: Bool? = nil
+
+    /// Reverses the color mapping if true.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array. If true, `marker.cmin` will
+    /// correspond to the last color in the array and `marker.cmax` will correspond to the first color.
+    public var reverseScale: Bool? = nil
+
+    /// Determines whether or not a colorbar is displayed for this trace.
+    /// 
+    /// Has an effect only if in `marker.color`is set to a numerical array.
+    public var showScale: Bool? = nil
+
+    /// Sets a reference to a shared color axis.
+    /// 
+    /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
+    /// for these shared color axes are set in the layout, under `layout.coloraxis`,
+    /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
+    public var colorAxis: ColorAxis = .preset
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case symbol
+        case size
+        case sizeReference = "sizeref"
+        case sizeMin = "sizemin"
+        case sizeMode = "sizemode"
+        case opacity
+        case colorBar = "colorbar"
+        case line
+        case coloring = "color"
+        case cAuto = "cauto"
+        case cMin = "cmin"
+        case cMax = "cmax"
+        case cMiddle = "cmid"
+        case colorScale = "colorscale"
+        case autoColorScale = "autocolorscale"
+        case reverseScale = "reversescale"
+        case showScale = "showscale"
+        case colorAxis = "coloraxis"
+    }
+    
+    /// Creates `SymbolicMarker` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - symbol: Sets the marker symbol type.
+    ///   - size: Sets the marker size (in px).
+    ///   - sizeReference: Has an effect only if `marker.size` is set to a numerical array.
+    ///   - sizeMin: Has an effect only if `marker.size` is set to a numerical array.
+    ///   - sizeMode: Has an effect only if `marker.size` is set to a numerical array.
+    ///   - opacity: Sets the marker opacity.
+    ///   - colorBar:
+    ///   - line:
+    ///   - coloring: Sets themarkercolor.
+    ///   - cAuto: Determines whether or not the color domain is computed with respect to the input data
+    ///   (here in `marker.color`) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only
+    ///   if in `marker.color`is set to a numerical array.
+    ///   - cMin: Sets the lower bound of the color domain.
+    ///   - cMax: Sets the upper bound of the color domain.
+    ///   - cMiddle: Sets the mid-point of the color domain by scaling `marker.cmin` and/or `marker.cmax`
+    ///   to be equidistant to this point.
+    ///   - colorScale: Sets the colorscale.
+    ///   - autoColorScale: Determines whether the colorscale is a default palette (`autocolorscale:
+    ///   true`) or the palette determined by `marker.colorscale`.
+    ///   - reverseScale: Reverses the color mapping if true.
+    ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
+    ///   - colorAxis: Sets a reference to a shared color axis.
+    public init(symbol: Symbol? = nil, size: Data<Double>? = nil, sizeReference: Double? = nil,
+            sizeMin: Double? = nil, sizeMode: SizeMode? = nil, opacity: Double? = nil, colorBar: ColorBar? =
+            nil, line: MarkerLine? = nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? =
+            nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+            Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: ColorAxis = .preset)
+            {
+        self.symbol = symbol
+        self.size = size
+        self.sizeReference = sizeReference
+        self.sizeMin = sizeMin
+        self.sizeMode = sizeMode
+        self.opacity = opacity
+        self.colorBar = colorBar
+        self.line = line
+        self.coloring = coloring
+        self.cAuto = cAuto
+        self.cMin = cMin
+        self.cMax = cMax
+        self.cMiddle = cMiddle
+        self.colorScale = colorScale
+        self.autoColorScale = autoColorScale
+        self.reverseScale = reverseScale
+        self.showScale = showScale
+        self.colorAxis = colorAxis
+    }
+    
+}
+
+/// - Note:
+///   Used by `Surface<ZSurfaceData, XYData>.lightPosition`, `Isosurface<XData, YData, ZData,
+///   ValueData>.lightPosition`, `Volume<XYZData, ValueData>.lightPosition`, `Mesh3D<XData, YData,
+///   ZData, IntensityData, VertexcolorData, FacecolorData>.lightPosition`, `Cone<XYZData,
+///   UVWData>.lightPosition`, `StreamTube<XYZData, UVWData>.lightPosition`.
+public struct LightPosition: Encodable {
+    /// Numeric vector, representing the X coordinate for each vertex.
+    public var x: Double? = nil
+
+    /// Numeric vector, representing the Y coordinate for each vertex.
+    public var y: Double? = nil
+
+    /// Numeric vector, representing the Z coordinate for each vertex.
+    public var z: Double? = nil
+
+    /// Creates `LightPosition` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - x: Numeric vector, representing the X coordinate for each vertex.
+    ///   - y: Numeric vector, representing the Y coordinate for each vertex.
+    ///   - z: Numeric vector, representing the Z coordinate for each vertex.
+    public init(x: Double? = nil, y: Double? = nil, z: Double? = nil) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+    
+}
+
+/// - Note:
+///   Used by `Isosurface<XData, YData, ZData, ValueData>.lighting`, `Volume<XYZData,
+///   ValueData>.lighting`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.lighting`, `Cone<XYZData, UVWData>.lighting`, `StreamTube<XYZData,
+///   UVWData>.lighting`.
+public struct Lighting: Encodable {
+    /// Epsilon for vertex normals calculation avoids math issues arising from degenerate geometry.
+    public var vertexNormalsEpsilon: Double? = nil
+
+    /// Epsilon for face normals calculation avoids math issues arising from degenerate geometry.
+    public var faceNormalsEpsilon: Double? = nil
+
+    /// Ambient light increases overall color visibility but can wash out the image.
+    public var ambient: Double? = nil
+
+    /// Represents the extent that incident rays are reflected in a range of angles.
+    public var diffuse: Double? = nil
+
+    /// Represents the level that incident rays are reflected in a single direction, causing shine.
+    public var specular: Double? = nil
+
+    /// Alters specular reflection; the rougher the surface, the wider and less contrasty the shine.
+    public var roughness: Double? = nil
+
+    /// Represents the reflectance as a dependency of the viewing angle; e.g.
+    /// 
+    /// paper is reflective when viewing it from the edge of the paper (almost 90 degrees), causing
+    /// shine.
+    public var fresnel: Double? = nil
+
+    /// Decoding and encoding keys compatible with Plotly schema.
+    enum CodingKeys: String, CodingKey {
+        case vertexNormalsEpsilon = "vertexnormalsepsilon"
+        case faceNormalsEpsilon = "facenormalsepsilon"
+        case ambient
+        case diffuse
+        case specular
+        case roughness
+        case fresnel
+    }
+    
+    /// Creates `Lighting` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - vertexNormalsEpsilon: Epsilon for vertex normals calculation avoids math issues arising from
+    ///   degenerate geometry.
+    ///   - faceNormalsEpsilon: Epsilon for face normals calculation avoids math issues arising from
+    ///   degenerate geometry.
+    ///   - ambient: Ambient light increases overall color visibility but can wash out the image.
+    ///   - diffuse: Represents the extent that incident rays are reflected in a range of angles.
+    ///   - specular: Represents the level that incident rays are reflected in a single direction, causing
+    ///   shine.
+    ///   - roughness: Alters specular reflection; the rougher the surface, the wider and less contrasty
+    ///   the shine.
+    ///   - fresnel: Represents the reflectance as a dependency of the viewing angle; e.g.
+    public init(vertexNormalsEpsilon: Double? = nil, faceNormalsEpsilon: Double? = nil, ambient:
+            Double? = nil, diffuse: Double? = nil, specular: Double? = nil, roughness: Double? = nil,
+            fresnel: Double? = nil) {
+        self.vertexNormalsEpsilon = vertexNormalsEpsilon
+        self.faceNormalsEpsilon = faceNormalsEpsilon
+        self.ambient = ambient
+        self.diffuse = diffuse
+        self.specular = specular
+        self.roughness = roughness
+        self.fresnel = fresnel
+    }
+    
+}
+
+/// - Note:
+///   Used by `Isosurface<XData, YData, ZData, ValueData>.contour`, `Volume<XYZData,
+///   ValueData>.contour`, `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.contour`.
+public struct ContourHover: Encodable {
+    /// Sets whether or not dynamic contours are shown on hover
+    public var show: Bool? = nil
+
+    /// Sets the color of the contour lines.
+    public var color: Color? = nil
+
+    /// Sets the width of the contour lines.
+    public var width: Double? = nil
+
+    /// Creates `ContourHover` object with specified properties.
+    /// 
+    /// - Parameters:
+    ///   - show: Sets whether or not dynamic contours are shown on hover
+    ///   - color: Sets the color of the contour lines.
+    ///   - width: Sets the width of the contour lines.
+    public init(show: Bool? = nil, color: Color? = nil, width: Double? = nil) {
+        self.show = show
+        self.color = color
+        self.width = width
+    }
+    
 }

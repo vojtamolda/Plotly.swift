@@ -15,15 +15,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatter3d) or 
 ///   [R](https://plot.ly/r/reference/#scatter3d)
 public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: Plotable, YData: Plotable, ZData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "scatter3d"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -67,9 +69,9 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -144,7 +146,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-    public var mode: Shared.Mode? = nil
+    public var mode: Mode? = nil
 
     /// If *-1*, the scatter points are not fill with a surface If *0*, *1*, *2*, the scatter points are
     /// filled with a Delaunay surface about the x, y, z respectively.
@@ -161,7 +163,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
     /// Sets the surface fill color.
     public var surfaceColor: Color? = nil
 
-    public var projection: Shared.Projection? = nil
+    public var projection: Projection? = nil
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -173,7 +175,7 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
         public var width: Double? = nil
     
         /// Sets the dash style of the lines.
-        public var dash: Shared.Dash? = nil
+        public var dash: Dash? = nil
     
         /// Sets thelinecolor.
         /// 
@@ -238,14 +240,14 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
         /// Has an effect only if in `line.color`is set to a numerical array.
         public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar? = nil
+        public var colorBar: ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
+        public var colorAxis: ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -284,10 +286,10 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(width: Double? = nil, dash: Shared.Dash? = nil, coloring: Coloring? = nil, cAuto:
-                Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale:
-                ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? =
-                nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset) {
+        public init(width: Double? = nil, dash: Dash? = nil, coloring: Coloring? = nil, cAuto: Bool? =
+                nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? =
+                nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+                ColorBar? = nil, colorAxis: ColorAxis = .preset) {
             self.width = width
             self.dash = dash
             self.coloring = coloring
@@ -306,39 +308,39 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
     }
     public var line: DashedMarkerLine? = nil
 
-    public var marker: Shared.SymbolicMarker? = nil
+    public var marker: SymbolicMarker? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition? = nil
+    public var textPosition: TextPosition? = nil
 
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var xError: Shared.Error? = nil
+    public var xError: Error? = nil
 
-    public var yError: Shared.Error? = nil
+    public var yError: Error? = nil
 
-    public var zError: Shared.Error? = nil
+    public var zError: Error? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar? = nil
+    public var yCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `z` date data.
-    public var zCalendar: Shared.Calendar? = nil
+    public var zCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: Layout.Scene = .preset
+    public var scene: Scene = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -395,8 +397,8 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, z: ZData? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line:
-            DashedMarkerLine? = nil, marker: Shared.SymbolicMarker? = nil) {
+            Data<String>? = nil, hoverText: Data<String>? = nil, mode: Mode? = nil, line: DashedMarkerLine?
+            = nil, marker: SymbolicMarker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -455,19 +457,17 @@ public struct Scatter3D<XData, YData, ZData>: Trace, SceneSubplot where XData: P
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - zCalendar: Sets the calendar system to use with `z` date data.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel: Shared.HoverLabel? = nil,
-            stream: Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, x:
-            XData? = nil, y: YData? = nil, z: ZData? = nil, text: Data<String>? = nil, textTemplate:
-            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, mode:
-            Shared.Mode? = nil, surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection:
-            Shared.Projection? = nil, connectGaps: Bool? = nil, line: DashedMarkerLine? = nil, marker:
-            Shared.SymbolicMarker? = nil, textPosition: Shared.TextPosition? = nil, textFont:
-            Shared.VariableFont? = nil, hoverInfo: Shared.HoverInfo? = nil, xError: Shared.Error? = nil,
-            yError: Shared.Error? = nil, zError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil,
-            yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil, scene: Layout.Scene =
-            .preset) {
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel: HoverLabel? = nil, stream:
+            Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, y:
+            YData? = nil, z: ZData? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil,
+            hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, mode: Mode? = nil,
+            surfaceAxis: SurfaceAxis? = nil, surfaceColor: Color? = nil, projection: Projection? = nil,
+            connectGaps: Bool? = nil, line: DashedMarkerLine? = nil, marker: SymbolicMarker? = nil,
+            textPosition: TextPosition? = nil, textFont: VariableFont? = nil, hoverInfo: HoverInfo? = nil,
+            xError: Error? = nil, yError: Error? = nil, zError: Error? = nil, xCalendar: Calendar? = nil,
+            yCalendar: Calendar? = nil, zCalendar: Calendar? = nil, scene: Scene = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -13,15 +13,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#sunburst) or 
 ///   [R](https://plot.ly/r/reference/#sunburst)
 public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "sunburst"
 
-    public let animatable: Bool = true
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { true }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the opacity of the trace.
     public var opacity: Double? = nil
@@ -57,9 +59,9 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -147,7 +149,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]? = nil
     
-        public var line: Shared.VariableLine? = nil
+        public var line: VariableLine? = nil
     
         /// Determines whether or not the color domain is computed with respect to the input data (here
         /// colors) or the bounds set in `marker.cmin` and `marker.cmax` Has an effect only if colorsis set
@@ -205,14 +207,14 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         /// Has an effect only if colorsis set to a numerical array.
         public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar? = nil
+        public var colorBar: ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
+        public var colorAxis: ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -249,10 +251,10 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorBar:
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(colors: [Double]? = nil, line: Shared.VariableLine? = nil, cAuto: Bool? = nil, cMin:
+        public init(colors: [Double]? = nil, line: VariableLine? = nil, cAuto: Bool? = nil, cMin:
                 Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil,
                 autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-                Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset) {
+                ColorBar? = nil, colorAxis: ColorAxis = .preset) {
             self.colors = colors
             self.line = line
             self.cAuto = cAuto
@@ -412,7 +414,7 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     public var hoverTemplate: Data<String>? = nil
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Controls the orientation of the text inside chart sectors.
     /// 
@@ -437,16 +439,16 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     public var insideTextOrientation: InsideTextOrientation? = nil
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Shared.VariableFont? = nil
+    public var insideTextFont: VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying outside the sector.
     /// 
     /// This option refers to the root of the hierarchy presented at the center of a sunburst graph.
     /// Please note that if a hierarchy has multiple root nodes, this option won't have any effect and
     /// `insidetextfont` would be used.
-    public var outsideTextFont: Shared.OutsideTextFont? = nil
+    public var outsideTextFont: OutsideTextFont? = nil
 
-    public var domain: Shared.Domain? = nil
+    public var domain: Domain? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -540,16 +542,16 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     ///   - insideTextFont: Sets the font used for `textinfo` lying inside the sector.
     ///   - outsideTextFont: Sets the font used for `textinfo` lying outside the sector.
     ///   - domain:
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, labels: [String]? = nil, parents: [String]? = nil, values:
-            ValuesData? = nil, branchValues: BranchValues? = nil, count: Count? = nil, level: Anything? =
-            nil, maxDepth: Int? = nil, marker: Marker? = nil, leaf: Leaf? = nil, text: Data<String>? = nil,
-            textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
-            hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, textFont: Shared.VariableFont?
-            = nil, insideTextOrientation: InsideTextOrientation? = nil, insideTextFont: Shared.VariableFont?
-            = nil, outsideTextFont: Shared.OutsideTextFont? = nil, domain: Shared.Domain? = nil) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? =
+            nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
+            HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? =
+            nil, labels: [String]? = nil, parents: [String]? = nil, values: ValuesData? = nil, branchValues:
+            BranchValues? = nil, count: Count? = nil, level: Anything? = nil, maxDepth: Int? = nil, marker:
+            Marker? = nil, leaf: Leaf? = nil, text: Data<String>? = nil, textInfo: TextInfo? = nil,
+            textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: Data<String>? = nil, textFont: VariableFont? = nil, insideTextOrientation:
+            InsideTextOrientation? = nil, insideTextFont: VariableFont? = nil, outsideTextFont:
+            OutsideTextFont? = nil, domain: Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

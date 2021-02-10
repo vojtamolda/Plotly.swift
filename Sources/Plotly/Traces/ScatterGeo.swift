@@ -13,15 +13,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#scattergeo) or 
 ///   [R](https://plot.ly/r/reference/#scattergeo)
 public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where CoordinateData: Plotable, LocationsData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "scattergeo"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -72,9 +74,9 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -137,7 +139,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-    public var mode: Shared.Mode? = nil
+    public var mode: Mode? = nil
 
     /// Sets text elements associated with each (lon,lat) pair or item in `locations`.
     /// 
@@ -168,12 +170,12 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     public var hoverText: Data<String>? = nil
 
     /// Sets the text font.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition? = nil
+    public var textPosition: TextPosition? = nil
 
-    public var line: Shared.DashedLine? = nil
+    public var line: DashedLine? = nil
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -186,7 +188,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
         /// Adding 100 is equivalent to appending *-open* to a symbol name. Adding 200 is equivalent to
         /// appending *-dot* to a symbol name. Adding 300 is equivalent to appending *-open-dot* or
         /// *dot-open* to a symbol name.
-        public var symbol: Shared.Symbol? = nil
+        public var symbol: Symbol? = nil
     
         /// Sets the marker opacity.
         public var opacity: Data<Double>? = nil
@@ -208,13 +210,13 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
         /// Has an effect only if `marker.size` is set to a numerical array.
         /// 
         /// Sets the rule for which the data in `size` is converted to pixels.
-        public var sizeMode: Shared.SizeMode? = nil
+        public var sizeMode: SizeMode? = nil
     
-        public var colorBar: Shared.ColorBar? = nil
+        public var colorBar: ColorBar? = nil
     
-        public var line: Shared.MarkerLine? = nil
+        public var line: MarkerLine? = nil
     
-        public var gradient: Shared.Gradient? = nil
+        public var gradient: Gradient? = nil
     
         /// Sets themarkercolor.
         /// 
@@ -284,7 +286,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
+        public var colorAxis: ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -335,12 +337,12 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
         ///   - reverseScale: Reverses the color mapping if true.
         ///   - showScale: Determines whether or not a colorbar is displayed for this trace.
         ///   - colorAxis: Sets a reference to a shared color axis.
-        public init(symbol: Shared.Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? =
-                nil, sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: Shared.SizeMode? = nil,
-                colorBar: Shared.ColorBar? = nil, line: Shared.MarkerLine? = nil, gradient: Shared.Gradient? =
-                nil, coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
-                cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-                reverseScale: Bool? = nil, showScale: Bool? = nil, colorAxis: Layout.ColorAxis = .preset) {
+        public init(symbol: Symbol? = nil, opacity: Data<Double>? = nil, size: Data<Double>? = nil,
+                sizeReference: Double? = nil, sizeMin: Double? = nil, sizeMode: SizeMode? = nil, colorBar:
+                ColorBar? = nil, line: MarkerLine? = nil, gradient: Gradient? = nil, coloring: Coloring? = nil,
+                cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle: Double? = nil,
+                colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
+                showScale: Bool? = nil, colorAxis: ColorAxis = .preset) {
             self.symbol = symbol
             self.opacity = opacity
             self.size = size
@@ -557,7 +559,7 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     /// 
     /// If *geo* (the default value), the geospatial coordinates refer to `layout.geo`. If *geo2*, the
     /// geospatial coordinates refer to `layout.geo2`, and so on.
-    public var geo: Layout.Geo = .preset
+    public var geo: Geo = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -614,8 +616,8 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
-            nil, locations: LocationsData? = nil, mode: Shared.Mode? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, line: Shared.DashedLine? = nil, marker: GradientMarker? = nil) {
+            nil, locations: LocationsData? = nil, mode: Mode? = nil, text: Data<String>? = nil, hoverText:
+            Data<String>? = nil, line: DashedLine? = nil, marker: GradientMarker? = nil) {
         self.name = name
         self.longitude = longitude
         self.latitude = latitude
@@ -675,18 +677,17 @@ public struct ScatterGeo<CoordinateData, LocationsData>: Trace, GeoSubplot where
     ///   - hoverInfo: Determines which trace information appear on hover.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
     ///   - geo: Sets a reference between this trace's geospatial coordinates and a geographic map.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? =
-            nil, locations: LocationsData? = nil, locationMode: LocationMode? = nil, geoJson: Anything? =
-            nil, featureIDKey: String? = nil, mode: Shared.Mode? = nil, text: Data<String>? = nil,
-            textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, textFont:
-            Shared.VariableFont? = nil, textPosition: Shared.TextPosition? = nil, line: Shared.DashedLine? =
-            nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill: Fill? = nil, fillColor:
-            Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo: HoverInfo? =
-            nil, hoverTemplate: Data<String>? = nil, geo: Layout.Geo = .preset) {
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, longitude: CoordinateData? = nil, latitude: CoordinateData? = nil, locations:
+            LocationsData? = nil, locationMode: LocationMode? = nil, geoJson: Anything? = nil, featureIDKey:
+            String? = nil, mode: Mode? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil,
+            hoverText: Data<String>? = nil, textFont: VariableFont? = nil, textPosition: TextPosition? =
+            nil, line: DashedLine? = nil, connectGaps: Bool? = nil, marker: GradientMarker? = nil, fill:
+            Fill? = nil, fillColor: Color? = nil, selected: Selected? = nil, unselected: Unselected? = nil,
+            hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, geo: Geo = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

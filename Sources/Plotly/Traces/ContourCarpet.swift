@@ -14,15 +14,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#contourcarpet) or 
 ///   [R](https://plot.ly/r/reference/#contourcarpet)
 public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: Plotable, AData: Plotable, BData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "contourcarpet"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -66,7 +68,7 @@ public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: 
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -170,9 +172,9 @@ public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: 
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
     public var nContours: Int? = nil
 
-    public var contours: Shared.Contours? = nil
+    public var contours: Contours? = nil
 
-    public var line: Shared.SmoothDashedLine? = nil
+    public var line: SmoothDashedLine? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -222,26 +224,26 @@ public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: 
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar? = nil
+    public var colorBar: ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = .preset
+    public var colorAxis: ColorAxis = .preset
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -302,8 +304,8 @@ public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: 
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, z: ZData? = nil, a: AData? = nil, b: BData? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.SmoothDashedLine? = nil,
-            colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
+            Data<String>? = nil, hoverText: Data<String>? = nil, line: SmoothDashedLine? = nil, colorScale:
+            ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
         self.a = a
@@ -372,18 +374,17 @@ public struct ContourCarpet<ZData, AData, BData>: Trace, XYSubplot where ZData: 
     ///   - colorAxis: Sets a reference to a shared color axis.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: Data<Anything>? = nil, stream: Shared.Stream? = nil,
-            uiRevision: Anything? = nil, carpet: String? = nil, z: ZData? = nil, a: AData? = nil, a0:
-            Anything? = nil, da: Double? = nil, b: BData? = nil, b0: Anything? = nil, db: Double? = nil,
-            text: Data<String>? = nil, hoverText: Data<String>? = nil, transpose: Bool? = nil, aType: AType?
-            = nil, bType: BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? =
-            nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? = nil, zAuto: Bool? = nil,
-            zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
-            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
-            Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset, xAxis: Layout.XAxis = .preset,
-            yAxis: Layout.YAxis = .preset) {
+            customData: [String]? = nil, meta: Data<Anything>? = nil, stream: Stream? = nil, uiRevision:
+            Anything? = nil, carpet: String? = nil, z: ZData? = nil, a: AData? = nil, a0: Anything? = nil,
+            da: Double? = nil, b: BData? = nil, b0: Anything? = nil, db: Double? = nil, text: Data<String>?
+            = nil, hoverText: Data<String>? = nil, transpose: Bool? = nil, aType: AType? = nil, bType:
+            BType? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? = nil,
+            contours: Contours? = nil, line: SmoothDashedLine? = nil, zAuto: Bool? = nil, zMin: Double? =
+            nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale:
+            Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil,
+            colorAxis: ColorAxis = .preset, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

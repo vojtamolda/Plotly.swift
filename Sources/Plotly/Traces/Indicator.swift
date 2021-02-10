@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#indicator) or 
 ///   [R](https://plot.ly/r/reference/#indicator)
 public struct Indicator: Trace, DomainSubplot {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "indicator"
 
-    public let animatable: Bool = true
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { true }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the trace name.
     /// 
@@ -57,7 +59,7 @@ public struct Indicator: Trace, DomainSubplot {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -110,9 +112,9 @@ public struct Indicator: Trace, DomainSubplot {
     /// 
     /// Note that this attribute has no effect if an angular gauge is displayed: in this case, it is
     /// always centered
-    public var align: Shared.HorizontalAlign? = nil
+    public var align: HorizontalAlign? = nil
 
-    public var domain: Shared.Domain? = nil
+    public var domain: Domain? = nil
 
     public struct Title: Encodable {
         /// Sets the title of this indicator.
@@ -121,10 +123,10 @@ public struct Indicator: Trace, DomainSubplot {
         /// Sets the horizontal alignment of the title.
         /// 
         /// It defaults to `center` except for bullet charts for which it defaults to right.
-        public var align: Shared.HorizontalAlign? = nil
+        public var align: HorizontalAlign? = nil
     
         /// Set the font used to display the title
-        public var font: Shared.Font? = nil
+        public var font: Font? = nil
     
         /// Creates `Title` object with specified properties.
         /// 
@@ -132,8 +134,7 @@ public struct Indicator: Trace, DomainSubplot {
         ///   - text: Sets the title of this indicator.
         ///   - align: Sets the horizontal alignment of the title.
         ///   - font: Set the font used to display the title
-        public init(text: String? = nil, align: Shared.HorizontalAlign? = nil, font: Shared.Font? = nil)
-                {
+        public init(text: String? = nil, align: HorizontalAlign? = nil, font: Font? = nil) {
             self.text = text
             self.align = align
             self.font = font
@@ -150,7 +151,7 @@ public struct Indicator: Trace, DomainSubplot {
         public var valueFormat: String? = nil
     
         /// Set the font used to display main number
-        public var font: Shared.Font? = nil
+        public var font: Font? = nil
     
         /// Sets a prefix appearing before the number.
         public var prefix: String? = nil
@@ -174,7 +175,7 @@ public struct Indicator: Trace, DomainSubplot {
         ///   - font: Set the font used to display main number
         ///   - prefix: Sets a prefix appearing before the number.
         ///   - suffix: Sets a suffix appearing next to the number.
-        public init(valueFormat: String? = nil, font: Shared.Font? = nil, prefix: String? = nil, suffix:
+        public init(valueFormat: String? = nil, font: Font? = nil, prefix: String? = nil, suffix:
                 String? = nil) {
             self.valueFormat = valueFormat
             self.font = font
@@ -251,7 +252,7 @@ public struct Indicator: Trace, DomainSubplot {
         public var decreasing: Decreasing? = nil
     
         /// Set the font used to display the delta
-        public var font: Shared.Font? = nil
+        public var font: Font? = nil
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -277,7 +278,7 @@ public struct Indicator: Trace, DomainSubplot {
         ///   - font: Set the font used to display the delta
         public init(reference: Double? = nil, position: Position? = nil, relative: Bool? = nil,
                 valueFormat: String? = nil, increasing: Increasing? = nil, decreasing: Decreasing? = nil, font:
-                Shared.Font? = nil) {
+                Font? = nil) {
             self.reference = reference
             self.position = position
             self.relative = relative
@@ -305,7 +306,7 @@ public struct Indicator: Trace, DomainSubplot {
             /// Sets the background color of the arc.
             public var color: Color? = nil
         
-            public var line: Shared.Line? = nil
+            public var line: Line? = nil
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
             public var thickness: Double? = nil
@@ -316,7 +317,7 @@ public struct Indicator: Trace, DomainSubplot {
             ///   - color: Sets the background color of the arc.
             ///   - line:
             ///   - thickness: Sets the thickness of the bar as a fraction of the total thickness of the gauge.
-            public init(color: Color? = nil, line: Shared.Line? = nil, thickness: Double? = nil) {
+            public init(color: Color? = nil, line: Line? = nil, thickness: Double? = nil) {
                 self.color = color
                 self.line = line
                 self.thickness = thickness
@@ -351,7 +352,7 @@ public struct Indicator: Trace, DomainSubplot {
             /// if `tick0` and `dtick` are provided). If *array*, the placement of the ticks is set via
             /// `tickvals` and the tick text is `ticktext`. (*array* is the default value if `tickvals` is
             /// provided).
-            public var tickMode: Shared.TickMode? = nil
+            public var tickMode: TickMode? = nil
         
             /// Specifies the maximum number of ticks for the particular axis.
             /// 
@@ -399,7 +400,7 @@ public struct Indicator: Trace, DomainSubplot {
             /// 
             /// If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside
             /// (inside) the axis lines.
-            public var ticks: Shared.Ticks? = nil
+            public var ticks: Ticks? = nil
         
             /// Sets the tick length (in px).
             public var tickLength: Double? = nil
@@ -414,7 +415,7 @@ public struct Indicator: Trace, DomainSubplot {
             public var showTickLabels: Bool? = nil
         
             /// Sets the color bar's tick label font
-            public var tickFont: Shared.Font? = nil
+            public var tickFont: Font? = nil
         
             /// Sets the angle of the tick labels with respect to the horizontal.
             /// 
@@ -430,7 +431,7 @@ public struct Indicator: Trace, DomainSubplot {
             /// 09:15:23.456* with tickformat *%H~%M~%S.%2f* would display *09~15~23.46*
             public var tickFormat: String? = nil
         
-            public var tickFormatStops: [Shared.TickFormatStop]? = nil
+            public var tickFormatStops: [TickFormatStop]? = nil
         
             /// Sets a tick label prefix.
             public var tickPrefix: String? = nil
@@ -439,13 +440,13 @@ public struct Indicator: Trace, DomainSubplot {
             /// 
             /// If *first*, only the first tick is displayed with a prefix. If *last*, only the last tick is
             /// displayed with a suffix. If *none*, tick prefixes are hidden.
-            public var showTickPrefix: Shared.ShowTickPrefix? = nil
+            public var showTickPrefix: ShowTickPrefix? = nil
         
             /// Sets a tick label suffix.
             public var tickSuffix: String? = nil
         
             /// Same as `showtickprefix` but for tick suffixes.
-            public var showTickSuffix: Shared.ShowTickSuffix? = nil
+            public var showTickSuffix: ShowTickSuffix? = nil
         
             /// If "true", even 4-digit integers are separated
             public var separateThousands: Bool? = nil
@@ -454,13 +455,13 @@ public struct Indicator: Trace, DomainSubplot {
             /// 
             /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
-            public var exponentFormat: Shared.ExponentFormat? = nil
+            public var exponentFormat: ExponentFormat? = nil
         
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
             /// last tick is shown. If *none*, no exponents appear.
-            public var showExponent: Shared.ShowExponent? = nil
+            public var showExponent: ShowExponent? = nil
         
             /// Decoding and encoding keys compatible with Plotly schema.
             enum CodingKeys: String, CodingKey {
@@ -518,15 +519,14 @@ public struct Indicator: Trace, DomainSubplot {
             ///   - separateThousands: If "true", even 4-digit integers are separated
             ///   - exponentFormat: Determines a formatting rule for the tick exponents.
             ///   - showExponent: If *all*, all exponents are shown besides their significands.
-            public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: Shared.TickMode? = nil,
-                    numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? =
-                    nil, tickText: [Double]? = nil, ticks: Shared.Ticks? = nil, tickLength: Double? = nil,
-                    tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont:
-                    Shared.Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops:
-                    [Shared.TickFormatStop]? = nil, tickPrefix: String? = nil, showTickPrefix:
-                    Shared.ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: Shared.ShowTickSuffix?
-                    = nil, separateThousands: Bool? = nil, exponentFormat: Shared.ExponentFormat? = nil,
-                    showExponent: Shared.ShowExponent? = nil) {
+            public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: TickMode? = nil, numTicks:
+                    Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil,
+                    tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? =
+                    nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle:
+                    Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, tickPrefix:
+                    String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
+                    ShowTickSuffix? = nil, separateThousands: Bool? = nil, exponentFormat: ExponentFormat? = nil,
+                    showExponent: ShowExponent? = nil) {
                 self.range = range
                 self.visible = visible
                 self.tickMode = tickMode
@@ -560,7 +560,7 @@ public struct Indicator: Trace, DomainSubplot {
             /// Sets the background color of the arc.
             public var color: Color? = nil
         
-            public var line: Shared.Line? = nil
+            public var line: Line? = nil
         
             /// Sets the thickness of the bar as a fraction of the total thickness of the gauge.
             public var thickness: Double? = nil
@@ -605,8 +605,8 @@ public struct Indicator: Trace, DomainSubplot {
             ///   - name: When used in a template, named items are created in the output figure in addition to any
             ///   items the figure already has in this array.
             ///   - templateItemName: Used to refer to a named item in this array in the template.
-            public init(color: Color? = nil, line: Shared.Line? = nil, thickness: Double? = nil, range:
-                    InfoArray? = nil, name: String? = nil, templateItemName: String? = nil) {
+            public init(color: Color? = nil, line: Line? = nil, thickness: Double? = nil, range: InfoArray?
+                    = nil, name: String? = nil, templateItemName: String? = nil) {
                 self.color = color
                 self.line = line
                 self.thickness = thickness
@@ -619,7 +619,7 @@ public struct Indicator: Trace, DomainSubplot {
         public var steps: [Step]? = nil
     
         public struct Threshold: Encodable {
-            public var line: Shared.Line? = nil
+            public var line: Line? = nil
         
             /// Sets the thickness of the threshold line as a fraction of the thickness of the gauge.
             public var thickness: Double? = nil
@@ -634,7 +634,7 @@ public struct Indicator: Trace, DomainSubplot {
             ///   - thickness: Sets the thickness of the threshold line as a fraction of the thickness of the
             ///   gauge.
             ///   - value: Sets a treshold value drawn as a line.
-            public init(line: Shared.Line? = nil, thickness: Double? = nil, value: Double? = nil) {
+            public init(line: Line? = nil, thickness: Double? = nil, value: Double? = nil) {
                 self.line = line
                 self.thickness = thickness
                 self.value = value
@@ -739,11 +739,11 @@ public struct Indicator: Trace, DomainSubplot {
     ///   - number:
     ///   - delta:
     ///   - gauge: The gauge of the Indicator plot.
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, stream:
-            Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, mode: Mode? =
-            nil, value: Double? = nil, align: Shared.HorizontalAlign? = nil, domain: Shared.Domain? = nil,
-            title: Title? = nil, number: Number? = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? =
+            nil, customData: [String]? = nil, meta: Data<Anything>? = nil, stream: Stream? = nil,
+            transforms: [Transform] = [], uiRevision: Anything? = nil, mode: Mode? = nil, value: Double? =
+            nil, align: HorizontalAlign? = nil, domain: Domain? = nil, title: Title? = nil, number: Number?
+            = nil, delta: Delta? = nil, gauge: Gauge? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

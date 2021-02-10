@@ -83,13 +83,13 @@ public struct Filter: Transform {
     public var preserveGaps: Bool? = nil
 
     /// Sets the calendar system to use for `value`, if it is a date.
-    public var valueCalendar: Shared.Calendar? = nil
+    public var valueCalendar: Calendar? = nil
 
     /// Sets the calendar system to use for `target`, if it is an array of dates.
     /// 
     /// If `target` is a string (eg *x*) we use the corresponding trace attribute (eg `xcalendar`) if it
     /// exists, even if `targetcalendar` is provided.
-    public var targetCalendar: Shared.Calendar? = nil
+    public var targetCalendar: Calendar? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -114,8 +114,8 @@ public struct Filter: Transform {
     ///   - valueCalendar: Sets the calendar system to use for `value`, if it is a date.
     ///   - targetCalendar: Sets the calendar system to use for `target`, if it is an array of dates.
     public init(enabled: Bool? = nil, target: Data<String>? = nil, operation: Operation? = nil,
-            value: Anything? = nil, preserveGaps: Bool? = nil, valueCalendar: Shared.Calendar? = nil,
-            targetCalendar: Shared.Calendar? = nil) {
+            value: Anything? = nil, preserveGaps: Bool? = nil, valueCalendar: Calendar? = nil,
+            targetCalendar: Calendar? = nil) {
         self.enabled = enabled
         self.target = target
         self.operation = operation

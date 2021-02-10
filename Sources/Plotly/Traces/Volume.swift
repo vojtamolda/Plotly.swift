@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#volume) or 
 ///   [R](https://plot.ly/r/reference/#volume)
 public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plotable, ValueData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "volume"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the legend group for this trace.
     /// 
@@ -62,9 +64,9 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -472,14 +474,14 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar? = nil
+    public var colorBar: ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = .preset
+    public var colorAxis: ColorAxis = .preset
 
     /// Sets the opacity of the surface.
     /// 
@@ -499,21 +501,21 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     /// is 'uniform'.
     public var opacityScale: Anything? = nil
 
-    public var lightPosition: Shared.LightPosition? = nil
+    public var lightPosition: LightPosition? = nil
 
-    public var lighting: Shared.Lighting? = nil
+    public var lighting: Lighting? = nil
 
     /// Determines whether or not normal smoothing is applied to the meshes, creating meshes with an
     /// angular, low-poly look via flat reflections.
     public var flatShading: Bool? = nil
 
-    public var contour: Shared.ContourHover? = nil
+    public var contour: ContourHover? = nil
 
     /// Determines which trace information appear on hover.
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -522,7 +524,7 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: Layout.Scene = .preset
+    public var scene: Scene = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -652,19 +654,19 @@ public struct Volume<XYZData, ValueData>: Trace, SceneSubplot where XYZData: Plo
     ///   - showLegend: Determines whether or not an item corresponding to this trace is shown in the
     ///   legend.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
-    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
-            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
-            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? =
-            nil, x: XYZData? = nil, y: XYZData? = nil, z: XYZData? = nil, value: ValueData? = nil, isoMin:
-            Double? = nil, isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil,
-            slices: Slices? = nil, caps: Caps? = nil, text: Data<String>? = nil, hoverText: Data<String>? =
-            nil, hoverTemplate: Data<String>? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double?
-            = nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-            Layout.ColorAxis = .preset, opacity: Double? = nil, opacityScale: Anything? = nil,
-            lightPosition: Shared.LightPosition? = nil, lighting: Shared.Lighting? = nil, flatShading: Bool?
-            = nil, contour: Shared.ContourHover? = nil, hoverInfo: Shared.HoverInfo? = nil, showLegend:
-            Bool? = nil, scene: Layout.Scene = .preset) {
+    public init(visible: Visible? = nil, legendGroup: String? = nil, name: String? = nil, uid:
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: XYZData? =
+            nil, y: XYZData? = nil, z: XYZData? = nil, value: ValueData? = nil, isoMin: Double? = nil,
+            isoMax: Double? = nil, surface: Surface? = nil, spaceFrame: SpaceFrame? = nil, slices: Slices? =
+            nil, caps: Caps? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
+            hoverTemplate: Data<String>? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
+            nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
+            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis:
+            ColorAxis = .preset, opacity: Double? = nil, opacityScale: Anything? = nil, lightPosition:
+            LightPosition? = nil, lighting: Lighting? = nil, flatShading: Bool? = nil, contour:
+            ContourHover? = nil, hoverInfo: HoverInfo? = nil, showLegend: Bool? = nil, scene: Scene =
+            .preset) {
         self.visible = visible
         self.legendGroup = legendGroup
         self.name = name

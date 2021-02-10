@@ -65,7 +65,7 @@ public struct Animation: Encodable {
         public var duration: Double? = nil
     
         /// The easing function used for the transition
-        public var easing: Shared.Easing? = nil
+        public var easing: Easing? = nil
     
         /// Determines whether the figure's layout or traces smoothly transitions during updates that make
         /// both traces and layout change.
@@ -84,7 +84,7 @@ public struct Animation: Encodable {
         ///   - easing: The easing function used for the transition
         ///   - ordering: Determines whether the figure's layout or traces smoothly transitions during updates
         ///   that make both traces and layout change.
-        public init(duration: Double? = nil, easing: Shared.Easing? = nil, ordering: Ordering? = nil) {
+        public init(duration: Double? = nil, easing: Easing? = nil, ordering: Ordering? = nil) {
             self.duration = duration
             self.easing = easing
             self.ordering = ordering

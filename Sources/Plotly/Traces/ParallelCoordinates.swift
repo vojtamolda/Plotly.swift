@@ -13,15 +13,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#parcoords) or 
 ///   [R](https://plot.ly/r/reference/#parcoords)
 public struct ParallelCoordinates: Trace, DomainSubplot {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "parcoords"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the trace name.
     /// 
@@ -54,7 +56,7 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -71,7 +73,7 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
     /// stays with it as it moves.
     public var uiRevision: Anything? = nil
 
-    public var domain: Shared.Domain? = nil
+    public var domain: Domain? = nil
 
     /// Sets the angle of the labels with respect to the horizontal.
     /// 
@@ -96,13 +98,13 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
     public var labelSide: LabelSide? = nil
 
     /// Sets the font for the `dimension` labels.
-    public var labelFont: Shared.Font? = nil
+    public var labelFont: Font? = nil
 
     /// Sets the font for the `dimension` tick values.
-    public var tickFont: Shared.Font? = nil
+    public var tickFont: Font? = nil
 
     /// Sets the font for the `dimension` range values.
-    public var rangeFont: Shared.Font? = nil
+    public var rangeFont: Font? = nil
 
     /// The dimensions (variables) of the parallel coordinates chart.
     /// 
@@ -285,14 +287,14 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
         /// Has an effect only if in `line.color`is set to a numerical array.
         public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar? = nil
+        public var colorBar: ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
+        public var colorAxis: ColorAxis = .preset
     
         /// Decoding and encoding keys compatible with Plotly schema.
         enum CodingKeys: String, CodingKey {
@@ -329,8 +331,8 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
         ///   - colorAxis: Sets a reference to a shared color axis.
         public init(coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
                 nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-                reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                Layout.ColorAxis = .preset) {
+                reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis:
+                ColorAxis = .preset) {
             self.coloring = coloring
             self.cAuto = cAuto
             self.cMin = cMin
@@ -403,12 +405,11 @@ public struct ParallelCoordinates: Trace, DomainSubplot {
     ///   - rangeFont: Sets the font for the `dimension` range values.
     ///   - dimensions:
     ///   - line:
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, ids:
-            [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, stream:
-            Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, domain:
-            Shared.Domain? = nil, labelAngle: Angle? = nil, labelSide: LabelSide? = nil, labelFont:
-            Shared.Font? = nil, tickFont: Shared.Font? = nil, rangeFont: Shared.Font? = nil, dimensions:
-            [Dimension]? = nil, line: MarkerLine? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, ids: [String]? =
+            nil, customData: [String]? = nil, meta: Data<Anything>? = nil, stream: Stream? = nil,
+            transforms: [Transform] = [], uiRevision: Anything? = nil, domain: Domain? = nil, labelAngle:
+            Angle? = nil, labelSide: LabelSide? = nil, labelFont: Font? = nil, tickFont: Font? = nil,
+            rangeFont: Font? = nil, dimensions: [Dimension]? = nil, line: MarkerLine? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

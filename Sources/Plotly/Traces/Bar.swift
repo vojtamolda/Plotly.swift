@@ -14,15 +14,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#bar) or 
 ///   [R](https://plot.ly/r/reference/#bar)
 public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "bar"
 
-    public let animatable: Bool = true
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { true }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -77,11 +79,11 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -177,10 +179,10 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     /// stacked on this one, then the text gets pushed inside. *auto* tries to position `text` inside
     /// the bar, but if the bar is too small and no bar is stacked on this one the text is moved
     /// outside.
-    public var textPosition: Shared.AdjacentPosition? = nil
+    public var textPosition: AdjacentPosition? = nil
 
     /// Determines if texts are kept at center or start/end points in `textposition` *inside* mode.
-    public var insideTextAnchor: Shared.InsideTextAnchor? = nil
+    public var insideTextAnchor: InsideTextAnchor? = nil
 
     /// Sets the angle of the tick labels with respect to the bar.
     /// 
@@ -189,16 +191,16 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     public var textAngle: Angle? = nil
 
     /// Sets the font used for `text`.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Sets the font used for `text` lying inside the bar.
-    public var insideTextFont: Shared.VariableFont? = nil
+    public var insideTextFont: VariableFont? = nil
 
     /// Sets the font used for `text` lying outside the bar.
-    public var outsideTextFont: Shared.OutsideTextFont? = nil
+    public var outsideTextFont: OutsideTextFont? = nil
 
     /// Constrain the size of text inside or outside a bar to be no larger than the bar itself.
-    public var constrainText: Shared.ConstrainText? = nil
+    public var constrainText: ConstrainText? = nil
 
     /// Determines whether the text nodes are clipped about the subplot axes.
     /// 
@@ -209,7 +211,7 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     /// Sets the orientation of the bars.
     /// 
     /// With *v* (*h*), the value of the each bar spans along the vertical (horizontal).
-    public var orientation: Shared.Orientation? = nil
+    public var orientation: Orientation? = nil
 
     /// Sets where the bar base is drawn (in position axis units).
     /// 
@@ -226,7 +228,7 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     /// Sets the bar width (in position axis units).
     public var width: Data<Double>? = nil
 
-    public var marker: Shared.Marker? = nil
+    public var marker: Marker? = nil
 
     /// Set several traces linked to the same position axis or matching axes to the same offsetgroup
     /// where bars of the same position coordinate will line up.
@@ -339,27 +341,27 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     }
     public var unselected: Unselected? = nil
 
-    public var xError: Shared.Error? = nil
+    public var xError: Error? = nil
 
-    public var yError: Shared.Error? = nil
+    public var yError: Error? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar? = nil
+    public var yCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -424,7 +426,7 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     ///   - hoverText: Sets hover text elements associated with each (x,y) pair.
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, marker: Shared.Marker? = nil) {
+            hoverText: Data<String>? = nil, marker: Marker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -493,22 +495,21 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
-            = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, x0: Anything?
-            = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text:
-            Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
-            hoverTemplate: Data<String>? = nil, textPosition: Shared.AdjacentPosition? = nil,
-            insideTextAnchor: Shared.InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont:
-            Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil, outsideTextFont:
-            Shared.OutsideTextFont? = nil, constrainText: Shared.ConstrainText? = nil, clipOnAxis: Bool? =
-            nil, orientation: Shared.Orientation? = nil, base: Data<Anything>? = nil, offset: Data<Double>?
-            = nil, width: Data<Double>? = nil, marker: Shared.Marker? = nil, offsetGroup: String? = nil,
+            hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms:
+            [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double?
+            = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>? = nil,
+            textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>?
+            = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil,
+            textAngle: Angle? = nil, textFont: VariableFont? = nil, insideTextFont: VariableFont? = nil,
+            outsideTextFont: OutsideTextFont? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool?
+            = nil, orientation: Orientation? = nil, base: Data<Anything>? = nil, offset: Data<Double>? =
+            nil, width: Data<Double>? = nil, marker: Marker? = nil, offsetGroup: String? = nil,
             alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError:
-            Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar:
-            Shared.Calendar? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis = .preset) {
+            Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil,
+            xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

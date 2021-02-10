@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#contour) or 
 ///   [R](https://plot.ly/r/reference/#contour)
 public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotable, XData: Plotable, YData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "contour"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -72,11 +74,11 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -138,12 +140,12 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     /// 
     /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
     /// `x` is not provided).
-    public var xType: Shared.AxisType? = nil
+    public var xType: AxisType? = nil
 
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is
     /// provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default
     /// behavior when `y` is not provided)
-    public var yType: Shared.AxisType? = nil
+    public var yType: AxisType? = nil
 
     /// Sets the hover text formatting rule using d3 formatting mini-languages which are very similar to
     /// those in Python.
@@ -197,9 +199,9 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     /// of `ncontours`. Has an effect only if `autocontour` is *true* or if `contours.size` is missing.
     public var nContours: Int? = nil
 
-    public var contours: Shared.Contours? = nil
+    public var contours: Contours? = nil
 
-    public var line: Shared.SmoothDashedLine? = nil
+    public var line: SmoothDashedLine? = nil
 
     /// Determines whether or not the color domain is computed with respect to the input data (here in
     /// `z`) or the bounds set in `zmin` and `zmax` Defaults to `false` when `zmin` and `zmax` are set
@@ -249,32 +251,32 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar? = nil
+    public var colorBar: ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = .preset
+    public var colorAxis: ColorAxis = .preset
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar? = nil
+    public var yCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -343,8 +345,8 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     ///   - colorScale: Sets the colorscale.
     ///   - reverseScale: Reverses the color mapping if true.
     public init(name: String? = nil, z: ZData? = nil, x: XData? = nil, y: YData? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, line: Shared.SmoothDashedLine? = nil,
-            colorScale: ColorScale? = nil, reverseScale: Bool? = nil) {
+            Data<String>? = nil, hoverText: Data<String>? = nil, line: SmoothDashedLine? = nil, colorScale:
+            ColorScale? = nil, reverseScale: Bool? = nil) {
         self.name = name
         self.z = z
         self.x = x
@@ -422,21 +424,20 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, z: ZData? = nil, x: XData? = nil, x0: Anything? = nil, dx:
-            Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>? =
-            nil, hoverText: Data<String>? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil,
-            yType: Shared.AxisType? = nil, zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil,
-            hoverOnGaps: Bool? = nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool?
-            = nil, nContours: Int? = nil, contours: Shared.Contours? = nil, line: Shared.SmoothDashedLine? =
-            nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil,
-            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
-            showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis: Layout.ColorAxis = .preset,
-            xCalendar: Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, xAxis: Layout.XAxis =
-            .preset, yAxis: Layout.YAxis = .preset) {
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, z: ZData? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y:
+            YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>? = nil, hoverText:
+            Data<String>? = nil, transpose: Bool? = nil, xType: AxisType? = nil, yType: AxisType? = nil,
+            zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, hoverOnGaps: Bool? = nil,
+            connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? =
+            nil, contours: Contours? = nil, line: SmoothDashedLine? = nil, zAuto: Bool? = nil, zMin: Double?
+            = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
+            autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
+            ColorBar? = nil, colorAxis: ColorAxis = .preset, xCalendar: Calendar? = nil, yCalendar:
+            Calendar? = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

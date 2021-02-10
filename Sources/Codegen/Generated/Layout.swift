@@ -117,12 +117,16 @@ fileprivate extension Array where Element == Definable {
     /// Transforms the element with the specified name to a subplot array and returns the type.
     mutating func transformToSubplotArray(named name: String) -> Generated.Object?  {
         guard let instance = self.firstInstance(named: name) else { return nil }
-        instance.initialization = ".preset()"
+        instance.initialization = "[]"
         instance.array = true
         instance.optional = false
 
         guard let instanceType = (instance.type as? Generated.Object) else { return nil }
+        instanceType.shared = true
+        instanceType.parent = nil
         instanceType.semantics = .reference
+        instanceType.extensibility = .final
+        instanceType.protocols.append("SubplotAxis")
         instanceType.frequentProperties = ["name", "title", "showGrid", "domain", "achor",
                                            "range", "ticks", "tickAngle"]
 
@@ -141,17 +145,17 @@ fileprivate extension Array where Element == Definable {
         idInstance.exclude = true
         instanceType.members.insert(idInstance, at: 0)
 
-        // Add preset static member initialized to uid = 1
+        // Add preset static member
         let instanceTypeOverride = Generated.Override(of: instanceType, as: instanceType.name)
         
-        let presetInstance = Instance(of: instanceTypeOverride, named: "preset")
-        presetInstance.description = "Shared and preset default axis reference used to initialize layout and all traces."
-        presetInstance.initialization = "\(instanceType.name)(uid: 1)"
-        presetInstance.stationary = true
-        presetInstance.constant = true
-        presetInstance.optional = false
-        presetInstance.exclude = true
-        instanceType.members.append(presetInstance)
+        let presetStaticInstance = Instance(of: instanceTypeOverride, named: "preset")
+        presetStaticInstance.description = "Shared and preset default axis reference used to initialize layout and all traces."
+        presetStaticInstance.initialization = .constant("\(instanceType.name)(uid: 1)")
+        presetStaticInstance.stationary = true
+        presetStaticInstance.constant = true
+        presetStaticInstance.optional = false
+        presetStaticInstance.exclude = true
+        instanceType.members.append(presetStaticInstance)
         
         return instanceType
     }

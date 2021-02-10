@@ -16,15 +16,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#splom) or 
 ///   [R](https://plot.ly/r/reference/#splom)
 public struct ScatterPlotMatrix: Trace {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "splom"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -76,11 +78,11 @@ public struct ScatterPlotMatrix: Trace {
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -219,7 +221,7 @@ public struct ScatterPlotMatrix: Trace {
     /// `<extra></extra>`.
     public var hoverTemplate: Data<String>? = nil
 
-    public var marker: Shared.SymbolicMarker? = nil
+    public var marker: SymbolicMarker? = nil
 
     /// Sets the list of x axes corresponding to dimensions of this splom trace.
     /// 
@@ -367,7 +369,7 @@ public struct ScatterPlotMatrix: Trace {
     ///   - hoverText: Same as `text`.
     ///   - marker:
     public init(name: String? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
-            marker: Shared.SymbolicMarker? = nil) {
+            marker: SymbolicMarker? = nil) {
         self.name = name
         self.text = text
         self.hoverText = hoverText
@@ -411,15 +413,14 @@ public struct ScatterPlotMatrix: Trace {
     ///   - selected:
     ///   - unselected:
     ///   - opacity: Sets the opacity of the trace.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
-            name: String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil,
-            meta: Data<Anything>? = nil, selectedPoints: Anything? = nil, hoverInfo: Shared.HoverInfo? =
-            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform]
-            = [], uiRevision: Anything? = nil, dimensions: [Dimension]? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, marker:
-            Shared.SymbolicMarker? = nil, xAxes: InfoArray? = nil, yAxes: InfoArray? = nil, diagonal:
-            Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf: Bool? = nil, selected: Selected? =
-            nil, unselected: Unselected? = nil, opacity: Double? = nil) {
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil, name:
+            String? = nil, uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta:
+            Data<Anything>? = nil, selectedPoints: Anything? = nil, hoverInfo: HoverInfo? = nil, hoverLabel:
+            HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? =
+            nil, dimensions: [Dimension]? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
+            hoverTemplate: Data<String>? = nil, marker: SymbolicMarker? = nil, xAxes: InfoArray? = nil,
+            yAxes: InfoArray? = nil, diagonal: Diagonal? = nil, showUpperHalf: Bool? = nil, showLowerHalf:
+            Bool? = nil, selected: Selected? = nil, unselected: Unselected? = nil, opacity: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

@@ -11,15 +11,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#pointcloud) or 
 ///   [R](https://plot.ly/r/reference/#pointcloud)
 public struct PointCloud<XYData>: Trace, XYSubplot where XYData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "pointcloud"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -67,11 +69,11 @@ public struct PointCloud<XYData>: Trace, XYSubplot where XYData: Plotable {
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -219,13 +221,13 @@ public struct PointCloud<XYData>: Trace, XYSubplot where XYData: Plotable {
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -307,13 +309,13 @@ public struct PointCloud<XYData>: Trace, XYSubplot where XYData: Plotable {
     ///   - marker:
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: Shared.HoverInfo? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? = nil,
-            x: XYData? = nil, y: XYData? = nil, xy: XYData? = nil, indices: [Int]? = nil, xBounds: [Double]?
-            = nil, yBounds: [Double]? = nil, text: Data<String>? = nil, marker: Marker? = nil, xAxis:
-            Layout.XAxis = .preset, yAxis: Layout.YAxis = .preset) {
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, x: XYData? =
+            nil, y: XYData? = nil, xy: XYData? = nil, indices: [Int]? = nil, xBounds: [Double]? = nil,
+            yBounds: [Double]? = nil, text: Data<String>? = nil, marker: Marker? = nil, xAxis: XAxis =
+            .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

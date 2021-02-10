@@ -15,15 +15,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#funnelarea) or 
 ///   [R](https://plot.ly/r/reference/#funnelarea)
 public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where LabelsData: Plotable, ValuesData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "funnelarea"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -67,9 +69,9 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where Lab
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -115,14 +117,14 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where Lab
         /// If not specified, the default trace color set is used to pick the sector colors.
         public var colors: [Double]? = nil
     
-        public var line: Shared.VariableLine? = nil
+        public var line: VariableLine? = nil
     
         /// Creates `Marker` object with specified properties.
         /// 
         /// - Parameters:
         ///   - colors: Sets the color of each sector.
         ///   - line:
-        public init(colors: [Double]? = nil, line: Shared.VariableLine? = nil) {
+        public init(colors: [Double]? = nil, line: VariableLine? = nil) {
             self.colors = colors
             self.line = line
         }
@@ -253,10 +255,10 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where Lab
     public var textPosition: TextPosition? = nil
 
     /// Sets the font used for `textinfo`.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Sets the font used for `textinfo` lying inside the sector.
-    public var insideTextFont: Shared.VariableFont? = nil
+    public var insideTextFont: VariableFont? = nil
 
     public struct Title: Encodable {
         /// Sets the title of the chart.
@@ -269,7 +271,7 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where Lab
         /// Sets the font used for `title`.
         /// 
         /// Note that the title's font used to be set by the now deprecated `titlefont` attribute.
-        public var font: Shared.VariableFont? = nil
+        public var font: VariableFont? = nil
     
         /// Specifies the location of the `title`.
         /// 
@@ -290,7 +292,7 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where Lab
         ///   - text: Sets the title of the chart.
         ///   - font: Sets the font used for `title`.
         ///   - position: Specifies the location of the `title`.
-        public init(text: String? = nil, font: Shared.VariableFont? = nil, position: Position? = nil) {
+        public init(text: String? = nil, font: VariableFont? = nil, position: Position? = nil) {
             self.text = text
             self.font = font
             self.position = position
@@ -299,7 +301,7 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where Lab
     }
     public var title: Title? = nil
 
-    public var domain: Shared.Domain? = nil
+    public var domain: Domain? = nil
 
     /// Sets the ratio between height and width
     public var aspectRatio: Double? = nil
@@ -404,16 +406,16 @@ public struct FunnelArea<LabelsData, ValuesData>: Trace, DomainSubplot where Lab
     ///   - domain:
     ///   - aspectRatio: Sets the ratio between height and width
     ///   - baseRatio: Sets the ratio between bottom length and maximum top length.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
-            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel: Shared.HoverLabel? = nil,
-            stream: Shared.Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, labels:
-            LabelsData? = nil, label0: Double? = nil, dLabel: Double? = nil, values: ValuesData? = nil,
-            marker: Marker? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, scaleGroup:
-            String? = nil, textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, hoverInfo:
-            HoverInfo? = nil, hoverTemplate: Data<String>? = nil, textPosition: TextPosition? = nil,
-            textFont: Shared.VariableFont? = nil, insideTextFont: Shared.VariableFont? = nil, title: Title?
-            = nil, domain: Shared.Domain? = nil, aspectRatio: Double? = nil, baseRatio: Double? = nil) {
+            customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel: HoverLabel? = nil, stream:
+            Stream? = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, labels: LabelsData? =
+            nil, label0: Double? = nil, dLabel: Double? = nil, values: ValuesData? = nil, marker: Marker? =
+            nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, scaleGroup: String? = nil,
+            textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
+            hoverTemplate: Data<String>? = nil, textPosition: TextPosition? = nil, textFont: VariableFont? =
+            nil, insideTextFont: VariableFont? = nil, title: Title? = nil, domain: Domain? = nil,
+            aspectRatio: Double? = nil, baseRatio: Double? = nil) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

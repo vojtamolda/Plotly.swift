@@ -17,15 +17,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#surface) or 
 ///   [R](https://plot.ly/r/reference/#surface)
 public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceData: Plotable, XYData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "surface"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the legend group for this trace.
     /// 
@@ -63,9 +65,9 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     /// Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords`
     /// traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`.
@@ -171,14 +173,14 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar? = nil
+    public var colorBar: ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = .preset
+    public var colorAxis: ColorAxis = .preset
 
     public struct Contours: Encodable {
         public struct X: Encodable {
@@ -200,7 +202,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
             /// Must be positive.
             public var size: Double? = nil
         
-            public var project: Shared.Projection? = nil
+            public var project: Projection? = nil
         
             /// Sets the color of the contour lines.
             public var color: Color? = nil
@@ -253,8 +255,8 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
             ///   - highlightColor: Sets the color of the highlighted contour lines.
             ///   - highlightWidth: Sets the width of the highlighted contour lines.
             public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil,
-                    project: Shared.Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double?
-                    = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+                    project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil,
+                    highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -290,7 +292,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
             /// Must be positive.
             public var size: Double? = nil
         
-            public var project: Shared.Projection? = nil
+            public var project: Projection? = nil
         
             /// Sets the color of the contour lines.
             public var color: Color? = nil
@@ -343,8 +345,8 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
             ///   - highlightColor: Sets the color of the highlighted contour lines.
             ///   - highlightWidth: Sets the width of the highlighted contour lines.
             public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil,
-                    project: Shared.Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double?
-                    = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+                    project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil,
+                    highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -380,7 +382,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
             /// Must be positive.
             public var size: Double? = nil
         
-            public var project: Shared.Projection? = nil
+            public var project: Projection? = nil
         
             /// Sets the color of the contour lines.
             public var color: Color? = nil
@@ -433,8 +435,8 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
             ///   - highlightColor: Sets the color of the highlighted contour lines.
             ///   - highlightWidth: Sets the width of the highlighted contour lines.
             public init(show: Bool? = nil, start: Double? = nil, end: Double? = nil, size: Double? = nil,
-                    project: Shared.Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double?
-                    = nil, highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
+                    project: Projection? = nil, color: Color? = nil, useColormap: Bool? = nil, width: Double? = nil,
+                    highlight: Bool? = nil, highlightColor: Color? = nil, highlightWidth: Double? = nil) {
                 self.show = show
                 self.start = start
                 self.end = end
@@ -467,7 +469,7 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     /// *true* to draw a wire frame plot.
     public var hideSurface: Bool? = nil
 
-    public var lightPosition: Shared.LightPosition? = nil
+    public var lightPosition: LightPosition? = nil
 
     public struct Lighting: Encodable {
         /// Ambient light increases overall color visibility but can wash out the image.
@@ -532,25 +534,25 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar? = nil
+    public var yCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `z` date data.
-    public var zCalendar: Shared.Calendar? = nil
+    public var zCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's 3D coordinate system and a 3D scene.
     /// 
     /// If *scene* (the default value), the (x,y,z) coordinates refer to `layout.scene`. If *scene2*,
     /// the (x,y,z) coordinates refer to `layout.scene2`, and so on.
-    public var scene: Layout.Scene = .preset
+    public var scene: Scene = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -677,19 +679,18 @@ public struct Surface<ZSurfaceData, XYData>: Trace, SceneSubplot where ZSurfaceD
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - zCalendar: Sets the calendar system to use with `z` date data.
     ///   - scene: Sets a reference between this trace's 3D coordinate system and a 3D scene.
-    public init(visible: Shared.Visible? = nil, legendGroup: String? = nil, name: String? = nil,
-            uid: String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? =
-            nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, uiRevision: Anything? =
-            nil, z: ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil, connectGaps: Bool? = nil,
-            surfaceColor: ZSurfaceData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil,
-            cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-            reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-            Layout.ColorAxis = .preset, contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition:
-            Shared.LightPosition? = nil, lighting: Lighting? = nil, opacity: Double? = nil, opacityScale:
-            Anything? = nil, hoverInfo: Shared.HoverInfo? = nil, showLegend: Bool? = nil, xCalendar:
-            Shared.Calendar? = nil, yCalendar: Shared.Calendar? = nil, zCalendar: Shared.Calendar? = nil,
-            scene: Layout.Scene = .preset) {
+    public init(visible: Visible? = nil, legendGroup: String? = nil, name: String? = nil, uid:
+            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, uiRevision: Anything? = nil, z:
+            ZSurfaceData? = nil, x: XYData? = nil, y: XYData? = nil, text: Data<String>? = nil, hoverText:
+            Data<String>? = nil, hoverTemplate: Data<String>? = nil, connectGaps: Bool? = nil, surfaceColor:
+            ZSurfaceData? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? = nil, cMiddle:
+            Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? =
+            nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: ColorAxis = .preset,
+            contours: Contours? = nil, hideSurface: Bool? = nil, lightPosition: LightPosition? = nil,
+            lighting: Lighting? = nil, opacity: Double? = nil, opacityScale: Anything? = nil, hoverInfo:
+            HoverInfo? = nil, showLegend: Bool? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? =
+            nil, zCalendar: Calendar? = nil, scene: Scene = .preset) {
         self.visible = visible
         self.legendGroup = legendGroup
         self.name = name

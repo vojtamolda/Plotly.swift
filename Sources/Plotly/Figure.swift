@@ -9,56 +9,90 @@ import Foundation
 public struct Figure {
     /// Collection of traces that are displayed on the figure, e.g. `Scatter`, `Bar` `Polar` or  `Heatmap`.
     public var data: [Trace]
-
     /// Structure containing layout of the figure.
-    public var layout: Layout?
-
-    /// Structure containing Plotly configuration.
-    public var config: Config?
-    
+    public var layout: Layout
+    /// Structure storing _Plotly_ configuration.
+    public var config: Config
     /// Collection of animation frames.
     public var frames: [Frame] = []
-    
-    /// `Figure` output format specification.
+
+    /// Output format specification.
     public enum Format {
+        /// Generate hypertext markup language.
         case HTML
+        /// Generate JavaScript object notation.
         case JSON
     }
 
-    /// Creates a `Figure` displaying the `data` traces with styling and configuration specified by `layout` and `config`.
-    public init(data: [Trace], layout: Layout? = nil, frames: [Frame] = [], config: Config? = nil) {
-        self.data = data
-
-        self.layout = layout
-        if self.layout != nil {
-            for trace in data {
-                switch trace {
-                case let xySubplot as XYSubplot:
-                    self.layout!.xAxis.append(xySubplot.xAxis)
-                    self.layout!.yAxis.append(xySubplot.yAxis)
-                case is DomainSubplot:
-                    break
-                case let ternarySubplot as TernarySubplot:
-                    self.layout!.ternary.append(ternarySubplot.subplot)
-                case let sceneSubplot as SceneSubplot:
-                    self.layout!.scene.append(sceneSubplot.scene)
-                case let geoSubplot as GeoSubplot:
-                    self.layout!.geo.append(geoSubplot.geo)
-                case let mapboxSubplot as MapboxSubplot:
-                    self.layout!.mapbox.append(mapboxSubplot.subplot)
-                case let polarSubplot as PolarSubplot:
-                    self.layout!.polar.append(polarSubplot.subplot)
-                default:
-                    fatalError("Unsupported subplot protocol")
-                }
-            }
-        }
-        
+    /// Creates a chart displaying the data series from  `traces` with style and configuration from `layout` and `config`.
+    ///
+    /// # Traces to Layout Subplot Axis Association
+    /// Constructors collects subplot axis properties , i.e. `Trace.xAxis`, `Trace.yAxis`, `Trace.polar` and so on, of
+    /// each trace, checks for uniqueness and assigns them to the corresponding `Layout` container, i. e. `Layout.xAxis`,
+    /// `Layout.yAxis`, `Layout.polar` and so on.
+    ///
+    /// The check for uniqueness is a little bit tricky and requires comparison against the `.preset` static property. The `.preset`
+    /// represents the default value implicitly used by _Plotly_ when the subplot axis property isn't set.
+    ///
+    /// If a pair of colliding subplot axis is found, the constructor issues  an assertion to alert the user about the `uid` collision.
+    /// This error means that traces or layout have independent subplot axis with the same `uid`. This is a serious and hard to
+    /// find error in _Plotly.js_ because figures with duplicated axis `uid`s don't look as expected.
+    ///
+    /// - Note:
+    /// The duplicate `uid` assertion is excluded from release builds.
+    ///
+    /// - Parameters:
+    ///   - traces: Array of traces that represent the data series displayed on the figure.
+    ///   - layout: Settings affecting layout of the figure, i.e. subplots, axis, title, scale, margin, ticks and more.
+    ///   - frames: If the figure isn't animated, an empty array, or animation frames otherwise.
+    ///   - config: Configuration of the _Plotly_  library, i.e. toolbar, watermark, scrolling, locale and more.
+    public init(data traces: [Trace], layout: Layout = Layout(),
+                frames: [Frame] = [], config: Config = Config()) {
+        self.data = traces
         self.frames = frames
-
         self.config = config
-    }
+        self.layout = layout
 
+        assignSubplotAxis(from: traces)
+    }
+    
+    /// Aggregates and uniquely assigns subplot axis referenced by each trace to the corresponding layout subplot axis.
+    private mutating func assignSubplotAxis(from traces: [Trace]) {
+        let layoutXAxis = layout.xAxis.map { ($0.uid, $0) }
+        let traceXAxis = traces.compactMap { ($0 as? XYSubplot)?.xAxis }.map { ($0.uid, $0) }
+        let uniqueXAxis = Dictionary(layoutXAxis + traceXAxis, uniquingKeysWith: Self.ignorePreset)
+        layout.xAxis = Array(uniqueXAxis.values)
+
+        let layoutYAxis = layout.yAxis.map { ($0.uid, $0) }
+        let traceYAxis = traces.compactMap { ($0 as? XYSubplot)?.yAxis }.map { ($0.uid, $0) }
+        let uniqueYAxis = Dictionary(layoutYAxis + traceYAxis, uniquingKeysWith: Self.ignorePreset)
+        layout.yAxis = Array(uniqueYAxis.values)
+                
+        let layoutTernary = layout.ternary.map { ($0.uid, $0) }
+        let traceTernary = traces.compactMap { ($0 as? TernarySubplot)?.subplot }.map { ($0.uid, $0) }
+        let uniqueTernary = Dictionary(layoutTernary + traceTernary, uniquingKeysWith: Self.ignorePreset)
+        layout.ternary = Array(uniqueTernary.values)
+
+        let layoutScene = layout.scene.map { ($0.uid, $0) }
+        let traceScene = traces.compactMap { ($0 as? SceneSubplot)?.scene }.map { ($0.uid, $0) }
+        let uniqueScene = Dictionary(layoutScene + traceScene, uniquingKeysWith: Self.ignorePreset)
+        layout.scene = Array(uniqueScene.values)
+
+        let layoutGeo = layout.geo.map { ($0.uid, $0) }
+        let traceGeo = traces.compactMap { ($0 as? GeoSubplot)?.geo }.map { ($0.uid, $0) }
+        let uniqueGeo = Dictionary(layoutGeo + traceGeo, uniquingKeysWith: Self.ignorePreset)
+        layout.geo = Array(uniqueGeo.values)
+        
+        let layoutMapbox = layout.mapbox.map { ($0.uid, $0) }
+        let traceMapbox = traces.compactMap { ($0 as? MapboxSubplot)?.subplot }.map { ($0.uid, $0) }
+        let uniqueMapbox = Dictionary(layoutMapbox + traceMapbox, uniquingKeysWith: Self.ignorePreset)
+        layout.mapbox = Array(uniqueMapbox.values)
+        
+        let layoutPolar = layout.polar.map { ($0.uid, $0) }
+        let tracePolar = traces.compactMap { ($0 as? PolarSubplot)?.subplot }.map { ($0.uid, $0) }
+        let uniquePolar = Dictionary(layoutPolar + tracePolar, uniquingKeysWith: Self.ignorePreset)
+        layout.polar = Array(uniquePolar.values)
+    }
     
     /// If the provided `axis0`, `axis1` pair isn't the same instance, the function returns the one that isn't equal to the preset.
     ///
@@ -88,6 +122,31 @@ public struct Figure {
         )
         return axis0
     }
+//    
+//    private func assignSubplots(to layout: &inout Layout, traces: [Trace]) {
+//        for trace in traces {
+//            switch trace {
+//            case let xySubplot as XYSubplot:
+//                self.layout!.xAxis.append(xySubplot.xAxis)
+//                self.layout!.yAxis.append(xySubplot.yAxis)
+//            case is DomainSubplot:
+//                break
+//            case let ternarySubplot as TernarySubplot:
+//                self.layout!.ternary.append(ternarySubplot.subplot)
+//            case let sceneSubplot as SceneSubplot:
+//                self.layout!.scene.append(sceneSubplot.scene)
+//            case let geoSubplot as GeoSubplot:
+//                self.layout!.geo.append(geoSubplot.geo)
+//            case let mapboxSubplot as MapboxSubplot:
+//                self.layout!.mapbox.append(mapboxSubplot.subplot)
+//            case let polarSubplot as PolarSubplot:
+//                self.layout!.polar.append(polarSubplot.subplot)
+//            default:
+//                fatalError("Unsupported subplot protocol")
+//            }
+//        }
+//        
+//    }
 
     /// Shows the chart in the default browser.
     ///

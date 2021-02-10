@@ -11,15 +11,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#heatmapgl) or 
 ///   [R](https://plot.ly/r/reference/#heatmapgl)
 public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, XYData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "heatmapgl"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the opacity of the trace.
     public var opacity: Double? = nil
@@ -59,11 +61,11 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -122,12 +124,12 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
     /// 
     /// If *scaled*, the heatmap's x coordinates are given by *x0* and *dx* (the default behavior when
     /// `x` is not provided).
-    public var xType: Shared.AxisType? = nil
+    public var xType: AxisType? = nil
 
     /// If *array*, the heatmap's y coordinates are given by *y* (the default behavior when `y` is
     /// provided) If *scaled*, the heatmap's y coordinates are given by *y0* and *dy* (the default
     /// behavior when `y` is not provided)
-    public var yType: Shared.AxisType? = nil
+    public var yType: AxisType? = nil
 
     /// Picks a smoothing algorithm use to smooth `z` data.
     public enum ZSmooth: Encodable {
@@ -194,26 +196,26 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
     /// Determines whether or not a colorbar is displayed for this trace.
     public var showScale: Bool? = nil
 
-    public var colorBar: Shared.ColorBar? = nil
+    public var colorBar: ColorBar? = nil
 
     /// Sets a reference to a shared color axis.
     /// 
     /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
     /// for these shared color axes are set in the layout, under `layout.coloraxis`,
     /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-    public var colorAxis: Layout.ColorAxis = .preset
+    public var colorAxis: ColorAxis = .preset
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -327,17 +329,16 @@ public struct HeatmapGL<ZData, XYData>: Trace, XYSubplot where ZData: Plotable, 
     ///   - colorAxis: Sets a reference to a shared color axis.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, opacity: Double? = nil, name: String? = nil, uid:
-            String? = nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil,
-            hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
-            = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, z: ZData? = nil, x: XYData? =
-            nil, x0: Anything? = nil, dx: Double? = nil, y: XYData? = nil, y0: Anything? = nil, dy: Double?
-            = nil, text: Data<String>? = nil, transpose: Bool? = nil, xType: Shared.AxisType? = nil, yType:
-            Shared.AxisType? = nil, zSmooth: ZSmooth? = nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax:
-            Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? =
-            nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil,
-            colorAxis: Layout.ColorAxis = .preset, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis =
-            .preset) {
+    public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? =
+            nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo:
+            HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform]
+            = [], uiRevision: Anything? = nil, z: ZData? = nil, x: XYData? = nil, x0: Anything? = nil, dx:
+            Double? = nil, y: XYData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>? =
+            nil, transpose: Bool? = nil, xType: AxisType? = nil, yType: AxisType? = nil, zSmooth: ZSmooth? =
+            nil, zAuto: Bool? = nil, zMin: Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil,
+            colorScale: ColorScale? = nil, autoColorScale: Bool? = nil, reverseScale: Bool? = nil,
+            showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis: ColorAxis = .preset, xAxis: XAxis
+            = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.opacity = opacity
         self.name = name

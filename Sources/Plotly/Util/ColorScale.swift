@@ -2248,20 +2248,20 @@ fileprivate extension ColorScale {
     /// Builds a figure that displays the color scales above each other for comparison.
     static func createSwatchBarFigure(title: String, colorScales: [(String, [(String, ColorScale)])]) -> Figure {
         let resolution = 200
-        let xAxis = Layout.XAxis(visible: false)
-        let yAxis = Layout.YAxis(autoMargin: true)
+        let xAxis = XAxis(visible: false)
+        let yAxis = YAxis(autoMargin: true)
 
         var swatches = [Trace]()
         for (category, categoryColorScales) in colorScales {
             for (name, colorScale) in categoryColorScales {
                 let swatch = Bar(
                     name: name,
-                    hoverInfo: Shared.HoverInfo.none,
+                    hoverInfo: HoverInfo.none,
                     x: [Int](repeating: 1, count: resolution),
                     y: [[String](repeating: category, count: resolution),
                         [String](repeating: name, count: resolution)],
                     orientation: .h,
-                    marker: Shared.Marker(
+                    marker: Marker(
                         coloring: .colorScale([Double](stride(from: 0.0, to: Double(resolution), by: 1.0))),
                         colorScale: colorScale
                     ),
@@ -2297,7 +2297,7 @@ fileprivate extension ColorScale {
                 theta: stride(from: 0.0, through: 360.0, by: 360.0 / resolution),
                 base: .constant(0.75),
                 width: .constant(360.0 / resolution),
-                marker: Shared.Marker(
+                marker: Marker(
                     coloring: .colorScale([Double](stride(from: 0.0, to: resolution, by: 1.0))),
                     colorScale: colorScale
                 ),

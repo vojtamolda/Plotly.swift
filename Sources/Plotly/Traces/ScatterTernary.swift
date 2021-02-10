@@ -13,15 +13,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatterternary) or 
 ///   [R](https://plot.ly/r/reference/#scatterternary)
 public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where AData: Plotable, BData: Plotable, CData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "scatterternary"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -72,9 +74,9 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     /// values means no selection all where the `selected` and `unselected` styles have no effect.
     public var selectedPoints: Anything? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -120,7 +122,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-    public var mode: Shared.Mode? = nil
+    public var mode: Mode? = nil
 
     /// Sets text elements associated with each (a,b,c) point.
     /// 
@@ -149,7 +151,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     /// must contain a *text* flag.
     public var hoverText: Data<String>? = nil
 
-    public var line: Shared.ShapedSmoothDashedLine? = nil
+    public var line: ShapedSmoothDashedLine? = nil
 
     /// Determines whether or not gaps (i.e.
     /// 
@@ -169,7 +171,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     /// gaps) into a closed shape. *tonext* fills the space between two traces if one completely
     /// encloses the other (eg consecutive contour lines), and behaves like *toself* if there is no
     /// trace before it. *tonext* should not be used if one trace does not enclose the other.
-    public var fill: Shared.AreaFill? = nil
+    public var fill: AreaFill? = nil
 
     /// Sets the fill color.
     /// 
@@ -177,13 +179,13 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     /// whichever is available.
     public var fillColor: Color? = nil
 
-    public var marker: Shared.GradientMarker? = nil
+    public var marker: GradientMarker? = nil
 
     /// Sets the text font.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition? = nil
+    public var textPosition: TextPosition? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
@@ -339,7 +341,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight
     /// filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the
     /// default is *fills*, otherwise it is *points*.
-    public var hoverOn: Shared.HoverOn? = nil
+    public var hoverOn: HoverOn? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -362,7 +364,7 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     /// 
     /// If *ternary* (the default value), the data refer to `layout.ternary`. If *ternary2*, the data
     /// refer to `layout.ternary2`, and so on.
-    public var subplot: Layout.Ternary = .preset
+    public var subplot: Ternary = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -417,9 +419,9 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     ///   - hoverText: Sets hover text elements associated with each (a,b,c) point.
     ///   - line:
     ///   - marker:
-    public init(name: String? = nil, a: AData? = nil, b: BData? = nil, c: CData? = nil, mode:
-            Shared.Mode? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line:
-            Shared.ShapedSmoothDashedLine? = nil, marker: Shared.GradientMarker? = nil) {
+    public init(name: String? = nil, a: AData? = nil, b: BData? = nil, c: CData? = nil, mode: Mode?
+            = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, line: ShapedSmoothDashedLine?
+            = nil, marker: GradientMarker? = nil) {
         self.name = name
         self.a = a
         self.b = b
@@ -479,18 +481,17 @@ public struct ScatterTernary<AData, BData, CData>: Trace, TernarySubplot where A
     ///   then the default is *fills*, otherwise it is *points*.
     ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
     ///   - subplot: Sets a reference between this trace's data coordinates and a ternary subplot.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream? = nil, transforms: [Transform] =
-            [], uiRevision: Anything? = nil, a: AData? = nil, b: BData? = nil, c: CData? = nil, sum: Double?
-            = nil, mode: Shared.Mode? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil,
-            hoverText: Data<String>? = nil, line: Shared.ShapedSmoothDashedLine? = nil, connectGaps: Bool? =
-            nil, clipOnAxis: Bool? = nil, fill: Shared.AreaFill? = nil, fillColor: Color? = nil, marker:
-            Shared.GradientMarker? = nil, textFont: Shared.VariableFont? = nil, textPosition:
-            Shared.TextPosition? = nil, selected: Selected? = nil, unselected: Unselected? = nil, hoverInfo:
-            HoverInfo? = nil, hoverOn: Shared.HoverOn? = nil, hoverTemplate: Data<String>? = nil, subplot:
-            Layout.Ternary = .preset) {
+            hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, a: AData? = nil, b: BData? = nil, c: CData? = nil, sum: Double? = nil, mode:
+            Mode? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText:
+            Data<String>? = nil, line: ShapedSmoothDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis:
+            Bool? = nil, fill: AreaFill? = nil, fillColor: Color? = nil, marker: GradientMarker? = nil,
+            textFont: VariableFont? = nil, textPosition: TextPosition? = nil, selected: Selected? = nil,
+            unselected: Unselected? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil,
+            hoverTemplate: Data<String>? = nil, subplot: Ternary = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup

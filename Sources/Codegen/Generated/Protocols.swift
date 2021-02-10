@@ -162,7 +162,17 @@ enum Denotation {
 enum Access: String, CustomStringConvertible {
     case `default` = ""
     case `public` = "public "
+    case `internal` = "internal "
     case `private` = "private "
+
+    var description: String { self.rawValue }
+}
+
+/// Extensibility modifier of a Swift class.
+enum Extensibility: String, CustomStringConvertible {
+    case `default` = ""
+    case `open` = "open "
+    case `final` = "final "
 
     var description: String { self.rawValue }
 }

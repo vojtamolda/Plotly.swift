@@ -11,15 +11,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#parcats) or 
 ///   [R](https://plot.ly/r/reference/#parcats)
 public struct ParallelCategories: Trace, DomainSubplot {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "parcats"
 
-    public let animatable: Bool = false
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { false }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Sets the trace name.
     /// 
@@ -40,7 +42,7 @@ public struct ParallelCategories: Trace, DomainSubplot {
     /// `%{data[n[.meta[i]}` where `i` is the index or key of the `meta` and `n` is the trace index.
     public var meta: Data<Anything>? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -57,7 +59,7 @@ public struct ParallelCategories: Trace, DomainSubplot {
     /// stays with it as it moves.
     public var uiRevision: Anything? = nil
 
-    public var domain: Shared.Domain? = nil
+    public var domain: Domain? = nil
 
     /// Determines which trace information appear on hover.
     /// 
@@ -162,10 +164,10 @@ public struct ParallelCategories: Trace, DomainSubplot {
     public var sortPaths: SortPaths? = nil
 
     /// Sets the font for the `dimension` labels.
-    public var labelFont: Shared.Font? = nil
+    public var labelFont: Font? = nil
 
     /// Sets the font for the `category` labels.
-    public var tickFont: Shared.Font? = nil
+    public var tickFont: Font? = nil
 
     /// The dimensions (variables) of the parallel categories diagram.
     public struct Dimension: Encodable {
@@ -180,7 +182,7 @@ public struct ParallelCategories: Trace, DomainSubplot {
         /// derive the ordering from the attribute `categoryarray`. If a category is not found in the
         /// `categoryarray` array, the sorting behavior for that attribute will be identical to the *trace*
         /// mode. The unspecified categories will follow the categories in `categoryarray`.
-        public var categoryOrder: Shared.CarpetCategoryOrder? = nil
+        public var categoryOrder: CarpetCategoryOrder? = nil
     
         /// Sets the order in which categories in this dimension appear.
         /// 
@@ -229,9 +231,9 @@ public struct ParallelCategories: Trace, DomainSubplot {
         ///   - displayIndex: The display index of dimension, from left to right, zero indexed, defaults to
         ///   dimension index.
         ///   - visible: Shows the dimension when set to `true` (the default).
-        public init(label: String? = nil, categoryOrder: Shared.CarpetCategoryOrder? = nil,
-                categoryArray: [Double]? = nil, tickText: [Double]? = nil, values: [Double]? = nil,
-                displayIndex: Int? = nil, visible: Bool? = nil) {
+        public init(label: String? = nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray:
+                [Double]? = nil, tickText: [Double]? = nil, values: [Double]? = nil, displayIndex: Int? = nil,
+                visible: Bool? = nil) {
             self.label = label
             self.categoryOrder = categoryOrder
             self.categoryArray = categoryArray
@@ -308,14 +310,14 @@ public struct ParallelCategories: Trace, DomainSubplot {
         /// Has an effect only if in `line.color`is set to a numerical array.
         public var showScale: Bool? = nil
     
-        public var colorBar: Shared.ColorBar? = nil
+        public var colorBar: ColorBar? = nil
     
         /// Sets a reference to a shared color axis.
         /// 
         /// References to these shared color axes are *coloraxis*, *coloraxis2*, *coloraxis3*, etc. Settings
         /// for these shared color axes are set in the layout, under `layout.coloraxis`,
         /// `layout.coloraxis2`, etc. Note that multiple color scales can be linked to the same color axis.
-        public var colorAxis: Layout.ColorAxis = .preset
+        public var colorAxis: ColorAxis = .preset
     
         /// Sets the shape of the paths.
         /// 
@@ -387,8 +389,8 @@ public struct ParallelCategories: Trace, DomainSubplot {
         ///   - hoverTemplate: Template string used for rendering the information that appear on hover box.
         public init(coloring: Coloring? = nil, cAuto: Bool? = nil, cMin: Double? = nil, cMax: Double? =
                 nil, cMiddle: Double? = nil, colorScale: ColorScale? = nil, autoColorScale: Bool? = nil,
-                reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: Shared.ColorBar? = nil, colorAxis:
-                Layout.ColorAxis = .preset, shape: Shape? = nil, hoverTemplate: String? = nil) {
+                reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar: ColorBar? = nil, colorAxis:
+                ColorAxis = .preset, shape: Shape? = nil, hoverTemplate: String? = nil) {
             self.coloring = coloring
             self.cAuto = cAuto
             self.cMin = cMin
@@ -472,12 +474,12 @@ public struct ParallelCategories: Trace, DomainSubplot {
     ///   - dimensions:
     ///   - line:
     ///   - counts: The number of observations represented by each state.
-    public init(visible: Shared.Visible? = nil, name: String? = nil, uid: String? = nil, meta:
-            Data<Anything>? = nil, stream: Shared.Stream? = nil, transforms: [Transform] = [], uiRevision:
-            Anything? = nil, domain: Shared.Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? =
-            nil, hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil,
-            sortPaths: SortPaths? = nil, labelFont: Shared.Font? = nil, tickFont: Shared.Font? = nil,
-            dimensions: [Dimension]? = nil, line: ShapedMarkerLine? = nil, counts: Data<Double>? = nil) {
+    public init(visible: Visible? = nil, name: String? = nil, uid: String? = nil, meta:
+            Data<Anything>? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
+            Anything? = nil, domain: Domain? = nil, hoverInfo: HoverInfo? = nil, hoverOn: HoverOn? = nil,
+            hoverTemplate: String? = nil, arrangement: Arrangement? = nil, bundleColors: Bool? = nil,
+            sortPaths: SortPaths? = nil, labelFont: Font? = nil, tickFont: Font? = nil, dimensions:
+            [Dimension]? = nil, line: ShapedMarkerLine? = nil, counts: Data<Double>? = nil) {
         self.visible = visible
         self.name = name
         self.uid = uid

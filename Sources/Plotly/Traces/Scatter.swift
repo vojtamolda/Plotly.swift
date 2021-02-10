@@ -15,15 +15,17 @@
 ///   [JavaScript](https://plot.ly/javascript/reference/#scatter) or 
 ///   [R](https://plot.ly/r/reference/#scatter)
 public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: Plotable {
+    /// Corresponding _Plotly_ trace type.
     public let type: String = "scatter"
 
-    public let animatable: Bool = true
+    /// Switch indicating whether the trace supports animation of its data.
+    public static var animatable: Bool { true }
 
     /// Determines whether or not this trace is visible.
     /// 
     /// If *legendonly*, the trace is not drawn, but can appear as a legend item (provided that the
     /// legend itself is visible).
-    public var visible: Shared.Visible? = nil
+    public var visible: Visible? = nil
 
     /// Determines whether or not an item corresponding to this trace is shown in the legend.
     public var showLegend: Bool? = nil
@@ -78,11 +80,11 @@ public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YDa
     /// 
     /// If `none` or `skip` are set, no information is displayed upon hovering. But, if `none` is set,
     /// click and hover events are still fired.
-    public var hoverInfo: Shared.HoverInfo? = nil
+    public var hoverInfo: HoverInfo? = nil
 
-    public var hoverLabel: Shared.HoverLabel? = nil
+    public var hoverLabel: HoverLabel? = nil
 
-    public var stream: Shared.Stream? = nil
+    public var stream: Stream? = nil
 
     public var transforms: [Transform] = []
 
@@ -143,7 +145,7 @@ public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YDa
     /// 
     /// Sets the stacking direction. With *v* (*h*), the y (x) values of subsequent traces are added.
     /// Also affects the default value of `fill`.
-    public var orientation: Shared.Orientation? = nil
+    public var orientation: Orientation? = nil
 
     /// Only relevant when `stackgroup` is used, and only the first `groupnorm` found in the
     /// `stackgroup` will be used - including if `visible` is *legendonly* but not if it is `false`.
@@ -216,12 +218,12 @@ public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YDa
     /// If the provided `mode` includes *text* then the `text` elements appear at the coordinates.
     /// Otherwise, the `text` elements appear on hover. If there are less than 20 points and the trace
     /// is not stacked then the default is *lines+markers*. Otherwise, *lines*.
-    public var mode: Shared.Mode? = nil
+    public var mode: Mode? = nil
 
     /// Do the hover effects highlight individual points (markers or line points) or do they highlight
     /// filled regions? If the fill is *toself* or *tonext* and there are no markers or text, then the
     /// default is *fills*, otherwise it is *points*.
-    public var hoverOn: Shared.HoverOn? = nil
+    public var hoverOn: HoverOn? = nil
 
     /// Template string used for rendering the information that appear on hover box.
     /// 
@@ -329,7 +331,7 @@ public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YDa
     /// will only fill to (or be filled to) other traces in the same group. With multiple `stackgroup`s
     /// or some traces stacked and some not, if fill-linked traces are not already consecutive, the
     /// later ones will be pushed down in the drawing order.
-    public var fill: Shared.Fill? = nil
+    public var fill: Fill? = nil
 
     /// Sets the fill color.
     /// 
@@ -337,7 +339,7 @@ public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YDa
     /// whichever is available.
     public var fillColor: Color? = nil
 
-    public var marker: Shared.GradientMarker? = nil
+    public var marker: GradientMarker? = nil
 
     public struct Selected: Encodable {
         public struct Marker: Encodable {
@@ -452,32 +454,32 @@ public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YDa
     public var unselected: Unselected? = nil
 
     /// Sets the positions of the `text` elements with respects to the (x,y) coordinates.
-    public var textPosition: Shared.TextPosition? = nil
+    public var textPosition: TextPosition? = nil
 
     /// Sets the text font.
-    public var textFont: Shared.VariableFont? = nil
+    public var textFont: VariableFont? = nil
 
-    public var xError: Shared.Error? = nil
+    public var xError: Error? = nil
 
-    public var yError: Shared.Error? = nil
+    public var yError: Error? = nil
 
     /// Sets the calendar system to use with `x` date data.
-    public var xCalendar: Shared.Calendar? = nil
+    public var xCalendar: Calendar? = nil
 
     /// Sets the calendar system to use with `y` date data.
-    public var yCalendar: Shared.Calendar? = nil
+    public var yCalendar: Calendar? = nil
 
     /// Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     /// 
     /// If *x* (the default value), the x coordinates refer to `layout.xaxis`. If *x2*, the x
     /// coordinates refer to `layout.xaxis2`, and so on.
-    public var xAxis: Layout.XAxis = .preset
+    public var xAxis: XAxis = .preset
 
     /// Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
     /// 
     /// If *y* (the default value), the y coordinates refer to `layout.yaxis`. If *y2*, the y
     /// coordinates refer to `layout.yaxis2`, and so on.
-    public var yAxis: Layout.YAxis = .preset
+    public var yAxis: YAxis = .preset
 
     /// Decoding and encoding keys compatible with Plotly schema.
     enum CodingKeys: String, CodingKey {
@@ -543,8 +545,8 @@ public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YDa
     ///   - line:
     ///   - marker:
     public init(name: String? = nil, x: XData? = nil, y: YData? = nil, text: Data<String>? = nil,
-            hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, line: ShapedSmoothDashedLine? = nil,
-            marker: Shared.GradientMarker? = nil) {
+            hoverText: Data<String>? = nil, mode: Mode? = nil, line: ShapedSmoothDashedLine? = nil, marker:
+            GradientMarker? = nil) {
         self.name = name
         self.x = x
         self.y = y
@@ -620,21 +622,20 @@ public struct Scatter<XData, YData>: Trace, XYSubplot where XData: Plotable, YDa
     ///   - yCalendar: Sets the calendar system to use with `y` date data.
     ///   - xAxis: Sets a reference between this trace's x coordinates and a 2D cartesian x axis.
     ///   - yAxis: Sets a reference between this trace's y coordinates and a 2D cartesian y axis.
-    public init(visible: Shared.Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
+    public init(visible: Visible? = nil, showLegend: Bool? = nil, legendGroup: String? = nil,
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
-            hoverInfo: Shared.HoverInfo? = nil, hoverLabel: Shared.HoverLabel? = nil, stream: Shared.Stream?
-            = nil, transforms: [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, x0: Anything?
-            = nil, dx: Double? = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup:
-            String? = nil, orientation: Shared.Orientation? = nil, groupNormalization: GroupNormalization? =
-            nil, stackGaps: StackGaps? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil,
-            hoverText: Data<String>? = nil, mode: Shared.Mode? = nil, hoverOn: Shared.HoverOn? = nil,
-            hoverTemplate: Data<String>? = nil, line: ShapedSmoothDashedLine? = nil, connectGaps: Bool? =
-            nil, clipOnAxis: Bool? = nil, fill: Shared.Fill? = nil, fillColor: Color? = nil, marker:
-            Shared.GradientMarker? = nil, selected: Selected? = nil, unselected: Unselected? = nil,
-            textPosition: Shared.TextPosition? = nil, textFont: Shared.VariableFont? = nil, xError:
-            Shared.Error? = nil, yError: Shared.Error? = nil, xCalendar: Shared.Calendar? = nil, yCalendar:
-            Shared.Calendar? = nil, xAxis: Layout.XAxis = .preset, yAxis: Layout.YAxis = .preset) {
+            hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms:
+            [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double?
+            = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, stackGroup: String? = nil,
+            orientation: Orientation? = nil, groupNormalization: GroupNormalization? = nil, stackGaps:
+            StackGaps? = nil, text: Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText:
+            Data<String>? = nil, mode: Mode? = nil, hoverOn: HoverOn? = nil, hoverTemplate: Data<String>? =
+            nil, line: ShapedSmoothDashedLine? = nil, connectGaps: Bool? = nil, clipOnAxis: Bool? = nil,
+            fill: Fill? = nil, fillColor: Color? = nil, marker: GradientMarker? = nil, selected: Selected? =
+            nil, unselected: Unselected? = nil, textPosition: TextPosition? = nil, textFont: VariableFont? =
+            nil, xError: Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar:
+            Calendar? = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
