@@ -91,8 +91,8 @@ final class Sliders: XCTestCase {
         ]
 
         var groupedByYearAndContinent = [Int: [String: [Country]]]()
-        for (year, groupedByYear) in Dictionary(grouping: gapminder, by: { $0.year }) {
-            groupedByYearAndContinent[year] = Dictionary(grouping: groupedByYear, by: { $0.continent })
+        for (year, groupedByYear) in Dictionary(grouping: gapminder, by: \.year) {
+            groupedByYearAndContinent[year] = Dictionary(grouping: groupedByYear, by: \.continent)
         }
 
         var frames = [Frame]()
@@ -104,19 +104,17 @@ final class Sliders: XCTestCase {
                 
                 let trace = Scatter(
                     name: continent,
-                    ids: countries.map { $0.country },
-                    x: countries.map { $0.lifeExpectancy },
-                    y: countries.map { $0.gdpPerCapita },
-                    text: .variable(countries.map { $0.country }),
+                    ids: countries.map(\.country),
+                    x: countries.map(\.lifeExpectancy),
+                    y: countries.map(\.gdpPerCapita),
+                    text: .variable(countries.map(\.country)),
                     mode: .markers,
                     marker: .init(
-                        size: .variable(countries.map { $0.population }),
+                        size: .variable(countries.map(\.population)),
                         sizeReference: 200_000,
                         sizeMode: .area,
                         coloring: .constant(customColors[continent]!)
-                    ),
-                    xAxis: .init(uid: 1, range: [30, 90]),
-                    yAxis: .init(uid: 1, type: .log, range: [2, 5])
+                    )
                 )
                 traces.append(trace)
             }
@@ -160,6 +158,15 @@ final class Sliders: XCTestCase {
         )
 
         let layout = Layout(
+            xAxis: .preset(
+                title: "Life Expectancy",
+                range: [30, 90]
+            ),
+            yAxis: .preset(
+                title: "GDP per Capita",
+                type: .log,
+                range: [2, 5]
+            ),
             updateMenus: [
                 Layout.UpdateMenu(
                     type: .buttons,
@@ -200,19 +207,19 @@ final class Sliders: XCTestCase {
     func testMapAnimation() {
         let gapminder = Self.downloadGapminder()
         
-        let groupedByYear = Dictionary(grouping: gapminder, by: { $0.year })
+        let groupedByYear = Dictionary(grouping: gapminder, by: \.year)
 
         var frames = [Frame]()
         var sliderSteps = [Layout.Slider.Step]()
         for (year, countries) in groupedByYear.sorted(by: { $0.key < $1.key }) {
 
             let trace = Choropleth(
-                locations: countries.map{ $0.isoAlpha },
+                locations: countries.map(\.isoAlpha),
                 locationMode: .ISO3,
-                z: countries.map { $0.lifeExpectancy },
-                text: .variable(countries.map { $0.country }),
+                z: countries.map(\.lifeExpectancy),
+                text: .variable(countries.map(\.country)),
                 zAuto: false, zMin: 30, zMax: 90,
-                geo: .init(uid: 2,
+                geo: .init(
                     scope: .world,
                     showLand: true, landColor: .lightGray,
                     showLakes: true, lakeColor: .white,

@@ -211,8 +211,8 @@ final class Buttons: XCTestCase {
         )
     
         let layout = Layout(
-            xAxis: [Layout.XAxis(range: .array([.double(-Double.pi), .double(+Double.pi)]))],
-            yAxis: [Layout.YAxis(range: [-1.2, 1.2])],
+            xAxis: .preset(range: .array([.double(-Double.pi), .double(+Double.pi)])),
+            yAxis: .preset(range: [-1.2, 1.2]),
             updateMenus: [
                 Layout.UpdateMenu(
                     type: .dropDown,

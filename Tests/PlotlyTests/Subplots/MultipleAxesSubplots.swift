@@ -49,12 +49,7 @@ final class MultipleAxesSubplots: XCTestCase {
             name: "yaxis1 data",
             x: [1, 2, 3],
             y: [4, 5, 6],
-            xAxis: .init(
-                uid: 1,
-                domain: [0.3, 0.7]
-            ),
             yAxis: .init(
-                uid: 1,
                 title: .init(
                     text: "yaxis1 title",
                     font: .init(color: ColorList.plotly[0])
@@ -68,7 +63,6 @@ final class MultipleAxesSubplots: XCTestCase {
             x: [2, 3, 4],
             y: [40, 50, 60],
             yAxis: .init(
-                uid: 2,
                 title: .init(
                     text: "yaxis2 title",
                     font: .init(color: ColorList.plotly[1])
@@ -86,7 +80,6 @@ final class MultipleAxesSubplots: XCTestCase {
             x: [4, 5, 6],
             y: [40000, 50000, 60000],
             yAxis: .init(
-                uid: 3,
                 title: .init(
                     text: "yaxis3 title",
                     font: .init(color: ColorList.plotly[2])
@@ -103,7 +96,6 @@ final class MultipleAxesSubplots: XCTestCase {
             x: [5, 6, 7],
             y: [400000, 500000, 600000],
             yAxis: .init(
-                uid: 4,
                 title: .init(
                     text: "yaxis4 title",
                     font: .init(color: ColorList.plotly[3])
@@ -118,7 +110,10 @@ final class MultipleAxesSubplots: XCTestCase {
 
         let layout = Layout(
             title: "Multiple Y-Axes Example",
-            width: 800
+            width: 800,
+            xAxis: .preset(
+                domain: [0.3, 0.7]
+            )
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)

@@ -79,7 +79,7 @@ final class MixedSubplots: XCTestCase {
             showLegend: false,
             hoverInfo: [.x, .y],
             x: volcanos.map { $0.elevation },
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.red)
             ),
             xAxis: .init(
@@ -113,7 +113,7 @@ final class MixedSubplots: XCTestCase {
                 colorScale: .reds
             ),
             hoverInfo: .text,
-            geo: Layout.Geo(
+            geo: Geo(
                 uid: 3,
                 domain: .init(
                     x: [0, 0.45],

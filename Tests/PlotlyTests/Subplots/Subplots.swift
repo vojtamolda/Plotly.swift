@@ -45,8 +45,8 @@ final class Subplots: XCTestCase {
         let trace1 = Scatter(
             x: [1, 2, 3],
             y: [4, 5, 6],
-            xAxis: .init(uid: 1, domain: [0, 0.7]),
-            yAxis: .init(uid: 1)
+            xAxis: .init(domain: [0, 0.7]),
+            yAxis: .init()
         )
 
         let trace2 = Scatter(
@@ -189,17 +189,17 @@ final class Subplots: XCTestCase {
         let trace1 = Scatter(
             x: [0, 1, 2],
             y: [10, 11, 12],
-            yAxis: .init(uid: 1, domain: [0, 0.33])
+            yAxis: .init(domain: [0, 0.33])
         )
         let trace2 = Scatter(
             x: [2, 3, 4],
             y: [100, 110, 120],
-            yAxis: .init(uid: 2, domain: [0.33, 0.66])
+            yAxis: .init(domain: [0.33, 0.66])
         )
         let trace3 = Scatter(
             x: [3, 4, 5],
             y: [1000, 1100, 1200],
-            yAxis: .init(uid: 3, domain: [0.66, 1])
+            yAxis: .init(domain: [0.66, 1])
         )
 
         let layout = Layout(
@@ -216,8 +216,8 @@ final class Subplots: XCTestCase {
             name: "(1, 1)",
             x: [1, 2],
             y: [1, 2],
-            xAxis: .init(uid: 1, domain: [0, 0.45]),
-            yAxis: .init(uid: 1, domain: [0.5, 1])
+            xAxis: .init(domain: [0, 0.45]),
+            yAxis: .init(domain: [0.5, 1])
         )
         trace1.yAxis.anchor = .xAxis(trace1.xAxis)
         trace1.xAxis.anchor = .yAxis(trace1.yAxis)
@@ -226,8 +226,8 @@ final class Subplots: XCTestCase {
             name: "(1, 2)",
             x: [1, 2],
             y: [1, 2],
-            xAxis: .init(uid: 2, domain: [0.55, 1]),
-            yAxis: .init(uid: 2, domain: [0.8, 1])
+            xAxis: .init(domain: [0.55, 1]),
+            yAxis: .init(domain: [0.8, 1])
         )
         trace2.yAxis.anchor = .xAxis(trace2.xAxis)
         trace2.xAxis.anchor = .yAxis(trace2.yAxis)
@@ -236,8 +236,8 @@ final class Subplots: XCTestCase {
             name: "(1, 2)",
             x: [1, 2],
             y: [1, 2],
-            xAxis: .init(uid: 3, domain: [0.55, 1]),
-            yAxis: .init(uid: 3, domain: [0.5, 0.75])
+            xAxis: .init(domain: [0.55, 1]),
+            yAxis: .init(domain: [0.5, 0.75])
         )
         trace3.yAxis.anchor = .xAxis(trace3.xAxis)
         trace3.xAxis.anchor = .yAxis(trace3.yAxis)
@@ -246,8 +246,8 @@ final class Subplots: XCTestCase {
             name: "(2, *)",
             x: [1, 2],
             y: [1, 2],
-            xAxis: .init(uid: 4, domain: [0, 1]),
-            yAxis: .init(uid: 4, domain: [0, 0.45])
+            xAxis: .init(domain: [0, 1]),
+            yAxis: .init(domain: [0, 0.45])
         )
         trace4.yAxis.anchor = .xAxis(trace4.xAxis)
         trace4.xAxis.anchor = .yAxis(trace4.yAxis)

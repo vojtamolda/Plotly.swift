@@ -93,7 +93,7 @@ final class Histograms: XCTestCase {
                 size: 0.06
             ),
             xAutoBin: false,
-            marker: Shared.Marker(
+            marker: Marker(
                 line: .init(
                     width: 1,
                     coloring: .constant(.RGB(255, 100, 102, 1))
@@ -113,7 +113,7 @@ final class Histograms: XCTestCase {
                 size: 0.06
             ),
             xAutoBin: false,
-            marker: Shared.Marker(
+            marker: Marker(
                 line: .init(
                     width: 1,
                     coloring: .constant(.RGB(100, 200, 102, 1))
@@ -127,8 +127,8 @@ final class Histograms: XCTestCase {
             barGap: 0.05,
             barGroupGap: 0.2,
             title: "Sampled Results",
-            xAxis: [.init(title: "Value")],
-            yAxis: [.init(title: "Count")]
+            xAxis: .preset(title: "Value"),
+            yAxis: .preset(title: "Count")
         )
 
         let figure = Figure(data: [trace1, trace2], layout: layout)

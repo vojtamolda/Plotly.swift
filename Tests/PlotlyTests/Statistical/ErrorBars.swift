@@ -20,7 +20,7 @@ final class ErrorBars: XCTestCase {
         let trace = Scatter(
             x: [0, 1, 2],
             y: [6, 10, 2],
-            yError: Shared.Error(
+            yError: Error(
                 visible: true,
                 type: .data,
                 array: [1, 2, 3]
@@ -36,7 +36,7 @@ final class ErrorBars: XCTestCase {
             name: "Control",
             x: ["Trial 1", "Trial 2", "Trial 3"],
             y: [3, 6, 4],
-            yError: Shared.Error(
+            yError: Error(
                 visible: true,
                 type: .data,
                 array: [1, 0.5, 1.5]
@@ -46,7 +46,7 @@ final class ErrorBars: XCTestCase {
             name: "Experimental",
             x: ["Trial 1", "Trial 2", "Trial 3"],
             y: [4, 7, 3],
-            yError: Shared.Error(
+            yError: Error(
                 visible: true,
                 type: .data,
                 array: [0.5, 1, 2]
@@ -62,7 +62,7 @@ final class ErrorBars: XCTestCase {
         let trace = Scatter(
             x: [1, 2, 3, 4],
             y: [2, 1, 3, 4],
-            xError: Shared.Error(
+            xError: Error(
                 type: .percent,
                 value: 10
             )
@@ -76,7 +76,7 @@ final class ErrorBars: XCTestCase {
         let trace = Scatter(
             x: [1, 2, 3, 4],
             y: [2, 1, 3, 4],
-            yError: Shared.Error(
+            yError: Error(
                 type: .data,
                 symmetric: false,
                 array: [0.1, 0.2, 0.1, 0.1],
@@ -102,18 +102,18 @@ final class ErrorBars: XCTestCase {
             x: [-3.8, -3.03, -1.91, -1.46, -0.89, -0.24, -0.0, 0.41, 0.89, 1.01, 1.91, 2.28, 2.79, 3.56],
             y: [-0.02, 0.04, -0.01, -0.27, 0.36, 0.75, 1.03, 0.65, 0.28, 0.02, -0.11, 0.16, 0.04, -0.15],
             mode: .markers,
-            marker: Shared.GradientMarker(
+            marker: GradientMarker(
                 size: 8,
                 coloring: 0x85144B
             ),
-            xError: Shared.Error(
+            xError: Error(
                 type: .constant,
                 value: 0.2,
                 color: 0x85144B,
                 thickness: 1.5,
                 width: 3
             ),
-            yError: Shared.Error(
+            yError: Error(
                 type: .constant,
                 value: 0.1,
                 color: 0x85144B,
@@ -131,7 +131,7 @@ final class ErrorBars: XCTestCase {
         let trace = Scatter(
             x: [0, 1, 2],
             y: [6, 10, 2],
-            yError: Shared.Error(
+            yError: Error(
                 visible: true,
                 type: .percent,
                 value: 50
@@ -146,7 +146,7 @@ final class ErrorBars: XCTestCase {
         let trace = Scatter(
             x: [1, 2, 3, 4],
             y: [2, 1, 3, 4],
-            yError: Shared.Error(
+            yError: Error(
                 type: .percent,
                 symmetric: false,
                 value: 10,

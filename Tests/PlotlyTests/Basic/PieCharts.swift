@@ -46,7 +46,7 @@ final class PieCharts: XCTestCase {
             ),
             textInfo: Pie<[String], [Int]>.TextInfo.none,
             hoverInfo: [.name, .label, .percent],
-            domain: Shared.Domain(
+            domain: Domain(
                 row: 0,
                 column: 0
             )
@@ -60,7 +60,7 @@ final class PieCharts: XCTestCase {
             ),
             textInfo: Pie<[String], [Int]>.TextInfo.none,
             hoverInfo: [.name, .label, .percent],
-            domain: Shared.Domain(
+            domain: Domain(
                 row: 1,
                 column: 0
             )
@@ -74,7 +74,7 @@ final class PieCharts: XCTestCase {
             ),
             textInfo: Pie<[String], [Int]>.TextInfo.none,
             hoverInfo: [.name, .label, .percent],
-            domain: Shared.Domain(
+            domain: Domain(
                 row: 0,
                 column: 1
             )
@@ -88,7 +88,7 @@ final class PieCharts: XCTestCase {
             ),
             textInfo: Pie<[String], [Int]>.TextInfo.none,
             hoverInfo: [.name, .label, .percent],
-            domain: Shared.Domain(
+            domain: Domain(
                 x: [0.52, 1],
                 y: [0, 0.48]
             )
@@ -114,7 +114,7 @@ final class PieCharts: XCTestCase {
             labels: ["US", "China", "European Union", "Russian Federation", "Brazil", "India", "Rest of World"],
             values: [16, 15, 12, 6, 5, 4, 42],
             hoverInfo: [.name, .label, .percent],
-            domain: Shared.Domain(
+            domain: Domain(
                 column: 0
             ),
             hole: 0.4
@@ -124,7 +124,7 @@ final class PieCharts: XCTestCase {
             labels: ["US", "China", "European Union", "Russian Federation", "Brazil", "India", "Rest of World"],
             values: [27, 11, 25, 8, 1, 3, 25],
             hoverInfo: [.name, .label, .percent],
-            domain: Shared.Domain(
+            domain: Domain(
                 column: 1
             ),
             hole: 0.4
@@ -142,14 +142,14 @@ final class PieCharts: XCTestCase {
             annotations: [
                 Layout.Annotation(
                     text: "GHG",
-                    font: Shared.Font(size: 20),
+                    font: Font(size: 20),
                     showArrow: false,
                     x: 0.25, xAnchor: .center,
                     y: 0.5, yAnchor: .middle
                 ),
                 Layout.Annotation(
                     text: "CO2",
-                    font: Shared.Font(size: 20),
+                    font: Font(size: 20),
                     showArrow: false,
                     x: 0.75, xAnchor: .center,
                     y: 0.5, yAnchor: .middle

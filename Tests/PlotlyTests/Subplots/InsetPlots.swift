@@ -13,8 +13,8 @@ final class InsetPlots: XCTestCase {
         let trace1 = Scatter(
             x: [1, 2, 3],
             y: [4, 3, 2],
-            xAxis: .init(uid: 1),
-            yAxis: .init(uid: 1)
+            xAxis: .init(),
+            yAxis: .init()
         )
         trace1.xAxis.anchor = .yAxis(trace1.yAxis)
         trace1.yAxis.anchor = .xAxis(trace1.xAxis)
@@ -22,8 +22,8 @@ final class InsetPlots: XCTestCase {
         let trace2 = Scatter(
             x: [20, 30, 40],
             y: [30, 40, 50],
-            xAxis: .init(uid: 2, domain: [0.6, 0.95]),
-            yAxis: .init(uid: 2, domain: [0.6, 0.95])
+            xAxis: .init(domain: [0.6, 0.95]),
+            yAxis: .init(domain: [0.6, 0.95])
         )
         trace2.xAxis.anchor = .yAxis(trace2.yAxis)
         trace2.yAxis.anchor = .xAxis(trace2.xAxis)

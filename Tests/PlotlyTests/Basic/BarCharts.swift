@@ -75,7 +75,7 @@ final class BarCharts: XCTestCase {
             y: [8.0, 8.0, 12.0, 12.0, 13.0, 20.0],
             text: ["4.17 below the mean", "4.17 below the mean", "0.17 below the mean",
                    "0.17 below the mean", "0.83 above the mean", "7.83 above the mean"],
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.RGB(142, 124, 195))
             )
         )
@@ -84,8 +84,8 @@ final class BarCharts: XCTestCase {
             font: "Raleway, sans-serif",
             title: "Number of Graphs Made this Week",
             showLegend: false,
-            xAxis: [Layout.XAxis(tickAngle: -45)],
-            yAxis: [Layout.YAxis(gridWidth: 2, zeroLine: false)]
+            xAxis: .preset(tickAngle: -45),
+            yAxis: .preset(gridWidth: 2, zeroLine: false)
         )
         let figure = Figure(data: [trace], layout: layout)
         output(figure)
@@ -97,13 +97,13 @@ final class BarCharts: XCTestCase {
         let yValue = [20, 14, 23];
 
         let trace = Bar(
-            hoverInfo: Shared.HoverInfo.none,
+            hoverInfo: HoverInfo.none,
             x: xValue,
             y: yValue,
             text: .variable(yValue.map { String($0) }),
             textPosition: .auto,
-            marker: Shared.Marker(
-                line: Shared.MarkerLine(
+            marker: Marker(
+                line: .init(
                     width: 1.5,
                     coloring: .constant(.RGB(8, 48, 107))
                 ),
@@ -126,13 +126,13 @@ final class BarCharts: XCTestCase {
         let yValue2 = [24, 16, 20];
 
         let trace1 = Bar(
-            hoverInfo: Shared.HoverInfo.none,
+            hoverInfo: HoverInfo.none,
             x: xValue,
             y: yValue1,
             text: .variable(yValue1.map { String($0) }),
             textPosition: .auto,
-            marker: Shared.Marker(
-                line: Shared.MarkerLine(
+            marker: Marker(
+                line: .init(
                     width: 1.5,
                     coloring: .constant(.RGB(8, 48, 107))
                 ),
@@ -141,13 +141,13 @@ final class BarCharts: XCTestCase {
             )
         )
         let trace2 = Bar(
-            hoverInfo: Shared.HoverInfo.none,
+            hoverInfo: HoverInfo.none,
             x: xValue,
             y: yValue2,
             text: .variable(yValue2.map { String($0) }),
             textPosition: .auto,
-            marker: Shared.Marker(
-                line: Shared.MarkerLine(
+            marker: Marker(
+                line: .init(
                     width: 1.5,
                     coloring: .constant(.RGB(8, 48, 107))
                 ),
@@ -167,7 +167,7 @@ final class BarCharts: XCTestCase {
             name: "Primary Product",
             x: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             y: [20, 14, 25, 16, 18, 22, 19, 15, 12, 16, 14, 17],
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.RGB(49, 130, 189)),
                 opacity: 0.7
             )
@@ -176,14 +176,14 @@ final class BarCharts: XCTestCase {
             name: "Secondary Product",
             x: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             y: [19, 14, 22, 14, 16, 19, 15, 14, 10, 12, 12, 16],
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.RGB(204, 204, 204)),
                 opacity: 0.5
             )
         )
         let layout = Layout(
             title: "January 2013 Sales Report",
-            xAxis: [Layout.XAxis(tickAngle: -45)]
+            xAxis: .preset(tickAngle: -45)
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
         output(figure)
@@ -194,7 +194,7 @@ final class BarCharts: XCTestCase {
         let trace = Bar(
             x: ["Feature A", "Feature B", "Feature C", "Feature D", "Feature E"],
             y: [20, 14, 23, 25, 22],
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .variable([.RGB(204, 204, 204, 1), .RGB(222, 45, 38, 0.8), .RGB(204, 204, 204, 1),
                                      .RGB(204, 204, 204, 1), .RGB(204, 204, 204, 1)])
             )
@@ -225,7 +225,7 @@ final class BarCharts: XCTestCase {
             y: [500, 600, 700],
             hoverTemplate: "%{base}",
             base: [-500.0, -600.0, -700.0],
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.red)
             )
         )
@@ -234,7 +234,7 @@ final class BarCharts: XCTestCase {
             x: ["2016", "2017", "2018"],
             y: [300, 400, 700],
             base: 0.0,
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.blue)
             )
         )
@@ -250,7 +250,7 @@ final class BarCharts: XCTestCase {
                 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012],
             y: [219, 146, 112, 127, 124, 180, 236, 207, 236,
                 263, 350, 430, 474, 526, 488, 537, 500, 439],
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.RGB(55, 83, 109))
             )
         )
@@ -260,7 +260,7 @@ final class BarCharts: XCTestCase {
                 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012],
             y: [16, 13, 10, 11, 28, 37, 43, 55, 56, 88,
                 105, 156, 270, 299, 340, 403, 549, 499],
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.RGB(26, 118, 255))
             )
         )
@@ -270,29 +270,25 @@ final class BarCharts: XCTestCase {
             barGap: 0.15,
             barGroupGap: 0.1,
             title: "US Export of Plastic Scrap",
-            xAxis: [
-                Layout.XAxis(
-                    tickFont: Shared.Font(
-                        size: 14,
+            xAxis: .preset(
+                tickFont: Font(
+                    size: 14,
+                    color: .RGB(107, 107, 107)
+                )
+            ),
+            yAxis: .preset(
+                title: YAxis.Title(
+                    text: "USD (millions)",
+                    font: Font(
+                        size: 16,
                         color: .RGB(107, 107, 107)
                     )
+                ),
+                tickFont: Font(
+                    size: 14,
+                    color: .RGB(107, 107, 107)
                 )
-            ],
-            yAxis: [
-                Layout.YAxis(
-                    title: Layout.YAxis.Title(
-                        text: "USD (millions)",
-                        font: Shared.Font(
-                            size: 16,
-                            color: .RGB(107, 107, 107)
-                        )
-                    ),
-                    tickFont: Shared.Font(
-                        size: 14,
-                        color: .RGB(107, 107, 107)
-                    )
-                )
-            ],
+            ),
             legend: Layout.Legend(
                 backgroundColor: .RGB(255, 255, 255, 0),
                 borderColor: .RGB(255, 255, 255, 0),
@@ -316,7 +312,7 @@ final class BarCharts: XCTestCase {
         let trace1 = Bar(
             x: xData,
             y: [0, 430, 0, 570, 370, 370, 0],
-            marker: Shared.Marker(
+            marker: Marker(
                 coloring: .constant(.RGB(1, 1, 1, 0.0))
             )
         )
@@ -325,8 +321,8 @@ final class BarCharts: XCTestCase {
         let trace2 = Bar(
             x: xData,
             y: [430, 260, 690, 0, 0, 0, 0],
-            marker: Shared.Marker(
-                line: Shared.MarkerLine(
+            marker: Marker(
+                line: MarkerLine(
                     width: 2,
                     coloring: .constant(.RGB(55, 128, 191, 1.0))
                 ),
@@ -338,8 +334,8 @@ final class BarCharts: XCTestCase {
         let trace3 = Bar(
             x: xData,
             y: [0, 0, 0, 120, 200, 320, 0],
-            marker: Shared.Marker(
-                line: Shared.MarkerLine(
+            marker: Marker(
+                line: MarkerLine(
                     width: 2,
                     coloring: .constant(.RGB(219, 64, 82, 1.0))
                 ),
@@ -351,8 +347,8 @@ final class BarCharts: XCTestCase {
         let trace4 = Bar(
             x: xData,
             y: [0, 0, 0, 0, 0, 0, 370],
-            marker: Shared.Marker(
-                line: Shared.MarkerLine(
+            marker: Marker(
+                line: MarkerLine(
                     width: 2,
                     coloring: .constant(.RGB(50, 171, 96, 1.0))
                 ),
@@ -373,7 +369,7 @@ final class BarCharts: XCTestCase {
         for i in 0..<7 {
             let annotation = Layout.Annotation(
                 text: textList[i],
-                font: Shared.Font(
+                font: Font(
                     family: "Arial",
                     size: 14,
                     color: .RGB(245, 246, 249, 1)
@@ -415,8 +411,8 @@ final class BarCharts: XCTestCase {
         let layout = Layout(
             barMode: .relative,
             title: "Relative Barmode",
-            xAxis: [Layout.XAxis(title: "X axis")],
-            yAxis: [Layout.YAxis(title: "Y axis")]
+            xAxis: .preset(title: "X axis"),
+            yAxis: .preset(title: "Y axis")
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)

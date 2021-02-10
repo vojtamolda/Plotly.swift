@@ -85,7 +85,7 @@ final class LineCharts: XCTestCase {
             x: [1, 2, 3, 4],
             y: [10, 15, 13, 17],
             mode: .markers,
-            marker: Shared.GradientMarker(
+            marker: GradientMarker(
                 size: 12,
                 coloring: .constant(.RGB(219, 64, 82))
             )
@@ -107,7 +107,7 @@ final class LineCharts: XCTestCase {
                 color: .RGB(128, 0, 128),
                 width: 1
             ),
-            marker: Shared.GradientMarker(
+            marker: GradientMarker(
                 size: 8,
                 coloring: .constant(.RGB(128, 0, 128))
             )
@@ -152,9 +152,9 @@ final class LineCharts: XCTestCase {
             y: [53, 31],
             text: ["United States", "Canada"],
             mode: .markers,
-            marker: Shared.GradientMarker(
+            marker: GradientMarker(
                 size: 12,
-                line: Shared.MarkerLine(
+                line: MarkerLine(
                     width: 0.5,
                     coloring: .constant(.white)),
                 coloring: .constant(.RGB(164, 194, 244))
@@ -167,7 +167,7 @@ final class LineCharts: XCTestCase {
             text: ["Germany", "Britain", "France", "Spain",
                    "Italy", "Czech Rep.", "Greece", "Poland"],
             mode: .markers,
-            marker: Shared.GradientMarker(
+            marker: GradientMarker(
                 size: 12,
                 coloring: .constant(.RGB(255, 217, 102))
             )
@@ -179,7 +179,7 @@ final class LineCharts: XCTestCase {
             text: ["Australia", "Japan", "South Korea", "Malaysia",
                    "China", "Indonesia", "Philippines", "India"],
             mode: .markers,
-            marker: Shared.GradientMarker(
+            marker: GradientMarker(
                 size: 12,
                 coloring: .constant(.RGB(234, 153, 153))
             )
@@ -191,7 +191,7 @@ final class LineCharts: XCTestCase {
             text: ["Chile", "Argentina", "Mexico", "Venezuela",
                    "Venezuela", "El Salvador", "Bolivia"],
             mode: .markers,
-            marker: Shared.GradientMarker(
+            marker: GradientMarker(
                 size: 12,
                 coloring: .constant(.RGB(142, 124, 195))
             )
@@ -199,8 +199,8 @@ final class LineCharts: XCTestCase {
 
         let layout = Layout(
             title: "Quarter 1 Growth",
-            xAxis: [Layout.XAxis(title: "GDP per Capita", showGrid: true, zeroLine: true)],
-            yAxis: [Layout.YAxis(title: "Percent", showLine: false)]
+            xAxis: .preset(title: "GDP per Capita", showGrid: true, zeroLine: true),
+            yAxis: .preset(title: "Percent", showLine: false)
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)
@@ -254,7 +254,7 @@ final class LineCharts: XCTestCase {
 
         let layout = Layout(
             legend: Layout.Legend(
-                font: Shared.Font(size: 16),
+                font: Font(size: 16),
                 traceOrder: .reversed,
                 y: 0.5
             )
@@ -287,8 +287,8 @@ final class LineCharts: XCTestCase {
 
         let layout = Layout(
             title: "Title of the Graph",
-            xAxis: [Layout.XAxis(title: "x-axis title")],
-            yAxis: [Layout.YAxis(title: "y-axis title")]
+            xAxis: .preset(title: "x-axis title"),
+            yAxis: .preset(title: "y-axis title")
         )
 
         let figure = Figure(data: [trace1, trace2, trace3], layout: layout)
@@ -339,19 +339,19 @@ final class LineCharts: XCTestCase {
         )
 
         let layout = Layout(
-            xAxis: [
-                Layout.XAxis(
-                    autoRange: .off,
-                    range: [0.75, 5.25]
-                )
-            ],
-            yAxis: [
-                Layout.YAxis(
-                    autoRange: .off,
-                    range: [0, 18.5]
-                )
-            ],
-            legend: Layout.Legend(font: Shared.Font(size: 16), traceOrder: .reversed, y: 0.5)
+            xAxis: .preset(
+                autoRange: .off,
+                range: [0.75, 5.25]
+            ),
+            yAxis: .preset(
+                autoRange: .off,
+                range: [0, 18.5]
+            ),
+            legend: Layout.Legend(
+                font: Font(size: 16),
+                traceOrder: .reversed,
+                y: 0.5
+            )
         )
 
         let figure = Figure(data: [trace1, trace2, trace3, trace4], layout: layout)
@@ -417,7 +417,7 @@ final class LineCharts: XCTestCase {
                 x: [xData[i].first!, xData[i].last!],
                 y: [yData[i].first!, yData[i].last!],
                 mode: .markers,
-                marker: Shared.GradientMarker(
+                marker: GradientMarker(
                     size: 12,
                     coloring: .constant(colors[i])
                 )
@@ -434,38 +434,34 @@ final class LineCharts: XCTestCase {
                 autoExpand: false
             ),
             showLegend: false,
-            xAxis: [
-                Layout.XAxis(
-                    ticks: .outside,
-                    tickLength: 5,
-                    tickWidth: 2,
-                    tickColor: .RGB(204, 204, 204),
-                    showTickLabels: true,
-                    tickFont: Shared.Font(
-                        family: "Arial",
-                        size: 12,
-                        color: .RGB(82, 82, 82)
-                    ),
-                    showLine: false,
-                    lineColor: .RGB(204, 204, 204),
-                    lineWidth: 2,
-                    showGrid: false
-                )
-            ],
-            yAxis: [
-                Layout.YAxis(
-                    showTickLabels: false,
-                    showLine: false,
-                    showGrid: false,
-                    zeroLine: false
-                )
-            ]
+            xAxis: .preset(
+                ticks: .outside,
+                tickLength: 5,
+                tickWidth: 2,
+                tickColor: .RGB(204, 204, 204),
+                showTickLabels: true,
+                tickFont: Font(
+                    family: "Arial",
+                    size: 12,
+                    color: .RGB(82, 82, 82)
+                ),
+                showLine: false,
+                lineColor: .RGB(204, 204, 204),
+                lineWidth: 2,
+                showGrid: false
+            ),
+            yAxis: .preset(
+                showTickLabels: false,
+                showLine: false,
+                showGrid: false,
+                zeroLine: false
+            )
         )
 
         layout.annotations = [
             Layout.Annotation(
                     text: "Main Source For News",
-                    font: Shared.Font(
+                    font: Font(
                         family: "Arial",
                         size: 30,
                         color: .RGB(37, 37, 37)
@@ -476,7 +472,7 @@ final class LineCharts: XCTestCase {
             ),
             Layout.Annotation(
                     text: "Source: Pew Research Center & Storytelling with data",
-                    font: Shared.Font(
+                    font: Font(
                         family: "Arial",
                         size: 12,
                         color: .RGB(150, 150, 150)
@@ -489,7 +485,7 @@ final class LineCharts: XCTestCase {
         for i in 0 ..< xData.count {
             let firstPointAnnotation = Layout.Annotation(
                 text: String(format: "\(labels[i]) %.0f%%", yData[i].first!),
-                font: Shared.Font(
+                font: Font(
                     family: "Arial",
                     size: 16,
                     color: .black
@@ -500,7 +496,7 @@ final class LineCharts: XCTestCase {
             )
             let lastPointAnnotation = Layout.Annotation(
                 text: String(format: "%.0f%%", yData[i].last!),
-                font: Shared.Font(
+                font: Font(
                     family: "Arial",
                     size: 16,
                     color: .black

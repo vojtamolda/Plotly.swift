@@ -40,7 +40,7 @@ final class ScatterPlots: XCTestCase {
             y: [1, 6, 3, 6, 1],
             text: ["A-1", "A-2", "A-3", "A-4", "A-5"],
             mode: .markers,
-            marker: Shared.GradientMarker(size: 12)
+            marker: GradientMarker(size: 12)
         )
         let trace2 = Scatter(
             name: "Team B",
@@ -48,12 +48,12 @@ final class ScatterPlots: XCTestCase {
             y: [4, 1, 7, 1, 4],
             text: ["B-a", "B-b", "B-c", "B-d", "B-e"],
             mode: .markers,
-            marker: Shared.GradientMarker(size: 12)
+            marker: GradientMarker(size: 12)
         )
         let layout = Layout(
             title: "Data Labels Hover",
-            xAxis: [Layout.XAxis(range: [0.75, 5.25])],
-            yAxis: [Layout.YAxis(range: [0, 8])]
+            xAxis: .preset(range: [0.75, 5.25]),
+            yAxis: .preset(range: [0, 8])
         )
         let figure = Figure(data: [trace1, trace2], layout: layout)
         output(figure)
@@ -67,9 +67,9 @@ final class ScatterPlots: XCTestCase {
             y: [1, 6, 3, 6, 1],
             text: ["A-1", "A-2", "A-3", "A-4", "A-5"],
             mode: [.markers, .text],
-            marker: Shared.GradientMarker(size: 12),
+            marker: GradientMarker(size: 12),
             textPosition: .bottomCenter,
-            textFont: Shared.VariableFont(family: .constant("Times New Roman"))
+            textFont: VariableFont(family: .constant("Times New Roman"))
         )
         let trace2 = Scatter(
             name: "Team B",
@@ -77,16 +77,16 @@ final class ScatterPlots: XCTestCase {
             y: [4, 1, 7, 1, 4],
             text: ["B-a", "B-b", "B-c", "B-d", "B-e"],
             mode: [.markers, .text],
-            marker: Shared.GradientMarker(size: 12),
+            marker: GradientMarker(size: 12),
             textPosition: .bottomCenter,
-            textFont: Shared.VariableFont(family: .constant("Times New Roman"))
+            textFont: VariableFont(family: .constant("Times New Roman"))
         )
         let layout = Layout(
             title: "Data Labels on the Plot",
-            xAxis: [Layout.XAxis(range: [0.75, 5.25])],
-            yAxis: [Layout.YAxis(range: [0, 8])],
+            xAxis: .preset(range: [0.75, 5.25]),
+            yAxis: .preset(range: [0, 8]),
             legend: Layout.Legend(
-                font: Shared.Font(family: "Arial, sans-serif", size: 20, color: .gray),
+                font: Font(family: "Arial, sans-serif", size: 20, color: .gray),
                 y: 0.5
             )
         )
@@ -101,7 +101,7 @@ final class ScatterPlots: XCTestCase {
             y: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
                 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
             mode: .markers,
-            marker: Shared.GradientMarker(
+            marker: GradientMarker(
                 size: 40,
                 coloring: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
                            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]

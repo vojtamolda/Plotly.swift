@@ -60,23 +60,19 @@ final class Heatmaps: XCTestCase {
             autoSize: false,
             width: 700,
             height: 700,
-            xAxis: [.init(
-                    uid: 1,
-                    ticks: .off,
-                    side: .top)
-            ],
-            yAxis: [.init(
-                uid: 1,
+            xAxis: .preset(
+                ticks: .off,
+                side: .top),
+            yAxis: .preset(
                 ticks: .off,
                 tickSuffix: .none)
-            ]
         )
 
         layout.annotations = x.enumerated().flatMap { x in
             y.enumerated().map { y in
                 Layout.Annotation(
                     text: String(z[y.offset][x.offset]),
-                    font: Shared.Font(
+                    font: Font(
                         family: "Arial",
                         size: 12,
                         color: (z[y.offset][x.offset] == 0.0) ? .black : .white
@@ -131,26 +127,22 @@ final class Heatmaps: XCTestCase {
                 t: 200, b: 200
             ),
             showLegend: false,
-            xAxis: [
-                Layout.XAxis(
-                    autoRange: .off,
-                    range: [0, .init(phi)],
-                    ticks: .off,
-                    showTickLabels: false,
-                    showGrid: false,
-                    zeroLine: false
-                )
-            ],
-            yAxis: [
-                Layout.YAxis(
-                    autoRange: .off,
-                    range: [0, 1],
-                    ticks: .off,
-                    showTickLabels: false,
-                    showGrid: false,
-                    zeroLine: false
-                )
-            ]
+            xAxis: .preset(
+                autoRange: .off,
+                range: [0, .init(phi)],
+                ticks: .off,
+                showTickLabels: false,
+                showGrid: false,
+                zeroLine: false
+            ),
+            yAxis: .preset(
+                autoRange: .off,
+                range: [0, 1],
+                ticks: .off,
+                showTickLabels: false,
+                showGrid: false,
+                zeroLine: false
+            )
         )
 
         let figure = Figure(data: [spiral, heatmap], layout: layout)
