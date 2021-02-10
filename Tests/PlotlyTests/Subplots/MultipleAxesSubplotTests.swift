@@ -3,7 +3,7 @@ import Plotly
 
 
 // https://plot.ly/javascript/multiple-axes/
-final class MultipleAxesSubplots: XCTestCase {
+final class MultipleAxesSubplotTests: XCTestCase {
     static var allTests = [
         ("testTwoYAxes", testTwoYAxes),
         ("testMultipleAxes", testMultipleAxes)

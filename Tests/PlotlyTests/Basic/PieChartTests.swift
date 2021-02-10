@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/pie-charts/
-final class PieCharts: XCTestCase {
+final class PieChartTests: XCTestCase {
     static var allTests = [
         ("testBasicPieChart", testBasicPieChart),
         ("testPieChartSubplots", testPieChartSubplots),

@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/contour-plots/
-final class ContourPlots: XCTestCase {
+final class ContourPlotTests: XCTestCase {
     static var allTests = [
         ("testSimpleContourPlot", testSimpleContourPlot),
         ("testBasicContourPlot", testBasicContourPlot),

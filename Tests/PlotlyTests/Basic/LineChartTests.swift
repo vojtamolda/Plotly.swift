@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/line-and-scatter/
-final class LineCharts: XCTestCase {
+final class LineChartTests: XCTestCase {
     static var allTests = [
         ("testBasicLinePlot", testBasicLinePlot),
         ("testLineAndScatterPlot", testLineAndScatterPlot),

@@ -4,7 +4,7 @@ import CSV
 
 
 // https://plot.ly/javascript/table-subplots/
-final class TableSubplots: XCTestCase {
+final class TableSubplotTests: XCTestCase {
     static var allTests = [
         ("testTableAndChartSubplot", testTableAndChartSubplot)
     ]

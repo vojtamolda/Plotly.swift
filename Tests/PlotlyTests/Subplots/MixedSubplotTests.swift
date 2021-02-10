@@ -4,7 +4,7 @@ import CSV
 
 
 // https://plot.ly/javascript/mixed-subplots/
-final class MixedSubplots: XCTestCase {
+final class MixedSubplotTests: XCTestCase {
     static var allTests = [
         ("testMixedSubplots", testMixedSubplots)
     ]

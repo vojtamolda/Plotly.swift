@@ -3,7 +3,7 @@ import Plotly
 
 
 // https://plot.ly/javascript/3d-subplots/
-final class Subplots3D: XCTestCase {
+final class Subplot3DTests: XCTestCase {
     static var allTests = [
         ("testMultiple3DSubplots", testMultiple3DSubplots)
     ]

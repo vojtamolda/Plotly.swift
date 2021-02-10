@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/line-charts/
-final class ScatterPlots: XCTestCase {
+final class ScatterPlotTests: XCTestCase {
     static var allTests = [
         ("testLineAndScatterPlot", testLineAndScatterPlot),
         ("testDataLabelsHover", testDataLabelsHover),

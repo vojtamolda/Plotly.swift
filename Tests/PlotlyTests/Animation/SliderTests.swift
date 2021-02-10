@@ -4,7 +4,7 @@ import CSV
 
 
 /// https://plotly.com/python/sliders/
-final class Sliders: XCTestCase {
+final class SliderTests: XCTestCase {
     static var allTests = [
         ("testSimpleSliderControl", testSimpleSliderControl),
         ("testGapminderSlider", testGapminderSlider),

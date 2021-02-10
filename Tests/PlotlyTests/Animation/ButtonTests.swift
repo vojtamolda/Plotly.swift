@@ -4,7 +4,7 @@ import Plotly
 
 
 /// https://plotly.com/python/animations/
-final class Buttons: XCTestCase {
+final class ButtonTests: XCTestCase {
     static var allTests = [
         ("testSimplePlayButton", testSimplePlayButton),
         ("testMovingPointOnACurve", testMovingPointOnACurve),

@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/heatmaps/
-final class Heatmaps: XCTestCase {
+final class HeatmapTests: XCTestCase {
     static var allTests = [
         ("testBasicHeatmap", testBasicHeatmap),
         ("testHeatmapWithCategoricalAxisLabels", testHeatmapWithCategoricalAxisLabels),

@@ -3,7 +3,7 @@ import Plotly
 
 
 // https://plot.ly/javascript/insets/
-final class InsetPlots: XCTestCase {
+final class InsetPlotTests: XCTestCase {
     static var allTests = [
         ("testSimpleInsetPlot", testSimpleInsetPlot)
     ]

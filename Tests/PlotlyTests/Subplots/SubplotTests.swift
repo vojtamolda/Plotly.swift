@@ -3,7 +3,7 @@ import Plotly
 
 
 // https://plot.ly/javascript/subplots/
-final class Subplots: XCTestCase {
+final class SubplotTests: XCTestCase {
     static var allTests = [
         ("testSimpleSubplot", testSimpleSubplot),
         ("testCustomSizedSubplot", testCustomSizedSubplot),

@@ -7,31 +7,31 @@ import Plotly
 public func allTests() -> [XCTestCaseEntry] {
     [
         // https://plotly.com/javascript/animations/
-        testCase(Buttons.allTests),
-        testCase(Sliders.allTests),
+        testCase(ButtonTests.allTests),
+        testCase(SliderTests.allTests),
 
         // https://plot.ly/javascript/basic-charts/
-        testCase(LineCharts.allTests),
-        testCase(ScatterPlots.allTests),
-        testCase(BarCharts.allTests),
-        testCase(PieCharts.allTests),
+        testCase(LineChartTests.allTests),
+        testCase(ScatterPlotTests.allTests),
+        testCase(BarChartTests.allTests),
+        testCase(PieChartTests.allTests),
 
         // https://plot.ly/javascript/statistical-charts/
-        testCase(ErrorBars.allTests),
-        testCase(BoxPlots.allTests),
-        testCase(Histograms.allTests),
+        testCase(ErrorBarTests.allTests),
+        testCase(BoxPlotTests.allTests),
+        testCase(HistogramTests.allTests),
 
         // https://plot.ly/javascript/scientific-charts/
-        testCase(ContourPlots.allTests),
-        testCase(Heatmaps.allTests),
+        testCase(ContourPlotTests.allTests),
+        testCase(HeatmapTests.allTests),
 
         // https://plot.ly/javascript/subplots/
-        testCase(Subplots.allTests),
-        testCase(InsetPlots.allTests),
-        testCase(Subplots3D.allTests),
-        testCase(MixedSubplots.allTests),
-        testCase(TableSubplots.allTests),
-        testCase(MultipleAxesSubplots.allTests),
+        testCase(SubplotTests.allTests),
+        testCase(InsetPlotTests.allTests),
+        testCase(Subplot3DTests.allTests),
+        testCase(MixedSubplotTests.allTests),
+        testCase(TableSubplotTests.allTests),
+        testCase(MultipleAxesSubplotTests.allTests),
 
         testCase(FigureTests.allTests),
         testCase(TraceTests.allTests),

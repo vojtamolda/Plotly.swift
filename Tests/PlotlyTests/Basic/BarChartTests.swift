@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/bar-charts/
-final class BarCharts: XCTestCase {
+final class BarChartTests: XCTestCase {
     static var allTests = [
         ("testBasicBarChart", testBasicBarChart),
         ("testGroupedBarChart", testGroupedBarChart),

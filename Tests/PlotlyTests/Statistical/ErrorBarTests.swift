@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/error-bars/
-final class ErrorBars: XCTestCase {
+final class ErrorBarTests: XCTestCase {
     static var allTests = [
         ("testBasicSymmetricErrorBars", testBasicSymmetricErrorBars),
         ("testBarChartWithErrorBars", testBarChartWithErrorBars),

@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/box-plots/
-final class BoxPlots: XCTestCase {
+final class BoxPlotTests: XCTestCase {
     static var allTests = [
         ("testBasicBoxPlot", testBasicBoxPlot),
         ("testBoxPlotThatDisplaysTheUnderlyingData", testBoxPlotThatDisplaysTheUnderlyingData),

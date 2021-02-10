@@ -3,7 +3,7 @@ import Plotly
 
 
 /// https://plot.ly/javascript/histograms/
-final class Histograms: XCTestCase {
+final class HistogramTests: XCTestCase {
     static var allTests = [
         ("testBasicHistogram", testBasicHistogram),
         ("testHorizontalHistogram", testHorizontalHistogram),
